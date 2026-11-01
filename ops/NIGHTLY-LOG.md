@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-01 (~15:0x slot): fixed a real oversized-gate warning, full preflight confirmed clean after a genuine local hang, cold-read the homepage against CLAUDE.md section 51 and found nothing new to ship
+
+**Did.** Fresh checkout, no memory of prior runs. Checkout arrived shallow and detached: `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`. Diverged once mid-cycle against a concurrent PM push; resolved with a real merge, not a reset or force, taking the newer of two conflicting `ops/cycle-signal.json` checkpoints. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, `GOALS.md`, `ops/NIGHTLY-LOG.md`'s last several entries.
+
+**Found and fixed one real, fixable gate warning instead of only reporting it.** `gate_status_blocker001_not_oversized` warned STATUS.md's BLOCKER-001 chain carried 5 live entries. Ran `ops/rotate_status_history.py --apply-blocker1`: 4 entries (4721 bytes) moved to `STATUS-ARCHIVE.md`, STATUS.md back under its 110000-byte tripwire (105861 bytes), gate reconfirmed CLEAN. Checked every other rotation script (`rotate_backlog*`, `rotate_checkin_log`, `rotate_nightly_log`, `rotate_owner_actions*`, `rotate_status_workstreams`): all CLEAN, nothing else due.
+
+**Full `preflight.py` genuinely hung on this sandbox instance** (flat CPU time for several minutes, the documented shape, not the "just slow" one). Killed it and re-ran `--skip-tests` backgrounded rather than killed at the foreground timeout: it finished on its own after about 10 minutes, **exit code 0, every gate passed, 34 warnings**, all the standing sandbox kind (no Stripe/SSH/mail credential, no narrated films locally, analytics unreachable). No FAIL anywhere. In the meantime, ran the narrower checks directly rather than wait idle: `check_urls.py` 219/219, `audit_pages.py` 224/0 duplicates, `fix_dashes.py`/`fix_dialect.py --check` 0/0, `affiliate.py --check` 165 documents clean, `check_sellable.py` 124/126 (2 service SKUs), `link_graph_report.py` 0 orphans, `cold_read_ledger.py --stale` 0 and `--next` 0 un-ledgered of 299, `b9_claims.py --status` 0 undiagnosed rooms, mobile `npm test` all suites passing. `inbox_agent.py --apply`: no mail credential, unchecked, standing.
+
+**Checked one apparent finding before acting on it, and it was already correctly gated.** `ops/indexnow.py --status` showed 6 live-looking article URLs never submitted. Verified rather than assumed safe to submit: `deploy_gap_material_commits()` against the real current confirmed-deployed commit shows all 5 of the article commits (and the 6th, already-known) sitting inside the same 45-commit, 32-content undeployed gap `BLOCKER-001` already tracks. Submitting them to IndexNow now would tell search engines to crawl URLs production does not yet serve. Correctly left alone; not new work, the same standing `VPS_DEPLOY_KEY` gap (issue #35).
+
+**Took the 14:4x PM check-in's own handoff rather than re-mining the keyword-gap lane a fifth time today.** Cold-read the homepage (`site/index.html`) against CLAUDE.md section 51. The footer newsletter form's `onsubmit="return false"` looked like a live defect at first read; checked issue #15 before flagging it and found it is a deliberate, already-decided "honest handoff" (a dead Listmonk confirmation link would be worse than a form that visibly does nothing), still open on Phil. No other gap found on inspection; shipped nothing rather than force a change.
+
+GitHub: 16 open issues, same set as every cycle today, all `decision`/`P0`/`blocked-on-art`, every comment on #42 self-authored, none from Phil since 2026-10-31T21:00:15Z. No push notification due (last 2026-10-31T04:10:00Z, no-repeat-before 2026-11-02T04:00Z, nothing material changed).
+
+**Went well:** verifying the IndexNow finding against the real deploy gap before submitting anything, instead of treating "never submitted" as automatically actionable.
+
+**Did not go well:** the local `gate_tests` sandbox hang recurred; standing `--skip-tests` workaround used, confirmed clean once finished.
+
+**Changing next cycle:** none.
+
+**Next:** 16 issues await Phil; nothing else unblocked. Keyword-gap lane and homepage cold-read both confirmed exhausted of new candidates today; the undeployed IndexNow queue clears itself once production redeploys.
+
+Pushed to main. `STATUS.md`/`STATUS-ARCHIVE.md` edited (gate housekeeping), command deck regenerated, this log entry. No price, product or page touched; IndexNow not applicable.
+
 ## Addendum to the 14:4x PM cycle below: the backgrounded full preflight finished clean, settling the one thing that entry reported unchecked
 
 That entry left `preflight.py --skip-tests` running in the background past `gate_etsy_pdfs_current`'s own 300 second timeout, reported unchecked rather than assumed passing. It has since finished on its own: every gate passed, 34 warnings, the standing sandbox kind already named across recent entries plus the one new `gate_etsy_pdfs_current` timeout this entry already explained (not a defect, that gate working as designed). No FAIL anywhere. `cycle_signal.py` recorded the clean pass. Nothing else changed; no code or content touched.
