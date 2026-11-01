@@ -24,6 +24,26 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/zone-also-called.json`, one rebuilt zone page, rescore files, `BACKLOG-2026-09-07.md`, dashboard regen, this entry. No price or product touched; `IndexNow` to submit on push.
 
+## PM check-in, 2026-11-01 (00:4x slot): previous work finished; closing a missed log entry for the sitemap generator-ownership fix, no new regression
+
+NEXT FOR THE OPERATOR: mine the remaining 110 global gap rows in `ops/keyword-demand-global.json` for the next genuine cluster, the same unblocked lane A50 left; nothing newly unblocked from Phil.
+
+**Previous work: finished, but logged incompletely by the session that did it.** Attach: clean `fetch`/`checkout main`/`merge --ff-only` onto `origin/main`, no reset or force. While re-syncing mid-cycle a second time (STEP 8, do not collide), caught a real concurrent push that landed after this cycle had already started: commit `b90efa242` ("regenerate site/sitemap.xml, drifted lastmod on patio-or-deck from the generator-ownership gate"), pushed 00:42:27 by what reads as the same 00:3x PM session continuing past its own log entry. That commit is a real, correct fix (`gate_generator_ownership` had failed on `a745ae842` because `site/sitemap.xml` had drifted from what the generator produces after A50's zone rebuild), but it never got a `NIGHTLY-LOG.md` entry of its own, which is exactly the "half-built work nobody closes" shape CLAUDE.md 0.2/0.8 names. Recording it here rather than leaving it silent.
+
+**Independently re-verified, not cited.** Confirmed live via the Actions API that `checks.yml`'s last completed run (on `46af0399e`, the earlier 00:3x commit) failed on exactly one named gate, `gate_publish_image_current`: HEAD's `site/` differed from the last commit `publish-image.yml` actually shipped (`7a98e751d`). That is the standing BLOCKER-001/#35 deploy-image gap, not a new regression. The two gates that genuinely had regressed on `a745ae842` (`gate_tests`/`gate_risks_register_current` for the stale RISKS.md date, and `gate_generator_ownership` for the sitemap drift) have both since been fixed, by `46af0399e` and `b90efa242` respectively; read both job logs directly rather than trusting the dashboard's carried-forward warn line. `checks.yml` has not re-run since `46af0399e` because every commit since (two dashboard regens, the hourly bot, the sitemap fix) touches only files its own path filter excludes or never included (`ops/state.json`, `ops/dashboard.html`, `EXECUTIVE-DASHBOARD-LIVE.md` are explicitly excluded; `site/build-id.txt` and `site/sitemap.xml` are in `publish-image.yml`'s filter, not `checks.yml`'s). So the red badge on main right now is stale evidence of an already-fixed state, not an active failure; confirmed this by reading the filter and the two job logs, not assumed.
+
+**Ran `python ops/preflight.py --skip-tests` fresh against current HEAD** (`a1bb904cf`, includes both fixes). 0 named FAIL beyond the self-referential `gate_ci_conclusion_current` (which will keep reporting the stale `checks.yml` failure until some future commit touching a `*.md`-matched path re-triggers it; noted, not hidden). Genuinely stalled again at the documented `gate_etsy_pdfs_current` sandbox limit (114s elapsed, ~22% CPU, no new gate line), killed by pid after confirming the stall, the same precedent dozens of prior cycles have already established. 16 open GitHub issues, unchanged, all `decision`/`blocked-on-art`, none newly commented by Phil. 0 open PRs.
+
+**Did not wait on `publish-image.yml`'s own fresh attempt at `b90efa242`** (run 665): still `in_progress` when this entry was written (started 00:42:59). Left unresolved rather than assumed succeeded; the next cycle to check `gate_publish_image_current` will see its real outcome.
+
+**Did not start new work this slot**, per this routine's own instruction not to begin something large three minutes before the operator. The one genuinely unblocked candidate (mining the remaining 110 global gap rows) is sized for the operator, not this triage window.
+
+**Not notifying Phil:** nothing here needs an owner decision; the CI redness on main is explained, already fixed in substance, and will clear on the next qualifying push.
+
+Pushed to main. Dashboard regen, this entry. No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-01 (00:3x slot): CI red on main from a 32-day-stale RISKS.md review date; fixed and re-verified, not just re-stamped
 
 NEXT FOR THE OPERATOR: mine the remaining 110 global gap rows in `ops/keyword-demand-global.json` for the next genuine cluster, the same unblocked lane A50 left; nothing newly unblocked from Phil.
