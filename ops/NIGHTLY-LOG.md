@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Addendum to the 14:4x PM cycle below: the backgrounded full preflight finished clean, settling the one thing that entry reported unchecked
+
+That entry left `preflight.py --skip-tests` running in the background past `gate_etsy_pdfs_current`'s own 300 second timeout, reported unchecked rather than assumed passing. It has since finished on its own: every gate passed, 34 warnings, the standing sandbox kind already named across recent entries plus the one new `gate_etsy_pdfs_current` timeout this entry already explained (not a defect, that gate working as designed). No FAIL anywhere. `cycle_signal.py` recorded the clean pass. Nothing else changed; no code or content touched.
+
+## PM check-in, 2026-11-01 (14:4x slot): previous work finished and verified by a fourth independent method today, same exhausted Phil-gated queue, no new notification
+
+NEXT FOR THE OPERATOR: hold the standing line rather than re-litigating the keyword-gap lane a fourth time this cycle, because three independent methods today (13:4x grep, 13:5x full row read, 14:1x re-mine of the top 15 ranks) already confirmed it exhausted of safe candidates and nothing has changed since; if the operator wants fresh ground, the honest unexplored angle is a cold-read of one existing high-value page against CLAUDE.md section 51 (continuous improvement of what already ships), not another pass over the same 108 gap rows.
+
+Attached clean onto `8b77a7507` (unshallowed, `checkout -B main origin/main`, `merge --ff-only`, no reset or force; tree matched origin before and after).
+
+**Previous work (13:5x operator, 14:1x PM, its addendum) finished and verified, not cited.** Ran the checks myself rather than trust their numbers: `check_urls.py` 219/219, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `cold_read_ledger.py --stale` 0 and `--next` 0 un-ledgered of 299, `check_sellable.py` 124/126 Stripe-matched (2 known service SKUs). `cycle_signal.py --check` reports SAME against the 14:46:50Z snapshot, meaning nothing these checks cover has moved since the hourly check-in. CI (`checks.yml` run 2769) confirmed `completed`/`success` on current HEAD via the Actions API, not assumed. 16 open GitHub issues read fresh: unchanged set, all `decision`/`P0`/`blocked-on-art`; pulled all 7 comments on #42 directly and confirmed every one is a self-authored agent status update under the `Klingdom` account, not a genuine reply from Phil.
+
+**Checked one angle no recent entry had tried, found nothing wrong.** `ops/NIGHTLY-LOG.md` is 2,620,569 bytes, large enough to look like a defect on its own. `ops/rotate_nightly_log.py --check` says otherwise: all 1,038 entries are within the 14-day retention window, CLEAN, nothing to rotate. Correctly ruled out rather than flagged.
+
+**One thing left genuinely unchecked, said plainly rather than assumed passing.** Backgrounded a full `preflight.py --skip-tests` to verify past the narrower checks above. It sat at `gate_etsy_pdfs_current` for just over 5 minutes with CPU time flat, hit that gate's own documented `ETSY_PDFS_TIMEOUT_SECONDS = 300` bound exactly as designed (headless-Chromium PDF rendering, built 2026-09-13 specifically so a slow render warns UNCHECKED rather than hangs CI), and moved on cleanly on its own, no kill needed. 0 FAIL through everything reached before and after that point. Still running past this entry (now well into the roadmap/status-report/shop gates), left going in the background rather than killed; it has not reached a final verdict by the time this entry was written, so it stays reported as unchecked past wherever it currently sits, not assumed passing.
+
+**Went well:** a fourth independent verification method (NIGHTLY-LOG.md size) agreed with the standing record; no drift found anywhere checked.
+
+**Did not go well:** nothing new to fix this slot; the structured queue is genuinely empty of non-Phil-gated work right now.
+
+**Changing next cycle:** none.
+
+No push notification sent: the 2026-10-31T04:10:00Z push on the cadence question carries an explicit no-repeat-before of 2026-11-02T04:00Z, not yet reached, and nothing material changed.
+
+Pushed to main: this log entry, command deck regen. No price, product, page or code touched; `IndexNow` not applicable.
+
 ## Addendum to the 14:1x PM cycle below: the backgrounded full preflight finished clean, settling the one thing that entry reported unchecked
 
 That entry left `preflight.py --skip-tests` running in the background rather than killing it, and reported it as unchecked rather than assumed passing. It has since finished on its own: **exit code 0, every gate passed, 36 warnings**, all the standing sandbox kind already named in every recent entry (no Stripe/SSH/mail credential, analytics unreachable). No new defect. The wait was a few minutes, not a hang, the same "slow not hung" shape prior addenda have already recorded for this sandbox. `cycle_signal.py` recorded the clean pass before this cycle fast-forwarded past three concurrent commits (two draft-rotation bots, one hourly check-in) with no conflict. Nothing else changed; no code or content touched.
