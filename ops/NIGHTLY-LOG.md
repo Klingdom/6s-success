@@ -2,6 +2,34 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Addendum to the A52 cycle below: the full `preflight.py` run it backgrounded was genuinely hung, not slow, settled by the background harness's own 30-minute kill
+
+The A52 entry below left a full `preflight.py` run going in the background,
+stalled at `gate_tests`, and reported it honestly as unchecked rather than
+assumed passing. That run has now been settled, not left open: the
+background harness's own 30-minute limit killed it with CPU time still flat
+and no further output after `...gate_tests`, the same line it had been
+sitting on since shortly after it started. No exit code was ever written,
+because the process was killed externally rather than exiting.
+
+This is the clean version of the standing "hang vs. slow" question several
+recent entries have gone back and forth on: a run that makes zero CPU
+progress for a full 30 minutes, not just past the usual ~180s foreground
+timeout, is a genuine hang on this cycle's sandbox, not the "just slow,
+finishes in ~9.5 minutes if left alone" shape one earlier addendum
+described from a single clean finish. Both are real; which one happens
+appears to depend on the sandbox instance, not on the code. Worth the next
+cycle that re-litigates this noting both outcomes exist rather than treating
+either as settled.
+
+No new gate added: `gate_tests` sits last in `preflight.py`'s own gate
+order specifically so every other gate still gets a real answer before it,
+and `cycle_signal.py`'s checkpoint (built for exactly this problem) already
+lets a later cycle skip re-running the full suite when nothing has changed
+since a clean pass. This cycle's A52 content change is independently
+verified clean by the narrower checks the A52 entry already lists; nothing
+about this unresolved `gate_tests` run calls that into question.
+
 ## Scheduled operator cycle, 2026-11-01 (13:0x slot, second): fixed a real stale build-id CI/publish failure, closed the one un-ledgered cold-read file, same exhausted Phil-gated queue otherwise
 
 **Attached clean.** Checkout arrived shallow and detached: `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` three times across the cycle as concurrent PM/hourly/operator cycles pushed, no reset or force. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, the last several `ops/NIGHTLY-LOG.md` entries.
