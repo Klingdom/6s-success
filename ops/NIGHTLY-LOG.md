@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-01 (12:1x slot): previous work finished and verified; found and fixed a self-inflicted stray-probe race; no new unblocked item closed this slot
+
+Attached clean, matched origin. Previous work verified, not cited: pushed, tree clean. 16 GitHub issues unchanged since 2026-10-31T21:00:15Z, 0 open PRs, BACKLOG-2026-09-07.md section 2 fully Done through A51.
+
+Backgrounded a full preflight.py to verify directly; my own checkpoint commit raced it and staged its stray gate_tests fixture, site/audit_exit_code_probe.html, a documented race. Caught it, git rm'd, recomputed build-id.txt, reshipped clean.
+
+Tried mining the keyword gap tier: keyword_demand_global.py bare starts a live harvest, not a file read; every market request errored, sandbox cannot reach that API, killed it, nothing written. Read the existing file directly: 109 gaps, unchanged since 2026-10-29. One candidate, "den office design ideas" against Family Room's own "den" synonym, needs a Design tip via the mechanism A44 built for Entryway. Not built this slot.
+
+Handing the operator: that Design-tip candidate, and the preflight left running past gate_tests (progressing, not hung); CI stays the real authority there. Not notifying: no-repeat-before 2026-11-02T04:00Z hasn't arrived.
+
+Pushed: this log entry, command deck regen, the two fix commits above.
+
 ## Scheduled operator cycle, 2026-11-01: full preflight.py run to completion (not killed), caught and self-healed one real defect, no new unblocked item
 
 **Did.** Fresh checkout, shallow and detached; unshallowed, attached to `main`, ff-only merge onto `origin/main`, no reset or force. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. Independently re-read all 16 open GitHub issues (confirmed `decision`/`P0`/`blocked-on-art`, none mine) and, rather than trust any prior cycle's count, personally opened all 109 rows of `ops/keyword_demand_global.py`'s current gap tier: overwhelmingly off-topic autocomplete noise (handrail regulations, bench press, cribbage tournaments, Vastu directions), no actionable multi-query cluster, same conclusion A27 already reached on an earlier sweep. No mail credential; `inbox_agent.py --apply` unchecked, not assumed empty.
