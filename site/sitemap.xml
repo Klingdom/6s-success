@@ -479,12 +479,22 @@
   </url>
   <url>
     <loc>https://6s-success.com/articles/how-to-declutter-a-bedroom</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
       <image:loc>https://6s-success.com/assets/img/share/articles-how-to-declutter-a-bedroom.jpg</image:loc>
       <image:caption>Floor first, then the bed, the surfaces, the nightstands and the dresser top, in about two to three hours. Drawers and closet get their own sessions.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://6s-success.com/articles/how-to-declutter-a-kitchen</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/share/articles-how-to-declutter-a-kitchen.jpg</image:loc>
+      <image:caption>Counters first, then the sink and the drawers, in about one and a half to two and a half hours. Cabinets and the fridge get a second session.</image:caption>
     </image:image>
   </url>
   <url>
@@ -499,7 +509,7 @@
   </url>
   <url>
     <loc>https://6s-success.com/articles/how-to-organize-a-junk-drawer</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -569,7 +579,7 @@
   </url>
   <url>
     <loc>https://6s-success.com/articles/</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -649,7 +659,7 @@
   </url>
   <url>
     <loc>https://6s-success.com/articles/where-to-start-decluttering</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -689,7 +699,7 @@
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-is-my-house-always-messy</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
