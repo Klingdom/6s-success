@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-01: let a full preflight.py reach gate_tests rather than kill it, fixed two real warnings it found, same exhausted Phil-gated queue otherwise
+
+**Did.** Fresh checkout, no memory of prior runs. Checkout arrived shallow and detached: `git fetch origin main`, `git fetch --unshallow` (243 commits), `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, `GOALS.md`, the last several `ops/NIGHTLY-LOG.md` entries.
+
+**Ran the single gate rather than trusting a prior cycle's skip.** `python ops/preflight.py` backgrounded after missing the usual foreground timeout; left running rather than killed, confirmed progressing by reading its live child process tree (headless Chromium test subprocesses appearing and changing over time, not a flat-CPU hang) before committing to waiting roughly 45 minutes for it to finish on its own. Result: every gate passed, including `gate_tests`, 38 warnings.
+
+**Found and fixed two real, fixable warnings rather than re-logging them.** `gate_status_deploy_gap_count_current` and `gate_status_table_rows_gap_count_current` both flagged `STATUS.md`'s cited deploy gap (39 commits, 32 content) as stale against a fresh recount (41, two new commits: `3f474d85c` content, `b90efa242` mechanical). Updated BLOCKER-001's entry and both section-1 table rows; re-ran all three deploy-gap gates directly, 0 FAIL/0 WARN. Separately, `gate_backlog_gemini_cost_current` could not find BACKLOG-2026-09-07.md's own Gemini-billing row at all: its regex required the row's bold span to close immediately after "billing", and the row had grown a trailing period (`**Gemini billing.**`) when issue #47 was filed against it on 2026-10-31. Widened the regex, proved fail-then-pass directly in Python before and after the fix, added two regression test cases to `ops/tests/test_gate_backlog_gemini_cost_current.py` (8/8 pass). Full account in `BACKLOG-2026-09-07.md` section 68.
+
+**GitHub checked live, not assumed.** 16 open issues via the MCP tool, same set as every cycle since 2026-10-31 (#2 through #48), all `decision`/`P0`/`blocked-on-art`, none touched since #48 at 2026-10-31T21:00:15Z. 0 open PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty.
+
+**Collision handled, not ignored.** Two concurrent PM/hourly cycles pushed to main while this cycle worked; both pushes were fetched and rebased cleanly (one trivial conflict, in `ops/cycle-signal.json`, resolved by regenerating the file rather than hand-merging). No duplicate work found in either concurrent push.
+
+**Went well:** actually waiting out the documented `gate_tests` "slow, not hung" shape with live evidence (child process changing) rather than assuming either a hang or a clean finish; and reading the fast-preflight output as real findings to fix rather than a list to re-report.
+
+**Did not go well:** `gate_tests` took about 45 minutes this run, well past the ~9.5 minutes other recent entries recorded; not diagnosed further this cycle, likely resource contention from the several concurrent PM/operator sessions running at the same time.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated queue (16 issues); no new unblocked work found beyond this cycle's own gate repair. Backlog and cold-read ledger (298/298, 0 stale) both confirmed genuinely exhausted again.
+
 ## PM check-in, 2026-11-01 (08:1x slot): previous work finished and verified, closed one honesty gap in the dashboard, same exhausted Phil-gated queue
 
 **Previous work (07:4x PM, 07:5x operator) finished, verified not cited.** Attached clean: shallow and detached on arrival, `git fetch origin main`, `git fetch --unshallow` (252 commits fast-forwarded), `checkout main`, `merge --ff-only`, no reset or force. `cycle_signal.py --check` reported SAME against the 07:44:20Z checkpoint. 16 open issues via the MCP tool, same set as every cycle since 2026-10-31 (#48 through #2), all `decision`/`P0`/`blocked-on-art`, none touched since #48 at 2026-10-31T21:00:15Z. 0 open PRs. `grep -c "^- \[ \]" BACKLOG-2026-09-07.md` is 0.
