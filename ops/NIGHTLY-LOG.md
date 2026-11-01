@@ -2,6 +2,57 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Addendum, 2026-11-01 (21:0x): the Checks run the 20:4x entry below left unchecked finished, green, end to end; the whole incident is closed
+
+The 20:1x and 20:4x entries below are both mine, from the same continuous
+session across two scheduled firings, not two different cycles disagreeing;
+this closes the loop the 20:4x entry explicitly asked the next cycle to
+check.
+
+**Checks run `41348698433` (workflow_dispatch on `5fdeba19d`) finished at
+21:02:28Z: `conclusion: success`.** Preflight step (20:48:57 to 20:57:24,
+about 8.5 minutes, the normal duration), "The ops test suite" (20:57:24 to
+21:02:17, success), "Product copy has not drifted" (success). Confirmed by
+reading the job steps directly, not by trusting the green checkmark alone.
+
+**Full incident, for whoever reads this cold.** The 19:4x operator's
+workshop-article commit carried a real but tiny defect:
+`ROADMAP-2026-2029.md`'s section 2 headline still read "226 pages live"
+while the site had moved to 227; `gate_roadmap_prices_current` and
+`test_gates.py` both correctly caught it, and the real `Checks` CI went red
+on it (not just a local/sandbox artefact; confirmed via GitHub Actions job
+logs). Fixed the one number (20:1x). That alone did not turn CI green: the
+same bad commit had also failed `publish-image.yml`'s own build (same root
+cause, since it runs preflight too), which left the live site's deployed
+build behind HEAD and `gate_publish_image_current` failing for a different,
+real reason. Manually re-dispatched `publish-image.yml`; it built and
+published clean. The first `deploy.yml` run after that (auto-triggered on
+the publish) restarted the production container but could not read it back
+immediately afterward (`products live after: None`) and correctly refused
+to claim success per its own "unchecked is not deployed" rule, rather than
+a real outage: this sandbox has no egress to the live domain to check
+directly, so re-dispatched `deploy.yml` a minute later and it confirmed
+production current at build `52bc629000f31119`, matching HEAD, zero
+commits undeployed (`deploy_gap_material_commits` re-derived directly,
+empty list). Re-dispatched `checks.yml` itself to get an honest green
+record rather than leave a stale red one on file, which is the run
+confirmed green above.
+
+**Learning worth keeping:** a fix to the root cause of a CI failure does
+not retroactively clean the log of that failure, and a path-filtered
+workflow (`publish-image.yml` only fires on `site/`/Dockerfile changes)
+will not auto-retry just because the next commit happens to fix the gate
+that broke it; both needed an explicit `workflow_dispatch` this cycle.
+Worth a future cycle checking whether `gate_ci_conclusion_current` or a
+sibling gate should itself suggest the re-dispatch when it detects this
+exact shape (last run failed, no site-touching commit since) rather than
+relying on whoever reads the warning to work that out by hand.
+
+No further action needed; no notification sent (production was never
+actually down, confirmed, and the gap closed within the same session that
+found it). 30 open GitHub issues unchanged, all `decision`/`blocked-on-art`,
+all Phil-gated.
+
 ## PM check-in, 2026-11-01 (20:4x slot): previous work was NOT actually finished, the real Checks CI was still red on both pushes since; root cause resolved on its own, re-triggered to get an honest green record, result reported unchecked rather than assumed
 
 NEXT FOR THE OPERATOR: confirm the Checks run queued this slot (run id 41348698433, workflow_dispatch on commit 5fdeba19d) finished green before trusting CI is clean again; if it is green, there is no new unblocked item anywhere (30 open GitHub issues, all `decision`/`blocked-on-art`, issue #42 unanswered since 2026-10-17), so hold the line rather than inventing work.
