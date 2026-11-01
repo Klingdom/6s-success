@@ -673,7 +673,7 @@
       "best_page_title": "Why your family won't put things back where they belong",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/everyday-things-out-of-reach.html",
+      "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -695,7 +695,7 @@
       "best_page_title": "Why your family won't put things back where they belong",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/everyday-things-out-of-reach.html",
+      "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -717,7 +717,7 @@
       "best_page_title": "Why your family won't put things back where they belong",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/everyday-things-out-of-reach.html",
+      "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -759,7 +759,7 @@
       "best_page_title": "Why your family won't put things back where they belong",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/everyday-things-out-of-reach.html",
+      "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -780,7 +780,7 @@
       "best_page_title": "Why your family won't put things back where they belong",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -801,7 +801,7 @@
       "best_page_title": "Why your family won't put things back where they belong",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/everyday-things-out-of-reach.html",
+      "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -822,7 +822,7 @@
       "best_page_title": "Why your family won't put things back where they belong",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/everyday-things-out-of-reach.html",
+      "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -843,7 +843,7 @@
       "best_page_title": "Why your family won't put things back where they belong",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/everyday-things-out-of-reach.html",
+      "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -16742,7 +16742,7 @@
       "best_page_title": "How to organize the patio or deck railing and surface",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/about.html",
+      "heading_page": "/rooms/patio-or-deck.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -57454,6 +57454,6 @@
       ]
     }
   ],
-  "scored_at": "2026-11-01T15:54:41Z",
-  "scored_against_commit": "8fe8afda6"
+  "scored_at": "2026-11-01T16:23:57Z",
+  "scored_against_commit": "afb49ef0e"
 }

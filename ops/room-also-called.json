@@ -74,11 +74,12 @@
   "Patio or Deck": {
    "names": [
     "terrace",
-    "backyard"
+    "backyard",
+    "porch"
    ],
-   "queries": 2,
+   "queries": 3,
    "covered": 0,
-   "source": "ops/keyword-demand-global.json 2026-10-29 (in) for 'terrace'; 2026-10-31 (au) for 'backyard'. 'backyard organisation' (rank 7, au) scored 'gap' against /about.html on a coincidental title match, not because that page is about this room; the Patio or Deck page's own six zones (seating, grilling, dining, garden, storage, the surface/rail/safety zone) are exactly what a household means by 'backyard', and the page carried no 'backyard' wording at all until this entry. Thin evidence (one query each) but real, not invented."
+   "source": "ops/keyword-demand-global.json 2026-10-29 (in) for 'terrace'; 2026-10-31 (au) for 'backyard'; 2026-11-01 (gb) for 'porch'. 'backyard organisation' (rank 7, au) scored 'gap' against /about.html on a coincidental title match, not because that page is about this room; the Patio or Deck page's own six zones (seating, grilling, dining, garden, storage, the surface/rail/safety zone) are exactly what a household means by 'backyard', and the page carried no 'backyard' wording at all until this entry. 'porch organisation' (rank 10, gb) scored 'gap' against /about.html the same way; 'porch' is the plain British/Commonwealth word for the same outdoor seating structure this room already covers, confirmed by grep: neither the room page nor the deck page carried the word at all before this entry. Thin evidence (one query each) but real, not invented."
   }
  },
  "_global_note": "Entries carrying a 'source' were measured by ops/keyword_demand_global.py, which harvests the same seeds for gb, au, ca and in. ops/tests/test_room_also_called.py accepts evidence from either harvest."
