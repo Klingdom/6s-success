@@ -1443,6 +1443,10 @@ without the two accounts above.
 
 ### 19. Print the free Kitchen deck on your own printer. About five minutes, once.
 
+**Filed as #63, 2026-11-01, PM check-in.** Previously untracked, the same
+gap `gate_owner_actions_items_tracked` flagged; the fix issues #45-#56
+already applied to thirteen other items.
+
 **Added 2026-09-12, this PM check-in, found reconciling
 `PLAN-MICROZONES-DECKS-APP.md`'s K4 row against what actually shipped.** The
 free Kitchen deck (`site/kitchen-deck.html`, 72 cards, no SKU, shipped
