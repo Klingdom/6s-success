@@ -29,7 +29,7 @@
       "note": ""
     }
   },
-  "pages_checked": 227,
+  "pages_checked": 230,
   "rows": [
     {
       "query": "area craft activity",
@@ -1929,7 +1929,7 @@
       "best_page_title": "How to organize the entryway bench or console",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -1969,7 +1969,7 @@
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -2319,7 +2319,7 @@
       "best_page_title": "How to organize the pantry baking supplies",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -2433,11 +2433,11 @@
       "best_page_title": "How to organize the garage car care supplies",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/zones/garage-the-automotive-care-zone.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "way"
+        "cleaning"
       ],
       "markets": [
         "gb",
@@ -2459,7 +2459,7 @@
       "best_page_title": "How to organize the family room charging station",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -2486,7 +2486,7 @@
       "best_page_title": "How to organize the hall closet cleaning supplies",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/tidy-is-not-the-same-as-safe.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -2745,7 +2745,7 @@
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/zones/mudroom-the-seasonal-outdoor-gear.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -3574,7 +3574,7 @@
       "best_page_title": "How to organize the garage car care supplies",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/garage-deck.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -3596,7 +3596,7 @@
       "best_page_title": "How to organize the garage car care supplies",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/garage-deck.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -3619,7 +3619,7 @@
       "best_page_title": "How to organize the garage car care supplies",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -3641,7 +3641,7 @@
       "best_page_title": "How to organize the garage car care supplies",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/garage-deck.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -3663,7 +3663,7 @@
       "best_page_title": "How to organize the garage car care supplies",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/garage-deck.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -3686,7 +3686,7 @@
       "best_page_title": "How to organize the garage car care supplies",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -4242,8 +4242,8 @@
         "coat closet organization"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/articles/how-to-declutter-a-kitchen.html",
+      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -8122,7 +8122,7 @@
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -9460,7 +9460,7 @@
       "best_page_title": "Why does the medicine cabinet never get cleared out?",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -10231,7 +10231,7 @@
       "best_page_title": "How to organize the mudroom seasonal outdoor gear",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -12708,7 +12708,7 @@
       "best_page_title": "Contact 6S Success: books, quotes, workshops, and press",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/contact.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -12776,7 +12776,7 @@
       "best_page_title": "How to organize the entryway bench or console",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -12798,7 +12798,7 @@
       "best_page_title": "How to organize the entryway bench or console",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -13103,7 +13103,7 @@
       "best_page_title": "How to organize the patio or deck outdoor storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -13126,7 +13126,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -13217,7 +13217,7 @@
       "best_page_title": "How to organize the patio or deck outdoor storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -13422,13 +13422,11 @@
       "best_page": "/garage-deck.html",
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "quickly"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -13447,13 +13445,11 @@
       "best_page": "/zones/kitchen-the-primary-prep-counter.html",
       "best_page_title": "How to organize the kitchen prep counter",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/kitchen-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "declutter"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -13469,16 +13465,14 @@
         "how to declutter a kitchen"
       ],
       "room": "Kitchen",
-      "best_page": "/kitchen-deck.html",
-      "best_page_title": "The Kitchen Deck: 72 cards, typeset and free to read or print",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page": "/articles/how-to-declutter-a-kitchen.html",
+      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "table"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -16757,7 +16751,7 @@
       "best_page_title": "How to organize the garage car care supplies",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/garage-deck.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -16778,7 +16772,7 @@
       "best_page_title": "How to organize the garage car care supplies",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -16800,7 +16794,7 @@
       "best_page_title": "How to organize the garage car care supplies",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/garage-deck.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -17697,7 +17691,7 @@
       "best_page_title": "How to organize the entryway bench or console",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -18093,7 +18087,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -18388,13 +18382,11 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/rooms/workshop.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "event"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -18415,7 +18407,7 @@
       "best_page_title": "Why does a 5S program decay six months after the launch event?",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -18736,7 +18728,7 @@
       "best_page_title": "How to organize the pantry baking supplies",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -19243,8 +19235,8 @@
         "how to organise bed"
       ],
       "room": "",
-      "best_page": "/zones/home-office-the-desk-drawers-and-pedestal.html",
-      "best_page_title": "How to organize the home office desk drawers",
+      "best_page": "/articles/how-to-declutter-a-kitchen.html",
+      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.5,
       "heading_coverage": 0.5,
       "heading_page": "/articles/how-to-declutter-a-bedroom.html",
@@ -19272,7 +19264,7 @@
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/dining-room-deck.html",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -19315,11 +19307,11 @@
         "how to organise desk drawers"
       ],
       "room": "",
-      "best_page": "/zones/dining-room-the-dining-table.html",
-      "best_page_title": "How to organize the dining room dining table",
+      "best_page": "/articles/how-to-declutter-a-kitchen.html",
+      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -19656,7 +19648,7 @@
       "best_page_title": "How to organize the garage sports gear storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -19678,7 +19670,7 @@
       "best_page_title": "How to organize the garage car care supplies",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/garage-deck.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -19714,8 +19706,8 @@
         "how to organise desk drawers"
       ],
       "room": "",
-      "best_page": "/zones/dining-room-the-dining-table.html",
-      "best_page_title": "How to organize the dining room dining table",
+      "best_page": "/articles/how-to-declutter-a-kitchen.html",
+      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -19976,8 +19968,8 @@
         "how to organise closet"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/articles/how-to-declutter-a-kitchen.html",
+      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-baby-clothes.html",
@@ -20146,15 +20138,15 @@
         "how to organise craft area"
       ],
       "room": "",
-      "best_page": "/zones/family-room-the-craft-and-activity-zone.html",
-      "best_page_title": "How to organize the family room craft area",
+      "best_page": "/articles/how-to-organize-a-garage.html",
+      "best_page_title": "How to organize a garage full of stuff, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
       "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "stuff"
+        "craft"
       ],
       "markets": [
         "gb"
@@ -20380,11 +20372,11 @@
         "how to organise desk drawers"
       ],
       "room": "",
-      "best_page": "/zones/dining-room-the-dining-table.html",
-      "best_page_title": "How to organize the dining room dining table",
+      "best_page": "/articles/how-to-declutter-a-kitchen.html",
+      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -20542,7 +20534,7 @@
       "best_page_title": "How to organize the garage garden tool storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -21116,7 +21108,7 @@
       "best_page_title": "How to organize the mudroom seasonal outdoor gear",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -21246,7 +21238,7 @@
       "best_page_title": "How to organize the laundry room drying rack",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -21532,7 +21524,7 @@
       "best_page_title": "How to organize the garage tool wall",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -21554,7 +21546,7 @@
       "best_page_title": "How to organize the garage tool wall",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/deck-gallery.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -21572,8 +21564,8 @@
         "how to organise tool wall"
       ],
       "room": "",
-      "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
-      "best_page_title": "How to organize the garage tool wall",
+      "best_page": "/articles/how-to-declutter-a-kitchen.html",
+      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -21957,7 +21949,7 @@
       "best_page_title": "How to organize the primary bathroom under-sink cabinet",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -21977,7 +21969,7 @@
       "best_page_title": "How to organize the primary bathroom under-sink cabinet",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -22086,7 +22078,7 @@
       "best_page_title": "How to organize the primary bathroom under-sink cabinet",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -22193,7 +22185,7 @@
       "best_page_title": "How to organize the garage car care supplies",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -23090,16 +23082,14 @@
         "how to declutter a garage"
       ],
       "room": "Garage",
-      "best_page": "/garage-deck.html",
-      "best_page_title": "The Garage Deck: 80 cards, free to read",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/garage-deck.html",
-      "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "stuff"
-      ],
+      "best_page": "/articles/how-to-organize-a-garage.html",
+      "best_page_title": "How to organize a garage full of stuff, step by step",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-garage.html",
+      "matched_on": "title",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -23117,16 +23107,14 @@
         "how to declutter a garage"
       ],
       "room": "Garage",
-      "best_page": "/garage-deck.html",
-      "best_page_title": "The Garage Deck: 80 cards, free to read",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/garage-deck.html",
+      "best_page": "/articles/how-to-organize-a-garage.html",
+      "best_page_title": "How to organize a garage full of stuff, step by step",
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "tools"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -23345,7 +23333,7 @@
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -23366,16 +23354,14 @@
         "how to declutter a garage"
       ],
       "room": "Garage",
-      "best_page": "/garage-deck.html",
-      "best_page_title": "The Garage Deck: 80 cards, free to read",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/garage-the-automotive-care-zone.html",
+      "best_page": "/articles/how-to-organize-a-garage.html",
+      "best_page_title": "How to organize a garage full of stuff, step by step",
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "stuff"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -23396,7 +23382,7 @@
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -24661,13 +24647,11 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/rooms/workshop.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "messy"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -25390,7 +25374,7 @@
       "best_page_title": "How to organize the entryway bench or console",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -25438,7 +25422,7 @@
       "best_page_title": "How to organize the entryway bench or console",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -26138,7 +26122,7 @@
       "best_page_title": "How to organize the garage workbench",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -26184,13 +26168,11 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/rooms/workshop.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "event"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca",
         "gb",
@@ -26290,13 +26272,11 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/rooms/workshop.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "tools"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -27090,7 +27070,7 @@
       "best_page_title": "How to organize the pantry baking supplies",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -27175,7 +27155,7 @@
       "best_page_title": "How to organize the guest bathroom vanity counter",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -27741,7 +27721,7 @@
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/dining-room-deck.html",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -27784,11 +27764,11 @@
         "how to organize bed"
       ],
       "room": "",
-      "best_page": "/zones/dining-room-the-dining-table.html",
-      "best_page_title": "How to organize the dining room dining table",
+      "best_page": "/articles/how-to-declutter-a-kitchen.html",
+      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -27811,7 +27791,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -28314,7 +28294,7 @@
       "best_page_title": "How to organize the garage car care supplies",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/zones/garage-the-automotive-care-zone.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -28339,7 +28319,7 @@
       "best_page_title": "How to organize the garage car care supplies",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/garage-deck.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -28363,7 +28343,7 @@
       "best_page_title": "How to organize the garage car care supplies",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/zones/garage-the-automotive-care-zone.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -28886,8 +28866,8 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/articles/how-to-declutter-a-kitchen.html",
+      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-bedroom.html",
@@ -29150,8 +29130,8 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/articles/how-to-declutter-a-kitchen.html",
+      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-baby-clothes.html",
@@ -29522,8 +29502,8 @@
         "how to organize nightstand"
       ],
       "room": "",
-      "best_page": "/zones/guest-bedroom-the-guest-nightstand.html",
-      "best_page_title": "How to organize the guest bedroom nightstand",
+      "best_page": "/articles/how-to-declutter-a-kitchen.html",
+      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -29665,7 +29645,7 @@
       "best_page_title": "How to organize the garage car care supplies",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/zones/garage-the-automotive-care-zone.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -29863,7 +29843,7 @@
       "best_page_title": "How to organize the dining room beverage or coffee station",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -31579,8 +31559,8 @@
         "how to organise nightstand"
       ],
       "room": "",
-      "best_page": "/zones/guest-bedroom-the-guest-nightstand.html",
-      "best_page_title": "How to organize the guest bedroom nightstand",
+      "best_page": "/articles/how-to-declutter-a-kitchen.html",
+      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -31626,8 +31606,8 @@
         "how to organize nightstand"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-an-attic.html",
-      "best_page_title": "How to organize an attic without overloading it",
+      "best_page": "/articles/how-to-declutter-a-kitchen.html",
+      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/primary-bedroom-deck.html",
@@ -31904,7 +31884,7 @@
       "best_page_title": "How to organize the mudroom seasonal outdoor gear",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -31926,7 +31906,7 @@
       "best_page_title": "How to organize the patio or deck outdoor storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -31997,7 +31977,7 @@
       "best_page_title": "How to organize the patio or deck outdoor storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -32106,7 +32086,7 @@
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/disclaimer.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -32126,11 +32106,11 @@
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/patio-or-deck-deck.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "power"
+        "box"
       ],
       "markets": [
         "ca"
@@ -32148,7 +32128,7 @@
       "best_page_title": "How to organize the garage tool wall",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/disclaimer.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -32360,7 +32340,7 @@
       "best_page_title": "How to organize the guest bathroom vanity counter",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -32472,7 +32452,7 @@
       "best_page_title": "How to organize the garage car care supplies",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -32719,7 +32699,7 @@
       "best_page_title": "How to organize the entryway bench or console",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -32741,7 +32721,7 @@
       "best_page_title": "How to organize the garage garden tool storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -33261,7 +33241,7 @@
       "best_page_title": "How to organize the primary bathroom under-sink cabinet",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -33348,8 +33328,8 @@
         "how to organize bench"
       ],
       "room": "",
-      "best_page": "/zones/entryway-the-bench-or-console.html",
-      "best_page_title": "How to organize the entryway bench or console",
+      "best_page": "/articles/how-to-declutter-a-kitchen.html",
+      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -33435,7 +33415,7 @@
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/dining-room-deck.html",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -33548,7 +33528,7 @@
       "best_page_title": "Contact 6S Success: books, quotes, workshops, and press",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/contact.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -34029,12 +34009,11 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/rooms/workshop.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "partial",
       "unmatched_words": [
-        "event",
         "plan"
       ],
       "markets": [
@@ -34083,12 +34062,11 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/workshop.html",
-      "matched_on": "title",
-      "status": "gap",
+      "matched_on": "heading",
+      "status": "partial",
       "unmatched_words": [
-        "layout",
         "plan"
       ],
       "markets": [
@@ -34163,7 +34141,7 @@
       "best_page_title": "How to organize the garage sports gear storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -34271,11 +34249,11 @@
       "best_page_title": "Why your family won't put things back where they belong",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/hall-closet-deck.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "tools"
+        "wall"
       ],
       "markets": [
         "au"
@@ -36180,7 +36158,7 @@
       "best_page_title": "Why is my house always messy?",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/why-is-my-house-always-messy.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -36202,7 +36180,7 @@
       "best_page_title": "The Kitchen Deck: 72 cards, typeset and free to read or print",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -36755,7 +36733,7 @@
       "best_page_title": "The Kitchen Deck: 72 cards, typeset and free to read or print",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -40973,7 +40951,7 @@
       "best_page_title": "The Kitchen Deck: 72 cards, typeset and free to read or print",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -42076,7 +42054,7 @@
       "best_page_title": "How to organize the garage car care supplies",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/garage-deck.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -42136,7 +42114,7 @@
       "best_page_title": "How to organize the workshop hardware storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -42181,7 +42159,7 @@
       "best_page_title": "How to organize the mudroom seasonal outdoor gear",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -43113,7 +43091,7 @@
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -43135,7 +43113,7 @@
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -43178,7 +43156,7 @@
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/disclaimer.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -43588,7 +43566,7 @@
       "best_page_title": "How to organize a basement, one zone at a time",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -45407,7 +45385,7 @@
       "best_page_title": "How to organize the guest bathroom vanity counter",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -45533,8 +45511,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/articles/how-to-declutter-a-kitchen.html",
+      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/guest-bedroom-deck.html",
@@ -45945,8 +45923,8 @@
         "walk in closet organisation"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/articles/how-to-declutter-a-kitchen.html",
+      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/guest-bedroom-deck.html",
@@ -47445,7 +47423,7 @@
       "best_page_title": "Why is my house always messy?",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/why-is-my-house-always-messy.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -47468,7 +47446,7 @@
       "best_page_title": "The Kitchen Deck: 72 cards, typeset and free to read or print",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/why-is-my-house-always-messy.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -48471,13 +48449,11 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/rooms/workshop.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "always"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -48493,13 +48469,11 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/workshop.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "layout"
-      ],
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -48515,13 +48489,11 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/rooms/workshop.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "messy"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -48830,6 +48802,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-11-01T17:08:43Z",
-  "scored_against_commit": "2b591aedf"
+  "scored_at": "2026-11-01T21:53:29Z",
+  "scored_against_commit": "d61d70c43"
 }

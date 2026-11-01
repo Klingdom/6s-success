@@ -15434,6 +15434,10 @@
     {
      "label": "The trap",
      "text": "You will sort the fasteners twice before you touch the offcut pile once, because tipping out a jar of screws feels like progress and putting good wood in the fire bucket feels like waste. The zones you keep skipping are the zones holding the room back."
+    },
+    {
+     "label": "Room layout",
+     "text": "Work outward from the Main Workbench, since a cleared surface is the only thing that lets you judge what else belongs in the room. Keep the Power Tool Storage and the Fastener and Hardware Zone within reach of the bench, since those are the two zones a build reaches into constantly. Site the Finishing and Chemical Zone clear of the Power Tool Storage, since a solvent fume and a motor's spark do not share space safely, and keep its cans latched rather than stored loose in a fastener drawer. Put the Safety and PPE Station by the door you enter through, not at the bench, so you cannot start a cut before the glasses are already on. Whatever is not used at the bench belongs on the Material Rack, kept clear of the Finishing Zone so stock does not sit soaking up fumes."
     }
    ],
    "zones": [
