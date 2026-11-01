@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-01 (13:0x slot): closed a real zone-vocabulary gap (camping against the Garage's Bulk and Overhead Storage zone), reconfirmed the cadence lane is a genuine dead end
+
+**Did.** Fresh checkout, no memory of prior runs. Checkout arrived shallow and detached; unshallowed (`git fetch --unshallow`, 288 commits), `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force, working tree clean before and after. Read `GOALS.md`, `STATUS.md` (including `BLOCKER-001`), `ops/NIGHTLY-LOG.md` tail, `CLAUDE.md`. 16 open GitHub issues read directly via the API, all `decision`/`blocked-on-art`, zero new comments from Phil since 2026-10-31T21:00:15Z. `inbox_agent.py --apply`: no mail credential, unchecked, standing. `affiliate.py --check`: 165 documents clean.
+
+**Verified, not assumed, that the cadence lane (issue #42) is closed.** Re-tested `update_trigger` on the PM (:10) routine directly rather than trust the 2026-10-21 finding: refused with "created via http_api, not by an agent," the same wall every prior attempt hit. No session can reduce that cadence; only Phil, on the Routines page, can.
+
+**Found and fixed real, on-topic work instead of repeating a synonym pick.** Read the global keyword gap tier (109 rows) directly rather than cite a prior cycle's count; most is the same off-topic noise already named (Revit railings, cribbage, bench press, pasta/paneer troubleshooting). "How to organise camping" (au) and "how to organize camp" (in) both scored to `/about.html` via tie-break. Checked `content.json` before touching anything: the Garage's Bulk and Overhead Storage zone already names "decorations or camping" by that exact word in its own variant text, and its purpose (seasonal, once-or-twice-a-year, high and out of the way) is exactly what camping gear is, distinct from the Sports and Recreation Zone's in-season, frequently-grabbed kit. Added "camping zone" to a new `Garage|Bulk and Overhead Storage` entry in `zone-also-called.json`; left bare "camp" unadded since "camp zone" is not a phrase any household uses for this (reads as a children's camp), the same discipline A32/A51 already applied. Reran `ops/build_zone_pages.py` (self-chained).
+
+**Verified.** `test_gate_zone_also_called_is_heading.py` 6/6. `ops/keyword_demand_global.py --rescore`: the target query moves from `gap` to `covered` (heading match, the real zone page); global gap count 109 to 108. `check_urls.py` 219/219, `audit_pages.py` 224/0 duplicates, `fix_dashes.py`/`fix_dialect.py --check` 0/0, `check_sellable.py` 124/126 (2 known service SKUs), `link_graph_report.py` 0 orphans, `build_id.py --check` current, `ops/audit_visual.py` scoped to the changed page (desktop and mobile) 0 findings each.
+
+**One thing not confirmed clean, said plainly.** Full `preflight.py` was backgrounded (my own earlier `timeout 170` wrapper had wrongly killed a first attempt at 170s, contradicting the standing "let it finish" practice; corrected and restarted without a wrapper). It sat at `gate_tests` with CPU time flat at 0:11 for over 10 minutes before this entry was written, the "genuine hang" shape rather than "just slow." Left running past this slot; reported unchecked past that gate, not assumed passing, per `CLAUDE.md` 0.4.
+
+**Went well:** re-verifying the cadence dead end directly instead of citing it a fourth time; catching my own timeout-wrapper mistake before it cost the whole cycle's preflight signal.
+
+**Did not go well:** `gate_tests` still unresolved one way or the other; the standing sandbox limitation (no Stripe/SSH/mail credential, no VPS deploy key) is unchanged.
+
+**Changing next cycle:** none.
+
+**Next:** 16 issues await Phil; nothing else is unblocked in the structured queue. The next cycle should keep mining the global gap tier (108 rows left) for the next genuine on-topic cluster.
+
+Pushed to main. One existing zone page edited via its generator, no new page; `BACKLOG-2026-09-07.md` A52 recorded; dashboard regenerated; `IndexNow` to submit on push.
+
 ## PM check-in, 2026-11-01 (12:1x slot): previous work finished and verified; found and fixed a self-inflicted stray-probe race; no new unblocked item closed this slot
 
 Attached clean, matched origin. Previous work verified, not cited: pushed, tree clean. 16 GitHub issues unchanged since 2026-10-31T21:00:15Z, 0 open PRs, BACKLOG-2026-09-07.md section 2 fully Done through A51.

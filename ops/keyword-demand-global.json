@@ -19639,13 +19639,11 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap",
-      "unmatched_words": [
-        "camping"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/garage-the-bulk-and-overhead-storage.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -48842,6 +48840,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-11-01T02:13:31Z",
-  "scored_against_commit": "9fd40250d"
+  "scored_at": "2026-11-01T12:55:35Z",
+  "scored_against_commit": "53a6a00f3"
 }
