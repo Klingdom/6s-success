@@ -568,8 +568,8 @@
     },
     "build_zone_pages.py": {
       "status": "fixed",
-      "date": "2026-10-31",
-      "note": "Scheduled operator cycle, 2026-10-31. Edited this file directly (not a drive-by): added the 'Design' and 'After a makeover' tip labels to room_faq() and room_page(), parallel to the existing 'Room layout'/'Garage sale' mechanism, to close the foyer-design and entryway-makeover gap cluster the global keyword harvest found. Re-read room_faq(), room_page()'s tip-rendering block, and the generic 'For this room' list filter in full before editing; verified the new labels render as real <h2> headings, are excluded from the generic list so nothing renders twice, and that no other room accidentally picks up Entryway-only copy (tips.get returns None for every other room)."
+      "date": "2026-11-01",
+      "note": ""
     },
     "canonical_links.py": {
       "status": "clean",

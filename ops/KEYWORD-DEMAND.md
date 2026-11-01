@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-01T16:23:57Z against 227 page(s) at commit afb49ef0e. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-01T17:08:57Z against 227 page(s) at commit 2b591aedf. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 227 published page titles: 1336 covered, 1335 partial, 137 gap.
+**Queries found:** 2808. Checked against 227 published page titles: 1337 covered, 1335 partial, 136 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 137, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 136, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -188,7 +188,7 @@ Showing the top 60 of 1335.
 | Mudroom | 43 | 1 | 22 | 20 |
 | Nursery | 62 | 1 | 22 | 39 |
 | Pantry | 58 | 1 | 31 | 26 |
-| Primary Bathroom | 13 | 1 | 8 | 4 |
+| Primary Bathroom | 13 | 0 | 9 | 4 |
 | Primary Bedroom | 16 | 1 | 13 | 2 |
 | Stair Landing | 24 | 0 | 16 | 8 |
 | Workshop | 66 | 5 | 36 | 25 |

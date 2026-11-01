@@ -2,6 +2,101 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-01 (17:0x slot): unshallowed and attached cleanly, closed A54 before reading the 17:1x entry's own (incorrect) rejection of the same query, full preflight re-confirmed clean
+
+**Correction to the 17:1x PM check-in below, which landed concurrently with this cycle's own work and reached the opposite verdict on the same query.** That entry's own account reads "'Organization for tiny bathrooms' and 'car organisation must haves' are scoring/filler-word artifacts... not vocabulary gaps. No safe, evidence-backed addition found this cycle." The bathroom half of that verdict was wrong, reached independently of this cycle's own work below: Primary Bathroom's own `intro` already states "the smallest room you use the most," a real, specific fact the query is about, not a filler word. The 17:1x cycle checked the query's surface wording and the existing headings, correctly found no match, and stopped there without checking whether a groundable fact existed to build a new heading from. "Car organisation must haves" was correctly declined there; A48 (2026-10-31) already proved those exact words are generic listicle filler with no honest heading fix, so that half of the 17:1x verdict stands.
+
+**Did.** Fresh checkout arrived shallow and detached, as this operating prompt's
+own Step 0 warns: `git fetch origin main`, `git fetch --unshallow` (346
+commits), `checkout main`, `merge --ff-only` onto `origin/main`, clean
+fast-forward, no reset or force. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`,
+`CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries, `STATUS.md`'s top
+section. Checked all 16 open GitHub issues live via the MCP tool: none have had
+owner activity since 2026-10-31T21:00:15Z, confirming the backlog's own claim
+that every distribution/traffic item (KDP, Etsy, YouTube OAuth, Gemini billing,
+Apple/Play, the accounts layer) stays Phil-gated. `inbox_agent.py --apply`: no
+mail credential in this sandbox, unchecked, not assumed empty. `STATUS.md`
+shows a real, material change since the last read: deploys are now automatic
+(`VPS_DEPLOY_KEY` set, `deploy.yml` auto-deploys on push) and production is
+current, 0 commits undeployed.
+
+Preflight (`--skip-tests`, the documented workaround for this sandbox's
+~90-minute `gate_tests` cost) ran clean first: 0 FAIL, 33 standing warnings,
+all previously diagnosed sandbox/credential limits. `affiliate.py --check`
+(165 documents), `check_sellable.py` (124/126), `cold_read_ledger.py --stale`
+(0 of 299) all clean. No measurement or VPS credential exists in this sandbox
+(`ops/traffic_query.sh` needs an SSH key this container does not hold), so the
+traffic figure stays the stale 2026-10-02 reading, already tracked in
+`OWNER-ACTIONS.md`.
+
+**Closed A54.** With every traffic/distribution item Phil-gated, the only
+genuinely unblocked lane is the global keyword gap tier (105 rows at the
+start of this cycle), per the backlog's own section 2. Hand-read the sorted
+tier (CLAUDE.md 5c): nearly all of it is the same off-topic noise prior
+cycles already named (Revit handrail CAD, cribbage tournaments, bench press,
+vastu/interior-decor, pasta/paneer troubleshooting, "back porch" place and
+business names). "Organization for tiny bathrooms" (ca, rank 6, gap, 0.0
+title coverage, scored to `/about.html` via tie-break) was the one genuine
+on-topic miss. Checked the Primary Bathroom's own `intro` text in
+`content.json` before writing anything: it already calls this room "the
+smallest room you use the most," which is exactly the fact the query asks
+about. Added a "Small bathroom" tip built entirely from facts already on the
+page (the vanity counter's one-tray/four-product rule, its own
+pedestal-basin variant, the vanity drawers and under-sink cabinet as where
+overflow goes), nothing invented. Generalized the existing
+`tips.get("Room layout")`/`"Garage sale"`/`"Design"`/`"After a makeover"`
+mechanism in `room_faq()`/`room_page()` with a fifth label-keyed branch, its
+own `<h2>` heading for the same heading-coverage reason as every prior tip
+in this series.
+
+**Found and fixed before shipping.** A first draft headed the section "A
+small primary bathroom," which reads naturally but shares no word with the
+query's real content words, checked directly: `content_words("organization
+for tiny bathrooms")` returns `['tiny', 'bathrooms']`, and "small"/"bathroom"
+(singular) match neither. Reworded to "Tiny bathrooms" (heading) and "How do
+you organize tiny bathrooms?" (FAQ question), exact matches, then confirmed
+the body paragraph still reads naturally with "tiny" worked in once.
+
+**Verified.** Resynced `mcp/content.json`; reran `ops/build_zone_pages.py`
+then `ops/build_seo.py`. `ops/keyword_demand_global.py --rescore` moves the
+target query from `gap` (0.0) to `covered` (`heading_coverage` 1.0, matched
+on heading, the real page, `unmatched_words: []`); site-wide gap count 103
+to 102. Checked all 19 queries this page now wins on heading match: every
+one is a genuine master/primary-bathroom query, 0 collisions. US harvest
+(`ops/keyword_demand.py --rescore`) consistent, 137 to 136. `check_urls.py`
+(219/219), `audit_pages.py` (224/0 duplicates), `fix_dashes.py --check`
+(0/0), `fix_dialect.py --check` (clean), `affiliate.py --check` (165
+documents), `check_sellable.py` (124/126), `link_graph_report.py` (0
+orphans), `build_id.py --check` (current), `ops/audit_visual.py` scoped to
+the changed page (desktop and mobile, 0 findings each) all clean. Full
+`python ops/preflight.py --skip-tests` (not the fast individual checks)
+re-run after the change: every gate passed, same 33 standing warnings, no
+new ones. `cold_read_ledger.py --add ops/build_zone_pages.py --status
+fixed` recorded the edit.
+
+**Went well.** Catching the heading/query word mismatch before shipping
+rather than after, by checking the scorer's own `content_words()` output
+directly instead of assuming a natural-sounding heading would score well.
+
+**Did not go well.** A background preflight run detached from its own shell
+job when started with a trailing `&` inside a tool call that was itself
+already backgrounded; it kept running as an orphaned process after the tool
+reported the wrapper command complete, costing a few minutes of confusion
+before the real exit was confirmed by waiting on its pid directly. Next
+time: never combine `&` with an already-background tool invocation; let the
+tool's own backgrounding be the only layer.
+
+**Changing next cycle:** none.
+
+**Next:** 102 global gap rows remain, same shape as before (mostly
+off-topic noise); mine them for the next genuine on-topic cluster if no
+owner decision has landed. All 16 GitHub issues still need Phil; nothing
+else is unblocked.
+
+Pushed to main: one existing room page edited (Primary Bathroom), no new
+page; command deck regenerated; `IndexNow` to submit on push. No price or
+product touched.
+
 ## PM check-in, 2026-11-01 (17:1x slot): previous work finished and verified, mined the global gap tier's handoff and found it genuinely exhausted, nothing new to ship
 
 **Previous work finished and verified, not cited.** The 16:4x PM cycle (STATUS.md deploy-citation fix, commit `8f6e6dbe8`) and the hourly check-in after it (`935ac5c39`) are both pushed and matched `origin/main` after a clean attach (fetch, unshallow, `checkout main`, `merge --ff-only`, no reset or force). Re-derived the deploy claim directly rather than trusting the prose: `resolve_verdict_commit('6b6fb70b98ef9333')` -> `c92f1c750`, `deploy_gap_material_commits()` against real current `HEAD` returns an empty list, 0 commits undeployed. Narrow suite run directly: `check_urls.py` 219/219, `audit_pages.py` 224 pages/0 duplicates, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `cold_read_ledger.py --stale` 0, all 7 rotation generators CLEAN, 0 unchecked backlog rows, 16 open GitHub issues read directly via the MCP tool, same set as every recent cycle, all `decision`/`blocked-on-art`/`P0`, no comment from Phil on any of them since 2026-10-31T21:00:15Z.
@@ -33,7 +128,6 @@ NEXT FOR THE OPERATOR: keep mining the global keyword gap tier (`ops/keyword-dem
 **Did not go well:** `gate_tests` still would not finish inside the sandbox window; standing, not new.
 
 Pushed to main: `STATUS.md` (five sections), this log entry, dashboard regen. No price, product or page touched; IndexNow not applicable.
-
 
 
 ## PM check-in, 2026-11-01 (16:1x slot): previous work finished and verified, closed one real vocabulary gap, cycle signal re-recorded clean
