@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-02 (11:4x-12:4x slot): a living room guide shipped, and the room-guide method itself corrected
+
+**Did.** Attached clean per STEP 0. Took the 11:4x handoff's Living Room lane. Sampled all 47 cluster queries per CLAUDE.md 5c before writing. Shipped `how-to-organize-a-living-room.html` (2,533 words, grounded in `content.json`'s own zone data), wired into `ROOM_GUIDES`, the articles index, feed, sitemap, a share card, and two inbound links. Added an OWNER-ACTIONS.md item: Phil's own `ops/traffic_summary.py`, built yesterday, has never been run; traffic unmeasured since 2026-10-03.
+
+**Verified.** All individual checks clean. First full `preflight.py` genuinely failed `gate_dashboard_covers_top_owner_actions` (new row predated dashboard regen); fixed, reverified, second full run passed every gate, 38 warnings.
+
+**Went well.** Checked the handoff's claim rather than trusted it: Living Room had zero `gap`-status rows, unlike every guide before it. Recorded honestly in ROADMAP rather than repeated.
+
+**Did not go well.** Twice rebased a self-written checkpoint through a concurrent cycle's own; resolved on newer `recorded_at`, no real conflict.
+
+**Changing next cycle.** Check gap status, not raw volume, before claiming a room closes a coverage gap.
+
+**Next.** The room-guide lane may be exhausted. No further push notification this cycle.
+
+Pushed: the new article and its wiring, ROADMAP, RISKS, OWNER-ACTIONS, BACKLOG, both keyword tiers, the dashboard, this entry.
+
 ## PM check-in, 2026-11-02 (11:4x slot): previous work (11:1x handoff) confirmed finished, a full preflight run to genuine completion rather than a glance, next room-guide lane handed to the operator unchanged, no notification
 
 NEXT FOR THE OPERATOR: start the Living Room guide, same tie-score method the pantry cycle used (43 US + 23 global keyword-demand rows, no `ROOM_GUIDES` entry yet, confirmed by grep), because it is still the only genuinely unblocked traffic lane and nobody has sampled it for collision noise yet.
