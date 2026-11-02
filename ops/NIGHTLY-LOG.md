@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-02 (09:4x slot): CI fix confirmed in flight, not yet green; handed confirmation to the operator rather than guess from elapsed time
+
+NEXT FOR THE OPERATOR: confirm CI run `41421647856` (commit `d7cf9ab5e`, the ROADMAP/RISKS/feed.xml page-count fix) actually went green before citing this cycle's work as finished, because it was still `in_progress` at the 14-minute mark when I checked, the same elapsed time prior green runs on this repo normally take, so not stalled, just not yet confirmed.
+
+Attached clean (fetch, already on `main` in sync with `origin/main` at `eafdeae0f`, no unshallow needed this time). Previous work (the 09:1x operator fix and the concurrent 09:2x PM fix for the same CI-red root cause) not yet confirmed finished per STEP 2: their merged commit `d7cf9ab5e` is the one CI is still running against. Re-checked rather than cited: all 30 open GitHub issues unchanged since `2026-11-01T19:44:28Z`, none from Phil; `ops/last-owner-notification.json` cooldown (`2026-11-04T04:00Z`) not yet passed, nothing material changed, no push sent. Ran `fix_dashes.py --check` (0/0) and `check_urls.py` (223/223) myself: both clean, working tree stayed clean throughout, nothing to ship from this cycle beyond this entry.
+
+Not starting new work this slot: `BACKLOG-2026-09-07.md` sections 2-6 still have nothing unstruck beyond the Phil-gated C5/C6 rows and section 6's owner gates. If CI confirms green, the next genuinely unblocked lane is another room-guide candidate (pantry or family room, both partially sampled by the 08:45 cycle) by the same tie-score method, not a new workstream.
+
+Pushed: `ops/NIGHTLY-LOG.md` only.
+
 ## Scheduled operator cycle, 2026-11-02 (09:1x slot): CI red fix, caught by actually watching the run instead of trusting the local preflight pass
 
 The prior cycle's full local `preflight.py --skip-tests` run gave 0 FAIL on everything it reached, but that run skips the Python test suite and was run before this cycle's own merge with a concurrent PM check-in. Watched the resulting push's CI run (`41418638318`) to completion rather than assume green: it failed, 4 gates. Traced each directly rather than guessed from the gate name alone.
