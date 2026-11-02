@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-02 (05:4x slot): previous work confirmed finished via CI, not a local rerun; found the "gate_tests unconfirmed by any session today" refrain across the last ten-plus entries is false, CI has confirmed it on every push all day
+
+NEXT FOR THE OPERATOR: stop starting a local full `preflight.py` run (no `--skip-tests`) to "finally get a genuine gate_tests result." Check the `Checks` GitHub Actions run for current HEAD instead: it already runs `python3 ops/preflight.py` with no skip flag on every push, plus a second standalone loop over every `ops/tests/test_*.py` file, and every run today has finished with conclusion `success`, including the "Preflight" step itself (job 125109004460, run 41393255167, commit `e39ea91d3`: Preflight step 05:19:46 to 05:30:34, 11 minutes, success; the separate test-suite step 05:30:34 to 05:37:26, also success). The 01:3x heartbeat fix and the 04:4x cycle's backgrounded PID 813 were chasing a gap that CI had already closed on every commit; a backgrounded local run also cannot survive to the next cycle anyway, since each firing gets a fresh, shallow, detached checkout, i.e. a new container. `--skip-tests` locally is fine exactly because CI runs the real thing every time; that was always the design (see `gate_tests()`'s own docstring and `checks.yml`'s "The ops test suite" comment), it just was not being checked the right way.
+
+**Previous work confirmed finished, verified against the real control plane rather than cited or re-run locally.** Attached clean (fetch, repo arrived shallow and detached per STEP 0, `fetch --unshallow`, `checkout main`, ff-only merge onto `a46585e89`, tree clean throughout, no concurrent push). Hashed the six gate-relevant files (`BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `GOALS.md`, `OWNER-ACTIONS.md`, `STATUS.md`, `ops/deploy-verdict.json`) against `ops/cycle-signal.json`'s 05:17:32Z checkpoint: byte-identical, so nothing gate-relevant changed since. Pulled the `Checks` workflow's run list for `main` via the Actions API: every run today shows `conclusion: success`, including the one covering the current content state. `fix_dashes.py --check` (0/0) and `check_urls.py` (222/222) re-run directly, both clean.
+
+Re-verified independently rather than trusting the log: pulled all 30 open GitHub issues fresh via the API, ordered by `updated_at`. Same set (#2 through #63), all `decision`/`blocked-on-art`, newest activity `2026-11-01T19:44:28Z` (#63), nothing from Phil. 0 open PRs. Grepped `BACKLOG-2026-09-07.md` sections 2-6 directly: nothing unstruck beyond the known Phil-gated C5 (superseded)/C6 and section 6's seven owner-gate rows, all already filed as GitHub issues.
+
+Not starting new work: nothing beyond the Phil-gated items is genuinely unblocked. Not sending a push notification: the standing no-repeat-before (`ops/last-owner-notification.json`, 2026-11-04T04:00Z) has not passed and nothing material changed (same 30 issues, same labels, no Phil reply, revenue unchanged).
+
+**Went well:** did not repeat the tenth cycle of "exhausted, gate_tests unconfirmed" on faith; checked the one claim in that refrain that was actually checkable from here (CI's own run history) instead of re-running a 10+ minute local suite, and it turned out to be wrong. This closes a real, if small, recurring waste: the last several cycles' worth of effort aimed at proving `gate_tests` completes (a heartbeat gate, a backgrounded PID, a cross-container handoff that cannot work) was solving a problem CI did not have.
+
+**Did not go well:** another cycle with nothing customer-facing shipped; the backlog and all 30 issues remain exactly as Phil-gated as every recent cycle found.
+
+**Changing next cycle:** the handoff above. No new code gate needed; this is a correction to what the log has been telling itself, not a defect in `preflight.py` or `checks.yml`.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-02 (04:4x-05:0x slot): independently re-verified the exhausted/Phil-gated state with a full preflight pass, nothing new found
 
 **Did:** Unshallowed and attached to main cleanly (STEP 0, ff-only onto origin). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7 and 64-79, `CLAUDE.md`, and the log head. Ran `preflight.py --skip-tests` to genuine completion watched by PID, `affiliate.py --check`, `check_sellable.py`, `cold_read_ledger.py --next`, and `inbox_agent.py --apply`. Pulled all 30 open GitHub issues and 0 open PRs fresh via the API, read #42's and #63's comments directly.
