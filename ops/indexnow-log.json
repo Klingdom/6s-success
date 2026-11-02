@@ -15,6 +15,7 @@
   "https://6s-success.com/articles/how-to-declutter-a-kitchen",
   "https://6s-success.com/articles/how-to-organize-a-basement",
   "https://6s-success.com/articles/how-to-organize-a-garage",
+  "https://6s-success.com/articles/how-to-organize-a-guest-bathroom",
   "https://6s-success.com/articles/how-to-organize-a-junk-drawer",
   "https://6s-success.com/articles/how-to-organize-a-laundry-room",
   "https://6s-success.com/articles/how-to-organize-a-linen-closet",
@@ -228,13 +229,6 @@
   "https://6s-success.com/zones/workshop-the-safety-and-ppe-station"
  ],
  "runs": [
-  {
-   "at": "2026-10-23T03:13:51Z",
-   "mode": "changed",
-   "offered": 74,
-   "accepted": 74,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
   {
    "at": "2026-10-23T03:21:29Z",
    "mode": "changed",
@@ -647,6 +641,13 @@
    "offered": 4,
    "accepted": 4,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-02T14:46:11Z",
+   "mode": "changed",
+   "offered": 3,
+   "accepted": 3,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -678,7 +679,7 @@
   "https://6s-success.com/articles/how-long-does-it-take-to-organise-a-room": "fb3c47b6ea6750af",
   "https://6s-success.com/articles/how-long-to-keep-a-maybe": "d66ff8f3af969e88",
   "https://6s-success.com/articles/how-to-organize-a-junk-drawer": "a2a3a2a042b02dbe",
-  "https://6s-success.com/articles/": "1a1c4113cff89ee5",
+  "https://6s-success.com/articles/": "702c6c0c6f8ca59c",
   "https://6s-success.com/articles/is-that-really-a-backup": "7805de5c5d8a2d3a",
   "https://6s-success.com/articles/more-storage-wont-fix-clutter": "c823bdb17b2fa5d3",
   "https://6s-success.com/articles/sentimental-items-without-guilt": "f448f8e6e3c4305e",
@@ -710,7 +711,7 @@
   "https://6s-success.com/rooms/guest-bedroom": "57ba7542af8c3e93",
   "https://6s-success.com/rooms/hall-closet": "ede0d8c5a32f9aba",
   "https://6s-success.com/rooms/home-office": "940377febd385fed",
-  "https://6s-success.com/rooms/kids-bedroom": "9a702ad8c2044580",
+  "https://6s-success.com/rooms/kids-bedroom": "637fabcef80a33fb",
   "https://6s-success.com/rooms/kitchen": "923bee850babba7c",
   "https://6s-success.com/rooms/laundry-room": "446c7970de556817",
   "https://6s-success.com/rooms/living-room": "7f9cb28605e88785",
@@ -875,7 +876,8 @@
   "https://6s-success.com/articles/how-to-organize-a-workshop": "011f8cd3d8de989f",
   "https://6s-success.com/articles/how-to-organize-a-laundry-room": "db03359d664f68f4",
   "https://6s-success.com/articles/how-to-organize-a-pantry": "03046068c7cd3465",
-  "https://6s-success.com/articles/how-to-organize-a-living-room": "2d9d1cc83b83574c"
+  "https://6s-success.com/articles/how-to-organize-a-living-room": "2d9d1cc83b83574c",
+  "https://6s-success.com/articles/how-to-organize-a-guest-bathroom": "9025ffbb5f6b67ad"
  },
  "hash_algo": "sha256-16-lf-1"
 }
