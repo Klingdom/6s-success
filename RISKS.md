@@ -1010,6 +1010,11 @@ evidence:
     (BACKLOG-2026-09-07.md A11), which carries the same inert footer
     newsletter form as every other page. Nothing new in kind, and the risk
     is unchanged: no form on this site posts anywhere.
+  - UPDATED 2026-11-02, PM check-in: headline count only, 227 to 228. The
+    pages shipped between those two readings (including
+    articles/how-to-organize-a-laundry-room.html) each carry the same
+    inert footer newsletter form as every other page. Nothing new in kind,
+    and the risk is unchanged: no form on this site posts anywhere.
   - **A NOTE ON THIS LIST, so it stops costing more than it is worth.** Every
     entry since 193 says the same sentence: one more page shipped, it carries
     the same inert footer form as every other page, nothing new in kind. Two

@@ -16,6 +16,22 @@ The prior cycle's full local `preflight.py --skip-tests` run gave 0 FAIL on ever
 
 Pushed to main: `RISKS.md`, `ROADMAP-2026-2029.md`, `site/feed.xml`, `site/build-id.txt`, this entry.
 
+**Note, added on merge with a concurrent PM check-in that diagnosed and fixed this same CI failure independently (below): that entry correctly points out this one's own "ROADMAP-2026-2029.md (228)" citation in backlog section 80 referred to the append-only chain line, not the stale headline sentence this fix corrects. Recorded rather than edited after the fact, per this log's own convention.**
+
+## PM check-in, 2026-11-02 (09:2x slot): CI actually went red on the laundry-guide merge; found and fixed the real cause instead of citing an unconfirmed pass
+
+The previous entry (this same cycle, 09:1x) handed CI confirmation on commit `73e95b5f6` to the operator rather than guess. The run (`41418638318`) finished while that entry was being pushed: `conclusion: failure`. Not left for the next cycle to rediscover; pulled the job log directly and read it rather than re-running blind.
+
+**Real cause, one root, four symptoms.** The laundry-room-guide commit (`54a9591cf`) added a 228th real page but three places that cite the page count were never regenerated or corrected: `ROADMAP-2026-2029.md`'s section-1 headline ("227 pages live", even though its own append-only "then 228 on 2026-11-02..." chain two paragraphs down already said 228), `RISKS.md` RISK-0012's `forms_dead=227` evidence token (every new page adds the same inert footer form), and `site/feed.xml` (stale against `ops/build_feed.py`'s current output). `gate_tests` caught two of these through `test_gate_feed_current.py` and `test_gates.py`'s own `roadmap-prices-current` fixture case; the fixture test's generic failure message ("a stray fixture was counted as a real page") was misleading by itself, read the gate's actual logic before trusting it: the stray-file filter was fine, the gate was correctly firing on real drift that existed independently of the planted fixture.
+
+Fixed all three sources directly rather than just the symptom: `ROADMAP-2026-2029.md` 227 to 228 (one word), `RISKS.md` 227 to 228 in the evidence line plus one append-only historical note, matching the file's own "headline count only, nothing new in kind" convention. Ran `python ops/build_feed.py` (the file's own generator) rather than hand-edit it.
+
+**Verified against the real gates, not assumed fixed.** Called `gate_roadmap_prices_current`, `gate_risks_evidence_current` and `gate_feed_current` directly: all three clear. Ran `ops/tests/test_gates.py` and `ops/tests/test_gate_feed_current.py` standalone (no pytest in this sandbox, both have their own `main()`): both exit 0. Re-ran `check_urls.py` (223/223) and `fix_dashes.py --check` (0/0) to make sure the edits themselves introduced nothing. Checked `email_list` and `social_units`, RISKS.md's other two evidence tokens, against live `ops/state.json`: both still current, nothing else to fix in that gate's scope.
+
+Not a new defect introduced by this cycle: the drift originated in the 08:45 operator cycle's own push, which claimed "ROADMAP-2026-2029.md (228)" in its log entry without that being true of the headline sentence it meant. Recorded here rather than relitigated there; the fix is what matters now.
+
+Pushed to main: `ROADMAP-2026-2029.md`, `RISKS.md`, `site/feed.xml`, `ops/NIGHTLY-LOG.md`. No content, price or product touched beyond the count corrections themselves.
+
 ## PM check-in, 2026-11-02 (09:1x slot): previous work not yet confirmed finished, CI still mid-run on the laundry-guide merge; one real stale count fixed, deploy gap transient and self-closing
 
 Previous work was not yet confirmed finished when this cycle started. The 08:45 operator cycle shipped a laundry room guide (`54a9591cf`); a concurrent cycle then merged it with another push, producing `73e95b5f6` (conflicts in the four generated files, resolved correctly by whoever ran it). CI's own `checks.yml` and `publish-image.yml` for that merge commit were both still `in_progress` after 17 minutes of watching (run `41418638318`), so I am not citing a pass that has not happened. Handing confirmation of that run to the next cycle rather than guess from elapsed time.
