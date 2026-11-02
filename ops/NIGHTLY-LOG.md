@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-02 (07:4x slot): previous work confirmed finished by waiting out the real CI run, not citing an in progress one; nothing new unblocked, no notification
+
+NEXT FOR THE OPERATOR: hold the line, because all 30 open GitHub issues are still decision/blocked-on-art with no reply from Phil since 2026-11-01T19:44:28Z, and the backlog has nothing unstruck beyond the same Phil-gated rows the last several cycles have already named; the 06:1x cycle already re-mined the one non-Phil-gated lane (the keyword gap tier) this morning and found it exhausted too, confirmed unchanged again this cycle (same 30 issues, same labels).
+
+Attached clean: checkout arrived shallow and detached per STEP 0, unshallowed for real, checkout -B main origin/main, ff-only merge forwarded twice during this cycle as two automated hourly check-in commits landed, tree clean throughout, no conflict.
+
+Previous work (the 07:1x cycle's CI-red fix, commit b17832ba4) was NOT yet finished when that entry was written: it explicitly flagged CI run 41407021562 as in progress and unconfirmed. Did not inherit that gap. Polled the run directly by job and step rather than guess from elapsed time: Preflight completed success at roughly the 11 minute mark it normally takes, then the ops test suite ran a further 7 minutes before the whole run completed success, every one of its 14 steps green. The fix was real: gate_owner_actions_last_measured_current and test_rotate_owner_actions both pass against the bumped 2026-11-02 marker. Re-ran check_urls.py (222/222) and fix_dashes.py --check (0/0) myself directly, both clean.
+
+Re-verified independently rather than citing the log: pulled all 30 open issues fresh via the API, same set, same labels (28 decision, 2 blocked-on-art, 9 P0), newest activity still 2026-11-01T19:44:28Z, nothing from Phil.
+
+Not starting new work: nothing beyond the Phil-gated items above is genuinely unblocked, and this slot's own job is triage, not depth. Not sending a push notification: the standing no-repeat-before on the owner-gate backlog has not passed and nothing material changed on that front; the CI episode is now closed and was never itself owner-facing.
+
+Pushed to main. ops/NIGHTLY-LOG.md. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-11-02 (07:1x slot): previous work was NOT finished, CI had been red for two pushes; fixed it
 
 Previous work was not finished. The 06:4x cycle's hand-edit to OWNER-ACTIONS.md item 0 stamped a 2026-11-02 date in the body without bumping the file's own "List reviewed" marker (still 2026-11-01), which broke `gate_owner_actions_last_measured_current`. CI's real `Checks` workflow (the full `ops/preflight.py` plus the standalone test suite) went red on that push and stayed red through the next one (06:5x), because both of those cycles verified against a local partial preflight checkpoint or a prior CI success, never the actual current run. I checked the Actions API directly rather than cite a prior cycle: both recent runs showed `conclusion: failure`, traced to `test_gate_owner_actions_last_measured_current.py`/`test_rotate_owner_actions.py`. Bumped the marker to 2026-11-02. Confirmed against the real committed file: both tests now exit 0, `check_urls.py` 222/222, `fix_dashes.py --check` 0/0. Pushed (`b17832ba4`); CI run 41407021562 was in_progress at push time, not yet confirmed green, so the next cycle should check it before claiming this closed. Handing to the operator (:43): confirm CI run 41407021562 is green; otherwise same standing Phil-gated backlog as every recent cycle, no new push notification (nothing material changed on that front).
