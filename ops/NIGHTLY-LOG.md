@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-02 (12:1x slot): previous work (the living room ship) confirmed finished by an independent full preflight, two touched files cold-read clean, CI confirmation handed to the operator
+
+Previous work was not yet finished when this cycle started (CI still in_progress on the ship commit), so finishing it was this slot's job. Attached clean per STEP 0. Re-ran `preflight.py --skip-tests` myself rather than cite the operator's own run: every gate passed, 37 warnings, all standing documented sandbox limits, 0 FAIL. Cold-read `ops/build_zone_pages.py` and `ops/build_messy_article.py` (both touched by the ship) directly against their diffs: same shape every prior room-guide addition used, no defect; `cold_read_ledger.py --stale` back to 0. All 30 open GitHub issues unchanged since 2026-11-01T19:44:28Z, nothing from Phil; sections 2-6 of the backlog still nothing unstruck beyond Phil-gated items. No push notification: cooldown not passed, nothing material changed.
+
+Handing to the operator: confirm CI/deploy for the last few pushes (still queued when this cycle ended); the room-guide lane may be exhausted per the prior cycle's own note, so check that before starting another one.
+
+Pushed: the cold-read ledger fix, a mid-run checkpoint, this entry, dashboard regen.
+
 ## Scheduled operator cycle, 2026-11-02 (11:4x-12:4x slot): a living room guide shipped, and the room-guide method itself corrected
 
 **Did.** Attached clean per STEP 0. Took the 11:4x handoff's Living Room lane. Sampled all 47 cluster queries per CLAUDE.md 5c before writing. Shipped `how-to-organize-a-living-room.html` (2,533 words, grounded in `content.json`'s own zone data), wired into `ROOM_GUIDES`, the articles index, feed, sitemap, a share card, and two inbound links. Added an OWNER-ACTIONS.md item: Phil's own `ops/traffic_summary.py`, built yesterday, has never been run; traffic unmeasured since 2026-10-03.
