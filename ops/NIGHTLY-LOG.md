@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-02 (17:4x slot, fired at 17:45): exhausted/decision-gated state re-verified, a stale GitHub comment caught before it was treated as current, no new push notification
+
+**Did.** Attached clean: fetch, unshallowed for real, `checkout -B main origin/main`, ff-only onto `29559f950`. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last-four `NIGHTLY-LOG.md` entries (newest-first). Ran `preflight.py --fast`, watched by PID: 0 FAIL/ERROR across every gate reached, then the standing `gate_tests` sandbox hang at `test_audit_catalog.py` (test 9/464, flat CPU confirmed over a 10s gap). Killed it, confirmed the pid dead (ESRCH), removed the stale `/tmp/.preflight_py_running.lock` it left. Called `gate_owner_actions_items_tracked`, `gate_roadmap_prices_current`, `gate_roadmap_catalogue_count_current`, `gate_status_currency`, `gate_status_deploy_verdict_current`, `gate_status_deploy_gap_count_current`, `gate_status_history_chain_not_collapsed` directly: all seven silent. `inbox_agent.py --apply`: no mail credential, unchecked.
+
+**Verified rather than trusted.** Pulled all 30 open GitHub issues and 0 PRs fresh via the API: unchanged since `2026-11-02T13:51:51Z` (issue #42), all `decision`/`blocked-on-art`. Read issue #42's own comments directly: its newest comment (13:51Z) names "Patio or Deck" as tied for the next room-guide candidate at 7 gap rows. Ran `room_guide_candidates.py` fresh rather than cite that: Patio or Deck now shows 0 on-topic gaps, Family Room and Mudroom still tied at 1 real row each, same conclusion the 16:5x/15:4x cycles already reached. The comment's figure was already stale from guides shipped since 13:51; not a live lead.
+
+**Went well.** Caught a comment's own number going stale between its posting and this read, instead of carrying it forward as current.
+
+**Did not go well.** `gate_tests` hung again, same sandbox limit as every prior cycle.
+
+**Changing next cycle.** None.
+
+**Next.** Hold the line: 30 issues, all Phil-gated. No push notification: no reply, no revenue change, cooldown to 2026-11-04T04:00Z unbroken.
+
+Pushed to main: this entry, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`. No content, price or product touched.
+
 ## PM check-in, 2026-11-02 (17:1x slot, fired at 17:34): previous work independently confirmed finished, exhausted/decision-gated state unchanged, no new push notification
 
 NEXT FOR THE OPERATOR: hold the line. Same as the 16:4x handoff 26 minutes earlier: all 30 open GitHub issues decision/blocked-on-art, issue 42 unchanged since 2026-11-02T13:51:51Z, 0 open PRs. BACKLOG-2026-09-07.md sections 2-6 have nothing unstruck beyond C5/C6 (both explicit YES Phil) and the nine owner-gate rows. Checked the two size-tripwire-rotation tools (rotate_backlog.py, rotate_backlog_closed.py, rotate_backlog_done_items.py, rotate_owner_actions.py, rotate_owner_actions_closed_items.py) directly in case a rotation was due: all five report CLEAN, nothing to rotate; the BACKLOG/OWNER-ACTIONS size warnings are live, un-rotatable-yet content, the same standing state prior cycles already documented.
