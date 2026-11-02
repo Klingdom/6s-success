@@ -2,6 +2,70 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-02 (01:0x slot): a genuinely complete `preflight.py --skip-tests` pass, 0 FAIL; full `preflight.py` (with `gate_tests`) launched in background, not yet concluded when this entry was written
+
+**Did.** Unshallowed and attached onto `main` cleanly (`git fetch origin main`,
+`git fetch --unshallow`, `checkout main`, ff-only merge; 429 commits the
+first time, forwarded again later onto a concurrent push with no conflict).
+Read `GOALS.md` in full, `STATUS.md`'s Current Objective/Priority sections,
+`BACKLOG-2026-09-07.md` sections 0 and 5-7 directly (not cited), `CLAUDE.md`,
+and the real head of this log.
+
+Found a concurrent PM check-in (`30e478bb6`, logged just below) had already
+fixed the same stale cold-read-ledger entry (`ops/keyword_demand.py`) this
+cycle was about to fix independently; discarded my own duplicate edit
+(`git checkout --`) rather than ship a second, and fast-forwarded onto
+theirs, verifying its ledger note against the real commit diff first.
+
+**Ran `preflight.py --skip-tests` to a genuine finish, not a glance.**
+Unbuffered (`python -u`), backgrounded, watched by PID with a real exit
+rather than a piped `tail` that can swallow output on a kill (the prior
+00:1x/00:4x cycles' attempts both died with no output for exactly that
+reason). Result: every gate passed, 36 warnings, every one already-diagnosed
+(no Stripe key, no VPS SSH key, no local narrated-video build, Etsy's own
+fee page returning HTTP 403 to a sandboxed fetch). `cycle_signal.py`
+recorded a fresh clean snapshot itself at the end of the run. Then launched
+full `preflight.py` (this time including `gate_tests`) in the same way, to
+test the 00:1x entry's hypothesis that the local hang is sandbox contention
+rather than a fixed ~90-minute floor; still running when this entry was
+written, result to follow in a later entry rather than guessed here.
+
+**Verified independently, not inherited.** GitHub's 30 open issues pulled
+fresh: same set as every recent cycle, all `decision`/`P0`/`blocked-on-art`.
+`check_urls.py` 222/222, `audit_pages.py` 227 pages/0 findings/0 duplicate
+titles or descriptions, `affiliate.py --check` 165 delivered documents
+clean, `check_sellable.py` 124/126 (2 person-delivered services excluded),
+`fix_dashes.py --check` 0/0, `inbox_agent.py --apply` no mail credential,
+unchecked. `OWNER-ACTIONS.md`'s open items (the PC-local-commits product
+call, the LinkedIn-referral question, the Ledgerium VPS crash-loop) all
+re-read directly: unchanged, already fully diagnosed, each waiting on Phil
+or on someone who owns a different system, nothing actionable here.
+`BACKLOG-2026-09-07.md` sections 2-5: nothing unstruck; section 6 is all
+owner gates. CI `Checks` green on the latest code-touching HEAD.
+
+**Went well:** treated "died with no output" as unchecked rather than
+assuming the hang was permanent, and got a real, complete, provably-clean
+result this time by fixing how the run was watched, not by lowering the
+bar.
+
+**Did not go well:** still nothing customer-facing shipped; the backlog has
+no row left that is not Done, Hold, or Phil-gated.
+
+**Changing next cycle:** none. `gate_tests` itself remains unchecked by this
+entry; whoever reads this next should look for a completion line below
+before re-running it from scratch.
+
+**Next:** whichever of the 30 open issues Phil clears first, or the full
+`preflight.py` run above finishing with something to report.
+
+No push notification: the standing no-repeat-before (`ops/last-owner-notification.json`,
+2026-11-02T04:00Z) has not passed, and nothing material changed since that
+record (30 tracked issues is better bookkeeping of the same already-known
+owner-gated items, not new substance).
+
+Pushed to main. No price, product or page touched; `IndexNow` not
+applicable (measurement/log files only).
+
 ## PM check-in, 2026-11-02 (00:4x slot): previous work confirmed finished; one stale cold-read-ledger entry fixed; nothing new unblocked, same exhausted/decision-gated state
 
 NEXT FOR THE OPERATOR: run full `preflight.py` (not `--skip-tests`) to real completion and reconfirm the exhausted/decision-gated state, because the 00:1x entry above found the local `gate_tests` hang is likely sandbox contention, not a fixed cost, and this cycle's own background attempt died without output (no error, no completion line) rather than genuinely finishing, so it still needs a clean, unshared run.
