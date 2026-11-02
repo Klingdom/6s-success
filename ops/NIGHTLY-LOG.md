@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-02: a step-by-step patio or deck guide, the strongest guide-less-room candidate once Guest Bathroom closed
+
+**Did.** Unshallowed and attached to main cleanly (613 commits fast-forwarded). All 30 GitHub issues re-checked, unchanged, none from Phil; inbox_agent correctly reported no mail credentials. `room_guide_candidates.py` confirmed Patio or Deck as the strongest remaining guide-less room (0 gap, 14 partial, ahead of Primary Bathroom and Guest Bedroom). Shipped `how-to-organize-a-patio-or-deck.html`, 3,550 words, all six zones grounded in `content.json`'s own data, ordered by the room's own stated priority (structure and safety first). Wired into `ROOM_GUIDES`, the articles index, llms.txt, the feed, the sitemap, a share card, and three inbound links. Both keyword tiers rescored; moved zero rows, same weakest-case shape as Guest Bathroom, stated honestly rather than overclaimed. Fixed this fresh container's own Pillow mismatch (same class section 80 already hit once before) so the share card could draw.
+
+**Verified.** `check_urls.py` 228/228, `audit_pages.py` 233/0, `fix_dashes.py --check` 0/0, `fix_dialect.py --check` clean, `affiliate.py --check` 165 documents, `check_sellable.py` 124/126 (2 known services), `link_graph_report.py` 49 articles/0 orphans. `ROADMAP-2026-2029.md` page count and `RISKS.md`'s `forms_dead` citation both re-derived against the live tree, not guessed. Full `preflight.py --skip-tests` reached ~230 gates with 0 FAIL before stalling on the network-dependent `gate_etsy_pdfs_current` (Etsy fee page 403s from this sandbox, unrelated to this change); killed after several minutes rather than left hanging, stale lock removed, reported unchecked rather than passing per CLAUDE.md 0.4.
+
+**Went well:** picked the room from the tool's own fresh output instead of citing last cycle's number; caught and fixed the Pillow regression instead of reporting around it.
+
+**Did not go well:** the full preflight suite still cannot run to completion in this sandbox inside a reasonable window; the network-gate stall class is now recurring often enough to deserve its own fix, not another kill-and-note.
+
+**Changing next cycle:** if `gate_etsy_pdfs_current` (or another network-fetch gate) stalls a `--skip-tests` run again, that is the third occurrence of this exact class and should get a short per-gate timeout rather than another manual kill.
+
+**Next:** 7 rooms remain guide-less (Entryway, Dining Room, Family Room, Guest Bedroom, Primary Bathroom, Mudroom, Stair Landing); Family Room and Mudroom are both weaker picks per section 84/86's own ranking. Real next lever stays Phil-gated (Etsy, KDP, Search Console, YouTube OAuth, Gemini billing, the accounts decision, issue #42).
+
+Pushed to main. `BACKLOG-2026-09-07.md` (section 86), `ROADMAP-2026-2029.md`, `RISKS.md`, `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry, plus the new page and its wiring above. One new page shipped; `IndexNow` to submit on push.
+
 ## PM check-in, 2026-11-02 (22:1x slot): previous work finished, a third orphan-process chain from a preflight kill found and cleaned, same exhausted/decision-gated queue
 
 Previous work (22:0x operator cycle) confirmed finished, not cited: git status was clean before this cycle touched anything, main in sync with origin. Re-verified rather than trusted: 30 open GitHub issues pulled fresh, unchanged, all decision/blocked-on-art; BACKLOG-2026-09-07.md sections 2-6 grepped directly, nothing unstruck except C5/C6, both Phil-gated.

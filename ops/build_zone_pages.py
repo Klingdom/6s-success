@@ -2014,6 +2014,9 @@ ROOM_GUIDES = {
     "Kids Bedroom": [("../articles/how-to-organize-a-kids-bedroom.html",
                       "How to organize a kids bedroom, step by step",
                       "Clear the floor first, then the bed, desk, closet, dresser and the school bag by the door.")],
+    "Patio or Deck": [("../articles/how-to-organize-a-patio-or-deck.html",
+                       "How to organize a patio or deck, step by step",
+                       "Check the rail and boards first, then the seating, storage, dining table, grill and garden.")],
 }
 
 

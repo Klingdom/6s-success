@@ -19,7 +19,7 @@
       "note": ""
     }
   },
-  "pages_checked": 235,
+  "pages_checked": 236,
   "failures": [
     {
       "seed": "how to organize a living room",
@@ -233,7 +233,7 @@
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -654,7 +654,7 @@
       "best_page_title": "Why your family won't put things back where they belong",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/patio-or-deck-deck.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -3831,11 +3831,11 @@
         "how to organize a patio or deck"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -3856,12 +3856,12 @@
       "best_page_title": "What is 6S? The six steps, and how it differs from 5S",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/patio-or-deck-deck.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
         "building",
-        "railing"
+        "steps"
       ]
     },
     {
@@ -3943,7 +3943,7 @@
       "best_page_title": "How to organize the patio or deck outdoor storage",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/patio-or-deck-deck.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -4444,7 +4444,7 @@
       "best_page_title": "How to organize the patio or deck outdoor dining",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -6075,11 +6075,11 @@
         "patio or deck organization ideas"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -6096,11 +6096,11 @@
         "patio or deck organization ideas"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -6117,11 +6117,11 @@
         "patio or deck organization ideas"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -6136,8 +6136,8 @@
         "patio or deck organization ideas"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
@@ -6155,11 +6155,11 @@
         "how to organize a patio or deck"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -6178,7 +6178,7 @@
       "best_page_title": "Why everything needs an assigned home",
       "coverage": 0.25,
       "heading_coverage": 0.75,
-      "heading_page": "/patio-or-deck-deck.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -6196,11 +6196,11 @@
         "patio or deck organization ideas"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -6218,8 +6218,8 @@
         "patio or deck organization ideas"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.0,
       "heading_coverage": 0.333,
       "heading_page": "/rooms/entryway.html",
@@ -7389,8 +7389,8 @@
         "patio or deck organization ideas"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.0,
       "heading_coverage": 0.333,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -8413,7 +8413,7 @@
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/dining-room-deck.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -8789,7 +8789,7 @@
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 0.4,
       "heading_coverage": 0.6,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -8834,7 +8834,7 @@
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -8855,7 +8855,7 @@
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 0.4,
       "heading_coverage": 0.6,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -8945,7 +8945,7 @@
       "best_page_title": "How to organize the patio or deck outdoor storage",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/patio-or-deck-deck.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -8963,11 +8963,11 @@
         "patio or deck organization ideas"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -10718,11 +10718,11 @@
         "patio or deck organization ideas"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.0,
       "heading_coverage": 0.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -15811,8 +15811,8 @@
         "how to organize a patio or deck"
       ],
       "room": "",
-      "best_page": "/deck-gallery-mudroom.html",
-      "best_page_title": "Every card in the Mudroom deck",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/dining-room-deck.html",
@@ -16141,7 +16141,7 @@
       "best_page_title": "How to organize the patio or deck outdoor seating",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -16181,7 +16181,7 @@
       "best_page_title": "How to organize the garage garden tool storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -16683,11 +16683,11 @@
         "how to organize a patio or deck"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -16898,11 +16898,11 @@
         "how to organize a patio or deck"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -16989,7 +16989,7 @@
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -20002,8 +20002,8 @@
         "how to organize a patio or deck"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.25,
       "heading_coverage": 0.5,
       "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
@@ -21804,7 +21804,7 @@
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/dining-room-deck.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -25536,12 +25536,12 @@
         "how to organize steps"
       ],
       "room": "",
-      "best_page": "/articles/how-to-declutter-a-bedroom.html",
-      "best_page_title": "How to declutter a bedroom in one day, step by step",
-      "coverage": 0.333,
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
+      "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/stair-landing-deck.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
         "anking"
@@ -31975,7 +31975,7 @@
       "best_page_title": "How to organize the patio or deck outdoor storage",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/patio-or-deck-deck.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -35024,7 +35024,7 @@
       "best_page_title": "Why does the medicine cabinet never get cleared out?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/garage-deck.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -37059,11 +37059,11 @@
         "patio or deck organization ideas"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.0,
       "heading_coverage": 0.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -37480,7 +37480,7 @@
       "best_page_title": "How to organize the patio or deck outdoor dining",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -37535,11 +37535,11 @@
         "how to organize a patio or deck"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.0,
       "heading_coverage": 0.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -37716,8 +37716,8 @@
         "how to declutter a patio or deck"
       ],
       "room": "",
-      "best_page": "/deck-gallery-mudroom.html",
-      "best_page_title": "Every card in the Mudroom deck",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.25,
       "heading_coverage": 1.0,
       "heading_page": "/mudroom-deck.html",
@@ -44259,7 +44259,7 @@
       "best_page_title": "How to organize the patio or deck outdoor seating",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -45977,7 +45977,7 @@
       "best_page_title": "How to organize the patio or deck outdoor dining",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -45998,7 +45998,7 @@
       "best_page_title": "How to organize the patio or deck outdoor dining",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -46038,7 +46038,7 @@
       "best_page_title": "How to organize the patio or deck outdoor dining",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/dining-room-deck.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -46081,7 +46081,7 @@
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -46102,7 +46102,7 @@
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -46121,7 +46121,7 @@
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -46205,7 +46205,7 @@
       "best_page_title": "How to organize the patio or deck outdoor seating",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -46513,7 +46513,7 @@
       "best_page_title": "How to organize the patio or deck outdoor dining",
       "coverage": 0.75,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -46534,7 +46534,7 @@
       "best_page_title": "How to organize the patio or deck outdoor dining",
       "coverage": 0.75,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -46556,7 +46556,7 @@
       "best_page_title": "How to organize the patio or deck outdoor dining",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -46575,11 +46575,11 @@
       "best_page_title": "What is 6S? The six steps, and how it differs from 5S",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/patio-or-deck-deck.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "railing"
+        "steps"
       ]
     },
     {
@@ -46596,11 +46596,11 @@
       "best_page_title": "What is 6S? The six steps, and how it differs from 5S",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/patio-or-deck-deck.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "railing"
+        "steps"
       ]
     },
     {
@@ -46617,11 +46617,11 @@
       "best_page_title": "What is 6S? The six steps, and how it differs from 5S",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/patio-or-deck-deck.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "railing"
+        "steps"
       ]
     },
     {
@@ -46638,7 +46638,7 @@
       "best_page_title": "How to organize the patio or deck outdoor seating",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -46699,7 +46699,7 @@
       "best_page_title": "How to organize the patio or deck outdoor seating",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -46718,7 +46718,7 @@
       "best_page_title": "How to organize the patio or deck outdoor seating",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -46739,7 +46739,7 @@
       "best_page_title": "How to organize the patio or deck outdoor seating",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -46779,7 +46779,7 @@
       "best_page_title": "How to organize the patio or deck outdoor seating",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -46800,7 +46800,7 @@
       "best_page_title": "How to organize the patio or deck outdoor seating",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -46821,7 +46821,7 @@
       "best_page_title": "How to organize the patio or deck outdoor seating",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -46986,7 +46986,7 @@
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -47024,7 +47024,7 @@
       "best_page_title": "How to organize the patio or deck outdoor seating",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -47612,11 +47612,11 @@
         "how to organize a patio or deck"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -47632,11 +47632,11 @@
         "patio or deck organization ideas"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -47673,11 +47673,11 @@
         "how to organize a patio or deck"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -47716,8 +47716,8 @@
         "how to organize a patio or deck"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
@@ -47754,11 +47754,11 @@
         "how to declutter a patio or deck"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -47775,8 +47775,8 @@
         "how to declutter a patio or deck"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.75,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -47796,8 +47796,8 @@
         "how to declutter a patio or deck"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -48866,7 +48866,7 @@
       "best_page_title": "How to organize the patio or deck railing and surface",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/patio-or-deck-the-surface-rail-and-safety-zone.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -49218,7 +49218,7 @@
       "best_page_title": "How to organize the patio or deck outdoor seating",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -50289,11 +50289,11 @@
         "patio or deck organization ideas"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -55328,7 +55328,7 @@
       "best_page_title": "How to organize the patio or deck outdoor storage",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/patio-or-deck-deck.html",
+      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -55935,8 +55935,8 @@
         "why is my patio or deck always messy"
       ],
       "room": "",
-      "best_page": "/patio-or-deck-deck.html",
-      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.75,
       "heading_page": "/laundry-room-deck.html",
@@ -56161,8 +56161,8 @@
         "why is my patio or deck always messy"
       ],
       "room": "",
-      "best_page": "/articles/why-is-my-house-always-messy.html",
-      "best_page_title": "Why is my house always messy?",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/entryway-deck.html",
@@ -56589,11 +56589,11 @@
         "why is my patio or deck always messy"
       ],
       "room": "",
-      "best_page": "/articles/why-is-my-house-always-messy.html",
-      "best_page_title": "Why is my house always messy?",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/zones/patio-or-deck-the-outdoor-dining-zone.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -56610,8 +56610,8 @@
         "why is my patio or deck always messy"
       ],
       "room": "",
-      "best_page": "/articles/why-mail-piles-up-by-the-door.html",
-      "best_page_title": "Why does mail always pile up by the door?",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.25,
       "heading_coverage": 0.75,
       "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
@@ -56631,8 +56631,8 @@
         "why is my patio or deck always messy"
       ],
       "room": "",
-      "best_page": "/articles/why-mail-piles-up-by-the-door.html",
-      "best_page_title": "Why does mail always pile up by the door?",
+      "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "best_page_title": "How to organize a patio or deck, step by step",
       "coverage": 0.25,
       "heading_coverage": 0.75,
       "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
@@ -57355,6 +57355,6 @@
       ]
     }
   ],
-  "scored_at": "2026-11-02T20:50:24Z",
-  "scored_against_commit": "943c6f63f"
+  "scored_at": "2026-11-02T22:57:16Z",
+  "scored_against_commit": "dd8e0ae3d"
 }

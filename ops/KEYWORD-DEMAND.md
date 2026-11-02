@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-02T20:50:24Z against 235 page(s) at commit 943c6f63f. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-02T22:57:16Z against 236 page(s) at commit dd8e0ae3d. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 235 published page titles: 1380 covered, 1297 partial, 131 gap.
+**Queries found:** 2808. Checked against 236 published page titles: 1380 covered, 1297 partial, 131 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -43,10 +43,10 @@ Showing the top 80 of 131, ordered by the best rank the phrase reached in any on
 | 4 | how to make a disposable diaper | - | How we make money: what we sell, and what we do not earn on (0.33) | diaper, disposable |
 | 4 | how to organize a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, tournament |
 | 4 | how to organize hard drive files | - | How to organize the home office file storage (0.00) | drive, hard |
-| 4 | ideas for decks and patios | - | The Patio or Deck Deck: 68 cards, free to read (0.00) | decks, patios |
+| 4 | ideas for decks and patios | - | How to organize a patio or deck, step by step (0.00) | decks, patios |
 | 4 | why am i frequently using the bathroom | - | How to organize a guest bathroom, step by step (0.33) | frequently, using |
 | 5 | back porch column ideas | - | Why your family won't put things back where they belong (0.33) | column, porch |
-| 5 | decks and patios design ideas | - | The Patio or Deck Deck: 68 cards, free to read (0.00) | decks, patios |
+| 5 | decks and patios design ideas | - | How to organize a patio or deck, step by step (0.00) | decks, patios |
 | 5 | dental organization ideas | - | The Family Room Deck: 69 cards, free to read (0.00) | dental |
 | 5 | guest bathroom decorating ideas pictures pinterest | Guest Bathroom | The Guest Bathroom Deck: 60 cards, free to read (0.40) | decorating, pictures, pinterest |
 | 5 | how to organize a cribbage tournament template | - | The 6S Zone Scoring Sheet and Layered Audit Template (0.33) | cribbage, tournament |
@@ -133,7 +133,7 @@ Showing the top 60 of 1297.
 | 1 | craft paint organizers and storage | How to organize the workshop paint and chemical storage | 0.67 |
 | 1 | drop zone design ideas | How to organize the entryway drop zone | 0.67 |
 | 1 | how to build a drop zone | How to organize the entryway drop zone | 0.67 |
-| 1 | how to build a patio deck | The Patio or Deck Deck: 68 cards, free to read | 0.67 |
+| 1 | how to build a patio deck | How to organize a patio or deck, step by step | 0.67 |
 | 1 | how to build a stair landing | How to organize a stair landing, zone by zone | 0.67 |
 | 1 | how to decorate a stair landing | How to organize a stair landing, zone by zone | 0.67 |
 | 1 | how to organize desk drawers diy | How to organize the home office desk drawers | 0.67 |
@@ -164,8 +164,8 @@ Showing the top 60 of 1297.
 | 2 | linen closet organization hacks | How to organize a linen closet: sheets, towels and shelves | 0.67 |
 | 2 | master bathroom storage ideas | How to organize the primary bathroom linen and towel storage | 0.67 |
 | 2 | master bedroom closet organization ideas | How to organize the primary bedroom closet | 0.67 |
-| 2 | patio deck design ideas | The Patio or Deck Deck: 68 cards, free to read | 0.67 |
-| 2 | patio off of deck | The Patio or Deck Deck: 68 cards, free to read | 0.67 |
+| 2 | patio deck design ideas | How to organize a patio or deck, step by step | 0.67 |
+| 2 | patio off of deck | How to organize a patio or deck, step by step | 0.67 |
 | 2 | primary bedroom decorating ideas | The Primary Bedroom Deck: 66 cards, free to read | 0.67 |
 | 2 | restaurant dining room ideas | The Dining Room Deck: 61 cards, free to read | 0.67 |
 
