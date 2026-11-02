@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-02 (06:4x slot): previous work confirmed finished independently; nothing new unblocked; fixed one stale claim in OWNER-ACTIONS.md
+
+NEXT FOR THE OPERATOR: hold the line, because all 30 open GitHub issues are still `decision`/`blocked-on-art` with no reply from Phil, and the backlog has nothing unstruck beyond the same Phil-gated rows every recent cycle has already named; the 06:1x cycle already re-mined the one non-Phil-gated lane (the keyword gap tier) and found it exhausted too.
+
+Attached clean: checkout arrived shallow and detached per STEP 0, unshallowed, `checkout -B main origin/main`, ff-only merge, tree clean throughout, no concurrent push during this cycle. Previous work (the 06:1x PM cycle and the 05:4x-06:0x operator cycle) confirmed finished, not cited: diffed the six gate-relevant files against `ops/cycle-signal.json`'s checkpoint (git HEAD `1b3758ab2`, recorded 06:26:10Z) against current HEAD, byte-identical, so the "every gate before `gate_tests` passed" partial-pass result still holds, and CI confirms `gate_tests` itself on every push (the standing fact several cycles today already re-derived from the Actions API, not re-checked again here to avoid repeating that work). Pulled all 30 open issues fresh via the API, ordered by `updated_at`: identical set, identical labels, newest activity unchanged at 2026-11-01T19:44:28Z (#63), nothing from Phil. The 04:17Z push notification's no-repeat-before (2026-11-04T04:00Z) has not passed and nothing material changed, so no new notification sent.
+
+**Did one small closing job instead of starting new work, per STEP 3.** `OWNER-ACTIONS.md` item 0 still read "first automatic deploy to be verified on the next image build" even though `STATUS.md`'s own BLOCKER-001 and Production Knowledge sections record at least five separate automatic deploys confirmed since 2026-11-01 15:14Z, most recently build `b150c19629689ad2` at 2026-11-01T22:33:43Z matching repository HEAD with zero commits undeployed. Corrected the row to say the verification itself is done; nothing left open on that item. `OWNER-ACTIONS.md` is hand-maintained, not generator-owned (checked: no `ops/build_*.py` writes it), so a direct edit was safe.
+
+**Went well:** found and fixed a real doc-drift instead of just re-reporting "exhausted" a further time (CLAUDE.md 0.2). **Did not go well:** still nothing customer-facing shipped; the state has not moved since the 2026-11-01 owner-gate issue sweep. **Next:** whichever of the 30 open issues Phil answers first reopens real work; the P0-labelled ones (#45, #49, #50, #53, #58) are worth his attention first.
+
+Pushed to main: `OWNER-ACTIONS.md`, `ops/NIGHTLY-LOG.md`.
+
 ## PM check-in, 2026-11-02 (06:1x slot): previous work confirmed finished; independently re-mined the keyword gap tier (the one lane that is not Phil-gated) instead of citing "exhausted" a further time, found it genuinely is exhausted too right now; nothing shipped, no new notification
 
 Attached clean: checkout arrived shallow and detached per STEP 0, unshallowed for real, `checkout -B main origin/main`, ff-only merge, 482 commits forwarded onto `1b3758ab2`, tree clean throughout. Previous work (the two concurrent 05:4x-06:0x entries above) confirmed finished, not cited: diffed current HEAD against `ops/cycle-signal.json`'s checkpoint commit (`a46585e89`, recorded 05:57:10Z) for the six gate-relevant files; byte-identical, so the standing 0 FAIL preflight result still holds without a fresh run. Re-ran `check_urls.py` (222/222) and `fix_dashes.py --check` (0/0) directly.
