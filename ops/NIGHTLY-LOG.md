@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-02 (23:4x slot): publish-image.yml had been failing since the merge commit, silently holding the patio/deck guide off production; found it and fixed it rather than re-reporting the exhausted queue
+
+NEXT FOR THE OPERATOR: confirm run 693 of `publish-image.yml` (commit `dd18f964a`, started 23:51:26Z) actually completes green and the live site serves the patio/deck guide and the updated messy-house hub link, because the fix below is pushed but not yet verified end to end; if it fails again, read its own job log for the next named gate rather than assuming the same cause. Only once that is confirmed does "hold the line on the 30 open decision/blocked-on-art issues" apply again.
+
+Previous work (23:1x PM's dashboard-copy fix, `4acb71430`, and the earlier patio/deck guide ship, `f2fc9416a`) confirmed finished, not cited: working tree was clean on attach, main in sync with origin, no concurrent push.
+
+**Found rather than re-reported.** Ran `checks.yml`'s own gate list locally via a fast `preflight.py` run while re-verifying the standing queue, and it surfaced a real `FAIL` neither of the last two cycles' entries mention: `ci-conclusion-current` flagged that `checks.yml`'s most recent completed run (23:20:31Z, commit `4acb71430a`) itself FAILED. Pulled that run from the Actions API directly rather than trust the gate's summary: its `Preflight` step failed on `publish-image-current`, which in turn traced to `publish-image.yml` run 692 (commit `cd4c06ce6`, the merge that carried the patio/deck guide) failing on a different, earlier gate, `generator-ownership`, on two files: `ops/sitemap-content-hashes.json` and `site/articles/why-is-my-house-always-messy.html`. Net effect, confirmed against the Actions API's own run list, not assumed: no site-touching commit since `cd4c06ce6` had re-triggered a successful publish, so the patio/deck guide has been sitting unpublished on production for roughly 40 minutes, the exact "correctly reported problem nobody acted on" class CLAUDE.md 0.2 names.
+
+**Fixed, verified, shipped.** The merge commit carried the new guide but never re-ran the generators that link to it. Ran `ops/build_messy_article.py` (added the missing inbound link to the hub page, the same 1-line diff a human would have expected), `ops/build_seo.py` (resynced `sitemap-content-hashes.json`), and `ops/fingerprint_assets.py --apply` (no further drift) in that order, exactly as `build_messy_article.py`'s own stdout says to. Re-ran `gate_generator_ownership()` directly before committing: clean except two already-documented sandbox-only warnings (no local `build/heroes/` photos, no local book `.jpg`s). Committed (`dd18f964a`) and pushed; `publish-image.yml` run 693 started immediately and was still in progress when this entry was written, so its outcome is the operator's first job above, not claimed here.
+
+Re-verified the standing queue rather than cited it: all 30 GitHub issues pulled fresh, unchanged, all `decision`/`blocked-on-art`; no reply from Phil on #42 or any other. Killed my own backgrounded `preflight.py --fast` (pid 523, and a stale `/tmp/.preflight_py_running.lock` directory) once CI's own run on the real fix became the authoritative check; confirmed no orphan children survived the kill this time, unlike five prior cycles today.
+
+**Went well:** the local fast preflight run, kept running rather than killed on sight, caught a real production-impacting defect none of the eleven prior cycles today surfaced, because each of them ran `--fast` against a tree that had not yet drifted or stopped checking before reaching `gate_tests` far enough to see `ci-conclusion-current`.
+
+**Did not go well:** the gap between the merge landing (23:09Z) and this fix (23:5xZ) is about 45 minutes during which every intervening cycle re-confirmed "exhausted/decision-gated" without noticing a real build was red.
+
+**Changing next cycle:** none needed in code; the gate did its job. Procedural note only: `ci-conclusion-current` and `publish-image-current` are worth checking before concluding a cycle is "nothing to do," not just the GitHub issue count.
+
+No push notification: nothing here needs Phil's decision, and the fix is already shipped; if run 693 fails too, that would cross the bar.
+
+Pushed to main: `dd18f964a` (the generator-drift fix), this entry, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No price or product touched; one previously-shipped page (the patio/deck guide) is what this fix actually unblocks for production, not a new page itself.
+
 ## PM check-in, 2026-11-02 (23:1x slot): previous work (patio or deck guide) finished and independently confirmed, same exhausted/decision-gated queue, a fifth orphan-process chain from a preflight kill cleaned
 
 Previous work (the hourly operator's patio or deck guide, `f2fc9416a`) confirmed finished, not cited: working tree was clean before this cycle touched anything, main already in sync with a newer concurrent push (`702f9bf02`, the dumb hourly check-in bot) when attached, no force needed.
