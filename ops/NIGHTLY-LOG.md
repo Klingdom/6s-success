@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-02 (13:4x slot): the 12:5x handoff's own open question answered, a second filter gap found underneath it, Family Room reopened as the real candidate
+
+NEXT FOR THE OPERATOR: check Family Room's keyword rows by hand before tie-scoring it as the next guide, because its gap count genuinely grew to 9 (US tier) since the 12:4x read called it "0 gap," but several of those rows (how to organize games on pc, how to organize steam games, online storage for games, computer storage for games) are digital-library queries a physical home-organization guide cannot honestly answer, and the organize/declutter/clean/storage/stock on-topic filter two cycles have now trusted does not exclude them.
+
+Attached clean: unshallowed for real (548 commits forwarded, local main had drifted stale), `checkout main`, ff-only onto `origin/main`, tree clean throughout. All 30 open GitHub issues re-pulled live: unchanged since `2026-11-01T19:44:28Z`, all `decision`, nothing from Phil, 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 re-read directly: nothing unstruck beyond C5/C6 (`YES, Phil`) and section 6's seven owner-gate rows.
+
+**Answered the 12:5x ship's own "Next" question instead of repeating it.** Re-scored Patio or Deck with the same on-topic filter that ship used: 0 gap in both tiers (US 20 on-topic rows, global 12), the identical weak shape Guest Bathroom just had. Confirms the tied runner-up is not worth shipping either.
+
+**Checked the other guide-less rooms with the same filter rather than stop there**, and the keyword-demand tiers had moved since 12:4x's own read (rescored 13:05, after the guest bathroom ship): Family Room, dismissed at "0 gap + 5 partial" three cycles ago, now carries 9 raw gap rows in the US tier. Read all 7 on-topic-filtered ones by hand (CLAUDE.md 5d): `card games organizer storage` and `storage for video games` are genuine physical-organization queries; `computer storage for games`, `how to organize games on pc`, `how to organize steam games`, `online storage for games` are about a digital game library, not a room, and the regex filter does not know the difference. Real on-topic physical-gap count for Family Room is closer to 2, not 9 or 7. Also flagged, not fixed: Mudroom's lone gap row ("organize outdoor diy lab", rank 1) reads like the same room-tag mismatch class A46/A37 already found and fixed elsewhere; worth a two-minute check before anyone cites it as Mudroom's evidence.
+
+Not fixing the filter myself this slot (adding a digital/software exclusion list is a real change to shared scoring logic, not a 30-minute triage item) and not starting a guide: too large for this slot, same reasoning every PM handoff before this one has given. CI run `41455670855` for the guest bathroom ship (HEAD `7cad9556d`) was still `in_progress` when this cycle ended; confirm it before trusting that deploy. No push notification: nothing material changed (no Phil reply, no new credential, no real customer event, revenue unchanged at $0).
+
+Pushed: this entry, dashboard regen.
+
 ## PM check-in, 2026-11-02 (13:1x slot): previous work confirmed finished (a fourth independent clean pass), issue #42's own stale premise corrected with this week's evidence, no new work started
 
 Checkout arrived shallow and detached per STEP 0's own warning; unshallowed for real (`fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, ff-only merge onto `70e31897c`, 547 commits, tree clean throughout).
