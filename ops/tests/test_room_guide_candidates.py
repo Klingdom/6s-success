@@ -42,7 +42,26 @@ check("every guide-less room is a real room", set(rgc.GUIDE_LESS_ROOMS) <= all_r
 check("guide_less_rooms() is re-callable and stable",
       rgc.guide_less_rooms() == rgc.GUIDE_LESS_ROOMS)
 
+# Found 2026-11-02, cold-reading this file: 1069 real queries are tracked
+# in both ops/keyword-demand.json and ops/keyword-demand-global.json.
+# score_room() used to combine them with a plain `us + gl`, counting any
+# query present in both tiers twice. Verified against the real corpus this
+# inflated the printed partial count for every one of the 8 guide-less
+# rooms (1-8 double-counted rows each); no duplicate gap row existed yet,
+# but len(gap) is the sort key room_guide_candidates.py uses to rank the
+# next room to ship, so a future duplicate gap row would silently pick
+# the wrong room.
+_room = "Test Room"
+_us_only = {"query": "a organize test only in us", "best_page": "/test-room-deck.html", "status": "partial"}
+_dup_us = {"query": "organize test shared row", "best_page": "/test-room-deck.html", "status": "gap"}
+_dup_gl = {"query": "organize test shared row", "best_page": "/test-room-deck.html", "status": "gap"}
+_result = rgc.score_room([_us_only, _dup_us], [_dup_gl], _room)
+check("a query tracked in both tiers is not double-counted as two gap rows",
+      len(_result["gap"]) == 1)
+check("the deduped on-topic total counts the shared row once, not twice",
+      _result["on_topic_rows"] == 2)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)
-print("\n%d/%d passed" % (4, 4))
+print("\n%d/%d passed" % (6, 6))

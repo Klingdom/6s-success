@@ -74,7 +74,16 @@ def room_rows(rows, room):
 def score_room(us_rows, global_rows, room):
     us = room_rows(us_rows, room)
     gl = room_rows(global_rows, room)
-    combined = us + gl
+    # 1069 queries are tracked in both the US and global tiers (checked
+    # 2026-11-02). A plain `us + gl` concatenation counts each of those
+    # twice, inflating on_topic/partial/gap counts for every guide-less
+    # room (verified: 1-8 double-counted partial rows per room today,
+    # no gap-status duplicate yet, but len(gap) is the exact sort key
+    # that picks the next room to ship, so one is a matter of when).
+    by_query = {}
+    for r in us + gl:
+        by_query.setdefault(r["query"], r)
+    combined = list(by_query.values())
     on_topic = [r for r in combined if ON_TOPIC.search(r["query"])]
     on_topic_clean = [r for r in on_topic if not DIGITAL.search(r["query"])]
     gap = [r for r in on_topic_clean if r["status"] == "gap"]
