@@ -17,9 +17,11 @@ Usage: python ops/room_guide_candidates.py [--room "Family Room"]
 import argparse
 import json
 import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / "ops"))
 
 ON_TOPIC = re.compile(r"organiz|declutter|clean|storage|stock", re.I)
 # Found 2026-11-02: queries that route to a room's zone page by word overlap
@@ -28,13 +30,23 @@ ON_TOPIC = re.compile(r"organiz|declutter|clean|storage|stock", re.I)
 # named and deferred as "too large for this slot."
 DIGITAL = re.compile(r"\b(pc|steam|computer|desktop|digital|online|software|app|download)\b", re.I)
 
-# Rooms with no article guide yet, per ops/build_zone_pages.py's ROOM_GUIDES.
-# Keep in sync by hand; this list is small and changes only when a guide ships.
-GUIDE_LESS_ROOMS = [
-    "Dining Room", "Entryway", "Family Room", "Guest Bedroom",
-    "Kids Bedroom", "Mudroom", "Patio or Deck", "Primary Bathroom",
-    "Stair Landing",
-]
+
+def guide_less_rooms():
+    """Rooms with no article guide yet, derived live from ROOM_GUIDES.
+
+    Found 2026-11-02: this used to be a hand-maintained list. It still said
+    "Kids Bedroom" the same cycle that room's guide shipped and ROOM_GUIDES
+    picked it up, the exact "source corrected, sibling never told" defect
+    class this repository exists to catch. Deriving it from the two real
+    sources removes the sync step instead of promising to remember it.
+    """
+    import build_zone_pages as b
+    all_rooms = {r["room"] for r in
+                 json.loads((ROOT / "content/manual/source/content.json").read_text())["rooms"]}
+    return sorted(all_rooms - set(b.ROOM_GUIDES.keys()))
+
+
+GUIDE_LESS_ROOMS = guide_less_rooms()
 
 
 def slug(room):

@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-02 (16:5x slot): fixed a stale hand-maintained room list that had already drifted the same day, room-guide and vocabulary-gap lanes re-confirmed exhausted by direct check, no new push notification
+
+**Did.** Attached clean: checkout arrived shallow and detached per STEP 0's own warning, unshallowed for real (`fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, ff-only merge onto `a04d3f498`, 572 commits, tree clean throughout). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the real last-four dated entries of this file (newest-first, not tail -c, which lands on October).
+
+**Verified rather than trusted.** Pulled all 30 open GitHub issues fresh: unchanged since `2026-11-02T13:51:51Z` (issue 42), all `decision`/`blocked-on-art`, 0 open PRs, no reply from Phil. `inbox_agent.py --apply`: no mail credential, unchecked, same as every prior cycle. Read both `blocked-on-art` issues (2, 29) directly rather than trust their label: both genuinely need Desktop-only art or stronger-model billing, neither has a text-only remainder I could ship.
+
+**Found and fixed one real defect, small but real.** `ops/room_guide_candidates.py` (built earlier today) hand-maintained `GUIDE_LESS_ROOMS`, and it still listed "Kids Bedroom" the same cycle that room's guide shipped and `build_zone_pages.py`'s `ROOM_GUIDES` picked it up — the exact "source corrected, sibling never told" defect class this repository exists to catch, recurring inside a tool built to stop it recurring. Confirmed live: `ROOM_GUIDES` has 12 keys, `content.json` has 20 rooms, the true guide-less set is 8, the hand list said 9. Fixed by deriving `GUIDE_LESS_ROOMS` from the two real sources (`content.json` rooms minus `ROOM_GUIDES.keys()`) instead of a comment promising to remember. New `ops/tests/test_room_guide_candidates.py` proves it: asserts the derived list matches the two sources and that no guided room can appear in it; ran against a reconstructed copy of the old hand list first and confirmed that assertion fails on it (`guided.isdisjoint(...)` is `False`), then confirmed the real fixed module passes 4/4. Re-ran the tool with the fix: Family Room and Mudroom both still score at most one real gap row each, same conclusion, now from a value that cannot drift silently.
+
+**Checked the room-guide/vocabulary lane instead of re-stating "exhausted."** Opened the actual rows behind Family Room's 4 and Mudroom's 1 reported gaps directly in `keyword-demand.json`: "card games organizer storage" (unmatched words "card"/"games" against a zone page that already covers cards inside its Sort pass text, a pluralization/synonym miss rather than a missing topic) and "organize outdoor diy lab" (Bing's own rank-1 autocomplete off the seed "how to organize outdoor dining," reading as noise, not a real household query). Ran `keyword_demand.py` fresh to see if new harvest data would change the picture: Google's own proxy returned 403 Forbidden on all 151/151 attempts, the canary failed too, and the tool correctly refused to write anything rather than overwrite a complete prior harvest with a zero-result one. No new signal exists to re-open this lane on.
+
+**Verified the rest of the site.** Full `preflight.py --skip-tests` to genuine completion, watched by PID (~9 minutes, slower than the ~4-12 min norm because of the Etsy PDF and shop-prerender render gates, both legitimate and within their documented budgets, confirmed by checking `/proc` state rather than assuming a hang): every gate passed, 33 warnings, every one already diagnosed (no Stripe/.env.secrets, no SSH deploy key, no mail credential, no DNS, gitignored source images, Etsy/shop-prerender sandbox timeouts, cron cadences with too few runs to measure). `check_urls.py` 227/227. `affiliate.py --check` 165 documents, clean. `check_sellable.py` 124/126 (2 known services). `fix_dashes.py --check` 0/0 on everything touched. `gate_tests` itself not run this pass (documented sandbox hang); unchecked, not passed, per CLAUDE.md 0.4.
+
+**Went well.** Caught the stale-list bug by reading the tool's own output before trusting its conclusion, the same CLAUDE.md 5d discipline the backlog's own recent entries keep crediting for every other defect this week.
+
+**Did not go well.** A tool built the same day to stop exactly this defect class had already grown one instance of it before this cycle read it closely; "built today" is not evidence against staleness.
+
+**Changing next cycle.** None beyond the fix itself.
+
+**Next.** Real next lever is still Phil-gated: Etsy, KDP, Search Console sitemap/Pages/Performance confirmation, Gemini billing, YouTube OAuth, Apple/Play developer accounts, the accounts-layer decision. 30 open issues, all `decision`/`blocked-on-art`, nothing actionable here beyond this cycle's fix. No new workstream opened.
+
+No push notification: nothing here needed the owner (no new reply, no revenue change, no customer-facing defect; a tooling self-consistency fix is not news).
+
+Pushed to main: `ops/room_guide_candidates.py`, `ops/tests/test_room_guide_candidates.py`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No price, product or site page touched; no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-11-02 (15:4x slot, fired late at 16:08): a third independent confirmation of the same finished state, the room-guide lane's "exhausted" verdict re-checked rather than repeated, no new push notification
 
 NEXT FOR THE OPERATOR: hold the line, same as the 15:1x twin's own handoff. All 30 open GitHub issues are `decision`/`blocked-on-art`, nothing from Phil since 2026-11-02T13:51:51Z, 0 open PRs, and `BACKLOG-2026-09-07.md` sections 2-6 have nothing unstruck beyond the standing Phil-gated rows. Do not pick Family Room as a room-guide candidate on a raw gap-row count; see below.
