@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-02 (01:4x slot): independently re-verified the exhausted/decision-gated state from scratch rather than citing it, and watched both documented browser-gate timeouts fire correctly
+
+**Did.** Unshallowed and attached onto `main` cleanly (`git fetch origin main`, `git fetch --unshallow`, `checkout main`, ff-only merge, 438 commits forwarded, tree clean throughout). Did not trust any prior cycle's "exhausted" citation: pulled all 30 open GitHub issues fresh via the API (same set, all `decision`/`P0`/`blocked-on-art`) and read every comment on issue #42 directly rather than its summary; confirmed every comment is self-authored by a prior agent cycle under Phil's own account token, zero genuine replies from him. Read `GOALS.md` and `BACKLOG-2026-09-07.md` in full rather than cited: sections 2-4 are archived/done except C5/C6 (explicit Phil gates), section 5 is Hold, section 6 is all owner gates. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty. This cycle's own fetch, below, picked up and merged a concurrent PM check-in's push (the entry below, "my own re-verification preflight run did not conclude in this slot") that landed while this cycle's own preflight was still running.
+
+Ran a full `preflight.py --skip-tests` to genuine completion, watched by PID rather than background-and-hope, the same run the PM check-in below handed off ("NEXT FOR THE OPERATOR: run full preflight.py... to genuine completion"). Directly observed both documented browser-dependent gate timeouts fire as designed rather than hang: `gate_etsy_pdfs_current` killed cleanly at its 300-second bound (confirmed the `build_etsy_assets.py` child and its headless Chromium grandchildren were doing real, if slow, PDF rendering throughout, not frozen), and `gate_prerender_shop_current` the same at its 120-second bound. Both resolved to the documented WARN text, not a hang, confirming the mechanism prior log entries built for exactly this works.
+
+**Verified.** 0 FAIL, 35 warnings, every one pre-documented (no Stripe/.env.secrets, no SSH deploy key, no mail credential, Etsy fee page 403, deck-print-tier, srt-vs-film, owner-waiting, ledgerium, the two browser-gate timeouts). `cold-read-handoff-not-stale` warned that the PM check-in's own "NEXT FOR THE OPERATOR... preflight.py" line below reads, to the gate's plain name-matching, like a cold-read candidate the ledger already has clean; it is really a run-this-tool handoff, not a read-this-source handoff, a distinction the gate's own docstring already names as a known, accepted ambiguity (not fixed here, not a one-line change, left as a documented WARN rather than a rushed regex edit). `git status` after the run showed only the benign `ops/cycle-signal.json` checkpoint; no stray build artifacts.
+
+**Went well:** this cycle's own verification was first-hand (API pulls, full comment reads, a watched full run) rather than inherited, and it still reached the same conclusion honestly rather than assuming agreement meant skipping the check.
+
+**Did not go well:** watching the two slow gates by PID across many short wakeups cost more cycle time than the finding was worth.
+
+**Changing next cycle:** when a gate's own timeout constant is already known from source, launch it and check back once near that bound rather than several short intervals.
+
+**Next:** whichever of the 30 open issues Phil clears first.
+
+No push notification: no-repeat-before (`ops/last-owner-notification.json`, 2026-11-02T04:00Z) has not passed; nothing material changed.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-02 (01:4x slot): previous work (the gate_tests heartbeat fix) confirmed finished and verified; my own re-verification preflight run did not conclude in this slot, reported unchecked rather than assumed clean; backlog and all 30 issues confirmed still exhausted and Phil-gated
 
 NEXT FOR THE OPERATOR: run full `preflight.py` (with `gate_tests`, not `--skip-tests`) to genuine completion, watched by PID rather than piped through `tail`, because `gate_tests()` now carries the per-file heartbeat the 01:3x cycle just shipped and this is the first real chance to see whether that heartbeat actually resolves the "stalled vs. slow" ambiguity at least three cycles today could not settle, and `gate_tests` itself remains unchecked by any session today.
@@ -17,26 +37,6 @@ Attached clean (`fetch origin main`, `fetch --unshallow`, `checkout -B main orig
 Not starting new work: nothing beyond the Phil-gated items above is genuinely unblocked, same standing conclusion as every recent cycle. No push notification: the standing no-repeat-before on the cadence/owner-gates topic (`ops/last-owner-notification.json`, 2026-11-02T04:00Z) has not passed, and nothing material changed since that record.
 
 Pushed to main. `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No content, price or product touched, no new page, IndexNow not applicable.
-
-## Scheduled operator cycle, 2026-11-02 (01:4x slot): independently re-verified the exhausted/decision-gated state from scratch rather than citing it, and watched both documented browser-gate timeouts fire correctly
-
-**Did.** Unshallowed and attached onto `main` cleanly (`git fetch origin main`, `git fetch --unshallow`, `checkout main`, ff-only merge, 438 commits forwarded, tree clean throughout). Did not trust any prior cycle's "exhausted" citation: pulled all 30 open GitHub issues fresh via the API (same set, all `decision`/`P0`/`blocked-on-art`) and read every comment on issue #42 directly rather than its summary; confirmed every comment is self-authored by a prior agent cycle under Phil's own account token, zero genuine replies from him. Read `GOALS.md` and `BACKLOG-2026-09-07.md` in full rather than cited: sections 2-4 are archived/done except C5/C6 (explicit Phil gates), section 5 is Hold, section 6 is all owner gates. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty.
-
-Ran a full `preflight.py --skip-tests` to genuine completion, watched by PID rather than background-and-hope. Directly observed both documented browser-dependent gate timeouts fire as designed rather than hang: `gate_etsy_pdfs_current` killed cleanly at its 300-second bound (confirmed the `build_etsy_assets.py` child and its headless Chromium grandchildren were doing real, if slow, PDF rendering throughout, not frozen), and `gate_prerender_shop_current` the same at its 120-second bound. Both resolved to the documented WARN text, not a hang, confirming the mechanism prior log entries built for exactly this works.
-
-**Verified.** 0 FAIL, 35 warnings, every one pre-documented (no Stripe/.env.secrets, no SSH deploy key, no mail credential, Etsy fee page 403, deck-print-tier, srt-vs-film, owner-waiting, ledgerium, the two browser-gate timeouts, cold-read-handoff-not-stale naming a candidate the ledger already has read). `git status` after the run showed only the benign `ops/cycle-signal.json` checkpoint; no stray build artifacts.
-
-**Went well:** this cycle's own verification was first-hand (API pulls, full comment reads, a watched full run) rather than inherited, and it still reached the same conclusion honestly rather than assuming agreement meant skipping the check.
-
-**Did not go well:** watching the two slow gates by PID across many short wakeups cost more cycle time than the finding was worth.
-
-**Changing next cycle:** when a gate's own timeout constant is already known from source, launch it and check back once near that bound rather than several short intervals.
-
-**Next:** whichever of the 30 open issues Phil clears first.
-
-No push notification: no-repeat-before (`ops/last-owner-notification.json`, 2026-11-02T04:00Z) has not passed; nothing material changed.
-
-Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No price, product or page touched; IndexNow not applicable.
 
 ## Scheduled operator cycle, 2026-11-02 (01:3x slot): closed the "cannot tell gate_tests stalled from slow" gap at the root, per `CLAUDE.md` 10b, instead of guessing by CPU time a further time
 
