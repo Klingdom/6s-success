@@ -2008,6 +2008,9 @@ ROOM_GUIDES = {
     "Living Room": [("../articles/how-to-organize-a-living-room.html",
                      "How to organize a living room, step by step",
                      "The floor and coffee table first, then the sofa, media center, side tables and bookshelves.")],
+    "Guest Bathroom": [("../articles/how-to-organize-a-guest-bathroom.html",
+                        "How to organize a guest bathroom, step by step",
+                        "Start the towels washing, then the vanity counter, storage, shower, toilet area and linen shelf.")],
 }
 
 

@@ -56,7 +56,7 @@ only moment it is cheap.
 
 ## Open claims
 
-**None currently open.** The `ops/ship.py` / `.github/workflows/hourly-brief.yml`
+**None currently open.** The Guest Bathroom room-guide claim (opened 2026-11-02, 12:5x slot) was released the same cycle once the guide shipped; full account in `ops/NIGHTLY-LOG.md` and `BACKLOG-2026-09-07.md` section 83, including the correction to the tie-score method's own query filter. The `ops/ship.py` / `.github/workflows/hourly-brief.yml`
 claim opened and released this same cycle (2026-10-13, scheduled operator
 cycle): folded `ops/dashboard.py` regeneration into both, pushed as
 `eed323558`. Full account in `ops/NIGHTLY-LOG.md` and `BACKLOG-2026-09-07.md`

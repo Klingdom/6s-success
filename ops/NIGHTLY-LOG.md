@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-02 (12:5x slot): a guest bathroom guide shipped, and the room-guide tie-score method itself corrected a second time
+
+**Did.** Attached clean per STEP 0 (unshallowed for real, 546 commits fast-forwarded). Took the 12:4x PM check-in's own tie-score pick: Guest Bathroom and Patio or Deck tied at "7" non-covered rows each, Guest Bathroom carrying the one real `gap` row. Claimed it in `STATUS.md` before starting.
+
+**Checked the "7" before committing, per CLAUDE.md 5d, and it was wrong in a new way.** It counted every row tagged `room: Guest Bathroom` regardless of query intent, and this room's demand is almost entirely decorating/design/pinterest queries an organizing guide cannot honestly answer. Filtered to the organize/declutter/clean/storage/stock word pattern the pantry and living-room picks both used: only 6 US and 10 global on-topic rows exist, and all 16 were already `covered` or `partial` against the existing deck and zone pages, 0 `gap`. The guide moved zero rows on rescoring, the weakest keyword case yet, weaker than Living Room's zero-gap case.
+
+Shipped `site/articles/how-to-organize-a-guest-bathroom.html` anyway (2,571 words, grounded entirely in `content.json`'s own 5-zone data: dry-trap sewer smell, toddler-height bowl-cleaner hazard, bleach-plus-acid gas risk, unanchored towel bar, water-heater scorch risk). Wired the same way as every guide before it: `ROOM_GUIDES`, `build_messy_article.py`'s own template (regenerated, not hand-edited), `family-wont-put-things-back.html`, the articles index (hand-maintained), `llms.txt`, feed, sitemap, a share card, ROADMAP/RISKS/BACKLOG (section 83) with the correction recorded in the chain, not silently matching prior phrasing.
+
+**Caught and fixed one real defect before it shipped:** the meta description was 173 characters, over `audit_pages.py`'s 160-char limit (`desc-long`, the one real FAIL in the first full preflight pass). Shortened it across all four places it appears (meta, og, twitter, JSON-LD) and the share-cards.json mirror, then re-verified clean.
+
+**Also caught my own mistake:** `share_cards.py --force` redrew all 89 cards, not just the new one. Reverted the 84 unrelated image/manifest changes before they could ship; kept only the intended addition.
+
+**Verified.** `check_urls.py` (226/226), `audit_pages.py` (231/0 findings), `fix_dashes.py --check` (0/0), `fix_dialect.py --check` (0/0), `affiliate.py --check` (165 documents, unchanged), `check_sellable.py --deep` (124/126, 2 known services), `link_graph_report.py` (47 articles, 0 orphans) all clean. `audit_visual.py` on the new page, desktop and mobile: 0 findings each. First full `preflight.py --skip-tests` pass found 1 real FAIL (the desc-long defect above, via `gate_pages`) plus a self-caused `stray-probe-files` FAIL each of the first two runs (my own killed full preflight left `_contact_form_interactive_probe.html`; my own `audit_visual.py` runs left `_visual_probe.html`; both gitignored, both auto-deleted by the gate itself). A clean third full run confirmed **every gate passed, 34 warnings**, all standing documented sandbox limits.
+
+**Went well.** Verified the handoff's own number instead of trusting it a second cycle in a row; this time the error was a scope mistake (room-tag membership, not query intent), not the gap-vs-partial mistake Living Room caught. Caught both the description-length defect and my own `--force` overreach before either reached a commit.
+
+**Did not go well.** Two consecutive room-guide picks have now had their keyword justification overstated by the same tie-score method, which still scores by raw row count rather than filtering by on-topic intent before ranking candidates.
+
+**Changing next cycle.** Filter a candidate room's on-topic query count by the organize/declutter/clean/storage word pattern BEFORE scoring its tie-score candidacy, not after shipping. Recorded in BACKLOG section 83 rather than left as a prose-only lesson; a future cycle should re-run the filter on Patio or Deck before picking it next, since its own raw "7" has not been re-checked against this same correction.
+
+**Next.** Re-score Patio or Deck's on-topic cluster with the corrected filter before picking it. If it also scores near zero, the room-guide lane (by this method) is genuinely thin, and the next cycle should look at epic 3 distribution work outside new room guides, or re-open the Search Console/traffic-measurement owner actions that are still the real constraint upstream of all of this.
+
+Pushed: the new article and its wiring, ROADMAP, RISKS, BACKLOG, STATUS, both keyword tiers, the dashboard, this entry.
+
 ## PM check-in, 2026-11-02 (12:4x slot): previous work confirmed finished (third independent clean pass), the "room-guide lane may be exhausted" note checked and corrected, not just repeated
 
 NEXT FOR THE OPERATOR: the room-guide lane is not exhausted but it is thin, so pick between Guest Bathroom and Patio or Deck (tied at 7 unmet-demand rows each, 1 gap + 6 partial vs 0 gap + 7 partial) rather than declaring the lane dead, because 10 of 20 rooms still have no `ROOM_GUIDES` entry and two of them score close to Stair Landing's 6, even though none of the ten comes close to Pantry's 58 or Living Room's real pre-ship count.

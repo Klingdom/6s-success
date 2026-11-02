@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-02T12:08:42Z against 233 page(s) at commit e9e93f7c3. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-02T13:05:11Z against 234 page(s) at commit 93fb09720. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 233 published page titles: 1375 covered, 1300 partial, 133 gap.
+**Queries found:** 2808. Checked against 234 published page titles: 1376 covered, 1300 partial, 132 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 133, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 132, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -44,7 +44,7 @@ Showing the top 80 of 133, ordered by the best rank the phrase reached in any on
 | 4 | how to organize a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, tournament |
 | 4 | how to organize hard drive files | - | How to organize the home office file storage (0.00) | drive, hard |
 | 4 | ideas for decks and patios | - | The Patio or Deck Deck: 68 cards, free to read (0.00) | decks, patios |
-| 4 | why am i frequently using the bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) | frequently, using |
+| 4 | why am i frequently using the bathroom | - | How to organize a guest bathroom, step by step (0.33) | frequently, using |
 | 5 | back porch column ideas | - | Why your family won't put things back where they belong (0.33) | column, porch |
 | 5 | decks and patios design ideas | - | The Patio or Deck Deck: 68 cards, free to read (0.00) | decks, patios |
 | 5 | dental organization ideas | - | The Family Room Deck: 69 cards, free to read (0.00) | dental |
@@ -58,10 +58,9 @@ Showing the top 80 of 133, ordered by the best rank the phrase reached in any on
 | 6 | how to operate a wood stove | - | How to organize the kitchen stove area (0.33) | operate, wood |
 | 6 | kitchen organization ideas dollar tree | Kitchen | The Kitchen Deck: 72 cards, typeset and free to read or print (0.33) | dollar, tree |
 | 6 | organizing your bedroom tips pinterest | - | How to declutter a bedroom in one day, step by step (0.33) | pinterest, tips |
-| 6 | trouble going to bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) | going, trouble |
-| 7 | constantly using the bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) | constantly, using |
+| 6 | trouble going to bathroom | - | How to organize a guest bathroom, step by step (0.33) | going, trouble |
 | 7 | cover space between stove and countertop | - | Small space organizing: why doesn't anything fit? (0.20) | countertop, cover, stove |
-| 7 | going to the bathroom problems | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) | going, problems |
+| 7 | going to the bathroom problems | - | How to organize a guest bathroom, step by step (0.33) | going, problems |
 | 7 | how to design a walkway garden | - | How to organize the garage garden tool storage (0.33) | design, walkway |
 | 7 | how to organize a walkout | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | walkout |
 | 7 | pantry organization ideas dollar tree | Pantry | The Pantry Deck: 57 cards, free to read (0.33) | dollar, tree |
@@ -101,6 +100,7 @@ Showing the top 80 of 133, ordered by the best rank the phrase reached in any on
 | 11 | organize seasonal pricing model | - | How to organize the hall closet seasonal storage (0.33) | model, pricing |
 | 11 | organizing ideas for bedrooms | - | How to declutter a bedroom in one day, step by step (0.00) | bedrooms |
 | 11 | simple guest bathroom decorating ideas pictures | Guest Bathroom | The Guest Bathroom Deck: 60 cards, free to read (0.40) | decorating, pictures, simple |
+| 11 | stairs with landing and turn | - | How to organize a stair landing, zone by zone (0.33) | stairs, turn |
 
 ## Partial: we are close, and the title does not use their words
 
@@ -161,13 +161,13 @@ Showing the top 60 of 1300.
 | 2 | how to organize car detailing supplies | How to organize the garage car care supplies | 0.67 |
 | 2 | how to organize household cleaning supplies | How to organize the hall closet cleaning supplies | 0.67 |
 | 2 | how to stage a guest bedroom | The Guest Bedroom Deck: 57 cards, free to read | 0.67 |
-| 2 | how to stock a guest bathroom | The Guest Bathroom Deck: 60 cards, free to read | 0.67 |
 | 2 | linen closet organization hacks | How to organize a linen closet: sheets, towels and shelves | 0.67 |
 | 2 | master bathroom storage ideas | How to organize the primary bathroom linen and towel storage | 0.67 |
 | 2 | master bedroom closet organization ideas | How to organize the primary bedroom closet | 0.67 |
 | 2 | patio deck design ideas | The Patio or Deck Deck: 68 cards, free to read | 0.67 |
 | 2 | patio off of deck | The Patio or Deck Deck: 68 cards, free to read | 0.67 |
 | 2 | primary bedroom decorating ideas | The Primary Bedroom Deck: 66 cards, free to read | 0.67 |
+| 2 | restaurant dining room ideas | The Dining Room Deck: 61 cards, free to read | 0.67 |
 
 ## By room
 
@@ -177,7 +177,7 @@ Showing the top 60 of 1300.
 | Entryway | 50 | 1 | 22 | 27 |
 | Family Room | 27 | 0 | 19 | 8 |
 | Garage | 77 | 1 | 26 | 50 |
-| Guest Bathroom | 22 | 2 | 14 | 6 |
+| Guest Bathroom | 22 | 2 | 13 | 7 |
 | Guest Bedroom | 24 | 0 | 13 | 11 |
 | Hall Closet | 30 | 0 | 12 | 18 |
 | Home Office | 58 | 0 | 25 | 33 |
