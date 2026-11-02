@@ -1,14 +1,14 @@
 {
-  "combined_hash": "5f4e831dd4e889a1b328fd00adc1c831b55559565a904e8a9d695babf06afa6c",
-  "git_head": "20dbd58821af1cd3acd17d32b9d9157eb4a1a0e7",
-  "note": "near-full pass via --skip-tests: every gate except gate_tests passed, test suite itself not run this pass, git HEAD 20dbd58821",
-  "recorded_at": "2026-11-02T02:54:30Z",
+  "combined_hash": "86bcd8e9ba558258b72615dba542e19874944fe58369ea23499804035f68f9d4",
+  "git_head": "e35402cc4367ff06ae04b9bbc491efc7f35d74a6",
+  "note": "partial pass: every gate before gate_tests passed, gate_tests and everything after it not reached this run (cycle_signal checkpoint, not a full preflight pass), git HEAD e35402cc43",
+  "recorded_at": "2026-11-02T03:14:40Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "02410927997eb50b5f962f4347fdfccd7922cec213b100ffd1b51e5235ba22a5",
+    "BACKLOG-2026-09-07.md": "f7fa7ebf903ffe873a6952cd375d3020fac21df1f01122ab577e1b486f485c69",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "d8c1ca6f25cf8692d7f5a57ca1f29f33d080de3dfbd255ef68fede63bbadd8ad",
     "OWNER-ACTIONS.md": "0f66ac59c385dc387545b90c049f01440775072be5c81b58bec80e4a7f4bbcde",
-    "STATUS.md": "242f117b55c6fd58e4cb178492623d33b0590c6cbd1a3514ce6cb6c667fbe523",
+    "STATUS.md": "45d53d0839fe39681ee3c6a3ee7380d4e5b0410a969f5774094c1fb00db1bd00",
     "ops/deploy-verdict.json": "598d33f0d624666fa4e293321a1e963d07d28c56057c824912873eb2f172d81c"
   }
 }
