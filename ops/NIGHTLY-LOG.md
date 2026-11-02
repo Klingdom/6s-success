@@ -18,6 +18,20 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `BACKLOG-2026-09-07.md` (section 86), `ROADMAP-2026-2029.md`, `RISKS.md`, `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry, plus the new page and its wiring above. One new page shipped; `IndexNow` to submit on push.
 
+## PM check-in, 2026-11-02 (22:4x slot): previous work finished, a fourth orphan-process chain from a preflight kill found and cleaned, same exhausted/decision-gated queue
+
+NEXT FOR THE OPERATOR: hold the line. Same standing queue as every cycle since the issue count jumped to 30 on 2026-11-01: all 30 open GitHub issues unchanged, all `decision`/`blocked-on-art`, led by #45 (accounts layer) and #42 (the cadence question itself); `BACKLOG-2026-09-07.md` sections 2-6 have nothing unstruck except C5/C6, both explicit **YES, Phil**.
+
+Attached clean (fetch, unshallowed since the checkout again arrived shallow and detached, `checkout main`, ff-only onto `dd8e0ae3d`, tree clean before this cycle touched anything). Previous work (the 22:1x PM check-in and the hourly check-in after it) confirmed finished, not cited: git status was clean, main in sync with origin, no concurrent push landed.
+
+Re-verified independently rather than trusted. GitHub's 30 open issues pulled fresh via the API: unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6 checked directly: only C5/C6 unstruck, both Phil-gated. `STATUS.md` open claims: none. `room_guide_candidates.py` rerun fresh: Family Room still the same 4 on-topic gap rows the 20:5x/21:4x cycles already examined and declined (2 genuine small-vocabulary rows, not enough for a full guide; the other 2 are furniture-shopping intent and noise); every other room at 0-1 on-topic gaps. No new vocabulary opportunity.
+
+Ran `preflight.py --fast` myself: 0 FAIL/ERROR through every gate before `gate_tests`, genuinely stalled at the same documented test 9/465 (`test_audit_catalog.py`), killed by timeout after 170s. That kill again left its own stale `/tmp/.preflight_py_running.lock` (pid 441, confirmed dead) plus an orphaned `test_audit_catalog.py` and its respawned `audit_catalog.py --include-fixtures` grandchild still burning CPU, the same shape the 21:4x/22:0x/22:1x cycles each already found today. Killed all three directly (`kill -9` by pid, not just the lock's reported pid) rather than leave them for the operator. Called eight post-`gate_tests` status gates directly in Python (`gate_status_currency`, `gate_status_deploy_verdict_current`, `gate_status_deploy_gap_count_current`, `gate_roadmap_prices_current`, `gate_roadmap_catalogue_count_current`, `gate_status_history_chain_not_collapsed`, `gate_owner_actions_items_tracked`, `gate_b9_claims_current`): all eight clean. `fix_dashes.py --check`: 0 em dashes, 0 en dashes. `check_urls.py`: 227/227.
+
+No new defect found small enough to close beyond the orphan cleanup. Not starting new work: nothing on either backlog is genuinely unblocked beyond the Phil-gated items. Not sending a push notification: nothing changed a stranger would see since the 04:1x slot's deliberate push today, and that push's own no-repeat-before of 2026-11-04T04:00Z still applies with no new material change (no Phil reply on any of the 30 issues, revenue unchanged at $0, no new credential, no customer event).
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-11-02 (22:1x slot): previous work finished, a third orphan-process chain from a preflight kill found and cleaned, same exhausted/decision-gated queue
 
 Previous work (22:0x operator cycle) confirmed finished, not cited: git status was clean before this cycle touched anything, main in sync with origin. Re-verified rather than trusted: 30 open GitHub issues pulled fresh, unchanged, all decision/blocked-on-art; BACKLOG-2026-09-07.md sections 2-6 grepped directly, nothing unstruck except C5/C6, both Phil-gated.
