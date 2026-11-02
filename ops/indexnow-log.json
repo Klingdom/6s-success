@@ -231,13 +231,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-23T03:32:46Z",
-   "mode": "changed",
-   "offered": 30,
-   "accepted": 30,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-23T04:05:11Z",
    "mode": "changed",
    "offered": 1,
@@ -649,6 +642,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-02T23:10:00Z",
+   "mode": "changed",
+   "offered": 4,
+   "accepted": 4,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -680,11 +680,11 @@
   "https://6s-success.com/articles/how-long-does-it-take-to-organise-a-room": "fb3c47b6ea6750af",
   "https://6s-success.com/articles/how-long-to-keep-a-maybe": "d66ff8f3af969e88",
   "https://6s-success.com/articles/how-to-organize-a-junk-drawer": "a2a3a2a042b02dbe",
-  "https://6s-success.com/articles/": "702c6c0c6f8ca59c",
+  "https://6s-success.com/articles/": "1d9d230193ddb3a4",
   "https://6s-success.com/articles/is-that-really-a-backup": "7805de5c5d8a2d3a",
   "https://6s-success.com/articles/more-storage-wont-fix-clutter": "c823bdb17b2fa5d3",
   "https://6s-success.com/articles/sentimental-items-without-guilt": "f448f8e6e3c4305e",
-  "https://6s-success.com/articles/tidy-is-not-the-same-as-safe": "5ca7c73955464000",
+  "https://6s-success.com/articles/tidy-is-not-the-same-as-safe": "7cf23ff8974241e0",
   "https://6s-success.com/articles/what-is-6s": "8e2a619ffb636521",
   "https://6s-success.com/articles/what-is-a-micro-zone": "c8b251863981f33c",
   "https://6s-success.com/articles/where-to-start-decluttering": "240129d27bc49172",
@@ -719,7 +719,7 @@
   "https://6s-success.com/rooms/mudroom": "2c351cfe24db9c60",
   "https://6s-success.com/rooms/nursery": "c4aecb065804f187",
   "https://6s-success.com/rooms/pantry": "1e663cdd703b94e3",
-  "https://6s-success.com/rooms/patio-or-deck": "ac5e9bd90fc72f15",
+  "https://6s-success.com/rooms/patio-or-deck": "5370ab75c9b81f57",
   "https://6s-success.com/rooms/primary-bathroom": "ab20c8ac5d6dcacf",
   "https://6s-success.com/rooms/primary-bedroom": "1bb4c0e7d31e98ca",
   "https://6s-success.com/rooms/stair-landing": "71aa5b31cb67da62",
@@ -873,7 +873,7 @@
   "https://6s-success.com/articles/how-to-organize-toys": "eebbf6ba20638767",
   "https://6s-success.com/articles/how-to-store-blankets": "f69ef4077bc84c2a",
   "https://6s-success.com/articles/how-to-declutter-a-kitchen": "9374c47f687be4c6",
-  "https://6s-success.com/articles/how-to-organize-a-garage": "b71261ba4582156e",
+  "https://6s-success.com/articles/how-to-organize-a-garage": "b7cd0a663ff1a3ca",
   "https://6s-success.com/articles/how-to-organize-a-workshop": "011f8cd3d8de989f",
   "https://6s-success.com/articles/how-to-organize-a-laundry-room": "db03359d664f68f4",
   "https://6s-success.com/articles/how-to-organize-a-pantry": "03046068c7cd3465",
