@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-02 (02:4x slot): ran preflight to genuine completion instead of citing exhaustion, found STATUS.md's deploy-verdict citations stale again, fixed all five sections
+
+**Did.** Unshallowed and attached onto `main` cleanly (`fetch origin main`, `fetch --unshallow`, `checkout main`, ff-only merge, 448 commits forwarded onto `a0da7d769`, tree clean, no concurrent push). Read `CLAUDE.md`, `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7 and 64-78, and `ROADMAP-2026-2029.md` rather than trusting a summary; pulled all 30 open GitHub issues fresh, same set, all `decision`/`blocked-on-art`, nothing from Phil. `inbox_agent.py --apply`: no mail credential, unchecked. Re-scored both keyword-demand tiers (no network): byte-identical to the last recorded state, confirming no fresh harvest exists yet to close a vocabulary gap. `cold_read_ledger.py --next`: 0 un-ledgered candidates. All 7 `rotate_*.py --check` scripts: CLEAN.
+
+Rather than stop at "exhausted, same as every recent cycle," ran a full `preflight.py --skip-tests` to genuine completion, watched by PID: 0 FAIL, 35 warnings. Read every warning rather than counting them. `gate_status_deploy_verdict_current` warned: `STATUS.md`'s `BLOCKER-001`, "Production Knowledge," the "Public website"/"Production traceability" table rows, and the "Currently Deployed Build" field all still cited build `6b6fb70b98ef9333` or older while `ops/deploy-verdict.json` had already moved to `b150c19629689ad2` (confirmed 2026-11-01T22:33:43Z). Verified before fixing: `site/build-id.txt` reads the same value, `deploy_gap_material_commits(resolve_verdict_commit('b150c19629689ad2'))` returns an empty list. Production matches the repository exactly; this was a stale citation, not a real gap.
+
+**Fixed** all five sections with dated confirmations in the file's own established convention. The fix pushed `STATUS.md` over its own 110000-byte size tripwire for the first time this cycle (108792 to 110533 bytes); ran `rotate_status_history.py --apply-table-rows` (1176 bytes archived to `STATUS-ARCHIVE.md`), final size 109357, clean.
+
+**Verified.** `status_deploy_verdict_problem()` called directly: clean. `ops/tests/test_gate_status_deploy_verdict_current.py` 14/14. `fix_dashes.py --check` 0/0, `check_urls.py` 222/222, `audit_pages.py` 227/0, `link_graph_report.py` 0 orphans, `affiliate.py --check` 165 documents, `check_sellable.py` 124/126 (2 known services). Full account in `BACKLOG-2026-09-07.md` section 79.
+
+**Went well:** running the gate to completion rather than trusting the last cycle's "exhausted" conclusion caught a real, if cosmetic, drift the backlog's own last three cycles had all missed by stopping at re-verification.
+
+**Did not go well:** `gate_etsy_pdfs_current` and `gate_prerender_shop_current` both hit their documented 300s/120s bounds before resolving; watching them cost real wall-clock time for an already-known limitation.
+
+**Changing next cycle:** none new; the existing gate caught this correctly on the first full run of the day to actually finish. The lesson is to run preflight to completion rather than stop at a prior cycle's summary, which `CLAUDE.md` 0.4 already says.
+
+**Next:** whichever of the 30 open issues Phil clears first; `gate_tests` itself still unconfirmed by any session today.
+
+No push notification: this is a cosmetic drift fix with no customer-facing change and no new finding worth a stranger's attention; nothing crossed the bar `issue #42` argues against re-alerting on.
+
+Pushed to main. `STATUS.md`, `STATUS-ARCHIVE.md`, `BACKLOG-2026-09-07.md`, `ops/keyword-demand.json`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND.md`, `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`. No price, product or page touched, no new page; `IndexNow` not applicable.
+
 ## PM check-in, 2026-11-02 (02:1x slot): previous work (the 01:4x operator's full preflight run) confirmed finished and re-verified independently from scratch; backlog, cold-read ledger and all 30 GitHub issues confirmed still exhausted and Phil-gated; nothing shipped
 
 NEXT FOR THE OPERATOR: hold the line. All 30 open GitHub issues (#63 down to #2) remain `decision`/`blocked-on-art`, every one traced to an owner-gate ask (OWNER-ACTIONS.md items) or an art/model limitation, none with a reply from Phil. `BACKLOG-2026-09-07.md` sections 2-4 have nothing unstruck beyond the already-known Phil-gated C5 (superseded)/C6 (YES Phil); section 5 is Hold; section 6 is owner gates. `cold_read_ledger.py --next` found 0 un-ledgered candidates. All 9 `rotate_*.py --check` scripts across both backlogs, STATUS.md and OWNER-ACTIONS.md report CLEAN.
