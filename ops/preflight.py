@@ -22819,6 +22819,78 @@ def gate_status_workstreams_rotated() -> None:
              % len(narrative.encode("utf-8")))
 
 
+def gate_status_history_chain_not_collapsed() -> None:
+    """STATUS.md's "Production Knowledge" and "BLOCKER-001" chains must
+    not have their superseded entries glued onto one physical line (or,
+    for BLOCKER-001, one paragraph) by the inline handoff phrase "Prior
+    state, kept because the shape recurs: ", because that is exactly the
+    shape ops/rotate_status_history.py's own split_chain()/split_blocker1_
+    chain() cannot see into.
+
+    Found 2026-11-02 (~15:3x UTC), scheduled operator cycle, while fixing
+    a stale deploy-build citation: both chains had accumulated their
+    normal history, newest-first, as every entry before this one always
+    has, but every single entry after the first was appended to the END
+    of the SAME physical line/paragraph via that handoff phrase instead
+    of starting a new one. split_chain() requires one entry per physical
+    line; split_blocker1_chain() requires one entry per blank-line-
+    separated paragraph. Neither rule held, so each span read as exactly
+    one giant entry, and `python ops/rotate_status_history.py --check` /
+    `--check-blocker1` both reported "CLEAN: 1 entry live" right up to the
+    moment STATUS.md crossed its own 110000-byte tripwire (112901 bytes),
+    the rotation tool silently unable to do the one job this section
+    exists for. The Production Knowledge chain alone had 13 entries
+    glued onto one line this way, going back to 2026-10-22, none of them
+    ever rotated. Fixed by hand this cycle (archived verbatim to
+    STATUS-ARCHIVE.md, one live entry kept in each field); this gate is
+    the "turn the lesson into a gate" half of that fix; CLAUDE.md 10b.
+
+    Deliberately narrow: it does not try to parse or rotate the glued
+    entries itself (that risks guessing wrong at a shape the real
+    rotation tool was never built to read), it only proves the live
+    chain contains more than the one entry rotate_status_history.py
+    thinks it does, so a cycle that trusts that script's own "CLEAN"
+    answer does not repeat this silently for weeks.
+
+    A WARNING, not a FAIL: a collapsed chain wastes a later cycle's
+    reading time and defeats a rotation tool's own check; it does not
+    ship anything broken to a customer.
+
+    Proof this can fail: ops/tests/test_gate_status_history_chain_not_
+    collapsed.py builds a synthetic STATUS.md with a second entry glued
+    onto the live line/paragraph via the handoff phrase and asserts this
+    gate warns for each field by name, then confirms a properly rotated
+    (single, unglued entry) copy of each stays silent.
+    """
+    path = os.path.join(ROOT, "STATUS.md")
+    if not os.path.exists(path):
+        return
+    import rotate_status_history as rsh
+    text = io.open(path, encoding="utf-8").read()
+    delim = "Prior state, kept because the shape recurs: "
+    checks = [
+        ("Production Knowledge", rsh.split_chain, "line"),
+        ("BLOCKER-001", rsh.split_blocker1_chain, "paragraph"),
+    ]
+    for label, splitter, unit in checks:
+        try:
+            _, entries, _ = splitter(text)
+        except ValueError:
+            continue
+        glued = [e for e in entries if delim in e]
+        if glued:
+            n = glued[0].count(delim) + 1
+            warn("status-history-chain-not-collapsed",
+                 "STATUS.md's %s field has %d superseded entries glued "
+                 "onto one physical %s with %r instead of separate "
+                 "%ss, so ops/rotate_status_history.py's own --check "
+                 "reports this field CLEAN while it is actually carrying "
+                 "a full, un-rotated history chain. Split the glued "
+                 "entries onto their own %ss and re-run --check/--apply, "
+                 "or rotate to STATUS-ARCHIVE.md by hand."
+                 % (label, n, unit, delim, unit, unit))
+
+
 def gate_nightly_log_ordering() -> None:
     """The most recent calendar date in ops/NIGHTLY-LOG.md must appear
     only as a contiguous block at the top of the file, never again once
@@ -31770,6 +31842,7 @@ def main() -> int:
     run_gate(gate_backlog_section1b_items_rotated)
     run_gate(gate_living_docs_total_size_tripwire)
     run_gate(gate_status_workstreams_rotated)
+    run_gate(gate_status_history_chain_not_collapsed)
     run_gate(gate_nightly_log_ordering)
     run_gate(gate_nightly_log_no_duplicate_entries)
     # OWNER-ACTIONS.md's own freshness marker is the same shape: pure
