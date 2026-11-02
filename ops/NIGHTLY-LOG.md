@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-02 (18:4x slot): previous work independently confirmed finished, Family Room's keyword gap grew to 4 and is now the strongest guide-less-room candidate, handed to the operator rather than started here
+
+NEXT FOR THE OPERATOR: ship the Family Room guide, because `room_guide_candidates.py` (the one canonical method, built 2026-11-02) now scores it at 4 on-topic gap rows, more than any other guide-less room (Mudroom 1, all others 0), and the three ROOM_GUIDES-shaped precedents this week (bedroom, kitchen, garage, workshop, pantry, living room) are the playbook to copy.
+
+Checkout arrived shallow and detached per STEP 0's own warning (local main stuck behind origin). Unshallowed for real (`fetch origin main`, `fetch --unshallow`, `checkout main`, ff-only merge onto `c15107edd`), tree clean throughout, no concurrent push during the attach; re-fetched after finishing and confirmed the operator had not yet pushed past the same commit.
+
+Previous work (the 18:1x PM cycle and the 18:06 hourly check-in) confirmed finished, not cited: pulled all 30 open GitHub issues and 0 PRs fresh via the API, unchanged since issue #42's `2026-11-02T13:51:50Z` comment; read that comment directly (it names Family Room/Mudroom as the live room-guide lead, self-authored by a prior agent cycle, not Phil). `BACKLOG-2026-09-07.md` sections 2-6 re-read directly: nothing unstruck beyond C5/C6 (both explicit **YES, Phil**) and the section 6 owner-gate rows. `STATUS.md` Open claims: none. `ops/last-owner-notification.json` cooldown on the decision-queue topic runs to 2026-11-04T04:00Z and nothing material changed (no Phil reply, revenue unchanged at $0), so no push notification this cycle.
+
+**New since the last PM read:** ran `room_guide_candidates.py` (the script built this same day specifically to stop three cycles from each computing a different gap count) against all 8 guide-less rooms. Family Room's on-topic gap count has grown from the 1 the 16:5x/15:4x cycles reported to 4 (card games organizer storage, dental organization ideas, nightstands with hidden storage, storage for video games), ahead of Mudroom's 1 and everyone else's 0. This is real, re-derivable, unblocked work, not cited from a stale number.
+
+Ran `preflight.py --fast` myself, backgrounded and watched by PID, not piped: 0 FAIL across every gate reached (bootstrap pymupdf install, then every gate through `gate_affiliate`, `gate_image_coverage`, `cycle_signal` snapshot), then genuinely stalled at `test_audit_catalog.py` (test 9/464, the usual sandbox hang), confirmed by flat CPU time (`00:00:17`) across three separate checks spanning roughly 15 seconds of wall time, not assumed from elapsed time alone. Killed by PID, confirmed dead (`kill -0` ESRCH), removed the stale `/tmp/.preflight_py_running.lock` it left. Called `gate_status_currency`, `gate_status_deploy_verdict_current`, `gate_status_deploy_gap_count_current`, `gate_roadmap_prices_current`, `gate_roadmap_catalogue_count_current`, `gate_status_history_chain_not_collapsed`, `gate_owner_actions_items_tracked` directly (they sit after `gate_tests`): all seven silent, no FAIL printed. `fix_dashes.py --check` (0/0) and `check_urls.py` (227/227) run standalone, both clean.
+
+Not starting the Family Room guide myself this slot, per this slot's own instruction not to start something large three minutes before the operator; the evidence above (candidate script, exact gap rows, precedent generator) should make the operator's own pickup a single step.
+
+Pushed to main: this entry, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-11-02 (18:1x slot, fired late at 18:15): previous work independently confirmed finished, a documented sandbox hang recurred at a different test than usual, no new push notification
 
 Checkout arrived shallow and detached per STEP 0's own warning, 585 commits behind origin (local main was stuck at an old `fc47d1d15` base). Unshallowed for real (`fetch origin main`, `fetch --unshallow`, `checkout main`, ff-only merge onto `732e150a6`), tree clean throughout, no concurrent push during the attach.
