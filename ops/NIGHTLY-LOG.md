@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-02 (09:1x slot): CI red fix, caught by actually watching the run instead of trusting the local preflight pass
+
+The prior cycle's full local `preflight.py --skip-tests` run gave 0 FAIL on everything it reached, but that run skips the Python test suite and was run before this cycle's own merge with a concurrent PM check-in. Watched the resulting push's CI run (`41418638318`) to completion rather than assume green: it failed, 4 gates. Traced each directly rather than guessed from the gate name alone.
+
+**Real cause, one root: a stale citation left behind after an edit, the same recurring class sections 64-79 have each found in a different document.** `site/feed.xml` still held the long (202-char) meta description for the new laundry room article from before that description was shortened to fix `audit_pages.py`'s `desc-long` gate; `build_feed.py` reads descriptions straight off the page, so the fix never propagated to the already-generated feed until rerun. `ROADMAP-2026-2029.md`'s "pages live" figure and `RISKS.md`'s `forms_dead` citation both still read 227 against the real, current 228 (the new article's own page), because both were written before the final page count was known rather than re-derived after.
+
+**Fixed.** Reran `ops/build_feed.py` (confirmed the only diff was the one stale `<summary>` line). Updated both citations to 228, the number the running count in `ROADMAP-2026-2029.md`'s own "Then N on DATE" chain already ends at. Verified each of the three gate functions directly against the real files (`gate_feed_current`, `gate_roadmap_prices_current`, `gate_risks_evidence_current`): all three clean. Ran `ops/tests/test_gate_feed_current.py` and `ops/tests/test_gates.py` (the two test files CI's run also flagged): both OK.
+
+**Went well.** Caught this by watching the actual CI conclusion rather than citing a local preflight pass that could not have caught it (the local run predated the merge, and `--skip-tests` does not run the file CI's full suite does). This is exactly the gap `CLAUDE.md` 0.3/0.4 names: a local pass is not production, and a run that could not look must say so, not stand in for a check that never happened.
+
+**No new gate needed.** `gate_feed_current`, `gate_roadmap_prices_current` and `gate_risks_evidence_current` already existed and caught all three correctly; they simply had not been checked against the final committed state before this push, because the prior local preflight run predated the final edits.
+
+Pushed to main: `RISKS.md`, `ROADMAP-2026-2029.md`, `site/feed.xml`, `site/build-id.txt`, this entry.
+
 ## Scheduled operator cycle, 2026-11-02 (08:45 slot): a step-by-step laundry room guide shipped, and a broken Pillow install in this sandbox fixed rather than reported around
 
 **Did.** Checkout arrived shallow and detached as STEP 0 warns; unshallowed for real (`fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, ff-only merge onto `821939fd8`, tree clean throughout). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the real tail of this log, not a summary.
