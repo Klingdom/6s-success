@@ -16,6 +16,26 @@ The prior cycle's full local `preflight.py --skip-tests` run gave 0 FAIL on ever
 
 Pushed to main: `RISKS.md`, `ROADMAP-2026-2029.md`, `site/feed.xml`, `site/build-id.txt`, this entry.
 
+## PM check-in, 2026-11-02 (09:1x slot): previous work not yet confirmed finished, CI still mid-run on the laundry-guide merge; one real stale count fixed, deploy gap transient and self-closing
+
+Previous work was not yet confirmed finished when this cycle started. The 08:45 operator cycle shipped a laundry room guide (`54a9591cf`); a concurrent cycle then merged it with another push, producing `73e95b5f6` (conflicts in the four generated files, resolved correctly by whoever ran it). CI's own `checks.yml` and `publish-image.yml` for that merge commit were both still `in_progress` after 17 minutes of watching (run `41418638318`), so I am not citing a pass that has not happened. Handing confirmation of that run to the next cycle rather than guess from elapsed time.
+
+Attached clean: checkout arrived shallow and detached per STEP 0, unshallowed for real (`fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, ff-only merge, 504 commits forwarded, tree clean throughout).
+
+Re-verified independently rather than cited: all 30 open GitHub issues pulled fresh, unchanged since `2026-11-01T19:44:28Z`, nothing from Phil (read issue #42's full 7-comment thread directly, all self-authored status updates, no reply). `check_urls.py` 223/223, `fix_dashes.py --check` 0/0, all five living-document rotation scripts (`--check`) CLEAN. `BACKLOG-2026-09-07.md` sections 2-6 re-checked: nothing unstruck beyond the standing Phil-gated rows.
+
+**One real stale fact found and fixed, not reported around.** `STATUS.md` section 6's "Repository hygiene" row still read "24 open issues (22 decision, 2 blocked-on-art)" after issues #57-#63 (7 more, opened 2026-11-01) widened the real count to 30 (9 P0, 28 decision, 2 blocked-on-art). Corrected directly against the live API count.
+
+**One gate warning investigated, not just noted.** `gate_status_deploy_gap_count_current` warned that `STATUS.md`'s BLOCKER-001 still cites a 0-commit gap next to the confirmed build. Checked directly: the real gap is now 1 commit (`54a9591cf`, the laundry guide, which touches `site/`). Not a defect: `publish-image.yml` for the merge commit was itself still running at check time, and `deploy.yml` fires automatically once it succeeds (`VPS_DEPLOY_KEY` is live). This is the documented "briefly reopens, closes itself" shape, not something to hand-edit while the pipeline is mid-flight; the next cycle should confirm it closed rather than re-warn on it.
+
+Ran `preflight.py --skip-tests` in the background; genuinely stalled at `gate_etsy_pdfs_current` (CPU time flat for 20+ seconds, confirmed by two `/proc` reads, the documented network-bound sandbox limitation, HTTP 403 on Etsy's fee page from here). 0 FAIL across every gate reached before that point. Killed by PID, stale lock removed. Regenerated the dashboard regardless: YELLOW, $0 of $20,000 (carried forward, Stripe unreachable), $19 all-time from 1 sale, 9 P0, 28 need-you, 1451 seven-day commits.
+
+Not starting new work: nothing beyond the Phil-gated items is genuinely unblocked, same standing conclusion as every recent cycle. Not sending a push notification: the standing no-repeat-before (`ops/last-owner-notification.json`, 2026-11-04T04:00Z) has not passed and nothing material changed on that front.
+
+**Handing to the operator (:43):** confirm CI run `41418638318` (and its `publish-image.yml`/`deploy.yml` chain) went green on commit `73e95b5f6`, and confirm the deploy gap closed back to 0 once the image publishes. Do not re-fix the BLOCKER-001 gap count until that pipeline finishes; fixing it mid-flight would just restate a number about to change again.
+
+Pushed to main: `STATUS.md`, `ops/cycle-signal.json`, `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-02 (08:45 slot): a step-by-step laundry room guide shipped, and a broken Pillow install in this sandbox fixed rather than reported around
 
 **Did.** Checkout arrived shallow and detached as STEP 0 warns; unshallowed for real (`fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, ff-only merge onto `821939fd8`, tree clean throughout). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the real tail of this log, not a summary.

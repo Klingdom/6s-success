@@ -226,13 +226,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-10T20:09:01Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-14T21:18:18Z",
    "mode": "changed",
    "offered": 3,
@@ -644,6 +637,13 @@
    "offered": 2,
    "accepted": 2,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-02T09:12:06Z",
+   "mode": "changed",
+   "offered": 2,
+   "accepted": 2,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -675,7 +675,7 @@
   "https://6s-success.com/articles/how-long-does-it-take-to-organise-a-room": "fb3c47b6ea6750af",
   "https://6s-success.com/articles/how-long-to-keep-a-maybe": "d66ff8f3af969e88",
   "https://6s-success.com/articles/how-to-organize-a-junk-drawer": "a2a3a2a042b02dbe",
-  "https://6s-success.com/articles/": "7f1fe8659d8534f7",
+  "https://6s-success.com/articles/": "c282e1a101ec93ff",
   "https://6s-success.com/articles/is-that-really-a-backup": "7805de5c5d8a2d3a",
   "https://6s-success.com/articles/more-storage-wont-fix-clutter": "c823bdb17b2fa5d3",
   "https://6s-success.com/articles/sentimental-items-without-guilt": "f448f8e6e3c4305e",
@@ -709,7 +709,7 @@
   "https://6s-success.com/rooms/home-office": "940377febd385fed",
   "https://6s-success.com/rooms/kids-bedroom": "9a702ad8c2044580",
   "https://6s-success.com/rooms/kitchen": "923bee850babba7c",
-  "https://6s-success.com/rooms/laundry-room": "1a5b7a33e5f9b51e",
+  "https://6s-success.com/rooms/laundry-room": "446c7970de556817",
   "https://6s-success.com/rooms/living-room": "944b3b5fedb4e85d",
   "https://6s-success.com/rooms/mudroom": "2c351cfe24db9c60",
   "https://6s-success.com/rooms/nursery": "c4aecb065804f187",
