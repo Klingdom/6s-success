@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-02 (20:4x slot): previous work independently confirmed finished; next real candidate identified for the operator is the Family Room guide, not another Phil-gated item
+
+NEXT FOR THE OPERATOR: write the step-by-step Family Room guide (how-to-organize/declutter a family room), because it is the highest-scoring roomless-guide room right now (`ops/room_guide_candidates.py` run fresh this cycle: 4 on-topic gaps, 30 partial, versus 0-1 for every other room still missing a guide), the same lane that has produced every real ship this week (bedroom, kitchen, garage, workshop, pantry, living room, guest bathroom).
+
+Attached clean (checkout arrived shallow and detached per STEP 0, fetched, unshallowed, `checkout -B main origin/main`, ff-only merge onto `943c6f63f`, tree clean before this cycle touched anything). Previous work (the 20:1x PM cycle and the hourly check-in after it) confirmed finished, not cited: re-verified independently rather than trusted.
+
+GitHub re-pulled fresh via the API: same 30 open issues, all `decision`/`blocked-on-art`, 0 open PRs. Read issue #42's newest comment directly rather than trust the summary one cycle back claimed: it is self-authored (footer confirms), posted under the `Klingdom` account by a prior agent cycle, not a reply from Phil; it reports two real room-guide ships this week and names Guest Bathroom and Patio or Deck as tied candidates. Guest Bathroom has since shipped (`BACKLOG-2026-09-07.md` section 83), so that comment is now one ship stale; checked the live scorer instead of carrying its number forward.
+
+`BACKLOG-2026-09-07.md` sections 2-6 grepped directly: only C5/C6 unstruck, both explicit **YES, Phil**. `ops/cold_read_ledger.py --stale`: 0. `--next`: 301 of 301 ledgered, 0 new candidates, lane fully exhausted. `ops/fix_dashes.py --check`: 0/0. `ops/check_urls.py`: 227/227. `STATUS.md` Open claims: none.
+
+Ran `ops/run_preflight.sh --fast` myself, watched by PID and CPU time rather than a glance: 0 FAIL/ERROR across every gate reached, then a genuine stall (CPU time flat at 14s across a 28s `/proc` gap, not slow progress) at the documented `gate_tests` headless-Chromium sandbox hang; killed by PID, confirmed dead, stale `/tmp/.preflight_py_running.lock` removed. Called the seven gates that sit after `gate_tests` directly: `gate_status_currency`, `gate_status_deploy_verdict_current`, `gate_status_deploy_gap_count_current`, `gate_roadmap_prices_current`, `gate_roadmap_catalogue_count_current`, `gate_status_history_chain_not_collapsed`, `gate_owner_actions_items_tracked`, all seven clean.
+
+**Verified the Family Room candidate before handing it off, rather than citing a dated comment.** `ops/room_guide_candidates.py` run fresh: Family Room shows 4 on-topic gaps (`card games organizer storage`, `storage for video games`, both routed to the board-game/puzzle zone; `nightstands with hidden storage`, routed to the blanket/comfort zone) plus 30 partial-match rows. One fourth row, `dental organization ideas` routed to `/family-room-deck.html`, reads as noise (a word collision, not a real family-room query) and should be excluded by the operator rather than written around, the same class of false gap several prior cycles have already named for other rooms. Every other roomless room (Dining Room, Entryway, Guest Bedroom, Patio or Deck, Primary Bathroom, Stair Landing) scores 0 on-topic gaps; Mudroom scores 1. Family Room is the real next candidate, not assumed, not another Phil-gated reconfirmation.
+
+Not sending a push notification: `ops/last-owner-notification.json`'s cooldown on the owner-decision-queue topic runs to 2026-11-04T04:00Z, nothing material changed (no Phil reply on any of the 30 issues, revenue unchanged at $0), and this handoff is routine content work, not the kind of thing worth waking Phil for.
+
+Pushed to main: this entry, `ops/cycle-signal.json` (partial-pass checkpoint from the preflight run above), `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No content, price or product touched yet; the Family Room guide itself is the operator's job, not started here.
+
 ## PM check-in, 2026-11-02 (20:1x slot): previous work independently confirmed finished, exhausted/decision-gated state unchanged, no new push notification
 
 Previous work (19:5x cycle) confirmed finished, not cited: attached clean, 597 commits, tree clean. Re-verified: 30 open GitHub issues unchanged, all decision/blocked-on-art; issue 42's new comment is self-authored by a prior agent cycle, not Phil. Backlog sections 2-6 have nothing unstruck beyond Phil-gated rows.
