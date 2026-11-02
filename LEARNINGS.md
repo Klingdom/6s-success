@@ -395,6 +395,7 @@ Maintain:
 | LRN-0042 | The lock that fixed LRN-0041 could not tell a zombie (SIGKILLed, unreaped) holder from a live one, so the routine way every cycle ends a hung preflight run held the next cycle's lock for up to 20 minutes | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 | LRN-0043 | A gate's own `except ValueError: return` hid a live rotate_owner_actions.py regression all day; a sibling PM check-in had already cited the same refusal as a non-defect hours earlier | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 | LRN-0044 | Before claiming "nothing answers this query", read the runner-up: a keyword tie picked a card deck over the room hub that already answers it | SEO / MEASUREMENT | SUPPORTED | HIGH |
+| LRN-0045 | setsid does not survive this harness's own background-task time limit, but it did not need to: CI already runs full `gate_tests` on every push, corrected the same hour by a concurrent cycle | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -1833,6 +1834,21 @@ exercises the exact shape every real cycle produces. Standing habit for
 whoever reads a "waited on the lock" line in a future log entry: check
 whether the holder was a zombie before assuming the stale-mtime path is
 the only way locks clear.
+
+#### LRN-0045: `ops/run_preflight.sh`'s setsid protects a backgrounded `gate_tests` run from a shell SIGTERM/SIGKILL, not from this harness's own background-task time limit, which reaps the whole tree anyway
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (reproduced directly, pid traced start to death)
+**Domain:** ENGINEERING / TOOLING
+**Measured:** 2026-11-02
+
+**Observation.** Ten-plus consecutive cycles had deferred `gate_tests` with `--skip-tests`, each citing the documented headless-Chromium sandbox hang. This cycle launched the sanctioned `ops/run_preflight.sh` (full run, no `--skip-tests`) via this harness's own `run_in_background` with its default 30-minute limit. The run was genuine, not stalled: CPU time climbed steadily and it reached test 132 of 462 with 0 FAIL. At the 30-minute mark the harness killed the backgrounded command for exceeding its own time limit, and `ops/preflight.py` (pid 1078, setsid-detached per the wrapper's own design) died at the same moment, confirmed by a separate watcher that polled the pid directly. `run_preflight.sh`'s docstring documents setsid surviving a caller's SIGTERM/SIGKILL (verified 2026-09-28, in a plain shell), which is a different mechanism from this harness's own background-task reaper, and the earlier verification never tested against it.
+
+**Implication.** No session can get a complete, un-skipped `gate_tests` pass by backgrounding it with this harness's `run_in_background` unless the whole 462-test run finishes inside the time limit granted (max 2 hours), and a background process cannot be "left running for the next cycle to inherit" regardless of setsid: each scheduled firing gets a fresh container, so the next session can never observe a prior session's backgrounded pid even if it had survived. Several recent nightly-log entries recorded that intention; it was never achievable this way.
+
+**Corrected within the hour by a concurrent PM cycle (05:4x), and left here for that reason.** None of this was actually the gap it looked like: `checks.yml` already runs `python3 ops/preflight.py` with no skip flag, plus a standalone loop over every `ops/tests/test_*.py` file, on every push, and every run that day had finished `success`, including the Preflight step itself. `--skip-tests` locally is fine exactly because CI runs the real thing every time; that was the design all along, just not being checked the right way (the GitHub Actions run conclusion, not a local rerun). The ten-plus cycles that read "`gate_tests` unconfirmed" as a live gap, this entry's own discovery included, were chasing a problem CI did not have.
+
+**Next action.** The real technical fact above (setsid does not survive this harness's own background-task reaper) still holds and is worth knowing before anyone tries backgrounding a long local run again. But do not use it to justify another attempt at a multi-hour local `gate_tests` pass: check the `Checks` workflow's run conclusion for current `HEAD` instead, the same way the 05:4x cycle did.
 
 #### LRN-0044: Before claiming "nothing answers this query", read the runner-up: a keyword tie picked a card deck over the room hub that already answers it
 

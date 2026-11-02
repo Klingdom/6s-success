@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-02 (05:1x-06:0x slot): the delta on top of the two concurrent entries below, which already cover the gate_tests/CI episode; recorded LRN-0045, and cleaned up my own foreground-timeout mistake
+
+Not retelling the gate_tests/CI story: the 05:4x PM cycle below found it, and the 05:4x-06:0x operator cycle below confirmed and folded it in. This cycle ran the same local full-preflight experiment in parallel, independently reaching the same technical fact (setsid does not survive this harness's own background-task time limit, only a shell SIGTERM/SIGKILL) before either of those two entries landed, and recorded it as `LEARNINGS.md` LRN-0045, corrected in the same entry once the other cycles' CI finding made clear the gap it half-implied was never real.
+
+**Separately, made the exact mistake LRN-0045's own subject warns against.** Ran a verification `--skip-tests` pass with a 280-second foreground `timeout`, below `preflight.py`'s own documented 480-second floor; it was killed mid-run and left a stale lock. Confirmed the pid dead, removed it, re-ran properly (no foreground timeout) to real completion: every gate passed, 32 standard warnings.
+
+**Did not go well:** spent this slot's budget on an episode two concurrent cycles already covered better. **Next:** nothing further on gate_tests; LRN-0045 says check CI's run conclusion, not a local rerun. No push notification: nothing material changed on the standing Phil-gated topic.
+
+Pushed to main: `LEARNINGS.md` (new LRN-0045), this entry.
+
 ## Scheduled operator cycle, 2026-11-02 (05:4x-06:0x slot): independently re-verified the exhausted/Phil-gated state from a fresh unshallowed checkout, a full preflight pass, nothing new found
 
 **Did:** Checkout arrived shallow and detached as STEP 0 warns. Unshallowed for real (`fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, ff-only merge onto `a46585e89`, 475 commits forwarded, tree clean throughout, no "unrelated histories" error). Read `BACKLOG-2026-09-07.md` sections 0-7 directly (not a summary): grepped every A/B/C row myself rather than citing a prior cycle's claim. Read `ROADMAP-2026-2029.md`'s framing already in context from `STATUS.md`/`OWNER-ACTIONS.md`, `CLAUDE.md`, and the real head of this log.
