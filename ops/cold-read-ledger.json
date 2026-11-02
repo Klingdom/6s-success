@@ -1017,9 +1017,9 @@
       "note": "cold-read 2026-10-14 16:1x-17:0x slot: read in full, 8/8 own tests pass, fallback logic verified correct, no defect found"
     },
     "preflight.py": {
-      "status": "clean",
-      "date": "2026-11-01",
-      "note": "Re-ledgered after 29fb1eed6 (Gemini-billing regex widened to tolerate trailing punctuation, deploy-gap citations re-derived; both changes already test-proven fail-then-pass per ops/NIGHTLY-LOG.md)"
+      "status": "fixed",
+      "date": "2026-11-02",
+      "note": "2026-11-02 01:3x cycle: added a per-test-file heartbeat (immediately flushed to stderr, naming the file and its i/N position) inside gate_tests()'s own loop, closing the exact blind spot run_gate's own heartbeat already fixed one level up in the gate sequence (its own 2026-09-13 docstring note). Dozens of consecutive log entries had to guess whether a backgrounded gate_tests run was stalled or merely slow by polling /proc CPU time for minutes; this makes the current file instantly visible instead. New ops/tests/test_gate_tests_heartbeat.py (fail-then-pass proved by temporarily reverting the change via git stash), existing test_gate_tests_timeout_guarded.py/test_gate_tests_skip_flag.py/test_gate_tests_cycle_signal_checkpoint.py all still pass unchanged."
     },
     "prerender_shop.py": {
       "status": "clean",

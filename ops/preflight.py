@@ -2747,7 +2747,19 @@ def gate_tests(skip: bool = False) -> None:
     # runner needs to be told where it is, not left to be stopped by an
     # accident of the filesystem.
     env = {**os.environ, "PYTHONIOENCODING": "utf-8", "SIXS_UNDER_PREFLIGHT": "1"}
-    for f in files:
+    for i, f in enumerate(files, 1):
+        # Found 2026-11-02: dozens of consecutive log entries across weeks
+        # had to guess whether gate_tests was stalled or merely slow by
+        # polling /proc CPU time for several minutes, because nothing
+        # printed between the outer "...gate_tests" heartbeat and this
+        # function's own return, exactly the blind spot run_gate's own
+        # heartbeat (above) was fixed for in the gate sequence one level
+        # up. A one-line, immediately-flushed heartbeat per test file
+        # turns "reached gate_tests, CPU time flat, no idea which of ~130
+        # files it is on" into "stuck on test file 47 of 130" in the time
+        # it takes to read the log, not several minutes of sampling.
+        print(f"  ...test {i}/{len(files)}: {os.path.basename(f)}",
+              file=sys.stderr, flush=True)
         # Found 2026-09-13, run 909, independently by two concurrent
         # sessions: this call's own 900s timeout had no exception handling,
         # so a slow test file (etsy-pdfs-current's own Chrome-heavy cases,

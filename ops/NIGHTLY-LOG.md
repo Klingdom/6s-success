@@ -2,6 +2,77 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-02 (01:3x slot): closed the "cannot tell gate_tests stalled from slow" gap at the root, per `CLAUDE.md` 10b, instead of guessing by CPU time a further time
+
+**Did.** Continuing the same attached session as the two entries below (no
+re-attach needed, tree already clean on `origin/main`). My own full
+`preflight.py` run (launched at the end of the 01:0x entry) was itself an
+instance of the identical class the 01:1x PM check-in just below diagnosed
+independently in its own run: it reached `...gate_tests` and then printed
+nothing further for the rest of its life. Watched this one by PID myself
+rather than assuming either outcome: CPU time was flat (00:00:10) across a
+23-second resample after 1811s elapsed, confirming a genuine stall rather
+than slow progress; the process then exited on its own (my own `kill`
+raced it and found it already gone, "No such process") with no final
+summary line, so `gate_tests` itself is **unchecked for this run**, not
+passed, per `CLAUDE.md` 0.4. Removed the stale `/tmp/.preflight_py_running.lock`
+it left (pid confirmed dead) rather than leaving it for the next cycle.
+
+**That is now at least three independent cycles today reporting the same
+shape (01:0x's first dead-silent attempt, 01:1x's below, and this one's
+second attempt), so per `CLAUDE.md` 10b this stopped being something to
+re-diagnose and became something to fix.** The actual stall is almost
+certainly outside this repository's own control (sandbox contention for a
+headless Chromium launch, or the container itself being reclaimed
+mid-run, both already documented across weeks of prior entries) and
+cannot be fixed from inside `ops/preflight.py`. What CAN be fixed, and
+what every one of those cycles actually spent its time on instead of
+useful work, is that nothing printed to say *where* the stall was:
+`gate_tests()` loops over roughly 130 test files with no per-file
+heartbeat, the identical blind spot `run_gate()`'s own heartbeat (one
+level up, in the main gate sequence) already closed on 2026-09-13 for
+exactly this reason, by its own docstring's account.
+
+**Fixed.** Added a one-line, immediately-flushed heartbeat
+(`  ...test i/N: basename`) printed before each test file's bounded
+subprocess call inside `gate_tests()`'s loop. Full account, including the
+blast-radius reasoning (cannot move any gate's PASS/FAIL/WARN, costs one
+`print` per file), in `BACKLOG-2026-09-07.md` section 78.
+
+**Verified.** New `ops/tests/test_gate_tests_heartbeat.py`, fail-then-pass
+proved directly (`git stash` the change, confirm red: 0 heartbeat lines
+and the slow file's own line missing before its call even returns;
+`git stash pop`, confirm green). The three existing `gate_tests`-adjacent
+tests (`timeout_guarded`, `skip_flag`, `cycle_signal_checkpoint`) all still
+pass unchanged, and now visibly print the new heartbeat as a side effect
+of exercising the real loop. `check_urls.py` 222/222, `fix_dashes.py
+--check` 0/0, `py_compile`/`ast.parse` on `ops/preflight.py` clean. Did not
+attempt a third full local `gate_tests` run this slot: the fix is tested
+in isolation above, and a further 30+ minute background attempt would not
+add to what the test already proves.
+
+**Went well:** turned a repeated, costly symptom into a one-time
+mechanism fix instead of a fourth paragraph describing the same guesswork.
+
+**Did not go well:** `gate_tests` itself remains genuinely unchecked by
+any session today; the next cycle that gets a real, unshared window should
+still try to run it to completion.
+
+**Changing next cycle:** none needed for this gap; watch whether the new
+heartbeat actually shows up the next time someone backgrounds a real
+`gate_tests` run, and report here if it does not behave as tested.
+
+**Next:** whichever of the 30 open issues Phil clears first; the next
+unshared full `preflight.py` run, now with real per-file visibility if it
+stalls again.
+
+No push notification: no-repeat-before (2026-11-02T04:00Z) has not passed;
+nothing material changed.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_tests_heartbeat.py`,
+`ops/cold-read-ledger.json`, `BACKLOG-2026-09-07.md`, this entry. No price,
+product or page touched; `IndexNow` not applicable.
+
 ## PM check-in, 2026-11-02 (01:1x slot): previous work's background `gate_tests` run was unverifiable (container ended before it could report), so reported as unchecked rather than assumed; one genuine rotation found and closed; backlog/issues confirmed still exhausted and Phil-gated
 
 Previous work (the 01:0x cycle) was not fully finished: it launched a full
