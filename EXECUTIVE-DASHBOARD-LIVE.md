@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-11-02 11:57 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-11-02 12:27 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,15 +8,15 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 9 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%)** |
+| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-11-02 11:57 because this run could not reach Stripe** |
 | | `............................` |
 | **Paying customers** | 0 |
 | **Email list** | 0 |
-| **Can the site take money?** | yes, confirmed live, 129 of 130 catalog items |
+| **Can the site take money?** | repository says yes (129 of 130 catalog items), **unconfirmed on the live site**: no Stripe credential in this environment to check the links a visitor actually hits |
 
 ### The one constraint
 
-The site can take money for 129 of 130 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 229 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
+The site can take money for 129 of 130 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 230 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
 
 ---
 
@@ -24,19 +24,19 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 
 | Stream | State |
 |---|---|
-| Traffic | 1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /home/runner/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
-| Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /home/runner/.ssh/6s_deploy, so the database was not rea). This is not a reading of zero.) |
+| Traffic | 1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
+| Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 30 (9 P0, 2 blocked on art, 28 need your call) |
 | Closed to date | 33 |
-| Commits (7 days) | unknown (shallow clone, could not verify) of unknown (shallow clone, could not verify total) total |
-| Working tree | clean, in sync |
-| Last commit | `346e2f1` PM check-in 11:4x: previous work confirmed finished, full pr |
+| Commits (7 days) | 1461 of 10293 total |
+| Working tree | uncommitted or unpushed work |
+| Last commit | `e9e93f7c3` Hourly check-in record |
 
 ## Product readiness
 
 | Product | Measured state |
 |---|---|
-| Website | 233 pages, 0 dead links, 4/4 legal pages, 229 disconnected forms |
+| Website | 234 pages, 0 dead links, 4/4 legal pages, 230 disconnected forms |
 | Book | 50/50 chapters, 50/50 carry the safety notice, 13 have no photographs, front matter drafted |
 | Book, sellable? | YES EPUB built 0.81 MB, cover yes, 0 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
@@ -58,6 +58,7 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 
 - **Check your Claude Code usage limit or plan status** (2 min). **Added 2026-10-09, PM check-in.** The autonomous PM and operator Routines went completely dark for roughly 5 days: `git log` shows zero Claude-authored commits between 2026-10-04 11:19:40Z and this cycle, every one of the 36 commits in that window from the dumb hourly check-in/social-rotation bot instead.
 - **~~Add `VPS_DEPLOY_KEY` as a GitHub Actions secret~~ **DONE 2026-11-01 15:14Z, and the automatic deploy itself is now verified, repeatedly** (set from the owner-invoked CEO session on Phil's instruction, `gh secret list` confirms it; **corrected 2026-11-02 PM check-in: this row still said the first automatic deploy "is to be verified" when `STATUS.md`'s own BLOCKER-001 and Production Knowledge sections record at least five separate automatic deploys confirmed since, most recently build `b150c19629689ad2` at 2026-11-01T22:33:43Z matching repository HEAD with zero commits undeployed; nothing left open on this item**)** (2 min). Closes the single most repeated line in this repository's whole operating history for good, not once.
+- **Run the traffic read yourself and paste the output back** (2 min). **Added 2026-11-02, scheduled operator cycle.** Traffic has been unmeasured since 2026-10-03, a full month: every number in `GOALS.md`'s O1 table (visitors, visits, pageviews, the week-over-week trend that decides whether the site's single constraint is improving) is a 2026-10-02 reading carried forward, because no sandboxed session holds the VPS key `ops/traffic_query.sh` needs.
 - **~~Verify the site in Google Search Console~~, send the Pages/Performance reports** (2 min). **Corrected 2026-10-20, PM check-in: this row still described the original verification task as open, 6 days after the full `### 1a` section below it (line ~872) recorded Phil had done it.** Verification itself is done: Phil set up the Domain property via DNS TXT, confirmed live by `nslookup`, token recorded in `ops/site-verification.json`, `gate_site_verification_declared` now finds it.
 - **Authorise YouTube uploads** (5 min). **Still open: authorisation itself has not happened.** CLEARED 2026-09-26 was the desync that once cast doubt on this row, fixed and re-verified, not the authorisation itself.
 - **Paste the business description into Stripe** (2 min). The live account still has no product description; it is the first thing a buyer reads about us at checkout, and the account-level gap is visible today.

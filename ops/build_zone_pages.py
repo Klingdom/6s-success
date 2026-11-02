@@ -2005,6 +2005,9 @@ ROOM_GUIDES = {
     "Pantry": [("../articles/how-to-organize-a-pantry.html",
                "How to organize a pantry, step by step",
                "Dry goods shelves first, then cans and jars, baking, snacks and lunch, and backstock.")],
+    "Living Room": [("../articles/how-to-organize-a-living-room.html",
+                     "How to organize a living room, step by step",
+                     "The floor and coffee table first, then the sofa, media center, side tables and bookshelves.")],
 }
 
 
