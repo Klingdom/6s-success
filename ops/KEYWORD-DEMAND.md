@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-02T09:00:18Z against 231 page(s) at commit 821939fd8. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-02T11:01:12Z against 232 page(s) at commit 2c09dd3f0. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 231 published page titles: 1366 covered, 1309 partial, 133 gap.
+**Queries found:** 2808. Checked against 232 published page titles: 1372 covered, 1303 partial, 133 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -104,7 +104,7 @@ Showing the top 80 of 133, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1309.
+Showing the top 60 of 1303.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -136,7 +136,6 @@ Showing the top 60 of 1309.
 | 1 | how to build a patio deck | The Patio or Deck Deck: 68 cards, free to read | 0.67 |
 | 1 | how to build a stair landing | How to organize a stair landing, zone by zone | 0.67 |
 | 1 | how to decorate a stair landing | How to organize a stair landing, zone by zone | 0.67 |
-| 1 | how to organize a pantry with deep shelves | How to organize the pantry dry goods shelves | 0.67 |
 | 1 | how to organize desk drawers diy | How to organize the home office desk drawers | 0.67 |
 | 1 | how to organize entertainment center cables | How to organize the family room entertainment center | 0.67 |
 | 1 | how to use a drying rack | How to organize the laundry room drying rack | 0.67 |
@@ -168,6 +167,7 @@ Showing the top 60 of 1309.
 | 2 | master bedroom closet organization ideas | How to organize the primary bedroom closet | 0.67 |
 | 2 | patio deck design ideas | The Patio or Deck Deck: 68 cards, free to read | 0.67 |
 | 2 | patio off of deck | The Patio or Deck Deck: 68 cards, free to read | 0.67 |
+| 2 | primary bedroom decorating ideas | The Primary Bedroom Deck: 66 cards, free to read | 0.67 |
 
 ## By room
 
@@ -187,7 +187,7 @@ Showing the top 60 of 1309.
 | Living Room | 86 | 2 | 43 | 41 |
 | Mudroom | 43 | 1 | 22 | 20 |
 | Nursery | 62 | 1 | 22 | 39 |
-| Pantry | 58 | 1 | 31 | 26 |
+| Pantry | 58 | 1 | 25 | 32 |
 | Primary Bathroom | 13 | 0 | 9 | 4 |
 | Primary Bedroom | 16 | 1 | 13 | 2 |
 | Stair Landing | 24 | 0 | 16 | 8 |

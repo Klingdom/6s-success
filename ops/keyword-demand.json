@@ -19,7 +19,7 @@
       "note": ""
     }
   },
-  "pages_checked": 231,
+  "pages_checked": 232,
   "failures": [
     {
       "seed": "how to organize a living room",
@@ -904,7 +904,7 @@
       "best_page_title": "How to organize the pantry baking supplies",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-pantry.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -5702,7 +5702,7 @@
       "best_page_title": "The Pantry Deck: 57 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -6247,7 +6247,7 @@
       "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -18345,7 +18345,7 @@
       "best_page_title": "The Pantry Deck: 57 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -23141,7 +23141,7 @@
       "best_page_title": "The Kitchen Deck: 72 cards, typeset and free to read or print",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -23160,7 +23160,7 @@
       "best_page_title": "The Kitchen Deck: 72 cards, typeset and free to read or print",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -23179,11 +23179,11 @@
       "best_page_title": "How to organize the pantry dry goods shelves",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-pantry.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "deep"
+        "kitchen"
       ]
     },
     {
@@ -23279,7 +23279,7 @@
       "best_page_title": "The Kitchen Deck: 72 cards, typeset and free to read or print",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -23342,7 +23342,7 @@
       "best_page_title": "The Kitchen Deck: 72 cards, typeset and free to read or print",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -23465,7 +23465,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -23661,7 +23661,7 @@
       "best_page_title": "The Pantry Deck: 57 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -23891,7 +23891,7 @@
       "best_page_title": "The Pantry Deck: 57 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-pantry.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -23910,13 +23910,11 @@
       "best_page": "/zones/pantry-the-dry-goods-shelves.html",
       "best_page_title": "How to organize the pantry dry goods shelves",
       "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-pantry.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "deep"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a pantry closet",
@@ -23933,7 +23931,7 @@
       "best_page_title": "The Pantry Deck: 57 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -23972,13 +23970,11 @@
       "best_page": "/pantry-deck.html",
       "best_page_title": "The Pantry Deck: 57 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/pantry-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "drawer"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a pantry on a budget",
@@ -24051,13 +24047,11 @@
       "best_page": "/pantry-deck.html",
       "best_page_title": "The Pantry Deck: 57 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/pantry-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "deep"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-pantry.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a pantry with deep pull out shelves",
@@ -24095,13 +24089,11 @@
       "best_page": "/zones/pantry-the-dry-goods-shelves.html",
       "best_page_title": "How to organize the pantry dry goods shelves",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/pantry-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "deep"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-pantry.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a pantry with dollar tree items",
@@ -24244,7 +24236,7 @@
       "best_page_title": "The Pantry Deck: 57 cards, free to read",
       "coverage": 0.25,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -24262,13 +24254,11 @@
       "best_page": "/zones/pantry-the-dry-goods-shelves.html",
       "best_page_title": "How to organize the pantry dry goods shelves",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/pantry-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "without"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a plant nursery",
@@ -26131,7 +26121,7 @@
       "best_page_title": "How to organize the pantry baking supplies",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-pantry.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -27622,7 +27612,7 @@
       "best_page_title": "How to organize the garage bulk and overhead storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-pantry.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -28530,7 +28520,7 @@
       "best_page_title": "The Pantry Deck: 57 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -29931,7 +29921,7 @@
       "best_page_title": "How to organize the pantry dry goods shelves",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-pantry.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -38931,7 +38921,7 @@
       "best_page_title": "The Kitchen Deck: 72 cards, typeset and free to read or print",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -44059,7 +44049,7 @@
       "best_page_title": "The Kitchen Deck: 72 cards, typeset and free to read or print",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -47315,13 +47305,11 @@
       "best_page": "/zones/pantry-the-dry-goods-shelves.html",
       "best_page_title": "How to organize the pantry dry goods shelves",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/pantry-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "deep"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-pantry.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "pantry organization ideas dollar tree",
@@ -47971,7 +47959,7 @@
       "best_page_title": "The Pantry Deck: 57 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -57386,6 +57374,6 @@
       ]
     }
   ],
-  "scored_at": "2026-11-02T09:00:18Z",
-  "scored_against_commit": "821939fd8"
+  "scored_at": "2026-11-02T11:01:12Z",
+  "scored_against_commit": "2c09dd3f0"
 }

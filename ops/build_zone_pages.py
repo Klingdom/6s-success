@@ -2002,6 +2002,9 @@ ROOM_GUIDES = {
     "Laundry Room": [("../articles/how-to-organize-a-laundry-room.html",
                       "How to organize a laundry room, step by step",
                       "The machines first, then detergent, sorting, folding, air-drying and cleaning tools.")],
+    "Pantry": [("../articles/how-to-organize-a-pantry.html",
+               "How to organize a pantry, step by step",
+               "Dry goods shelves first, then cans and jars, baking, snacks and lunch, and backstock.")],
 }
 
 

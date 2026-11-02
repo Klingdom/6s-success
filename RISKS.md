@@ -908,7 +908,7 @@ likelihood: OCCURRING
 owner: cro-growth
 evidence:
   - ops/state.json email_list=0
-  - every form on the site is inert (forms_dead=228)
+  - every form on the site is inert (forms_dead=229)
   - ops/state.json social_units=4939 authored and unused
   - RE-MEASURED 2026-09-21, because two of the three lines above had gone
     stale in opposite directions and a stale risk row drives bad work:
@@ -1015,6 +1015,11 @@ evidence:
     articles/how-to-organize-a-laundry-room.html) each carry the same
     inert footer newsletter form as every other page. Nothing new in kind,
     and the risk is unchanged: no form on this site posts anywhere.
+  - UPDATED 2026-11-02, scheduled operator cycle: headline count only, 228
+    to 229. The one addition, articles/how-to-organize-a-pantry.html,
+    carries the same inert footer newsletter form as every other page.
+    Nothing new in kind, and the risk is unchanged: no form on this site
+    posts anywhere.
   - **A NOTE ON THIS LIST, so it stops costing more than it is worth.** Every
     entry since 193 says the same sentence: one more page shipped, it carries
     the same inert footer form as every other page, nothing new in kind. Two
