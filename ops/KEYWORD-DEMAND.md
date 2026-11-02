@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-02T13:05:11Z against 234 page(s) at commit 93fb09720. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-02T14:34:18Z against 235 page(s) at commit 35f1e3bd2. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 234 published page titles: 1376 covered, 1300 partial, 132 gap.
+**Queries found:** 2808. Checked against 235 published page titles: 1380 covered, 1297 partial, 131 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 132, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 131, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -99,12 +99,12 @@ Showing the top 80 of 132, ordered by the best rank the phrase reached in any on
 | 11 | how to plan a workshop for students | Workshop | How to organize a workshop, zone by zone (0.33) | plan, students |
 | 11 | organize seasonal pricing model | - | How to organize the hall closet seasonal storage (0.33) | model, pricing |
 | 11 | organizing ideas for bedrooms | - | How to declutter a bedroom in one day, step by step (0.00) | bedrooms |
-| 11 | simple guest bathroom decorating ideas pictures | Guest Bathroom | The Guest Bathroom Deck: 60 cards, free to read (0.40) | decorating, pictures, simple |
 | 11 | stairs with landing and turn | - | How to organize a stair landing, zone by zone (0.33) | stairs, turn |
+| 12 | adding a landing to stairs | - | How to organize a stair landing, zone by zone (0.33) | adding, stairs |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1300.
+Showing the top 60 of 1297.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -176,9 +176,9 @@ Showing the top 60 of 1300.
 | Dining Room | 39 | 0 | 21 | 18 |
 | Entryway | 50 | 1 | 22 | 27 |
 | Family Room | 27 | 0 | 19 | 8 |
-| Garage | 77 | 1 | 26 | 50 |
-| Guest Bathroom | 22 | 2 | 13 | 7 |
-| Guest Bedroom | 24 | 0 | 13 | 11 |
+| Garage | 77 | 1 | 25 | 51 |
+| Guest Bathroom | 22 | 1 | 14 | 7 |
+| Guest Bedroom | 24 | 0 | 12 | 12 |
 | Hall Closet | 30 | 0 | 12 | 18 |
 | Home Office | 58 | 0 | 25 | 33 |
 | Kids Bedroom | 20 | 0 | 8 | 12 |

@@ -19,7 +19,7 @@
       "note": ""
     }
   },
-  "pages_checked": 234,
+  "pages_checked": 235,
   "failures": [
     {
       "seed": "how to organize a living room",
@@ -885,7 +885,7 @@
       "best_page_title": "How to organize the guest bedroom bed and linens",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/guest-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -1366,11 +1366,11 @@
       "best_page_title": "How to organize a guest bathroom, step by step",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "bathroom",
+        "diy",
         "kit"
       ]
     },
@@ -1388,11 +1388,11 @@
       "best_page_title": "How to organize a guest bathroom, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/rooms/guest-bathroom.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "clutter"
+        "kit"
       ]
     },
     {
@@ -1409,12 +1409,12 @@
       "best_page_title": "How to organize a guest bathroom, step by step",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/where-to-start-decluttering.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "bathroom",
-        "clutter"
+        "kit",
+        "tips"
       ]
     },
     {
@@ -1666,7 +1666,7 @@
       "best_page_title": "How to organize the kids bedroom bed",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -1787,7 +1787,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -2127,7 +2127,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -2222,7 +2222,7 @@
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -2241,7 +2241,7 @@
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -2755,13 +2755,11 @@
       "best_page": "/zones/home-office-the-desk-drawers-and-pedestal.html",
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-paperwork.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "way"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "best way to organize diaper caddy",
@@ -2919,7 +2917,7 @@
       "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -3962,8 +3960,8 @@
         "kids bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/kids-bedroom-deck.html",
-      "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.333,
       "heading_page": "/articles/family-wont-put-things-back.html",
@@ -4172,8 +4170,8 @@
         "how to organize car care supplies"
       ],
       "room": "",
-      "best_page": "/kids-bedroom-deck.html",
-      "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
       "heading_page": "/articles/family-wont-put-things-back.html",
@@ -4952,11 +4950,11 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-baby-clothes.html",
-      "best_page_title": "How to organize baby clothes by size, without drowning in them",
+      "best_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/kids-bedroom-the-clothing-closet.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -6494,7 +6492,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -6513,7 +6511,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -7773,7 +7771,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -7811,7 +7809,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -9183,11 +9181,11 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "bag"
+        "diy"
       ]
     },
     {
@@ -9246,7 +9244,7 @@
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -9267,7 +9265,7 @@
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -9432,7 +9430,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -12010,13 +12008,11 @@
       "best_page": "/garage-deck.html",
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-living-room.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "garage"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "garage organization ideas for small garages",
@@ -13176,7 +13172,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -13255,7 +13251,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -14543,7 +14539,7 @@
       "best_page_title": "Why everything needs an assigned home",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -21393,7 +21389,7 @@
       "best_page_title": "How to organize the kids bedroom clothing closet",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -22578,7 +22574,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -22887,7 +22883,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-living-room.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -24451,8 +24447,8 @@
         "how to organize a kids bedroom"
       ],
       "room": "",
-      "best_page": "/kids-bedroom-deck.html",
-      "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, step by step",
       "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-toys.html",
@@ -24470,8 +24466,8 @@
         "how to organize a kids bedroom"
       ],
       "room": "",
-      "best_page": "/kids-bedroom-deck.html",
-      "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, step by step",
       "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-toys.html",
@@ -26337,7 +26333,7 @@
       "best_page_title": "How to organize a guest bathroom, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -27462,8 +27458,8 @@
         "how to organize bookshelf"
       ],
       "room": "",
-      "best_page": "/kids-bedroom-deck.html",
-      "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -27981,7 +27977,7 @@
       "best_page_title": "How to organize toys so a child can put them away",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-living-room.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -28859,7 +28855,7 @@
       "best_page_title": "How to organize the kids bedroom clothing closet",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -29181,7 +29177,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -29266,7 +29262,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -29285,7 +29281,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -30662,8 +30658,8 @@
         "how to organize book storage"
       ],
       "room": "",
-      "best_page": "/book.html",
-      "best_page_title": "6S Success: Home Edition, the book, 50 chapters, 20 rooms",
+      "best_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/book.html",
@@ -30683,11 +30679,11 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-baby-clothes.html",
-      "best_page_title": "How to organize baby clothes by size, without drowning in them",
+      "best_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/kids-bedroom-the-clothing-closet.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -30705,13 +30701,11 @@
       "best_page": "/zones/kids-bedroom-the-toy-storage-zone.html",
       "best_page_title": "How to organize the kids bedroom toy storage",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "clothes"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize kids craft area",
@@ -30746,7 +30740,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-living-room.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -30761,8 +30755,8 @@
         "how to organize a kids bedroom"
       ],
       "room": "",
-      "best_page": "/book.html",
-      "best_page_title": "6S Success: Home Edition, the book, 50 chapters, 20 rooms",
+      "best_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/resources.html",
@@ -30780,11 +30774,11 @@
         "how to organize toy storage"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-toys.html",
-      "best_page_title": "How to organize toys so a child can put them away",
+      "best_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-living-room.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -33289,7 +33283,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -33521,7 +33515,7 @@
       "best_page_title": "How to organize the guest bathroom towels",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/primary-bathroom-deck.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -33750,7 +33744,7 @@
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -33769,7 +33763,7 @@
       "best_page_title": "How to organize toys so a child can put them away",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-living-room.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -33884,7 +33878,7 @@
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -34353,7 +34347,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -37688,7 +37682,7 @@
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -38214,11 +38208,11 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-baby-clothes.html",
-      "best_page_title": "How to organize baby clothes by size, without drowning in them",
+      "best_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/kids-bedroom-the-clothing-closet.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -38237,7 +38231,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -38258,7 +38252,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-living-room.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -38296,7 +38290,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-living-room.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -38317,7 +38311,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -38355,7 +38349,7 @@
       "best_page_title": "How to organize the kids bedroom toy storage",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -38374,7 +38368,7 @@
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -38393,7 +38387,7 @@
       "best_page_title": "How to organize the kids bedroom toy storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -38412,7 +38406,7 @@
       "best_page_title": "How to organize the kids bedroom toy storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -43447,7 +43441,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-living-room.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -43488,7 +43482,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-living-room.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -44866,7 +44860,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-living-room.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -45100,7 +45094,7 @@
       "best_page_title": "How to organize the kids bedroom clothing closet",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -45463,7 +45457,7 @@
       "best_page_title": "How to organize the kids bedroom clothing closet",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/kids-bedroom-the-clothing-closet.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -45482,7 +45476,7 @@
       "best_page_title": "How to organize the kids bedroom toy storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -45721,11 +45715,11 @@
         "kids bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/kids-bedroom-deck.html",
-      "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, step by step",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -45748,7 +45742,7 @@
       "best_page_title": "How to organize the kids bedroom toy storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -49490,14 +49484,13 @@
       "best_page": "/guest-bathroom-deck.html",
       "best_page_title": "The Guest Bathroom Deck: 60 cards, free to read",
       "coverage": 0.4,
-      "heading_coverage": 0.4,
-      "heading_page": "/guest-bathroom-deck.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.6,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "partial",
       "unmatched_words": [
         "decorating",
-        "pictures",
-        "simple"
+        "pictures"
       ]
     },
     {
@@ -49513,13 +49506,11 @@
       "best_page": "/guest-bedroom-deck.html",
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/guest-bedroom-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "simple"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "simple living room declutter",
@@ -52113,7 +52104,7 @@
       "best_page_title": "How to organize the kids bedroom toy storage",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -52209,7 +52200,7 @@
       "best_page_title": "How to organize toys so a child can put them away",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -52586,7 +52577,7 @@
       "best_page_title": "Why everything needs an assigned home",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -55513,7 +55504,7 @@
       "best_page_title": "How long should you keep something you can't decide about?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/home-office-deck.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -56276,7 +56267,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.25,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/why-is-my-house-always-messy.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -56297,7 +56288,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/why-is-my-house-always-messy.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -56316,7 +56307,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -56822,7 +56813,7 @@
       "best_page_title": "How to organize the workshop safety gear",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -57364,6 +57355,6 @@
       ]
     }
   ],
-  "scored_at": "2026-11-02T13:05:11Z",
-  "scored_against_commit": "93fb09720"
+  "scored_at": "2026-11-02T14:34:18Z",
+  "scored_against_commit": "35f1e3bd2"
 }

@@ -2011,6 +2011,9 @@ ROOM_GUIDES = {
     "Guest Bathroom": [("../articles/how-to-organize-a-guest-bathroom.html",
                         "How to organize a guest bathroom, step by step",
                         "Start the towels washing, then the vanity counter, storage, shower, toilet area and linen shelf.")],
+    "Kids Bedroom": [("../articles/how-to-organize-a-kids-bedroom.html",
+                      "How to organize a kids bedroom, step by step",
+                      "Clear the floor first, then the bed, desk, closet, dresser and the school bag by the door.")],
 }
 
 

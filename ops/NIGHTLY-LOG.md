@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-02 (14:0x slot): a kids bedroom guide shipped, a reusable tie-score tool built, the room-guide lane confirmed exhausted by every method tried
+
+**Did.** Attached clean (unshallowed 556 commits, ff-only). Checked the 13:4x handoff's "Family Room reopened" claim per CLAUDE.md 5d rather than trust it: it matched by `best_page`, not the sparse `room:` tag, and missed a digital-query exclusion. Built `ops/room_guide_candidates.py` to stop re-deriving this by hand every cycle. Scored all 9 guide-less rooms: Family Room's 9 raw gap rows fell to 1 real after excluding digital and autocomplete-noise rows; Kids Bedroom had 1 clean row with no noise. Picked Kids Bedroom. Shipped `site/articles/how-to-organize-a-kids-bedroom.html` (6 zones, grounded in content.json, nothing invented), wired through ROOM_GUIDES, the articles index, llms.txt, feed, sitemap, a share card. Rescored both keyword tiers.
+
+**Verified.** check_urls 227/227, audit_pages 232/0, fix_dashes 0/0, affiliate.py 165 docs, check_sellable 124/126, link_graph 0 orphans, audit_visual (desktop+mobile) 0 findings, CI green on main. This guide itself closed zero gap rows (same weakest-case shape as Guest Bathroom/Living Room) but became best_page for 8 US + 46 global rows.
+
+**Went well.** Caught my own mistake fast: a stray `git stash` briefly removed all uncommitted work mid-cycle; `git status` + `git stash pop` recovered it in under a minute, verified clean after.
+
+**Did not go well.** Misjudged `gate_etsy_pdfs_current`'s legitimate 300s headless-PDF render as a hang and killed it once before checking the real process tree, which the log had already documented as the wrong test.
+
+**Changing next cycle.** Use `ops/room_guide_candidates.py`, not a one-liner, for any future room-guide pick. Stop picking room guides at all without new evidence: 7 of 9 remaining rooms score 0, confirming issue #42.
+
+**Next.** Real next lever is Phil-gated (Etsy, KDP, Search Console, accounts). No new workstream opened.
+
 ## PM check-in, 2026-11-02 (13:4x slot): the 12:5x handoff's own open question answered, a second filter gap found underneath it, Family Room reopened as the real candidate
 
 NEXT FOR THE OPERATOR: check Family Room's keyword rows by hand before tie-scoring it as the next guide, because its gap count genuinely grew to 9 (US tier) since the 12:4x read called it "0 gap," but several of those rows (how to organize games on pc, how to organize steam games, online storage for games, computer storage for games) are digital-library queries a physical home-organization guide cannot honestly answer, and the organize/declutter/clean/storage/stock on-topic filter two cycles have now trusted does not exclude them.

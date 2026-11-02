@@ -663,7 +663,7 @@ committed corpus this cycle.
 | Standards | Standards Pack (free, 20 pages) | The one page organic search currently lands anyone on |
 | Products / kits | 129 of 130 catalogue SKUs buyable via direct Stripe checkout | Corporate Lean 6S is quote-based by design, not a gap |
 | Free decks | All 20 rooms, free and ungated | **Corrected 2026-09-29, PM check-in:** this row still named only Entryway and Kitchen, the state before B9 shipped the other 18 room decks (`site/*-deck.html`, confirmed 20 files on disk; `python ops/b9_claims.py --status` reports zero rooms left undiagnosed). Card counts vary by room's own real corpus size rather than a fixed budget; see `BACKLOG-2026-09-07.md` B9 for the per-room detail |
-| Articles | 29 published, differentiated per zone (`gate_general_reading_differentiated`) | 0 orphans, avg 26.7 inbound links each |
+| Articles | 48 published, differentiated per zone (`gate_general_reading_differentiated`) | **Corrected 2026-11-02, scheduled operator cycle:** this row still read 29/26.7, stale since well before the eight room guides this week (bedroom, kitchen, garage, workshop, laundry, pantry, living room, guest bathroom) plus the kids bedroom guide this cycle. Re-measured directly via `ops/link_graph_report.py`: 0 orphans, avg 21.3 inbound links each (lower average is more pages sharing a fixed set of hub links, not weaker linking; min inbound is 2, no page under-linked) |
 | Sustainment | Rewritten across all 114 zones | Median 28 to 94 words per Sustain slot, 0 near-duplicate across the corpus |
 
 `CONTENT-CATALOG.md` should become the authoritative content inventory.

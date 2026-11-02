@@ -1,0 +1,105 @@
+"""Score every guide-less room's real on-topic keyword gap, once, the same way every time.
+
+Built 2026-11-02 after the identical tie-score mistake recurred three times in
+BACKLOG-2026-09-07.md (sections 82, 83, and the Family Room re-read this cycle
+corrected): each cycle recomputed a candidate room's "gap count" with its own
+ad hoc one-liner, and each one used a different, undocumented method (the
+sparse `room` field vs the `best_page` a query actually routes to; with or
+without an on-topic filter; with or without excluding digital/software
+queries that route to a physical zone page by word overlap alone, e.g. "how
+to organize steam games" landing on the board-game-and-puzzle zone). Three
+different methods produced three different, each-confidently-stated gap
+counts for the same room. This script is the one method, run the same way
+every time, so the next cycle inherits a number instead of re-deriving one.
+
+Usage: python ops/room_guide_candidates.py [--room "Family Room"]
+"""
+import argparse
+import json
+import re
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+
+ON_TOPIC = re.compile(r"organiz|declutter|clean|storage|stock", re.I)
+# Found 2026-11-02: queries that route to a room's zone page by word overlap
+# (e.g. "storage", "organize") but ask about a digital library, not a
+# physical zone. Excluding them is the fix the 13:4x cycle on 2026-11-02
+# named and deferred as "too large for this slot."
+DIGITAL = re.compile(r"\b(pc|steam|computer|desktop|digital|online|software|app|download)\b", re.I)
+
+# Rooms with no article guide yet, per ops/build_zone_pages.py's ROOM_GUIDES.
+# Keep in sync by hand; this list is small and changes only when a guide ships.
+GUIDE_LESS_ROOMS = [
+    "Dining Room", "Entryway", "Family Room", "Guest Bedroom",
+    "Kids Bedroom", "Mudroom", "Patio or Deck", "Primary Bathroom",
+    "Stair Landing",
+]
+
+
+def slug(room):
+    return room.lower().replace(" ", "-")
+
+
+def room_rows(rows, room):
+    """Rows whose best_page is this room's deck or one of its zone pages.
+
+    Matches on best_page, not the sparse `room` field (881 of 2808 rows carry
+    it; the rest, including most gap rows, do not), because best_page is what
+    actually decides whether a query already has an answer on this room.
+    """
+    s = slug(room)
+    deck_path = f"/{s}-deck.html"
+    zone_prefix = f"/zones/{s}-"
+    out = []
+    for r in rows:
+        bp = r.get("best_page") or ""
+        if bp == deck_path or bp.startswith(zone_prefix):
+            out.append(r)
+    return out
+
+
+def score_room(us_rows, global_rows, room):
+    us = room_rows(us_rows, room)
+    gl = room_rows(global_rows, room)
+    combined = us + gl
+    on_topic = [r for r in combined if ON_TOPIC.search(r["query"])]
+    on_topic_clean = [r for r in on_topic if not DIGITAL.search(r["query"])]
+    gap = [r for r in on_topic_clean if r["status"] == "gap"]
+    partial = [r for r in on_topic_clean if r["status"] == "partial"]
+    excluded_digital = [r for r in on_topic if DIGITAL.search(r["query"])]
+    return {
+        "room": room,
+        "total_routed_rows": len(combined),
+        "on_topic_rows": len(on_topic_clean),
+        "gap": gap,
+        "partial_count": len(partial),
+        "excluded_digital_count": len(excluded_digital),
+        "excluded_digital_sample": [r["query"] for r in excluded_digital[:5]],
+    }
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--room", default=None, help="score one room instead of all guide-less rooms")
+    args = ap.parse_args()
+
+    us_rows = json.loads((ROOT / "ops/keyword-demand.json").read_text())["rows"]
+    global_rows = json.loads((ROOT / "ops/keyword-demand-global.json").read_text())["rows"]
+
+    rooms = [args.room] if args.room else GUIDE_LESS_ROOMS
+    results = [score_room(us_rows, global_rows, r) for r in rooms]
+    results.sort(key=lambda r: len(r["gap"]), reverse=True)
+
+    for r in results:
+        print(f"\n{r['room']}: {len(r['gap'])} on-topic gap, {r['partial_count']} partial, "
+              f"{r['on_topic_rows']} on-topic of {r['total_routed_rows']} routed rows "
+              f"({r['excluded_digital_count']} digital-context rows excluded)")
+        for g in r["gap"]:
+            print(f"    gap: {g['query']}  ({g.get('best_page')})")
+        if r["excluded_digital_sample"]:
+            print(f"    excluded sample: {r['excluded_digital_sample']}")
+
+
+if __name__ == "__main__":
+    main()
