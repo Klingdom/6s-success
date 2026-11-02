@@ -28246,6 +28246,106 @@ def gate_zone_also_called_is_heading() -> None:
         fail("zone-also-called-is-heading", "; ".join(problems[:6]))
 
 
+_DIGITAL_CONTEXT_WORD = re.compile(
+    r"\b(pc|steam|computer|desktop|software)\b", re.I)
+# Deliberately narrower than room_guide_candidates.py's own DIGITAL regex
+# (which also lists "digital", "online", "app", "download"): that one only
+# demotes a query out of a softer "on-topic gap" count for a human to read,
+# where a false exclusion costs nothing. A false match here would hard-fail
+# every push, and "online"/"app" are common words in genuine physical
+# queries too ("utility room design online" is a real room query, found
+# checking this gate against the real committed also-called map, not a
+# software one), so this list keeps only the words that are unambiguous
+# computing terms in any sentence.
+
+
+def check_also_called_no_digital_collision(names_by_key, us_rows,
+                                            global_rows) -> list:
+    """Found 2026-11-02: `zone_also_called_html()`'s scorer-visible heading
+    is matched as a bag of words with no page-scoping, so a name added to
+    fix one gap query can silently flip the status of an unrelated query
+    anywhere in the corpus, on the same word, if that word also happens to
+    appear in a digital-context query (one asking about a PC/Steam/app
+    library, not a physical zone). This cycle tried to fix "card games
+    organizer storage" and "storage for video games" (both Family Room,
+    found via ops/room_guide_candidates.py) by adding "games" to a zone
+    heading, and in the same rescore "how to organize games on pc" moved
+    from gap to a false `covered`, and three more PC/Steam queries moved to
+    a false `partial`, regardless of which of the room's zones carried the
+    word. The fix was reverted rather than shipped with that false claim.
+
+    `names_by_key` is {"Room" or "Room|Zone": [name, ...]} merged from both
+    ops/room-also-called.json and ops/zone-also-called.json. `us_rows` and
+    `global_rows` are the parsed `rows` lists from ops/keyword-demand.json
+    and ops/keyword-demand-global.json. Returns problem strings, empty when
+    no also-called name shares a content word with a digital-context query.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import keyword_demand as kd
+    problems = []
+    for key, names in sorted(names_by_key.items()):
+        for name in names:
+            name_words = set(kd.content_words(name))
+            if not name_words:
+                continue
+            for rows, fname in ((us_rows, "ops/keyword-demand.json"),
+                                 (global_rows,
+                                  "ops/keyword-demand-global.json")):
+                for r in rows or []:
+                    q = r.get("query", "")
+                    if not _DIGITAL_CONTEXT_WORD.search(q):
+                        continue
+                    shared = name_words & set(kd.content_words(q))
+                    if shared:
+                        problems.append(
+                            "%s %r shares %s with digital-context query "
+                            "%r in %s" % (
+                                key, name, sorted(shared), q, fname))
+    return problems
+
+
+def gate_also_called_no_digital_collision() -> None:
+    """The live check for `check_also_called_no_digital_collision()`'s own
+    defect: see its docstring. Reads the real, committed
+    ops/room-also-called.json, ops/zone-also-called.json and both keyword-
+    demand files, so a future also-called addition that collides with a
+    PC/Steam/app-library query cannot ship a false coverage claim silently.
+
+    Proved to fail on a planted regression: see
+    ops/tests/test_gate_also_called_no_digital_collision.py.
+    """
+    names_by_key = {}
+    room_path = os.path.join(ROOT, "ops", "room-also-called.json")
+    if os.path.exists(room_path):
+        data = json.load(io.open(room_path, encoding="utf-8"))
+        for room, entry in (data.get("rooms") or {}).items():
+            names_by_key[room] = entry.get("names") or []
+    zone_path = os.path.join(ROOT, "ops", "zone-also-called.json")
+    if os.path.exists(zone_path):
+        data = json.load(io.open(zone_path, encoding="utf-8"))
+        for key, entry in (data.get("zones") or {}).items():
+            names_by_key[key] = entry.get("names") or []
+    if not names_by_key:
+        return
+
+    us_rows = global_rows = []
+    us_path = os.path.join(ROOT, "ops", "keyword-demand.json")
+    if os.path.exists(us_path):
+        us_rows = json.loads(
+            io.open(us_path, encoding="utf-8").read()).get("rows") or []
+    global_path = os.path.join(ROOT, "ops", "keyword-demand-global.json")
+    if os.path.exists(global_path):
+        global_rows = json.loads(
+            io.open(global_path, encoding="utf-8").read()).get("rows") or []
+    if not us_rows and not global_rows:
+        return
+
+    problems = check_also_called_no_digital_collision(
+        names_by_key, us_rows, global_rows)
+    if problems:
+        fail("also-called-no-digital-collision", "; ".join(problems[:6]))
+
+
 def check_general_reading_picks(picks, diagnosed_usage, pool,
                                 floor=3, cap_ceiling=None,
                                 zones_linking=None) -> list:
@@ -32072,6 +32172,7 @@ def main() -> int:
     run_gate(gate_room_time_rounding_current)
     run_gate(gate_also_called_is_heading)
     run_gate(gate_zone_also_called_is_heading)
+    run_gate(gate_also_called_no_digital_collision)
     run_gate(gate_general_reading_differentiated)
     run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_no_duplicate_hazard_labels)

@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-02 (18:4x slot): the PM's Family Room room-guide handoff was oversized on a closer read, found a real scorer defect trying the smaller fix instead, gated it
+
+**Did.** Fresh unshallowed checkout onto `dd7c0f703` (the concurrent 18:4x PM check-in's own commit, caught by a rejected push, re-fetched rather than forced). Read that check-in's handoff: `room_guide_candidates.py` scored Family Room at 4 on-topic gap rows, the strongest guide-less-room candidate, recommending a full guide article on the bedroom/kitchen/garage/workshop precedent.
+
+**Verified rather than trusted.** Opened and read all 4 rows directly in `ops/keyword-demand.json` before writing anything (CLAUDE.md 5c/5d): the "on-topic" filter only regexes for organize/storage words, it does not check genuine fit. Two were noise: "dental organization ideas" is a seed mutation of "den organization ideas" (nothing to do with dens or dental health); "nightstands with hidden storage" reads as furniture-shopping intent, not an organizing method, and nightstands are bedroom furniture scored here only by a coincidental "storage" overlap. Two were genuine: "card games organizer storage" (Board Game and Puzzle Zone, real fit) and "storage for video games" (mis-zoned to the board-game zone by word overlap; the real content, disc cases and console shelves, lives in the Primary Media Zone).
+
+**Found a real defect trying the genuine fix, not shipped.** Added "card games zone" to the Board Game Zone's also-called heading to cover the first query. Rescoring moved it to `covered`, correctly, and also moved **4 unrelated PC/Steam queries** ("how to organize games on pc", "how to organize steam games", "online storage for games", "computer storage for games") from `gap` to a false `covered`/`partial`, because `keyword_demand.py`'s scorer matches a bag of words with no page-scoping: the plural "games" anywhere in the heading corpus credits any query containing it, regardless of topic or which zone carries the word (moving the fix to the Primary Media Zone instead made no difference, confirmed directly). Reverted both zone-also-called.json edits rather than ship a false coverage claim; `git diff` confirmed a clean return to the committed baseline after rebuild and rescore.
+
+**Changing next cycle.** New `gate_also_called_no_digital_collision` in `preflight.py`: checks every name in `room-also-called.json`/`zone-also-called.json` against both keyword files for a shared word with a PC/Steam/computer/desktop/software query, fail-then-pass proved in `ops/tests/test_gate_also_called_no_digital_collision.py` (5/5, including the real committed site, which is clean). Deliberately narrower than `room_guide_candidates.py`'s own softer DIGITAL filter (drops "online"/"app"/"digital"/"download"): a trial run of the wider list found "utility room design online" and "bonus room" colliding on "room", a false positive this hard-fail gate cannot afford.
+
+**Went well.** Caught the false coverage claim before committing it, by diffing the actual before/after rows rather than trusting the aggregate gap-count delta.
+
+**Did not go well.** The PM handoff's own "4 on-topic gap rows" count read as stronger evidence than it was; "on-topic" by regex is not "genuine fit," the same gap CLAUDE.md 5c already names for raw counts.
+
+**Next.** No Family Room guide this cycle: the real, verified gap is 1-2 small vocabulary rows, not the dozens that justified prior guides, and the only available fix mechanism cannot add one without the new gate's defect. 30 GitHub issues unchanged since 13:51 UTC, all Phil-gated; no push notification, cooldown to 2026-11-04T04:00Z unbroken, nothing material changed.
+
+Pushed to main: `ops/preflight.py`, `ops/tests/test_gate_also_called_no_digital_collision.py`, this entry, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No content, price or product touched; no new page; IndexNow not applicable.
+
 ## PM check-in, 2026-11-02 (18:4x slot): previous work independently confirmed finished, Family Room's keyword gap grew to 4 and is now the strongest guide-less-room candidate, handed to the operator rather than started here
 
 NEXT FOR THE OPERATOR: ship the Family Room guide, because `room_guide_candidates.py` (the one canonical method, built 2026-11-02) now scores it at 4 on-topic gap rows, more than any other guide-less room (Mudroom 1, all others 0), and the three ROOM_GUIDES-shaped precedents this week (bedroom, kitchen, garage, workshop, pantry, living room) are the playbook to copy.
