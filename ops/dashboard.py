@@ -2296,12 +2296,15 @@ md = f"""# 6S Success: Live Executive Dashboard
 if S["deploy_verdict"] == "stale":
     _photo_clause, _photo_tail = zone_photo_deploy_note(
         S.get("zone_photos_undeployed"), S["zone_pages_with_image"])
-    md += (f"- **Redeploy the site.** Production is serving an older build: "
-           f"{S['deploy_stale_assets']} of {S['deploy_checked_assets']} "
+    md += (f"- **Deploy pending, no action needed from you.** Production is serving "
+           f"an older build: {S['deploy_stale_assets']} of {S['deploy_checked_assets']} "
            f"assets on the live homepage differ from this repository, "
-           f"{_photo_clause} The image is built and "
-           f"pushed to ghcr.io; the Redeploy button in Hostinger is the only "
-           f"step left.{_photo_tail}\n")
+           f"{_photo_clause} Since 2026-11-01 the redeploy itself is automatic "
+           f"(`.github/workflows/deploy.yml`, fired once `Publish site image` "
+           f"finishes for the same push); this just means that pipeline has not "
+           f"caught up to the latest commit yet. If this line is still here more "
+           f"than an hour after a content push, the automatic pipeline itself has "
+           f"stalled and is worth a look.{_photo_tail}\n")
 
 # The three items OWNER-ACTIONS.md's own "Start here" table ranks above
 # everything else on that page go next, above the decision queue: they are
@@ -2516,13 +2519,16 @@ needs = owner_actions_html + needs
 if S["deploy_verdict"] == "stale":
     _photo_clause, _photo_tail = zone_photo_deploy_note(
         S.get("zone_photos_undeployed"), S["zone_pages_with_image"])
-    needs = (f'<li><b>Redeploy the site.</b> Production is serving an older '
-             f'build: {S["deploy_stale_assets"]} of '
+    needs = (f'<li><b>Deploy pending, no action needed from you.</b> Production is '
+             f'serving an older build: {S["deploy_stale_assets"]} of '
              f'{S["deploy_checked_assets"]} assets on the live homepage '
-             f'differ from this repository, {esc(_photo_clause)} The image '
-             f'is built and pushed; the Redeploy button in Hostinger is the '
-             f'only step left, and the one step this system cannot take '
-             f'itself.{esc(_photo_tail)}</li>') + needs
+             f'differ from this repository, {esc(_photo_clause)} Since 2026-11-01 '
+             f'the redeploy itself is automatic (<code>.github/workflows/deploy.yml</code>, '
+             f'fired once <code>Publish site image</code> finishes for the same push); '
+             f'this just means that pipeline has not caught up to the latest commit yet. '
+             f'If this line is still here more than an hour after a content push, the '
+             f'automatic pipeline itself has stalled and is worth a '
+             f'look.{esc(_photo_tail)}</li>') + needs
 
 tone = SEVERITY[S["overall"]]
 

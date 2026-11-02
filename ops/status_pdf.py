@@ -276,13 +276,16 @@ def build(path=None):
     if stale:
         dep = st.get("deploy", {})
         F.append(Paragraph(
-            f"<b>Redeploy the site.</b> Production is serving an older build: "
-            f"{dep.get('stale_assets', '?')} of {dep.get('checked_assets', '?')} "
-            f"assets on the live homepage differ from the repository, and no "
-            f"zone page carries its photograph yet. The container image is "
-            f"built and pushed to ghcr.io. The Redeploy button in Hostinger is "
-            f"the only remaining step, and the only one this system cannot "
-            f"take itself. Until it happens, "
+            f"<b>Deploy pending, no action needed from you.</b> Production is "
+            f"serving an older build: {dep.get('stale_assets', '?')} of "
+            f"{dep.get('checked_assets', '?')} assets on the live homepage "
+            f"differ from the repository, and no zone page carries its "
+            f"photograph yet. Since 2026-11-01 the redeploy itself is "
+            f"automatic (.github/workflows/deploy.yml, fired once the image "
+            f"build finishes); this just means that pipeline has not caught "
+            f"up to the latest commit yet. If this still shows more than an "
+            f"hour after a content push, the automatic pipeline itself has "
+            f"stalled and is worth a look. Until it catches up, "
             f"{st.get('zone_pages_with_image', '?')} reviewed pictures and "
             f"every fix since the last deploy reach nobody.", S_NOTE))
         F.append(Spacer(1, 7))
