@@ -893,8 +893,8 @@
     },
     "keyword_demand.py": {
       "status": "fixed",
-      "date": "2026-10-31",
-      "note": "Added unmatched_words to score_rows() and the report table, so a gap row names the actual missing words instead of inviting a cycle to guess from the query text"
+      "date": "2026-11-02",
+      "note": "2026-11-02 00:1x cycle (commit 9f3100a3b): added _morphology_variants() and _near_miss_count() as a tie-break-only signal for the third title-tie-break misattribution instance (grilling/grill, BACKLOG section 77). Verified gap/partial/covered counts byte-identical before and after across 4,978 rows, 23/23 tests passing. Re-ledgered now by the 00:4x PM cycle; this file's cold-read-ledger entry had gone stale against its own history (ledgered 2026-10-31, touched 2026-11-02)."
     },
     "keyword_demand_global.py": {
       "status": "fixed",
