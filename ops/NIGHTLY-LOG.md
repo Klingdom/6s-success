@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-02 (06:1x slot): previous work confirmed finished; independently re-mined the keyword gap tier (the one lane that is not Phil-gated) instead of citing "exhausted" a further time, found it genuinely is exhausted too right now; nothing shipped, no new notification
+
+Attached clean: checkout arrived shallow and detached per STEP 0, unshallowed for real, `checkout -B main origin/main`, ff-only merge, 482 commits forwarded onto `1b3758ab2`, tree clean throughout. Previous work (the two concurrent 05:4x-06:0x entries above) confirmed finished, not cited: diffed current HEAD against `ops/cycle-signal.json`'s checkpoint commit (`a46585e89`, recorded 05:57:10Z) for the six gate-relevant files; byte-identical, so the standing 0 FAIL preflight result still holds without a fresh run. Re-ran `check_urls.py` (222/222) and `fix_dashes.py --check` (0/0) directly.
+
+**Did not just re-confirm "exhausted/Phil-gated" from the backlog and GitHub issues a further time.** Pulled all 30 open issues fresh (unchanged set, same labels, newest activity still 2026-11-01T19:44:28Z, no Phil reply) and, separately, listed all 30 by title to sanity-check the labels themselves rather than trust them: every "decision" issue genuinely needs Phil's own credential, account, money or editorial call (Stripe fields, OAuth grants, account creation, a budget/stop-date for paid local testing); issue #50 (close two public VPS ports) needs root SSH this sandbox does not hold, correctly gated on access rather than on Phil's judgement; issue #29 (card art) has its mitigation already shipped, only real art regeneration remains, needs Phil's Desktop. Nothing mislabeled.
+
+**Then checked the one lane that is not Phil-gated at all: the global keyword-demand gap tier**, the A50-A54 series' own source for five straight days of genuinely unblocked, shippable fixes. Read `ops/keyword-demand-global.json` directly (100 gap rows, scored 02:47:48Z) rather than trust A54's "exhausted" framing from twelve hours ago. Sorted by rank, read the top ~100 by hand. Almost all are the same off-topic noise prior cycles already named (Revit handrail CAD, cribbage tournaments, bench press, pasta/paneer troubleshooting, vastu, "back porch" business names). One looked promising: "den office design ideas" (gb/au/ca/in, rank 2) scores to `/home-office-deck.html` on a coincidental "office" title match. Checked before touching anything, per the A51/A52 discipline: `room-also-called.json` already maps "den" to **Family Room**, not Home Office, deliberately (19 measured queries). Adding "den" to Home Office would contradict that existing, deliberate mapping, not fix a gap, so left alone. The rest of the top 100 are either generic listicle filler words that will never be real vocabulary (`must`, `haves`), specific-retailer brand queries (`canadian tire`, `dollar tree`), a genuine but narrow content gap rather than a synonym fix (a DIY hockey-equipment drying rack), or the already-diagnosed `desktop` word-sense ambiguity. No clean, honest fix found.
+
+**Went well:** this is the first 2026-11-02 cycle to actually re-open and re-read the gap tier itself rather than cite the backlog's framing of it; the "exhausted" conclusion now rests on having checked the one lane that keeps producing real work, not on inherited text.
+
+**Did not go well:** still nothing customer-facing shipped; the lane that has closed 29 items since 2026-10-29 (A26 onward) has nothing left this round.
+
+**Changing next cycle:** none; no new gate needed. Worth a standing note for whichever cycle checks next: the weekly global harvest (`keyword-demand-global.yml`) will refresh this tier again; a freshly re-harvested or re-scored file is the only way this lane reopens, same as last time (A50 waited for the 2026-10-29 harvest).
+
+Not sending a push notification: the standing no-repeat-before (2026-11-04T04:00Z) has not passed and nothing material changed.
+
+Pushed to main: `ops/NIGHTLY-LOG.md`, this entry.
+
 ## PM check-in, 2026-11-02 (05:1x-06:0x slot): the delta on top of the two concurrent entries below, which already cover the gate_tests/CI episode; recorded LRN-0045, and cleaned up my own foreground-timeout mistake
 
 Not retelling the gate_tests/CI story: the 05:4x PM cycle below found it, and the 05:4x-06:0x operator cycle below confirmed and folded it in. This cycle ran the same local full-preflight experiment in parallel, independently reaching the same technical fact (setsid does not survive this harness's own background-task time limit, only a shell SIGTERM/SIGKILL) before either of those two entries landed, and recorded it as `LEARNINGS.md` LRN-0045, corrected in the same entry once the other cycles' CI finding made clear the gap it half-implied was never real.
