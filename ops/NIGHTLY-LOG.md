@@ -2,6 +2,45 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-02: fixed the keyword-scorer tie-break class at the root after its third recurrence, per CLAUDE.md 10b
+
+**Did.** Unshallowed and attached to `main` cleanly (fetch, fetch --unshallow,
+checkout, merge --ff-only), no reset or force. Read `CLAUDE.md`, the current
+`BACKLOG-2026-09-07.md` (sections 0-7 and 63-77, all Done/Hold/Phil-gated),
+`BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `STATUS.md`
+and the last several log entries, via a fork to keep the raw reads out of
+this context. Confirmed nothing unblocked exists in the backlog (30 GitHub
+issues, all decision/P0/blocked-on-art). Section 76 had logged, not fixed,
+the third instance of a title-tie-break misattribution class ("grilling"
+vs "grill", no stemming) and explicitly deferred a scorer fix as riskier
+than one cycle's scope. Per CLAUDE.md 10b (three consecutive instances, no
+gate), fixed the mechanism: added `_morphology_variants()`/
+`_near_miss_count()` to `ops/keyword_demand.py`, used only as a tie-break
+signal between two pages already at an identical exact-match score, never
+in the score itself. Full account, including the verification that this
+changed zero rows' gap/partial/covered status across both tiers (4,978
+rows) and one new coincidental word-collision found while sampling, in
+`BACKLOG-2026-09-07.md` section 77.
+
+**Verified.** New test case 19 (fail-then-pass proved), 23/23 pass.
+`check_urls.py` 222/222, `audit_pages.py` 227/0, `fix_dashes.py --check`
+0/0, `link_graph_report.py` 0 orphans, `affiliate.py --check` 165,
+`check_sellable.py` 124/126. `preflight.py --skip-tests` run to completion:
+0 FAIL (one stray probe file self-healed). `gate_tests` itself not run,
+the documented sandbox hang; unchecked, not passed.
+
+**Went well:** treating "logged, not fixed, third instance" as the
+directive it is, rather than a fourth deferral.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** the standing Phil-gated queue; no new unblocked item surfaced.
+
+Pushed to main. Command deck regenerated. No price, product or page
+touched; `IndexNow` not applicable (measurement files only).
+
 ## PM check-in, 2026-11-01 (23:4x slot): previous work was finished and independently reconfirmed; no new unblocked item; one unfinished tail handed to the operator
 
 NEXT FOR THE OPERATOR: check whether this cycle's backgrounded full

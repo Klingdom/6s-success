@@ -382,6 +382,43 @@ def words(text):
     return [_fold(w) for w in re.findall(r"[a-z0-9]+", text.lower()) if w]
 
 
+def _morphology_variants(word):
+    """A small set of plausible base forms of `word`, for tie-break near-miss
+    matching only. Never used in the primary score, so it cannot reclassify
+    any query's gap/partial/covered status, only which tied page is credited.
+
+    Deliberately narrow: handles the two real shapes this repository has
+    found so far, a dropped plural ("drawers" vs "drawer", BACKLOG-2026-09-07
+    section 75) and a gerund ("grilling" vs "grill", section 76), not general
+    stemming. A third tied page sharing no exact word at all is unaffected.
+    """
+    variants = {word}
+    if len(word) > 4 and word.endswith("s") and not word.endswith("ss"):
+        variants.add(word[:-1])                           # drawers -> drawer
+    if len(word) > 5 and word.endswith("ing"):
+        base = word[:-3]
+        variants.add(base)                                # grilling -> grill
+        if len(base) >= 2 and base[-1] == base[-2] and base[-1] not in "wxy":
+            variants.add(base[:-1])                        # running -> run
+        variants.add(base + "e")                           # baking -> bake
+    return variants
+
+
+def _near_miss_count(page, cw, field="words"):
+    """How many of `cw` are NOT an exact hit on `page[field]` but have a
+    morphology variant that is. A query word already an exact hit is not a
+    near miss. `field` matches whichever surface the tie is on (best_page's
+    "words" or best_by's own field, e.g. "head_words")."""
+    hay = page[field]
+    count = 0
+    for w in cw:
+        if w in hay:
+            continue
+        if any(v in hay for v in _morphology_variants(w)):
+            count += 1
+    return count
+
+
 def content_words(query):
     """The words a coverage check should care about."""
     return [w for w in words(query)
@@ -441,7 +478,7 @@ def page_inventory(rooms=None):
     return sorted(rows, key=lambda r: r["url"])
 
 
-def _tie_break(page, best, room_signal):
+def _tie_break(page, best, room_signal, cw=None, field="words"):
     """True if `page` should replace `best` on an exact score tie.
 
     Found 2026-10-10: with no room signal, a tie always fell to the
@@ -451,8 +488,20 @@ def _tie_break(page, best, room_signal):
     household synonym like "master bedroom", see household_room_signal), a
     page that is actually IN that room now wins the tie instead; only when
     neither tied page matches the signal, or there is no signal at all, does
-    url order still decide, which is what the pre-existing test for this
+    the next check decide, which is what the pre-existing test for this
     function (a query naming no room) still checks.
+
+    Found 2026-11-02, third instance of the same shape (after the master-bath
+    room-signal case above and the "nightstand"/"drawers" plural case,
+    BACKLOG-2026-09-07 section 76): "organize grilling station" tied between
+    the real patio/deck grill page and the dining room's beverage station on
+    an exact-word match, because the scorer compares exact word forms with
+    no stemming and "grilling" never equals "grill". When the room signal
+    does not decide either (as here: the query names no room), a page with a
+    near-miss morphology match (_near_miss_count) for an otherwise-unmatched
+    content word now wins over a page with none, before url order. This does
+    not touch the score itself, only which tied page is credited, so it
+    cannot move any query off gap/partial/covered.
     """
     if room_signal:
         want = page.get("room") == room_signal
@@ -461,6 +510,11 @@ def _tie_break(page, best, room_signal):
             return True
         if have and not want:
             return False
+    if cw:
+        p_near = _near_miss_count(page, cw, field)
+        b_near = _near_miss_count(best, cw, field)
+        if p_near != b_near:
+            return p_near > b_near
     return page["url"] < best["url"]
 
 
@@ -480,7 +534,7 @@ def best_page(query, inventory, room_signal=""):
         hit = sum(1 for w in cw if w in page["words"])
         s = hit / len(cw)
         if s > score or (s == score and best is not None
-                         and _tie_break(page, best, room_signal)):
+                         and _tie_break(page, best, room_signal, cw)):
             best, score = page, s
     return best, round(score, 3)
 
@@ -513,7 +567,7 @@ def best_by(query, inventory, field, room_signal=""):
         hit = sum(1 for w in cw if w in page[field])
         s = hit / len(cw)
         if s > score or (s == score and best is not None
-                         and _tie_break(page, best, room_signal)):
+                         and _tie_break(page, best, room_signal, cw, field)):
             best, score = page, s
     return best, round(score, 3)
 

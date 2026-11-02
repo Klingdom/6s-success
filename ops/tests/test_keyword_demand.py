@@ -394,6 +394,57 @@ def main():
         fails.append("words() rewrote 'concentrate': %r"
                      % kd.words("concentrate"))
 
+    # 19. Found live 2026-11-02 (BACKLOG-2026-09-07 section 76, the third
+    #     instance of the same tie-break shape as case 17, after the
+    #     master-bath room-signal case and the nightstand/drawers plural
+    #     case): "organize grilling station" tied at an equal exact-word
+    #     score between the real patio/deck grill page and the dining
+    #     room's beverage station, because "grilling" never equals "grill"
+    #     with no stemming. Neither page carries a room signal for this
+    #     query, so the near-miss tie-break (_near_miss_count) must decide:
+    #     the patio page's own "grill" is a near match for the unmatched
+    #     "grilling", the dining page has no such near match for anything.
+    dining_title = "How to organize the dining room beverage or coffee station"
+    patio_title = "How to organize the patio or deck grill station"
+    grill_inv = [
+        {"url": "/zones/dining-room-the-beverage-or-coffee-station.html",
+         "title": dining_title, "words": set(kd.words(dining_title)),
+         "head_words": set(kd.words(dining_title)), "room": "Dining Room"},
+        {"url": "/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html",
+         "title": patio_title, "words": set(kd.words(patio_title)),
+         "head_words": set(kd.words(patio_title)), "room": "Patio or Deck"},
+    ]
+    page, score = kd.best_page("organize grilling station", grill_inv, "")
+    if page["url"] != "/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html":
+        fails.append("best_page still favoured the wrong page on a "
+                     "gerund near-miss tie: %r" % (page,))
+    if score != 0.5:
+        fails.append("the near-miss tie-break changed the SCORE, not just "
+                     "the attribution, which must never happen: %r" % score)
+    # A tie with no near-miss on either side (case 17's own query) must stay
+    # exactly as it was: this is the regression a careless fix could cause.
+    bedroom_inv = [
+        {"url": "/zones/guest-bedroom-the-guest-closet.html",
+         "title": "How to organize the guest bedroom closet",
+         "words": set(kd.words("How to organize the guest bedroom closet")),
+         "head_words": set(kd.words("How to organize the guest bedroom closet")),
+         "room": "Guest Bedroom"},
+        {"url": "/zones/primary-bedroom-the-primary-closet.html",
+         "title": "How to organize the primary bedroom closet",
+         "words": set(kd.words("How to organize the primary bedroom closet")),
+         "head_words": set(kd.words("How to organize the primary bedroom closet")),
+         "room": "Primary Bedroom"},
+    ]
+    page, score = kd.best_page("how to organize a bedroom closet", bedroom_inv, "")
+    if page["url"] != "/zones/guest-bedroom-the-guest-closet.html":
+        fails.append("best_page tie-break changed with no near-miss and no "
+                     "room signal: %r" % (page,))
+    # _morphology_variants must not over-reach: a word that already ends in
+    # a double "s" (not a plural at all) must not be despluralized.
+    if "dres" in kd._morphology_variants("dress"):
+        fails.append("_morphology_variants('dress') wrongly despluralized "
+                     "to 'dres': %r" % kd._morphology_variants("dress"))
+
     if fails:
         print("FAIL")
         for f in fails:
