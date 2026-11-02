@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-02T02:47:53Z against 230 page(s) at commit a0da7d769. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-02T09:00:18Z against 231 page(s) at commit 821939fd8. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 230 published page titles: 1365 covered, 1310 partial, 133 gap.
+**Queries found:** 2808. Checked against 231 published page titles: 1366 covered, 1309 partial, 133 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -90,7 +90,7 @@ Showing the top 80 of 133, ordered by the best rank the phrase reached in any on
 | 10 | how to host a cribbage tournament template | - | The 6S Zone Scoring Sheet and Layered Audit Template (0.25) | cribbage, host, tournament |
 | 10 | how to organize pc | - | - (0.00) | - |
 | 10 | how to organize printed recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | printed, recipes |
-| 10 | laundry problems and solutions | - | The Laundry Room Deck: 67 cards, free to read (0.33) | problems, solutions |
+| 10 | laundry problems and solutions | - | How to organize a laundry room, step by step (0.33) | problems, solutions |
 | 10 | metal stairs and landing | - | How to organize a stair landing, zone by zone (0.33) | metal, stairs |
 | 11 | best way to organize games on desktop | - | How to organize a junk drawer (and keep it that way) (0.33) | desktop, games |
 | 11 | foyer design ideas for flat indian style | - | What does a 5S engagement cost, and why no flat rate? (0.20) | flat, indian, style |
@@ -104,7 +104,7 @@ Showing the top 80 of 133, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1310.
+Showing the top 60 of 1309.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|

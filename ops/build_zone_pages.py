@@ -1999,6 +1999,9 @@ ROOM_GUIDES = {
     "Workshop": [("../articles/how-to-organize-a-workshop.html",
                   "How to organize a workshop, step by step",
                   "Safety station first, then the bench, the tools, the fasteners and the chemical cabinet.")],
+    "Laundry Room": [("../articles/how-to-organize-a-laundry-room.html",
+                      "How to organize a laundry room, step by step",
+                      "The machines first, then detergent, sorting, folding, air-drying and cleaning tools.")],
 }
 
 

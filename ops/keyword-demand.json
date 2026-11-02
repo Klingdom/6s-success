@@ -19,7 +19,7 @@
       "note": ""
     }
   },
-  "pages_checked": 230,
+  "pages_checked": 231,
   "failures": [
     {
       "seed": "how to organize a living room",
@@ -4529,7 +4529,7 @@
       "best_page_title": "Safety notice: read before any cleaning or organizing step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/why-everyone-in-your-house-disagrees-about-clean.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -4549,7 +4549,7 @@
       "best_page_title": "Safety notice: read before any cleaning or organizing step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/tidy-is-not-the-same-as-safe.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -4569,7 +4569,7 @@
       "best_page_title": "Safety notice: read before any cleaning or organizing step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/tidy-is-not-the-same-as-safe.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -4612,7 +4612,7 @@
       "best_page_title": "How to organize the hall closet cleaning equipment",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/why-everyone-in-your-house-disagrees-about-clean.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -4797,7 +4797,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -5181,7 +5181,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -6533,7 +6533,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -9658,7 +9658,7 @@
       "best_page_title": "How to organize the laundry room drying rack",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/laundry-room-deck.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -15117,7 +15117,7 @@
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -19952,7 +19952,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -23424,7 +23424,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -23445,7 +23445,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -23502,8 +23502,8 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-a-laundry-room.html",
+      "best_page_title": "How to organize a laundry room, step by step",
       "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-basement.html",
@@ -24593,7 +24593,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -24658,7 +24658,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -24744,7 +24744,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -24843,7 +24843,7 @@
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -24885,7 +24885,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -28019,7 +28019,7 @@
       "best_page_title": "Safety notice: read before any cleaning or organizing step",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/tidy-is-not-the-same-as-safe.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -29068,9 +29068,9 @@
         "how to organize craft area"
       ],
       "room": "",
-      "best_page": "/articles/how-to-declutter-a-bedroom.html",
-      "best_page_title": "How to declutter a bedroom in one day, step by step",
-      "coverage": 0.5,
+      "best_page": "/articles/how-to-organize-a-laundry-room.html",
+      "best_page_title": "How to organize a laundry room, step by step",
+      "coverage": 0.75,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
       "matched_on": "heading",
@@ -29361,7 +29361,7 @@
       "best_page_title": "How to organize the laundry room detergent and supplies",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -29969,7 +29969,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -30912,8 +30912,8 @@
         "how to organize detergent and supplies"
       ],
       "room": "",
-      "best_page": "/laundry-room-deck.html",
-      "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-laundry-room.html",
+      "best_page_title": "How to organize a laundry room, step by step",
       "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-basement.html",
@@ -30931,8 +30931,8 @@
         "how to organize detergent and supplies"
       ],
       "room": "",
-      "best_page": "/laundry-room-deck.html",
-      "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-laundry-room.html",
+      "best_page_title": "How to organize a laundry room, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -31012,7 +31012,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -31251,7 +31251,7 @@
       "best_page_title": "How to organize the laundry room detergent and supplies",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -34445,7 +34445,7 @@
       "best_page_title": "How to organize the laundry room detergent and supplies",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -39487,7 +39487,7 @@
       "best_page_title": "How to organize the laundry room detergent and supplies",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -39521,8 +39521,8 @@
         "how to organize detergent and supplies"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-a-laundry-room.html",
+      "best_page_title": "How to organize a laundry room, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-basement.html",
@@ -39540,8 +39540,8 @@
         "why is my laundry room always messy"
       ],
       "room": "",
-      "best_page": "/laundry-room-deck.html",
-      "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-laundry-room.html",
+      "best_page_title": "How to organize a laundry room, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.333,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -39566,7 +39566,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -39585,7 +39585,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -39939,7 +39939,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -39958,7 +39958,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.75,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -40017,7 +40017,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -45295,7 +45295,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -49700,7 +49700,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -49721,7 +49721,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -50061,11 +50061,11 @@
         "laundry room organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-organize-a-laundry-room.html",
+      "best_page_title": "How to organize a laundry room, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -50084,7 +50084,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -50103,7 +50103,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -50122,7 +50122,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -50242,7 +50242,7 @@
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -50451,7 +50451,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -50470,7 +50470,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -53580,13 +53580,11 @@
       "best_page": "/laundry-room-deck.html",
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/laundry-room-deck.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "small"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "utility room ideas uk",
@@ -55906,8 +55904,8 @@
         "why is my laundry room always messy"
       ],
       "room": "",
-      "best_page": "/articles/why-the-medicine-cabinet-never-gets-cleared-out.html",
-      "best_page_title": "Why does the medicine cabinet never get cleared out?",
+      "best_page": "/articles/how-to-organize-a-laundry-room.html",
+      "best_page_title": "How to organize a laundry room, step by step",
       "coverage": 0.25,
       "heading_coverage": 0.75,
       "heading_page": "/zones/laundry-room-the-sorting-and-hamper-zone.html",
@@ -56456,8 +56454,8 @@
         "why is my laundry room always messy"
       ],
       "room": "",
-      "best_page": "/laundry-room-deck.html",
-      "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-laundry-room.html",
+      "best_page_title": "How to organize a laundry room, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
       "heading_page": "/articles/how-to-organize-a-basement.html",
@@ -56742,7 +56740,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -57388,6 +57386,6 @@
       ]
     }
   ],
-  "scored_at": "2026-11-02T02:47:53Z",
-  "scored_against_commit": "a0da7d769"
+  "scored_at": "2026-11-02T09:00:18Z",
+  "scored_against_commit": "821939fd8"
 }
