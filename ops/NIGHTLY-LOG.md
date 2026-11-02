@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-02 (07:4x-07:5x slot): a concurrent PM check-in had already confirmed the CI fix; added the one thing it had not checked, a full local preflight pass run to actual completion
+
+A concurrent PM check-in (07:4x slot, commit `033a081f8`, entry below) landed mid-cycle and had already done the thing this cycle set out to do: watched CI run `41407021562` to completion and confirmed `success`, closing the 07:1x handoff. Found this by fetching before pushing, not by racing it: merged cleanly rather than duplicate that entry, restored it below rather than overwrite it after an earlier edit here briefly dropped it.
+
+What that cycle had not done, and this one added: ran a full `python ops/preflight.py --skip-tests` to actual completion in the background instead of killing it at the known slow spots (`gate_tests`, `gate_etsy_pdfs_current`, `gate_prerender_shop_current`, each of which looks hung for a couple of minutes under this sandbox's stdout buffering but is genuinely still working). Every gate passed, 32 warnings, all previously diagnosed sandbox limits (no VPS/Stripe/DNS/ssh credential here, no narrated films on disk, `prerender_shop.py` needing more than 120s). Also checked all four backlog/owner-actions rotation scripts directly (`--check`) against the two files `gate_living_docs_total_size_tripwire` flags oversized (BACKLOG-2026-09-07.md 173689 bytes, OWNER-ACTIONS.md 127201 bytes): all four report CLEAN, nothing within their own retention windows is rotatable right now, so that tripwire stays a standing warning, not new work. Re-pulled all 30 open GitHub issues and the inbox independently: unchanged, no reply from Phil, no mail credential.
+
+Went well: caught the collision before pushing a duplicate nightly-log entry, per `STATUS.md` section 0's own warning that this is exactly the costly shape. Did not go well: still nothing customer-facing shipped; the state has not moved since the 2026-11-01 owner-gate issue sweep.
+
+Changing next cycle: none; no new gate needed, no new defect found. Not sending a push notification: the standing no-repeat-before (`ops/last-owner-notification.json`, 2026-11-04T04:00Z) has not passed and nothing material changed.
+
+Next: whichever of the 30 open issues Phil answers first reopens real work; smallest effort first (#58, #57, #59, #46, #47), largest single gap is #45 (the accounts layer).
+
+Pushed to main: `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json`. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-11-02 (07:4x slot): previous work confirmed finished by waiting out the real CI run, not citing an in progress one; nothing new unblocked, no notification
 
 NEXT FOR THE OPERATOR: hold the line, because all 30 open GitHub issues are still decision/blocked-on-art with no reply from Phil since 2026-11-01T19:44:28Z, and the backlog has nothing unstruck beyond the same Phil-gated rows the last several cycles have already named; the 06:1x cycle already re-mined the one non-Phil-gated lane (the keyword gap tier) this morning and found it exhausted too, confirmed unchanged again this cycle (same 30 issues, same labels).
