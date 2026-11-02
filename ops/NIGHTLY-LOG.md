@@ -2,6 +2,61 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-02 (01:1x slot): previous work's background `gate_tests` run was unverifiable (container ended before it could report), so reported as unchecked rather than assumed; one genuine rotation found and closed; backlog/issues confirmed still exhausted and Phil-gated
+
+Previous work (the 01:0x cycle) was not fully finished: it launched a full
+`preflight.py` (with `gate_tests`) in the background and logged it as "not
+yet concluded." This session's container is a fresh one with no trace of
+that process (no lock file, no log, nothing running), so its result is not
+"still pending," it is simply unknowable now. Said so rather than assuming
+either a pass or a fail. Did not re-attempt the ~90-minute full run myself
+in this 30-minute slot; that belongs to the hourly operator at :43 if it
+chooses to run it.
+
+Attached clean (`fetch`, `--unshallow`, `checkout -B main origin/main`,
+ff-only merge onto `c48bdb208`, tree clean, no concurrent push). Re-verified
+independently: GitHub's 30 open issues pulled fresh, same set, all
+`decision`/`blocked-on-art`, nothing from Phil since the dates already on
+record. `BACKLOG-2026-09-07.md` sections 2-4 scanned directly for unstruck
+rows: nothing beyond the already-known Phil-gated C5/C6/C7.
+
+**Found and closed one genuine rotation.** Ran every rotate script's
+`--check` across both backlogs, `OWNER-ACTIONS.md` and `STATUS.md`: all
+reported CLEAN except `rotate_status_history.py --check-blocker1`, which
+found 4 live BLOCKER-001 entries where only the newest should stay (3 would
+move on `--apply-blocker1`). Applied it: `STATUS.md` dropped from 111,907 to
+107,890 bytes, clearing its `gate_living_docs_total_size_tripwire` warning;
+the 3 superseded entries archived to `STATUS-ARCHIVE.md`. Re-ran the check
+after: CLEAN. `BACKLOG-2026-09-07.md` and `OWNER-ACTIONS.md` remain over
+their own tripwire sizes, but every specific rotator for both reports
+CLEAN, so there is no due content to move; left as a standing WARN, not a
+FAIL, rather than hand-edited.
+
+Ran `preflight.py --skip-tests` myself in the background to re-verify the
+fast gates: 0 FAIL across every gate reached (through `gate_etsy_pdfs_current`,
+which itself WARNed rather than failed: `build_etsy_assets.py` did not
+finish within its own 300s budget). The process then died silently with no
+final summary line and no exit recorded, somewhere around
+`gate_prerender_shop_current`; not credited as a clean completion, reported
+as unchecked past that point rather than assumed passing. Left a stale
+`/tmp/.preflight_py_running.lock` (pid 735, confirmed dead) which was
+removed. Regenerated the dashboard.
+
+Not starting new work beyond the rotation above: nothing on either backlog
+or among the 30 open issues is genuinely unblocked without Phil. No push
+notification: the standing no-repeat-before on the cadence topic
+(2026-11-02T04:00Z) has not passed, and nothing material changed.
+
+Handing to the operator (:43): if it wants genuine `gate_tests` coverage,
+run full `preflight.py` to completion and watch it by PID rather than
+background-and-hope, since the backgrounding approach cannot survive a
+container boundary.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `STATUS.md`, `STATUS-ARCHIVE.md`,
+`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`,
+`ops/cycle-signal.json`. No content, price or product touched, no new
+page, IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-02 (01:0x slot): a genuinely complete `preflight.py --skip-tests` pass, 0 FAIL; full `preflight.py` (with `gate_tests`) launched in background, not yet concluded when this entry was written
 
 **Did.** Unshallowed and attached onto `main` cleanly (`git fetch origin main`,
