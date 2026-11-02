@@ -18,6 +18,7 @@
   "https://6s-success.com/articles/how-to-organize-a-junk-drawer",
   "https://6s-success.com/articles/how-to-organize-a-laundry-room",
   "https://6s-success.com/articles/how-to-organize-a-linen-closet",
+  "https://6s-success.com/articles/how-to-organize-a-living-room",
   "https://6s-success.com/articles/how-to-organize-a-pantry",
   "https://6s-success.com/articles/how-to-organize-a-workshop",
   "https://6s-success.com/articles/how-to-organize-an-attic",
@@ -227,13 +228,6 @@
   "https://6s-success.com/zones/workshop-the-safety-and-ppe-station"
  ],
  "runs": [
-  {
-   "at": "2026-10-22T15:12:20Z",
-   "mode": "changed",
-   "offered": 16,
-   "accepted": 16,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
   {
    "at": "2026-10-22T21:33:19Z",
    "mode": "changed",
@@ -646,6 +640,13 @@
    "offered": 4,
    "accepted": 4,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-02T12:45:50Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -873,7 +874,8 @@
   "https://6s-success.com/articles/how-to-organize-a-garage": "b71261ba4582156e",
   "https://6s-success.com/articles/how-to-organize-a-workshop": "011f8cd3d8de989f",
   "https://6s-success.com/articles/how-to-organize-a-laundry-room": "db03359d664f68f4",
-  "https://6s-success.com/articles/how-to-organize-a-pantry": "03046068c7cd3465"
+  "https://6s-success.com/articles/how-to-organize-a-pantry": "03046068c7cd3465",
+  "https://6s-success.com/articles/how-to-organize-a-living-room": "2d9d1cc83b83574c"
  },
  "hash_algo": "sha256-16-lf-1"
 }
