@@ -491,8 +491,8 @@
         "attic organisation ideas"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-an-attic.html",
-      "best_page_title": "How to organize an attic without overloading it",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/index.html",
@@ -2365,7 +2365,7 @@
       "best_page_title": "How to organize the guest bedroom bed and linens",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -2532,7 +2532,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -2723,7 +2723,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -2851,8 +2851,8 @@
         "bonus room organisation"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/articles/why-5s-decays-after-six-months.html",
+      "best_page_title": "Why does a 5S program decay six months after the launch event?",
       "coverage": 0.0,
       "heading_coverage": 0.5,
       "heading_page": "/articles/why-your-house-gets-messy-again.html",
@@ -3485,7 +3485,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/everyday-things-out-of-reach.html",
+      "heading_page": "/articles/zone-too-small-for-what-it-holds.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -3596,7 +3596,7 @@
       "best_page_title": "How to organize the garage car care supplies",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/how-to-organize-a-garage.html",
+      "heading_page": "/zones/garage-the-bulk-and-overhead-storage.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -3854,7 +3854,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
+      "heading_page": "/zones/primary-bedroom-the-primary-closet.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -4922,8 +4922,8 @@
         "how to organize detergent and supplies"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
+      "best_page_title": "How to organize the laundry room detergent and supplies",
       "coverage": 0.0,
       "heading_coverage": 0.5,
       "heading_page": "/zones/hall-closet-the-cleaning-supply-zone.html",
@@ -5833,7 +5833,7 @@
       "best_page_title": "How to organize the laundry room drying rack",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/rooms/laundry-room.html",
+      "heading_page": "/zones/laundry-room-the-hanging-and-air-dry-zone.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -7988,8 +7988,8 @@
         "garage organization ideas"
       ],
       "room": "Garage",
-      "best_page": "/garage-deck.html",
-      "best_page_title": "The Garage Deck: 80 cards, free to read",
+      "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
+      "best_page_title": "How to organize the garage tool wall",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/zones/garage-the-lawn-and-garden-tool-zone.html",
@@ -9653,11 +9653,11 @@
         "how to organise railing and surface"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
+      "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.0,
       "heading_coverage": 0.0,
-      "heading_page": "/about.html",
+      "heading_page": "/articles/everyday-things-out-of-reach.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -10250,8 +10250,8 @@
         "how to organize railing and surface"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/zones/patio-or-deck-the-surface-rail-and-safety-zone.html",
+      "best_page_title": "How to organize the patio or deck railing and surface",
       "coverage": 0.0,
       "heading_coverage": 0.5,
       "heading_page": "/guest-bedroom-deck.html",
@@ -10556,8 +10556,8 @@
         "how to organize a home office"
       ],
       "room": "Home Office",
-      "best_page": "/home-office-deck.html",
-      "best_page_title": "The Home Office Deck: 66 cards, free to read",
+      "best_page": "/zones/home-office-the-desk-drawers-and-pedestal.html",
+      "best_page_title": "How to organize the home office desk drawers",
       "coverage": 0.5,
       "heading_coverage": 0.5,
       "heading_page": "/home-office-deck.html",
@@ -10709,7 +10709,7 @@
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/living-room-deck.html",
+      "heading_page": "/zones/living-room-the-bookshelves-and-display.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -10892,8 +10892,8 @@
         "how to organize a family room"
       ],
       "room": "Living Room",
-      "best_page": "/living-room-deck.html",
-      "best_page_title": "The Living Room Deck: 69 cards, free to read",
+      "best_page": "/zones/living-room-the-sofa-and-seating.html",
+      "best_page_title": "How to organize the living room sofa and seating",
       "coverage": 0.5,
       "heading_coverage": 0.75,
       "heading_page": "/living-room-deck.html",
@@ -11271,11 +11271,11 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/zones/hall-closet-the-linen-shelf-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "cupboard"
+        "sheets"
       ],
       "markets": [
         "in"
@@ -11840,8 +11840,8 @@
         "how to organize dresser"
       ],
       "room": "",
-      "best_page": "/articles/how-to-declutter-a-bedroom.html",
-      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "best_page": "/zones/guest-bedroom-the-guest-dresser.html",
+      "best_page_title": "How to organize the guest bedroom dresser",
       "coverage": 0.5,
       "heading_coverage": 0.5,
       "heading_page": "/articles/how-to-declutter-a-bedroom.html",
@@ -12423,12 +12423,12 @@
       "best_page_title": "Decluttering vs. organizing: what's actually different",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/nursery-deck.html",
+      "heading_page": "/primary-bedroom-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
         "pictures",
-        "wall"
+        "sizes"
       ],
       "markets": [
         "gb",
@@ -12558,8 +12558,8 @@
         "how to organize crib"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/zones/nursery-the-crib-and-sleep-zone.html",
+      "best_page_title": "How to organize the nursery crib",
       "coverage": 0.0,
       "heading_coverage": 0.5,
       "heading_page": "/zones/nursery-the-crib-and-sleep-zone.html",
@@ -13194,7 +13194,7 @@
       "best_page_title": "How to organize the mudroom seasonal outdoor gear",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/about.html",
+      "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -13241,7 +13241,7 @@
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -13264,7 +13264,7 @@
       "best_page_title": "What is 6S? The six steps, and how it differs from 5S",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/about.html",
+      "heading_page": "/zones/living-room-the-floor-and-circulation-path.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -13332,7 +13332,7 @@
       "best_page_title": "How to organize the mudroom coat hooks",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/entryway-deck.html",
+      "heading_page": "/zones/entryway-the-coats-and-outerwear.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -14697,7 +14697,7 @@
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.4,
       "heading_coverage": 0.4,
-      "heading_page": "/living-room-deck.html",
+      "heading_page": "/zones/living-room-the-bookshelves-and-display.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -15071,8 +15071,8 @@
         "how to organise entertainment center"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/articles/why-5s-decays-after-six-months.html",
+      "best_page_title": "Why does a 5S program decay six months after the launch event?",
       "coverage": 0.0,
       "heading_coverage": 0.5,
       "heading_page": "/articles/why-your-house-gets-messy-again.html",
@@ -15118,7 +15118,7 @@
       "best_page_title": "How to organize the laundry room drying rack",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/garage-deck.html",
+      "heading_page": "/laundry-room-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -16167,7 +16167,7 @@
       "best_page_title": "How we make money: what we sell, and what we do not earn on",
       "coverage": 0.25,
       "heading_coverage": 0.25,
-      "heading_page": "/articles/family-wont-put-things-back.html",
+      "heading_page": "/zones/patio-or-deck-the-surface-rail-and-safety-zone.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -16344,11 +16344,11 @@
         "how to organise stove area"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/zones/kitchen-the-cooking-zone.html",
+      "best_page_title": "How to organize the kitchen stove area",
       "coverage": 0.0,
       "heading_coverage": 0.0,
-      "heading_page": "/about.html",
+      "heading_page": "/zones/kitchen-the-cooking-zone.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -18728,7 +18728,7 @@
       "best_page_title": "How to organize the pantry baking supplies",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-garage.html",
+      "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -19395,8 +19395,8 @@
         "how to organise book storage"
       ],
       "room": "",
-      "best_page": "/articles/everything-needs-an-assigned-home.html",
-      "best_page_title": "Why everything needs an assigned home",
+      "best_page": "/book.html",
+      "best_page_title": "6S Success: Home Edition, the book, 50 chapters, 20 rooms",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -19748,8 +19748,8 @@
         "how to organise charging station"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/articles/why-you-cant-find-the-right-charger.html",
+      "best_page_title": "Why can't you ever find the right charger?",
       "coverage": 0.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
@@ -19768,8 +19768,8 @@
         "how to organise charging station"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/articles/why-you-cant-find-the-right-charger.html",
+      "best_page_title": "Why can't you ever find the right charger?",
       "coverage": 0.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
@@ -19813,11 +19813,11 @@
       "best_page_title": "Why everything needs an assigned home",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
+      "heading_page": "/family-room-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "home"
+        "cables"
       ],
       "markets": [
         "au"
@@ -19835,7 +19835,7 @@
       "best_page_title": "How to organize the family room charging station",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
+      "heading_page": "/zones/guest-bedroom-the-guest-nightstand.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -20098,7 +20098,7 @@
       "best_page_title": "How to organize the family room craft area",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -20440,8 +20440,8 @@
         "how to organise drop zone"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/photo-check.html",
+      "best_page_title": "Photo Check: 6S Success",
       "coverage": 0.0,
       "heading_coverage": 0.5,
       "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
@@ -20484,8 +20484,8 @@
         "how to organise drop zone"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/zones/home-office-the-file-storage.html",
+      "best_page_title": "How to organize the home office file storage",
       "coverage": 0.0,
       "heading_coverage": 0.5,
       "heading_page": "/articles/how-to-organize-paperwork.html",
@@ -21168,8 +21168,8 @@
         "how to organise drop zone"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/photo-check.html",
+      "best_page_title": "Photo Check: 6S Success",
       "coverage": 0.0,
       "heading_coverage": 0.5,
       "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
@@ -21360,8 +21360,8 @@
         "how to organise steps"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/rooms/stair-landing.html",
+      "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-basement.html",
@@ -21806,7 +21806,7 @@
       "best_page_title": "How to organize toys so a child can put them away",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/kids-bedroom-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -22036,11 +22036,11 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "under"
+        "stairs"
       ],
       "markets": [
         "gb"
@@ -22991,8 +22991,8 @@
         "how to organize game storage"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/zones/family-room-the-board-game-and-puzzle-zone.html",
+      "best_page_title": "How to organize the family room game storage",
       "coverage": 0.0,
       "heading_coverage": 0.5,
       "heading_page": "/family-room-deck.html",
@@ -23303,8 +23303,8 @@
         "how to declutter a garage"
       ],
       "room": "Garage",
-      "best_page": "/garage-deck.html",
-      "best_page_title": "The Garage Deck: 80 cards, free to read",
+      "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
+      "best_page_title": "How to organize the garage tool wall",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/zones/garage-the-lawn-and-garden-tool-zone.html",
@@ -26269,8 +26269,8 @@
         "how to declutter a workshop"
       ],
       "room": "Workshop",
-      "best_page": "/rooms/workshop.html",
-      "best_page_title": "How to organize a workshop, zone by zone",
+      "best_page": "/zones/workshop-the-power-tool-storage.html",
+      "best_page_title": "How to organize the workshop power tool storage",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-workshop.html",
@@ -26341,7 +26341,7 @@
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -26753,7 +26753,7 @@
       "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -27070,7 +27070,7 @@
       "best_page_title": "How to organize the pantry baking supplies",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-garage.html",
+      "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -27810,11 +27810,11 @@
         "how to organize bench"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/zones/workshop-the-material-rack.html",
+      "best_page_title": "How to organize the workshop material rack",
       "coverage": 0.0,
       "heading_coverage": 0.0,
-      "heading_page": "/about.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -27945,8 +27945,8 @@
         "how to organize book storage"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/zones/nursery-the-books-and-quiet-play-zone.html",
+      "best_page_title": "How to organize the nursery book storage",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-toys.html",
@@ -27989,8 +27989,8 @@
         "how to organize book storage"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/zones/nursery-the-books-and-quiet-play-zone.html",
+      "best_page_title": "How to organize the nursery book storage",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -28384,8 +28384,8 @@
         "how to organize charging station"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/articles/why-you-cant-find-the-right-charger.html",
+      "best_page_title": "Why can't you ever find the right charger?",
       "coverage": 0.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
@@ -28964,7 +28964,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -29405,8 +29405,8 @@
         "how to organise craft area"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/zones/family-room-the-craft-and-activity-zone.html",
+      "best_page_title": "How to organize the family room craft area",
       "coverage": 0.0,
       "heading_coverage": 1.0,
       "heading_page": "/zones/family-room-the-craft-and-activity-zone.html",
@@ -29454,7 +29454,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/nursery-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -29728,8 +29728,8 @@
         "how to organize diaper storage"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/zones/nursery-the-diaper-and-care-backstock.html",
+      "best_page_title": "How to organize the nursery diaper storage",
       "coverage": 0.0,
       "heading_coverage": 1.0,
       "heading_page": "/zones/nursery-the-changing-station.html",
@@ -30561,8 +30561,8 @@
         "how to declutter a home office"
       ],
       "room": "Home Office",
-      "best_page": "/home-office-deck.html",
-      "best_page_title": "The Home Office Deck: 66 cards, free to read",
+      "best_page": "/zones/home-office-the-file-storage.html",
+      "best_page_title": "How to organize the home office file storage",
       "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-paperwork.html",
@@ -30905,8 +30905,8 @@
         "how to organize stove area"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/zones/kitchen-the-utensil-and-utility-drawers.html",
+      "best_page_title": "How to organize the kitchen utensil and utility drawers",
       "coverage": 0.0,
       "heading_coverage": 0.667,
       "heading_page": "/zones/kitchen-the-cooking-zone.html",
@@ -31518,7 +31518,7 @@
       "best_page_title": "How to organize the guest bedroom nightstand",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/guest-bedroom-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -32128,11 +32128,11 @@
       "best_page_title": "How to organize the garage tool wall",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-workshop.html",
+      "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "wall"
+        "tools"
       ],
       "markets": [
         "ca"
@@ -32252,8 +32252,8 @@
         "how to organize a mudroom"
       ],
       "room": "Mudroom",
-      "best_page": "/mudroom-deck.html",
-      "best_page_title": "The Mudroom Deck: 69 cards, free to read",
+      "best_page": "/zones/mudroom-the-shoe-and-boot-storage.html",
+      "best_page_title": "How to organize the mudroom shoe and boot storage",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/zones/mudroom-the-bench-and-transition-surface.html",
@@ -32475,7 +32475,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
+      "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -32807,7 +32807,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -33505,12 +33505,12 @@
       "best_page_title": "The Complete Digital Bundle: book, manual and print pack, $49",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/primary-bedroom-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "hangers",
-        "moving"
+        "moving",
+        "pack"
       ],
       "markets": [
         "au"
@@ -34245,8 +34245,8 @@
         "how to organise tool wall"
       ],
       "room": "",
-      "best_page": "/articles/family-wont-put-things-back.html",
-      "best_page_title": "Why your family won't put things back where they belong",
+      "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
+      "best_page_title": "How to organize the garage tool wall",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-a-garage.html",
@@ -34606,8 +34606,8 @@
         "how to organise a home office"
       ],
       "room": "Home Office",
-      "best_page": "/home-office-deck.html",
-      "best_page_title": "The Home Office Deck: 66 cards, free to read",
+      "best_page": "/zones/home-office-the-desk-drawers-and-pedestal.html",
+      "best_page_title": "How to organize the home office desk drawers",
       "coverage": 0.4,
       "heading_coverage": 0.6,
       "heading_page": "/articles/how-to-organize-paperwork.html",
@@ -34783,11 +34783,11 @@
         "how to organize game storage"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/zones/family-room-the-board-game-and-puzzle-zone.html",
+      "best_page_title": "How to organize the family room game storage",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/zones/family-room-the-board-game-and-puzzle-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -34985,12 +34985,12 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "board",
-        "games"
+        "games",
+        "store"
       ],
       "markets": [
         "ca"
@@ -35005,8 +35005,8 @@
         "how to organize book storage"
       ],
       "room": "",
-      "best_page": "/articles/how-to-store-blankets.html",
-      "best_page_title": "How to store blankets, and where each kind should live",
+      "best_page": "/zones/nursery-the-books-and-quiet-play-zone.html",
+      "best_page_title": "How to organize the nursery book storage",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/zones/kids-bedroom-the-study-desk.html",
@@ -35317,11 +35317,11 @@
       "best_page_title": "How to organize the patio or deck outdoor seating",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/patio-or-deck-deck.html",
+      "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "store"
+        "cushions"
       ],
       "markets": [
         "ca"
@@ -35932,8 +35932,8 @@
         "why is my kids bedroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/kids-bedroom-deck.html",
+      "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -36839,8 +36839,8 @@
         "why is my stair landing always messy"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/rooms/stair-landing.html",
+      "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.0,
       "heading_coverage": 0.5,
       "heading_page": "/dining-room-deck.html",
@@ -38107,7 +38107,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -38366,7 +38366,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -41591,11 +41591,11 @@
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/zone-too-small-for-what-it-holds.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "nursery"
+        "spaces"
       ],
       "markets": [
         "gb",
@@ -41990,8 +41990,8 @@
         "primary bathroom organization ideas"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/guest-bathroom-deck.html",
+      "best_page_title": "The Guest Bathroom Deck: 60 cards, free to read",
       "coverage": 0.0,
       "heading_coverage": 1.0,
       "heading_page": "/rooms/primary-bathroom.html",
@@ -42774,8 +42774,8 @@
         "pantry organization ideas"
       ],
       "room": "Pantry",
-      "best_page": "/pantry-deck.html",
-      "best_page_title": "The Pantry Deck: 57 cards, free to read",
+      "best_page": "/zones/pantry-the-snack-and-lunch-zone.html",
+      "best_page_title": "How to organize the pantry snack station",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/zones/pantry-the-snack-and-lunch-zone.html",
@@ -43348,17 +43348,17 @@
         "why is my patio or deck always messy"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/articles/family-wont-put-things-back.html",
+      "best_page_title": "Why your family won't put things back where they belong",
       "coverage": 0.0,
       "heading_coverage": 0.25,
-      "heading_page": "/articles/family-wont-put-things-back.html",
+      "heading_page": "/kitchen-deck.html",
       "matched_on": "heading",
       "status": "gap",
       "unmatched_words": [
         "decking",
-        "over",
-        "pavers"
+        "pavers",
+        "putting"
       ],
       "markets": [
         "au"
@@ -44599,8 +44599,8 @@
         "why is my stair landing always messy"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/rooms/stair-landing.html",
+      "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.0,
       "heading_coverage": 0.5,
       "heading_page": "/articles/how-to-organize-a-basement.html",
@@ -45558,8 +45558,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
+      "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.25,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -46294,7 +46294,7 @@
       "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -48016,12 +48016,12 @@
       "best_page_title": "Accessibility at 6S Success: what works, what does not",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/why-you-always-lose-your-keys.html",
+      "heading_page": "/primary-bathroom-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
         "button",
-        "toilet"
+        "working"
       ],
       "markets": [
         "au"
@@ -48802,6 +48802,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-11-01T22:53:58Z",
-  "scored_against_commit": "26e9432e1"
+  "scored_at": "2026-11-02T00:03:43Z",
+  "scored_against_commit": "2ba79bfb7"
 }

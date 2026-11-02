@@ -4,7 +4,7 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-01T22:53:41Z against 230 page(s) at commit 26e9432e1. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-02T00:10:56Z against 230 page(s) at commit 3c182fdd2. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
 **Queries found:** 2808. Checked against 230 published page titles: 1365 covered, 1310 partial, 133 gap.
 
@@ -27,10 +27,10 @@ Showing the top 80 of 133, ordered by the best rank the phrase reached in any on
 | 1 | organize outdoor diy lab | - | How to organize the mudroom seasonal outdoor gear (0.33) | diy, lab |
 | 2 | how to build a railing on a porch | - | How to organize the patio or deck railing and surface (0.33) | build, porch |
 | 2 | how to build walkway steps | - | What is 6S? The six steps, and how it differs from 5S (0.33) | build, walkway |
-| 2 | how to organize benchmark advance materials | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | advance, benchmark, materials |
-| 2 | how to organize games on pc | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | games |
+| 2 | how to organize benchmark advance materials | - | How to organize the workshop material rack (0.00) | advance, benchmark, materials |
+| 2 | how to organize games on pc | - | How to organize the family room game storage (0.00) | games |
 | 2 | how to organize stash poe 2 | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | poe, stash |
-| 2 | landings on a staircase | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | landings, staircase |
+| 2 | landings on a staircase | - | How to organize a stair landing, zone by zone (0.00) | landings, staircase |
 | 3 | daycare organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | daycare |
 | 3 | den office design ideas | - | The Home Office Deck: 66 cards, free to read (0.33) | den, design |
 | 3 | draw a larder organization chart | - | The Pantry Deck: 57 cards, free to read (0.00) | chart, draw |
@@ -42,11 +42,11 @@ Showing the top 80 of 133, ordered by the best rank the phrase reached in any on
 | 4 | how to build a staircase with landing | - | How to organize a stair landing, zone by zone (0.33) | build, staircase |
 | 4 | how to make a disposable diaper | - | How we make money: what we sell, and what we do not earn on (0.33) | diaper, disposable |
 | 4 | how to organize a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, tournament |
-| 4 | how to organize hard drive files | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | drive, hard |
-| 4 | ideas for decks and patios | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | decks, patios |
+| 4 | how to organize hard drive files | - | How to organize the home office file storage (0.00) | drive, hard |
+| 4 | ideas for decks and patios | - | The Patio or Deck Deck: 68 cards, free to read (0.00) | decks, patios |
 | 4 | why am i frequently using the bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) | frequently, using |
 | 5 | back porch column ideas | - | Why your family won't put things back where they belong (0.33) | column, porch |
-| 5 | decks and patios design ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | decks, patios |
+| 5 | decks and patios design ideas | - | The Patio or Deck Deck: 68 cards, free to read (0.00) | decks, patios |
 | 5 | dental organization ideas | - | The Family Room Deck: 69 cards, free to read (0.00) | dental |
 | 5 | guest bathroom decorating ideas pictures pinterest | Guest Bathroom | The Guest Bathroom Deck: 60 cards, free to read (0.40) | decorating, pictures, pinterest |
 | 5 | how to organize a cribbage tournament template | - | The 6S Zone Scoring Sheet and Layered Audit Template (0.33) | cribbage, tournament |
@@ -70,7 +70,7 @@ Showing the top 80 of 133, ordered by the best rank the phrase reached in any on
 | 8 | how to arrange benches in classroom | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | benches, classroom |
 | 8 | how to host a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, host, tournament |
 | 8 | how to organize raised garden beds | - | How to organize the garage garden tool storage (0.33) | beds, raised |
-| 8 | how to organize steam games | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | games, steam |
+| 8 | how to organize steam games | - | How to organize the family room game storage (0.00) | games, steam |
 | 8 | how to organize your computer | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | computer |
 | 8 | how to plan a workshop templates | Workshop | How to organize a workshop, zone by zone (0.33) | plan, templates |
 | 8 | nine steps on how to organize a cooperative | - | What is 6S? The six steps, and how it differs from 5S (0.33) | cooperative, nine |
@@ -82,10 +82,10 @@ Showing the top 80 of 133, ordered by the best rank the phrase reached in any on
 | 9 | how to install a stove top range | - | How to organize the kitchen stove area (0.25) | install, range, top |
 | 9 | how to organize script mods sims 4 | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | mods, script, sims |
 | 9 | organize hard disk drives | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | disk, drives |
-| 9 | organize packing kit guide | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | guide, packing |
+| 9 | organize packing kit guide | - | The Complete Digital Bundle: book, manual and print pack, $49 (0.00) | guide, packing |
 | 9 | what problems exist in this kitchen | Kitchen | The Kitchen Deck: 72 cards, typeset and free to read or print (0.33) | exist, problems |
-| 9 | why do i have trouble climbing stairs | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | climbing, trouble |
-| 10 | card games organizer storage | - | More storage will not fix a messy room (0.33) | card, games |
+| 9 | why do i have trouble climbing stairs | - | How to organize a stair landing, zone by zone (0.00) | climbing, trouble |
+| 10 | card games organizer storage | - | How to organize the family room game storage (0.33) | card, games |
 | 10 | decorating ideas for stairs and landing | - | How to organize a stair landing, zone by zone (0.33) | decorating, stairs |
 | 10 | how to host a cribbage tournament template | - | The 6S Zone Scoring Sheet and Layered Audit Template (0.25) | cribbage, host, tournament |
 | 10 | how to organize pc | - | - (0.00) | - |
@@ -99,7 +99,7 @@ Showing the top 80 of 133, ordered by the best rank the phrase reached in any on
 | 11 | how to organize recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | recipes |
 | 11 | how to plan a workshop for students | Workshop | How to organize a workshop, zone by zone (0.33) | plan, students |
 | 11 | organize seasonal pricing model | - | How to organize the hall closet seasonal storage (0.33) | model, pricing |
-| 11 | organizing ideas for bedrooms | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | bedrooms |
+| 11 | organizing ideas for bedrooms | - | How to declutter a bedroom in one day, step by step (0.00) | bedrooms |
 | 11 | simple guest bathroom decorating ideas pictures | Guest Bathroom | The Guest Bathroom Deck: 60 cards, free to read (0.40) | decorating, pictures, simple |
 
 ## Partial: we are close, and the title does not use their words
