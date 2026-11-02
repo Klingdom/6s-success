@@ -229,13 +229,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-22T21:33:19Z",
-   "mode": "changed",
-   "offered": 6,
-   "accepted": 6,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-23T03:13:51Z",
    "mode": "changed",
    "offered": 74,
@@ -647,6 +640,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-02T13:47:19Z",
+   "mode": "changed",
+   "offered": 4,
+   "accepted": 4,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -674,11 +674,11 @@
   "https://6s-success.com/articles/decluttering-vs-organizing": "e28faa51af3da915",
   "https://6s-success.com/articles/everyday-things-out-of-reach": "abff6ce4ed597cc5",
   "https://6s-success.com/articles/everything-needs-an-assigned-home": "495e5aff57726553",
-  "https://6s-success.com/articles/family-wont-put-things-back": "3fb5b0f8af7a1dd9",
+  "https://6s-success.com/articles/family-wont-put-things-back": "8919ba4cc55308b4",
   "https://6s-success.com/articles/how-long-does-it-take-to-organise-a-room": "fb3c47b6ea6750af",
   "https://6s-success.com/articles/how-long-to-keep-a-maybe": "d66ff8f3af969e88",
   "https://6s-success.com/articles/how-to-organize-a-junk-drawer": "a2a3a2a042b02dbe",
-  "https://6s-success.com/articles/": "25c7040e3444ef10",
+  "https://6s-success.com/articles/": "1a1c4113cff89ee5",
   "https://6s-success.com/articles/is-that-really-a-backup": "7805de5c5d8a2d3a",
   "https://6s-success.com/articles/more-storage-wont-fix-clutter": "c823bdb17b2fa5d3",
   "https://6s-success.com/articles/sentimental-items-without-guilt": "f448f8e6e3c4305e",
@@ -706,7 +706,7 @@
   "https://6s-success.com/rooms/entryway": "f5b7d0cf0a32fa98",
   "https://6s-success.com/rooms/family-room": "18b6ca2ecfe6ec9e",
   "https://6s-success.com/rooms/garage": "71a62061c7e58416",
-  "https://6s-success.com/rooms/guest-bathroom": "f6034a5061a5635f",
+  "https://6s-success.com/rooms/guest-bathroom": "945d1f635447a652",
   "https://6s-success.com/rooms/guest-bedroom": "57ba7542af8c3e93",
   "https://6s-success.com/rooms/hall-closet": "ede0d8c5a32f9aba",
   "https://6s-success.com/rooms/home-office": "940377febd385fed",
@@ -861,7 +861,7 @@
   "https://6s-success.com/primary-bedroom-deck.html": "6deb6df2eaf2a487",
   "https://6s-success.com/workshop-deck.html": "be78804e75b50ad3",
   "https://6s-success.com/patio-or-deck-deck.html": "f773efb52f38778c",
-  "https://6s-success.com/articles/why-is-my-house-always-messy": "a0e31a3160468e6d",
+  "https://6s-success.com/articles/why-is-my-house-always-messy": "4a97b51f6664d95e",
   "https://6s-success.com/articles/how-to-organize-a-basement": "b85177a96246ed6f",
   "https://6s-success.com/articles/how-to-organize-an-attic": "8a2a0913f50afde9",
   "https://6s-success.com/articles/how-to-declutter-a-bedroom": "07c889b3b40437e9",
