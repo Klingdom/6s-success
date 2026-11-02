@@ -343,8 +343,8 @@
     },
     "build_messy_article.py": {
       "status": "clean",
-      "date": "2026-11-01",
-      "note": "Re-ledgered after Phil's own 2026-10-31 commit (5eaabc827) added one related-link <li> to the new bedroom-declutter article. Diffed the full file: the only change is that one link line, target page confirmed to exist. Regenerated and diffed against the committed article: byte-identical. fix_dialect.py and fix_dashes.py --check both clean on the output. No logic or data changed."
+      "date": "2026-11-02",
+      "note": "Re-read the 2026-11-02 one-line FAQ addition linking the new Living Room guide: same list-item shape every prior guide link uses, href matches the shipped article slug, no defect."
     },
     "build_microzone_coverage.py": {
       "status": "clean",
@@ -567,9 +567,9 @@
       "note": "Read in full (135 lines) and run directly: regenerates both build/ and site/ copies, 20 rooms / 114 zones asserted, 0 drift."
     },
     "build_zone_pages.py": {
-      "status": "fixed",
-      "date": "2026-11-01",
-      "note": ""
+      "status": "clean",
+      "date": "2026-11-02",
+      "note": "Re-read the 2026-11-02 Living Room ROOM_GUIDES entry against the diff: same three-tuple shape every prior room-guide row uses (path, title, one-line zone order), path matches the shipped article, no defect."
     },
     "canonical_links.py": {
       "status": "clean",
