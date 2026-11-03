@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-03 (~13:1x UTC): shipped the mudroom guide, confirmed the decision-queue notification is still correctly withheld
+
+**Did.** Attached clean: checkout arrived shallow and detached; unshallowed, `checkout -B main origin/main`, ff-only onto `94c2afe78`, tree clean. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the last four log entries before touching anything. `preflight.py` ran clean, 0 FAIL through every gate before the documented `gate_tests` sandbox hang. Checked GitHub directly (30 open issues, all `decision`/`blocked-on-art`, every comment on issue #42 self-authored by a prior agent cycle, none from Phil since 2026-10-31) and `ops/last-owner-notification.json` (the 2026-11-02 push on this same topic names a no-repeat-before of 2026-11-04; nothing material changed, so none was sent this cycle, which is the correct call, not an omission). `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed empty, same standing sandbox gap.
+
+Per section 3's ordering rule (epic 1 measurement and epic 2 broken/dishonest both came back clean this cycle; the real lever is Phil-gated), picked the highest non-Phil-gated item: `ops/room_guide_candidates.py` re-run fresh named Mudroom the strongest of the 5 remaining guide-less rooms (9 partial, 31 on-topic of 96 routed rows, the only room with an on-topic `gap` row at all, though that one row was already recorded elsewhere as autocomplete noise and re-confirmed as such here, not real demand). Shipped `site/articles/how-to-organize-a-mudroom.html`, built from the room's own six-zone `content.json` data, nothing invented. Full account in `BACKLOG-2026-09-07.md` section 93.
+
+**Verified.** `fix_dashes.py --check` 0/0. `audit_pages.py`: 236 pages, 0 findings (caught and fixed a 161-character meta description, 1 over the 160-char threshold, before shipping, not after). `check_urls.py` 231/231. `link_graph_report.py`: 0 orphans, 52 articles, min 2 inbound links each. `affiliate.py --check` and `check_sellable.py` clean; neither price nor product touched. `preflight.py` re-run twice after the content change: the first catch was a stale share-card hash from the description fix, fixed by rerunning `share_cards.py`; the second and a final third run both reached `gate_tests` with 0 FAIL on every gate before it.
+
+**Went well.** The description-length catch: `audit_pages.py` found it before a push, not after, exactly what the gate is for. `room_guide_candidates.py` (built 2026-11-02 for precisely this) made picking the next room a one-command lookup instead of a re-derived one-liner.
+
+**Did not go well.** This session killed three of its own `preflight.py` runs mid `gate_tests` to avoid waiting out the documented sandbox hang, and each kill left a stray probe/fixture file in `site/` that the next run's own `gate_no_stray_probe_files` had to clean up. None were ever tracked by git and none reached a commit, but it is worth naming as a pattern: killing a hung run is the right call, leaving its temp files for the next gate to sweep is a minor but avoidable tax on that next run.
+
+**Changing next cycle:** none; no new defect class appeared that a gate does not already cover.
+
+**Next:** 4 rooms remain guide-less (Entryway, Dining Room, Guest Bedroom, Stair Landing), all weaker than every guide shipped so far on the current harvest; the real lever stays Phil-gated, the 30 open `decision`/`blocked-on-art` issues, none from him since 2026-10-31.
+
+Pushed to main: the new article and its wiring (`ops/build_zone_pages.py`, `ops/build_messy_article.py`, `site/rooms/mudroom.html`, `site/articles/index.html`, two reciprocal-link articles, `site/llms.txt`, `site/feed.xml`, `site/sitemap.xml`, the new share card, `ops/share-cards.json`, `ROADMAP-2026-2029.md`), `BACKLOG-2026-09-07.md`, dashboard files, this entry. No price or product changed. `ops/indexnow.py --submit` to follow since this is a new page.
+
 ## PM check-in, 2026-11-03 (12:1x slot): previous work finished; found and is still chasing a real deploy-verification gap, not a lane-exhaustion re-check
 
 Attached clean: checkout arrived shallow and detached at `fc47d1d15`; unshallowed (716 commits), `checkout -B main origin/main`, ff-only onto `da5baa231`, tree clean before starting. Unshallowing also fixed a standing dashboard gap: `commits7d` had read "unknown (shallow clone)" every cycle since the clone started arriving shallow; regenerated the dashboard and it now reads a real 1441.

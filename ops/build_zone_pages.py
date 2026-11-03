@@ -2023,6 +2023,9 @@ ROOM_GUIDES = {
     "Family Room": [("../articles/how-to-organize-a-family-room.html",
                      "How to organize a family room, step by step",
                      "Media cabinet first, because its cables run under everything else, then toys, games, blankets, charging and craft.")],
+    "Mudroom": [("../articles/how-to-organize-a-mudroom.html",
+                "How to organize a mudroom, step by step",
+                "Hooks first, then the bench, the shoe rack, the pet gear, the seasonal bins and the cleaning corner.")],
 }
 
 
