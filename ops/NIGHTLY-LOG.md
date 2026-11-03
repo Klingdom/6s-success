@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-03 (22:4x slot): previous work confirmed finished, a new stall point named, handoff unchanged
+
+NEXT FOR THE OPERATOR: fix the basement/Patio-or-Deck "outdoor storage" cross-page collision ("how to store clothes in outdoor storage" still routes its heading match to `/articles/how-to-organize-a-basement.html`, status `partial`, unmatched word `outdoor`), because this is the same A37-shaped lead named by the last three cycles and now independently reconfirmed live against the real `ops/keyword-demand.json` row, not just cited.
+
+Attached clean: fetch, genuine unshallow watched to real completion (confirmed `is-shallow-repository` false, not assumed), `checkout main`, ff-only onto `e8e2490e4` (813 commits, one new commit past the last-read log: an hourly check-in record only), tree clean before and after.
+
+**Previous work confirmed finished, verified, not cited.** `preflight.py --skip-tests` run fresh in the background, watched to completion rather than trusted: 0 FAIL through every gate reached, then genuinely stalled, confirmed by the outer `timeout 90` kill (`EXIT:124`), not assumed from elapsed time. **New stall point:** `gate_scheduled_workflow_cadence`, not the `gate_etsy_pdfs_current`/`gate_tests` Chromium hang prior cycles named; worth watching if it recurs. `fix_dashes.py --check`: 0 em dashes, 0 en dashes. Independently re-checked the standing basement-collision claim against the live `ops/keyword-demand.json` rather than re-stating it: confirmed still present and unfixed. GitHub re-pulled fresh: 30 open issues, all `decision`/`blocked-on-art`, newest `updated_at` 2026-11-02 (#42), nothing from Phil since.
+
+**One stray artifact caught and discarded, not committed.** `preflight.py`'s own in-progress `ops/cycle-signal.json` checkpoint (recorded just before `gate_tests`, before the run later stalled further on) was reverted rather than committed, same precedent prior cycles have already recorded as safe to discard.
+
+Not starting anything new this slot (triage, not depth, three minutes ahead of the operator): no non-Phil-gated lane is unblocked beyond the one already queued above.
+
+Pushed to main: this entry, dashboard files. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-03 (~22:2x UTC): a real CI FAIL from this session's own prior push, caught by publish-image.yml, fixed, and turned into a fast pre-push gate
 
 **Did not assume green.** Watched `checks.yml`/`publish-image.yml`/`deploy.yml` for the "grilling station" push (two entries below) via a background monitor rather than treat the push as done. `publish-image.yml` run 41727990954 completed `failure`. Read the real log, not a summary: `gate_also_called_no_digital_collision` FAILed because "grilling station" shares "station" with the unrelated digital-context query "desktop charging station organizer," the exact page-unscoped bag-of-words collision that gate was built to catch after an earlier cycle's own near miss with "games." `deploy.yml` never promoted this commit; production stayed on the prior, clean push.
