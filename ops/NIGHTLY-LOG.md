@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-03 (05:1x slot): previous work was NOT finished for a fourth time, diagnosed the real cause directly against CI rather than cite it, fix confirmed partial, full resolution handed to the operator
+
+NEXT FOR THE OPERATOR: confirm `publish-image.yml` run 41582956595 (workflow_dispatch, head `876b30b80`) actually concludes `success`. If it does, the deploy gap closes and the patio/deck and primary bathroom guides go live; if it fails again, read its own job log for the real cause rather than assume it is the same one already fixed. Same Phil-gated queue otherwise.
+
+**Attached clean.** Fresh checkout arrived shallow and detached (the fetch/unshallow/`checkout -B` sequence ran in the background past its own foreground timeout; re-checked after it finished rather than trusted mid-flight, since the working tree looked dirty while it was still running and clean once it was not). ff-only onto `876b30b80`, 657 commits, tree clean.
+
+**Previous work was not finished, independently confirmed against the real Actions API rather than cited from the log above.** `checks.yml` has now failed on five consecutive pushes to `main` tonight (runs 2887-2890, commits `1576848dd`/`3b1bd863f`/`305c3075d`/`da0328616`, every one `conclusion: failure`), each a different `preflight` gate going red one push after the last was fixed. Read the actual job logs for runs 2889 and 2890 directly rather than trust either commit message's own claim: run 2889 (`305c3075d`) failed on 2 gates, `gate_goals_keyword_cluster_citation_current`'s test (GOALS.md's small-space citation stale) and `gate_publish_image_current` (`publish-image.yml` has not shipped since `e0acc2f8`, so the patio/deck and primary bathroom guides are sitting unpublished). Run 2890 (`da0328616`, a different session's fix, pushed 8 minutes before this cycle started) genuinely cleared the first: its own job log shows only 1 gate failing now, `gate_publish_image_current`, down from 2. That gate is a lagging indicator (it reads `publish-image.yml`'s own CI history, not current content), so it cannot go green from a `checks.yml` push alone; it needs `publish-image.yml` itself to actually succeed once.
+
+**Found the fix already in flight, did not duplicate it.** A `workflow_dispatch` run of `publish-image.yml` (41582956595) against current HEAD was already running, triggered 1 minute after `da0328616` landed, almost certainly by the same session that made that fix anticipating exactly this gate. Watched it rather than re-trigger a second redundant build: still `in_progress` after 10+ minutes (prior attempts took ~13 minutes to even reach the preflight verdict), consistent with the documented slow preflight/build pattern, not a new problem. Did not wait it out past that: a 30-minute triage slot is not the place to sit on a single CI run for 20+ minutes, and `preflight.py` run locally in parallel added nothing the CI logs had not already given directly, so it was killed rather than left to hit the documented sandbox hang.
+
+**Not starting new work.** 30 open GitHub issues, unchanged, all `decision`/`blocked-on-art`, none from Phil; `STATUS.md` section 14 still 0 of 3 workstream slots in use. The ordering rule forbids picking anything Phil-gated, and the one genuinely unblocked, non-Phil item this slot is finishing the CI diagnosis above, not opening something new.
+
+**Went well:** did not repeat the exact mistake named in issue #42 (two sessions diagnosing the identical regression independently); checked for an in-flight fix before starting a redundant one.
+
+**Did not go well:** this is the fourth distinct `checks.yml` red in under an hour, each a different generator the same content ship skipped re-running; the underlying `ship.py` generator-completeness gap issue #42 already names is now evidenced a fourth time tonight, not a new finding.
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. The dashboard's own YELLOW/$0-of-$20,000/P0 9/need-you 28 reading is carried forward and does not reflect the in-flight CI run; the operator's own regeneration once that run lands is the next real update to it. No content, price or product touched, no new page, IndexNow not applicable. No push notification: this is an internal CI-reliability condition the owner does not need to act on tonight, not a new item on the standing escalation.
+
 ## Scheduled operator cycle, 2026-11-03 (04:5x slot): independently found the same real checks.yml FAIL, hit a concurrent duplicate fix, backed off cleanly, cleared two genuinely stale cold-read-ledger entries
 
 NEXT FOR THE OPERATOR: confirm `checks.yml` run 41580260563 (commit `3b1bd863f`) actually concluded success before trusting the fix fully; if green, Guest Bedroom (11 partial) is still the next room-guide candidate. Same Phil-gated queue otherwise.
