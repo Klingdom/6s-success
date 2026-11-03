@@ -7797,10 +7797,41 @@ def gate_front_matter_filled() -> None:
              f"{list(bad)[:5]}")
 
 
+def _shallow_boundary_commits() -> set[str]:
+    shallow_file = os.path.join(ROOT, ".git", "shallow")
+    if not os.path.isfile(shallow_file):
+        return set()
+    return set(io.open(shallow_file, encoding="utf-8").read().split())
+
+
 def _last_commit_epoch(path: str) -> int | None:
-    out = subprocess.run(["git", "log", "-1", "--format=%ct", "--", path],
+    """Last commit epoch touching `path`, or None if that can't be trusted.
+
+    Found 2026-11-03: on a shallow clone, `git log -1 -- path` does not
+    error at the shallow boundary, it treats the boundary commit (which has
+    no visible parent) as having added every path in its own tree, so a
+    path untouched since well before the boundary reads back with the
+    boundary commit's own date, not the real last-touch date. This cycle's
+    own `gate_epub_edition_date_current` FAILed on exactly this: the
+    boundary commit landed 2026-11-03, `content/book/`'s real last commit
+    is 2026-10-01, and the false 2026-11-03 reading looked newer than
+    EDITION_DATE. Confirmed false by fully unshallowing and re-running: the
+    gate passed clean once history was complete. Same failure direction as
+    gate_dashboard_shallow_commits (6.13): a plausible wrong value standing
+    in for one that was never actually measured. Fixed by refusing to trust
+    a result that lands on a shallow boundary commit; callers already treat
+    None as "could not measure, skip the check" (see gate_cover_author_current
+    and gate_epub_edition_date_current), so this makes that the correct
+    behaviour here too instead of a silent wrong answer.
+    """
+    out = subprocess.run(["git", "log", "-1", "--format=%H %ct", "--", path],
                          cwd=ROOT, capture_output=True, text=True).stdout.strip()
-    return int(out) if out else None
+    if not out:
+        return None
+    commit_hash, epoch = out.split(" ", 1)
+    if commit_hash in _shallow_boundary_commits():
+        return None
+    return int(epoch)
 
 
 def gate_cover_author_current() -> None:
