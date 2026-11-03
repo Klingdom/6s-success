@@ -343,8 +343,8 @@
     },
     "build_messy_article.py": {
       "status": "clean",
-      "date": "2026-11-02",
-      "note": "Re-read the 2026-11-02 one-line FAQ addition linking the new Living Room guide: same list-item shape every prior guide link uses, href matches the shipped article slug, no defect."
+      "date": "2026-11-03",
+      "note": "Re-read the 2026-11-02/03 Patio or Deck and Primary Bathroom FAQ-link additions against their diffs: same list-item shape every prior guide link uses, hrefs match the shipped article slugs, no defect."
     },
     "build_microzone_coverage.py": {
       "status": "clean",
@@ -568,8 +568,8 @@
     },
     "build_zone_pages.py": {
       "status": "clean",
-      "date": "2026-11-02",
-      "note": "Re-read the 2026-11-02 Living Room ROOM_GUIDES entry against the diff: same three-tuple shape every prior room-guide row uses (path, title, one-line zone order), path matches the shipped article, no defect."
+      "date": "2026-11-03",
+      "note": "Re-read the 2026-11-02/03 Patio or Deck and Primary Bathroom ROOM_GUIDES entries against their diffs: same three-tuple shape every prior room-guide row uses (path, title, one-line zone order), paths match the shipped articles, no defect."
     },
     "canonical_links.py": {
       "status": "clean",
