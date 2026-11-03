@@ -2,7 +2,13 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## Scheduled operator cycle, 2026-11-03 (~22:0x UTC): picked up the queued room, closed Patio or Deck's one clean gap, named the larger one rather than rushing it
+## PM check-in, 2026-11-03 (22:1x slot): previous work confirmed finished by a real run, not cited, nothing new unblocked
+
+Attached clean (fetch, genuine unshallow watched to completion, checkout main, ff-only, tree clean). **Previous work (22:0x operator cycle) confirmed finished, verified, not cited:** ran `preflight.py` fresh in the background, watched it through every gate: 0 FAIL, one clean cycle_signal checkpoint recorded, then genuinely stalled at the documented `gate_tests` sandbox hang (test 9 of 471, flat CPU over 30s before killing it clean, not assumed). Independently re-ran one specific test the last commit cited, `test_gate_zone_also_called_is_heading.py`: 6/6, matches. `fix_dashes.py --check` 0/0. Discarded this run's own stray `ops/cycle-signal.json` checkpoint, same precedent as prior cycles. Backlog re-scanned for any unstruck non-Phil row: none found.
+
+Not starting anything new: all 30 open issues are `decision`/`blocked-on-art`, forbidden to pick; the one real non-Phil lane (A37-shaped basement collision on Patio or Deck, then Garage/Hall Closet/Home Office/Kitchen) is already correctly sized for the operator's full slot, not duplicated here.
+
+Pushed to main: dashboard trio, this entry. No content, price or product touched.
 
 **Did:** Confirmed production current for the prior (bedroom) fix via the deploy workflow's own build-id check (`gh run view --log`: build id live matched build id in repo, not assumed from a green run), then read the 21:4x PM check-in's handoff, which independently found this session's own work and queued Patio or Deck for "the operator" rather than duplicate it. Ran `ops/room_guide_underperformance.py --room "Patio or Deck"`: 0 gap, 15 partial.
 
