@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-02T22:57:16Z against 236 page(s) at commit dd8e0ae3d. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-03T04:45:52Z against 237 page(s) at commit 2c0a0ba02. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 236 published page titles: 1380 covered, 1297 partial, 131 gap.
+**Queries found:** 2808. Checked against 237 published page titles: 1390 covered, 1287 partial, 131 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -104,7 +104,7 @@ Showing the top 80 of 131, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1297.
+Showing the top 60 of 1287.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -162,12 +162,12 @@ Showing the top 60 of 1297.
 | 2 | how to organize household cleaning supplies | How to organize the hall closet cleaning supplies | 0.67 |
 | 2 | how to stage a guest bedroom | The Guest Bedroom Deck: 57 cards, free to read | 0.67 |
 | 2 | linen closet organization hacks | How to organize a linen closet: sheets, towels and shelves | 0.67 |
-| 2 | master bathroom storage ideas | How to organize the primary bathroom linen and towel storage | 0.67 |
 | 2 | master bedroom closet organization ideas | How to organize the primary bedroom closet | 0.67 |
 | 2 | patio deck design ideas | How to organize a patio or deck, step by step | 0.67 |
 | 2 | patio off of deck | How to organize a patio or deck, step by step | 0.67 |
 | 2 | primary bedroom decorating ideas | The Primary Bedroom Deck: 66 cards, free to read | 0.67 |
 | 2 | restaurant dining room ideas | The Dining Room Deck: 61 cards, free to read | 0.67 |
+| 2 | spray paint organizers and storage | How to organize the workshop paint and chemical storage | 0.67 |
 
 ## By room
 

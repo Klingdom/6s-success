@@ -29,7 +29,7 @@
       "note": ""
     }
   },
-  "pages_checked": 236,
+  "pages_checked": 237,
   "rows": [
     {
       "query": "area craft activity",
@@ -2146,7 +2146,7 @@
       "best_page_title": "How to organize the stair landing gallery wall",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/primary-bathroom-deck.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -3415,7 +3415,7 @@
       "best_page_title": "How to organize the family room blanket storage",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -11011,7 +11011,7 @@
       "best_page_title": "How to organize the stair landing gallery wall",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/kids-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -12271,7 +12271,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -12369,7 +12369,7 @@
       "best_page_title": "How to organize the garage tool wall",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -15817,11 +15817,11 @@
       "best_page_title": "How to organize the kitchen sink area",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "sink"
+        "tidy"
       ],
       "markets": [
         "gb"
@@ -18828,7 +18828,7 @@
       "best_page_title": "How to organize the primary bathroom vanity drawers",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -19471,7 +19471,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -21901,7 +21901,7 @@
       "best_page_title": "How to organize the primary bathroom under-sink cabinet",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -21984,7 +21984,7 @@
       "best_page_title": "How to organize the primary bathroom under-sink cabinet",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -25487,11 +25487,11 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/kids-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "without"
+        "desk"
       ],
       "markets": [
         "ca"
@@ -27156,13 +27156,11 @@
       "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
       "best_page_title": "How to organize the guest bathroom vanity counter",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-guest-bathroom.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "space"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -27200,7 +27198,7 @@
       "best_page_title": "How to organize the guest bathroom toilet area",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -27223,7 +27221,7 @@
       "best_page_title": "How to organize the guest bathroom vanity counter",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -27286,13 +27284,11 @@
       "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
       "best_page_title": "How to organize the guest bathroom vanity counter",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-guest-bathroom.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "space"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -27951,7 +27947,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -32000,7 +31996,7 @@
       "best_page_title": "How to organize the garage tool wall",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -32297,7 +32293,7 @@
       "best_page_title": "How to organize the kitchen sink area",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -32317,13 +32313,11 @@
       "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
       "best_page_title": "How to organize the guest bathroom vanity counter",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "small"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -32410,7 +32404,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -32855,7 +32849,7 @@
       "best_page_title": "How to organize the guest bathroom towels",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -32875,7 +32869,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -33000,7 +32994,7 @@
       "best_page_title": "How to organize the primary bathroom under-sink cabinet",
       "coverage": 0.75,
       "heading_coverage": 1.0,
-      "heading_page": "/primary-bathroom-deck.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -33024,7 +33018,7 @@
       "best_page_title": "How to organize the primary bathroom under-sink cabinet",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/primary-bathroom-deck.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -39557,11 +39551,11 @@
       "best_page_title": "The Kitchen Deck: 72 cards, typeset and free to read or print",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "master"
+        "kitchen"
       ],
       "markets": [
         "au"
@@ -39600,13 +39594,11 @@
       "best_page": "/zones/primary-bathroom-the-medicine-cabinet.html",
       "best_page_title": "How to organize the primary bathroom medicine cabinet",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/primary-bathroom-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "master"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -39954,13 +39946,11 @@
       "best_page": "/zones/primary-bathroom-the-linen-and-towel-storage.html",
       "best_page_title": "How to organize the primary bathroom linen and towel storage",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/primary-bathroom-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "master"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -39976,13 +39966,11 @@
       "best_page": "/zones/primary-bathroom-the-linen-and-towel-storage.html",
       "best_page_title": "How to organize the primary bathroom linen and towel storage",
       "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "master"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -39998,13 +39986,11 @@
       "best_page": "/zones/primary-bathroom-the-linen-and-towel-storage.html",
       "best_page_title": "How to organize the primary bathroom linen and towel storage",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/primary-bathroom-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "master"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -40020,13 +40006,12 @@
       "best_page": "/zones/primary-bathroom-the-linen-and-towel-storage.html",
       "best_page_title": "How to organize the primary bathroom linen and towel storage",
       "coverage": 0.4,
-      "heading_coverage": 0.6,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_coverage": 0.8,
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "bathroom",
-        "master"
+        "spaces"
       ],
       "markets": [
         "ca"
@@ -43497,7 +43482,7 @@
       "best_page_title": "How to organize the kitchen sink area",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -43820,13 +43805,11 @@
       "best_page": "/primary-bathroom-deck.html",
       "best_page_title": "The Primary Bathroom Deck: 76 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/rooms/primary-bathroom.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "small"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -48762,6 +48745,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-11-02T22:57:22Z",
-  "scored_against_commit": "dd8e0ae3d"
+  "scored_at": "2026-11-03T04:45:44Z",
+  "scored_against_commit": "2c0a0ba02"
 }
