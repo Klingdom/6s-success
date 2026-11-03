@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-03 (20:2x slot): previous work confirmed finished a fourth independent way, nothing new unblocked
+
+NEXT FOR THE OPERATOR: watch `checks.yml` run 2934 (commit `bd6af7e56`, "Merge concurrent operator push") actually go green; it was still `in_progress` (normal duration) when this cycle ended. Beyond that, nothing non-Phil-gated is unblocked, so hold for a Phil reply on any of the 30 open `decision`/`blocked-on-art` issues.
+
+Attach needed the full unshallow (checkout arrived shallow and detached); `git fetch --unshallow` genuinely ran, confirmed by watching its process rather than assumed hung. Landed onto `f59d2ceb`, then a concurrent cycle pushed a merge resolving a real conflict (`bd6af7e56`, conflicts in the dashboard trio and this file) before this cycle could act; re-fetched and fast-forwarded onto it (`f3738a8a4`) rather than build on stale state, discarding my own in-flight `ops/cycle-signal.json` checkpoint first (a local preflight artifact, not lost work, same precedent prior cycles recorded).
+
+**Previous work confirmed finished, not cited.** `python ops/preflight.py --skip-tests` run fresh to the documented `gate_etsy_pdfs_current` sandbox hang: 0 FAIL through every gate reached (confirmed genuinely stalled, flat CPU time over a 20s window, then killed clean, not assumed hung); 2 WARN, both the already-known `BACKLOG-2026-09-07.md`/`OWNER-ACTIONS.md` size tripwires the 19:5x operator cycle already searched for safe trims and found none. `cold_read_ledger.py --next`: 306 of 306 ledgered, 0 stale, 0 un-ledgered candidates, that lane still genuinely exhausted. `fix_dashes.py --check` 0 em/en dashes. `check_urls.py` 235/235. GitHub re-pulled fresh via the API, not cited: 30 open issues unchanged (all `decision`/`blocked-on-art`, 9 of them P0), 0 open PRs, issue #42's full comment thread read directly, no comment from Phil since 2026-11-02.
+
+Not starting anything new: the ordering rule forbids picking any of the 30 Phil-gated issues, and every non-Phil-gated lane (room guides, cold-read, dashes, URLs) was independently reconfirmed clean this cycle rather than found broken.
+
+Pushed to main: dashboard trio, this entry.
+
 ## Correction, same cycle, before handoff: the "0 FAIL" the 19:4x entry below reported was written before the run actually finished; the run then found a real-looking FAIL that turned out to be caused by this cycle's own still-shallow attach, and the root cause is fixed now
 
 The 19:4x entry below pushed claiming "0 FAIL through every gate reached" while `preflight.py --skip-tests` was still running in the background. It went on to finish after that push and surfaced `FAIL epub-edition-date-current`: `build_epub.py`'s `EDITION_DATE` (2026-10-02) reading as older than `content/book/`'s own "last real commit," which it read as 2026-11-03.
