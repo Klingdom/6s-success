@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-03 (~17:5x UTC): shipped the last room guide (Stair Landing); verified rather than duplicated a concurrent CI fix
+
+**Did:** Unshallowed and attached to main cleanly. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several entries here. The full (non-`--skip-tests`) `preflight.py` per STEP 2 surfaced a real `FAIL ci-conclusion-current`: `checks.yml` run 2926 (commit `13cb6a2c8e`) had FAILED. Pulled job logs directly via the GitHub API: both that run and `publish-image.yml` run 706 failed at the same `Preflight` step on `test_gate_keyword_demand_global_rescored_current.py`, because `ops/keyword-demand-global.json` was 5+ real `site/`-commits stale, so the dining room guide (previous entry) was pushed but genuinely unpublished. Began the fix; a concurrent PM 17:4x cycle (next entry below) landed the identical rescore first (`69080a3d2`) and re-triggered `publish-image.yml` by dispatch. Verified that fix directly against the live file and its test rather than duplicate or blindly trust it: both `test_gate_keyword_demand_global_rescored_current.py` and its US sibling pass clean. Rescored the US file too as a small supplementary freshness improvement.
+
+**Claimed, then shipped.** Added a `STATUS.md` open-claim line for Stair Landing before starting, since several concurrent sessions were shipping room guides the same hour. `room_guide_candidates.py` confirmed it as the sole remaining guide-less room (0 gap, 3 partial, 4 on-topic of 25). Shipped `site/articles/how-to-organize-a-stair-landing.html` (2,354 words), following the room's own "Where to start" tip (stairs and floor path first, not the hub's listed Console-first order) and grounded in all three zones' real fields: the runner that has already lifted once, the going-upstairs-anyway pile, the heavy mirror you would rather not touch. Wired into `ROOM_GUIDES`, the articles index, `llms.txt` (56 articles), the feed (54 entries), the sitemap (235 URLs), a real generated share card, and reciprocal links into `why-is-my-house-always-messy.html` (generator-owned, edited in `ops/build_messy_article.py` and rebuilt) and `tidy-is-not-the-same-as-safe.html` (hand-written). Updated `RISKS.md`'s `forms_dead` citation (239 to 240) and `ROADMAP-2026-2029.md`'s page count (239 to 240) before push, computed directly against the tree, not a snapshot.
+
+**Verified:** `audit_pages.py` 240/0, `check_urls.py` 235/235, `link_graph_report.py` 0 orphans (56 articles), `fix_dashes.py` 0/0, `affiliate.py`/`check_sellable.py` clean, `check_risks_evidence_fast.py` clean, every directly-relevant gate function called by name against the live tree with no exception. `preflight.py --skip-tests` 0 FAIL through every gate reached, stopped at the documented `gate_etsy_pdfs_current` network stall; no stray probe files left behind.
+
+**Went well:** diagnosed a real, currently-failing CI gate to its exact root cause via the GitHub API before building on top of it, and verified a concurrent session's fix directly rather than duplicating or blindly trusting it.
+
+**Did not go well:** `checks.yml` run 2927 and the `publish-image.yml` dispatch (both on `69080a3d2`) were still `in_progress` after 15+ minutes when this cycle needed to move on; named unverified, not assumed clean.
+
+**Changing next cycle:** none; the staleness class hit here already has a gate and a test, which is why it was caught. Worth watching whether the 5-commit threshold keeps tripping at the current multi-cycle shipping velocity.
+
+**Next:** confirm `checks.yml` 2927 / `publish-image.yml` 707 actually went green on `69080a3d2` before trusting production is current. All 20 rooms now have a step-by-step guide; no non-Phil-gated room-guide work remains. Next lever: the same 30 open `decision`/`blocked-on-art` GitHub issues every recent cycle has surfaced, or re-checking an existing guide against fresh keyword demand.
+
+Pushed to main: the new article and its wiring, the US keyword-demand rescore, `BACKLOG-2026-09-07.md` section 98, `RISKS.md`, `ROADMAP-2026-2029.md`, `STATUS.md`'s released claim, dashboard files, this entry. No price or product changed. `ops/indexnow.py --submit` to follow.
+
 ## PM check-in, 2026-11-03 (17:4x slot): the previous cycle's own "unchecked" turned out to be a real FAIL, found and fixed
 
 NEXT FOR THE OPERATOR: confirm checks.yml run 2927 and the just-triggered publish-image.yml dispatch both go green on commit 69080a3d2 before building on top; if both are clean, Stair Landing (0 gap, 3 partial, 4 on-topic of 25) is the only remaining guide-less room and the only genuinely unblocked lever (every other lane is Phil-gated: 30 open decision/blocked-on-art issues, none from him since 2026-11-02).

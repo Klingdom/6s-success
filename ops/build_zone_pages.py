@@ -2035,6 +2035,9 @@ ROOM_GUIDES = {
     "Dining Room": [("../articles/how-to-organize-a-dining-room.html",
                      "How to organize a dining room, step by step",
                      "The table first, then the sideboard surface, the sideboard storage, the china cabinet and the coffee station last.")],
+    "Stair Landing": [("../articles/how-to-organize-a-stair-landing.html",
+                       "How to organize a stair landing, step by step",
+                       "The stairs and floor path first, then the landing console, then the wall.")],
 }
 
 

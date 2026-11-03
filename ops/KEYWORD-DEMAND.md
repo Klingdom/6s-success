@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-03T04:45:52Z against 237 page(s) at commit 2c0a0ba02. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-03T17:54:30Z against 242 page(s) at commit 6a09a6373. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 237 published page titles: 1390 covered, 1287 partial, 131 gap.
+**Queries found:** 2808. Checked against 242 published page titles: 1407 covered, 1275 partial, 126 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 131, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 126, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -28,7 +28,6 @@ Showing the top 80 of 131, ordered by the best rank the phrase reached in any on
 | 2 | how to build a railing on a porch | - | How to organize the patio or deck railing and surface (0.33) | build, porch |
 | 2 | how to build walkway steps | - | What is 6S? The six steps, and how it differs from 5S (0.33) | build, walkway |
 | 2 | how to organize benchmark advance materials | - | How to organize the workshop material rack (0.00) | advance, benchmark, materials |
-| 2 | how to organize games on pc | - | How to organize the family room game storage (0.00) | games |
 | 2 | how to organize stash poe 2 | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | poe, stash |
 | 2 | landings on a staircase | - | How to organize a stair landing, zone by zone (0.00) | landings, staircase |
 | 3 | daycare organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | daycare |
@@ -69,7 +68,6 @@ Showing the top 80 of 131, ordered by the best rank the phrase reached in any on
 | 8 | how to arrange benches in classroom | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | benches, classroom |
 | 8 | how to host a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, host, tournament |
 | 8 | how to organize raised garden beds | - | How to organize the garage garden tool storage (0.33) | beds, raised |
-| 8 | how to organize steam games | - | How to organize the family room game storage (0.00) | games, steam |
 | 8 | how to organize your computer | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | computer |
 | 8 | how to plan a workshop templates | Workshop | How to organize a workshop, zone by zone (0.33) | plan, templates |
 | 8 | nine steps on how to organize a cooperative | - | What is 6S? The six steps, and how it differs from 5S (0.33) | cooperative, nine |
@@ -91,7 +89,6 @@ Showing the top 80 of 131, ordered by the best rank the phrase reached in any on
 | 10 | how to organize printed recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | printed, recipes |
 | 10 | laundry problems and solutions | - | How to organize a laundry room, step by step (0.33) | problems, solutions |
 | 10 | metal stairs and landing | - | How to organize a stair landing, zone by zone (0.33) | metal, stairs |
-| 11 | best way to organize games on desktop | - | How to organize a junk drawer (and keep it that way) (0.33) | desktop, games |
 | 11 | foyer design ideas for flat indian style | - | What does a 5S engagement cost, and why no flat rate? (0.20) | flat, indian, style |
 | 11 | how to decorate a living room with high ceilings | Living Room | The Living Room Deck: 69 cards, free to read (0.40) | ceilings, decorate, high |
 | 11 | how to operate a gas stove | - | How to organize the kitchen stove area (0.33) | gas, operate |
@@ -101,10 +98,13 @@ Showing the top 80 of 131, ordered by the best rank the phrase reached in any on
 | 11 | organizing ideas for bedrooms | - | How to declutter a bedroom in one day, step by step (0.00) | bedrooms |
 | 11 | stairs with landing and turn | - | How to organize a stair landing, zone by zone (0.33) | stairs, turn |
 | 12 | adding a landing to stairs | - | How to organize a stair landing, zone by zone (0.33) | adding, stairs |
+| 12 | adult diaper disposal container | - | How to organize the nursery diaper storage (0.25) | adult, container, disposal |
+| 12 | building beds for kids organization | - | How to organize a kids bedroom, step by step (0.33) | beds, building |
+| 12 | how to decorate a living room with white walls | Living Room | The Living Room Deck: 69 cards, free to read (0.40) | decorate, walls, white |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1287.
+Showing the top 60 of 1275.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -173,8 +173,8 @@ Showing the top 60 of 1287.
 
 | Room | Queries | Gap | Partial | Covered |
 |---|---|---|---|---|
-| Dining Room | 39 | 0 | 21 | 18 |
-| Entryway | 50 | 1 | 22 | 27 |
+| Dining Room | 39 | 0 | 20 | 19 |
+| Entryway | 50 | 1 | 13 | 36 |
 | Family Room | 27 | 0 | 19 | 8 |
 | Garage | 77 | 1 | 25 | 51 |
 | Guest Bathroom | 22 | 1 | 14 | 7 |

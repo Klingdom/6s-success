@@ -453,6 +453,7 @@ __FAQ__
 <li><a href="how-to-organize-an-entryway">How to organize an entryway, step by step</a>, for the room that fails from unmade decisions, mail with no verdict, keys with no home, rather than dirt.</li>
 <li><a href="how-to-organize-a-guest-bedroom">How to organize a guest bedroom, step by step</a>, for the room with no daily user, which is exactly why it quietly fills up between visits.</li>
 <li><a href="how-to-organize-a-dining-room">How to organize a dining room, step by step</a>, for the room that loses its job without a fight: a drawer at a time, the table becomes a desk and the sideboard becomes a filing cabinet.</li>
+<li><a href="how-to-organize-a-stair-landing">How to organize a stair landing, step by step</a>, for the one surface in the house with no honest capacity at all: a stair tread was never meant to hold anything.</li>
 <li><a href="why-your-house-gets-messy-again">Why your house gets messy again a week after you clean it</a>, which is the other half of this: not why it is messy now, but why it goes back after you fix it.</li>
 <li><a href="more-storage-wont-fix-clutter">More storage will not fix a messy room</a>, if the honest answer to the capacity test surprised you.</li>
 <li><a href="where-to-start-decluttering">Where to start decluttering</a>, if the hard part is choosing the first spot.</li>

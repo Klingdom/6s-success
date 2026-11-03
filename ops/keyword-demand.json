@@ -19,7 +19,7 @@
       "note": ""
     }
   },
-  "pages_checked": 237,
+  "pages_checked": 242,
   "failures": [
     {
       "seed": "how to organize a living room",
@@ -1783,11 +1783,11 @@
         "guest bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-guest-bedroom.html",
+      "best_page_title": "How to organize a guest bedroom, step by step",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -2127,7 +2127,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -2611,13 +2611,11 @@
       "best_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
       "best_page_title": "How to organize the guest bedroom bed and linens",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "way"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "best way to organize book shelf",
@@ -2694,7 +2692,7 @@
       "best_page_title": "How to organize the family room charging station",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-workshop.html",
+      "heading_page": "/articles/how-to-organize-a-dining-room.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -2737,7 +2735,7 @@
       "best_page_title": "How to organize the family room craft area",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -2852,13 +2850,11 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "entryway"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "best way to organize games on desktop",
@@ -2873,13 +2869,12 @@
       "best_page": "/articles/how-to-organize-a-junk-drawer.html",
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
+      "matched_on": "heading",
+      "status": "partial",
       "unmatched_words": [
-        "desktop",
-        "games"
+        "desktop"
       ]
     },
     {
@@ -2975,13 +2970,11 @@
       "best_page": "/articles/how-to-organize-a-junk-drawer.html",
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "nightstand"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "best way to organize office drawers",
@@ -4853,7 +4846,7 @@
       "best_page_title": "The Mudroom Deck: 69 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -5019,7 +5012,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -5057,11 +5050,11 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "coat"
+        "diy"
       ]
     },
     {
@@ -5097,7 +5090,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/primary-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -5117,7 +5110,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -5137,7 +5130,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -5158,7 +5151,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -5178,13 +5171,11 @@
       "best_page": "/articles/how-to-organize-a-linen-closet.html",
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "coat"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "coat closet organization systems",
@@ -5201,7 +5192,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -5573,7 +5564,7 @@
       "best_page_title": "How to organize the dining room beverage or coffee station",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/dining-room-deck.html",
+      "heading_page": "/articles/how-to-organize-a-dining-room.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -8413,7 +8404,7 @@
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "heading_page": "/articles/how-to-organize-a-dining-room.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -8990,7 +8981,7 @@
       "best_page_title": "How to organize the guest bedroom nightstand",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -9244,7 +9235,7 @@
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -10395,7 +10386,7 @@
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -10414,11 +10405,11 @@
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "entryway"
+        "diy"
       ]
     },
     {
@@ -10435,7 +10426,7 @@
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -10456,7 +10447,7 @@
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -10476,13 +10467,11 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/entryway-deck.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "closet"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "entryway closet ideas with bench",
@@ -10498,7 +10487,7 @@
       "best_page_title": "How to organize the entryway bench or console",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -10518,7 +10507,7 @@
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -10537,7 +10526,7 @@
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -10575,7 +10564,7 @@
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/why-mail-piles-up-by-the-door.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -11871,7 +11860,7 @@
       "best_page_title": "The Mudroom Deck: 69 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -12608,7 +12597,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-mudroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -13172,7 +13161,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -13213,7 +13202,7 @@
       "best_page_title": "How to organize the guest bedroom bed and linens",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -13251,7 +13240,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -14957,7 +14946,7 @@
       "best_page_title": "How to organize the family room craft area",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -15378,7 +15367,7 @@
       "best_page_title": "How to organize the guest bedroom nightstand",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -15515,7 +15504,7 @@
       "best_page_title": "How to organize the guest bedroom bed and linens",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -15757,7 +15746,7 @@
       "best_page_title": "How to organize the family room craft area",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -16117,7 +16106,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
+      "heading_page": "/articles/how-to-organize-a-mudroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -17968,13 +17957,11 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/deck/entryway-print-and-play.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "declutter"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to declutter everything",
@@ -18502,7 +18489,7 @@
       "best_page_title": "The Dining Room Deck: 61 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -18992,7 +18979,7 @@
       "best_page_title": "How to organize the guest bedroom nightstand",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -21469,7 +21456,7 @@
       "best_page_title": "How to organize the dining room beverage or coffee station",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/dining-room-deck.html",
+      "heading_page": "/articles/how-to-organize-a-dining-room.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -21530,7 +21517,7 @@
       "best_page_title": "How to organize the family room craft area",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -21803,7 +21790,7 @@
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
+      "heading_page": "/articles/how-to-organize-a-dining-room.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -22045,7 +22032,7 @@
       "best_page_title": "How to organize the family room game storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -22573,7 +22560,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -23711,13 +23698,11 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/deck/entryway-print-and-play.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "narrow"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a narrow laundry room",
@@ -24283,7 +24268,7 @@
       "best_page_title": "How to organize the entryway bench or console",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-workshop.html",
+      "heading_page": "/articles/how-to-organize-a-mudroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -24326,7 +24311,7 @@
       "best_page_title": "How to organize the entryway bench or console",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-workshop.html",
+      "heading_page": "/articles/how-to-organize-a-mudroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -24488,11 +24473,11 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
+      "heading_page": "/articles/how-to-organize-a-dining-room.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "desk"
+        "drawers"
       ]
     },
     {
@@ -24551,13 +24536,11 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/entryway-deck.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "closet"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a small front entry closet",
@@ -24783,7 +24766,7 @@
       "best_page_title": "The Mudroom Deck: 69 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-mudroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -24865,7 +24848,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
+      "heading_page": "/articles/how-to-organize-a-dining-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -24946,7 +24929,7 @@
       "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -25436,7 +25419,7 @@
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -26585,7 +26568,7 @@
       "best_page_title": "How to organize the guest bedroom bed and linens",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -27018,7 +27001,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-workshop.html",
+      "heading_page": "/articles/how-to-organize-a-mudroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -27078,13 +27061,11 @@
       "best_page": "/zones/family-room-the-board-game-and-puzzle-zone.html",
       "best_page_title": "How to organize the family room game storage",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "games"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize book case",
@@ -27877,7 +27858,7 @@
       "best_page_title": "Why can't you ever find the right charger?",
       "coverage": 0.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -27972,7 +27953,7 @@
       "best_page_title": "How to organize toys so a child can put them away",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -28991,7 +28972,7 @@
       "best_page_title": "How to organize the family room craft area",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -29044,11 +29025,11 @@
         "how to organize craft area"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-laundry-room.html",
-      "best_page_title": "How to organize a laundry room, step by step",
+      "best_page": "/articles/how-to-organize-a-dining-room.html",
+      "best_page_title": "How to organize a dining room, step by step",
       "coverage": 0.75,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -29527,8 +29508,8 @@
         "how to organize outdoor dining"
       ],
       "room": "",
-      "best_page": "/dining-room-deck.html",
-      "best_page_title": "The Dining Room Deck: 61 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-dining-room.html",
+      "best_page_title": "How to organize a dining room, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -29570,7 +29551,7 @@
       "best_page_title": "How to organize the dining room beverage or coffee station",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-workshop.html",
+      "heading_page": "/articles/how-to-organize-a-dining-room.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -30030,7 +30011,7 @@
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -30050,7 +30031,7 @@
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -30109,13 +30090,11 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-guest-bathroom.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "entryway"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize food storage",
@@ -30191,7 +30170,7 @@
       "best_page_title": "How to organize the family room game storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -30211,13 +30190,11 @@
       "best_page": "/zones/family-room-the-board-game-and-puzzle-zone.html",
       "best_page_title": "How to organize the family room game storage",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "gap",
-      "unmatched_words": [
-        "games"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize garden shed",
@@ -31405,7 +31382,7 @@
       "best_page_title": "The Mudroom Deck: 69 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-mudroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -31580,7 +31557,7 @@
       "best_page_title": "How to organize the guest bedroom nightstand",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -32628,7 +32605,7 @@
       "best_page_title": "How to organize the family room craft area",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -32846,7 +32823,7 @@
       "best_page_title": "How to organize the family room craft area",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -32865,13 +32842,11 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/entryway-deck.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "closet"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize small linen closet",
@@ -33084,12 +33059,11 @@
       "best_page": "/zones/family-room-the-board-game-and-puzzle-zone.html",
       "best_page_title": "How to organize the family room game storage",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
+      "matched_on": "heading",
+      "status": "partial",
       "unmatched_words": [
-        "games",
         "steam"
       ]
     },
@@ -33737,7 +33711,7 @@
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -33756,7 +33730,7 @@
       "best_page_title": "How to organize toys so a child can put them away",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -33871,7 +33845,7 @@
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -34222,7 +34196,7 @@
       "best_page_title": "How to organize the guest bedroom nightstand",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -34321,7 +34295,7 @@
       "best_page_title": "How to organize the family room craft area",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -35206,7 +35180,7 @@
       "best_page_title": "How to organize the guest bedroom nightstand",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/why-the-same-spot-never-gets-clean.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -36528,7 +36502,7 @@
       "best_page_title": "How to organize the guest bedroom nightstand",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -37406,7 +37380,7 @@
       "best_page_title": "How to organize the guest bedroom nightstand",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -37555,7 +37529,7 @@
       "best_page_title": "The Mudroom Deck: 69 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-mudroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -38962,7 +38936,7 @@
       "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/deck.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -39004,7 +38978,7 @@
       "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/deck.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -39025,7 +38999,7 @@
       "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/deck.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -39065,7 +39039,7 @@
       "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.0,
       "heading_coverage": 0.0,
-      "heading_page": "/deck.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -40656,7 +40630,7 @@
       "best_page_title": "The Dining Room Deck: 61 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -42175,7 +42149,7 @@
       "best_page_title": "The Mudroom Deck: 69 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -42194,7 +42168,7 @@
       "best_page_title": "The Mudroom Deck: 69 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -42215,7 +42189,7 @@
       "best_page_title": "The Mudroom Deck: 69 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -42299,7 +42273,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -42319,7 +42293,7 @@
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -42539,13 +42513,11 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/deck/entryway-print-and-play.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "narrow"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "narrow laundry room organization ideas",
@@ -42709,7 +42681,7 @@
       "best_page_title": "How to organize the guest bedroom nightstand",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -42752,7 +42724,7 @@
       "best_page_title": "How to organize the guest bedroom nightstand",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -42775,7 +42747,7 @@
       "best_page_title": "How to organize the guest bedroom nightstand",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -42798,7 +42770,7 @@
       "best_page_title": "How to organize the guest bedroom nightstand",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -43730,7 +43702,7 @@
       "best_page_title": "How to organize the family room craft area",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -44160,7 +44132,7 @@
       "best_page_title": "The Mudroom Deck: 69 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -44920,7 +44892,7 @@
       "best_page_title": "How to organize the guest bedroom nightstand",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -45097,7 +45069,7 @@
       "best_page_title": "How to organize the dining room beverage or coffee station",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/dining-room-deck.html",
+      "heading_page": "/articles/how-to-organize-a-dining-room.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -45116,7 +45088,7 @@
       "best_page_title": "How to organize the family room craft area",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -45135,7 +45107,7 @@
       "best_page_title": "How to organize the family room craft area",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -45724,7 +45696,7 @@
       "best_page_title": "How to organize the kids bedroom toy storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -46844,7 +46816,7 @@
       "best_page_title": "How to organize the hall closet seasonal storage",
       "coverage": 0.4,
       "heading_coverage": 0.6,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-mudroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -46949,7 +46921,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-mudroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -48011,7 +47983,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -49424,13 +49396,11 @@
       "best_page": "/dining-room-deck.html",
       "best_page_title": "The Dining Room Deck: 61 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/dining-room-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "simple"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "simple entertainment center ideas",
@@ -49651,13 +49621,11 @@
       "best_page": "/articles/how-to-organize-a-linen-closet.html",
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "coat"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "small coat closet organization ideas",
@@ -49672,13 +49640,11 @@
       "best_page": "/articles/how-to-organize-a-linen-closet.html",
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "coat"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "small craft area ideas",
@@ -49731,13 +49697,11 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/entryway-deck.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "storage"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "small entryway organization ideas",
@@ -50131,7 +50095,7 @@
       "best_page_title": "The Mudroom Deck: 69 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-mudroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -50153,7 +50117,7 @@
       "best_page_title": "The Mudroom Deck: 69 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-mudroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -50173,7 +50137,7 @@
       "best_page_title": "How to organize the mudroom shoe and boot storage",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-mudroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -50399,7 +50363,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
+      "heading_page": "/articles/how-to-organize-a-dining-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -50418,7 +50382,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
+      "heading_page": "/articles/how-to-organize-a-dining-room.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -51232,7 +51196,7 @@
       "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/deck.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -51642,7 +51606,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -51920,13 +51884,12 @@
       "best_page": "/zones/family-room-the-board-game-and-puzzle-zone.html",
       "best_page_title": "How to organize the family room game storage",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
+      "matched_on": "heading",
+      "status": "partial",
       "unmatched_words": [
-        "games",
-        "video"
+        "storage"
       ]
     },
     {
@@ -52138,7 +52101,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -53140,7 +53103,7 @@
       "best_page_title": "The Mudroom Deck: 69 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -53182,7 +53145,7 @@
       "best_page_title": "The Mudroom Deck: 69 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -53864,7 +53827,7 @@
       "best_page_title": "How to organize the family room game storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -54566,13 +54529,12 @@
       "best_page": "/articles/is-that-really-a-backup.html",
       "best_page_title": "Is that really a backup, or are you just storing it?",
       "coverage": 0.25,
-      "heading_coverage": 0.25,
-      "heading_page": "/zones/family-room-the-board-game-and-puzzle-zone.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
+      "matched_on": "heading",
+      "status": "partial",
       "unmatched_words": [
-        "board",
-        "games",
+        "storing",
         "ways"
       ]
     },
@@ -54968,7 +54930,7 @@
       "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -57000,7 +56962,7 @@
       "best_page_title": "How to organize the guest bedroom nightstand",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -57331,6 +57293,6 @@
       ]
     }
   ],
-  "scored_at": "2026-11-03T04:45:52Z",
-  "scored_against_commit": "2c0a0ba02"
+  "scored_at": "2026-11-03T17:54:30Z",
+  "scored_against_commit": "6a09a6373"
 }
