@@ -1,9 +1,9 @@
 {
- "generated": "2026-11-03 20:10",
- "commit": "944e66684",
- "commit_msg": "PM check-in (19:4x slot): previous work confirmed finished a third independent way, nothing new unblocked, handoff to operator on OWNER-ACTIONS.md trim",
- "commits_7d": 1432,
- "commits_total": 10546,
+ "generated": "2026-11-03 20:12",
+ "commit": "3e2472c99",
+ "commit_msg": "Correction: the 19:4x PM check-in pushed before preflight finished, which then found a real-looking FAIL caused by this cycle's own still-shallow attach; fix _last_commit_epoch's shallow-boundary blind spot",
+ "commits_7d": 1433,
+ "commits_total": 10547,
  "traffic_line": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-10-03 21:13",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-10-03 21:13",
  "affiliate_trigger_carried_from": "2026-10-03 21:13",
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": true,
   "assets": [],
