@@ -232,6 +232,7 @@ def acquire_preflight_lock(path: str = PREFLIGHT_RUN_LOCK, timeout: int = 1800,
                     stale = False
             if stale:
                 try:
+                    _reap_lock_children(path)
                     shutil.rmtree(path, ignore_errors=True)
                     continue
                 except OSError:
@@ -252,6 +253,75 @@ def release_preflight_lock(path: str = PREFLIGHT_RUN_LOCK) -> None:
         shutil.rmtree(path, ignore_errors=True)
     except OSError:
         pass
+
+
+def _track_lock_child_pgid(pgid: int, path: str = PREFLIGHT_RUN_LOCK) -> None:
+    """Record a child process group started under the held lock at `path`.
+
+    Found live 2026-11-02, five times in one day (`ops/NIGHTLY-LOG.md`'s own
+    "orphan-process chain from a preflight kill" entries): `_run_bounded`'s
+    own start_new_session=True, built so a TimeoutExpired can killpg a whole
+    grandchild tree, has a side effect nobody noticed until it recurred five
+    times. Detaching the child into its own session means an external SIGKILL
+    of preflight.py ITSELF (every operator cycle's own documented way of
+    ending a run the 300s/700s internal bounds have not yet caught) no longer
+    reaches that child at all, because SIGKILL skips every Python `finally`
+    block, including the one this function's own cleanup call lives in. The
+    child, and anything it spawned, is then orphaned permanently: nothing
+    else holds its pgid. Best-effort and silent: a failure to record one more
+    line in this file must never turn into a failure to run the gate itself.
+    """
+    try:
+        with open(os.path.join(path, "children"), "a") as fh:
+            fh.write(f"{pgid}\n")
+    except OSError:
+        pass
+
+
+def _untrack_lock_child_pgid(pgid: int, path: str = PREFLIGHT_RUN_LOCK) -> None:
+    """Undo `_track_lock_child_pgid` once the child has actually finished.
+
+    Best-effort: if the registry file is already gone (the lock itself was
+    released or reaped first), there is nothing left to untrack.
+    """
+    try:
+        children_path = os.path.join(path, "children")
+        with open(children_path) as fh:
+            lines = [ln for ln in fh.read().splitlines() if ln.strip() != str(pgid)]
+        with open(children_path, "w") as fh:
+            fh.write("\n".join(lines) + ("\n" if lines else ""))
+    except OSError:
+        pass
+
+
+def _reap_lock_children(path: str) -> None:
+    """Kill every process group a dead lock holder recorded before clearing it.
+
+    This is the fix for the defect `_track_lock_child_pgid`'s own docstring
+    names: by the time `acquire_preflight_lock` decides a holder is dead, any
+    grandchild it started with `start_new_session=True` (Etsy/KDP renders,
+    `audit_catalog.py --include-fixtures`, a slow test file) is still alive
+    in its own detached session, invisible to a normal process tree walk.
+    The registry this reads survives a SIGKILL of the holder because it is a
+    plain file, written before the child's own communicate() call, not state
+    kept in the dead process's memory.
+    """
+    try:
+        with open(os.path.join(path, "children")) as fh:
+            pgids = [ln.strip() for ln in fh.read().splitlines() if ln.strip()]
+    except OSError:
+        return
+    for raw in pgids:
+        try:
+            pgid = int(raw)
+        except ValueError:
+            continue
+        if not _run_lock_pid_alive(pgid):
+            continue
+        try:
+            os.killpg(pgid, signal.SIGKILL)
+        except (ProcessLookupError, PermissionError, OSError):
+            pass
 
 
 def fail(gate: str, msg: str) -> None:
@@ -2685,6 +2755,12 @@ def _run_bounded(cmd: list, cwd: str, env: dict, timeout: int) -> "tuple[int, st
         kwargs["creationflags"] = subprocess.CREATE_NEW_PROCESS_GROUP
     proc = subprocess.Popen(cmd, cwd=cwd, env=env, stdout=subprocess.PIPE,
                              stderr=subprocess.STDOUT, text=True, **kwargs)
+    # Recorded BEFORE communicate(), so the registry survives even if this
+    # whole process (preflight.py itself) is SIGKILLed from outside rather
+    # than timing out on its own: see _track_lock_child_pgid's own docstring
+    # for the five-times-in-one-day defect this closes.
+    if os.name == "posix":
+        _track_lock_child_pgid(proc.pid)
     try:
         out, _ = proc.communicate(timeout=timeout)
         return proc.returncode, out
@@ -2705,6 +2781,9 @@ def _run_bounded(cmd: list, cwd: str, env: dict, timeout: int) -> "tuple[int, st
         except subprocess.TimeoutExpired:
             pass
         raise
+    finally:
+        if os.name == "posix":
+            _untrack_lock_child_pgid(proc.pid)
 
 
 def gate_tests(skip: bool = False) -> None:
@@ -3739,6 +3818,45 @@ def gate_preflight_lock_blocks_concurrent_runs() -> None:
                  f"for 'that is just me, not stale'")
     finally:
         release_preflight_lock(path)
+
+    # Half 5: a dead holder's own detached grandchild (the exact
+    # "orphan-process chain" `ops/NIGHTLY-LOG.md` named five times on
+    # 2026-11-02) must be killed when its lock breaks, not left running
+    # forever because start_new_session=True moved it out of the dead
+    # holder's own process tree. Spawns a real session-leader subprocess
+    # (the same shape _run_bounded starts every gated subprocess as),
+    # records it in the lock's "children" registry the way
+    # _track_lock_child_pgid does, then confirms acquire_preflight_lock
+    # kills it as part of breaking the stale lock.
+    shutil.rmtree(path, ignore_errors=True)
+    p2 = subprocess.Popen([PY, "-c", "pass"])
+    p2.wait()
+    dead_pid2 = p2.pid
+    child = subprocess.Popen([PY, "-c", "import time; time.sleep(30)"],
+                              start_new_session=True)
+    os.mkdir(path)
+    with open(os.path.join(path, "pid"), "w") as fh:
+        fh.write(str(dead_pid2))
+    _track_lock_child_pgid(child.pid, path)
+    try:
+        if not _run_lock_pid_alive(child.pid):
+            fail("preflight-lock-blocks-concurrent-runs",
+                 "test setup itself failed: the detached child was not "
+                 "alive right after being started")
+        ok = acquire_preflight_lock(path, timeout=5, own_pid=0)
+        time.sleep(0.3)  # give SIGKILL a moment to land
+        if not ok or _run_lock_pid_alive(child.pid):
+            fail("preflight-lock-blocks-concurrent-runs",
+                 f"acquire_preflight_lock() broke a stale lock (ok={ok}) "
+                 f"but left its recorded child pgid {child.pid} running; "
+                 f"_reap_lock_children() did not kill the orphan")
+    finally:
+        release_preflight_lock(path)
+        try:
+            os.killpg(child.pid, signal.SIGKILL)
+        except (ProcessLookupError, PermissionError, OSError):
+            pass
+        child.wait()
 
 
 def gate_dashboard_deploy_reachable_carry_forward() -> None:

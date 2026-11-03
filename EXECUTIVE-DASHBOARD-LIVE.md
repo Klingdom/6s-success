@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-11-03 00:20 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-11-03 00:21 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,7 +8,7 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 9 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-11-02 23:21 because this run could not reach Stripe** |
+| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-11-03 00:16 because this run could not reach Stripe** |
 | | `............................` |
 | **Paying customers** | 0 |
 | **Email list** | 0 |
@@ -28,9 +28,9 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 30 (9 P0, 2 blocked on art, 28 need your call) |
 | Closed to date | 33 |
-| Commits (7 days) | 1447 of 10387 total |
+| Commits (7 days) | 1448 of 10388 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `9a91a7326` Deploy verdict: production confirmed current at 49f4e762407b |
+| Last commit | `f938e68f8` PM check-in 00:1x: run 694 confirmed green, fix STATUS.md de |
 
 ## Product readiness
 
