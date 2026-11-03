@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-03 (~17:0x UTC): shipped a dining room guide, caught a generator-ownership trap before it shipped
+
+**Did:** Unshallowed and attached to main cleanly onto `d56dffa89`. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several log entries, and 30 live GitHub issues (unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02; confirmed directly via the API, not cited). Per the ordering rule, picked the highest non-Phil-gated epic-3 item: `room_guide_candidates.py` named Dining Room the stronger of the two remaining guide-less rooms (0 on-topic gap, 6 partial of 25, ahead of Stair Landing's 3 of 25). Shipped `site/articles/how-to-organize-a-dining-room.html` (3,242 words), built in the room hub's own already-shipped zone order, grounded in all five zones' real fields: the person who works at the table, the taped-run measurement test, the tablecloth measurement test, the grandmother's china settled by actual hosting history, and the second-coffee-machine test.
+
+**Verified.** Wired `ROOM_GUIDES`, the articles index and its JSON-LD `hasPart`, `llms.txt` (55 articles), the feed (53 entries), the sitemap (234 URLs), a real share card, and two reciprocal Keep Reading links. `audit_pages.py` 239/0, `check_urls.py` 234/234, `link_graph_report.py` 0 orphans, `affiliate.py`/`check_sellable.py` clean, `fix_dashes.py` 0/0, `audit_visual.py` (desktop and mobile, scoped to the new page) 0 findings each. `preflight.py --skip-tests` 0 FAIL through every gate reached, stopped at the documented `gate_etsy_pdfs_current` network stall (confirmed genuinely flat CPU over several checks before killing it, not assumed).
+
+**Caught before shipping, then caught again mid-fix.** The meta description (169 chars) tripped `audit_pages.py`'s 160-char limit; shortened to 153 across every copy of it and re-rendered the share card so it did not carry stale text. Separately, one of the two planned reciprocal links belonged on `why-is-my-house-always-messy.html`, which `ops/build_messy_article.py` generates; a first pass hand-edited the HTML output directly, the exact CLAUDE.md 5b trap this repository has nearly hit twice before. Caught it before committing, reverted the hand edit, made the real change in the generator's own source, and rebuilt. While in there, found the guest bedroom guide (BACKLOG item 96) had never actually been added to that same hub's reciprocal-link list despite its own entry claiming it was; fixed that gap in the same pass.
+
+**Two real stray files, found and removed, both from killed verification runs.** A full (non-`--skip-tests`) `preflight.py` run genuinely hung at `test_contact_form_interactive.py`; killing it after 11+ minutes of flat CPU left `site/_contact_form_interactive_probe.html` on disk, which `audit_pages.py` correctly flagged. Separately, killing a misdirected `audit_visual.py --help` call (the script has no such flag and fell through to probing every page) left `site/rooms/_visual_probe.html` on disk, which `link_graph_report.py` correctly flagged as a 21st "room page," an orphan with 0 outbound links. Both deleted (untracked, never committed), both re-verified clean afterward.
+
+**`forms_dead` and the ROADMAP page count updated before push.** The new page's footer form moved the live `forms_dead` count 238 to 239 and the real page count 238 to 239; both computed directly against the tree, not read off a snapshot, and `RISKS.md` and `ROADMAP-2026-2029.md` updated to match before push, the same drift class three same-day cycles already fixed for this file.
+
+**Went well.** Catching the generator-ownership mistake on `why-is-my-house-always-messy.html` before it was committed, and turning the verification pass into a second real fix (the guest bedroom hub gap) rather than stopping at the one planned change.
+
+**Did not go well:** the full test suite hung on a gate (`test_contact_form_interactive.py`) not previously named in this log as a hang point.
+
+**Changing next cycle:** none.
+
+**Next:** one guide-less room remains, Stair Landing, weaker than every room shipped so far on `room_guide_candidates.py`'s own count. Real lever stays Phil-gated: 30 open `decision`/`blocked-on-art` issues, none from him since 2026-11-02.
+
+Pushed to main: the new article and its wiring, `ops/build_messy_article.py` and its regenerated output, `tidy-is-not-the-same-as-safe.html`, `RISKS.md`, `ROADMAP-2026-2029.md`, `BACKLOG-2026-09-07.md` (section 97), dashboard files, this entry. No price or product touched. `ops/indexnow.py --submit` to follow.
+
 ## PM check-in, 2026-11-03 (16:4x slot): previous work confirmed finished a second time, named the stronger of the two remaining room-guide candidates
 
 NEXT FOR THE OPERATOR: ship the Dining Room guide, because it is the stronger of the two remaining guide-less rooms (6 partial, 25 on-topic of 98 routed rows, versus Stair Landing's 3 partial, 4 on-topic of 25).
@@ -10,7 +32,7 @@ Attached clean (fetch, unshallow, ff-only onto `ebcf227f3`, tree clean). Re-veri
 
 Not opening a new workstream this slot: three minutes to the operator is too little to write a guide properly, and this entry's own job is the handoff, not the guide. No push notification: nothing material changed since the last one.
 
-Pushed to main: dashboard regen, this entry.
+Pushed to main: dashboard regen, this entry. Superseded within the hour by the Dining Room guide above.
 
 ## PM check-in, 2026-11-03 (16:1x slot): previous work confirmed finished, end to end, via the GitHub Actions API rather than cited
 
