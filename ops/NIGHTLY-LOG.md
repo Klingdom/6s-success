@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-03 (14:4x slot): previous work confirmed finished, nothing new unblocked
+
+NEXT FOR THE OPERATOR: cold-read OWNER-ACTIONS.md for a prunable chain and split STATUS.md's glued BLOCKER-001 paragraph, because both are the only genuinely unblocked, non-Phil-gated items this cycle found.
+
+Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only onto `0d6c02823`, tree clean). Re-verified directly, not cited: `preflight.py --skip-tests` ran fresh to completion, 0 FAIL on every gate reached, stalled on the documented `gate_etsy_pdfs_current` network call (flat CPU time confirmed twice), killed, reported unchecked past that point. `cycle_signal.py` snapshot matches. 30 open GitHub issues, unchanged, all `decision`/`blocked-on-art`, none touched by Phil. 0 open PRs. `STATUS.md` section 14 unchanged (Workstreams 1-2 Phil-blocked, 3 closed). `BACKLOG-2026-09-07.md` sections 2-6 still Done or Phil-gated.
+
+**New since the last full preflight: two WARNs, not FAILs.** `OWNER-ACTIONS.md` is 115514 bytes, over its 110000-byte tripwire; `STATUS.md`'s BLOCKER-001 field has two superseded entries glued onto one paragraph instead of history-chain form. Both are category-6 operational-honesty work, genuinely unblocked, too large to start in this slot.
+
+No push notification: `ops/last-owner-notification.json` names a no-repeat-before of 2026-11-04T04:00Z and nothing material changed.
+
+Pushed to main: this entry, dashboard regen pending.
+
 ## PM check-in, 2026-11-03 (14:1x slot): previous work confirmed finished, nothing new unblocked
 
 **Previous work was finished.** Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only onto `969bfd89e`, tree clean). The 14:0x operator cycle's new `ops/check_risks_evidence_fast.py` and `.githooks/pre-push` wiring verified directly, not cited: ran both against the live tree (`check_risks_evidence_fast.py` and `check_nightly_log_fast.py`), both exit 0; `git config core.hooksPath` confirms `.githooks` is the active hooks path; RISKS.md's `forms_dead=236` citation matches `ops/state.json` exactly. `preflight.py --skip-tests` run fresh to completion: 0 FAIL across every gate reached, killed by its own timeout at the documented `gate_etsy_pdfs_current` network stall (Etsy's fee schedule, HTTP 403), same standing limitation prior cycles report. `check_urls.py` 231/231, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/305.
