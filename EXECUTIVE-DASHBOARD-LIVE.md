@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-11-03 04:26 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-11-03 04:29 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,15 +8,15 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 9 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-11-03 04:02 because this run could not reach Stripe** |
+| **Revenue this month** | **$0 of $20,000 target (0.0%)** |
 | | `............................` |
 | **Paying customers** | 0 |
 | **Email list** | 0 |
-| **Can the site take money?** | repository says yes (129 of 130 catalog items), **unconfirmed on the live site**: no Stripe credential in this environment to check the links a visitor actually hits |
+| **Can the site take money?** | yes, confirmed live, 129 of 130 catalog items |
 
 ### The one constraint
 
-PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. A session with real access confirmed production current at 2026-11-03T00:09:13Z (build 49f4e762407be549). The repository has since moved to build fa8ac7d9f919ad42, not yet redeployed, so this gap is whatever changed since that confirmation, not an unknown backlog. Waiting behind that deploy: 129 of 130 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
+The site can take money for 129 of 130 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 234 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
 
 ---
 
@@ -24,13 +24,13 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 | Stream | State |
 |---|---|
-| Traffic | 1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
-| Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
+| Traffic | 1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /home/runner/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
+| Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /home/runner/.ssh/6s_deploy, so the database was not rea). This is not a reading of zero.) |
 | Open issues | 30 (9 P0, 2 blocked on art, 28 need your call) |
 | Closed to date | 33 |
-| Commits (7 days) | 1449 of 10419 total |
+| Commits (7 days) | 1450 of 10420 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `1576848dd` Fix stale build-id, feed, sitemap lastmod and RISKS.md forms |
+| Last commit | `178171c79` PM check-in 04:1x: fixed previous cycle's checks.yml regress |
 
 ## Product readiness
 
@@ -42,7 +42,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 0/20 rooms, 114/114 zones covered (card art lives outside the repo) |
 | Entryway deck | print PDF already built and shipped (72 cards); local render cache empty here, so 0 is not a regression |
-| Zone imagery | 114/114 zone pages carry a reviewed picture (BUILT, NOT DEPLOYED) |
+| Zone imagery | 114/114 zone pages carry a reviewed picture (live) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~4,939 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
@@ -56,7 +56,6 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 ## What needs you
 
-- **Deploy pending, no action needed from you.** Production is serving an older build: 0 of 13 assets on the live homepage differ from this repository, and zone photography already matches the last confirmed deploy (114 zone pages carrying their reviewed picture); this gap is elsewhere. Since 2026-11-01 the redeploy itself is automatic (`.github/workflows/deploy.yml`, fired once `Publish site image` finishes for the same push); this just means that pipeline has not caught up to the latest commit yet. If this line is still here more than an hour after a content push, the automatic pipeline itself has stalled and is worth a look.
 - **Check your Claude Code usage limit or plan status** (2 min). **Added 2026-10-09, PM check-in.** The autonomous PM and operator Routines went completely dark for roughly 5 days: `git log` shows zero Claude-authored commits between 2026-10-04 11:19:40Z and this cycle, every one of the 36 commits in that window from the dumb hourly check-in/social-rotation bot instead.
 - **~~Add `VPS_DEPLOY_KEY` as a GitHub Actions secret~~ **DONE 2026-11-01 15:14Z, and the automatic deploy itself is now verified, repeatedly** (set from the owner-invoked CEO session on Phil's instruction, `gh secret list` confirms it; **corrected 2026-11-02 PM check-in: this row still said the first automatic deploy "is to be verified" when `STATUS.md`'s own BLOCKER-001 and Production Knowledge sections record at least five separate automatic deploys confirmed since, most recently build `b150c19629689ad2` at 2026-11-01T22:33:43Z matching repository HEAD with zero commits undeployed; nothing left open on this item**)** (2 min). Closes the single most repeated line in this repository's whole operating history for good, not once.
 - **Run the traffic read yourself and paste the output back** (2 min). **Added 2026-11-02, scheduled operator cycle.** Traffic has been unmeasured since 2026-10-03, a full month: every number in `GOALS.md`'s O1 table (visitors, visits, pageviews, the week-over-week trend that decides whether the site's single constraint is improving) is a 2026-10-02 reading carried forward, because no sandboxed session holds the VPS key `ops/traffic_query.sh` needs.
