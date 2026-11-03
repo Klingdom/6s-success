@@ -2017,6 +2017,9 @@ ROOM_GUIDES = {
     "Patio or Deck": [("../articles/how-to-organize-a-patio-or-deck.html",
                        "How to organize a patio or deck, step by step",
                        "Check the rail and boards first, then the seating, storage, dining table, grill and garden.")],
+    "Primary Bathroom": [("../articles/how-to-organize-a-primary-bathroom.html",
+                          "How to organize a primary bathroom, step by step",
+                          "Counter first, then the shower, drawers, under-sink cabinet, toilet area and linen shelf, cabinet last.")],
 }
 
 

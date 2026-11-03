@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-03 (03:4x slot): a step-by-step primary bathroom guide, the next room after Patio or Deck
+
+**Did.** Unshallowed, attached to main clean (651 commits). Re-verified rather than cited: 30 GitHub issues unchanged, all `decision`, none genuinely from Phil (read the full #42 thread, every comment traces to a prior agent cycle); no mail credentials. Ran `room_guide_candidates.py` fresh: Primary Bathroom (12 partial, 0 gap) is the strongest of the 7 guide-less rooms; Family Room's 4 "gap" rows re-read and confirmed misroutes/sub-topics, not real demand, same as every prior cycle. Shipped `site/articles/how-to-organize-a-primary-bathroom.html`, 3,105 words, grounded in the room's own 7-zone content.json (cord/plug rule, bowl-cleaner-never-meets-bleach, P-trap leak tell, towel count, medicine-cabinet humidity/childproofing). Wired into `ROOM_GUIDES`, articles index card plus JSON-LD `hasPart` (also backfilled Patio or Deck's own missing entry, skipped by the cycle that shipped it), llms.txt, feed, sitemap, share card, two inbound links (`tidy-is-not-the-same-as-safe`, `how-to-organize-a-guest-bathroom`), and `build_messy_article.py`'s Keep Reading list.
+
+**Verified.** `audit_pages.py` caught a real defect in my own new page: the meta description ran 178 chars, 18 over the 160 ceiling. Fixed to 144 across all four copies, reran `share_cards.py`. `check_urls.py` 229/229, `audit_pages.py` 0/0, `fix_dashes`/`fix_dialect` clean, `affiliate.py --check` 165 clean, `check_sellable.py` 124/126, `link_graph_report.py` 50 articles 0 orphans. Found and fixed a real, stale `gate_roadmap_prices_current` FAIL: ROADMAP's "233 pages live" was one page behind the real 234; fixed, reran clean. `gate_risks_evidence_current` already clean via its own tree-derived fallback. `dashboard.py` rerun.
+
+**Went well:** the existing `desc-long` and `roadmap-prices-current` gates caught two real defects in this cycle's own work before it shipped, exactly their job.
+
+**Did not go well:** `preflight.py` hit the same documented `test_contact_form_interactive.py` Chromium hang; killed by pid, orphaned Chrome tree and its gitignored probe file cleaned up by hand.
+
+**Changing next cycle:** none; no new gate needed, existing ones worked.
+
+**Next:** Guest Bedroom (11 partial) is the next room-guide candidate. Same Phil-gated queue otherwise.
+
+Pushed to main.
+
 ## PM check-in, 2026-11-03 (03:1x slot): previous work finished, verified a concurrent fix that landed mid-cycle, nothing new unblocked
 
 Previous work (the 02:0x PM cycle, and the 03:0x operator cycle that pushed mid-session) confirmed finished, not cited: 30 GitHub issues unchanged, all decision/blocked-on-art, none from Phil; BACKLOG-2026-09-07.md sections 2-6 only C5/C6 unstruck, both YES Phil; all 13 rotation scripts CLEAN; fix_dashes 0/0; check_urls 228/228; cold_read_ledger 0 stale. Caught the operator's late push (the new section-3/4 backlog rotation tool) on attach, merged clean, reran its two new gates directly against the real file: both pass. preflight.py --fast hit the documented gate_tests hang, same standing limit, nothing new. ci-conclusion-current's warning on the hourly check-in bot commit is by design (checks.yml excludes state/log files), checked directly against the Actions API, not a defect.
