@@ -235,13 +235,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-26T17:23:34Z",
-   "mode": "changed",
-   "offered": 4,
-   "accepted": 4,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-28T17:37:34Z",
    "mode": "changed",
    "offered": 3,
@@ -653,6 +646,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-03T15:34:07Z",
+   "mode": "changed",
+   "offered": 5,
+   "accepted": 5,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -684,7 +684,7 @@
   "https://6s-success.com/articles/how-long-does-it-take-to-organise-a-room": "fb3c47b6ea6750af",
   "https://6s-success.com/articles/how-long-to-keep-a-maybe": "d66ff8f3af969e88",
   "https://6s-success.com/articles/how-to-organize-a-junk-drawer": "a2a3a2a042b02dbe",
-  "https://6s-success.com/articles/": "a9137d8a3268034a",
+  "https://6s-success.com/articles/": "98bc961174be96c4",
   "https://6s-success.com/articles/is-that-really-a-backup": "7805de5c5d8a2d3a",
   "https://6s-success.com/articles/more-storage-wont-fix-clutter": "c823bdb17b2fa5d3",
   "https://6s-success.com/articles/sentimental-items-without-guilt": "f448f8e6e3c4305e",
@@ -695,10 +695,10 @@
   "https://6s-success.com/articles/why-a-shared-zone-never-stays-reset": "1e7cf433bfeb1833",
   "https://6s-success.com/articles/why-everyone-in-your-house-disagrees-about-clean": "fbf8728e08642ac4",
   "https://6s-success.com/articles/why-it-lives-in-one-room-but-gets-used-in-another": "4f218927c828a759",
-  "https://6s-success.com/articles/why-mail-piles-up-by-the-door": "dd87ad8d2cb60150",
+  "https://6s-success.com/articles/why-mail-piles-up-by-the-door": "9f6c52d14dc845c5",
   "https://6s-success.com/articles/why-the-medicine-cabinet-never-gets-cleared-out": "e0908fb2f5236cb2",
   "https://6s-success.com/articles/why-the-same-spot-never-gets-clean": "8d6787a74f476b11",
-  "https://6s-success.com/articles/why-you-always-lose-your-keys": "8ff72dc1e78c9df1",
+  "https://6s-success.com/articles/why-you-always-lose-your-keys": "6eaf7b5f1e9e5ce4",
   "https://6s-success.com/articles/why-you-cant-find-the-right-charger": "e189d4070690ee2f",
   "https://6s-success.com/articles/why-you-cant-see-your-own-clutter": "1bca2aa351e7ba08",
   "https://6s-success.com/articles/why-you-have-to-dig-for-what-you-need": "1697143dee350539",
@@ -709,7 +709,7 @@
   "https://6s-success.com/articles/zone-too-small-for-what-it-holds": "5aea1ed5fd63a19a",
   "https://6s-success.com/deck/entryway-print-and-play.html": "874e78ad294ed630",
   "https://6s-success.com/rooms/dining-room": "17df404759588008",
-  "https://6s-success.com/rooms/entryway": "f5b7d0cf0a32fa98",
+  "https://6s-success.com/rooms/entryway": "7ad26a2e73252533",
   "https://6s-success.com/rooms/family-room": "db6e846b4932e5e6",
   "https://6s-success.com/rooms/garage": "71a62061c7e58416",
   "https://6s-success.com/rooms/guest-bathroom": "945d1f635447a652",
@@ -867,7 +867,7 @@
   "https://6s-success.com/primary-bedroom-deck.html": "6deb6df2eaf2a487",
   "https://6s-success.com/workshop-deck.html": "be78804e75b50ad3",
   "https://6s-success.com/patio-or-deck-deck.html": "f773efb52f38778c",
-  "https://6s-success.com/articles/why-is-my-house-always-messy": "ff2c51200de114cb",
+  "https://6s-success.com/articles/why-is-my-house-always-messy": "f8f135d4f362769d",
   "https://6s-success.com/articles/how-to-organize-a-basement": "b85177a96246ed6f",
   "https://6s-success.com/articles/how-to-organize-an-attic": "8a2a0913f50afde9",
   "https://6s-success.com/articles/how-to-declutter-a-bedroom": "07c889b3b40437e9",
