@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-03 (08:0x slot): the backlog size tripwire refired a fourth time, lowered the closed-section retention to its floor, and gated as much
+
+**Did.** Unshallowed and attached to main cleanly (fetch, `fetch --unshallow`, `checkout -B main origin/main`, ff-only). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest four `ops/NIGHTLY-LOG.md` entries and `STATUS.md`. `python ops/preflight.py` run fresh: WARNed `gate_living_docs_total_size_tripwire` on `BACKLOG-2026-09-07.md` (207,577 bytes against its 150,000-byte ceiling), even though every rotation script (`rotate_backlog.py`, `_closed.py`, `_done_items.py`, `_section2/1b/3/4_items.py`) reported CLEAN: everything live was within its own window, meaning the window itself had gone stale again, the same shape its own docstring already names twice (4 days to 2 days on 2026-11-01).
+
+**Found.** 9-10 sections now close a day (up from the 16-in-4-days rate the last fix sized for): 23 closed sections, 102,185 bytes, inside the 2-day window alone, against live content outside the closed chain running about 105,000 bytes. Lowered `DEFAULT_RETENTION_DAYS` in `ops/rotate_backlog_closed.py` from 2 to 0 (today's own closures stay live, everything dated before today moves). Ran `--apply`: 19 of 23 sections (80,438 bytes) moved to `BACKLOG-2026-09-07-CLOSED-ARCHIVE.md`; file now 127,139 bytes, a real ~23,000-byte buffer under the tripwire rather than a razor's edge.
+
+**The honest limit, written down rather than left for the next cycle to rediscover.** Zero is the floor of a day-granularity window. The next time the closure rate outgrows it, lowering this constant is no longer an available fix; the fix has to change shape, to a byte budget that archives oldest-first regardless of date. Recorded in the module's own docstring so the next cycle does not re-try the same knob a fifth time.
+
+**Verified.** `ops/tests/test_rotate_backlog_closed.py` (8/8) and `ops/tests/test_gate_backlog_closed_sections_not_oversized.py` (5/5, fail-then-pass) both pass unmodified against the new default (the test derives its buffer from the module's own `DEFAULT_RETENTION_DAYS` at import time, confirming that mechanism from the 2026-11-01 fix still works). `python3 -c "import ast; ast.parse(...)"` on the edited file. `fix_dashes.py --check` 0/0. `check_urls.py` 229/229, `audit_pages.py` 0 duplicates, `affiliate.py --check` 165 documents clean, `check_sellable.py` 124/126 unchanged. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty. A second, concurrent cycle pushed 3 commits (two PM check-ins, an hourly check-in record) while this one ran; re-fetched and fast-forwarded before pushing rather than racing it, the only real conflict a generated `cycle-signal.json` timestamp, resolved by keeping this run's own fresher checkpoint. `ops/preflight.py` was run fresh but killed cleanly, by hand, after it reached test 46 of 467 inside `gate_tests` without finishing; 0 FAIL on everything reached, consistent with every prior cycle's finding, reported unchecked past that point rather than assumed passing. GitHub: 30 open issues, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02; checks.yml green at the current remote HEAD.
+
+**Went well:** caught the drift from a WARN rather than letting it compound into another oversized-file cold-read tax on every later cycle.
+
+**Did not go well:** this is the fourth time this same file has needed a manual retention adjustment in nine days; the docstring now says why a fifth adjustment of the same kind cannot happen.
+
+**Changing next cycle:** none for this cycle; the next cycle that finds this tripwire WARNing again should build the byte-budget rotation described in the docstring rather than attempt a negative retention window.
+
+**Next:** no newly unblocked work found; the standing queue is Phil-gated (30 open `decision`/`blocked-on-art` issues). Room-guide and keyword-gap lanes remain exhausted per sections 89/90.
+
+Pushed to main: `BACKLOG-2026-09-07.md`, `BACKLOG-2026-09-07-CLOSED-ARCHIVE.md`, `ops/rotate_backlog_closed.py`, `ops/cycle-signal.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No price, product or site page touched; not customer-facing; IndexNow not applicable.
+
 ## PM check-in, 2026-11-03 (07:4x slot): previous work confirmed finished, nothing new unblocked
 
 NEXT FOR THE OPERATOR: same standing Phil-gated queue (30 open issues, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02). Nothing newly unblocked; if time allows, the room-guide lane still has 9 of 20 rooms uncovered as the next real content ship.

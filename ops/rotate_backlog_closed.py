@@ -61,6 +61,18 @@ closed-section budget above roughly 40,000 bytes reopens the tripwire;
 edge. If the closure rate keeps climbing, the next fix is the same
 shape again, one notch lower, following the arithmetic at the time
 rather than copying this number forward.
+
+Found 2026-11-03: 9-10 sections a day now (up from the 16-in-4-days
+rate the last fix was sized for), and 2 days of that is 102,185 bytes
+alone, re-opening the 150,000-byte tripwire with live content outside
+the closed chain running about 105,000 bytes. Lowered to 0 days
+(today's own closures stay live; everything dated before today moves).
+This is the floor of a day-granularity window: zero is the smallest
+value this knob can take, so the next time the closure rate outgrows
+it, lowering the number is no longer an available fix. The next fix
+has to change shape, to a byte budget that archives oldest-first
+regardless of date (keeping only today's own work exempt, or not even
+that), not another ratchet of this constant.
 """
 import argparse
 import datetime
@@ -87,7 +99,7 @@ ARCHIVE_HEADER = (
     "first.\n"
 )
 
-DEFAULT_RETENTION_DAYS = 2
+DEFAULT_RETENTION_DAYS = 0
 
 SECTION_RE = re.compile(r"^## (\d+)\.", re.MULTILINE)
 
