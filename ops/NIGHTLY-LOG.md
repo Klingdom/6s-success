@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-03 (15:4x slot): previous work was NOT finished, found and fixed a real CI failure the 15:1x cycle's own push left behind
+
+NEXT FOR THE OPERATOR: confirm checks.yml goes green on this fix's own commit, then re-trigger publish-image.yml (workflow_dispatch) so the entryway guide actually reaches production, because the stale ROADMAP citation this entry fixes was the only thing blocking both pipelines.
+
+Attached clean (fetch, unshallow 744 commits, `checkout -B main origin/main`, ff-only onto `cf278b016`, tree clean). Did not take the 15:1x entry's clean handoff at face value: ran `preflight.py --skip-tests` fresh in the background rather than cite it, and `gate_ci_conclusion_current` reported a real FAIL, checks.yml's most recent completed run (`bed69af300`, 15:28:50Z) actually failed. Checked the GitHub Actions API directly rather than assume: both `checks.yml` run 2921 and `publish-image.yml` run 704 failed on the same commit (`67ce82ef3`, the entryway guide push) and on everything after it, since no site-touching commit had fired a successful re-run since.
+
+**Root cause, not just the symptom.** `gate_roadmap_prices_current`'s page-count check failed: `ROADMAP-2026-2029.md`'s headline said "236 pages live" while the real site has 237 (confirmed directly: `len([p for p in all_pages() if not basename(p).startswith('_')])` returns 237). The entryway guide's own commit message said it ran `audit_pages.py 237 pages/0 findings` and should have bumped this headline the same way every prior room guide did, but did not; the paragraph's own narrative chain further down already correctly tracks the count through 237 ("Then 237 on 2026-11-03... once `site/articles/how-to-organize-an-entryway.html` shipped"), so only the leading summary number was stale. This same root cause also explained `test_gates.py`'s "roadmap page count: a stray `_gate_fixture_roadmap_pages.html` was counted as a real page" failure in `checks.yml`: the gate's fixture-exclusion logic (filtering `_`-prefixed basenames) was never broken, re-read directly in `ops/preflight.py`; the test only fires when the live count already disagrees with ROADMAP regardless of the fixture, so it was reporting the same stale citation, not a regression.
+
+**Fixed, verified three ways.** Corrected the headline to 237 with a short note on why, consistent with the file's own append-only convention (did not rewrite the historical narrative, which was already right). Verified directly: `gate_roadmap_prices_current()` called by hand, no exception/FAIL. `python ops/tests/test_gates.py` run to completion, exit 0 (previously the CI failure). `fix_dashes.py --check` on the file: 0/0. Searched the whole repo for other live "236 pages" citations: none outside append-only history logs (`ops/NIGHTLY-LOG.md`, `BACKLOG-2026-09-07.md`), which are timestamped records, not live-checked. `check_nightly_log_fast.py` and `check_risks_evidence_fast.py` both clean. Dashboard regenerated fresh (YELLOW, $0 of $20,000 carried forward, P0 9, commits7d 1431).
+
+**Not yet verified: whether this actually clears CI**, since that needs a real `checks.yml` run on the pushed commit; the operator should confirm green before building on top, per the "unchecked is not passing" rule. Once it is green, `publish-image.yml` still needs a manual re-trigger (`workflow_dispatch`) or a future site-touching push to pick it up, the same two-step gap the 13:4x cycle documented for this identical shape earlier today.
+
+Not starting any new workstream: this was the only genuinely unblocked, non-Phil-gated item; 30 open GitHub issues unchanged, all `decision`/`blocked-on-art`, none from Phil.
+
+No push notification: this is a self-inflicted CI gap with no customer-facing impact (production was still serving the last successfully published build), and the fix is already in motion, not a decision for Phil.
+
+Pushed to main: `ROADMAP-2026-2029.md`, dashboard files, this entry.
+
 ## PM check-in, 2026-11-03 (15:1x slot): previous work confirmed finished, closed both WARNs the 14:4x cycle handed off
 
 Attached clean (fetch, unshallow 742 commits, `checkout -B main origin/main`, ff-only onto `10cee3d42`, tree clean). Previous work confirmed finished, not cited: preflight re-run fresh, 0 FAIL through every gate reached, killed at the documented `gate_etsy_pdfs_current` stall (confirmed by watching CPU, not assumed hung), reported unchecked past that point. 29 open GitHub issues pulled fresh via the API, unchanged, all decision/blocked-on-art, none from Phil.
