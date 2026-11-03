@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-03 (04:5x slot): independently found the same real checks.yml FAIL, hit a concurrent duplicate fix, backed off cleanly, cleared two genuinely stale cold-read-ledger entries
+
+NEXT FOR THE OPERATOR: confirm `checks.yml` run 41580260563 (commit `3b1bd863f`) actually concluded success before trusting the fix fully; if green, Guest Bedroom (11 partial) is still the next room-guide candidate. Same Phil-gated queue otherwise.
+
+**Attached clean.** Fresh checkout arrived shallow and detached; unshallowed, `checkout -B main origin/main`, ff-only onto `2c0a0ba02`, tree clean.
+
+**Independently diagnosed the same regression the 04:4x PM check-in's entry above describes, not by reading its entry first.** Read `checks.yml` run 41577979946 (commit `1576848dd`, the 04:1x fix) directly via the Actions API: it concluded `failure`. Read the job log rather than trust the commit message's own claim of success: 1 of 467 test files failed, `test_gate_keyword_demand_global_rescored_current.py`, because `ops/keyword-demand-global.json` was scored against `dd8e0ae3d` while 5 commits had touched `site/` since. Ran `ops/keyword_demand_global.py --rescore` and `ops/keyword_demand.py --rescore` (both free, no network) and committed the fix locally.
+
+**Before pushing, found a concurrent cycle had landed the identical fix first** (`3b1bd863f`, "Fix second real checks.yml FAIL left by the primary bathroom article ship"). Diffed my own unpushed commit against theirs: byte-identical except the `scored_at` timestamp. Rather than push a redundant commit that would only add merge noise, discarded mine (`git reset --hard origin/main`) and verified their fix directly against the real tree myself: both gate functions return no warnings, both test files pass standalone. Their own `checks.yml` run (41580260563) was still in progress at the time of this entry; not yet confirmed green, reported unchecked rather than assumed.
+
+**Checked whether anything warrants a push notification before concluding the cycle.** `ops/last-owner-notification.json` names a no-repeat-before of 2026-11-04T04:00Z on the standing cadence/decision-queue topic; nothing material changed since (no real Phil reply on issue #42's full comment thread, re-read directly, every comment self-authored by a prior agent cycle under the Klingdom account; no cleared decision; no new credential; no real customer event). Correctly sent none. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked not empty, the standing gap.
+
+**Found real, new, genuinely unblocked work instead of re-verifying an exhausted queue: two stale cold-read-ledger entries.** `ops/cold_read_ledger.py --stale` flagged `build_messy_article.py` and `build_zone_pages.py` as ledgered 2026-11-02 but touched 2026-11-03. Read both real diffs (`f2fc9416a` Patio or Deck, `90a1f7930` Primary Bathroom) rather than assume the staleness was cosmetic: each is the same one-line FAQ link plus one `ROOM_GUIDES` three-tuple shape every prior room-guide ship has used, hrefs and paths match the shipped article slugs. No defect. Re-ledgered both; `--stale` now reports 0.
+
+**Went well:** the duplicate-fix collision was caught by diffing before pushing, not after, so no merge conflict or wasted CI run resulted from it.
+
+**Did not go well:** two independent agent sessions spent a full cycle each diagnosing and fixing the identical one-line-cause regression, the same race-condition cost issue #42 already names; no new gate needed for this specific instance, but it is additional evidence for that issue's own point, not repeated there since nothing there changed.
+
+**Changing next cycle:** none.
+
+Pushed to main: `ops/cold-read-ledger.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable. No push notification: covered above, nothing material changed on the standing topic.
+
 ## PM check-in, 2026-11-03 (04:4x slot): previous work was STILL not finished, a second real checks.yml FAIL found on the fix commit itself, fixed and reshipped
 
 NEXT FOR THE OPERATOR: confirm checks.yml actually concludes success on this cycle's own commit before trusting it, then pick up Guest Bedroom (11 partial) as the next room-guide candidate named by the 03:4x operator cycle, because the room-guide lane is the highest-value genuinely unblocked item once CI is actually green.
