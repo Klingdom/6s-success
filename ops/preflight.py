@@ -29527,6 +29527,30 @@ def gate_etsy_pdfs_current() -> None:
     script = os.path.join(listings_dir, "build_etsy_assets.py")
     if not os.path.exists(script):
         return
+    # Found live 2026-11-03, proving the _run_bounded migration below by
+    # hand: build_etsy_assets.py's own render() launches Chrome in ITS OWN
+    # separate session (start_new_session=True, so build_etsy_assets.py's
+    # internal 90s-per-attempt timeout can killpg just Chrome without also
+    # killing itself). That means Chrome's pgid is NOT a member of the
+    # pgid _run_bounded/_track_lock_child_pgid records for build_etsy_
+    # assets.py itself, so a later acquire_preflight_lock() reaping a dead
+    # holder's recorded pgid kills build_etsy_assets.py but never reaches
+    # the Chrome tree one session further down. Confirmed directly: killed
+    # a real run from outside mid-render, the next acquire_preflight_lock()
+    # correctly reaped build_etsy_assets.py by its registered pgid, and 12
+    # Chrome-family processes were still alive afterward under init,
+    # unreachable from that registry at any depth. Self-heal the same way
+    # the lock directory itself does: sweep by command line (every render()
+    # call writes its temp HTML under this one script's own _tmp directory,
+    # a path nothing else in this repository's command line would ever
+    # contain) at the top of every run, so a Chrome orphan from a run killed
+    # before this one never accumulates past a single cycle.
+    tmp_marker = os.path.join(ROOT, "build", "listings", "etsy", "_tmp")
+    try:
+        subprocess.run(["pkill", "-f", "--", tmp_marker],
+                       capture_output=True, timeout=10)
+    except Exception:                                            # noqa: BLE001
+        pass
     dirty = [p for p in worktree_changes()
              if p.startswith("build/listings/etsy/")]
     if dirty:
@@ -29609,30 +29633,33 @@ def gate_etsy_pdfs_current() -> None:
     # before this fix and a 6th (dfc5a5fc) while this fix was being written.
     # A hang here is not this gate's to solve blind; it is this gate's to
     # stop being the thing that takes the rest of CI down while unsolved.
+    #
+    # Found live 2026-11-03: this call used a raw subprocess.run(), never
+    # routed through _run_bounded, so it had none of the protection that
+    # function's own _track_lock_child_pgid gives every other gate's
+    # subprocess. A preflight.py run killed from OUTSIDE (SIGKILL by pid or
+    # timeout, the routine way an operator ends a stalled run, well before
+    # this call's own 300s bound fires) orphaned build_etsy_assets.py and
+    # its whole Chrome tree permanently: confirmed live, the pkill sweep
+    # below only runs on THIS function's own except-block, which an
+    # external SIGKILL of the whole process never reaches either. Switched
+    # to _run_bounded so the child's pgid is written to the shared lock
+    # registry before it can block, the same registry every acquire_
+    # preflight_lock() call already reaps a dead holder's orphans from.
     try:
-        p = subprocess.run([PY, script], capture_output=True, text=True,
-                           cwd=ROOT, timeout=ETSY_PDFS_TIMEOUT_SECONDS,
-                           env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+        returncode, output = _run_bounded(
+            [PY, script], cwd=ROOT,
+            env={**os.environ, "PYTHONIOENCODING": "utf-8"},
+            timeout=ETSY_PDFS_TIMEOUT_SECONDS)
     except subprocess.TimeoutExpired:
-        # subprocess.run's own timeout handling kills only the direct child
-        # (this script's own python3 process), never a grandchild. Chrome is
-        # deliberately launched inside build_etsy_assets.py in its OWN new
-        # session (start_new_session=True) so ITS internal 90s-per-attempt
-        # timeout can clean it up without also killing its Python parent;
-        # the side effect is that if THIS 300s outer timeout fires instead,
-        # while build_etsy_assets.py is itself mid-wait on a Chrome
-        # subprocess, the parent dies by SIGKILL before its own except-block
-        # ever runs, and that Chrome (plus its crashpad handler) is orphaned
-        # with nothing left holding its PID. Confirmed 2026-09-13: a run
-        # that hit exactly this path still had live "chrome" and
-        # "chrome_crashpad_handler" processes at job cleanup, after the
-        # whole job had finished, which starved the ops test suite's own
-        # later Chrome launches in the same job. Sweep by command line
-        # rather than PID, since the PID that could kill it died with its
-        # parent: every render() call writes its temp HTML under this one
-        # script's own _tmp directory, a path nothing else in this
-        # repository's command line would ever contain.
-        tmp_marker = os.path.join(ROOT, "build", "listings", "etsy", "_tmp")
+        # _run_bounded already killpg's build_etsy_assets.py's own process
+        # group before re-raising, but Chrome runs one session further
+        # down (see the sweep at the top of this function for why), so
+        # that killpg never reaches it either. This sweep by command line
+        # is what actually reaches Chrome here: every render() call writes
+        # its temp HTML under this one script's own _tmp directory, a path
+        # nothing else in this repository's command line would ever
+        # contain.
         try:
             subprocess.run(["pkill", "-f", "--", tmp_marker],
                            capture_output=True, timeout=10)
@@ -29648,7 +29675,7 @@ def gate_etsy_pdfs_current() -> None:
              "not clean." % ETSY_PDFS_TIMEOUT_SECONDS)
         _restore_etsy_all()
         return
-    no_browser = "no headless Chromium-family browser found" in p.stdout
+    no_browser = "no headless Chromium-family browser found" in output
     if no_browser:
         warn("etsy-pdfs-current",
              "could not check: no headless Chromium-family browser found "
@@ -29669,7 +29696,7 @@ def gate_etsy_pdfs_current() -> None:
              "current site content renders, so a buyer would receive stale "
              "content: %s. Run: python build/listings/build_etsy_assets.py"
              % "; ".join(stale))
-    elif p.returncode != 0:
+    elif returncode != 0:
         # Found 2026-09-13, twice the same day on GitHub's own runner, never
         # once locally: render()'s own retry loop (5 attempts, growing
         # backoff) can still exhaust every attempt under real contention on
@@ -29686,7 +29713,7 @@ def gate_etsy_pdfs_current() -> None:
         # whole job over when the thing it protects is demonstrably fine.
         # Narrowly matched on the retry loop's own exact failure line so a
         # genuinely broken script (which would not print it) still fails.
-        exhausted_retries = "no PDF produced for" in p.stdout
+        exhausted_retries = "no PDF produced for" in output
         if exhausted_retries:
             warn("etsy-pdfs-current",
                  "could not check: build_etsy_assets.py exhausted its own "
@@ -29695,13 +29722,13 @@ def gate_etsy_pdfs_current() -> None:
                  "current site content (no text drift detected above), so "
                  "this is the runner being transiently unable to prove "
                  "freshness, not stale or broken content. Unchecked, not "
-                 "clean: %s" % (p.returncode, p.stdout.strip()[-300:]))
+                 "clean: %s" % (returncode, output.strip()[-300:]))
         else:
             fail("etsy-pdfs-current",
                  "build_etsy_assets.py could not regenerate the Etsy PDFs "
                  "it normally produces (exit %d), and the committed files "
                  "were left unchanged rather than proven current: %s"
-                 % (p.returncode, p.stdout.strip()[-300:]))
+                 % (returncode, output.strip()[-300:]))
 
 
 # Every free, ungated asset llms.txt must name, so an AI crawler reading it
