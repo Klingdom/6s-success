@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-03 (05:3x slot): closed the four-push checks.yml red streak, deployed the backlogged content to production, verified with ops/deploy.py's own output rather than a green checkmark
+
+NEXT FOR THE OPERATOR: nothing further on this; `checks.yml`'s one real blocker (`gate_goals_keyword_cluster_citation_current`) and `gate_publish_image_current` are both confirmed clean against current HEAD. Same Phil-gated queue otherwise.
+
+**Independently diagnosed the real cause, then found it already fixed by a concurrent session, backed off cleanly (see the prior entry below, same slot).** Having confirmed the duplicate `3b1bd863f` fix via the Actions API, checked whether its own CI run went green: it did not. Read its job log directly: `test_gate_goals_keyword_cluster_citation_current.py` FAILed (GOALS.md's small-space citation, 23/14/0/37, had drifted against the fresh keyword-demand.json rescore, now 24/13/0/37) and, separately, `gate_publish_image_current` FAILed (`publish-image.yml` had not succeeded since `e0acc2f8`, so real content, the patio/deck and primary bathroom guides, was sitting undeployed for hours).
+
+**Fixed the citation** (edited GOALS.md's small-space clause in place to `24 covered / 13 partial / 0 gap of 37`, appended a dated correction note matching the paragraph's own established convention; verified directly, the gate warns nothing, its test passes 7/7) and pushed (`da0328616`). Confirmed via the Actions API that even this fix still failed checks.yml, but only on `gate_publish_image_current` now, no test failures: the test-suite cause was genuinely cleared.
+
+**`gate_publish_image_current` cannot clear itself from a checks.yml push alone** (it is a lagging indicator reading `publish-image.yml`'s own CI history), and that commit touched no `site/`/`Dockerfile` path so the path-filtered workflow would not auto-fire. Triggered it manually (`workflow_dispatch` via the GitHub API) rather than wait or push a no-op site/ change. It succeeded (run 41582956595, ~14 minutes). `deploy.yml` (gated on `workflow_run`) fired automatically after it and also succeeded (run 41584339335).
+
+**Verified the deploy with the tool's own output, not the green checkmark.** Read `deploy.yml`'s job log directly: `ops/deploy.py` reported `products live before: 130 / after: 130 / in repo: 130`, `build id live fa8ac7d9f919ad42 == build id in repo`, `stylesheet live 54ccf0a602 == stylesheet in repo`, `VERDICT production changed (build 49f4e762407be549 -> fa8ac7d9f919ad42) and now matches the repository`. Could not independently cross-check against the live site itself (`6s-success.com` is outside this sandbox's network allowlist, the standing limitation); this is `ops/deploy.py`'s own real SSH-verified comparison against the VPS, not a repository-side inference.
+
+**Updated STATUS.md's five deploy-citation locations** (Public website row, Production traceability row, the Currently Deployed Build/Confirmed At/Repository HEAD Build fields, BLOCKER-001, and the Production Knowledge paragraph), all still citing the superseded `49f4e762407be549` build, to the new confirmed `fa8ac7d9f919ad42`, each with a dated correction note. `gate_status_deploy_verdict_current` now warns nothing.
+
+**Went well:** verified the actual deploy.py output rather than trusting the workflow's green checkmark, catching the real customer-facing proof (product counts, build id, stylesheet hash all matching) rather than an inference from CI status alone.
+
+**Did not go well:** this closes a real, hours-long production currency gap, but it took five consecutive checks.yml failures across two sessions tonight to find all the generators one content ship had skipped re-running (build-id, feed, sitemap, RISKS.md citation, then both keyword-demand rescores, then GOALS.md's own citation on the rescore). Not a new finding: issue #42 already names this generator-completeness gap in `ship.py`; this is further evidence of its cost, not a new one.
+
+**Changing next cycle:** none; the existing gates (gate_tests, gate_publish_image_current, gate_status_deploy_verdict_current) each did their job correctly and in sequence. The underlying fix (making `ship.py` re-run every generator a content change could touch) is tracked on issue #42, not something to improvise here.
+
+Pushed to main: `GOALS.md`, `STATUS.md`, this entry, plus the dashboard regeneration below. No new page shipped this cycle; IndexNow not applicable here (the already-shipped guides were already queued by the cycles that wrote them).
+
 ## PM check-in, 2026-11-03 (05:1x slot): previous work was NOT finished for a fourth time, diagnosed the real cause directly against CI rather than cite it, fix confirmed partial, full resolution handed to the operator
 
 NEXT FOR THE OPERATOR: confirm `publish-image.yml` run 41582956595 (workflow_dispatch, head `876b30b80`) actually concludes `success`. If it does, the deploy gap closes and the patio/deck and primary bathroom guides go live; if it fails again, read its own job log for the real cause rather than assume it is the same one already fixed. Same Phil-gated queue otherwise.
