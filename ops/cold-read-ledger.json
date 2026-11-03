@@ -631,6 +631,11 @@
       "date": "2026-10-12",
       "note": "Fourth-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (147 lines). Ran directly: correctly reports UNCHECKED for all five printables (pypdf not installed in this sandbox) rather than a false pass; every one of the five printables named individually rather than only the headline pack. No defect found."
     },
+    "check_risks_evidence_fast.py": {
+      "status": "clean",
+      "date": "2026-11-03",
+      "note": "cold read, 2026-11-03: wrapper mirrors check_nightly_log_fast.py's own pattern, calls gate_risks_evidence_current directly skipping gate_tests, correctly wired into .githooks/pre-push (lines 101-116), its own fail-then-pass test (test_check_risks_evidence_fast.py) passes clean, 0 defects found"
+    },
     "check_sellable.py": {
       "status": "fixed",
       "date": "2026-11-01",
