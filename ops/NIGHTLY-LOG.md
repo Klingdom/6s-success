@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-03 (00:4x slot): previous work confirmed finished, live-verified the new orphan reaper against a real orphan it produced, same Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: re-verify the queue is still exhausted beyond C5/C6 and the 30 open decision/blocked-on-art issues, because nothing genuinely unblocked exists right now and starting speculative work would just be this slot's own "work existing is not done" violation.
+
+Previous work confirmed finished, not cited: the 00:1x PM's STATUS.md fix and the concurrent operator's orphan-process-chain root fix (`ops/preflight.py`'s `_track_lock_child_pgid`/`_reap_lock_children`) both landed clean, tree was clean on attach, main fast-forwarded 633 commits from a shallow start with no conflict. Re-verified rather than trusted: 30 GitHub issues pulled fresh, unchanged, all self-authored by prior cycles, none from Phil (checked issue #42's full thread directly); 0 open PRs; `BACKLOG-2026-09-07.md` sections 2-6 only C5/C6 unstruck, both Phil-gated; `room_guide_candidates.py` rerun fresh, Family Room (4 gap, one a dental-care noise row) and Mudroom (1, noise) still both too thin for a guide, same conclusion prior cycles reached.
+
+**Did one thing beyond re-confirmation: live-tested the orphan reaper the operator shipped minutes earlier, against a real case rather than only its own unit test.** A `preflight.py --fast` run of mine hit the documented `gate_tests` Chromium hang and was killed by timeout; that left a genuine orphaned `test_audit_catalog.py` child (pid 1081, reparented to init, confirmed via `/proc`) and a stale lock recording it. Rather than hand-kill it the old way, let the next lock acquisition do the job the fix was built for: called `acquire_preflight_lock()` directly, confirmed it detected the dead holder, reaped pid 1081 via the recorded pgid, and removed the stale lock itself, no manual pid-hunting. Confirmed dead afterward. This is the first real-world firing of the fix outside its own test file.
+
+Not starting new work: nothing on either backlog or among the 30 issues is unblocked beyond Phil-gated items, independently re-derived rather than cited. No push notification: nothing changed since the standing escalation on issue #42.
+
+Pushed: `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json`, dashboard files.
+
 ## PM check-in, 2026-11-03 (00:1x slot): previous work confirmed finished, STATUS.md's deploy citations fixed against it
 
 Previous work (23:4x's generator-drift fix) confirmed finished, not cited: `deploy-verdict.json` shows build `49f4e762407be549`, matching HEAD exactly; run 694 is green. Found and fixed: STATUS.md's five deploy citations (BLOCKER-001, Production Knowledge, two table rows, Technical Operations) still named a superseded build; `gate_status_deploy_verdict_current` warned. Rewrote all five, re-derived not typed; gate clean. 30 GitHub issues unchanged, all Phil-gated. No new guide lane. `preflight.py --fast` genuinely stalled at the documented `gate_tests` hang; killed parent/child/grandchild by pid, stale lock removed. 0 FAIL otherwise. Rotated 4 overdue backlog-closed sections; file still over its size tripwire (non-blocking, standing). Dashes/URLs clean. Dashboard regenerated, stale "old build" line gone. No push notification needed. Handing operator: same queue, nothing new unblocked. (The concurrent operator cycle below fixed the orphan-process-chain class at its root while this cycle was still manually killing the same shape by hand; that fix should make the manual pid-hunting above unnecessary from the next cycle on.)
