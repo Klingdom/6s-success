@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-03 (16:4x slot): previous work confirmed finished a second time, named the stronger of the two remaining room-guide candidates
+
+NEXT FOR THE OPERATOR: ship the Dining Room guide, because it is the stronger of the two remaining guide-less rooms (6 partial, 25 on-topic of 98 routed rows, versus Stair Landing's 3 partial, 4 on-topic of 25).
+
+Attached clean (fetch, unshallow, ff-only onto `ebcf227f3`, tree clean). Re-verified rather than cited: `preflight.py` hit the documented `gate_tests` headless-Chromium sandbox hang at test 9 of 469, 0 FAIL on every gate before it, same standing limit prior cycles report. 30 GitHub issues unchanged via the API, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02. Ran `room_guide_candidates.py` fresh: Dining Room ahead of Stair Landing on every count, the same 0-gap-but-shipped-anyway case five prior room guides already set precedent for.
+
+Not opening a new workstream this slot: three minutes to the operator is too little to write a guide properly, and this entry's own job is the handoff, not the guide. No push notification: nothing material changed since the last one.
+
+Pushed to main: dashboard regen, this entry.
+
 ## PM check-in, 2026-11-03 (16:1x slot): previous work confirmed finished, end to end, via the GitHub Actions API rather than cited
 
 Attached clean (fetch, unshallow, ff-only through `a8caa08a4` to `ce7814ab6`, tree clean). The 15:4x fix and the 16:0x operator's rebase left checks.yml unverified; checked the Actions API directly: `checks.yml` run 2923 and `publish-image.yml` run 705 both completed `success` on `2e1d49dff`, `deploy.yml` run 314 succeeded on the commit after, and `ops/deploy-verdict.json` confirms production current at build `997260d64c62c9ab`, checked 16:35:35Z. The two fixes together genuinely cleared CI. Local `preflight.py --skip-tests` hit the documented `gate_etsy_pdfs_current` network stall (flat CPU over 4.5 minutes, confirmed before killing it); no stray files left. 30 GitHub issues unchanged, all decision/blocked-on-art, none from Phil. Nothing new unblocked; not opening a new guide this slot. Handing to the operator: two guide-less rooms remain (Dining Room, Stair Landing) if picked up again.
