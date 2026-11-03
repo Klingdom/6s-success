@@ -22397,6 +22397,58 @@ def gate_owner_actions_gemini_billing_not_oversized() -> None:
              % (total, len(archived_blocks)))
 
 
+def gate_owner_actions_item_history_not_oversized() -> None:
+    """OWNER-ACTIONS.md's "Start here" table must not be carrying its
+    one-time 2026-09-18 end-to-end check list, and item -1 must not be
+    carrying its full usage-limit-stall investigation narrative, once
+    either has been rotated out to a short current-state pointer.
+
+    Found 2026-11-03, scheduled operator cycle, the standing trim three
+    PM check-ins the same day correctly deferred as needing a careful
+    hand-read rather than a quick cut. Reading item 1 (YouTube), item 1b
+    (Gemini) and item 4 (affiliate) directly found each one's remaining
+    length is still live, cited-elsewhere content, not safely archivable;
+    the "Start here" table's dead 2026-09-18 checklist and item -1's
+    resolved-incident investigation were the two genuinely self-contained,
+    unreferenced spans. ops/rotate_owner_actions_item_history.py now
+    archives both; this gate is what stops either from being a one-time
+    cleanup that quietly regrows, the same role its siblings above
+    already play for their own spans.
+
+    A WARNING, not a FAIL: a long dead narrative wastes a later cycle's
+    reading time, it does not ship anything broken to a customer.
+
+    Proof this can fail: ops/tests/test_gate_owner_actions_item_history_
+    not_oversized.py builds a synthetic OWNER-ACTIONS.md with both spans
+    unrotated and asserts this gate warns, then confirms a freshly
+    rotated copy, and the real committed file, both stay silent.
+    """
+    path = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if not os.path.exists(path):
+        return
+    import rotate_owner_actions_item_history as roaih
+    text = io.open(path, encoding="utf-8").read()
+    try:
+        _, archived_blocks = roaih.plan_rotation(text)
+    except ValueError as e:
+        warn("owner-actions-item-history-not-oversized",
+             "could not check OWNER-ACTIONS.md's \"Start here\" checklist "
+             "or item -1 for regrown history: %s. Unchecked is not "
+             "passing (CLAUDE.md 0.4): this means an anchor "
+             "rotate_owner_actions_item_history.py searches for has gone "
+             "stale, most likely because another edit changed the text "
+             "it is tied to." % e)
+        return
+    if archived_blocks:
+        total = sum(len(c.encode("utf-8")) for _, c in archived_blocks)
+        warn("owner-actions-item-history-not-oversized",
+             "OWNER-ACTIONS.md has %d bytes across %d block(s) of dead "
+             "history still sitting in the \"Start here\" checklist or "
+             "item -1 (Claude Code usage limit). Run `python "
+             "ops/rotate_owner_actions_item_history.py --apply`."
+             % (total, len(archived_blocks)))
+
+
 def gate_backlog_done_table_not_oversized() -> None:
     """BACKLOG-2026-09-07.md's "Done this week, for the record" table
     must not be carrying more than a generous buffer past ops/rotate_
@@ -32169,6 +32221,7 @@ def main() -> int:
     run_gate(gate_owner_actions_preamble_not_oversized)
     run_gate(gate_owner_actions_closed_items_rotated)
     run_gate(gate_owner_actions_gemini_billing_not_oversized)
+    run_gate(gate_owner_actions_item_history_not_oversized)
     run_gate(gate_backlog_done_table_not_oversized)
     run_gate(gate_status_blocker001_not_oversized)
     run_gate(gate_status_metadata_not_oversized)

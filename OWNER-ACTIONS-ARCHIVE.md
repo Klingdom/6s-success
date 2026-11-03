@@ -4,6 +4,33 @@
 
 ---
 
+### Start here table, 2026-09-18 end-to-end check list, archived 2026-11-03
+
+**Every item here was checked end to end on 2026-09-18, not just listed.** The
+question asked of each was "if Phil did this today, what would actually
+happen?", and it found one real trap and one real blocker:
+
+- **1 (YouTube)** would have published 100 videos whose on-screen checklist
+  contradicts their own zone page. All 99 affected were re-rendered overnight;
+  the checker reads 114 of 114 matching and the upload tool holds nothing
+  back, so authorising now publishes all 102.
+- **8 (two open ports)** could not be done at all without breaking this site.
+  Rewired and deployed, so it is now a two-line change.
+- **20** would have been ten wasted minutes if you replace the 12 videos;
+  cross-linked to item 1 so you choose once.
+- **14 (KDP)** is honest: the book's description promises no illustrations, and
+  the EPUB carries none beyond the cover, so publishing it claims nothing it
+  does not deliver.
+- **16 (Pinterest and Instagram)** is safe: a rendered card was read end to end
+  and carries the corrected, complete standard.
+- **19 (print the Kitchen deck)** is exactly what it says: the live page serves
+  its 72 cards and the 7 micro-quest sections, and the only thing left is a
+  real printer, which no agent here has.
+
+### Item -1, usage-limit stall investigation, archived 2026-11-03
+
+**Added 2026-10-09, PM check-in.** The autonomous PM and operator Routines went completely dark for roughly 5 days: `git log` shows zero Claude-authored commits between 2026-10-04 11:19:40Z and this cycle, every one of the 36 commits in that window from the dumb hourly check-in/social-rotation bot instead. `list_triggers` shows the :40 PM and :43 operator Routines both failed their most recent run with `USAGE_LIMIT_REACHED`. Nothing broke in the product (preflight clean, no new customer-facing defect), the cost is five days of zero autonomous attention on the business, surfaced only because this cycle happened to cross-check commit authorship against trigger state rather than trust the bot's own busy-looking log. Full account in `STATUS.md` INCIDENT-002 and GitHub issue #40. This is an account-level setting no sandboxed session can see or change, so it genuinely needs your hand. **Re-verified 2026-10-09, later the same day, scheduled operator cycle: `list_triggers` now shows all three Routines firing successfully again (no `FAILED` since 2026-10-09 03:2x), and continuous Claude-authored commits have landed since, so the stall itself has not recurred. Whether that is because you changed something, the limit reset on its own, or the account moved past it cannot be told from here.** Issue #40's own recommendation was a cheap, durable check: add a step to both PM Routines' own prompts that calls `list_triggers` and checks the sibling Routines' `last_run.status` for `FAILED`, so the next stall surfaces immediately instead of by luck. Attempted this cycle and refused: `update_trigger` said *"this routine was created via http_api, not by an agent. Agents can only update routines they created."* So no sandboxed session can self-serve this one; it needs your own edit. **Two-minute paste, optional, only if you want the check:** open each PM Routine's edit page (https://claude.ai/code/routines/trig_01KYMpAJo7UHBMtUYmqXj25L for :10, https://claude.ai/code/routines/trig_01JCURkStiuxTMyZDNbVGumL for :40) and insert this paragraph as a new step right after STEP 0 (before STEP 1): *"STEP 0b. CHECK THE SIBLING ROUTINES ARE ACTUALLY FIRING. Call list_triggers (Claude_Code_Remote MCP server) and look at the other two Routines' last_run. If either shows status FAILED (any failure_reason), that is this cycle's most important finding: say so first in your log entry, and if no open GitHub issue already covers it, file one labelled decision with the evidence before doing anything else."* If you would rather not touch the Routines and just check usage/plan by hand when things look quiet, that is a reasonable choice too; issue #40 stays open either way until you decide. |
+
 ### 0. Historical 404 measurement behind the (now closed) VPS_DEPLOY_KEY item. Archived 2026-11-03, scheduled operator cycle: the item itself closed 2026-11-01, this was the justification for why it mattered, not a live ask.
 
 Full original text, archived for continuity:

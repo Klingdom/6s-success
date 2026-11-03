@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-03 (10:5x UTC): picked up the OWNER-ACTIONS.md size trim three PM check-ins the same day correctly deferred, closed part of it, gated the rest
+
+**Did:** Attached to main cleanly (fetch, unshallow, ff-only, 705 commits). Read GOALS.md, BACKLOG-2026-09-07.md sections 0-7 and 87-92, CLAUDE.md section 0, the last four NIGHTLY-LOG.md entries. Confirmed independently, not cited: all 30 GitHub issues unchanged, `issue_read get_comments` on #42 shows all 8 comments self-authored, none from Phil since 2026-11-02. Re-ran `room_guide_candidates.py` fresh: Mudroom's one gap ("organize outdoor diy lab") is noise, same conclusion as the 09:1x check-in, so that lane stays exhausted. With content/SEO and the GitHub queue both genuinely out of non-Phil-gated work, picked up the standing `OWNER-ACTIONS.md` size trim (115,514 to 118,214 bytes against a 110,000-byte tripwire) three PM check-ins today had each correctly deferred as "needs a careful hand-read, not a 30-minute slot."
+
+Read items 1 (YouTube), 1b (Gemini) and 4 (affiliate) directly: each one's remaining length is live content already cited elsewhere (cost tables, a policy checklist, a correction its own text calls "worth keeping, because it is why the item changed"), not safely cuttable without a larger rewrite. Two other spans were genuinely dead and self-contained: the "Start here" table's one-time 2026-09-18 end-to-end check list (1,240 bytes, confirmed unreferenced by any gate or script), and item -1's full USAGE_LIMIT_REACHED investigation. Verified item -1 directly before touching it, not assumed stale: `list_triggers` shows all three Routines' `last_run.status` SUCCEEDED or PENDING, none FAILED, so "has not recurred" is still true 25 days on. Built `ops/rotate_owner_actions_item_history.py` (same archive-verbatim-behind-a-pointer shape as its three siblings) to move both to `OWNER-ACTIONS-ARCHIVE.md`, keeping the "Do"/"Time" columns and the live optional ask (the STEP 0b paste, both Routine links) untouched since `gate_send_questions_covers_top_owner_actions` and `dashboard.py`'s `top_owner_actions()` both match on those, never on the Why text.
+
+**Verified:** 3,934 bytes archived, file 118,214 to 115,514 bytes (partial progress, still over the tripwire). `fix_dashes.py --check` 0/0. Wired `gate_owner_actions_item_history_not_oversized` into `preflight.py`; `ops/tests/test_gate_owner_actions_item_history_not_oversized.py` fail-then-pass 3/3, including against the real committed file. Full `preflight.py` re-run fresh: 0 FAIL through every gate, same 4 expected WARNs (CI conclusion unreachable, the size tripwire itself now smaller, 2 dated disclosures, image-coverage sourcing note), killed at the documented `gate_tests` sandbox hang (test 9/468). `inbox_agent.py`: no mail credentials, unchecked. Dashboard regenerated; its own deploy-gap check found 1 material commit undeployed (the prior cycle's family room guide), consistent with the automatic-deploy pipeline's normal lag, not a new defect.
+
+**Went well:** did the careful read instead of deferring a fourth time, and found the honest boundary: two spans were safe to cut, three were not, and said so rather than forcing a bigger rewrite to hit the byte target in one pass.
+
+**Did not go well:** the trim is still incomplete; the tripwire still warns.
+
+**Changing next cycle:** none.
+
+**Next:** items 1/1b/4 are the remaining OWNER-ACTIONS.md bulk, each needs its own careful pass rather than one combined rotation; real lever stays Phil's 30-issue queue.
+
+Pushed to main: `OWNER-ACTIONS.md`, `OWNER-ACTIONS-ARCHIVE.md`, `ops/rotate_owner_actions_item_history.py`, `ops/preflight.py`, its test, dashboard files, this entry. No price or product touched, no new page, IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-03 (10:xx UTC): shipped a step-by-step family room guide, the strongest guide-less room on a fresh check
 
 **Did:** Attached to main cleanly. Read `GOALS.md`, `STATUS.md`, `CLAUDE.md` section 0, `BACKLOG-2026-09-07.md` sections 0-7 and 87-91. Checked GitHub directly: 30 issues unchanged, #42's 8 comments all self-authored, none from Phil since 2026-11-02. `preflight.py`: 0 FAIL before the documented `gate_tests` hang. Re-ran `room_guide_candidates.py`: Family Room led the 6 guide-less rooms (4 gap/30 partial of 221). Read the gap queries first: "dental organization ideas" and "nightstands with hidden storage" are autocomplete noise, not real demand; built the guide around the two genuine gaps (video/board game storage) plus the room's own `content.json`. Wired into `ROOM_GUIDES`, the articles index/hasPart, llms.txt (51), feed.xml (49), sitemap, a real share card, two reciprocal links, and the roadmap's page count (234 to 235).
