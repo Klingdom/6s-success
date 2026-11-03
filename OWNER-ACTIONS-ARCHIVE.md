@@ -4,6 +4,51 @@
 
 ---
 
+### 1b. Or, right now: deploy the site yourself. Archived 2026-11-03, PM check-in: resolved 2026-11-01, deploys are automatic, this whole chain is superseded history.
+
+**Resolved 2026-11-01.** `VPS_DEPLOY_KEY` is set as a GitHub Actions secret (issue #35, closed) and `.github/workflows/deploy.yml` now runs itself on every push, gated only by that key. `ops/deploy-verdict.json` confirms production current at build `a55a1a8bfa276587`, checked `2026-11-01T18:09:04Z`, matching repository HEAD exactly. The manual path below is kept for the record and for the rare case the automatic workflow itself needs a hand, but pressing Redeploy or running `ops/deploy.py` by hand is no longer a standing ask.
+
+Full original text, archived for continuity:
+
+**What:** either press Redeploy in Hostinger's Docker Manager, or, if you are
+on the machine holding the private half of the deploy key, run
+`python ops/deploy.py` directly.
+**Why it matters:** whether the live site reflects the current repository is
+unconfirmed either way (no operator sandbox has real egress to
+6s-success.com or the private key needed to check or act). The old "10
+products against 159" figure above is itself from before this file's last
+catalogue widen and should not be trusted as today's live gap; only a real
+check or a real deploy answers it.
+**Blocked because:** no operator sandbox here holds the private key or has
+network egress to the VPS or the live site, so this remains yours to run,
+by whichever of the two paths you have available, not something an
+autonomous session has been able to do since the key was installed.
+**Ready:** a fresh, tested image is already on GHCR and both workflows are
+green, current as of the last successful push.
+
+**Possibly already done, unconfirmed:** a 2026-09-15 03:40 local session's own
+`ops/NIGHTLY-LOG.md` entry (commit `636234cd`) says it redeployed and verified
+production live at build `065e8b434a25c03c` (real browser probes, sample AVIF/
+WebP files answering 200, CI green). But `ops/deploy.py` is supposed to write
+`ops/deploy-verdict.json` "the moment it confirms a build live", and that
+tracked file still shows the prior build `047a015202e83e30` at `08:44:21Z`, not
+the newer one. No cloud sandbox since (including this one; `deploy_freshness.py
+--json` returns `reachable: false`, `verdict: unknown`) can reach the live site
+to settle it either way. If you already redeployed, nothing further is needed
+except letting a session with real access re-run `python ops/deploy.py --check`
+once so the tracked record catches up; if you have not, item 1b above still
+stands. Left the tracked verdict file untouched rather than guess at it.
+
+**Resolved 2026-09-15 (local session with production access): no redeploy needed.** Production's own `build-id.txt` was read directly and serves `065e8b434a25c03c`, the build `main` carries, so the log was right and the tracked record was stale. Cause: that session staged `ops/deploy-verdict.json` into each release commit before the release's own deploy ran, so every commit carried the previous deploy's verdict and the refreshed one was never committed. The current verdict is committed with this correction, and the session now commits the verdict after each deploy, with that release's log entry.
+
+**Briefly reopened, then resolved, same 2026-09-15 afternoon.** Between the 11:17:08Z verdict above and this note, exactly one commit touched `site/`: `790a5d05` (a phone review by Phil himself, fixing the "One session: 30-45 min. most of it in Sort" grammar on 113 of 114 zone pages and labelling the empty zone-picture slot on room pages), moving the repository to build `587d80befe8bd586` with no newer verdict committed. This PM check-in flagged that gap; before it shipped, the same local session's own `11cfb6fd` landed, confirming production redeployed and current at `587d80befe8bd586` (checked 16:47:49Z). No action needed here now; recorded for continuity in case the tracked verdict ever falls behind again without a fresh commit to explain it.
+
+**Reopened again, 2026-09-20 11:12, PM check-in, a real and growing gap: item 1b now stands, unconfirmed since.** A session with real production access last confirmed current at 2026-09-18T17:20:47Z, build `7c765b634045a89c` (`ops/deploy-verdict.json`, checked directly this cycle, not cited). `site/build-id.txt` now reads `5e905bdd45e222e9`: the repository has moved 233 commits past that confirmation, at least 14 touching `site/**` or `ops/build_*.py` (measured directly with `git log --since`), including the storage-before-Sort fix, the Home Quest symptom-entry and Keep-screen fixes, the Kitchen deck micro-quests and related-card links, and the sitemap-lastmod fix. None of this has reached a customer yet. `STATUS.md`'s own "Production Knowledge" line had gone stale claiming a match that stopped being true after 2026-09-18; corrected there this same cycle. As before, no operator sandbox holds the deploy key's private half or egress to the VPS or 6s-success.com, so this is yours: press Redeploy in Hostinger's Docker Manager, or run `python ops/deploy.py` on the machine holding the key. Everything up to the gate is ready; the fresh image is on GHCR and both workflows are green.
+
+**Resolved, 2026-09-20, this PM check-in, verified against `ops/deploy-verdict.json` directly, not cited.** Phil redeployed twice today from a session with real production access: `470834de` (10:06:22 -0600, "Production moved `7c765b634045a89c` to `5e905bdd45e222e9`, two days of concurrent work that had built green and never shipped") and `7ae0e9b6` (11:51:59 -0600, the data-sku coverage fix, which also carried the deploy-verdict bump to `d9fc700d0700972f` at `2026-09-20T17:46:50Z`). The repository has since moved exactly one commit past that confirmed build (`1dd78484`, a command-deck regen only, no `site/**` or `ops/build_*.py` change), so the live gap is effectively zero, not 233 commits. `STATUS.md`'s BLOCKER-001 corrected to match, same cycle. No redeploy needed right now.
+
+---
+
 ### Gemini billing, card/zone hero counts, archived 2026-10-25
 
 **What it is costing right now, measured 2026-09-08.** This gate is not only
