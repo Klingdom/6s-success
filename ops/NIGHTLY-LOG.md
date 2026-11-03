@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-03 (~14:0x UTC): confirmed the 13:4x fix reached production, then turned the recurring RISKS.md citation drift into a pre-push gate
+
+**Did.** Unshallowed and attached cleanly, fast-forwarding through the concurrent 13:4x PM check-in's own commits (its `publish-image.yml` re-trigger, then its deploy-verdict commit) as they landed mid-cycle, no reset or force. Re-verified rather than cited: 30 GitHub issues unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02; `cold_read_ledger.py --stale`/`--next` 0/305; `room_guide_candidates.py` fresh, all 4 remaining rooms still 0 on-topic gap; `inbox_agent.py --apply` correctly reports no mail credential here.
+
+**Did not treat "backlog exhausted" as "nothing wrong."** Checked GitHub Actions directly rather than assume the deploy pipeline had caught up: `publish-image.yml` run 702 (the commit carrying the mudroom guide) and `checks.yml` run 2915 (the commit fixing it) had both failed, the first on a stale `forms_dead` citation, the second on `gate_publish_image_current` once that left real content unpublished behind it, exactly the "source corrected, artifact never re-derived" shape section 7 names. The 13:4x cycle was already re-dispatching `publish-image.yml` (run 703) concurrently; watched it rather than duplicating the dispatch. Confirmed to completion, not assumed from a green status alone: run 703 succeeded, `deploy.yml` run 312 fired and succeeded, production confirmed current at build `03f8d72ec071ec89` by the deploy workflow's own commit.
+
+**Built the gate, not just the fix, per section 10b.** This exact citation (`RISK-0012`'s `forms_dead=NNN`) has now gone stale and been caught only by CI at least six times in one day. `gate_risks_evidence_current` already catches it correctly but sits after `gate_tests` in `preflight.py`'s own call order, hidden by this sandbox's documented Chromium hang from every local run that skips `--skip-tests`, the same shape `check_nightly_log_fast.py` already exists to solve for a different gate. Built `ops/check_risks_evidence_fast.py` (same pattern: import `preflight`, call the gate directly, skip `gate_tests`, finish in under a second) and wired it into `.githooks/pre-push` alongside the existing nightly-log check.
+
+**Verified.** New `ops/tests/test_check_risks_evidence_fast.py`: fail-then-pass proved directly, 2/2 (the gate's own logic is already covered by `test_gate_risks_evidence_tree_derived.py`; this tests the wrapper). `bash -n .githooks/pre-push` parses; running the hook directly against the real repo passes silently. `fix_dashes.py --check` on both new files and the hook: 0/0. Both new `.py` files parsed with `ast.parse` before relying on them. `ops/dashboard.py` regenerated fresh; `forms_dead` still 236 after regen, still matching RISKS.md. No price or product touched; no new page, IndexNow not applicable.
+
+**Went well:** verified a concurrent cycle's in-flight fix to actual completion instead of assuming "someone else is on it," then spent the rest of the slot on the systemic version of the problem rather than re-reporting the same citation drift a seventh time.
+
+**Did not go well:** nothing new to report.
+
+**Changing next cycle:** none.
+
+**Next:** watch whether the new pre-push gate actually prevents an occurrence 7 the next time a page ships without updating RISKS.md in the same commit. Otherwise unchanged: room-guide and cold-read lanes both exhausted, 30 GitHub issues all Phil-gated, no reply since 2026-11-02; no push notification sent, nothing material changed since the last one.
+
+Pushed to main: `ops/check_risks_evidence_fast.py`, `ops/tests/test_check_risks_evidence_fast.py`, `.githooks/pre-push`, `BACKLOG-2026-09-07.md` (section 94), dashboard files, this entry. No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-11-03 (13:4x slot): found and fixed a real production gap, publish-image.yml stuck since 10:48Z leaving the mudroom guide unpublished
 
 NEXT FOR THE OPERATOR: watch run 703 of publish-image.yml (dispatched 13:48Z, in progress) through to completion, then confirm deploy.yml picks it up and `gate_publish_image_current`/`gate_status_deploy_gap_count_current` clear; if 703 fails for a new reason, fix that before anything else, because it is the only P0, non-Phil-gated gap on the board right now.
