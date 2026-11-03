@@ -18,6 +18,20 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main: the new article, its share card, generator and index/feed/sitemap/llms.txt updates, roadmap, dashboard files, BACKLOG section 92, this entry. No price changed. `indexnow.py --submit` refused (no egress to confirm the key file is served, the standing sandbox gap); `hourly-brief.yml`'s own `--changed` step carries it from a real runner.
 
+## PM check-in, 2026-11-03 (10:1x slot): previous work confirmed finished, fixed a stale Search Console claim in STATUS.md, OWNER-ACTIONS.md trim still handed to the operator
+
+NEXT FOR THE OPERATOR: same standing OWNER-ACTIONS.md size trim (118,214 bytes against its 110,000-byte tripwire; the remaining sections, item 1's OAuth steps, item 1b's Gemini cost table, item 4's Amazon policy table, still need a careful hand-read, not a 30 minute slot). 30 open GitHub issues, all decision/blocked-on-art, none from Phil since 2026-11-02 (#42's thread re-read directly, every comment self-authored).
+
+Attached clean: fetch, unshallow (checkout arrived shallow and detached at `fc47d1d15`), `checkout -B main origin/main`, ff-only onto `fc3abf338`, tree clean.
+
+**Previous work independently reconfirmed finished, not cited.** `preflight.py` run fresh to the documented `gate_tests` sandbox hang (test 9/467, flat CPU confirmed before killing by PID, no orphaned Chromium): 0 FAIL on every gate reached, same 3 expected WARNs (`OWNER-ACTIONS.md` size tripwire, dated-disclosures, image-coverage). `check_urls.py` 229/229, `fix_dashes.py --check` 0/0, `audit_pages.py` 0 duplicates. `cold_read_ledger.py --stale`/`--next`: 304 of 304 ledgered, 0 stale. 30 open GitHub issues unchanged via the API. `room_guide_candidates.py` run live: same noise as every recent cycle (Family Room 4 gap, Mudroom 1 gap, both non-actionable).
+
+**Found and fixed instead of re-reporting the same exhausted state.** `STATUS.md`'s Business Metrics table (line 556, last touched 2026-09-20) still said "Search Console connected: NO", checking only for a `google-site-verification` meta tag, over three weeks after Phil verified the Domain property via a DNS TXT record (2026-10-14, already recorded correctly in `OWNER-ACTIONS.md` item 1a and the dashboard). Confirmed directly before editing: `ops/site-verification.json`'s `google_dns_txt` field is non-empty, `gate_site_verification_declared` passes clean (its DNS-liveness check correctly reports UNCHECKED, this sandbox has no egress to query DNS, not FAIL or silently-passing). Corrected the row to YES with the real verification method and date, kept the still-true caveat that impressions/clicks/queries stay UNKNOWN without a Search Console API credential, and did not claim the live DNS record was re-confirmed since that is unchecked. `fix_dashes.py --check` and both `gate_stale_claims`/`gate_status_currency` called directly against the edit: clean.
+
+Not starting the OWNER-ACTIONS.md trim myself: same reasoning as the 08:4x/09:1x/09:4x cycles, it needs real judgment on load-bearing live content, not a quick cut, and does not fit this slot.
+
+Pushed to main: `STATUS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable. No push notification: a documentation correction to an already-known-resolved item is not newly actionable for Phil.
+
 ## PM check-in, 2026-11-03 (09:4x slot): previous work independently reconfirmed finished, nothing new unblocked, standing OWNER-ACTIONS.md trim handed to the operator
 
 NEXT FOR THE OPERATOR: continue the OWNER-ACTIONS.md size trim (still 118,214 bytes against its 110,000-byte tripwire), because the remaining sections (item 1's OAuth steps, item 1b's Gemini cost table, item 4's Amazon policy table) are the only identified non-Phil-gated work and a prior cycle already flagged them as needing a careful hand-read rather than a quick cut, which does not fit this 30-minute slot.
