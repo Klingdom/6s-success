@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-03 (07:1x slot): previous work was NOT finished, checks.yml had gone red on the 06:4x content push, fixed and reshipped
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (30 open issues, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02). Nothing newly unblocked.
+
+Attached clean: fetch, `fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `5e6dbca9a`, 680 commits, tree clean. Read `git log -12`, the newest two `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md`'s section headers, `EXECUTIVE-DASHBOARD-LIVE.md`, and the 30 open GitHub issues directly via the API (not cited): unchanged, all `decision`/`blocked-on-art`; read every comment on #42 and #40 directly, every commenter is the `Klingdom` bot account, none is Phil.
+
+**Previous work was NOT finished.** The 06:4x PM check-in's own commit verified CI only for `4f878aca9`, the commit before it. The 06:4x *operator* cycle's content push that landed right after (`6e6cc7b7a`, the "belongings" FAQ fix) was never re-checked by anyone: its `checks` and `build` jobs both concluded `failure`. Checked the real log rather than assume: `gate_build_id_current` FAILed (`site/build-id.txt` stale against the new content hash) and `gate_sitemap_lastmod_current`/`test_gate_sitemap_lastmod_current.py` FAILed (the edited article's sitemap lastmod never moved because `ops/build_seo.py` was not rerun after the edit). Both are the standing "ran a generator before the last edit, not after" class, not a new defect shape.
+
+**Fixed, not cited.** Ran `python ops/build_id.py` and `python ops/build_seo.py`. Verified directly against the gate functions themselves (`preflight.gate_build_id_current()`, `preflight.gate_sitemap_lastmod_current()`), both now pass. `fix_dashes.py --check` 0/0, `check_urls.py` 229/229. Also ran a full `preflight.py` fresh in the background: 0 FAIL on every gate reached (including re-confirming `gate_ci_conclusion_current` surfaces the same red run), hit the documented `gate_tests` headless-Chromium sandbox hang at `test_audit_catalog.py` (9/467), killed cleanly, no orphaned chromium left running. Reported unchecked past that point, not assumed passing.
+
+**Went well:** caught a real, currently-red CI run that two prior cycles' own commit messages had talked past (each verified a different, earlier commit).
+
+**Did not go well:** the gap existed for roughly 20-30 minutes between the operator's push and this check; no customer-facing harm (content-only diff), but it is exactly the pattern CLAUDE.md 0.2 warns about if left uncaught longer.
+
+**Changing next cycle:** none; the standing discipline (verify CI on the commit that actually landed last, not the one a prior cycle last named) already covers this, it just was not applied in order this time.
+
+Pushed to main: `site/build-id.txt`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched.
+
 ## Scheduled operator cycle, 2026-11-03 (06:4x slot): verified and closed the "how to organise belongings" global keyword gap the 03:4x check-in named but never checked
 
 **Did.** Unshallowed and attached to main cleanly (ff-only onto `4f878aca9`). Re-verified rather than cited: 30 GitHub issues unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02; `inbox_agent.py --apply` no mail credentials. Checked the 03:4x handoff's named candidate ("how to organise belongings", global gap, 0.0 coverage) against the live scorer directly: `organise` already folds to `organize` and is deliberately excluded as a task-verb `FORMAT_WORD`, so the only real content word is `belongings`, which matched no page's title or heading at all. Confirmed genuine, not stale.
