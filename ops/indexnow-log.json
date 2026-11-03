@@ -14,6 +14,7 @@
   "https://6s-success.com/articles/how-to-declutter-a-bedroom",
   "https://6s-success.com/articles/how-to-declutter-a-kitchen",
   "https://6s-success.com/articles/how-to-organize-a-basement",
+  "https://6s-success.com/articles/how-to-organize-a-dining-room",
   "https://6s-success.com/articles/how-to-organize-a-family-room",
   "https://6s-success.com/articles/how-to-organize-a-garage",
   "https://6s-success.com/articles/how-to-organize-a-guest-bathroom",
@@ -236,13 +237,6 @@
   "https://6s-success.com/zones/workshop-the-safety-and-ppe-station"
  ],
  "runs": [
-  {
-   "at": "2026-10-29T16:58:17Z",
-   "mode": "changed",
-   "offered": 6,
-   "accepted": 6,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
   {
    "at": "2026-10-29T18:01:11Z",
    "mode": "changed",
@@ -655,6 +649,13 @@
    "offered": 4,
    "accepted": 4,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-03T18:30:46Z",
+   "mode": "changed",
+   "offered": 5,
+   "accepted": 5,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -686,11 +687,11 @@
   "https://6s-success.com/articles/how-long-does-it-take-to-organise-a-room": "fb3c47b6ea6750af",
   "https://6s-success.com/articles/how-long-to-keep-a-maybe": "d66ff8f3af969e88",
   "https://6s-success.com/articles/how-to-organize-a-junk-drawer": "a2a3a2a042b02dbe",
-  "https://6s-success.com/articles/": "7bab8cdf6388a82e",
+  "https://6s-success.com/articles/": "612375d4b2ba57ef",
   "https://6s-success.com/articles/is-that-really-a-backup": "7805de5c5d8a2d3a",
   "https://6s-success.com/articles/more-storage-wont-fix-clutter": "c823bdb17b2fa5d3",
   "https://6s-success.com/articles/sentimental-items-without-guilt": "f448f8e6e3c4305e",
-  "https://6s-success.com/articles/tidy-is-not-the-same-as-safe": "3b8079cfbc638c3d",
+  "https://6s-success.com/articles/tidy-is-not-the-same-as-safe": "5aa949bc683b72e2",
   "https://6s-success.com/articles/what-is-6s": "8e2a619ffb636521",
   "https://6s-success.com/articles/what-is-a-micro-zone": "c8b251863981f33c",
   "https://6s-success.com/articles/where-to-start-decluttering": "df8bbc6da595ebbd",
@@ -728,7 +729,7 @@
   "https://6s-success.com/rooms/patio-or-deck": "5370ab75c9b81f57",
   "https://6s-success.com/rooms/primary-bathroom": "621ca9270997f3c7",
   "https://6s-success.com/rooms/primary-bedroom": "1bb4c0e7d31e98ca",
-  "https://6s-success.com/rooms/stair-landing": "71aa5b31cb67da62",
+  "https://6s-success.com/rooms/stair-landing": "3ad878cae98babd7",
   "https://6s-success.com/rooms/workshop": "97b04eb739e0056e",
   "https://6s-success.com/zones/dining-room-the-beverage-or-coffee-station": "c6922f76ca90963a",
   "https://6s-success.com/zones/dining-room-the-china-or-display-cabinet": "f3999f480ceb6bc3",
@@ -869,7 +870,7 @@
   "https://6s-success.com/primary-bedroom-deck.html": "6deb6df2eaf2a487",
   "https://6s-success.com/workshop-deck.html": "be78804e75b50ad3",
   "https://6s-success.com/patio-or-deck-deck.html": "f773efb52f38778c",
-  "https://6s-success.com/articles/why-is-my-house-always-messy": "3a7aacdbd7b75b0d",
+  "https://6s-success.com/articles/why-is-my-house-always-messy": "876da0c6fc6add95",
   "https://6s-success.com/articles/how-to-organize-a-basement": "b85177a96246ed6f",
   "https://6s-success.com/articles/how-to-organize-an-attic": "8a2a0913f50afde9",
   "https://6s-success.com/articles/how-to-declutter-a-bedroom": "07c889b3b40437e9",
@@ -891,7 +892,8 @@
   "https://6s-success.com/articles/how-to-organize-a-family-room": "3712255fb43c28c6",
   "https://6s-success.com/articles/how-to-organize-a-mudroom": "d65b122c1e3a8729",
   "https://6s-success.com/articles/how-to-organize-a-guest-bedroom": "05fa83b14f969564",
-  "https://6s-success.com/articles/how-to-organize-an-entryway": "58a34d7b69626e73"
+  "https://6s-success.com/articles/how-to-organize-an-entryway": "58a34d7b69626e73",
+  "https://6s-success.com/articles/how-to-organize-a-dining-room": "bc1c1780a2ded734"
  },
  "hash_algo": "sha256-16-lf-1"
 }
