@@ -22812,6 +22812,98 @@ def gate_backlog_section1b_items_rotated() -> None:
                 overdue_bytes, n_groups, n_bytes))
 
 
+def gate_backlog_section3_items_rotated() -> None:
+    """BACKLOG-2026-09-07.md section 3's free-form "B<N>, date, ..."
+    journal rows must not carry more than a generous buffer past ops/
+    rotate_backlog_section3_items.py's own retention window.
+
+    Found 2026-11-03, scheduled operator cycle, picking up the standing
+    handoff ops/rotate_backlog_section2_items.py's own docstring left
+    for sections 3-4: "this script's single-row-per-id assumption does
+    not safely cover" the B4/B8 id reuse there. Checked directly rather
+    than re-deferred: section 3's real hazard is that several rows are
+    bare bold paragraphs with no leading pipe at all, which a pipe-only
+    parser misses entirely. ops/rotate_backlog_section3_items.py (and
+    its shared ops/rotate_backlog_journal_core.py) handles both shapes
+    and only ever removes a matched row's own single physical line,
+    never anything after it, so id reuse cannot misfile one row's
+    narrative under another's byline.
+
+    A WARNING, not a FAIL: an oversized file wastes every later cycle's
+    reading time (STEP 1 of the operating prompt reads this file in full
+    every cycle); it does not ship anything broken to a customer. The
+    buffer (retention window plus 7 days) means this does not fire the
+    day after a rotation purely from a row drifting a day past the
+    window; it fires only once the gap is real.
+
+    Proof this can fail: ops/tests/test_gate_backlog_section3_items_
+    rotated.py builds a synthetic file with a dated row well past the
+    buffered window and asserts this gate warns, then confirms a freshly
+    rotated copy stays silent.
+    """
+    path = os.path.join(ROOT, "BACKLOG-2026-09-07.md")
+    if not os.path.exists(path):
+        return
+    import rotate_backlog_section3_items as rbs3
+    text = io.open(path, encoding="utf-8").read()
+    buffered_days = rbs3.DEFAULT_RETENTION_DAYS + 7
+    cutoff = dt.date.today() - dt.timedelta(days=buffered_days)
+    n_rows, overdue, n_bytes, overdue_bytes = rbs3.count_stats(text, cutoff)
+    if overdue:
+        warn("backlog-section3-items-rotated",
+             "BACKLOG-2026-09-07.md section 3 carries %d dated journal "
+             "row(s) older than %s (the %d-day retention window plus a "
+             "7-day buffer), %d bytes, out of %d dated rows live (%d "
+             "bytes total). Run `python ops/rotate_backlog_section3_"
+             "items.py --apply` to move them into "
+             "BACKLOG-2026-09-07-SECTION3-ARCHIVE.md."
+             % (overdue, cutoff.isoformat(), rbs3.DEFAULT_RETENTION_DAYS,
+                overdue_bytes, n_rows, n_bytes))
+
+
+def gate_backlog_section4_items_rotated() -> None:
+    """BACKLOG-2026-09-07.md section 4's free-form "C<N>, date, ..."
+    journal rows must not carry more than a generous buffer past ops/
+    rotate_backlog_section4_items.py's own retention window.
+
+    Found 2026-11-03, scheduled operator cycle, same handoff as gate_
+    backlog_section3_items_rotated above. Section 4 is where the real
+    misattribution hazard rotate_backlog_done_items.py's own docstring
+    warned about actually lives, confirmed by direct scan: two un-id'd
+    "Corrected 2026-10-14" paragraphs sit physically after the "C7
+    fourth-wave" row (dated 2026-10-27) but amend the different, earlier
+    "C7 second wave" entry (dated 2026-10-09). ops/rotate_backlog_
+    section4_items.py never touches anything after a matched row's own
+    line, so that pair stays live and correctly un-attributed to either
+    row rather than being swept into either one's archive block.
+
+    A WARNING, not a FAIL, for the same reason as its section-3 sibling.
+
+    Proof this can fail: ops/tests/test_gate_backlog_section4_items_
+    rotated.py builds a synthetic file with a dated row well past the
+    buffered window and asserts this gate warns, then confirms a freshly
+    rotated copy stays silent.
+    """
+    path = os.path.join(ROOT, "BACKLOG-2026-09-07.md")
+    if not os.path.exists(path):
+        return
+    import rotate_backlog_section4_items as rbs4
+    text = io.open(path, encoding="utf-8").read()
+    buffered_days = rbs4.DEFAULT_RETENTION_DAYS + 7
+    cutoff = dt.date.today() - dt.timedelta(days=buffered_days)
+    n_rows, overdue, n_bytes, overdue_bytes = rbs4.count_stats(text, cutoff)
+    if overdue:
+        warn("backlog-section4-items-rotated",
+             "BACKLOG-2026-09-07.md section 4 carries %d dated journal "
+             "row(s) older than %s (the %d-day retention window plus a "
+             "7-day buffer), %d bytes, out of %d dated rows live (%d "
+             "bytes total). Run `python ops/rotate_backlog_section4_"
+             "items.py --apply` to move them into "
+             "BACKLOG-2026-09-07-SECTION4-ARCHIVE.md."
+             % (overdue, cutoff.isoformat(), rbs4.DEFAULT_RETENTION_DAYS,
+                overdue_bytes, n_rows, n_bytes))
+
+
 LIVING_DOC_SIZE_LIMITS = {
     "STATUS.md": 110_000,
     "CHECKIN-LOG.md": 110_000,
@@ -32058,6 +32150,8 @@ def main() -> int:
     run_gate(gate_backlog_done_items_rotated)
     run_gate(gate_backlog_section2_items_rotated)
     run_gate(gate_backlog_section1b_items_rotated)
+    run_gate(gate_backlog_section3_items_rotated)
+    run_gate(gate_backlog_section4_items_rotated)
     run_gate(gate_living_docs_total_size_tripwire)
     run_gate(gate_status_workstreams_rotated)
     run_gate(gate_status_history_chain_not_collapsed)

@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-03 (03:0x slot): built the section-3/4 backlog rotation tool, closing a standing two-cycle-old deferral
+
+**Did.** Unshallowed, attached to main clean (642 commits onto `0aa05974f`). Re-verified: 30 GitHub issues unchanged, all `decision`/`blocked-on-art`, none from Phil; backlog sections 2-6 only C5/C6 unstruck (both `YES, Phil`); `inbox_agent.py` no mail credentials. Epics 1-5 confirmed exhausted of unblocked work by three prior cycles today. Picked up the one named epic-6 item two prior check-ins flagged "real, not urgent enough for this slot": sections 3-4 of `BACKLOG-2026-09-07.md` had no rotation tool, unlike 1b and 2, because `rotate_backlog_section2_items.py` deferred them over an id-reuse hazard.
+
+**Checked the hazard before building, not after.** Scanned the real byte structure: section 3/4 rows mix piped table rows and bare no-pipe bold paragraphs, and two un-id'd "Corrected 2026-10-14" paragraphs in section 4 actually amend an earlier, different row than the one they sit after. Built `ops/rotate_backlog_journal_core.py` plus `rotate_backlog_section3_items.py`/`section4_items.py` with a narrower rule than section 2's: archive only a matched row's own single line, never anything after it, making the misattribution structurally impossible rather than merely checked for.
+
+**Verified.** Dry-run matched a hand scan exactly; applied, confirmed by diff that the B8/B9 divider and both orphan paragraphs survived untouched. Two new preflight gates, both silent on the real file; two new tests (6/6 each) prove fail-then-pass including the orphan case. Full `preflight.py --skip-tests` re-run after: same 0-FAIL result to the same pre-existing Etsy network stall. `fix_dashes.py --check` clean.
+
+**Went well:** the old deferral's own warning turned out richer than stated, and checking it directly rather than re-deferring found the real hazard and a safe design around it.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** `OWNER-ACTIONS.md`'s own open-items section carries the same unrotated-growth shape (128KB/110KB); same Phil-gated queue otherwise.
+
+Pushed to main: the two new modules, two tests, `preflight.py`, `BACKLOG-2026-09-07.md` and its two new archive files, `ops/cycle-signal.json`, this entry. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## PM check-in, 2026-11-03 (02:0x slot): previous work confirmed finished, two due log rotations applied, a full preflight clean pass confirmed, same Phil-gated queue handed to the operator
 
 Previous work (the 01:5x operator cycle's cold-read-ledger clear) confirmed finished, not cited: attached clean (shallow/detached checkout as STEP 0 warns, unshallowed for real, `checkout -B main origin/main`, ff-only merge onto `4347275d2`, 642 commits, tree clean throughout). Re-verified rather than trusted: 30 GitHub issues pulled fresh, all `decision`/`blocked-on-art`, none from Phil since the last reply window; `BACKLOG-2026-09-07.md` sections 2-6 only C5/C6 unstruck (both explicit **YES, Phil**: Gemini billing, YouTube OAuth paste), section 6 all owner-gated; `room_guide_candidates.py` rerun fresh: only Family Room (4 gap, already read and declined as off-topic) and Mudroom (1, noise) remain, no genuinely new room-guide candidate. Checked recent GitHub Actions runs (Checks, Deliver paid orders, LinkedIn/Bluesky drafts, Hourly brief): all green.
