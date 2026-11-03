@@ -83,10 +83,12 @@
   },
   "Pantry|Snack and Lunch Zone": {
    "names": [
-    "snacks zone"
+    "snacks zone",
+    "snack box"
    ],
-   "queries": 1,
-   "covered": 0
+   "queries": 2,
+   "covered": 0,
+   "source": "ops/keyword-demand.json (bing, no market): 'build a snack box' (rank 18, gap, 0.333 title coverage, unmatched ['box','build']) and 'fruit snack box organizer' (rank 14, gap, 0.333 title coverage, unmatched ['box','fruit']), both already routed by best_page to this zone's own page (the room's only zone that matches 'snack'), just missing the word 'box' from any heading. The zone's own content.json purpose ('Holds what goes into a lunchbox') and passes text ('pull the snack boxes with two bars rattling in the bottom') already use the literal phrase 'snack box' in body copy, confirmed by grep against the live page before adding; this zone's open bin of pre-approved snacks is exactly what a household calls a snack box. Named 'snack box', the exact phrase searched, alongside the existing 'snacks zone' entry, not a replacement for it."
   },
   "Kitchen|Sink and Dishwashing Zone": {
    "names": [
@@ -215,6 +217,14 @@
    "queries": 1,
    "covered": 0,
    "source": "ops/keyword-demand.json 2026-11-03: 'organize grilling station', rank 1, partial, 0.5 title coverage, correctly scored to /zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html but held at partial because the page's own title says 'grill station' and the scorer matches exact words, not stems, the same exact-word-not-stem shape A34/A36 already fixed for 'nappy'/'nappies' and 'craft'/'crafts'. Zone purpose (the grill, the fuel, the long-handled tools and the cooking surface) confirms the semantic match. Named 'grilling station', the exact phrase searched and a real name people use for this kind of zone, not the bare word alone."
+  },
+  "Patio or Deck|Outdoor Seating Zone": {
+   "names": [
+    "cushions zone"
+   ],
+   "queries": 2,
+   "covered": 0,
+   "source": "ops/keyword-demand.json + ops/keyword-demand-global.json: 'how to store outdoor seating cushions' (both US and global, partial, 0.5 coverage, unmatched ['cushions']) and 'outdoor furniture seating storage' (US, partial, 0.5, unmatched ['furniture']), both already routed by best_page to this zone's own page (the room's only zone matching 'outdoor'+'seating'), not a coincidental collision: the zone's own content.json purpose and passes text repeatedly discuss cushions ('Seats people... with the cushions kept dry', 'every cushion in the deck box', 'Cushions live in the deck box, not stacked on a seat', 'check the underside of every cushion', 'one cushion per seat') and that is the zone's own real answer to how its chairs' cushions get stored, just never in a heading. Named 'cushions zone', the '<word> zone' precedent from the A-series (crafts zone, drawers zone, cooking utensils zone), not the bare word alone, which nobody searching this calls the zone itself."
   }
  }
 }

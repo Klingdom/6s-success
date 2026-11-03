@@ -35170,12 +35170,11 @@
       "best_page": "/garage-deck.html",
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.2,
-      "heading_coverage": 0.6,
+      "heading_coverage": 0.8,
       "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "cushions",
         "garage"
       ],
       "markets": [
@@ -35193,12 +35192,11 @@
       "best_page": "/articles/how-to-store-blankets.html",
       "best_page_title": "How to store blankets, and where each kind should live",
       "coverage": 0.2,
-      "heading_coverage": 0.6,
+      "heading_coverage": 0.8,
       "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "cushions",
         "winter"
       ],
       "markets": [
@@ -35261,13 +35259,11 @@
       "best_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
       "best_page_title": "How to organize the patio or deck outdoor seating",
       "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "cushions"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -48716,6 +48712,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-11-03T22:02:58Z",
-  "scored_against_commit": "56ec91847"
+  "scored_at": "2026-11-03T22:20:00Z",
+  "scored_against_commit": "fe01a1533"
 }
