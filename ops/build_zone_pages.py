@@ -2026,6 +2026,9 @@ ROOM_GUIDES = {
     "Mudroom": [("../articles/how-to-organize-a-mudroom.html",
                 "How to organize a mudroom, step by step",
                 "Hooks first, then the bench, the shoe rack, the pet gear, the seasonal bins and the cleaning corner.")],
+    "Entryway": [("../articles/how-to-organize-an-entryway.html",
+                 "How to organize an entryway, step by step",
+                 "The door and mat first, then the landing tray for keys and mail, the coat hooks, the shoe rack and the bench last.")],
 }
 
 
