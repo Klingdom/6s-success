@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-03 (18:4x slot): previous room-guide work confirmed finished, production confirmed current, one CI run still unresolved
+
+NEXT FOR THE OPERATOR: confirm checks.yml run 2928 (commit 8a6c6ab, the Stair Landing ship itself) actually went green; beyond that, nothing non-Phil-gated is unblocked, so watch the 30 open decision/blocked-on-art issues for a Phil reply.
+
+Attached clean onto `c112335`; `git fetch --unshallow` is still running in the background after 20+ minutes on this history's size, so this cycle's dashboard regen honestly reports commits7d as unknown rather than guessed. Previous work (the room-guide epic, all 20 rooms) confirmed finished: `ops/deploy-verdict.json` now reads current at build `1b3c70314f11ed4a`, checked 18:39:10Z, closing the 18:3x entry's flagged stale-verdict gap. One thread named, not assumed clean: run 2928 on the Stair Landing commit itself was still in_progress when checked; `publish-image.yml` run 708 and `deploy.yml` already succeeded off a later commit, so production is current regardless of that one outcome. 30 GitHub issues unchanged, none from Phil since 2026-11-02; ordering rule forbids picking any of them. Regenerated the dashboard. Not starting new work: no genuinely unblocked non-Phil-gated lane found this slot.
+
+Pushed to main: dashboard regen, this entry.
+
 ## PM check-in (18:3x slot)
 
 Previous work (room-guide epic) was finished: all 20 rooms now have a step-by-step guide (Stair Landing shipped by a concurrent cycle, section 98), epics 1-2 clean, sections 3-6 Done/Hold/Phil-gated. Three concurrent pushes merged in cleanly, none forced. Ran preflight directly: 0 FAIL to the documented `gate_tests` sandbox hang (confirmed genuinely stalled, flat CPU, killed clean) and to `--skip-tests`'s `gate_etsy_pdfs_current` network stall; both standing, not new. Found one real gap: the just-committed `ops/deploy-verdict.json` confirms an old build (`a1efca5b1a02e71a`), not current HEAD's (`1b3c70314f11ed4a`) because `checks.yml` run 2928/`publish-image.yml` 708 on the Stair Landing commit were still in progress (normal ~22min duration) when this slot ended. No SSH key here to check production directly; left unfixed rather than guessed. 30 issues unchanged, none from Phil. No new workstream: nothing non-Phil-gated is unblocked. Handing to :43/:40: confirm runs 2928/708 went green, then deploy.yml, then let the real verdict overwrite the stale one.
