@@ -26,6 +26,22 @@ No push notification: `ops/last-owner-notification.json` names a no-repeat-befor
 
 Pushed to main: this entry, dashboard regen pending.
 
+## Scheduled operator cycle, 2026-11-03 (~14:3x UTC): shipped the entryway guide, caught the new pre-push gate's first real occurrence
+
+**Did.** Unshallowed and attached to main cleanly. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries, and 30 live GitHub issues (unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02). `preflight.py --skip-tests`: 0 FAIL before the documented `gate_etsy_pdfs_current` stall. Epics 1-2 clean; picked the highest epic-3 item: `room_guide_candidates.py` named Entryway strongest of the four remaining guide-less rooms (0 gap, 15 partial, 38 on-topic of 121 rows). Shipped `site/articles/how-to-organize-an-entryway.html` (3,202 words), built in `content.json`'s own documented zone order, three word-overlap noise rows checked and excluded before trusting them.
+
+**Verified.** `audit_pages.py` 237/0, `check_urls.py` 232/232, `link_graph_report.py` 0 orphans, `affiliate.py`/`check_sellable.py` clean, `fix_dashes.py` 0/0, `preflight.py` re-run clean. Caught before shipping: `gate_unsourced_stats` flagged ordinary phrasing ("up to" near a time range); reworded rather than widen the gate.
+
+**Went well.** The new `check_risks_evidence_fast.py` pre-push gate (built last cycle) correctly FAILed on this guide's own form, `forms_dead` 236 to 237 uncited in RISKS.md; fixed the citation before push, not after, the exact defect it exists to stop.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** three guide-less rooms remain (Dining Room, Guest Bedroom, Stair Landing), all weaker than Entryway. Real lever stays Phil-gated.
+
+Pushed to main: the new article and its wiring, `BACKLOG-2026-09-07.md` section 95, `RISKS.md`, dashboard files, this entry. No price or product touched. `ops/indexnow.py --submit` to follow.
+
 ## PM check-in, 2026-11-03 (14:1x slot): previous work confirmed finished, nothing new unblocked
 
 **Previous work was finished.** Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only onto `969bfd89e`, tree clean). The 14:0x operator cycle's new `ops/check_risks_evidence_fast.py` and `.githooks/pre-push` wiring verified directly, not cited: ran both against the live tree (`check_risks_evidence_fast.py` and `check_nightly_log_fast.py`), both exit 0; `git config core.hooksPath` confirms `.githooks` is the active hooks path; RISKS.md's `forms_dead=236` citation matches `ops/state.json` exactly. `preflight.py --skip-tests` run fresh to completion: 0 FAIL across every gate reached, killed by its own timeout at the documented `gate_etsy_pdfs_current` network stall (Etsy's fee schedule, HTTP 403), same standing limitation prior cycles report. `check_urls.py` 231/231, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/305.
