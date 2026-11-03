@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-03 (13:4x slot): found and fixed a real production gap, publish-image.yml stuck since 10:48Z leaving the mudroom guide unpublished
+
+NEXT FOR THE OPERATOR: watch run 703 of publish-image.yml (dispatched 13:48Z, in progress) through to completion, then confirm deploy.yml picks it up and `gate_publish_image_current`/`gate_status_deploy_gap_count_current` clear; if 703 fails for a new reason, fix that before anything else, because it is the only P0, non-Phil-gated gap on the board right now.
+
+Attached clean: checkout arrived shallow and detached; unshallowed (730 commits), `checkout -B main origin/main`, ff-only onto `52efd626b`, tree clean before starting.
+
+**Did not take the 13:1x handoff's "nothing unclaimed" line at face value.** That entry itself flagged `publish-image.yml` as still in progress and asked the next cycle to re-verify it went green; checked directly via the GitHub Actions API rather than assume it caught up. It had not: run 702 (`ecadb477a`, the mudroom-guide dashboard regen) completed with conclusion `failure`, and `checks.yml`'s own run on the 13:1x fix commit (`b7682ed18`) also failed, both for the same root cause, `gate_risks_evidence_current` citing `forms_dead=235` against a live `236` (the exact defect the 13:1x entry fixed, 20 minutes too late for that CI run to see it). No push touching `site/` or the Dockerfile had landed since, so `publish-image.yml` never re-ran and production's image stayed pinned at `82569860`, several commits and a full new article (the mudroom guide) behind repository HEAD.
+
+**Fixed, not just named.** Re-ran this cycle's own `preflight.py --skip-tests` fresh and confirmed `gate_risks_evidence_current` is clean now (no FAIL), so the 13:1x fix holds; the only real FAIL left is `gate_publish_image_current` itself, reporting exactly the stale-image gap above. Since the underlying defect was already corrected and nothing new blocks it, dispatched `publish-image.yml` directly (`workflow_dispatch`, run 703) rather than wait for a future site-touching push to do it by accident. Regenerated the dashboard afterward (YELLOW, $0 of $20,000 this month carried forward, $19 all-time, `commits7d` 1436).
+
+**Verified:** working tree clean both before and after; no content, price or product file hand-edited (`EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json` are generator output). 30 open GitHub issues, unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02. Did not wait out the full local `preflight.py` run (it was still inside the documented `gate_etsy_pdfs_current` slow Chromium render when this entry was written); nothing after that point in the gate order is reported as checked here.
+
+**Went well:** followed the 13:1x cycle's own explicit ask to re-verify the pipeline rather than treat "watch for it" as someone else's job, and found a real, fixable P0 gap instead of a false alarm.
+
+**Did not go well:** the gap existed for about 38 minutes (13:15 run 702 failing to 13:48 this re-trigger) with no cycle noticing until this one checked the Actions API directly instead of trusting the last entry's framing.
+
+**Changing next cycle:** none; the fix is a one-off re-trigger, not a new standing gate.
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product hand-touched. No push notification: production was never serving stale content to a buyer (the site itself was unaffected, only the next deploy's source image), and the fix is already in motion, not a decision for Phil.
+
 ## PM check-in, 2026-11-03 (13:1x slot): previous work finished; found and fixed one stale RISKS.md citation the mudroom guide's own footer form caused
 
 NEXT FOR THE OPERATOR: nothing unclaimed and non-Phil-gated exists; watch the automatic deploy pipeline (checks.yml and publish-image.yml were both still in_progress on HEAD `ecadb477a` when this cycle ended, deploy.yml had not yet caught up) and re-verify it goes green before building on top, same discipline the 10:4x cycle already named for this shape; otherwise watch for Phil's reply on #42/#40 or any cleared gate.
