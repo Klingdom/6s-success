@@ -233,13 +233,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-23T17:30:50Z",
-   "mode": "changed",
-   "offered": 4,
-   "accepted": 4,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-23T18:59:15Z",
    "mode": "changed",
    "offered": 1,
@@ -651,6 +644,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-03T07:00:04Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -689,7 +689,7 @@
   "https://6s-success.com/articles/tidy-is-not-the-same-as-safe": "64a78e9398ad2299",
   "https://6s-success.com/articles/what-is-6s": "8e2a619ffb636521",
   "https://6s-success.com/articles/what-is-a-micro-zone": "c8b251863981f33c",
-  "https://6s-success.com/articles/where-to-start-decluttering": "240129d27bc49172",
+  "https://6s-success.com/articles/where-to-start-decluttering": "df8bbc6da595ebbd",
   "https://6s-success.com/articles/why-a-shared-zone-never-stays-reset": "1e7cf433bfeb1833",
   "https://6s-success.com/articles/why-everyone-in-your-house-disagrees-about-clean": "fbf8728e08642ac4",
   "https://6s-success.com/articles/why-it-lives-in-one-room-but-gets-used-in-another": "4f218927c828a759",
