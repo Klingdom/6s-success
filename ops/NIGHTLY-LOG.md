@@ -20,6 +20,26 @@ Read items 1 (YouTube), 1b (Gemini) and 4 (affiliate) directly: each one's remai
 
 Pushed to main: `OWNER-ACTIONS.md`, `OWNER-ACTIONS-ARCHIVE.md`, `ops/rotate_owner_actions_item_history.py`, `ops/preflight.py`, its test, dashboard files, this entry. No price or product touched, no new page, IndexNow not applicable.
 
+## PM check-in, 2026-11-03 (10:4x slot): previous work was NOT finished, checks.yml and publish-image.yml both red on the 10:xx content push, fixed and re-triggered
+
+NEXT FOR THE OPERATOR: confirm checks.yml and publish-image.yml both go green on this fix (`gh`/API, not assumed), then resume the standing Phil-gated queue (30 open issues, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02, re-read #42's thread directly, every comment self-authored). The room-guide lane is weak now: Mudroom's only gap row ("organize outdoor diy lab") is noise, matching Family Room's own two false positives from this morning, so no further room guide clears the bar until a fresh keyword pull finds one.
+
+Attached clean: fetch, unshallow (checkout arrived shallow and detached at `fc47d1d15`), `checkout -B main origin/main`, ff-only onto `5f038069f`, tree clean before starting.
+
+**Previous work was NOT finished.** The 10:xx operator cycle's Family Room guide push (`071f29fea`, "Regenerate dashboard after rebasing onto concurrent family-room-guide cycle") went red on two workflows, not green as the commit history implied: `checks.yml` run 2905 concluded `failure` (`gate_risks_evidence_current`: RISKS.md's own `forms_dead=234` citation had gone stale against `ops/state.json`'s `235`, one page behind after the new guide's own footer form). The real-content consequence is the one CLAUDE.md 0.2/0.3 cares about: `publish-image.yml`'s own run at the immediately prior commit (`06cd79f4ac`) failed on the identical cause (preflight runs inside that workflow too), and because `publish-image.yml` only re-triggers on a `site/**`/`Dockerfile` push, no later commit (all dashboard-only) had re-fired it. `gate_publish_image_current` confirmed directly: HEAD's `site/` differs from the last commit it actually shipped (`baa9343b`), real content (today's room guide, among others) sitting unpublished to the image the host pulls, exactly the failure mode its own docstring names.
+
+**Fixed, not cited.** Updated `RISKS.md`'s single live citation (234 to 235), matching the file's own established convention of a headline-count-only edit with no new `forms_dead=` token in the history below it, so the next page shipped doesn't retrip this same gate. Verified directly against the gate function itself (`preflight.gate_risks_evidence_current()`), clean. Ran `preflight.py` fresh in the background: 0 new FAIL beyond the expected, self-resolving `gate_ci_conclusion_current` (reporting the exact red run this entry fixes); killed at a different, still-documented sandbox stall point (`test_cold_read_ledger_stale.py`, 46/467 this time rather than the usual 9/467), confirmed genuinely stalled by flat CPU time (11s across 8+ seconds wall-clock) before killing by PID. A stray `site/audit_exit_code_probe.html` left by that same run's own test sweep was deleted before committing, not left for the next cycle to trip over.
+
+**Re-triggered `publish-image.yml` via `workflow_dispatch`** after the fix landed, rather than wait for the next `site/`-touching push, since real content has been sitting unpublished since 06:59 UTC.
+
+**Went well:** caught this before the operator's :43 slot inherited a dirty, unverified CI state; the two failures shared one root cause, so one fix cleared both.
+
+**Did not go well:** the gap between the 10:xx push and this check was about 20 minutes; CLAUDE.md 0.2's own worked example is exactly this shape (a correctly-failing gate that nobody reads before building on top), so this is a near-miss, not a new defect class.
+
+**Changing next cycle:** none; re-verify this commit's own CI goes green before trusting it, the same discipline the 07:1x cycle already wrote down for the identical shape.
+
+Pushed to main: `RISKS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No new page, no price change. No push notification: a CI fix within the same cycle that found it is not newly actionable for Phil.
+
 ## Scheduled operator cycle, 2026-11-03 (10:xx UTC): shipped a step-by-step family room guide, the strongest guide-less room on a fresh check
 
 **Did:** Attached to main cleanly. Read `GOALS.md`, `STATUS.md`, `CLAUDE.md` section 0, `BACKLOG-2026-09-07.md` sections 0-7 and 87-91. Checked GitHub directly: 30 issues unchanged, #42's 8 comments all self-authored, none from Phil since 2026-11-02. `preflight.py`: 0 FAIL before the documented `gate_tests` hang. Re-ran `room_guide_candidates.py`: Family Room led the 6 guide-less rooms (4 gap/30 partial of 221). Read the gap queries first: "dental organization ideas" and "nightstands with hidden storage" are autocomplete noise, not real demand; built the guide around the two genuine gaps (video/board game storage) plus the room's own `content.json`. Wired into `ROOM_GUIDES`, the articles index/hasPart, llms.txt (51), feed.xml (49), sitemap, a real share card, two reciprocal links, and the roadmap's page count (234 to 235).
