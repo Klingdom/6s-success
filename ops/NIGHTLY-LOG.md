@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-03 (17:4x slot): the previous cycle's own "unchecked" turned out to be a real FAIL, found and fixed
+
+NEXT FOR THE OPERATOR: confirm checks.yml run 2927 and the just-triggered publish-image.yml dispatch both go green on commit 69080a3d2 before building on top; if both are clean, Stair Landing (0 gap, 3 partial, 4 on-topic of 25) is the only remaining guide-less room and the only genuinely unblocked lever (every other lane is Phil-gated: 30 open decision/blocked-on-art issues, none from him since 2026-11-02).
+
+Attach needed the full unshallow (checkout arrived shallow and detached); clean onto `6a09a6373`, tree clean. Per step 2, checked whether the 17:1x cycle's work was actually finished rather than trusting its own "still in_progress" note: both checks.yml run 2925 (the dining room guide commit) and run 2926 (this cycle's own merge) had since completed with conclusion FAILURE, not success. Pulled the job logs directly: both failed at the same Preflight step, root cause `test_gate_keyword_demand_global_rescored_current.py`, because `ops/keyword-demand-global.json` was last rescored at `a61d75246`, 7 real site/-touching commits behind HEAD (the entryway, guest bedroom and dining room guides all landed since). The same failure cascaded into `publish-image.yml` run 706, so the dining room guide and the merge commit were genuinely sitting undeployed, not merely unverified.
+
+**Fixed, not just reported.** `python ops/keyword_demand_global.py --rescore` (free, no network): 2170 queries re-scored against 242 pages at the real HEAD, gap unchanged at 97, partial 978 to 967, covered 1095 to 1106. Verified the gate and its test both pass clean against the real file before committing. `fix_dashes.py --check` 0/0.
+
+**One stray file from an earlier killed run, found and reverted, not committed.** A near-full `preflight.py` run (no `--skip-tests`) genuinely stalled on `gate_prerender_shop_current`'s headless-browser call (confirmed flat CPU across three checks over 20+ seconds before killing it), the same sandbox network-egress limitation as the documented `gate_tests`/`gate_etsy_pdfs_current` hangs. The kill left one tracked file truncated to 0 bytes (`build/listings/etsy/L1-whole-house/listing-images/6S-Whole-House-Print-Pack-1-first-page.png`); caught by `git status`, restored with `git checkout --`, not shipped.
+
+Pushed to main (merged a concurrent hourly check-in commit, clean, no conflict): the rescore fix, dashboard regen. Then re-triggered `publish-image.yml` via `workflow_dispatch` on the fixed commit, since the fix itself touches no `site/` path and would not otherwise re-fire the publish pipeline's path filter. Both `checks.yml` run 2927 and the dispatch were still queued/in progress when this cycle ended; per CLAUDE.md 0.4, named as unverified rather than assumed clean.
+
+No push notification: nothing here is a new customer-facing fact, and the open decision queue's no-repeat-before is 2026-11-04.
+
 ## PM check-in, 2026-11-03 (17:1x slot): previous work confirmed finished, merged the operator's concurrent dining room ship rather than duplicate it
 
 Attach needed a correction, not just the usual unshallow. The checkout arrived shallow and detached; after `git fetch --unshallow`, `git checkout main` succeeded against a stale leftover local `main` ref (not the documented shallow/detached case) rather than creating one from `origin/main`, so `git merge --ff-only origin/main` correctly refused with "unrelated histories" against real divergence, not a transient shallow artifact. Confirmed the working tree was clean first, then `git checkout -B main origin/main` to reset the local branch onto the real remote history; tree clean, no work lost.
