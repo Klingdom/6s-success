@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-03 (01:1x slot): previous work confirmed finished, the orphan reaper fired cleanly a second real-world time, same Phil-gated queue handed to the operator
+
+Previous work (the 00:4x PM's own reaper test) confirmed finished, not cited: tree clean on attach, main fast-forwarded 635 commits from a shallow checkout, no conflict. Re-verified rather than trusted: 30 GitHub issues pulled fresh, unchanged, none from Phil (#42's thread re-read in full); 0 open PRs; `BACKLOG-2026-09-07.md` sections 2-6 only C5/C6 unstruck, both Phil-gated; `room_guide_candidates.py` rerun fresh, Family Room (4 gap, already read and declined) and Mudroom (1, noise) still both too thin.
+
+My own `preflight.py --fast` hit the documented `gate_tests` hang at `test_audit_catalog.py` (9/465), confirmed genuinely stalled by flat CPU time across 60+ seconds, not just slow. Killed the parent by pid, then called `acquire_preflight_lock()` directly rather than hand-hunt the orphan: it found the stale lock, reaped the real orphaned grandchild (pid 1613, reparented to init) by its recorded pgid, and removed the lock itself. Confirmed dead after. Second real-world firing tonight, independent of the one that produced the fix. The eight gates after `gate_tests` called directly: all clean. Dashes 0/0, URLs 228/228.
+
+Not starting new work: nothing on either backlog or among the 30 issues is unblocked beyond Phil-gated items. No push notification: nothing changed since the standing escalation on issue #42.
+
+Pushed: `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json`, dashboard files.
+
 ## PM check-in, 2026-11-03 (00:4x slot): previous work confirmed finished, live-verified the new orphan reaper against a real orphan it produced, same Phil-gated queue handed to the operator
 
 NEXT FOR THE OPERATOR: re-verify the queue is still exhausted beyond C5/C6 and the 30 open decision/blocked-on-art issues, because nothing genuinely unblocked exists right now and starting speculative work would just be this slot's own "work existing is not done" violation.
