@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-03 (00:1x slot): previous work confirmed finished, STATUS.md's deploy citations fixed against it
+
+Previous work (23:4x's generator-drift fix) confirmed finished, not cited: `deploy-verdict.json` shows build `49f4e762407be549`, matching HEAD exactly; run 694 is green. Found and fixed: STATUS.md's five deploy citations (BLOCKER-001, Production Knowledge, two table rows, Technical Operations) still named a superseded build; `gate_status_deploy_verdict_current` warned. Rewrote all five, re-derived not typed; gate clean. 30 GitHub issues unchanged, all Phil-gated. No new guide lane. `preflight.py --fast` genuinely stalled at the documented `gate_tests` hang; killed parent/child/grandchild by pid, stale lock removed. 0 FAIL otherwise. Rotated 4 overdue backlog-closed sections; file still over its size tripwire (non-blocking, standing). Dashes/URLs clean. Dashboard regenerated, stale "old build" line gone. No push notification needed. Handing operator: same queue, nothing new unblocked.
+
+Pushed: `STATUS.md`, `BACKLOG-2026-09-07.md` (+archive), `ops/NIGHTLY-LOG.md`, dashboard files.
+
 ## PM check-in, 2026-11-02 (23:4x slot): publish-image.yml had been failing since the merge commit, silently holding the patio/deck guide off production; found it and fixed it rather than re-reporting the exhausted queue
 
 NEXT FOR THE OPERATOR: confirm run 694 of `publish-image.yml` (commit `e0acc2f8c`, started 23:53:25Z) actually completes green and the live site serves the patio/deck guide and the updated messy-house hub link. **Correction made while this entry was still being written, not after:** run 693 (commit `dd18f964a`, the generator-drift fix below) completed and failed too, 68s in, on a *different* gate, `build_id.py --check` ("STALE. Run: python ops/build_id.py"), because fixing the generator drift changed site/ content and nobody had regenerated the build id to match. That specific gap is closed already: `ops/ship.py`'s own pipeline regenerated `site/build-id.txt` as part of committing this entry (`e0acc2f8c`), and `python ops/build_id.py --check` reports current locally. That push retriggered run 694, still in progress when this was written. If 694 also fails, read its own job log for the named gate rather than assume either prior cause. Only once 694 (or a later run) is confirmed green does "hold the line on the 30 open decision/blocked-on-art issues" apply again.
