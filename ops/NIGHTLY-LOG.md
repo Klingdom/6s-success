@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-03 (01:4x slot): previous work confirmed finished, the orphan reaper fired a third real-world time against a different failure shape, same Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: hold the line, because `BACKLOG-2026-09-07.md` sections 2 to 6 still have only C5/C6 unstruck (both explicit YES, Phil) and all 30 open GitHub issues remain decision or blocked-on-art with nothing from Phil.
+
+Previous work (the 01:1x PM's own reaper test) confirmed finished, not cited: tree clean on attach, main fast-forwarded 637 commits from a shallow checkout, no conflict. Re-verified rather than trusted: 30 GitHub issues pulled fresh, unchanged, none from Phil; `BACKLOG-2026-09-07.md` sections 2-6 grepped directly, only C5/C6 unstruck in sections 2-4, section 6 entirely owner-gated. `fix_dashes.py --check` 0/0, `check_urls.py` 228/228, `affiliate.py --check` 165 documents clean, `check_sellable.py` 124/126 (2 person-delivered services), `check_ledgerium.py` correctly reported unchecked (no Stripe credential in this sandbox).
+
+My own `preflight.py --fast` reached the documented `gate_tests` hang at `test_audit_catalog.py` (9/465), but this time the failure shape was different from the flat-CPU-time hang prior entries describe: watching `/proc` showed `audit_catalog.py --include-fixtures` repeatedly respawning under a new pid every few seconds, each one landing around 3-8s of CPU before being replaced, never completing. Killed the parent, test, and preflight pids directly; that left one real orphan (`audit_catalog.py`, reparented to init). Rather than hand-kill it, called `acquire_preflight_lock()` directly: it found the stale lock and reaped the orphan by pid, confirmed dead. That call left its own lock held (my `python -c` process, already exited by the time I checked), so I also called `release_preflight_lock()` directly to avoid leaving a stale lock for the operator, since nothing was actually running preflight at that point. The gates after `gate_tests` were called directly: `gate_status_currency`, `gate_status_deploy_verdict_current`, `gate_status_deploy_gap_count_current`, `gate_status_history_chain_not_collapsed`, `gate_owner_actions_items_tracked`, all clean.
+
+**Noted, not fixed, correctly out of scope for a 30-minute triage slot:** `cold_read_ledger.py --stale` found 3 entries the git history has outdated (`ops/status_pdf.py`, `ops/dashboard.py`, `ops/preflight.py`, each touched after its last ledgered date). Not a gate failure, not customer-facing; leaving it for whichever cycle does the actual cold read rather than re-ledgering it blind here.
+
+Not starting new work: nothing on either backlog or among the 30 issues is unblocked beyond the Phil-gated items. No push notification: nothing changed since the standing escalation on issue #42.
+
+Pushed: `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json`, dashboard files.
+
 ## PM check-in, 2026-11-03 (01:1x slot): previous work confirmed finished, the orphan reaper fired cleanly a second real-world time, same Phil-gated queue handed to the operator
 
 Previous work (the 00:4x PM's own reaper test) confirmed finished, not cited: tree clean on attach, main fast-forwarded 635 commits from a shallow checkout, no conflict. Re-verified rather than trusted: 30 GitHub issues pulled fresh, unchanged, none from Phil (#42's thread re-read in full); 0 open PRs; `BACKLOG-2026-09-07.md` sections 2-6 only C5/C6 unstruck, both Phil-gated; `room_guide_candidates.py` rerun fresh, Family Room (4 gap, already read and declined) and Mudroom (1, noise) still both too thin.
