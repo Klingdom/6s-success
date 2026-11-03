@@ -28,6 +28,7 @@
   "https://6s-success.com/articles/how-to-organize-a-pantry",
   "https://6s-success.com/articles/how-to-organize-a-patio-or-deck",
   "https://6s-success.com/articles/how-to-organize-a-primary-bathroom",
+  "https://6s-success.com/articles/how-to-organize-a-stair-landing",
   "https://6s-success.com/articles/how-to-organize-a-workshop",
   "https://6s-success.com/articles/how-to-organize-an-attic",
   "https://6s-success.com/articles/how-to-organize-an-entryway",
@@ -237,13 +238,6 @@
   "https://6s-success.com/zones/workshop-the-safety-and-ppe-station"
  ],
  "runs": [
-  {
-   "at": "2026-10-29T18:01:11Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
   {
    "at": "2026-10-29T22:57:41Z",
    "mode": "changed",
@@ -656,6 +650,13 @@
    "offered": 5,
    "accepted": 5,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-03T19:01:06Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -893,7 +894,8 @@
   "https://6s-success.com/articles/how-to-organize-a-mudroom": "d65b122c1e3a8729",
   "https://6s-success.com/articles/how-to-organize-a-guest-bedroom": "05fa83b14f969564",
   "https://6s-success.com/articles/how-to-organize-an-entryway": "58a34d7b69626e73",
-  "https://6s-success.com/articles/how-to-organize-a-dining-room": "bc1c1780a2ded734"
+  "https://6s-success.com/articles/how-to-organize-a-dining-room": "bc1c1780a2ded734",
+  "https://6s-success.com/articles/how-to-organize-a-stair-landing": "d3f3285427490b04"
  },
  "hash_algo": "sha256-16-lf-1"
 }
