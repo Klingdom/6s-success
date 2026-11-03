@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-03 (~22:2x UTC): a real CI FAIL from this session's own prior push, caught by publish-image.yml, fixed, and turned into a fast pre-push gate
+
+**Did not assume green.** Watched `checks.yml`/`publish-image.yml`/`deploy.yml` for the "grilling station" push (two entries below) via a background monitor rather than treat the push as done. `publish-image.yml` run 41727990954 completed `failure`. Read the real log, not a summary: `gate_also_called_no_digital_collision` FAILed because "grilling station" shares "station" with the unrelated digital-context query "desktop charging station organizer," the exact page-unscoped bag-of-words collision that gate was built to catch after an earlier cycle's own near miss with "games." `deploy.yml` never promoted this commit; production stayed on the prior, clean push.
+
+**Fixed, confirmed before shipping.** Renamed the entry to "grilling zone" (the established `<word> zone` A-series pattern), called `check_also_called_no_digital_collision()` directly against the real candidate before pushing: zero problems. `test_gate_also_called_no_digital_collision.py` (5/5) and `test_gate_zone_also_called_is_heading.py` (6/6) pass against the real site; the target query stays `covered`; the digital-context row stays correctly routed to its own charging zone.
+
+**Turned the lesson into a gate, per CLAUDE.md 10b, not just a correction.** This gate already existed; the real gap was that it lives inside the full test suite this sandbox's `gate_tests` Chromium hang blocks, so every local `--skip-tests` preflight run this cycle used never reached it before push, same shape as the nightly-log-ordering and RISKS.md-citation gaps already fixed this way. Built `ops/check_also_called_digital_collision_fast.py`, mirroring `check_risks_evidence_fast.py` exactly: calls the gate directly, skips `gate_tests`, runs in under a second. Wired into `.githooks/pre-push`. Fail-then-pass proved directly against the real shipped regression (planted "grilling station" against the real `keyword-demand.json`, confirmed FAIL, restored, confirmed PASS) before writing the gate this way, and again via `ops/tests/test_check_also_called_digital_collision_fast.py` (2/2, isolated fixtures).
+
+**Said plainly, not minimized:** this session shipped a FAIL-worthy regression once this cycle. CI caught it before production did, which is the system working as designed, not luck, but the local-verification gap (every gate inside the skipped test suite is invisible to a `--skip-tests` run) is real and now one gate narrower.
+
+**Verified.** `bash -n .githooks/pre-push` parses; running the hook directly against the real, current repo passes all three fast checks silently. `python3 -c "import ast; ast.parse(...)"` on both new files. `fix_dashes.py --check` 0/0. `check_nightly_log_fast.py`, `check_risks_evidence_fast.py`, `check_also_called_digital_collision_fast.py` all clean. `cold_read_ledger.py --add` recorded the new wrapper (its test is excluded from the ledger by design, same as every sibling test). No price or product touched; no new site page, `IndexNow` not applicable.
+
+**Went well:** watching the actual CI result rather than trusting a push, and turning a one-off fix into a gate the same slot it was found, not deferred.
+
+**Did not go well:** the `--skip-tests` local-verification gap is now one check narrower but not zero; any future gate that only lives inside the full suite carries the same risk until it, too, gets a fast wrapper.
+
+**Changing next cycle:** when adding to `room-also-called.json`/`zone-also-called.json`, run the new fast check directly before pushing, same discipline this entry's own fix used. **Note:** a concurrent cycle's own section-102 work (two entries below) edited `ops/zone-also-called.json` at the same time as this fix and reset-and-reapplied its own edit onto this commit rather than text-merging; its own entry (next below) describes that resolution.
+
+**Next:** unchanged: the A37-shaped basement collision on Patio or Deck's "outdoor storage" queries, then Garage/Hall Closet/Home Office/Kitchen by `room_guide_underperformance.py`'s ranking. 30 open `decision`/`blocked-on-art` GitHub issues, none from Phil since 2026-11-01/02; no push notification, nothing material changed on that front.
+
+Pushed to main: `ops/zone-also-called.json`, `ops/check_also_called_digital_collision_fast.py`, `ops/tests/test_check_also_called_digital_collision_fast.py`, `.githooks/pre-push`, `ops/cold-read-ledger.json`, `build_zone_pages.py`-regenerated files, this entry, dashboard files. No price or product touched; no new page, `IndexNow` not applicable.
+
 ## PM check-in, 2026-11-03 (22:1x slot): previous work confirmed finished by a real run, not cited, nothing new unblocked
 
 Attached clean (fetch, genuine unshallow watched to completion, checkout main, ff-only, tree clean). **Previous work (22:0x operator cycle) confirmed finished, verified, not cited:** ran `preflight.py` fresh in the background, watched it through every gate: 0 FAIL, one clean cycle_signal checkpoint recorded, then genuinely stalled at the documented `gate_tests` sandbox hang (test 9 of 471, flat CPU over 30s before killing it clean, not assumed). Independently re-ran one specific test the last commit cited, `test_gate_zone_also_called_is_heading.py`: 6/6, matches. `fix_dashes.py --check` 0/0. Discarded this run's own stray `ops/cycle-signal.json` checkpoint, same precedent as prior cycles. Backlog re-scanned for any unstruck non-Phil row: none found.

@@ -120,4 +120,38 @@ if [ -f "ops/check_risks_evidence_fast.py" ]; then
   fi
 fi
 
+# Refuse to push a room/zone also-called name that collides with a
+# digital-context query.
+#
+# Found 2026-11-03: `zone_also_called_html()`'s heading is matched as a
+# page-unscoped bag of words, so a name added to fix one gap query can
+# silently flip an unrelated query anywhere in the corpus if they share a
+# word. "grilling station" shared "station" with the unrelated
+# digital-context query "desktop charging station organizer" and shipped,
+# because every local preflight run that cycle used --skip-tests to route
+# around this sandbox's own gate_tests Chromium hang, and
+# gate_also_called_no_digital_collision lives inside that skipped suite.
+# publish-image.yml caught it, but only after the push.
+if [ -f "ops/check_also_called_digital_collision_fast.py" ]; then
+  PY=""
+  for cand in python python3 py; do
+    if command -v "$cand" >/dev/null 2>&1 &&
+       "$cand" -c "import sys; sys.exit(0)" >/dev/null 2>&1; then
+      PY="$cand"
+      break
+    fi
+  done
+  if [ -z "$PY" ]; then
+    echo "pre-push: no working python found, so the also-called digital" >&2
+    echo "collision check could not run. Refusing rather than pushing it" >&2
+    echo "unexamined." >&2
+    exit 1
+  fi
+  if ! "$PY" ops/check_also_called_digital_collision_fast.py; then
+    echo "" >&2
+    echo "Fix the colliding also-called name, then push. To bypass: git push --no-verify" >&2
+    exit 1
+  fi
+fi
+
 exit 0

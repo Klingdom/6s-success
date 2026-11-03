@@ -212,11 +212,11 @@
   },
   "Patio or Deck|Grill and Outdoor Cooking Zone": {
    "names": [
-    "grilling station"
+    "grilling zone"
    ],
    "queries": 1,
    "covered": 0,
-   "source": "ops/keyword-demand.json 2026-11-03: 'organize grilling station', rank 1, partial, 0.5 title coverage, correctly scored to /zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html but held at partial because the page's own title says 'grill station' and the scorer matches exact words, not stems, the same exact-word-not-stem shape A34/A36 already fixed for 'nappy'/'nappies' and 'craft'/'crafts'. Zone purpose (the grill, the fuel, the long-handled tools and the cooking surface) confirms the semantic match. Named 'grilling station', the exact phrase searched and a real name people use for this kind of zone, not the bare word alone."
+   "source": "ops/keyword-demand.json 2026-11-03: 'organize grilling station', rank 1, partial, 0.5 title coverage, correctly scored to /zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html but held at partial because the page's own title says 'grill station' and the scorer matches exact words, not stems, the same exact-word-not-stem shape A34/A36 already fixed for 'nappy'/'nappies' and 'craft'/'crafts'. Zone purpose (the grill, the fuel, the long-handled tools and the cooking surface) confirms the semantic match. Named 'grilling zone', the '<word> zone' A-series precedent (A21/A23/A24/A32/A33/A34/A36), not 'grilling station': a first attempt at 'grilling station' shipped a real CI FAIL from gate_also_called_no_digital_collision, caught by publish-image.yml before anyone got it, because 'station' also appears in the unrelated digital-context query 'desktop charging station organizer' and this heading is matched as a page-unscoped bag of words. 'zone' does not collide with any digital-context query, checked directly against check_also_called_no_digital_collision() before shipping."
   },
   "Patio or Deck|Outdoor Seating Zone": {
    "names": [

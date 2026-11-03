@@ -586,6 +586,11 @@
       "date": "2026-10-12",
       "note": "Fourth-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (156 lines). Ran directly: correctly reports T2 NOT EVALUATED (no ssh key here) rather than a false zero, matching the file's own stated contract that unreadable must never read as zero. retailer_hosts() reads live from product_links.MERCHANTS rather than a second hardcoded list, confirmed by reading that import. No defect found."
     },
+    "check_also_called_digital_collision_fast.py": {
+      "status": "clean",
+      "date": "2026-11-03",
+      "note": "New gate wrapper, 2026-11-03: mirrors check_risks_evidence_fast.py's pattern to put gate_also_called_no_digital_collision on the fast, Chromium-free pre-push path after this session shipped a real collision (grilling station / desktop charging station organizer) that --skip-tests preflight runs never reach. Fail-then-pass proved directly against the real shipped regression before writing it this way. Reviewed by its own author; no defect found."
+    },
     "check_control_bytes.py": {
       "status": "clean",
       "date": "2026-10-18",
