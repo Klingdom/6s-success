@@ -59,14 +59,26 @@ def room_rows(rows, room):
     Matches on best_page, not the sparse `room` field (881 of 2808 rows carry
     it; the rest, including most gap rows, do not), because best_page is what
     actually decides whether a query already has an answer on this room.
+
+    Found 2026-11-03, verifying a PM check-in's handoff naming Entryway as
+    the next room-guide candidate at "23 unmet rows" (the sparse `room`
+    field count this docstring already warns against): this function itself
+    was missing 80 real Entryway rows, 30 of them on-topic and none `gap`,
+    because `/deck/entryway-print-and-play.html` is a second, differently
+    shaped deck URL this room ships (print-and-play, under `/deck/`) that
+    neither `deck_path` nor `zone_prefix` matched. Entryway is the only
+    guide-less room with such a page today, but the shape is not
+    room-specific, so the pattern is matched generally rather than
+    special-cased to one slug.
     """
     s = slug(room)
     deck_path = f"/{s}-deck.html"
+    print_and_play_path = f"/deck/{s}-print-and-play.html"
     zone_prefix = f"/zones/{s}-"
     out = []
     for r in rows:
         bp = r.get("best_page") or ""
-        if bp == deck_path or bp.startswith(zone_prefix):
+        if bp == deck_path or bp == print_and_play_path or bp.startswith(zone_prefix):
             out.append(r)
     return out
 

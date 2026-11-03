@@ -61,7 +61,14 @@ check("a query tracked in both tiers is not double-counted as two gap rows",
 check("the deduped on-topic total counts the shared row once, not twice",
       _result["on_topic_rows"] == 2)
 
+# Found 2026-11-03: Entryway ships a second deck URL shape,
+# /deck/entryway-print-and-play.html, that room_rows() did not match,
+# undercounting its real coverage (80 real rows missed, 30 on-topic, 0 gap).
+_pap_row = {"query": "organize entryway closet", "best_page": "/deck/test-room-print-and-play.html", "status": "covered"}
+check("room_rows matches a room's print-and-play deck URL, not just {room}-deck.html",
+      len(rgc.room_rows([_pap_row], _room)) == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)
-print("\n%d/%d passed" % (6, 6))
+print("\n%d/%d passed" % (7, 7))
