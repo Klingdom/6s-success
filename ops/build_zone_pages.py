@@ -2032,6 +2032,9 @@ ROOM_GUIDES = {
     "Guest Bedroom": [("../articles/how-to-organize-a-guest-bedroom.html",
                        "How to organize a guest bedroom, step by step",
                        "The bed first, then the nightstand, the dresser, the closet and the welcome desk last.")],
+    "Dining Room": [("../articles/how-to-organize-a-dining-room.html",
+                     "How to organize a dining room, step by step",
+                     "The table first, then the sideboard surface, the sideboard storage, the china cabinet and the coffee station last.")],
 }
 
 
