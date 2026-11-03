@@ -2020,6 +2020,9 @@ ROOM_GUIDES = {
     "Primary Bathroom": [("../articles/how-to-organize-a-primary-bathroom.html",
                           "How to organize a primary bathroom, step by step",
                           "Counter first, then the shower, drawers, under-sink cabinet, toilet area and linen shelf, cabinet last.")],
+    "Family Room": [("../articles/how-to-organize-a-family-room.html",
+                     "How to organize a family room, step by step",
+                     "Media cabinet first, because its cables run under everything else, then toys, games, blankets, charging and craft.")],
 }
 
 

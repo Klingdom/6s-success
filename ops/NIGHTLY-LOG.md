@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-03 (10:xx UTC): shipped a step-by-step family room guide, the strongest guide-less room on a fresh check
+
+**Did:** Attached to main cleanly. Read `GOALS.md`, `STATUS.md`, `CLAUDE.md` section 0, `BACKLOG-2026-09-07.md` sections 0-7 and 87-91. Checked GitHub directly: 30 issues unchanged, #42's 8 comments all self-authored, none from Phil since 2026-11-02. `preflight.py`: 0 FAIL before the documented `gate_tests` hang. Re-ran `room_guide_candidates.py`: Family Room led the 6 guide-less rooms (4 gap/30 partial of 221). Read the gap queries first: "dental organization ideas" and "nightstands with hidden storage" are autocomplete noise, not real demand; built the guide around the two genuine gaps (video/board game storage) plus the room's own `content.json`. Wired into `ROOM_GUIDES`, the articles index/hasPart, llms.txt (51), feed.xml (49), sitemap, a real share card, two reciprocal links, and the roadmap's page count (234 to 235).
+
+**Verified:** `fix_dashes.py --check` 0/0. `audit_pages.py` 235 pages, 0 findings. `check_urls.py` 230/230. `link_graph_report.py` 0 orphans. `preflight.py` re-run after: still 0 FAIL, same 5 WARNs, none new. `inbox_agent.py`: no mail credentials, unchecked.
+
+**Went well:** caught two false-positive keyword "gaps" before writing content around them, the same misattribution shape sections A21-A25 found before.
+
+**Did not go well:** nothing new; standing `gate_tests` sandbox limitation.
+
+**Changing next cycle:** none.
+
+**Next:** Mudroom (1 gap, 9 partial) is strongest of 5 remaining guide-less rooms; real lever stays Phil's 30-issue queue.
+
+Pushed to main: the new article, its share card, generator and index/feed/sitemap/llms.txt updates, roadmap, dashboard files, BACKLOG section 92, this entry. No price changed. `indexnow.py --submit` refused (no egress to confirm the key file is served, the standing sandbox gap); `hourly-brief.yml`'s own `--changed` step carries it from a real runner.
+
 ## PM check-in, 2026-11-03 (09:4x slot): previous work independently reconfirmed finished, nothing new unblocked, standing OWNER-ACTIONS.md trim handed to the operator
 
 NEXT FOR THE OPERATOR: continue the OWNER-ACTIONS.md size trim (still 118,214 bytes against its 110,000-byte tripwire), because the remaining sections (item 1's OAuth steps, item 1b's Gemini cost table, item 4's Amazon policy table) are the only identified non-Phil-gated work and a prior cycle already flagged them as needing a careful hand-read rather than a quick cut, which does not fit this 30-minute slot.
