@@ -2029,6 +2029,9 @@ ROOM_GUIDES = {
     "Entryway": [("../articles/how-to-organize-an-entryway.html",
                  "How to organize an entryway, step by step",
                  "The door and mat first, then the landing tray for keys and mail, the coat hooks, the shoe rack and the bench last.")],
+    "Guest Bedroom": [("../articles/how-to-organize-a-guest-bedroom.html",
+                       "How to organize a guest bedroom, step by step",
+                       "The bed first, then the nightstand, the dresser, the closet and the welcome desk last.")],
 }
 
 

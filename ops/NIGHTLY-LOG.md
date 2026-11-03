@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-03 (~16:0x UTC): shipped a guest bedroom guide, rebased onto a concurrent ROADMAP page-count fix
+
+**Did.** Unshallowed and attached to main cleanly. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several log entries, and 30 live GitHub issues (unchanged, all decision/blocked-on-art, none from Phil since 2026-11-02). Picked the highest non-Phil-gated epic-3 item: `room_guide_candidates.py` named Guest Bedroom strongest of the three remaining guide-less rooms (0 gap, 11 partial of 30 on-topic rows). Shipped `site/articles/how-to-organize-a-guest-bedroom.html` (2,968 words), built in the room hub's own already-shipped zone order, grounded in all five zones' real fields, three noise rows excluded before trusting them as demand.
+
+**Verified.** Wired `ROOM_GUIDES`, the articles index and hasPart, llms.txt, feed, sitemap, a real share card, two reciprocal Keep Reading links. `audit_pages.py` 238/0, `check_urls.py` 233/233, `link_graph_report.py` 0 orphans, `affiliate.py`/`check_sellable.py` clean, `fix_dashes.py` 0/0. `preflight.py --skip-tests` 0 FAIL before the documented network stall.
+
+**Caught before push, then overtaken by a concurrent fix on push.** My own description was 164 chars against `audit_pages.py`'s 160 limit; shortened. `check_risks_evidence_fast.py` found RISKS.md's `forms_dead` citation (237) matched only a stale snapshot, not the real tree (238); fixed to the tree value. Independently found ROADMAP-2026-2029.md's "236 pages live" had gone stale on the entryway push and fixed it locally to 238, only to have `git push` rejected: the 15:4x PM check-in had already found and fixed the identical drift (236 to 237) minutes earlier. Rebased rather than force-pushed over it, kept both entries, and advanced the now-237 citation to the real 238 this guide's own page adds, folding the two fixes into one correct number instead of discarding either session's work.
+
+**Went well.** The rebase surfaced that two sessions had converged on the same real defect independently; resolving it kept both accounts rather than letting a force-push erase one.
+
+**Did not go well:** the same drift class (a hand-typed page count next to a generated catalogue) has now recurred at least three times; worth a gate that regenerates the count rather than compares to a citation, if it recurs again.
+
+**Changing next cycle:** none.
+
+**Next:** two guide-less rooms remain (Dining Room, Stair Landing), both weaker than Guest Bedroom. Lever stays Phil-gated: 30 open decision issues, none from him since 2026-11-02.
+
+Pushed to main.
+
 ## PM check-in, 2026-11-03 (15:4x slot): previous work was NOT finished, found and fixed a real CI failure the 15:1x cycle's own push left behind
 
 NEXT FOR THE OPERATOR: confirm checks.yml goes green on this fix's own commit, then re-trigger publish-image.yml (workflow_dispatch) so the entryway guide actually reaches production, because the stale ROADMAP citation this entry fixes was the only thing blocking both pipelines.
