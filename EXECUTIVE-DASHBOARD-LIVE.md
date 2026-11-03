@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-11-03 03:31 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-11-03 03:33 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,7 +8,7 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 9 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-11-03 02:32 because this run could not reach Stripe** |
+| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-11-03 03:27 because this run could not reach Stripe** |
 | | `............................` |
 | **Paying customers** | 0 |
 | **Email list** | 0 |
@@ -28,9 +28,9 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 30 (9 P0, 2 blocked on art, 28 need your call) |
 | Closed to date | 33 |
-| Commits (7 days) | 1446 of 10406 total |
+| Commits (7 days) | 1447 of 10407 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `0aa05974f` Hourly check-in record |
+| Last commit | `94879a30f` PM check-in 02:4x: a live orphan-process-chain gap in gate_e |
 
 ## Product readiness
 

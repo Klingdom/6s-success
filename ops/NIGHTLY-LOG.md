@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-03 (03:1x slot): previous work finished, verified a concurrent fix that landed mid-cycle, nothing new unblocked
+
+Previous work (the 02:0x PM cycle, and the 03:0x operator cycle that pushed mid-session) confirmed finished, not cited: 30 GitHub issues unchanged, all decision/blocked-on-art, none from Phil; BACKLOG-2026-09-07.md sections 2-6 only C5/C6 unstruck, both YES Phil; all 13 rotation scripts CLEAN; fix_dashes 0/0; check_urls 228/228; cold_read_ledger 0 stale. Caught the operator's late push (the new section-3/4 backlog rotation tool) on attach, merged clean, reran its two new gates directly against the real file: both pass. preflight.py --fast hit the documented gate_tests hang, same standing limit, nothing new. ci-conclusion-current's warning on the hourly check-in bot commit is by design (checks.yml excludes state/log files), checked directly against the Actions API, not a defect.
+
+Handing to the operator: OWNER-ACTIONS.md's open-items section (128KB over its 110KB tripwire) is the named next step, same unrotated-growth shape as backlog sections 3/4. Same Phil-gated queue otherwise.
+
+Pushed to main: this entry, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json. No content, price or product touched.
+
+## Scheduled operator cycle, 2026-11-03 (03:0x slot): built the section-3/4 backlog rotation tool, closing a standing two-cycle-old deferral
+
+**Did.** Unshallowed, attached to main clean (642 commits onto `0aa05974f`). Re-verified: 30 GitHub issues unchanged, all `decision`/`blocked-on-art`, none from Phil; backlog sections 2-6 only C5/C6 unstruck (both `YES, Phil`); `inbox_agent.py` no mail credentials. Epics 1-5 confirmed exhausted of unblocked work by three prior cycles today. Picked up the one named epic-6 item two prior check-ins flagged "real, not urgent enough for this slot": sections 3-4 of `BACKLOG-2026-09-07.md` had no rotation tool, unlike 1b and 2, because `rotate_backlog_section2_items.py` deferred them over an id-reuse hazard.
+
+**Checked the hazard before building, not after.** Scanned the real byte structure: section 3/4 rows mix piped table rows and bare no-pipe bold paragraphs, and two un-id'd "Corrected 2026-10-14" paragraphs in section 4 actually amend an earlier, different row than the one they sit after. Built `ops/rotate_backlog_journal_core.py` plus `rotate_backlog_section3_items.py`/`section4_items.py` with a narrower rule than section 2's: archive only a matched row's own single line, never anything after it, making the misattribution structurally impossible rather than merely checked for.
+
+**Verified.** Dry-run matched a hand scan exactly; applied, confirmed by diff that the B8/B9 divider and both orphan paragraphs survived untouched. Two new preflight gates, both silent on the real file; two new tests (6/6 each) prove fail-then-pass including the orphan case. Full `preflight.py --skip-tests` re-run after: same 0-FAIL result to the same pre-existing Etsy network stall. `fix_dashes.py --check` clean.
+
+**Went well:** the old deferral's own warning turned out richer than stated, and checking it directly rather than re-deferring found the real hazard and a safe design around it.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** `OWNER-ACTIONS.md`'s own open-items section carries the same unrotated-growth shape (128KB/110KB); same Phil-gated queue otherwise.
+
+Pushed to main: the two new modules, two tests, `preflight.py`, `BACKLOG-2026-09-07.md` and its two new archive files, `ops/cycle-signal.json`, this entry. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## PM check-in, 2026-11-03 (02:4x slot): previous work confirmed finished, a live orphan-process-chain gap in gate_etsy_pdfs_current found, fixed and fail-then-pass proved by hand, same Phil-gated queue handed to the operator
 
 NEXT FOR THE OPERATOR: hold the line, because `BACKLOG-2026-09-07.md` sections 2 to 6 still have only C5/C6 unstruck (both explicit YES, Phil) and all 30 open GitHub issues remain decision or blocked-on-art with nothing from Phil.
