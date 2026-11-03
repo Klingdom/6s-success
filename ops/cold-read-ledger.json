@@ -728,8 +728,8 @@
     },
     "dashboard.py": {
       "status": "clean",
-      "date": "2026-10-18",
-      "note": "2026-10-18 PM 18:1x cold-read: resolve_deploy_reachable() correctly mirrors resolve_deploy_verdict()'s carry-forward, verified against the 17:5x nightly-log account and the new gate_dashboard_deploy_reachable_carry_forward test. Holds up."
+      "date": "2026-11-03",
+      "note": "Re-read against git history since the 2026-10-18 ledgered date. Two commits since then: 4290375f0 (2026-10-18) adds resolve_deploy_reachable() to stop a credential-less sandbox regeneration from overwriting a real committed reachable:true with its own unmeasured false, mirroring resolve_deploy_verdict()'s existing carry-forward logic, proven by gate_dashboard_deploy_reachable_carry_forward; 4acb71430 (2026-11-02) is the same 'Redeploy the site' copy fix read above. Both diffs re-read in full, logic in the first traced against resolve_deploy_verdict() for consistency. No defect found."
     },
     "deploy.py": {
       "status": "clean",
@@ -1017,9 +1017,9 @@
       "note": "cold-read 2026-10-14 16:1x-17:0x slot: read in full, 8/8 own tests pass, fallback logic verified correct, no defect found"
     },
     "preflight.py": {
-      "status": "fixed",
-      "date": "2026-11-02",
-      "note": "2026-11-02 01:3x cycle: added a per-test-file heartbeat (immediately flushed to stderr, naming the file and its i/N position) inside gate_tests()'s own loop, closing the exact blind spot run_gate's own heartbeat already fixed one level up in the gate sequence (its own 2026-09-13 docstring note). Dozens of consecutive log entries had to guess whether a backgrounded gate_tests run was stalled or merely slow by polling /proc CPU time for minutes; this makes the current file instantly visible instead. New ops/tests/test_gate_tests_heartbeat.py (fail-then-pass proved by temporarily reverting the change via git stash), existing test_gate_tests_timeout_guarded.py/test_gate_tests_skip_flag.py/test_gate_tests_cycle_signal_checkpoint.py all still pass unchanged."
+      "status": "clean",
+      "date": "2026-11-03",
+      "note": "Re-read against git history since the 2026-11-02 ledgered date (same date, later commits). Three commits re-read in full: 00d36989f adds gate_status_history_chain_not_collapsed (catches STATUS.md history entries glued onto one physical line/paragraph, invisible to rotate_status_history.py's own parser); a66323382 adds gate_also_called_no_digital_collision (catches an also-called name that collides with a PC/Steam-context query, after a scorer false-positive this cycle found and reverted); 6837d9454 adds the lock child-pgid tracking/reaping fix for the orphan-process-chain class, independently exercised live this cycle: killed a hung gate_tests run (pid 1008, stuck at test_audit_catalog.py same as documented), called acquire_preflight_lock() directly, confirmed it found the stale lock and left no orphan process behind (fourth real-world firing). All three gates' own fail-then-pass test files exist. No defect found."
     },
     "prerender_shop.py": {
       "status": "clean",
@@ -1268,8 +1268,8 @@
     },
     "status_pdf.py": {
       "status": "clean",
-      "date": "2026-10-14",
-      "note": "Read in full (334 lines). FOUND AND FIXED the same commits_7d None-as-'None' defect send_brief.py carried (str(d['commits_7d']) with no None guard). Fixed by importing status_report.py's new commits_7d_text() helper. Cannot run end to end here (reportlab not installed), but the shared helper is proven directly by the new preflight gate and by status_report.py's own successful live run."
+      "date": "2026-11-03",
+      "note": "Re-read against git history since the 2026-10-14 ledgered date. One commit since then (4acb71430, 2026-11-02): corrects the 'Redeploy the site' paragraph's copy now that deploy.yml makes redeploys automatic, consistent with dashboard.py's own matching fix the same commit. Re-read the full diff; copy change only, no logic touched, no defect found."
     },
     "status_report.py": {
       "status": "clean",

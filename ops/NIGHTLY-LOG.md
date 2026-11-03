@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-03 (01:5x slot): cleared the cold-read-ledger staleness finding the 01:4x PM left open, orphan reaper fired a fifth real-world time
+
+**Did.** Unshallowed and attached to main cleanly (fast-forwarded to `ebc86eb4f` with no conflict once a stray local `ops/cycle-signal.json` diff from my own first preflight attempt was discarded). Re-verified rather than trusted: 30 GitHub issues pulled fresh, unchanged, all `decision`/`blocked-on-art`, none from Phil; `BACKLOG-2026-09-07.md` sections 2-6 only C5/C6 unstruck, both explicit `YES, Phil`; `room_guide_candidates.py` rerun fresh, same Family Room (4 gap, already read and declined) and Mudroom (1, noise) conclusion as every cycle today; `ops/inbox_agent.py --apply` reports no mail credentials in this environment.
+
+**The actual work:** the 01:4x PM check-in found `cold_read_ledger.py --stale` flagging 3 files (`ops/status_pdf.py`, `ops/dashboard.py`, `ops/preflight.py`, each committed to after its last ledgered date) and correctly left the real read for this slot rather than re-ledgering it blind. Read every commit's full diff against each file since its ledgered date (one commit on `status_pdf.py`/`dashboard.py` each: a copy-only fix now that `deploy.yml` makes redeploys automatic; two more on `dashboard.py`: the `resolve_deploy_reachable()` carry-forward fix; three on `preflight.py`: the `gate_status_history_chain_not_collapsed` gate, the `gate_also_called_no_digital_collision` gate, and the lock child-pgid orphan-reaper fix). No defect found in any; each diff was already proven fail-then-pass by its own commit and matches its documented reasoning. Recorded all three clean in `ops/cold-read-ledger.json`; `--stale` now reports 0.
+
+Independently exercised the orphan reaper a fifth real-world time, a different way from tonight's four PM firings: ran a full (not `--fast`-then-kill-immediately) `preflight.py --fast`, let it reach the documented `gate_tests` hang at `test_audit_catalog.py` (9/465) genuinely, killed it past the 170s mark, confirmed a real orphaned Chromium-adjacent child, called `acquire_preflight_lock()` directly, confirmed it reaped the orphan and released its own lock cleanly. Then called the 14 gates that sit after `gate_tests` directly (currency, deploy-verdict, deploy-gap, status-history-chain, owner-actions-tracked, critical-risks, stale-session-label, stale-checkout-count, stale-listmonk-blocker, corporate-buy-path, also-called-digital-collision, nightly-log-ordering, nightly-log-no-duplicates, cold-read-lanes-complete): all clean. `rotate_backlog*.py --check` (5 scripts) and `rotate_owner_actions*.py --check` (3 scripts) all CLEAN, so the standing living-docs size-tripwire warnings (`BACKLOG-2026-09-07.md` 203KB/150KB, `OWNER-ACTIONS.md` 128KB/110KB) are genuinely non-rotatable right now, not neglected.
+
+**Went well:** the reaper fix held up a fifth time, including against this run's own full-length (not pre-killed) hang, and the ledger-staleness finding closed in one slot instead of being handed off a second time.
+
+**Did not go well:** nothing new; same exhausted queue every cycle tonight has independently reconfirmed.
+
+**Changing next cycle:** nothing; holding the line per CLAUDE.md 0.8 rather than opening speculative work against an unmoved constraint.
+
+**Next:** same standing handoff as every cycle since 2026-10-18: C5 (Gemini billing) and C6 (YouTube OAuth) are the only unstruck backlog rows, both `YES, Phil`; all 30 open GitHub issues are `decision`/`blocked-on-art`; issue #42's cadence-waste finding is unchanged and not being re-raised without new evidence, per its own last comment. No push notification: nothing changed since the standing escalation.
+
+Pushed: `ops/cold-read-ledger.json`, `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-11-03 (01:4x slot): previous work confirmed finished, the orphan reaper fired a third real-world time against a different failure shape, same Phil-gated queue handed to the operator
 
 NEXT FOR THE OPERATOR: hold the line, because `BACKLOG-2026-09-07.md` sections 2 to 6 still have only C5/C6 unstruck (both explicit YES, Phil) and all 30 open GitHub issues remain decision or blocked-on-art with nothing from Phil.
