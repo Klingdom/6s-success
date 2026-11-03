@@ -234,13 +234,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-26T14:38:34Z",
-   "mode": "changed",
-   "offered": 3,
-   "accepted": 3,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-26T16:05:18Z",
    "mode": "changed",
    "offered": 212,
@@ -652,6 +645,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-03T13:16:04Z",
+   "mode": "changed",
+   "offered": 4,
+   "accepted": 4,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -683,11 +683,11 @@
   "https://6s-success.com/articles/how-long-does-it-take-to-organise-a-room": "fb3c47b6ea6750af",
   "https://6s-success.com/articles/how-long-to-keep-a-maybe": "d66ff8f3af969e88",
   "https://6s-success.com/articles/how-to-organize-a-junk-drawer": "a2a3a2a042b02dbe",
-  "https://6s-success.com/articles/": "50eef9b10988e93a",
+  "https://6s-success.com/articles/": "a9137d8a3268034a",
   "https://6s-success.com/articles/is-that-really-a-backup": "7805de5c5d8a2d3a",
   "https://6s-success.com/articles/more-storage-wont-fix-clutter": "c823bdb17b2fa5d3",
   "https://6s-success.com/articles/sentimental-items-without-guilt": "f448f8e6e3c4305e",
-  "https://6s-success.com/articles/tidy-is-not-the-same-as-safe": "6b49d49238600d84",
+  "https://6s-success.com/articles/tidy-is-not-the-same-as-safe": "0add58c2683371d8",
   "https://6s-success.com/articles/what-is-6s": "8e2a619ffb636521",
   "https://6s-success.com/articles/what-is-a-micro-zone": "c8b251863981f33c",
   "https://6s-success.com/articles/where-to-start-decluttering": "df8bbc6da595ebbd",
@@ -719,7 +719,7 @@
   "https://6s-success.com/rooms/kitchen": "923bee850babba7c",
   "https://6s-success.com/rooms/laundry-room": "446c7970de556817",
   "https://6s-success.com/rooms/living-room": "7f9cb28605e88785",
-  "https://6s-success.com/rooms/mudroom": "2c351cfe24db9c60",
+  "https://6s-success.com/rooms/mudroom": "ad70503bf4dbd9c7",
   "https://6s-success.com/rooms/nursery": "c4aecb065804f187",
   "https://6s-success.com/rooms/pantry": "1e663cdd703b94e3",
   "https://6s-success.com/rooms/patio-or-deck": "5370ab75c9b81f57",
@@ -866,7 +866,7 @@
   "https://6s-success.com/primary-bedroom-deck.html": "6deb6df2eaf2a487",
   "https://6s-success.com/workshop-deck.html": "be78804e75b50ad3",
   "https://6s-success.com/patio-or-deck-deck.html": "f773efb52f38778c",
-  "https://6s-success.com/articles/why-is-my-house-always-messy": "a93f6e36b49a8c6d",
+  "https://6s-success.com/articles/why-is-my-house-always-messy": "ff2c51200de114cb",
   "https://6s-success.com/articles/how-to-organize-a-basement": "b85177a96246ed6f",
   "https://6s-success.com/articles/how-to-organize-an-attic": "8a2a0913f50afde9",
   "https://6s-success.com/articles/how-to-declutter-a-bedroom": "07c889b3b40437e9",
