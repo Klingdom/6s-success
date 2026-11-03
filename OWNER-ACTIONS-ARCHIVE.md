@@ -4,6 +4,86 @@
 
 ---
 
+### 0. Historical 404 measurement behind the (now closed) VPS_DEPLOY_KEY item. Archived 2026-11-03, scheduled operator cycle: the item itself closed 2026-11-01, this was the justification for why it mattered, not a live ask.
+
+Full original text, archived for continuity:
+
+**Measured 2026-09-29, and this is the part that was never quantified before: the gap does not merely delay pages, it serves 404s to search engines for URLs our own sitemap advertises.** Read from the persistent access log (`/var/log/6s-success`, 8 days): 2,175 404s, of which 484 came from our own `6s-success-indexnow/1.0` checking deck pages that the sitemap listed and production did not serve, and **258 came from ordinary crawler and browser agents** hitting the same URLs. Thirteen distinct deck pages were affected, worst `stair-landing-deck.html` (82 404s), `pantry-deck.html` (73) and `hall-closet-deck.html` (62). A sitemap that repeatedly advertises 404s is a trust signal spent for nothing, and it is spent on exactly the pages the cycle had just finished building. One of these was still live at 23:5x tonight (`patio-or-deck-deck.html`, 18 crawler 404s) and was only fixed because a session happened to be looking; it has now been deployed and announced. |
+
+---
+
+### 1. A 2026-09-29 traffic snapshot once quoted inside item 1 (YouTube). Archived 2026-11-03, scheduled operator cycle: superseded by GOALS.md and STATUS.md, this file's own canonical traffic sources.
+
+Full original text, archived for continuity:
+
+**Re-measured 2026-09-29 by a direct database read.** Traffic is 48 visitors, 119 visits and 731 pageviews, 1.6 a day. The 30-day count keeps sliding only because late-August days roll out of the window; the 7 Sept automated session (431 pageviews) is long gone from it, so this is very nearly all human. The last 7 days record **14 visitors, 18 visits, 50 pageviews** against 12/14/27 four days earlier, but 30 of those pageviews and 9 of the visitor ids landed between 18:00 and 18:20 on 27 September, all direct, across four operating systems, a shape that also appears late on 23 August. **Ex-burst the week is 7 visitors, 9 visits, 20 pageviews: down, not up.** A first draft of this line today called it the first rise on every measure; checking where the pageviews came from withdrew that. The crawl rise I reported on 21 Sept turned out to be a two-day burst from the IndexNow submission, not a change (1, 17, 15, 2, 2 by day), so this is not a crawling problem and it is not a crawling success either:
+
+| Source | Visitors, 30 days |
+|---|---|
+| direct or unknown | 70 |
+| LinkedIn (both domains) | 10 |
+| Bluesky (both domains) | 5 |
+| Google | **2** |
+| Bing | 1 |
+
+This paragraph used to read "ZERO of them arrive from Google". That is now
+wrong: it is one, not zero, and this repository has already corrected the same
+retired claim twice in other files. Corrected here rather than left to be
+found a third time.
+
+---
+
+### 1. Bluesky drafting-pipeline gap, closed 2026-09-30. Archived 2026-11-03, scheduled operator cycle: resolved, no owner action, kept as a one-line pointer inside item 1 (YouTube).
+
+Full original text, archived for continuity:
+
+**Closed the one gap in that sentence, 2026-09-30, scheduled operator: Bluesky had no drafting pipeline at all.** LinkedIn has had `ops/linkedin_drafts.py` for weeks and Facebook/X got `ops/social_drafts.py` before either even has an account, but Bluesky, the second channel actually proven to work (5 visitors, all time, at zero authored cost), had nothing preparing content for it. `ops/bluesky_drafts.py` now drafts 3 posts a day from the same already-280-character-filtered corpus pool `social_drafts.py`'s X draft reads (Bluesky's own 300-character cap is a strict superset of X's), tracked under its own rotation key so the two pipelines cannot silently exhaust each other's supply once X gets an account. `.github/workflows/bluesky-drafts.yml` schedules and sends it daily using the same `SMTP_HOST`/`OWNER_EMAIL` secrets the other draft mailers already use, so no new owner action is needed for these to start arriving: verify a first email lands, then post as written or edit freely, the same as the other two.
+
+---
+
+### 1. Second caption-drift batch (edge-tts token fix), resolved 2026-10-14. Archived 2026-11-03, scheduled operator cycle: fully closed, no machine step was ever needed on Phil's side.
+
+Full original text, archived for continuity:
+
+**Added 2026-10-13, resolved 2026-10-14: the second, smaller batch is done. No machine step needed here after all.** 15 of the 114 zones' captions had drifted out of sync with a British-to-American spelling fix. Two failed attempts to fix it via GitHub Actions had wrongly concluded Microsoft's edge-tts service was rejecting the narration request from any datacenter IP. The real root cause was narrower and fixable: `edge-tts` 7.2.8 was sending an old-format `Sec-MS-GEC` token that Microsoft's server now rejects (`rany2/edge-tts` issue #490), unrelated to which IP sent it. Pinning the workflow to `edge-tts==7.3.1` (commit `d5ecb0782`) fixed it: GitHub Actions run `38554935606` completed successfully and committed `7d84fb9a3`, re-rendering all 15 stale caption pairs. `python ops/check_video_standard.py` now reads 114 of 114 matching the standard, 0 stale. Nothing is public yet either way, since item 1's OAuth paste is still outstanding, so there was never any urgency; there is nothing left to do on this batch regardless of OAuth timing.
+
+---
+
+### 4. A deploy-gap paragraph inside the affiliate-applications item, describing production 404s on /affiliate-disclosure.html and a wrong claim on /kit.html. Archived 2026-11-03, scheduled operator cycle: the deploy gap it depended on is the same one item 0 now records as closed; the production content claim itself is unchecked from this sandbox, not re-verified, so flagged rather than deleted.
+
+Full original text, archived for continuity:
+
+**One thing gates all of it, and it is item 1.** `/affiliate-disclosure.html`
+returns **404 in production** as I write this, because the live site is still
+the old build. A reviewer who opens the site today will not see the page. The
+same deploy also fixes a live falsehood: production `/kit.html` currently opens
+with "Some of the links below are affiliate links, which means 6S Success may
+earn a commission", on a page where every product reads "No retailer link yet".
+That was our own generator rendering a disclosure unconditionally; it is fixed
+in the repository and says the truth now, but only after a deploy.
+
+---
+
+### 23. The 2026-10-17 addendum's own refusal-verification narrative for the autonomous-cadence item. Archived 2026-11-03, scheduled operator cycle: its conclusion was independently re-confirmed by the 2026-10-23 addendum that follows it in the live file, so only the superseded intermediate narrative moved; the direct Routine-edit links stayed live.
+
+Full original text, archived for continuity:
+
+**Addendum, 2026-10-17, scheduled operator cycle: confirmed again, directly,
+with the exact refusal text, and the direct edit links so option 1 really is
+one click each.** Re-tried `update_trigger` on both the PM :40 twin
+(disable) and the hourly operator (widen to every 2 hours) now that
+`list_triggers`/`get_trigger` show full detail for all three, which looked
+like it might mean write access too. It does not: both calls refused with
+"this routine was created via http_api, not by an agent. Agents can only
+update routines they created... A routine's own session may still disable
+itself (enabled=false only)." That last clause is real but not useful here:
+it would let this session turn the hourly operator off entirely, not slow
+it, which is more than option 1 asks for, so it was not used. The refusal
+also returned the direct edit page for each Routine, which no prior cycle
+had:
+
+---
+
 ### 1b. Or, right now: deploy the site yourself. Archived 2026-11-03, PM check-in: resolved 2026-11-01, deploys are automatic, this whole chain is superseded history.
 
 **Resolved 2026-11-01.** `VPS_DEPLOY_KEY` is set as a GitHub Actions secret (issue #35, closed) and `.github/workflows/deploy.yml` now runs itself on every push, gated only by that key. `ops/deploy-verdict.json` confirms production current at build `a55a1a8bfa276587`, checked `2026-11-01T18:09:04Z`, matching repository HEAD exactly. The manual path below is kept for the record and for the rare case the automatic workflow itself needs a hand, but pressing Redeploy or running `ops/deploy.py` by hand is no longer a standing ask.

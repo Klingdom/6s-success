@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-03: closed part of the OWNER-ACTIONS.md size tripwire the 08:2x check-in named and the 08:4x check-in (below) handed off, after confirming every content/SEO lane is genuinely exhausted
+
+**Did.** Unshallowed and attached to main cleanly (fetch, `fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `8a3b1205e`, tree clean throughout). Read `BACKLOG-2026-09-07.md` sections 0-7 and items 87-90 in full, `ROADMAP-2026-2029.md`/`GOALS.md`/`STATUS.md`'s workstream section, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries. Checked rather than trusted: ran `ops/room_guide_candidates.py` live (Family Room and Mudroom's few remaining "gap" rows match section 84's own prior noise-check, nothing new); re-confirmed all 30 open GitHub issues are `decision`/`blocked-on-art`, none from Phil since 2026-11-02; `inbox_agent.py --apply` reported no mail credentials in this sandbox, unchecked not passed. `python ops/preflight.py` run fresh in the background to real completion: 0 FAIL across every gate reached (one known WARN, the `OWNER-ACTIONS.md` tripwire; one known WARN, `image-coverage`'s sandbox-missing source pictures), killed cleanly by PID at the documented `gate_tests` headless-Chromium hang (`test_audit_catalog.py`, 9/467), confirmed genuinely stalled by flat CPU (~7%) across an 8-second sample before killing it.
+
+**Picked the work by the ordering rule, not by preference.** Epics 1-5 (measurement, broken/dishonest, traffic, conversion, product) are confirmed exhausted: no new room-guide or keyword-gap candidate survives a hand-read, no Phil reply exists on any of the 30 gated issues, and `STATUS.md` shows all three workstream slots blocked or closed. Epic 6 (operational honesty) had exactly one open, unblocked item: the `OWNER-ACTIONS.md` size tripwire (122,670 bytes against 110,000), which the 08:2x PM check-in found and explicitly deferred as needing real judgment rather than a quick rotate.
+
+**Closed part of it, the same way the 08:2x cycle's own item-1b precedent did: hand-read, not a generic tool.** All three existing rotators (`rotate_owner_actions.py`, `rotate_owner_actions_closed_items.py`, `rotate_owner_actions_gemini_billing.py`) reported CLEAN, confirming the remainder is live, open items whose own internal correction history outgrew the ceiling, not a rotation gap a tool already covers. Read the file's largest sections by hand and archived six individually-verified, fully-resolved or fully-superseded sub-paragraphs (each moved verbatim to `OWNER-ACTIONS-ARCHIVE.md` with a one-line pointer, matching the file's own established convention): item 0's trailing 404-measurement justification (item itself closed 2026-11-01); item 1's stale 2026-09-29 traffic snapshot (superseded by `GOALS.md`/`STATUS.md`'s own canonical figures); item 1's resolved Bluesky-drafting aside; item 1's resolved edge-tts caption-batch paragraph; item 4's "gates all of it... 404 in production" paragraph (the deploy gap it depended on is the same one item 0 now records closed; the live-content claim itself stays unchecked from this sandbox, flagged not deleted, since there is no egress to `6s-success.com`); and item 23's 2026-10-17 addendum narrative, independently re-confirmed word-for-word by the 2026-10-23 addendum right after it.
+
+**Caught two of my own mistakes before shipping, by rereading the diff rather than trusting the edit call.** A table row lost its closing `|`; a paragraph boundary left a doubled blank line. Both fixed, then verified against the real file rather than assumed from a passing edit.
+
+**Verified.** All 6 original substrings confirmed to match exactly once before replacement (scripted, not eyeballed). Full `git diff` read: every live ask, number and link outside the six archived spans untouched. All 3 rotators re-run CLEAN. `fix_dashes.py --check` 0/0 on both files. `check_urls.py` 229/229. `audit_pages.py` 0 duplicates. `affiliate.py --check` 165 documents clean. Called 8 `gate_owner_actions_*`/`gate_living_docs_total_size_tripwire` functions directly: all clean except the expected tripwire WARN. **One real FAIL caught by this same direct-call check, not missed:** `gate_owner_actions_last_measured_current` failed because the "List reviewed" marker still read 2026-11-02 against this edit's own 2026-11-03 date; fixed and reverified clean in the same cycle.
+
+**Result, stated plainly rather than rounded up: 122,670 to 118,214 bytes, a 4,456-byte cut. The tripwire is not cleared.** Six paragraphs is what careful hand-reading found safe to move without risking a live ask; the remainder is genuinely live content, the same conclusion the 08:2x cycle reached. A dedicated correction-stacking rotator for free-text items was considered and not attempted: unlike the backlog's dated-row format, OWNER-ACTIONS.md's items mix live asks with historical justification in prose that does not pattern-match safely, so a generic tool risks silently deleting a live ask; recorded as the honest next option rather than built speculatively.
+
+**A second, smaller thing closed in passing.** `cold_read_ledger.py --stale` named one real entry, `ops/rotate_backlog_closed.py` (ledgered 2026-11-01, touched again 2026-11-03 by the 08:0x cycle's retention-floor fix). Cold-read the diff: one constant changed plus a docstring note, matches its own commit message, no defect. Re-ledgered clean.
+
+**Went well:** two real mistakes (missing table pipe, doubled blank line) and one real gate FAIL (stale review-date marker) all caught by this cycle's own verification before anything was pushed, not left for the next cycle to find.
+
+**Did not go well:** the tripwire is only partly closed; free-text judgment does not scale the way the backlog's dated-row rotators did, so six paragraphs took a full cycle's hand-reading.
+
+**Changing next cycle:** none; a future pass on this file should re-read the remaining large sections (item 1's OAuth steps, item 1b's Gemini cost table, item 4's Amazon policy table) for the same shape before cutting further, since several are load-bearing live instructions, not correction stacking.
+
+**Next:** real next lever remains Phil-gated: 30 open GitHub issues, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02.
+
+Pushed to main: `OWNER-ACTIONS.md`, `OWNER-ACTIONS-ARCHIVE.md`, `ops/cold-read-ledger.json`, `BACKLOG-2026-09-07.md`, this entry, dashboard files. No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-11-03 (08:4x slot): previous work confirmed finished, nothing new, handed the OWNER-ACTIONS.md trim to the operator
 
 NEXT FOR THE OPERATOR: trim `OWNER-ACTIONS.md`'s still-open numbered items down from 122,670 bytes toward the 110,000-byte tripwire, because every rotator reports CLEAN and the remaining excess is live, open items whose own stacked status-update history has grown too long, the exact shape the 08:2x cycle named and left for a later slot.
@@ -15,7 +41,6 @@ Attached clean: fetch, `fetch --unshallow` (checkout arrived shallow at `fc47d1d
 Not starting the trim myself: this slot runs three minutes before the operator and the trim needs real judgment (removing stacked corrections from still-open items without losing the live ask), not a quick fix.
 
 Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched.
-
 
 ## PM check-in, 2026-11-03 (08:2x slot): previous work confirmed finished, closed part of a newly found OWNER-ACTIONS.md size WARN, rest handed off
 

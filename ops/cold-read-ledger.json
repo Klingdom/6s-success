@@ -1142,9 +1142,9 @@
       "note": "PM check-in cold read: locate_section/parse_rows/row_date/plan_rotation/apply_archive reviewed line by line against the real BACKLOG-2026-09-07.md (35 sequential, non-duplicate numbered headings, no false-positive heading matches). Edge cases checked by hand (all-rows-archived body, missing/duplicate anchors, degraded bare-paragraph rows) all fail safely or round-trip correctly. ops/tests/test_rotate_backlog.py 11/11 pass; python ops/rotate_backlog.py --check against the live file reports CLEAN (3 rows, 7795 bytes, within the 14-day window), matching the gate's own current silence. No defect found."
     },
     "rotate_backlog_closed.py": {
-      "status": "fixed",
-      "date": "2026-11-01",
-      "note": "Scheduled operator cycle 11:0x lowered DEFAULT_RETENTION_DAYS 4 to 2 to clear gate_living_docs_total_size_tripwire again (closure rate climbed to 16 sections in 4 days); re-verified directly this cycle, not cited: test_rotate_backlog_closed.py 8/8, test_gate_backlog_closed_sections_not_oversized.py 5/5 both pass against the lowered default, rotate_backlog_closed.py --check reports CLEAN against the live file."
+      "status": "clean",
+      "date": "2026-11-03",
+      "note": "Cold-read the 2026-11-03 diff (DEFAULT_RETENTION_DAYS 2 to 0, floor reached, docstring note added): matches its own commit message, tests pass unmodified (8/8), no defect found."
     },
     "rotate_backlog_done_items.py": {
       "status": "clean",
