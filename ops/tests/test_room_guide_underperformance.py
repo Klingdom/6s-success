@@ -80,10 +80,22 @@ try:
     _result4 = rgu.score_room([_covered_only], [], _room)
     check("shortfall is 0 when every on-topic row is already covered",
           _result4["shortfall"] == 0.0 and _result4["uncovered_count"] == 0)
+
+    _car_organizer = {"query": "car organizer canadian tire", "best_page": "/articles/how-to-test-a-room.html",
+                       "status": "gap"}
+    _result5 = rgu.score_room([_car_organizer], [], _room)
+    check("an 'off-topic context' row (car organizer product, not garage storage) is excluded",
+          _result5["on_topic_rows"] == 0)
+
+    _car_maint = {"query": "organize car maintenance tips", "best_page": "/articles/how-to-test-a-room.html",
+                  "status": "partial"}
+    _result6 = rgu.score_room([_car_maint], [], _room)
+    check("a genuine on-topic car-maintenance row is NOT excluded by that same pattern",
+          _result6["on_topic_rows"] == 1)
 finally:
     del bzp.ROOM_GUIDES["Test Room"]
 
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)
-print("\n%d/%d passed" % (10, 10))
+print("\n%d/%d passed" % (12, 12))

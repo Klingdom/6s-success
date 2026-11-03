@@ -38,6 +38,24 @@ DIGITAL = re.compile(
     r"\b(pc|steam|computer|desktop|digital|online|software|app|download)\b"
     r"|hard drive", re.I)
 
+# Found 2026-11-03 (Garage pass): "car organizer"/"car trunk"/retailer-named
+# queries route to the Automotive Care Zone by word overlap on
+# "organize"/"car" alone, but ask about a retail product for inside the
+# vehicle (a trunk organizer, a seat-back caddy) or a specific store's stock,
+# not the zone's own garage shelf. The zone's content.json purpose is
+# explicit ("fluids, cables, and cleaning kit... upright, labeled, separate
+# from everything the household touches"), nothing about the inside of the
+# car itself, so this is the same false on-topic match DIGITAL already
+# excludes, just a different mismatched physical space. Verified against the
+# real corpus before adding: genuine on-topic rows ("organize car
+# maintenance tips", "how to organize car cleaning supplies", "organize in
+# car interior") use "organize" as a verb on supplies/maintenance and do not
+# match any branch of this pattern.
+OFF_TOPIC_CONTEXT = re.compile(
+    r"\bcar organizers?\b|\bcar trunk\b|canadian tire|"
+    r"organizers?\s+(?:bag\s+)?for\s+car\b|"
+    r"organizers?\s+for\s+car\s+interior", re.I)
+
 
 def guide_less_rooms():
     """Rooms with no article guide yet, derived live from ROOM_GUIDES.
@@ -105,10 +123,12 @@ def score_room(us_rows, global_rows, room):
         by_query.setdefault(r["query"], r)
     combined = list(by_query.values())
     on_topic = [r for r in combined if ON_TOPIC.search(r["query"])]
-    on_topic_clean = [r for r in on_topic if not DIGITAL.search(r["query"])]
+    on_topic_clean = [r for r in on_topic
+                       if not DIGITAL.search(r["query"]) and not OFF_TOPIC_CONTEXT.search(r["query"])]
     gap = [r for r in on_topic_clean if r["status"] == "gap"]
     partial = [r for r in on_topic_clean if r["status"] == "partial"]
-    excluded_digital = [r for r in on_topic if DIGITAL.search(r["query"])]
+    excluded_digital = [r for r in on_topic
+                         if DIGITAL.search(r["query"]) or OFF_TOPIC_CONTEXT.search(r["query"])]
     return {
         "room": room,
         "total_routed_rows": len(combined),

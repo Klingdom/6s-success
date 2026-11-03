@@ -68,7 +68,21 @@ _pap_row = {"query": "organize entryway closet", "best_page": "/deck/test-room-p
 check("room_rows matches a room's print-and-play deck URL, not just {room}-deck.html",
       len(rgc.room_rows([_pap_row], _room)) == 1)
 
+# Found 2026-11-03 (Garage pass): "car organizer"/"car trunk"/retailer
+# queries route to the Automotive Care Zone on word overlap with
+# "organize"/"car" alone but ask about a product for inside the vehicle,
+# not the zone's own garage shelf (content.json's purpose names fluids,
+# cables and a cleaning kit, nothing about the car's own interior).
+_car_organizer = {"query": "amazon shopping car organizer", "best_page": "/test-room-deck.html", "status": "gap"}
+_result_car = rgc.score_room([_car_organizer], [], _room)
+check("an 'off-topic context' row (car organizer product, not garage storage) is excluded",
+      _result_car["on_topic_rows"] == 0)
+_car_maint = {"query": "organize car maintenance tips", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_car2 = rgc.score_room([_car_maint], [], _room)
+check("a genuine on-topic car-maintenance row is NOT excluded by that same pattern",
+      _result_car2["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)
-print("\n%d/%d passed" % (7, 7))
+print("\n%d/%d passed" % (9, 9))

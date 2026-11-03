@@ -26,7 +26,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "ops"))
 
-from room_guide_candidates import ON_TOPIC, DIGITAL, slug  # noqa: E402
+from room_guide_candidates import ON_TOPIC, DIGITAL, OFF_TOPIC_CONTEXT, slug  # noqa: E402
 import build_zone_pages as b  # noqa: E402
 
 
@@ -74,7 +74,8 @@ def score_room(us_rows, global_rows, room):
         by_query.setdefault(r["query"], r)
     combined = list(by_query.values())
     on_topic = [r for r in combined if ON_TOPIC.search(r["query"])]
-    on_topic_clean = [r for r in on_topic if not DIGITAL.search(r["query"])]
+    on_topic_clean = [r for r in on_topic
+                       if not DIGITAL.search(r["query"]) and not OFF_TOPIC_CONTEXT.search(r["query"])]
     gap = [r for r in on_topic_clean if r["status"] == "gap"]
     partial = [r for r in on_topic_clean if r["status"] == "partial"]
     covered = [r for r in on_topic_clean if r["status"] == "covered"]
