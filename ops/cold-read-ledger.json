@@ -1201,6 +1201,11 @@
       "date": "2026-10-26",
       "note": "cold read 2026-10-26: idempotent, --check matches live state (CLEAN), all gate/unit tests pass; no issues found"
     },
+    "rotate_owner_actions_item_history.py": {
+      "status": "clean",
+      "date": "2026-11-03",
+      "note": "Cold-read 2026-11-03 PM check-in: region_between anchor-uniqueness and ordering checks are sound, plan_rotation is idempotent in practice (--check CLEAN against the real file after its own 10:5x apply), apply_archive's header/divider guard refuses to guess on a malformed archive, and the real OWNER-ACTIONS.md/OWNER-ACTIONS-ARCHIVE.md output reads correctly (no broken markdown table row, archived block verbatim). gate_owner_actions_item_history_not_oversized's own test passes 3/3 fail-then-pass. No defect found."
+    },
     "rotate_status_history.py": {
       "status": "fixed",
       "date": "2026-10-24",
