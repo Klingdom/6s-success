@@ -1102,9 +1102,9 @@
       "note": "Second-pass cold read 2026-10-11, scheduled operator cycle: one commit since 2026-10-02 (9aa962ee6, same day) updated TRAFFIC to the 49/121/719 2026-10-02 reading; cross-checked against GOALS.md's own canonical traffic row and confirmed byte-consistent (same visitors/visits/pageviews, same as_of date, same week-burst narrative), and confirmed via git log that GOALS.md carries no newer traffic reading as of today, so TRAFFIC is not stale. Re-read in full: sh_checked()'s None-vs-empty-string guard for gh, the shallow-clone unshallow-then-recount guard for commits_24h, is_backlog_row_done()'s narrow strikethrough/Est-column check, and WAITING_RE's dependency-aware waiting classification all still read correctly and match their own documented fix history. Ran ops/tests/test_roadmap_report.py (18 cases) plus the three gate tests (catalogue count, edition-from-schedule, site age), all pass. No defect found."
     },
     "room_guide_candidates.py": {
-      "status": "fixed",
-      "date": "2026-11-02",
-      "note": "Cold-read 2026-11-02, PM check-in: the US/global keyword-demand tiers share 1069 queries; score_room() summed them unconditionally, double-counting any query tracked in both. Verified it had already inflated partial counts 1-8 rows per room across all 8 guide-less rooms (no gap-status duplicate yet, but len(gap) is the sort key that picks the next room to ship). Deduped by query text before scoring; fail-then-pass proved in test_room_guide_candidates.py (2 new cases, FAIL on reverted code, PASS fixed). Real gap counts unchanged today (Family Room 4, Mudroom 1, rest 0); partial/on-topic/routed counts corrected downward for every room."
+      "status": "clean",
+      "date": "2026-11-03",
+      "note": "Cold-read diff 7ea370b59: room_rows() now also matches /deck/{slug}-print-and-play.html. Matches commit message, fail-then-pass proved (7/7), backlog section 89 documents full verification. No defect found."
     },
     "room_image_variants.py": {
       "status": "clean",

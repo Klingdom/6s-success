@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-03 (06:4x slot): verified and closed the "how to organise belongings" global keyword gap the 03:4x check-in named but never checked
+
+**Did.** Unshallowed and attached to main cleanly (ff-only onto `4f878aca9`). Re-verified rather than cited: 30 GitHub issues unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02; `inbox_agent.py --apply` no mail credentials. Checked the 03:4x handoff's named candidate ("how to organise belongings", global gap, 0.0 coverage) against the live scorer directly: `organise` already folds to `organize` and is deliberately excluded as a task-verb `FORMAT_WORD`, so the only real content word is `belongings`, which matched no page's title or heading at all. Confirmed genuine, not stale.
+
+**Shipped.** One FAQ question and answer added to `site/articles/where-to-start-decluttering.html`, the one hand-authored article already about organizing a whole house (confirmed no generator owns its body), in both visible HTML and its `FAQPage` JSON-LD, grounded in the page's own already-stated method. No invented claim, no price or product touched.
+
+**Verified.** Live rescore after the edit: the query moves from 0.0/gap on `/about.html` to 1.0/covered on the real article. `keyword_demand_global.py --rescore`: gap 98 to 97, covered +1, confirmed by diff. Both JSON-LD blocks parse. `fix_dashes`/`fix_dialect` 0/0. `audit_pages.py` (234, 0 findings), `check_urls.py` (229/229), `affiliate.py --check`, `check_sellable.py` unchanged and clean. Six relevant preflight gates called directly: all clean. `indexnow.py --submit` correctly reported UNCHECKED (sandbox cannot reach the live key file), not a false pass. Also cleared one stale cold-read-ledger entry (`room_guide_candidates.py`, read cold, matches its own commit, no defect).
+
+**Went well:** verified the handoff before acting, same as every recent cycle's own standing practice, and it held up this time.
+
+**Did not go well:** the standing `gate_tests` Chromium hang recurred; killed cleanly, nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** global tier now 97 gap, all previously-named noise. Guest Bedroom (11 partial) is the only room-guide candidate, still below the Workshop-class bar. Same Phil-gated queue (30 open issues, none from Phil) otherwise.
+
+Pushed to main: the article, keyword-demand-global files, cold-read ledger, this entry, dashboard files. No price or product touched, no new page, IndexNow attempted and unchecked.
+
 ## PM check-in, 2026-11-03 (06:4x slot): previous work confirmed finished, nothing new unblocked
 
 NEXT FOR THE OPERATOR: watch issue #42 and #40 for a reply from Phil, because every other open item (30 issues, all decision or blocked-on-art) is Phil-gated and none has moved.

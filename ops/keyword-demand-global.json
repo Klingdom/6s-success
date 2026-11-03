@@ -19326,13 +19326,11 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap",
-      "unmatched_words": [
-        "belongings"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/where-to-start-decluttering.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -48745,6 +48743,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-11-03T04:45:44Z",
-  "scored_against_commit": "2c0a0ba02"
+  "scored_at": "2026-11-03T06:53:05Z",
+  "scored_against_commit": "4f878aca9"
 }
