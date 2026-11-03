@@ -1111,6 +1111,11 @@
       "date": "2026-11-03",
       "note": "Cold-read diff 7ea370b59: room_rows() now also matches /deck/{slug}-print-and-play.html. Matches commit message, fail-then-pass proved (7/7), backlog section 89 documents full verification. No defect found."
     },
+    "room_guide_underperformance.py": {
+      "status": "clean",
+      "date": "2026-11-03",
+      "note": "New tool, 2026-11-03: ranks all 20 rooms (not just guide-less ones) by on-topic keyword shortfall against zone/deck/guide-article routing, the lane the 20:4x PM check-in named next. Reviewed and tested by its own author this cycle (9/9, fail-then-pass proved); no defect found."
+    },
     "room_image_variants.py": {
       "status": "clean",
       "date": "2026-10-14",

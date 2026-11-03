@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-03T17:54:30Z against 242 page(s) at commit 6a09a6373. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-03T21:16:50Z against 243 page(s) at commit e3219566a. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 242 published page titles: 1407 covered, 1275 partial, 126 gap.
+**Queries found:** 2808. Checked against 243 published page titles: 1412 covered, 1278 partial, 118 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 126, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 118, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -29,7 +29,7 @@ Showing the top 80 of 126, ordered by the best rank the phrase reached in any on
 | 2 | how to build walkway steps | - | What is 6S? The six steps, and how it differs from 5S (0.33) | build, walkway |
 | 2 | how to organize benchmark advance materials | - | How to organize the workshop material rack (0.00) | advance, benchmark, materials |
 | 2 | how to organize stash poe 2 | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | poe, stash |
-| 2 | landings on a staircase | - | How to organize a stair landing, zone by zone (0.00) | landings, staircase |
+| 2 | landings on a staircase | - | How to organize a stair landing, step by step (0.00) | landings, staircase |
 | 3 | daycare organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | daycare |
 | 3 | den office design ideas | - | The Home Office Deck: 66 cards, free to read (0.33) | den, design |
 | 3 | draw a larder organization chart | - | The Pantry Deck: 57 cards, free to read (0.00) | chart, draw |
@@ -38,7 +38,7 @@ Showing the top 80 of 126, ordered by the best rank the phrase reached in any on
 | 3 | organized nurse designs | - | What is a micro zone? The unit that actually gets organized (0.33) | designs, nurse |
 | 4 | back porch careers | - | Why your family won't put things back where they belong (0.33) | careers, porch |
 | 4 | how to build a nightstand for beginners | - | How to organize the guest bedroom nightstand (0.33) | beginners, build |
-| 4 | how to build a staircase with landing | - | How to organize a stair landing, zone by zone (0.33) | build, staircase |
+| 4 | how to build a staircase with landing | - | How to organize a stair landing, step by step (0.33) | build, staircase |
 | 4 | how to make a disposable diaper | - | How we make money: what we sell, and what we do not earn on (0.33) | diaper, disposable |
 | 4 | how to organize a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, tournament |
 | 4 | how to organize hard drive files | - | How to organize the home office file storage (0.00) | drive, hard |
@@ -52,7 +52,7 @@ Showing the top 80 of 126, ordered by the best rank the phrase reached in any on
 | 5 | how to organize belts | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | belts |
 | 5 | kindergarten organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | kindergarten |
 | 5 | why are garages left unfinished | Garage | How to organize the primary bedroom left nightstand (0.33) | garages, unfinished |
-| 6 | how to build a floating staircase landing | - | How to organize a stair landing, zone by zone (0.25) | build, floating, staircase |
+| 6 | how to build a floating staircase landing | - | How to organize a stair landing, step by step (0.25) | build, floating, staircase |
 | 6 | how to hold bench press bar correctly | - | Contact 6S Success: books, quotes, workshops, and press (0.20) | bar, bench, correctly |
 | 6 | how to operate a wood stove | - | How to organize the kitchen stove area (0.33) | operate, wood |
 | 6 | kitchen organization ideas dollar tree | Kitchen | The Kitchen Deck: 72 cards, typeset and free to read or print (0.33) | dollar, tree |
@@ -73,38 +73,38 @@ Showing the top 80 of 126, ordered by the best rank the phrase reached in any on
 | 8 | nine steps on how to organize a cooperative | - | What is 6S? The six steps, and how it differs from 5S (0.33) | cooperative, nine |
 | 8 | stove on floor plan | - | Venture plan (0.33) | floor, stove |
 | 9 | clothes sorter hamper near me target | - | How to organize baby clothes by size, without drowning in them (0.20) | clothes, hamper, near |
-| 9 | designing stairs with landing | - | How to organize a stair landing, zone by zone (0.33) | designing, stairs |
-| 9 | how to build exterior stairs with landing | - | How to organize a stair landing, zone by zone (0.25) | build, exterior, stairs |
 | 9 | how to hold a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, tournament |
 | 9 | how to install a stove top range | - | How to organize the kitchen stove area (0.25) | install, range, top |
 | 9 | how to organize script mods sims 4 | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | mods, script, sims |
 | 9 | organize hard disk drives | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | disk, drives |
 | 9 | organize packing kit guide | - | The Complete Digital Bundle: book, manual and print pack, $49 (0.00) | guide, packing |
 | 9 | what problems exist in this kitchen | Kitchen | The Kitchen Deck: 72 cards, typeset and free to read or print (0.33) | exist, problems |
-| 9 | why do i have trouble climbing stairs | - | How to organize a stair landing, zone by zone (0.00) | climbing, trouble |
+| 9 | why do i have trouble climbing stairs | - | How to organize a stair landing, step by step (0.00) | climbing, trouble |
 | 10 | card games organizer storage | - | How to organize the family room game storage (0.33) | card, games |
-| 10 | decorating ideas for stairs and landing | - | How to organize a stair landing, zone by zone (0.33) | decorating, stairs |
 | 10 | how to host a cribbage tournament template | - | The 6S Zone Scoring Sheet and Layered Audit Template (0.25) | cribbage, host, tournament |
 | 10 | how to organize pc | - | - (0.00) | - |
 | 10 | how to organize printed recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | printed, recipes |
 | 10 | laundry problems and solutions | - | How to organize a laundry room, step by step (0.33) | problems, solutions |
-| 10 | metal stairs and landing | - | How to organize a stair landing, zone by zone (0.33) | metal, stairs |
 | 11 | foyer design ideas for flat indian style | - | What does a 5S engagement cost, and why no flat rate? (0.20) | flat, indian, style |
 | 11 | how to decorate a living room with high ceilings | Living Room | The Living Room Deck: 69 cards, free to read (0.40) | ceilings, decorate, high |
 | 11 | how to operate a gas stove | - | How to organize the kitchen stove area (0.33) | gas, operate |
 | 11 | how to organize recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | recipes |
 | 11 | how to plan a workshop for students | Workshop | How to organize a workshop, zone by zone (0.33) | plan, students |
 | 11 | organize seasonal pricing model | - | How to organize the hall closet seasonal storage (0.33) | model, pricing |
-| 11 | organizing ideas for bedrooms | - | How to declutter a bedroom in one day, step by step (0.00) | bedrooms |
-| 11 | stairs with landing and turn | - | How to organize a stair landing, zone by zone (0.33) | stairs, turn |
-| 12 | adding a landing to stairs | - | How to organize a stair landing, zone by zone (0.33) | adding, stairs |
 | 12 | adult diaper disposal container | - | How to organize the nursery diaper storage (0.25) | adult, container, disposal |
 | 12 | building beds for kids organization | - | How to organize a kids bedroom, step by step (0.33) | beds, building |
 | 12 | how to decorate a living room with white walls | Living Room | The Living Room Deck: 69 cards, free to read (0.40) | decorate, walls, white |
+| 12 | how to host a workshop map cs2 | Workshop | How to organize a workshop, zone by zone (0.25) | cs2, host, map |
+| 12 | ideas for patios and decks | - | How to organize a patio or deck, step by step (0.00) | decks, patios |
+| 12 | organize hard drive space | - | Small space organizing: why doesn't anything fit? (0.33) | drive, hard |
+| 13 | cover for space between stove and counter | - | Small space organizing: why doesn't anything fit? (0.20) | between, cover, stove |
+| 14 | computer storage for games | - | How to organize the family room game storage (0.33) | computer, games |
+| 14 | diy plans for a nightstand | - | How to organize the guest bedroom nightstand (0.33) | diy, plans |
+| 14 | explore decluttering pro guide | - | Decluttering vs. organizing: what's actually different (0.25) | explore, guide, pro |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1275.
+Showing the top 60 of 1278.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -129,7 +129,7 @@ Showing the top 60 of 1275.
 | 15 | how to declutter a one bedroom apartment | How to declutter a bedroom in one day, step by step | 0.75 |
 | 19 | primary bathroom designs with shower | How to organize the primary bathroom shower or tub | 0.75 |
 | 21 | buy garden tool storage | How to organize the garage garden tool storage | 0.75 |
-| 21 | stair stringer landing to landing | How to organize a stair landing, zone by zone | 0.75 |
+| 21 | stair stringer landing to landing | How to organize a stair landing, step by step | 0.75 |
 | 1 | craft paint organizers and storage | How to organize the workshop paint and chemical storage | 0.67 |
 | 1 | drop zone design ideas | How to organize the entryway drop zone | 0.67 |
 | 1 | how to build a drop zone | How to organize the entryway drop zone | 0.67 |
@@ -190,7 +190,7 @@ Showing the top 60 of 1275.
 | Pantry | 58 | 1 | 25 | 32 |
 | Primary Bathroom | 13 | 0 | 9 | 4 |
 | Primary Bedroom | 16 | 1 | 13 | 2 |
-| Stair Landing | 24 | 0 | 16 | 8 |
+| Stair Landing | 24 | 0 | 15 | 9 |
 | Workshop | 66 | 3 | 31 | 32 |
 
 1927 queries name no room of ours. Those are either a different subject the engine wandered into, or a room-independent question, and the second kind is where an article earns its place.

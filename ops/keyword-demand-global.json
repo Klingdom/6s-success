@@ -29,7 +29,7 @@
       "note": ""
     }
   },
-  "pages_checked": 242,
+  "pages_checked": 243,
   "rows": [
     {
       "query": "area craft activity",
@@ -1202,13 +1202,11 @@
       "best_page": "/rooms/stair-landing.html",
       "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "basement"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -9615,11 +9613,11 @@
         "how to organise railing and surface"
       ],
       "room": "",
-      "best_page": "/rooms/stair-landing.html",
-      "best_page_title": "How to organize a stair landing, zone by zone",
+      "best_page": "/articles/how-to-organize-a-stair-landing.html",
+      "best_page_title": "How to organize a stair landing, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-stair-landing.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -11071,7 +11069,7 @@
       "best_page_title": "How to organize the stair landing gallery wall",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/zones/stair-landing-the-wall-and-display-zone.html",
+      "heading_page": "/articles/how-to-organize-a-stair-landing.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -21337,8 +21335,8 @@
         "how to organise steps"
       ],
       "room": "",
-      "best_page": "/rooms/stair-landing.html",
-      "best_page_title": "How to organize a stair landing, zone by zone",
+      "best_page": "/articles/how-to-organize-a-stair-landing.html",
+      "best_page_title": "How to organize a stair landing, step by step",
       "coverage": 0.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-basement.html",
@@ -32424,7 +32422,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -36764,11 +36762,11 @@
         "why is my stair landing always messy"
       ],
       "room": "",
-      "best_page": "/rooms/stair-landing.html",
-      "best_page_title": "How to organize a stair landing, zone by zone",
+      "best_page": "/articles/how-to-organize-a-stair-landing.html",
+      "best_page_title": "How to organize a stair landing, step by step",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-stair-landing.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -36786,8 +36784,8 @@
         "why is my stair landing always messy"
       ],
       "room": "",
-      "best_page": "/rooms/stair-landing.html",
-      "best_page_title": "How to organize a stair landing, zone by zone",
+      "best_page": "/articles/how-to-organize-a-stair-landing.html",
+      "best_page_title": "How to organize a stair landing, step by step",
       "coverage": 0.0,
       "heading_coverage": 0.5,
       "heading_page": "/dining-room-deck.html",
@@ -41226,11 +41224,11 @@
         "why is my stair landing always messy"
       ],
       "room": "",
-      "best_page": "/rooms/stair-landing.html",
-      "best_page_title": "How to organize a stair landing, zone by zone",
+      "best_page": "/articles/how-to-organize-a-stair-landing.html",
+      "best_page_title": "How to organize a stair landing, step by step",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-stair-landing.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -42388,8 +42386,8 @@
         "stair landing organization ideas"
       ],
       "room": "",
-      "best_page": "/rooms/stair-landing.html",
-      "best_page_title": "How to organize a stair landing, zone by zone",
+      "best_page": "/articles/how-to-organize-a-stair-landing.html",
+      "best_page_title": "How to organize a stair landing, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -44267,7 +44265,7 @@
       "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -44283,8 +44281,8 @@
         "stair landing organization ideas"
       ],
       "room": "",
-      "best_page": "/rooms/stair-landing.html",
-      "best_page_title": "How to organize a stair landing, zone by zone",
+      "best_page": "/articles/how-to-organize-a-stair-landing.html",
+      "best_page_title": "How to organize a stair landing, step by step",
       "coverage": 0.25,
       "heading_coverage": 0.5,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -44306,11 +44304,11 @@
         "stair landing organization ideas"
       ],
       "room": "",
-      "best_page": "/rooms/stair-landing.html",
-      "best_page_title": "How to organize a stair landing, zone by zone",
+      "best_page": "/articles/how-to-organize-a-stair-landing.html",
+      "best_page_title": "How to organize a stair landing, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/how-to-organize-an-entryway.html",
+      "heading_page": "/articles/how-to-organize-a-stair-landing.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -44526,11 +44524,11 @@
         "why is my stair landing always messy"
       ],
       "room": "",
-      "best_page": "/rooms/stair-landing.html",
-      "best_page_title": "How to organize a stair landing, zone by zone",
+      "best_page": "/articles/how-to-organize-a-stair-landing.html",
+      "best_page_title": "How to organize a stair landing, step by step",
       "coverage": 0.0,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/articles/how-to-organize-a-stair-landing.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -46152,8 +46150,8 @@
         "why is my stair landing always messy"
       ],
       "room": "",
-      "best_page": "/rooms/stair-landing.html",
-      "best_page_title": "How to organize a stair landing, zone by zone",
+      "best_page": "/articles/how-to-organize-a-stair-landing.html",
+      "best_page_title": "How to organize a stair landing, step by step",
       "coverage": 0.25,
       "heading_coverage": 0.5,
       "heading_page": "/stair-landing-deck.html",
@@ -46215,16 +46213,14 @@
         "why is my stair landing always messy"
       ],
       "room": "",
-      "best_page": "/rooms/stair-landing.html",
-      "best_page_title": "How to organize a stair landing, zone by zone",
+      "best_page": "/articles/how-to-organize-a-stair-landing.html",
+      "best_page_title": "How to organize a stair landing, step by step",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "stairs"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-stair-landing.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -46547,7 +46543,7 @@
       "best_page_title": "Why can't you see the clutter in your own house anymore?",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/family-wont-put-things-back.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -46770,8 +46766,8 @@
         "why is my stair landing always messy"
       ],
       "room": "",
-      "best_page": "/rooms/stair-landing.html",
-      "best_page_title": "How to organize a stair landing, zone by zone",
+      "best_page": "/articles/how-to-organize-a-stair-landing.html",
+      "best_page_title": "How to organize a stair landing, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/zones/entryway-the-landing-spot.html",
@@ -47406,8 +47402,8 @@
         "why is my stair landing always messy"
       ],
       "room": "",
-      "best_page": "/rooms/stair-landing.html",
-      "best_page_title": "How to organize a stair landing, zone by zone",
+      "best_page": "/articles/how-to-organize-a-stair-landing.html",
+      "best_page_title": "How to organize a stair landing, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/entryway-deck.html",
@@ -47997,8 +47993,8 @@
         "why is my stair landing always messy"
       ],
       "room": "",
-      "best_page": "/rooms/stair-landing.html",
-      "best_page_title": "How to organize a stair landing, zone by zone",
+      "best_page": "/articles/how-to-organize-a-stair-landing.html",
+      "best_page_title": "How to organize a stair landing, step by step",
       "coverage": 0.25,
       "heading_coverage": 0.75,
       "heading_page": "/zones/stair-landing-the-stair-and-floor-path.html",
@@ -48062,11 +48058,11 @@
         "why is my stair landing always messy"
       ],
       "room": "",
-      "best_page": "/rooms/stair-landing.html",
-      "best_page_title": "How to organize a stair landing, zone by zone",
+      "best_page": "/articles/how-to-organize-a-stair-landing.html",
+      "best_page_title": "How to organize a stair landing, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/how-to-organize-an-entryway.html",
+      "heading_page": "/articles/how-to-organize-a-stair-landing.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -48720,6 +48716,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-11-03T17:47:16Z",
-  "scored_against_commit": "6a09a6373"
+  "scored_at": "2026-11-03T21:17:05Z",
+  "scored_against_commit": "e3219566a"
 }

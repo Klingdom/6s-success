@@ -1,0 +1,83 @@
+#!/usr/bin/env python3
+"""
+Prove ops/room_guide_underperformance.py's extra routing rule (matching a
+room's own guide article, not just its deck/zone pages) actually fires, and
+that its shortfall ranking and double-count guard behave the same way
+room_guide_candidates.py's own tested ones do. Fail-then-pass: reverting the
+guide_path() match in room_rows() makes the second check below fail (the
+guide-routed row would no longer count), confirmed by running this file
+against that reverted state before writing it this way.
+
+Run:  python ops/tests/test_room_guide_underperformance.py
+"""
+import json
+import os
+import sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(ROOT, "ops"))
+
+import build_zone_pages as bzp                      # noqa: E402
+import room_guide_underperformance as rgu            # noqa: E402
+
+failures = []
+
+
+def check(name, cond):
+    print(("PASS " if cond else "FAIL ") + name)
+    if not cond:
+        failures.append(name)
+
+
+content_rooms = sorted({r["room"] for r in
+                         json.loads(open(os.path.join(ROOT, "content/manual/source/content.json")).read())["rooms"]})
+real_rooms = rgu.all_rooms()
+check("all_rooms() returns exactly the rooms in content.json, derived live not hand-copied",
+      real_rooms == content_rooms)
+check("every room with a shipped guide has a resolvable guide_path",
+      all(rgu.guide_path(r) is not None for r in bzp.ROOM_GUIDES))
+check("a room with no guide has no guide_path",
+      rgu.guide_path("Nonexistent Test Room") is None)
+
+_room = "Test Room"
+_guide_row = {"query": "organize test room the long way", "best_page": "/articles/how-to-test-a-room.html",
+              "status": "gap"}
+bzp.ROOM_GUIDES["Test Room"] = [("../articles/how-to-test-a-room.html", "x", "x")]
+try:
+    check("room_rows matches a row whose best_page is the room's own guide article",
+          len(rgu.room_rows([_guide_row], _room)) == 1)
+
+    _zone_row = {"query": "organize test room zone", "best_page": "/zones/test-room-the-desk.html", "status": "covered"}
+    _deck_row = {"query": "organize test room deck", "best_page": "/test-room-deck.html", "status": "partial"}
+    check("room_rows still matches the zone-prefix and deck routes too",
+          len(rgu.room_rows([_guide_row, _zone_row, _deck_row], _room)) == 3)
+
+    _dup = {"query": "organize test room shared", "best_page": "/articles/how-to-test-a-room.html", "status": "gap"}
+    _result = rgu.score_room([_dup], [_dup], _room)
+    check("a query tracked in both tiers is not double-counted",
+          _result["on_topic_rows"] == 1 and len(_result["gap"]) == 1)
+
+    _off_topic = {"query": "test room price comparison", "best_page": "/articles/how-to-test-a-room.html",
+                  "status": "gap"}
+    _result2 = rgu.score_room([_off_topic], [], _room)
+    check("a routed row with no organize/declutter/clean/storage/stock word is excluded as off-topic",
+          _result2["on_topic_rows"] == 0)
+
+    _digital = {"query": "how to organize steam game storage", "best_page": "/articles/how-to-test-a-room.html",
+                "status": "gap"}
+    _result3 = rgu.score_room([_digital], [], _room)
+    check("a digital-context on-topic row is excluded from the ranked gap/partial count",
+          _result3["on_topic_rows"] == 0)
+
+    _covered_only = {"query": "organize test room fully", "best_page": "/articles/how-to-test-a-room.html",
+                      "status": "covered"}
+    _result4 = rgu.score_room([_covered_only], [], _room)
+    check("shortfall is 0 when every on-topic row is already covered",
+          _result4["shortfall"] == 0.0 and _result4["uncovered_count"] == 0)
+finally:
+    del bzp.ROOM_GUIDES["Test Room"]
+
+if failures:
+    print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
+    sys.exit(1)
+print("\n%d/%d passed" % (9, 9))

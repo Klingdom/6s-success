@@ -2,11 +2,33 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-03 (~21:2x UTC): built the next-lever tool the 20:4x PM check-in named, now that the room-guide gap-filling lane is closed, closed one real coverage gap with it
+
+**Note on ordering:** a concurrent PM check-in (21:2x slot, below the second entry after this one) landed independently and named the same 19:5x/20:4x lever as "the real next step, sized for a full cycle," without building it; that cycle and this one ran concurrently and did not see each other's work. Resolved here by keeping both entries, this one first since it is the one that actually built the lever.
+
+**Did:** Unshallowed genuinely this time (watched the fetch run to real completion, confirmed `is-shallow-repository` false, not assumed from elapsed time or CPU alone, after an earlier attempt in this same cycle stalled on a network RPC reset). Read `BACKLOG-2026-09-07.md`, `CLAUDE.md`, and the fifth independent exhaustion confirmation already on main. Re-verified rather than trusted it: `room_guide_candidates.py` printed nothing (0 guide-less rooms, all 20 confirmed shipped), `cold_read_ledger.py --next` read 306/306 with 0 un-ledgered, `ops/state.json` showed a Stripe read fresh at this run's own timestamp still $0/$19/1 sale, 30 GitHub issues sorted by `updated_at` showed nothing newer than 2026-11-01, no mail credential in this sandbox. A concurrent cycle pushed first; rebased my one trivial cycle-signal checkpoint onto it rather than force anything.
+
+**Built the thing the handoff actually named, not another gap-tier mining pass.** `room_guide_candidates.py` only ever asked whether a room has a guide, a question now closed for all 20. Built `ops/room_guide_underperformance.py`, which asks the different question that tool cannot: now that every room has a guide, how much of its own real on-topic search demand does that guide, plus its zone and deck pages, still fail to answer. Same matching and dedup rules as its sibling, extended with the one new route a guided room can answer through, its own guide article. `ops/tests/test_room_guide_underperformance.py`, 9/9, fail-then-pass proved by reverting the new route's match and watching 3 tests go red, then restoring.
+
+**Ran it, and did not build around its own top-ranked candidate without reading it first.** Workshop ranked worst, but its worst rows were a title word-overlap collision ("workshop paint and chemical storage" pulling in unrelated craft-paint queries), the same false-attribution shape earlier synonym fixes exist to catch; correctly left alone rather than patched with an invented synonym. Read the true 0.0-coverage `gap` rows across every room instead, most noise, one clean: "organizing ideas for bedrooms," `unmatched_words: ["bedrooms"]`, the exact plural-not-stem shape A34/A36 already fixed for other words. Added one FAQ pair to the hand-authored `how-to-declutter-a-bedroom.html` (visible and JSON-LD, identical text, no invented claim, grounded in zones the page already describes), rescored live: the query moved from `gap` to `covered` (US gap count 126 to 118), confirmed against the real row, not the summary line.
+
+**Verified.** Both JSON-LD blocks parse; `fix_dashes.py --check` 0/0; `gate_unsourced_stats()` clean; `check_urls.py` 235/235; `audit_pages.py` 240 pages, 0 findings; `link_graph_report.py` 0 orphans; `affiliate.py --check` and `check_sellable.py` both clean, neither price nor product touched; `check_risks_evidence_fast.py` clean (no new form-bearing page). `preflight.py --skip-tests` run fresh after every change, watched via a background monitor rather than polled: 0 FAIL through every gate reached, stalled again at the documented `gate_etsy_pdfs_current` network gate, confirmed genuinely stalled by flat CPU over a 5s window before killing it clean.
+
+**Went well:** the new tool's own top candidate was a false positive, and verifying that before building around it is as real a result as a fix; the second candidate held up and shipped clean.
+
+**Did not go well:** nothing new; `BACKLOG-2026-09-07.md` crossed further over its own 150,000-byte tripwire with this entry's own length (now ~187KB), a WARN not a FAIL, already a standing, previously-diagnosed condition this cycle did not make worse in kind, only in degree.
+
+**Changing next cycle:** none.
+
+**Next:** the new tool gives the next cycle a one-command ranking instead of an ad hoc read; Patio or Deck, Garage, Hall Closet, Home Office and Kitchen are next-ranked (34 to 56 percent uncovered), with several genuinely on-topic rows worth reading closely (Garage's car-trunk/car-organizer queries, Pantry's snack-box query) rather than mined blindly. Otherwise unchanged: 30 open `decision`/`blocked-on-art` GitHub issues, none from Phil since 2026-11-01/02; no push notification sent, nothing material changed since the last one.
+
+Pushed to main: `ops/room_guide_underperformance.py`, `ops/tests/test_room_guide_underperformance.py`, `site/articles/how-to-declutter-a-bedroom.html`, `ops/keyword-demand.json`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND.md`, `ops/KEYWORD-DEMAND-GLOBAL.md`, `ops/cold-read-ledger.json`, this entry, dashboard files. No price or product touched; no new page, `IndexNow` not applicable.
+
 ## PM check-in, 2026-11-03 (21:2x slot): previous work confirmed finished again, nothing new unblocked
 
 Attached clean after a genuine full unshallow; fast-forwarded onto a concurrent checkpoint, no conflict. Previous work (20:4x cycle) confirmed finished: CI already green, tree clean, main in sync. Verified directly: `preflight.py --skip-tests` 0 FAIL through every gate reached, genuinely stalled at the documented `gate_etsy_pdfs_current` network gate, killed clean. Cold-read ledger 306/306, 0 un-ledgered. 30 GitHub issues unchanged; #42 re-read, none from Phil; no owner commits in the last 100. No push: cooldown runs to 2026-11-04T04:00Z. Not starting anything new; every lane is Phil-gated or exhausted.
 
-NEXT FOR THE OPERATOR: 19:5x's named lever (score room guides against keyword demand) is the real next step, sized for a full cycle.
+NEXT FOR THE OPERATOR: 19:5x's named lever (score room guides against keyword demand) is the real next step, sized for a full cycle. **Superseded by the entry above, written concurrently: that lever is now built (`ops/room_guide_underperformance.py`) and has already closed one gap.**
 
 Pushed to main: dashboard trio, this entry.
 
