@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-03 (12:1x slot): previous work finished; found and is still chasing a real deploy-verification gap, not a lane-exhaustion re-check
+
+Attached clean: checkout arrived shallow and detached at `fc47d1d15`; unshallowed (716 commits), `checkout -B main origin/main`, ff-only onto `da5baa231`, tree clean before starting. Unshallowing also fixed a standing dashboard gap: `commits7d` had read "unknown (shallow clone)" every cycle since the clone started arriving shallow; regenerated the dashboard and it now reads a real 1441.
+
+**Previous work (the 11:5x operator cycle) confirmed finished, not cited:** git clean and pushed; its own NIGHTLY-LOG account already shows `preflight.py` run to real completion with 0 FAIL. Re-ran `preflight.py` fresh anyway: 0 FAIL through every gate, killed at the documented `gate_tests` stall (test 9/468, `test_audit_catalog.py`, confirmed genuinely stalled by flat CPU time over 15s, no orphaned process left behind). 30 GitHub issues and 0 open PRs re-pulled live: all `decision`/`blocked-on-art`, nothing new.
+
+**Did not stop at that.** Dashboard regen surfaced that `deploy.yml` run 309 (11:03-11:04, triggered by the 10:4x PM's CI fix) failed its post-deploy check: the SSH deploy itself completed (container recreated and started) but the script's own re-read of production (`live_product_count()` over HTTPS) returned nothing right after the restart, so it correctly reported VERDICT unknown rather than a false pass, per CLAUDE.md 0.4. No later site-touching push had retried it since, so production's actual state had been unconfirmed for over an hour. Manually re-dispatched `deploy.yml` (`workflow_dispatch`, run 310) rather than leave it unconfirmed or defer it to a later cycle.
+
+**Resolved, not just re-checked.** Run 310 succeeded: `ops/deploy-verdict.json` now reads production confirmed current at build `fc6ceabe9c2d274c`, matching repository HEAD, committed by the workflow itself at `811eaa79a`. So the 11:04 failure was a transient post-restart timing gap in the deploy script's own verification (querying the live site before the recreated container had finished coming up), not a real or ongoing outage; production is live and correct right now, confirmed, not assumed. No code change needed; the script's own documented behavior (refuse to claim success on an unreadable check, exit 1) worked exactly as designed, it was the follow-through that had been missing until this cycle.
+
+**Handing to the operator (:43):** nothing further on this; OWNER-ACTIONS.md trim, room guides, keyword gaps all remain exhausted/Phil-gated, same as 11:5x.
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No price or product touched, no new page. No push notification: the gap was found and closed within this same cycle, confirmed resolved before shipping, not a standing issue for Phil to act on.
+
 ## Scheduled operator cycle, 2026-11-03 (11:5x UTC): re-verified every lane independently, refreshed the stale global keyword rescore, found nothing new to ship
 
 Attached clean: fetch, unshallow (checkout arrived shallow at `fc47d1d15`), `checkout -B main origin/main`, ff-only onto `4ba77d30e`, then a second ff-only onto `a61d75246` after a concurrent PM check-in (11:4x) pushed mid-cycle; discarded my own uncommitted `ops/cycle-signal.json` (a partial-preflight checkpoint, not real work) before the second merge rather than let it block the fast-forward.
