@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-03 (~23:0x UTC): the basement/Patio-or-Deck handoff below checked further, not re-cited, and the honest fix does not exist; a smaller real defect fixed instead
+
+**Did.** Fresh checkout (shallow, genuinely unshallowed and watched to completion, `checkout -B main origin/main`, ff-only onto `a084937e5`, tree clean). `cycle_signal.py --check`: CHANGED, so paid for a real re-verification rather than skipping it. Read `GOALS.md`, `STATUS.md`, the recent `NIGHTLY-LOG.md` entries including the PM check-in directly below (which independently reconfirmed the same row and handed it to "the operator" as next), and pulled the 30 open GitHub issues fresh, including issue #42's full comment thread: every comment self-authored by a prior agent cycle, nothing from Phil since 2026-11-01/02.
+
+**Picked up the handoff below, went one step further, and the claim did not hold up as a fixable gap.** Sections 101-103 of `BACKLOG-2026-09-07.md` and the PM check-in directly below all correctly confirm the live row: "how to store clothes in outdoor storage" scores `partial`, `matched_on: heading`, routed to `/articles/how-to-organize-a-basement.html`, missing `outdoor`. None of them had called `keyword_demand.best_by()` field-by-field to see why. Done this cycle: it is a dead-even 0.75/0.75 tie-break between that basement FAQ and the real Patio or Deck Outdoor Storage Zone page, not a one-sided misattribution, and the zone's own `content.json` content (cushions, games, furniture covers, a croquet set, charcoal; no clothing anywhere) does not honestly support adding "clothes" to win the tie. Left unfixed, the same precedent as Garage's ruled-out car-organizer queries and Workshop's paint queries: naming it correctly as un-fixable-honestly closes it, rather than handing it to yet another cycle as "the real next lever."
+
+**A real, smaller defect found by the same `room_guide_underperformance.py` ranking instead.** Home Office carried 2 genuine `gap` rows ("how to organize hard drive files," "organizing hard drive files," plus "organize hard drive space" elsewhere in the tier), all digital-library noise (a computer hard drive, not a physical zone) that `room_guide_candidates.py`'s own `DIGITAL` exclusion regex already catches for "pc"/"steam"/"computer"/"desktop" but had never been given "hard drive" for. Added it; confirmed it does not false-match "hardware closet" or any other genuine physical query. Home Office's gap count: 2 to 0.
+
+**Turned into a test, per `CLAUDE.md` 10b.** `ops/tests/test_room_guide_underperformance.py` gained a case (now 10/10); fail-then-pass proved directly (stashed the regex change, watched the new case fail, restored, reconfirmed).
+
+**Verified.** `test_room_guide_candidates.py` (7/7), `fix_dashes.py --check` (0/0), `check_also_called_digital_collision_fast.py` and `check_risks_evidence_fast.py` both clean. `preflight.py --skip-tests` run fresh in the background to real completion, watched via a monitor rather than trusted: 0 FAIL through every gate reached, genuinely stalled (flat CPU over a 5s window, confirmed before killing) at the documented `gate_etsy_pdfs_current` network gate. Discarded the stray in-flight `ops/cycle-signal.json` checkpoint it left, same precedent as every prior cycle. `python ops/inbox_agent.py --apply`: no mail credential in this sandbox, standing gap, reported unchecked not assumed empty.
+
+**Went well:** going one field deeper than three prior cycles and the check-in below had, which found the real mechanism (a tie, not a one-sided miss) and avoided fabricating a synonym a page's real content does not support, while still shipping a real fix found along the way.
+
+**Did not go well:** the basement-collision claim cost four cycles' worth of "Next" lines before anyone called the scorer field-by-field; worth remembering generally that `best_page`/`heading_page`/`matched_on` interact (the true winning page is `best_page` only when `matched_on == "title"`, else `heading_page`), which makes reading only one field give the wrong page for roughly half of partial/gap rows.
+
+**Changing next cycle:** when a backlog entry names a cross-page "collision" by field name, call the scorer directly against the real rows, including which field actually decided it, before sizing or deferring the fix again.
+
+**Next:** Garage, Hall Closet and Kitchen remain next-ranked by `room_guide_underperformance.py`; each needs the same row-by-row read this entry used, not a synonym added on the ranking's strength alone. Otherwise unchanged: 30 open `decision`/`blocked-on-art` GitHub issues, none from Phil since 2026-11-01/02.
+
+Pushed to main: `ops/room_guide_candidates.py`, `ops/tests/test_room_guide_underperformance.py`, `BACKLOG-2026-09-07.md`, this entry, dashboard files. No price, product or page touched; `IndexNow` not applicable.
+
 ## PM check-in, 2026-11-03 (22:4x slot): previous work confirmed finished, a new stall point named, handoff unchanged
 
 NEXT FOR THE OPERATOR: fix the basement/Patio-or-Deck "outdoor storage" cross-page collision ("how to store clothes in outdoor storage" still routes its heading match to `/articles/how-to-organize-a-basement.html`, status `partial`, unmatched word `outdoor`), because this is the same A37-shaped lead named by the last three cycles and now independently reconfirmed live against the real `ops/keyword-demand.json` row, not just cited.

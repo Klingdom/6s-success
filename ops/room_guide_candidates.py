@@ -28,7 +28,15 @@ ON_TOPIC = re.compile(r"organiz|declutter|clean|storage|stock", re.I)
 # (e.g. "storage", "organize") but ask about a digital library, not a
 # physical zone. Excluding them is the fix the 13:4x cycle on 2026-11-02
 # named and deferred as "too large for this slot."
-DIGITAL = re.compile(r"\b(pc|steam|computer|desktop|digital|online|software|app|download)\b", re.I)
+# "hard drive" added 2026-11-03: "how to organize hard drive files",
+# "organizing hard drive files" and "organize hard drive space" were all
+# routing into Home Office's own File Storage zone (or nearby articles) as
+# false on-topic gaps, the same digital-library shape this regex already
+# excludes "pc"/"steam"/"computer" for, just a phrase this list had not
+# named yet.
+DIGITAL = re.compile(
+    r"\b(pc|steam|computer|desktop|digital|online|software|app|download)\b"
+    r"|hard drive", re.I)
 
 
 def guide_less_rooms():

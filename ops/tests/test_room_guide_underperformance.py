@@ -69,6 +69,12 @@ try:
     check("a digital-context on-topic row is excluded from the ranked gap/partial count",
           _result3["on_topic_rows"] == 0)
 
+    _hard_drive = {"query": "how to organize hard drive files", "best_page": "/articles/how-to-test-a-room.html",
+                   "status": "gap"}
+    _result3b = rgu.score_room([_hard_drive], [], _room)
+    check("a 'hard drive' digital-context row is excluded too, not just the single-word DIGITAL terms",
+          _result3b["on_topic_rows"] == 0)
+
     _covered_only = {"query": "organize test room fully", "best_page": "/articles/how-to-test-a-room.html",
                       "status": "covered"}
     _result4 = rgu.score_room([_covered_only], [], _room)
@@ -80,4 +86,4 @@ finally:
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)
-print("\n%d/%d passed" % (9, 9))
+print("\n%d/%d passed" % (10, 10))
