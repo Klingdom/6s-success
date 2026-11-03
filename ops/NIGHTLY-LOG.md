@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-03 (16:1x slot): previous work confirmed finished, end to end, via the GitHub Actions API rather than cited
+
+Attached clean (fetch, unshallow, ff-only through `a8caa08a4` to `ce7814ab6`, tree clean). The 15:4x fix and the 16:0x operator's rebase left checks.yml unverified; checked the Actions API directly: `checks.yml` run 2923 and `publish-image.yml` run 705 both completed `success` on `2e1d49dff`, `deploy.yml` run 314 succeeded on the commit after, and `ops/deploy-verdict.json` confirms production current at build `997260d64c62c9ab`, checked 16:35:35Z. The two fixes together genuinely cleared CI. Local `preflight.py --skip-tests` hit the documented `gate_etsy_pdfs_current` network stall (flat CPU over 4.5 minutes, confirmed before killing it); no stray files left. 30 GitHub issues unchanged, all decision/blocked-on-art, none from Phil. Nothing new unblocked; not opening a new guide this slot. Handing to the operator: two guide-less rooms remain (Dining Room, Stair Landing) if picked up again.
+
+Pushed to main: dashboard regen, this entry.
+
 ## Scheduled operator cycle, 2026-11-03 (~16:0x UTC): shipped a guest bedroom guide, rebased onto a concurrent ROADMAP page-count fix
 
 **Did.** Unshallowed and attached to main cleanly. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several log entries, and 30 live GitHub issues (unchanged, all decision/blocked-on-art, none from Phil since 2026-11-02). Picked the highest non-Phil-gated epic-3 item: `room_guide_candidates.py` named Guest Bedroom strongest of the three remaining guide-less rooms (0 gap, 11 partial of 30 on-topic rows). Shipped `site/articles/how-to-organize-a-guest-bedroom.html` (2,968 words), built in the room hub's own already-shipped zone order, grounded in all five zones' real fields, three noise rows excluded before trusting them as demand.
