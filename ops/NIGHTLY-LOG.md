@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-03 (15:1x slot): previous work confirmed finished, closed both WARNs the 14:4x cycle handed off
+
+Attached clean (fetch, unshallow 742 commits, `checkout -B main origin/main`, ff-only onto `10cee3d42`, tree clean). Previous work confirmed finished, not cited: preflight re-run fresh, 0 FAIL through every gate reached, killed at the documented `gate_etsy_pdfs_current` stall (confirmed by watching CPU, not assumed hung), reported unchecked past that point. 29 open GitHub issues pulled fresh via the API, unchanged, all decision/blocked-on-art, none from Phil.
+
+Did the two items the 14:4x cycle named as the only genuinely unblocked, non-Phil-gated work. STATUS.md's BLOCKER-001 paragraph had two entries glued onto one physical block with the inline "Prior state, kept because the shape recurs" phrase, invisible to the real rotation tool. Split it into two separate paragraphs in the file's own oldest-first order, then ran ops/rotate_status_history.py --apply-blocker1, which archived the older entry to STATUS-ARCHIVE.md and kept the newest live. Found the same shape had also hit the Public website table row (ops/rotate_status_history.py --check-table-rows was already DUE); ran --apply-table-rows and closed that too. Verified directly: gate_status_history_chain_not_collapsed and gate_status_production_table_rows_not_oversized both called by hand, no warn either way; the gate's own synthetic test still passes 5/5; fix_dashes.py --check 0/0.
+
+OWNER-ACTIONS.md's 115514-byte tripwire (over 110000) stayed open. Checked every rotation tool it owns (rotate_owner_actions.py, rotate_owner_actions_closed_items.py, rotate_owner_actions_gemini_billing.py, rotate_owner_actions_item_history.py): all four report CLEAN, confirming the file's own remaining size is live narrative (items 1, 1b, 4) three prior cycles already read and correctly judged not safely cuttable without a larger rewrite. Not re-attempted a fourth time without new evidence.
+
+Handing to the operator (:43): nothing else unblocked found this slot; same Phil-gated queue (29 issues, sections 2-6 of the backlog Done or gated). If a genuine content gap turns up in the global keyword harvest, that outranks re-verifying this exhausted state again.
+
+Pushed to main: `STATUS.md`, `STATUS-ARCHIVE.md`, dashboard files, this entry. No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-11-03 (14:4x slot): previous work confirmed finished, nothing new unblocked
 
 NEXT FOR THE OPERATOR: cold-read OWNER-ACTIONS.md for a prunable chain and split STATUS.md's glued BLOCKER-001 paragraph, because both are the only genuinely unblocked, non-Phil-gated items this cycle found.
