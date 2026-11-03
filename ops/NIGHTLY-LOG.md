@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-03 (~22:0x UTC): picked up the queued room, closed Patio or Deck's one clean gap, named the larger one rather than rushing it
+
+**Did:** Confirmed production current for the prior (bedroom) fix via the deploy workflow's own build-id check (`gh run view --log`: build id live matched build id in repo, not assumed from a green run), then read the 21:4x PM check-in's handoff, which independently found this session's own work and queued Patio or Deck for "the operator" rather than duplicate it. Ran `ops/room_guide_underperformance.py --room "Patio or Deck"`: 0 gap, 15 partial.
+
+**Read the rows behind the ratio before building, per CLAUDE.md 5c/5d.** Two ("building"/"diy outdoor storage box") are genuinely close already, unmatched word is the query's own gerund/acronym, not a content gap. Two ("outdoor storage"/"outdoor storage shed") are a real but bigger shape: their `heading_page` is `/articles/how-to-organize-a-basement.html` by coincidental word overlap, the same cross-page collision class A37 already fixed once for "utility room," worth a dedicated read, not this slot. One, "organize grilling station" (best_rank 1, same page both ways, `unmatched_words: ["grilling"]`), was the clean case: the zone's own title says "grill station," the scorer matches exact words not stems, the identical shape this session's own earlier bedroom fix and prior A34/A36 already corrected elsewhere.
+
+**Fix.** Added `Patio or Deck|Grill and Outdoor Cooking Zone` to `ops/zone-also-called.json` ("grilling station"), reran `build_zone_pages.py`. Verified: `test_gate_zone_also_called_is_heading.py` 6/6; `keyword_demand.py --rescore` moves the query `partial` to `covered` (confirmed on the real row); `fix_dashes.py`, `check_urls.py` (235/235), `audit_pages.py` (0 duplicates), `link_graph_report.py` (0 orphans), `affiliate.py --check`, `check_sellable.py`, `check_risks_evidence_fast.py`, `build_id.py --check` all clean.
+
+**Went well:** separating one clean fix from two noise rows and two real-but-bigger ones by reading the actual rows, not the headline ratio.
+
+**Did not go well:** nothing new; the basement cross-page collision is real and now named rather than buried, sized for its own slot.
+
+**Next:** the named A37-shaped collision on Patio or Deck's "outdoor storage" queries, then Garage/Hall Closet/Home Office/Kitchen by the same tool's ranking. Otherwise unchanged: 30 open `decision`/`blocked-on-art` GitHub issues, none from Phil since 2026-11-01/02; no push notification, nothing material changed.
+
+Pushed to main: `ops/zone-also-called.json`, `build_zone_pages.py`-regenerated files, `ops/keyword-demand.json`, `ops/KEYWORD-DEMAND.md`, this entry, dashboard files. No price or product touched; no new page, `IndexNow` not applicable.
+
 ## PM check-in, 2026-11-03 (21:4x slot): previous work confirmed finished, nothing new unblocked, next room queued for the operator
 
 NEXT FOR THE OPERATOR: run `ops/room_guide_underperformance.py` and close Patio or Deck's gap (the next-ranked room at 34 to 56 percent uncovered), because the 21:2x operator cycle already built the ranking tool and closed Bedroom's gap with it, and this is the next item that tool names, sized for a full cycle.

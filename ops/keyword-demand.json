@@ -8884,13 +8884,12 @@
       "best_page": "/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html",
       "best_page_title": "How to organize the patio or deck grill station",
       "coverage": 0.25,
-      "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_coverage": 0.75,
+      "heading_page": "/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "diy",
-        "grilling"
+        "diy"
       ]
     },
     {
@@ -43850,13 +43849,11 @@
       "best_page": "/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html",
       "best_page_title": "How to organize the patio or deck grill station",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "grilling"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "organize hard disk drives",
@@ -46365,13 +46362,12 @@
       "best_page": "/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html",
       "best_page_title": "How to organize the patio or deck grill station",
       "coverage": 0.25,
-      "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_coverage": 0.75,
+      "heading_page": "/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "designs",
-        "grilling"
+        "designs"
       ]
     },
     {
@@ -46387,13 +46383,12 @@
       "best_page": "/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html",
       "best_page_title": "How to organize the patio or deck grill station",
       "coverage": 0.25,
-      "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_coverage": 0.75,
+      "heading_page": "/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "diy",
-        "grilling"
+        "diy"
       ]
     },
     {
@@ -46409,13 +46404,11 @@
       "best_page": "/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html",
       "best_page_title": "How to organize the patio or deck grill station",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "grilling"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "outdoor grilling station plans",
@@ -46430,12 +46423,11 @@
       "best_page": "/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html",
       "best_page_title": "How to organize the patio or deck grill station",
       "coverage": 0.25,
-      "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_coverage": 0.75,
+      "heading_page": "/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "grilling",
         "plans"
       ]
     },
@@ -57275,6 +57267,6 @@
       ]
     }
   ],
-  "scored_at": "2026-11-03T21:16:50Z",
-  "scored_against_commit": "e3219566a"
+  "scored_at": "2026-11-03T22:02:56Z",
+  "scored_against_commit": "56ec91847"
 }

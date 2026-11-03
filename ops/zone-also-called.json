@@ -207,6 +207,14 @@
    "queries": 1,
    "covered": 0,
    "source": "ops/keyword-demand-global.json 2026-11-01 rescore (gb, au, in): 'how to organize nightstand drawers', rank 2, 3 markets, scored to /articles/how-to-declutter-a-kitchen.html via a coincidental word match on 'drawers' (that article's own heading reads 'counters, cabinets and drawers'), not a real one. This zone's own purpose and content (71 uses of the word 'drawer' in its body) are the real match for a nightstand's drawers; its title and headings use 'nightstand' but never the plural 'drawers'. Named 'drawers zone', the '<word> zone' precedent from the A-series (A21/A23/A24/A31/A32/A33/A34/A36)."
+  },
+  "Patio or Deck|Grill and Outdoor Cooking Zone": {
+   "names": [
+    "grilling station"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand.json 2026-11-03: 'organize grilling station', rank 1, partial, 0.5 title coverage, correctly scored to /zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html but held at partial because the page's own title says 'grill station' and the scorer matches exact words, not stems, the same exact-word-not-stem shape A34/A36 already fixed for 'nappy'/'nappies' and 'craft'/'crafts'. Zone purpose (the grill, the fuel, the long-handled tools and the cooking surface) confirms the semantic match. Named 'grilling station', the exact phrase searched and a real name people use for this kind of zone, not the bare word alone."
   }
  }
 }
