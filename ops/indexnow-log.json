@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-31T04:56:22Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-31T05:58:51Z",
    "mode": "changed",
    "offered": 2,
@@ -657,6 +650,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-04T07:10:54Z",
+   "mode": "changed",
+   "offered": 2,
+   "accepted": 2,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -714,7 +714,7 @@
   "https://6s-success.com/deck/entryway-print-and-play.html": "874e78ad294ed630",
   "https://6s-success.com/rooms/dining-room": "149666a2a29ae3c3",
   "https://6s-success.com/rooms/entryway": "7ad26a2e73252533",
-  "https://6s-success.com/rooms/family-room": "db6e846b4932e5e6",
+  "https://6s-success.com/rooms/family-room": "014b29e1e6d8dd0e",
   "https://6s-success.com/rooms/garage": "71a62061c7e58416",
   "https://6s-success.com/rooms/guest-bathroom": "945d1f635447a652",
   "https://6s-success.com/rooms/guest-bedroom": "5ae566381d4964e4",
@@ -723,7 +723,7 @@
   "https://6s-success.com/rooms/kids-bedroom": "637fabcef80a33fb",
   "https://6s-success.com/rooms/kitchen": "923bee850babba7c",
   "https://6s-success.com/rooms/laundry-room": "446c7970de556817",
-  "https://6s-success.com/rooms/living-room": "7f9cb28605e88785",
+  "https://6s-success.com/rooms/living-room": "75531cbd4943cd46",
   "https://6s-success.com/rooms/mudroom": "7235fe9ca51f7206",
   "https://6s-success.com/rooms/nursery": "c4aecb065804f187",
   "https://6s-success.com/rooms/pantry": "1e663cdd703b94e3",
