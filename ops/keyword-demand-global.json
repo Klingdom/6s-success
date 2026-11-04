@@ -10509,13 +10509,11 @@
       "best_page": "/home-office-deck.html",
       "best_page_title": "The Home Office Deck: 66 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/home-office-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "layout"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/home-office.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -27601,13 +27599,11 @@
       "best_page": "/articles/how-to-declutter-a-bedroom.html",
       "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "layout"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/primary-bedroom.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -33610,12 +33606,11 @@
       "best_page": "/home-office-deck.html",
       "best_page_title": "The Home Office Deck: 66 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/home-office-deck.html",
-      "matched_on": "title",
+      "heading_coverage": 0.75,
+      "heading_page": "/rooms/home-office.html",
+      "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "layout",
         "plan"
       ],
       "markets": [
@@ -37042,13 +37037,11 @@
       "best_page": "/pantry-deck.html",
       "best_page_title": "The Pantry Deck: 57 cards, free to read",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/pantry.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "layout"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -37136,13 +37129,11 @@
       "best_page": "/pantry-deck.html",
       "best_page_title": "The Pantry Deck: 57 cards, free to read",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/pantry.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "layout"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca",
         "in"
@@ -37576,13 +37567,11 @@
       "best_page": "/laundry-room-deck.html",
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/laundry-room-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "layout"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/laundry-room.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -45137,13 +45126,11 @@
       "best_page": "/laundry-room-deck.html",
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/laundry-room-deck.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/laundry-room.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "layout"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -48696,6 +48683,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-11-04T07:24:33Z",
-  "scored_against_commit": "325e0d857"
+  "scored_at": "2026-11-04T07:56:57Z",
+  "scored_against_commit": "2f7648c41"
 }

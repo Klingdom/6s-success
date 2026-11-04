@@ -2103,6 +2103,10 @@
     {
      "label": "The trap",
      "text": "Decanting everything. Move flour, sugar, rice and cereal into containers if you like, but leave the sauce jar and the curry paste in their own packaging, because that label is carrying the date and the cooking instructions you will want at six o'clock."
+    },
+    {
+     "label": "Room layout",
+     "text": "The dry goods shelves sit where you can read the level in every container from the doorway, which makes them the zone that decides how deep the rest of the larder's shelving can go without losing that sightline. The canned and jarred goods stand on risers in rows, so they need shelving with the depth for risers, not flat single-depth shelving. The snack and lunch zone splits by height on purpose, one open bin at child height and a higher shelf for the items that need an adult, so its layout only works with at least two shelf heights, one within a child's reach and one above it. The backstock and bulk zone holds its reserve at or below waist height, which is a weight rule as much as a space one: heavy sacks and cases belong on the lowest shelves this layout has, not the top ones."
     }
    ],
    "zones": [
@@ -5967,6 +5971,10 @@
     {
      "label": "The trap",
      "text": "The bedroom absorbs what the rest of the house refuses. Wrapping paper under the bed, the exercise bike with a shirt on it, the box of paperwork nobody filed. None of it belongs to sleep, and it is here only because the door usually stays shut."
+    },
+    {
+     "label": "Room layout",
+     "text": "The bed sets the layout, because its own done state already depends on the room around it: you need to be able to walk from either side of the bed to the door without stepping over anything, so both paths need clear floor, not just one. The two nightstands flank it, and the right hand one only reaches its own standard, the lamp cord running behind the leg rather than across the floor beside the bed, if that nightstand sits close enough to the wall to make that routing possible. The dresser's anti-tip strap runs from its back into the wall, so it needs a wall it can actually be strapped to, not a spot chosen for symmetry alone. A primary bedroom with real floor to spare is what lets the closet keep its own two fingers of hanging space and a bare stretch of rod at one end; a cramped layout is what forces those numbers down first."
     }
    ],
    "zones": [
@@ -9974,6 +9982,10 @@
     {
      "label": "Small bathroom",
      "text": "This is already the smallest room you use the most, and a primary bathroom this tiny needs a strict limit on the counter, not more storage: one liftable tray, four daily products, bare stone on both sides of the basin. A pedestal basin with no counter at all moves that same limit to a single wall shelf or cup within arm's reach, not a floor stand, which only puts daily things below knee height. Everything else does not need a bigger room, it needs a drawer: push anything used less than daily into the vanity drawers or the under-sink cabinet, and leave the medicine cabinet for its own slower pass."
+    },
+    {
+     "label": "Room layout",
+     "text": "The vanity counter is the surface you look at twice a day, so it sits directly ahead of whoever walks in, with the mirror above it. The toilet area's two reserve rolls stay within reach of someone seated, which means that zone needs its own spot beside the toilet rather than sharing the vanity drawers across the room. The under-sink cabinet keeps both shut-off valves in plain sight when its doors swing open, so nothing in the layout should block those doors from opening fully. In a small primary bathroom, the medicine cabinet or wall storage is what buys back floor space: mounting it on the wall, above a child's reach, uses height a free-standing cabinet cannot, which matters most exactly where floor space is tightest."
     }
    ],
    "zones": [
@@ -11198,6 +11210,10 @@
     {
      "label": "The trap",
      "text": "This room quietly becomes the retirement home for products the household rejected: the conditioner nobody liked, the soap that smells wrong, the towels that went thin. Nothing gets demoted into the guest bathroom. If it is not good enough for you, it is not good enough to offer a visitor, and it leaves the house instead."
+    },
+    {
+     "label": "Room layout",
+     "text": "The vanity counter is the first thing a guest sees from the doorway, which is why it carries the lightest touch of any surface in this room: soap, one towel, room for a phone and glasses, nothing of yours in view. The guest linen zone works best positioned near the door or the shower rather than tucked behind the vanity, so a visitor can find a full bundle, a bath towel, a hand towel and a washcloth together, without opening a cabinet that is not meant for them. The toilet area keeps its spare roll in reach of someone seated, which only works if that roll lives beside the toilet rather than across the room in the vanity storage. The guest vanity storage, holding the two bins of guest supplies and the cleaning kit, is the one zone nobody but you ever opens, so it can sit wherever is convenient for restocking rather than for sightlines."
     }
    ],
    "zones": [
@@ -12077,6 +12093,10 @@
     {
      "label": "The trap",
      "text": "Clean laundry with nowhere to go. If the folding counter is still holding yesterday's basket, the problem is not the counter and it is not the folding. Nobody has been named to carry the clothes out of the room, so the dry load goes back in for a second tumble."
+    },
+    {
+     "label": "Room layout",
+     "text": "The washer and dryer anchor this room's layout, and the floor in front of their doors has to stay bare, which is the same bare floor the sorting and hamper zone's bags are kept clear of, so those two zones share one walking line rather than compete for it. The folding surface works best within reach of the dryer, since a load comes out of one and lands straight on the other; the spare hangers on its rail then feed the hanging and air-dry zone's rack, which folds flat against the wall when not in use and can share that same wall rather than needing its own floor space. The detergent and treatment zone belongs at or above the machines, with the pod tub latched above shoulder height, so a dose is a one-step reach rather than a trip across the room. The utility and cleaning zone, with its bucket inside its own taped floor square, takes whichever corner is left once the machines, sorting and folding have their room."
     }
    ],
    "zones": [
@@ -13110,6 +13130,10 @@
     {
      "label": "The trap",
      "text": "This is the room with a door that closes, so it quietly becomes the household's holding pen: the broken lamp, the unopened box from the last move, the bag of things with nowhere else to go. Anything that is not office work has to walk out today, or it becomes permanent furniture."
+    },
+    {
+     "label": "Room layout",
+     "text": "The desk comes first in any home office layout, because its own done state depends on the room around it: the power strip stays hooked off the floor so the chair rolls over bare carpet, which means the desk needs a wall with a reachable outlet, not just open floor. The bookshelf's working reference belongs at seated eye level from that same desk chair, so the shelf has to stand within swivel distance of the desk rather than against whichever wall has room. The printer and scanning station needs clear air behind the machine, which rules out wedging it into the same corner the desk chair swings into. The file storage and supply cabinet are opened far less often than any of those three, so they take whatever space is left once the desk, bookshelf and printer have claimed theirs, not the other way round."
     }
    ],
    "zones": [

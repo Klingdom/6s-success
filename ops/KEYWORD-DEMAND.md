@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-04T07:24:32Z against 243 page(s) at commit 325e0d857. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-04T07:56:38Z against 243 page(s) at commit 2f7648c41. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 243 published page titles: 1422 covered, 1271 partial, 115 gap.
+**Queries found:** 2808. Checked against 243 published page titles: 1430 covered, 1263 partial, 115 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -104,7 +104,7 @@ Showing the top 80 of 115, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1271.
+Showing the top 60 of 1263.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -177,19 +177,19 @@ Showing the top 60 of 1271.
 | Entryway | 50 | 1 | 13 | 36 |
 | Family Room | 27 | 0 | 17 | 10 |
 | Garage | 77 | 1 | 25 | 51 |
-| Guest Bathroom | 22 | 1 | 14 | 7 |
+| Guest Bathroom | 22 | 1 | 13 | 8 |
 | Guest Bedroom | 24 | 0 | 12 | 12 |
 | Hall Closet | 30 | 0 | 12 | 18 |
-| Home Office | 58 | 0 | 25 | 33 |
+| Home Office | 58 | 0 | 24 | 34 |
 | Kids Bedroom | 20 | 0 | 8 | 12 |
 | Kitchen | 95 | 2 | 40 | 53 |
-| Laundry Room | 71 | 0 | 17 | 54 |
+| Laundry Room | 71 | 0 | 16 | 55 |
 | Living Room | 86 | 2 | 38 | 46 |
 | Mudroom | 43 | 0 | 23 | 20 |
 | Nursery | 62 | 1 | 22 | 39 |
 | Pantry | 58 | 1 | 25 | 32 |
-| Primary Bathroom | 13 | 0 | 9 | 4 |
-| Primary Bedroom | 16 | 1 | 13 | 2 |
+| Primary Bathroom | 13 | 0 | 8 | 5 |
+| Primary Bedroom | 16 | 1 | 12 | 3 |
 | Stair Landing | 24 | 0 | 15 | 9 |
 | Workshop | 66 | 3 | 31 | 32 |
 
