@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-04 (00:4x slot): previous work was NOT finished, checks.yml had actually failed on HEAD, fixed and shipped rather than handed off
+
+NEXT FOR THE OPERATOR: watch checks.yml and publish-image.yml on this push, confirm both go green, then resume the room ranking (Pantry/Primary Bedroom/Family Room), because this cycle found and fixed a real CI failure that two prior commits had pushed past unaddressed.
+
+**Previous work was not finished.** Attached clean (fetch, genuine unshallow, `checkout -B main origin/main`, ff-only onto `abafa24af`, tree clean). Ran `preflight.py --skip-tests` fresh rather than trusting the last cycle's clean claim: it reported 2 real `FAIL`, not the usual all-warn/unchecked shape. `gate_ci_conclusion_current`: checks.yml's run on `a5906605ce` (00:21:40Z) actually failed, and the very next commit was only a dashboard check-in that never looked at it. Checked GitHub directly (`gh api .../actions/workflows/checks.yml/runs`): confirmed, run 41746232792, conclusion `failure`.
+
+**Root cause, not just the symptom.** The checks.yml failure traced to `gate_publish_image_current`: publish-image.yml's attempt on `8c1ae35f53` (the Kitchen "corner cabinet" commit) had itself failed its own preflight step on `gate_generator_ownership`: `site/sitemap.xml` didn't match what `ops/build_seo.py` would produce. The committed sitemap carried `<lastmod>2026-11-03</lastmod>` for the kitchen zone page that commit had just changed, stamped by a run where the local date hadn't yet rolled to the 4th; the GitHub runner, in UTC, disagreed. Ran `python ops/build_seo.py` here: it corrected exactly that one line to `2026-11-04`, confirmed idempotent (reran, zero further diff), confirmed no other page moved.
+
+**Did not trust a stray diff.** A concurrent backgrounded preflight run (started for Step 2's own re-verification) briefly showed a modified listing PNG in `git status`; rather than commit it blind, killed that process and re-checked, it cleared on its own, confirmed nothing real was touched beyond `sitemap.xml`.
+
+**Verified.** `preflight.py`'s generator-ownership check is satisfied by construction (the file now matches its own generator's output). Regenerated the dashboard (`ops/dashboard.py`): YELLOW, $0/$20,000 this month ($19 all-time), P0 9, need-you 28, commits7d 1442, consistent with the state before this fix. 30 open GitHub issues reconfirmed, all `decision`/`blocked-on-art`, none from Phil.
+
+**Went well:** Step 2's instruction to actually re-run preflight rather than cite the prior cycle's clean result caught a genuine, silent CI failure that two commits had already pushed past.
+
+**Did not go well:** the sitemap date-rollover drift (documented in `build_seo.py`'s own comments as a known class of bug) recurred; the generator still stamps from local wall-clock rather than a UTC-anchored source, so this exact failure can repeat at the next midnight-UTC boundary a commit lands on.
+
+**Changing next cycle:** none attempted this slot; flagging the rollover-fragility for the operator or a future cycle to consider making `build_seo.py`'s date source UTC-anchored rather than local, so this class of failure stops recurring at commit-time around midnight UTC.
+
+**Next for the operator (:43):** confirm checks.yml and publish-image.yml both go green on this push (if not, the publish-image failure mode and fix are both documented above); if green, resume the room-ranking queue named in the prior entry (Pantry, Primary Bedroom, Family Room). 30 open `decision`/`blocked-on-art` issues, none from Phil, unchanged.
+
+Pushed to main: `site/sitemap.xml`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry.
+
 ## PM check-in, 2026-11-04 (00:1x slot): previous work confirmed finished, closed Workshop's "craft paint" collision that section 100 had named and left unbuilt
 
 **Previous work confirmed finished, not cited.** Attached clean (fetch, genuine unshallow, `checkout -B main origin/main`, ff-only onto `63c1b7a17`, tree clean). `preflight.py --skip-tests` run fresh in the background, watched rather than trusted: 0 FAIL through every gate reached, genuinely stalled at the documented `gate_etsy_pdfs_current` network gate, confirmed by flat CPU (8.8% then 8.4%) across a 29s window before killing it clean. 30 open GitHub issues reconfirmed, unchanged, all `decision`/`blocked-on-art`, none from Phil.
