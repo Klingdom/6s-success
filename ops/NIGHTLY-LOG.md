@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-04 (17:1x slot): previous work confirmed finished, fixed the dashboard's own "unknown" commit counts, no push
+
+**Previous work finished, verified directly:** attached clean (checkout arrived shallow and detached, `fetch origin main`, genuine `fetch --unshallow` watched to real completion in the background rather than assumed, `checkout -B main origin/main`, ff-only onto `f445440a7`, tree clean). `preflight.py --skip-tests` run fresh myself, not cited: 0 FAIL across every gate reached, genuinely stalled at the documented network-bound `gate_etsy_pdfs_current` (confirmed by the background job's own exit code 124, not assumed), same standing sandbox limitation every recent cycle has logged. GitHub pulled directly: 29 open issues unchanged, all `decision`/`blocked-on-art`; issue #42's 8-comment thread read in full, still ends at the automation account's own 2026-11-02T13:51:50Z comment, zero Phil reply. `git log --since 2026-11-02T13:51:50Z`: 404 commits, all `Claude` or `github-actions`, zero Phil.
+
+**Not starting new content/backlog work: every section of `BACKLOG-2026-09-07.md` and every open issue is Phil-gated**, and the layout-tip lane (sections 109-111) is already closed, all tips shipped. The ordering rule forbids picking an item waiting on Phil, so this slot's actual work was closing a small, genuinely non-Phil-gated gap instead of re-running the same full audit a sixth-plus time.
+
+**Found and fixed one real thing: `EXECUTIVE-DASHBOARD-LIVE.md`'s "Commits (7 days)" row read "unknown (shallow clone, could not verify)" even though this very session's own checkout had already been genuinely unshallowed** (the attach step above), which `ops/dashboard.py`'s own best-effort unshallow inside a single run cannot always finish before it has to report. Re-ran `python ops/dashboard.py` from the now-unshallowed working tree: it correctly picked up `git rev-parse --is-shallow-repository` as `false` and reported real figures. Verified independently, not trusted: `git log --since="7 days ago" --oneline | wc -l` gives 1427, `git rev-list --count HEAD` gives 10716, both matching the dashboard's own new numbers exactly. This run's deploy/Stripe checks could not reach the live site from this container (same standing sandbox gap), so `resolve_deploy_reachable()` correctly carried forward the last confirmed `reachable:true` rather than overwrite it with an unmeasured false, and the "Can the site take money?" line correctly downgraded to "unconfirmed on the live site" this run rather than repeat an unchecked "confirmed live" claim; both are the script behaving as documented, not a defect.
+
+**Went well:** the fix needed no new code and no invented data, just re-running an existing generator at a moment when its own precondition (an unshallowed tree) happened to already be true inside this session.
+
+**Did not go well:** nothing new; same standing sandbox gaps (no Stripe/SSH/mail credential, Etsy fee page 403, site unreachable from this container) every recent cycle has already logged.
+
+**Changing next cycle:** none; this was a one-time alignment of timing (dashboard regenerated after this session's own unshallow finished, not before), not a new gate or mechanism.
+
+**Next:** nothing unclaimed and non-Phil-gated exists in `BACKLOG-2026-09-07.md` sections 2-6 or the open GitHub issues. Watch the 29 open `decision`/`blocked-on-art` issues for a Phil reply, or any `OWNER-ACTIONS.md` credential/account item. Nothing handed to the operator beyond the standing watch; no item was mid-flight when this cycle started.
+
+No push notification: nothing material changed since the last one (same 29 issues, no Phil reply, revenue unchanged at $0 of $20,000 / $19 lifetime). A dashboard metrics fix is not the kind of change CLAUDE.md 0.2 asks to be pushed to the owner's phone.
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No content, price or product touched.
+
 ## Scheduled operator cycle, 2026-11-04 (16:4x slot): exhausted/decision-gated state independently reconfirmed by five separate checks, no push
 
 **Did:** Attached clean: checkout arrived shallow and detached, `git fetch origin main` (forced update), genuine `git fetch --unshallow` watched to background completion, `git checkout -B main origin/main`, ff-only onto `8e491ca62`, tree clean throughout. Read BACKLOG-2026-09-07.md sections 0-7 and its newest sections (107-111) directly, not a summary: section 111 shows the layout-tip lane (six rooms, 11 queries) was closed earlier today with real `--rescore` evidence, and its own "Next" line already says the standing queue is the 30 open GitHub `decision` issues. Read ROADMAP/GOALS/CLAUDE.md context already in this session.
