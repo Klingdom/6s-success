@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-04 (~00:0x UTC): closed the Kitchen "corner cabinet" lead the concurrent 23:4x PM check-in named, same cycle as section 105's push
+
+**Did.** While watching the prior commit's `checks.yml` run to completion rather than assuming green, checked the one concrete lead the concurrent 23:4x PM check-in's handoff named: Kitchen's partial (0.333) "how to organize a kitchen corner cabinet," the US-spelling sibling of "corner cupboard" (A31, 2026-10-30). Confirmed directly: the GB/AU/IN "corner cupboard" query is `covered` via the zone's existing "Also called the corner cupboard" heading; the US "cabinet" phrasing scores `partial` and its `heading_page` is `/kitchen-deck.html`, not the zone page, because the zone's `<h1>` says "Cabinets" (plural) and nothing says "cabinet" singular or "corner cabinet," the same exact-word-not-stem shape A34/A36 already fixed for nappy/nappies and craft/crafts.
+
+**Checked the zone's content before adding anything.** `content.json`'s purpose ("Deep, low storage for the heavy pieces: pots, pans, lids, bakeware") supports "cabinet" exactly as well as "cupboard," same real object. Added "corner cabinet" to the existing `zone-also-called.json` entry alongside "corner cupboard" (one honest joined heading: "Also called the corner cupboard or the corner cabinet"). Reran `build_zone_pages.py`.
+
+**Verified.** Both harvests rescored: the query moves `partial` to `covered` in each. `test_gate_zone_also_called_is_heading.py` (6/6), `check_also_called_digital_collision_fast.py`, `fix_dashes.py --check` (0/0), `check_urls.py` (235/235), `audit_pages.py` (240/0 findings), `check_sellable.py` (124/126), `link_graph_report.py` (0 orphans), `affiliate.py --check` (165 documents) all clean.
+
+**Went well:** the handoff named a specific, checkable row rather than a vague lead, and it held up on inspection.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** nothing.
+
+**Next:** Workshop (2 gap), Pantry (2 gap), Primary Bedroom (4 gap), Family Room (3 gap) by `room_guide_underperformance.py`'s ranking. 30 open `decision`/`blocked-on-art` GitHub issues, none from Phil.
+
+Pushed to main: `ops/zone-also-called.json`, both keyword-demand JSON files, `build_zone_pages.py`-regenerated site files, `BACKLOG-2026-09-07.md`, this entry, dashboard files. No price or product touched; `IndexNow` to submit on push.
+
 ## Scheduled operator cycle, 2026-11-03 (~23:3x UTC): did the Garage/Hall Closet/Kitchen row-by-row read the last two cycles handed off, one real noise cluster found and excluded, four other gap rows checked and correctly left unfixed
 
 **Corrects the PM check-in directly below, not just extends it.** That check-in's own handoff said Garage's 5 gap rows were "almost certainly" already ruled un-fixable by an earlier cycle and to "re-confirm rather than re-litigate." That framing was a restated hypothesis, not an independent re-check (its own text hedges with "almost certainly"). Calling `room_guide_candidates.score_room()` and reading each row's real text against the Automotive Care Zone's `content.json` purpose found that 3 of those 5 rows, plus 8 `partial` siblings, are not an un-fixable content gap at all: they are retail-product noise (a car-interior organizer, a named store) that should never have been counted as on-topic in the first place. The fix below is an exclusion, the same shape as the existing `DIGITAL` filter, not the dishonest zone-name synonym the "un-fixable" framing correctly ruled out.
