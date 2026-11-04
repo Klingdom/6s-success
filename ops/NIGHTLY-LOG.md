@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-04: full re-verification from a fresh checkout, exhausted/decision-gated state independently reconfirmed, no new push
+
+**Did.** Fresh checkout, shallow and detached as documented: `fetch origin main` (forced-update ref move), `fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `1d21fc2a8`, tree clean. Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0-5 (not cited), `STATUS.md`'s workstream section, and the last several `ops/NIGHTLY-LOG.md` entries before picking work.
+
+**Verified, not cited.** `python ops/preflight.py` run fresh to a genuine stall (watched via `/proc`, not assumed): 0 FAIL through every gate reached, stalled at test 9/473 inside the documented `gate_tests` sandbox hang, same standing limit every recent cycle hits. `check_urls.py` 235/235, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/0 and `--next` 0 un-ledgered, both lanes genuinely exhausted. `ops/cycle_signal.py --check`: SAME. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked. GitHub re-pulled directly: 30 open issues, all `decision`, 0 open PRs, newest activity still issue #42's 2026-11-02 comment, none from Phil. `BACKLOG-2026-09-07.md` sections 2-4 confirmed Done or Phil-gated (A56 closed today); `STATUS.md`: 0 of 3 workstream slots in use, W1/W2 Phil-gated, W3 closed.
+
+**Went well:** independently re-derived the same exhausted conclusion several cycles have reached, rather than trusting the citation, and it held.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox limit and no-mail-credential gap.
+
+**Changing next cycle:** none.
+
+**Next:** nothing newly unblocked. Watch the 30 open `decision` issues for a Phil reply.
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable. No push notification: nothing material changed since the last withheld send.
+
 ## PM check-in, 2026-11-04 (11:4x slot): previous work confirmed finished by independent re-check, nothing newly unblocked, no push
 
 NEXT FOR THE OPERATOR: nothing unclaimed and non-Phil-gated exists; watch the 30 open decision/blocked-on-art GitHub issues for a Phil reply, because every section of BACKLOG-2026-09-07.md that is not Done is an owner gate.
