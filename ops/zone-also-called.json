@@ -226,6 +226,22 @@
    "queries": 2,
    "covered": 0,
    "source": "ops/keyword-demand.json + ops/keyword-demand-global.json: 'how to store outdoor seating cushions' (both US and global, partial, 0.5 coverage, unmatched ['cushions']) and 'outdoor furniture seating storage' (US, partial, 0.5, unmatched ['furniture']), both already routed by best_page to this zone's own page (the room's only zone matching 'outdoor'+'seating'), not a coincidental collision: the zone's own content.json purpose and passes text repeatedly discuss cushions ('Seats people... with the cushions kept dry', 'every cushion in the deck box', 'Cushions live in the deck box, not stacked on a seat', 'check the underside of every cushion', 'one cushion per seat') and that is the zone's own real answer to how its chairs' cushions get stored, just never in a heading. Named 'cushions zone', the '<word> zone' precedent from the A-series (crafts zone, drawers zone, cooking utensils zone), not the bare word alone, which nobody searching this calls the zone itself."
+  },
+  "Primary Bedroom|Nightstand Left": {
+   "names": [
+    "bedside table"
+   ],
+   "queries": 10,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json 2026-11-04 (no market listed, scored as generic): 'how to organise/organize bedside table/drawers' and three close variants, 10 rows total across both tiers, all partial with the single unmatched word 'bedside', several scoring to clearly wrong pages via coincidental word overlap (/articles/how-to-declutter-a-kitchen.html on 'organize'+'table'; /zones/dining-room-the-dining-table.html on 'table'+'drawer'), not a real match. Primary Bedroom has two nightstand zones, Nightstand Left and Nightstand Right, each with its own done_looks_like/passes text that already discusses the drawer and the top surface in detail ('The drawer has three divided sections...', 'any medication in the drawer...'); neither zone's own heading uses the household word 'bedside table', only 'nightstand'. Since the queries never specify a side, added to both zones rather than arbitrarily picking one: a reader asking generically about a bedside table is equally served by either page, and both are real, symmetric targets, not a coincidental collision."
+  },
+  "Primary Bedroom|Nightstand Right": {
+   "names": [
+    "bedside table"
+   ],
+   "queries": 10,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json 2026-11-04 (no market listed, scored as generic): 'how to organise/organize bedside table/drawers' and three close variants, 10 rows total across both tiers, all partial with the single unmatched word 'bedside', several scoring to clearly wrong pages via coincidental word overlap (/articles/how-to-declutter-a-kitchen.html on 'organize'+'table'; /zones/dining-room-the-dining-table.html on 'table'+'drawer'), not a real match. Primary Bedroom has two nightstand zones, Nightstand Left and Nightstand Right, each with its own done_looks_like/passes text that already discusses the drawer and the top surface in detail ('The drawer has three divided sections...', 'any medication in the drawer...'); neither zone's own heading uses the household word 'bedside table', only 'nightstand'. Since the queries never specify a side, added to both zones rather than arbitrarily picking one: a reader asking generically about a bedside table is equally served by either page, and both are real, symmetric targets, not a coincidental collision."
   }
  }
 }

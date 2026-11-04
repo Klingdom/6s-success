@@ -26984,13 +26984,11 @@
       "best_page": "/zones/dining-room-the-dining-table.html",
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "bedside"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bedroom-the-other-sleeper-s-nightstand.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize bedside table drawers",
@@ -27006,11 +27004,11 @@
       "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
+      "heading_page": "/zones/primary-bedroom-the-other-sleeper-s-nightstand.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "bedside"
+        "drawers"
       ]
     },
     {
@@ -57519,6 +57517,6 @@
       ]
     }
   ],
-  "scored_against_commit": "d4e8d8d75",
-  "scored_at": "2026-11-04T20:20:27Z"
+  "scored_against_commit": "86d8b6805",
+  "scored_at": "2026-11-04T22:57:24Z"
 }

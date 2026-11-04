@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-04 (~23:0x UTC): the "bedside table" vocabulary gap, the one lane the 22:4x PM check-in had not yet confirmed exhausted
+
+**Did:** Attached per Step 0: checkout arrived shallow and detached, genuinely unshallowed (watched to completion, not assumed), `checkout -B main origin/main`, ff-only onto `aeefbf1d2`, then again onto `86d8b6805` after the concurrent 22:4x PM check-in and an hourly check-in pushed mid-cycle, stashing and dropping one transient `cycle-signal.json` checkpoint conflict rather than losing either side's work. Read `GOALS.md`, `BACKLOG-2026-09-07.md` section 0 and its own last several entries, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four `NIGHTLY-LOG.md` entries, per Step 1.
+
+**Independently re-derived rather than cited.** GitHub re-pulled directly: 29 open issues, unchanged since 2026-11-02T13:51:50Z; read issue #42's full comment thread end to end, every comment self-authored by a prior agent cycle, none from Phil. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked. `cold_read_ledger.py --stale` and `--next`: 308/308 ledgered, 0 stale, 0 candidates. All 20 rooms confirmed carrying a `ROOM_GUIDES` entry against `mcp/content.json`'s 20 room names, 1:1. `preflight.py --skip-tests` run fresh: 0 FAIL through every gate reached (confirmed the held lock's pid matched the process I killed before removing it), genuinely stalled at the documented network-bound `gate_etsy_pdfs_current` (two CPU-time readings 5 seconds apart, both frozen, confirming stalled not slow).
+
+**Picked up the one lane the 22:4x PM check-in itself flagged as not yet confirmed exhausted.** Grouped every `partial`-tier row with exactly one unmatched word, both US and global tiers, by that word. Almost all high-frequency hits (design, diy, tips, pinterest, ikea, plan, decorating, decorate, porch, furniture, railing) are the generic-modifier/named-brand trap A40/A48 already ruled out. "Bedside" stood out: 10 rows, all genuine "bedside table/drawers" organizing queries, several landing on clearly wrong pages via coincidental word overlap (a kitchen declutter article, a dining-table zone page), the same misattribution shape as A37/A45/A46/A49. Checked Primary Bedroom's two nightstand zones in `content.json` before adding anything: both have real, substantial content about the drawer and the top surface already, but neither heading ever says "bedside table," only "nightstand." Added "bedside table" to both `zone-also-called.json` entries (Nightstand Left and Nightstand Right), since the queries never specify a side and both pages answer it equally; full account, including the one residual plural-stemming row left unchased, in `BACKLOG-2026-09-07.md` section 113.
+
+**Verified directly.** `ops/build_zone_pages.py` and `ops/build_seo.py` reran clean; both new "Also called the bedside table" headings confirmed rendered by grep against the real site files, not assumed. `ops/keyword_demand.py --rescore` and `ops/keyword_demand_global.py --rescore`: 8 of 10 target rows moved to `covered` on the real zone page; `test_gate_zone_also_called_is_heading.py` 6/6. `check_urls.py` 235/235, `audit_pages.py` 240/0, `fix_dashes.py`/`fix_dialect.py --check` 0/0, `affiliate.py --check` 165 documents, `check_sellable.py` 124/126, `link_graph_report.py` 0 orphans, `build_id.py --check` current, `ops/audit_visual.py` scoped to both changed pages (desktop and mobile) 0 findings each. `preflight.py --skip-tests` rerun after the change: identical 0 FAIL, same stopping point.
+
+**Went well:** treating the prior cycle's own handoff as a specific, checkable claim ("this lane is not yet exhausted, only partially mined") rather than either re-deriving the whole backlog from scratch or assuming the handoff was still accurate without checking.
+
+**Did not go well:** nothing new this slot; the audit_visual.py CLI needed two attempts (a comma-joined path argument is silently rejected rather than split, costing one wasted invocation) before using separate positional arguments correctly.
+
+**Changing next cycle:** none; the fix mechanism and verification method are already established precedent, nothing new to gate.
+
+**Next:** the remaining single-unmatched-word clusters in the partial tier ("cupboard," 14 rows, mixed zone targets; "stairs"/"foyer," smaller and more ambiguous) are real candidates but need per-row zone mapping, not a single clean cluster like this one; a future cycle should work them one at a time rather than batch them. Otherwise, nothing genuinely unblocked beyond what's already in `OWNER-ACTIONS.md`; the 29 open GitHub issues remain the standing queue.
+
+No push notification sent: nothing here is new information for Phil (same 29 issues, no reply, no customer event, no revenue change), only a continuation of mechanical SEO maintenance work already well represented in prior notifications on this topic.
+
+Pushed to main.
+
 ## PM check-in, 2026-11-04 (22:4x slot): ninth independent confirmation, one orphaned chromium/etsy process pair and its lock killed, nothing unblocked, no push
 
 NEXT FOR THE OPERATOR: no unclaimed non-Phil-gated item exists in the structured queue; if there is time, re-mine the partial tier of `room_guide_underperformance.py` for an undiagnosed single-unmatched-word collision the same way sections 109-112 found "layout", "hallway" and the Mudroom row, because that lane (unlike GitHub's 29 issues, the cold-read ledger, or the now-complete 20/20 room guides) has not been confirmed exhausted, only partially mined.

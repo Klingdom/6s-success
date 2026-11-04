@@ -19206,7 +19206,7 @@
       "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
+      "heading_page": "/zones/primary-bedroom-the-other-sleeper-s-nightstand.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -19230,13 +19230,11 @@
       "best_page": "/zones/dining-room-the-dining-table.html",
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "bedside"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bedroom-the-other-sleeper-s-nightstand.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -19254,13 +19252,11 @@
       "best_page": "/articles/how-to-organize-a-junk-drawer.html",
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/dining-room-the-dining-table.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bedroom-the-other-sleeper-s-nightstand.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "bedside"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb"
       ],
@@ -19278,11 +19274,11 @@
       "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
+      "heading_page": "/zones/primary-bedroom-the-other-sleeper-s-nightstand.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "bedside"
+        "drawers"
       ],
       "markets": [
         "au",
@@ -27661,13 +27657,11 @@
       "best_page": "/zones/dining-room-the-dining-table.html",
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "bedside"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bedroom-the-other-sleeper-s-nightstand.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca",
         "gb",
@@ -27686,13 +27680,11 @@
       "best_page": "/articles/how-to-organize-a-junk-drawer.html",
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/dining-room-the-dining-table.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bedroom-the-other-sleeper-s-nightstand.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "bedside"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "in"
       ],
@@ -27709,11 +27701,11 @@
       "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
+      "heading_page": "/zones/primary-bedroom-the-other-sleeper-s-nightstand.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "bedside"
+        "drawers"
       ],
       "markets": [
         "ca"
@@ -33347,13 +33339,11 @@
       "best_page": "/zones/dining-room-the-dining-table.html",
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "bedside"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bedroom-the-other-sleeper-s-nightstand.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "in"
       ],
@@ -41726,13 +41716,11 @@
       "best_page": "/articles/how-to-organize-a-junk-drawer.html",
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "bedside"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bedroom-the-other-sleeper-s-nightstand.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -41748,13 +41736,11 @@
       "best_page": "/articles/how-to-organize-a-junk-drawer.html",
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/dining-room-the-dining-table.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bedroom-the-other-sleeper-s-nightstand.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "bedside"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "in"
       ],
@@ -48683,6 +48669,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-11-04T20:20:39Z",
-  "scored_against_commit": "d4e8d8d75"
+  "scored_at": "2026-11-04T22:57:30Z",
+  "scored_against_commit": "86d8b6805"
 }
