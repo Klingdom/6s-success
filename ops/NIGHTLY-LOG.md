@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-04 (19:1x slot): previous work confirmed finished, fixed five stale deploy-build citations in STATUS.md, no push
+
+**Previous work finished.** Attached clean: checkout arrived shallow and detached, `git fetch origin main` (forced update), genuine `git fetch --unshallow` watched to real completion, `checkout -B main origin/main`, ff-only onto `773ee790e`, tree clean before this cycle's own change. `ops/preflight.py --skip-tests` run fresh, to real completion: every gate passed, 0 FAIL, 34 warnings worth a read, all standing sandbox gaps (no Stripe/SSH/mail credential, no egress to 6s-success.com or Etsy from this container) except two genuinely new ones: `gate_status_deploy_verdict_current` and `gate_status_latest_entry_gap_current`.
+
+**Found and fixed, not just re-run until green.** `ops/deploy-verdict.json` had moved to build `dfc7253ae2164447` (checked_at 2026-11-04T08:17:47Z, matching `site/build-id.txt` directly), but five places in `STATUS.md` still named the prior confirmation (`fc6ceabe9c2d274c`/2026-11-03T12:23:58Z): BLOCKER-001, the Production Knowledge paragraph, the Public website and Production traceability table rows, and the Currently Deployed Build/Repository HEAD Build field. Re-derived directly rather than trusted: `resolve_verdict_commit('dfc7253ae2164447')` resolves to `540ce05b6`, and `deploy_gap_material_commits('540ce05b6')` against real current HEAD returns an empty list, so the deploy gap is genuinely 0, same as before, only the citation was stale. Updated all five, kept each prior correction as dated history per this file's own convention. Also fixed the unrelated false-positive this exposed: section 1's "Latest" entry cited "14 material commits" (a count of edits to that section's own text, from `gate_status_currency`, nothing to do with deploy) and the gap-citation gate was reading that bare number as a deploy-gap claim; added a one-line clarification pointing at BLOCKER-001, the gate's own documented structural fix for this shape.
+
+**Verified:** re-ran `status_deploy_verdict_problem`/`status_latest_entry_gap_problem`/`status_table_rows_gap_count_problem` directly against the edited file, all three now return empty. `fix_dashes.py --check STATUS.md` clean. Re-ran `preflight.py --skip-tests` a second time end to end: every gate passed, 0 FAIL, 32 warnings (down from 34, the two fixed gates silent). Regenerated the dashboard (`ops/dashboard.py`): correctly carried forward revenue and downgraded "Can the site take money?" to unconfirmed, because this run has no egress to 6s-success.com or a Stripe credential, matching every recent cycle's own honest degradation, not a new defect.
+
+**Checked whether anything new was unblocked before touching this:** `BACKLOG-2026-09-07.md` sections 2-6, every row Done/archived or Phil-gated; GitHub pulled directly, 29 open issues, all `decision`/`blocked-on-art`, zero genuine Phil reply (a forked subagent independently confirmed the same, spot-checking the newest and most-discussed issues). Nothing else unclaimed and non-Phil-gated exists.
+
+**Went well:** catching that a document fix for one gate class (bare commit count matching) could silently misfire against prose that was never about a deploy gap at all, rather than widening the regex further.
+
+**Did not go well:** nothing new; same standing credential/egress gaps every recent cycle has logged.
+
+**Changing next cycle:** none.
+
+**Next:** nothing unclaimed and non-Phil-gated exists. Watch the 29 open `decision`/`blocked-on-art` issues for a Phil reply, or any `OWNER-ACTIONS.md` credential/account item.
+
+No push notification: nothing material changed for Phil (same 29 issues, no Phil reply, revenue unchanged, deploy gap still 0, just the citation corrected).
+
+Pushed to main: `STATUS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-04 (19:0x slot): cold-read ledger had one genuinely stale entry, re-read and cleared; everything else independently reconfirmed exhausted/Phil-gated, no push
 
 **Did:** Attached to a shallow/detached checkout: `git fetch origin main`, genuine `git fetch --unshallow` watched to completion, `checkout -B main origin/main`, ff-only onto `d78f9f291`, tree clean. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` sections 0-7 and its newest entries (107-111), `ROADMAP-2026-2029.md`, and the prior nightly-log entries directly, not from summary. While reading, two concurrent cycles pushed ahead of this one (`d451a1398`, a real checks.yml red fix for a stale `GOALS.md` keyword-cluster citation; `4d4d46c46`, a routine dashboard regen); fetched and ff-merged both before doing anything else, so this entry's own work sits on top of them rather than racing them.
