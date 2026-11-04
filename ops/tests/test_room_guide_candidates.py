@@ -114,7 +114,27 @@ _result_den = rgc.score_room([_den], [], _room)
 check("a genuine on-topic 'den storage' row is NOT excluded by the dental pattern",
       _result_den["on_topic_rows"] == 1)
 
+# Found 2026-11-04 (PM check-in, 01:4x slot): a commercial/B2B-intent
+# cluster ("business", "equipment list", "pricing model") word-overlapping
+# onto household zones purely on "cleaning", "equipment" or "organize".
+_pricing_model = {"query": "organize seasonal pricing model", "best_page": "/test-room-deck.html", "status": "gap"}
+_result_pricing = rgc.score_room([_pricing_model], [], _room)
+check("a 'pricing model' off-topic-context row is excluded",
+      _result_pricing["on_topic_rows"] == 0)
+_cleaning_business = {"query": "equipment needed for cleaning business", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_cb = rgc.score_room([_cleaning_business], [], _room)
+check("a 'cleaning business' off-topic-context row is excluded",
+      _result_cb["on_topic_rows"] == 0)
+_equipment_list = {"query": "office cleaning equipment list", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_el = rgc.score_room([_equipment_list], [], _room)
+check("an 'equipment list' off-topic-context row is excluded",
+      _result_el["on_topic_rows"] == 0)
+_cleaning_supplies = {"query": "best way to organize cleaning supplies", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_cs = rgc.score_room([_cleaning_supplies], [], _room)
+check("a genuine on-topic 'organize cleaning supplies' row is NOT excluded by the business pattern",
+      _result_cs["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)
-print("\n%d/%d passed" % (11, 11))
+print("\n%d/%d passed" % (15, 15))

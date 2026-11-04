@@ -82,7 +82,31 @@ OFF_TOPIC_CONTEXT = re.compile(
     # harvest contains "gardening series", "gardening lessons", "dental" or
     # "declutter my life reddit", so this cannot suppress a genuine match.
     r"\bgardening series\b|\bgardening lessons\b|\bdental\b|"
-    r"\bdeclutter my life\b", re.I)
+    r"\bdeclutter my life\b|"
+    # Found 2026-11-04 (PM check-in, 01:4x slot): a commercial/B2B-intent
+    # cluster word-overlapping onto home zones purely on "cleaning",
+    # "equipment", "baking" or "organize". "organize seasonal pricing
+    # model" was diagnosed as this exact shape in prose on 2026-11-03
+    # ("a 'seasonal pricing model' B2B query colliding on 'organize
+    # seasonal' alone") but never coded, so it kept re-surfacing as a Hall
+    # Closet gap every cycle since; mining the same shape found five more:
+    # "baking supplies for small business", "business plan for a cleaning
+    # equipment", "cleaning supplies for a business", "equipment needed
+    # for cleaning business", "how to start an outdoor storage business"
+    # and "how to start baking supplies business" (all asking how to run
+    # or start a business, not how to organize a home), plus "cleaning
+    # company equipment list pdf" and "office cleaning equipment list"
+    # (a commercial equipment checklist, not a household closet). Checked
+    # each target zone's own content.json purpose first: Hall Closet's
+    # Cleaning Equipment Zone, Cleaning Supply Zone and Seasonal and Guest
+    # Zone, Pantry's Baking Zone and Patio or Deck's Outdoor Storage Zone
+    # all describe household use only, nothing about running a business.
+    # Verified against the full corpus: "business" appears in exactly
+    # these 6 rows, "equipment list" in exactly these 2, "pricing model"
+    # in exactly this 1; no genuine on-topic row (e.g. "how do you
+    # organize a company workshop", already `covered`) uses any of these
+    # three phrases, so this cannot suppress a genuine match.
+    r"\bbusiness\b|\bequipment list\b|\bpricing model\b", re.I)
 
 
 def guide_less_rooms():

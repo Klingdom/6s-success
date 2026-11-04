@@ -104,10 +104,28 @@ try:
     _result8 = rgu.score_room([_benchmark], [], _room)
     check("a 'benchmark advance' (curriculum brand) off-topic-context row is excluded",
           _result8["on_topic_rows"] == 0)
+
+    _pricing_model = {"query": "organize seasonal pricing model",
+                       "best_page": "/articles/how-to-test-a-room.html", "status": "gap"}
+    _result9 = rgu.score_room([_pricing_model], [], _room)
+    check("a 'pricing model' off-topic-context row is excluded",
+          _result9["on_topic_rows"] == 0)
+
+    _cleaning_business = {"query": "how to start an outdoor storage business",
+                           "best_page": "/articles/how-to-test-a-room.html", "status": "partial"}
+    _result10 = rgu.score_room([_cleaning_business], [], _room)
+    check("a 'start a business' off-topic-context row is excluded",
+          _result10["on_topic_rows"] == 0)
+
+    _cleaning_supplies = {"query": "best way to organize cleaning supplies",
+                           "best_page": "/articles/how-to-test-a-room.html", "status": "partial"}
+    _result11 = rgu.score_room([_cleaning_supplies], [], _room)
+    check("a genuine on-topic 'organize cleaning supplies' row is NOT excluded by the business pattern",
+          _result11["on_topic_rows"] == 1)
 finally:
     del bzp.ROOM_GUIDES["Test Room"]
 
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)
-print("\n%d/%d passed" % (14, 14))
+print("\n%d/%d passed" % (17, 17))

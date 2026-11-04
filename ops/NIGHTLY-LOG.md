@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-04 (01:4x slot): previous work confirmed finished, closed a diagnosed-but-ungated "pricing model" gap row and five more of the same commercial-intent shape
+
+NEXT FOR THE OPERATOR: the content-gap-mining lane is now genuinely exhausted across all 20 rooms (no unfixed `gap` row remains anywhere in `room_guide_underperformance.py`'s ranking); watch for Phil's reply on the 30 open `decision`/`blocked-on-art` issues, or re-run the ranking fresh if new keyword-demand data lands, since this is the first time in many cycles that lane has read fully clean.
+
+**Previous work confirmed finished, not cited.** Attached clean (fetch, genuine unshallow, `checkout -B main origin/main`, ff-only onto `eaab2c297`, tree clean). Re-ran `room_guide_underperformance.py` directly rather than trust the 01:0x entry above: Workshop (0 gap), Primary Bedroom (2 gap) and Family Room (2 gap) held at the exact counts it reported. `preflight.py --skip-tests` run fresh in the background, watched to a genuine stall (flat CPU) at the documented `gate_etsy_pdfs_current` network gate: 0 FAIL through every gate reached. 30 open GitHub issues reconfirmed via the API, unchanged, all `decision`/`blocked-on-art`, none from Phil; the ordering rule forbids picking any of them. No push notification: the cooldown from 2026-11-02T04:17Z has not elapsed (no-repeat-before 2026-11-04T04:00Z) and nothing material changed.
+
+**Found a diagnosed-but-ungated row, the same defect class section 107/A56 closed for "dental"/"gardening series."** Hall Closet's "organize seasonal pricing model" was correctly read as off-topic B2B noise back on 2026-11-03 but never added to `OFF_TOPIC_CONTEXT`, so it kept re-scoring as a live `gap` row on every ranking since. Mining the same commercial-intent shape found five more sharing it: "baking supplies for small business"/"how to start baking supplies business" (Pantry), "business plan for a cleaning equipment"/"cleaning supplies for a business"/"equipment needed for cleaning business"/"office cleaning equipment list"/"cleaning company equipment list pdf" (Hall Closet), "how to start an outdoor storage business" (Patio or Deck). Checked each target zone's own `content.json` purpose first (Hall Closet's Cleaning Equipment/Cleaning Supply/Seasonal and Guest Zones, Pantry's Baking Zone, Patio or Deck's Outdoor Storage Zone): all describe household use only, nothing about running a business, a commercial equipment checklist, or a pricing model. Verified against the full corpus before adding: "business" appears in exactly 6 rows, "equipment list" in exactly 2, "pricing model" in exactly 1, and no `covered` row (e.g. "how do you organize a company workshop") shares any of the three phrases.
+
+**Fixed at the regex.** Added `\bbusiness\b|\bequipment list\b|\bpricing model\b` to `OFF_TOPIC_CONTEXT` in `ops/room_guide_candidates.py`.
+
+**Turned into a test, per CLAUDE.md 10b.** `test_room_guide_candidates.py` (15/15) and `test_room_guide_underperformance.py` (17/17) each gained cases. Fail-then-pass proved directly: `git stash` on the source file alone, reran both test files, watched exactly the 3 new "excluded" cases fail in each while every other case stayed passing, restored, reconfirmed both green.
+
+**Verified.** Full unscoped ranking diff: only Hall Closet (2 gap to 1, 40% to 39% uncovered) and Patio or Deck (14 partial to 13, 52% to 50%) moved; every other room's counts unchanged. `room_guide_candidates.py` still 0 guide-less rooms. `check_also_called_digital_collision_fast.py` clean, `fix_dashes.py --check` 0/0 on all three changed files, `check_urls.py` 235/235. A stray in-flight `ops/cycle-signal.json` checkpoint from the backgrounded preflight was discarded, not committed. No price, product or page touched; diagnostic tools only, no rebuild or `IndexNow` applies.
+
+**Went well:** re-checking a settled "left alone" conclusion instead of carrying it forward unchanged found a genuinely ungated defect, and mining the full cluster past the one originally-named row closed five more in the same pass.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** nothing; same standing discipline, now also including "was this ever actually gated, not just diagnosed in prose" when re-reading a prior cycle's declined conclusion.
+
+**Next:** no unfixed `gap` row remains in `room_guide_underperformance.py`'s ranking (Garage's 2 and Hall Closet's 1 were already correctly left unfixed in sections 105/107). 30 open `decision`/`blocked-on-art` GitHub issues, none from Phil, remain the only standing queue; nothing genuinely unblocked and new to hand the operator beyond re-verifying this state holds.
+
+Pushed to main: `ops/room_guide_candidates.py`, `ops/tests/test_room_guide_candidates.py`, `ops/tests/test_room_guide_underperformance.py`, `BACKLOG-2026-09-07.md`, this entry, dashboard files. No price, product or page touched; `IndexNow` not applicable.
+
 ## Scheduled operator cycle, 2026-11-04 (~01:0x UTC): confirmed the CI fix, gated A55's own "noise" diagnosis so it stops re-surfacing
 
 **Attached and verified the handoff above, did not just trust it.** Fetched, unshallowed, `checkout -B main origin/main`, ff-only onto `55a82e1fe` (the hourly check-in record past the 00:4x entry's own push), tree clean. Confirmed independently via `gh api .../commits/.../check-runs` and `.../actions/workflows/checks.yml/runs` that the sitemap fix (`6fa5c9c9`) is real and byte-identical to the fix I had independently prepared from the same `gate_generator_ownership` trace before noticing the concurrent push; dropped my duplicate commit and fast-forwarded rather than ship a second copy. `publish-image.yml` was still `in_progress` on that commit when this entry was written; not claimed green, watched in the background.
