@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-04 (22:1x slot): eighth independent confirmation, one orphaned preflight process at a genuine network stall killed, nothing unblocked, no push
+
+NEXT FOR THE OPERATOR: nothing unclaimed and non-Phil-gated exists; watch the 29 open `decision`/`blocked-on-art` GitHub issues for a Phil reply.
+
+This cycle's own checkout arrived shallow and detached, 990 commits behind `origin/main`. Fetched, genuinely unshallowed (watched to real completion, not assumed), `checkout -B main origin/main`, ff-only onto `bf7ba68e6`, tree clean after.
+
+**Previous work (21:1x/21:4x PM, the 21:5x operator cycle) confirmed finished, verified directly, not cited.** `checks.yml` green on the last several real-code and log-only commits, re-pulled directly via the Actions API. GitHub re-pulled directly: 29 open issues, unchanged since 2026-11-02T13:51:50Z (#42); read issue #42's full comment thread end to end rather than trust a count, every comment self-authored by a prior agent cycle under the Klingdom account, none a genuine reply from Phil. `ops/deploy-verdict.json` current (`fb2da69f4f4798c2`, checked 21:14:58Z) matches `site/build-id.txt` exactly, 0 commits undeployed. `cold_read_ledger.py --stale`: 0 stale. `fix_dashes.py --check`: 0/0. `check_urls.py`: 235/235. `affiliate.py --check`: 165 documents clean. `check_sellable.py`: 124/126 Stripe-matched, the 2 known service SKUs. `link_graph_report.py`: 0 orphans. All four `rotate_owner_actions*.py --check` tools: CLEAN, confirming the standing `OWNER-ACTIONS.md` 115514-byte size tripwire is live Phil-only content, not un-rotated history, same conclusion as every recent cycle.
+
+**Ran `preflight.py --skip-tests` fresh rather than cite a prior run; found and fixed one real gap instead of just reporting it.** A first attempt was killed by my own 110-second shell timeout before it finished (exit 124), which is not the same as a gate failure; reported it as unchecked rather than counted. Reran with no artificial cap: 0 FAIL through every gate reached (confirmed directly, both nested KDP and Etsy listing-validator reports printed `FAIL (none)`), genuinely stalled at the documented network-bound `gate_etsy_pdfs_current` (confirmed by two CPU-time readings 33 seconds apart, both frozen at 24 seconds), killed by pid, `/tmp/.preflight_py_running.lock` removed after confirming the held pid matched the one just killed. `ops/cycle-signal.json`'s own checkpoint update is included in this cycle's push.
+
+**Checked RISKS.md's two open CRITICAL risks (RISK-0007, RISK-0011) against the current GitHub queue before assuming either was unaddressed.** Both are already filed: RISK-0011 (product masters backed up only to one machine) as issue #49, RISK-0007 (single host, no staging) already reflected in the standing VPS-access gap this sandbox cannot close. Neither is new, unclaimed work.
+
+Nothing genuinely unblocked beyond the two fixes above: no backlog row, no GitHub issue, and no cold-read candidate is both real and non-Phil-gated this slot. No push notification: `ops/last-owner-notification.json` shows the last one on this exact topic sent 2026-11-02T04:17Z, and nothing about the underlying state has changed since (same 29 issues, no Phil reply, revenue unchanged at $0 of $20,000 / $19 lifetime).
+
+Dashboard regenerated (YELLOW, $0 of $20,000, 9 P0, revenue carried forward because this sandbox cannot reach Stripe this month). Pushed to main: `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-04 (~21:5x slot): a seventh independent confirmation of the same exhausted state, not a re-paste
 
 **Did:** Attached per Step 0, fetch, `checkout -B main origin/main`, ff-only onto `434113e1f`, then again onto `9bac81a0c` after a concurrent PM check-in and hourly check-in pushed mid-cycle; rebased my own pending log entry forward rather than force anything, discarding only the generated dashboard/state files from my own commit (regenerated fresh below) since they conflicted on pure machine output, not content.
