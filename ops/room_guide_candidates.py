@@ -54,7 +54,21 @@ DIGITAL = re.compile(
 OFF_TOPIC_CONTEXT = re.compile(
     r"\bcar organizers?\b|\bcar trunk\b|canadian tire|"
     r"organizers?\s+(?:bag\s+)?for\s+car\b|"
-    r"organizers?\s+for\s+car\s+interior", re.I)
+    r"organizers?\s+for\s+car\s+interior|"
+    # Found 2026-11-04 (Workshop pass): "how to organize bench" as a seed
+    # picked up "Benchmark Advance" (a K-12 curriculum brand) autosuggest
+    # noise, nothing to do with a home workshop's Material Rack. "craft
+    # paint"/"diamond painting"/"paint storage for artists" seeded from
+    # "how to organize paint and chemical storage" drifted to a hobbyist
+    # audience; the Finishing and Chemical Zone's own content.json purpose
+    # ("Store paint, glue, stain, and solvent so they stay usable and so
+    # they never start a fire") is about woodworking finish and fire
+    # safety, not craft/hobby acrylics. Verified against the real corpus:
+    # the genuine on-topic rows ("chemical storage best practices",
+    # "spray paint storage ideas", "containers for paint storage") do not
+    # match any branch of this pattern.
+    r"\bbenchmark advance\b|\bdiamond painting\b|\bpainting with diamonds\b|"
+    r"\bcraft paint\b|\bpaint storage for artists\b", re.I)
 
 
 def guide_less_rooms():

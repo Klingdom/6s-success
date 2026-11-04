@@ -92,10 +92,22 @@ try:
     _result6 = rgu.score_room([_car_maint], [], _room)
     check("a genuine on-topic car-maintenance row is NOT excluded by that same pattern",
           _result6["on_topic_rows"] == 1)
+
+    _diamond_painting = {"query": "storage organizer for painting with diamonds",
+                          "best_page": "/articles/how-to-test-a-room.html", "status": "gap"}
+    _result7 = rgu.score_room([_diamond_painting], [], _room)
+    check("a 'diamond painting' off-topic-context row is excluded",
+          _result7["on_topic_rows"] == 0)
+
+    _benchmark = {"query": "how to organize benchmark advance materials",
+                  "best_page": "/articles/how-to-test-a-room.html", "status": "gap"}
+    _result8 = rgu.score_room([_benchmark], [], _room)
+    check("a 'benchmark advance' (curriculum brand) off-topic-context row is excluded",
+          _result8["on_topic_rows"] == 0)
 finally:
     del bzp.ROOM_GUIDES["Test Room"]
 
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)
-print("\n%d/%d passed" % (12, 12))
+print("\n%d/%d passed" % (14, 14))

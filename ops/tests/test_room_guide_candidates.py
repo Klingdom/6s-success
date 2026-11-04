@@ -82,7 +82,20 @@ _result_car2 = rgc.score_room([_car_maint], [], _room)
 check("a genuine on-topic car-maintenance row is NOT excluded by that same pattern",
       _result_car2["on_topic_rows"] == 1)
 
+# Found 2026-11-04 (Workshop pass): "craft paint"/"diamond painting" seeded
+# from "how to organize paint and chemical storage" drift to a hobbyist
+# audience the Finishing and Chemical Zone's own content.json purpose
+# (fire-safe storage for wood finish, not craft acrylics) does not cover.
+_craft_paint = {"query": "craft paint storage ideas", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_craft = rgc.score_room([_craft_paint], [], _room)
+check("a 'craft paint' off-topic-context row is excluded",
+      _result_craft["on_topic_rows"] == 0)
+_chem_storage = {"query": "chemical storage best practices", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_chem = rgc.score_room([_chem_storage], [], _room)
+check("a genuine on-topic chemical-storage row is NOT excluded by that same pattern",
+      _result_chem["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)
-print("\n%d/%d passed" % (9, 9))
+print("\n%d/%d passed" % (11, 11))

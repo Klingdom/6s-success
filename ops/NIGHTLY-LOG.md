@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-04 (00:1x slot): previous work confirmed finished, closed Workshop's "craft paint" collision that section 100 had named and left unbuilt
+
+**Previous work confirmed finished, not cited.** Attached clean (fetch, genuine unshallow, `checkout -B main origin/main`, ff-only onto `63c1b7a17`, tree clean). `preflight.py --skip-tests` run fresh in the background, watched rather than trusted: 0 FAIL through every gate reached, genuinely stalled at the documented `gate_etsy_pdfs_current` network gate, confirmed by flat CPU (8.8% then 8.4%) across a 29s window before killing it clean. 30 open GitHub issues reconfirmed, unchanged, all `decision`/`blocked-on-art`, none from Phil.
+
+**Did.** Section 100 (2026-11-03) had already found Workshop's worst-ranked 61%-uncovered reading was mostly a "craft paint" word-overlap collision (acrylic/craft-paint/diamond-painting queries routing into the Finishing and Chemical Zone on the word "paint" alone) and correctly declined to fix it by writing craft content, but never considered the exclusion mechanism already used for Garage's car-organizer noise (section 105) and Home Office's hard-drive noise (section 104). Read the real rows directly: 2 true `gap` rows ("storage organizer for painting with diamonds," a rhinestone craft kit; "how to organize benchmark advance materials," seeded from "how to organize bench" and drifted onto a K-12 curriculum brand) plus 5 craft/artist-worded `partial` siblings, none of it the Finishing and Chemical Zone's real subject (fire-safe paint/glue/stain/solvent storage, per its own `content.json` purpose). Added the cluster to `OFF_TOPIC_CONTEXT` in `ops/room_guide_candidates.py`, verified against every row in both harvests: exactly the 7 noise rows match, the genuine on-topic cluster ("spray paint storage ideas," "chemical storage best practices," etc.) does not.
+
+**Turned into a test, per CLAUDE.md 10b.** Added cases to both `test_room_guide_candidates.py` (11/11) and `test_room_guide_underperformance.py` (14/14). Fail-then-pass proved directly: stashed the regex change, reran, watched exactly the 3 new "excluded" cases fail, restored, reconfirmed both green.
+
+**Verified.** Workshop: 0 gap (was 2), 15 partial (was 20). Full 20-room run: no other room's counts moved. `fix_dashes.py --check` 0/0. `check_also_called_digital_collision_fast.py` and `check_risks_evidence_fast.py` both clean. No price, product or page touched; a diagnostic tool, not a `site/` generator, so no rebuild or `IndexNow` applies.
+
+**Went well:** re-reading a prior cycle's own "left alone" conclusion found the right fix already existed in this file, just never applied to this row, instead of either repeating the old conclusion unchanged or re-litigating it as new.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** nothing.
+
+**Next for the operator (:43):** Pantry (2 gap), Primary Bedroom (4 gap), Family Room (3 gap) by `room_guide_underperformance.py`'s ranking, each needing the same zone-content-checked row-by-row read, sized for a full slot. Garage's and Hall Closet's remaining gap rows are already checked and correctly left unfixed (section 105). 30 open `decision`/`blocked-on-art` GitHub issues, none from Phil; no push notification, nothing material changed on that front.
+
+Pushed to main: `ops/room_guide_candidates.py`, `ops/tests/test_room_guide_candidates.py`, `ops/tests/test_room_guide_underperformance.py`, `BACKLOG-2026-09-07.md`, this entry, dashboard files.
+
 ## Scheduled operator cycle, 2026-11-04 (~00:0x UTC): closed the Kitchen "corner cabinet" lead the concurrent 23:4x PM check-in named, same cycle as section 105's push
 
 **Did.** While watching the prior commit's `checks.yml` run to completion rather than assuming green, checked the one concrete lead the concurrent 23:4x PM check-in's handoff named: Kitchen's partial (0.333) "how to organize a kitchen corner cabinet," the US-spelling sibling of "corner cupboard" (A31, 2026-10-30). Confirmed directly: the GB/AU/IN "corner cupboard" query is `covered` via the zone's existing "Also called the corner cupboard" heading; the US "cabinet" phrasing scores `partial` and its `heading_page` is `/kitchen-deck.html`, not the zone page, because the zone's `<h1>` says "Cabinets" (plural) and nothing says "cabinet" singular or "corner cabinet," the same exact-word-not-stem shape A34/A36 already fixed for nappy/nappies and craft/crafts.
