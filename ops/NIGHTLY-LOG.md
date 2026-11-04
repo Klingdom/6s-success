@@ -62,6 +62,24 @@ No push notification: last one sent 2026-11-02T04:17Z named a no-repeat-before o
 
 Pushed to main: `STATUS.md`, `STATUS-ARCHIVE.md`, `ops/NIGHTLY-LOG.md`, `ops/NIGHTLY-LOG-ARCHIVE.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
 
+## Scheduled operator cycle, 2026-11-04 (~20:2x slot): fixed a "hallway closet" misattribution the keyword-gap lane had not found, confirmed the structured queue genuinely exhausted otherwise
+
+**Did.** Attached clean: shallow/detached checkout, genuine `fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `773ee790e`. `preflight.py --skip-tests` run fresh: caught one real FAIL, a stray probe file (`site/_audit_catalog_fixture_2395.html`) left by an earlier killed run of my own; the gate self-deleted it and a rerun was clean. Checked GitHub directly: 29 open issues, all `decision`/`blocked-on-art`, zero genuine Phil comment on any (read issue #42's full thread). Backlog sections 2-6, the room-guide lane, and the cold-read ledger (308/308, 0 stale, 0 un-ledgered) all independently reconfirmed exhausted, not cited. `inbox_agent.py --apply`: no mail credential, reported unchecked. Mined the partial tier for single-unmatched-word patterns past "layout" (which section 111 closed): most hits (design, diy, tips, decorating, ikea) are the generic-modifier trap A40 already warned against, but "hallway" was a genuine, ungated hit. Three queries ("how to organize a deep/small hallway closet", "small hallway closet organization ideas") were scoring `partial` against an unrelated linen-closet or laundry-room article via a tied word-overlap collision, the same alphabetical-tie-break shape as A25/A26/A37, while most "hallway closet" queries already route correctly to `hall-closet-deck.html`, which already carries the word. Added "hallway closet" to Hall Closet's `room-also-called.json` entry; rebuilt.
+
+**Verified.** Rescored both tiers directly: exactly 7 rows changed `heading_page`, all moving to a genuine Hall Closet page, none changing status bucket, none newly misattributed (audited every "hallway" row by hand, including the coat-closet and cold-draft rows, which correctly stayed put). `check_urls.py` 235/235, `audit_pages.py` 240/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean, `check_sellable.py` 124/126, `link_graph_report.py` 0 orphans, `test_room_also_called.py` OK, `audit_visual.py` (desktop+mobile, scoped) 0 findings. Full `preflight.py --skip-tests` rerun after: 0 FAIL, 34 warnings, all standing sandbox limits.
+
+**Went well:** mining the partial tier by unmatched-word frequency, past the one word (`layout`) the last several cycles had already exhausted, found a real fix without repeating prior work.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** nothing else unclaimed and non-Phil-gated found this cycle. Watch the 29 open `decision`/`blocked-on-art` issues for a Phil reply, or any `OWNER-ACTIONS.md` credential/account item.
+
+No push notification: nothing material changed for Phil (same 29 issues, no reply, revenue unchanged).
+
+Pushed to main: `ops/room-also-called.json`, `site/rooms/hall-closet.html`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `ops/keyword-demand.json`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND.md`, `ops/KEYWORD-DEMAND-GLOBAL.md`, `ops/cycle-signal.json`, this entry, dashboard files. No price or product touched; one existing room page edited, no new page; `IndexNow` to submit on push.
+
 ## PM check-in, 2026-11-04 (19:1x slot): previous work confirmed finished, fixed five stale deploy-build citations in STATUS.md, no push
 
 **Previous work finished.** Attached clean: checkout arrived shallow and detached, `git fetch origin main` (forced update), genuine `git fetch --unshallow` watched to real completion, `checkout -B main origin/main`, ff-only onto `773ee790e`, tree clean before this cycle's own change. `ops/preflight.py --skip-tests` run fresh, to real completion: every gate passed, 0 FAIL, 34 warnings worth a read, all standing sandbox gaps (no Stripe/SSH/mail credential, no egress to 6s-success.com or Etsy from this container) except two genuinely new ones: `gate_status_deploy_verdict_current` and `gate_status_latest_entry_gap_current`.

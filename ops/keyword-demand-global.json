@@ -2788,7 +2788,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "bonus associates",
@@ -3787,7 +3787,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "clever guest bedroom ideas",
@@ -7910,7 +7910,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "garage organization ideas for small spaces",
@@ -9453,8 +9453,8 @@
         "why is my hall closet always messy"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/hall-closet-deck.html",
+      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/hall-closet-deck.html",
@@ -9474,8 +9474,8 @@
         "hall closet organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/hall-closet-deck.html",
+      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/hall-closet-deck.html",
@@ -9501,7 +9501,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/hall-closet-the-seasonal-and-guest-zone.html",
+      "heading_page": "/rooms/hall-closet.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -10766,7 +10766,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to arrange a living room with only one wall",
@@ -10975,7 +10975,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to arrange a small gallery wall",
@@ -10999,7 +10999,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to arrange a small kids bedroom",
@@ -11368,7 +11368,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to arrange bookshelf around enchanting table",
@@ -11993,7 +11993,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to arrange gallery wall art",
@@ -12019,7 +12019,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to arrange gas stove",
@@ -12333,7 +12333,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to arrange pics on wall",
@@ -12381,7 +12381,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to arrange pictures on wall different sizes",
@@ -12644,7 +12644,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to assemble a drying rack",
@@ -14057,7 +14057,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to declutter when you use everything",
@@ -14122,7 +14122,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to declutter your home australia",
@@ -16834,7 +16834,7 @@
       "markets": [
         "gb"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organise a child's room",
@@ -18874,7 +18874,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organise bed pillows",
@@ -19879,7 +19879,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organise cleaning tools",
@@ -20528,7 +20528,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organise kids clothes",
@@ -21168,7 +21168,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organise procedures",
@@ -22688,15 +22688,15 @@
         "how to declutter a hall closet"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/hall-closet-deck.html",
+      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/hall-closet-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "hallway"
+        "deep"
       ],
       "markets": [
         "gb",
@@ -23517,8 +23517,8 @@
         "how to declutter a hall closet"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/hall-closet-deck.html",
+      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/hall-closet-deck.html",
@@ -24621,7 +24621,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize a mudroom",
@@ -25564,7 +25564,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize a small front hall closet",
@@ -25627,15 +25627,15 @@
         "how to declutter a hall closet"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/hall-closet-deck.html",
+      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
+      "heading_page": "/hall-closet-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "hallway"
+        "small"
       ],
       "markets": [
         "gb",
@@ -25739,7 +25739,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize a small mudroom",
@@ -26317,7 +26317,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize anking step deck",
@@ -28356,7 +28356,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize charging station",
@@ -30400,7 +30400,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize guest bathroom",
@@ -30444,7 +30444,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize hall coat closet",
@@ -30745,7 +30745,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize kitchen drawers ikea",
@@ -30898,7 +30898,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize laundry room without cabinets",
@@ -32010,7 +32010,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organize power tools",
@@ -32572,7 +32572,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize teacher desk drawers",
@@ -36048,7 +36048,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "kindergarten organization ideas",
@@ -36533,7 +36533,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "kitchen organization ideas ikea",
@@ -40241,7 +40241,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "master bedroom design ideas",
@@ -40332,7 +40332,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "master bedroom design pinterest",
@@ -40401,7 +40401,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "master bedroom design with wardrobe",
@@ -41121,7 +41121,7 @@
         "au",
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "narrow entryway organization ideas",
@@ -43656,15 +43656,15 @@
         "hall closet organisation ideas"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/hall-closet-deck.html",
+      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
+      "heading_page": "/hall-closet-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "hallway"
+        "small"
       ],
       "markets": [
         "gb",
@@ -45134,7 +45134,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "utility room organisation ideas",
@@ -45242,7 +45242,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "utility room storage shelves",
@@ -48683,6 +48683,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-11-04T07:56:57Z",
-  "scored_against_commit": "2f7648c41"
+  "scored_at": "2026-11-04T20:20:39Z",
+  "scored_against_commit": "d4e8d8d75"
 }

@@ -57,11 +57,12 @@
   },
   "Hall Closet": {
    "names": [
-    "hall cupboard"
+    "hall cupboard",
+    "hallway closet"
    ],
    "queries": 3,
    "covered": 0,
-   "source": "ops/keyword-demand-global.json 2026-10-23 (gb, au, in)"
+   "source": "ops/keyword-demand-global.json 2026-10-23 (gb, au, in) for 'hall cupboard'. 'hallway closet' added 2026-11-04, scheduled operator cycle: 'how to organize a deep hallway closet' and 'how to organize a small hallway closet' (both tiers) plus 'small hallway closet organization ideas' (global) all score 'partial' (0.667) against an unrelated page (how-to-organize-a-linen-closet.html or how-to-organize-a-laundry-room.html) via a tied word-overlap collision on 'organize'/'closet' alone, the same alphabetical-tie-break shape A25/A26/A37 already named, because no Hall Closet page carries the word 'hallway' anywhere in a heading. Most 'hallway closet' queries already score 'covered' against hall-closet-deck.html, which does carry 'hallway' (card headings about a hallway chair and a toddler loose in the hallway) and 'closet', confirming this is the real room; the three partial rows differ only in using 'deep'/'small', which do not change the real destination. The room's own intro ('the hall closet is the darkest and deepest storage in the house') and name already describe exactly this closet in the hallway, so 'hallway closet' is the plain household name for it, not an invented one."
   },
   "Laundry Room": {
    "names": [
