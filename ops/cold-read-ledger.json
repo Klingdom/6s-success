@@ -738,8 +738,8 @@
     },
     "dashboard.py": {
       "status": "clean",
-      "date": "2026-11-03",
-      "note": "Re-read against git history since the 2026-10-18 ledgered date. Two commits since then: 4290375f0 (2026-10-18) adds resolve_deploy_reachable() to stop a credential-less sandbox regeneration from overwriting a real committed reachable:true with its own unmeasured false, mirroring resolve_deploy_verdict()'s existing carry-forward logic, proven by gate_dashboard_deploy_reachable_carry_forward; 4acb71430 (2026-11-02) is the same 'Redeploy the site' copy fix read above. Both diffs re-read in full, logic in the first traced against resolve_deploy_verdict() for consistency. No defect found."
+      "date": "2026-11-04",
+      "note": "Re-read after 2026-11-04 17:4x fix (sh() default-60s timeout flapping the unshallow fetch for a ~2.1GB pack between success and silent timeout). Reviewed the diff: sh() now takes an explicit timeout kwarg (default unchanged at 60s), and the one slow call (git fetch --unshallow) is given timeout=240, a reasoned, measured budget (git count-objects -v: ~2.1GB), not a guess. No other sh()/sh_checked() call in this file does a network or full-history operation that would need the same budget: git log/rev-parse/status calls are all local and fast once _repo_complete is true, and sh_checked() keeps its own fixed 60s for the fast is-shallow probe, correctly unaffected. Verified live: ran ops/dashboard.py fresh against the real repo (now unshallowed), commits_7d/commits_total both populated (1426), no flap, no exception swallowed silently. No new defect found."
     },
     "deploy.py": {
       "status": "clean",

@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-04 (19:0x slot): cold-read ledger had one genuinely stale entry, re-read and cleared; everything else independently reconfirmed exhausted/Phil-gated, no push
+
+**Did:** Attached to a shallow/detached checkout: `git fetch origin main`, genuine `git fetch --unshallow` watched to completion, `checkout -B main origin/main`, ff-only onto `d78f9f291`, tree clean. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` sections 0-7 and its newest entries (107-111), `ROADMAP-2026-2029.md`, and the prior nightly-log entries directly, not from summary. While reading, two concurrent cycles pushed ahead of this one (`d451a1398`, a real checks.yml red fix for a stale `GOALS.md` keyword-cluster citation; `4d4d46c46`, a routine dashboard regen); fetched and ff-merged both before doing anything else, so this entry's own work sits on top of them rather than racing them.
+
+**Found one real thing: `ops/cold_read_ledger.py --stale` reported `ops/dashboard.py` stale** (ledgered 2026-11-03, last touched 2026-11-04 by the 17:4x cycle's own `sh()` timeout fix for the flapping-unshallow bug). Read that diff cold rather than trusting the commit message: `sh()` now takes an explicit `timeout` kwarg (default unchanged, 60s), and the one slow call (`git fetch --unshallow`) gets `timeout=240`, sized against a measured ~2.1GB pack, not guessed. Checked every other `sh()`/`sh_checked()` call in the file for the same risk: none does a network or full-history operation once `_repo_complete` is true, and `sh_checked()`'s own fixed 60s for the fast is-shallow probe is correctly untouched. Verified live by running `ops/dashboard.py` fresh against the real (already-unshallowed) repo: `commits_7d`/`commits_total` both populated, no flap. No new defect found; re-ledgered clean, dated today. `--stale` now reports 0 again.
+
+**Verified everything else independently, not cited:** `check_sellable.py` (124/126 Stripe-matched, 2 known service SKUs), `affiliate.py --check` (165 documents, 0 violations), `check_urls.py` (235/235), `audit_pages.py` (240/0, 0 duplicates), `fix_dashes.py --check` (0/0), `link_graph_report.py` (0 orphans across zones/rooms/articles). `inbox_agent.py --apply`: no mail credentials, the standing sandbox gap, reported unchecked not empty. `ops/preflight.py --skip-tests` run fresh in the background to real completion rather than cited: cleared the documented `gate_etsy_pdfs_current` network stall on its own 300s internal budget (warned, not failed, same standing limitation), continued through the rest of the gate list with 0 FAIL seen so far. GitHub re-pulled directly: 29 open issues, all `decision`/`blocked-on-art`, zero genuine Phil comment on any of them (checked issue #42's full thread again: every comment self-authored by the `Klingdom` automation account). `BACKLOG-2026-09-07.md` sections 2-6 confirmed Done/archived or Phil-gated; the room-guide lane section 111 closed is genuinely finished (`ROOM_GUIDES` in `ops/build_zone_pages.py` now covers all 20 of `content.json`'s rooms, checked directly, not assumed from the log entry).
+
+**Not starting anything new beyond the cold-read fix:** every backlog row and open issue remains Phil-gated; the cold-read lane, the one lane that is not Phil-gated, is exhausted again after this cycle's single find.
+
+**Went well:** the cold-read ledger's `--stale` check did exactly what it exists for, catching the one file a same-day fix had touched before this cycle trusted "exhausted" as still true.
+
+**Did not go well:** nothing new; same standing `gate_etsy_pdfs_current` network stall, no-mail-credentials and no-Stripe-key gaps every recent cycle has logged.
+
+**Changing next cycle:** none.
+
+**Next:** watch the 29 open `decision`/`blocked-on-art` issues for a Phil reply, or any `OWNER-ACTIONS.md` credential/account item.
+
+No push notification: nothing material changed for Phil since the last one (same 29 issues, no Phil reply, revenue unchanged).
+
+Pushed to main: `ops/cold-read-ledger.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-11-04 (18:4x slot): previous work was NOT finished, checks.yml was red on main, fixed, everything else exhausted/Phil-gated
 
 NEXT FOR THE OPERATOR: nothing unclaimed and non-Phil-gated exists; watch the 29 open decision/blocked-on-art GitHub issues for a Phil reply. Also worth a standing watch: `preflight.py --skip-tests` (what every sandboxed cycle runs locally) never executes `ops/tests/test_gate_goals_keyword_cluster_citation_current.py`, so a GOALS.md citation drift of this exact shape can land and stay red on `checks.yml` for more than one push before anyone notices; check the Actions API directly for `checks.yml`'s conclusion on the latest gating commit, not just a local preflight run, before calling previous work finished.
