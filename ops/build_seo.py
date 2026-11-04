@@ -948,7 +948,14 @@ def build_sitemap():
     behaviour, so a first run after this change does not stamp every page at
     once); only a hash that has changed since the last run moves lastmod.
     """
-    today = datetime.date.today().isoformat()
+    # UTC-anchored, not local wall-clock: see _git_content_date()'s own
+    # comment on the same class of bug, found there 2026-10-23 and found
+    # here 2026-11-04 after a local-date/UTC-date mismatch at a midnight
+    # boundary made a freshly-generated sitemap disagree with the one a
+    # same-day commit had already stamped from local time, failing
+    # checks.yml's gate_generator_ownership on a page that had not changed
+    # again since.
+    today = datetime.datetime.now(datetime.timezone.utc).date().isoformat()
     prio = {"index.html": "1.0", "resources.html": "0.9", "method.html": "0.9",
             "book.html": "0.8", "shop.html": "0.7", "consulting.html": "0.7",
             "about.html": "0.5", "contact.html": "0.5"}

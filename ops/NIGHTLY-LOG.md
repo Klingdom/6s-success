@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-04 (~02:0x UTC): fixed the sitemap UTC-date bug the 00:4x entry flagged and left for next cycle, same bug class as _git_content_date's own 2026-10-23 fix
+
+NEXT FOR THE OPERATOR: the content-gap-mining lane remains exhausted (independently re-confirmed this cycle, same rows, same verdicts, fifth to sixth method to reach it). 30 open `decision`/`blocked-on-art` GitHub issues, none from Phil (checked every open issue's comments for one not posted via the Claude Code GitHub App; the handful that exist are this operator's own prior-cycle writing, not Phil's). No mail credential. Nothing else genuinely unblocked found this cycle; watch for Phil's reply on any issue, or a fresh keyword-demand run surfacing new rows.
+
+**Did.** Attached clean: `git fetch origin main`, genuinely unshallowed (was shallow), `checkout -B main origin/main`, ff-only onto `48326cde5`, tree clean. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md` and the last four nightly entries before picking work, per Step 1.
+
+**Did not just re-litigate "exhausted."** Re-ran `room_guide_underperformance.py` fresh rather than trust the last entry's claim. Every `gap` row it still reports (Garage x2, Pantry x2, Hall Closet x1) is the exact same row prior cycles already checked against each zone's real `content.json` content and correctly left unfixed (confirmed by grepping their own query text in `ops/NIGHTLY-LOG.md`'s own history: each has 2-6 independent prior checks). No new gap found. Also re-checked all 30 open GitHub issues' comments for one not carrying `performed_via_github_app` (a real human reply, not this operator's own prior writing): found two issues (#2, #15) with several, read them in full, and they are this operator's own voice from September, already acted on; nothing new from Phil.
+
+**Picked up the one concrete, already-diagnosed lead instead: the sitemap date-rollover bug the 00:4x PM check-in flagged and explicitly left unfixed ("flagging...for the operator or a future cycle to consider").** `ops/build_seo.py`'s `build_sitemap()` stamped a new or changed URL's `lastmod` from `datetime.date.today()`, the bare local wall clock. Its sibling function, `_git_content_date()`, had already been fixed for the identical bug on 2026-10-23 (its own comment: "a commit at 03:00 UTC could date as the previous day on one machine and the next on another"), but that fix was never carried over to `build_sitemap()`'s own `today` variable, so the same class of defect caused a real `checks.yml` failure a few hours before this cycle (documented in the 00:4x entry above). Fixed by anchoring `today` to `datetime.datetime.now(datetime.timezone.utc).date()`, the same construction `_git_content_date()` uses.
+
+**Turned into a test, per CLAUDE.md 10b.** New `ops/tests/test_build_seo_sitemap_date_utc.py`, a static check (the real failure mode is which clock the code reads, not what either clock says right now, so a live two-timezone simulation would prove nothing a source check doesn't). Fail-then-pass proved directly: `git stash` the fix, test correctly fails naming the exact regression; restored, test passes (3/3). Careful to strip the function's own docstring before pattern-matching, since it quotes the old buggy call as history (issue #23) and a naive check would false-fail on that quotation.
+
+**Verified.** `python ops/build_seo.py` re-run twice: zero diff to `site/sitemap.xml` or `site/robots.txt` either time (idempotent, and today's UTC date equals today's local date here, so no visible change was expected or seen). `ops/fix_dashes.py --check` 0/0 on both changed files. `test_gate_sitemap_lastmod_current.py` (6/6), `test_gate_sitemap_images.py` and `test_crawl_sitemap_coverage.py` all exit 0, tree restored byte-for-byte by their own mutation-and-restore cases. `preflight.py --skip-tests` run twice more after the fix (once buffered, once with `-u` after the first run's buffered output made a transient-looking FAIL unreadable): the unbuffered rerun recorded a genuine clean-pass `cycle_signal` checkpoint before `gate_tests`, and stalled at the documented `gate_etsy_pdfs_current` network hang after that, same as every prior cycle's sandbox. A stray in-flight `ops/cycle-signal.json` checkpoint from an earlier killed run was discarded (`git checkout --`); the final clean one was kept. No price, product or page touched; a generator fix and a new test, not a `site/` content change, so no `IndexNow` submission applies. Did not run the full `gate_tests` suite locally (documented ~90 minute cost); relying on `checks.yml` to run it in CI, same practice prior cycles used for an `ops/`-only change.
+
+**Went well:** treating the prior entry's own "flagging...for a future cycle" line as unfinished work rather than prose, and finding the fix was already half-written (the sibling function's own comment named the exact construction to copy).
+
+**Did not go well:** the buffered background preflight run's stdout/stderr interleaving made a transient state briefly unreadable as a false failure; cost a few minutes confirming it was not real before re-running unbuffered. Worth a `python -u` default for any future backgrounded preflight run in this sandbox.
+
+**Changing next cycle:** default to `python -u` when backgrounding `preflight.py` in this sandbox, so stdout/stderr interleave in real order instead of block-buffering obscuring it.
+
+**Next:** no new genuinely unblocked work found beyond re-confirming the exhausted state above. 30 open `decision`/`blocked-on-art` GitHub issues, none from Phil, remain the only standing queue; no mail credential.
+
+Pushed to main: `ops/build_seo.py`, `ops/tests/test_build_seo_sitemap_date_utc.py`, `ops/cycle-signal.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry.
+
 ## PM check-in, 2026-11-04 (01:4x slot, second pass): previous work reconfirmed finished, state unchanged, nothing new to hand over
 
 NEXT FOR THE OPERATOR: nothing newly unblocked; keep watching for a reply from Phil on any of the 30 open `decision`/`blocked-on-art` issues, none of which this cadence may pick up itself.
@@ -9,6 +33,8 @@ NEXT FOR THE OPERATOR: nothing newly unblocked; keep watching for a reply from P
 **Attached clean** (fetch, unshallow, `checkout -B main origin/main`, ff-only onto `48326cde5`, tree clean apart from the generated `ops/cycle-signal.json` checkpoint). The prior entry below (committed 22 minutes earlier at `c34f1d784`) already ran this exact triage and found the content-gap-mining lane fully exhausted; re-verified rather than re-ran it. `cycle_signal.py --check`: SAME, byte-identical to this run's own `preflight.py --skip-tests` checkpoint. That preflight hit 0 FAIL through every gate before `gate_tests`, then stalled there as documented (killed at timeout, the standing headless-Chromium sandbox limit, reported unchecked past that point, not passing). Reconfirmed all 30 open GitHub issues directly via the API: unchanged, all `decision`/`blocked-on-art`, none updated since 2026-11-02, none from Phil. No material change since the last entry, so no new push notification and no new work started this slot, per instruction not to start something large three minutes before the operator.
 
 Pushed to main.
+
+## PM check-in, 2026-11-04 (01:4x slot): previous work confirmed finished, closed a diagnosed-but-ungated "pricing model" gap row and five more of the same commercial-intent shape
 
 NEXT FOR THE OPERATOR: the content-gap-mining lane is now genuinely exhausted across all 20 rooms (no unfixed `gap` row remains anywhere in `room_guide_underperformance.py`'s ranking); watch for Phil's reply on the 30 open `decision`/`blocked-on-art` issues, or re-run the ranking fresh if new keyword-demand data lands, since this is the first time in many cycles that lane has read fully clean.
 
