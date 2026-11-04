@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-04 (20:4x slot): previous work confirmed finished, a stale checkout fast-forwarded 977 commits, one orphaned preflight lock cleared, nothing unblocked, no push
+
+NEXT FOR THE OPERATOR: nothing unclaimed and non-Phil-gated exists; watch the 29 open `decision`/`blocked-on-art` GitHub issues for a Phil reply, because every section of `BACKLOG-2026-09-07.md` is Done, archived or an owner gate.
+
+This cycle's own checkout started shallow, detached, and 977 commits behind `origin/main` (frozen at 2026-10-21, before the `NIGHTLY-LOG-ARCHIVE.md` rotation and roughly two weeks of real work). Fetched, genuinely unshallowed (watched to completion, not assumed), `checkout -B main origin/main`, ff-only forward onto `66ef45ef1`; tree clean after.
+
+**Previous work (19:1x/19:4x/20:1x) confirmed finished, verified directly, not cited.** `git status` clean, main already in sync with `origin/main`, nothing left mid-flight. `EXECUTIVE-DASHBOARD-LIVE.md` current as of 20:22 (YELLOW, $0 of $20,000, 9 P0). `cold_read_ledger.py --stale`: 0 stale. GitHub re-pulled directly, not cited: 29 open issues, all `decision`/`blocked-on-art`/P0, newest update 2026-11-02T13:51:50Z (#42); read that issue's full comment thread rather than trust the count, and confirmed every comment on it is a prior agent cycle posting under Phil's authenticated account, none an actual reply from him. `BACKLOG-2026-09-07.md` sections 1 through 6 re-read: sections 2-4 fully archived/struck, section 5 correctly on Hold, section 6 all named owner gates with matching filed issues, items 107-111 all closed.
+
+**Ran `preflight.py --skip-tests` fresh rather than cite a prior run.** 0 FAIL through every gate reached. Stalled at `gate_etsy_pdfs_current`, the same network-bound stall this file has documented on recent cycles (no egress to Etsy from this sandbox); confirmed genuinely stalled, not slow, by reading the process's CPU time twice a minute apart, unchanged both times. Killed it there, reported unchecked past that point, not assumed passing, per CLAUDE.md 0.4.
+
+**Found and fixed one real gap instead of just working around it.** Killing the stalled run left `/tmp/.preflight_py_running.lock/` behind (a lock directory, not a file, owned by the killed pid, confirmed by reading `pid` inside it before removing); an orphaned lock there would have made the operator's own `preflight.py` at :43 wait on a process that no longer exists. Removed it and confirmed no `preflight.py` process remained.
+
+Nothing genuinely unblocked beyond the two fixes above: no backlog row, no GitHub issue, and no cold-read candidate is both real and non-Phil-gated this slot. No push notification: the last one on this issue-42/cadence topic has had no reply and nothing about the underlying state has changed (same 29 issues, revenue still $0).
+
+Pushed to main: `ops/NIGHTLY-LOG.md`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-11-04 (20:1x slot): previous work confirmed finished, no new defect, nothing unblocked, no push
 
 Previous work (19:1x/19:4x) finished: re-derived the deploy gap by hand (0 material commits undeployed, matches citation). `preflight.py --skip-tests` ran clean to the documented network `gate_etsy_pdfs_current` stall, 0 FAIL before it. GitHub re-pulled directly: 29 open issues, all decision/blocked-on-art, none from Phil since 2026-11-02. `cold_read_ledger.py` 0 stale, 0 un-ledgered. Checked rather than re-cited the `OWNER-ACTIONS.md` size WARN handed off last cycle: both its rotation tools report CLEAN, the overage is 23 genuine live Phil-only decisions, not un-rotated history; trimming risks cutting facts Phil needs, so left as a non-blocking WARN, not a quick safe fix. Nothing non-Phil-gated remains to start. No push: last one's no-repeat-before has passed but nothing material changed (29 vs 30 issues is a closure, not new work; revenue still $0). Dashboard regenerated, pushed.
