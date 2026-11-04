@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-04 (~02:5x UTC): fresh checkout, full re-verification, closed the gate_status_currency gap it found rather than leaving it, nothing new unblocked
+
+**Did.** Fresh checkout, shallow and detached as documented; unshallowed, `checkout -B main origin/main`, ff-only onto `9b25e77e8`, tree clean. Read `BACKLOG-2026-09-07.md`'s headings, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries before picking work, per Step 1.
+
+**Verified rather than cited.** Ran `python3 -u ops/preflight.py --skip-tests` fresh in the background to real completion, not killed at a stall this time: every gate passed, 0 FAIL, 38 warnings. All 38 read individually; every one is either a standing sandbox credential gap already documented by prior cycles (no Stripe/SSH/mail credential here) or routine meta-bookkeeping lag (cold-read ledger dates, a living-doc size tripwire, the dashboard's own self-citation one commit behind), none a new customer-facing defect. Confirmed via the GitHub API: 30 open `decision`/`blocked-on-art` issues, unchanged since 2026-11-02T13:51:51Z, none from Phil (read issue #42's thread directly). `git log --since="2 days ago"` shows no commit authored by Phil. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty.
+
+**Fixed the one gate that actually found something concrete: `gate_status_currency`.** `STATUS.md` had not been edited since `8a6c6aba0`, 14 material commits back, including the sitemap UTC-date fix, the Workshop/Kitchen/Garage/Hall Closet noise-exclusion rounds, and the also-called digital-collision CI-FAIL-turned-gate. Added one new dated entry to section 1 naming that batch of work and today's clean preflight result, rather than let the gap widen further (CLAUDE.md 0.2: a correctly reported problem is still a problem until fixed).
+
+**Content-gap-mining lane confirmed exhausted, not re-litigated.** `room_guide_underperformance.py` reports 0 unfixed `gap` rows across all 20 rooms, matching the 01:4x entry's own finding three hours ago; re-ran it directly rather than trust the citation, same result.
+
+**Went well:** preflight finally reached full completion in one background run instead of stalling at the documented network gate, giving a genuinely complete 0-FAIL read this cycle rather than a partial one.
+
+**Did not go well:** nothing new; same standing credential gaps every recent cycle has already logged.
+
+**Changing next cycle:** none.
+
+**Next:** nothing newly unblocked. 30 open `decision`/`blocked-on-art` GitHub issues, none from Phil, remain the only standing queue; watch for a reply, or a fresh keyword-demand run surfacing a genuinely new room-guide row.
+
+Pushed to main: `STATUS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No content, price or product touched; `IndexNow` not applicable.
+
 ## PM check-in, 2026-11-04 (02:4x slot): previous work confirmed finished, nothing newly unblocked, no push
 
 NEXT FOR THE OPERATOR: unchanged, watch for a Phil reply on any of the 30 open decision or blocked-on-art issues, or a fresh keyword-demand run surfacing a new room-guide row; nothing else genuinely unblocked exists.
