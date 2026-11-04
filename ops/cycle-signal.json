@@ -1,8 +1,8 @@
 {
   "combined_hash": "db653f8e5a43e61bd781d655958d6e254a0e7fe73f1ca1db38a7bce7c3e25034",
-  "git_head": "7ff8bfd362c5c9abec2e20cc24eaebc18f6457c7",
-  "note": "partial pass: every gate before gate_tests passed, gate_tests and everything after it not reached this run (cycle_signal checkpoint, not a full preflight pass), git HEAD 7ff8bfd362",
-  "recorded_at": "2026-11-04T17:47:34Z",
+  "git_head": "11a5a5f7e832a81840cf4140b76e29b1b9ea845f",
+  "note": "merge resolution after this cycle's own partial preflight + a concurrent operator cycle",
+  "recorded_at": "2026-11-04T17:53:43Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "5ebff05c45b1c4ae2edccb7240cc82dd12a93464edaf419ce3f4c1daf28051c4",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
