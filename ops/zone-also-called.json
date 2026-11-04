@@ -114,11 +114,12 @@
   },
   "Primary Bedroom|Primary Closet": {
    "names": [
-    "walk-in wardrobe"
+    "walk-in wardrobe",
+    "walk-in cupboard"
    ],
-   "queries": 3,
+   "queries": 4,
    "covered": 0,
-   "source": "ops/keyword-demand-global.json 2026-10-23 (gb, au, in)"
+   "source": "ops/keyword-demand-global.json 2026-10-23 (gb, au, in). 'walk-in cupboard' added 2026-11-04, PM check-in: 'walk in cupboard organisation' (global, gap, 0.0 title coverage, scored to /about.html via tie-break) is the same British/Commonwealth dialect term as the already-added 'walk-in wardrobe', naming the identical zone (a closet you stand inside, rail, rack and shelf, per this zone's own purpose/done_looks_like text); checked before adding that no page already used the word 'cupboard' for this zone."
   },
   "Entryway|Coat and Outerwear Zone": {
    "names": [

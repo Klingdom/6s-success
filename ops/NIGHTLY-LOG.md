@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-04 (23:1x slot): previous work (bedside table fix) confirmed finished, one "cupboard" vocabulary row closed, two clusters confirmed genuinely mixed and left for the operator
+
+Attached per Step 0: shallow and detached on arrival, unshallowed, checkout -B main origin/main, ff-only onto 1042b6978, tree clean.
+
+Previous work confirmed finished, not cited: read the actual diff for the "bedside table" fix (ee9dc42a1) and its own verification claims; both held up directly (grep on the live zone pages, test gate 6/6). All 29 open GitHub issues re-read via the REST API: unchanged, every one decision or blocked-on-art, no reply from Phil.
+
+Preflight (--skip-tests, unbuffered to a file, not piped through timeout | tail): 0 FAIL through every gate reached, genuinely stalled at the documented network-bound gate_etsy_pdfs_current (this sandbox's proxy refuses 6s-success.com), confirmed stalled not slow. Found and killed one real orphaned lock plus a full chromium/etsy process tree left by my own killed run; not left for the next cycle to trip over.
+
+Reproduced the prior cycle's own single-unmatched-word clustering of the partial-tier keyword-demand rows and checked its handoff rather than trusting it: "cupboard" (14 rows) and "foyer"/"stairs" (14 and 11 rows) are exactly as mixed as that cycle said, scattered across unrelated zones (pantry, kitchen sink, garage tools, bathroom, bedroom), not one clean target. Picked the one unambiguous row inside "cupboard" that was a genuine duplicate of an already-approved synonym: "walk in cupboard organisation" is the same British/Commonwealth term as the already-shipped "walk-in wardrobe" on Primary Bedroom's Primary Closet zone. Added "walk-in cupboard" as a second name on that same zone (ops/zone-also-called.json), matching the exact precedent already used for "corner cupboard"/"corner cabinet" elsewhere in the same file.
+
+Verified directly: rebuilt zone pages and sitemap, grep-confirmed the new heading reads "Also called the walk-in wardrobe or the walk-in cupboard" on the real committed file. Rescored both keyword-demand tiers: the target query and, found as a side effect, three "bedroom cupboard" variants that share the same semantic target moved from partial to covered via heading match on the correct zone page (previously scoring to an unrelated declutter article or /about.html by coincidental word overlap). test_gate_zone_also_called_is_heading.py 6/6, check_also_called_digital_collision_fast.py clean, check_urls.py 235/235, audit_pages.py 240/0, fix_dashes.py/fix_dialect.py --check both 0/0, build_id.py --check current. No other file touched beyond the generated outputs these scripts own.
+
+**Went well:** checking whether a flagged-as-messy cluster had one clean row worth taking, instead of either batching the whole ambiguous cluster or skipping it entirely.
+
+**Did not go well:** nothing new; the timeout-swallows-piped-output gotcha a recent cycle already names was hit and worked around the same way.
+
+**Handing to the operator (:43):** the remaining 10 "cupboard" rows and the "foyer"/"stairs" clusters need per-row zone mapping (several candidates look real: baking cupboard, sink cupboard, tool cupboard, under-sink cupboard; several look wrong even after mapping: generic "bedroom cupboard"/"declutter cupboard" rows with no single correct zone, and "walk in cupboard organisation" is now closed). Work them one row at a time, not as a single batch, the same caution the 23:0x cycle gave.
+
+No push notification: nothing here is new information for Phil (same 29 issues, no reply, no revenue change), only mechanical SEO maintenance.
+
+Dashboard regenerated. Pushed to main.
+
 ## Scheduled operator cycle, 2026-11-04 (~23:0x UTC): the "bedside table" vocabulary gap, the one lane the 22:4x PM check-in had not yet confirmed exhausted
 
 **Did:** Attached per Step 0: checkout arrived shallow and detached, genuinely unshallowed (watched to completion, not assumed), `checkout -B main origin/main`, ff-only onto `aeefbf1d2`, then again onto `86d8b6805` after the concurrent 22:4x PM check-in and an hourly check-in pushed mid-cycle, stashing and dropping one transient `cycle-signal.json` checkpoint conflict rather than losing either side's work. Read `GOALS.md`, `BACKLOG-2026-09-07.md` section 0 and its own last several entries, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four `NIGHTLY-LOG.md` entries, per Step 1.

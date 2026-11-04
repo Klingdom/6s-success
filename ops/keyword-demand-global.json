@@ -1709,13 +1709,11 @@
       "best_page": "/articles/how-to-declutter-a-bedroom.html",
       "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "cupboard"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bedroom-the-primary-closet.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au"
@@ -16630,13 +16628,11 @@
       "best_page": "/articles/how-to-declutter-a-bedroom.html",
       "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "cupboard"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bedroom-the-primary-closet.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -19068,13 +19064,11 @@
       "best_page": "/articles/how-to-declutter-a-bedroom.html",
       "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "cupboard"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bedroom-the-primary-closet.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -45824,13 +45818,11 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bedroom-the-primary-closet.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "cupboard"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -48669,6 +48661,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-11-04T22:57:30Z",
-  "scored_against_commit": "86d8b6805"
+  "scored_at": "2026-11-04T23:21:18Z",
+  "scored_against_commit": "1042b6978"
 }
