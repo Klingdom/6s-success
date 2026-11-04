@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-04: full independent re-verification, one stray test artifact cleaned up, nothing new unblocked, no push
+
+**Did.** Fresh checkout, genuine unshallow (fetch origin main showed a forced-update ref move, then fetch --unshallow pulled full history, confirmed with git rev-parse --is-shallow-repository = false), checkout -B main origin/main, ff-only onto c2432cf75, tree clean throughout. Ran python ops/preflight.py fresh in the background, watched to a genuine stall rather than trusted: 0 FAIL through every gate reached (3 standing warnings: OWNER-ACTIONS.md over its size tripwire with every sub-rotator already CLEAN, 2 dated accessibility disclosures), stalled flat-CPU at gate_tests test 50 of 473 (test_contact_form_interactive.py), the documented sandbox Chromium hang; killed by pid.
+
+**Found and fixed, not reported twice.** That killed test left site/_contact_form_interactive_probe.html on disk (gitignored, never tracked, so not a repository defect). audit_pages.py picked it up as a hand written page with 7 findings (missing lang, viewport, title, description, canonical, h1, analytics). Deleted it; audit_pages.py re-ran clean, 240 pages, 0 findings. gate_no_stray_probe_files already exists to catch exactly this on the next run; nothing new to gate.
+
+**Independently re-verified rather than cited:** check_urls.py (235/235), link_graph_report.py (0 orphans, 0 thin, 0 dead ends across rooms/articles), fix_dashes.py --check (0/0), affiliate.py --check (165 documents clean), check_sellable.py (124/126 Stripe-matched). All 30 open GitHub issues reconfirmed live via the API: unchanged, every one decision or blocked-on-art, none from Phil. inbox_agent.py --apply: no mail credential in this sandbox, standing gap. ops/traffic_query.sh needs VPS SSH access this sandbox does not have; the 2026-10-02 traffic reading stays the newest available.
+
+**Went well:** cleaning up the test artifact before it could be mistaken for a real finding.
+
+**Did not go well:** nothing new; same standing gate_tests sandbox hang and no-credential gaps every recent cycle has logged.
+
+**Changing next cycle:** nothing new.
+
+**Next:** 30 open decision/blocked-on-art GitHub issues, none from Phil, are the only standing queue; the content/keyword-gap lane remains genuinely exhausted per today's own repeated independent checks. No push notification: ops/last-owner-notification.json's no-repeat-before has passed but nothing material changed since (same 30 issues, no Phil reply, revenue unchanged).
+
+Pushed to main: EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-11-04 (08:4x slot): previous work confirmed finished, state unchanged since the 08:1x twin, nothing newly unblocked, no push
 
 NEXT FOR THE OPERATOR: nothing unclaimed and non-Phil-gated exists; watch the 30 open decision/blocked-on-art GitHub issues for a Phil reply, because section 111's six-room layout close and its own "exhausted" re-check both already landed this morning and no new commit has touched content, product or price since.
