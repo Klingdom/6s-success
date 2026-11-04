@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-11-04 08:01 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-11-04 08:03 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,7 +8,7 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 9 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-11-04 07:30 because this run could not reach Stripe** |
+| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-11-04 07:48 because this run could not reach Stripe** |
 | | `............................` |
 | **Paying customers** | 0 |
 | **Email list** | 0 |
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. A session with real access confirmed production current at 2026-11-04T07:27:32Z (build 19a4b8e6adc0e801). The repository has since moved to build 18f44748fa70f0e2, not yet redeployed, so this gap is whatever changed since that confirmation, not an unknown backlog. Waiting behind that deploy: 129 of 130 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
+PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. A session with real access confirmed production current at 2026-11-04T07:44:57Z (build 18f44748fa70f0e2). The repository has since moved to build dfc7253ae2164447, not yet redeployed, so this gap is whatever changed since that confirmation, not an unknown backlog. Waiting behind that deploy: 129 of 130 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
 
 ---
 
@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 30 (9 P0, 2 blocked on art, 28 need your call) |
 | Closed to date | 33 |
-| Commits (7 days) | 1415 of 10644 total |
+| Commits (7 days) | 1416 of 10645 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `2f7648c41` Hourly check-in record |
+| Last commit | `540ce05b6` Close BACKLOG-2026-09-07.md section 111: ground six Room lay |
 
 ## Product readiness
 
