@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-04 (~10:4x UTC): fresh checkout, full re-verification, closed one real cold-read gap the prior cycle flagged and left open, nothing newly unblocked
+
+**Did.** Fresh checkout, shallow and detached as documented; `fetch origin main` reported a forced update, then `fetch --unshallow`, `checkout main`, ff-only onto `cf704a0e7`, tree clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-2, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries before picking work, per Step 1.
+
+**Verified rather than cited.** `cycle_signal.py --check`: SAME, byte-identical to the `a64b0412f4` snapshot; confirmed directly rather than trusted by diffing the two intervening commits (`b19b132`, `cf704a0e7`) and finding both touch only the dashboard/check-in/log trio, nothing substantive. `preflight.py` run fresh in the background to real completion: 0 FAIL through every gate, `cycle_signal` recorded a clean partial-pass checkpoint right before `gate_tests`, which genuinely ran (reached test 38/473, `test_check_etsy_stale_economics.py`) before the outer timeout killed it, same documented headless-Chromium/network-bound sandbox limit every recent cycle has hit; reported unchecked past that point, not passing. `affiliate.py --check` clean (165 delivered documents, 0 violations). `check_sellable.py`: 124 of 126 buyable products matched in Stripe with delivery, the other 2 correctly person-delivered services. `cold_read_ledger.py --stale`: 0 stale, genuinely exhausted. GitHub re-pulled directly: 30 open `decision`/`blocked-on-art` issues (9 P0), newest `updated_at` still 2026-11-02T13:51:51Z (issue #42), read that thread in full rather than trust the count: every comment self-authored by a prior agent cycle, none from Phil. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty.
+
+**Closed the one open thread the 04:0x cycle left for the next operator, rather than re-cite it unchecked.** That entry found a Mudroom "room layout" content gap and wrote "one more partial-tier pass across other rooms for the same shape" as the next step. Ran `room_guide_underperformance.py` fresh and grepped its full output for "layout"/"design": zero matches across any of the 20 rooms. The pattern that produced a real fix for Mudroom is now genuinely exhausted, not assumed so; this closes that lead rather than leaving it open for a third cycle to re-discover empty-handed.
+
+**Went well:** diffing the two intervening commits directly, rather than trusting `cycle_signal`'s own "SAME" verdict blind, confirmed the signal is doing its job; the layout-pattern close-out turned an open "next step" into a checked negative instead of letting it dangle.
+
+**Did not go well:** nothing new; same standing `gate_etsy_pdfs_current` network-sandbox limit and no-mail-credential gap every recent cycle has already logged.
+
+**Changing next cycle:** none; no new defect class to gate.
+
+**Next:** nothing newly unblocked. 30 open `decision`/`blocked-on-art` GitHub issues, none from Phil, remain the only standing queue; the room-guide content-gap lane (both the gap tier and the layout/design partial-tier shape) is now exhausted across all 20 rooms. Watch for a Phil reply, or a fresh keyword-demand harvest surfacing a genuinely new row. No push notification sent: the last one (2026-11-02T04:17:00Z) named a no-repeat-before of 2026-11-04T04:00Z conditioned on material change (a Phil reply, a cleared decision, a new credential, or a real customer event); none of those occurred this cycle, so re-pushing on elapsed time alone would be the exact noise CLAUDE.md 0.2 and this repo's own notification discipline exist to prevent.
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-11-04 (10:4x slot): previous work confirmed finished by independent re-check, nothing newly unblocked, no push
 
 NEXT FOR THE OPERATOR: nothing unclaimed and non-Phil-gated exists; watch the 30 open decision/blocked-on-art GitHub issues for a Phil reply, because every section of BACKLOG-2026-09-07.md that is not Done is an owner gate.
