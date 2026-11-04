@@ -8252,13 +8252,11 @@
       "best_page": "/dining-room-deck.html",
       "best_page_title": "The Dining Room Deck: 61 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/dining-room-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "layout"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/dining-room.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "dining room set up ideas",
@@ -57244,6 +57242,6 @@
       ]
     }
   ],
-  "scored_at": "2026-11-04T07:00:27Z",
-  "scored_against_commit": "1e2533e3a"
+  "scored_at": "2026-11-04T07:24:32Z",
+  "scored_against_commit": "325e0d857"
 }
