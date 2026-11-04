@@ -17115,3 +17115,19 @@ Pushed to main.
 **Next:** nothing newly unblocked. Watch for Phil's reply on #42/#40, or any of the account-creation/credential items in OWNER-ACTIONS.md's "start here" list (YouTube OAuth, Search Console, Gemini billing, Amazon KDP/Etsy, Apple/Play).
 
 Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+## 2026-11-04 (~04:0x UTC), scheduled operator cycle
+
+**Did:** Attached clean (unshallow, ff-only onto `97194ccb9`). Read CLAUDE.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, STATUS.md, GitHub (30 open decision/blocked-on-art issues, none from Phil) and `cycle_signal.py --check` (SAME as prior snapshot). Ran `check_urls.py`, `audit_pages.py`, `fix_dashes.py --check`, `affiliate.py --check`, `check_sellable.py`, `link_graph_report.py`: all clean. Independently re-derived section 108's "gap tier exhausted" conclusion against each zone's real content.json, per 5c/5d, and confirmed it (soap-making/sidewalk-chalk have no honest zone home, dollar-tree/cricut need a barred brand name, the larder-chart row is noise). Mined the wider `partial` tier instead and found Mudroom had never received the "Room layout" tip A40/A42 already built generically for Nursery/Kitchen/Garage: 6 mudroom layout/design queries, 1 gap. Added a Room layout tip to Mudroom's content.json, grounded in the room's own door-adjacency facts already on the page, nothing invented. Resynced mcp/content.json, reran build_zone_pages.py and build_seo.py.
+
+**Verified:** `keyword_demand.py --rescore` moves "mudroom design layout ideas" from gap (0.333) to partial (0.667, matched on heading, /rooms/mudroom.html); gap count 116 to 115. Checked all 28 "layout" rows across both tiers by hand: no other room's query collided onto Mudroom. check_urls (235/235), audit_pages (240/0), fix_dashes/fix_dialect --check (0/0), affiliate.py --check, check_sellable.py, link_graph_report.py (0 orphans), build_id.py --check, audit_visual.py scoped to the changed page (desktop+mobile, 0 findings) all clean. `preflight.py --skip-tests` reran fresh, 0 FAIL through every gate reached, stalled at the documented `gate_etsy_pdfs_current` hang, killed by pid rather than trusted past it. A stray in-flight cycle-signal.json checkpoint and one stray visual-probe file (both from backgrounded/killed diagnostic runs) were found and discarded before commit, not staged.
+
+**Went well:** widening from the gap-only ranking to the partial tier's missing-heading-word pattern found a genuine fix after the gap tier itself had actually run dry.
+
+**Did not go well:** nothing new; same standing sandbox gaps as every recent cycle (no Stripe/SSH/mail credential, Etsy 403, no JRE).
+
+**Changing next cycle:** a zero gap-count for a room is not "nothing left to fix"; check its partial rows for the Room-layout-shaped missing-word pattern too.
+
+**Next:** one more partial-tier pass across other rooms for the same shape, then the 30 open Phil-gated issues remain the only standing queue.
+
+Pushed to main: `content/manual/source/content.json`, `mcp/content.json`, `site/rooms/mudroom.html`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `ops/keyword-demand.json`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND.md`, `BACKLOG-2026-09-07.md`, this entry, dashboard files. No price or product touched; one existing room page edited, no new page; IndexNow to submit on push.
