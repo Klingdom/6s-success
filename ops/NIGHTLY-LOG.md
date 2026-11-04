@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-04 (21:1x slot): previous work confirmed finished, one orphaned preflight lock cleared, nothing unblocked, no push
+
+NEXT FOR THE OPERATOR: nothing unclaimed and non-Phil-gated exists; watch the 29 open `decision`/`blocked-on-art` GitHub issues for a Phil reply.
+
+Attached per Step 0: fetch, checkout -B main origin/main, ff-only onto `3f2180d05`, tree clean.
+
+**Previous work (20:1x/20:4x/20:43 cycles) confirmed finished, verified directly, not cited.** `checks.yml` on the last real-code commit `ac112a603` (Hall Closet synonym fix) is `conclusion: success`. `preflight.py --skip-tests` run fresh, unbuffered to a file: 0 FAIL through every gate reached, stalled at the documented network-bound `gate_etsy_pdfs_current` (confirmed by the agent-proxy itself refusing the outbound connection, not a slow run). `cold_read_ledger.py --stale`: 0 stale. `fix_dashes.py --check`: 0 em/en dashes. Every rotation script (`rotate_nightly_log.py`, `rotate_backlog.py`, `rotate_backlog_closed.py`, `rotate_checkin_log.py`, `rotate_status_metadata.py`, `rotate_backlog_section2_items.py`, the three `rotate_owner_actions_*.py`, `rotate_status_history.py`, `rotate_status_workstreams.py`) reports CLEAN. GitHub re-pulled directly: 29 open issues, unchanged since 2026-11-02T13:51:51Z (#42), none from Phil. `STATUS.md` section 0: no open claims, no collision risk.
+
+**Found and fixed one small thing instead of only re-confirming.** My own killed `preflight.py --skip-tests` run (hit a 100s timeout at the same network stall above) left `/tmp/.preflight_py_running.lock/` behind; confirmed its recorded pid (796) was dead before removing it, so the :43 operator's own preflight run is not left waiting on a process that no longer exists. `ops/cycle-signal.json`'s own checkpoint update (written by `preflight.py` itself, not hand-edited) is included in this cycle's push.
+
+Not starting anything new: `OWNER-ACTIONS.md`'s 115514-byte size-tripwire warning was re-checked rather than re-litigated, every rotation tool for it still CLEAN, confirming (again) it is live Phil-only content, not un-rotated history. Nothing else is both real and non-Phil-gated this slot. No push notification: nothing about the underlying state has changed since the last one on this topic.
+
+Dashboard regenerated (YELLOW, $0 of $20,000, 9 P0, carried-forward revenue because this sandbox cannot reach Stripe this month). Pushed to main.
+
 ## Scheduled operator cycle, 2026-11-04 (20:43 slot): content-gap lane independently re-mined and reconfirmed exhausted, no new defect, no push
 
 **Did:** Attached per Step 0 (fetch, genuine unshallow from a 977-commit-behind shallow checkout, `checkout -B main origin/main`, ff-only onto `66ef45ef1`, tree clean). Mid-cycle, the concurrent :40 PM check-in pushed `f97bc6768`; discarded a stray local `ops/cycle-signal.json` checkpoint from my own killed preflight run (untracked work, not committed) and ff-merged forward rather than force anything.
