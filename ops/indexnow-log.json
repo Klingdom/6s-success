@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-31T09:32:12Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-31T10:07:42Z",
    "mode": "changed",
    "offered": 1,
@@ -657,6 +650,13 @@
    "offered": 2,
    "accepted": 2,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-04T23:29:06Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -836,7 +836,7 @@
   "https://6s-success.com/zones/primary-bedroom-the-dresser-drawers": "ac8a6c9f79d0b18e",
   "https://6s-success.com/zones/primary-bedroom-the-dresser-top": "e0dfeaf73a6989b5",
   "https://6s-success.com/zones/primary-bedroom-the-other-sleeper-s-nightstand": "6f69215a0af7cfab",
-  "https://6s-success.com/zones/primary-bedroom-the-primary-closet": "ac6a9682f104dc5a",
+  "https://6s-success.com/zones/primary-bedroom-the-primary-closet": "9523c8479535fec2",
   "https://6s-success.com/zones/primary-bedroom-your-own-nightstand": "f1fa65a21d237bb9",
   "https://6s-success.com/zones/stair-landing-the-landing-surface-or-console": "9ede74c855fdd7cf",
   "https://6s-success.com/zones/stair-landing-the-stair-and-floor-path": "2655e9833e3a112f",
