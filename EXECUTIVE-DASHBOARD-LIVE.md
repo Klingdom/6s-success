@@ -8,7 +8,7 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 9 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-11-04 15:34 because this run could not reach Stripe** |
+| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-11-04 15:50 because this run could not reach Stripe** |
 | | `............................` |
 | **Paying customers** | 0 |
 | **Email list** | 0 |
@@ -28,9 +28,9 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 29 (9 P0, 2 blocked on art, 27 need your call) |
 | Closed to date | 34 |
-| Commits (7 days) | 1421 of 10701 total |
+| Commits (7 days) | 1423 of 10703 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `5d0335528` Scheduled operator cycle 15:4x: reconfirm exhausted/decision |
+| Last commit | `113b9b516` Merge remote-tracking branch 'origin/main' |
 
 ## Product readiness
 
