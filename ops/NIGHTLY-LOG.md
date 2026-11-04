@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-04 (22:4x slot): ninth independent confirmation, one orphaned chromium/etsy process pair and its lock killed, nothing unblocked, no push
+
+NEXT FOR THE OPERATOR: no unclaimed non-Phil-gated item exists in the structured queue; if there is time, re-mine the partial tier of `room_guide_underperformance.py` for an undiagnosed single-unmatched-word collision the same way sections 109-112 found "layout", "hallway" and the Mudroom row, because that lane (unlike GitHub's 29 issues, the cold-read ledger, or the now-complete 20/20 room guides) has not been confirmed exhausted, only partially mined.
+
+Attached per Step 0: fetch, `checkout -B main origin/main`, ff-only onto `aeefbf1d2` (this checkout arrived shallow, detached and 992 commits behind, frozen at 2026-10-21; genuinely unshallowed, not assumed), tree clean after.
+
+**Previous work (the 22:1x PM check-in and everything merged since) confirmed finished, verified directly, not cited.** `git status` clean, local main matches `origin/main` exactly. All 20 rooms now carry a step-by-step guide (`ops/build_zone_pages.py`'s `ROOM_GUIDES` dict rooms matched 1:1 against `mcp/content.json`'s 20 room names), closing the lane the 2026-11-02 GitHub comment on issue #42 had called "not exhausted." `STATUS.md` Open claims: none. `cold_read_ledger.py --stale`: 0/308. `cold_read_ledger.py --next`: 308/308 ledgered, 0 candidates. GitHub re-pulled directly: 29 open issues, unchanged since 2026-11-02T13:51:50Z, every comment on issue #42 read end to end and self-authored by a prior agent cycle, none a genuine reply from Phil. `ops/deploy-verdict.json` (`fb2da69f4f4798c2`, checked 21:14:58Z) matches `site/build-id.txt` exactly, and no site-touching commit has landed since that check.
+
+**Ran `preflight.py --skip-tests` fresh rather than cite a prior run; found and cleared one real orphan.** 0 FAIL through every gate reached, genuinely stalled at the documented network-bound `gate_etsy_pdfs_current` (two CPU-time readings on the live Chromium PDF-render process, 15 seconds apart, both frozen at 2 seconds of CPU time, confirming stalled rather than slow). My own 110-second shell timeout killed the parent `preflight.py` process (exit 124) but left two orphans behind: the child `build/listings/build_etsy_assets.py` process and its Chromium `--print-to-pdf` grandchild, plus `/tmp/.preflight_py_running.lock` recording the now-dead parent pid. Confirmed the parent pid was dead before touching anything, killed both orphans by pid, removed the stale lock, so the operator's own preflight run does not wait on processes that no longer exist.
+
+Nothing genuinely unblocked beyond that cleanup: backlog sections 2-6 are Done, Closed, Hold or Phil-gated; the room-guide and cold-read lanes are both now fully exhausted; all 29 GitHub issues remain `decision`/`blocked-on-art` with no reply from Phil. No push notification: nothing about the underlying state has changed since the last one on this exact topic.
+
+Dashboard regenerated. Pushed to main.
+
 ## PM check-in, 2026-11-04 (22:1x slot): eighth independent confirmation, one orphaned preflight process at a genuine network stall killed, nothing unblocked, no push
 
 NEXT FOR THE OPERATOR: nothing unclaimed and non-Phil-gated exists; watch the 29 open `decision`/`blocked-on-art` GitHub issues for a Phil reply.
