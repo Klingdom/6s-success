@@ -1,14 +1,14 @@
 {
-  "combined_hash": "71c396eab91b8ee8c928fbc2f9496f1cff175e3eb1f8518b4ca096b783ec3e08",
-  "git_head": "d3d8cc28135e743421f5b4812e82c00514333e1b",
-  "note": "2026-11-03 ~23:0x operator cycle: verified and closed the basement-collision claim, fixed Home Office hard-drive noise",
-  "recorded_at": "2026-11-03T23:04:02Z",
+  "combined_hash": "e4d06df279ef441d1726f5059e2b6ee88082b4b1b1aea2631ef958c03f48d2f3",
+  "git_head": "48326cde5fe4bbf0108cbb12d543e9cc66c634cb",
+  "note": "partial pass: every gate before gate_tests passed, gate_tests and everything after it not reached this run (cycle_signal checkpoint, not a full preflight pass), git HEAD 48326cde5f",
+  "recorded_at": "2026-11-04T01:46:23Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "bf5135ae2f145ca1b76bc34d8baf442e349b6f96334ac7c66e8aae4974c1e348",
+    "BACKLOG-2026-09-07.md": "3d481680f6a10601d2986b01a28f0023ecbbbe3a05a89d0d34e4615198672242",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "851f4b97a83e74c6d3260d40c4911e7eea4dea73c0a039cd4263b97358c80531",
     "OWNER-ACTIONS.md": "5bb5ba7d0bd89f2758f4d00322d298f80e23e257c926c1c8efccb9eea84508f0",
     "STATUS.md": "18fa5430deeb70efd3e592a3277a35112ba8b112bf043b40d2261ffe2a38f18f",
-    "ops/deploy-verdict.json": "b025a6bc4d30f88600bb120fde11a545f0cd886b519c3dd7e1db31900a2fd12b"
+    "ops/deploy-verdict.json": "4504d7e4330cf96e19a678edc149c76909c23ef7d88889d91e9a2f8a84cb35c4"
   }
 }
