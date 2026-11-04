@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-04: a prior cycle's "layout lane exhausted" claim only checked the gap-only tool; Living Room and Family Room both had real, unfixed partial-tier layout demand
+
+**Did.** Fresh checkout, genuinely unshallowed (873 commits behind), attached clean. Ran `preflight.py --skip-tests`: 0 FAIL through every reachable gate, stalled at the documented `gate_etsy_pdfs_current`. Re-checked GitHub directly: 30 open `decision` issues, none from Phil. Read `BACKLOG-2026-09-07.md` section 109's own handoff and the 2026-11-03 nightly entry that declared the "Room layout" missing-heading-word lane exhausted after grepping `room_guide_underperformance.py`'s output for "layout". That tool ranks `gap` rows only. Grepped the raw `unmatched_words` field across both keyword tiers directly: Living Room and Family Room each carry real "___ layout ideas" demand with zero occurrences of "layout" anywhere on their pages, the exact shape section 109 fixed for Mudroom. Added a "Room layout" tip to each, grounded in facts already in their own zones (the Floor and Circulation Path's own purpose for Living Room; the intro's own media-zone-first fact for Family Room). Nothing invented.
+
+**Verified.** Rescored both tiers: 4 of 8 target rows per tier moved `partial` to `covered`, gap counts unchanged (115 US, 97 global), all 27 other "layout" rows site-wide audited by hand for collisions, none found. `check_urls`, `audit_pages`, `fix_dashes`/`fix_dialect --check`, `affiliate.py --check`, `check_sellable.py`, `link_graph_report.py`, `build_id.py --check`, scoped `audit_visual.py` (desktop+mobile) all clean. `preflight.py --skip-tests` rerun after the change, identical result.
+
+**Went well:** checking a settled "exhausted" claim against raw data instead of trusting it.
+
+**Did not go well:** the 2026-11-03 cycle's gap-only tool blind spot repeated a mistake section 109 had already named once, just against a different tool.
+
+**Changing next cycle:** before calling any keyword-gap lane "exhausted," grep raw `unmatched_words` directly; a ranking tool's silence is not evidence.
+
+**Next:** this specific word-shape looks exhausted now. 30 open `decision` issues, none from Phil, are the standing queue.
+
+Pushed to main: `content/manual/source/content.json`, `mcp/content.json`, `site/rooms/living-room.html`, `site/rooms/family-room.html`, sitemap/keyword-demand files, this entry, dashboard files.
+
 ## PM check-in, 2026-11-04 (06:4x slot): previous work confirmed finished an eighth independent way, nothing newly unblocked, no push
 
 NEXT FOR THE OPERATOR: watch for a Phil reply on any of the 30 open decision/blocked-on-art issues; every other lane is independently reconfirmed exhausted this cycle, not carried forward.

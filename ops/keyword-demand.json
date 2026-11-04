@@ -3636,13 +3636,11 @@
       "best_page": "/family-room-deck.html",
       "best_page_title": "The Family Room Deck: 69 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/family-room.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "layout"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "bonus room storage",
@@ -11031,13 +11029,11 @@
       "best_page": "/family-room-deck.html",
       "best_page_title": "The Family Room Deck: 69 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/family-room-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "layout"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/family-room.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "family room layout ideas with fireplace",
@@ -11052,13 +11048,12 @@
       "best_page": "/family-room-deck.html",
       "best_page_title": "The Family Room Deck: 69 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/family-room-deck.html",
-      "matched_on": "title",
+      "heading_coverage": 0.75,
+      "heading_page": "/rooms/family-room.html",
+      "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "fireplace",
-        "layout"
+        "fireplace"
       ]
     },
     {
@@ -11074,13 +11069,12 @@
       "best_page": "/family-room-deck.html",
       "best_page_title": "The Family Room Deck: 69 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/family-room-deck.html",
-      "matched_on": "title",
+      "heading_coverage": 0.75,
+      "heading_page": "/rooms/family-room.html",
+      "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "fireplace",
-        "layout"
+        "fireplace"
       ]
     },
     {
@@ -11096,13 +11090,11 @@
       "best_page": "/family-room-deck.html",
       "best_page_title": "The Family Room Deck: 69 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/family-room-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "layout"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/family-room.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "family room pictures and ideas",
@@ -34786,12 +34778,11 @@
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/living-room-deck.html",
-      "matched_on": "title",
+      "heading_coverage": 0.75,
+      "heading_page": "/rooms/living-room.html",
+      "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "layout",
         "plan"
       ]
     },
@@ -40819,13 +40810,11 @@
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/living-room-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "layout"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/living-room.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "living room layout ideas with fireplace",
@@ -40840,13 +40829,12 @@
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/living-room-deck.html",
-      "matched_on": "title",
+      "heading_coverage": 0.75,
+      "heading_page": "/rooms/living-room.html",
+      "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "fireplace",
-        "layout"
+        "fireplace"
       ]
     },
     {
@@ -40862,13 +40850,11 @@
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/living-room-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "layout"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/living-room.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "living room office ideas",
@@ -57258,6 +57244,6 @@
       ]
     }
   ],
-  "scored_at": "2026-11-04T03:58:05Z",
-  "scored_against_commit": "97194ccb9"
+  "scored_at": "2026-11-04T07:00:27Z",
+  "scored_against_commit": "1e2533e3a"
 }

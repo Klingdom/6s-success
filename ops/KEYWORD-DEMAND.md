@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-04T03:58:05Z against 243 page(s) at commit 97194ccb9. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-04T07:00:27Z against 243 page(s) at commit 1e2533e3a. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 243 published page titles: 1416 covered, 1277 partial, 115 gap.
+**Queries found:** 2808. Checked against 243 published page titles: 1421 covered, 1272 partial, 115 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -104,7 +104,7 @@ Showing the top 80 of 115, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1277.
+Showing the top 60 of 1272.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -146,7 +146,6 @@ Showing the top 60 of 1277.
 | 2 | best way to organize charging station | How to organize the family room charging station | 0.67 |
 | 2 | bonus room storage | How to organize the family room blanket storage | 0.67 |
 | 2 | building a stair landing | How to organize a stair landing, zone by zone | 0.67 |
-| 2 | family room layout ideas | The Family Room Deck: 69 cards, free to read | 0.67 |
 | 2 | guest bathroom decorating ideas | The Guest Bathroom Deck: 60 cards, free to read | 0.67 |
 | 2 | guest bedroom design ideas | The Guest Bedroom Deck: 57 cards, free to read | 0.67 |
 | 2 | home office organization ideas ikea | The Home Office Deck: 66 cards, free to read | 0.67 |
@@ -168,6 +167,7 @@ Showing the top 60 of 1277.
 | 2 | primary bedroom decorating ideas | The Primary Bedroom Deck: 66 cards, free to read | 0.67 |
 | 2 | restaurant dining room ideas | The Dining Room Deck: 61 cards, free to read | 0.67 |
 | 2 | spray paint organizers and storage | How to organize the workshop paint and chemical storage | 0.67 |
+| 2 | wireless organize charging station | How to organize the family room charging station | 0.67 |
 
 ## By room
 
@@ -175,7 +175,7 @@ Showing the top 60 of 1277.
 |---|---|---|---|---|
 | Dining Room | 39 | 0 | 20 | 19 |
 | Entryway | 50 | 1 | 13 | 36 |
-| Family Room | 27 | 0 | 19 | 8 |
+| Family Room | 27 | 0 | 17 | 10 |
 | Garage | 77 | 1 | 25 | 51 |
 | Guest Bathroom | 22 | 1 | 14 | 7 |
 | Guest Bedroom | 24 | 0 | 12 | 12 |
@@ -184,7 +184,7 @@ Showing the top 60 of 1277.
 | Kids Bedroom | 20 | 0 | 8 | 12 |
 | Kitchen | 95 | 2 | 40 | 53 |
 | Laundry Room | 71 | 0 | 17 | 54 |
-| Living Room | 86 | 2 | 40 | 44 |
+| Living Room | 86 | 2 | 38 | 46 |
 | Mudroom | 43 | 0 | 23 | 20 |
 | Nursery | 62 | 1 | 22 | 39 |
 | Pantry | 58 | 1 | 25 | 32 |
