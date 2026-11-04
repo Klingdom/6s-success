@@ -23,10 +23,10 @@ DECKS = os.path.join(CONTENT, "decks")
 MANUAL = os.path.join(CONTENT, "manual")
 VIDEO = os.path.join(CONTENT, "video")
 
-def sh(cmd, cwd=ROOT):
+def sh(cmd, cwd=ROOT, timeout=60):
     try:
         return subprocess.run(cmd, cwd=cwd, capture_output=True, text=True,
-                              shell=isinstance(cmd, str), timeout=60).stdout.strip()
+                              shell=isinstance(cmd, str), timeout=timeout).stdout.strip()
     except Exception:
         return ""
 
@@ -674,8 +674,15 @@ S["commit_msg"] = sh("git log -1 --format=%s")
 # commits_7d, computed here before that fix ran, kept reading straight off
 # the still-shallow log every time. Only report a count once the repo is
 # genuinely complete, never the truncated one.
+#
+# Found 2026-11-04, PM check-in: the default 60s sh() timeout flapped this
+# unshallow between succeeding (a PM/operator session, no time pressure) and
+# timing out (the hourly-brief workflow's own dashboard.py call), undoing a
+# just-shipped fix within six minutes. The pack is ~2.1GB (`git count-objects
+# -v`); 60s is not a safe budget for that over any network, so this one call
+# gets a longer budget rather than the shared default.
 if sh_checked("git rev-parse --is-shallow-repository") == "true":
-    sh("git fetch --unshallow --quiet")
+    sh("git fetch --unshallow --quiet", timeout=240)
 _repo_complete = sh_checked("git rev-parse --is-shallow-repository") == "false"
 S["commits_7d"] = (
     len([l for l in sh('git log --since="7 days ago" --format=%h').splitlines() if l])
