@@ -493,8 +493,8 @@
     },
     "build_seo.py": {
       "status": "clean",
-      "date": "2026-10-23",
-      "note": "Re-ledgered 2026-10-23: the only touch since the last ledger date was the 2026-10-22 share_cards/article_figures wiring commits, a trivial try/import/apply()/except ImportError:pass addition (or, for audit_pages.py, a one-line hero-lazy exclusion for article figures); diff read directly, confirmed mechanical."
+      "date": "2026-11-04",
+      "note": "PM check-in cold read, 2026-11-04 03:3x slot: re-read in full (1083 lines) after the UTC-rollover sitemap lastmod fix landed. _git_content_date() and _content_hash() strip the same fingerprint/data-sku attributes consistently, so dating and detection cannot disagree; build_sitemap()'s today = datetime.now(timezone.utc) is the fix itself. No new defect found."
     },
     "build_social_captions.py": {
       "status": "clean",
@@ -1113,8 +1113,8 @@
     },
     "room_guide_candidates.py": {
       "status": "clean",
-      "date": "2026-11-03",
-      "note": "Cold-read diff 7ea370b59: room_rows() now also matches /deck/{slug}-print-and-play.html. Matches commit message, fail-then-pass proved (7/7), backlog section 89 documents full verification. No defect found."
+      "date": "2026-11-04",
+      "note": "PM check-in cold read, 2026-11-04 03:3x slot: re-read the OFF_TOPIC_CONTEXT regex added today (business/equipment list/pricing model). Checked it against both live keyword files directly rather than trust the commit message: matches exactly 8 US-tier rows and 1 global-tier row, every one a B2B/business-starting query, zero false positives against any genuine household query containing the word business. No new defect found."
     },
     "room_guide_underperformance.py": {
       "status": "clean",

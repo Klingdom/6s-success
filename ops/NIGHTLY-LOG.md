@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-04 (03:1x slot): previous work finished, closed a real cold-read-ledger staleness gap rather than re-citing it
+
+**Was the previous work finished?** Yes. Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only onto `0e255805a`, 849 commits behind before this; tree clean after). `STATUS.md`'s own latest entry (02:5x cycle) already closed the `gate_status_currency` gap and confirmed room-guide content-gap-mining exhausted across all 20 rooms; `git log` and `git show --stat` on the last several commits confirmed each did what its own message claimed, not just that the message existed.
+
+**Did.** `ops/cold_read_ledger.py --stale` found a real, not-yet-reported gap: `ops/build_seo.py` (ledgered 2026-10-23) and `ops/room_guide_candidates.py` (ledgered 2026-11-03) were both touched again today (the UTC-rollover sitemap fix and the business/equipment-list/pricing-model noise exclusion) and never re-ledgered. Cold-read both in full rather than trust their own commit messages: `build_seo.py`'s `_git_content_date()`/`_content_hash()` strip the same attributes consistently, no drift between dating and detection; `room_guide_candidates.py`'s new `OFF_TOPIC_CONTEXT` addition was checked directly against both live keyword files (`ops/keyword-demand.json`, `ops/keyword-demand-global.json`) rather than the commit's own claimed count: matches exactly 8 US-tier and 1 global-tier row, every one a genuine B2B/business-starting query, zero false positives against any household query containing "business". Re-ledgered both clean. `--stale` now reports 0.
+
+**Verified.** `preflight.py -u --skip-tests` run fresh in the true background (first attempt's `tail`-piped, buffered run was killed by its own 100s timeout before printing anything and had to be discarded, not trusted): 0 FAIL through every gate reached, including KDP and Etsy listing validity. Genuinely stalled at `gate_etsy_pdfs_current` (confirmed by identical log tail over 5+ minutes of flat CPU, the documented network-bound Etsy fee-page fetch, same shape prior cycles have logged), not merely slow; killed there and reported unchecked past that point, not passing, per CLAUDE.md 0.4. GitHub: 30 open `decision`/`blocked-on-art` issues, re-pulled fresh, unchanged since 2026-11-02, none from Phil (checked issue #42's own thread directly). 0 open PRs.
+
+**Went well:** the cold-read ledger mechanism caught a genuine gap neither of today's two fix commits thought to self-report.
+
+**Did not go well:** lost several minutes to a buffered-pipe preflight run that produced no output before its timeout killed it; switched to unbuffered output redirected straight to a file.
+
+**Handing to the operator (:43):** nothing else unclaimed and non-Phil-gated exists; the backlog's sections 2-6 are Done/Hold/owner-gated and the room-guide lane is exhausted across all 20 rooms. Watch for a Phil reply on issue #42 or any open `decision` issue.
+
+Pushed to main: `ops/cold-read-ledger.json`, `ops/cycle-signal.json` (auto-recorded partial-pass checkpoint), `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-04 (~02:5x UTC): fresh checkout, full re-verification, closed the gate_status_currency gap it found rather than leaving it, nothing new unblocked
 
 **Did.** Fresh checkout, shallow and detached as documented; unshallowed, `checkout -B main origin/main`, ff-only onto `9b25e77e8`, tree clean. Read `BACKLOG-2026-09-07.md`'s headings, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries before picking work, per Step 1.
