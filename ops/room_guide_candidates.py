@@ -68,7 +68,21 @@ OFF_TOPIC_CONTEXT = re.compile(
     # "spray paint storage ideas", "containers for paint storage") do not
     # match any branch of this pattern.
     r"\bbenchmark advance\b|\bdiamond painting\b|\bpainting with diamonds\b|"
-    r"\bcraft paint\b|\bpaint storage for artists\b", re.I)
+    r"\bcraft paint\b|\bpaint storage for artists\b|"
+    # Found 2026-11-04 (Pantry/Primary Bedroom/Family Room pass): three more
+    # seed-drift rows, the same autosuggest-noise shape as "Benchmark
+    # Advance" above, each checked against its own real seed before adding.
+    # "declutter gardening series lessons" (seed: "how to declutter a
+    # nursery") drifted to an online gardening course, nothing to do with a
+    # nursery. "dental organization ideas" (seed: "den organization ideas")
+    # drifted from "den" to a dental practice/clinic query. "how to
+    # declutter my life reddit" (seed: "how to declutter a mudroom")
+    # drifted to a general life-advice Reddit thread, nothing to do with a
+    # mudroom. Verified against the full corpus: no other row in either
+    # harvest contains "gardening series", "gardening lessons", "dental" or
+    # "declutter my life reddit", so this cannot suppress a genuine match.
+    r"\bgardening series\b|\bgardening lessons\b|\bdental\b|"
+    r"\bdeclutter my life\b", re.I)
 
 
 def guide_less_rooms():

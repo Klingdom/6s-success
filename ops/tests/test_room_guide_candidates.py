@@ -95,6 +95,25 @@ _result_chem = rgc.score_room([_chem_storage], [], _room)
 check("a genuine on-topic chemical-storage row is NOT excluded by that same pattern",
       _result_chem["on_topic_rows"] == 1)
 
+# Found 2026-11-04 (Pantry/Primary Bedroom/Family Room pass): three more
+# seed-drift rows, same shape as "benchmark advance" above.
+_gardening_series = {"query": "declutter gardening series lessons", "best_page": "/test-room-deck.html", "status": "gap"}
+_result_gs = rgc.score_room([_gardening_series], [], _room)
+check("a 'gardening series lessons' off-topic-context row is excluded",
+      _result_gs["on_topic_rows"] == 0)
+_dental = {"query": "dental organization ideas", "best_page": "/test-room-deck.html", "status": "gap"}
+_result_dental = rgc.score_room([_dental], [], _room)
+check("a 'dental organization' off-topic-context row is excluded",
+      _result_dental["on_topic_rows"] == 0)
+_reddit_life = {"query": "how to declutter my life reddit", "best_page": "/test-room-deck.html", "status": "gap"}
+_result_reddit = rgc.score_room([_reddit_life], [], _room)
+check("a 'declutter my life reddit' off-topic-context row is excluded",
+      _result_reddit["on_topic_rows"] == 0)
+_den = {"query": "den storage ideas", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_den = rgc.score_room([_den], [], _room)
+check("a genuine on-topic 'den storage' row is NOT excluded by the dental pattern",
+      _result_den["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-04 (~01:0x UTC): confirmed the CI fix, gated A55's own "noise" diagnosis so it stops re-surfacing
+
+**Attached and verified the handoff above, did not just trust it.** Fetched, unshallowed, `checkout -B main origin/main`, ff-only onto `55a82e1fe` (the hourly check-in record past the 00:4x entry's own push), tree clean. Confirmed independently via `gh api .../commits/.../check-runs` and `.../actions/workflows/checks.yml/runs` that the sitemap fix (`6fa5c9c9`) is real and byte-identical to the fix I had independently prepared from the same `gate_generator_ownership` trace before noticing the concurrent push; dropped my duplicate commit and fast-forwarded rather than ship a second copy. `publish-image.yml` was still `in_progress` on that commit when this entry was written; not claimed green, watched in the background.
+
+**Picked up the room-ranking queue the 00:1x/00:4x entries both pointed at (Pantry, Primary Bedroom, Family Room), and re-opened A55's "noise" diagnosis rather than trust it as settled (CLAUDE.md 5d).** Tried the honest `zone-also-called.json` fix for Family Room's "card games organizer storage" myself before reading A55 closely: hit the exact same digital-word collision `check_also_called_digital_collision_fast.py` exists to catch ("games" shared with 6 unrelated PC/Steam queries), independently reconfirming A55's conclusion that this gap stays correctly unfixed. Pantry's 2 gap rows ("draw a larder organization chart," a thin ambiguous query; "pantry organization ideas dollar tree," the same named-retailer shape already left unfixed for an identical Kitchen query) checked and correctly left alone too.
+
+**The real gap: A55 diagnosed "dental organization ideas" as noise in prose two days ago and never coded it, so it kept re-appearing as a "gap" in every ranking since, each cycle re-spending attention to reach the same conclusion.** Mining the same seed-drift shape past Family Room found two more in Primary Bedroom: "declutter gardening series lessons" (seed "how to declutter a nursery," drifted to a gardening course) and "how to declutter my life reddit" (seed "how to declutter a mudroom," drifted to general life advice on a named platform), the identical "Benchmark Advance" autosuggest-noise class `OFF_TOPIC_CONTEXT` already exists to catch. Added all three. Verified against the full corpus before shipping: no other row in either harvest contains "gardening series," "gardening lessons," "dental," or "declutter my life," so nothing genuine gets suppressed; specifically checked "den storage ideas" (Family Room, genuinely on-topic) survives the new `\bdental\b` pattern.
+
+**Turned into a test, per CLAUDE.md 10b.** `ops/tests/test_room_guide_candidates.py` gained 4 cases (11/11). Fail-then-pass proved directly: `git stash` the regex change, reran, watched exactly the 3 new exclusion cases fail (the 4th, the "den storage" negative control, correctly still passed), restored, reconfirmed 11/11.
+
+**Verified.** Primary Bedroom's on-topic gap count: 4 to 2. Family Room's: 3 to 2 (both remaining rows in each room are the already-diagnosed, genuinely unfixable ones: the digital-collision "card games" row and the furniture-shopping "nightstands with hidden storage" row). `ops/tests/test_room_guide_underperformance.py` still 14/14. `fix_dashes.py --check` 0/0 on both changed files. Did not run the sandboxed full `preflight.py`: it genuinely stalled past its documented `gate_tests` point on an earlier run this same cycle (confirmed by hitting its own background time limit with CPU still near-idle, not assumed), and this change touches only two `ops/` files with no `site/` or price/product impact, so `checks.yml`/`publish-image.yml` on the real GitHub runner, not this sandbox, is what actually gates it.
+
+**Went well:** treating a two-day-old "diagnosed but not gated" finding as unfinished work rather than settled history, which is exactly what section 10b asks for and the gap it closes (repeated wasted re-diagnosis) is a real, measurable cost.
+
+**Did not go well:** nothing new; the digital-collision re-derivation for "card games" cost a few minutes that a closer read of A55 first would have saved, though independently re-confirming it was not wasted.
+
+**Changing next cycle:** none.
+
+**Next:** Pantry and the two remaining Family Room/Primary Bedroom rows are now fully checked for this lane, no further unfixed gaps without new content. `room_guide_underperformance.py`'s unscoped run should be re-run fresh to find the next-ranked room past these three. 30 open `decision`/`blocked-on-art` GitHub issues, none from Phil; no mail credential, inbox unchecked not assumed empty.
+
+Pushed to main: `ops/room_guide_candidates.py`, `ops/tests/test_room_guide_candidates.py`, `BACKLOG-2026-09-07.md`, this entry, dashboard files. No content, price or product touched; `IndexNow` not applicable.
+
 ## PM check-in, 2026-11-04 (00:4x slot): previous work was NOT finished, checks.yml had actually failed on HEAD, fixed and shipped rather than handed off
 
 NEXT FOR THE OPERATOR: watch checks.yml and publish-image.yml on this push, confirm both go green, then resume the room ranking (Pantry/Primary Bedroom/Family Room), because this cycle found and fixed a real CI failure that two prior commits had pushed past unaddressed.
