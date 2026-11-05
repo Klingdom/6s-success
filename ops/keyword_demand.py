@@ -581,8 +581,32 @@ def score_rows(results, rooms, inventory):
         page, score = best_page(q, inventory, signal)
         hpage, hscore = best_by(q, inventory, "head_words", signal)
         row["room"] = attribute_room(q, rooms)
-        row["best_page"] = page["url"] if page else ""
-        row["best_page_title"] = page["title"] if page else ""
+        # WHICH SURFACE WON MUST DECIDE WHICH PAGE IS CREDITED.
+        #
+        # Found live 2026-11-05: best_page/best_page_title were set from the
+        # title surface (`page`) unconditionally, even though matched_on and
+        # status were already computed from whichever surface scored higher.
+        # Across the live corpus, 1402 rows had a heading surface that beat
+        # the title surface outright (not even a tie) and pointed at a
+        # DIFFERENT page, 778 of those a different room entirely (e.g.
+        # "master bedroom storage" reported `best_page` as a Kids Bedroom
+        # zone while the row's own status came from Primary Bedroom's room
+        # page). Every consumer of this field (room_guide_candidates.py,
+        # room_guide_underperformance.py, keyword_demand_global.py) treats
+        # best_page as "the page this query actually routes to", so a silent
+        # mismatch there does not just mislabel a report, it can send a
+        # later cycle hunting for a synonym fix on the wrong zone, or credit
+        # the wrong room with coverage it does not have. On an exact tie
+        # between the two surfaces, prefer whichever one matches the query's
+        # own room signal, the same preference _tie_break already applies
+        # within a single surface, rather than defaulting to title.
+        use_heading = hscore > score or (
+            hscore == score and signal
+            and hpage and hpage.get("room") == signal
+            and not (page and page.get("room") == signal))
+        winner = hpage if use_heading else page
+        row["best_page"] = winner["url"] if winner else ""
+        row["best_page_title"] = winner["title"] if winner else ""
         # Title-only, unchanged, so this column stays comparable with the
         # first reading taken before headings were read at all.
         row["coverage"] = score
@@ -591,7 +615,7 @@ def score_rows(results, rooms, inventory):
         # The status uses the better surface, because a question answered
         # under its own <h2> is genuinely answered, and names which surface
         # earned it so a reader can discount it if they disagree.
-        row["matched_on"] = "title" if score >= hscore else "heading"
+        row["matched_on"] = "heading" if use_heading else "title"
         row["status"] = classify(max(score, hscore))
         # UNMATCHED_WORDS, ADDED 2026-10-31. Found live: two gap rows
         # ("car organisation must haves", "car organizer canadian tire")
@@ -608,9 +632,8 @@ def score_rows(results, rooms, inventory):
         # actual unmatched words closes that gap once, here, rather than
         # once per cycle that reopens the same row.
         cw = content_words(q)
-        winner = page if score >= hscore else hpage
         won_words = (winner or {}).get(
-            "words" if score >= hscore else "head_words", set())
+            "head_words" if use_heading else "words", set())
         row["unmatched_words"] = sorted(w for w in cw if w not in won_words)
         rows.append(row)
     return rows
