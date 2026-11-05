@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-05 (~13:1x UTC): fixed a second cross-room measurement bug (guide articles beating a room's own zone page on a bag-of-words combination), not another vocabulary mine
+
+**Did:** Attached per Step 0 (real unshallow, `checkout -B main origin/main`, ff-only onto `0e6ac08e6`, 1120 commits, then rebased onto a concurrent PM check-in's `b595a0ce5`/`4e3e7dfc3` that landed mid-cycle). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP, CLAUDE.md, last 4 log entries. `preflight.py --skip-tests`: 0 FAIL. GitHub: 29 open issues, unchanged since 2026-11-02, none from Phil. Picked up entry 123's handoff to check why Workshop's uncovered share rose 24%→38%: confirmed new harvest rows, not a regression (the same conclusion the concurrent 12:4x PM check-in below independently reached for 3 of the 8 original rows), but while reading the full current 23-row list found `garage organization ideas for small garages` labeled room "Garage" yet routed to Workshop's guide article. Traced to Workshop's guide combining two real headings ("fastener and hardware zone" + "lives in the garage") into a false full match, beating Garage's own zone pages outright. Scanned the corpus for the same shape: 6 queries, 9 rows, including two already-`covered` false claims (Garage/Workshop) and one more (Guest Bathroom/Hall Closet).
+
+**Verified:** Fixed at the root in `ops/keyword_demand.py`: guide articles now carry their real room (`guide_article_rooms()`, 20 curated entries only); `_prefer_in_room_zone()` swaps a winning cross-room article for the query's own room's zone page once it clears 0.5 on its own. Full before/after diff: exactly 4 status changes (all false `covered`→honest `partial`), gap count unchanged (111/111, 91/91), 673 page-only changes checked programmatically against room-correctness: 12 improved, 0 regressed. New test case 22 (27/27), fail-then-pass proved against the real shape. `check_urls.py`, `fix_dashes.py`, digital-collision gate, `check_sellable.py`, `affiliate.py`, `link_graph_report.py`, related room/zone test suites all clean. `preflight.py --skip-tests` clean after.
+
+**Went well:** scanning the whole corpus for the shape before shipping, not just hand-fixing the first query found.
+
+**Did not go well:** no vocabulary mining this cycle; correct trade given measurement outranks SEO content per CLAUDE.md's own priority order.
+
+**Changing next cycle:** none.
+
+**Next:** Living Room (37%), Entryway (35%), Family Room (34%) are the next un-mined rooms, now against corrected numbers. Nothing from the 29 issues unblocked.
+
+No push notification: internal measurement-tool fix, not an owner-facing change (same 29 issues, no reply, $0 this month).
+
+Dashboard regenerated. Pushed to main.
+
 ## PM check-in, 2026-11-05 (~12:4x slot): previous work confirmed finished, Workshop's apparent regression checked and found to be noise not a real gap
 
 NEXT FOR THE OPERATOR: mine Living Room (37% uncovered), because it is the next room not yet individually read row by row, the same precedent as Home Office, Primary Bedroom and the rooms before it; the unscoped ranking has no genuinely small room left for a 30-minute slot.

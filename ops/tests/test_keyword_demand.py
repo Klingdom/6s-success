@@ -567,6 +567,58 @@ def main():
         fails.append("the filter dropped real title words along with the "
                      "boilerplate heading: %r" % inv[0]["head_words"])
 
+    # 22. Found live 2026-11-05: "how to organize hardware in garage" (room
+    #     signal Garage) scored a false 1.0 "covered" on Workshop's own
+    #     guide article, which separately covers "hardware" in one heading
+    #     and "garage" in another, neither heading actually about this
+    #     query. Garage's own zone page, the real answer, scored only 0.5
+    #     and lost outright (not even a tie) because bag-of-words matching
+    #     has no way to prefer a coherent single-page answer over an
+    #     incoherent combination from two unrelated headings on someone
+    #     else's page. _prefer_in_room_zone must replace a winning GUIDE
+    #     ARTICLE from a different room with the query's own room's zone
+    #     page once that zone clears the 0.5 partial threshold on its own.
+    cross_room_title = "How to organize a workshop, step by step"
+    cross_room_inv = [
+        {"url": "/articles/how-to-organize-a-workshop.html", "title": cross_room_title,
+         "words": set(kd.words(cross_room_title)),
+         "head_words": set(kd.words(
+             cross_room_title + " Step 4: The fastener and hardware zone. "
+             "A workshop that lives in the garage.")),
+         "room": "Workshop"},
+        {"url": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
+         "title": "Hardware storage shelf",
+         "words": set(kd.words("Hardware storage shelf")),
+         "head_words": set(kd.words("Hardware storage shelf")),
+         "room": "Garage"},
+    ]
+    rows = kd.score_rows({"how to organize hardware in garage":
+                          {"query": "how to organize hardware in garage",
+                           "sources": ["google"], "best_rank": 1,
+                           "seeds": ["x"]}}, ["Garage", "Workshop"], cross_room_inv)
+    r = rows[0]
+    if r["best_page"] != "/zones/garage-the-hand-tool-wall-and-cabinets.html":
+        fails.append("a cross-room guide article still beat the query's own "
+                     "room's zone page: %r" % r["best_page"])
+    if r["status"] != "partial":
+        fails.append("the cross-room combination still claimed full "
+                     "coverage instead of the zone's honest partial: %r"
+                     % r["status"])
+    # And when the query's own room has no zone page clearing 0.5, the
+    # cross-room article must still win: a weak in-room page must never
+    # displace a stronger cross-room one.
+    weak_inv = [cross_room_inv[0],
+                dict(cross_room_inv[1], title="Shelf",
+                     words=set(kd.words("Shelf")),
+                     head_words=set(kd.words("Shelf")))]
+    rows = kd.score_rows({"how to organize hardware in garage":
+                          {"query": "how to organize hardware in garage",
+                           "sources": ["google"], "best_rank": 1,
+                           "seeds": ["x"]}}, ["Garage", "Workshop"], weak_inv)
+    if rows[0]["best_page"] != "/articles/how-to-organize-a-workshop.html":
+        fails.append("a weak in-room page wrongly displaced a stronger "
+                     "cross-room one: %r" % rows[0]["best_page"])
+
     if fails:
         print("FAIL")
         for f in fails:

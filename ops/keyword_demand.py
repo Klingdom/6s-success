@@ -219,16 +219,40 @@ def room_slug(room):
     return room.lower().replace(" ", "-")
 
 
-def room_of(url, rooms):
+def guide_article_rooms():
+    """Reverse of build_zone_pages.ROOM_GUIDES: {article url: owning room}.
+
+    Found 2026-11-05: every room's own guide article genuinely belongs to
+    one room (ROOM_GUIDES is a hand-curated 1:1 list), but room_of() gave
+    it no room at all, same as every other article. That let a DIFFERENT
+    room's guide out-score the query's own room on a query that room's own
+    zone page already answers, purely because the other guide's title and
+    headings happen to combine two unrelated words the query needs (see
+    _prefer_in_room_zone). Scoped to just the 20 curated guides, not every
+    article: most articles genuinely answer no single room, and should
+    keep carrying no room signal.
+    """
+    import build_zone_pages as bzp
+    out = {}
+    for room, guides in bzp.ROOM_GUIDES.items():
+        name = guides[0][0].rsplit("/", 1)[-1]
+        out["/articles/" + name] = room
+    return out
+
+
+def room_of(url, rooms, guide_rooms=None):
     """Which real room a page belongs to, by its own URL slug, longest room
     name first so "Guest Bathroom" claims its pages before "Bathroom" would
     (no room here is literally named that, but the rule is the same one
     attribute_room already uses and for the same reason).
 
-    Returns "" for a page that is not a room/deck/zone page at all (the
-    homepage, articles, the shop), which is the common case and correctly
-    carries no room signal.
+    Returns "" for a page that is not a room/deck/zone page, nor one of the
+    20 curated guide articles (the homepage, articles with no single-room
+    answer, the shop), which is the common case and correctly carries no
+    room signal.
     """
+    if guide_rooms and url in guide_rooms:
+        return guide_rooms[url]
     base = url.rsplit("/", 1)[-1]
     if base.endswith(".html"):
         base = base[:-5]
@@ -478,6 +502,7 @@ def page_inventory(rooms=None):
     """
     if rooms is None:
         rooms = room_names()
+    guide_rooms = guide_article_rooms()
     rows = []
     for dirpath, _dirs, files in os.walk(SITE):
         for name in sorted(files):
@@ -508,7 +533,7 @@ def page_inventory(rooms=None):
                          "title": title,
                          "words": set(words(title)),
                          "head_words": set(words(title + " " + heads)),
-                         "room": room_of(url, rooms)})
+                         "room": room_of(url, rooms, guide_rooms)})
     return sorted(rows, key=lambda r: r["url"])
 
 
@@ -552,6 +577,46 @@ def _tie_break(page, best, room_signal, cw=None, field="words"):
     return page["url"] < best["url"]
 
 
+def _prefer_in_room_zone(inventory, room_signal, best, score, field, cw):
+    """A different room's guide article can out-score the query's own room
+    on a bag-of-words tie it should not win.
+
+    Found 2026-11-05: "how to organize power tools in garage" (room
+    signal Garage) scored 1.0 "covered" on Workshop's own guide article,
+    which separately covers "power tool storage" in one heading ("Step 3:
+    Power tool storage") and "garage" in another ("A workshop that lives
+    in the garage"), neither heading actually about this query's exact
+    question. Garage's own Power Tool and Battery Zone, the real answer,
+    scored only 0.667 because title/heading matching has no way to credit
+    a coherent single-page answer over an incoherent combination from two
+    unrelated headings on someone else's page. Six real queries carried
+    this shape when checked against the live corpus, all cases where the
+    query's own room already had a zone page clearing the 0.5 partial
+    threshold on its own.
+
+    Scoped narrowly: only replaces a WINNING GUIDE ARTICLE (not a zone, not
+    a deck) that belongs to a different room than the query's own room
+    signal, and only when that room's own ZONE page already clears 0.5 on
+    the same surface being scored. A weaker in-room page never displaces a
+    stronger cross-room one; this only fixes the case where the in-room
+    answer was already good enough to stand on its own.
+    """
+    if not (room_signal and best and best["url"].startswith("/articles/")
+            and best.get("room") and best["room"] != room_signal):
+        return best, score
+    alt, alt_score = None, -1.0
+    for page in inventory:
+        if page.get("room") != room_signal or not page["url"].startswith("/zones/"):
+            continue
+        hit = sum(1 for w in cw if w in page[field])
+        s = hit / len(cw) if cw else 0.0
+        if s > alt_score:
+            alt, alt_score = page, s
+    if alt and alt_score >= 0.5:
+        return alt, round(alt_score, 3)
+    return best, score
+
+
 def best_page(query, inventory, room_signal=""):
     """Best-matching page for a query, by share of its content words covered.
 
@@ -570,6 +635,7 @@ def best_page(query, inventory, room_signal=""):
         if s > score or (s == score and best is not None
                          and _tie_break(page, best, room_signal, cw)):
             best, score = page, s
+    best, score = _prefer_in_room_zone(inventory, room_signal, best, score, "words", cw)
     return best, round(score, 3)
 
 
@@ -603,6 +669,7 @@ def best_by(query, inventory, field, room_signal=""):
         if s > score or (s == score and best is not None
                          and _tie_break(page, best, room_signal, cw, field)):
             best, score = page, s
+    best, score = _prefer_in_room_zone(inventory, room_signal, best, score, field, cw)
     return best, round(score, 3)
 
 
