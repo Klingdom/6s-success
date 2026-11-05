@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-05 (~21:1x slot, full STEP 0-13 pass): closed entry 131's "plan"/"design"/"fireplace"/"shed"/"bonus" handoff (all noise or out of scope), mined the real gap inside "stairs"
+
+**Did:** Attached per Step 0: real `git fetch --unshallow` (backgrounded, confirmed `is-shallow-repository false`), `checkout main`, ff-only onto `origin/main` at `5e41812ec`, tree clean throughout. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, this file's head. `preflight.py --fast`: 0 FAIL through every gate reached, genuinely stalled at `gate_tests` (confirmed by its own live Chromium process tree, not assumed slow), killed by hand, stale lock cleared. GitHub: 29 open issues, all `decision`/`blocked-on-art`; issue #42's 7-comment thread read in full, every comment self-authored, none from Phil since 2026-11-02T13:51:50Z. 0 open PRs. `inbox_agent.py --apply`: no mail credential, unchecked.
+
+Picked up entry 131's own handoff: "plan", "design"/"decorating"/"decorate", "fireplace"/"stairs"/"shed"/"bonus".
+
+**"plan" (21 rows): checked self-flattery (0/212 pages carry it in a heading), then checked the deeper semantic question "arrange"/"ways" were held to.** Read Kitchen's own content before deciding: "how to plan a kitchen" asks where to put the sink and stovetop (architecture), not what to do with what is already there (this product's entire subject, `CLAUDE.md` section 3). Marking it a format word would flip these to `covered` for a question this site does not answer. Not actioned; two rows in the cluster ("plan a garage sale", "plan a workshop event") are separately plain noise.
+
+**"design"/"decorating"/"decorate" (119 rows read across both tiers): confirmed, not assumed, the different-intent verdict entry 131 predicted.** Sampled directly: colour schemes, Christmas decor, "with oak furniture", Pinterest boards, none of it this product's subject. This closes "fireplace" (12 rows, all inside the same decorating cluster) and "bonus" (13 rows, "bonus room" already correctly routes to Family Room via A18, 2026-10-02; only the decorating word is unmatched) from entry 131's list too. Not actioned; writing content for this would be scope creep into interior decorating, not a vocabulary fix.
+
+**"shed" (8 rows): already closed 2026-10-02** per `GOALS.md`'s own probe record (6 queries, 0 covered, no gaps). Re-confirmed, not re-litigated.
+
+**"stairs": the one real gap.** Four rows share one unmatched word ("stairs") and all score against wrong pages (Kitchen's lower-cabinet zone, a generic downloads page, the linen-closet article): "how to organise under stairs cupboard"/"...storage" (gb), "how to organize closet under stairs" (gb/au/ca/in), "...stairs closet" (ca/us). Checked before touching anything: the British "cupboard under the stairs" is the same household catch-all Hall Closet's own zones already describe (Cleaning Equipment, Cleaning Supply, Seasonal and Guest) and its own intro half-names ("the darkest and deepest storage in the house").
+
+**Two false starts caught before shipping.** "understairs cupboard" rebuilt clean but moved zero rows on rescore (the tokenizer treats it as one token, never equal to the query's own "stairs", the literal-word-not-stem bar A34/A36 already learned). "cupboard under the stairs" then failed `test_room_also_called.py`'s own evidence check (that exact phrase appears in zero harvested queries). Settled on "under stairs cupboard," the literal substring of the real query "how to organise under stairs cupboard." Added to Hall Closet's `names` in `ops/room-also-called.json`, both false starts recorded in its own `source` field. `ops/build_zone_pages.py` regenerated the heading.
+
+**Verified:** `--rescore` on both tiers: US partial 1194 to 1192, global 892 to 888, all 6 moved rows read individually, all now `covered` against `/rooms/hall-closet.html`, zero collateral reattribution among every other "stair" row. `test_room_also_called.py` OK (11 rooms). `test_keyword_demand.py` OK (30 cases). `check_also_called_digital_collision_fast.py` clean. `fix_dashes.py`/`fix_dialect.py --check` 0/0. `build_id.py`: no change needed. Found and removed a stray `_contact_form_interactive_probe.html` left in `site/` by the earlier killed `gate_tests` run, which was briefly making `audit_pages.py` report 5 false findings; removed, reran, 240/0 clean. `check_urls.py` 235/235, `link_graph_report.py` 0 orphans, `check_sellable.py` 124/126 unchanged, `audit_visual.py` on the changed page (desktop+mobile) 0 findings. Full `preflight.py --skip-tests` run after all of this, not a hand-picked subset: 0 FAIL through every gate reached, genuinely stalled at `gate_etsy_pdfs_current` (live Etsy fetch, same no-egress sandbox limit), reported unchecked past that point.
+
+**Went well:** reading real content before ruling "plan"/"design" out of scope instead of pattern-matching to the existing format-word list; catching both naming false starts with a real rescore and test run before shipping.
+
+**Did not go well:** two iterations needed before a name both moved the scorer and passed the evidence test; checking the tokenizer and the evidence test's exact-substring requirement first would have been faster.
+
+**Changing next cycle:** none; both failure modes are now documented in `ops/room-also-called.json` itself.
+
+**Next:** entry 131's handoff is now fully closed. The standing "staircase landing storage ideas" room-page-vs-article mechanism gap is still open and still needs a design decision, not a one-line fix. Otherwise the 29 open `decision`/`blocked-on-art` GitHub issues remain the only standing queue; no reply from Phil since 2026-11-02; no owner notification (nothing on the owner-facing picture changed).
+
 ## PM check-in, 2026-11-05 (~21:1x slot): previous work confirmed finished, room-guide lane closure independently verified, same harvest-mining handoff left for the operator
 
 Attached per Step 0 (shallow detached checkout, real `git fetch --unshallow`, `checkout main`, ff-only onto `origin/main` at `1e77cb173`, tree clean before this entry).
@@ -18,6 +44,8 @@ Not starting the harvest mining myself (hours-scale row-by-row read, not a 30-mi
 
 Pushed to main: `ops/cycle-signal.json`, this entry, dashboard trio. No content, price or product touched, no new page, IndexNow not applicable, no owner notification (state unchanged since the 2026-11-02T04:17Z send).
 
+**Merge note, same push: the 21:1x scheduled operator cycle above landed on the same parent (`5e41812ec`/`1e77cb173`) just ahead of this check-in and independently closed the exact handoff this entry still names as open ("plan"/"design"/"fireplace"/"shed"/"bonus" all ruled noise or out of scope, "stairs" mined for a real gap, Hall Closet's `names` updated). So the harvest-mining handoff line above is already stale the moment this merges; the current handoff is the operator's own "Next," not this entry's. Merged with `git merge`, kept both accounts in chronological order rather than let either overwrite the other, dashboard trio regenerated fresh after the merge.**
+
 ## PM check-in, 2026-11-05 (~20:4x slot): previous work confirmed finished, same harvest-mining handoff reaffirmed for the operator
 
 NEXT FOR THE OPERATOR: mine the fresh weekly global harvest's unchecked clusters ("plan", "design"/"decorating", "fireplace"/"stairs"/"shed"/"bonus"), because the 20:1x PM cycle already handed this off and no commit since has picked it up.
@@ -31,6 +59,8 @@ Previous work (the 20:1x PM check-in's reconfirmation and the automated 20:2x de
 Not starting the harvest mining myself (hours-scale row-by-row read, not a 30-minute job) or any Phil-gated item, per Step 0's instruction not to start something large at this slot and standing PM practice never to pick an item waiting on Phil.
 
 Pushed to main: `ops/cycle-signal.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable, no owner notification (state unchanged since the 2026-11-02T04:17Z send).
+
+**Merge note: this 20:4x PM check-in and the 21:1x operator cycle above both independently attached at the same parent (`5e41812ec`) and both re-confirmed the same mining handoff; only the operator cycle acted on it. Merged with `git merge`, kept both accounts in chronological order rather than let either overwrite the other, dashboard trio regenerated fresh after the merge.**
 
 ## PM check-in, 2026-11-05 (~20:1x slot): previous work confirmed finished, state independently reconfirmed exhausted, nothing new unblocked, no notification
 

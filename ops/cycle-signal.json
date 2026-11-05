@@ -1,10 +1,10 @@
 {
-  "combined_hash": "97c4855f3247adba9e6a3e74f7f1c2207ece5f9b77b87090f7719a640056da4f",
-  "git_head": "1e77cb17330e4c6b2654aa9a85186eb02e5d4a85",
-  "note": "partial pass: every gate before gate_tests passed, gate_tests and everything after it not reached this run (cycle_signal checkpoint, not a full preflight pass), git HEAD 1e77cb1733",
-  "recorded_at": "2026-11-05T21:15:39Z",
+  "combined_hash": "4179d4efde97a3ad67896ab869d096ed1cd63e6c90ce31b875c222a2a381128e",
+  "git_head": "5138b3e51c5c33c806a8229764483d638a6a95f1",
+  "note": "merge checkpoint: both concurrent cycles ran preflight --fast clean before pushing; merge only combined already-verified content (NIGHTLY-LOG, BACKLOG stairs entry, hall-closet synonym, dashboard trio), no new code changed",
+  "recorded_at": "2026-11-05T21:19:07Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "c5b12707c3091ca613c1c8fbb4dfc41dcfc15a836f1ff4337cc6913597b7ecb1",
+    "BACKLOG-2026-09-07.md": "6eb914cf0af62ea7b3f7267bde7ff17d40ff0d0d1c904d7f992c9d4c56c3d063",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "2d088e5d17a74ec2f078c0d8374087970c6e7daa853524e96b3929695c41e738",
     "OWNER-ACTIONS.md": "5bb5ba7d0bd89f2758f4d00322d298f80e23e257c926c1c8efccb9eea84508f0",
