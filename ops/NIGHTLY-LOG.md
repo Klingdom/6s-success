@@ -16437,3 +16437,19 @@ Not starting any Phil-gated item (C5, C6) or re-litigating issue #42 myself, per
 
 Pushed to main: dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
 
+
+## 2026-11-05, scheduled operator cycle (16:0x slot, full STEP 0-13 pass)
+
+**Did:** Attached to main, clean. Read GOALS.md/CLAUDE.md/BACKLOG-2026-09-07.md; sections 2-6 exhausted except Phil-gated items. Pulled all 29 open GitHub issues and issue #42's thread directly: no reply from Phil since 2026-11-02. Ran inbox_agent.py: no mail credential, unchecked, not empty. Mined Dining Room's 6 remaining partial keyword-demand rows against real content: all 6 genuinely unfixable (brand name, coincidental word collisions, wrong room, established "declutter" noise class). That check surfaced a real corpus-wide scorer gap: "practices" is the same generic-filler shape as the existing "tips"/"techniques" stopwords. Confirmed zero self-flattery risk (0 titles/headings site-wide carry it) and added it to keyword_demand.py's STOPWORDS.
+
+**Verified:** preflight.py --skip-tests: 0 FAIL, 35 WARN (standing sandbox gaps), gate_tests confirmed genuinely stalled (flat CPU), killed, unchecked past that point. check_urls/fix_dashes/affiliate/check_sellable/link_graph all clean. Rescored both keyword corpora: US partial 1212->1211, covered 1500->1501, gap unchanged; global unaffected. Added test case 24 to test_keyword_demand.py, fail-then-pass proved directly (git stash/pop). All also-called and room-ranking tests rerun clean.
+
+**Went well:** checking Garage's and Dining Room's coincidental "stove" collisions together surfaced the real fixable gap.
+
+**Did not go well:** nothing new; 29 open decision issues, $0 this month, gate_tests still unchecked for the same documented reason.
+
+**Changing next cycle:** none; the stopword pattern is now established across three uses.
+
+**Next:** Guest Bedroom (30% uncovered) is next unmined. No owner reply, no delivery problem, no second sale.
+
+Pushed: ops/keyword_demand.py, ops/tests/test_keyword_demand.py, both keyword JSON/MD files, BACKLOG-2026-09-07.md, this entry, dashboard files. No price/product/page touched; IndexNow not applicable.

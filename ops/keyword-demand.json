@@ -4429,14 +4429,12 @@
       "room": "",
       "best_page": "/zones/workshop-the-finishing-and-chemical-zone.html",
       "best_page_title": "How to organize the workshop paint and chemical storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "practices"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "childrens bedroom organization ideas",
@@ -41293,14 +41291,13 @@
       "room": "",
       "best_page": "/downloads/6S-Standards-Pack.html",
       "best_page_title": "The 6S Success Standards Pack",
-      "coverage": 0.4,
-      "heading_coverage": 0.6,
+      "coverage": 0.5,
+      "heading_coverage": 0.75,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "manufacturing",
-        "practices"
+        "manufacturing"
       ]
     },
     {
@@ -57383,6 +57380,6 @@
       ]
     }
   ],
-  "scored_against_commit": "55e3c948b",
-  "scored_at": "2026-11-05T14:53:31Z"
+  "scored_against_commit": "faa4b98ea",
+  "scored_at": "2026-11-05T16:07:46Z"
 }

@@ -163,8 +163,8 @@ VOCABULARY_PROBES = (
 
 STOPWORDS = frozenset("""
 a an and are at be best by can do does for from get good have how i ideas in
-into is it its my of on or should so that the their there these this tips
-techniques to too what when where which who why will with you your
+into is it its my of on or practices should so that the their there these
+this tips techniques to too what when where which who why will with you your
 """.split())
 
 # Words that describe the format of a query rather than its subject. Left out
