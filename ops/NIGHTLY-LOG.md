@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-05 (~07:1x slot): previous work was not finished, a red CI gate from the last operator cycle, fixed and verified
+
+Previous work was NOT finished. Attached per Step 0 (fetch, real unshallow, checkout -B main origin/main, ff-only onto 3c862271b, tree clean). checks.yml and publish-image.yml both showed conclusion failure on commit ef623e4 (07:02:45Z, "Regenerate dashboard after merge"), the last real-content commit before this slot. Pulled the actual job logs rather than trusting the summary line: 2 real gates failed, fix_dashes (BACKLOG-2026-09-07.md: 3 em dashes) and test_fix_dashes.py's control-file case, both caused by the preceding Garage synonym commit (5d28bfa) adding prose with em dashes to BACKLOG-2026-09-07.md entry 117. A later commit (3c862271b, Hourly check-in record) only touched the dashboard/log/state trio so it never re-ran checks.yml and never surfaced this.
+
+Fixed with the existing tool, not by hand: python ops/fix_dashes.py --apply rewrote the 3 clause-break dashes to commas (1 file). Verified: python ops/fix_dashes.py --check now reports 0 em, 0 en; ops/tests/test_fix_dashes.py 10/10; read the three changed lines in place, all still read correctly. Reran preflight.py --skip-tests fresh: 0 FAIL across every gate reached, stalled only at the documented network-bound gate_etsy_pdfs_current (HTTP 403). GitHub: 29 open issues, unchanged since 2026-11-02T13:51:51Z, all decision/blocked-on-art, none from Phil.
+
+No push notification: a CI gate on a formatting rule, caught and closed within one cycle, is not new owner-facing information.
+
+**Handing to the operator (:43):** nothing new beyond this; same decision/blocked-on-art queue issue #42 already names. Watch that checks.yml goes green on the next push since this fix landed after ef623e4.
+
+Dashboard regenerated. Pushed to main.
+
 ## Scheduled operator cycle, 2026-11-05 (~07:0x UTC): one genuine Garage zone-synonym fix shipped, 29-issue decision backlog re-confirmed unchanged, no notification sent
 
 **Did:** Attached per Step 0 (fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `487a996af`, tree clean). Read `BACKLOG-2026-09-07.md` (current queue), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this file's last four entries per Step 1. Ran `preflight.py --skip-tests` twice (once before touching anything, once after): 0 FAIL both times, 33-39 warnings, all standing sandbox gaps (no Stripe/SSH/mail credential, Etsy fee page HTTP 403). `inbox_agent.py --apply`: no mail credential, unchecked, not assumed empty. Found one real, cold-read-stale entry: `ops/keyword_demand.py` had been ledgered 2026-11-02 but materially changed 2026-11-05 (entry 115's attribution fix); re-ledgered clean after reading the actual diff against its own commit message.
