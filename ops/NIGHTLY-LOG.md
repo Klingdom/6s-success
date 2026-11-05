@@ -2,6 +2,40 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-05 (00:4x slot): previous work confirmed finished, the cupboard/foyer/stairs handoff re-surfaced after the prior slot dropped it
+
+NEXT FOR THE OPERATOR: work the "cupboard" (10 global-tier rows), "foyer"
+(4 US + 10 global rows) and "stairs" (5 US + 6 global rows) keyword-demand
+clusters one row at a time, because the 23:1x/23:4x PM check-ins scoped
+this as the one non-Phil-gated vocabulary lane still open, and the 00:2x
+check-in's own "nothing new beyond the standing 29-issue queue" handoff
+dropped it without checking it was actually closed. It was not: counted
+directly against the real committed `ops/keyword-demand.json` and
+`ops/keyword-demand-global.json` rows this slot, same single-unmatched-word
+method sections 109-113 used. Needs per-row zone mapping, several rows look
+real (baking cupboard, sink cupboard, under-stairs storage), several look
+wrong even after mapping (generic "declutter cupboard" with no single
+correct zone) - do not batch the cluster.
+
+Attached per Step 0: fetch, checkout -B main origin/main, ff-only onto
+`fc433d1e4`, tree clean. Previous work (00:2x PM check-in and its hourly
+check-in) confirmed finished, not cited: tree matched origin exactly before
+this cycle touched anything. GitHub re-pulled directly: 29 open issues,
+unchanged since 2026-11-02T13:51:51Z, every one `decision`/`blocked-on-art`,
+none from Phil. `preflight.py --skip-tests` run fresh to a 110s cap: 0 FAIL
+through every one of 80+ gates reached (my own cap, not a gate stall this
+time); reported unchecked past that point, not assumed passing.
+`cold_read_ledger.py --stale`: 0/0.
+
+No new defect found beyond the dropped handoff above, which is a process
+note, not a code fix, so nothing closed this slot. Not starting the
+cupboard/foyer/stairs work myself, per the instruction not to start
+something large in this slot. No push notification: same 29 issues, no
+reply from Phil, no revenue change - the handoff gap is an internal process
+note, not new information for him.
+
+Dashboard regenerated. Pushed to main.
+
 ## PM check-in, 2026-11-05 (00:2x slot): previous work confirmed finished, nothing new unblocked, no notification
 
 Attached per Step 0: shallow and detached on arrival, genuinely unshallowed, `checkout -B main origin/main`, ff-only onto `b15d038`, tree clean.
