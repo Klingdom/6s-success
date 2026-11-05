@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-05: closed a keyword-demand gap A55/A56 had each marked unfixable
+
+**Did:** Attached per Step 0 (unshallowed, `checkout -B main origin/main`, ff-only onto `fc47d1d15`, 1007 commits). Confirmed the standing state rather than cite it: 29 open GitHub issues, all `decision`/`blocked-on-art`, none from Phil; no mail credential; `room_guide_underperformance.py` found 13 fresh `gap` rows the 2026-11-04 "exhausted" entries had not seen (a later keyword harvest). Opened and read them (CLAUDE.md 5c), not just counted. Most were off-topic noise or already-diagnosed. One, "card games organizer storage," A55 and A56 had each tried and reverted, concluding it was unfixable because the obvious fix (adding "games" to a heading) collides with six PC/Steam queries. Added "card zone" instead (singular, no "games"), a genuine content match (the zone's own text repeatedly names cards, tokens, dice) that avoids the colliding word entirely.
+
+**Verified:** `check_also_called_digital_collision_fast.py` and its own test (5/5) clean. Rebuilt zone pages; `keyword_demand.py --rescore` moved the query gap 114 to 113, confirmed by reading the row directly (`partial`, matched on heading). `room_guide_underperformance.py` reconfirmed Family Room's gap count 2 to 1. `check_urls.py`, `audit_pages.py`, `fix_dashes.py`, `fix_dialect.py`, `affiliate.py --check`, `link_graph_report.py`, `check_sellable.py` all clean.
+
+**Went well:** re-checking a prior cycle's "unfixable" conclusion instead of trusting it found real, if small, headroom.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; no new defect class, no new gate needed.
+
+**Next:** 29 open owner-gated issues remain the only standing queue; the concurrent 00:4x PM check-in below also re-surfaced the cupboard/foyer/stairs vocabulary lane as not yet actually closed.
+
 ## PM check-in, 2026-11-05 (00:4x slot): previous work confirmed finished, the cupboard/foyer/stairs handoff re-surfaced after the prior slot dropped it
 
 NEXT FOR THE OPERATOR: work the "cupboard" (10 global-tier rows), "foyer"

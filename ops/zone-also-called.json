@@ -243,6 +243,14 @@
    "queries": 10,
    "covered": 0,
    "source": "ops/keyword-demand-global.json 2026-11-04 (no market listed, scored as generic): 'how to organise/organize bedside table/drawers' and three close variants, 10 rows total across both tiers, all partial with the single unmatched word 'bedside', several scoring to clearly wrong pages via coincidental word overlap (/articles/how-to-declutter-a-kitchen.html on 'organize'+'table'; /zones/dining-room-the-dining-table.html on 'table'+'drawer'), not a real match. Primary Bedroom has two nightstand zones, Nightstand Left and Nightstand Right, each with its own done_looks_like/passes text that already discusses the drawer and the top surface in detail ('The drawer has three divided sections...', 'any medication in the drawer...'); neither zone's own heading uses the household word 'bedside table', only 'nightstand'. Since the queries never specify a side, added to both zones rather than arbitrarily picking one: a reader asking generically about a bedside table is equally served by either page, and both are real, symmetric targets, not a coincidental collision."
+  },
+  "Family Room|Board Game and Puzzle Zone": {
+   "names": [
+    "card zone"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand.json 2026-11-05, scheduled operator cycle: 'card games organizer storage', gap, 0.333 title coverage, correctly scored to /zones/family-room-the-board-game-and-puzzle-zone.html (title already reads 'How to organize the family room game storage', matching 'storage') but held at gap because the title's own word is singular 'game', not 'card' or plural 'games'. Checked the zone's own content.json passes before naming it: 'Cards, tokens, and dice go into their own bags inside the box' (sort), repeated in the_call and watch_for ('dice and pawns', 'cards, tokens or dice loose in the box'); cards are explicitly part of this zone's own real content, not a coincidental word match. Named 'card zone', not 'card games zone': a first attempt at 'card games zone' shared the word 'games' with six live digital-context queries ('how to organize games on pc', 'how to organize steam games' and four more), caught by check_also_called_digital_collision_fast.py before it shipped, the same 'station'/'games' trap the grilling-zone and earlier A-series fixes already hit once each. 'card' alone collides with nothing live (checked directly: only 'sports card storage ideas' shares the word, not a digital context)."
   }
  }
 }
