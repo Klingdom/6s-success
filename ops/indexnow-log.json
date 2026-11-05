@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-01T17:27:12Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-01T17:57:56Z",
    "mode": "changed",
    "offered": 5,
@@ -657,6 +650,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-05T15:03:47Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -893,7 +893,7 @@
   "https://6s-success.com/articles/how-to-organize-a-family-room": "3712255fb43c28c6",
   "https://6s-success.com/articles/how-to-organize-a-mudroom": "d65b122c1e3a8729",
   "https://6s-success.com/articles/how-to-organize-a-guest-bedroom": "05fa83b14f969564",
-  "https://6s-success.com/articles/how-to-organize-an-entryway": "58a34d7b69626e73",
+  "https://6s-success.com/articles/how-to-organize-an-entryway": "03661206e1aa1e7f",
   "https://6s-success.com/articles/how-to-organize-a-dining-room": "bc1c1780a2ded734",
   "https://6s-success.com/articles/how-to-organize-a-stair-landing": "d3f3285427490b04"
  },
