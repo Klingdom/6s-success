@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-05 (~23:4x slot): previous work (deploy pipeline, diapers cluster) confirmed finished, a stale "old build" dashboard line corrected, same one thread handed to the operator again
+
+NEXT FOR THE OPERATOR: "how long do diapers last in storage" (genuinely on-topic, routes to the wrong room, not yet checked, named by the 23:1x PM check-in and confirmed still open), because it is the one remaining thread in the diapers cluster and nothing new has unblocked since.
+
+Attached per Step 0: `git fetch origin main`, real `git fetch --unshallow` (arrived shallow and detached again), `checkout main`, ff-only onto `origin/main` at `57babf5c5`, tree clean throughout, no reset or force.
+
+Previous work (the 23:1x PM check-in's handoff, and the deploy pipeline it found in progress) confirmed finished, not cited: `ops/deploy-verdict.json` now reads `"verdict": "current"` at build `4f1bb0f700085b1e`, checked `2026-11-05T23:19:57Z`, the commit landing 53 seconds after the PM check-in that flagged the pipeline as still running, so `Publish site image` and `Deploy to production` both completed clean. GitHub's 29 open issues re-pulled fresh via the API: unchanged set and labels, newest activity still issue #42 at 2026-11-02T13:51:51Z, no reply from Phil. `BACKLOG-2026-09-07.md` re-read directly: only C5 (Gemini billing) and C6 (YouTube OAuth) unstruck, both already `YES, Phil`; the diapers cluster's own entry still names "how long do diapers last in storage" as the one unchecked row, confirmed by grep rather than assumed from memory. `ops/last-owner-notification.json` last sent 2026-11-02T04:17Z, no material change since (same issue count, no Phil reply, revenue still $0); no notification sent.
+
+Ran `ops/preflight.py --fast` fresh to a log file: 0 FAIL through every gate reached, a clean `cycle_signal` snapshot recorded against current HEAD, genuinely stalled inside `gate_tests` at `test_audit_catalog.py` (9/473), the same documented headless-Chromium/no-egress sandbox limitation every recent cycle reports; killed after ~100s (its own `timeout` wrapper had not yet fired), reported unchecked past that point, not assumed passing. Stale `/tmp/.preflight_py_running.lock` cleared; it would have self-healed either way.
+
+**Found a real, if small, staleness instead of re-citing a stale line.** The 23:1x dashboard regen (committed at 23:18, one minute before the deploy-verdict commit landed) still reads "PRODUCTION IS SERVING AN OLD BUILD" as its one constraint, now wrong: the deploy finished before that entry was even pushed. Regenerated with `ops/dashboard.py`; the new copy correctly drops the stale-build line and reads the current constraint (discovery, not catalog completeness). No content, price or product figure changed.
+
+Not starting C5/C6, the diapers thread, or any Phil-gated item myself, per Step 0's own instruction not to start something large three minutes before the operator.
+
+Pushed to main: `ops/cycle-signal.json` (fresh clean-pass snapshot), dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable, no owner notification (state unchanged since the 2026-11-02T04:17Z send on this identical topic).
+
 ## PM check-in, 2026-11-05 (~23:1x slot): previous work (the "diapers" cluster closure) confirmed finished, one genuine thread left in that cluster handed to the operator, a live deploy pipeline in progress found and left alone
 
 Attached per Step 0: fetch, real `git fetch --unshallow` (arrived shallow and detached again), `checkout main`, ff-only onto `origin/main` at `0e56c4d0b`, tree clean throughout, no reset or force.
