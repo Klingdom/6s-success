@@ -403,8 +403,8 @@
     },
     "build_patio_or_deck_deck_page.py": {
       "status": "clean",
-      "date": "2026-10-11",
-      "note": "second-pass cold read, 2026-10-11 scheduled operator cycle: re-read in full; regenerated and diffed against committed site (0 diff); hardcoded whole-room action-card id/description assertion checked against the real built cards (exact match); hero_image_url()'s first zone checked against disk and that zone page's own og:image (exact match). No defect found."
+      "date": "2026-11-05",
+      "note": "Cold-read 2026-11-05 PM check-in: diff since 2026-10-11 is the entry-118 also_called_html import and render, already verified by that cycle's own tests and rescoring; re-ledgered to close cold_read_ledger.py --stale"
     },
     "build_photo_check_data.py": {
       "status": "clean",
