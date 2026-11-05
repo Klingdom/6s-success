@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-01T16:27:47Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-01T17:27:12Z",
    "mode": "changed",
    "offered": 1,
@@ -657,6 +650,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-05T14:03:13Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -885,7 +885,7 @@
   "https://6s-success.com/articles/how-to-organize-a-workshop": "011f8cd3d8de989f",
   "https://6s-success.com/articles/how-to-organize-a-laundry-room": "db03359d664f68f4",
   "https://6s-success.com/articles/how-to-organize-a-pantry": "03046068c7cd3465",
-  "https://6s-success.com/articles/how-to-organize-a-living-room": "2d9d1cc83b83574c",
+  "https://6s-success.com/articles/how-to-organize-a-living-room": "aca45ac9a340bc47",
   "https://6s-success.com/articles/how-to-organize-a-guest-bathroom": "5354e0a25437bc32",
   "https://6s-success.com/articles/how-to-organize-a-kids-bedroom": "5bf8014e1f51655c",
   "https://6s-success.com/articles/how-to-organize-a-patio-or-deck": "a00db250c5242bfa",
