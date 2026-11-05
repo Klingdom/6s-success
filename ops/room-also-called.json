@@ -28,10 +28,12 @@
   "Entryway": {
    "names": [
     "foyer",
-    "entrance hall"
+    "entrance hall",
+    "hallway"
    ],
    "queries": 25,
-   "covered": 0
+   "covered": 0,
+   "source_hallway": "ops/keyword-demand-global.json 2026-11-05, ops/keyword-demand.json: 29 queries containing 'hallway' across both harvests, most already covered against Hall Closet's own longer 'hallway closet' synonym (which wins the room-signal tie by length per household_room_signal's longest-match rule, so no collision). Four remain partial with the bare word 'hallway' unmatched: 'hallway coat closet organization ideas' (content words hallway/coat/closet, already carrying 'coat'+'closet' from the entryway article, only 'hallway' missing), 'how to declutter hallway', 'how to decorate a small entrance hallway' (already carries the 'entrance hall' room signal, 'small' stays a separate cross-room modifier), and 'hallway cabinet organization ideas' (checked and left alone: a hallway storage cabinet is a genuine word-sense ambiguity with nothing this site answers, not improved by this entry). Grep-confirmed before this edit: no page's title or h1-h3 headings carried 'hallway' except Hall Closet's own pages, so this is not already covered elsewhere and cannot collide with them (the Hall Closet synonym 'hallway closet' is a longer string and always wins the household_room_signal tie-break when both appear)."
   },
   "Pantry": {
    "names": [

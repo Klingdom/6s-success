@@ -13633,15 +13633,15 @@
         "hall closet organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/why-the-medicine-cabinet-never-gets-cleared-out.html",
-      "best_page_title": "Why does the medicine cabinet never get cleared out?",
+      "best_page": "/rooms/entryway.html",
+      "best_page_title": "How to organize an entryway, zone by zone",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
-      "matched_on": "title",
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "hallway"
+        "cabinet"
       ]
     },
     {
@@ -13713,11 +13713,11 @@
         "entryway organization ideas"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/rooms/entryway.html",
+      "best_page_title": "How to organize an entryway, zone by zone",
       "coverage": 0.0,
       "heading_coverage": 1.0,
-      "heading_page": "/hall-closet-deck.html",
+      "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -57342,6 +57342,6 @@
       ]
     }
   ],
-  "scored_against_commit": "4e72f2498",
-  "scored_at": "2026-11-05T16:55:10Z"
+  "scored_against_commit": "fee714763",
+  "scored_at": "2026-11-05T19:57:41Z"
 }
