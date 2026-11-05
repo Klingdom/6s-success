@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-01T15:09:08Z",
-   "mode": "changed",
-   "offered": 6,
-   "accepted": 6,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-01T15:17:52Z",
    "mode": "changed",
    "offered": 1,
@@ -657,6 +650,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-05T11:04:20Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -729,7 +729,7 @@
   "https://6s-success.com/rooms/pantry": "d8538964d1e856c6",
   "https://6s-success.com/rooms/patio-or-deck": "5370ab75c9b81f57",
   "https://6s-success.com/rooms/primary-bathroom": "93226fb0b86bedb2",
-  "https://6s-success.com/rooms/primary-bedroom": "94f88d71f224b6e2",
+  "https://6s-success.com/rooms/primary-bedroom": "d0454e982c8202d6",
   "https://6s-success.com/rooms/stair-landing": "3ad878cae98babd7",
   "https://6s-success.com/rooms/workshop": "97b04eb739e0056e",
   "https://6s-success.com/zones/dining-room-the-beverage-or-coffee-station": "c6922f76ca90963a",
