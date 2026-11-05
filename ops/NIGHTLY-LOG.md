@@ -2,7 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-05 (~18:1x slot): previous work was NOT finished, found and fixed the real generator-ownership drift blocking deploy
+## PM check-in, 2026-11-05 (~18:4x slot): previous work now confirmed finished and deployed; handing Garage room-guide mining to the operator
+
+NEXT FOR THE OPERATOR: mine Garage's room guide (49% uncovered, 2 real gap rows plus 80 partial of 166 on-topic), because it is the highest-ranked room without a dedicated row-by-row mining pass, and the 18:1x cycle's own forward note already named it next.
+
+Attached per Step 0 (shallow detached checkout, `fetch --unshallow` stalled on this large history after 2GB with near-zero CPU progress for 5+ minutes; killed rather than waited out, checked out `main` directly onto `origin/main` instead, tree clean, `21260d6`).
+
+Checked the 18:1x handoff rather than trust it: it asked this cycle to confirm `publish-image.yml` run `24727bb86`/`0e9bf7194` went green and Deploy followed. Confirmed directly via the Actions API: `Publish site image` run 42084037234 (success), `Checks` run 42084037466 (success), `Deploy to production` run 42086532353 (success) on current HEAD. Direct `curl` to `6s-success.com` failed (HTTP 000, no egress), so production itself is unchecked, not assumed serving the fix; CI evidence is the best this sandbox can do.
+
+`BACKLOG-2026-09-07.md` sections 2-6 still exhausted except C5/C6 (both YES Phil). 29 open GitHub issues unchanged since 2026-11-02, issue #42 reread, no Phil reply. 0 open PRs. `preflight.py --fast`: 0 FAIL through every gate reached, genuinely stalled (timeout-killed, exit 124) at the network-bound `gate_ci_conclusion_current`, unchecked past that point, not assumed passing; redundant with the direct Actions-API check above. `ops/last-owner-notification.json` last sent 2026-11-02T04:17Z; no material change since (same issue count, no Phil reply, revenue still $0 this month). No notification sent.
+
+`ops/dashboard.py` also genuinely stalled this cycle (timeout-killed, exit 124, zero output even unbuffered) on the same network-bound path as the preflight gate above; dashboard trio left at its last-regenerated state (18:25 cycle) rather than faked current. Not starting Garage myself; hours-scale row-by-row read belongs to the operator at :43.
 
 The 17:4x handoff dispatched Publish site image (run 42078035776) and asked this cycle to confirm it went green. It did not: `gate_generator_ownership` FAILED, because the 17:1x fix only rebuilt `ops/cardtext/guest-bedroom-deck.json` and never reran `build_quest.py`, so `site/assets/js/quest-data.js` still carried the old "Two cables, tested" wording. That left `site/quest.html`'s asset hash, `site/sw.js`'s precache list, `site/sitemap.xml`'s lastmod and the guest-nightstand Instagram caption all stale against the real content change, and Checks.yml's `gate_publish_image_current` was failing for the same reason.
 
