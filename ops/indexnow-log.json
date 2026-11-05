@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-01T18:23:37Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-01T18:43:20Z",
    "mode": "changed",
    "offered": 10,
@@ -657,6 +650,13 @@
    "offered": 2,
    "accepted": 2,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-05T18:27:32Z",
+   "mode": "changed",
+   "offered": 2,
+   "accepted": 2,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -679,7 +679,7 @@
   "https://6s-success.com/deck-gallery.html": "99f3a4993c0a3766",
   "https://6s-success.com/deck.html": "b65d4c769485922e",
   "https://6s-success.com/kit.html": "1855580e6f13a1a0",
-  "https://6s-success.com/quest.html": "2d6deb85a96a9a54",
+  "https://6s-success.com/quest.html": "5ae936fcfaa50b50",
   "https://6s-success.com/standards.html": "4f1d0974b7fa9788",
   "https://6s-success.com/articles/decluttering-vs-organizing": "e28faa51af3da915",
   "https://6s-success.com/articles/everyday-things-out-of-reach": "abff6ce4ed597cc5",
@@ -860,7 +860,7 @@
   "https://6s-success.com/dining-room-deck.html": "6751c0bf6454d86f",
   "https://6s-success.com/family-room-deck.html": "bb4a7de19b345d18",
   "https://6s-success.com/guest-bathroom-deck.html": "5c3d135771003e82",
-  "https://6s-success.com/guest-bedroom-deck.html": "047f90e85b19a652",
+  "https://6s-success.com/guest-bedroom-deck.html": "b13207d02aa077ac",
   "https://6s-success.com/hall-closet-deck.html": "e3a5cc29daeab293",
   "https://6s-success.com/living-room-deck.html": "761ac71e473cc388",
   "https://6s-success.com/mudroom-deck.html": "883f86de0e87bfac",
