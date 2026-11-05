@@ -569,7 +569,7 @@
     "build_zone_pages.py": {
       "status": "clean",
       "date": "2026-11-05",
-      "note": "Re-verified after Primary Bedroom heading fix (b261d6b26): diff matches commit message exactly (one heading retitle, scoped to Primary Bedroom only), already tested and rescored by the 11:0x operator cycle."
+      "note": "Stair Landing only (2026-11-05 PM check-in): room-job H1 clause now names storage, closing the 'small stair landing storage ideas' query one word short before. Checked for corpus collision: full US and global rescore each moved exactly 2 rows, both Stair Landing's own queries, nothing elsewhere shifted. 38% to 22% uncovered. Remaining 2 partial rows (filler word 'way', seed-drift typo 'walk' in 'gallery walk') are noise, same class diagnosed everywhere else."
     },
     "canonical_links.py": {
       "status": "clean",

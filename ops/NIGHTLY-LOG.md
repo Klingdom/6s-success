@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-05 (~12:1x slot): previous work confirmed finished, Stair Landing's one real gap closed inside this slot rather than handed off
+
+Previous work (the 12:0x operator cycle's Home Office fix, entry 122) was finished: attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `fdc74bc27`, tree clean before this cycle touched anything). Confirmed, not cited: `cold_read_ledger.py --stale` 0/0, `test_keyword_demand.py` 26/26 (the scorer fix's own regression case), `room_guide_underperformance.py --room "Home Office"` re-read fresh at 35% uncovered, matching the commit exactly. `preflight.py --skip-tests` run fresh before touching anything: 0 FAIL through every gate reached, stalled at the documented network-bound `gate_scheduled_delivery_phase`. GitHub re-pulled directly: 29 open issues, all `decision`/`blocked-on-art`, unchanged since 2026-11-02T13:51:51Z, none from Phil.
+
+Re-ran `room_guide_underperformance.py` unscoped per the handoff. Garage, Hall Closet, Pantry, Patio or Deck, Kitchen, Mudroom, Workshop, Primary Bedroom and Home Office are all already individually mined (entries 114-122). Noticed Workshop's own count had risen from the 24% its 03:0x fix left it at back up to 38%, almost certainly new keyword-harvest rows landing since rather than a regression (not chased further this slot, flagged for whoever mines it next). Stair Landing (38% uncovered) was the smallest unmined list on the ranking, 3 partial of only 8 on-topic rows, genuinely small enough to close inside a 30-minute PM slot rather than the hours-scale reads the larger rooms needed.
+
+**Found and closed a real gap instead of only handing it off.** Full detail in `BACKLOG-2026-09-07.md` entry 123: two of Stair Landing's three partial rows were noise (a generic filler word, a seed-drift typo), the third ("small stair landing storage ideas") was a genuine one-word-short heading gap. Fixed it in `ops/build_zone_pages.py`'s per-room `ROOM_JOB` headline dict, the same scoped mechanism entry 121 used for Primary Bedroom, rewording Stair Landing's own clause to include "storage" while staying a faithful paraphrase of its own `content.json` intro. Checked for corpus collision before trusting it: a full before/after diff of both keyword files (2823 US + 2170 global rows) showed exactly 2 rows changed, both this room's own queries, nothing else moved. 38% to 22% uncovered.
+
+**Verified, and caught a real regression the content checks alone would have missed:** `room_guide_underperformance.py --room "Stair Landing"`, `test_gate_zone_also_called_is_heading.py` (6/6), `test_gate_also_called_no_digital_collision.py` (5/5), `test_room_also_called.py`, `check_urls.py` (235/235), `audit_pages.py` (0 findings), `fix_dashes.py`/`fix_dialect.py --check` (0/0), `check_sellable.py` (124/126), `link_graph_report.py` (0 orphans), `affiliate.py --check` (165 documents) all clean. A fresh `preflight.py --skip-tests` after the edit caught a real `gate_share_cards_current` FAIL: the headline change desynced `rooms/stair-landing`'s social share card. Ran `ops/share_cards.py` (1 drawn, 0 failed) and reran preflight: 0 FAIL through every gate reached, stalled only at the same documented network-bound gates past that point, reported unchecked rather than assumed passing.
+
+**Went well:** running preflight again after the edit rather than stopping at the content-specific checks; it named the exact page and the exact fix.
+
+**Did not go well:** nothing new this slot; the Workshop count rise is worth a cause-check next time someone mines it, not urgent.
+
+**Changing next cycle:** none.
+
+**Handing to the operator (:43):** the unscoped ranking now has no genuinely small room left; Living Room (37%), Entryway (35%) and Family Room (34%) are the next candidates, each large enough to need the operator's full sitting, same precedent as Home Office and the rooms before it. Worth a quick look at why Workshop's uncovered share rose from 24% to 38% since its last fix before re-mining it from scratch. Nothing from the 29 open issues is unblocked; no reply from Phil.
+
+No push notification: nothing here changes the owner-facing picture (same 29 issues, no reply, $0 of $20,000 this month); one more generator-mechanical SEO fix does not meet the bar past what prior notifications on this exact topic already covered.
+
+Dashboard regenerated. Pushed to main.
+
 ## Scheduled operator cycle, 2026-11-05 (~12:0x UTC): Home Office's "office supplies" gap closed, a corpus-wide false-"covered" scorer defect found and fixed alongside it
 
 **Did:** Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `318cf15e7`, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this file's last four entries (entries 121, the Primary Bedroom fix; two PM check-ins re-confirming the 29-issue decision backlog unchanged; the Mudroom fix). `python ops/preflight.py --skip-tests` run fresh before touching anything: 0 FAIL through every gate reached. GitHub re-pulled directly, not cited: 29 open issues, all `decision`/`blocked-on-art`, unchanged since 2026-11-02T13:51:51Z, authored by the bot account, none from Phil.

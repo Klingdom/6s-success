@@ -712,11 +712,11 @@
   "picture": "pack-primary-bedroom.jpg"
  },
  "rooms/stair-landing": {
-  "alt": "Link preview card for 6S Success reading \"Stair Landing: belongs to nobody, which is exactly why a small oversight here can hurt someone\", beside a drawn plan of the Stair Landing with its zones numbered.",
+  "alt": "Link preview card for 6S Success reading \"Stair Landing: belongs to nobody, which is exactly why it becomes informal storage until a small oversight here can hurt someone\", beside a drawn plan of the Stair Landing with its zones numbered.",
   "desc": "",
   "eyebrow": "Room guide",
   "file": "share/rooms-stair-landing.jpg",
-  "headline": "Stair Landing: belongs to nobody, which is exactly why a small oversight here can hurt someone",
+  "headline": "Stair Landing: belongs to nobody, which is exactly why it becomes informal storage until a small oversight here can hurt someone",
   "picture": "pack-stair-landing.jpg"
  },
  "rooms/workshop": {

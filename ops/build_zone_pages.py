@@ -3724,8 +3724,9 @@ ROOM_JOB = {
     "Mudroom": "where the weather stops, starting at the hooks",
     "Hall Closet": "the darkest storage in the house, and the only one "
                    "nobody owns",
-    "Stair Landing": "belongs to nobody, which is exactly why a small "
-                     "oversight here can hurt someone",
+    "Stair Landing": "belongs to nobody, which is exactly why it becomes "
+                     "informal storage until a small oversight here can "
+                     "hurt someone",
     "Patio or Deck": "outdoors, on a clock the indoor rooms never feel",
 }
 
