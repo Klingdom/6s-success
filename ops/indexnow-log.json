@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-01T18:43:20Z",
-   "mode": "changed",
-   "offered": 10,
-   "accepted": 10,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-01T19:10:30Z",
    "mode": "changed",
    "offered": 1,
@@ -657,6 +650,13 @@
    "offered": 2,
    "accepted": 2,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-05T20:05:12Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -713,7 +713,7 @@
   "https://6s-success.com/articles/zone-too-small-for-what-it-holds": "5aea1ed5fd63a19a",
   "https://6s-success.com/deck/entryway-print-and-play.html": "874e78ad294ed630",
   "https://6s-success.com/rooms/dining-room": "147d14a6e31dd744",
-  "https://6s-success.com/rooms/entryway": "7ad26a2e73252533",
+  "https://6s-success.com/rooms/entryway": "3125a1d9c405d2bd",
   "https://6s-success.com/rooms/family-room": "014b29e1e6d8dd0e",
   "https://6s-success.com/rooms/garage": "71a62061c7e58416",
   "https://6s-success.com/rooms/guest-bathroom": "4fb9821472b1e9f4",
