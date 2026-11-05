@@ -16519,3 +16519,17 @@ Not starting any Phil-gated item (C5, C6) or re-litigating issue #42 myself, per
 
 Pushed to main: dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
 
+
+## 2026-11-05, scheduled operator cycle: Garage room-ranking noise cluster found and excluded, not another zone-synonym mine
+
+**Did:** Attached per Step 0 (shallow, detached checkout; `fetch --unshallow`; `checkout -B main origin/main`; ff-only onto `09a7c9c61`, clean). Read BACKLOG-2026-09-07.md, ROADMAP, CLAUDE.md, STATUS.md and the NIGHTLY-LOG tail; confirmed all 29 open GitHub issues unchanged since 2026-11-02, none from Phil, inbox agent has no mail credential. Ran `room_guide_underperformance.py` fresh rather than trust a cited ranking: Garage is still top (was 51% uncovered). Read its full scored partial list directly rather than the tool's own 8-row sample. Four rows were not vocabulary gaps but title-word-overlap noise, the same shape `OFF_TOPIC_CONTEXT` already excludes elsewhere: "cricut supplies"/"prepping supplies" land on the Automotive Care Zone (fluids/cables/rags content) purely on "organize"/"garage"; "pics on wall"/"pictures on a wall" land on Hand Tool Wall and Cabinets purely on "wall". Checked both zones' real `content.json` purpose/common_items first, then checked the full corpus: none of the four phrases is ever answered by any page anywhere, so excluding them cannot suppress a genuine match. Added the four-phrase branch to `ops/room_guide_candidates.py`'s `OFF_TOPIC_CONTEXT`.
+
+**Verified:** Fail-then-pass proved directly (`git stash` the regex, 4 new test cases failed with the real query text; restore, all passed). `ops/tests/test_room_guide_candidates.py` 25/25, `test_room_guide_underperformance.py` 18/18. Re-ran `room_guide_underperformance.py --room Garage` live: 170→166 on-topic rows, 51%→49% uncovered, matching the 4 excluded rows exactly. `fix_dashes.py`/`fix_dialect.py --check` 0/0, `py_compile` clean, `check_urls.py` 235/235, `audit_pages.py` 240/0.
+
+**Went well:** verified against real corpus data before excluding, not just the synthetic test rows.
+
+**Did not go well:** an earlier foreground `preflight.py` attempt left an orphaned process holding `/tmp/.preflight_py_running.lock` after its shell timeout killed only the wrapper, costing real time; killed it and cleared the lock by hand.
+
+**Changing next cycle:** none; this is the established pattern.
+
+**Next:** Garage still has ~80 partial rows, mostly geo/retailer modifiers already confirmed unfixable in prior cycles; a fresh room-by-room read is next.

@@ -145,6 +145,35 @@ _result_cs = rgc.score_room([_cleaning_supplies], [], _room)
 check("a genuine on-topic 'organize cleaning supplies' row is NOT excluded by the business pattern",
       _result_cs["on_topic_rows"] == 1)
 
+
+# Found 2026-11-05 (Garage pass, top-ranked room by
+# room_guide_underperformance.py): "cricut"/"prepping supplies" collide on
+# the Automotive Care Zone's title alone (fluids/cables/rags content has
+# nothing to do with a craft cutting machine or doomsday stockpiling);
+# "pics/pictures on a wall" collide on the Hand Tool Wall and Cabinets
+# zone's title alone (pegboard/tool content has nothing to do with hanging
+# home-decor photographs).
+_cricut = {"query": "how to organize cricut supplies", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_cricut = rgc.score_room([_cricut], [], _room)
+check("a 'cricut' off-topic-context row is excluded",
+      _result_cricut["on_topic_rows"] == 0)
+_prepping = {"query": "how to organize prepping supplies", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_prepping = rgc.score_room([_prepping], [], _room)
+check("a 'prepping supplies' off-topic-context row is excluded",
+      _result_prepping["on_topic_rows"] == 0)
+_pics_wall = {"query": "how to organize pics on wall", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_pics = rgc.score_room([_pics_wall], [], _room)
+check("a 'pics on wall' off-topic-context row is excluded",
+      _result_pics["on_topic_rows"] == 0)
+_pictures_wall = {"query": "how to organize pictures on a wall", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_pictures = rgc.score_room([_pictures_wall], [], _room)
+check("a 'pictures on a wall' off-topic-context row is excluded",
+      _result_pictures["on_topic_rows"] == 0)
+_wall_tool = {"query": "wall mounted tool organizer", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_wall_tool = rgc.score_room([_wall_tool], [], _room)
+check("a genuine on-topic 'wall mounted tool organizer' row is NOT excluded by the wall pattern",
+      _result_wall_tool["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

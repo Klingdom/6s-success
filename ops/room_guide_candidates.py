@@ -122,7 +122,27 @@ OFF_TOPIC_CONTEXT = re.compile(
     # harvests: these four phrases match exactly these four rows and no
     # other, so this cannot suppress a genuine match.
     r"how to paint (a )?(metal |plastic )?storage (container|bins)\b|"
-    r"\bacrylic paint\b", re.I)
+    r"\bacrylic paint\b|"
+    # Found 2026-11-05 (Garage pass, the top-ranked room by
+    # room_guide_underperformance.py, 51% uncovered). Three more
+    # title-word-overlap collisions, the same shape as "Benchmark Advance"
+    # above but matching on a zone page's own <title> rather than a seed's
+    # autosuggest drift. "cricut supplies"/"prepping supplies" land on the
+    # Automotive Care Zone purely because "organize"/"supplies"/"garage"
+    # overlap its title; that zone's content.json purpose and common_items
+    # are fluid bottles, jumper cables and rags, nothing about a craft
+    # cutting machine (Cricut) or emergency-preparedness stockpiling.
+    # "pics on wall"/"pictures on a wall" land on the Hand Tool Wall and
+    # Cabinets zone purely on the word "wall"; that zone is pegboard and
+    # tool storage, not hanging home-decor photographs. Checked against the
+    # full corpus before excluding: none of "cricut", "prepping supplies",
+    # "pics on wall" or "pictures on a wall" ever lands on a page that
+    # actually answers them (cricut rows route to a paperwork article and
+    # `/about.html` elsewhere in the corpus; "arrange pics on wall" already
+    # shows the same false Hand Tool Wall route under a different verb), so
+    # excluding them here cannot suppress a genuine match.
+    r"\bcricut\b|\bprepping supplies\b|"
+    r"\bpics? on (a )?wall\b|\bpictures? on (a )?wall\b", re.I)
 
 
 def guide_less_rooms():
