@@ -3,6 +3,14 @@
  "_rule": "Do not add a word with no measured queries, and do not add a word the site already covers. Keyed 'Room|Zone' using the same exact room/zone names as content.json, matching the convention ops/zone-search-terms.json already uses for its own lookup key.",
  "_measured_at": "2026-10-10T19:51:00Z",
  "zones": {
+  "Dining Room|China or Display Cabinet": {
+   "names": [
+    "hutch zone"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand.json 2026-11-04T17:38:07Z (google): 'how to organize a dining room hutch', rank 2, partial (0.667 title coverage), tied between /dining-room-deck.html and this room's own guide article on 'dining'+'room', unmatched word 'hutch'. The room's own 'China or Display Cabinet' zone is content-backed for exactly this word: its safety pass calls it 'a tall glass-fronted cabinet loaded with heavy plates', the common furniture most households call a hutch, not a coincidental match. Checked the sideboard/buffet zone first (the 2026-11-05 03:4x handoff's own assumption) and it has no glass-fronted display shelving in its text at all, only linens and serving pieces in closed storage, so that zone was the wrong one; the china cabinet zone is the real match. Named 'hutch zone', the '<word> zone' precedent from the A-series (A21/A23/A24/A32/A33/A34/A36)."
+  },
   "Stair Landing|Wall and Display Zone": {
    "names": [
     "photos zone"

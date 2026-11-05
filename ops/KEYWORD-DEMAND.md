@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-05T03:19:24Z against 243 page(s) at commit ea82ba4c1. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-05T04:24:04Z against 243 page(s) at commit 41faafc15. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1445 covered, 1266 partial, 112 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1446 covered, 1265 partial, 112 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -104,7 +104,7 @@ Showing the top 80 of 112, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1266.
+Showing the top 60 of 1265.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -157,7 +157,6 @@ Showing the top 60 of 1266.
 | 2 | how to declutter a bathroom counter | How to organize the guest bathroom vanity counter | 0.67 |
 | 2 | how to declutter kitchen countertops | How to declutter a kitchen: counters, cabinets and drawers | 0.67 |
 | 2 | how to decorate a guest bedroom | The Guest Bedroom Deck: 57 cards, free to read | 0.67 |
-| 2 | how to organize a dining room hutch | The Dining Room Deck: 61 cards, free to read | 0.67 |
 | 2 | how to organize baking supplies in kitchen | How to organize the pantry baking supplies | 0.67 |
 | 2 | how to organize car detailing supplies | How to organize the garage car care supplies | 0.67 |
 | 2 | how to organize household cleaning supplies | How to organize the hall closet cleaning supplies | 0.67 |
@@ -168,12 +167,13 @@ Showing the top 60 of 1266.
 | 2 | patio off of deck | How to organize a patio or deck, step by step | 0.67 |
 | 2 | primary bedroom decorating ideas | The Primary Bedroom Deck: 66 cards, free to read | 0.67 |
 | 2 | restaurant dining room ideas | The Dining Room Deck: 61 cards, free to read | 0.67 |
+| 2 | wireless organize charging station | How to organize the family room charging station | 0.67 |
 
 ## By room
 
 | Room | Queries | Gap | Partial | Covered |
 |---|---|---|---|---|
-| Dining Room | 38 | 0 | 19 | 19 |
+| Dining Room | 38 | 0 | 18 | 20 |
 | Entryway | 50 | 1 | 13 | 36 |
 | Family Room | 27 | 0 | 17 | 10 |
 | Garage | 77 | 1 | 26 | 50 |

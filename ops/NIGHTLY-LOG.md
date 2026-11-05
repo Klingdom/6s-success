@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-05 (04:2x slot): previous work confirmed finished, closed the Dining Room "hutch" row the 03:4x handoff left unchecked
+
+Attached per Step 0: fetch, real unshallow (was shallow), `checkout -B main origin/main`, ff-only onto `62e0b069d`, 1037 commits fast-forwarded, tree clean, no concurrent push since.
+
+Previous work (03:4x PM check-in) confirmed finished, not cited: tree matched origin exactly before this cycle touched anything; `preflight.py --skip-tests` run fresh to a 180s cap, 0 FAIL across every gate reached, stalled only at the documented network-bound `gate_etsy_pdfs_current` (HTTP 403), reported unchecked past that point. 29 open GitHub issues re-read live via the API: unchanged since 2026-11-02T13:51:51Z, all `decision`/`blocked-on-art`, none from Phil, none genuinely unblocked.
+
+**Picked up the 03:4x handoff's own loose end instead of re-diagnosing from scratch.** That entry had checked Dining Room's "hutch" row against the Buffet or Sideboard zone and correctly found no content backing there, but the room has a second, separate zone it never checked: "China or Display Cabinet", whose own safety pass calls it "a tall glass-fronted cabinet loaded with heavy plates", which is exactly what most households call a hutch. Added "hutch zone" to that zone's `zone-also-called.json` entry, citing the real text rather than assuming. Ran `check_also_called_digital_collision_fast.py` clean before shipping.
+
+**Verified the fix, not assumed it.** Rebuilt zone pages, grep-confirmed the "Also called the hutch zone" heading renders on the real committed page. `keyword_demand.py --rescore` and `keyword_demand_global.py --rescore`: the exact row ("how to organize a dining room hutch") flipped from partial (0.667 title) to covered (1.0 heading, matched on `/zones/dining-room-the-china-or-display-cabinet.html`), 1 query moved each tier, nothing else touched. `room_guide_underperformance.py --room "Dining Room"` re-run directly: 15% to 12% uncovered, 4 to 3 partial rows; the remaining three ("ikea", "declutter", "docking") were already correctly diagnosed as unfixable by the 03:4x entry and are not reopened. `check_urls.py` 235/235, `audit_pages.py` 240/0, `fix_dashes.py --check` 0/0. `preflight.py --skip-tests` re-run after the change: 0 FAIL through every gate reached, same documented `gate_etsy_pdfs_current` stall, reported unchecked rather than assumed passing.
+
+Stair Landing's remaining row ("staircase landing storage ideas") was re-read and left alone: it is the same room-page-vs-article synonym mechanism gap the 2026-11-02 cycle named for "bathroom cupboard" and the 03:4x cycle reaffirmed, which needs a design decision this slot does not have, not a one-line fix.
+
+**Handing to the operator (:43):** nothing from this specific pair needs hours-scale work now; Garage (93 partial), Pantry (27), Hall Closet (97), Home Office (36) and Primary Bedroom (40) remain the next-smallest `room_guide_underperformance.py` lists if there is room for one more sweep.
+
+No push notification: nothing here changes the owner-facing picture (same 29 issues, no reply, $0 of $20,000 this month); one more generator-mechanical SEO fix does not meet the bar past what prior notifications on this exact topic already covered.
+
+Dashboard regenerated. Pushed to main.
+
 ## PM check-in, 2026-11-05 (03:4x slot): previous work confirmed finished, the standing room-guide ranking handed to the operator is stale, corrected rather than repeated
 
 NEXT FOR THE OPERATOR: continue `room_guide_underperformance.py` cleanup on Stair Landing (3 partial rows) and Dining Room (4 partial), not the Garage/Pantry/Hall Closet/Home Office/Primary Bedroom order several recent cycles have carried forward, because those two rooms are now the genuinely smallest lists and the carried-forward ranking was never recomputed after earlier fixes shrank them below it.
