@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-31T19:54:35Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-31T20:27:59Z",
    "mode": "changed",
    "offered": 1,
@@ -657,6 +650,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-05T03:22:01Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -822,7 +822,7 @@
   "https://6s-success.com/zones/patio-or-deck-the-garden-and-plant-care-zone": "287d2156aa638fb9",
   "https://6s-success.com/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone": "45bfcaa82dd74d15",
   "https://6s-success.com/zones/patio-or-deck-the-outdoor-dining-zone": "ea09a81872e7b2ba",
-  "https://6s-success.com/zones/patio-or-deck-the-outdoor-seating-zone": "3a441833a5e0554b",
+  "https://6s-success.com/zones/patio-or-deck-the-outdoor-seating-zone": "fc78d93110b78721",
   "https://6s-success.com/zones/patio-or-deck-the-outdoor-storage-zone": "33e6e29b90176255",
   "https://6s-success.com/zones/patio-or-deck-the-surface-rail-and-safety-zone": "7c599d93093c9183",
   "https://6s-success.com/zones/primary-bathroom-the-linen-and-towel-storage": "f7340759255eeb2c",
