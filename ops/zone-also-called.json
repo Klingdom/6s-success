@@ -245,11 +245,12 @@
   },
   "Patio or Deck|Outdoor Seating Zone": {
    "names": [
-    "cushions zone"
+    "cushions zone",
+    "furniture zone"
    ],
    "queries": 2,
    "covered": 0,
-   "source": "ops/keyword-demand.json + ops/keyword-demand-global.json: 'how to store outdoor seating cushions' (both US and global, partial, 0.5 coverage, unmatched ['cushions']) and 'outdoor furniture seating storage' (US, partial, 0.5, unmatched ['furniture']), both already routed by best_page to this zone's own page (the room's only zone matching 'outdoor'+'seating'), not a coincidental collision: the zone's own content.json purpose and passes text repeatedly discuss cushions ('Seats people... with the cushions kept dry', 'every cushion in the deck box', 'Cushions live in the deck box, not stacked on a seat', 'check the underside of every cushion', 'one cushion per seat') and that is the zone's own real answer to how its chairs' cushions get stored, just never in a heading. Named 'cushions zone', the '<word> zone' precedent from the A-series (crafts zone, drawers zone, cooking utensils zone), not the bare word alone, which nobody searching this calls the zone itself."
+   "source": "ops/keyword-demand.json + ops/keyword-demand-global.json: 'how to store outdoor seating cushions' (both US and global, partial, 0.5 coverage, unmatched ['cushions']) and 'outdoor furniture seating storage' (US, partial, 0.5, unmatched ['furniture']), both already routed by best_page to this zone's own page (the room's only zone matching 'outdoor'+'seating'), not a coincidental collision: the zone's own content.json purpose and passes text repeatedly discuss cushions ('Seats people... with the cushions kept dry', 'every cushion in the deck box', 'Cushions live in the deck box, not stacked on a seat', 'check the underside of every cushion', 'one cushion per seat') and that is the zone's own real answer to how its chairs' cushions get stored, just never in a heading. Named 'cushions zone', the '<word> zone' precedent from the A-series (crafts zone, drawers zone, cooking utensils zone), not the bare word alone, which nobody searching this calls the zone itself. 'furniture zone' added 2026-11-05 PM check-in: the 'cushions zone' heading this entry already carries never covered the 'furniture' word this same source text names, so the second query sat partial the whole time its own diagnosis was already written here. The zone's own passes text says 'not furniture' and 'furniture cover lies crumpled' and names 'Furniture that stays out all winter' as a condition, so the word is the zone's own, not borrowed."
   },
   "Primary Bedroom|Nightstand Left": {
    "names": [

@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-05 (03:1x slot): previous work finished, closed one of the 03:0x handoff's Patio or Deck rows with a synonym its own prior cycle had already diagnosed but never shipped, the rest genuinely need more than a synonym
+
+Previous work (03:0x operator, Workshop's last 8 rows) confirmed finished: tree matched origin before this cycle touched anything, `preflight.py --skip-tests` run fresh to a 180s cap, 0 FAIL through every gate reached, stalled only at the documented network-bound `gate_etsy_pdfs_current` (exit 124), reported unchecked past that, not assumed passing. 29 open GitHub issues re-read live via the API, unchanged since 2026-11-02T13:51:51Z, none from Phil.
+
+Picked up the 03:0x handoff by name: Patio or Deck's 8 partial rows. Read each row's real `unmatched_words` directly rather than trust the printed list. Found `ops/zone-also-called.json`'s own existing "cushions zone" entry for Outdoor Seating Zone had already named and diagnosed "outdoor furniture seating storage" (unmatched 'furniture', content-backed via the zone's own "not furniture", "furniture cover", "Furniture that stays out all winter") in its source text, two cycles back, but never added the word, the exact source-corrected-sibling-never-derived shape CLAUDE.md section 7 warns about. Added "furniture zone". Checked for digital collision first, clean.
+
+**Verified the fix honestly, not assumed it worked.** Rebuilt zone pages, grep-confirmed the new heading renders. Rescored both tiers: no count moved (US partial 1266/1266, covered 1445/1445). Traced why directly rather than report a false win: the zone page's own heading now has 3 of 4 words (outdoor, furniture, seating) but not "storage", while the guide article has the other 3 (outdoor, storage, seating) but not "furniture", so the best single-page score is still 0.75 either way. Closing it fully would need "storage" on the same page as "furniture", and the only honest way to do that would borrow the word "storage" for a zone whose own established identity is seating, not storage (a separate Outdoor Storage Zone already holds that name). Left the query partial rather than pad a word the zone does not really answer to. The "furniture zone" synonym itself stays, since it is independently true of the zone's own content, not reverted for failing to flip this one metric.
+
+The other 7 rows: `diy`/`cheap` on two rows are the same generic-qualifier shape already ruled unfixable (diy, plans, pdf, practices, workplace); `anking` is a typo/garbled token, same shape as the standing "gallery walk" precedent; `shed` genuinely ties to the Garage article's own title match, a real freestanding-structure query this deck-box zone does not answer, not a synonym gap; `building`/`outdoor` (on the clothes-storage row) did not trace to any single fix inside this slot's time budget and are handed on rather than padded.
+
+`check_urls.py` 235/235, `audit_pages.py` 0 duplicate titles/descriptions, `fix_dashes.py --check` 0/0, `check_also_called_digital_collision_fast.py` clean.
+
+**Handing to the operator (:43):** the remaining Patio or Deck rows (`building`, `outdoor` on the clothes row) need the hours-scale per-row judgment this slot does not have. Garage (93 partial), Pantry (27), Hall Closet (97), Home Office (36), Primary Bedroom (40) remain the next-smallest lists after Patio or Deck on `room_guide_underperformance.py`'s own ranking if that pair turns out unfixable too.
+
+No push notification: nothing here changes the owner-facing picture (same 29 issues, no reply, $0 of $20,000 this cycle); one generator-mechanical SEO fix, honestly reported as not closing its own target query, does not meet the bar past what prior notifications on this exact topic already covered.
+
+Dashboard regenerated. Pushed to main.
+
 ## Scheduled operator cycle, 2026-11-05 (03:0x slot): closed Workshop's own 8-row partial handoff from the 02:1x check-in, 48% to 24% uncovered
 
 **Did:** Attached per Step 0 (fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `ec2ac8eda`, 1028 commits fast-forwarded, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0 and 2 through A58, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this file's own last entries per Step 1. GitHub re-pulled directly via the API: 29 open issues, unchanged since 2026-11-02T13:51:51Z, all `decision`/`blocked-on-art`, none from Phil.
