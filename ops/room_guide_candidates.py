@@ -142,7 +142,24 @@ OFF_TOPIC_CONTEXT = re.compile(
     # shows the same false Hand Tool Wall route under a different verb), so
     # excluding them here cannot suppress a genuine match.
     r"\bcricut\b|\bprepping supplies\b|"
-    r"\bpics? on (a )?wall\b|\bpictures? on (a )?wall\b", re.I)
+    r"\bpics? on (a )?wall\b|\bpictures? on (a )?wall\b|"
+    # Found 2026-11-05 (Garage pass, the two remaining `gap`-status rows,
+    # 49% uncovered). Both are the same title/seed word-overlap shape as
+    # the rows directly above, not genuine content gaps. "how to organize
+    # soap making supplies" lands on the Automotive Care Zone purely on
+    # "organize"/"supplies" overlapping that zone's own title ("garage car
+    # care supplies"); the zone's content.json purpose and common_items are
+    # fluid bottles, jumper cables and rags, nothing about a soap-making
+    # hobby. "how to organize raised garden beds" lands on the Lawn and
+    # Garden Tool Zone via seed drift from two unrelated seeds, "how to
+    # organize garden area" and "how to organize bed and bedding" (the
+    # "bed" word colliding with bedroom bedding); the zone's own purpose is
+    # storing yard tools, hose and chemicals, nothing about building or
+    # arranging a planting bed structure. Verified against both harvests:
+    # "soap making" and "raised garden bed" each appear in exactly the one
+    # row named here (the global harvest has no "raised garden bed" row at
+    # all), so excluding them here cannot suppress a genuine match.
+    r"\bsoap making\b|\braised garden beds?\b", re.I)
 
 
 def guide_less_rooms():

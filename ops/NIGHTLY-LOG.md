@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-05, scheduled operator cycle (~18:5x slot): confirmed the pending deploy handoff went green end to end, then closed the two Garage noise rows entry 129 left open
+
+**Did:** Attached per Step 0 (shallow detached checkout, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `d6b335740`, tree clean). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md` and the log tail.
+
+Closed the 18:1x handoff first rather than start new work on top of it: checked `publish-image.yml` run `42084037234` (head `0e9bf7194`) and `deploy.yml` run `42086532353` (head `21260d609`) directly via the Actions API, both `success`; `ops/deploy-verdict.json` (already committed as `d6b335740`, current HEAD) confirms `"verdict": "current", "build_id": "1688fc399ee19549"`, a real build-id comparison, not an HTTP 200.
+
+Then mined Garage's two remaining `gap`-status rows: "how to organize soap making supplies" (entry 129 deferred it) and "how to organize raised garden beds" (new). Both are title/seed word-overlap noise, checked against each zone's real `content.json` purpose before excluding (Automotive Care Zone is fluids/cables/rags; Lawn and Garden Tool Zone is hose/tools/chemicals, neither is a soap hobby or a planting-bed structure). Added both to `ops/room_guide_candidates.py`'s `OFF_TOPIC_CONTEXT`.
+
+**Verified:** fail-then-pass proved directly (stash the regex, 2 new test cases failed with real query text, restore, 27/27 passed, including a new on-topic control row). `test_room_guide_underperformance.py` 18/18. Live rescore: Garage gap 2 to 0, on-topic 166 to 164, 49% uncovered unchanged. `py_compile`, `fix_dashes.py`/`fix_dialect.py --check` clean. `preflight.py --fast` run to a file: 0 FAIL through every gate reached, `cycle_signal` recorded a fresh clean-pass snapshot, then genuinely stalled inside `gate_tests` at `test_audit_catalog.py` (confirmed by flat progress across repeated reads over 200+ seconds, not assumed slow); killed the stalled process and cleared `/tmp/.preflight_py_running.lock` by hand. Reported unchecked past that point per CLAUDE.md 0.4.
+
+**Went well:** closing the real open handoff with API evidence before picking new work, instead of re-citing "not watched to completion" a second time.
+
+**Went not well:** `gate_tests` still cannot complete in this sandbox; same documented limitation every recent cycle reports, no new gate written for it this slot since the cause (headless-Chromium/network-bound test, not a code defect) is already understood and tracked.
+
+**Changing next cycle:** none; established pattern.
+
+**Next:** Garage's remaining ~79 partial rows (mostly documented retailer/geo-modifier noise) still want a full row-by-row read. GitHub: 29 open issues, none from Phil since 2026-11-02. No price, product or site page touched; no owner notification (nothing material changed on the owner-facing picture).
+
 ## PM check-in, 2026-11-05 (~18:1x slot): previous work was NOT finished, found and fixed the real generator-ownership drift blocking deploy
 
 The 17:4x handoff dispatched Publish site image (run 42078035776) and asked this cycle to confirm it went green. It did not: `gate_generator_ownership` FAILED, because the 17:1x fix only rebuilt `ops/cardtext/guest-bedroom-deck.json` and never reran `build_quest.py`, so `site/assets/js/quest-data.js` still carried the old "Two cables, tested" wording. That left `site/quest.html`'s asset hash, `site/sw.js`'s precache list, `site/sitemap.xml`'s lastmod and the guest-nightstand Instagram caption all stale against the real content change, and Checks.yml's `gate_publish_image_current` was failing for the same reason.

@@ -174,6 +174,25 @@ _result_wall_tool = rgc.score_room([_wall_tool], [], _room)
 check("a genuine on-topic 'wall mounted tool organizer' row is NOT excluded by the wall pattern",
       _result_wall_tool["on_topic_rows"] == 1)
 
+# Found 2026-11-05 (same Garage pass, the two remaining `gap`-status rows):
+# "soap making supplies" collides on the Automotive Care Zone's title alone
+# (a hobby craft, nothing to do with car fluids/cables/rags); "raised
+# garden beds" collides via seed drift from "bed and bedding" onto the Lawn
+# and Garden Tool Zone (a planting structure, not the zone's hose/tool/
+# chemical storage).
+_soap = {"query": "how to organize soap making supplies", "best_page": "/test-room-deck.html", "status": "gap"}
+_result_soap = rgc.score_room([_soap], [], _room)
+check("a 'soap making' off-topic-context row is excluded",
+      _result_soap["on_topic_rows"] == 0)
+_garden_bed = {"query": "how to organize raised garden beds", "best_page": "/test-room-deck.html", "status": "gap"}
+_result_garden_bed = rgc.score_room([_garden_bed], [], _room)
+check("a 'raised garden beds' off-topic-context row is excluded",
+      _result_garden_bed["on_topic_rows"] == 0)
+_garden_tool = {"query": "how to organize garden tools", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_garden_tool = rgc.score_room([_garden_tool], [], _room)
+check("a genuine on-topic 'organize garden tools' row is NOT excluded by the garden-bed pattern",
+      _result_garden_tool["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)
