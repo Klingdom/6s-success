@@ -95,20 +95,22 @@
    "names": [
     "car maintenance zone",
     "detailing zone",
-    "car wash zone"
+    "car wash zone",
+    "car cleaning zone"
    ],
-   "queries": 9,
+   "queries": 13,
    "covered": 0,
-   "source": "ops/keyword-demand.json 2026-11-05: 'how to organize car detailing supplies' and 'how to organize detailing supplies' (partial, unmatched 'detailing'), 'how to organize car wash supplies' (partial, unmatched 'wash'), all three already routing to this zone. The zone's own shine pass reads 'Wash the wash mitts and microfibre towels on their own... grit and old wax stay out of the good towels', which is car-detailing and car-wash equipment by name, not a coincidental word match."
+   "source": "ops/keyword-demand.json 2026-11-05: 'how to organize car detailing supplies' and 'how to organize detailing supplies' (partial, unmatched 'detailing'), 'how to organize car wash supplies' (partial, unmatched 'wash'), all three already routing to this zone. The zone's own shine pass reads 'Wash the wash mitts and microfibre towels on their own... grit and old wax stay out of the good towels', which is car-detailing and car-wash equipment by name, not a coincidental word match. Added 2026-11-05, scheduled operator: 'how to organize car cleaning supplies', 'best way to organize car cleaning supplies', 'how to organize cleaning supplies in car' and 'how to organize cleaning supplies in garage' (all partial, 0.667-0.75 coverage, unmatched 'cleaning', all losing the tie to the full garage article rather than reaching this zone). Checked the zone's own content.json before adding: its own purpose reads 'cleaning kit for the cars you actually own' and its kit list carries a 'Portable cleaning caddy' and microfibre cloths, so 'cleaning' is this zone's own real vocabulary, not a coincidental match. Named 'car cleaning zone', not the bare word 'cleaning' alone, which collides with the Hall Closet's own 'Cleaning Supply Zone'/'Cleaning Equipment Zone' and would misname a shared household room as this one."
   },
   "Garage|Bulk and Overhead Storage": {
    "names": [
     "camping zone",
-    "storeroom zone"
+    "storeroom zone",
+    "ceiling zone"
    ],
-   "queries": 3,
+   "queries": 4,
    "covered": 0,
-   "source": "ops/keyword-demand-global.json 2026-11-01 (au): 'how to organise camping', rank 11, gap, 0.0 coverage, and 'how to organize camp' (in), rank 14, gap, 0.0 coverage, both scored to /about.html via tie-break, seeded from 'how to organise outdoor storage'. Checked the zone's own content in content.json before adding: this zone's own 'variants' array names 'Genuinely seasonal storage, such as decorations or camping' by that exact word already, and its purpose ('Holds the things you genuinely need once or twice a year, high up and out of the way') is exactly what seasonal camping gear is. Named 'camping zone', the '<word> zone' precedent from the A-series (A32/A33/A34/A36/A38/'garden shed zone'/'cake decorating zone'), not the bare word 'camping' alone, which would overclaim the zone exists only for that one activity rather than bulk seasonal storage generally. Added 2026-11-01, scheduled operator: 'how to organise a storeroom' (rank 13, gap, 0.0, /about.html, tie-break) is a general household storage room, exactly this zone's own purpose read generically rather than seasonally; named 'storeroom zone', same precedent."
+   "source": "ops/keyword-demand.json 2026-11-01 (au): 'how to organise camping', rank 11, gap, 0.0 coverage, and 'how to organize camp' (in), rank 14, gap, 0.0 coverage, both scored to /about.html via tie-break, seeded from 'how to organise outdoor storage'. Checked the zone's own content in content.json before adding: this zone's own 'variants' array names 'Genuinely seasonal storage, such as decorations or camping' by that exact word already, and its purpose ('Holds the things you genuinely need once or twice a year, high up and out of the way') is exactly what seasonal camping gear is. Named 'camping zone', the '<word> zone' precedent from the A-series (A32/A33/A34/A36/A38/'garden shed zone'/'cake decorating zone'), not the bare word 'camping' alone, which would overclaim the zone exists only for that one activity rather than bulk seasonal storage generally. Added 2026-11-01, scheduled operator: 'how to organise a storeroom' (rank 13, gap, 0.0, /about.html, tie-break) is a general household storage room, exactly this zone's own purpose read generically rather than seasonally; named 'storeroom zone', same precedent. Added 2026-11-05, scheduled operator: 'garage storage ideas ceiling' (partial, 0.667 coverage, unmatched 'ceiling', routed to the full garage article). Checked the zone's own purpose ('high up and out of the way') and common_items ('Overhead bins, labeled and dated') before adding: ceiling-mounted storage is exactly what this zone's own 'overhead' wording already means, the household word for it, not a different idea. Named 'ceiling zone', not 'ceiling storage zone': the word 'storage' alone collides with unrelated digital-context queries ('computer storage for games', 'game storage for pc'), caught by `check_also_called_digital_collision_fast.py` before shipping; the query's own word 'storage' is already matched by this page's existing title, so only 'ceiling' needed adding."
   },
   "Pantry|Snack and Lunch Zone": {
    "names": [

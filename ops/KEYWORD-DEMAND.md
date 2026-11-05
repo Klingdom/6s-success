@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-05T21:05:23Z against 243 page(s) at commit 5e41812ec. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-05T21:54:32Z against 243 page(s) at commit 886b307ac. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1520 covered, 1192 partial, 111 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1523 covered, 1189 partial, 111 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -104,7 +104,7 @@ Showing the top 80 of 111, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1192.
+Showing the top 60 of 1189.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -136,7 +136,6 @@ Showing the top 60 of 1192.
 | 1 | how to build a patio deck | How to organize a patio or deck, step by step | 0.67 |
 | 1 | how to build a stair landing | How to organize a stair landing, step by step | 0.67 |
 | 1 | how to decorate a stair landing | How to organize a stair landing, step by step | 0.67 |
-| 1 | how to organize car cleaning supplies | How to organize the garage car care supplies | 0.67 |
 | 1 | how to organize desk drawers diy | How to organize the home office desk drawers | 0.67 |
 | 1 | how to organize entertainment center cables | How to organize the family room entertainment center | 0.67 |
 | 1 | how to stage a guest bedroom | How to organize a guest bedroom, step by step | 0.67 |
@@ -168,6 +167,7 @@ Showing the top 60 of 1192.
 | 2 | primary bedroom decorating ideas | The Primary Bedroom Deck: 66 cards, free to read | 0.67 |
 | 2 | restaurant dining room ideas | How to organize a dining room, step by step | 0.67 |
 | 2 | wireless organize charging station | How to organize the family room charging station | 0.67 |
+| 3 | acrylic paint storage organizer | How to organize the workshop paint and chemical storage | 0.67 |
 
 ## By room
 
@@ -176,7 +176,7 @@ Showing the top 60 of 1192.
 | Dining Room | 38 | 0 | 17 | 21 |
 | Entryway | 50 | 1 | 10 | 39 |
 | Family Room | 27 | 0 | 17 | 10 |
-| Garage | 77 | 1 | 26 | 50 |
+| Garage | 77 | 1 | 25 | 51 |
 | Guest Bathroom | 22 | 1 | 14 | 7 |
 | Guest Bedroom | 24 | 0 | 12 | 12 |
 | Hall Closet | 27 | 0 | 11 | 16 |
