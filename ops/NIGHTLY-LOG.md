@@ -16,6 +16,28 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** Garage still has ~80 partial rows, mostly geo/retailer modifiers already confirmed unfixable in prior cycles; a fresh room-by-room read is next.
 
+**Merge note, same push: a concurrent 17:4x PM check-in landed on the same parent (`09a7c9c61`) minutes before this cycle pushed, independently finding and re-dispatching the real `publish-image.yml` blocker (see its own entry immediately below). Merged with `git merge --no-edit`, kept both accounts, regenerated the dashboard trio fresh after the merge rather than resolve those generated files by hand. That cycle's own handoff still applies and is not superseded by this one:**
+
+NEXT FOR THE OPERATOR: confirm Publish site image run 42078035776 (dispatched 17:47:25Z against HEAD 09a7c9c61) finished green and Deploy to production followed, because the 17:1x cycle's deck-JSON fix did not actually clear Checks and the real blocker sat unfound until this cycle traced it.
+
+## PM check-in, 2026-11-05 (~17:4x slot): previous work was NOT finished, the 17:1x fix addressed the wrong gate; found the real one and re-triggered the stalled Publish workflow, result unconfirmed at push time
+
+Attached per Step 0 (shallow detached checkout, real `git fetch --unshallow`, `checkout main`, ff-only onto `09a7c9c61`, tree clean throughout).
+
+**Checked the 17:1x handoff's own claim rather than trust it.** That entry said it "fixed the gate that blocked deploy" (`gate_guest_bedroom_deck_current`) and asked this cycle to confirm Checks/Publish/Deploy went green on `19af5b422`. Pulled that commit's actual `Checks` run (42074198722) from the API: still `conclusion: failure`, same as before the claimed fix. Read the failed job's log directly rather than assume the same gate failed twice: `gate_guest_bedroom_deck_current` passed clean this time, the fix was real, but a different gate failed, `gate_publish_image-current`: "`publish-image.yml`'s most recent attempt (failure) never published: HEAD's `site/` or `Dockerfile` differs from the last commit it actually shipped (`4aa37389`)." The 17:1x cycle treated one fixed gate as the whole fix and never checked whether Checks actually went green.
+
+**Root cause, traced, not guessed:** `publish-image.yml` only triggers on a push touching `site/`, `Dockerfile`, or its own workflow file (confirmed by reading the workflow's `on:` block). Its last real attempt, on `e34fa36f7`, failed at the same Preflight step for the same stale-deck reason. Every commit since (`19af5b422`, `f64ed8f9e`, `09a7c9c61`) touched only `ops/`, `EXECUTIVE-DASHBOARD-LIVE.md` and the log, none of which re-trigger the path filter, so the fixed deck JSON was never actually built and published; `gate_publish_image_current` and the `workflows-healthy` warning were both reporting that honestly.
+
+**Did:** dispatched `publish-image.yml` manually via `workflow_dispatch` against `main` (now at `09a7c9c61`, carrying the real fix) rather than wait for another content push to trigger it incidentally. Run `42078035776` queued at 17:47:25Z. Ran `preflight.py --fast` locally to confirm no second defect: the one `FAIL` it reports (`ci-conclusion-current`, citing the same stale `19af5b422` Checks failure) is the identical, already-explained root cause, not a new one.
+
+**Not watched to completion this slot** (the job runs ~14 minutes per its own history; writing this entry rather than block on it). **Handing to whoever reads this next: open run `42078035776` (https://github.com/Klingdom/6s-success/actions/runs/42078035776), confirm `conclusion: success`, then confirm `Deploy to production` fired behind it and actually changed what the VPS serves. If it failed again, read that run's own log before trying anything else; do not re-trigger blind a third time.**
+
+GitHub: 29 open issues re-pulled fresh, unchanged set and labels, newest activity still issue #42 at 2026-11-02T13:51:51Z, no reply from Phil. No push notification: nothing on the owner-facing picture changed (same 29 issues, no reply, $0 of $20,000 this month); this is a CI-plumbing fix, not new information for Phil.
+
+Not starting Guest Bedroom's remaining rows or any new backlog item myself, per Step 0's instruction not to start something large at this slot, and because finishing the prior cycle's unfinished deploy gap is this slot's own job per Step 2.
+
+Pushed to main: this entry only (no content, price, product or generated file touched this cycle beyond the log).
+
 ## PM check-in, 2026-11-05 (~17:1x slot): previous work was NOT finished, fixed a red CI gate that was blocking deploy
 
 Previous work (the 17:0x operator's Guest Bedroom cycle) was not actually finished: `gate_guest_bedroom_deck_current` FAILED Checks on commit e34fa36 because the operator edited `content.json`'s nightstand cords/cables wording and rebuilt zone pages but never reran `ops/cardtext/build_guest_bedroom_deck.py`, so the generated deck JSON drifted from its own source. That one red gate failed Checks, which blocked Publish site image, which left Deploy to production skipped, which is the deploy gap the dashboard had been carrying forward as unexplained.
