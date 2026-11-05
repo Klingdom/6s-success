@@ -26893,16 +26893,14 @@
         "how to organize bed"
       ],
       "room": "",
-      "best_page": "/articles/how-to-declutter-a-bedroom.html",
-      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "best_page": "/rooms/primary-bedroom.html",
+      "best_page_title": "How to organize a primary bedroom, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "furniture"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/primary-bedroom.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize bedroom layout",
@@ -41951,13 +41949,11 @@
       "best_page": "/rooms/primary-bedroom.html",
       "best_page_title": "How to organize a primary bedroom, zone by zone",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/primary-bedroom.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "storage"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "master bedroom storage ideas",
@@ -41972,13 +41968,11 @@
       "best_page": "/rooms/primary-bedroom.html",
       "best_page_title": "How to organize a primary bedroom, zone by zone",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/primary-bedroom.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "storage"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "mess in the kitchen",
@@ -48866,11 +48860,11 @@
         "primary bedroom organization ideas"
       ],
       "room": "Primary Bedroom",
-      "best_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
-      "best_page_title": "How to organize the primary bedroom bed and bedding",
+      "best_page": "/rooms/primary-bedroom.html",
+      "best_page_title": "How to organize a primary bedroom, zone by zone",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
+      "heading_page": "/rooms/primary-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -50495,11 +50489,11 @@
         "primary bedroom organization ideas"
       ],
       "room": "Primary Bedroom",
-      "best_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
-      "best_page_title": "How to organize the primary bedroom bed and bedding",
+      "best_page": "/rooms/primary-bedroom.html",
+      "best_page_title": "How to organize a primary bedroom, zone by zone",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
+      "heading_page": "/rooms/primary-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -57456,6 +57450,6 @@
       ]
     }
   ],
-  "scored_against_commit": "674ca6bfb",
-  "scored_at": "2026-11-05T09:56:16Z"
+  "scored_against_commit": "82cefbc8f",
+  "scored_at": "2026-11-05T10:59:42Z"
 }

@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-05 (~11:0x UTC): Primary Bedroom room-page heading fix closes 4 real queries, rest of its partial list confirmed exhausted
+
+**Did:** Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, checkout -B main origin/main, ff-only onto 82cefbc8f, tree clean). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, the nightly-log tail. GitHub: 29 open issues, unchanged since 2026-11-02, all decision/blocked-on-art, none from Phil. Picked up the 10:1x PM handoff: Primary Bedroom (40% uncovered) was the highest-ranked room not yet row-by-row mined. Read all 43 gap/partial rows against real content. Four queries ("master bedroom storage", "...storage ideas", "master bedroom organization furniture", "how to organize bedroom furniture") were one word short because neither "storage" nor "furniture" appeared in any heading on /rooms/primary-bedroom.html, though the page's own layout tip already describes both. Retitled that heading to "Primary bedroom layout, furniture and storage", scoped to this room only in ops/build_zone_pages.py.
+
+**Verified:** rebuilt, rescored both keyword files (partial -3/-5, covered +3/+5, gap unchanged at 109/91). All four target queries read back as covered, matched_on heading. Spot-checked every other room's "furniture" queries (guest bedroom, kids bedroom, nursery, dining room, family room, living room): none shifted. room_guide_underperformance.py: Primary Bedroom 40% to 36% uncovered. fix_dashes.py/check_urls.py clean. preflight.py --skip-tests run unbuffered to a file (not piped, which silently ate a prior attempt's output): 0 FAIL, 34 standing sandbox warnings. inbox_agent.py: no mail credential, unchecked.
+
+**Went well:** the function's own prior "plan"/Nursery-tie-break-bypass comment told me exactly what risk to check before adding a word; spot-checking six other rooms confirmed it was actually safe here, not just plausible.
+
+**Did not go well:** nothing new; same 29-issue decision backlog, $0 this month.
+
+**Changing next cycle:** nothing; no new defect class found, no gate warranted.
+
+**Next:** Primary Bedroom's remaining 37 partial rows are noise (bags/pinterest/style, generic filler, one unfixable-without-stuffing Kids Bedroom misattribution). Re-run the unscoped room ranking before picking the next room. Dashboard regenerated. Pushed to main.
+
 ## PM check-in, 2026-11-05 (~10:1x slot): previous work confirmed finished, one stale ledger entry closed, nothing new unblocked
 
 Previous work (the Mudroom locker fix and room_rows undercounting bug) was finished. Attached per Step 0: fetch, real unshallow (shallow detached checkout), checkout -B main origin/main, ff-only onto 8ae08b5c8, tree clean. Confirmed finished, not cited: working tree already clean, main already pushed, three commits since (merge, nightly-log reorder, hourly check-in) touch no site/ or ops/ logic. preflight.py --skip-tests run fresh: 0 FAIL in both FAIL sections printed, timed out only at the documented network-bound gate_etsy_pdfs_current, reported unchecked past that point. check_urls.py 235/235, fix_dashes.py --check 0/0.

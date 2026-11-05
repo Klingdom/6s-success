@@ -4036,7 +4036,27 @@ def room_page(room, header, footer, all_rooms=()):
     # prefers that room's own page again.
     _layout_text = _room_tips.get("Room layout")
     if _layout_text:
-        out.append(f'<h2>{esc(rm.capitalize())} layout</h2>'
+        # Primary Bedroom only, 2026-11-05: "master bedroom storage",
+        # "master bedroom storage ideas", "master bedroom organization
+        # furniture" and "how to organize bedroom furniture" all scored
+        # one word short (storage or furniture) because neither word
+        # appeared in an h1-h3 on /rooms/primary-bedroom.html, even though
+        # this exact tip already describes the closet's hanging space (the
+        # storage) and the dresser and nightstands (the furniture).
+        # Checked before landing: no other room's h1-h3 carries "storage"
+        # except Hall Closet's own H1, and none carries "furniture" at
+        # all, so a stray "<other room> storage/furniture" query ties at
+        # one matched word on each page (the room's own name here, the new
+        # word there) rather than winning outright the way the "plan" word
+        # did on Nursery's layout heading above; spot-checked every
+        # "furniture" query in both keyword files (guest bedroom, kids
+        # bedroom, nursery, dining room, living room, patio or deck) and
+        # each still ties or loses to its own room's page, so the existing
+        # room-signal tie-break (same mechanism that comment describes)
+        # still resolves every one of those to the correct room. Scoped to
+        # this one room; every other room's suffix is empty.
+        _layout_suffix = {"Primary Bedroom": ", furniture and storage"}.get(room["room"], "")
+        out.append(f'<h2>{esc(rm.capitalize())} layout{_layout_suffix}</h2>'
                    f'<p>{esc(_clean(_layout_text))}</p>')
 
     # Same shape as "Room layout" above, and for the same reason: "how to
