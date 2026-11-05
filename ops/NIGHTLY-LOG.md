@@ -22,6 +22,16 @@ No push notification: nothing here is new information for Phil (same 29 issues, 
 
 Dashboard regenerated (YELLOW, $0 of $20,000 this month, $19 lifetime from 1 sale, revenue carried forward because this sandbox cannot reach Stripe). Pushed to main.
 
+## PM check-in, 2026-11-05 (01:4x slot): previous work confirmed finished, corrected the standing foyer handoff (already resolved, a tie-break display artifact, not a real gap), re-scoped the operator onto cupboard and stairs
+
+NEXT FOR THE OPERATOR: close the cupboard (8 global rows) and stairs (16 rows, several off-topic to exclude) keyword-demand clusters one row at a time, because live rescoring just confirmed both are genuine, current heading gaps.
+
+Attached clean, ff-only onto 6e3c11c. Previous work (00:5x) confirmed finished, tree matched origin. preflight.py --skip-tests: 0 FAIL to the documented gate_etsy_pdfs_current stall, killed by PID. 29 issues unchanged, none from Phil.
+
+Corrected the standing foyer handoff rather than repeat it: ran the real scorer live against the live site for all 17 foyer rows. "foyer" already matches (room-also-called since 2026-10-02); the shown "unmatched: foyer" is only a title-versus-heading tie-break artifact, heading_page already names entryway.html correctly. Not a real gap, drop it.
+
+BACKLOG-2026-09-07.md tripwire (151922/150000): same accepted-history pattern, rotation tools CLEAN. No notification: no material change.
+
 ## PM check-in, 2026-11-05 (00:5x slot): previous work confirmed finished, closed one row of the cupboard cluster the 00:4x check-in re-surfaced, nothing new unblocked
 
 Previous work (00:4x PM check-in, operator cycle A57) confirmed finished: tree matched origin before this cycle touched anything, both pushed clean. GitHub: 29 open issues, no Phil reply, matching every recent cycle.
