@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-01T17:57:56Z",
-   "mode": "changed",
-   "offered": 5,
-   "accepted": 5,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-01T18:23:37Z",
    "mode": "changed",
    "offered": 1,
@@ -657,6 +650,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-05T17:04:25Z",
+   "mode": "changed",
+   "offered": 2,
+   "accepted": 2,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -730,7 +730,7 @@
   "https://6s-success.com/rooms/patio-or-deck": "5370ab75c9b81f57",
   "https://6s-success.com/rooms/primary-bathroom": "93226fb0b86bedb2",
   "https://6s-success.com/rooms/primary-bedroom": "d0454e982c8202d6",
-  "https://6s-success.com/rooms/stair-landing": "39d84763dbe9d423",
+  "https://6s-success.com/rooms/stair-landing": "5023c969278b1335",
   "https://6s-success.com/rooms/workshop": "97b04eb739e0056e",
   "https://6s-success.com/zones/dining-room-the-beverage-or-coffee-station": "c6922f76ca90963a",
   "https://6s-success.com/zones/dining-room-the-china-or-display-cabinet": "002b27189dd4070a",
@@ -763,7 +763,7 @@
   "https://6s-success.com/zones/guest-bedroom-the-guest-bed-and-linens": "cecae76c7f702539",
   "https://6s-success.com/zones/guest-bedroom-the-guest-closet": "8c8185a273f70896",
   "https://6s-success.com/zones/guest-bedroom-the-guest-dresser": "d5943ecc10a4ca83",
-  "https://6s-success.com/zones/guest-bedroom-the-guest-nightstand": "6438200c9e8bf332",
+  "https://6s-success.com/zones/guest-bedroom-the-guest-nightstand": "5569236339413fca",
   "https://6s-success.com/zones/guest-bedroom-the-guest-welcome-and-work-surface": "68b8a36108579bca",
   "https://6s-success.com/zones/hall-closet-the-cleaning-equipment-zone": "4a87483f3ee7d32b",
   "https://6s-success.com/zones/hall-closet-the-cleaning-supply-zone": "5d26bf9399fd9683",
