@@ -2,17 +2,33 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-05 (~16:1x slot): previous work confirmed finished, operator found mid-flight on Guest Bedroom, nothing new unblocked
+## PM check-in, 2026-11-05 (~16:1x slot): previous work confirmed finished, operator cycle below landed mid-check, nothing new unblocked
 
 Attached clean per Step 0 (shallow detached checkout, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `2fee056bf`, tree clean before this cycle touched anything).
 
 Previous work (the 15:4x PM check-in and the automated hourly check-in commit beneath it) confirmed finished, not cited: `preflight.py --fast` run fresh, 0 FAIL through every gate reached, killed only at the documented `gate_tests` sandbox hang. `check_urls.py` 235/235, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/0, all eight `rotate_backlog_*.py --check` tools CLEAN. GitHub's 29 open issues re-pulled fresh via the API: unchanged set and labels, all `decision`/`blocked-on-art`, newest activity still issue #42 at 2026-11-02T13:51:51Z, no reply from Phil.
 
-**Checked whether the hourly operator's own cycle was overdue instead of guessing from the git log alone.** `list_triggers` showed the operator fired at 15:44:08 as scheduled, but `get_session` on that session shows it is still `WORKING` as of this check (36+ minutes in, no commit pushed yet), almost certainly mining Guest Bedroom per the standing handoff. Per Step 8, not touching Guest Bedroom or anything in its likely path this slot; picking a different item would have meant forcing a small-room read that does not currently exist (every genuinely small room is already closed per entries 114-126), so this slot found no substitute task either.
+**Checked whether the hourly operator's own cycle was overdue instead of guessing from the git log alone.** `list_triggers` showed the operator fired at 15:44:08 as scheduled; `get_session` on that session showed it still `WORKING` mid-check. It landed while this cycle was mid-flight: the entry directly below (its real STEP 0-13 pass, a stopword scorer fix, not Guest Bedroom yet) pushed before this cycle's own push, producing a real merge, not a guess. Per Step 8, merged rather than forced, and left Guest Bedroom itself untouched (still the operator's own named next step).
 
 No small closeable job found beyond the reconfirmation above: ledger, rotations, URLs and dashes all already clean from the last cycle's own pass. No push notification: nothing on the owner-facing picture changed (same 29 issues, no reply, $0 of $20,000 this month).
 
-Dashboard regenerated. Pushed to main: this entry and the dashboard trio only.
+Dashboard regenerated. Pushed to main: this entry, the merge, and the dashboard trio only.
+
+## 2026-11-05, scheduled operator cycle (16:0x slot, full STEP 0-13 pass)
+
+**Did:** Attached to main, clean. Read GOALS.md/CLAUDE.md/BACKLOG-2026-09-07.md; sections 2-6 exhausted except Phil-gated items. Pulled all 29 open GitHub issues and issue #42's thread directly: no reply from Phil since 2026-11-02. Ran inbox_agent.py: no mail credential, unchecked, not empty. Mined Dining Room's 6 remaining partial keyword-demand rows against real content: all 6 genuinely unfixable (brand name, coincidental word collisions, wrong room, established "declutter" noise class). That check surfaced a real corpus-wide scorer gap: "practices" is the same generic-filler shape as the existing "tips"/"techniques" stopwords. Confirmed zero self-flattery risk (0 titles/headings site-wide carry it) and added it to keyword_demand.py's STOPWORDS.
+
+**Verified:** preflight.py --skip-tests: 0 FAIL, 35 WARN (standing sandbox gaps), gate_tests confirmed genuinely stalled (flat CPU), killed, unchecked past that point. check_urls/fix_dashes/affiliate/check_sellable/link_graph all clean. Rescored both keyword corpora: US partial 1212->1211, covered 1500->1501, gap unchanged; global unaffected. Added test case 24 to test_keyword_demand.py, fail-then-pass proved directly (git stash/pop). All also-called and room-ranking tests rerun clean.
+
+**Went well:** checking Garage's and Dining Room's coincidental "stove" collisions together surfaced the real fixable gap.
+
+**Did not go well:** nothing new; 29 open decision issues, $0 this month, gate_tests still unchecked for the same documented reason.
+
+**Changing next cycle:** none; the stopword pattern is now established across three uses.
+
+**Next:** Guest Bedroom (30% uncovered) is next unmined. No owner reply, no delivery problem, no second sale.
+
+Pushed: ops/keyword_demand.py, ops/tests/test_keyword_demand.py, both keyword JSON/MD files, BACKLOG-2026-09-07.md, this entry, dashboard files. No price/product/page touched; IndexNow not applicable.
 
 ## PM check-in, 2026-11-05 (~15:4x slot): previous work confirmed finished, nothing new unblocked, Guest Bedroom handoff reconfirmed
 

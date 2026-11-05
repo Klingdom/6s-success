@@ -668,6 +668,52 @@ def main():
         fails.append("excluding 'tips' did not improve the honest score: "
                      "%r -> %r" % (before["score"], r1["coverage"]))
 
+    # 24. Found live 2026-11-05, mining Workshop: "practices" is the same
+    #     format-word shape as "tips"/"techniques" ("best practices" is a
+    #     generic listicle phrase, not a subject noun), and was marking
+    #     "chemical storage best practices" as only 0.667 covered against
+    #     the Finishing and Chemical Zone's own title, which already names
+    #     chemical storage by name. Checked for self-flattery first, same
+    #     as the tips/techniques fix required: zero of our own page titles
+    #     or headings anywhere on the live site carry the literal word
+    #     "practices", so excluding it cannot inflate any page's score.
+    if "practices" in kd.content_words("chemical storage best practices"):
+        fails.append("'practices' is still a content word; the stopword "
+                     "addition did not take")
+    practices_inv = [
+        {"url": "/zones/workshop-the-finishing-and-chemical-zone.html",
+         "title": "How to organize the workshop paint and chemical storage",
+         "words": set(kd.words(
+             "How to organize the workshop paint and chemical storage")),
+         "head_words": set(kd.words("Chemical storage")),
+         "room": "Workshop"},
+    ]
+    before2 = {"best_page": None, "score": None}
+    old_stop2 = kd.STOPWORDS
+    kd.STOPWORDS = old_stop2 - {"practices"}
+    try:
+        r2a = kd.score_rows(
+            {"chemical storage best practices":
+             {"query": "chemical storage best practices",
+              "sources": ["bing"], "best_rank": 21, "seeds": ["x"]}},
+            ["Workshop"], practices_inv)[0]
+        before2["best_page"] = r2a["best_page"]
+        before2["score"] = r2a["coverage"]
+    finally:
+        kd.STOPWORDS = old_stop2
+    r2b = kd.score_rows(
+        {"chemical storage best practices":
+         {"query": "chemical storage best practices",
+          "sources": ["bing"], "best_rank": 21, "seeds": ["x"]}},
+        ["Workshop"], practices_inv)[0]
+    if r2b["best_page"] != before2["best_page"]:
+        fails.append("excluding 'practices' from content words changed "
+                     "which page the query routes to: %r -> %r"
+                     % (before2["best_page"], r2b["best_page"]))
+    if not (r2b["coverage"] > before2["score"]):
+        fails.append("excluding 'practices' did not improve the honest "
+                     "score: %r -> %r" % (before2["score"], r2b["coverage"]))
+
     if fails:
         print("FAIL")
         for f in fails:
