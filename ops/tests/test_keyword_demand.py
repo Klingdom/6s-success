@@ -619,6 +619,55 @@ def main():
         fails.append("a weak in-room page wrongly displaced a stronger "
                      "cross-room one: %r" % rows[0]["best_page"])
 
+    # 23. Found live 2026-11-05, mining Living Room: "tips"/"techniques" are
+    #     format words like "ideas" (already a stopword), not subject words,
+    #     and were marking 52 real queries across the corpus (39 US +
+    #     13 global for "tips", 5 US for "techniques") as less covered than
+    #     they honestly are for a wording difference, the same shape the
+    #     2026-10-13 "arrange" fix corrected. Checked for self-flattery
+    #     first, same as that fix required: zero of our own page titles and
+    #     only one heading anywhere on the live site carry the literal word
+    #     "tips", so excluding it cannot inflate any page's score. Content
+    #     words, not a page match, so nothing here should move which page a
+    #     query routes to, only the score.
+    if "tips" in kd.content_words("home organization tips for living room"):
+        fails.append("'tips' is still a content word; the stopword "
+                     "addition did not take")
+    if "techniques" in kd.content_words("organize car maintenance techniques"):
+        fails.append("'techniques' is still a content word; the stopword "
+                     "addition did not take")
+    tips_inv = [
+        {"url": "/living-room-deck.html", "title": "The Living Room Pack",
+         "words": set(kd.words("The Living Room Pack")),
+         "head_words": set(kd.words(
+             "The Living Room Pack Home organization for the living room")),
+         "room": "Living Room"},
+    ]
+    before = {"best_page": None, "score": None}
+    old_stop = kd.STOPWORDS
+    kd.STOPWORDS = old_stop - {"tips", "techniques"}
+    try:
+        r0 = kd.score_rows(
+            {"home organization tips for living room":
+             {"query": "home organization tips for living room",
+              "sources": ["google"], "best_rank": 1, "seeds": ["x"]}},
+            ["Living Room"], tips_inv)[0]
+        before["best_page"], before["score"] = r0["best_page"], r0["coverage"]
+    finally:
+        kd.STOPWORDS = old_stop
+    r1 = kd.score_rows(
+        {"home organization tips for living room":
+         {"query": "home organization tips for living room",
+          "sources": ["google"], "best_rank": 1, "seeds": ["x"]}},
+        ["Living Room"], tips_inv)[0]
+    if r1["best_page"] != before["best_page"]:
+        fails.append("excluding 'tips' from content words changed which "
+                     "page the query routes to: %r -> %r"
+                     % (before["best_page"], r1["best_page"]))
+    if not (r1["coverage"] > before["score"]):
+        fails.append("excluding 'tips' did not improve the honest score: "
+                     "%r -> %r" % (before["score"], r1["coverage"]))
+
     if fails:
         print("FAIL")
         for f in fails:

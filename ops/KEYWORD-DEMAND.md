@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-05T13:00:49Z against 243 page(s) at commit 0e6ac08e6. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-05T13:55:12Z against 243 page(s) at commit d5ea92402. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1460 covered, 1252 partial, 111 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1495 covered, 1217 partial, 111 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -54,7 +54,6 @@ Showing the top 80 of 111, ordered by the best rank the phrase reached in any on
 | 6 | how to operate a wood stove | - | How to organize the kitchen stove area (0.33) | operate, wood |
 | 6 | how to organize a cribbage tournament template | - | The 6S Zone Scoring Sheet and Layered Audit Template (0.33) | cribbage, tournament |
 | 6 | kitchen organization ideas dollar tree | Kitchen | How to declutter a kitchen: counters, cabinets and drawers (0.33) | dollar, tree |
-| 6 | organizing your bedroom tips pinterest | - | How to declutter a bedroom in one day, step by step (0.33) | pinterest, tips |
 | 6 | trouble going to bathroom | - | How to organize a guest bathroom, step by step (0.33) | going, trouble |
 | 7 | cover space between stove and countertop | - | The Primary Bedroom Deck: 66 cards, free to read (0.20) | countertop, cover, stove |
 | 7 | going to the bathroom problems | - | How to organize a guest bathroom, step by step (0.33) | going, problems |
@@ -101,10 +100,11 @@ Showing the top 80 of 111, ordered by the best rank the phrase reached in any on
 | 14 | diy plans for a nightstand | - | How to organize the guest bedroom nightstand (0.33) | diy, plans |
 | 14 | explore decluttering pro guide | - | Decluttering vs. organizing: what's actually different (0.25) | explore, guide, pro |
 | 14 | grill stations ideas for backyards | - | How to organize the patio or deck grill station (0.33) | backyards, stations |
+| 14 | how to dispose of adult diapers | - | Why does a shared zone never stay reset? (0.00) | diapers, dispose |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1252.
+Showing the top 60 of 1217.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -174,24 +174,24 @@ Showing the top 60 of 1252.
 | Room | Queries | Gap | Partial | Covered |
 |---|---|---|---|---|
 | Dining Room | 38 | 0 | 17 | 21 |
-| Entryway | 50 | 1 | 13 | 36 |
+| Entryway | 50 | 1 | 11 | 38 |
 | Family Room | 27 | 0 | 17 | 10 |
 | Garage | 77 | 1 | 26 | 50 |
 | Guest Bathroom | 22 | 1 | 14 | 7 |
 | Guest Bedroom | 24 | 0 | 12 | 12 |
 | Hall Closet | 27 | 0 | 11 | 16 |
-| Home Office | 58 | 0 | 23 | 35 |
+| Home Office | 58 | 0 | 21 | 37 |
 | Kids Bedroom | 22 | 0 | 8 | 14 |
 | Kitchen | 97 | 2 | 38 | 57 |
 | Laundry Room | 72 | 0 | 16 | 56 |
-| Living Room | 97 | 2 | 44 | 51 |
-| Mudroom | 43 | 0 | 21 | 22 |
-| Nursery | 61 | 1 | 21 | 39 |
+| Living Room | 97 | 2 | 40 | 55 |
+| Mudroom | 43 | 0 | 20 | 23 |
+| Nursery | 61 | 1 | 20 | 40 |
 | Pantry | 60 | 1 | 23 | 36 |
 | Primary Bathroom | 13 | 0 | 8 | 5 |
 | Primary Bedroom | 16 | 1 | 12 | 3 |
 | Stair Landing | 24 | 0 | 14 | 10 |
-| Workshop | 66 | 3 | 31 | 32 |
+| Workshop | 66 | 3 | 30 | 33 |
 
 1929 queries name no room of ours. Those are either a different subject the engine wandered into, or a room-independent question, and the second kind is where an article earns its place.
 

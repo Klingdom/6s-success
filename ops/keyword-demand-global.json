@@ -234,14 +234,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "tips"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca",
         "in"
@@ -1842,14 +1840,12 @@
       "room": "",
       "best_page": "/articles/how-to-declutter-a-bedroom.html",
       "best_page_title": "How to declutter a bedroom in one day, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "tips"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb"
       ],
@@ -3884,14 +3880,12 @@
       "room": "",
       "best_page": "/articles/how-to-declutter-a-bedroom.html",
       "best_page_title": "How to declutter a bedroom in one day, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "tips"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -6573,14 +6567,12 @@
       "room": "Entryway",
       "best_page": "/articles/how-to-organize-an-entryway.html",
       "best_page_title": "How to organize an entryway, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "tips"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -9850,14 +9842,12 @@
       "room": "Home Office",
       "best_page": "/home-office-deck.html",
       "best_page_title": "The Home Office Deck: 66 cards, free to read",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "tips"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -9974,14 +9964,12 @@
       "room": "Home Office",
       "best_page": "/home-office-deck.html",
       "best_page_title": "The Home Office Deck: 66 cards, free to read",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "tips"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -9996,15 +9984,14 @@
       "room": "Home Office",
       "best_page": "/rooms/home-office.html",
       "best_page_title": "How to organize a home office, zone by zone",
-      "coverage": 0.333,
-      "heading_coverage": 0.5,
+      "coverage": 0.4,
+      "heading_coverage": 0.6,
       "heading_page": "/rooms/home-office.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
         "creating",
-        "productive",
-        "tips"
+        "productive"
       ],
       "markets": [
         "ca"
@@ -22450,13 +22437,11 @@
       "best_page": "/articles/how-to-organize-a-living-room.html",
       "best_page_title": "How to organize a living room, step by step",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-living-room.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "cluttered"
-      ],
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -38228,14 +38213,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-linen-closet.html",
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-guest-bathroom.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "tips"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -41320,14 +41303,12 @@
       "room": "Nursery",
       "best_page": "/nursery-deck.html",
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "tips"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -41434,14 +41415,12 @@
       "room": "Nursery",
       "best_page": "/nursery-deck.html",
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "tips"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -45525,14 +45504,12 @@
       "room": "",
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "tips"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -48342,14 +48319,12 @@
       "room": "Workshop",
       "best_page": "/articles/how-to-organize-a-workshop.html",
       "best_page_title": "How to organize a workshop, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "tips"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -48412,14 +48387,12 @@
       "room": "Workshop",
       "best_page": "/articles/how-to-organize-a-workshop.html",
       "best_page_title": "How to organize a workshop, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "tips"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -48593,6 +48566,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-11-05T13:00:54Z",
-  "scored_against_commit": "0e6ac08e6"
+  "scored_at": "2026-11-05T13:55:18Z",
+  "scored_against_commit": "d5ea92402"
 }
