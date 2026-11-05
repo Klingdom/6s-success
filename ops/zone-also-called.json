@@ -93,10 +93,13 @@
   },
   "Garage|Automotive Care Zone": {
    "names": [
-    "car maintenance zone"
+    "car maintenance zone",
+    "detailing zone",
+    "car wash zone"
    ],
-   "queries": 7,
-   "covered": 0
+   "queries": 9,
+   "covered": 0,
+   "source": "ops/keyword-demand.json 2026-11-05: 'how to organize car detailing supplies' and 'how to organize detailing supplies' (partial, unmatched 'detailing'), 'how to organize car wash supplies' (partial, unmatched 'wash'), all three already routing to this zone. The zone's own shine pass reads 'Wash the wash mitts and microfibre towels on their own... grit and old wax stay out of the good towels', which is car-detailing and car-wash equipment by name, not a coincidental word match."
   },
   "Garage|Bulk and Overhead Storage": {
    "names": [

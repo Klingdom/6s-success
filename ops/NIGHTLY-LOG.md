@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-05 (~07:0x UTC): one genuine Garage zone-synonym fix shipped, 29-issue decision backlog re-confirmed unchanged, no notification sent
+
+**Did:** Attached per Step 0 (fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `487a996af`, tree clean). Read `BACKLOG-2026-09-07.md` (current queue), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this file's last four entries per Step 1. Ran `preflight.py --skip-tests` twice (once before touching anything, once after): 0 FAIL both times, 33-39 warnings, all standing sandbox gaps (no Stripe/SSH/mail credential, Etsy fee page HTTP 403). `inbox_agent.py --apply`: no mail credential, unchecked, not assumed empty. Found one real, cold-read-stale entry: `ops/keyword_demand.py` had been ledgered 2026-11-02 but materially changed 2026-11-05 (entry 115's attribution fix); re-ledgered clean after reading the actual diff against its own commit message.
+
+Re-pulled GitHub directly rather than citing: 29 open issues, unchanged since 2026-11-02T13:51:51Z, all `decision`/`blocked-on-art`, none from Phil (checked issue #42's own thread, the one tracking this exact cadence question). `ops/last-owner-notification.json` shows the last push on this topic was 2026-11-02T04:17Z with an explicit "do not re-push absent new material change (a Phil reply, a cleared decision, a new credential, or a real customer event)" condition; none of those four conditions is met this cycle (same 29 issues in substance, same silence), so withheld again rather than re-pushing on elapsed time alone.
+
+Picked up entry 116's own handoff (Garage next on `room_guide_underperformance.py`'s ranking). Full account in `BACKLOG-2026-09-07.md` entry 117: one content-grounded fix shipped (`detailing zone`/`car wash zone` added to the Garage Automotive Care Zone's also-called names, moving 3-4 queries from partial to covered across both corpora), the other 81 of Garage's 82 partial rows and both gap rows read against real zone content and left alone as genuinely unfixable (wrong intent, brand/geography terms, or content the zone simply does not have), rather than forcing a weak match to look productive.
+
+**Verified:** `check_also_called_digital_collision_fast.py`, `test_gate_zone_also_called_is_heading.py` (6/6), `test_gate_also_called_no_digital_collision.py` (5/5), `test_room_also_called.py`, `check_urls.py` (235/235), `fix_dashes.py --check` (0/0), `check_sellable.py` (124/126, unchanged exclusions). `keyword_demand.py --rescore` and `keyword_demand_global.py --rescore` both confirm the expected partial-to-covered moves with gap counts unchanged. Full `preflight.py --skip-tests`, run fresh and unbuffered to completion after the change: every gate passed, 33 warnings, 0 FAIL.
+
+**Went well:** checking the two Garage `gap` rows against real content before any partial row, since a gap outranks a partial and both turned out to be genuinely unfixable (raised-bed construction and soap-making, neither a storage-organizing task this zone covers) — cheap to rule out early rather than discovered late.
+
+**Did not go well:** nothing new; the decision backlog (29 issues) and revenue ($19 lifetime, $0 this month) are unchanged from every recent cycle, same as issue #42 describes.
+
+**Changing next cycle:** none; no new defect, no new gate warranted.
+
+**Next:** Garage's remaining 79 partial rows are now individually diagnosed. Hall Closet, Home Office and Primary Bedroom remain the larger `room_guide_underperformance.py` lists for a future cycle. Nothing from the 29 open issues is unblocked; no reply from Phil.
+
+Pushed to main: `ops/zone-also-called.json`, `site/zones/garage-the-automotive-care-zone.html`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `ops/keyword-demand.json`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND.md`, `ops/KEYWORD-DEMAND-GLOBAL.md`, `ops/cold-read-ledger.json`, `ops/cycle-signal.json`, `BACKLOG-2026-09-07.md`, this entry, dashboard files.
+
 ## PM check-in, 2026-11-05 (~06:1x slot): previous work finished, closed the BACKLOG-2026-09-07.md size tripwire with an existing, unapplied rotation tool
 
 PM check-in, 2026-11-05 (~06:1x slot): previous work finished, confirmed independently (preflight 0 FAIL through every gate reached, stalled only at the documented network-bound gate_etsy_pdfs_current; tree clean; GitHub's 29 open issues unchanged since 2026-11-02, all decision/blocked-on-art, none from Phil, checked via issue #42's own thread). Closed the living-docs-total-size tripwire on BACKLOG-2026-09-07.md (171721 to 131602 bytes) by running the existing, previously-unapplied ops/rotate_backlog_closed.py --apply (7 of 10 numbered closed sections archived); gate and rotate-script self-tests both pass. OWNER-ACTIONS.md's own tripwire (115514/110000) remains: its own rotate tools report CLEAN, so shrinking it needs a fresh cold-read, not an existing tool; handing that to the operator. No notification: nothing here changes the owner-facing picture.

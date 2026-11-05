@@ -902,9 +902,9 @@
       "note": "Second-pass cold read, 2026-10-12 operator cycle: re-read in full end to end (not just cited), independently of the two prior cycles that read these same files and reported no defect without re-ledgering, which is what let the nightly-log handoff keep naming them as if nobody had looked (caught by preflight.py's own gate_cold_read_handoff_not_stale). wire_landmarks.py and indexnow.py also re-verified live via --check (214 pages current; 211 sitemap URLs, 0 never submitted). No new defect found in any of the five; each still matches its own extensively documented history."
     },
     "keyword_demand.py": {
-      "status": "fixed",
-      "date": "2026-11-02",
-      "note": "2026-11-02 00:1x cycle (commit 9f3100a3b): added _morphology_variants() and _near_miss_count() as a tie-break-only signal for the third title-tie-break misattribution instance (grilling/grill, BACKLOG section 77). Verified gap/partial/covered counts byte-identical before and after across 4,978 rows, 23/23 tests passing. Re-ledgered now by the 00:4x PM cycle; this file's cold-read-ledger entry had gone stale against its own history (ledgered 2026-10-31, touched 2026-11-02)."
+      "status": "clean",
+      "date": "2026-11-05",
+      "note": "Cold-read diff 1bb502da2 directly against the file as committed: best_page/best_page_title now decided by one winning surface (use_heading flag) before use, exact tie broken by room signal same as _tie_break. Matches commit message and NIGHTLY-LOG entry 115 exactly."
     },
     "keyword_demand_global.py": {
       "status": "fixed",
