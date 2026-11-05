@@ -1,8 +1,8 @@
 {
   "combined_hash": "4179d4efde97a3ad67896ab869d096ed1cd63e6c90ce31b875c222a2a381128e",
-  "git_head": "5138b3e51c5c33c806a8229764483d638a6a95f1",
+  "git_head": "edc21afa4e9d39837e3dcd1bb8d9397954893aa9",
   "note": "merge checkpoint: both concurrent cycles ran preflight --fast clean before pushing; merge only combined already-verified content (NIGHTLY-LOG, BACKLOG stairs entry, hall-closet synonym, dashboard trio), no new code changed",
-  "recorded_at": "2026-11-05T21:19:07Z",
+  "recorded_at": "2026-11-05T21:19:16Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "6eb914cf0af62ea7b3f7267bde7ff17d40ff0d0d1c904d7f992c9d4c56c3d063",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
