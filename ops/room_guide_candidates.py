@@ -106,7 +106,23 @@ OFF_TOPIC_CONTEXT = re.compile(
     # in exactly this 1; no genuine on-topic row (e.g. "how do you
     # organize a company workshop", already `covered`) uses any of these
     # three phrases, so this cannot suppress a genuine match.
-    r"\bbusiness\b|\bequipment list\b|\bpricing model\b", re.I)
+    r"\bbusiness\b|\bequipment list\b|\bpricing model\b|"
+    # Found 2026-11-05 (Workshop pass, the 8 partial rows handed off by the
+    # 02:1x PM check-in). Same seed drift as "Benchmark Advance" above, all
+    # four from "how to organize paint and chemical storage": "how to paint
+    # a storage container", "how to paint a metal storage container" and
+    # "how to paint plastic storage bins" are autosuggest reading the seed
+    # as a request to paint a container as a craft project, not to store
+    # paint; "acrylic paint storage organizer" is the same hobbyist-acrylic
+    # audience "craft paint"/"diamond painting" already excludes, just a
+    # phrase that list had not named yet. The Finishing and Chemical Zone's
+    # own content.json purpose ("Store paint, glue, stain, and solvent so
+    # they stay usable and so they never start a fire") is about what goes
+    # in the container, not how to decorate one. Verified against both
+    # harvests: these four phrases match exactly these four rows and no
+    # other, so this cannot suppress a genuine match.
+    r"how to paint (a )?(metal |plastic )?storage (container|bins)\b|"
+    r"\bacrylic paint\b", re.I)
 
 
 def guide_less_rooms():

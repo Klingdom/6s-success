@@ -13,11 +13,13 @@
   },
   "Workshop|Finishing and Chemical Zone": {
    "names": [
-    "painting zone"
+    "painting zone",
+    "containers zone",
+    "spray zone"
    ],
-   "queries": 1,
+   "queries": 3,
    "covered": 0,
-   "source": "ops/keyword-demand.json 2026-11-05 (bing): 'paint storage or painting storage', rank 4, partial (0.75 title coverage), already scoring correctly to this exact zone page (/zones/workshop-the-finishing-and-chemical-zone.html, title 'How to organize the workshop paint and chemical storage') via 'storage'+'paint', only 'painting' unmatched. Same exact-word-not-stem shape A34/A36 already fixed for 'nappy'/'nappies' and 'craft'/'crafts': this zone's own title word is 'paint', so the scorer never matched the query's gerund 'painting'. Zone's common_items ('Paint, glue, stain and solvent, in original labeled containers') confirms the semantic match. Named 'painting zone', the '<word> zone' precedent from the A-series, not the bare gerund alone."
+   "source": "ops/keyword-demand.json 2026-11-05 (bing): 'paint storage or painting storage', rank 4, partial (0.75 title coverage), already scoring correctly to this exact zone page (/zones/workshop-the-finishing-and-chemical-zone.html, title 'How to organize the workshop paint and chemical storage') via 'storage'+'paint', only 'painting' unmatched. Same exact-word-not-stem shape A34/A36 already fixed for 'nappy'/'nappies' and 'craft'/'crafts': this zone's own title word is 'paint', so the scorer never matched the query's gerund 'painting'. Zone's common_items ('Paint, glue, stain and solvent, in original labeled containers') confirms the semantic match. Named 'painting zone', the '<word> zone' precedent from the A-series, not the bare gerund alone. ADDED 2026-11-05, same cycle, two more genuine on-topic gaps from the 02:1x PM handoff's remaining 8 Workshop partial rows: 'containers for paint storage' (US harvest, rank 17, unmatched word 'containers', already honestly present in this zone's own common_items, 'Paint, glue, stain and solvent, in original labeled containers') and 'spray paint can organizer'/'spray paint organizers and storage' (US harvest, ranks 6 and 2, unmatched word 'spray', the zone's own text covers aerosol storage and spraying directly: 'no aerosol standing on a sunny sill or near a pilot light', 'ventilate before you spray, not after'). The other five rows in that handoff ('acrylic paint storage organizer' and the three 'how to paint a ... storage container/bins' rows, hobbyist-craft and DIY-painting-a-container autosuggest drift from the same seed, plus 'chemical storage best practices', unmatched word 'practices', a generic filler word) were checked and left alone: the first four are excluded in ops/room_guide_candidates.py's OFF_TOPIC_CONTEXT, the fifth has no honest heading."
   },
   "Hall Closet|Cleaning Supply Zone": {
    "names": [

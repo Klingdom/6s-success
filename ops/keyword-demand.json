@@ -5675,13 +5675,11 @@
       "best_page": "/zones/workshop-the-finishing-and-chemical-zone.html",
       "best_page_title": "How to organize the workshop paint and chemical storage",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-garage.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "containers"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/workshop-the-finishing-and-chemical-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "cope with pantry clutter",
@@ -51043,13 +51041,11 @@
       "best_page": "/zones/workshop-the-finishing-and-chemical-zone.html",
       "best_page_title": "How to organize the workshop paint and chemical storage",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-garage.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "spray"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/workshop-the-finishing-and-chemical-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "spray paint organizers and storage",
@@ -51064,13 +51060,11 @@
       "best_page": "/zones/workshop-the-finishing-and-chemical-zone.html",
       "best_page_title": "How to organize the workshop paint and chemical storage",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-garage.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "spray"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/workshop-the-finishing-and-chemical-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "spray paint storage ideas",
@@ -51085,13 +51079,11 @@
       "best_page": "/zones/workshop-the-finishing-and-chemical-zone.html",
       "best_page_title": "How to organize the workshop paint and chemical storage",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-garage.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "spray"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/workshop-the-finishing-and-chemical-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "staging tips to declutter your space",
@@ -57509,6 +57501,6 @@
       ]
     }
   ],
-  "scored_against_commit": "83e4e2046",
-  "scored_at": "2026-11-05T02:21:20Z"
+  "scored_against_commit": "ec2ac8eda",
+  "scored_at": "2026-11-05T02:59:33Z"
 }
