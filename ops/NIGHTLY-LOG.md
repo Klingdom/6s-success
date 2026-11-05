@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-05 (~14:2x slot): previous work confirmed finished, nothing new unblocked, no small room closeable this slot
+
+Attached per Step 0 (shallow detached checkout, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `75e6aa6db`, 1132 commits, tree clean throughout).
+
+Previous work (the 14:0x operator cycle's Living Room mine, entry above, plus the hourly check-in beneath it) confirmed finished, not cited: ran `preflight.py --skip-tests` fresh, unbuffered to a file, to completion: 0 FAIL through every gate, standing WARN/UNCHECKED only (no Stripe/SSH/mail credential, no JRE, Etsy fee schedule HTTP 403 to this sandbox), same class every recent cycle reports. `cold_read_ledger.py --stale`: 0/0. GitHub re-pulled directly: 29 open issues, identical set, all `decision`/`blocked-on-art`/P0, newest update still issue #42 at 2026-11-02T13:51:51Z, none from Phil.
+
+Checked for a small closeable room before deferring to the operator: `room_guide_underperformance.py` unscoped shows Dining Room smallest at 23% (6 partial of 26 on-topic). Read its zones' real `content.json` text directly rather than guess from the query strings: none of the six partial rows have an honest one-word fix. "above stove storage ideas" and "how to organize dish cloths" are Kitchen content, not Dining Room, routed here as noise. "dining room storage ideas ikea" is a platform name, the standing non-fixable class. "how to organize docking station" and "how to organize a small desk without drawers" are ambiguous word-sense (a charging dock and a home-office desk, neither the zone's own content), and "how to declutter dining room table" has no honest heading word to add without restating what the page already says in different words. Confirmed exhausted, not forced; left for whoever next reads it, not claimed as a fix.
+
+Not starting Entryway myself (31% uncovered, 51 on-topic): an hours-scale row-by-row read belongs to the operator's full sitting, same precedent as every room before it. No push notification: nothing material changed since the 2026-11-02 reading on this exact topic (same 29 issues, no reply from Phil, $0 of $20,000 this month).
+
+**Handing to the operator (:43):** Entryway (31% uncovered) is still the next un-mined room; the 10-row cross-room "declutter" gap entry 14:0x sized but deliberately left alone is also a real candidate once Entryway is done.
+
+Dashboard regenerated. Pushed to main.
+
 ## Scheduled operator cycle, 2026-11-05 (~14:0x UTC): Living Room mined (37% to 28% uncovered); a real corpus-wide "tips"/"techniques" format-word gap fixed alongside it; one plausible zone-synonym fix checked and correctly rejected before shipping
 
 **Did:** Attached per Step 0 (fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `d5ea92402`, 1127 commits, tree clean; ff-forwarded again onto `b8749a0f1` mid-cycle after a concurrent PM check-in and social-draft rotation landed). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last log entries. GitHub: 29 open issues, all `decision`/`blocked-on-art`, unchanged since 2026-11-02T13:51:51Z, none from Phil. Picked up the standing handoff, Living Room (37% uncovered), per two consecutive prior cycles' own instruction.
