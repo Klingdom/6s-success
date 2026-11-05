@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-05 (03:4x slot): previous work confirmed finished, the standing room-guide ranking handed to the operator is stale, corrected rather than repeated
+
+NEXT FOR THE OPERATOR: continue `room_guide_underperformance.py` cleanup on Stair Landing (3 partial rows) and Dining Room (4 partial), not the Garage/Pantry/Hall Closet/Home Office/Primary Bedroom order several recent cycles have carried forward, because those two rooms are now the genuinely smallest lists and the carried-forward ranking was never recomputed after earlier fixes shrank them below it.
+
+Attached per Step 0: fetch, real unshallow (was shallow), `checkout -B main origin/main`, ff-only onto `62e0b069d`, 1037 commits fast-forwarded, tree clean, no concurrent push since.
+
+Previous work (03:1x PM check-in, the furniture-zone synonym) confirmed finished, not cited: tree matched origin exactly before this cycle touched anything; its own entry's honest "did not flip the metric, kept the synonym anyway because it's independently true" claim checked directly against `ops/zone-also-called.json` and the rebuilt zone page, both as described. GitHub re-read directly: 29 open issues, unchanged since 2026-11-02T13:51:51Z, all `decision`/`blocked-on-art`; read issue #42's last three comments end to end, all posted by the repo's own automation account, none from Phil. `preflight.py --skip-tests` run fresh to a 180s cap: 0 FAIL across every gate reached (KDP, Etsy-listing economics, catalogue-vs-free-giveaway checks all clean), genuinely stalled at the documented network-bound `gate_etsy_pdfs_current` (HTTP 403 fetching Etsy's own fee page), reported unchecked past that point, not assumed passing.
+
+**Checked the handoff instead of repeating it.** Ran `room_guide_underperformance.py` with no room filter, across all 20 rooms, rather than trust the Garage(93)/Pantry(27)/Hall Closet(97)/Home Office(36)/Primary Bedroom(40) list several PM and operator entries have carried forward unchanged: Stair Landing now shows only 3 partial rows and Dining Room only 4, both smaller than every room on that standing list, because the gallery-wall and photos-zone fixes already closed most of Stair Landing's rows and nobody re-ran the full sweep after. Read each row's real `unmatched_words` (CLAUDE.md 5c): Stair Landing's "way" and "walk" (gallery walk) match the already-established generic-filler and typo precedents, no action; its third row, "staircase landing storage ideas" (unmatched `staircase`), is content-backed (the room's own safety text already says "a trailing cable at the top of a staircase") but scores against the *article* page (`how-to-organize-a-stair-landing.html`), not the room page the `room-also-called.json` mechanism writes to, the same room-page-vs-article gap the 2026-11-02 cycle named for "bathroom cupboard." Dining Room's "ikea" is generic-filler; "declutter" and "docking" (docking station, scoring by coincidence onto the beverage-station zone) are not supported by any content.json text for this room (grep-confirmed, zero hits for both "hutch" and "docking"); "hutch" needs the same real-content check "backyard" got before it could honestly be added, not assumed.
+
+Not fixing any of these myself this slot: none is a one-line synonym add like the recent wins, every one needs either the article-mechanism question settled or a content check the 30-minute window does not have room for. Not starting anything large, per the standing instruction for this slot.
+
+No push notification: nothing here changes the owner-facing picture (same 29 issues, no reply, $0 of $20,000 this month); a corrected internal ranking is not new information for Phil.
+
+Dashboard regenerated. Pushed to main.
+
 ## PM check-in, 2026-11-05 (03:1x slot): previous work finished, closed one of the 03:0x handoff's Patio or Deck rows with a synonym its own prior cycle had already diagnosed but never shipped, the rest genuinely need more than a synonym
 
 Previous work (03:0x operator, Workshop's last 8 rows) confirmed finished: tree matched origin before this cycle touched anything, `preflight.py --skip-tests` run fresh to a 180s cap, 0 FAIL through every gate reached, stalled only at the documented network-bound `gate_etsy_pdfs_current` (exit 124), reported unchecked past that, not assumed passing. 29 open GitHub issues re-read live via the API, unchanged since 2026-11-02T13:51:51Z, none from Phil.
