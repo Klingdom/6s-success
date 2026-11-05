@@ -568,8 +568,8 @@
     },
     "build_zone_pages.py": {
       "status": "clean",
-      "date": "2026-11-03",
-      "note": "Re-read the 2026-11-02/03 Patio or Deck and Primary Bathroom ROOM_GUIDES entries against their diffs: same three-tuple shape every prior room-guide row uses (path, title, one-line zone order), paths match the shipped articles, no defect."
+      "date": "2026-11-05",
+      "note": "Re-verified after Primary Bedroom heading fix (b261d6b26): diff matches commit message exactly (one heading retitle, scoped to Primary Bedroom only), already tested and rescored by the 11:0x operator cycle."
     },
     "canonical_links.py": {
       "status": "clean",

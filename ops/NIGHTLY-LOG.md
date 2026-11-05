@@ -22,6 +22,18 @@ Picked up the 11:2x PM handoff: Home Office (38% uncovered) was the next room no
 
 Pushed to main. `ops/keyword_demand.py`, `ops/zone-also-called.json`, `ops/tests/test_keyword_demand.py`, `ops/keyword-demand.json`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND.md`, `ops/KEYWORD-DEMAND-GLOBAL.md`, `site/zones/home-office-the-supply-cabinet.html`, generator side-effect files, `BACKLOG-2026-09-07.md`, this entry, dashboard files. One existing zone page edited, no new page; `IndexNow` to submit on push. No price or product touched.
 
+## PM check-in, 2026-11-05 (~11:4x slot): previous work confirmed finished, standing Home Office handoff reconfirmed, one stale ledger entry closed
+
+NEXT FOR THE OPERATOR: Home Office (38% uncovered, 0 gap + 30 partial of 79 on-topic rows), because it is the highest-ranked room on `room_guide_underperformance.py`'s current output that has not yet had a dedicated row-by-row read, and nothing about that handoff from the 11:2x cycle has changed since (no commit under `site/rooms/home-office.html` or its zones).
+
+Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `318cf15e7`, tree clean before this cycle touched anything). Previous work (the 11:2x PM check-in's own Home Office handoff, plus the deploy verdict and hourly check-in since) confirmed finished, not cited: `git log` showed no new commits since 11:20, so the operator's own :43 cycle had not yet landed when this slot started. `preflight.py --skip-tests` run fresh to a file: 0 FAIL across every gate reached, only the standing WARNs (image-coverage source heroes gitignored in this sandbox, deploy-fresh unreachable from here, tests skipped as asked). GitHub re-pulled directly: 29 open issues, identical set and labels to the dashboard's own count, newest update still `#42` at 2026-11-02T13:51:51Z, none from Phil.
+
+Found and closed a real small gap instead of only reconfirming: `cold_read_ledger.py --stale` flagged `ops/build_zone_pages.py` as ledgered 2026-11-03 but last touched 2026-11-05 (the 11:0x operator cycle's Primary Bedroom heading fix). Read the actual diff rather than trusting the commit message: it matches exactly (one heading retitle, scoped to Primary Bedroom only), and that cycle's own tests and rescoring already verified it. Re-ledgered clean with today's date; `--stale` now reports 0/0. All eight `rotate_backlog_*.py --check` tools also re-run directly: every one CLEAN, so the standing `BACKLOG-2026-09-07.md`/`OWNER-ACTIONS.md` size tripwires (161612/150000, 115514/110000, both WARN-only) have no unapplied rotation tool behind them and need a fresh cold-read, not a quick script run; left for whichever cycle has room for that.
+
+Not starting Home Office myself: a full per-row read of 30 partial rows against real zone content is hours-scale, the hourly operator's job in one sitting, not this slot's few minutes, and this slot runs three minutes ahead of the operator by design. No push notification: nothing about the owner-facing picture changed since the last one (same 29 issues, no reply from Phil, $0 of $20,000 this month).
+
+Dashboard regenerated. Pushed to main.
+
 ## PM check-in, 2026-11-05 (~11:2x slot): previous work confirmed finished, Home Office handed off as the next un-mined room
 
 Previous work (the 11:0x operator cycle's Primary Bedroom heading fix, entry 121) was finished: tree clean, main pushed, `preflight.py --skip-tests` reran clean (0 FAIL, standing warnings only). GitHub re-pulled directly: 29 open issues, all decision/blocked-on-art, unchanged since 2026-11-02, none from Phil. `OWNER-ACTIONS.md` re-read: every open row genuinely needs Phil.
