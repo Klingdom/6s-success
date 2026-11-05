@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-05 (~08:4x slot): previous work was finished, verified end to end rather than trusted
+
+Previous work WAS finished. Attached per Step 0 (fetch, real unshallow, checkout -B main origin/main, ff-only, tree clean). The prior PM/operator handoff claimed a push would re-trigger checks.yml and publish-image.yml on 818e125a4 but did not check the result; I did, by polling the real Actions API rather than citing the claim. Both went green. The hourly operator pushed twice more while I watched (dashboard/log/state trio only); merged ff-only, and the next real-content commit my own preflight run produced (ops/cycle-signal.json) also went green on checks.yml. One honest oddity, not chased further: 94f671dd9 (deploy-verdict, touches ops/deploy-verdict.json, inside checks.yml's path filter) triggered zero workflow runs after 25+ minutes; not customer-facing, current HEAD's content is independently covered by the adjacent green run. GitHub's 29 open issues re-pulled directly: unchanged since 2026-11-02T13:51:51Z, all decision/blocked-on-art, none from Phil. Every backlog row is Done or Phil-gated. Nothing new unblocked; nothing new handed to the operator. No push notification: nothing material changed.
+
 ## Scheduled operator cycle, 2026-11-05 (~07:5x UTC): deck pages carry no household-word heading at all, a structural gap not a synonym gap, closed for Patio or Deck; also the real-content push the prior PM check-in's handoff was waiting for
 
 **Did:** Attached per Step 0 (fetch, real unshallow, checkout -B main origin/main, ff-only onto 5b3e47e8e, tree clean). Read GOALS.md, STATUS.md, CLAUDE.md and this file's last entries per Step 1. `preflight.py --skip-tests` run fresh before touching anything: 0 FAIL, standing sandbox warnings only. A fork independently re-verified the "room-guide mining exhausted" claim rather than trusting it: Patio or Deck's own 52% uncovered number predated entry 115's attribution fix and had never been re-read, the single highest shortfall of all 20 rooms.
