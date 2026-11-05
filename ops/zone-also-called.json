@@ -124,11 +124,14 @@
   "Kitchen|Sink and Dishwashing Zone": {
    "names": [
     "drying racks zone",
-    "sink cupboard"
+    "sink cupboard",
+    "cleaning products",
+    "cleaning supplies"
    ],
-   "queries": 4,
+   "queries": 6,
    "covered": 0,
-   "source_sink_cupboard": "ops/keyword-demand-global.json 2026-11-05 (gb, au, in): 'how to organise kitchen sink cupboard', partial (0.667 title coverage), already scored correctly to this exact zone page (/zones/kitchen-the-sink-and-dishwashing-zone.html) via 'kitchen'+'sink' in the title, only the single word 'cupboard' unmatched. Checked the zone's own content.json before adding: its done_looks_like text already says 'Under the sink, a single tray holding dish soap, dishwasher tablets, and one all-purpose cleaner, with the pipes visible around them', the real cupboard this query asks about. Named 'sink cupboard', the plain phrase, matching the precedent used for other British/Commonwealth cupboard terms already in this file ('corner cupboard', 'coat cupboard')."
+   "source_sink_cupboard": "ops/keyword-demand-global.json 2026-11-05 (gb, au, in): 'how to organise kitchen sink cupboard', partial (0.667 title coverage), already scored correctly to this exact zone page (/zones/kitchen-the-sink-and-dishwashing-zone.html) via 'kitchen'+'sink' in the title, only the single word 'cupboard' unmatched. Checked the zone's own content.json before adding: its done_looks_like text already says 'Under the sink, a single tray holding dish soap, dishwasher tablets, and one all-purpose cleaner, with the pipes visible around them', the real cupboard this query asks about. Named 'sink cupboard', the plain phrase, matching the precedent used for other British/Commonwealth cupboard terms already in this file ('corner cupboard', 'coat cupboard').",
+   "source_cleaning_products": "ops/room_guide_underperformance.py --room Kitchen, 2026-11-05: 'how to organize cleaning products under kitchen sink' and 'how to organize cleaning supplies under kitchen sink' (both partial, 0.4 title coverage, already routed correctly here via 'kitchen'+'sink'+'organize', unmatched only 'products' and 'supplies' respectively), plus 'how to organize kitchen cleaning supplies' (partial 0.667, but misrouted to the Cooking Zone's stove-area page instead of here, the real content match). The zone's own common_items already names the exact products kept there ('Dish soap, dishwasher tablets, and one all-purpose cleaner, on a single tray under the sink'), so 'cleaning products' and 'cleaning supplies' are what a household actually calls that tray, not an invented label. Named as plain phrases rather than '<word> zone' (precedent: 'sink cupboard' above), since nobody calls this the 'supplies zone'; checked for collision first against Hall Closet's own Cleaning Supply Zone (singular 'Supply', never the plural 'supplies' or 'products' in its title, so no exact-word tie) and against Home Office's Supply Cabinet zone (same reasoning, 'Supply' singular, and no query here carries an office signal)."
   },
   "Primary Bathroom|Vanity Counter": {
    "names": [

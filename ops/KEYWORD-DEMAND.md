@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-05T07:58:53Z against 243 page(s) at commit 5b3e47e8e. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-05T08:58:06Z against 243 page(s) at commit 5ade5541b. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1461 covered, 1253 partial, 109 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1464 covered, 1250 partial, 109 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -104,7 +104,7 @@ Showing the top 80 of 109, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1253.
+Showing the top 60 of 1250.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -157,7 +157,7 @@ Showing the top 60 of 1253.
 | 2 | how to declutter a bathroom counter | How to organize the guest bathroom vanity counter | 0.67 |
 | 2 | how to declutter kitchen countertops | How to organize the kitchen prep counter | 0.67 |
 | 2 | how to decorate a guest bedroom | The Guest Bedroom Deck: 57 cards, free to read | 0.67 |
-| 2 | how to organize baking supplies in kitchen | How to organize the pantry baking supplies | 0.67 |
+| 2 | how to organize baking supplies in kitchen | How to organize the kitchen sink area | 0.67 |
 | 2 | how to organize household cleaning supplies | How to organize the hall closet cleaning supplies | 0.67 |
 | 2 | linen closet organization hacks | How to organize a linen closet: sheets, towels and shelves | 0.67 |
 | 2 | master bedroom closet organization ideas | How to organize the primary bedroom closet | 0.67 |
@@ -182,7 +182,7 @@ Showing the top 60 of 1253.
 | Hall Closet | 27 | 0 | 11 | 16 |
 | Home Office | 58 | 0 | 24 | 34 |
 | Kids Bedroom | 22 | 0 | 8 | 14 |
-| Kitchen | 97 | 2 | 39 | 56 |
+| Kitchen | 97 | 2 | 37 | 58 |
 | Laundry Room | 72 | 0 | 16 | 56 |
 | Living Room | 97 | 2 | 44 | 51 |
 | Mudroom | 43 | 0 | 23 | 20 |

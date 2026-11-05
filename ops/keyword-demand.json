@@ -26052,15 +26052,15 @@
         "how to organize baking supplies"
       ],
       "room": "Kitchen",
-      "best_page": "/zones/pantry-the-baking-zone.html",
-      "best_page_title": "How to organize the pantry baking supplies",
+      "best_page": "/zones/kitchen-the-sink-and-dishwashing-zone.html",
+      "best_page_title": "How to organize the kitchen sink area",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "title",
+      "heading_page": "/zones/kitchen-the-sink-and-dishwashing-zone.html",
+      "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "kitchen"
+        "baking"
       ]
     },
     {
@@ -28090,13 +28090,11 @@
       "best_page": "/zones/kitchen-the-sink-and-dishwashing-zone.html",
       "best_page_title": "How to organize the kitchen sink area",
       "coverage": 0.4,
-      "heading_coverage": 0.8,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kitchen-the-sink-and-dishwashing-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "products"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize cleaning products under sink",
@@ -28274,13 +28272,11 @@
       "best_page": "/zones/kitchen-the-sink-and-dishwashing-zone.html",
       "best_page_title": "How to organize the kitchen sink area",
       "coverage": 0.4,
-      "heading_coverage": 0.8,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kitchen-the-sink-and-dishwashing-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "supplies"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize cleaning supplies under sink",
@@ -28293,16 +28289,14 @@
         "how to organize cleaning supplies"
       ],
       "room": "",
-      "best_page": "/downloads/6S-Standards-Pack.html",
-      "best_page_title": "The 6S Success Standards Pack",
+      "best_page": "/zones/kitchen-the-sink-and-dishwashing-zone.html",
+      "best_page_title": "How to organize the kitchen sink area",
       "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/kitchen-the-sink-and-dishwashing-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "supplies"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize cleaning supplies without a closet",
@@ -57466,6 +57460,6 @@
       ]
     }
   ],
-  "scored_against_commit": "5b3e47e8e",
-  "scored_at": "2026-11-05T07:58:53Z"
+  "scored_against_commit": "5ade5541b",
+  "scored_at": "2026-11-05T08:58:06Z"
 }
