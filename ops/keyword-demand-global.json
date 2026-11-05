@@ -6987,11 +6987,11 @@
         "foyer organisation ideas"
       ],
       "room": "",
-      "best_page": "/rooms/entryway.html",
-      "best_page_title": "How to organize an entryway, zone by zone",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/rooms/entryway.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -7012,13 +7012,11 @@
       "best_page": "/articles/how-to-organize-an-entryway.html",
       "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "foyer"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -7229,16 +7227,16 @@
         "foyer organization ideas"
       ],
       "room": "",
-      "best_page": "/entryway-deck.html",
-      "best_page_title": "The Entryway Deck, Five Zones: 57 cards, free to read",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/entryway-deck.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
         "design",
-        "foyer"
+        "rack"
       ],
       "markets": [
         "ca"
@@ -7252,11 +7250,11 @@
         "foyer organisation ideas"
       ],
       "room": "",
-      "best_page": "/rooms/entryway.html",
-      "best_page_title": "How to organize an entryway, zone by zone",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/rooms/entryway.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -7274,15 +7272,15 @@
         "foyer organisation ideas"
       ],
       "room": "",
-      "best_page": "/entryway-deck.html",
-      "best_page_title": "The Entryway Deck, Five Zones: 57 cards, free to read",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.0,
       "heading_coverage": 0.5,
-      "heading_page": "/entryway-deck.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "foyer"
+        "entry"
       ],
       "markets": [
         "gb",
@@ -7298,11 +7296,11 @@
         "foyer organisation ideas"
       ],
       "room": "Entryway",
-      "best_page": "/rooms/entryway.html",
-      "best_page_title": "How to organize an entryway, zone by zone",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/rooms/entryway.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -7318,11 +7316,11 @@
         "foyer organisation ideas"
       ],
       "room": "",
-      "best_page": "/rooms/entryway.html",
-      "best_page_title": "How to organize an entryway, zone by zone",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.0,
       "heading_coverage": 0.5,
-      "heading_page": "/rooms/entryway.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -7340,15 +7338,15 @@
         "foyer organisation ideas"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-toys.html",
-      "best_page_title": "How to organize toys so a child can put them away",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "foyer"
+        "spaces"
       ],
       "markets": [
         "in"
@@ -7362,11 +7360,11 @@
         "foyer organisation ideas"
       ],
       "room": "",
-      "best_page": "/rooms/entryway.html",
-      "best_page_title": "How to organize an entryway, zone by zone",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.0,
       "heading_coverage": 1.0,
-      "heading_page": "/rooms/entryway.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -7382,11 +7380,11 @@
         "foyer organisation ideas"
       ],
       "room": "",
-      "best_page": "/rooms/entryway.html",
-      "best_page_title": "How to organize an entryway, zone by zone",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.0,
       "heading_coverage": 0.5,
-      "heading_page": "/rooms/entryway.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -7404,11 +7402,11 @@
         "foyer organisation ideas"
       ],
       "room": "",
-      "best_page": "/rooms/entryway.html",
-      "best_page_title": "How to organize an entryway, zone by zone",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/rooms/entryway.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -7426,11 +7424,11 @@
         "foyer organisation ideas"
       ],
       "room": "",
-      "best_page": "/rooms/entryway.html",
-      "best_page_title": "How to organize an entryway, zone by zone",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/rooms/entryway.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "gap",
       "unmatched_words": [
@@ -7449,11 +7447,11 @@
         "foyer organisation ideas"
       ],
       "room": "",
-      "best_page": "/rooms/entryway.html",
-      "best_page_title": "How to organize an entryway, zone by zone",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/rooms/entryway.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -7473,11 +7471,11 @@
         "foyer organisation ideas"
       ],
       "room": "",
-      "best_page": "/rooms/entryway.html",
-      "best_page_title": "How to organize an entryway, zone by zone",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.0,
       "heading_coverage": 0.5,
-      "heading_page": "/rooms/entryway.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -7495,11 +7493,11 @@
         "foyer organisation ideas"
       ],
       "room": "",
-      "best_page": "/rooms/entryway.html",
-      "best_page_title": "How to organize an entryway, zone by zone",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.0,
       "heading_coverage": 1.0,
-      "heading_page": "/rooms/entryway.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -7515,11 +7513,11 @@
         "foyer organisation ideas"
       ],
       "room": "",
-      "best_page": "/rooms/entryway.html",
-      "best_page_title": "How to organize an entryway, zone by zone",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.0,
       "heading_coverage": 1.0,
-      "heading_page": "/rooms/entryway.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -7536,11 +7534,11 @@
         "foyer organisation ideas"
       ],
       "room": "",
-      "best_page": "/rooms/entryway.html",
-      "best_page_title": "How to organize an entryway, zone by zone",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.0,
       "heading_coverage": 1.0,
-      "heading_page": "/rooms/entryway.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -7559,11 +7557,11 @@
         "foyer organisation ideas"
       ],
       "room": "",
-      "best_page": "/rooms/entryway.html",
-      "best_page_title": "How to organize an entryway, zone by zone",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.0,
       "heading_coverage": 0.5,
-      "heading_page": "/rooms/entryway.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -7581,11 +7579,11 @@
         "foyer organisation ideas"
       ],
       "room": "",
-      "best_page": "/rooms/entryway.html",
-      "best_page_title": "How to organize an entryway, zone by zone",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.0,
       "heading_coverage": 0.5,
-      "heading_page": "/rooms/entryway.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -7606,13 +7604,11 @@
       "best_page": "/articles/how-to-organize-an-entryway.html",
       "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "foyer"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -22848,13 +22844,11 @@
       "best_page": "/articles/how-to-organize-an-entryway.html",
       "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "foyer"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -48566,6 +48560,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-11-05T13:55:18Z",
-  "scored_against_commit": "d5ea92402"
+  "scored_at": "2026-11-05T14:53:49Z",
+  "scored_against_commit": "55e3c948b"
 }

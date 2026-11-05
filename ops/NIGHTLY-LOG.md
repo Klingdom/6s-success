@@ -2,6 +2,29 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-05 (~15:0x UTC): Entryway mined (31% to 24% uncovered); two real heading gaps closed ("foyer", singular "key"); a wasted first attempt (body-text edits) found and corrected before shipping
+
+**Did:** Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `55e3c948b`, 1137 commits, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last log entries (through the 14:2x PM check-in). GitHub: 29 open issues, all `decision`/`blocked-on-art`, unchanged since 2026-11-02T13:51:51Z, none from Phil. Picked up the standing handoff, Entryway (31% uncovered), per the 14:2x check-in's own instruction.
+
+**Verified:** read all 8 of Entryway's partial rows against the real page, not the row summaries. First attempt added "also called the foyer" and a key-hook sentence to the article's body paragraphs; rescoring moved nothing. Read `ops/keyword_demand.py`'s `page_inventory()` before trying again and confirmed it scores only `<title>`/`<h1-3>`, never body text. Moved both fixes into headings instead: retitled the "Before you start" `<h2>` to name the foyer, and reworded the existing FAQ `<h3>` ("How do I organize entryway mail and keys?" to "...and a key organizer?", matched in its JSON-LD twin too). Kept the two genuine body sentences (they are true, add real content, and do no harm) but credited the score change to the heading edits alone, not to them.
+
+**Checked and correctly left the rest unfixed, per CLAUDE.md 5d:** "diy"/"ikea"/"lowes" (brand/platform names, standing precedent); "systems" (122 of our own 243 pages already carry it, so stopwording it would be the self-flattery entry 125's "tips"/"techniques" fix was careful to avoid; checked directly, correctly not added); "container" (The Container Store, a retailer brand); "pinterest" (named platform); "potting bench" and "reloading bench" (word-sense collisions, a gardening workbench and an ammunition bench, neither this zone's furniture).
+
+**Verified the blast radius, not just the count:** full before/after diff of both harvest files. US: 5 rows `partial`→`covered` (the two targets plus three same-word side effects: `foyer closet ideas`, `how to organize a foyer closet`, and a global duplicate), 0 new `gap`, 111 gap unchanged. Global: 3 rows `partial`→`covered`, 91 gap unchanged. Every changed row read individually; all are the two fixes above.
+
+`room_guide_underperformance.py --room "Entryway"`: 31% to 24% uncovered (16 to 12 partial of 51 on-topic). `test_keyword_demand.py` (28/28), `check_also_called_digital_collision_fast.py` (clean), `check_urls.py` (235/235), `fix_dashes.py --check` (0/0), `audit_pages.py` (0 findings), `check_sellable.py` (124/126, unchanged), `affiliate.py --check` (165 documents) all clean, run directly. `build_seo.py` re-run to refresh `site/sitemap.xml`/`ops/sitemap-content-hashes.json` for the one changed page. `preflight.py --skip-tests` run both capped (0 FAIL/ERROR through every gate reached in 110s) and backgrounded for a fuller pass (0 FAIL through the Etsy-listing gates reached, standing network-bound UNCHECKED only: Etsy fee schedule HTTP 403, no Stripe credential). `inbox_agent.py --apply`: no mail credential, unchecked, not assumed empty. `indexnow.py --submit`: UNCHECKED, could not reach the site to confirm the key file, refused to submit rather than guess.
+
+**Went well:** reading `page_inventory()`'s own extraction logic before a second attempt, rather than guessing again, turned a second wasted edit into the right one on the first retry.
+
+**Did not go well:** the first attempt (body-text only) produced a zero-change rescore that could have been reported as "exhausted" if not checked against the actual before/after diff.
+
+**Changing next cycle:** before editing a page to close a keyword-demand gap, read `page_inventory()` first to confirm the edit lands in a scored field (title or `<h1-3>`), not body text.
+
+**Next:** Guest Bedroom (30% uncovered, per a fresh unscoped `room_guide_underperformance.py` run) is the next-highest room not yet individually mined; Family Room, Guest Bathroom, Kids Bedroom, Laundry Room, Nursery and Primary Bathroom are the other rooms without a dedicated row-by-row read yet, in roughly that order. The 10-row multi-room "declutter" gap (sized in entry 125) remains a real future candidate once the per-room queue is worked through. Nothing from the 29 open GitHub issues is unblocked; no reply from Phil since 2026-11-02. No push notification: nothing on the owner-facing picture changed (same 29 issues, no reply, $0 of $20,000 this month); the last notification on this exact topic (2026-11-02) still covers it.
+
+Pushed to main. One site page (`site/articles/how-to-organize-an-entryway.html`), both harvest JSON files and their `.md` reports, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `BACKLOG-2026-09-07.md` (entry 126), this entry, and the dashboard. No price or product touched. `IndexNow` resubmission attempted, unchecked (no network).
+
+
 ## PM check-in, 2026-11-05 (~14:2x slot): previous work confirmed finished, nothing new unblocked, no small room closeable this slot
 
 Attached per Step 0 (shallow detached checkout, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `75e6aa6db`, 1132 commits, tree clean throughout).

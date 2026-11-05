@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-05T13:55:12Z against 243 page(s) at commit d5ea92402. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-05T14:53:31Z against 243 page(s) at commit 55e3c948b. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1495 covered, 1217 partial, 111 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1500 covered, 1212 partial, 111 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -104,7 +104,7 @@ Showing the top 80 of 111, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1217.
+Showing the top 60 of 1212.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -174,7 +174,7 @@ Showing the top 60 of 1217.
 | Room | Queries | Gap | Partial | Covered |
 |---|---|---|---|---|
 | Dining Room | 38 | 0 | 17 | 21 |
-| Entryway | 50 | 1 | 11 | 38 |
+| Entryway | 50 | 1 | 10 | 39 |
 | Family Room | 27 | 0 | 17 | 10 |
 | Garage | 77 | 1 | 26 | 50 |
 | Guest Bathroom | 22 | 1 | 14 | 7 |
