@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-05 (00:5x slot): previous work confirmed finished, closed one row of the cupboard cluster the 00:4x check-in re-surfaced, nothing new unblocked
+
+Previous work (00:4x PM check-in, operator cycle A57) confirmed finished: tree matched origin before this cycle touched anything, both pushed clean. GitHub: 29 open issues, no Phil reply, matching every recent cycle.
+
+Did not drop the 00:4x handoff again: took the one clean row in the "cupboard" cluster mapping to an already-correct zone, same precedent as walk-in/corner cupboard. Added "baking cupboard" to Pantry|Baking Zone in zone-also-called.json, rebuilt zone pages, rescored keyword-demand-global.json: both US and global rows for that query moved partial to covered. Verified: collision checker clean, check_urls 235/235, dashes/dialect 0/0, preflight 0 FAIL to documented stalls.
+
+Remaining cupboard/foyer/stairs rows still need per-row mapping, left for the operator. No notification: no material change since 2026-11-02.
+
+Dashboard regenerated. Pushed to main.
+
 ## Scheduled operator cycle, 2026-11-05: closed a keyword-demand gap A55/A56 had each marked unfixable
 
 **Did:** Attached per Step 0 (unshallowed, `checkout -B main origin/main`, ff-only onto `fc47d1d15`, 1007 commits). Confirmed the standing state rather than cite it: 29 open GitHub issues, all `decision`/`blocked-on-art`, none from Phil; no mail credential; `room_guide_underperformance.py` found 13 fresh `gap` rows the 2026-11-04 "exhausted" entries had not seen (a later keyword harvest). Opened and read them (CLAUDE.md 5c), not just counted. Most were off-topic noise or already-diagnosed. One, "card games organizer storage," A55 and A56 had each tried and reverted, concluding it was unfixable because the obvious fix (adding "games" to a heading) collides with six PC/Steam queries. Added "card zone" instead (singular, no "games"), a genuine content match (the zone's own text repeatedly names cards, tokens, dice) that avoids the colliding word entirely.
