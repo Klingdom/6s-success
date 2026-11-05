@@ -3,6 +3,22 @@
  "_rule": "Do not add a word with no measured queries, and do not add a word the site already covers. Keyed 'Room|Zone' using the same exact room/zone names as content.json, matching the convention ops/zone-search-terms.json already uses for its own lookup key.",
  "_measured_at": "2026-10-10T19:51:00Z",
  "zones": {
+  "Stair Landing|Wall and Display Zone": {
+   "names": [
+    "photos zone"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand.json 2026-11-05 (bing): 'how to organize photos in gallery', rank 8, partial (0.5 title coverage), already scoring correctly to this exact zone page (/zones/stair-landing-the-wall-and-display-zone.html, title 'How to organize the stair landing gallery wall') via 'organize'+'gallery', only the single word 'photos' unmatched. The zone's own common_items list names 'Framed photos or art' first, and its purpose covers the frames and mirror hung on the stairway wall, so 'photos' is exactly what this zone holds, not a coincidental match. Named 'photos zone', the '<word> zone' precedent from the A-series (A21/A23/A24/A32/A33/A34/A36)."
+  },
+  "Workshop|Finishing and Chemical Zone": {
+   "names": [
+    "painting zone"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand.json 2026-11-05 (bing): 'paint storage or painting storage', rank 4, partial (0.75 title coverage), already scoring correctly to this exact zone page (/zones/workshop-the-finishing-and-chemical-zone.html, title 'How to organize the workshop paint and chemical storage') via 'storage'+'paint', only 'painting' unmatched. Same exact-word-not-stem shape A34/A36 already fixed for 'nappy'/'nappies' and 'craft'/'crafts': this zone's own title word is 'paint', so the scorer never matched the query's gerund 'painting'. Zone's common_items ('Paint, glue, stain and solvent, in original labeled containers') confirms the semantic match. Named 'painting zone', the '<word> zone' precedent from the A-series, not the bare gerund alone."
+  },
   "Hall Closet|Cleaning Supply Zone": {
    "names": [
     "detergents zone",

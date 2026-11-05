@@ -32307,13 +32307,11 @@
       "best_page": "/zones/stair-landing-the-wall-and-display-zone.html",
       "best_page_title": "How to organize the stair landing gallery wall",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "photos"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/stair-landing-the-wall-and-display-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize photos on wall",
@@ -32328,13 +32326,11 @@
       "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
       "best_page_title": "How to organize the garage tool wall",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/kids-bedroom-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "photos"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/stair-landing-the-wall-and-display-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize pics on wall",
@@ -36477,7 +36473,7 @@
       "best_page_title": "How to store blankets, and where each kind should live",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/zones/workshop-the-finishing-and-chemical-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -47380,13 +47376,11 @@
       "best_page": "/zones/workshop-the-finishing-and-chemical-zone.html",
       "best_page_title": "How to organize the workshop paint and chemical storage",
       "coverage": 0.75,
-      "heading_coverage": 0.75,
-      "heading_page": "/articles/how-to-organize-a-garage.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "painting"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/workshop-the-finishing-and-chemical-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "pantry organization ideas",
@@ -52405,13 +52399,12 @@
       "best_page": "/zones/workshop-the-finishing-and-chemical-zone.html",
       "best_page_title": "How to organize the workshop paint and chemical storage",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/how-to-organize-a-garage.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.667,
+      "heading_page": "/zones/workshop-the-finishing-and-chemical-zone.html",
+      "matched_on": "heading",
+      "status": "partial",
       "unmatched_words": [
-        "diamonds",
-        "painting"
+        "diamonds"
       ]
     },
     {
@@ -57516,6 +57509,6 @@
       ]
     }
   ],
-  "scored_against_commit": "6e3c11c13",
-  "scored_at": "2026-11-05T01:53:04Z"
+  "scored_against_commit": "83e4e2046",
+  "scored_at": "2026-11-05T02:21:20Z"
 }

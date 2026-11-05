@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-05T01:53:04Z against 243 page(s) at commit 6e3c11c13. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-05T02:21:20Z against 243 page(s) at commit 83e4e2046. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1438 covered, 1272 partial, 113 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1441 covered, 1270 partial, 112 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 113, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 112, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -104,13 +104,12 @@ Showing the top 80 of 113, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1272.
+Showing the top 60 of 1270.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
 | 3 | outdoor patio and deck design ideas | How to organize the patio or deck outdoor dining | 0.75 |
 | 4 | how to organize cleaning supplies without a closet | How to organize the hall closet cleaning supplies | 0.75 |
-| 4 | paint storage or painting storage | How to organize the workshop paint and chemical storage | 0.75 |
 | 4 | why does my house always look messy | Why is my house always messy? | 0.75 |
 | 6 | diy garden tool storage ideas | How to organize the garage garden tool storage | 0.75 |
 | 7 | diy power tool storage | How to organize the garage power tool storage | 0.75 |
@@ -168,6 +167,7 @@ Showing the top 60 of 1272.
 | 2 | patio deck design ideas | How to organize a patio or deck, step by step | 0.67 |
 | 2 | patio off of deck | How to organize a patio or deck, step by step | 0.67 |
 | 2 | primary bedroom decorating ideas | The Primary Bedroom Deck: 66 cards, free to read | 0.67 |
+| 2 | restaurant dining room ideas | The Dining Room Deck: 61 cards, free to read | 0.67 |
 
 ## By room
 
