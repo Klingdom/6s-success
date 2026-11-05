@@ -714,6 +714,51 @@ def main():
         fails.append("excluding 'practices' did not improve the honest "
                      "score: %r -> %r" % (before2["score"], r2b["coverage"]))
 
+    # 25. Found live 2026-11-05, mining Guest Bedroom: "ways" is the same
+    #     task-verb-family shape as "arrange" ("ways to organize a
+    #     nightstand" asks for the same thing as "how to organize a
+    #     nightstand"), not the same-shape-as-"tips" generic-filler class, so
+    #     it joined FORMAT_WORDS alongside "organize"/"arrange" rather than
+    #     STOPWORDS. Checked for self-flattery first, same bar as "arrange"
+    #     required: zero of our own page titles carry the literal word
+    #     "ways", so excluding it from content words cannot inflate any
+    #     page's score.
+    if "ways" in kd.content_words("ways to organize a nightstand"):
+        fails.append("'ways' is still a content word; the FORMAT_WORDS "
+                     "addition did not take")
+    ways_inv = [
+        {"url": "/zones/guest-bedroom-the-guest-nightstand.html",
+         "title": "The Guest Nightstand",
+         "words": set(kd.words("The Guest Nightstand")),
+         "head_words": set(kd.words("The Guest Nightstand")),
+         "room": "Guest Bedroom"},
+    ]
+    before3 = {"best_page": None, "score": None}
+    old_format = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format - {"ways"}
+    try:
+        r3a = kd.score_rows(
+            {"ways to organize nightstand":
+             {"query": "ways to organize nightstand",
+              "sources": ["google"], "best_rank": 1, "seeds": ["x"]}},
+            ["Guest Bedroom"], ways_inv)[0]
+        before3["best_page"] = r3a["best_page"]
+        before3["score"] = r3a["coverage"]
+    finally:
+        kd.FORMAT_WORDS = old_format
+    r3b = kd.score_rows(
+        {"ways to organize nightstand":
+         {"query": "ways to organize nightstand",
+          "sources": ["google"], "best_rank": 1, "seeds": ["x"]}},
+        ["Guest Bedroom"], ways_inv)[0]
+    if r3b["best_page"] != before3["best_page"]:
+        fails.append("excluding 'ways' from content words changed which "
+                     "page the query routes to: %r -> %r"
+                     % (before3["best_page"], r3b["best_page"]))
+    if not (r3b["coverage"] > before3["score"]):
+        fails.append("excluding 'ways' did not improve the honest score: "
+                     "%r -> %r" % (before3["score"], r3b["coverage"]))
+
     if fails:
         print("FAIL")
         for f in fails:

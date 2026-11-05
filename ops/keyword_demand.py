@@ -185,7 +185,16 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "organizer", "organizers", "organise", "organising",
                           "arrange", "arranging", "arranged", "arrangement",
                           "arrangements", "rearrange", "rearranging",
-                          "rearranged"))
+                          "rearranged", "ways"))
+
+# "ways" joined 2026-11-05, same shape as "arrange": "ways to organize a
+# nightstand" and "how to organize a nightstand" ask for the same thing about
+# the same subject, so scoring "ways" as an unmet content word penalizes a
+# wording choice, not a real subject gap. Checked for self-flattery first: 0
+# of our titles and 6 of 243 pages' headings carry it, well under the bar
+# that blocked "systems". 25 live queries (22 US, 3 global), all partial but
+# one already covered, move toward covered; none can move the other way,
+# since dropping a required word from a match can only raise a score.
 
 
 def room_names():

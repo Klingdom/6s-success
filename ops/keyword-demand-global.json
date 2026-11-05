@@ -19742,16 +19742,14 @@
         "how to organise charging station"
       ],
       "room": "",
-      "best_page": "/zones/family-room-the-charging-and-device-zone.html",
-      "best_page_title": "How to organize the family room charging station",
+      "best_page": "/zones/guest-bedroom-the-guest-nightstand.html",
+      "best_page_title": "How to organize the guest bedroom nightstand",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bedroom-the-guest-nightstand.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "cords"
-      ],
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -31362,13 +31360,11 @@
       "best_page": "/zones/guest-bedroom-the-guest-nightstand.html",
       "best_page_title": "How to organize the guest bedroom nightstand",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/guest-bedroom-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "cords"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/guest-bedroom-the-guest-nightstand.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -45906,15 +45902,15 @@
         "workshop organisation ideas"
       ],
       "room": "Workshop",
-      "best_page": "/index.html",
-      "best_page_title": "6S Success: the six-S method for organizing and cleaning a home",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/index.html",
-      "matched_on": "heading",
+      "best_page": "/articles/how-to-organize-a-workshop.html",
+      "best_page_title": "How to organize a workshop, step by step",
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
+      "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "workshop"
+        "working"
       ],
       "markets": [
         "gb",
@@ -45932,14 +45928,12 @@
       "room": "",
       "best_page": "/zones/guest-bedroom-the-guest-nightstand.html",
       "best_page_title": "How to organize the guest bedroom nightstand",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/family-wont-put-things-back.html",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ways"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -45956,14 +45950,12 @@
       "room": "",
       "best_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
       "best_page_title": "How to organize the home office bookshelf",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "ways"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -48560,6 +48552,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-11-05T16:07:51Z",
-  "scored_against_commit": "faa4b98ea"
+  "scored_at": "2026-11-05T16:55:16Z",
+  "scored_against_commit": "4e72f2498"
 }
