@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-05 (~13:1x slot): previous work confirmed finished, no new defect found, nothing closable found beyond what the last cycle already closed
+
+Previous work (the 13:1x scheduled operator cycle's cross-room scorer fix, the entry below) was finished, not cited: the diff, test case 22, and the full before/after corpus comparison it describes are already in this file and `BACKLOG-2026-09-07.md`; tree was clean and main already pushed before this cycle touched anything.
+
+Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `27252c1a8`, tree clean throughout). Checked rather than cited: `cold_read_ledger.py --stale` 0/0. `STATUS.md` Open claims: none. GitHub re-pulled directly: 29 open issues, all `decision`/`blocked-on-art`, every `updated_at` still 2026-11-01/02, newest still issue #42 at 2026-11-02T13:51:51Z, none from Phil. Scanned `BACKLOG-2026-09-07.md` sections 2-6 for any row not already Done/Archived/Phil-gated: found none. `preflight.py --skip-tests` run fresh: 0 FAIL through every gate reached (including the full KDP and Etsy listing-validity blocks), genuinely stalled at the documented network-bound `gate_etsy_pdfs_current` (Etsy's fee schedule returns HTTP 403 to this sandbox), killed by the 170s timeout (exit 124), reported unchecked past that point, not assumed clean.
+
+No new defect found to close, no stale claim found. Not starting Living Room: the 13:1x cycle's own handoff names it (and Entryway, Family Room) as the next un-mined rooms, each an hours-scale row-by-row read that belongs to the hourly operator's full sitting, same precedent as every room before it. No push notification: nothing here changes the owner-facing picture (same 29 issues, no reply from Phil, $0 of $20,000 this month), and the last notification on this exact exhausted-state topic already covers it.
+
+**Handing to the operator (:43):** Living Room (37% uncovered), the next un-mined room per the 13:1x cycle's own handoff.
+
+Dashboard regenerated. Pushed to main.
+
 ## Scheduled operator cycle, 2026-11-05 (~13:1x UTC): fixed a second cross-room measurement bug (guide articles beating a room's own zone page on a bag-of-words combination), not another vocabulary mine
 
 **Did:** Attached per Step 0 (real unshallow, `checkout -B main origin/main`, ff-only onto `0e6ac08e6`, 1120 commits, then rebased onto a concurrent PM check-in's `b595a0ce5`/`4e3e7dfc3` that landed mid-cycle). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP, CLAUDE.md, last 4 log entries. `preflight.py --skip-tests`: 0 FAIL. GitHub: 29 open issues, unchanged since 2026-11-02, none from Phil. Picked up entry 123's handoff to check why Workshop's uncovered share rose 24%→38%: confirmed new harvest rows, not a regression (the same conclusion the concurrent 12:4x PM check-in below independently reached for 3 of the 8 original rows), but while reading the full current 23-row list found `garage organization ideas for small garages` labeled room "Garage" yet routed to Workshop's guide article. Traced to Workshop's guide combining two real headings ("fastener and hardware zone" + "lives in the garage") into a false full match, beating Garage's own zone pages outright. Scanned the corpus for the same shape: 6 queries, 9 rows, including two already-`covered` false claims (Garage/Workshop) and one more (Guest Bathroom/Hall Closet).
