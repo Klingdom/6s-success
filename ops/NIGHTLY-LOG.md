@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-05 (~07:5x UTC): deck pages carry no household-word heading at all, a structural gap not a synonym gap, closed for Patio or Deck; also the real-content push the prior PM check-in's handoff was waiting for
+
+**Did:** Attached per Step 0 (fetch, real unshallow, checkout -B main origin/main, ff-only onto 5b3e47e8e, tree clean). Read GOALS.md, STATUS.md, CLAUDE.md and this file's last entries per Step 1. `preflight.py --skip-tests` run fresh before touching anything: 0 FAIL, standing sandbox warnings only. A fork independently re-verified the "room-guide mining exhausted" claim rather than trusting it: Patio or Deck's own 52% uncovered number predated entry 115's attribution fix and had never been re-read, the single highest shortfall of all 20 rooms.
+
+Pulled the real 16-row partial list from `ops/keyword-demand.json` and the global corpus (CLAUDE.md 5c/5d), not the console's truncated preview. Three queries ("back porch organization ideas", "back porch organizer", "back porch organization") sat at 0.5 coverage with `porch` the only unmatched word, routed to `/patio-or-deck-deck.html`. The room page already carries that exact word ("Also called the terrace, the backyard or the porch", shipped 2026-11-01), but `also_called_html()` only ever renders on room pages and `zone_also_called_html()` only on zone pages; no deck page, across any of the 20 rooms, has ever carried this heading. Fixed narrowly for this one room: `ops/build_patio_or_deck_deck_page.py` now imports and renders `also_called_html("Patio or Deck")`, placed in the page's light section rather than its dark hero (checked `site/assets/css/site.css` directly: the function's `color:var(--soft)` is illegible on `.hero`'s dark background).
+
+Checked every remaining partial row against real zone content before calling anything unfixable: `shed` (the Outdoor Storage Zone's content is a deck box for cushions, never a standalone shed), `cheap`/`diy`/`build`/`building` (established generic-modifier/task-verb class), `gardening` (the Garden and Plant Care Zone covers pots and soil, not hand tools), `anking` (nonsense autocomplete), `plants` on an indoor-plants query (wrong intent for an outdoor room). One near-miss, "outdoor furniture seating storage", already ties the competing article page (the Outdoor Seating Zone already carries `furniture zone`) and loses only on URL alphabetical order; considered and rejected adding `storage` to that zone's heading to break the tie, because this room already has a real, separate Outdoor Storage Zone and calling a different zone "the storage zone" too would be a false name, not a measured fix.
+
+**Verified:** rebuilt the deck page, grep-confirmed the heading on the real committed file. `keyword_demand.py --rescore`: gap 112 to 109, partial 1256 to 1253, covered 1455 to 1461. `keyword_demand_global.py --rescore`: gap 97 to 91, covered 1149 to 1155. `room_guide_underperformance.py --room "Patio or Deck"`: 52% to 42% uncovered, 16 to 13 partial. `check_also_called_digital_collision_fast.py`, `test_room_also_called.py`, `test_gate_also_called_no_digital_collision.py` (5/5), `test_gate_zone_also_called_is_heading.py` (6/6) all clean (no new also-called name added, so no new collision surface). `fix_dashes.py --check` (0/0), `check_urls.py` (235/235). `build_seo.py` rerun for sitemap/content-hash refresh. `preflight.py --skip-tests` clean before and after, 0 FAIL both times.
+
+**Also closes the prior PM check-in's own handoff (below): this push touches `site/`, `ops/` and `*.md`, exactly the real-content shape `checks.yml`'s path filter needs**, so it independently re-triggers both `checks.yml` and `publish-image.yml` on this commit without a separate manual retrigger. Did not re-check run 732's own result by hand (that PM check-in's job, and `bcdb2e1b8`'s deploy-verdict commit already landed on top of it by the time this cycle merged origin/main back in); this cycle's contribution is the next real-content push, not a re-verification of that run.
+
+**Went well:** re-verifying the "exhausted" claim before trusting it caught real, unmined work; checking the furniture/storage near-miss against the room's own zone list caught a fix that would have shipped a false name.
+
+**Did not go well:** the deck-page also-called gap exists on all 20 rooms, not just this one; fixing it per-room rather than once in the shared template is slower but keeps this cycle's WIP to one workstream.
+
+**Changing next cycle:** none; no new defect class, no new gate warranted (this is a content/template gap, not a measurement or process failure).
+
+**Next:** the other 19 rooms' deck pages carry the same structural gap; worth a template-wide fix if a future `room_guide_underperformance.py` ranking turns up a room whose remaining partial rows are dominated by this shape. Patio or Deck's remaining 13 partial rows need no re-derivation. Nothing from the 29 open issues is unblocked; no reply from Phil.
+
+Dashboard regenerated. Pushed to main.
+
 ## PM check-in, 2026-11-05 (~07:4x slot): previous work was NOT actually finished, despite its own entry; the real CI gate was still red, found by reading the live run rather than trusting the claim, fixed in flight
 
 NEXT FOR THE OPERATOR: confirm publish-image.yml run 732 (workflow_dispatch on 5b3e47e8e) finished green, then push any real-content commit (something under ops/** or a *.md file, not the dashboard/log/state trio, which checks.yml excludes) so checks.yml also records a fresh green run, because its last completed run is still the failure on c5faa3a8f.

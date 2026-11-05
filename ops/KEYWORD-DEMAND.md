@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-05T06:57:41Z against 243 page(s) at commit 487a996af. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-05T07:58:53Z against 243 page(s) at commit 5b3e47e8e. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1455 covered, 1256 partial, 112 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1461 covered, 1253 partial, 109 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 112, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 109, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -36,7 +36,6 @@ Showing the top 80 of 112, ordered by the best rank the phrase reached in any on
 | 3 | how to arrange logs in solo stove | - | How to organize the kitchen stove area (0.33) | logs, solo |
 | 3 | how to organize cricut vinyl | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cricut, vinyl |
 | 3 | organized nurse designs | - | What is a micro zone? The unit that actually gets organized (0.33) | designs, nurse |
-| 4 | back porch careers | - | The Patio or Deck Deck: 68 cards, free to read (0.33) | careers, porch |
 | 4 | how to build a nightstand for beginners | - | How to organize the guest bedroom nightstand (0.33) | beginners, build |
 | 4 | how to build a staircase with landing | - | How to organize a stair landing, step by step (0.33) | build, staircase |
 | 4 | how to make a disposable diaper | - | How we make money: what we sell, and what we do not earn on (0.33) | diaper, disposable |
@@ -44,7 +43,6 @@ Showing the top 80 of 112, ordered by the best rank the phrase reached in any on
 | 4 | how to organize hard drive files | - | How to organize paperwork at home with a simple filing system (0.00) | drive, hard |
 | 4 | ideas for decks and patios | - | How to organize a patio or deck, step by step (0.00) | decks, patios |
 | 4 | why am i frequently using the bathroom | - | How to organize a guest bathroom, step by step (0.33) | frequently, using |
-| 5 | back porch column ideas | - | The Patio or Deck Deck: 68 cards, free to read (0.33) | column, porch |
 | 5 | decks and patios design ideas | - | How to organize an entryway, zone by zone (0.00) | decks, patios |
 | 5 | dental organization ideas | - | The Family Room Deck: 69 cards, free to read (0.00) | dental |
 | 5 | guest bathroom decorating ideas pictures pinterest | Guest Bathroom | The Guest Bathroom Deck: 60 cards, free to read (0.40) | decorating, pictures, pinterest |
@@ -63,7 +61,6 @@ Showing the top 80 of 112, ordered by the best rank the phrase reached in any on
 | 7 | how to design a walkway garden | - | How to organize the garage garden tool storage (0.33) | design, walkway |
 | 7 | how to organize a walkout | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | walkout |
 | 7 | pantry organization ideas dollar tree | Pantry | The Pantry Deck: 57 cards, free to read (0.33) | dollar, tree |
-| 8 | back porch society | - | The Patio or Deck Deck: 68 cards, free to read (0.33) | porch, society |
 | 8 | clothes sorter hamper near me amazon | - | The Laundry Room Deck: 67 cards, free to read (0.20) | amazon, near, sorter |
 | 8 | how to arrange benches in classroom | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | benches, classroom |
 | 8 | how to organize raised garden beds | - | How to organize the garage garden tool storage (0.33) | beds, raised |
@@ -101,10 +98,13 @@ Showing the top 80 of 112, ordered by the best rank the phrase reached in any on
 | 14 | computer storage for games | - | How to organize the family room game storage (0.33) | computer, games |
 | 14 | diy plans for a nightstand | - | How to organize the guest bedroom nightstand (0.33) | diy, plans |
 | 14 | explore decluttering pro guide | - | Decluttering vs. organizing: what's actually different (0.25) | explore, guide, pro |
+| 14 | grill stations ideas for backyards | - | How to organize the patio or deck grill station (0.33) | backyards, stations |
+| 14 | how to dispose of adult diapers | - | Why does a shared zone never stay reset? (0.00) | diapers, dispose |
+| 14 | how to organize closet tutorial guide | - | How to organize a linen closet: sheets, towels and shelves (0.33) | guide, tutorial |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1256.
+Showing the top 60 of 1253.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -173,7 +173,7 @@ Showing the top 60 of 1256.
 
 | Room | Queries | Gap | Partial | Covered |
 |---|---|---|---|---|
-| Dining Room | 38 | 0 | 18 | 20 |
+| Dining Room | 38 | 0 | 17 | 21 |
 | Entryway | 50 | 1 | 13 | 36 |
 | Family Room | 27 | 0 | 17 | 10 |
 | Garage | 77 | 1 | 23 | 53 |

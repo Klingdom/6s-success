@@ -613,15 +613,14 @@
         "back porch organisation"
       ],
       "room": "",
-      "best_page": "/rooms/patio-or-deck.html",
-      "best_page_title": "How to organize a patio or deck, zone by zone",
+      "best_page": "/patio-or-deck-deck.html",
+      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.25,
-      "heading_coverage": 0.5,
-      "heading_page": "/rooms/patio-or-deck.html",
+      "heading_coverage": 0.75,
+      "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "back",
         "front"
       ],
       "markets": [
@@ -639,14 +638,13 @@
       "best_page": "/patio-or-deck-deck.html",
       "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.25,
-      "heading_coverage": 0.25,
+      "heading_coverage": 0.5,
       "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
         "band",
-        "members",
-        "porch"
+        "members"
       ],
       "markets": [
         "gb"
@@ -663,13 +661,12 @@
       "best_page": "/patio-or-deck-deck.html",
       "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
-        "burlington",
-        "porch"
+        "burlington"
       ],
       "markets": [
         "ca"
@@ -687,13 +684,12 @@
       "best_page": "/patio-or-deck-deck.html",
       "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
-        "careers",
-        "porch"
+        "careers"
       ],
       "markets": [
         "gb",
@@ -714,13 +710,12 @@
       "best_page": "/patio-or-deck-deck.html",
       "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
-        "column",
-        "porch"
+        "column"
       ],
       "markets": [
         "gb",
@@ -740,13 +735,12 @@
       "best_page": "/patio-or-deck-deck.html",
       "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
-        "edmonton",
-        "porch"
+        "edmonton"
       ],
       "markets": [
         "ca"
@@ -764,13 +758,11 @@
       "best_page": "/patio-or-deck-deck.html",
       "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "porch"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -789,13 +781,11 @@
       "best_page": "/patio-or-deck-deck.html",
       "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "porch"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb"
       ],
@@ -808,15 +798,15 @@
         "back porch organisation"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-cleaning-equipment-zone.html",
-      "best_page_title": "How to organize the hall closet cleaning equipment",
+      "best_page": "/patio-or-deck-deck.html",
+      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/zones/hall-closet-the-cleaning-equipment-zone.html",
+      "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "porch"
+        "meaning"
       ],
       "markets": [
         "in"
@@ -834,13 +824,11 @@
       "best_page": "/patio-or-deck-deck.html",
       "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "porch"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -859,13 +847,11 @@
       "best_page": "/patio-or-deck-deck.html",
       "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "porch"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -884,13 +870,11 @@
       "best_page": "/patio-or-deck-deck.html",
       "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "porch"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -909,12 +893,11 @@
       "best_page": "/patio-or-deck-deck.html",
       "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
-        "porch",
         "promotions"
       ],
       "markets": [
@@ -932,13 +915,11 @@
       "best_page": "/patio-or-deck-deck.html",
       "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "porch"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb"
       ],
@@ -951,11 +932,11 @@
         "back porch organisation"
       ],
       "room": "",
-      "best_page": "/rooms/patio-or-deck.html",
-      "best_page_title": "How to organize a patio or deck, zone by zone",
+      "best_page": "/patio-or-deck-deck.html",
+      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.0,
       "heading_coverage": 1.0,
-      "heading_page": "/rooms/patio-or-deck.html",
+      "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -21403,11 +21384,11 @@
         "how to organise outdoor seating"
       ],
       "room": "",
-      "best_page": "/rooms/patio-or-deck.html",
-      "best_page_title": "How to organize a patio or deck, zone by zone",
+      "best_page": "/patio-or-deck-deck.html",
+      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.0,
       "heading_coverage": 1.0,
-      "heading_page": "/rooms/patio-or-deck.html",
+      "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -42912,11 +42893,11 @@
         "back porch organisation"
       ],
       "room": "",
-      "best_page": "/rooms/patio-or-deck.html",
-      "best_page_title": "How to organize a patio or deck, zone by zone",
+      "best_page": "/patio-or-deck-deck.html",
+      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.0,
       "heading_coverage": 1.0,
-      "heading_page": "/rooms/patio-or-deck.html",
+      "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -44461,11 +44442,11 @@
         "back porch organisation"
       ],
       "room": "",
-      "best_page": "/rooms/patio-or-deck.html",
-      "best_page_title": "How to organize a patio or deck, zone by zone",
+      "best_page": "/patio-or-deck-deck.html",
+      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.0,
       "heading_coverage": 0.5,
-      "heading_page": "/rooms/patio-or-deck.html",
+      "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -48627,6 +48608,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-11-05T06:57:46Z",
-  "scored_against_commit": "487a996af"
+  "scored_at": "2026-11-05T07:59:09Z",
+  "scored_against_commit": "5b3e47e8e"
 }

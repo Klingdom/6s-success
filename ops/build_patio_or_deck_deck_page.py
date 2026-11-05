@@ -43,6 +43,12 @@ from build_kitchen_deck_page import (                            # noqa: E402
     esc, num_word as _num_word, article_for, colours, band,
     card_html, print_tile, CSS, UMAMI,
 )
+# The room page's own measured household-word heading (ops/room-also-called.json),
+# reused here rather than forked: this deck page is also-called-blind, so
+# "back porch organization ideas" and its siblings sat partial (0.5, unmatched
+# "porch") routed to THIS page while the room page carried the word and this
+# one did not. Found 2026-11-05, this operator.
+from build_zone_pages import also_called_html as _also_called_html  # noqa: E402
 
 SITE = os.path.join(ROOT, "site")
 OUT = os.path.join(SITE, "patio-or-deck-deck.html")
@@ -293,6 +299,7 @@ __CSS__
   <div class="wrap narrow">
     <p class="eyebrow">Built from the Manual, not around it</p>
     <h2>Six zones, real diagnosis, nothing invented</h2>
+    __ALSO_CALLED__
     <p>__INTRO__</p>
     <p>Every card here is real: written from the same source as the Manual and the zone pages, gated so a root cause with no friction pointing at it, or an action nobody's problem needs, cannot ship. None of it is generated placeholder copy. What is missing is photography, which this deck does not pretend to have. A family-colored panel and the card's own symbol stand where a photograph will eventually go.</p>
   </div>
@@ -378,7 +385,8 @@ def main() -> int:
             .replace("__NZONES__", num_word(n_zones))
             .replace("__NCAUSES_LOWER__", num_word(n_causes).lower())
             .replace("__NKINDS_LOWER__", num_word(n_kinds).lower())
-            .replace("__HEROIMG__", hero_img))
+            .replace("__HEROIMG__", hero_img)
+            .replace("__ALSO_CALLED__", _also_called_html("Patio or Deck")))
 
     io.open(OUT, "w", encoding="utf-8", newline="").write(page)
 
