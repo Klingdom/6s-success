@@ -84,18 +84,22 @@
   "Pantry|Snack and Lunch Zone": {
    "names": [
     "snacks zone",
-    "snack box"
+    "snack box",
+    "crisps cupboard"
    ],
-   "queries": 2,
+   "queries": 3,
    "covered": 0,
-   "source": "ops/keyword-demand.json (bing, no market): 'build a snack box' (rank 18, gap, 0.333 title coverage, unmatched ['box','build']) and 'fruit snack box organizer' (rank 14, gap, 0.333 title coverage, unmatched ['box','fruit']), both already routed by best_page to this zone's own page (the room's only zone that matches 'snack'), just missing the word 'box' from any heading. The zone's own content.json purpose ('Holds what goes into a lunchbox') and passes text ('pull the snack boxes with two bars rattling in the bottom') already use the literal phrase 'snack box' in body copy, confirmed by grep against the live page before adding; this zone's open bin of pre-approved snacks is exactly what a household calls a snack box. Named 'snack box', the exact phrase searched, alongside the existing 'snacks zone' entry, not a replacement for it."
+   "source": "ops/keyword-demand.json (bing, no market): 'build a snack box' (rank 18, gap, 0.333 title coverage, unmatched ['box','build']) and 'fruit snack box organizer' (rank 14, gap, 0.333 title coverage, unmatched ['box','fruit']), both already routed by best_page to this zone's own page (the room's only zone that matches 'snack'), just missing the word 'box' from any heading. The zone's own content.json purpose ('Holds what goes into a lunchbox') and passes text ('pull the snack boxes with two bars rattling in the bottom') already use the literal phrase 'snack box' in body copy, confirmed by grep against the live page before adding; this zone's open bin of pre-approved snacks is exactly what a household calls a snack box. Named 'snack box', the exact phrase searched, alongside the existing 'snacks zone' entry, not a replacement for it.",
+   "source_crisps_cupboard": "ops/keyword-demand-global.json 2026-11-05 (gb): 'how to organise crisps in cupboard', scored to /about.html via a coincidental word match on 'cupboard' (the Hall Closet room-level 'hall cupboard' synonym), not a real one; the real answer is this zone, whose own purpose ('Holds what goes into a lunchbox, and what a child is allowed to take without asking') and common_items ('Pre-approved snacks') are exactly what a crisps cupboard is, 'crisps' being the British word for the packaged snacks this zone already describes. Named 'crisps cupboard', the plain phrase searched, alongside the existing 'snacks zone'/'snack box' entries, not a replacement for them."
   },
   "Kitchen|Sink and Dishwashing Zone": {
    "names": [
-    "drying racks zone"
+    "drying racks zone",
+    "sink cupboard"
    ],
-   "queries": 3,
-   "covered": 0
+   "queries": 4,
+   "covered": 0,
+   "source_sink_cupboard": "ops/keyword-demand-global.json 2026-11-05 (gb, au, in): 'how to organise kitchen sink cupboard', partial (0.667 title coverage), already scored correctly to this exact zone page (/zones/kitchen-the-sink-and-dishwashing-zone.html) via 'kitchen'+'sink' in the title, only the single word 'cupboard' unmatched. Checked the zone's own content.json before adding: its done_looks_like text already says 'Under the sink, a single tray holding dish soap, dishwasher tablets, and one all-purpose cleaner, with the pipes visible around them', the real cupboard this query asks about. Named 'sink cupboard', the plain phrase, matching the precedent used for other British/Commonwealth cupboard terms already in this file ('corner cupboard', 'coat cupboard')."
   },
   "Primary Bathroom|Vanity Counter": {
    "names": [
@@ -252,6 +256,30 @@
    "queries": 1,
    "covered": 0,
    "source": "ops/keyword-demand.json 2026-11-05, scheduled operator cycle: 'card games organizer storage', gap, 0.333 title coverage, correctly scored to /zones/family-room-the-board-game-and-puzzle-zone.html (title already reads 'How to organize the family room game storage', matching 'storage') but held at gap because the title's own word is singular 'game', not 'card' or plural 'games'. Checked the zone's own content.json passes before naming it: 'Cards, tokens, and dice go into their own bags inside the box' (sort), repeated in the_call and watch_for ('dice and pawns', 'cards, tokens or dice loose in the box'); cards are explicitly part of this zone's own real content, not a coincidental word match. Named 'card zone', not 'card games zone': a first attempt at 'card games zone' shared the word 'games' with six live digital-context queries ('how to organize games on pc', 'how to organize steam games' and four more), caught by check_also_called_digital_collision_fast.py before it shipped, the same 'station'/'games' trap the grilling-zone and earlier A-series fixes already hit once each. 'card' alone collides with nothing live (checked directly: only 'sports card storage ideas' shares the word, not a digital context)."
+  },
+  "Primary Bathroom|Under-Sink Cabinet": {
+   "names": [
+    "under sink cupboard"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json 2026-11-05 (gb, au, in): 'how to organise under sink cupboard', partial (0.667 title coverage), already scored correctly to this exact zone page (/zones/primary-bathroom-the-under-sink-cabinet.html) via 'under'+'sink' in the title, only the single word 'cupboard' unmatched. The zone's own purpose ('To store cleaning supplies and backstock around the plumbing without ever hiding a leak') and done_looks_like text ('both shut-off valves in plain sight when the doors swing open') describe exactly the cabinet-with-doors a household calls a cupboard. Named 'under sink cupboard', the plain phrase searched."
+  },
+  "Garage|Hand Tool Wall and Cabinets": {
+   "names": [
+    "tool cupboard"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json 2026-11-05 (gb, au, in): 'how to organise tool cupboard', partial (0.5 title coverage), already scored correctly to this exact zone page (/zones/garage-the-hand-tool-wall-and-cabinets.html) via 'tool' in the title, only the single word 'cupboard' unmatched. The zone's own done_looks_like text already says 'the cabinet latched', the real cupboard this query names. Named 'tool cupboard', the plain phrase searched, matching the '<word> cupboard' precedent already in this file."
+  },
+  "Pantry|Dry Goods Shelves": {
+   "names": [
+    "larder cupboard"
+   ],
+   "queries": 2,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json 2026-11-05 (gb, au, in): 'larder cupboard organisation' and 'larder cupboard organisation ideas', both partial (0.5 heading coverage) via the room-level 'larder' synonym already rendering a heading on /rooms/pantry.html, only the single word 'cupboard' unmatched. This zone's own purpose ('Holds the grains, pasta and cereals you actually cook from in a normal week') is the generic pantry-shelf content a household calls a larder; checked the other four Pantry zones first and this is the one with no single specific use (baking, snacks, backstock, canned goods), making it the honest match for the generic term. Named 'larder cupboard', the plain phrase searched, matching the '<word> cupboard' precedent already in this file."
   }
  }
 }

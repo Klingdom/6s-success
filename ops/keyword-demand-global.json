@@ -20136,13 +20136,11 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
-      "heading_page": "/rooms/hall-closet.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/pantry-the-snack-and-lunch-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "crisps"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb"
       ],
@@ -20658,13 +20656,11 @@
       "best_page": "/zones/kitchen-the-sink-and-dishwashing-zone.html",
       "best_page_title": "How to organize the kitchen sink area",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/kitchen-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "cupboard"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/kitchen-the-sink-and-dishwashing-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb"
       ],
@@ -21496,13 +21492,11 @@
       "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
       "best_page_title": "How to organize the garage tool wall",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-workshop.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "cupboard"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb"
       ],
@@ -21919,13 +21913,11 @@
       "best_page": "/zones/primary-bathroom-the-under-sink-cabinet.html",
       "best_page_title": "How to organize the primary bathroom under-sink cabinet",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "cupboard"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/kitchen-the-sink-and-dishwashing-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb"
       ],
@@ -36833,13 +36825,11 @@
       "best_page": "/pantry-deck.html",
       "best_page_title": "The Pantry Deck: 57 cards, free to read",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
-      "heading_page": "/rooms/pantry.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/pantry-the-dry-goods-shelves.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "cupboard"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -36857,13 +36847,11 @@
       "best_page": "/pantry-deck.html",
       "best_page_title": "The Pantry Deck: 57 cards, free to read",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
-      "heading_page": "/rooms/pantry.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/pantry-the-dry-goods-shelves.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "cupboard"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -48657,6 +48645,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-11-05T01:17:26Z",
-  "scored_against_commit": "fa848a909"
+  "scored_at": "2026-11-05T01:52:55Z",
+  "scored_against_commit": "6e3c11c13"
 }
