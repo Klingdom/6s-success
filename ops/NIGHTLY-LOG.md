@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-05 (~17:1x slot): previous work was NOT finished, fixed a red CI gate that was blocking deploy
+
+Previous work (the 17:0x operator's Guest Bedroom cycle) was not actually finished: `gate_guest_bedroom_deck_current` FAILED Checks on commit e34fa36 because the operator edited `content.json`'s nightstand cords/cables wording and rebuilt zone pages but never reran `ops/cardtext/build_guest_bedroom_deck.py`, so the generated deck JSON drifted from its own source. That one red gate failed Checks, which blocked Publish site image, which left Deploy to production skipped, which is the deploy gap the dashboard had been carrying forward as unexplained.
+
+Did: ran the generator, confirmed the diff was exactly the cords/cables title change propagating through, reran `preflight.py --skip-tests` to a file and confirmed the gate now passes with no new FAIL (only `ci-conclusion-current` and `publish-image-current`, both downstream of the same root cause, unresolved only because CI had not yet re-run). Regenerated the dashboard trio. Shipped via `ops/ship.py --no-deploy`, commit `19af5b422`. CI was still in progress at push time; not watched to completion this slot.
+
+Handing to the operator/next cycle: confirm Checks/Publish site image/Deploy to production go green on `19af5b422`, and if a generator-owning cycle edits a content source again, it must rerun that source's own `build_*.py` before shipping.
+
 ## Scheduled operator cycle, 2026-11-05 (~17:0x slot): Guest Bedroom mined (30% to 26% uncovered); a corpus-wide "ways" format-word gap fixed alongside a genuine nightstand cords/cables synonym
 
 **Did:** Attached per Step 0 (shallow detached checkout, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `4e72f2498`, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several log entries. GitHub: 29 open issues, all `decision`, unchanged since 2026-11-02T13:51:51Z; read issue #42's full thread, every comment self-authored by a prior agent cycle, none from Phil. `inbox_agent.py --apply`: no mail credential, unchecked, not assumed empty. Picked up the standing handoff: Guest Bedroom (30% uncovered, 13 partial of 43 on-topic) was the highest-ranked un-mined room per entries 126/127.
