@@ -26394,16 +26394,14 @@
         "how to organise diaper storage"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-baby-clothes.html",
-      "best_page_title": "How to organize baby clothes by size, without drowning in them",
+      "best_page": "/zones/nursery-the-diaper-and-care-backstock.html",
+      "best_page_title": "How to organize the nursery diaper storage",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "diapers"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "in"
       ],
@@ -48457,6 +48455,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "886b307ac",
-  "scored_at": "2026-11-05T21:54:36Z"
+  "scored_against_commit": "bef33eb1e",
+  "scored_at": "2026-11-05T22:56:33Z"
 }
