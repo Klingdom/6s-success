@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-01T15:17:52Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-01T16:05:22Z",
    "mode": "changed",
    "offered": 3,
@@ -657,6 +650,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-05T12:11:22Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -775,7 +775,7 @@
   "https://6s-success.com/zones/home-office-the-file-storage": "8dc256bce8977f87",
   "https://6s-success.com/zones/home-office-the-primary-desk": "6384a4ee4e6b1167",
   "https://6s-success.com/zones/home-office-the-printer-and-scanning-station": "1390f7012ecbebba",
-  "https://6s-success.com/zones/home-office-the-supply-cabinet": "9a3c63570b134bf5",
+  "https://6s-success.com/zones/home-office-the-supply-cabinet": "a1a14759f1f6ac7f",
   "https://6s-success.com/zones/": "f871867bf663f84d",
   "https://6s-success.com/zones/kids-bedroom-the-bed-and-sleep-zone": "4e4f6f439b78ba0b",
   "https://6s-success.com/zones/kids-bedroom-the-clothing-closet": "b167e458bd12eb76",
