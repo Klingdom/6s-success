@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-01T13:03:38Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-01T15:09:08Z",
    "mode": "changed",
    "offered": 6,
@@ -657,6 +650,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-05T10:11:19Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -724,7 +724,7 @@
   "https://6s-success.com/rooms/kitchen": "923bee850babba7c",
   "https://6s-success.com/rooms/laundry-room": "feed5d918020da08",
   "https://6s-success.com/rooms/living-room": "75531cbd4943cd46",
-  "https://6s-success.com/rooms/mudroom": "7235fe9ca51f7206",
+  "https://6s-success.com/rooms/mudroom": "8506d30b8a4e449c",
   "https://6s-success.com/rooms/nursery": "c4aecb065804f187",
   "https://6s-success.com/rooms/pantry": "d8538964d1e856c6",
   "https://6s-success.com/rooms/patio-or-deck": "5370ab75c9b81f57",
