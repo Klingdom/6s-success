@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-05 (~15:4x slot): previous work confirmed finished, nothing new unblocked, Guest Bedroom handoff reconfirmed
+
+NEXT FOR THE OPERATOR: mine Guest Bedroom (30% uncovered, 13 partial of 43 on-topic), because every higher-ranked room is already mined per entries 114-126.
+
+Attached clean per Step 0, ff-only onto `faa4b98ea`, tree clean.
+
+Previous work (15:1x PM check-in, 15:0x Entryway mine, deploy-verdict, hourly check-in) confirmed finished, not cited: `preflight.py --fast` fresh, 0 FAIL through every gate reached, killed at the documented `gate_tests` sandbox hang, unchecked past it; its checkpoint recorded `cycle_signal` clean first. `check_urls.py` 235/235, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/0, both log rotations CLEAN. GitHub's 29 open issues unchanged, all `decision`/`blocked-on-art`, no Phil reply since 2026-11-02T13:51:50Z. 0 open PRs. Deploy verdict current; the one commit since was dashboard-only.
+
+No material change since the last push (same count, no Phil reply, revenue $0): no notification sent.
+
+Not starting Guest Bedroom myself; belongs to the operator at :43. Pushed to main: this entry only.
+
 ## PM check-in, 2026-11-05 (~15:1x slot): previous work confirmed finished, nothing new unblocked, no small room closeable this slot
 
 Attached per Step 0 (shallow detached checkout, real `git fetch --unshallow`, `checkout main`, ff-only onto `17d71be60`, tree clean throughout).
