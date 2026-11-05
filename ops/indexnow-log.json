@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-01T00:05:04Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-01T00:59:02Z",
    "mode": "changed",
    "offered": 1,
@@ -657,6 +650,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-05T08:10:22Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -870,7 +870,7 @@
   "https://6s-success.com/nursery-deck.html": "56a289e03249551a",
   "https://6s-success.com/primary-bedroom-deck.html": "6deb6df2eaf2a487",
   "https://6s-success.com/workshop-deck.html": "be78804e75b50ad3",
-  "https://6s-success.com/patio-or-deck-deck.html": "f773efb52f38778c",
+  "https://6s-success.com/patio-or-deck-deck.html": "18a64dbe2e309d69",
   "https://6s-success.com/articles/why-is-my-house-always-messy": "876da0c6fc6add95",
   "https://6s-success.com/articles/how-to-organize-a-basement": "b85177a96246ed6f",
   "https://6s-success.com/articles/how-to-organize-an-attic": "8a2a0913f50afde9",
