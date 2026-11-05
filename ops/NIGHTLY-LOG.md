@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-05 (~10:1x slot): previous work confirmed finished, one stale ledger entry closed, nothing new unblocked
+
+Previous work (the Mudroom locker fix and room_rows undercounting bug) was finished. Attached per Step 0: fetch, real unshallow (shallow detached checkout), checkout -B main origin/main, ff-only onto 8ae08b5c8, tree clean. Confirmed finished, not cited: working tree already clean, main already pushed, three commits since (merge, nightly-log reorder, hourly check-in) touch no site/ or ops/ logic. preflight.py --skip-tests run fresh: 0 FAIL in both FAIL sections printed, timed out only at the documented network-bound gate_etsy_pdfs_current, reported unchecked past that point. check_urls.py 235/235, fix_dashes.py --check 0/0.
+
+GitHub re-pulled directly: 29 open issues, all decision or blocked-on-art, same set issue #42 already tracks, none from Phil.
+
+Found and closed a small real gap instead of starting new work: cold_read_ledger.py --stale flagged ops/room_guide_underperformance.py as ledgered 2026-11-03 but last touched 2026-11-05 (the Mudroom cycle's room_rows fix). Read the actual diff rather than trusting the commit message: it matches exactly (room_rows now recognizes /rooms/<slug>.html), and that cycle's own tests already verified it (18/18, 20/20). Re-ledgered clean with today's date; --stale now 0/0.
+
+Not starting the next room-mining pass: checked the current room_guide_underperformance.py ranking before naming a target rather than guessing from the old 06:4x/145-line list. Garage (49%, 82 partial) and Hall Closet (44%, 64 partial) rank highest now but are both already individually diagnosed (entries 116-117: Garage mostly brand/geography/off-topic noise, one zone fix shipped; Hall Closet confirmed exhausted after a full read), and the room_rows fix does not change either since neither carries a room-level also-called fix. Primary Bedroom (40% uncovered, 2 gap + 41 partial) is the highest-ranked room this exact tool has not yet had a dedicated row-by-row pass, named as a larger list by several earlier cycles and never picked up. That per-row read is hours-scale, better suited to the hourly operator's full sitting, same precedent as every recent PM slot. BACKLOG-2026-09-07.md's size tripwire (155793/150000) and OWNER-ACTIONS.md's (115514/110000) are both WARN-only with every existing rotate tool reporting CLEAN; closing either needs a fresh cold-read, handed to the operator rather than attempted here. No push notification: nothing material changed on the owner-facing picture since the last one.
+
+**Handing to the operator (:43):** Primary Bedroom (40% uncovered, 2 gap + 41 partial rows) is the highest-ranked room not yet individually diagnosed row by row; Garage and Hall Closet rank higher numerically but are already diagnosed and mostly ruled unfixable.
+
+Dashboard regenerated. Pushed to main.
+
 ## 2026-11-05, scheduled operator cycle: Mudroom locker vocabulary gap fixed, plus a real undercounting bug in both room-ranking scripts found and fixed alongside it
 
 **Did:** Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only merge onto `272c69764`, 1089 commits). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (entry 119 named Mudroom, 42% uncovered, as the next room on the keyword-demand gap-mining ranking not yet mined), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the tail of `ops/NIGHTLY-LOG.md`/`CHECKIN-LOG.md`. Confirmed directly via the GitHub API, not cited: 29 open issues, all `decision`/`blocked-on-art`, every comment thread self-authored by prior agent cycles, no reply from Phil since 2026-10-18. `ops/last-owner-notification.json` showed the last push was 2026-11-02 with a no-repeat-before of 2026-11-04; nothing material changed since (same issue count, no reply, no new credential, no customer event) beyond the room-guide lane finishing all 20 rooms, which needs no owner action, so withheld a repeat push on the same stale topic.

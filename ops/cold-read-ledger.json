@@ -1118,8 +1118,8 @@
     },
     "room_guide_underperformance.py": {
       "status": "clean",
-      "date": "2026-11-03",
-      "note": "New tool, 2026-11-03: ranks all 20 rooms (not just guide-less ones) by on-topic keyword shortfall against zone/deck/guide-article routing, the lane the 20:4x PM check-in named next. Reviewed and tested by its own author this cycle (9/9, fail-then-pass proved); no defect found."
+      "date": "2026-11-05",
+      "note": "room_rows() now recognizes /rooms/<slug>.html; fixes room-level also-called undercounting (Mudroom locker fix). Diff matches commit message, originating cycle's own tests verified (18/18)."
     },
     "room_image_variants.py": {
       "status": "clean",
