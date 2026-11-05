@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-01T20:59:39Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-01T21:56:31Z",
    "mode": "changed",
    "offered": 2,
@@ -657,6 +650,13 @@
    "offered": 2,
    "accepted": 2,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-05T23:03:54Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -812,7 +812,7 @@
   "https://6s-success.com/zones/nursery-the-books-and-quiet-play-zone": "012b8f8b690bad61",
   "https://6s-success.com/zones/nursery-the-changing-station": "5a6af6d2ffe58c9b",
   "https://6s-success.com/zones/nursery-the-crib-and-sleep-zone": "e094aaedcdd32de2",
-  "https://6s-success.com/zones/nursery-the-diaper-and-care-backstock": "8ec928058b6d22db",
+  "https://6s-success.com/zones/nursery-the-diaper-and-care-backstock": "720c6fa8eebc2ee9",
   "https://6s-success.com/zones/nursery-the-feeding-station": "2051dc79f2e644e7",
   "https://6s-success.com/zones/pantry-the-backstock-and-bulk": "41ceba1e7f974f86",
   "https://6s-success.com/zones/pantry-the-baking-zone": "3686985e5970532a",
