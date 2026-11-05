@@ -1113,8 +1113,8 @@
     },
     "room_guide_candidates.py": {
       "status": "clean",
-      "date": "2026-11-04",
-      "note": "PM check-in cold read, 2026-11-04 03:3x slot: re-read the OFF_TOPIC_CONTEXT regex added today (business/equipment list/pricing model). Checked it against both live keyword files directly rather than trust the commit message: matches exactly 8 US-tier rows and 1 global-tier row, every one a B2B/business-starting query, zero false positives against any genuine household query containing the word business. No new defect found."
+      "date": "2026-11-05",
+      "note": "Cold-read ec28ea4d4's OFF_TOPIC_CONTEXT regex addition (paint-a-container/acrylic-paint seed drift exclusion): simple, matches exactly the four rows the commit message names, same shape as existing exclusions, no logic risk."
     },
     "room_guide_underperformance.py": {
       "status": "clean",

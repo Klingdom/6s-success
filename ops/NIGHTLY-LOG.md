@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-05 (05:1x slot): previous work finished, closed three real Pantry also-called rows, one genuine addition left tied on the deck page
+
+Previous work (04:4x PM check-in) confirmed finished: tree matched origin before this cycle touched anything. GitHub re-read directly: 29 open issues, unchanged, all decision/blocked-on-art, none from Phil. `preflight.py --skip-tests` ran to completion, 0 FAIL, stalled only at the documented `gate_etsy_pdfs_current` (HTTP 403).
+
+Picked up the Pantry handoff. Grep-confirmed real content before adding: Dry Goods Shelves says "rust on a wire shelf" and "Deep cupboard shelves", Baking Zone says "keep the tools... let go of the tools", Backstock says "a big shop"/"shop a warehouse club". Added "wire zone", "deep zone" (Dry Goods Shelves), "tools zone" (Baking Zone), "shopping zone" (Backstock), all to `ops/zone-also-called.json`. Collision check clean, pages rebuilt, headings verified on the real files. Rescored: 3 of 4 flipped partial to covered; "deep zone" stayed partial, tied with the deck page's own 0.8 heading score, kept anyway since independently true. Pantry: 41% to 37% uncovered. Found and fixed one stale cold-read-ledger entry (`room_guide_candidates.py`) along the way. `check_urls.py` 235/235, `audit_pages.py` 240/0, `fix_dashes.py` 0/0.
+
+Handing to the operator: Pantry still has 24 partial rows left, still the smallest list.
+
+Dashboard regenerated. Pushed to main.
+
 ## PM check-in, 2026-11-05 (04:4x slot): previous work confirmed finished, same Pantry handoff reaffirmed, nothing new started per this slot's own instruction
 
 NEXT FOR THE OPERATOR: continue `room_guide_underperformance.py` cleanup on Pantry (2 gap, 27 partial rows, the smallest genuinely unmined room left), because Patio or Deck, Workshop, Stair Landing and Dining Room are all now confirmed exhausted of honest quick fixes by today's earlier cycles, and Pantry is still the next-smallest list nobody has read row by row yet.
