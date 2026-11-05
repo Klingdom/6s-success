@@ -445,6 +445,87 @@ def main():
         fails.append("_morphology_variants('dress') wrongly despluralized "
                      "to 'dres': %r" % kd._morphology_variants("dress"))
 
+    # 20. Found live 2026-11-05: score_rows() always set best_page/
+    #     best_page_title from the TITLE surface, even on rows where the
+    #     heading surface scored higher and matched_on already said so.
+    #     room_guide_candidates.py and room_guide_underperformance.py both
+    #     read best_page as "the page this query actually routes to", so a
+    #     silent mismatch there misattributes the query to the wrong page,
+    #     and when the two pages are in different rooms, to the wrong room
+    #     entirely. Two shapes, both drawn from the live corpus:
+    #
+    #     20a. The heading surface wins outright (no tie): a page named
+    #     "Shop" has no title match at all but answers the real question
+    #     under its own heading, the same shape case 12b already proved for
+    #     status; best_page must now point there too, not at an unrelated
+    #     page that merely scored better on title alone.
+    house_title = "Why is my house always messy?"
+    combo_inv = [
+        {"url": "/articles/how-to-declutter-a-house.html", "title": house_title,
+         "words": set(kd.words(house_title)), "head_words": set(kd.words(house_title)),
+         "room": "Living Room"},
+        {"url": "/articles/how-to-organize-a-kitchen.html", "title": "Shop",
+         "words": set(kd.words("Shop")),
+         "head_words": set(kd.words("Shop " + house_title.replace("house", "kitchen"))),
+         "room": "Kitchen"},
+    ]
+    rows = kd.score_rows({"why is my kitchen always messy":
+                          {"query": "why is my kitchen always messy",
+                           "sources": ["google"], "best_rank": 1,
+                           "seeds": ["x"]}}, ["Living Room", "Kitchen"], combo_inv)
+    r = rows[0]
+    if r["best_page"] != "/articles/how-to-organize-a-kitchen.html":
+        fails.append("best_page still pointed at the title-surface loser "
+                     "once a different page won on heading: %r" % r["best_page"])
+    if r["best_page_title"] != "Shop":
+        fails.append("best_page_title did not follow best_page to the real "
+                     "winning page: %r" % r["best_page_title"])
+    if r["matched_on"] != "heading":
+        fails.append("matched_on disagreed with which page was credited: %r"
+                     % r["matched_on"])
+
+    # 20b. An exact tie between the two surfaces, with a room signal: the
+    #     real "master bedroom storage" case. Title surface ties to a Kids
+    #     Bedroom zone (matches "bedroom"+"storage"); heading surface ties
+    #     to Primary Bedroom's own room page, which carries "Also called the
+    #     master bedroom" as a heading (matches "master"+"bedroom"). Both
+    #     score 0.667. Without a room-signal preference between surfaces,
+    #     title wins by bare default and credits the wrong room.
+    kids_title = "How to organize the kids bedroom toy storage"
+    primary_title = "How to organize a primary bedroom, zone by zone"
+    tie_inv = [
+        {"url": "/zones/kids-bedroom-the-toy-storage-zone.html", "title": kids_title,
+         "words": set(kd.words(kids_title)), "head_words": set(kd.words(kids_title)),
+         "room": "Kids Bedroom"},
+        {"url": "/rooms/primary-bedroom.html", "title": primary_title,
+         "words": set(kd.words(primary_title)),
+         "head_words": set(kd.words(
+             primary_title + " Also called the master bedroom. "
+             "Same room, same micro zones.")),
+         "room": "Primary Bedroom"},
+    ]
+    rows = kd.score_rows({"master bedroom storage":
+                          {"query": "master bedroom storage",
+                           "sources": ["google"], "best_rank": 1,
+                           "seeds": ["x"]}}, ["Kids Bedroom", "Primary Bedroom"], tie_inv)
+    r = rows[0]
+    if r["best_page"] != "/rooms/primary-bedroom.html":
+        fails.append("a title/heading tie on 'master bedroom storage' still "
+                     "credited the wrong room: %r" % r["best_page"])
+    if r["unmatched_words"] != ["storage"]:
+        fails.append("unmatched_words did not match the page actually "
+                     "credited: %r" % r["unmatched_words"])
+    # And with no room signal at all (the query names no room either page
+    # answers to), the tie must still resolve exactly as it always has:
+    # this is the regression a careless fix could cause.
+    rows = kd.score_rows({"bedroom storage":
+                          {"query": "bedroom storage",
+                           "sources": ["google"], "best_rank": 1,
+                           "seeds": ["x"]}}, ["Kids Bedroom", "Primary Bedroom"], tie_inv)
+    if rows[0]["matched_on"] != "title":
+        fails.append("a tie with no room signal stopped defaulting to "
+                     "title: %r" % rows[0]["matched_on"])
+
     if fails:
         print("FAIL")
         for f in fails:
