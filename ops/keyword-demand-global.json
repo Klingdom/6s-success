@@ -21746,16 +21746,14 @@
         "how to organise steps"
       ],
       "room": "",
-      "best_page": "/zones/kitchen-the-lower-cabinets-and-cookware.html",
-      "best_page_title": "How to organize the kitchen lower cabinets and cookware",
+      "best_page": "/rooms/hall-closet.html",
+      "best_page_title": "How to organize a hall closet, zone by zone",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/kitchen-the-lower-cabinets-and-cookware.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/hall-closet.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "stairs"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb"
       ],
@@ -21768,16 +21766,14 @@
         "how to organise steps"
       ],
       "room": "",
-      "best_page": "/downloads/6S-Standards-Pack.html",
-      "best_page_title": "The 6S Success Standards Pack",
+      "best_page": "/rooms/hall-closet.html",
+      "best_page_title": "How to organize a hall closet, zone by zone",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/hall-closet.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "stairs"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb"
       ],
@@ -28665,16 +28661,14 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/downloads/6S-Standards-Pack.html",
-      "best_page_title": "The 6S Success Standards Pack",
+      "best_page": "/rooms/hall-closet.html",
+      "best_page_title": "How to organize a hall closet, zone by zone",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/hall-closet.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "stairs"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -32173,16 +32167,14 @@
         "how to organize steps"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/rooms/hall-closet.html",
+      "best_page_title": "How to organize a hall closet, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "stairs"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/hall-closet.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -48473,6 +48465,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "fee714763",
-  "scored_at": "2026-11-05T19:57:48Z"
+  "scored_against_commit": "5e41812ec",
+  "scored_at": "2026-11-05T21:05:25Z"
 }
