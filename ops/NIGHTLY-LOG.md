@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-05 (~22:1x slot): previous work confirmed finished, caught a one-commit-stale dashboard before shipping it
+
+Attached per Step 0 (shallow detached checkout, real `git fetch --unshallow` backgrounded and awaited, `checkout main`, ff-only onto `origin/main` at `3bc5d0194`, tree clean throughout).
+
+Previous work (the 22:0x operator cycle's Garage "cleaning"/"ceiling" synonym mine) confirmed finished, not cited: working tree was clean at attach, commit already pushed. Ran `preflight.py --fast` fresh to a file: 0 FAIL through every gate reached, genuinely stalled inside `gate_tests` at `test_audit_catalog.py` (9/473), the same documented headless-Chromium/no-egress sandbox limitation every recent cycle reports; killed by timeout, reported unchecked past that point. Found and cleared the stale `/tmp/.preflight_py_running.lock` (pid 745, confirmed dead) the killed run left behind.
+
+`BACKLOG-2026-09-07.md` sections 2-6 re-read directly: only C5/C6 unstruck, both already `YES, Phil`. GitHub's 29 open issues re-pulled fresh via the API: unchanged set and labels, newest activity still issue #42 at 2026-11-02T13:51:51Z, no reply from Phil. `ops/last-owner-notification.json` last sent 2026-11-02T04:17Z, no material change since (same issue count, no Phil reply, revenue still $0); no notification sent.
+
+Regenerated the dashboard trio per Step 6, and caught a real staleness before pushing it rather than after: my first regen, run right after attach, degraded `deploy_verdict` to "stale" because this sandbox has no VPS SSH key and the committed `ops/deploy-verdict.json` (confirmed current at build `3363a687a55a7762` by an earlier session with real access) predated HEAD's build `2c38a53f27e57be7`. Rather than ship that falsely-alarming "stale" verdict, re-fetched origin first: a fresh commit had just landed, `c55c5b079` ("Deploy verdict: production confirmed current at 2c38a53f27e57be7"), written by `deploy.yml`'s own post-deploy check seconds after `Deploy to production` run `42120017183` succeeded. Discarded my stale local regen, fast-forwarded onto `c55c5b079`, regenerated fresh: `deploy_verdict` now correctly reads "current", payment-link reachability correctly still "unconfirmed" (no Stripe credential here), per CLAUDE.md 0.3/0.4.
+
+Not starting any Phil-gated item. The standing "diapers" cluster handoff (two on-topic rows, "how to organize diapers in closet"/"...in diaper bag", against six off-topic noise rows in the same cluster) from the 21:4x PM check-in is still unpicked; the 22:0x operator cycle mined Garage instead. Handing it to the operator again rather than start it myself: an hours-scale row-by-row read, not a 30-minute slot's job.
+
+Pushed to main: dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-05 (~22:0x slot, full STEP 0-13 pass): two genuine Garage zone-synonym gaps mined ("cleaning", "ceiling"), a digital-collision false start caught before shipping
 
 **Did:** Attached per Step 0 (shallow detached checkout; real `git fetch --unshallow`, confirmed `is-shallow-repository false`; `checkout main`; ff-only onto `origin/main` at `886b307ac`, 1205 commits ahead, tree clean). Read `BACKLOG-2026-09-07.md` sections 0/1/1b/2/5/6/7 and entries 114/132, `STATUS.md` sections 0-6, `ROADMAP-2026-2029.md`'s own arithmetic via `GOALS.md`, `CLAUDE.md`, the nightly log head. `preflight.py --skip-tests` run fresh: 0 FAIL through every gate reached, genuinely stalled past `gate_etsy_pdfs_current` (network-bound, no egress here, the same documented sandbox limit every recent cycle hits), reported unchecked past that point. GitHub re-pulled directly via the MCP tools: 29 open issues, all `decision`/`blocked-on-art`, none updated since issue #42's 2026-11-02T13:51:51Z comment. 0 open PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty.
