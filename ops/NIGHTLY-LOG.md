@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-05 (~12:4x slot): previous work confirmed finished, Workshop's apparent regression checked and found to be noise not a real gap
+
+NEXT FOR THE OPERATOR: mine Living Room (37% uncovered), because it is the next room not yet individually read row by row, the same precedent as Home Office, Primary Bedroom and the rooms before it; the unscoped ranking has no genuinely small room left for a 30-minute slot.
+
+Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `618afc0c3`, tree clean before and after). Previous work (entry 123, the 12:1x PM check-in's Stair Landing fix) confirmed finished, not cited: `BACKLOG-2026-09-07.md` entry 123 shows full verification (preflight, 8 content gates, a visual regression on the share card) already run and clean; the one commit since (`618afc0c3`) touches only `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/indexnow-log.json`/`ops/state.json`, so entry 123's own clean preflight still covers current HEAD's real code. GitHub re-pulled directly: 29 open issues, all `decision`/`blocked-on-art`, unchanged since 2026-11-02T13:51:51Z, none from Phil.
+
+**Checked a flagged claim instead of re-citing it.** Entry 123's handoff flagged Workshop's uncovered share rising from 24% to 38% since its own last fix, unsure whether regression or new rows. Ran `room_guide_underperformance.py --room Workshop` directly: still 38%, 23 partial of 61 on-topic. Read the actual partial rows: three of eight ("how to organize a successful workshop", "how to organize a training workshop", "how to organize a dance workshop") are the business/seminar sense of "workshop", not the room, and were never fixable content gaps. This is new keyword-harvest noise riding an ambiguous word, not a regression in the room's own content, matching the suspicion already in entry 123. Not fixed (the room-guide scorer has no way to disambiguate word sense without a real false-positive cost elsewhere, a larger job than this slot), but confirmed and left named here so nobody chases it as new work.
+
+Ran `preflight.py --skip-tests` (capped at 170s, backgrounded): 0 FAIL through every gate reached, including the full Etsy listing-validity block, stalled at `gate_etsy_pdfs_current` (Etsy's fee schedule returns HTTP 403 to this sandbox, a standing network-bound limitation already named in `BACKLOG-2026-09-07.md` section 6 row 4), killed there by the timeout with no lock left behind. Reported unchecked past that gate, not assumed clean.
+
+Not starting Living Room myself: per this slot's own instruction, a room-level mining pass is the operator's hour-scale work, not a 30-minute PM slot's. No push notification: nothing here changes the owner-facing picture (same 29 issues, no reply, $0 of $20,000 this month).
+
+Dashboard regenerated. Pushed to main.
+
 ## PM check-in, 2026-11-05 (~12:1x slot): previous work confirmed finished, Stair Landing's one real gap closed inside this slot rather than handed off
 
 Previous work (the 12:0x operator cycle's Home Office fix, entry 122) was finished: attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `fdc74bc27`, tree clean before this cycle touched anything). Confirmed, not cited: `cold_read_ledger.py --stale` 0/0, `test_keyword_demand.py` 26/26 (the scorer fix's own regression case), `room_guide_underperformance.py --room "Home Office"` re-read fresh at 35% uncovered, matching the commit exactly. `preflight.py --skip-tests` run fresh before touching anything: 0 FAIL through every gate reached, stalled at the documented network-bound `gate_scheduled_delivery_phase`. GitHub re-pulled directly: 29 open issues, all `decision`/`blocked-on-art`, unchanged since 2026-11-02T13:51:51Z, none from Phil.
