@@ -11891,13 +11891,11 @@
       "best_page": "/garage-deck.html",
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/garage-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "chargers"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/garage-the-power-tool-and-battery-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "garage organization ideas cheap",
@@ -12131,13 +12129,11 @@
       "best_page": "/garage-deck.html",
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/garage-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pegboard"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "garage organization ideas pictures",
@@ -22293,13 +22289,11 @@
       "best_page": "/garage-deck.html",
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/garage-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pegboard"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a garage sale",
@@ -57499,6 +57493,6 @@
       ]
     }
   ],
-  "scored_against_commit": "41faafc15",
-  "scored_at": "2026-11-05T04:24:04Z"
+  "scored_against_commit": "f212d82e8",
+  "scored_at": "2026-11-05T04:30:28Z"
 }

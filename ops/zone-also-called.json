@@ -294,11 +294,20 @@
   },
   "Garage|Hand Tool Wall and Cabinets": {
    "names": [
-    "tool cupboard"
+    "tool cupboard",
+    "pegboard zone"
    ],
    "queries": 1,
    "covered": 0,
-   "source": "ops/keyword-demand-global.json 2026-11-05 (gb, au, in): 'how to organise tool cupboard', partial (0.5 title coverage), already scored correctly to this exact zone page (/zones/garage-the-hand-tool-wall-and-cabinets.html) via 'tool' in the title, only the single word 'cupboard' unmatched. The zone's own done_looks_like text already says 'the cabinet latched', the real cupboard this query names. Named 'tool cupboard', the plain phrase searched, matching the '<word> cupboard' precedent already in this file."
+   "source": "ops/keyword-demand-global.json 2026-11-05 (gb, au, in): 'how to organise tool cupboard', partial (0.5 title coverage), already scored correctly to this exact zone page (/zones/garage-the-hand-tool-wall-and-cabinets.html) via 'tool' in the title, only the single word 'cupboard' unmatched. The zone's own done_looks_like text already says 'the cabinet latched', the real cupboard this query names. Named 'tool cupboard', the plain phrase searched, matching the '<word> cupboard' precedent already in this file. 'pegboard zone' added 2026-11-05, scheduled operator cycle, mining Garage's 93-row partial tier for the same single-unmatched-word shape: 'garage organization ideas pegboard' (bing, rank 3) and 'how to organize a garage pegboard' (google, rank 11) both scored to the room-level /garage-deck.html on a tie-break (0.5 coverage, 'pegboard' unmatched), not this zone, despite this zone's own content.json 'shine' and 'safety' passes naming the pegboard directly ('wipe the pegboard behind it'; 'Seat every pegboard hook properly'). Named 'pegboard zone', the '<word> zone' precedent from the A-series, since the zone is literally a pegboard wall, not a metaphorical stretch."
+  },
+  "Garage|Power Tool and Battery Zone": {
+   "names": [
+    "chargers zone"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand.json 2026-11-05, scheduled operator cycle, mining Garage's 93-row partial tier: 'garage organization ideas chargers' (bing, rank 13) scored to the room-level /garage-deck.html on a tie-break (0.5 coverage, 'chargers' unmatched) rather than this zone, despite this zone's own content.json common_items literally reading 'Chargers, mounted at the front edge' and its purpose naming 'their chargers'. Named 'chargers zone', the '<word> zone' precedent from the A-series ('camping zone', 'storeroom zone', 'garden shed zone'), not the bare word 'chargers' alone."
   },
   "Pantry|Dry Goods Shelves": {
    "names": [

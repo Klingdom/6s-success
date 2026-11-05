@@ -20,6 +20,28 @@ No push notification: nothing here changes the owner-facing picture (same 29 iss
 
 Dashboard regenerated. Pushed to main.
 
+## Scheduled operator cycle, 2026-11-05 (~04:0x UTC): closed two Garage misattributions (pegboard, chargers) the 03:1x check-in's own Patio or Deck handoff led to, confirmed that handoff itself has no honest fix left
+
+**Did:** Attached per Step 0 (fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `62e0b069d`, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0, 5, 6, 7 and the last several numbered items, `ROADMAP-2026-2029.md`, `CLAUDE.md`, this file's last 4 entries, and GitHub directly (29 open issues, unchanged since 2026-11-02T13:51:51Z, all `decision`/`blocked-on-art`, none from Phil, confirmed via the API not cited).
+
+Checked the 03:1x PM check-in's own handoff first rather than skip past it: Patio or Deck's last two rows ("building an outdoor storage box", unmatched "building"; "how to store clothes in outdoor storage", unmatched "outdoor", scoring against a basement FAQ heading via a store/storage stem tie, not the real zone). Read both against the zone's real content.json: the Outdoor Storage Zone's own body is specifically about a deck box for cushions and furniture covers, never clothes, so "outdoor" has no honest fix; "building" is a different search intent (constructing a box, not organizing one), the same shape as the already-excluded "diy" rows on the same page, not a synonym gap. Confirmed exhausted, not reopened.
+
+Mined Garage's own 93-row partial tier (the next-smallest room per `room_guide_underperformance.py`'s ranking) the same way sections 109-113 did: grouped every partial row by its one unmatched word. Most high-frequency hits were noise (diy, build, plans, pictures-on-a-wall seed drift) but two were genuine: "garage organization ideas pegboard" and "how to organize a garage pegboard" (both tied to the room-level `/garage-deck.html` on a tie-break) and "garage organization ideas chargers" (same tie-break). Checked each target zone's real content.json before adding anything: Hand Tool Wall and Cabinets' own `shine`/`safety` passes say "wipe the pegboard behind it" and "Seat every pegboard hook properly"; Power Tool and Battery Zone's own `common_items` literally reads "Chargers, mounted at the front edge". Added "pegboard zone" to the existing Hand Tool Wall and Cabinets entry and a new "chargers zone" entry for Power Tool and Battery Zone in `ops/zone-also-called.json`.
+
+**Verified:** `check_also_called_digital_collision_fast.py` clean before shipping. `ops/build_zone_pages.py` rebuilt; grep-confirmed both new `<h2 class="also-called">` lines render on the real committed pages. `keyword_demand.py --rescore`: all 3 target queries moved partial to covered on the correct zone pages (heading_coverage 1.0, `unmatched_words: []`); gap unchanged (112), partial 1266 to 1263, covered 1445 to 1448. `keyword_demand_global.py --rescore`: one more row moved the same way (partial 933 to 932, covered 1140 to 1141), gap unchanged. `test_gate_zone_also_called_is_heading.py` (6/6), `test_gate_also_called_no_digital_collision.py` (5/5). `check_urls.py` (235/235), `audit_pages.py` (240/0, 0 duplicates), `fix_dashes.py`/`fix_dialect.py --check` (0/0), `affiliate.py --check` (165 documents), `check_sellable.py` (124/126), `link_graph_report.py` (0 orphans). `audit_visual.py` scoped to both changed pages, desktop and mobile: 0 findings each. `preflight.py --skip-tests` run fresh in the true background with unbuffered output (a first attempt piped through `tail` printed nothing until the process's own natural exit, the same buffering trap prior entries have logged; switched to `python -u ... > file` directly): every gate passed, 38 warnings, all pre-existing and unrelated to this change (confirmed by grep, none mention pegboard/charger/garage/also-called). GitHub reconfirmed: still 29 open issues, no reply from Phil.
+
+**Went well:** checking the handoff's own remaining rows against real zone content before mining further caught that neither had an honest fix, instead of padding a word that was not really there; the Garage mining pass then found two genuine ones in the same style.
+
+**Did not go well:** lost time to the `timeout | tail` output-buffering trap on the first preflight run of this cycle, again; the unbuffered-redirect fix already documented by prior entries works, but nothing yet stops a cycle from reaching for the buffered form first.
+
+**Changing next cycle:** none; no new gate warranted, the existing also-called/digital-collision gates already cover this shape correctly.
+
+**Next:** the concurrent 03:4x PM check-in below found the Garage/Pantry/Hall Closet/Home Office/Primary Bedroom ranking this entry's own "Next" would otherwise have carried forward is itself stale: Stair Landing (3 partial rows) and Dining Room (4) are now genuinely smaller after recent fixes. Pick up from that check-in's own three named rows (Stair Landing's "staircase" room-page-vs-article gap, Dining Room's "hutch") rather than Garage's remaining ~91, which are mostly diy/format-word noise and seed drift on first inspection and are no longer the smallest list.
+
+No push notification: nothing here changes the owner-facing picture (same 29 issues, no reply, $0 of $20,000 this cycle); two more generator-mechanical SEO fixes do not meet the bar past what prior notifications on this exact topic already covered.
+
+Dashboard regenerated. Pushed to main.
+
 ## PM check-in, 2026-11-05 (03:4x slot): previous work confirmed finished, the standing room-guide ranking handed to the operator is stale, corrected rather than repeated
 
 NEXT FOR THE OPERATOR: continue `room_guide_underperformance.py` cleanup on Stair Landing (3 partial rows) and Dining Room (4 partial), not the Garage/Pantry/Hall Closet/Home Office/Primary Bedroom order several recent cycles have carried forward, because those two rooms are now the genuinely smallest lists and the carried-forward ranking was never recomputed after earlier fixes shrank them below it.
@@ -33,8 +55,6 @@ Previous work (03:1x PM check-in, the furniture-zone synonym) confirmed finished
 Not fixing any of these myself this slot: none is a one-line synonym add like the recent wins, every one needs either the article-mechanism question settled or a content check the 30-minute window does not have room for. Not starting anything large, per the standing instruction for this slot.
 
 No push notification: nothing here changes the owner-facing picture (same 29 issues, no reply, $0 of $20,000 this month); a corrected internal ranking is not new information for Phil.
-
-Dashboard regenerated. Pushed to main.
 
 ## PM check-in, 2026-11-05 (03:1x slot): previous work finished, closed one of the 03:0x handoff's Patio or Deck rows with a synonym its own prior cycle had already diagnosed but never shipped, the rest genuinely need more than a synonym
 
