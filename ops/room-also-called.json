@@ -81,6 +81,15 @@
    "queries": 3,
    "covered": 0,
    "source": "ops/keyword-demand-global.json 2026-10-29 (in) for 'terrace'; 2026-10-31 (au) for 'backyard'; 2026-11-01 (gb) for 'porch'. 'backyard organisation' (rank 7, au) scored 'gap' against /about.html on a coincidental title match, not because that page is about this room; the Patio or Deck page's own six zones (seating, grilling, dining, garden, storage, the surface/rail/safety zone) are exactly what a household means by 'backyard', and the page carried no 'backyard' wording at all until this entry. 'porch organisation' (rank 10, gb) scored 'gap' against /about.html the same way; 'porch' is the plain British/Commonwealth word for the same outdoor seating structure this room already covers, confirmed by grep: neither the room page nor the deck page carried the word at all before this entry. Thin evidence (one query each) but real, not invented."
+  },
+  "Mudroom": {
+   "names": [
+    "lockers",
+    "locker"
+   ],
+   "queries": 2,
+   "covered": 0,
+   "source": "ops/keyword-demand.json 2026-11-05, ops/room_guide_underperformance.py --room Mudroom: 'how to organize mudroom lockers' (partial, 0.5 title coverage) and 'mudroom locker organization ideas' (partial, 0.5 title coverage), both already scored to this room's own pages (mudroom-deck.html or a zone page) via the word 'mudroom', only 'lockers'/'locker' unmatched. Neither word appeared anywhere in this site's titles or h1-h3 headings before this entry (grep-confirmed, including the sample-chapters download, where 'locker' appears once in body prose about a rented storage locker, not a heading). A built-in mudroom locker system, assigned hooks plus a cubby or bench per person, is exactly what the Family Hook Zone and Bench and Transition Surface already describe; it names the whole room's built-in system, not one specific zone, the same shape as 'porch'/'terrace' above, so it belongs at room level. Both the plural and singular forms are added because the scorer does no stemming (confirmed in ops/keyword_demand.py's own _morphology_variants docstring: it is used only for tie-break near-miss credit, never the primary score), and each form matches a different real query. Thin evidence (one query per form) but real, not invented."
   }
  },
  "_global_note": "Entries carrying a 'source' were measured by ops/keyword_demand_global.py, which harvests the same seeds for gb, au, ca and in. ops/tests/test_room_also_called.py accepts evidence from either harvest."

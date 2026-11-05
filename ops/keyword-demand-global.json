@@ -25869,11 +25869,11 @@
         "how to organize outdoor storage"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/zones/mudroom-the-shoe-and-boot-storage.html",
+      "best_page_title": "How to organize the mudroom shoe and boot storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/mudroom-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -31290,16 +31290,14 @@
         "how to declutter a mudroom"
       ],
       "room": "Mudroom",
-      "best_page": "/mudroom-deck.html",
-      "best_page_title": "The Mudroom Deck: 69 cards, free to read",
+      "best_page": "/rooms/mudroom.html",
+      "best_page_title": "How to organize a mudroom, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/mudroom-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "lockers"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/mudroom.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -40922,16 +40920,14 @@
         "mudroom organization ideas"
       ],
       "room": "Mudroom",
-      "best_page": "/mudroom-deck.html",
-      "best_page_title": "The Mudroom Deck: 69 cards, free to read",
+      "best_page": "/rooms/mudroom.html",
+      "best_page_title": "How to organize a mudroom, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/mudroom-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "locker"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/mudroom.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -48602,6 +48598,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-11-05T08:58:13Z",
-  "scored_against_commit": "5ade5541b"
+  "scored_at": "2026-11-05T09:56:21Z",
+  "scored_against_commit": "674ca6bfb"
 }

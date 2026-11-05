@@ -45,21 +45,35 @@ def guide_path(room):
 
 
 def room_rows(rows, room):
-    """Rows whose best_page is this room's deck, a zone page, or its guide article.
+    """Rows whose best_page is this room's deck, a zone page, its guide
+    article, or the room page itself.
 
     Same matching `room_guide_candidates.py.room_rows` does (deck, print-and-play
     deck, zone prefix), plus the guide article path, which that function never
     needed to check because every room it scored had none.
+
+    The room page itself (`/rooms/<slug>.html`) joined 2026-11-05. Found
+    mining Mudroom: `also_called_html()` in `ops/build_zone_pages.py` renders
+    a room-level also-called synonym directly onto that page, and
+    `ops/keyword_demand.py` correctly routed two newly-fixed queries there,
+    but this function did not recognise the path, so both queries vanished
+    from Mudroom's on-topic count entirely (33 to 32, not 33 to 33 with 2
+    more covered) instead of being credited as the fix they were. The same
+    gap applies to every earlier room-also-called fix that won on the room
+    page (porch/terrace/backyard for Patio or Deck, foyer for Entryway, and
+    the rest), silently undercounting each one the same way.
     """
     s = slug(room)
     deck_path = f"/{s}-deck.html"
     print_and_play_path = f"/deck/{s}-print-and-play.html"
     zone_prefix = f"/zones/{s}-"
+    room_path = f"/rooms/{s}.html"
     gp = guide_path(room)
     out = []
     for r in rows:
         bp = r.get("best_page") or ""
-        if bp == deck_path or bp == print_and_play_path or bp == gp or bp.startswith(zone_prefix):
+        if (bp == deck_path or bp == print_and_play_path or bp == gp
+                or bp == room_path or bp.startswith(zone_prefix)):
             out.append(r)
     return out
 

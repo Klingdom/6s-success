@@ -148,7 +148,8 @@ def slug(room):
 
 
 def room_rows(rows, room):
-    """Rows whose best_page is this room's deck or one of its zone pages.
+    """Rows whose best_page is this room's deck, one of its zone pages, or
+    the room page itself.
 
     Matches on best_page, not the sparse `room` field (881 of 2808 rows carry
     it; the rest, including most gap rows, do not), because best_page is what
@@ -164,15 +165,23 @@ def room_rows(rows, room):
     guide-less room with such a page today, but the shape is not
     room-specific, so the pattern is matched generally rather than
     special-cased to one slug.
+
+    The room page itself (`/rooms/<slug>.html`) joined 2026-11-05 for the
+    same reason named in `room_guide_underperformance.py`'s sibling
+    function: a room-level also-called synonym renders onto that exact
+    page, and a query that then routes there was being dropped from the
+    room's row set entirely rather than credited.
     """
     s = slug(room)
     deck_path = f"/{s}-deck.html"
     print_and_play_path = f"/deck/{s}-print-and-play.html"
     zone_prefix = f"/zones/{s}-"
+    room_path = f"/rooms/{s}.html"
     out = []
     for r in rows:
         bp = r.get("best_page") or ""
-        if bp == deck_path or bp == print_and_play_path or bp.startswith(zone_prefix):
+        if (bp == deck_path or bp == print_and_play_path
+                or bp == room_path or bp.startswith(zone_prefix)):
             out.append(r)
     return out
 

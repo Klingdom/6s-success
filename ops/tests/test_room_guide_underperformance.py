@@ -21,9 +21,11 @@ import build_zone_pages as bzp                      # noqa: E402
 import room_guide_underperformance as rgu            # noqa: E402
 
 failures = []
+total = [0]
 
 
 def check(name, cond):
+    total[0] += 1
     print(("PASS " if cond else "FAIL ") + name)
     if not cond:
         failures.append(name)
@@ -51,6 +53,13 @@ try:
     _deck_row = {"query": "organize test room deck", "best_page": "/test-room-deck.html", "status": "partial"}
     check("room_rows still matches the zone-prefix and deck routes too",
           len(rgu.room_rows([_guide_row, _zone_row, _deck_row], _room)) == 3)
+
+    _room_page_row = {"query": "organize test room lockers", "best_page": "/rooms/test-room.html", "status": "covered"}
+    check("room_rows matches a row whose best_page is the bare room page itself, "
+          "found 2026-11-05: a room-level also-called synonym (ops/build_zone_pages.py's "
+          "also_called_html) renders onto exactly this path, and a query routed there "
+          "was being dropped from the room's count entirely rather than credited",
+          len(rgu.room_rows([_guide_row, _zone_row, _deck_row, _room_page_row], _room)) == 4)
 
     _dup = {"query": "organize test room shared", "best_page": "/articles/how-to-test-a-room.html", "status": "gap"}
     _result = rgu.score_room([_dup], [_dup], _room)
@@ -128,4 +137,4 @@ finally:
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)
-print("\n%d/%d passed" % (17, 17))
+print("\n%d/%d passed" % (total[0], total[0]))

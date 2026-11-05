@@ -31464,16 +31464,14 @@
         "how to declutter a mudroom"
       ],
       "room": "Mudroom",
-      "best_page": "/mudroom-deck.html",
-      "best_page_title": "The Mudroom Deck: 69 cards, free to read",
+      "best_page": "/rooms/mudroom.html",
+      "best_page_title": "How to organize a mudroom, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/mudroom-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "lockers"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/mudroom.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize my baking supplies",
@@ -42425,16 +42423,14 @@
         "mudroom organization ideas"
       ],
       "room": "Mudroom",
-      "best_page": "/mudroom-deck.html",
-      "best_page_title": "The Mudroom Deck: 69 cards, free to read",
+      "best_page": "/rooms/mudroom.html",
+      "best_page_title": "How to organize a mudroom, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/mudroom-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "locker"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/mudroom.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "mudroom organization ideas",
@@ -57460,6 +57456,6 @@
       ]
     }
   ],
-  "scored_against_commit": "5ade5541b",
-  "scored_at": "2026-11-05T08:58:06Z"
+  "scored_against_commit": "674ca6bfb",
+  "scored_at": "2026-11-05T09:56:16Z"
 }
