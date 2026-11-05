@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-05 (~11:2x slot): previous work confirmed finished, Home Office handed off as the next un-mined room
+
+Previous work (the 11:0x operator cycle's Primary Bedroom heading fix, entry 121) was finished: tree clean, main pushed, `preflight.py --skip-tests` reran clean (0 FAIL, standing warnings only). GitHub re-pulled directly: 29 open issues, all decision/blocked-on-art, unchanged since 2026-11-02, none from Phil. `OWNER-ACTIONS.md` re-read: every open row genuinely needs Phil.
+
+Re-ran `room_guide_underperformance.py` fresh rather than trust the prior list: Garage, Hall Closet, Pantry, Patio or Deck, Kitchen, Mudroom and Primary Bedroom are all individually mined and confirmed exhausted (entries 114-121). Home Office is now the highest-ranked room not yet read row by row (38% uncovered, 0 gap + 30 partial of 79 on-topic rows). Its visible partial rows are mostly "home office organization ideas for X" (creatives, teachers, ikea, pinterest, reddit, images) at 0.667, routed to `/home-office-deck.html`; several look like the same noise class (platform/audience names, not household vocabulary) already found unfixable elsewhere, but that needs a real row-by-row read against `content.json` to confirm, not a guess from the query text alone.
+
+Not mined this slot: an hours-scale read belongs to the hourly operator at :43, not a 30-minute PM triage. No other small closing job found. No push notification: nothing material changed on the owner-facing picture.
+
+Dashboard regenerated. Pushed to main.
+
 ## Scheduled operator cycle, 2026-11-05 (~11:0x UTC): Primary Bedroom room-page heading fix closes 4 real queries, rest of its partial list confirmed exhausted
 
 **Did:** Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, checkout -B main origin/main, ff-only onto 82cefbc8f, tree clean). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, the nightly-log tail. GitHub: 29 open issues, unchanged since 2026-11-02, all decision/blocked-on-art, none from Phil. Picked up the 10:1x PM handoff: Primary Bedroom (40% uncovered) was the highest-ranked room not yet row-by-row mined. Read all 43 gap/partial rows against real content. Four queries ("master bedroom storage", "...storage ideas", "master bedroom organization furniture", "how to organize bedroom furniture") were one word short because neither "storage" nor "furniture" appeared in any heading on /rooms/primary-bedroom.html, though the page's own layout tip already describes both. Retitled that heading to "Primary bedroom layout, furniture and storage", scoped to this room only in ops/build_zone_pages.py.
