@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-31T21:21:23Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-31T23:00:06Z",
    "mode": "changed",
    "offered": 2,
@@ -657,6 +650,13 @@
    "offered": 2,
    "accepted": 2,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-05T04:35:35Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -733,7 +733,7 @@
   "https://6s-success.com/rooms/stair-landing": "3ad878cae98babd7",
   "https://6s-success.com/rooms/workshop": "97b04eb739e0056e",
   "https://6s-success.com/zones/dining-room-the-beverage-or-coffee-station": "c6922f76ca90963a",
-  "https://6s-success.com/zones/dining-room-the-china-or-display-cabinet": "f3999f480ceb6bc3",
+  "https://6s-success.com/zones/dining-room-the-china-or-display-cabinet": "002b27189dd4070a",
   "https://6s-success.com/zones/dining-room-the-dining-table": "74b387be7e251378",
   "https://6s-success.com/zones/dining-room-the-sideboard-storage": "fe395c0ea3c77be0",
   "https://6s-success.com/zones/dining-room-the-sideboard-surface": "3b83fcbe9969b2d4",
