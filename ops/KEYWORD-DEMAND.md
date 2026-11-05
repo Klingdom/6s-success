@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-05T10:59:42Z against 243 page(s) at commit 82cefbc8f. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-05T12:00:22Z against 243 page(s) at commit 318cf15e7. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1469 covered, 1245 partial, 109 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1463 covered, 1249 partial, 111 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 109, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 111, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -79,6 +79,7 @@ Showing the top 80 of 109, ordered by the best rank the phrase reached in any on
 | 10 | how to hold a cribbage tournament | - | How to organize an attic without overloading it (0.00) | cribbage, tournament |
 | 10 | how to organize pc | - | - (0.00) | - |
 | 10 | how to organize printed recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | printed, recipes |
+| 10 | how to properly dispose of diapers | - | The Hall Closet Deck: 58 cards, free to read (0.00) | diapers, properly |
 | 10 | laundry problems and solutions | - | How to organize a laundry room, step by step (0.33) | problems, solutions |
 | 11 | foyer design ideas for flat indian style | - | How to organize an entryway, zone by zone (0.20) | flat, indian, style |
 | 11 | how to decorate a living room with high ceilings | Living Room | The Living Room Deck: 69 cards, free to read (0.40) | ceilings, decorate, high |
@@ -86,6 +87,7 @@ Showing the top 80 of 109, ordered by the best rank the phrase reached in any on
 | 11 | how to operate a gas stove | - | How to organize the kitchen stove area (0.33) | gas, operate |
 | 11 | how to organize recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | recipes |
 | 11 | how to plan a workshop for students | Workshop | How to organize a workshop, zone by zone (0.33) | plan, students |
+| 11 | how to properly dispose of adult diapers | - | Why does a shared zone never stay reset? (0.00) | diapers, dispose, properly |
 | 11 | organize seasonal pricing model | - | How to organize the hall closet seasonal storage (0.33) | model, pricing |
 | 12 | adult diaper disposal container | - | How to organize the nursery diaper storage (0.25) | adult, container, disposal |
 | 12 | building beds for kids organization | - | How to organize a kids bedroom, step by step (0.33) | beds, building |
@@ -99,12 +101,10 @@ Showing the top 80 of 109, ordered by the best rank the phrase reached in any on
 | 14 | diy plans for a nightstand | - | How to organize the guest bedroom nightstand (0.33) | diy, plans |
 | 14 | explore decluttering pro guide | - | Decluttering vs. organizing: what's actually different (0.25) | explore, guide, pro |
 | 14 | grill stations ideas for backyards | - | How to organize the patio or deck grill station (0.33) | backyards, stations |
-| 14 | how to dispose of adult diapers | - | Why does a shared zone never stay reset? (0.00) | diapers, dispose |
-| 14 | how to organize closet tutorial guide | - | How to organize a linen closet: sheets, towels and shelves (0.33) | guide, tutorial |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1245.
+Showing the top 60 of 1249.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -136,6 +136,7 @@ Showing the top 60 of 1245.
 | 1 | how to build a patio deck | How to organize a patio or deck, step by step | 0.67 |
 | 1 | how to build a stair landing | How to organize a stair landing, zone by zone | 0.67 |
 | 1 | how to decorate a stair landing | How to organize a stair landing, zone by zone | 0.67 |
+| 1 | how to organize car cleaning supplies | How to organize the garage car care supplies | 0.67 |
 | 1 | how to organize desk drawers diy | How to organize the home office desk drawers | 0.67 |
 | 1 | how to organize entertainment center cables | How to organize the family room entertainment center | 0.67 |
 | 1 | how to stage a guest bedroom | The Guest Bedroom Deck: 57 cards, free to read | 0.67 |
@@ -167,7 +168,6 @@ Showing the top 60 of 1245.
 | 2 | primary bedroom decorating ideas | The Primary Bedroom Deck: 66 cards, free to read | 0.67 |
 | 2 | restaurant dining room ideas | The Dining Room Deck: 61 cards, free to read | 0.67 |
 | 2 | wireless organize charging station | How to organize the family room charging station | 0.67 |
-| 3 | acrylic paint storage organizer | How to organize the workshop paint and chemical storage | 0.67 |
 
 ## By room
 
@@ -176,13 +176,13 @@ Showing the top 60 of 1245.
 | Dining Room | 38 | 0 | 17 | 21 |
 | Entryway | 50 | 1 | 13 | 36 |
 | Family Room | 27 | 0 | 17 | 10 |
-| Garage | 77 | 1 | 23 | 53 |
+| Garage | 77 | 1 | 24 | 52 |
 | Guest Bathroom | 22 | 1 | 13 | 8 |
 | Guest Bedroom | 24 | 0 | 12 | 12 |
 | Hall Closet | 27 | 0 | 11 | 16 |
-| Home Office | 58 | 0 | 24 | 34 |
+| Home Office | 58 | 0 | 23 | 35 |
 | Kids Bedroom | 22 | 0 | 8 | 14 |
-| Kitchen | 97 | 2 | 37 | 58 |
+| Kitchen | 97 | 2 | 38 | 57 |
 | Laundry Room | 72 | 0 | 16 | 56 |
 | Living Room | 97 | 2 | 44 | 51 |
 | Mudroom | 43 | 0 | 21 | 22 |

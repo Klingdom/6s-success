@@ -526,6 +526,47 @@ def main():
         fails.append("a tie with no room signal stopped defaulting to "
                      "title: %r" % rows[0]["matched_on"])
 
+    # 21. Found live 2026-11-05: "Cleaning it properly, surface by surface"
+    #     is byte-identical on all 114 zone pages (grep-confirmed), so it
+    #     cannot discriminate between zones, yet it was still read into
+    #     every page's head_words. Combined with a zone's own title word,
+    #     that free "cleaning" silently turned an already-diagnosed false
+    #     match ("cabinet to organize cleaning supplies", ruled unfixable
+    #     because "cabinet" names seven zones) into a false 1.0 "covered"
+    #     claim the moment any other word in the query was added anywhere.
+    #     page_inventory() reads real files, so this proves the filter
+    #     directly against a throwaway site tree rather than re-deriving it
+    #     by hand a second time.
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        zones_dir = os.path.join(tmp, "zones")
+        os.makedirs(zones_dir)
+        page = (
+            "<html><head><title>How to organize the office supply "
+            "cabinet</title></head><body>"
+            "<h1>The Supply Cabinet</h1>"
+            "<h2>Cleaning it properly, surface by surface</h2>"
+            "</body></html>")
+        with open(os.path.join(zones_dir, "office-the-supply-cabinet.html"),
+                  "w", encoding="utf-8") as fh:
+            fh.write(page)
+        old_site = kd.SITE
+        kd.SITE = tmp
+        try:
+            inv = kd.page_inventory(rooms=[])
+        finally:
+            kd.SITE = old_site
+    if len(inv) != 1:
+        fails.append("page_inventory() did not read the throwaway page: %r"
+                     % inv)
+    elif "cleaning" in inv[0]["head_words"]:
+        fails.append("the boilerplate 'Cleaning it properly, surface by "
+                     "surface' heading still leaked 'cleaning' into "
+                     "head_words: %r" % inv[0]["head_words"])
+    elif "cabinet" not in inv[0]["head_words"] or "supply" not in inv[0]["head_words"]:
+        fails.append("the filter dropped real title words along with the "
+                     "boilerplate heading: %r" % inv[0]["head_words"])
+
     if fails:
         print("FAIL")
         for f in fails:

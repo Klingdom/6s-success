@@ -333,6 +333,14 @@
    "queries": 1,
    "covered": 0,
    "source": "ops/keyword-demand.json 2026-11-05 (bing): 'organizing pantry for bulk shopping', US rank 16, partial (0.667 title coverage), already scored to this exact zone page (title 'How to organize the pantry bulk storage'), only the single word 'shopping' unmatched. Grep-confirmed before adding: the zone's own text never uses the gerund 'shopping' but does use the stem twice, 'When you get home from a big shop' (sustain pass) and 'You shop a warehouse club every few months' (variants), the same exact-word-not-stem shape already fixed elsewhere in this file for 'paint'/'painting', 'nappy'/'nappies' and 'craft'/'crafts'. Named '<word> zone', the A-series precedent."
+  },
+  "Home Office|Supply Cabinet": {
+   "names": [
+    "office supplies"
+   ],
+   "queries": 2,
+   "covered": 0,
+   "source": "ops/keyword-demand.json and ops/keyword-demand-global.json 2026-11-05, scheduled operator cycle, mining Home Office's 30-row partial tier: 'how to organize office supplies' (partial, 0.5 title coverage, unmatched 'supplies') and 'how to organize home office supplies' (partial, 0.667, unmatched 'supplies') both already score to this room via 'organize'+'office'/'home office', missing only the plural word 'supplies'. This zone's title already reads 'How to organize the home office supply cabinet', singular 'supply', so the scorer's no-stemming rule never matched the plural. Its own content.json purpose ('Hold the consumables this office genuinely burns through in a year') and done_looks_like text are exactly office supplies, not a coincidental match. Checked for collision first (CLAUDE.md 5c): the bare word 'supplies' is heavily overloaded across the corpus (cleaning, baking, craft, car, gardening, cricut, prepping supplies, each already routed to its own correct zone via a qualifying word), so named the phrase 'office supplies', not the bare noun, following the same reasoning already recorded in the Kitchen Sink and Dishwashing Zone's entry above ('nobody calls this the supplies zone'). Re-scored the full corpus both ways before shipping: every existing 'supplies' query elsewhere (cleaning, baking, craft, car, gardening) keeps its same best_page, since none of their queries carry the word 'office' and this zone's heading needs both words together to win; 'how to organize supplies' (bare, already covered via Garage's own title) stays on Garage after this change too, confirmed by the existing alphabetical tie-break ('garage' sorts before 'home-office'), so this change makes no query's status worse."
   }
  }
 }

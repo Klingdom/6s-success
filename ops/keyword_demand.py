@@ -425,6 +425,37 @@ def content_words(query):
             if w not in STOPWORDS and w not in FORMAT_WORDS and len(w) > 2]
 
 
+# A zone-page template heading verified byte-identical across all 114 zone
+# pages (counted live, 2026-11-05: `grep -c 'id="shine-detail"' site/zones/*`
+# is 114/114, always the same wording). A heading that reads the same on
+# every zone cannot discriminate between zones, so its words have never once
+# been the honest reason any zone matched a query; counting them only adds
+# noise. Found live: "Cleaning it properly, surface by surface" (every
+# zone's Shine detail section) contributed the word "cleaning" to literally
+# every zone's head_words. Adding "office supplies" to Home Office's Supply
+# Cabinet zone (content.json-backed, a genuine fix) combined with that free
+# "cleaning" and the zone's own title word "cabinet" to silently flip
+# "cabinet to organize cleaning supplies" from its correct `partial` (this
+# same cycle re-confirmed it as already diagnosed and deliberately left
+# alone, because "cabinet" alone names seven other zones) to a false 1.0
+# "covered" claim on an unrelated zone. Scoped to only this one proven
+# phrase rather than every other heading that also happens to repeat
+# verbatim (several do: "Related reading", "Common items here" and others),
+# because only this one has been shown to cause a real collision; widening
+# the exclusion further is speculative until a second instance is found.
+# Also not touching the six 6S pass-name headings (Sort/Straighten/Shine/
+# Safety/Standardize/Sustain), identical across every zone for the same
+# reason, because they are core method vocabulary a query might genuinely
+# search on and removing them is a larger, untested change than this fix
+# needs. An earlier attempt this same cycle to drop every page's
+# promotional cross-sell "band" heading wholesale was tried and reverted,
+# because those headings vary per room and often carry real zone-naming
+# signal (a room article's own zone list), unlike this one.
+BOILERPLATE_HEADINGS = {
+    "cleaning it properly, surface by surface",
+}
+
+
 def page_inventory(rooms=None):
     """Every published page as its title and its section headings.
 
@@ -467,8 +498,11 @@ def page_inventory(rooms=None):
             title = title.split("|")[0].strip()
             body = re.sub(r"(?is)<(script|style)\b.*?</\1>", " ", whole)
             heads = " ".join(
-                re.sub(r"<[^>]+>", " ", h)
-                for h in re.findall(r"(?is)<h[1-3][^>]*>(.*?)</h[1-3]>", body))
+                t for t in (
+                    re.sub(r"\s+", " ",
+                           re.sub(r"<[^>]+>", " ", h)).strip()
+                    for h in re.findall(r"(?is)<h[1-3][^>]*>(.*?)</h[1-3]>", body))
+                if t.lower() not in BOILERPLATE_HEADINGS)
             url = "/" + os.path.relpath(path, SITE).replace(os.sep, "/")
             rows.append({"url": url,
                          "title": title,
