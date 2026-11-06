@@ -1028,8 +1028,8 @@
     },
     "preflight.py": {
       "status": "clean",
-      "date": "2026-11-03",
-      "note": "Re-read against git history since the 2026-11-02 ledgered date (same date, later commits). Three commits re-read in full: 00d36989f adds gate_status_history_chain_not_collapsed (catches STATUS.md history entries glued onto one physical line/paragraph, invisible to rotate_status_history.py's own parser); a66323382 adds gate_also_called_no_digital_collision (catches an also-called name that collides with a PC/Steam-context query, after a scorer false-positive this cycle found and reverted); 6837d9454 adds the lock child-pgid tracking/reaping fix for the orphan-process-chain class, independently exercised live this cycle: killed a hung gate_tests run (pid 1008, stuck at test_audit_catalog.py same as documented), called acquire_preflight_lock() directly, confirmed it found the stale lock and left no orphan process behind (fourth real-world firing). All three gates' own fail-then-pass test files exist. No defect found."
+      "date": "2026-11-06",
+      "note": "re-ledgered: 2026-11-06 touch was the html.unescape() apostrophe fix in check_also_called_is_heading / check_zone_also_called_is_heading (498a995ce), already fail-then-pass verified by that cycle; read the diff directly, no new concern"
     },
     "prerender_shop.py": {
       "status": "clean",
