@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-06 (~07:4x slot): previous work reconfirmed finished a third independent way, handing the operator a real, scoped build job
+
+NEXT FOR THE OPERATOR: build a new rotation script for `OWNER-ACTIONS.md`'s still-open items (same shape as `ops/rotate_backlog_section2_items.py`), because the file is 115514 bytes against its 110000-byte tripwire, all four existing rotators (`rotate_owner_actions.py`, `rotate_owner_actions_closed_items.py`, `rotate_owner_actions_gemini_billing.py`, `rotate_owner_actions_item_history.py`) checked CLEAN this cycle, and direct inspection of item 4 (line 647) found the real bloat: accumulated "Corrected 2026-XX-XX, this operator" narrative inline inside still-open items, the exact pattern the backlog section-2/3/4 rotators already exist to archive, just never built for this file.
+
+Attached per Step 0: fetch, checkout main, ff-only onto `origin/main` at `0c26409`, tree clean, no concurrent push during this cycle.
+
+Previous work (the 07:1x PM check-in and the operator cycle before it) confirmed finished a third independent way, not cited: ran `preflight.py --skip-tests` myself, unbuffered to a file, full window: 0 real FAIL blocks through every gate reached, stopped at the documented network-bound `gate_etsy_pdfs_current` stall as expected, reported unchecked past that point. `cold_read_ledger.py --stale`: 0 stale. GitHub re-pulled live via the MCP tool: 29 open issues, same set, all `decision`/`blocked-on-art`, newest activity still issue #42 at 2026-11-02T13:51:51Z, none from Phil. `BACKLOG-2026-09-07.md` sections 2-6 read directly: unchanged, Done/Hold/owner-gated. `EXECUTIVE-DASHBOARD-LIVE.md` already fresh (07:22, this cycle).
+
+Not starting the rotation build myself: it is a real multi-step job (diagnose the item-by-item bloat, write the script, wire a new preflight gate, fail-then-pass test), not a three-minute fix, and the operator starts in a few minutes with more budget for it.
+
+Pushed to main: this entry only.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-06 (~07:1x slot): previous work confirmed finished independently, nothing new unblocked
 
 Attached per Step 0: shallow detached checkout, fetch, real unshallow (1280 commits), `checkout main`, ff-only onto `origin/main` at `0b8409e48`, tree clean throughout, no concurrent push landed while this cycle read state.
