@@ -131,6 +131,13 @@ try:
     _result11 = rgu.score_room([_cleaning_supplies], [], _room)
     check("a genuine on-topic 'organize cleaning supplies' row is NOT excluded by the business pattern",
           _result11["on_topic_rows"] == 1)
+
+    _british_spelling = {"query": "how to organise bookshelf",
+                          "best_page": "/articles/how-to-test-a-room.html", "status": "partial"}
+    _result12 = rgu.score_room([_british_spelling], [], _room)
+    check("a British-spelling 'organise' query (no american 'organiz', no "
+          "declutter/clean/storage/stock word) IS counted on-topic, 2026-11-06",
+          _result12["on_topic_rows"] == 1)
 finally:
     del bzp.ROOM_GUIDES["Test Room"]
 
