@@ -22987,16 +22987,14 @@
         "how to declutter a kitchen"
       ],
       "room": "Kitchen",
-      "best_page": "/articles/how-to-declutter-a-kitchen.html",
-      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
+      "best_page": "/rooms/kitchen.html",
+      "best_page_title": "How to organize a kitchen, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "island"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/kitchen.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a kitchen junk drawer",
@@ -57227,6 +57225,6 @@
       ]
     }
   ],
-  "scored_against_commit": "233fe422b",
-  "scored_at": "2026-11-06T04:02:26Z"
+  "scored_against_commit": "7bab26066",
+  "scored_at": "2026-11-06T05:02:33Z"
 }

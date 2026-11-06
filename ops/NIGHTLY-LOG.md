@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-06 (~05:1x UTC): closed the Kitchen island content gap, after an extensive search across eight rooms found every other candidate unfit to ship
+
+**Did:** Unshallowed and attached per Step 0 (1258 commits fast-forwarded, tree clean). Preflight 0 FAIL twice (before and after this change) to the documented network-bound Etsy stall; a stray probe-file FAIL from my own earlier killed run self-healed as designed. 29 GitHub issues re-pulled live, unchanged, none from Phil; issue #42 re-read, no reply. No mail credential. Read Kitchen, Pantry, Garage, Hall Closet, Patio or Deck, Mudroom, Primary Bedroom and Family Room's full partial-row lists (not the ranking tool's 8-row sample) for single-unmatched-word gaps. Declined several candidates against real content before shipping anything (CLAUDE.md 5c/5d): "toolbox" only appears in content.json as a Laundry Room stray-item example, not Garage's own vocabulary; "dishes" collides with the different sense in "baking dishes"/"oven dishes" (casserole dishes, not washing-up); "coat hooks with shelves/on a board" describes a different physical object than the Family Hook Zone's hooks-only design. "Kitchen island" (3 queries, both harvests, 0 hits for "island" or "countertop" anywhere in content.json) was genuine and safe: no bare "island" query exists in either corpus, so no gaming-context collision. Added a "Kitchen island" tip to Kitchen's `tips` array, grounded only in already-published zone facts (Primary Prep Counter's own standard, Cooking Zone, which cabinet zone owns which stored item, The Trap's own counter-clutter warning), wired through the existing `tips.get(label)` mechanism (A40-A44's precedent) rather than a zone-also-called rename, since an island is not honestly any one zone's other name.
+
+**Verified:** `test_keyword_demand.py` 31/31. Rescored both corpora live: all 3 target queries moved `partial`/`gap` to `covered`, 0 unmatched words, no other row's status changed. Kitchen 41% to 40% uncovered. `check_urls.py` (235/235), `audit_pages.py` (240/0), `fix_dashes.py`/`fix_dialect.py --check` (0/0), `affiliate.py --check`, `link_graph_report.py` (0 orphans), `check_sellable.py` (124/126), `build_id.py --check` (current), `audit_visual.py` on the changed page (desktop and mobile, 0 findings each) all clean.
+
+**Went well:** checking content.json directly before each candidate caught three real overclaim risks before they shipped, not after.
+
+**Did not go well:** nothing new; the room-guide/keyword lane is visibly down to single-digit genuine finds per room now.
+
+**Changing next cycle:** none.
+
+**Next:** Pantry and Garage still ~40% uncovered with no further single-word win found this pass; both need either a dedicated new-content tip (same shape as this entry) or are genuinely exhausted, not yet decided which.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-06 (~04:3x slot): previous work had broken CI, fixed; STATUS.md size tripwire also closed
 
 Previous work (04:0x diy/FORMAT_WORDS fix) was verified in isolation but broke CI: it rescored keyword-demand.json without updating GOALS.md's cheap/budget/DIY citation; test_gate_goals_keyword_cluster_citation_current.py (only run in full gate_tests, not --skip-tests) caught it red on main, run 42160481630. Fixed: citation corrected to 76/22/2/100 (was 32/64/4/100), test 7/7 now. Also closed STATUS.md's size-tripwire warning: moved 5 resolved incidents verbatim to INCIDENTS.md (117KB to 102KB). OWNER-ACTIONS.md (115.5KB) still over; no quick chain found, left for the operator. Re-ledgered ops/keyword_demand.py. preflight --skip-tests: 0 FAIL. 29 issues unchanged, Phil-gated. Handing to :43: OWNER-ACTIONS.md's own prunable chain; Kitchen (41% uncovered) unmined.

@@ -892,6 +892,10 @@
     {
      "label": "Room layout",
      "text": "Work outward from the Sink and Dishwashing Zone, since it is this room's one fixed recovery point and every other zone eventually drains into it. Put the Primary Prep Counter within reach of the sink, since prep scraps and dirty tools both end up there. Keep the Utensil and Utility Drawers between the Prep Counter and the Cooking Zone, since those are the two zones that reach into them constantly. Store the Lower Cabinet and Cookware Zone's heavy pots and pans near the Cooking Zone, where they get lifted from, and keep the Upper Cabinet Zone's everyday dishes at eye level or below rather than overhead, which is a safety rule here, not a placement preference."
+    },
+    {
+     "label": "Kitchen island",
+     "text": "An island is not a zone of its own here; it is wherever your other zones happen to sit. If its top is where food gets cut and plated, hold it to the Primary Prep Counter's own standard: one clear run holding only the board, the knife block, and the salt. If it carries a cooktop, that section follows the Cooking Zone instead. Whatever is in its drawers and cabinets belongs to the zone that already claims it: heavy pots and pans to the Lower Cabinet and Cookware Zone, flatware and hand tools to the Utensil and Utility Drawers. An island earns the counter's own trap faster than any other surface, because it has no wall forcing a single front: clear every side of it the same way you clear the rest of the counter, not just the side a guest sees."
     }
    ],
    "zones": [

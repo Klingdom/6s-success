@@ -3677,6 +3677,9 @@ def room_faq(room, rm, rt):
     if tips.get("Small bathroom"):
         qa.append(("How do you organize tiny bathrooms?",
                    _clean(tips["Small bathroom"])))
+    if tips.get("Kitchen island"):
+        qa.append(("How do you organize a kitchen island?",
+                   _clean(tips["Kitchen island"])))
     names = [display(room["room"], z["zone"]) for z in room["zones"]]
     if names:
         qa.append((f"What parts of the {rm} should be organized separately?",
@@ -4096,14 +4099,25 @@ def room_page(room, header, footer, all_rooms=()):
         out.append('<h2>Tiny bathrooms</h2>'
                    f'<p>{esc(_clean(_small_text))}</p>')
 
+    # Same shape again: "how to organize a kitchen island" (both keyword
+    # harvests) scored a gap because "island" appeared in no heading
+    # anywhere on the site. Only Kitchen carries this tip today; every
+    # other room's lookup is simply None.
+    _island_text = _room_tips.get("Kitchen island")
+    if _island_text:
+        out.append('<h2>Kitchen island</h2>'
+                   f'<p>{esc(_clean(_island_text))}</p>')
+
     # "Where to start" now renders above the zone list (D10); "Room
-    # layout", "Garage sale", "Design", "After a makeover" and "Small
-    # bathroom" now have their own headings just above; keep all six out
-    # of this list too, so no tip is said twice on one page.
+    # layout", "Garage sale", "Design", "After a makeover", "Small
+    # bathroom" and "Kitchen island" now have their own headings just
+    # above; keep all seven out of this list too, so no tip is said
+    # twice on one page.
     tips = [t for t in (room.get("tips") or [])
             if t.get("label") not in ("Where to start", "Room layout",
                                        "Garage sale", "Design",
-                                       "After a makeover", "Small bathroom")]
+                                       "After a makeover", "Small bathroom",
+                                       "Kitchen island")]
     if tips:
         out.append('<h2>For this room</h2><ul>')
         out += [f'<li><b>{esc(t.get("label", ""))}.</b> {esc(t.get("text", ""))}</li>'
