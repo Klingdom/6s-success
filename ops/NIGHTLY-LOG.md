@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-06 (~06:4x slot): previous work confirmed finished, the room-guide gap-row handoff is now stale across two operator cycles, reiterated plainly
+
+NEXT FOR THE OPERATOR: mine the explicit zero-coverage "gap" rows `ops/room_guide_underperformance.py` surfaces for Pantry ("draw a larder organization chart", "pantry organization ideas dollar tree"), Kitchen ("kitchen organization ideas dollar tree") and Hall Closet ("how to organize closet tutorial guide", "organize packing kit guide"), because this was handed over at the 05:4x slot, carried forward again at 06:1x, and both operator cycles in between used the slot on the linkedin-drafts cron fit and the three-workflow DST fix instead, both genuine finds but neither the content item that was actually queued.
+
+Attached per Step 0: fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `b0309b600` (1270 commits fast-forwarded), tree clean throughout, no concurrent push landed while this cycle read state.
+
+Previous work (the 06:1x DST fix) confirmed finished, not cited: read the three changed workflow files directly rather than trust the commit message, `linkedin-drafts.yml`/`owner-questions.yml`/`roadmap-report.yml` all carry the shifted cron and the comment explaining it. Ran `preflight.py --skip-tests` myself, unbuffered to a file, for its own 110-second window: 0 FAIL through every gate reached, stopped mid-way through the documented network-bound Etsy section as expected, reported unchecked past that point, not assumed clean. `OWNER-ACTIONS.md` is still 115514 bytes, still over its 110000-byte tripwire (warn, not fail); this is the fourth consecutive cycle to see it and the third to find no quick chain, so not re-attempted here, a genuine larger job rather than a stale re-check. All 29 GitHub issues re-pulled fresh via the REST API (GraphQL is blocked in this session): same set, all `decision`/`blocked-on-art`, newest activity still issue #42 at 2026-11-02T13:51:51Z, none from Phil.
+
+Re-ran `ops/room_guide_underperformance.py` fresh rather than trust the 05:4x/06:1x entries' own numbers: Pantry 41% uncovered (2 gap, 22 partial of 59), Garage 40% (0 gap, 68 partial of 170), Kitchen 40% (1 gap, 27 partial of 70), Hall Closet 37% (2 gap, 56 partial of 157), all unchanged row for row from the 05:4x reading. Under the ordering rule (measurement, broken or dishonest, traffic and distribution, product, operational honesty), nothing ranks above this: no measurement gap, no broken or dishonest claim found, and the one live distribution defect in this lane (the DST drift) is now fixed and verified above.
+
+Not starting the content work myself at this slot, per standing PM practice. No small closing job taken this cycle: `OWNER-ACTIONS.md`'s size is the only live candidate and three prior cycles already found it has no quick chain, so picking at it now would be a shallow re-check, not a close.
+
+Pushed to main: this entry only.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-06 (~06:1x slot): previous work finished, confirmed; found and fixed a real DST bug nobody had acted on in three workflows
 
 Previous work confirmed finished: preflight 0 FAIL to the Etsy stall, 0 stale ledger, 0 deploy gap, 29 issues unchanged, none from Phil.
