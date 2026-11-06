@@ -24,9 +24,25 @@ Regenerated the dashboard. Pushed to main.
 
 HANDOFF-FILES: none
 
+## PM check-in, 2026-11-06 (~21:4x slot): previous work confirmed finished a third and fourth way, Garage handoff reconfirmed independently by both PM twins
+
+NEXT FOR THE OPERATOR: mine Garage's room-guide tier (37% uncovered, next-ranked after Kitchen's post-fix 43%), because it is the next real candidate in the corrected post-A68 ranking and nothing else is unblocked. The concurrent 21:1x twin cycle below arrived at the same handoff (Garage/Pantry/Hall Closet) independently.
+
+Attached clean (fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `cae0887c8`, tree clean throughout). A concurrent twin push landed mid-cycle (`ee954bca7`/`665c2efe6`); merged rather than forced, generated-file conflicts (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`) resolved by regenerating via `ops/dashboard.py` rather than by hand, this log entry merged by hand to keep both accounts.
+
+Previous work (the 21:0x operator's Kitchen misattribution fix and the 21:2x operator's independent re-verification of it) confirmed finished a third way, not cited: fast gates rerun directly rather than trusted, `check_urls.py` (235/235), `fix_dashes.py --check` (0 em/en dashes), `cold_read_ledger.py --stale` (0 stale). Full `preflight.py` and `preflight.py --skip-tests` both started fresh and both hung at the same documented network-bound gate this sandbox cannot reach (`6s-success.com`/Google hosts refused by the proxy), killed by hand after confirming no FAIL appeared before the stall; consistent with every recent cycle, not a new finding. GitHub re-pulled live: 29 open issues, all authored by the repository bot account, all `decision`/`blocked-on-art`, unchanged since 2026-11-02T13:51:51Z, none from Phil. No open claims in `STATUS.md`. Working tree was already clean before I touched anything.
+
+No new defect small enough to close here; the fast gates that can run in this slot are all clean. Not starting Garage myself: this slot is triage, three minutes before the operator, and Garage's partial tier needs a real row-by-row read (CLAUDE.md 5c/5d), not a quick scan.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-06 (~21:1x slot)
 
 Previous work (A70, Kitchen bedside/dressing-table fix) confirmed finished, re-derived not cited: `covered` in the real corpus. Fresh preflight caught `STATUS.md` citing a superseded build in 5 places; real gap had opened to 1 commit. Fixed all five via `resolve_verdict_commit`/`deploy_gap_material_commits`. While verifying, found and fixed a real bug in `gate_status_deploy_gap_count_current`: it read the LAST commit-count in BLOCKER-001's entry, but this file appends old superseded text (own stale count) after the new one, so it read history, not the new claim, masked until now since every prior gap was also 0. Fail-then-pass proved, 17/17. Mid-fix the redeploy pipeline closed the gap again; re-confirmed 0. Three concurrent hourly pushes merged; generated-file conflicts resolved by regenerating, not by hand. Handing Garage/Pantry/Hall Closet mining to the operator.
+
+**Self-correction, same slot:** the fix above introduced its own defect. Writing each STATUS.md correction as "Prior state, kept because the shape recurs: **old entry**" is the table-row convention, not the rule for Production Knowledge/BLOCKER-001, which `gate_status_history_chain_not_collapsed` requires to stay current-only. It fired once 3 entries were glued there, never before. Collapsed both fields to one clean statement each; full history stays in git and this log, not lost. Also ran the standing `rotate_status_history.py --apply` it surfaced (1 unrelated entry archived). All status gates and `fix_dashes.py` reconfirmed clean.
 
 ## Scheduled operator cycle, 2026-11-06 (~21:2x UTC): independent re-verification of the Kitchen cycle, two process gaps closed, no new defect found
 
