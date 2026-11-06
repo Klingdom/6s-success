@@ -365,6 +365,24 @@
    "queries": 2,
    "covered": 0,
    "source": "ops/keyword-demand.json and ops/keyword-demand-global.json 2026-11-05, scheduled operator cycle, mining Home Office's 30-row partial tier: 'how to organize office supplies' (partial, 0.5 title coverage, unmatched 'supplies') and 'how to organize home office supplies' (partial, 0.667, unmatched 'supplies') both already score to this room via 'organize'+'office'/'home office', missing only the plural word 'supplies'. This zone's title already reads 'How to organize the home office supply cabinet', singular 'supply', so the scorer's no-stemming rule never matched the plural. Its own content.json purpose ('Hold the consumables this office genuinely burns through in a year') and done_looks_like text are exactly office supplies, not a coincidental match. Checked for collision first (CLAUDE.md 5c): the bare word 'supplies' is heavily overloaded across the corpus (cleaning, baking, craft, car, gardening, cricut, prepping supplies, each already routed to its own correct zone via a qualifying word), so named the phrase 'office supplies', not the bare noun, following the same reasoning already recorded in the Kitchen Sink and Dishwashing Zone's entry above ('nobody calls this the supplies zone'). Re-scored the full corpus both ways before shipping: every existing 'supplies' query elsewhere (cleaning, baking, craft, car, gardening) keeps its same best_page, since none of their queries carry the word 'office' and this zone's heading needs both words together to win; 'how to organize supplies' (bare, already covered via Garage's own title) stays on Garage after this change too, confirmed by the existing alphabetical tie-break ('garage' sorts before 'home-office'), so this change makes no query's status worse."
+  },
+  "Family Room|Charging and Device Zone": {
+   "names": [
+    "cord zone",
+    "electronics zone"
+   ],
+   "queries": 2,
+   "covered": 0,
+   "source": "ops/keyword-demand.json 2026-11-06, scheduled operator cycle, mining Family Room's partial tier (ops/room_guide_underperformance.py --room 'Family Room'): 'charging station cord organizer' (rank unspecified, partial 0.667 title coverage) and 'charging station for electronics organizer' (partial 0.667), both already routed correctly to this exact zone page via 'charging'+'station', only 'cord' and 'electronics' unmatched. Checked the zone's own purpose/common_items in content.json before adding: purpose is 'Charge the household's phones, tablets, controllers, and headphones in one place' (electronics, by name) and common_items lists 'Labeled cables, each ending at a named slot' (a cord is what a household calls a charging cable). Named 'cord zone' and 'electronics zone', the '<word> zone' precedent from the A-series (A21/A23/A24/A32/A33/A34/A36/A38), not either bare word alone. Checked both harvests for a digital-context collision before adding (CLAUDE.md 5c, preflight.py's own gate_also_called_no_digital_collision): no query containing 'cord' or 'electronics' also contains pc/steam/computer/desktop/software."
+  },
+  "Family Room|Primary Media Zone": {
+   "names": [
+    "cables zone",
+    "wires zone"
+   ],
+   "queries": 2,
+   "covered": 0,
+   "source": "ops/keyword-demand.json + ops/keyword-demand-global.json, 2026-11-06, scheduled operator cycle, same mining pass as the Charging and Device Zone entry above: 'how to organize entertainment center cables' (partial 0.667) and 'organize wires for entertainment center' (partial 0.667), both already routed correctly to this exact zone page via 'entertainment'+'center', only 'cables' and 'wires' unmatched. The word 'cables' is already literally in this zone's own content.json common_items ('Cables, labeled at both ends') and done_looks_like text, just never in a heading, the same A60-pegboard shape (already there, just not where the scorer looks). 'wires' is the same object by its other common household name, same semantic match. Named 'cables zone' and 'wires zone', the '<word> zone' precedent, not either bare word alone. Checked for digital-context collision first (CLAUDE.md 5c): the historical 2026-11-02 incident this same gate exists to catch was a 'games' addition to this room's OTHER zone (Board Game and Puzzle Zone) colliding with PC/Steam queries; 'cables'/'wires' were checked against the narrower gate regex (pc/steam/computer/desktop/software) and no query combining either word with those terms exists in either harvest. Explicitly did NOT add 'games zone' to the Board Game and Puzzle Zone for the same query's sibling gap ('card games organizer storage'), because that exact addition is the gate's own documented incident (preflight.py check_also_called_no_digital_collision docstring): it would move 'how to organize games on pc', 'how to sort games by storage on steam' and others to a false covered/partial."
   }
  }
 }

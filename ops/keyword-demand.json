@@ -4353,13 +4353,11 @@
       "best_page": "/zones/family-room-the-charging-and-device-zone.html",
       "best_page_title": "How to organize the family room charging station",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "cord"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/family-room-the-charging-and-device-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "charging station for electronics organizer",
@@ -4374,13 +4372,11 @@
       "best_page": "/zones/family-room-the-charging-and-device-zone.html",
       "best_page_title": "How to organize the family room charging station",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "electronics"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/family-room-the-charging-and-device-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "cheap outdoor dining settings",
@@ -9825,13 +9821,11 @@
       "best_page": "/zones/family-room-the-charging-and-device-zone.html",
       "best_page_title": "How to organize the family room charging station",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "electronics"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/family-room-the-charging-and-device-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "entertainment center diy plans",
@@ -27562,11 +27556,11 @@
         "how to organize crib"
       ],
       "room": "",
-      "best_page": "/zones/living-room-the-media-center.html",
-      "best_page_title": "How to organize the living room media center",
+      "best_page": "/zones/family-room-the-primary-media-zone.html",
+      "best_page_title": "How to organize the family room entertainment center",
       "coverage": 0.0,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/living-room-the-media-center.html",
+      "heading_page": "/zones/family-room-the-primary-media-zone.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -29930,13 +29924,11 @@
       "best_page": "/zones/family-room-the-primary-media-zone.html",
       "best_page_title": "How to organize the family room entertainment center",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/family-room-the-primary-media-zone.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "cables"
-      ]
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize entryway",
@@ -44517,13 +44509,11 @@
       "best_page": "/zones/family-room-the-primary-media-zone.html",
       "best_page_title": "How to organize the family room entertainment center",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/family-room-the-primary-media-zone.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "wires"
-      ]
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "organize your home office day",
@@ -57182,6 +57172,6 @@
       ]
     }
   ],
-  "scored_against_commit": "886b9d222",
-  "scored_at": "2026-11-06T14:52:23Z"
+  "scored_against_commit": "7e6c2530d",
+  "scored_at": "2026-11-06T15:59:18Z"
 }

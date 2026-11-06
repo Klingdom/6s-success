@@ -29822,13 +29822,11 @@
       "best_page": "/zones/family-room-the-primary-media-zone.html",
       "best_page_title": "How to organize the family room entertainment center",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/family-room-the-primary-media-zone.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "cables"
-      ],
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -48387,6 +48385,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "886b9d222",
-  "scored_at": "2026-11-06T14:52:24Z"
+  "scored_against_commit": "7e6c2530d",
+  "scored_at": "2026-11-06T15:59:19Z"
 }
