@@ -8,7 +8,7 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 9 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-11-06 09:08 because this run could not reach Stripe** |
+| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-11-06 08:20 because this run could not reach Stripe** |
 | | `............................` |
 | **Paying customers** | 0 |
 | **Email list** | 0 |
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. A session with real access confirmed production current at 2026-11-06T08:21:03Z (build e9ff9edd791d1f58). The repository has since moved to build c17cff617e550d3e, not yet redeployed, so this gap is whatever changed since that confirmation, not an unknown backlog. Waiting behind that deploy: 129 of 130 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
+PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. A session with real access confirmed production current at 2026-11-06T08:21:03Z (build e9ff9edd791d1f58). The repository has since moved to build fea6691296723d7b, not yet redeployed, so this gap is whatever changed since that confirmation, not an unknown backlog. Waiting behind that deploy: 129 of 130 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
 
 ---
 
@@ -30,7 +30,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Closed to date | 34 |
 | Commits (7 days) | 1423 of 11060 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `aea60193d` Hourly check-in record |
+| Last commit | `0e9e97f80` Close Kitchen's genuine keyword gap: countertops wording |
 
 ## Product readiness
 
