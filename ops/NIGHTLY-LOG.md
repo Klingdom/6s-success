@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-06 (~11:1x UTC): a 0-byte Etsy listing image, committed and silently re-served as broken on every run since, found and fixed, plus the gate that could not have caught it
+
+**Did:** Continuation of the same cycle as the entry immediately below (room-also-called fix). After pushing that fix, the stop hook reported an uncommitted change: `build/listings/etsy/L4-moving-in/listing-images/6S-Moving-In-Kit-1-first-page.png` showing as a binary diff from nothing to 364613 bytes. Investigated rather than discarded it (CLAUDE.md step 0.4, a file existing is not evidence of what produced it): `git show HEAD:<path> | wc -c` read 0, and `git ls-tree -l HEAD` confirmed the committed blob is the literal git empty-blob hash, while its two sibling images (`...-2-four-sheets.png`, `...-3-last-page.png`) are committed at their real sizes (454418 and 113848 bytes) and already matched the working tree exactly. One of three Etsy listing preview images for a real, soon-to-be-published product (`OWNER-ACTIONS.md` item 4, issue #44) has been a 0-byte blank file since commit `847beec22`, ironically titled "Fix gate_etsy_pdfs_current leaving preview PNGs dirty."
+
+**Why nobody caught it.** `build/listings/check_etsy.py`'s listing-images check only ever counted directory entries (`len(os.listdir(images))`), so a 0-byte file counted exactly the same as a real photo, every run, forever. Worse: `gate_etsy_pdfs_current`'s own `_restore_etsy_all()` (added 2026-09-15 for exactly this file class) restores every touched file under `build/listings/etsy/` back to its committed state after each preflight run, which silently reverted any accidental real render of this file back to the broken 0-byte version, run after run, hiding the defect behind its own cleanup.
+
+**How it actually got left on disk this time:** my own preflight2 run earlier this cycle stalled at `gate_etsy_pdfs_current` (documented network-bound stall) and I killed the parent process without noticing it had already forked a `build_etsy_assets.py` child subprocess mid-render; that orphaned child kept running for several more minutes and left this real render sitting uncommitted in the working tree once I later ran `build_etsy_assets.py` directly to regenerate it on purpose, briefly overlapping with the still-running orphan (caught via `ps aux`, both killed, confirmed no stray chromium/build_etsy_assets.py processes remained, then re-ran once, cleanly).
+
+**Fixed both halves.** Verified the regenerated file (`PIL.Image.verify()`: valid PNG, 4167x3125, matching both siblings' dimensions) and committed its real content. Strengthened `check_etsy.py`'s listing-images check to open and verify every file, not just count them, failing by name on an empty or undecodable image. Fail-then-pass proved directly against the real file: zeroed it out, watched the new check fail with `"L4-moving-in has 1 listing image(s) that are broken: ...-1-first-page.png is empty"`, restored the real content, confirmed clean again.
+
+**Verified:** `fix_dashes.py --check` 0/0. `py_compile` on `check_etsy.py`. `test_gate_etsy_listing_valid.py` (4/4), `test_check_etsy_free_duplicate.py` (6/6), `test_check_etsy_stale_economics.py` (5/5) all pass unaffected. Swept the whole repository for the same defect class (`git ls-tree -r -l HEAD`, filtered to zero-byte blobs excluding `.gitkeep`/`__init__.py`): this was the only one. Did not add a new isolated unit test for the image-validity check itself (the real-file fail-then-pass above is the strongest evidence available, and the check is already wired into `main()`, already called every preflight run via `gate_etsy_listing_valid`); a synthetic fixture test is reasonable future work if this class recurs.
+
+**Went well:** treating a stop-hook's "uncommitted changes" notice as a lead to investigate, not a chore to clear with a blind commit; the file's own history and size told the real story in under two minutes.
+
+**Did not go well:** running `build_etsy_assets.py` a second time without first confirming the first (orphaned) invocation had actually stopped, which could have corrupted output under concurrent writes to the same files. No corruption resulted (checked: all three images and the PDFs matched a clean single re-render), but the sequencing was sloppy; killing a parent process that may have spawned long-running children needs a `ps aux` check for that process's actual children, not just its own PID, before assuming it is gone.
+
+**Changing next cycle:** when a backgrounded `preflight.py` run is killed mid-gate, check for orphaned subprocess children of that gate (`gate_etsy_pdfs_current` forks `build_etsy_assets.py`) before starting any new invocation of the same script.
+
+**Next:** same as below. No price or product touched; one previously-broken listing image's real content committed, one check strengthened. `IndexNow` not applicable (not a site page).
+
 ## PM check-in, 2026-11-06 (~11:1x slot): previous work confirmed finished independently, one stale ledger entry closed, nothing new unblocked
 
 Attached clean (fetch, real unshallow from a shallow detached checkout, checkout main, ff-only onto origin/main at c61c72be5, 1 commit fast-forwarded, tree clean throughout).

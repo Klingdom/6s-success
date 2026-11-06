@@ -24,6 +24,7 @@ import re
 import sys
 
 import pymupdf
+from PIL import Image, UnidentifiedImageError
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -248,11 +249,38 @@ def main() -> int:
                             % (slug, claimed, label, measured))
 
         images = os.path.join(ETSY, slug, "listing-images")
-        n_images = len(os.listdir(images)) if os.path.isdir(images) else 0
-        if n_images:
-            ok.append("%s has %d listing images ready" % (slug, n_images))
-        else:
+        image_files = sorted(os.listdir(images)) if os.path.isdir(images) else []
+        n_images = len(image_files)
+        if not n_images:
             fail.append("%s has no listing images" % slug)
+        else:
+            # Found 2026-11-06, scheduled operator cycle:
+            # 6S-Moving-In-Kit-1-first-page.png was committed at 0 bytes, and
+            # this check only ever counted directory entries, so it read
+            # "3 listing images ready" every run regardless of whether any
+            # of them actually opened as an image. render() in
+            # build_etsy_assets.py is also non-deterministic run to run
+            # (preflight.py's gate_etsy_pdfs_current docstring already
+            # documents this for the PDFs it renders alongside these PNGs),
+            # which is how a broken file could sit committed indefinitely:
+            # nothing ever re-checked its content, only its presence.
+            broken = []
+            for name in image_files:
+                path = os.path.join(images, name)
+                if os.path.getsize(path) == 0:
+                    broken.append("%s is empty" % name)
+                    continue
+                try:
+                    with Image.open(path) as im:
+                        im.verify()
+                except (OSError, UnidentifiedImageError) as e:
+                    broken.append("%s does not open as an image (%s)"
+                                  % (name, type(e).__name__))
+            if broken:
+                fail.append("%s has %d listing image(s) that are broken: %s"
+                            % (slug, len(broken), "; ".join(broken)))
+            else:
+                ok.append("%s has %d listing images ready" % (slug, n_images))
 
         # Etsy forbids using a listing to send buyers off Etsy to transact.
         # A branded footer is not that, but it is worth knowing it is there.
