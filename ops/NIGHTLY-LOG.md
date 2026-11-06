@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-06 (~13:4x slot): corrected a stale "next un-mined room" claim the 13:0x cycle shipped unchecked, nothing new unblocked
+
+NEXT FOR THE OPERATOR: mine Laundry Room (23% uncovered, 15 partial of 66 on-topic rows), because it is the highest-ranked room this log has no dedicated row-by-row read for; Living Room/Guest Bedroom/Entryway, which the 13:0x entry above named as "next un-mined," were already individually mined on 2026-11-05 (entries at the 14:0x/17:0x/15:0x slots that day) and are not genuinely open.
+
+Attached per Step 0 (fetch, confirmed real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `1f4c780b3`, 1340 commits fast-forwarded, tree clean throughout).
+
+Previous work (the 13:0x master-closet fix and the Hourly/Deploy-verdict bot commits above it) confirmed finished, not cited: `preflight.py --skip-tests` run fresh in the background without an external timeout wrapper (the exact trap the 12:2x entry warned about): 0 FAIL through every gate reached, including the zone-also-called and keyword-rescore gates the master-closet fix touches; genuinely stalled only at the documented network-bound `gate_etsy_pdfs_current` (Etsy's fee schedule still 403s this sandbox), reported unchecked past that point rather than assumed clean. `cold_read_ledger.py --stale` run to completion (not killed early this time): 0 stale. `check_urls.py`: 235/235. Working tree was already clean and pushed; no files to re-ship from this slot's own read. GitHub: 29 open issues re-pulled live, unchanged since 2026-11-01/02, all `decision`/`blocked-on-art`, none from Phil.
+
+The one real finding: the 13:0x entry's own "Next" line named Living Room (28%), Guest Bedroom (27%) and Entryway (24%) as the next un-mined rooms. That is the exact number each room was already left at after its own dedicated mine on 2026-11-05 (Living Room 14:0x, Entryway 15:0x, Guest Bedroom 17:0x slots, all logged above in this same file), so the 13:0x cycle restated an old ranking without checking this log's own record, the source-corrected-sibling-never-told shape section 7 of the backlog already names as the dominant defect class here. Re-derived the real candidate set instead: scanning this log for every room with a dedicated "mined" entry leaves five rooms never individually read row by row: Guest Bathroom (22%), Kids Bedroom (22%), Laundry Room (23%), Nursery (22%), Primary Bathroom (17%). Laundry Room ranks highest of those five by uncovered share, so it is the correct handoff, not the three named above.
+
+Did not mine Laundry Room myself: an hours-scale row-by-row read belongs to the operator's full :43 sitting, same precedent every PM check-in before this one has used.
+
+Pushed to main: this log entry only, no other files changed.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-06 (~13:0x slot): closed Primary Bedroom's "master closet" zone gap; Home Office checked and declined entirely
 
 **Did:** Attached per Step 0 (fetch, confirmed real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `6e0a73dbc`, 1336 commits fast-forwarded, tree clean). Read CLAUDE.md, STATUS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md and the head of this file. Ran `preflight.py --skip-tests`: every gate passed, 34 warnings (all standing), 0 FAIL. 29 GitHub issues re-pulled live, unchanged since 2026-11-01, all `decision`, none from Phil; `inbox_agent.py --apply` reports no mail credential, unchecked, not assumed empty.
