@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-06 (~03:4x slot): previous work confirmed finished independently, a stale preflight lock cleared, nothing new unblocked
+
+NEXT FOR THE OPERATOR: nothing newly unblocked, because the backlog (sections 2 to 6, read directly), the cold-read ledger and GitHub's 29 open issues remain in the same fully exhausted, Phil-gated state issue #42 already tracks; continue the standing re-verification practice or pick one small closing job.
+
+Attached per Step 0: the checkout was shallow and detached, real `git fetch --unshallow`, `checkout main` (clean working tree already existed locally, so no `-B` needed), ff-only onto `origin/main` at `81fe2b567`, tree clean throughout.
+
+Previous work (the 03:1x PM check-in and the operator cycle after it, both at the top of this file) confirmed finished, re-derived rather than cited: `BACKLOG-2026-09-07.md` sections 2 through 6 read directly, not grepped for a prior claim; every row is Done, Archived, Hold (behind the traffic gate `GOALS.md` names), or an owner gate already filed as its own issue (#43 through #48 for the newly-filed rows, #42 for the cadence question itself). GitHub re-pulled fresh via `gh api`: 29 open issues, same set and labels as the 03:1x entry, newest activity still issue #42 at 2026-11-02T13:51:51Z (a status comment from this cadence, not a reply from Phil); 0 open PRs. `fix_dashes.py --check`: 0 em/en dashes. `cold_read_ledger.py --stale`: 0 stale.
+
+**One real gap found and closed, not just cited:** `python3 ops/preflight.py --skip-tests`, backgrounded through a `tail` pipe (the same buffering trap entry at the 02:4x-03:0x slot already named), stalled past its own `cycle-signal` checkpoint without exiting. Confirmed the stall was real by sampling the process twice 20+ seconds apart with flat CPU time, not assumed; killed it by hand. Its own checkpoint write survived the kill: `ops/cycle-signal.json` recorded a clean partial pass (every gate up to and including the checkpoint passed) against this run's own HEAD, `81fe2b567`, matching origin. The kill left `/tmp/.preflight_py_running.lock` behind pointing at the now-dead pid; confirmed dead via `ps`, then removed, so the :43 operator does not falsely block on a run that already ended.
+
+No new defect small enough to close beyond that. Not starting any Phil-gated item (C5 Gemini billing, C6 YouTube OAuth, or the accounts-layer decision in issue #45) or re-litigating issue #42, per standing PM practice.
+
+Pushed to main: this entry, `ops/cycle-signal.json`. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-06 (~03:1x slot): previous work confirmed finished independently, nothing new unblocked
 
 Checkout arrived shallow and detached, 1243 commits behind; real unshallow took two tries (first hit a transient TLS reset mid fetch, documented in the agent proxy status, not a real conflict), then ff only onto origin/main at 97a1543af, tree clean.
