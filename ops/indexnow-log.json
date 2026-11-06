@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-02T11:26:39Z",
-   "mode": "changed",
-   "offered": 2,
-   "accepted": 2,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-02T11:51:59Z",
    "mode": "changed",
    "offered": 1,
@@ -657,6 +650,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-06T09:08:05Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -884,7 +884,7 @@
   "https://6s-success.com/articles/how-to-organize-a-garage": "b7cd0a663ff1a3ca",
   "https://6s-success.com/articles/how-to-organize-a-workshop": "011f8cd3d8de989f",
   "https://6s-success.com/articles/how-to-organize-a-laundry-room": "db03359d664f68f4",
-  "https://6s-success.com/articles/how-to-organize-a-pantry": "03046068c7cd3465",
+  "https://6s-success.com/articles/how-to-organize-a-pantry": "cfd0374557642935",
   "https://6s-success.com/articles/how-to-organize-a-living-room": "aca45ac9a340bc47",
   "https://6s-success.com/articles/how-to-organize-a-guest-bathroom": "5354e0a25437bc32",
   "https://6s-success.com/articles/how-to-organize-a-kids-bedroom": "5bf8014e1f51655c",
