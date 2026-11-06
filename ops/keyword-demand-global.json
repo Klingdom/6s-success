@@ -39206,13 +39206,11 @@
       "best_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "best_page_title": "How to organize a primary bathroom, step by step",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "bath"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -48379,6 +48377,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "ac2261543",
-  "scored_at": "2026-11-06T16:58:39Z"
+  "scored_against_commit": "11c313df3",
+  "scored_at": "2026-11-06T17:56:43Z"
 }
