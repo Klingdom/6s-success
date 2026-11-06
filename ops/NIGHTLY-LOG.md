@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-06 (~04:3x slot): previous work had broken CI, fixed; STATUS.md size tripwire also closed
+
+Previous work (04:0x diy/FORMAT_WORDS fix) was verified in isolation but broke CI: it rescored keyword-demand.json without updating GOALS.md's cheap/budget/DIY citation; test_gate_goals_keyword_cluster_citation_current.py (only run in full gate_tests, not --skip-tests) caught it red on main, run 42160481630. Fixed: citation corrected to 76/22/2/100 (was 32/64/4/100), test 7/7 now. Also closed STATUS.md's size-tripwire warning: moved 5 resolved incidents verbatim to INCIDENTS.md (117KB to 102KB). OWNER-ACTIONS.md (115.5KB) still over; no quick chain found, left for the operator. Re-ledgered ops/keyword_demand.py. preflight --skip-tests: 0 FAIL. 29 issues unchanged, Phil-gated. Handing to :43: OWNER-ACTIONS.md's own prunable chain; Kitchen (41% uncovered) unmined.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-06 (~04:0x UTC): "diy" joined FORMAT_WORDS, fixing a real misattribution and moving 63 queries toward covered
 
 **Did:** Attached per Step 0, clean. Preflight 0 FAIL to the documented network bound Etsy/prerender stall. Re derived live: 29 open GitHub issues, all decision/blocked on art, none from Phil; no mail credential. Garage still top ranked, 45% uncovered. Its full 76 row partial list (not the 8 row sample) showed 6 rows failing on "diy" alone; checked the whole corpus: 63 rows (44 US, 19 global) have "diy" as their only unmatched word. Added "diy" to `FORMAT_WORDS`, same shape as "ways" (2026-11-05).

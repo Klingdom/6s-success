@@ -2060,3 +2060,84 @@ entry.
 **Lesson.** A workflow's own cron comment is a claim, not a fact. Checking it
 against the platform's real run history, rather than against the YAML that
 states the intent, is what found this.
+
+------------------------------------------------------------------------
+
+## Incidents moved verbatim from STATUS.md section 16, 2026-11-06 PM check-in
+
+STATUS.md's own "Current Incidents" section is meant to hold only what is live; these 5 (INCIDENT-001 through INCIDENT-005) were all already RESOLVED or STALL NOT RECURRING and had sat there since 2026-10-02 through 2026-10-30, 15.8KB read by every cycle as if current. Moved here unedited, per that section's own standing rule and this file's role as the canonical incident history.
+
+## INCIDENT-001: fulfil-orders.yml fails every run, paid orders not delivered (RESOLVED)
+
+- **Severity:** P0.
+- **Start:** 2026-10-02, ~09:12 UTC. A live-write guard added in `044863b9c`
+  did not account for this workflow, the one caller designed to run
+  unattended against a live Stripe key.
+- **Impact while open:** every scheduled and push-triggered run of
+  `fulfil-orders.yml` failed at the "Deliver" step. Any customer who paid
+  while this stood received nothing until the fix landed. Open roughly
+  6h50m, 09:12 to 16:01:47 UTC.
+- **Resolved 2026-10-02 16:01:47 UTC, by Phil directly**, commit `295b1c642`,
+  adding `STRIPE_ALLOW_LIVE: "1"` to the Deliver step's `env:`, the exact
+  fix five push notifications had already named. GitHub issue #37 closed
+  the same moment, `state_reason: completed`.
+- **Verified, not assumed, against the Actions API directly (this PM
+  check-in, 16:4x cycle):** six consecutive `fulfil-orders.yml` runs since
+  the fix (#3054 through #3059) all completed `success`, most recently at
+  16:47:18 UTC.
+- **Mitigation during the outage:** none available from inside a sandboxed
+  session; no order was lost, Stripe kept recording them, delivery was only
+  delayed.
+- **Follow-up closed:** `OWNER-ACTIONS.md`'s item 0a (the owner-action this
+  incident generated) was still telling Phil to make a fix he had already
+  made; closed into that file's "Resolved today" table as R5, 2026-10-02
+  16:2x PM check-in.
+
+Historical account, superseded by the resolution above, kept for the
+record: the one-line fix was written and reverted twice by two different
+autonomous sessions, each time correctly held by this environment's own
+safety classifier as a payment-safety change requiring a human
+(`CLAUDE.md` 37/52). That was correct, conservative behavior, not a bug to
+route around, which is why the fix waited for Phil rather than an agent
+finding a way around the block.
+
+## INCIDENT-002: autonomous PM/operator routines stalled 5 days on a usage limit, surfaced only by this cycle checking commit authorship against trigger state (STALL NOT RECURRING)
+
+- **Severity:** P0 (process, not product: nothing customer-facing broke).
+- **Start:** sometime shortly after 2026-10-04 11:19:40Z (the last Claude-authored commit, `c2565f114`).
+- **End:** by 2026-10-09 03:2x UTC, the PM check-in that surfaced this incident (`:10` slot) itself ran without issue, meaning the stall had already lifted by the time it was found. **Re-verified this cycle (2026-10-09, PM check-in, `:10` slot, 09:11 UTC) via `list_triggers` directly:** the `:40` PM Routine's last run `SUCCEEDED` (08:40 to 08:47 UTC) and the `:43` hourly operator's last run `SUCCEEDED` (08:43 to 09:00 UTC), no `FAILED` on either since the stall ended, and `git log` shows continuous Claude-authored commits every cycle in between. Whether this was Phil acting, the limit resetting on its own, or the account moving past it cannot be told from here, and issue #40 stays open for that reason: the account-level cause was never confirmed, only that its symptom has not recurred for roughly 6 hours of continuous operation since.
+- **Found:** 2026-10-09, PM check-in (:10 slot). `git log --since="2026-10-04T11:21:00Z"` returns 36 commits, every one authored by `github-actions` (the hourly check-in and social-draft-rotation bots, which run without an agent). Cross-checked against `list_triggers`: the :40 PM twin and the :43 hourly operator both show `last_run.status: FAILED`, `failure_reason: USAGE_LIMIT_REACHED`, fired `2026-10-09T02:40:34Z` and `2026-10-09T02:44:02Z`. This session's own :10 slot ran without issue.
+- **Impact:** roughly 5 days with zero autonomous PM or operator work: no measurement, no backlog progress, no verification. `CHECKIN-LOG.md`'s hourly entries kept landing throughout, which made the repository look attended when it was not; that gap is itself worth remembering; a check that only reads the bot's own log cannot distinguish a live operation from a stalled one sitting next to a dumb heartbeat.
+- **Not customer-facing:** `preflight.py` (run this cycle) shows 0 FAIL through every gate reachable in this sandbox (stalls at the documented `gate_tests` headless-Chromium sandbox hang, same as prior cycles, confirmed genuinely stalled by flat CPU time before killing it). The 8 open GitHub issues are unchanged, all `decision`/`blocked-on-art`, already waiting on Phil.
+- **Cannot be fixed from here:** the usage limit is an account/plan-level setting outside this sandbox's visibility or control. Filed as **GitHub issue #40** (`decision`), with the evidence above and a recommendation to check the Claude Code usage/plan status, since three Routines firing every 30 to 60 minutes is real concurrent load.
+- **Mitigation:** none available; the next PM or operator cycle that runs should check `list_triggers` for `last_run.status == FAILED` as a matter of course, rather than relying on a cold commit-authorship read to notice a stall, which is how this one was found.
+
+## INCIDENT-003: checks.yml push trigger stopped firing for 3h09m / 24 commits, manual dispatch still works (RESOLVED: transient, self-recovered, no gate failure)
+
+- **Severity:** P0 (process). `checks.yml` is the only workflow that runs `ops/preflight.py`, every quality gate, and the checks that watch revenue.
+- **Found:** 2026-10-11, PM check-in (15:1x slot). Last push-triggered run was #2034 (commit `9eafaaa3`, completed 11:46:01Z). 24 commits landed after that, several touching paths the workflow's own `on.push.paths` includes and does not exclude (`CHECKIN-LOG.md`, `ops/corpus-rotation.json`, `ops/last-brief-sent.json`, `ops/state-checkin.json`), none triggered a run. The workflow file itself is unchanged (`git diff 9eafaaa38 HEAD -- .github/workflows/checks.yml` empty) and the API reports it `"state":"active"`.
+- **Ruled out:** a repo-wide Actions outage or a disabled workflow. Every other scheduled workflow (`hourly-brief.yml`, `linkedin-drafts.yml`, `bluesky-drafts.yml`, `social-drafts.yml`, `fulfil-orders.yml`) ran normally on the same pushes, most recently on `ddc47e62e` at 14:55Z.
+- **Confirmed still functional:** manually dispatched via `workflow_dispatch`, run #2035 (`.../actions/runs/38151102383`), queued and reached `in_progress` immediately. So this is the push trigger specifically, not the workflow or Actions generally.
+- **Impact while open:** no CI coverage of `ops/**`, `build/**`, `content/**`, `.github/workflows/**` or root markdown for 3h09m+. `preflight.py` fast, run locally this cycle, showed 0 failures through every gate reachable before the documented `gate_tests` sandbox hang, so nothing is known to be broken; the gap is in verification, not a confirmed defect.
+- **Filed:** GitHub issue #41, not labelled `decision` (no judgment call yet, just needs someone to watch whether it recurs). The next ordinary push (`cfaa7245e`) triggered run #2036 normally, 3 minutes after the manual dispatch (#2035). A third push (`d33d9fe48`) auto-triggered run #2037, no manual dispatch involved. A fourth push (`2a8a1308`) auto-triggered run #2038, also with no manual dispatch. Four consecutive pushes since the gap all triggered normally, with no further gaps.
+- **RESOLVED, this operator cycle (15:5x), after watching all four runs to completion rather than citing the "looks recovered" read at 15:4x.** All four (`#2035` dispatch, `#2036`, `#2037`, `#2038` push-triggered) finished with `conclusion: success`, confirmed directly via `gh run view`, not inferred from `in_progress`. That means every gate `preflight.py --deep` runs, including the full `gate_tests` e2e suite this sandbox cannot reach, passed clean on real CI hardware across all four commits. Closing as transient: a GitHub-side delivery gap on the push event for this one workflow, self-resolved, no code or workflow-file change made or needed, no gate failure found. Re-open if the gap recurs; if it does, the next root-cause step is Settings -> Actions, usage/billing, named in issue #41's original report. GitHub issue #41 closed with this evidence. **Cross-confirmed independently, 16:1x PM check-in**, same four runs read directly, same conclusion reached before either session saw the other's commit.
+
+## INCIDENT-004: checks.yml red and publish-image.yml blocked for ~2h on a stale sitemap lastmod, unseen because every cycle's local preflight hangs before reaching the gate that caught it (RESOLVED)
+
+- **Severity:** P0 (process and deploy traceability). `publish-image.yml`'s failure meant real `site/`-touching content sat built but unpublished.
+- **Start:** 2026-10-19T19:00:10Z, commit `0e50c3f27` (the 18:5x cellar/basement synonym fix). It hand-edited `site/articles/how-to-organize-a-basement.html` correctly per `CLAUDE.md` 5b (a hand-authored page, no generator owns it) but never re-ran `ops/build_seo.py`, so `site/sitemap.xml`'s `<lastmod>` for that one URL stayed at `2026-10-14` while the file itself changed.
+- **Impact while open:** `gate_sitemap_lastmod_current` and its matching test correctly FAILED `checks.yml` on every push since (`759c43f85`, `a7498109b`, `7c630782e`); `gate_publish_image_current` correctly FAILED `publish-image.yml` the same way, so no `site/`-touching change landed on production from `3d84199d` (2026-10-15) onward. **Not customer-facing in a way this sandbox could confirm or rule out:** no egress to 6s-success.com from here, same standing wall every cycle records.
+- **Found:** 2026-10-19, scheduled operator cycle, ~20:51Z, by reading the actual `checks.yml`/`publish-image.yml` job logs directly rather than citing the last several `ops/NIGHTLY-LOG.md` entries' own "preflight.py: 0 FAIL through every gate reached before the `gate_tests` sandbox hang" framing. Both failing gates are ordered after `gate_tests` in `preflight.py`'s call order; `gate_tests` hangs in every sandbox this project has run in, so no local run had ever reached either gate, and nobody had separately pulled the CI conclusion for roughly 2 hours across at least 4 cycles.
+- **Resolved, same cycle, commit `0fb7273b1`:** ran the owning generator, `ops/build_seo.py` (not a hand edit), moving the stale `<lastmod>` to `2026-10-19`. Verified directly: `gate_sitemap_lastmod_current()` clean, `test_gate_sitemap_lastmod_current.py` 6/6, `check_urls.py` 213/213, `audit_pages.py` 0/0, `affiliate.py --check` 165 documents, `fix_dashes.py --check` 0/0. Watching `checks.yml`/`publish-image.yml` on this push to confirm green and the backlog of unpublished content clearing; not yet confirmed at the time this entry was written (CI still `in_progress`).
+- **Gate added, same cycle, so this class cannot recur silently:** `gate_ci_conclusion_current`, called in `preflight.py` before `gate_tests` so the sandbox hang cannot hide it, hard-FAILs on a red `checks.yml` rather than the warn `gate_workflows_healthy` already gives (same escalation `gate_money_critical_workflows` makes for a broken delivery pipeline). `ops/tests/test_gate_ci_conclusion_current.py`, 5 cases, fail-then-pass proved against real live GitHub data, not only a mock.
+- **Same shape as a prior incident, 2026-10-15** ("Fix the 9 CI gate failures the Photos API frontend shipped, unnoticed across 3 pushes"), whose own commit message named this exact gap and recommended relying on CI when `gate_tests` hangs. That was prose, not a gate, and it recurred 4 days later exactly as `CLAUDE.md` step 10b warns an un-gated lesson will.
+- **Fully confirmed RESOLVED, same cycle, after the fix revealed a second, smaller instance of its own root cause.** The sitemap fix (`0fb7273b1`) itself changed `site/`'s content hash without re-running `ops/build_id.py`, so `site/build-id.txt` went stale and `publish-image.yml` correctly failed again on `6cbce91b2`/`e39e62320` at its "Refuse to publish a stale build id" guard, before preflight even ran. Fixed the same way, by running the owning generator (`6d2bc368d`). Watched that run to completion via the Actions API rather than inferring from `in_progress`: `publish-image.yml` on `6d2bc368d` finished `conclusion: success` at 2026-10-19T21:22:54Z, the first fully green run since `3d84199d` on 2026-10-15. Total window 19:00:10Z to 21:22:54Z, roughly 2h23m.
+
+## INCIDENT-005: checks.yml red on main from A32's own commit, the identical `site/build-id.txt` shape INCIDENT-004 already named, this time with the fix commit itself silently unable to retrigger CI (RESOLVED)
+
+- **Severity:** P0 (process). Same gate as INCIDENT-004's second half; `gate_ci_conclusion_current` did exactly the job it was built for.
+- **Start:** 2026-10-30T19:06:05Z, commit `a498b97d5` (A32, the "dinnerware" zone synonym fix on the Kitchen Upper Cabinet Zone). It changed `content/content.json`/`site/zones/kitchen-the-upper-cabinets.html` correctly and re-ran `ops/build_zone_pages.py`, but never ran `ops/build_id.py`, so `site/build-id.txt` stayed at the pre-edit hash.
+- **Found:** 2026-10-30, PM check-in (19:1x slot), by `preflight.py --fast` itself this time (not a cold CI-log read): `gate_ci_conclusion_current` printed `FAIL ci-conclusion-current` naming the exact run and commit before the gate_tests sandbox hang could hide anything downstream, which is precisely the escalation INCIDENT-004 built that gate to force.
+- **Resolved, same cycle:** ran the owning generator, `ops/build_id.py`, in commit `6fc4a6c3c`. Verified directly before and after, not just cited: imported `ops/build_id.py` and compared `m.current()` to `m.compute()` by hand (both `eaf222a0b634a548`), rather than trusting a preflight run that cannot reach this gate locally (it is ordered after `gate_tests` in `preflight.py`'s own call order, same blind spot INCIDENT-004 documents).
+- **A second, process-level defect found while confirming the fix, not yet closed by any gate:** `6fc4a6c3c` touched only `site/build-id.txt` plus the three dashboard-regen files `checks.yml`'s own `on.push.paths` excludes (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) and `site/**` is not in that include list at all, so the fix commit matched no trigger path and never started a new `checks.yml` run. The red run (`41112411829`) would otherwise have sat as "most recent completed" indefinitely, with `gate_ci_conclusion_current` correctly reporting it FAIL forever even though the underlying defect was already fixed on `main`. This entry's own edit to `STATUS.md` (a root `*.md` file, which the trigger list does include) is what got a real CI run against the fixed tree. Watched run `41115163326` to completion via the Actions API rather than inferring from `in_progress`: `Preflight` step passed at 19:34:37Z (confirming `gate_build_id_current` and `gate_ci_conclusion_current` both clean), full job `conclusion: success` at 19:39:12Z on commit `87b7de377`, roughly 13m33s after the incident was found.
+- **Not yet gated:** `site/**` changes that are not also a dashboard regen, nor a root markdown edit, nor anything else on the include list can land on `main` without ever running `checks.yml`. `gate_build_id_current` already catches a stale hash the next time any triggering path changes, but a `site/`-only fix (exactly this incident's own repair commit) could go unverified indefinitely if nothing else happens to touch a triggering path afterward. Worth a future cycle adding `site/**` to `checks.yml`'s own path list, or a narrower include for `site/build-id.txt` and `site/sitemap.xml` specifically; left for a cycle with room to make and test that change rather than widening a CI trigger inside a check-in slot.

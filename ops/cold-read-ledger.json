@@ -903,8 +903,8 @@
     },
     "keyword_demand.py": {
       "status": "clean",
-      "date": "2026-11-05",
-      "note": "Cold-read diff 1bb502da2 directly against the file as committed: best_page/best_page_title now decided by one winning surface (use_heading flag) before use, exact tie broken by room signal same as _tie_break. Matches commit message and NIGHTLY-LOG entry 115 exactly."
+      "date": "2026-11-06",
+      "note": "Re-verified 2026-11-06 PM check-in: confirmed the diy FORMAT_WORDS fix (5638b011f) against its own nightly-log account (tests added, fail-then-pass proven, both corpora rescored, 0 regressions); no new defect found."
     },
     "keyword_demand_global.py": {
       "status": "fixed",
