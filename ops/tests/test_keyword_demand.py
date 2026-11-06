@@ -802,6 +802,57 @@ def main():
         fails.append("excluding 'diy' did not improve the honest score: "
                      "%r -> %r" % (before4["score"], r4b["coverage"]))
 
+    # 27. Found live 2026-11-06, mining the Hall Closet handoff: "guide" and
+    #     "tutorial" name the content format a searcher wants, not a
+    #     different storage subject ("how to organize closet tutorial
+    #     guide" asks for the same thing as "how to organize a closet"),
+    #     same shape FORMAT_WORDS already exists for. Checked for
+    #     self-flattery first, same bar as "ways"/"diy" required: "tutorial"
+    #     is in 0 of 243 pages' titles or headings; "guide" is in 1 title
+    #     (a product name, no room) and 1 heading (unrelated to any room or
+    #     zone), so excluding either cannot inflate a room/zone page's score.
+    if "guide" in kd.content_words("how to organize closet tutorial guide"):
+        fails.append("'guide' is still a content word; the FORMAT_WORDS "
+                     "addition did not take")
+    if "tutorial" in kd.content_words("how to organize closet tutorial guide"):
+        fails.append("'tutorial' is still a content word; the FORMAT_WORDS "
+                     "addition did not take")
+    closet_inv = [
+        {"url": "/articles/how-to-organize-a-linen-closet.html",
+         "title": "How to organize a linen closet: sheets, towels and shelves",
+         "words": set(kd.words(
+             "How to organize a linen closet: sheets, towels and shelves")),
+         "head_words": set(kd.words(
+             "How to organize a linen closet: sheets, towels and shelves")),
+         "room": "Hall Closet"},
+    ]
+    before5 = {"best_page": None, "score": None}
+    old_format3 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format3 - {"guide", "tutorial"}
+    try:
+        r5a = kd.score_rows(
+            {"how to organize closet tutorial guide":
+             {"query": "how to organize closet tutorial guide",
+              "sources": ["bing"], "best_rank": 14, "seeds": ["x"]}},
+            ["Hall Closet"], closet_inv)[0]
+        before5["best_page"] = r5a["best_page"]
+        before5["score"] = r5a["coverage"]
+    finally:
+        kd.FORMAT_WORDS = old_format3
+    r5b = kd.score_rows(
+        {"how to organize closet tutorial guide":
+         {"query": "how to organize closet tutorial guide",
+          "sources": ["bing"], "best_rank": 14, "seeds": ["x"]}},
+        ["Hall Closet"], closet_inv)[0]
+    if r5b["best_page"] != before5["best_page"]:
+        fails.append("excluding 'guide'/'tutorial' from content words "
+                     "changed which page the query routes to: %r -> %r"
+                     % (before5["best_page"], r5b["best_page"]))
+    if not (r5b["coverage"] > before5["score"]):
+        fails.append("excluding 'guide'/'tutorial' did not improve the "
+                     "honest score: %r -> %r"
+                     % (before5["score"], r5b["coverage"]))
+
     if fails:
         print("FAIL")
         for f in fails:

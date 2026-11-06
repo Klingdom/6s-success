@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-06 (~06:4x slot): closed both Hall Closet gap rows named in the 05:4x handoff, "guide"/"tutorial" joined FORMAT_WORDS
+
+**Did:** Attached per Step 0 (shallow detached checkout, real unshallow, `checkout -B main origin/main`, ff-only onto `279efe1e6`, 1273 commits fast-forwarded, tree clean). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, the real head (newest-first) of NIGHTLY-LOG.md. Ran `preflight.py --skip-tests` in the background: 0 FAIL through every gate reached, stalled as documented at the network-bound Etsy section, reported unchecked past that point. Picked up the 05:4x PM check-in's handoff: the gap rows for Pantry, Kitchen and Hall Closet. Read all three rooms' real gap rows directly via `room_guide_underperformance.py`, not the handoff's summary (CLAUDE.md 5c/5d). Kitchen's and Pantry's "dollar tree" gaps are a named retailer in the unmatched words; no honest edit closes a brand-name gap (CLAUDE.md 12/48), correctly declined. Pantry's "draw a larder organization chart" asks for a different content format (a drawn chart), not a wording gap; also declined, not forced. Hall Closet's two gaps were genuine: "how to organize closet tutorial guide" and "organize packing kit guide" both had "guide" (one also "tutorial") as part of their unmatched words, naming the content format wanted, not a different subject, the exact shape `FORMAT_WORDS` exists for ("ways", "diy"). Added "guide" and "tutorial" to `FORMAT_WORDS` in `ops/keyword_demand.py`.
+
+**Verified:** Self-flattery checked first, same bar "ways"/"diy" required: "tutorial" in 0 of 243 pages' titles or headings; "guide" in 1 title (`shop.html`, a product name) and 1 heading (`invest.html`), neither a room or zone page. Checked the full corpus before adding: 4 live rows affected (all US, 0 global); none sit in the cheap/budget/DIY cluster `GOALS.md` cites, so that citation's live figures (76/22/2/100, 25/12/0/37) are unchanged, confirmed by re-running `gate_goals_keyword_cluster_citation_current` directly, not just reasoned about. Case 27 added to `test_keyword_demand.py`, fail-then-pass proved directly (excluded both words from `FORMAT_WORDS`, watched the new assertions fail with the pre-fix score, restored, 32/32 passing). `python ops/keyword_demand.py --rescore` and `--rescore` on the global file: US gap 109 to 107, partial 1146 to 1145, covered 1568 to 1571; global unchanged (90/862/1214, 0 affected). `room_guide_underperformance.py --room "Hall Closet"` confirms 0 gap rows remain (was 2), 37% to 36% uncovered. `cold_read_ledger.py` re-ledgered `keyword_demand.py` as fixed; `--stale` 0. `check_urls.py` (235/235), `fix_dashes.py`/`fix_dialect.py --check` (0/0). GitHub: 29 open issues re-pulled live, unchanged since 2026-11-02T13:51:51Z, all `decision`/`blocked-on-art`, none from Phil. `inbox_agent.py --apply`: no mail credential, unchecked.
+
+**Went well:** checking each candidate against `CLAUDE.md`'s own brand-name and format rules before touching anything caught two real overclaim risks (dollar tree, the chart request) before they could ship, same discipline A61 used.
+
+**Did not go well:** nothing new; the keyword-synonym-mining lane is visibly down to single-digit, often-unfixable finds per room now.
+
+**Changing next cycle:** none.
+
+**Next:** Pantry and Kitchen's remaining gaps (dollar tree, larder chart) are genuinely unfixable on the current rules, not left for a future cycle to re-discover; the broader lane (BACKLOG section 2) is otherwise Done or Phil-gated. No new unblocked work found beyond this fix.
+
+Pushed to main: `ops/keyword_demand.py`, `ops/keyword-demand.json`, `ops/keyword-demand-global.json`, `ops/tests/test_keyword_demand.py`, `ops/cold-read-ledger.json`, `BACKLOG-2026-09-07.md` entry A62, dashboard trio, this entry. No price, product or site page touched; a measurement-tool fix only; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-06 (~06:1x slot): previous work finished, confirmed; found and fixed a real DST bug nobody had acted on in three workflows
 
 Previous work confirmed finished: preflight 0 FAIL to the Etsy stall, 0 stale ledger, 0 deploy gap, 29 issues unchanged, none from Phil.

@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-06T05:02:33Z against 243 page(s) at commit 7bab26066. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-06T06:50:46Z against 243 page(s) at commit b0309b600. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1568 covered, 1146 partial, 109 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1571 covered, 1145 partial, 107 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 109, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 107, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -71,7 +71,6 @@ Showing the top 80 of 109, ordered by the best rank the phrase reached in any on
 | 9 | how to install a stove top range | - | How to organize the kitchen stove area (0.25) | install, range, top |
 | 9 | how to organize script mods sims 4 | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | mods, script, sims |
 | 9 | organize hard disk drives | - | Why does the same spot never actually get clean? (0.00) | disk, drives |
-| 9 | organize packing kit guide | - | How to organize the hall closet paper goods storage (0.00) | guide, packing |
 | 9 | what problems exist in this kitchen | Kitchen | How to declutter a kitchen: counters, cabinets and drawers (0.33) | exist, problems |
 | 9 | why do i have trouble climbing stairs | - | How to organize a basement, one zone at a time (0.00) | climbing, trouble |
 | 10 | how to hold a cribbage tournament | - | How to organize an attic without overloading it (0.00) | cribbage, tournament |
@@ -96,15 +95,16 @@ Showing the top 80 of 109, ordered by the best rank the phrase reached in any on
 | 12 | organize hard drive space | - | Small space organizing: why doesn't anything fit? (0.33) | drive, hard |
 | 13 | cover for space between stove and counter | - | How to organize a primary bathroom, step by step (0.20) | between, cover, stove |
 | 14 | computer storage for games | - | How to organize the family room game storage (0.33) | computer, games |
-| 14 | explore decluttering pro guide | - | Decluttering vs. organizing: what's actually different (0.25) | explore, guide, pro |
+| 14 | explore decluttering pro guide | - | Decluttering vs. organizing: what's actually different (0.33) | explore, pro |
 | 14 | grill stations ideas for backyards | - | How to organize the patio or deck grill station (0.33) | backyards, stations |
 | 14 | how to dispose of adult diapers | - | Why does a shared zone never stay reset? (0.00) | diapers, dispose |
-| 14 | how to organize closet tutorial guide | - | How to organize a linen closet: sheets, towels and shelves (0.33) | guide, tutorial |
 | 14 | starting a nursery for plants | Nursery | The Nursery Deck: 66 cards, free to read (0.33) | plants, starting |
+| 15 | declutter woodworking fundamentals tips | - | How to declutter a bedroom in one day, step by step (0.33) | fundamentals, woodworking |
+| 15 | decorating ideas for patios and decks | - | More storage will not fix a messy room (0.00) | decks, patios |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1146.
+Showing the top 60 of 1145.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|

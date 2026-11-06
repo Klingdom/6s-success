@@ -902,9 +902,9 @@
       "note": "Second-pass cold read, 2026-10-12 operator cycle: re-read in full end to end (not just cited), independently of the two prior cycles that read these same files and reported no defect without re-ledgering, which is what let the nightly-log handoff keep naming them as if nobody had looked (caught by preflight.py's own gate_cold_read_handoff_not_stale). wire_landmarks.py and indexnow.py also re-verified live via --check (214 pages current; 211 sitemap URLs, 0 never submitted). No new defect found in any of the five; each still matches its own extensively documented history."
     },
     "keyword_demand.py": {
-      "status": "clean",
+      "status": "fixed",
       "date": "2026-11-06",
-      "note": "Re-verified 2026-11-06 PM check-in: confirmed the diy FORMAT_WORDS fix (5638b011f) against its own nightly-log account (tests added, fail-then-pass proven, both corpora rescored, 0 regressions); no new defect found."
+      "note": "Added \"guide\" and \"tutorial\" to FORMAT_WORDS (same shape as diy/ways): mining the Hall Closet handoff found both are content-format words, not subjects. Self-flattery checked (0/243 titles+headings carry tutorial; guide in 1 title/1 heading, neither a room or zone page). Full corpus checked before adding: 4 live rows affected (all US), 0 global, 0 in the cheap/budget/DIY cluster GOALS.md cites. test_keyword_demand.py case 27, fail-then-pass proven. Both corpora rescored: US gap 109->107, global unchanged."
     },
     "keyword_demand_global.py": {
       "status": "fixed",

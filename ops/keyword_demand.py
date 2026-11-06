@@ -185,7 +185,7 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "organizer", "organizers", "organise", "organising",
                           "arrange", "arranging", "arranged", "arrangement",
                           "arrangements", "rearrange", "rearranging",
-                          "rearranged", "ways", "diy"))
+                          "rearranged", "ways", "diy", "guide", "tutorial"))
 
 # "ways" joined 2026-11-05, same shape as "arrange": "ways to organize a
 # nightstand" and "how to organize a nightstand" ask for the same thing about
@@ -220,6 +220,24 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
 # toward covered; none can move the other way, since dropping a required
 # word from a match can only raise a score or fix a wrong tie-break toward
 # the honestly better page.
+
+# "guide" and "tutorial" joined 2026-11-06, mining the Hall Closet handoff:
+# "how to organize closet tutorial guide" and "how to organize a closet" ask
+# for the same thing about the same subject, the query only naming the
+# content format it wants (a guide, a tutorial), which is the shape
+# FORMAT_WORDS already exists for, not a different storage subject.
+# Self-flattery checked first, same bar "ways"/"diy" required: "tutorial"
+# appears in 0 of 243 pages' titles or headings; "guide" appears in 1 title
+# (shop.html, a product name, no room) and 1 heading (invest.html, unrelated
+# to any room or zone), so excluding either word from content_words cannot
+# inflate a room or zone page's score. Checked the full corpus before
+# adding: only 3 live rows (all US; 0 global) have "guide" and/or "tutorial"
+# as their only unmatched word(s) ("how to organize closet tutorial guide",
+# "organize car maintenance guide", "room by room declutter guide"); none of
+# the three sit in the cheap/budget/DIY cluster GOALS.md cites by word
+# boundary, so that citation does not move. All three can only improve
+# (gap/partial toward covered or partial), none can move the other way,
+# same reasoning as every prior FORMAT_WORDS addition.
 
 
 def room_names():
