@@ -2,7 +2,21 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-06 (~18:1x-18:2x slot): previous work confirmed finished, nothing new unblocked, own timeout mistake caught and recovered rather than repeated
+## PM check-in, 2026-11-06 (~18:4x slot): previous work confirmed finished a further way, nothing new unblocked, own external-timeout mistake caught before it could orphan anything
+
+NEXT FOR THE OPERATOR: nothing newly unblocked, because the room-guide keyword-mining lane read as fully exhausted across all 20 rooms as of entry 145, the 29 open GitHub issues are unchanged and all decision/blocked-on-art, and both live workstreams in STATUS.md remain Phil-gated; continue the standing full re-verification practice rather than start new work.
+
+Attached clean (fetch, real unshallow, checkout -B main origin/main, ff-only onto origin/main, 1407 commits fast-forwarded, tree clean throughout except two automated "Hourly check-in record" dashboard-only commits since the prior entry).
+
+Previous work (the 17:4x-18:2x operator cycle and PM check-in: Primary Bathroom's "master bath" fix, the deploy-gap-that-resolved-itself verification) confirmed finished a further way, not cited: `STATUS.md`'s Open claims section still reads "None currently open." 29 open GitHub issues re-pulled live: unchanged since 2026-11-02, all `decision`/`blocked-on-art`, none from Phil since issue #42. `room_guide_underperformance.py` re-run fresh: Kitchen/Garage/Pantry/Hall Closet still show 35-39% uncovered, but every row sampled is the same retailer/filler/word-sense noise prior cycles already declined by name, not a fresh candidate. All backlog rotation scripts (`rotate_backlog_closed`, `rotate_backlog_done_items`, `rotate_backlog_section1b/2/3/4_items`, `rotate_owner_actions_item_history`, `rotate_checkin_log`) report CLEAN; `BACKLOG-2026-09-07.md`'s 193318-byte size (over its 150000-byte tripwire) is confirmed un-rotatable current content, not a new defect.
+
+**Own mistake, caught before it could repeat the documented damage.** Ran `preflight.py --skip-tests` under an external `timeout 90`, the identical class of error several earlier entries today already named (an external wrapper shorter than `gate_etsy_pdfs_current`'s own internal budget can SIGTERM the gate mid-render). Checked immediately rather than assumed safe: no orphaned Chromium or `build_etsy_assets.py` process existed afterward (`ps aux` clean), so this kill landed before the gate spawned its subprocess, unlike the earlier documented cases. Reverted the run's own partial `cycle-signal.json` snapshot rather than commit it, then relaunched with no external wrapper, backgrounded, and let it run to completion. Result: every gate passed, 0 FAIL, 33 known sandbox-limited warnings (Stripe credential, DNS, Etsy fee schedule, deploy freshness from here, cron-cadence throttling, all previously diagnosed).
+
+No new defect small enough to close in this slot. Issue #42 already tracks the exhausted-cadence pattern; not re-raising it.
+
+Regenerated the dashboard. Pushing to main.
+
+HANDOFF-FILES: none
 
 Attached clean (fetch, real unshallow from a shallow detached checkout, checkout -B main origin/main, ff-only onto origin/main, 1400 commits, tree clean throughout).
 
