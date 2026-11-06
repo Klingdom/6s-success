@@ -24,6 +24,26 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main: `ops/zone-also-called.json`, `site/zones/workshop-the-main-workbench.html`, `ops/keyword-demand.json`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND.md`, `ops/KEYWORD-DEMAND-GLOBAL.md`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `ops/cold-read-ledger.json`, `BACKLOG-2026-09-07.md` entry 143, dashboard trio, this entry. No price or product touched; one existing zone page's heading changed, no new page. `IndexNow`: ran `--submit`; this URL was already submitted previously (0 never-submitted), and it correctly refused to confirm the key file is served (no live egress from this sandbox) rather than claim success, same standing limitation as every recent cycle.
 
+**Merge note:** a concurrent PM check-in (~11:4x slot, below) landed on origin/main while this cycle was in progress and independently re-ledgered the same `check_etsy.py` entry; merged into one ledger entry rather than left duplicated, full account preserved below.
+
+## PM check-in, 2026-11-06 (~11:4x slot): previous work confirmed finished independently, one real ledger gap closed, room-guide mining handoff restated unchanged
+
+NEXT FOR THE OPERATOR: mine Mudroom (31% uncovered), Family Room (31%) or Workshop (30%), because they are the next un-mined rooms in rank order per the 11:0x cycle's own handoff and traffic/distribution outranks every other currently-unblocked category under the ordering rule.
+
+Attached clean (fetch, real unshallow from a shallow detached checkout, checkout main, ff-only onto origin/main at aed5936f4, 1328 commits fast-forwarded, tree clean throughout).
+
+Previous work (the ~11:1x operator's 0-byte Etsy image fix and the ~11:1x PM check-in before it) confirmed finished, re-derived rather than cited: read the real diff of 5f03fbd36 directly, confirmed it is exactly the PIL-verify strengthening to check_etsy.py's listing-images check the commit message describes, fail-then-pass already proved by that cycle. preflight.py --skip-tests run fresh end to end: 0 FAIL through every gate reached, stalled at the documented network-bound gate_etsy_pdfs_current (exit 124), same standing sandbox limitation every recent cycle reports, reported unchecked past that point, not assumed clean. All 24 warnings matched known, already-documented standing gaps (no Stripe credential, no network reach, living-docs size tripwires); none new. fix_dashes.py --check 0/0. Working tree clean before this cycle's own edit, main in sync with origin (0 ahead, 0 behind).
+
+Found and fixed one real gap instead of citing it: cold_read_ledger.py --stale flagged build/listings/check_etsy.py (ledgered 2026-10-18, touched again 2026-11-06 by the Etsy-image fix). Not a new defect, just the ledger not yet told about its own file's latest touch; re-ledgered clean with today's date after independently reading the diff, not assuming it was fine. --stale now reads 0.
+
+Room-guide mining ranking re-run directly (room_guide_underperformance.py): Kitchen 39%, Garage 39%, Hall Closet 36%, Pantry 35%, unchanged from every recent entry, confirming the figures are not drifting between cycles and nobody has yet picked up Mudroom/Family Room/Workshop.
+
+GitHub: 29 open issues re-pulled live by most-recently-updated; unchanged, all decision-labelled, newest touch still issue #42 at 2026-11-02, nothing from Phil since. BACKLOG-2026-09-07.md sections 2-6 all Done, Archived, Hold or Phil-gated; nothing newly unblocked beyond the standing room-guide mining handoff.
+
+No other new defect small enough to close in this slot.
+
+Pushed to main: ops/cold-read-ledger.json, ops/cycle-signal.json, dashboard trio, this entry.
+
 HANDOFF-FILES: none
 
 ## Scheduled operator cycle, 2026-11-06 (~11:1x UTC): a 0-byte Etsy listing image, committed and silently re-served as broken on every run since, found and fixed, plus the gate that could not have caught it
