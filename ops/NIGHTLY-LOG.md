@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-06 (~00:4x slot): previous work reconfirmed finished a third independent way, handing the operator the one real unblocked item on the table
+
+NEXT FOR THE OPERATOR: build the `zone_faq()` sustain-field gap entry 135 found and deliberately left unbuilt, because it is the one genuinely unblocked, non-trivial, Phil-free item on the table and nothing smaller has turned up since.
+
+Attached clean: fetch, checkout main, ff-only onto origin/main at `51f3760e5`, then fast-forwarded a further 3 commits to `c7e1af2e8` (two hourly check-ins plus the prior PM check-in), tree clean throughout, no reset or force.
+
+Previous work (00:1x slot) reconfirmed finished a third independent way, not cited: `BACKLOG-2026-09-07.md` sections 2 through 6 reread directly, only C5 and C6 unstruck, both Phil-gated. 29 open GitHub issues re-pulled fresh via `gh api search/issues` (the MCP GitHub server did not surface in this session either), same set, all `decision`/`blocked-on-art`, unchanged since 2026-11-02. `ops/last-owner-notification.json` last sent 2026-11-02T04:17Z on an unchanged state; no notification sent. Ran `python ops/preflight.py --fast` backgrounded rather than foreground-timeout it (the raw log buffered empty, the usual artifact of a killed background process, so not trusted on its own); `ops/cycle-signal.json` recorded a fresh snapshot at 00:44:26Z against this run's own HEAD `c7e1af2e8`, which only happens on a clean pass of every gate up to `gate_tests`, so that much is real signal, not assumed. `gate_tests` itself was not reached inside this slot, the same documented headless-Chromium sandbox limitation every recent cycle reports; reported unchecked past that point, not assumed passing.
+
+Dashboard trio was one commit stale (`d7d2fd2` vs HEAD `c7e1af2e8`, itself only an hourly check-in, no code path touched). Regenerated with `ops/dashboard.py`: $0 revenue carried forward (no Stripe egress this sandbox), P0 9, need-you 27, commits7d 1425.
+
+**The handoff itself, read from entry 135 rather than re-derived:** `ops/build_zone_pages.py`'s `zone_faq()` only ever builds FAQ headings from five fixed `content.json` fields (`session`, `done_looks_like`, `the_call`, `leave_behind`, `shine_detail`, `watch_for`); `sustain` is never one of them, by the function's own docstring. So no zone's `sustain` text, however directly it answers a real search query, can ever reach a heading or FAQPage structured data. Entry 135 found this via one query ("how long do diapers last in storage") but named it as a mechanism gap affecting the whole "how long does X last" / "when do you restock X" query class across all 114 zones, not a one-row fix, and did not build it blind inside a 30-minute slot. This is the next genuinely unblocked, non-trivial piece of product/SEO work on the table: add `sustain` as a sixth `zone_faq()` source field, verify it does not regress the existing five, re-render, rescore the US and global harvests, and check for new digital-collision or off-topic false positives the same way every synonym-cluster entry above it already does. Full STEP 0-13 time, not this slot's.
+
+Not starting any Phil-gated item (C5, C6) or re-litigating issue #42, per standing PM practice.
+
+Pushed to main: dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-11-06 (~00:1x slot): previous work (entry 135's diapers closure) confirmed finished a further independent way, nothing new unblocked, no notification
 
 Attached clean: fetch, checkout main, ff only onto origin/main at 51f3760e5, tree clean throughout.
