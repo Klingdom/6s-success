@@ -25816,16 +25816,14 @@
         "how to declutter a workshop"
       ],
       "room": "Workshop",
-      "best_page": "/articles/how-to-organize-a-workshop.html",
-      "best_page_title": "How to organize a workshop, step by step",
+      "best_page": "/zones/workshop-the-main-workbench.html",
+      "best_page_title": "How to organize the workshop main workbench",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-workshop.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pegboard"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/workshop-the-main-workbench.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -48390,6 +48388,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "9c828e87f",
-  "scored_at": "2026-11-06T10:58:48Z"
+  "scored_against_commit": "aed5936f4",
+  "scored_at": "2026-11-06T12:00:55Z"
 }

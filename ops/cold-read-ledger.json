@@ -603,8 +603,8 @@
     },
     "check_etsy.py": {
       "status": "clean",
-      "date": "2026-10-18",
-      "note": "Ran: PASS, 0 FAIL, 3 listings, no free-duplicate SKU, economics tables current, all files/page/card counts verified against the real PDFs."
+      "date": "2026-11-06",
+      "note": "Re-ledgered 2026-11-06 PM check-in: file touched again same day (5f03fbd36, PNG-validity check added to listing-images check, fail-then-pass already proved in that commit). Read the diff directly before re-ledgering; no new defect found beyond what that commit already fixed."
     },
     "check_integrations.py": {
       "status": "clean",
