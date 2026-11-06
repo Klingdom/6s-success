@@ -31874,16 +31874,14 @@
         "how to organize outdoor storage"
       ],
       "room": "",
-      "best_page": "/zones/mudroom-the-seasonal-outdoor-gear.html",
-      "best_page_title": "How to organize the mudroom seasonal outdoor gear",
+      "best_page": "/zones/garage-the-lawn-and-garden-tool-zone.html",
+      "best_page_title": "How to organize the garage garden tool storage",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-garage.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "shed"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/garage-the-lawn-and-garden-tool-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize outdoor storage bin",
@@ -31933,16 +31931,14 @@
         "how to organize outdoor storage"
       ],
       "room": "",
-      "best_page": "/zones/patio-or-deck-the-outdoor-storage-zone.html",
-      "best_page_title": "How to organize the patio or deck outdoor storage",
+      "best_page": "/zones/garage-the-lawn-and-garden-tool-zone.html",
+      "best_page_title": "How to organize the garage garden tool storage",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-garage.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "shed"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/garage-the-lawn-and-garden-tool-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize paper",
@@ -34353,16 +34349,14 @@
         "how to organize outdoor storage"
       ],
       "room": "",
-      "best_page": "/zones/mudroom-the-seasonal-outdoor-gear.html",
-      "best_page_title": "How to organize the mudroom seasonal outdoor gear",
+      "best_page": "/zones/garage-the-lawn-and-garden-tool-zone.html",
+      "best_page_title": "How to organize the garage garden tool storage",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-garage.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "shed"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/garage-the-lawn-and-garden-tool-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize your paper files",
@@ -36078,15 +36072,15 @@
         "how to organize outdoor seating"
       ],
       "room": "Garage",
-      "best_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
-      "best_page_title": "How to organize the patio or deck outdoor seating",
+      "best_page": "/zones/garage-the-lawn-and-garden-tool-zone.html",
+      "best_page_title": "How to organize the garage garden tool storage",
       "coverage": 0.25,
       "heading_coverage": 0.75,
-      "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
+      "heading_page": "/zones/garage-the-lawn-and-garden-tool-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "garage"
+        "chairs"
       ]
     },
     {
@@ -57210,6 +57204,6 @@
       ]
     }
   ],
-  "scored_against_commit": "b0309b600",
-  "scored_at": "2026-11-06T06:50:46Z"
+  "scored_against_commit": "0c2640981",
+  "scored_at": "2026-11-06T07:53:15Z"
 }
