@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-02T13:47:19Z",
-   "mode": "changed",
-   "offered": 4,
-   "accepted": 4,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-02T14:46:11Z",
    "mode": "changed",
    "offered": 3,
@@ -657,6 +650,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-06T12:06:54Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -843,7 +843,7 @@
   "https://6s-success.com/zones/stair-landing-the-wall-and-display-zone": "643fd46f48d961ee",
   "https://6s-success.com/zones/workshop-the-fastener-and-hardware-zone": "7bd7ae51dff04a9f",
   "https://6s-success.com/zones/workshop-the-finishing-and-chemical-zone": "ac33c64d3c902153",
-  "https://6s-success.com/zones/workshop-the-main-workbench": "9e89a7980bd5146d",
+  "https://6s-success.com/zones/workshop-the-main-workbench": "d4ced973956b4cd2",
   "https://6s-success.com/zones/workshop-the-material-rack": "c0f423164c298af9",
   "https://6s-success.com/zones/workshop-the-power-tool-storage": "d4cc2c9eab09f2cc",
   "https://6s-success.com/zones/workshop-the-safety-and-ppe-station": "fca2ee26570b9245",
