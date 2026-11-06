@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-06 (~21:4x UTC): Kitchen re-mined live, not cited; one genuine "benchtop" synonym gap closed, the rest of its partial tier confirmed noise
+
+Did: Attached per Step 0 (unshallow not needed, already a full clone; checkout main, ff-only onto origin/main at ee954bca7, 1449 commits fast-forwarded, tree clean). Read BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, STATUS.md, the last several NIGHTLY-LOG.md entries newest-first. The 21:1x PM check-in's handoff named Garage/Pantry/Hall Closet; re-ran room_guide_underperformance.py fresh instead of trusting that citation and found Kitchen still top-ranked at 43% uncovered, not yet exhausted.
+
+Read Kitchen's full partial/gap list directly against content.json and real rendered zone headings, not the tool's 8-row sample. Most rows are the already-named locale/retailer-modifier noise class (amazon, ikea, pinterest, tamil, indian, australia, kmart, canada), left alone. Checked "baking supplies in kitchen" (ties to Sink and Dishwashing Zone only via the generic word "supplies" in its also-called heading) against both corpora: "baking supplies" is already fully covered on Pantry's own Baking Zone, so forcing a weaker second match on Kitchen would overclaim; declined. "Dressing table drawers", "chef", "way" and "limited" were already-checked modifier/aspirational noise with no honest zone referent; left alone.
+
+Fixed: "how to organise kitchen benchtop" (gb/au/in) uses the Australian/NZ word for countertop. Kitchen's own Primary Prep Counter zone already reads "Also called the kitchen countertops"; checked the whole repo and both corpora for a collision first (bare word "benchtop" appears nowhere else), then added "kitchen benchtop" to Kitchen|Primary Prep Counter in ops/zone-also-called.json.
+
+Verified: build_zone_pages.py re-run, real committed page confirmed rendering the new heading. check_also_called_digital_collision_fast.py, test_gate_zone_also_called_is_heading.py (6/6), test_check_also_called_digital_collision_fast.py (2/2), test_gate_also_called_no_digital_collision.py (5/5), test_keyword_demand.py (32/32) all pass. keyword_demand_global.py --rescore moved the target query partial (0.5) to covered (1.0, heading surface), 843 to 842 partial / 1233 to 1234 covered; keyword_demand.py --rescore unaffected (query is global-only). check_urls.py (235/235), audit_pages.py (0 duplicates), fix_dashes.py/fix_dialect.py --check (0/0), affiliate.py --check, check_sellable.py (124/126, unchanged), link_graph_report.py (0 orphans), build_id.py --check (current), cold_read_ledger.py --stale (0 stale) all clean. audit_visual.py scoped to the one changed page, desktop and mobile: 0 findings. preflight.py --skip-tests: 0 FAIL through every gate reached, killed by hand at the documented network-bound gate_etsy_pdfs_current stall. GitHub re-pulled live: 29 open issues, unchanged since 2026-11-02, none from Phil. inbox_agent.py --apply: no mail credential, unchecked. indexnow.py --changed: 1 page changed, refused to submit (UNCHECKED, no network to confirm the key file is served); not claimed as done.
+
+Went well: re-deriving the live ranking before mining anything caught that the prior handoff's room order was already one cycle stale, and tracing the "baking supplies" misattribution to the generic word "supplies" in an unrelated also-called heading (rather than assuming it was a real gap) avoided a forced, dishonest fix.
+
+Did not go well: nothing; this cycle's own first audit_visual.py invocation (using --help, which this tool treats as an ordinary flag and falls through to a full --all run against all 240+ pages) hung for 2+ minutes before being killed by hand. The tool has no --help handling at all.
+
+Changing next cycle: never pass --help to ops/audit_visual.py; it has no such flag and silently runs the full site instead. Scope it to the changed page(s) by path from the start.
+
+Next: Kitchen's remaining partial tier is now genuinely exhausted (noise or declined-with-reason). Garage (37%), Pantry (35%) and Hall Closet (34%) are the next real room-guide candidates, still not read row-by-row against the current denominator. Everything larger remains Phil-gated (29 issues, none from Phil since 2026-11-02).
+
+Regenerated the dashboard. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-06 (~21:1x slot)
 
 Previous work (A70, Kitchen bedside/dressing-table fix) confirmed finished, re-derived not cited: `covered` in the real corpus. Fresh preflight caught `STATUS.md` citing a superseded build in 5 places; real gap had opened to 1 commit. Fixed all five via `resolve_verdict_commit`/`deploy_gap_material_commits`. While verifying, found and fixed a real bug in `gate_status_deploy_gap_count_current`: it read the LAST commit-count in BLOCKER-001's entry, but this file appends old superseded text (own stale count) after the new one, so it read history, not the new claim, masked until now since every prior gap was also 0. Fail-then-pass proved, 17/17. Mid-fix the redeploy pipeline closed the gap again; re-confirmed 0. Three concurrent hourly pushes merged; generated-file conflicts resolved by regenerating, not by hand. Handing Garage/Pantry/Hall Closet mining to the operator.

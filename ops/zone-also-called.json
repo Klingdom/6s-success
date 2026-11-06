@@ -190,11 +190,12 @@
   },
   "Kitchen|Primary Prep Counter": {
    "names": [
-    "kitchen countertops"
+    "kitchen countertops",
+    "kitchen benchtop"
    ],
-   "queries": 3,
+   "queries": 4,
    "covered": 0,
-   "source": "ops/keyword-demand.json + ops/keyword-demand-global.json, scored 2026-10-26"
+   "source": "ops/keyword-demand.json + ops/keyword-demand-global.json, scored 2026-10-26. 'kitchen benchtop' added 2026-11-06: ops/keyword-demand-global.json (au): 'how to organise kitchen benchtop', partial (0.5 title coverage), unmatched word 'benchtop', the Australian/NZ word for a countertop. This zone's own also-called heading already reads 'the kitchen countertops', the exact concept under its US name; checked the site and both keyword corpora first for a collision (the bare word 'benchtop' appears nowhere else in this repository, and no Workshop benchtop-tool query exists in either corpus), so naming it here cannot misroute an unrelated query. Named 'kitchen benchtop', not the bare word 'benchtop', matching this zone's own existing 'kitchen countertops' phrasing rather than the '<word> zone' precedent, since this zone's wording convention is already the possessive-room-noun shape, not '<word> zone'."
   },
   "Guest Bathroom|Guest Vanity Counter": {
    "names": [
