@@ -18,6 +18,30 @@ Pushed to main: this entry only.
 
 HANDOFF-FILES: none
 
+---
+
+## Scheduled operator cycle, 2026-11-06 (~05:4x UTC): linkedin-drafts.yml's landing-time compensation had drifted 98 minutes stale, re-fitted
+
+**Did:** Attached per Step 0 (real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `5a1eb4784`, 1268 commits fast-forwarded, tree clean). Read GOALS.md, BACKLOG-2026-09-07.md, STATUS.md, CLAUDE.md and the last several NIGHTLY-LOG entries. GitHub re-pulled live (29 open issues, all decision/blocked-on-art, none from Phil since 2026-11-02). `ops/inbox_agent.py --apply`: no mail credential, unchecked. Ran `preflight.py --skip-tests` unbuffered to a file: 0 FAIL through every gate, stalled at the documented network-bound `gate_etsy_pdfs_current` (confirmed genuinely stalled by a flat `ps` read over 150+ seconds), killed, lock cleared.
+
+The keyword-synonym-mining lane (Pantry/Garage/Kitchen/Hall Closet) is visibly down to noise-only gap rows (retailer names, "draw a larder organization chart"-shaped non-storage autocomplete), confirmed directly rather than assumed, so instead of forcing a tenth thin synonym fix, read `preflight.py`'s own warnings in full. `gate_scheduled_delivery_phase` flagged a real, previously-unflagged drift: `linkedin-drafts.yml` promises to land at 14:19 UTC and was actually landing at about 15:57 UTC, 98 minutes off over its last 24 scheduled runs, past the gate's 90-minute threshold. LinkedIn is `OWNER-ACTIONS.md`'s own named highest-value arrival channel; a stale landing-time compensation on the one email meant to be read before the day starts is exactly the kind of correctly-reported-but-unacted-on defect `CLAUDE.md` 0.2 warns against.
+
+**Verified:** re-measured directly with `ops/check_cron_cadence.py`'s own functions: median lag across the 24 fresh runs is 310.2 minutes, up from the 3.53-hour median this workflow's header last cited (2026-09-11/2026-10-13). Re-fitted the cron from `47 10 * * *` to `09 9 * * *` (09:09 UTC + 310.2 min lag = 14:19 UTC, the unchanged promise). `yaml.safe_load` parses; `check_cron_cadence.scheduled_times()` reads back `(9, 9)`, `intended_landing()` still `(14, 19)`. Confirmed no other workflow carries a `lands-at` marker, so this is the only one the gate watches. `fix_dashes.py --check`: 0/0.
+
+**Went well:** reading the gate's actual warning text rather than re-running the same exhausted backlog/issue check for the Nth time surfaced a real, live, customer-facing drift.
+
+**Did not go well:** the gate will read "not yet verified" for a few days until enough fresh runs accumulate against the new cron, the same expected transition every prior re-fit of this mechanism has produced; not a new problem.
+
+**Changing next cycle:** none.
+
+**Next:** re-check `gate_scheduled_delivery_phase` in a few days once the new cron has enough fresh runs to re-measure; everything else remains the same Phil-gated, 29-issue state.
+
+Pushed to main: `.github/workflows/linkedin-drafts.yml`, `BACKLOG-2026-09-07.md` entry 138, `ops/cycle-signal.json`, dashboard trio, this entry. No price, product or content page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
+---
+
 ## PM check-in, 2026-11-06 (~05:1x slot): previous work confirmed finished a fresh way, one real re-ledgering gap found and closed, deploy pipeline in flight catching up on its own
 
 Attached per Step 0: fetch, real unshallow, checkout main, ff only onto origin/main at 094dce089 (1265 commits fast forwarded), tree clean throughout.

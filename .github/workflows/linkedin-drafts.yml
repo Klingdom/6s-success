@@ -25,6 +25,13 @@ name: LinkedIn drafts
 # and warns, because the existing cadence check watches the GAP between runs,
 # which stays a healthy 24 hours no matter what time of day they land.
 #
+# RE-MEASURED 2026-11-06, scheduled operator cycle: the gate above was
+# warning. GitHub's queueing had slowed further since 2026-09-11 (median
+# 3.53h then): over the 24 scheduled runs since this cron last changed
+# (2026-10-13), the median lag is now 5.17h, so a 10:47 UTC fire was landing
+# at about 15:57 UTC, 98 minutes past the 14:19 UTC promise. Re-fit below;
+# the promise itself (14:19 UTC) is unchanged, only the compensation.
+#
 # TIMEZONE, and this will bite in November. Cron here is UTC and does not know
 # about daylight saving. Denver is MDT (UTC-6) until the first Sunday in
 # November, then MST (UTC-7) and this lands an hour earlier. Add an hour to the
@@ -40,7 +47,7 @@ name: LinkedIn drafts
 
 on:
   schedule:
-    - cron: '47 10 * * *'      # fires 04:47 Denver, LANDS about 08:19 (median 3.53h late)
+    - cron: '09 9 * * *'      # fires 09:09 UTC, LANDS about 14:19 UTC (median 5.17h late, re-measured 2026-11-06)
   workflow_dispatch:
 
   # A SECOND WAY IN, because the schedule above does not fire as asked.
