@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-06 (~02:4x slot): previous work confirmed finished, a stale preflight lock cleared, nothing new unblocked
+
+NEXT FOR THE OPERATOR: continue the standing re-verification practice or pick one small closing job, because the backlog, the cold-read ledger and GitHub's 29 open issues remain in the same fully exhausted, Phil-gated state issue #42 already tracks; nothing here is safe to start without Phil's own input.
+
+Attached per Step 0: fetch, real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `1c6f84d71` (0 commits behind), tree clean throughout.
+
+Previous work (the 02:1x PM check-in and the deploy-verdict/hourly cycles after it) confirmed finished, re-derived rather than cited: `BACKLOG-2026-09-07.md` sections 2-6 reread directly, only C5/C6 unstruck, both Phil-gated. `cold_read_ledger.py --stale`: 0 stale. GitHub re-pulled fresh: 29 open issues, unchanged set and labels since 2026-11-02, none from Phil. `STATUS.md`'s own "29 open issues" row already matches live, no stale citation to fix. `preflight.py` run fresh, foreground: 0 FAIL through every gate up to the documented `gate_tests` headless-Chromium sandbox hang (stalled at test 9/473, same as every recent cycle), killed there rather than waited out, reported unchecked past that point, not assumed passing.
+
+**One real gap found and closed:** this run's own preflight left `/tmp/.preflight_py_running.lock` behind pointing at pids (570, 1040) that were no longer running after the kill; confirmed dead via `ps`, then removed, so the :43 operator's `gate_preflight_lock_blocks_concurrent_runs` does not falsely block on a run that already ended.
+
+No new defect small enough to close beyond that. Not starting any Phil-gated item or re-litigating issue #42. No push notification: the prior push's own no-repeat-before condition (no Phil reply, no cleared decision, no new credential, no customer event) still holds unchanged.
+
+Pushed to main: dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-06 (~02:1x slot): previous work confirmed finished a further independent way, CI on HEAD confirmed green rather than left unchecked, nothing new unblocked
 
 Attached per Step 0: fetch, real unshallow from a shallow detached checkout, checkout -B main origin/main, ff only onto origin/main at f84853975, tree clean, no reset or force.
