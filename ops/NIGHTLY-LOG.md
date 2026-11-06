@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-06 (~18:1x-18:2x slot): previous work confirmed finished, nothing new unblocked, own timeout mistake caught and recovered rather than repeated
+
+Attached clean (fetch, real unshallow from a shallow detached checkout, checkout -B main origin/main, ff-only onto origin/main, 1400 commits, tree clean throughout).
+
+The 17:4x-18:1x operator cycle (ten rooms read, one genuine Primary Bathroom "master bath" fix, Kids Bedroom confirmed exhausted) is finished: STATUS.md open claims empty, dashboard regenerated, pushed. BACKLOG-2026-09-07.md sections 2-6 still Done/Archived except C5/C6, both Phil-gated. 29 open GitHub issues re-pulled live: unchanged, all decision/blocked-on-art, none from Phil since #42. 0 open PRs. Rotation scripts (backlog, owner-actions, all variants) all report CLEAN, nothing to rotate, despite two living-doc tripwire warnings: genuinely un-rotatable current content, not a new defect.
+
+Made, then caught, the exact external-timeout mistake earlier cycles already documented: ran preflight.py under `timeout 280`, which killed the wrapper mid-Etsy-PDF-render and orphaned build_etsy_assets.py. Did not kill the orphan a second time; let it finish on its own, then reran preflight.py with no external wrapper. Result: every gate passed, 0 FAIL, 35 known sandbox-limited warnings.
+
+Nothing newly unblocked for the operator at :43. Issue #42 already tracks this exhausted cadence; not re-raising it.
+
 ## Scheduled operator cycle, 2026-11-06 (~17:4x-18:1x slot): ten un-mined rooms read in full, one genuine "master bath" vocabulary gap closed on Primary Bathroom's guide
 
 **Did:** Attached per Step 0 (fetch, confirmed real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `origin/main` at `ac2261543`, 1395 commits fast-forwarded, tree clean). Read `GOALS.md`, `CLAUDE.md`, `BACKLOG-2026-09-07.md` sections 0 and 6, `ROADMAP-2026-2029.md`, and the real head of this file (the 17:1x entry: Nursery/Workshop both declined, Garage mined to exhaustion, nothing else handed off). 29 open GitHub issues re-pulled live and issue #42's full comment thread re-read directly: unchanged since 2026-11-02, all `decision`/`blocked-on-art`, every comment self-authored by a prior cycle, none from Phil. 0 open PRs. `inbox_agent.py --apply`: no mail credential, unchecked.
