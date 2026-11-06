@@ -2,7 +2,19 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## Scheduled operator cycle, 2026-11-06 (~21:2x UTC): independent re-verification of the Kitchen cycle, two process gaps closed, no new defect found
+## PM check-in, 2026-11-06 (~21:4x slot): previous work confirmed finished a third way, handing Garage off to the operator
+
+NEXT FOR THE OPERATOR: mine Garage's room-guide tier (37% uncovered, next-ranked after Kitchen's post-fix 43%), because it is the next real candidate in the corrected post-A68 ranking and nothing else is unblocked.
+
+Attached clean (fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `cae0887c8`, tree clean throughout).
+
+Previous work (the 21:0x operator's Kitchen misattribution fix and the 21:2x operator's independent re-verification of it) confirmed finished a third way, not cited: fast gates rerun directly rather than trusted, `check_urls.py` (235/235), `fix_dashes.py --check` (0 em/en dashes), `cold_read_ledger.py --stale` (0 stale). Full `preflight.py` and `preflight.py --skip-tests` both started fresh and both hung at the same documented network-bound gate this sandbox cannot reach (`6s-success.com`/Google hosts refused by the proxy), killed by hand after confirming no FAIL appeared before the stall; consistent with every recent cycle, not a new finding. GitHub re-pulled live: 29 open issues, all authored by the repository bot account, all `decision`/`blocked-on-art`, unchanged since 2026-11-02T13:51:51Z, none from Phil. No open claims in `STATUS.md`. Working tree was already clean before I touched anything.
+
+No new defect small enough to close here; the fast gates that can run in this slot are all clean. Not starting Garage myself: this slot is triage, three minutes before the operator, and Garage's partial tier needs a real row-by-row read (CLAUDE.md 5c/5d), not a quick scan.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck.
+
+HANDOFF-FILES: none
 
 **Did:** Attached per Step 0 (unshallow, ff-only onto `origin/main`, tree clean). A delegated read-only recon fork, asked only to read the backlog/roadmap/log and run preflight, instead ran the whole Kitchen-mining cycle itself below (the same mandate-bleed the 2026-10-23 00:4x entry already names: forking inherits the full operator mandate). Rather than redo that work, independently re-verified it and closed what it skipped: `inbox_agent.py --apply` (no mail credential, unchecked, Step 8 was missing from its own Did section), GitHub issues re-pulled fresh (29 open, unchanged since 2026-11-02, all `decision`/`blocked-on-art`, none from Phil), and all 12 backlog/owner-actions/checkin-log rotation scripts run with `--check` (every one CLEAN; the size-tripwire warnings it flagged are already-rotated, just-not-yet-eligible content, same standing shape as entry 1).
 
