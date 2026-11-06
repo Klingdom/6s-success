@@ -22,7 +22,7 @@ and the built site, not estimated.
 | the_call | 114 | **235** | the judgement call this zone forces |
 | **diagnosis** | **114** | 346 | symptom to branching question to root cause |
 | **capacity** | **114** | 228 | how much actually fits, and the test for "it does not" |
-| **variants** | **114** | 228 | what to do when your home is not the assumed one |
+| **variants** | **114** | 229 | what to do when your home is not the assumed one |
 
 **That split is the whole strategy.** The top block is complete and is already sold: the Print Pack ($19) carries the 684 passes, the Micro Zone Manual ($29) carries the clean-and-shine steps. The bottom block is the differentiator and it exists for **114 of 114 zones, 100.0%**, across 20 fully personalised rooms: Entryway (5), Kitchen (7), Pantry (5), Dining Room (5), Living Room (6), Family Room (6), Primary Bedroom (6), Guest Bedroom (5), Kids Bedroom (6), Nursery (6), Primary Bathroom (7), Guest Bathroom (5), Laundry Room (6), Home Office (6), Garage (7), Workshop (6), Mudroom (6), Hall Closet (5), Stair Landing (3), Patio or Deck (6).
 
