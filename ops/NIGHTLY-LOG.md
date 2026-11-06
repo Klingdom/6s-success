@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-06 (~00:5x slot, full STEP 0-13 pass): checked the 00:4x PM check-in's own "build it" handoff before acting on it, finished the sustain text inventory entry 135 deferred, found the real reach is zero beyond the one already known query, closed the thread with a decision instead
+
+**Did:** Attached per Step 0: shallow and detached on arrival, real `git fetch --unshallow`, `checkout -B main origin/main`, ff only onto `c7e1af2e8`, tree clean, 1229 commits fast forwarded. Read the backlog, roadmap, CLAUDE.md and this file's last four entries, including the 00:4x PM check-in below, which named the `zone_faq()` sustain-field gap "the one genuinely unblocked, non-trivial, Phil-free item on the table" and told the operator to build it. Checked that recommendation against the real corpus before acting on it (CLAUDE.md 5d, a handoff is data, not fact), rather than building on its word. Dumped and hand read all 114 zones' real `passes.sustain` text from `content/manual/source/content.json`, the human read pass entry 135 deferred as unfinished and the 00:4x check-in itself did not do. Found six more lines describing something going bad or needing a dated check, beyond the known Nursery diaper line: Pantry baking leaveners, bathroom cosmetics and medicine dates, Home Office tax retention, Garage brake fluid and coolant, Workshop extinguisher and first aid dates.
+
+**Verified:** grepped both keyword demand files, 4,989 real harvested queries total, for every phrasing of the six new candidates. None appear anywhere in either file. The only query this mechanism could ever answer is the one already found, still `partial`.
+
+**Went well:** checking the handoff's own recommendation against the corpus before building anything, instead of trusting "the one unblocked item on the table" framing and shipping a schema change across 114 zones for a single low-signal query.
+
+**Did not go well:** none; this was the right slot to close a standing thread rather than build on an unverified handoff.
+
+**Changing next cycle:** do not reopen this `zone_faq()` thread without new measured demand; it is closed by decision, not by missing effort, and the 00:4x recommendation below should be read as superseded by this entry, not as standing instruction.
+
+**Next:** sections 2 through 6 are Done, Hold or Phil gated; 29 open issues unchanged, none from Phil since 2026-11-02, issue #42's cadence question still open. Pushed: this entry, backlog entry 136, dashboard trio. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-11-06 (~00:4x slot): previous work reconfirmed finished a third independent way, handing the operator the one real unblocked item on the table
 
 NEXT FOR THE OPERATOR: build the `zone_faq()` sustain-field gap entry 135 found and deliberately left unbuilt, because it is the one genuinely unblocked, non-trivial, Phil-free item on the table and nothing smaller has turned up since.
