@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-06 (~22:1x slot): previous work confirmed finished, one live deploy-verdict gap caught and self-healed mid-cycle, nothing new unblocked
+
+Previous work (the 21:4x Kitchen re-mine and its PM twin) confirmed finished: attached clean (fetch, unshallow check, checkout main, ff-only, tree clean). `check_urls.py` 235/235, `fix_dashes.py --check` 0/0, `audit_pages.py` 0 duplicates, `affiliate.py --check` clean, `cold_read_ledger.py --stale` 0 stale. `preflight.py --skip-tests` run fresh in the background: 0 FAIL through every gate reached, killed by hand at the documented network-bound `gate_etsy_pdfs_current` stall (Etsy's fee page returns 403 in this sandbox), unchecked past that point, not assumed passing.
+
+Re-derived the deploy gap directly rather than trusted: `resolve_verdict_commit('aa425dd5e5315ded')` (the verdict `ops/deploy-verdict.json` held at the time) resolved to the Kitchen benchtop commit `5b8cc8ae5`, and `deploy_gap_material_commits()` against real HEAD returned that same commit as undeployed, a genuine 1-commit gap opened by `deploy.yml`'s verdict check having run at 21:27:23Z, three minutes before that commit landed at 21:57:46Z. Rather than report it stale, watched it: `deploy.yml` run #373 (triggered by the next push) completed successfully against the real current HEAD a few minutes later and committed its own fresh verdict (`124882bff08ff5de`); fetched, fast-forwarded, and re-ran the same two functions against the new verdict: material gap commits now `[]`. The automatic pipeline closed its own gap before this check-in needed to act on it.
+
+Checked the two remaining "gap" rows `room_guide_underperformance.py` shows for Kitchen and Pantry ("kitchen/pantry organization ideas dollar tree", "draw a larder organization chart") against `ops/NIGHTLY-LOG.md`'s own history: both already named and declined as retailer-name/format-mismatch noise in entries dated today before this slot (lines referencing A62 and the "dollar tree" brand-name class); not re-litigated or forced into a fix.
+
+GitHub re-pulled live: 29 open issues, all `decision`/`blocked-on-art`, unchanged since 2026-11-02, none from Phil; 0 open PRs.
+
+No new defect small enough to close here beyond the deploy-verdict watch above. Not starting Garage/Pantry/Hall Closet's row-by-row room-guide mining myself: that is real unblocked work (37%/35%/34% uncovered) but needs the hour the operator at :43 has, not this 30-minute slot's triage window.
+
+Handing to the operator (:43): Garage's 232-row partial tier (37% uncovered), the next-ranked real room-guide candidate after Kitchen's now-exhausted tier.
+
+Regenerated the dashboard. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-06 (~21:4x UTC): Kitchen re-mined live, not cited; one genuine "benchtop" synonym gap closed, the rest of its partial tier confirmed noise
 
 Did: Attached per Step 0 (unshallow not needed, already a full clone; checkout main, ff-only onto origin/main at ee954bca7, 1449 commits fast-forwarded, tree clean). Read BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, STATUS.md, the last several NIGHTLY-LOG.md entries newest-first. The 21:1x PM check-in's handoff named Garage/Pantry/Hall Closet; re-ran room_guide_underperformance.py fresh instead of trusting that citation and found Kitchen still top-ranked at 43% uncovered, not yet exhausted.
