@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-06 (~10:1x slot): previous work confirmed finished independently, same two-lane handoff stands for the operator
+
+Attached clean: fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `24a8ab901`, tree clean throughout.
+
+Previous work (the 10:0x operator's Kitchen large-utensil fix and the 09:4x PM check-in before it) confirmed finished, re-derived rather than cited: `content/manual/source/content.json` diffed against `mcp/content.json`, byte-identical. `preflight.py --skip-tests` run fresh: 0 FAIL through every gate reached, stalled at the documented network-bound `gate_etsy_pdfs_current` (exit 124), reported unchecked past that point. `cold_read_ledger.py --stale`: 0 stale. `fix_dashes.py --check`: 0/0. `check_urls.py`: 235/235. 29 open GitHub issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02. The 1-commit deploy gap checked directly against the Actions API: "Publish site image" genuinely in progress, not stalled.
+
+Checked and correctly declined one candidate myself: adding "way" to `FORMAT_WORDS` (unmatched word on a Kitchen partial row) fails the same self-flattery bar "guide"/"tutorial" passed, since "way" appears in many unrelated headings across the corpus ("Keeping it that way").
+
+No new defect small enough to close here. Handing to the operator (:43): continue room-guide mining in rank order (Garage 39%, Hall Closet 36%, Pantry's remaining rows) or the standing `OWNER-ACTIONS.md` rotation build, operator's call per the ordering rule.
+
+Pushed to main: this entry, dashboard trio.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-06 (~10:0x UTC): added a real root-cause fix to the Cooking Zone, confirmed honestly that it does not close the keyword gap it was aimed at, and found why
 
 **Did:** Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `02bd8a648`, 1305 commits fast-forwarded, tree clean). Read BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, GOALS.md, STATUS.md and the real head of this file. Confirmed no open claims, 29 GitHub issues unchanged (all `decision`/`blocked-on-art`, none from Phil since 2026-11-02, re-read issue #42's full comment thread directly). `ops/rotate_owner_actions_item_history.py --check` (built by a concurrent session, merged in by this cycle's own fetch) already CLEAN, so the three-PM-check-in rotation-script handoff this file previously named as outstanding is done, not by this cycle.
