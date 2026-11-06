@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-06 (~17:4x slot): previous work confirmed finished, Kids Bedroom named as the one room never yet given a dedicated row-by-row read
+
+NEXT FOR THE OPERATOR: mine Kids Bedroom (22% uncovered, 0 gap + 14 partial of 67 on-topic), because a full grep of this file's own history shows every other room has already had at least one dedicated row-by-row mining pass (Kitchen, Garage, Pantry, Hall Closet, Patio or Deck, Mudroom, Home Office, Workshop, Primary Bedroom, Family Room, Entryway, Living Room, Guest Bedroom, Dining Room, Laundry Room, Guest Bathroom, Nursery, Stair Landing), and Kids Bedroom is not among them. Primary Bathroom (17% uncovered, 11 partial of 66) is the other room missing a dedicated read; Kids Bedroom ranks higher so goes first. Both are genuinely unblocked and un-Phil-gated; full room mining is hours-scale row-by-row work, correctly sized for the operator's own sitting, not this slot's.
+
+Attached per Step 0 (fetch, real `git fetch --unshallow` from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `origin/main` at `11c313df3`, 1395 commits fast-forwarded, tree clean throughout).
+
+Previous work (the ~16:4x-17:1x operator cycle, which declined Nursery/Workshop as exhausted noise and mined Garage's long-unclaimed 67-row tier instead, closing three guide-article heading gaps) confirmed finished, re-derived rather than cited: `git status` clean, `STATUS.md`'s Open claims section reads "None currently open" (the Garage claim was released the same cycle it was opened). `room_guide_underperformance.py` re-run fresh: Garage now ranks below several other rooms, consistent with the fix landing and the remainder being declared noise; the overall ranking (Kitchen 39%, Garage 36%, Pantry 35%, Hall Closet 35%, Patio or Deck 32%, Mudroom 31%, Living Room 29%, Home Office 29%, Workshop 28%, Primary Bedroom 28%, Guest Bedroom 27%, Family Room 26%, Entryway 24%, Dining Room 23%, Laundry Room 23%, Nursery 22%, Kids Bedroom 22%, Stair Landing 22%, Guest Bathroom 20%, Primary Bathroom 17%) matches a room-by-room read of this file's own entries, not assumed. 29 open GitHub issues re-pulled live via the REST API: unchanged since 2026-11-02, all `decision`/`blocked-on-art`, none from Phil since issue #42.
+
+`preflight.py --skip-tests` started fresh but killed partway through this slot rather than let it run past the time this cycle had to ship; reported as **unchecked this cycle**, not passing, per CLAUDE.md 0.4. The prior cycle's own run (committed 16:58, `f883515`) was 0 FAIL through every gate reached, and nothing in the tree has changed since beyond this log entry, so no regression is expected, but that is an inference, not a measurement, and is named as such.
+
+No new defect small enough to close in this slot beyond the one named above (Kids Bedroom never mined). `BACKLOG-2026-09-07.md` sections 2-6 remain Done/Archived except C5 (Gemini billing, issue #47) and C6 (YouTube OAuth, issue #46), both explicitly Phil-gated.
+
+Regenerated the dashboard. Pushed to main: this log entry and the dashboard trio only; no content, price or product page changed.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-06 (~16:4x-17:1x slot): Nursery and Workshop checked and declined, Garage's long-unclaimed 67-row tier mined instead, three genuine heading gaps closed
 
 **Did:** Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `origin/main` at `ac2261543`, 1385 commits fast-forwarded, tree clean). Read `GOALS.md` (constraint is still O1, strangers arriving; traffic near-zero, one $19 sale ever), `CLAUDE.md`, `BACKLOG-2026-09-07.md` sections 0 and 6, `ROADMAP-2026-2029.md`, and the real head of `NIGHTLY-LOG.md` (today's 16:0x/16:1x entries, handing off Nursery or Workshop). 29 GitHub issues re-pulled live: unchanged since 2026-11-02, all `decision`/`blocked-on-art`, none from Phil since issue #42. `inbox_agent.py --apply`: no mail credential, unchecked. `preflight.py --skip-tests` run fresh before touching anything: 0 FAIL through every gate reached, stalled only at the documented network-bound `gate_etsy_pdfs_current`, reported unchecked past that point.
