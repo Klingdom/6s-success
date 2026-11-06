@@ -23,7 +23,28 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "ops"))
 
-ON_TOPIC = re.compile(r"organiz|declutter|clean|storage|stock", re.I)
+# "organi[sz]" joined 2026-11-06, mining Garage: the British/Australian/
+# Canadian "organise"/"organisation"/"organiser" spelling (with an s) never
+# matched this pattern, which required the American "organiz" spelling
+# literally. Found live while verifying a fix for "tool organiser wall
+# mounted": keyword_demand.py and keyword_demand_global.py both score and
+# route every such query correctly (dialect is handled at the scorer level),
+# but this room-ranking tool silently dropped every one of them from the
+# on-topic tally before a human ever saw them, because this regex, not the
+# scorer, decides what counts as "on topic" for ranking which room needs
+# work. Checked the live corpus before fixing: 441 queries across both
+# harvests (28 US, 413 global) use "organis" and no other ON_TOPIC word
+# (declutter/clean/storage/stock), so 441 real, already-scored rows were
+# invisible to every room's uncovered-percentage ranking this whole lane has
+# used since 2026-11-03. Checked for new noise this would surface before
+# shipping: sampling 61 of the newly-visible queries that do not contain an
+# obvious room/furniture/storage word, the few off-topic ones ("how to
+# organise a charity walk", "a seating plan", "a strategy", "drop shipping")
+# are the same shape OFF_TOPIC_CONTEXT already excludes for the American
+# spelling, so broadening this pattern does not bypass that filter, it only
+# lets the British-spelling rows reach it like every American-spelling row
+# already does.
+ON_TOPIC = re.compile(r"organi[sz]|declutter|clean|storage|stock", re.I)
 # Found 2026-11-02: queries that route to a room's zone page by word overlap
 # (e.g. "storage", "organize") but ask about a digital library, not a
 # physical zone. Excluding them is the fix the 13:4x cycle on 2026-11-02

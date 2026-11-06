@@ -52688,13 +52688,11 @@
       "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
       "best_page_title": "How to organize the garage tool wall",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "mounted"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "tool organizer for wall",
@@ -54335,13 +54333,11 @@
       "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
       "best_page_title": "How to organize the garage tool wall",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "mounted"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "wall organizer for files",
@@ -57155,6 +57151,6 @@
       ]
     }
   ],
-  "scored_against_commit": "11c313df3",
-  "scored_at": "2026-11-06T17:56:35Z"
+  "scored_against_commit": "ead9341ae",
+  "scored_at": "2026-11-06T19:59:19Z"
 }
