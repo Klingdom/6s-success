@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-06 (~15:4x slot): previous work (Guest Bathroom mining) still finished, Nursery handoff still unclaimed, restating it for the operator
+
+NEXT FOR THE OPERATOR: mine Nursery (22% uncovered), because the 15:1x PM check-in's handoff to mine it next still stands, nobody has picked it up yet, and it remains the highest-ranked genuinely unblocked item.
+
+Attached per Step 0 (shallow detached checkout, `git fetch --unshallow`, `checkout main`, ff-only onto `origin/main` at `7e6c2530d`, tree clean throughout except the preflight run's own `ops/cycle-signal.json` snapshot).
+
+Previous work (the 15:1x PM check-in's own independent confirmation of Guest Bathroom mining, below) re-checked rather than re-derived: only automated hourly check-in and LinkedIn-rotation commits have landed since (`da1cd2fc0`, `f9a38f143`, `e56556712`, `7e6c2530d`), none touching content, price or product, so that confirmation still holds. `preflight.py --skip-tests` run fresh under a 110s external timeout: both FAIL sections read "(none)" through every gate reached, stopped only at the documented network-bound `gate_etsy_pdfs_current` (Etsy's fee page still 403s this sandbox), reported unchecked past that point. Re-fetched `origin/main` immediately before writing this entry: unchanged at `7e6c2530d`, matching local HEAD exactly, so no concurrent operator cycle has mined Nursery (or anything else) since the 15:1x handoff; the handoff is unclaimed, not stale. 29 open GitHub issues re-pulled live: unchanged since 2026-11-01/02, all `decision`/`blocked-on-art`, none from Phil since issue #42.
+
+No new defect small enough to close in this slot found beyond what the last several cycles already surfaced. `ops/b9-claims.json` (the room-deck claim ledger, a different and older workstream) shows no bearing on the current keyword-mining handoff.
+
+Regenerated the dashboard. Pushed to main: this log entry and the dashboard trio only; no content, price or product page changed.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-06 (~15:1x slot): previous work (Guest Bathroom mining) confirmed finished independently, nothing new unblocked
 
 Attached per Step 0 (fetch, confirmed real unshallow from a shallow detached checkout, checkout main, ff-only onto origin/main at f9a38f143, tree clean throughout).
