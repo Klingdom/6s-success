@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-06 (~12:4x slot): previous work confirmed finished independently; this cycle then reproduced the same self-inflicted orphan class the 12:2x cycle just fixed, twice, and fixed one real cause of it rather than just sweeping the symptom again
+
+NEXT FOR THE OPERATOR: continue the room-guide mining handoff entry 143 left (Home Office 29% uncovered, Primary Bedroom 29%), because traffic and distribution outranks everything else currently unblocked and nothing in measurement or broken/dishonest surfaced ahead of it this slot.
+
+Attached per Step 0 (fetch, confirmed already unshallowed, checkout main, ff-only onto origin/main at 6e0a73dbc, 1336 commits fast-forwarded, tree clean).
+
+Previous work (the 12:2x PM check-in and the 12:3x hourly record) confirmed finished, re-derived rather than cited: 29 open GitHub issues re-pulled live, unchanged since 2026-11-01, all decision/blocked-on-art, none from Phil since issue #42 on 2026-11-02; 0 open PRs. cold_read_ledger.py --stale: 0. room_guide_underperformance.py re-run directly for Home Office (29%) and Primary Bedroom (29%): figures match the prior handoff exactly, nothing drifted. Dashboard's Traffic and Affiliate rows read: both still "not measured" for lack of the VPS ssh key, the same standing Phil-gated limitation, not a new finding.
+
+**The real finding is self-inflicted, twice, and both are reported rather than quietly swept.** Ran preflight.py --skip-tests myself under an external `timeout 280`, a value I picked without checking it against the gate's own internal budget. gate_etsy_pdfs_current's internal timeout is 300s; mine killed the whole preflight.py process at 280s, 20 seconds before the gate's own safe-resolution path could run. Because `timeout` only signals the direct child it forked, the already-spawned build_etsy_assets.py (a grandchild) was not touched and kept running as an orphan for several more minutes, itself spawning a second orphaned Chrome tree the instant its own render finished (Chrome's crashpad escapes into its own session before a `kill -PGID` can reach it, the exact limit entry 143's predecessor already documented). Caught both before any committed PDF was touched (checked file mtimes against git before killing anything), swept both process trees cleanly, confirmed `git status` showed nothing but the run's own cycle-signal.json. Re-ran preflight.py a second time with no external timeout at all: clean, every gate passed, 33 warnings, cycle_signal recorded. That run itself then orphaned a second, different Chrome tree from gate_prerender_shop_current, unprompted by any external wrapper this time, which is what led to the real fix below.
+
+**The real fix.** gate_prerender_shop_current's own outer bound (`PRERENDER_SHOP_TIMEOUT_SECONDS`, ops/preflight.py) was 120 seconds, while the script it wraps, ops/prerender_shop.py, carries its own internal chrome subprocess.run call at timeout=180: the outer bound was shorter than the inner one it wraps, backwards, so any real stall between 120 and 180 seconds guaranteed preflight.py's own subprocess.run would kill prerender_shop.py externally before prerender_shop.py's internal timeout ever got the chance to resolve its own chrome child cleanly, orphaning it with certainty. Raised the outer bound to 210 seconds, the same margin gate_etsy_pdfs_current already keeps over its own inner per-file budget, with a comment at the constant explaining why, so a stall inside the documented 120 to 180 second window now resolves inside prerender_shop.py's own timeout handling instead of being killed from outside. This does not fully close the gap: Chrome's crashpad can still escape a plain kill() before it lands, the same residual risk build_etsy_assets.py's own comments already accept, so a stall past 180 seconds can still orphan a process; that residual is unchanged by this fix and not claimed to be solved.
+
+**Verified, not assumed.** Ran ops/tests/test_gate_prerender_shop_current.py directly (not under preflight, which it refuses to do anyway): 5/5 checks pass, exit 0, no orphan left behind afterward. It did not exercise the exact 120-to-180-second timing window this fix targets (the sandbox's own chrome runs either finish in seconds or the chrome subprocess itself exits 1 quickly, both paths the gate already handled as warn correctly before this fix), so the fix is verified for correctness and non-regression, not for the specific timing race it was written to close; said plainly rather than claimed as fully proven. fix_dashes.py --check clean, 0/0.
+
+**Went well:** neither orphan reached a committed file; checked mtimes against git before killing anything both times, rather than assuming a kill is free.
+
+**Did not go well:** picking an external timeout shorter than a gate's own documented internal budget is now a mistake this repository's own log has recorded twice in one day, by two different cycles including this one. The 12:2x entry's "changing next cycle" line (check the child's CPU, not just the parent's) did not cover this specific shape (an external wrapper killing the whole chain before any internal budget runs out); this entry adds the missed case.
+
+**Changing next cycle:** when wrapping preflight.py (or any gate script) in an external timeout for diagnostic purposes, use a value comfortably above every internal timeout constant the gates it runs declare, not a round number picked without checking; when in doubt, run with no external timeout at all and rely on the gate's own internal budgets, which exist for exactly this reason.
+
+**Next:** room-guide mining continues down the rank order (Home Office, Primary Bedroom), hours-scale work for the operator or a later cycle, not this slot's. Everything else remains the same 29 Phil-gated issues.
+
+Regenerated the dashboard. Pushed to main: ops/preflight.py (PRERENDER_SHOP_TIMEOUT_SECONDS fix), ops/cycle-signal.json, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-06 (~12:2x slot): previous work confirmed finished independently, a false FAIL this cycle caused itself (then fixed) is the real finding, nothing new unblocked
 
 Attached per Step 0 (fetch, confirmed already unshallowed, checkout main, ff-only onto origin/main at cd0cd1b05, tree clean).
