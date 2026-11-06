@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-06 (~11:1x slot): previous work confirmed finished independently, one stale ledger entry closed, nothing new unblocked
+
+Attached clean (fetch, real unshallow from a shallow detached checkout, checkout main, ff-only onto origin/main at c61c72be5, 1 commit fast-forwarded, tree clean throughout).
+
+Previous work (the 11:0x operator's Kids Bedroom misroute and apostrophe-escaping fix, and the 10:4x PM check-in before it) confirmed finished, re-derived rather than cited: read the actual diff of 498a995ce directly rather than trusting its commit message, confirmed it is exactly the html.unescape() fix to check_also_called_is_heading and its zone-level sibling. preflight.py run fresh (--skip-tests): 0 FAIL through every gate reached, timed out (exit 124) at the documented network-bound gate_etsy_pdfs_current stall, same standing sandbox limitation every recent cycle reports, reported unchecked past that point. fix_dashes.py --check 0/0. check_urls.py 235/235 sitemap URLs resolve. STATUS.md's Open claims section already reads "None currently open," correctly. 29 open GitHub issues re-pulled live by most-recently-updated: unchanged, all decision/blocked-on-art, none from Phil since 2026-11-02; issue #42 already tracks the exhausted-cadence pattern itself.
+
+Found and fixed one real gap instead of citing it: cold_read_ledger.py --stale flagged ops/preflight.py (ledgered 2026-11-03, but touched again 2026-11-06 by the apostrophe fix). Not a new defect, just the ledger not yet told about its own file's latest touch; re-ledgered clean with today's date after independently reading the diff, not assuming it was fine.
+
+Room-guide mining ranking re-run directly (room_guide_underperformance.py): Kitchen 39%, Garage 39%, Hall Closet 36%, Pantry 35%, unchanged from the 10:4x entry's figures, confirming nothing drifted between cycles.
+
+No other new defect small enough to close in this slot. Handing to the operator (:43): continue the room-guide mining handoff the 11:0x cycle left (Mudroom 31%, Family Room 31%, Workshop 30% are the next un-mined rooms in rank order), since traffic/distribution outranks everything else currently unblocked under the ordering rule.
+
+Regenerated the dashboard. Pushed to main: ops/cold-read-ledger.json, ops/cycle-signal.json, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-06 (~11:0x UTC): found and fixed a real Guest-vs-Primary-shaped misroute in Primary Bedroom's partial tier, then found and fixed a real apostrophe-escaping bug in the gate that was meant to catch exactly this
 
 **Did:** Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `9c828e87f`, tree clean). Read CLAUDE.md, BACKLOG-2026-09-07.md sections 2-6, ROADMAP-2026-2029.md, STATUS.md (no open claims), and the real head of this file. 29 open GitHub issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, issue #42's thread re-read directly, nothing from Phil since 2026-11-02. `inbox_agent.py --apply`: no mail credential, unchecked. Ran `preflight.py --skip-tests` fresh before touching anything: 0 FAIL through every gate reached, stalled at the documented network-bound `gate_etsy_pdfs_current`. Mined the next un-mined room in rank order per the 09:4x/10:0x/10:1x entries' own handoff (Garage, Hall Closet, Pantry and Patio or Deck already read today, all noise): Primary Bedroom (31% uncovered, 112 on-topic rows, not yet read today). Its own partial tier's unmatched-word frequency surfaced "boys"/"girls"/"childrens"/"children" each hitting the same wrong page, `/articles/how-to-declutter-a-bedroom.html` (Primary Bedroom's own guide).
