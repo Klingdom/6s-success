@@ -338,11 +338,13 @@
   },
   "Garage|Power Tool and Battery Zone": {
    "names": [
-    "chargers zone"
+    "chargers zone",
+    "tool box",
+    "toolbox"
    ],
-   "queries": 1,
+   "queries": 4,
    "covered": 0,
-   "source": "ops/keyword-demand.json 2026-11-05, scheduled operator cycle, mining Garage's 93-row partial tier: 'garage organization ideas chargers' (bing, rank 13) scored to the room-level /garage-deck.html on a tie-break (0.5 coverage, 'chargers' unmatched) rather than this zone, despite this zone's own content.json common_items literally reading 'Chargers, mounted at the front edge' and its purpose naming 'their chargers'. Named 'chargers zone', the '<word> zone' precedent from the A-series ('camping zone', 'storeroom zone', 'garden shed zone'), not the bare word 'chargers' alone."
+   "source": "ops/keyword-demand.json 2026-11-05, scheduled operator cycle, mining Garage's 93-row partial tier: 'garage organization ideas chargers' (bing, rank 13) scored to the room-level /garage-deck.html on a tie-break (0.5 coverage, 'chargers' unmatched) rather than this zone, despite this zone's own content.json common_items literally reading 'Chargers, mounted at the front edge' and its purpose naming 'their chargers'. Named 'chargers zone', the '<word> zone' precedent from the A-series ('camping zone', 'storeroom zone', 'garden shed zone'), not the bare word 'chargers' alone. Added 2026-11-06, scheduled operator cycle, mining Garage's remaining 84-row partial tier: 'power tool organizer for tool box' (US, 0.75 coverage, unmatched 'box') and 'power toolbox organizer' (global, 0.5 coverage, unmatched 'toolbox') both already scored to this exact zone page, only the box/toolbox word missing; a third, 'gear toolbox organization ideas' (US, 0.5 coverage, unmatched 'toolbox'), currently ties to Sports and Recreation Zone instead, a weaker match for a query about a power-tool toolbox. Checked this zone's own content.json first: common_items reads 'Drills and saws, in their cases or on hooks', the real container this zone already keeps power tools in, not a different idea. Added both 'tool box' and 'toolbox' because the scorer tokenizes them as different words and both spellings appear in the live corpus; checked the whole corpus for a collision first (neither form appears in any other page's title or headings, and no tech/software-context query carries either form in this corpus)."
   },
   "Pantry|Dry Goods Shelves": {
    "names": [

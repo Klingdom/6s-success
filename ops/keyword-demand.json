@@ -32230,15 +32230,15 @@
         "how to organize power tool storage"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-workshop.html",
-      "best_page_title": "How to organize a workshop, step by step",
+      "best_page": "/zones/garage-the-power-tool-and-battery-zone.html",
+      "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/how-to-organize-a-workshop.html",
+      "heading_page": "/zones/garage-the-power-tool-and-battery-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "box"
+        "tools"
       ]
     },
     {
@@ -48168,13 +48168,11 @@
       "best_page": "/zones/garage-the-power-tool-and-battery-zone.html",
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.75,
-      "heading_coverage": 0.75,
-      "heading_page": "/articles/how-to-organize-a-workshop.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "box"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/garage-the-power-tool-and-battery-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "power tool organizer rack",
@@ -57149,6 +57147,6 @@
       ]
     }
   ],
-  "scored_against_commit": "ee954bca7",
-  "scored_at": "2026-11-06T21:49:49Z"
+  "scored_against_commit": "81c13ea1e",
+  "scored_at": "2026-11-06T22:54:08Z"
 }

@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-06 (~22:4x UTC): mined Garage's remaining 85-row partial tier, one real zone synonym gap closed, most of the rest confirmed noise or honestly ungapped
+
+**Did:** Attached per Step 0 (fetch origin main, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `81c13ea1e`, 1465 commits fast-forwarded, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries. The 22:1x PM check-in handed off Garage's 37%-uncovered room-guide tier. Re-ran `room_guide_underperformance.py` fresh rather than trust the handoff's percentage: confirmed Garage still next-ranked (1 gap + 84 partial of 232 on-topic).
+
+Read every gap/partial row directly against `content.json` (CLAUDE.md 5c/5d), not the tool's 8-row sample. Most rows are the already-named locale/retailer-platform noise class (australia, pinterest, reddit, youtube, canada, rona, india, lowes, home depot). Checked several candidates against each zone's own real content before adding anything: "gym equipment"/"workout equipment" (storage for gym/workout equipment), "interior car storage," "car boot," and "hardware in garage" all had no honest zone to route to (none of Garage's zones mention fitness equipment, car-interior storage, or loose hardware in their own `content.json` purpose/common_items), so adding an alias for any of them would have been an overclaim; left `partial`, the same call A55 made for "dressing table drawers."
+
+**Fixed:** one real match. "power tool organizer for tool box" (US, 0.75 coverage, unmatched "box") and "power toolbox organizer" (global, 0.5, unmatched "toolbox") both already scored to the Power Tool and Battery Zone page. The zone's own `content.json` common_items reads "Drills and saws, in their cases or on hooks," the real container this zone already keeps power tools in. Added both "tool box" and "toolbox" (the scorer tokenizes them as different words, and both spellings appear live in the corpus) to `Garage|Power Tool and Battery Zone` in `zone-also-called.json`, alongside the existing "chargers zone." Checked the whole corpus for a collision first: neither form appears in any other page's title or heading, no tech/software-context query carries either.
+
+**Verified:** `build_zone_pages.py` re-run, the real committed page confirmed rendering "Also called the chargers zone, the tool box or the toolbox." `test_gate_zone_also_called_is_heading.py` (6/6), `test_check_also_called_digital_collision_fast.py` (2/2), `test_gate_also_called_no_digital_collision.py` (5/5), `test_keyword_demand.py` (32/32) pass. `check_also_called_digital_collision_fast.py` clean against the real file. `keyword_demand.py --rescore` and `keyword_demand_global.py --rescore`: 2 queries moved partial to covered (1 US, 1 global); re-derived both `GOALS.md`-tracked clusters ("small space" 25/12/0/37, "cheap/budget/DIY" 76/22/2/100) directly, confirmed unaffected, not assumed. `audit_visual.py` scoped to the one changed page, desktop and mobile: 0 findings. `check_urls.py` (235/235), `audit_pages.py` (0 duplicates), `fix_dashes.py --check` (0/0), `cold_read_ledger.py --stale` (0 stale), `check_sellable.py` (124/126, unchanged), `link_graph_report.py` (0 orphans) all clean. `preflight.py --skip-tests`: 0 FAIL through every gate reached, killed by hand at the documented network-bound `gate_etsy_pdfs_current` stall (403 from Etsy's fee page in this sandbox), reported unchecked past that point, not assumed passing. GitHub re-pulled live: 29 open issues, all `decision`/`blocked-on-art`, unchanged since 2026-11-02, none from Phil; 0 open PRs. `inbox_agent.py --apply`: no mail credential, unchecked.
+
+**Went well:** checking each candidate zone's own `content.json` before adding an alias caught three plausible-looking matches (gym/workout equipment, car interior, hardware) that would have been overclaims, and avoided shipping any of them.
+
+**Did not go well:** found but did not fix a pre-existing, unrelated tie-break gap: "how to organize tool box"/"how to organise tool box" both score `covered` against `/downloads/6S Success Home Edition - Sample (Chapters 1-30).html`, a coincidental match, not a real answer. Neither query names a room, so `_prefer_in_room_zone` cannot correct it; out of scope for a zone-synonym pass.
+
+**Changing next cycle:** the next operator mining Garage, Pantry, or Hall Closet should treat a query with no room signal that ties to a downloads/sample page as its own small defect class, not assume `_prefer_in_room_zone`'s existing fix already covers it.
+
+**Next:** Garage's partial tier is down to low-value noise and honestly-ungapped queries; Pantry (35%) and Hall Closet (34%) are the next real room-guide candidates, not yet read row-by-row against the current denominator.
+
+Regenerated the dashboard. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-06 (~22:1x slot): previous work confirmed finished, one live deploy-verdict gap caught and self-healed mid-cycle, nothing new unblocked
 
 Previous work (the 21:4x Kitchen re-mine and its PM twin) confirmed finished: attached clean (fetch, unshallow check, checkout main, ff-only, tree clean). `check_urls.py` 235/235, `fix_dashes.py --check` 0/0, `audit_pages.py` 0 duplicates, `affiliate.py --check` clean, `cold_read_ledger.py --stale` 0 stale. `preflight.py --skip-tests` run fresh in the background: 0 FAIL through every gate reached, killed by hand at the documented network-bound `gate_etsy_pdfs_current` stall (Etsy's fee page returns 403 in this sandbox), unchecked past that point, not assumed passing.

@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-06T21:49:49Z against 243 page(s) at commit ee954bca7. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-06T22:54:08Z against 243 page(s) at commit 81c13ea1e. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1600 covered, 1116 partial, 107 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1601 covered, 1115 partial, 107 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -104,7 +104,7 @@ Showing the top 80 of 107, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1116.
+Showing the top 60 of 1115.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -120,7 +120,6 @@ Showing the top 60 of 1116.
 | 11 | kids bedroom storage ideas ikea | How to organize the kids bedroom toy storage | 0.75 |
 | 12 | small guest bathroom storage ideas | How to organize the guest bathroom vanity storage | 0.75 |
 | 13 | how to declutter dining room table | How to organize the dining room dining table | 0.75 |
-| 14 | power tool organizer for tool box | How to organize the garage power tool storage | 0.75 |
 | 15 | how to arrange a living room with l shaped sofa | How to organize the living room sofa and seating | 0.75 |
 | 19 | primary bathroom designs with shower | How to organize the primary bathroom shower or tub | 0.75 |
 | 21 | buy garden tool storage | How to organize the garage garden tool storage | 0.75 |
@@ -168,6 +167,7 @@ Showing the top 60 of 1116.
 | 3 | guest bathroom design ideas | How to organize a guest bathroom, step by step | 0.67 |
 | 3 | home office organization ideas for teachers | The Home Office Deck: 66 cards, free to read | 0.67 |
 | 3 | home office organization ideas pinterest | The Home Office Deck: 66 cards, free to read | 0.67 |
+| 3 | how to arrange gallery wall art | How to organize the stair landing gallery wall | 0.67 |
 
 ## By room
 
