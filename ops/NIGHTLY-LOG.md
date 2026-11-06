@@ -22,6 +22,26 @@ Re-ranked rather than stop: Garage is second overall at 39% uncovered with 67 pa
 
 Regenerating the dashboard and pushing to main.
 
+**Merge note:** a concurrent PM check-in (below) landed on `origin/main` while this entry was being written, independently re-stating the same Nursery/Workshop handoff this entry resolves by mining past it to Garage instead; merged rather than forced, both entries kept.
+
+## PM check-in, 2026-11-06 (~16:4x slot): previous work still finished, Nursery/Workshop handoff restated for the operator, this cycle caused and fixed its own unsafe preflight timeout before it could misfire
+
+NEXT FOR THE OPERATOR: mine Nursery (22% uncovered, 1 gap + 20 partial of 97 on-topic) or Workshop (28% uncovered, 0 gap + 17 partial of 60 on-topic), per the 16:0x/16:1x handoff; either is genuinely unblocked, neither is claimed. Full room mining is hours-scale row-by-row work, correctly sized for the operator's own sitting, not this slot's.
+
+Attached per Step 0 (shallow detached checkout, `git fetch origin main`, real `git fetch --unshallow`, `checkout main`, ff-only onto `origin/main` at `ac2261543`, 1385 commits fast-forwarded, tree clean throughout).
+
+Previous work (the 16:1x PM check-in and the 16:0x Family Room mining below it) confirmed finished, re-derived rather than cited: `ops/room_guide_underperformance.py` re-run fresh against the real committed site, not trusted from the log: Nursery 22% uncovered, Workshop 28% uncovered, both exactly matching the handoff's own figures, nothing drifted. `ops/b9_claims.py --status` shows no undiagnosed/claimed room, confirming the handoff is unclaimed, not stale. `STATUS.md`'s Open claims section still reads "None currently open." `git status`/`git log origin/main` re-checked twice across this slot: no concurrent push landed. 29 open GitHub issues re-pulled live via the API: unchanged since 2026-11-01/02, all `decision`/`blocked-on-art`, none from Phil since issue #42; 0 open PRs. `fix_dashes.py --check` 0 em/en dashes. `check_urls.py` 235/235. `cold_read_ledger.py --stale` 0 stale.
+
+**This cycle's own real finding, caused and fixed in itself, not swept quietly (CLAUDE.md 0.4/54).** Ran `preflight.py --skip-tests` wrapped in an external `timeout 280`, the exact value two earlier cycles (entries for the 12:2x and 12:4x slots) already documented as unsafe: `gate_etsy_pdfs_current`'s own internal budget is `ETSY_PDFS_TIMEOUT_SECONDS = 300`, so a 280s external wrapper would have SIGTERM'd the whole process 20 seconds before the gate's own safe-resolution path could run, the identical false-FAIL-plus-orphan shape those entries describe. Caught it myself before the deadline hit (elapsed time checked against the gate's own constant, not assumed safe), terminated the run cleanly with `SIGTERM`, verified the in-flight PDF's mtime predated this run before touching anything, swept the resulting orphaned Chromium tree, reverted the run's own stray `cycle-signal.json` snapshot, and relaunched `preflight.py --skip-tests` with no external timeout at all, the documented correct practice for this sandbox. The second run reached the identical point as the first (0 FAIL through every gate up to `gate_etsy_pdfs_current`, including both standing `living-docs-total-size-tripwire` warnings below) and was left to resolve on its own internal budget rather than killed again.
+
+**Two known, unchanged warnings, not new:** `living-docs-total-size-tripwire` still flags `BACKLOG-2026-09-07.md` (179643 bytes, 150000-byte tripwire) and `OWNER-ACTIONS.md` (115514 bytes, 110000-byte tripwire); both are the same standing archive-lag this file has carried across several prior cycles, not a fresh regression, and not pursued this slot given the time already spent on the timeout correction above.
+
+No new defect small enough to close in this slot beyond the self-inflicted timeout mistake, caught and fixed. Nothing in `BACKLOG-2026-09-07.md` sections 2-6 is genuinely unblocked and un-Phil-gated beyond the Nursery/Workshop mining already handed to the operator.
+
+**Changing next cycle:** before wrapping `preflight.py` in any external timeout, check the value against every internal timeout constant the gates it runs declare (`ETSY_PDFS_TIMEOUT_SECONDS = 300`, `PRERENDER_SHOP_TIMEOUT_SECONDS = 210`), or use no external wrapper at all; a round number picked without checking is how this exact mistake has now recurred across three separate cycles today.
+
+Regenerated the dashboard. Pushed to main: this log entry and the dashboard trio only; no content, price or product page changed.
+
 HANDOFF-FILES: none
 
 ## PM check-in, 2026-11-06 (~16:1x slot): previous work (Family Room mining) confirmed finished, Nursery/Workshop handoff restated for the operator, nothing new unblocked
