@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-06 (~13:1x slot): previous work confirmed finished; this cycle caused and fixed its own gate_tests hang on two interactive-form browser tests, nothing new unblocked
+
+Attached per Step 0 (fetch, confirmed real unshallow, checkout main, ff-only onto origin/main at 6e0a73dbc, 1336 commits fast-forwarded, tree clean).
+
+Previous work (the 12:2x PM check-in) confirmed finished, re-derived rather than cited: GitHub re-pulled live, 29 open issues, unchanged since 2026-11-02, all decision/blocked-on-art, none from Phil; 0 open PRs. room_guide_underperformance.py re-run live: Kitchen 39%, Garage 39%, Hall Closet 36%, Pantry 35%, Home Office 29%, Primary Bedroom 29%, matching the 12:2x handoff exactly, nothing drifted. cold_read_ledger.py --stale: 0.
+
+The real finding is self-inflicted, not external, same shape as the 12:2x entry above it. Ran preflight.py without --skip-tests (to get a genuine gate_tests read). It worked cleanly through 49 of 473 test files, then hung for real on test_contact_form_interactive.py: its own headless-Chromium render sat at 0.4% CPU for 236 seconds against its own 25-second virtual-time-budget, confirmed stalled (not slow) by watching CPU across two checks before touching anything, matching the standing sandbox limitation this repository already documents for other browser-render gates. Killed clean (chromium child first, then the test process, then the preflight parent, confirmed gone via ps -ef), then swept the chromium descendants that had meanwhile spawned for test 51 (test_corporate_form_interactive.py) after the parent died mid-collection, and the two gitignored probe HTML files both tests had left in site/.
+
+Re-ran preflight.py --skip-tests (the documented practice for this sandbox) to get the rest of the picture. First attempt found 1 real self-inflicted FAIL: gate_no_stray_probe_files caught site/_audit_catalog_fixture_665.html, a leftover from the killed run's earlier test_audit_catalog.py (test 9), and deleted it itself as designed. Ran a clean third time: every gate passed, 34 warnings (standing sandbox gaps only: no Stripe/SSH/mail/DNS credential here, consistent with every recent cycle), cycle_signal recorded a clean pass. gate_tests itself stays UNCHECKED this cycle, not passed, per CLAUDE.md 0.4: two specific interactive-form tests are now confirmed to hang in this sandbox when run outside their own gate's bounding, which is new, useful detail beyond the general "gate_tests sandbox hang" this log already carries.
+
+**Changing next cycle:** do not run the full test_*.py sweep via plain preflight.py in this sandbox; --skip-tests is not a shortcut here, it is the only way this environment reaches a real answer on the other ~160 gates. If gate_tests itself needs verifying, run it in isolation with a per-test timeout, not inside a full preflight pass.
+
+No new defect found small enough to close beyond the one this cycle caused and fixed in itself. Checked backlog "gap" rows (0-coverage queries) surfaced by room_guide_underperformance.py across six rooms (Kitchen, Pantry, Family Room, Primary Bedroom, Kids Bedroom, Nursery dollar-tree/DIY-build/furniture-shopping phrasing) against content.json; none matched any real content, all consistent with the noise shapes this log has already declined elsewhere (retailer mentions, DIY-build intent, furniture shopping). Not pursued; forcing a synonym onto unrelated content is the dishonest-labelling shape CLAUDE.md A32 warns against.
+
+Nothing in BACKLOG-2026-09-07.md sections 2-6 is newly unblocked; every owner gate in section 6 and OWNER-ACTIONS.md remains Phil's own decision or money. Handing to the operator (:43): continue the room-guide mining handoff (Home Office 29%, Primary Bedroom 29% are next by rank); that is hours-scale work, not this slot's.
+
+Regenerated the dashboard. Pushed to main: ops/cycle-signal.json, this entry, dashboard trio.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-06 (~12:2x slot): previous work confirmed finished independently, a false FAIL this cycle caused itself (then fixed) is the real finding, nothing new unblocked
 
 Attached per Step 0 (fetch, confirmed already unshallowed, checkout main, ff-only onto origin/main at cd0cd1b05, tree clean).
