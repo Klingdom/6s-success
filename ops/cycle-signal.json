@@ -1,14 +1,14 @@
 {
-  "combined_hash": "157911b84941b7294f35ee78f3fa6210e647ca69ce02e57e91624388a2305935",
-  "git_head": "cae0887c8f53d22d7ac949f7ea94b1c209095182",
-  "note": "partial pass: every gate before gate_tests passed, gate_tests and everything after it not reached this run (cycle_signal checkpoint, not a full preflight pass), git HEAD cae0887c8f",
-  "recorded_at": "2026-11-06T21:45:15Z",
+  "combined_hash": "102a6d4457d2a42c9a0f2a1f63f813f0323368258321c25293359286d7d802c2",
+  "git_head": "f7ef23862fa3d9020f1da042bc0371083dcd5bad",
+  "note": "PM check-in 21:4x: merged concurrent twin push, fast gates re-run clean (check_urls, fix_dashes, cold_read_ledger), full preflight not reached past the documented network-bound hang this cycle",
+  "recorded_at": "2026-11-06T21:51:34Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "7640abc428e5097ae42f2ec735f9ada2ce27a3cfd5a88b16f8280c0b380af9bc",
+    "BACKLOG-2026-09-07.md": "02d3f44be13daf3baea9cfb018a5994a53fc0dec99192e1e112b7b16f1d5b1b7",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "3508db53f1dbd001b7a8155ccabf5dfb72971bff41d3ca7b3ac671fd0b1dc207",
     "OWNER-ACTIONS.md": "5bb5ba7d0bd89f2758f4d00322d298f80e23e257c926c1c8efccb9eea84508f0",
-    "STATUS.md": "daf82b923fce58b445b0ce3618fecc8c14fa346a8f9180d135b4f7decfdfb32c",
+    "STATUS.md": "ce5bde9e4f47f702733704a1a3369f25aa7cc97a51b26766c82e0fd160da67be",
     "ops/deploy-verdict.json": "4d38f156d07421a53ec2207a4ab77c7fc6bde13754e2970831a7cfc07ab3a707"
   }
 }

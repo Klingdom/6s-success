@@ -245,12 +245,55 @@ def main() -> int:
             "'A38 commit' false positive: problem string did not read the "
             "real 21, or leaked the false 38: %r" % problem)
 
+    # 16. The real live shape found 2026-11-06, PM check-in (21:1x slot):
+    #     this file's real convention is the opposite of what this gate's
+    #     own docstring assumed ("entries appended, newest at the bottom").
+    #     The newest correction is written FIRST, immediately followed in
+    #     the same flowing paragraph (no blank line) by "Prior state, kept
+    #     because the shape recurs:" and the old, superseded entry kept for
+    #     history. Every earlier real gap was 0, so the appended old
+    #     entry's own stale "zero commits" always happened to match the
+    #     true count and this never surfaced. Build a latest entry shaped
+    #     exactly like that, with the real current count (1) stated first
+    #     and an old, superseded "zero commits" trailing after the marker:
+    #     must read the 1, never fall through to the trailing 0.
+    newest_then_old = (
+        "**Real gap is now 1 commit, not 0.** Confirmed build `%s`. "
+        "Prior state, kept because the shape recurs: **An older, "
+        "superseded entry.** Confirmed a different build earlier. "
+        "Production matched the repository exactly, zero commits "
+        "undeployed." % BUILD_ID
+    )
+    problem = preflight.deploy_gap_count_problem(
+        section(newest_then_old), real_count=1, build_id=BUILD_ID,
+        checked_at="2026-11-06T21:15:00Z")
+    if problem:
+        fails.append(
+            "newest-first-then-old-appended shape: cited 1, real 1, but "
+            "still flagged (the old appended '0' leaked in): %r" % problem)
+
+    # 17. Same shape, but the real count has genuinely moved past what the
+    #     newest text itself claims (2, not 1): must fire and name 1 (the
+    #     newest text's own claim), never the old appended "0".
+    problem = preflight.deploy_gap_count_problem(
+        section(newest_then_old), real_count=2, build_id=BUILD_ID,
+        checked_at="2026-11-06T21:15:00Z")
+    if not problem:
+        fails.append(
+            "newest-first-then-old-appended shape: cited 1 real 2: "
+            "expected a problem, got none")
+    elif "1 commit" not in problem or "0 commit" in problem:
+        fails.append(
+            "newest-first-then-old-appended shape: problem string did not "
+            "read the newest claim (1), or leaked the old appended 0: %r"
+            % problem)
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("PASS: 15 checks")
+    print("PASS: 17 checks")
     return 0
 
 
