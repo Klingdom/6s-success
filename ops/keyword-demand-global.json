@@ -40217,16 +40217,15 @@
         "master bedroom organization"
       ],
       "room": "",
-      "best_page": "/rooms/primary-bedroom.html",
-      "best_page_title": "How to organize a primary bedroom, zone by zone",
+      "best_page": "/zones/primary-bedroom-the-primary-closet.html",
+      "best_page_title": "How to organize the primary bedroom closet",
       "coverage": 0.25,
-      "heading_coverage": 0.5,
-      "heading_page": "/rooms/primary-bedroom.html",
+      "heading_coverage": 0.75,
+      "heading_page": "/zones/primary-bedroom-the-primary-closet.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "wardrobe"
+        "design"
       ],
       "markets": [
         "ca"
@@ -48388,6 +48387,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "aed5936f4",
-  "scored_at": "2026-11-06T12:00:55Z"
+  "scored_against_commit": "6e0a73dbc",
+  "scored_at": "2026-11-06T13:02:58Z"
 }

@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-06T12:00:50Z against 243 page(s) at commit aed5936f4. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-06T13:02:42Z against 243 page(s) at commit 6e0a73dbc. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1582 covered, 1134 partial, 107 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1583 covered, 1133 partial, 107 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -104,7 +104,7 @@ Showing the top 80 of 107, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1134.
+Showing the top 60 of 1133.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -155,7 +155,6 @@ Showing the top 60 of 1134.
 | 2 | how to organize baking supplies in kitchen | How to organize the kitchen sink area | 0.67 |
 | 2 | how to organize household cleaning supplies | How to organize the hall closet cleaning supplies | 0.67 |
 | 2 | linen closet organization hacks | How to organize a linen closet: sheets, towels and shelves | 0.67 |
-| 2 | master bedroom closet organization ideas | How to organize the primary bedroom closet | 0.67 |
 | 2 | organize modern living room | How to organize a living room, step by step | 0.67 |
 | 2 | patio deck design ideas | How to organize a patio or deck, step by step | 0.67 |
 | 2 | patio off of deck | How to organize a patio or deck, step by step | 0.67 |
@@ -168,6 +167,7 @@ Showing the top 60 of 1134.
 | 3 | declutter media room | How to organize the living room media center | 0.67 |
 | 3 | design ideas for dining room | How to organize a dining room, step by step | 0.67 |
 | 3 | family room design ideas | How to organize a family room, step by step | 0.67 |
+| 3 | guest bathroom design ideas | How to organize a guest bathroom, step by step | 0.67 |
 
 ## By room
 
