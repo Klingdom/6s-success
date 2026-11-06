@@ -4,7 +4,7 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## PM check-in, 2026-11-06 (~12:4x slot): previous work confirmed finished independently; this cycle then reproduced the same self-inflicted orphan class the 12:2x cycle just fixed, twice, and fixed one real cause of it rather than just sweeping the symptom again
 
-NEXT FOR THE OPERATOR: continue the room-guide mining handoff entry 143 left (Home Office 29% uncovered, Primary Bedroom 29%), because traffic and distribution outranks everything else currently unblocked and nothing in measurement or broken/dishonest surfaced ahead of it this slot.
+NEXT FOR THE OPERATOR: continue room-guide mining down the rank order (Living Room 28%, Guest Bedroom 27%, Entryway 24%), because the concurrent ~13:0x operator cycle below already closed out Home Office and Primary Bedroom while this entry was being written, and traffic/distribution still outranks everything else currently unblocked.
 
 Attached per Step 0 (fetch, confirmed already unshallowed, checkout main, ff-only onto origin/main at 6e0a73dbc, 1336 commits fast-forwarded, tree clean).
 
@@ -25,6 +25,26 @@ Previous work (the 12:2x PM check-in and the 12:3x hourly record) confirmed fini
 **Next:** room-guide mining continues down the rank order (Home Office, Primary Bedroom), hours-scale work for the operator or a later cycle, not this slot's. Everything else remains the same 29 Phil-gated issues.
 
 Regenerated the dashboard. Pushed to main: ops/preflight.py (PRERENDER_SHOP_TIMEOUT_SECONDS fix), ops/cycle-signal.json, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry.
+
+**Merge note:** a concurrent operator cycle (below) landed on origin/main while this entry was being written and independently hit, then correctly worked around, the same first-preflight timeout mistake this entry made; merged rather than forced, this entry's own handoff line corrected above to point past the room-guide work that cycle already closed.
+
+## Scheduled operator cycle, 2026-11-06 (~13:0x slot): closed Primary Bedroom's "master closet" zone gap; Home Office checked and declined entirely
+
+**Did:** Attached per Step 0 (fetch, confirmed real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `6e0a73dbc`, 1336 commits fast-forwarded, tree clean). Read CLAUDE.md, STATUS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md and the head of this file. Ran `preflight.py --skip-tests`: every gate passed, 34 warnings (all standing), 0 FAIL. 29 GitHub issues re-pulled live, unchanged since 2026-11-01, all `decision`, none from Phil; `inbox_agent.py --apply` reports no mail credential, unchecked, not assumed empty.
+
+Mined Primary Bedroom and Home Office (handed off by an earlier cycle as the next un-mined rooms at 29% each). Read both rooms' full partial tiers directly (CLAUDE.md 5c/5d), not the 8-row sample `room_guide_underperformance.py` prints. Home Office's 23 rows were all noise (platform/audience mentions: ikea, pinterest, reddit, teachers; generic modifiers: deep, large, interior, minimal); declined entirely, no edit made there. Primary Bedroom had one genuine row: "master bedroom closet organization ideas" (partial, 0.667, `unmatched_words: ['master']`), already routed correctly to the Primary Closet zone page. Checked the zone's own content before naming it a gap: "master" appears nowhere in `content.json`, so this is a household-name synonym, not the already-published-but-missing-heading shape recent cycles found for bakeware/pegboard; "master bedroom" is already the room's own also-called name, and room-also-called.json's own rule (bare "master closet" returned zero at room scope) is a different question from this zone-scoped, demand-backed query. Checked both harvests for a collision: the only other master+closet query is a different room with a different unmatched word. Added "master closet" to the existing `Primary Bedroom|Primary Closet` entry in `zone-also-called.json`. Rebuilt via `build_zone_pages.py`.
+
+**Went well:** a stop-hook timeout mistake (external `timeout 280` on the first preflight run, which killed it 20 seconds before `gate_etsy_pdfs_current`'s own documented 300s internal timeout could resolve safely, producing exactly the false-FAIL pattern the 12:2x PM check-in's entry above warned about) was caught and not shipped: re-ran without an external wrapper and let that gate, and later `gate_prerender_shop_current` (120s), each resolve on their own, correctly, this time.
+
+**Did not go well:** losing real time to my own timeout mistake on the very first preflight invocation, right after reading the entry that named this exact trap.
+
+**Verified:** `test_gate_zone_also_called_is_heading.py` (6/6, real committed site); `keyword_demand.py --rescore` moves the target query to `covered` (`unmatched_words: []`), US partial 1134 to 1133, covered 1582 to 1583; `keyword_demand_global.py --rescore` correctly unchanged. `room_guide_underperformance.py --room "Primary Bedroom"` 29% to 28% uncovered. `check_urls.py` (235/235), `audit_pages.py` (240/0 findings), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 documents), `check_sellable.py` (124/126, unchanged), `link_graph_report.py` (0 orphans), `build_id.py --check` (current), `audit_visual.py` scoped to the changed page (desktop and mobile, 0 findings each) all clean. `cold_read_ledger.py --stale`: 0. No price or product touched; one existing zone page's heading changed, no new page. `IndexNow --submit` ran, 0 never-submitted, could not confirm the key file is served (no live egress here), standing limitation.
+
+**Changing next cycle:** none beyond the standing discipline the 12:2x entry already named (check the child's CPU/elapsed against the gate's own documented timeout before touching anything, never the parent alone).
+
+**Next:** Home Office is now fully exhausted (checked, declined). Next un-mined rooms by rank: Living Room (28%), Guest Bedroom (27%), Entryway (24%). Everything bigger remains Phil-gated (29 issues, none from Phil since 2026-11-01).
+
+Regenerated the dashboard. Pushed to main: `ops/zone-also-called.json`, `site/zones/primary-bedroom-the-primary-closet.html`, `ops/keyword-demand.json`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND.md`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `BACKLOG-2026-09-07.md` entry A66, dashboard trio, this entry.
 
 HANDOFF-FILES: none
 
