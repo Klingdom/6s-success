@@ -18283,16 +18283,14 @@
         "how to organise baking supplies"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/zones/kitchen-the-lower-cabinets-and-cookware.html",
+      "best_page_title": "How to organize the kitchen lower cabinets and cookware",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap",
-      "unmatched_words": [
-        "bakeware"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/kitchen-the-lower-cabinets-and-cookware.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -48455,6 +48453,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "bef33eb1e",
-  "scored_at": "2026-11-05T22:56:33Z"
+  "scored_against_commit": "69a7f2f30",
+  "scored_at": "2026-11-06T01:50:34Z"
 }

@@ -198,11 +198,12 @@
   "Kitchen|Lower Cabinet and Cookware Zone": {
    "names": [
     "corner cupboard",
-    "corner cabinet"
+    "corner cabinet",
+    "bakeware cabinet"
    ],
-   "queries": 2,
+   "queries": 3,
    "covered": 1,
-   "source": "ops/keyword-demand-global.json 2026-10-29 (gb, au, in): 'how to organise a kitchen corner cupboard', rank 4, 0.333 coverage, scored to kitchen-deck.html. 'corner cabinet' added 2026-11-03: the US-spelling variant of the same zone, found partial (0.333) rather than covered because the zone's own h1 says 'Cabinets' (plural) not 'cabinet' (singular), an exact-word-not-stem gap (A34/A36 precedent); the zone's own content.json purpose (deep, low corner storage for pots, pans and bakeware) supports both words equally."
+   "source": "ops/keyword-demand-global.json 2026-10-29 (gb, au, in): 'how to organise a kitchen corner cupboard', rank 4, 0.333 coverage, scored to kitchen-deck.html. 'corner cabinet' added 2026-11-03: the US-spelling variant of the same zone, found partial (0.333) rather than covered because the zone's own h1 says 'Cabinets' (plural) not 'cabinet' (singular), an exact-word-not-stem gap (A34/A36 precedent); the zone's own content.json purpose (deep, low corner storage for pots, pans and bakeware) supports both words equally. 'bakeware cabinet' added 2026-11-06: 'how to organise bakeware' (rank 13, gap, 0.0 coverage, /about.html via tie-break), the word 'bakeware' already literally appears in this zone's own content.json purpose ('pots, pans, lids, bakeware, and the big bowls') and its own kit-list guidance ('the seasonal bakeware'), just never in a heading. Named 'bakeware cabinet', not the bare word 'bakeware', per the 'dinnerware cabinet' precedent (A32): bakeware is the contents, not a name anyone calls the cabinet itself, so the bare noun alone would overclaim inside an 'Also called the X' heading."
   },
   "Kitchen|Upper Cabinet Zone": {
    "names": [

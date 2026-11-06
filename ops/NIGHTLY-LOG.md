@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-06: A60, a zone-level vocabulary gap closed ("bakeware" against the Kitchen's Lower Cabinet and Cookware Zone)
+
+**Did:** Attached per Step 0 (fetch, confirmed real unshallow, checkout -B main origin/main, ff-only onto 69a7f2f30, 1235 commits fast-forwarded, tree clean). Read BACKLOG-2026-09-07.md sections 0-4, ROADMAP-2026-2029.md and CLAUDE.md, and the last four NIGHTLY-LOG entries. Ran preflight.py --skip-tests before touching anything. Checked 29 open GitHub issues and 0 open PRs live rather than cite a prior count; ran inbox_agent.py --apply. Mined the global keyword gap tier (91 rows) directly rather than trust the count, since almost every row is off-topic noise prior cycles already named (Revit handrail CAD, cribbage tournaments, bench press, vastu, dropped kerb, pasta/paneer troubleshooting, dollar-tree/pinterest/mumsnet/reddit mentions). Found one genuine on-topic miss: "how to organise bakeware" (au, rank 13, gap), scored to /about.html by tie-break, where the word "bakeware" was already real published text in the Kitchen Lower Cabinet and Cookware Zone's own content.json purpose, just never in a heading. Added "bakeware cabinet" (not the bare word, per the dinnerware-cabinet precedent: bakeware is the contents, not a name anyone calls the cabinet) to the zone's existing zone-also-called.json entry. Reran build_zone_pages.py, then both keyword rescorers, then the full verification suite (check_urls, audit_pages, fix_dashes/fix_dialect, affiliate.py --check, link_graph_report, check_sellable, the zone-also-called heading gate, audit_visual scoped to the changed page on desktop and mobile, build_id.py --check). Regenerated the dashboard and ran indexnow.py --submit.
+
+**Verified:** preflight.py 0 FAIL both before and after the change, stopped each time at the documented network-bound gate_etsy_pdfs_current (exit 124), reported unchecked past that point rather than assumed passing. The target query moved from gap (0.0 coverage) to covered (heading_coverage 1.0) on a live rescore; global gap count 91 to 90. All other checks clean. A spurious byte-identical re-encode of an unrelated Etsy listing PNG, left by preflight's own bootstrap step, was confirmed pixel-identical (ImageChops bbox None) and discarded rather than committed. cold_read_ledger.py --stale read 0 stale.
+
+**Went well:** caught and discarded the stray PNG re-encode before it could ride along in the commit as unexplained noise.
+
+**Did not go well:** the gap tier is thinning out fast (91 rows, almost all genuine noise); this lane is close to exhausted and future cycles will need to look past synonym mining toward the epic-3/4 (traffic, conversion) work once it is.
+
+**Changing next cycle:** none.
+
+**Next:** every epic's top item remains Phil-gated (the 29 open decision/blocked-on-art GitHub issues, most newly filed 2026-10-31/11-01 covering OWNER-ACTIONS.md items not previously tracked as issues). No new unblocked work found beyond this one synonym fix this cycle.
+
 ## PM check-in, 2026-11-06 (~01:1x slot): previous work (the zone_faq decision closure) confirmed finished, rotated three oversized living documents instead of starting new work
 
 Attached per Step 0: fetch, real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff only onto `origin/main` at `bec0c2ac6`, tree clean, 1233 commits fast forwarded.
