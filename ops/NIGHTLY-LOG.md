@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-06 (~04:5x slot): the 04:3x CI fix watched to completion, confirmed green, not inferred
+
+The 04:3x entry's own fix (GOALS.md citation + STATUS.md tripwire) shipped as `53b9e8a6e` with the new CI run still `in_progress`; that entry closed without waiting on it, and the 04:4x entry's own `preflight.py` attempt hit the known output-buffering trap and reported itself unchecked rather than assumed clean. Watched run 42163903874 directly via the Actions API through to completion rather than leaving it inferred: `conclusion: success` at 2026-11-06T04:59:36Z, roughly 19 minutes, the first confirmed-green run since the 04:0x diy commit went red. Fast-forwarded a concurrent hourly check-in (`294e811df`) that landed mid-wait; no conflict. No new defect found. Nothing else to add to the two entries below.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-06 (~04:4x slot): previous work confirmed finished independently, nothing new unblocked
 
 NEXT FOR THE OPERATOR: OWNER-ACTIONS.md's own prunable chain, because the 04:3x check-in already found it over size with no quick chain and left it; also Kitchen (41% uncovered) still unmined row by row.
