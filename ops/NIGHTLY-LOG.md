@@ -24,6 +24,20 @@ Regenerated the dashboard. Pushed to main.
 
 HANDOFF-FILES: none
 
+## PM check-in, 2026-11-06 (~22:4x slot): previous work and handoff reconfirmed independently, nothing new unblocked
+
+NEXT FOR THE OPERATOR: mine Garage's room-guide tier (37% uncovered, 84 partial rows of 232 on-topic), because it is still the next real candidate in the ranking and nothing else is unblocked.
+
+Attached clean (fetch, unshallow, checkout main, ff-only onto origin/main, 1 commit fast-forwarded, tree clean). Read git log, NIGHTLY-LOG.md's top two entries, BACKLOG-2026-09-07.md and EXECUTIVE-DASHBOARD-LIVE.md. The only new commit since the 22:1x PM check-in was the automated hourly check-in record (state/dashboard files only, no substantive change).
+
+Previous work confirmed finished, not cited: `check_urls.py` 235/235, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0 stale. `preflight.py` started fresh, 0 FAIL/ERROR through every gate reached, killed by hand at the documented `gate_tests` sandbox hang (test collection stalls in this sandbox); unchecked past that point, not assumed passing. Re-ran `room_guide_underperformance.py` directly rather than trusting the prior handoff: Garage (37% uncovered) is still the top genuinely-unmined candidate, Kitchen (42%, raw score, unchanged by the mining already done) and Pantry (35%) already read and declined/exhausted in recent cycles. GitHub re-pulled live: 29 open issues, all `decision`/`blocked-on-art`, unchanged since 2026-11-02, none from Phil.
+
+No new defect small enough to close here; the fast gates that run in this slot are all clean. Not starting Garage myself: it needs a real row-by-row read against 232 rows, the operator's hour at :43, not this slot's triage window.
+
+Pushed to main. ops/NIGHTLY-LOG.md, command deck.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-06 (~22:1x slot): previous work confirmed finished, one live deploy-verdict gap caught and self-healed mid-cycle, nothing new unblocked
 
 Previous work (the 21:4x Kitchen re-mine and its PM twin) confirmed finished: attached clean (fetch, unshallow check, checkout main, ff-only, tree clean). `check_urls.py` 235/235, `fix_dashes.py --check` 0/0, `audit_pages.py` 0 duplicates, `affiliate.py --check` clean, `cold_read_ledger.py --stale` 0 stale. `preflight.py --skip-tests` run fresh in the background: 0 FAIL through every gate reached, killed by hand at the documented network-bound `gate_etsy_pdfs_current` stall (Etsy's fee page returns 403 in this sandbox), unchecked past that point, not assumed passing.
