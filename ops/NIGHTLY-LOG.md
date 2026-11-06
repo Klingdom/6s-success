@@ -22,7 +22,23 @@ Re-ranked rather than stop: Garage is second overall at 39% uncovered with 67 pa
 
 Regenerating the dashboard and pushing to main.
 
-**Merge note:** a concurrent PM check-in (below) landed on `origin/main` while this entry was being written, independently re-stating the same Nursery/Workshop handoff this entry resolves by mining past it to Garage instead; merged rather than forced, both entries kept.
+**Merge note:** two concurrent PM check-ins (below, 16:4x and 17:1x) landed on `origin/main` while this entry was being written and pushed, both independently re-stating the same Nursery/Workshop handoff this entry resolves by mining past it to Garage instead; merged rather than forced, all entries kept.
+
+## PM check-in, 2026-11-06 (~17:1x slot): previous work confirmed finished, re-derived rather than cited, Nursery/Workshop handoff still unclaimed
+
+NEXT FOR THE OPERATOR: mine Nursery (22% uncovered, 1 gap + 20 partial of 97 on-topic) or Workshop (28% uncovered, 0 gap + 17 partial of 60 on-topic), per the 16:0x/16:1x/16:4x handoff; either is genuinely unblocked, neither is claimed. Full room mining is hours-scale row-by-row work, correctly sized for the operator's own sitting, not this slot's.
+
+Attached per Step 0 (shallow detached checkout, `git fetch origin main`, real `git fetch --unshallow`, `checkout main`, ff-only onto `origin/main` at `80ee5fdac`, 1389 commits fast-forwarded, tree clean throughout).
+
+Previous work (the 16:4x PM check-in's self-inflicted preflight timeout, caught and fixed in the same slot, then relaunched) confirmed finished, re-derived rather than cited: the relaunched `preflight.py --skip-tests` run completed and was committed at 16:58 (`f883515`), 0 FAIL through every gate reached, recorded rather than assumed. `ops/room_guide_underperformance.py` re-run fresh against the real committed site: Nursery 22% uncovered, Workshop 28% uncovered, matching the handoff's own figures exactly, nothing drifted or mined since. `STATUS.md`'s Open claims section still reads "None currently open," so the handoff is unclaimed, not stale. 29 open GitHub issues re-pulled live via the REST API: unchanged since 2026-11-01/02, all `decision`/`blocked-on-art`, none from Phil since issue #42. `check_urls.py` 235/235. `fix_dashes.py --check` 0/0. `cold_read_ledger.py --stale` 0 stale. All backlog rotation scripts (`rotate_backlog_closed`, `rotate_backlog_section1b/2/3/4_items`, `rotate_owner_actions_item_history`, `rotate_checkin_log`, `rotate_owner_actions`, `rotate_owner_actions_closed_items`) report CLEAN; the two standing `living-docs-total-size-tripwire` warnings on `BACKLOG-2026-09-07.md` (179643 bytes) and `OWNER-ACTIONS.md` (115514 bytes) are unchanged, not new, and nothing is actually due to rotate.
+
+No new defect small enough to close in this slot. `BACKLOG-2026-09-07.md` sections 2-6 remain Done/Archived except C5 (Gemini billing, issue #47) and C6 (YouTube OAuth, issue #46), both explicitly Phil-gated with everything up to the gate already built.
+
+Not starting new work myself: nothing beyond the Nursery/Workshop mining already handed to the operator is genuinely unblocked and un-Phil-gated.
+
+Regenerated the dashboard. Pushed to main: this log entry and the dashboard trio only; no content, price or product page changed.
+
+HANDOFF-FILES: none
 
 ## PM check-in, 2026-11-06 (~16:4x slot): previous work still finished, Nursery/Workshop handoff restated for the operator, this cycle caused and fixed its own unsafe preflight timeout before it could misfire
 
