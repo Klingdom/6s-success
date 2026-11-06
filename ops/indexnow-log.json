@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-02T15:56:22Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-02T23:10:00Z",
    "mode": "changed",
    "offered": 4,
@@ -657,6 +650,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-06T15:03:55Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -757,7 +757,7 @@
   "https://6s-success.com/zones/garage-the-sports-and-recreation-zone": "6a29c64e307e9a13",
   "https://6s-success.com/zones/guest-bathroom-the-guest-linen-zone": "9ba62e24056dabe4",
   "https://6s-success.com/zones/guest-bathroom-the-guest-vanity-counter": "ace92c62d4e94cc7",
-  "https://6s-success.com/zones/guest-bathroom-the-guest-vanity-storage": "a4a2ac295a9e3659",
+  "https://6s-success.com/zones/guest-bathroom-the-guest-vanity-storage": "0e302880b2a09345",
   "https://6s-success.com/zones/guest-bathroom-the-shower-or-tub": "1e2e732ccbd46518",
   "https://6s-success.com/zones/guest-bathroom-the-toilet-area": "d08607bc896e3b83",
   "https://6s-success.com/zones/guest-bedroom-the-guest-bed-and-linens": "cecae76c7f702539",
