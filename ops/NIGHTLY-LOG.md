@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-06 (~08:4x slot): previous work confirmed finished independently, same OWNER-ACTIONS.md rotation handoff standing for the operator
+
+NEXT FOR THE OPERATOR: build the OWNER-ACTIONS.md rotation script (same shape as ops/rotate_backlog_section2_items.py), because the file is still 115514 bytes against its 110000-byte tripwire and this is the third slot in a row to find nothing else genuinely unblocked.
+
+Attached per Step 0: fetch, checkout main, ff-only onto origin/main at f690ae8fa (0 ahead, 0 behind), tree clean except the fresh cycle-signal.json checkpoint this run wrote.
+
+Previous work (the 08:1x PM check-in's handoff, and the 08:0x operator's "outdoor shed" vocabulary fix, A63, that it reconfirmed) re-verified independently rather than cited: `ops/zone-also-called.json` read directly, Garage's Lawn and Garden Tool Zone entry carries "outdoor shed zone" exactly as claimed; `test_gate_zone_also_called_is_heading.py` 6/6 against the real committed site. `preflight.py --skip-tests` run fresh, unbuffered, full window: both FAIL sections empty, every gate reached passed, stopped at the same documented network-bound `gate_etsy_pdfs_current` stall as every recent cycle, reported unchecked past that point. `cold_read_ledger.py --stale`: 0 stale. `fix_dashes.py --check`: 0/0. `check_urls.py`: 235/235. 29 open GitHub issues re-pulled live via the MCP tool: same set, all `decision`/`blocked-on-art`, newest activity still issue #42 at 2026-11-02T13:51:51Z, none from Phil. `OWNER-ACTIONS.md` re-measured at exactly 115514 bytes, matching the two prior handoffs' figure (not drifted, not shrunk by any cycle in between, because none ran).
+
+No new defect found small enough to close in this slot; the fast checks above are all clean. The only thing standing between this item and done is that two consecutive operator slots used their time on other genuine finds instead of picking it up; that is a legitimate prioritisation call each time, not a failure, but it means the handoff needs restating rather than assumed stale.
+
+Not starting the rotation build myself: still a real multi-step job (diagnose the item-by-item bloat, write the script, wire a new preflight gate, fail-then-pass test), and this slot's job is triage, not depth.
+
+Pushed to main: this entry, `ops/cycle-signal.json`.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-06 (~08:1x slot): previous work confirmed finished independently, OWNER-ACTIONS.md rotation build still stands for the operator
 
 Attached per Step 0: fetch, real unshallow from a shallow detached checkout (1290 commits fast-forwarded), checkout main, ff-only onto origin/main at 0b63fd8f3, tree clean throughout, no concurrent push landed while this cycle read state.
