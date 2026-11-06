@@ -19017,7 +19017,25 @@ def deploy_gap_count_problem(status_text: str, real_count: int,
     latest = entries[-1] if entries else section
     if build_id not in latest:
         return ""
-    matches = list(re.finditer(r"\b(\d+|zero)\s+commits?\b", latest,
+    # This file's real convention is not "oldest first, newest appended at
+    # the bottom" as originally assumed above: a correction is written at
+    # the TOP of the entry, immediately followed by "Prior state, kept
+    # because the shape recurs:" and the old, superseded text, kept for
+    # history, in the same flowing paragraph (no blank line, so the
+    # \n\n(?=\*\*) split above never separates them). Found live 2026-11-06,
+    # PM check-in (21:1x slot): the real gap went from 0 to 1 for the first
+    # time since this gate existed, and the newest correction's own "one
+    # commit" (spelled, not a bare digit) was followed by the kept-for-
+    # history old text's "zero commits undeployed", so the last-match scan
+    # below picked up the stale 0 from the appended history instead of the
+    # real 1 sitting earlier in the same entry. Every previous correction's
+    # real gap was also 0, so the appended old entry's own stale 0 always
+    # happened to agree with the true count and this never surfaced.
+    # Truncating at the marker isolates the newest text, the only part that
+    # should ever be read as the standing claim.
+    newest, _, _ = latest.partition(
+        "Prior state, kept because the shape recurs:")
+    matches = list(re.finditer(r"\b(\d+|zero)\s+commits?\b", newest,
                                 re.IGNORECASE))
     if not matches:
         return ""
