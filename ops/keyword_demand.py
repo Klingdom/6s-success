@@ -185,7 +185,7 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "organizer", "organizers", "organise", "organising",
                           "arrange", "arranging", "arranged", "arrangement",
                           "arrangements", "rearrange", "rearranging",
-                          "rearranged", "ways"))
+                          "rearranged", "ways", "diy"))
 
 # "ways" joined 2026-11-05, same shape as "arrange": "ways to organize a
 # nightstand" and "how to organize a nightstand" ask for the same thing about
@@ -195,6 +195,31 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
 # that blocked "systems". 25 live queries (22 US, 3 global), all partial but
 # one already covered, move toward covered; none can move the other way,
 # since dropping a required word from a match can only raise a score.
+
+# "diy" joined 2026-11-06, mining Garage: 6 of its own partial rows (diy
+# garden tool storage, diy power tool storage, diy tool wall organizer,
+# garden tool organizer diy, power tool organizer diy, tool wall organizer
+# diy) failed on this one word alone. "diy garden tool storage" and "garden
+# tool storage" ask for the same thing about the same subject, same
+# task-verb-family shape as "ways": it marks a how-to-yourself framing, not
+# a different storage subject. Checked for self-flattery first: 0 of 243
+# pages' titles and only 1 of 243 headings (a generic article unrelated to
+# any single room or zone) carry the literal word "diy", well under the bar
+# "ways" cleared. Checked the full corpus before adding, not just Garage: 63
+# live rows (across both the US and global harvest) have "diy" as their only
+# unmatched word. A deeper check found this was not just a score-politeness
+# fix: several of those rows (e.g. "garage organization ideas diy", "laundry
+# room organization ideas diy", "how to organize a craft room diy") were
+# being mis-routed to an unrelated generic article that happens to say
+# "diy" once in a heading, instead of to their own room's real guide or zone
+# page, because that one incidental word was winning the tie. Removing it
+# from content_words fixes the routing to the correct page for 17 rows (11
+# US, 6 global) as a side effect, not just the score. Verified directly: 0
+# regressions across the full corpus (no row's status or coverage score
+# ever decreases), 63 rows improve (44 US, 19 global), all from partial/gap
+# toward covered; none can move the other way, since dropping a required
+# word from a match can only raise a score or fix a wrong tie-break toward
+# the honestly better page.
 
 
 def room_names():

@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-06T01:50:44Z against 243 page(s) at commit 69a7f2f30. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-06T04:02:26Z against 243 page(s) at commit 233fe422b. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1523 covered, 1189 partial, 111 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1567 covered, 1147 partial, 109 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,14 +17,13 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 111, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 109, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
 | 1 | how to draw a railing on a floor plan | - | Venture plan (0.25) | draw, floor, railing |
 | 1 | how to organize sidewalk chalk | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | chalk, sidewalk |
 | 1 | how to organize soap making supplies | - | How to organize the garage car care supplies (0.33) | making, soap |
-| 1 | organize outdoor diy lab | - | How to organize the mudroom seasonal outdoor gear (0.33) | diy, lab |
 | 2 | how to build a railing on a porch | - | How to organize the patio or deck railing and surface (0.33) | build, porch |
 | 2 | how to build walkway steps | - | What is 6S? The six steps, and how it differs from 5S (0.33) | build, walkway |
 | 2 | how to organize benchmark advance materials | - | How to organize the workshop material rack (0.00) | advance, benchmark, materials |
@@ -97,29 +96,26 @@ Showing the top 80 of 111, ordered by the best rank the phrase reached in any on
 | 12 | organize hard drive space | - | Small space organizing: why doesn't anything fit? (0.33) | drive, hard |
 | 13 | cover for space between stove and counter | - | How to organize a primary bathroom, step by step (0.20) | between, cover, stove |
 | 14 | computer storage for games | - | How to organize the family room game storage (0.33) | computer, games |
-| 14 | diy plans for a nightstand | - | How to organize the guest bedroom nightstand (0.33) | diy, plans |
 | 14 | explore decluttering pro guide | - | Decluttering vs. organizing: what's actually different (0.25) | explore, guide, pro |
 | 14 | grill stations ideas for backyards | - | How to organize the patio or deck grill station (0.33) | backyards, stations |
 | 14 | how to dispose of adult diapers | - | Why does a shared zone never stay reset? (0.00) | diapers, dispose |
+| 14 | how to organize closet tutorial guide | - | How to organize a linen closet: sheets, towels and shelves (0.33) | guide, tutorial |
+| 14 | starting a nursery for plants | Nursery | The Nursery Deck: 66 cards, free to read (0.33) | plants, starting |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1189.
+Showing the top 60 of 1147.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
 | 3 | outdoor patio and deck design ideas | How to organize the patio or deck outdoor dining | 0.75 |
 | 4 | how to organize cleaning supplies without a closet | How to organize the hall closet cleaning supplies | 0.75 |
 | 4 | why does my house always look messy | Why is my house always messy? | 0.75 |
-| 6 | diy garden tool storage ideas | How to organize the garage garden tool storage | 0.75 |
-| 7 | diy power tool storage | How to organize the garage power tool storage | 0.75 |
 | 7 | outdoor patio deck decorating ideas | How to organize the patio or deck outdoor dining | 0.75 |
 | 8 | dining room storage ideas ikea | How to organize the dining room sideboard storage | 0.75 |
 | 8 | home office storage ideas ikea | How to organize the home office file storage | 0.75 |
-| 9 | diy garden tool storage | How to organize the garage garden tool storage | 0.75 |
 | 9 | how to decorate a living room table | How to organize the living room coffee table | 0.75 |
 | 9 | power tool storage plans | How to organize the garage power tool storage | 0.75 |
-| 10 | diy power tool storage ideas | How to organize the garage power tool storage | 0.75 |
 | 10 | home office storage ideas pinterest | How to organize the home office file storage | 0.75 |
 | 11 | kids bedroom storage ideas ikea | How to organize the kids bedroom toy storage | 0.75 |
 | 12 | small guest bathroom storage ideas | How to organize the guest bathroom vanity storage | 0.75 |
@@ -136,7 +132,6 @@ Showing the top 60 of 1189.
 | 1 | how to build a patio deck | How to organize a patio or deck, step by step | 0.67 |
 | 1 | how to build a stair landing | How to organize a stair landing, step by step | 0.67 |
 | 1 | how to decorate a stair landing | How to organize a stair landing, step by step | 0.67 |
-| 1 | how to organize desk drawers diy | How to organize the home office desk drawers | 0.67 |
 | 1 | how to organize entertainment center cables | How to organize the family room entertainment center | 0.67 |
 | 1 | how to stage a guest bedroom | How to organize a guest bedroom, step by step | 0.67 |
 | 1 | how to use a drying rack | How to organize the laundry room drying rack | 0.67 |
@@ -147,6 +142,7 @@ Showing the top 60 of 1189.
 | 2 | best way to organize charging station | How to organize the family room charging station | 0.67 |
 | 2 | bonus room storage | How to organize the family room blanket storage | 0.67 |
 | 2 | building a stair landing | How to organize a stair landing, step by step | 0.67 |
+| 2 | diy drop zone plans | How to organize the entryway drop zone | 0.67 |
 | 2 | guest bathroom decorating ideas | How to organize a guest bathroom, step by step | 0.67 |
 | 2 | guest bedroom design ideas | How to organize a guest bedroom, step by step | 0.67 |
 | 2 | home office organization ideas ikea | The Home Office Deck: 66 cards, free to read | 0.67 |
@@ -168,18 +164,22 @@ Showing the top 60 of 1189.
 | 2 | restaurant dining room ideas | How to organize a dining room, step by step | 0.67 |
 | 2 | wireless organize charging station | How to organize the family room charging station | 0.67 |
 | 3 | acrylic paint storage organizer | How to organize the workshop paint and chemical storage | 0.67 |
+| 3 | building a patio deck | How to organize a patio or deck, step by step | 0.67 |
+| 3 | cabinet to organize cleaning supplies | How to organize the hall closet cleaning supplies | 0.67 |
+| 3 | declutter media room | How to organize the living room media center | 0.67 |
+| 3 | design ideas for dining room | How to organize a dining room, step by step | 0.67 |
 
 ## By room
 
 | Room | Queries | Gap | Partial | Covered |
 |---|---|---|---|---|
 | Dining Room | 38 | 0 | 17 | 21 |
-| Entryway | 50 | 1 | 10 | 39 |
+| Entryway | 50 | 1 | 9 | 40 |
 | Family Room | 27 | 0 | 17 | 10 |
 | Garage | 77 | 1 | 25 | 51 |
 | Guest Bathroom | 22 | 1 | 14 | 7 |
 | Guest Bedroom | 24 | 0 | 12 | 12 |
-| Hall Closet | 27 | 0 | 11 | 16 |
+| Hall Closet | 27 | 0 | 10 | 17 |
 | Home Office | 58 | 0 | 21 | 37 |
 | Kids Bedroom | 22 | 0 | 8 | 14 |
 | Kitchen | 97 | 2 | 38 | 57 |
@@ -187,11 +187,11 @@ Showing the top 60 of 1189.
 | Living Room | 97 | 2 | 39 | 56 |
 | Mudroom | 43 | 0 | 20 | 23 |
 | Nursery | 61 | 1 | 20 | 40 |
-| Pantry | 60 | 1 | 23 | 36 |
+| Pantry | 60 | 1 | 22 | 37 |
 | Primary Bathroom | 13 | 0 | 8 | 5 |
 | Primary Bedroom | 16 | 1 | 12 | 3 |
-| Stair Landing | 24 | 0 | 14 | 10 |
-| Workshop | 66 | 3 | 30 | 33 |
+| Stair Landing | 24 | 0 | 12 | 12 |
+| Workshop | 66 | 3 | 27 | 36 |
 
 1929 queries name no room of ours. Those are either a different subject the engine wandered into, or a room-independent question, and the second kind is where an article earns its place.
 

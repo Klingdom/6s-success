@@ -759,6 +759,49 @@ def main():
         fails.append("excluding 'ways' did not improve the honest score: "
                      "%r -> %r" % (before3["score"], r3b["coverage"]))
 
+    # 26. Found live 2026-11-06, mining Garage: "diy" is the same
+    #     task-verb-family shape as "ways" ("diy garden tool storage" asks
+    #     for the same thing as "garden tool storage"), not a different
+    #     storage subject, so it joined FORMAT_WORDS. Checked for
+    #     self-flattery first, same bar as "ways" required: 0 of our own
+    #     page titles carry the literal word "diy", so excluding it from
+    #     content words cannot inflate any page's score.
+    if "diy" in kd.content_words("diy garden tool storage"):
+        fails.append("'diy' is still a content word; the FORMAT_WORDS "
+                     "addition did not take")
+    diy_inv = [
+        {"url": "/zones/garage-the-lawn-and-garden-tool-zone.html",
+         "title": "The Lawn and Garden Tool Zone",
+         "words": set(kd.words("The Lawn and Garden Tool Zone")),
+         "head_words": set(kd.words("The Lawn and Garden Tool Zone")),
+         "room": "Garage"},
+    ]
+    before4 = {"best_page": None, "score": None}
+    old_format2 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format2 - {"diy"}
+    try:
+        r4a = kd.score_rows(
+            {"diy garden tool storage":
+             {"query": "diy garden tool storage",
+              "sources": ["google"], "best_rank": 1, "seeds": ["x"]}},
+            ["Garage"], diy_inv)[0]
+        before4["best_page"] = r4a["best_page"]
+        before4["score"] = r4a["coverage"]
+    finally:
+        kd.FORMAT_WORDS = old_format2
+    r4b = kd.score_rows(
+        {"diy garden tool storage":
+         {"query": "diy garden tool storage",
+          "sources": ["google"], "best_rank": 1, "seeds": ["x"]}},
+        ["Garage"], diy_inv)[0]
+    if r4b["best_page"] != before4["best_page"]:
+        fails.append("excluding 'diy' from content words changed which "
+                     "page the query routes to: %r -> %r"
+                     % (before4["best_page"], r4b["best_page"]))
+    if not (r4b["coverage"] > before4["score"]):
+        fails.append("excluding 'diy' did not improve the honest score: "
+                     "%r -> %r" % (before4["score"], r4b["coverage"]))
+
     if fails:
         print("FAIL")
         for f in fails:

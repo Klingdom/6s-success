@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-06 (~04:0x UTC): "diy" joined FORMAT_WORDS, fixing a real misattribution and moving 63 queries toward covered
+
+**Did:** Attached per Step 0, clean. Preflight 0 FAIL to the documented network bound Etsy/prerender stall. Re derived live: 29 open GitHub issues, all decision/blocked on art, none from Phil; no mail credential. Garage still top ranked, 45% uncovered. Its full 76 row partial list (not the 8 row sample) showed 6 rows failing on "diy" alone; checked the whole corpus: 63 rows (44 US, 19 global) have "diy" as their only unmatched word. Added "diy" to `FORMAT_WORDS`, same shape as "ways" (2026-11-05).
+
+**Verified:** self flattery checked (0/243 titles, 1/243 headings carry it). Not just score politeness: 17 of the 63 rows were mis-routed to an unrelated article that happens to say "diy" once, instead of their own room's page; the fix corrects routing too. 0 regressions across the corpus. Added case 26 to `test_keyword_demand.py`, proved fail then pass. Rescored both corpora, matched predicted counts exactly. Garage: 45% to 40% uncovered, no longer top. URL, audit, dash/dialect, both room scorer test suites, and the four keyword-demand gates all clean.
+
+**Went well:** checking the full corpus before shipping caught a real routing bug (17 rows), not just the 6 cosmetic ones visible from Garage alone.
+
+**Did not go well:** preflight still cannot finish end to end here; no new gate needed, the fix reused a proven methodology rather than finding an undetected defect class.
+
+**Changing next cycle:** none.
+
+**Next:** Kitchen is now top ranked, 41% uncovered, not yet mined row by row. Everything bigger remains Phil gated.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-06 (~03:4x slot): previous work confirmed finished independently, a stale preflight lock cleared, nothing new unblocked
 
 NEXT FOR THE OPERATOR: nothing newly unblocked, because the backlog (sections 2 to 6, read directly), the cold-read ledger and GitHub's 29 open issues remain in the same fully exhausted, Phil-gated state issue #42 already tracks; continue the standing re-verification practice or pick one small closing job.
