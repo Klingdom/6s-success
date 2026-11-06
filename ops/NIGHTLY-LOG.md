@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-06 (~12:2x slot): previous work confirmed finished independently, a false FAIL this cycle caused itself (then fixed) is the real finding, nothing new unblocked
+
+Attached per Step 0 (fetch, confirmed already unshallowed, checkout main, ff-only onto origin/main at cd0cd1b05, tree clean).
+
+Previous work (the 12:0x PM check-in's pegboard fix, entry 143) confirmed finished, re-derived rather than cited: 29 open GitHub issues re-pulled live, unchanged since 2026-11-02T13:51:51Z, all decision/blocked-on-art, none from Phil; 0 open PRs. room_guide_underperformance.py re-run live: Kitchen 39%, Garage 39%, Hall Closet 36%, matching recent figures, nothing drifted. cold_read_ledger.py --stale: 0. Dashboard already fresh (generated 12:06 by entry 143).
+
+The real finding is self-inflicted, not external, and it is reported here rather than quietly fixed and forgotten (CLAUDE.md 0.4/54). Ran preflight.py --skip-tests fresh. It stalled on gate_etsy_pdfs_current with the parent process idle; checked only the PARENT's CPU (flat), wrongly concluded "genuinely stalled" the way past cycles describe a DIFFERENT, network-bound stall, and killed the child build_etsy_assets.py process. That was wrong: its own child (a local Chromium print-to-pdf, no network involved) was still actively rendering, only ~3 minutes into the gate's own 300-second internal timeout budget that is specifically designed (per the gate's own docstring) to resolve a slow render into a safe UNCHECKED warning, never a FAIL. Killing it externally with SIGKILL bypassed that design and produced a real "FAIL etsy-pdfs-current ... exit -9" in the log, a defect I caused, not one that existed before I touched it.
+
+**Fixed by re-running clean, not by hiding the first result.** Swept the resulting orphaned Chrome tree (same shape the gate's own docstring already documents: its killpg cannot reach Chrome's own session). Re-ran preflight.py --skip-tests a second time, this time letting gate_etsy_pdfs_current's own timeout run its course without any manual intervention. Result: every gate passed, 36 warnings, 0 FAIL, and the etsy-pdfs-current line itself correctly read "warn: could not check ... did not finish within 300 seconds (a real render measures 2.6s uncontended, locally)", exactly the safe outcome the gate was built to produce. Swept the second run's own orphaned Chrome tree (prerender_shop's dump-dom chrome, a different gate, same shape) the same way. Working tree clean except ops/cycle-signal.json (the run's own snapshot) throughout; no stray artifact ever reached git status.
+
+**Changing next cycle:** before killing anything a gate is waiting on, check the CHILD's CPU and compare elapsed time against that gate's own documented timeout constant, not just the parent's. A parent sitting idle on subprocess.run() is normal, not evidence of a stall; several of this repository's own gates (gate_etsy_pdfs_current, gate_prerender_shop_current) are deliberately bounded already and will resolve themselves into a warn, never a false FAIL, if left alone.
+
+A concurrent cycle pushed one commit (b58e406a1, a deploy-verdict refresh) while this one worked; merged ff-only, no conflict.
+
+No new defect found small enough to close beyond the one this cycle caused and fixed in itself. Nothing in BACKLOG-2026-09-07.md sections 2-6 is newly unblocked; every owner gate in section 6 and OWNER-ACTIONS.md remains Phil's own decision or money. Handing to the operator (:43): continue the room-guide mining handoff entry 143 left (Home Office 29%, Primary Bedroom 29% are next by rank); that is hours-scale work, not this slot's.
+
+Regenerated the dashboard. Pushed to main: ops/cycle-signal.json, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-06 (~12:0x slot): a real "pegboard" vocabulary gap found in Workshop's partial tier, fixed via the existing A60-style mechanism; Mudroom and Family Room checked and confirmed exhausted noise
 
 **Did:** Attached per Step 0 (fetch, confirmed real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `aed5936f4`, 1328 commits fast-forwarded, tree clean). Read CLAUDE.md, STATUS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, and the real head of this file (today's own 11:0x/11:1x entries, which handed off Mudroom (31%), Family Room (31%) and Workshop (30%) as the next un-mined rooms in rank order). Ran `preflight.py --skip-tests` in the background: 0 FAIL through every gate reached, stalled at the documented network-bound `gate_etsy_pdfs_current`. While it ran: 29 GitHub issues re-pulled live, unchanged since 2026-11-02T13:51:51Z, all `decision`/`blocked-on-art`; re-read issue #42's own thread directly rather than trust a count, confirmed every comment is self-authored, none from Phil; 0 open PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty.
