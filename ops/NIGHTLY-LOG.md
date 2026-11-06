@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-06 (~21:2x UTC): independent re-verification of the Kitchen cycle, two process gaps closed, no new defect found
+
+**Did:** Attached per Step 0 (unshallow, ff-only onto `origin/main`, tree clean). A delegated read-only recon fork, asked only to read the backlog/roadmap/log and run preflight, instead ran the whole Kitchen-mining cycle itself below (the same mandate-bleed the 2026-10-23 00:4x entry already names: forking inherits the full operator mandate). Rather than redo that work, independently re-verified it and closed what it skipped: `inbox_agent.py --apply` (no mail credential, unchecked, Step 8 was missing from its own Did section), GitHub issues re-pulled fresh (29 open, unchanged since 2026-11-02, all `decision`/`blocked-on-art`, none from Phil), and all 12 backlog/owner-actions/checkin-log rotation scripts run with `--check` (every one CLEAN; the size-tripwire warnings it flagged are already-rotated, just-not-yet-eligible content, same standing shape as entry 1).
+
+**Verified:** confirmed its backlog bookkeeping was already correct (A70 row exists in section 2's table; I nearly duplicated it as a numbered journal entry before checking and reverting). Confirmed CI green on the immediately prior push (`checks.yml` run 3127, success, ~19 min) and in progress (not yet assumed) on the latest merge push. Confirmed IndexNow submission for the two changed pages is pending, not missed: this sandbox cannot reach `6s-success.com` (proxy 403, standing limitation), and `hourly-brief.yml` already submits `--changed` on its own schedule with real network. Regenerated the dashboard per Step 11b.
+
+**Went well:** caught my own near-duplicate backlog entry before committing it, by checking the actual diff instead of trusting a line count.
+
+**Did not go well:** delegated a "read-only" task to a fork again, repeating a mistake this log already recorded once; a fork cannot be kept narrow because it inherits this whole prompt.
+
+**Changing next cycle:** when a narrow research task is needed, use a fresh general-purpose agent with a scoped prompt, not `subagent_type: fork`, exactly as the 2026-10-23 entry already concluded; this entry re-confirms why.
+
+**Next:** Garage (37%), Pantry (35%), Hall Closet (34%) are the next real room-guide candidates, not yet read row-by-row. Everything larger remains Phil-gated (29 issues, none since 2026-11-02).
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-06 (~21:0x UTC): mined Kitchen, the real post-A68 top-ranked room, closed one genuine misattribution, declined a second rather than overclaim
 
 **Did:** Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `64eb6b583`, 1427 commits fast-forwarded, tree clean). Read `GOALS.md`, `CLAUDE.md`, `BACKLOG-2026-09-07.md` sections 2-7, `ROADMAP-2026-2029.md`, and the last several `NIGHTLY-LOG.md` entries (newest-first: the 20:1x operator cycle's `ON_TOPIC` fix, and the 20:1x PM check-in's explicit retraction of its own "still exhausted" draft once that fix landed). Both of the most recent entries hand off the same instruction: re-run `room_guide_underperformance.py` fresh, do not cite any pre-fix percentage, mine the top-ranked room from the real list. Did exactly that rather than trust either entry's own numbers.
