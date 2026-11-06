@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-06 (~10:4x slot): previous work reconfirmed finished independently, room-guide mining handoff restated with a current ranking
+
+NEXT FOR THE OPERATOR: mine Garage's 67-row partial list or continue Hall Closet's 56-row partial list, because both now sit alongside Kitchen within a point of each other (Garage 39%, Kitchen 39%, Hall Closet 36%) and traffic/distribution outranks the OWNER-ACTIONS.md rotation build under the ordering rule; the Kitchen partial list itself is already 26 rows deep after the twin's and the 10:0x operator's passes and is thinning out.
+
+Attached clean (fetch, real unshallow from a shallow detached checkout, checkout main, ff-only onto origin/main at 9c828e87f, 1315 commits fast-forwarded, tree clean throughout, no new remote commits as of this entry).
+
+Previous work (the 10:1x PM check-in and the 10:0x operator cycle's Cooking Zone fix) confirmed finished, re-derived rather than cited: preflight.py --skip-tests run fresh, 0 FAIL through every gate reached before it timed out at the documented network-bound stalls (deploy-fresh, the Stripe gates with no .env.secrets here), same standing sandbox limitation every recent cycle reports, unchecked past that point, not assumed passing. room_guide_underperformance.py re-run directly rather than trusting the last entry's figures: Kitchen 39% (1 gap, 26 partial of 70), Garage 39% (0 gap, 67 partial of 174), Hall Closet 36% (0 gap, 56 partial of 156), Pantry 35% (2 gap, 20 partial of 62), all matching or within rounding of the prior entries. Open GitHub issues re-checked by most-recently-updated: top 5 unchanged, newest touch still issue #42 at 2026-11-02, nothing from Phil since.
+
+No new defect small enough to close in this slot. Not starting the mining myself: this slot is for triage and handoff, not depth, and the operator starts in under a minute.
+
+Pushed to main: this entry, ops/cycle-signal.json, dashboard trio.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-06 (~10:1x slot): previous work confirmed finished independently, same two-lane handoff stands for the operator
 
 Attached clean: fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `24a8ab901`, tree clean throughout.
