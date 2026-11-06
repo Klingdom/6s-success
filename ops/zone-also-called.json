@@ -204,6 +204,14 @@
    "covered": 0,
    "source": "ops/keyword-demand.json + ops/keyword-demand-global.json, scored 2026-10-26"
   },
+  "Guest Bathroom|Guest Vanity Storage": {
+   "names": [
+    "travel toiletries"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand.json 2026-11-06 (bing): 'organizing toiletries in bathroom', partial (0.5 title coverage), currently scoring to the room's own guide article via 'organizing'+'bathroom', unmatched word 'toiletries'. The room's own Guest Vanity Storage zone is content-backed for exactly this word, not a coincidental match: its done_looks_like text names 'four unopened travel toiletries in a small dish' directly. Checked Guest Vanity Counter first, since the query also mentions 'bathroom', and it has no mention of toiletries anywhere in its text, only soap/tissues/towel, so Vanity Storage is the right zone. The other 13 Guest Bathroom partial rows were checked and declined: 'declutter'/'clutter'/'practical'/'necessities' are generic filler words with no zone-specific content anywhere; 'supplies' and 'small' and 'box' each appear in three or more zones, too overloaded to name honestly as one zone's own identity, the same reasoning 'office supplies' and 'dinnerware cabinet' already recorded; 'makeup' is a real content gap, not a vocabulary gap, grep-confirmed absent from every zone's text; 'teen', 'jewelry', 'lots', 'wooden' are furniture-shopping queries (buying a vanity, not organizing one) with no matching content; 'class' ('how to organize your room middle class') is an off-topic autocomplete collision unrelated to this room's subject."
+  },
   "Kitchen|Lower Cabinet and Cookware Zone": {
    "names": [
     "corner cupboard",
