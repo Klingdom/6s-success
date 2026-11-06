@@ -1057,7 +1057,17 @@ def gate_shop_prerendered() -> None:
              "shop. Run: python ops/prerender_shop.py" % cards)
 
 
-PRERENDER_SHOP_TIMEOUT_SECONDS = 120
+# Found 2026-11-06, PM check-in, after this gate orphaned a dump-dom Chrome
+# tree twice in one hour: this outer bound was 120s while prerender_shop.py's
+# own internal chrome subprocess.run call (ops/prerender_shop.py, the single
+# dump-dom) carries timeout=180. The outer bound firing first meant Python's
+# own TimeoutExpired handling killed prerender_shop.py itself before its own
+# inner timeout ever got a chance to resolve the stall cleanly, and killing
+# the outer process leaves Chrome's crashpad-spawned children parentless
+# (the same documented escape build_etsy_assets.py's own comments describe).
+# Set comfortably above the inner 180s, the same margin gate_etsy_pdfs_
+# current already keeps over its own inner per-file budget.
+PRERENDER_SHOP_TIMEOUT_SECONDS = 210
 
 
 def gate_prerender_shop_current() -> None:

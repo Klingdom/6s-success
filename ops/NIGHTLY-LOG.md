@@ -2,9 +2,9 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-06 (~13:4x slot): corrected a stale "next un-mined room" claim the 13:0x cycle shipped unchecked, nothing new unblocked
+## PM check-in, 2026-11-06 (~13:4x slot): corrected a stale "next un-mined room" claim two concurrent cycles both shipped unchecked, nothing new unblocked
 
-NEXT FOR THE OPERATOR: mine Laundry Room (23% uncovered, 15 partial of 66 on-topic rows), because it is the highest-ranked room this log has no dedicated row-by-row read for; Living Room/Guest Bedroom/Entryway, which the 13:0x entry above named as "next un-mined," were already individually mined on 2026-11-05 (entries at the 14:0x/17:0x/15:0x slots that day) and are not genuinely open.
+NEXT FOR THE OPERATOR: mine Laundry Room (23% uncovered, 15 partial of 66 on-topic rows), because it is the highest-ranked room this log has no dedicated row-by-row read for. The 13:0x operator cycle and the 13:1x PM check-in below both name Living Room/Guest Bedroom/Entryway as "next un-mined," but both are restating the same old ranking: this log's own entries (the 14:0x/17:0x/15:0x slots on 2026-11-05) already mined all three individually, at these exact same uncovered percentages. Ignore that line in both entries below; it did not survive a check against this file's own history.
 
 Attached per Step 0 (fetch, confirmed real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `1f4c780b3`, 1340 commits fast-forwarded, tree clean throughout).
 
@@ -17,6 +17,54 @@ Did not mine Laundry Room myself: an hours-scale row-by-row read belongs to the 
 Pushed to main: this log entry only, no other files changed.
 
 HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~13:1x slot): previous work confirmed finished; this cycle caused and fixed its own gate_tests hang on two interactive-form browser tests, nothing new unblocked
+
+Attached per Step 0 (fetch, confirmed real unshallow, checkout main, ff-only onto origin/main at 6e0a73dbc, 1336 commits fast-forwarded, tree clean).
+
+Previous work (the 12:2x PM check-in) confirmed finished, re-derived rather than cited: GitHub re-pulled live, 29 open issues, unchanged since 2026-11-02, all decision/blocked-on-art, none from Phil; 0 open PRs. room_guide_underperformance.py re-run live: Kitchen 39%, Garage 39%, Hall Closet 36%, Pantry 35%, Home Office 29%, Primary Bedroom 29%, matching the 12:2x handoff exactly, nothing drifted. cold_read_ledger.py --stale: 0.
+
+The real finding is self-inflicted, not external, same shape as the 12:2x entry above it. Ran preflight.py without --skip-tests (to get a genuine gate_tests read). It worked cleanly through 49 of 473 test files, then hung for real on test_contact_form_interactive.py: its own headless-Chromium render sat at 0.4% CPU for 236 seconds against its own 25-second virtual-time-budget, confirmed stalled (not slow) by watching CPU across two checks before touching anything, matching the standing sandbox limitation this repository already documents for other browser-render gates. Killed clean (chromium child first, then the test process, then the preflight parent, confirmed gone via ps -ef), then swept the chromium descendants that had meanwhile spawned for test 51 (test_corporate_form_interactive.py) after the parent died mid-collection, and the two gitignored probe HTML files both tests had left in site/.
+
+Re-ran preflight.py --skip-tests (the documented practice for this sandbox) to get the rest of the picture. First attempt found 1 real self-inflicted FAIL: gate_no_stray_probe_files caught site/_audit_catalog_fixture_665.html, a leftover from the killed run's earlier test_audit_catalog.py (test 9), and deleted it itself as designed. Ran a clean third time: every gate passed, 34 warnings (standing sandbox gaps only: no Stripe/SSH/mail/DNS credential here, consistent with every recent cycle), cycle_signal recorded a clean pass. gate_tests itself stays UNCHECKED this cycle, not passed, per CLAUDE.md 0.4: two specific interactive-form tests are now confirmed to hang in this sandbox when run outside their own gate's bounding, which is new, useful detail beyond the general "gate_tests sandbox hang" this log already carries.
+
+**Changing next cycle:** do not run the full test_*.py sweep via plain preflight.py in this sandbox; --skip-tests is not a shortcut here, it is the only way this environment reaches a real answer on the other ~160 gates. If gate_tests itself needs verifying, run it in isolation with a per-test timeout, not inside a full preflight pass.
+
+No new defect found small enough to close beyond the one this cycle caused and fixed in itself. Checked backlog "gap" rows (0-coverage queries) surfaced by room_guide_underperformance.py across six rooms (Kitchen, Pantry, Family Room, Primary Bedroom, Kids Bedroom, Nursery dollar-tree/DIY-build/furniture-shopping phrasing) against content.json; none matched any real content, all consistent with the noise shapes this log has already declined elsewhere (retailer mentions, DIY-build intent, furniture shopping). Not pursued; forcing a synonym onto unrelated content is the dishonest-labelling shape CLAUDE.md A32 warns against.
+
+Nothing in BACKLOG-2026-09-07.md sections 2-6 is newly unblocked; every owner gate in section 6 and OWNER-ACTIONS.md remains Phil's own decision or money. **Correction made during this cycle's own merge, not left standing:** this entry was drafted handing Home Office/Primary Bedroom to the operator as the next rooms by rank, written before pulling in two concurrent cycles (the 12:4x PM check-in and the 13:0x operator cycle, both below) that had already closed both rooms out while this entry was being written. Handing to the operator (:43) instead, per the 12:4x entry's own corrected handoff below: Living Room (28%), Guest Bedroom (27%), Entryway (24%) are the next un-mined rooms by rank; hours-scale work, not this slot's.
+
+Regenerated the dashboard. Pushed to main: ops/cycle-signal.json, this entry, dashboard trio.
+
+**Merge note:** two concurrent cycles (the 12:4x PM check-in and the 13:0x operator cycle immediately below) landed on origin/main while this entry was being written; merged rather than forced, this entry's own handoff line corrected above rather than left pointing at rooms already closed.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~12:4x slot): previous work confirmed finished independently; this cycle then reproduced the same self-inflicted orphan class the 12:2x cycle just fixed, twice, and fixed one real cause of it rather than just sweeping the symptom again
+
+NEXT FOR THE OPERATOR: continue room-guide mining down the rank order (Living Room 28%, Guest Bedroom 27%, Entryway 24%), because the concurrent ~13:0x operator cycle below already closed out Home Office and Primary Bedroom while this entry was being written, and traffic/distribution still outranks everything else currently unblocked.
+
+Attached per Step 0 (fetch, confirmed already unshallowed, checkout main, ff-only onto origin/main at 6e0a73dbc, 1336 commits fast-forwarded, tree clean).
+
+Previous work (the 12:2x PM check-in and the 12:3x hourly record) confirmed finished, re-derived rather than cited: 29 open GitHub issues re-pulled live, unchanged since 2026-11-01, all decision/blocked-on-art, none from Phil since issue #42 on 2026-11-02; 0 open PRs. cold_read_ledger.py --stale: 0. room_guide_underperformance.py re-run directly for Home Office (29%) and Primary Bedroom (29%): figures match the prior handoff exactly, nothing drifted. Dashboard's Traffic and Affiliate rows read: both still "not measured" for lack of the VPS ssh key, the same standing Phil-gated limitation, not a new finding.
+
+**The real finding is self-inflicted, twice, and both are reported rather than quietly swept.** Ran preflight.py --skip-tests myself under an external `timeout 280`, a value I picked without checking it against the gate's own internal budget. gate_etsy_pdfs_current's internal timeout is 300s; mine killed the whole preflight.py process at 280s, 20 seconds before the gate's own safe-resolution path could run. Because `timeout` only signals the direct child it forked, the already-spawned build_etsy_assets.py (a grandchild) was not touched and kept running as an orphan for several more minutes, itself spawning a second orphaned Chrome tree the instant its own render finished (Chrome's crashpad escapes into its own session before a `kill -PGID` can reach it, the exact limit entry 143's predecessor already documented). Caught both before any committed PDF was touched (checked file mtimes against git before killing anything), swept both process trees cleanly, confirmed `git status` showed nothing but the run's own cycle-signal.json. Re-ran preflight.py a second time with no external timeout at all: clean, every gate passed, 33 warnings, cycle_signal recorded. That run itself then orphaned a second, different Chrome tree from gate_prerender_shop_current, unprompted by any external wrapper this time, which is what led to the real fix below.
+
+**The real fix.** gate_prerender_shop_current's own outer bound (`PRERENDER_SHOP_TIMEOUT_SECONDS`, ops/preflight.py) was 120 seconds, while the script it wraps, ops/prerender_shop.py, carries its own internal chrome subprocess.run call at timeout=180: the outer bound was shorter than the inner one it wraps, backwards, so any real stall between 120 and 180 seconds guaranteed preflight.py's own subprocess.run would kill prerender_shop.py externally before prerender_shop.py's internal timeout ever got the chance to resolve its own chrome child cleanly, orphaning it with certainty. Raised the outer bound to 210 seconds, the same margin gate_etsy_pdfs_current already keeps over its own inner per-file budget, with a comment at the constant explaining why, so a stall inside the documented 120 to 180 second window now resolves inside prerender_shop.py's own timeout handling instead of being killed from outside. This does not fully close the gap: Chrome's crashpad can still escape a plain kill() before it lands, the same residual risk build_etsy_assets.py's own comments already accept, so a stall past 180 seconds can still orphan a process; that residual is unchanged by this fix and not claimed to be solved.
+
+**Verified, not assumed.** Ran ops/tests/test_gate_prerender_shop_current.py directly (not under preflight, which it refuses to do anyway): 5/5 checks pass, exit 0, no orphan left behind afterward. It did not exercise the exact 120-to-180-second timing window this fix targets (the sandbox's own chrome runs either finish in seconds or the chrome subprocess itself exits 1 quickly, both paths the gate already handled as warn correctly before this fix), so the fix is verified for correctness and non-regression, not for the specific timing race it was written to close; said plainly rather than claimed as fully proven. fix_dashes.py --check clean, 0/0.
+
+**Went well:** neither orphan reached a committed file; checked mtimes against git before killing anything both times, rather than assuming a kill is free.
+
+**Did not go well:** picking an external timeout shorter than a gate's own documented internal budget is now a mistake this repository's own log has recorded twice in one day, by two different cycles including this one. The 12:2x entry's "changing next cycle" line (check the child's CPU, not just the parent's) did not cover this specific shape (an external wrapper killing the whole chain before any internal budget runs out); this entry adds the missed case.
+
+**Changing next cycle:** when wrapping preflight.py (or any gate script) in an external timeout for diagnostic purposes, use a value comfortably above every internal timeout constant the gates it runs declare, not a round number picked without checking; when in doubt, run with no external timeout at all and rely on the gate's own internal budgets, which exist for exactly this reason.
+
+**Next:** room-guide mining continues down the rank order (Home Office, Primary Bedroom), hours-scale work for the operator or a later cycle, not this slot's. Everything else remains the same 29 Phil-gated issues.
+
+Regenerated the dashboard. Pushed to main: ops/preflight.py (PRERENDER_SHOP_TIMEOUT_SECONDS fix), ops/cycle-signal.json, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry.
+
+**Merge note:** a concurrent operator cycle (below) landed on origin/main while this entry was being written and independently hit, then correctly worked around, the same first-preflight timeout mistake this entry made; merged rather than forced, this entry's own handoff line corrected above to point past the room-guide work that cycle already closed.
 
 ## Scheduled operator cycle, 2026-11-06 (~13:0x slot): closed Primary Bedroom's "master closet" zone gap; Home Office checked and declined entirely
 
