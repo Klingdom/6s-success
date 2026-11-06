@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-06 (~05:1x slot): previous work confirmed finished a fresh way, one real re-ledgering gap found and closed, deploy pipeline in flight catching up on its own
+
+Attached per Step 0: fetch, real unshallow, checkout main, ff only onto origin/main at 094dce089 (1265 commits fast forwarded), tree clean throughout.
+
+Previous work (the 04:5x watch to CI green and the 05:1x operator's Kitchen island fix) confirmed finished a fresh way, not cited: CI run 42166648531 for the a01ba5c merge and publish-image run 42166649005 both in progress live via the Actions API, normal for a just-landed push, not a stall. Ran preflight.py myself (skip tests) end to end rather than reuse a number: 0 FAIL through every gate, correctly stopped by its own timeout partway into the documented network bound Etsy section (gate_etsy_listing_valid completed clean, gate_etsy_pdfs_current never started), reported unchecked past that point, not passing. GitHub re pulled fresh: 29 open issues, same set, all decision or blocked on art, none from Phil since 2026-11-02. fix_dashes.py 0/0.
+
+One real gap found and closed, not just noted: cold_read_ledger.py --stale flagged ops/build_zone_pages.py (ledgered 2026-11-05, touched 2026-11-06). The touch was the 05:1x operator's own Kitchen island tips.get() addition, the same already cleared shape as Room layout/Garage sale/Design/After a makeover/Small bathroom, shipped and verified that cycle but never re-ledgered. Re-ledgered as fixed with a note naming the commit; --stale now reads clean.
+
+Deploy gap: site/build-id.txt and ops/deploy-verdict.json differ (last confirmed build 02:15 UTC); not a defect, the automatic pipeline (publish-image.yml then deploy.yml) is mid-run on the latest push right now, the designed brief-gap shape OWNER-ACTIONS.md item 0 already describes.
+
+Not starting anything large at :1x. Backlog sections 2 through 6 remain Done, Hold, or Phil-gated (issues #43-#48); issue #42 already tracks the exhausted-cadence pattern. Handing to the operator: nothing newly unblocked beyond what the last several cycles already named.
+
+Pushed to main: this entry, ops/cold-read-ledger.json, ops/cycle-signal.json.
+
+HANDOFF-FILES: none
+
+---
+
 ## Scheduled operator cycle, 2026-11-06 (~05:1x UTC): closed the Kitchen island content gap, after an extensive search across eight rooms found every other candidate unfit to ship
 
 **Did:** Unshallowed and attached per Step 0 (1258 commits fast-forwarded, tree clean). Preflight 0 FAIL twice (before and after this change) to the documented network-bound Etsy stall; a stray probe-file FAIL from my own earlier killed run self-healed as designed. 29 GitHub issues re-pulled live, unchanged, none from Phil; issue #42 re-read, no reply. No mail credential. Read Kitchen, Pantry, Garage, Hall Closet, Patio or Deck, Mudroom, Primary Bedroom and Family Room's full partial-row lists (not the ranking tool's 8-row sample) for single-unmatched-word gaps. Declined several candidates against real content before shipping anything (CLAUDE.md 5c/5d): "toolbox" only appears in content.json as a Laundry Room stray-item example, not Garage's own vocabulary; "dishes" collides with the different sense in "baking dishes"/"oven dishes" (casserole dishes, not washing-up); "coat hooks with shelves/on a board" describes a different physical object than the Family Hook Zone's hooks-only design. "Kitchen island" (3 queries, both harvests, 0 hits for "island" or "countertop" anywhere in content.json) was genuine and safe: no bare "island" query exists in either corpus, so no gaming-context collision. Added a "Kitchen island" tip to Kitchen's `tips` array, grounded only in already-published zone facts (Primary Prep Counter's own standard, Cooking Zone, which cabinet zone owns which stored item, The Trap's own counter-clutter warning), wired through the existing `tips.get(label)` mechanism (A40-A44's precedent) rather than a zone-also-called rename, since an island is not honestly any one zone's other name.

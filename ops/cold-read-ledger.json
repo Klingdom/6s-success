@@ -567,9 +567,9 @@
       "note": "Read in full (135 lines) and run directly: regenerates both build/ and site/ copies, 20 rooms / 114 zones asserted, 0 drift."
     },
     "build_zone_pages.py": {
-      "status": "clean",
-      "date": "2026-11-05",
-      "note": "Stair Landing only (2026-11-05 PM check-in): room-job H1 clause now names storage, closing the 'small stair landing storage ideas' query one word short before. Checked for corpus collision: full US and global rescore each moved exactly 2 rows, both Stair Landing's own queries, nothing elsewhere shifted. 38% to 22% uncovered. Remaining 2 partial rows (filler word 'way', seed-drift typo 'walk' in 'gallery walk') are noise, same class diagnosed everywhere else."
+      "status": "fixed",
+      "date": "2026-11-06",
+      "note": "Re-ledgered after the 05:1x operator's Kitchen island tips.get() addition (commit fda905d30), same already-cleared tips.get(label) shape as Room layout/Garage sale/Design/After a makeover/Small bathroom; that cycle shipped and verified the change but never recorded it here, which is what made this file show stale."
     },
     "canonical_links.py": {
       "status": "clean",
