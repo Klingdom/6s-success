@@ -1113,8 +1113,8 @@
     },
     "room_guide_candidates.py": {
       "status": "clean",
-      "date": "2026-11-05",
-      "note": "Cold-read ec28ea4d4's OFF_TOPIC_CONTEXT regex addition (paint-a-container/acrylic-paint seed drift exclusion): simple, matches exactly the four rows the commit message names, same shape as existing exclusions, no logic risk."
+      "date": "2026-11-06",
+      "note": "Confirmed the ON_TOPIC regex fix (organi[sz]) directly against the committed diff a57996ed8; sound, matches NIGHTLY-LOG/BACKLOG A68 account."
     },
     "room_guide_underperformance.py": {
       "status": "clean",
