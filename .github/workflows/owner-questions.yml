@@ -29,11 +29,16 @@ name: Owner questions email
 
 on:
   schedule:
-    # 14:17 UTC Monday is 08:17 in Denver (MDT), so it lands at the start of a
+    # 15:17 UTC Monday is 08:17 in Denver (MST), so it lands at the start of a
     # working week rather than into a weekend. Off the hour and off :00 for the
     # reason every other schedule here is: GitHub deprioritises contended
     # minutes. ops/check_cron_cadence.py measures what actually fires.
-    - cron: '17 14 * * 1'
+    #
+    # Shifted from 14:17 UTC on 2026-11-06: Denver switched to MST (UTC-7) on
+    # 2026-11-01, five days before this was caught, so this had been firing
+    # at 07:17 Denver since then, not 08:17. Shift back to 14:17 UTC when
+    # Denver returns to MDT (second Sunday in March, 2027-03-14).
+    - cron: '17 15 * * 1'
   workflow_dispatch:
 
 concurrency:

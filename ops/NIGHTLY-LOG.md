@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-06 (~06:1x slot): previous work finished, confirmed; found and fixed a real DST bug nobody had acted on in three workflows
+
+Previous work confirmed finished: preflight 0 FAIL to the Etsy stall, 0 stale ledger, 0 deploy gap, 29 issues unchanged, none from Phil.
+
+Real finding: three workflows (linkedin-drafts.yml, owner-questions.yml, roadmap-report.yml) warn DST "will bite in November." It bit 2026-11-01, five days unacted, missed even by entry 138's own re-fit this morning. All three arriving an hour early since. Shifted all three crons one hour. Caught two logic traps beyond comments: linkedin-drafts.yml's push-fallback hardcodes its deadline in shell, would have mis-fired; roadmap-report.yml matches cron strings to label editions, same bug class as its 2026-09-19 fix. Both fixed with the crons. Tests pass, yaml parses, no stale cron remains.
+
+Handing to the operator: the 05:4x room-guide handoff still stands.
+
 ## PM check-in, 2026-11-06 (~05:4x slot): previous work confirmed finished, handing the room-guide gap rows to the operator
 
 NEXT FOR THE OPERATOR: mine the explicit "gap" (zero-coverage, not partial) rows `ops/room_guide_underperformance.py` now surfaces for Pantry ("pantry organization ideas dollar tree", "draw a larder organization chart"), Kitchen ("kitchen organization ideas dollar tree") and Hall Closet ("how to organize closet tutorial guide", "organize packing kit guide"), because these are fully unmatched queries in the four highest-uncovered rooms, a stronger candidate than another single-word partial scan, and the 05:1x operator cycle's own Kitchen island fix only touched a partial row, not these.

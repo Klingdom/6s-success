@@ -36,18 +36,27 @@ name: LinkedIn drafts
 # about daylight saving. Denver is MDT (UTC-6) until the first Sunday in
 # November, then MST (UTC-7) and this lands an hour earlier. Add an hour to the
 # cron then, and take it back in March.
+#
+# APPLIED 2026-11-06: it bit. Denver switched to MST on 2026-11-01 (first
+# Sunday in November) and nobody had shifted this yet, five days in, so every
+# run since was landing at 07:19 Denver instead of the intended 08:19, an hour
+# before coffee rather than with it. Shifted the promise and the cron both by
+# one hour, same 310.2-minute compensation as the RE-MEASURED entry above.
+# Revert both by one hour back when Denver returns to MDT (second Sunday in
+# March, 2027-03-14), not before: reverting early would reopen the same gap
+# the RE-MEASURED entry was fixing.
 
-# lands-at: 14:19 UTC
+# lands-at: 15:19 UTC
 #   Machine readable, and read by gate_scheduled_delivery_phase in
 #   ops/preflight.py. It is the time this is meant to ARRIVE, not the cron.
 #   The gate re-measures the real landing time and warns when the
 #   compensation above goes stale, which it will the moment GitHub's
 #   queueing changes. Without it, a compensated cron that starts firing on
-#   time would quietly deliver at 04:47 Denver and nothing would notice.
+#   time would quietly deliver at 05:47 Denver and nothing would notice.
 
 on:
   schedule:
-    - cron: '09 9 * * *'      # fires 09:09 UTC, LANDS about 14:19 UTC (median 5.17h late, re-measured 2026-11-06)
+    - cron: '09 10 * * *'      # fires 10:09 UTC, LANDS about 15:19 UTC = 08:19 MST (median 5.17h late, DST-shifted 2026-11-06)
   workflow_dispatch:
 
   # A SECOND WAY IN, because the schedule above does not fire as asked.
@@ -108,10 +117,10 @@ jobs:
             # Push is the FALLBACK. Give the schedule until the promised
             # landing time before standing in for it.
             now=$(date -u +%s)
-            target=$(date -u -d 'today 14:19' +%s)
+            target=$(date -u -d 'today 15:19' +%s)
             if [ "$now" -lt "$target" ]; then
               echo 'send=no' >> "$GITHUB_OUTPUT"
-              echo 'before 14:19 UTC: leaving it to the schedule.'
+              echo 'before 15:19 UTC: leaving it to the schedule.'
               exit 0
             fi
           fi

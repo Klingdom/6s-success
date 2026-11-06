@@ -25,10 +25,20 @@ name: Roadmap report
 # every edition fires an hour early. Shift each hour by one then, and back in
 # March.
 #
-#   14:00 UTC = 08:00 MDT   the full edition
-#   18:00 UTC = 12:00 MDT   delta only, short
-#   23:00 UTC = 17:00 MDT   delta only, short
-#   03:00 UTC = 21:00 MDT   close of day, the previous calendar day in Denver
+#   15:00 UTC = 08:00 MST   the full edition
+#   19:00 UTC = 12:00 MST   delta only, short
+#   00:00 UTC = 17:00 MST   delta only, short (previous calendar day in Denver)
+#   04:00 UTC = 21:00 MST   close of day, the previous calendar day in Denver
+#
+# SHIFTED 2026-11-06: it bit. Denver switched to MST on 2026-11-01 and this
+# was not caught for five days, so every edition had been firing an hour
+# early (e.g. the 8am edition landing near 07:00 Denver plus queueing delay).
+# Shifted each cron below by one hour, and the SCHEDULE case match in the
+# "Which edition is this" step the same way, in the same commit, because
+# the two drifting apart is exactly the 2026-09-19 bug this file already
+# documents (every run silently mislabelled as edition 8). Shift back by one
+# hour, both places, when Denver returns to MDT (second Sunday in March,
+# 2027-03-14).
 #
 # The editions differ on purpose. Four identical reports a day teaches a reader
 # to stop opening them, and a report nobody opens is worse than none because it
@@ -36,10 +46,10 @@ name: Roadmap report
 
 on:
   schedule:
-    - cron: '41 14 * * *'
-    - cron: '41 18 * * *'
-    - cron: '41 23 * * *'
-    - cron: '41 3 * * *'
+    - cron: '41 15 * * *'
+    - cron: '41 19 * * *'
+    - cron: '41 0 * * *'
+    - cron: '41 4 * * *'
   workflow_dispatch:
     inputs:
       edition:
@@ -111,10 +121,10 @@ jobs:
           SCHEDULE: ${{ github.event.schedule }}
         run: |
           case "$SCHEDULE" in
-            "41 14 * * *") E=8 ;;
-            "41 18 * * *") E=12 ;;
-            "41 23 * * *") E=17 ;;
-            "41 3 * * *")  E=21 ;;
+            "41 15 * * *") E=8 ;;
+            "41 19 * * *") E=12 ;;
+            "41 0 * * *")  E=17 ;;
+            "41 4 * * *")  E=21 ;;
             *)  E="$EDITION_INPUT"; E="${E:-8}" ;;
           esac
           echo "edition=$E" >> "$GITHUB_OUTPUT"
