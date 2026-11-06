@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-06 (~19:2x UTC): `gate_status_deploy_verdict_current` caught the prior cycle's own stale-citation gap live, fixed in four places; room-guide mining re-checked and confirmed still exhausted
+
+**Did:** Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `origin/main` at `8b18d2f87`, 1407 commits fast-forwarded, tree clean throughout). Read `GOALS.md`, `CLAUDE.md`, `STATUS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, and the last several entries of this file (the 18:2x and 17:4x cycles, which closed a real deploy gap and confirmed the keyword-gap-mining lane exhausted across all 20 rooms). GitHub re-pulled live: 29 open issues, unchanged since 2026-11-02, all `decision`/`blocked-on-art`, none from Phil since issue #42; 0 open PRs. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, unchecked, not assumed empty.
+
+`preflight.py --skip-tests` run fresh before touching anything: 0 FAIL through every gate reached, 34 warnings. Read every warning rather than skim for "0 FAIL" and move on: `gate_status_deploy_verdict_current` was warning that `BLOCKER-001`, section 4's "Public website" row, section 5's build-citation block and section 6's "Production traceability" row all still cited build `dfc7253ae2164447`/2026-11-04T08:17:47Z, two days stale, even though the 18:2x cycle's own `ops/deploy-verdict.json` confirmation (build `dedcbbebccc28c7f`, `checked_at` 2026-11-06T18:22:55Z) had already landed and that cycle's own Production Knowledge paragraph already cited it correctly. Exactly the "source corrected, sibling never told" shape this repository's own gates exist to catch, and the gate caught it this time before it could sit uncorrected for days.
+
+**Verified before fixing:** `resolve_verdict_commit('dedcbbebccc28c7f')` resolves to `8ff203bdf`; `deploy_gap_material_commits('8ff203bdf')` against real current `HEAD` returns an empty list, matching `site/build-id.txt` exactly. Corrected all four citations in `STATUS.md` to the current build, commit and timestamp, keeping each prior correction in place underneath per the file's own convention. `gate_status_deploy_verdict_current()` called directly afterward returns `None` (clean); `ops/tests/test_gate_status_deploy_verdict_current.py` (14/14); `fix_dashes.py --check STATUS.md` (0/0). Added a dated status-metadata entry and a new backlog entry (146) recording the fix. `preflight.py --skip-tests` reran clean afterward: 0 FAIL, 34 warnings, same standing sandbox gaps (no Stripe/SSH/mail credential here, the documented `gate_etsy_pdfs_current`/`gate_prerender_shop_current` network/timing waits), confirming no regression.
+
+**Also checked, not acted on.** Independently re-derived the room-guide keyword-gap ranking rather than trust the 17:4x handoff's own "fully exhausted" claim: read both keyword corpora's remaining `gap` rows directly (107 US, 90 global), not a sample. Every row is documented noise (construction/DIY-build intent, word-sense collisions, retailer/platform mentions, off-topic autocomplete drift) already named in prior entries, or a genuine content gap outside the also-called mechanism's honest scope. Spot-checked one candidate directly against the real corpus before declining it: "building beds for kids organization" has no matching text anywhere in Kids Bedroom's `content.json` (every zone's text grepped for "bed", zero hits), and the query's own intent is building furniture, not organizing an existing room, the same out-of-scope reasoning already applied to the camping/hunting-gear and entertainment-center-building candidates earlier today. No actionable gap found; declined rather than forced.
+
+**Went well:** reading every preflight warning line rather than stopping at "0 FAIL"; the one that mattered was sitting in plain text the whole time.
+
+**Did not go well:** nothing this cycle; the prior cycle's own gap was real but small and caught quickly.
+
+**Changing next cycle:** nothing new; the existing practice (read every warning, not just the FAIL count) is what found this, and it already is the standing instruction.
+
+**Next:** the structured keyword-gap-mining lane remains exhausted across all 20 rooms, re-confirmed rather than re-mined this cycle. Everything bigger remains Phil-gated (29 issues, none from Phil since 2026-11-02). The next operator cycle should re-check `preflight.py`'s warning list in full before concluding there is nothing to fix, the same habit that closed this cycle's own finding.
+
+Regenerating the dashboard and pushing to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-06 (~18:4x slot): previous work confirmed finished a further way, nothing new unblocked, own external-timeout mistake caught before it could orphan anything
 
 NEXT FOR THE OPERATOR: nothing newly unblocked, because the room-guide keyword-mining lane read as fully exhausted across all 20 rooms as of entry 145, the 29 open GitHub issues are unchanged and all decision/blocked-on-art, and both live workstreams in STATUS.md remain Phil-gated; continue the standing full re-verification practice rather than start new work.
@@ -17,6 +39,7 @@ No new defect small enough to close in this slot. Issue #42 already tracks the e
 Regenerated the dashboard. Pushing to main.
 
 HANDOFF-FILES: none
+## PM check-in, 2026-11-06 (~18:1x-18:2x slot): previous work confirmed finished, nothing new unblocked, own timeout mistake caught and recovered rather than repeated
 
 Attached clean (fetch, real unshallow from a shallow detached checkout, checkout -B main origin/main, ff-only onto origin/main, 1400 commits, tree clean throughout).
 
