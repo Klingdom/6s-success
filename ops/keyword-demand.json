@@ -3662,16 +3662,14 @@
         "kids bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/how-to-declutter-a-bedroom.html",
-      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "best_page": "/rooms/kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "boys"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/kids-bedroom.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "build a bed organization",
@@ -4435,16 +4433,14 @@
         "kids bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/how-to-declutter-a-bedroom.html",
-      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "best_page": "/rooms/kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "childrens"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/kids-bedroom.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "clean and organize service",
@@ -21203,16 +21199,14 @@
         "how to declutter a kids bedroom"
       ],
       "room": "",
-      "best_page": "/articles/how-to-declutter-a-bedroom.html",
-      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "best_page": "/rooms/kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "boys"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/kids-bedroom.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a charity walk",
@@ -37943,16 +37937,15 @@
         "kids bedroom organization ideas"
       ],
       "room": "Kids Bedroom",
-      "best_page": "/articles/how-to-organize-a-kids-bedroom.html",
-      "best_page_title": "How to organize a kids bedroom, step by step",
+      "best_page": "/rooms/kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
-      "matched_on": "title",
+      "heading_coverage": 0.75,
+      "heading_page": "/rooms/kids-bedroom.html",
+      "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "girls"
+        "design"
       ]
     },
     {
@@ -57196,6 +57189,6 @@
       ]
     }
   ],
-  "scored_against_commit": "02bd8a648",
-  "scored_at": "2026-11-06T09:59:25Z"
+  "scored_against_commit": "9c828e87f",
+  "scored_at": "2026-11-06T10:58:35Z"
 }

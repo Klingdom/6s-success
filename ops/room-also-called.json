@@ -10,6 +10,17 @@
    "queries": 16,
    "covered": 0
   },
+  "Kids Bedroom": {
+   "names": [
+    "boys bedroom",
+    "girls bedroom",
+    "childrens bedroom",
+    "children's bedroom"
+   ],
+   "queries": 10,
+   "covered": 0,
+   "source": "Found 2026-11-06, scheduled operator cycle, mining Primary Bedroom's partial tier (ops/room_guide_underperformance.py --room 'Primary Bedroom'): 'boys bedroom organization ideas', 'how to organize a boys bedroom', 'how to organise a boys bedroom', 'childrens bedroom organization ideas', 'how to organise a girls bedroom', 'how to declutter children's bedroom' and 'how to organize a small children's bedroom' (7 unique queries, 10 rows across both harvests) all scored partial against /articles/how-to-declutter-a-bedroom.html (Primary Bedroom's own guide), unmatched only on the child word each time. This is the exact A25/A26 Guest-vs-Primary tie-break shape, not a new bug: the purpose-built page for this already exists and already answers the identical plain phrasing perfectly ('kids bedroom organization ideas' and six siblings score covered at /articles/how-to-organize-a-kids-bedroom.html, grep-confirmed, zero relation invented here), but with no room signal for 'boys'/'girls'/'childrens'/children's', the exact-score tie (both pages match on the bare word 'bedroom' alone) falls to url order, and 'declutter' sorts before 'organize'. Checked the losing page honestly before naming this a misroute, not assumed: how-to-declutter-a-bedroom.html does carry a real, relevant section ('A very messy room, or a child's room') that answers the general decluttering process for a child's room, so routing a plain 'child's bedroom' singular query there (already covered, left alone) is not wrong. The four names added here are specifically the ones a parent of a boy, a girl, or children (plural) types, which is Kids Bedroom's own already-published subject, not this article's. 'kids bedroom design ideas for girls' was checked and correctly excluded: the substring 'girls bedroom' does not appear in it ('ideas for girls', different word order), and that query already scores partial at the correct kids-bedroom page, a different, smaller gap (unmatched 'design'/'girls') left for a future cycle. Verified against the real household_room_signal()/_tie_break() mechanism in ops/keyword_demand.py (A26) before adding, not assumed: both candidate pages are curated ROOM_GUIDES entries, so room_of() via guide_article_rooms() already tags them Primary Bedroom and Kids Bedroom respectively, and _tie_break() prefers the page matching a detected room signal on an exact score tie, which this is."
+  },
   "Home Office": {
    "names": [
     "workspace"

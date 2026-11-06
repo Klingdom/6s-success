@@ -25,6 +25,7 @@ queries, 24 covered) and "walk in closet" (34, 15) are the examples.
 Run:  python ops/tests/test_room_also_called.py
 """
 import glob
+import html as html_entities
 import io
 import json
 import os
@@ -150,7 +151,14 @@ def main():
                          "room-also-called.json: %r"
                          % (name, re.sub(r"<[^>]+>", "", m.group(1))[:60]))
         elif name in want and m:
-            text = re.sub(r"<[^>]+>", "", m.group(1)).lower()
+            # html.unescape() first: also_called_html() runs its also_called
+            # names through esc(), so a name with an apostrophe ("children's
+            # bedroom") renders as "children&#x27;s bedroom" and the plain
+            # string comparison below would never find it, a false FAIL
+            # found 2026-11-06, scheduled operator cycle, adding the first
+            # also-called name in this file to ever carry one.
+            text = html_entities.unescape(
+                re.sub(r"<[^>]+>", "", m.group(1))).lower()
             for n in rooms[want[name]]["names"]:
                 if n.lower() not in text:
                     fails.append("%s's line does not mention %r: %r"

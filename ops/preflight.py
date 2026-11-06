@@ -71,6 +71,7 @@ import ast
 import collections
 import fnmatch
 import glob
+import html as html_entities
 import io
 import json
 import math
@@ -28418,9 +28419,15 @@ def check_also_called_is_heading(rooms, page_bodies) -> list:
         body = page_bodies.get(fname)
         if body is None:
             continue
-        heads = " ".join(
+        # html.unescape() before lowering: also_called_html() runs every
+        # name through esc(), so a name with an apostrophe ("children's
+        # bedroom") renders as "children&#x27;s bedroom" and this check
+        # would wrongly call it hidden. Found 2026-11-06, scheduled
+        # operator cycle, adding the first also-called name in the file
+        # to ever carry an apostrophe.
+        heads = html_entities.unescape(" ".join(
             re.sub(r"<[^>]+>", " ", h) for h in
-            re.findall(r"(?is)<h[1-3][^>]*>(.*?)</h[1-3]>", body)).lower()
+            re.findall(r"(?is)<h[1-3][^>]*>(.*?)</h[1-3]>", body))).lower()
         for name in names:
             if name.lower() not in heads:
                 problems.append(
@@ -28494,9 +28501,15 @@ def check_zone_also_called_is_heading(zones, page_bodies) -> list:
         if body is None:
             problems.append(f"{key}: no site/zones/{fname} found to check")
             continue
-        heads = " ".join(
+        # html.unescape() before lowering: also_called_html() runs every
+        # name through esc(), so a name with an apostrophe ("children's
+        # bedroom") renders as "children&#x27;s bedroom" and this check
+        # would wrongly call it hidden. Found 2026-11-06, scheduled
+        # operator cycle, adding the first also-called name in the file
+        # to ever carry an apostrophe.
+        heads = html_entities.unescape(" ".join(
             re.sub(r"<[^>]+>", " ", h) for h in
-            re.findall(r"(?is)<h[1-3][^>]*>(.*?)</h[1-3]>", body)).lower()
+            re.findall(r"(?is)<h[1-3][^>]*>(.*?)</h[1-3]>", body))).lower()
         for name in names:
             if name.lower() not in heads:
                 problems.append(
