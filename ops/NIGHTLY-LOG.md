@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-07 (~02:1x slot): previous work confirmed finished, one stale GitHub comment corrected
+
+Attached clean (fetch, real unshallow, checkout -B main origin/main, ff-only). Previous work (01:5x cycle's Kitchen also-called fix) confirmed finished, not cited: CI (`checks.yml` run 42326969520) confirmed completed/success via the Actions API for that push. A concurrent cycle was mid-flight on deploy verdict and its own preflight run when I started; did not duplicate it, discarded my own stale `cycle-signal.json` write and re-synced instead.
+
+All 29 open GitHub issues re-pulled directly: unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02. Checked issue #29 (deck gallery "Set in Order" cards) directly rather than trust the label: genuinely blocked-on-art, already mitigated (16 defective cards withheld from the live gallery). Found issue #42's 2026-11-02 comment claiming "10 of 20 rooms still have no guide" was stale: `ROOM_GUIDES` in `ops/build_zone_pages.py` now has all 20 entries, confirmed each of the 7 newest article files exists on disk, last one (Stair Landing) shipped 2026-11-03. `STATUS.md` already had this right; only that GitHub thread was behind. Posted a correction comment with evidence, no new decision asked.
+
+`check_urls.py` 235/235, `fix_dashes.py --check` 0/0. No content, price or product touched.
+
+**Handing to the operator (:43):** nothing newly unblocked beyond the standing Garage/Hall Closet also-called mining lane already handed off by the 01:5x cycle.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-07 (~01:5x UTC): Kitchen's partial tier mined, two genuine British-English zone synonyms closed, rest confirmed noise or honestly declined
 
 **Did:** Attached per Step 0 (shallow and detached, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the real head of this file (confirmed newest-first by the header, not a raw `tail`). Ran `preflight.py --skip-tests` before touching anything; re-ran `room_guide_underperformance.py` live rather than cite a handoff: Kitchen topped the ranking at 42% uncovered. Read its full 41-row partial list directly against `content.json`, not the tool's own sample.
