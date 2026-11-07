@@ -29070,13 +29070,11 @@
       "best_page": "/zones/home-office-the-desk-drawers-and-pedestal.html",
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "deep"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/home-office-the-desk-drawers-and-pedestal.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -29121,13 +29119,11 @@
       "best_page": "/zones/home-office-the-desk-drawers-and-pedestal.html",
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "deep"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/home-office-the-desk-drawers-and-pedestal.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -48361,6 +48357,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "5b87a6550",
-  "scored_at": "2026-11-07T01:50:53Z"
+  "scored_against_commit": "27f1edad0",
+  "scored_at": "2026-11-07T11:50:45Z"
 }
