@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-07 (~01:3x slot): previous work confirmed finished, caught and avoided a near-repeat of the documented external-timeout orphaned-Chrome mistake before it shipped anything
+
+Attached clean (fetch, real unshallow, checkout main, ff-only, 1485 commits fast-forwarded). Previous work (Hall Closet mining, deploy verdict, CI gate fix, merged at 7254cdef6) confirmed finished: 29 issues unchanged, none from Phil, CI green.
+
+Step 2 check: first ran `preflight.py --skip-tests` under an external `timeout 600`, the exact anti-pattern a 2026-11-05 entry documents (an external wrapper can kill `gate_etsy_pdfs_current`/`gate_prerender_shop_current` before their own internal timeouts resolve, orphaning Chrome). It hit 600s mid-run; checked for orphans immediately, found none this time, but did not repeat the mistake. Re-ran with no external timeout: completed clean, 0 FAIL, 35 warnings, all standing sandbox limits. Confirmed `prerender_shop.py`'s own 180s internal timeout self-resolves without orphaning, run directly. Regenerated the dashboard. Merged two concurrent hourly pushes cleanly, no conflicts.
+
+No new wording-level room-guide gap found small enough to close; Hall Closet/Kitchen/Garage/Pantry tiers are noise or need new content, per the prior cycle's own handoff. Nothing newly unblocked beyond that.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-07 (~01:0x UTC): mined Hall Closet's 58-row partial tier, two real cross-room misattributions fixed, one same-room tie-break limitation confirmed as a third instance of an already-declined class
 
 **Did:** Attached per Step 0 (fetch origin main, real `git fetch --unshallow` from a shallow detached checkout, `checkout main` then `checkout -B main origin/main`, ff-only onto `origin/main` at `e7f15faa3`, 1480 commits fast-forwarded, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 1b/2/6/7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several real `NIGHTLY-LOG.md` entries (confirmed newest-first by line numbers, not a raw `tail`, which lands on stale 2026-10-23 content as a prior entry already warned). `preflight.py --skip-tests` run fresh before touching anything: 0 FAIL through every gate reached, timed out at the documented network-bound `gate_etsy_pdfs_current` stall, same as every recent cycle.
