@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, PM check-in (07:1x slot, 30-minute triage): verified the one unchecked handoff the 07:0x cycle's "genuinely exhausted" claim skipped, closed it with evidence
+
+Attached clean (fetch, confirmed real unshallow, checkout -B main origin/main, ff-only, 43 commits fast-forwarded, tree clean throughout).
+
+**Previous work was not fully finished as claimed.** The 06:4x PM check-in explicitly handed the operator "the global keyword-harvest lane, `keyword_demand_global.py --status`'s 90-91 gap rows, the one genuinely unexhausted traffic-and-distribution lane left." The 07:0x operator cycle then declared the whole structured queue "genuinely exhausted" without mentioning that lane in its own Did/Verified sections, an unchecked claim standing in for a checked one.
+
+**Finished it instead of starting something new.** Read all 90 gap-status rows directly from `ops/keyword-demand-global.json` (`--status` only prints a sample). Every one is the already-documented noise shape this repository declines repeatedly: construction/building-code (handrail regulations, Revit railings), retailer/locale modifiers, unrelated topics (bench press form, cribbage tournaments, Stardew Valley, cooking complaints, vastu, dreams about stairs). None names a real organizing/storage content gap. The lane is genuinely exhausted; the prior cycle's conclusion was right, its evidence was not shown.
+
+`preflight.py --skip-tests` 0 FAIL through every gate reached before the documented network-bound `gate_etsy_pdfs_current` stall, unchecked past that, not assumed passing. `fix_dashes.py --check` 0/0, `check_urls.py` 235/235. 29 open GitHub issues re-pulled live, unchanged, none from Phil. No new defect found beyond this verification.
+
+**Next:** nothing newly unblocked; the structured queue (backlog, cold-read ledger, room-guide lane, now this global-harvest lane) is confirmed exhausted by direct evidence in every lane, not just by citation. Remaining motion is the 29 Phil-gated issues.
+
+Regenerated the dashboard. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## 2026-11-07, 07:0x UTC, scheduled operator cycle: confirmed genuinely exhausted again, no new unblocked work found
 
 **Did:** Attached clean (fetch, confirmed shallow, real unshallow, checkout -B main origin/main, ff-only, 34 commits fast-forwarded, tree clean). Read BACKLOG-2026-09-07.md sections 0 to 7, STATUS.md head, OWNER-ACTIONS.md head, last NIGHTLY-LOG entries. Ran preflight.py fresh to a log file, not through a buffering pipe. Grepped the backlog for any item not marked Done/Archived/Closed. Re-pulled all 29 open GitHub issues live and read issue 42's full comment thread. Ran all backlog/owner-actions rotation scripts in --check mode. Ran cold_read_ledger.py --stale and --next.
