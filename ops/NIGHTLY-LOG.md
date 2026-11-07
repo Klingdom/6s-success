@@ -2,7 +2,19 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-11-07, PM check-in (14:4x slot, 30-minute triage): previous work confirmed finished; a live orphaned Etsy-build/Chrome process tree found and cleaned
+## 2026-11-07, PM check-in (15:1x slot, 30-minute triage): previous work confirmed finished; a real Entryway content gap found and closed; another live orphaned Etsy-build/Chrome tree cleaned
+
+NEXT FOR THE OPERATOR: Entryway's remaining 15 partial rows (ikea/lowes/systems/container/pinterest/australia/area brand or locale noise, potting/reloading/memorial bench and drop shipping off-topic routing, cabinet already documented as a genuine word-sense ambiguity left alone, declutter a generic-verb class) are all noise or already-declined, not fixable; move to Guest Bedroom (23% uncovered) next.
+
+Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only onto `d5323bd17`). Previous work (the 14:4x PM check-in) confirmed finished, not cited: tree clean, main matched origin, no new orphan processes present on arrival. All 29 GitHub issues re-pulled live: unchanged, all decision/blocked-on-art, nothing from Phil since 2026-11-02.
+
+Ran `preflight.py --skip-tests` myself under an external `timeout`: 0 FAIL across every gate reached, through to the documented `gate_etsy_pdfs_current` render stall. The external timeout SIGTERM'd the parent without reaching preflight's own self-heal sweep (same gap the 14:4x entry named), leaving a live `build_etsy_assets.py`/11-process Chromium tree; found it via `ps` and killed it directly (`pkill -9`).
+
+**Picked up the Entryway handoff and found a real, fixable gap, not just more noise.** Read the 17 partial rows' `unmatched_words` directly. Two carried only `hallway` unmatched, both routed to `/articles/how-to-organize-an-entryway.html`; the room page already answers `hallway` (added 2026-11-05 to `ops/room-also-called.json`) but the article's own heading never did, so the identical query family stayed partial on one page and covered on the other depending only on which page won the route. Confirmed by reading the article's real headings and the room page's `also-called` line side by side. Fixed by adding "or hallway" to the article's existing `<h2>`, the same synonym already live on the room page, not an invented one. Re-ran `keyword_demand.py --rescore` and `keyword_demand_global.py --rescore`: 2 queries moved partial to covered, Entryway's shortfall 24% to 21%. Checked the other 15 remaining rows against real content before leaving them: brand names (ikea, lowes, the Container Store), a platform (pinterest x2), a locale (australia), generic modifiers (systems, area, declutter), two off-topic bench queries (potting, reloading) and one off-topic business query (drop shipping) that this content has nothing to say about, one bench cabinet row the 2026-11-05 entry already checked and declined by name. No gap rows.
+
+**Verified:** `fix_dashes.py --check` 0/0, `check_urls.py` 235/235. `test_keyword_demand.py` (32/32), `test_room_guide_candidates.py` (28/28), `test_room_guide_underperformance.py` (19/19), all four keyword-demand gate self-tests, all pass.
+
+Regenerated the dashboard. Pushed to main. No price or product page touched; IndexNow not applicable since the article already existed.
 
 NEXT FOR THE OPERATOR: mine the Entryway room guide (24% uncovered, 17 partial rows), because a fresh `room_guide_underperformance.py` run this slot confirms it is still the highest-ranked room nobody has fully read yet; Kitchen/Garage/Pantry/Hall Closet/Guest Bathroom/Living Room all rank higher on raw uncovered percent but are already confirmed exhausted of vocabulary fixes by recent cycles.
 
