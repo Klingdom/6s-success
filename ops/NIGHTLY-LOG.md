@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, PM check-in (13:4x slot, 30-minute triage): previous work confirmed finished independently, nothing newly unblocked, no orphaned processes found this time
+
+NEXT FOR THE OPERATOR: mine the Entryway room guide for vocabulary gaps (24% uncovered, 17 partial rows, confirmed unchanged this cycle against a fresh run), because it is the highest-ranked non-Phil-gated candidate never yet fully read; Guest Bathroom and Living Room were closed out by the 12:4x-13:0x operator cycle, so Entryway is now the top of the remaining list (Guest Bedroom 23%, Stair Landing 22% tiny tier, Kids Bedroom's remaining partial rows, Dining Room/Laundry Room 19%, Primary Bathroom 14%). If issue #42 or any of the other 28 decision issues gets an owner reply, action that first instead.
+
+Attached per STEP 0: checkout arrived shallow and detached, `git fetch origin main`, real `git fetch --unshallow`, `checkout main`, ff-only merge onto `c0d4fdf34` (the 13:1x PM check-in's stale-deploy-citation fix plus its own hourly check-in), tree clean before this run.
+
+**Previous work (the 13:1x PM check-in) confirmed finished, re-derived rather than cited.** Re-pulled all 29 open GitHub issues live, sorted by `updated_at`: unchanged, all `decision`/`blocked-on-art`, newest update still issue #42 at 2026-11-07T02:18:11Z, nothing from Phil since 2026-11-02. Re-ran `room_guide_underperformance.py` fresh with no room filter: Entryway still 24% uncovered/17 partial rows, matching the 12:4x and 13:1x entries' own figures exactly, no drift; confirmed Guest Bathroom and Living Room (closed this same UTC day by the operator cycle between those two check-ins) no longer sit above Entryway in the ranking. Read `BACKLOG-2026-09-07.md` sections 0 and 5-7 directly: owner gates unchanged (YouTube OAuth #46, Gemini billing #47, Amazon KDP #43, Etsy #44, Apple/Play #48, accounts-layer decision #45, all Phil-gated with everything up to each gate already built).
+
+**Ran `preflight.py --skip-tests` myself rather than trust the prior cycle's run.** Backgrounded it, watched it reach `gate_kdp_listing_valid` and `gate_etsy_listing_valid` clean, then hit the documented ~2-minute `gate_etsy_pdfs_current` network/render stall (Etsy fee page HTTP 403, then a real `build_etsy_assets.py`/headless-Chromium PDF render that takes real wall-clock time rather than stalling instantly). Let it run to the same point every recent cycle reports before killing it: 0 FAIL across both `FAIL` blocks printed so far (`(none)` both times). Checked for orphaned processes immediately after the kill this time, unlike several recent cycles: `ps aux` showed none, the `build_etsy_assets.py`/Chromium tree this run spawned died cleanly with its parent, so nothing needed cleaning up this cycle. Working tree after the kill carried only the run's own `ops/cycle-signal.json` checkpoint, confirmed by `git status --short`.
+
+No new defect found small enough to close this slot beyond the verification above. Not starting the Entryway mine myself, per standing PM practice (operator-cycle-sized, not a 30-minute slot).
+
+Committed the preflight checkpoint and this entry. Pushed to main. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-07, PM check-in (13:1x slot, 30-minute triage): previous work confirmed finished, a real stale citation found and fixed, orphaned Etsy-gate processes cleaned up again
 
 Previous work (the 12:4x PM check-in and the operator cycle mining Guest Bathroom/Living Room) confirmed finished independently: both entries re-derived rather than cited, nothing new unblocked. All 29 open GitHub issues re-pulled live, unchanged, all decision/blocked-on-art, none from Phil since 2026-11-02.
