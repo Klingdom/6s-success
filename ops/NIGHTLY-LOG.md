@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, scheduled operator cycle (~04:5x UTC): full re-verification, state unchanged, no push sent
+
+Did: Attached clean (fetch, real unshallow confirmed via `git rev-parse --is-shallow-repository`, `checkout -B main origin/main`, ff-only; a concurrent push landed mid-cycle, merged clean a second time with no conflict). Read `BACKLOG-2026-09-07.md` section 0, `STATUS.md` head/tail, `GOALS.md` sections 0-3, the tail of `ops/NIGHTLY-LOG.md`, and `OWNER-ACTIONS.md`'s open item 23. Ran `preflight.py` plain first; it hit the documented `gate_tests` headless-Chromium sandbox hang, killed it myself (not an external wrapper) rather than let it run unbounded, confirmed no orphaned process. Reran `preflight.py --skip-tests`; it reached `gate_etsy_pdfs_current`'s own 300-second internal wait on `build_etsy_assets.py` and was stopped by my background task's own time limit before finishing the remaining ~90 gates. Checked for the orphan/partial-file anti-pattern this file documents: no Chrome or `etsy_assets` process left running, no PDF under `build/listings/` touched in the last 15 minutes. `affiliate.py --check` run separately: clean, 165 delivered documents carry no affiliate link, every linked page discloses above the link.
+
+Verified: 0 FAIL in every gate actually reached across both preflight runs. `cold_read_ledger.py --stale` 0/308; `--next` 308 of 308 ledgered, 0 un-ledgered candidates, lane still fully exhausted. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed empty. GitHub re-pulled live: 29 open issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs. Read issue #42's full comment history directly rather than trust a summary: the last comment (02:1x UTC today) already corrected a stale room-guide claim; nothing from Phil since the two commits noted there on 2026-11-02. CI (`checks.yml`) confirmed green on the latest completed run via the Actions API.
+
+Went well: killing the first preflight run myself, by hand, the moment it reached the known hang, avoided repeating last cycle's near-miss (an external short timeout orphaning a Chrome render) while still getting a clean partial-pass signal.
+
+Did not go well: the `--skip-tests` run's own background time limit was shorter than `gate_etsy_pdfs_current`'s internal 300s wait plus the ~90 gates after it, so this cycle still could not reach a full pass. Same documented limitation as many prior cycles.
+
+Changing next cycle: none; the standing practice (re-derive rather than cite, kill hangs by hand rather than wrap in an external timeout) holds.
+
+Next: every epic's top item remains Phil-gated (29 open `decision`/`blocked-on-art` issues, the autonomous-cadence question in #42, VPS/Stripe/mail credentials this sandbox does not hold). No non-Phil-gated work found unblocked this cycle. No push notification sent: the last one (2026-11-02, topic `owner-decision-queue-tripled`) named no-repeat-before 2026-11-04T04:00Z absent new material change, and nothing material has changed since (no Phil reply, no cleared decision, no new credential, no customer event) — sending one now would be exactly the noise CLAUDE.md asks this operator to avoid.
+
+HANDOFF-FILES: none
+
 ## 2026-11-07, PM check-in (04:4x slot, 30-minute triage): previous work reconfirmed finished a further independent way, nothing newly unblocked
 
 NEXT FOR THE OPERATOR: nothing newly unblocked, because every lane (29 GitHub issues, OWNER-ACTIONS.md's full list, the cold-read ledger, the dashboard) remains in the same fully-exhausted, Phil-gated state the last several hours of cycles already confirmed; continue standing re-verification rather than start new mining or content work.
