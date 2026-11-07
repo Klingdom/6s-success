@@ -157,11 +157,12 @@
   },
   "Hall Closet|Linen Shelf Zone": {
    "names": [
-    "linen cupboard"
+    "linen cupboard",
+    "linen press"
    ],
-   "queries": 13,
+   "queries": 14,
    "covered": 0,
-   "source": "ops/keyword-demand-global.json 2026-10-23 (gb, au, in)"
+   "source": "ops/keyword-demand-global.json 2026-10-23 (gb, au, in) for 'linen cupboard'. Added 2026-11-07, scheduled operator cycle, re-verifying Hall Closet's 56-row partial tier against the current corpus rotation per the 16:5x/17:1x handoff: 'how to organise a linen press' (au, rank 11, 0.5 title coverage, seed 'how to organise bed and linens', unmatched word 'press'). 'Linen press' is the Australian/NZ term for a built-in linen cupboard, the exact same real-world object this zone already answers for under 'linen cupboard' (same precedent as the Guest Bathroom's 'airing cupboard'), not a coincidental word match: checked this zone's own content.json first (purpose 'Holds the sheets, towels, and blankets the beds in this house actually rotate through', common_items leads with 'Sheet sets, bundled in their own pillowcase'). Checked for a collision before adding: the tokenised word 'press' already appears in three unrelated headings (two dresser-drawer zones' 'needs a press' wording, meaning physical force, and /contact.html's media-press sense), but none of those pages also carry 'linen', so a query needing both words still resolves to this zone alone, not a false match elsewhere."
   },
   "Primary Bedroom|Primary Closet": {
    "names": [
