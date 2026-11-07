@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, scheduled operator cycle: Kitchen room-guide ranking re-surfaced by a corpus rotation, one genuine FAQ-heading gap fixed
+
+**Did:** Attached per STEP 0 (unshallowed, 100 commits onto main, clean). Ran `preflight.py`, 0 FAIL. Re-derived `room_guide_underperformance.py` live rather than trust entry 149's "closed" reading: a corpus rotation in this pull's commits put Kitchen back on top at 40% uncovered. Read all 39 partial plus 1 gap row directly with `unmatched_words`, not the tool's 8-row sample. Found one genuine gap: "how to organise appliances in kitchen" scored partial because no heading said "appliances", though the FAQ answer already names them. Reworded the FAQ h3 and its FAQPage JSON-LD `name` in lockstep in `site/articles/how-to-declutter-a-kitchen.html` (hand-authored, no generator owns it). The other 38 rows are documented noise or honest out-of-scope gaps ("larder", "dressing table drawers").
+
+**Verified:** rescored both corpora, target query moved partial to covered, 0 other rows moved. `check_urls.py` 235/235, `audit_pages.py`/`fix_dashes.py`/`fix_dialect.py`/`affiliate.py --check` clean, `check_sellable.py` 124/126. Full `preflight.py` caught a real `gate_sitemap_lastmod_current` FAIL on the edited page; fixed with `ops/build_seo.py`, reran clean. Re-ledgered `ops/preflight.py` in the cold-read ledger after reading its one intervening commit (sound, already-tested SIGTERM-to-SIGKILL hardening). A concurrent cycle's own push (Entryway mining, below) landed on `origin/main` while this one was in progress; rebased onto it, re-resolved every generated-file conflict by regenerating from source rather than hand-merging JSON, and reconfirmed clean afterward. GitHub: 29 issues unchanged, none from Phil; issue #42 not re-raised. No mail credential here.
+
+**Went well:** catching the live gate failure before push rather than after.
+
+**Did not go well:** nothing material.
+
+**Changing next cycle:** none.
+
+**Next:** Garage, Pantry and Hall Closet's "exhausted" findings predate this same corpus rotation and should be re-verified live, not cited.
+
+HANDOFF-FILES: none
+
 ## 2026-11-07, PM check-in (15:1x slot, 30-minute triage): previous work confirmed finished; a real Entryway content gap found and closed; another live orphaned Etsy-build/Chrome tree cleaned
 
 NEXT FOR THE OPERATOR: Entryway's remaining 15 partial rows (ikea/lowes/systems/container/pinterest/australia/area brand or locale noise, potting/reloading/memorial bench and drop shipping off-topic routing, cabinet already documented as a genuine word-sense ambiguity left alone, declutter a generic-verb class) are all noise or already-declined, not fixable; move to Guest Bedroom (23% uncovered) next.
@@ -16669,20 +16685,3 @@ No new defect found small enough to close this slot, and no genuinely unblocked,
 **Handing to the operator (:43):** nothing new; hold the standing exhausted state, same as the last several cycles. The two items that would actually unblock new work (Gemini billing, YouTube OAuth) and the cadence decision (issue #42) all sit with Phil; everything buildable ahead of each gate is already built.
 
 Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
-
-
-## 2026-11-07, scheduled operator cycle: Kitchen room-guide ranking re-surfaced by a corpus rotation, one genuine FAQ-heading gap fixed
-
-**Did:** Attached per STEP 0 (unshallowed, 100 commits onto main, clean). Ran `preflight.py`, 0 FAIL. Re-derived `room_guide_underperformance.py` live rather than trust entry 149's "closed" reading: a corpus rotation in this pull's commits put Kitchen back on top at 40% uncovered. Read all 39 partial plus 1 gap row directly with `unmatched_words`, not the tool's 8-row sample. Found one genuine gap: "how to organise appliances in kitchen" scored partial because no heading said "appliances", though the FAQ answer already names them. Reworded the FAQ h3 and its FAQPage JSON-LD `name` in lockstep in `site/articles/how-to-declutter-a-kitchen.html` (hand-authored, no generator owns it). The other 38 rows are documented noise or honest out-of-scope gaps ("larder", "dressing table drawers").
-
-**Verified:** rescored both corpora, target query moved partial to covered, 0 other rows moved. `check_urls.py` 235/235, `audit_pages.py`/`fix_dashes.py`/`fix_dialect.py`/`affiliate.py --check` clean, `check_sellable.py` 124/126. Full `preflight.py` caught a real `gate_sitemap_lastmod_current` FAIL on the edited page; fixed with `ops/build_seo.py`, reran clean. Re-ledgered `ops/preflight.py` in the cold-read ledger after reading its one intervening commit (sound, already-tested SIGTERM-to-SIGKILL hardening). GitHub: 29 issues unchanged, none from Phil; issue #42 not re-raised. No mail credential here.
-
-**Went well:** catching the live gate failure before push rather than after.
-
-**Did not go well:** nothing material.
-
-**Changing next cycle:** none.
-
-**Next:** Garage, Pantry and Hall Closet's "exhausted" findings predate this same corpus rotation and should be re-verified live, not cited.
-
-HANDOFF-FILES: none
