@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, scheduled operator cycle (~23:0x UTC): claimed the Primary Bedroom room-guide tier, three genuine gaps closed, the rest correctly declined
+
+**Did:** Attached per Step 0 (shallow, detached checkout; `git fetch origin main` reported the usual forced-update shallow-clone quirk, `git fetch --unshallow`, `checkout main`, ff-only onto `cfb9483d8`, tree clean). Read `BACKLOG-2026-09-07.md` sections 0-7 and entries 148-158, `ROADMAP-2026-2029.md`'s theory via `GOALS.md`, `CLAUDE.md`, `STATUS.md`, and this log's own recent entries. Pulled all 29 open GitHub issues and read issue #42 (the cadence question) in full with its 9 comments: no reply from Phil, every comment self-authored by a prior cycle. `ops/cold_read_ledger.py --next`: 308 of 308, nothing to cold-read. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked.
+
+Claimed the one standing, unclaimed, non-Phil-gated lane: Primary Bedroom's room-guide tier (1 gap + 33 partial of 143 on-topic rows, 24% uncovered), handed off by three prior cycles (21:4x, 22:0x, 22:1x) each correctly declining it as too large for a 30-minute slot. Dumped every row's `unmatched_words`/`matched_on`/`best_page` directly via `score_room()` rather than the console's own 8-row cap, and read all 34 against real `content.json` and the live page before acting on any of them.
+
+**Verified, each myself:** Of 34 rows, declined as noise or wrong-room misattribution: "declutter woodworking fundamentals tips", "complete declutter houseplants checklist", "declutter singing room" (title-overlap false positives), platform-suffix rows (pinterest, ikea, kmart, mumsnet), "how to organize a step challenge" (both spellings, a fitness term, already-documented noise shape), "how to declutter study" (a Home Office query), "how to organize bags/disposable bags" (0.0 coverage, Kitchen/Pantry queries). Declined "declutter bedroom checklist pdf" on principle: the page has no downloadable PDF checklist, only the paid Print Pack deck, so adding the word "pdf" to close the gap would be dishonest. Declined "small primary bedroom storage ideas": "small" is the single most overloaded modifier in the whole corpus (200+ occurrences across every room, each already correctly routed), too high a collision risk for one query at 0.5 coverage; also declined "how to declutter bedroom smart"/"my books" as ambiguous, weak-fit word choices.
+
+Three were genuine and shipped. "How do I organize closet clothes by color?": Primary Closet's own `done_looks_like` already reads "grouped by type and then by shade", shade being color under a different word. "What goes under the bed?": the Bed and Bedding zone's `done_looks_like` already specifies "Under the bed holds either nothing or two labeled flat bins". "Does this method work for an ADHD-friendly bedroom?" (3 markets: gb, au, in): answered honestly from features the method already has (one visible home per thing, a two-minute nightly reset, open storage over closed bins), no claim of being designed for or clinically proven for ADHD. All three added as FAQ pairs (JSON-LD and visible h3/p) to `site/articles/how-to-declutter-a-bedroom.html`, confirmed hand-authored, not generator-owned (same file B9's entry 121 used); `dateModified` bumped. Checked every corpus row containing "color", "under" or "adhd" for collision before shipping: none found, no existing routing changed. `keyword_demand.py`/`keyword_demand_global.py --rescore` confirmed all three move partial to covered by direct query against the regenerated JSON, not the rescore summary alone. `room_guide_underperformance.py --room "Primary Bedroom"`: 24% to 23% uncovered.
+
+JSON-LD re-parsed directly on the edited page. `check_urls.py` (235/235), `audit_pages.py` (240/0), `fix_dashes.py`/`fix_dialect.py --check` (0/0), `affiliate.py --check` (165 documents), `link_graph_report.py` (0 orphans), `check_sellable.py` (124/126 Stripe-matched, 2 service SKUs) all clean. `preflight.py --skip-tests` run twice, before and after the edit: 0 FAIL through every gate reached both times, reached the documented `gate_etsy_pdfs_current` network stall at the end (flat CPU across 80 seconds, confirmed not a silent hang, killed by hand, same pattern every recent cycle reports). 29 GitHub issues re-pulled fresh after the edit: unchanged, none from Phil.
+
+**Went well:** found a genuinely unblocked lane three prior cycles had each correctly triaged away rather than start half-done, finished it in one sitting, and declined the majority of its rows on real evidence rather than forcing synonyms to look productive.
+
+**Did not go well:** nothing; this closes the standing handoff.
+
+**Changing next cycle:** none.
+
+**Next:** no other room-guide tier is known to be open; the standing queue is unchanged: YouTube OAuth (#46), Gemini billing (#47), Amazon KDP (#43), Etsy (#44), the accounts-layer decision (#45), and issue #42's cadence question, all with Phil.
+
+Regenerated the dashboard. Pushed to main: this entry, `BACKLOG-2026-09-07.md` entry 159, `STATUS.md`, the edited article, both keyword-demand JSON/MD pairs, dashboard files. No price or product touched; one existing hand-authored page edited, no new page; `IndexNow` to submit on push.
+
+HANDOFF-FILES: none
+
 ## 2026-11-07, PM check-in (22:4x slot): previous work independently reconfirmed finished a second way, Primary Bedroom room-guide tier handed to the operator a third time
 
 NEXT FOR THE OPERATOR: claim and mine Primary Bedroom's room-guide tier (33 partial plus 1 gap of 143 rows, 24% uncovered), because it has now been handed off three times running (21:4x, 22:1x, this entry) without being picked up, each prior operator cycle deliberately declining to avoid a collision with a concurrently running check-in rather than because the work itself is not genuinely unblocked; `STATUS.md` still shows no open claim on it, so claiming it first thing removes the only reason it keeps getting skipped.
