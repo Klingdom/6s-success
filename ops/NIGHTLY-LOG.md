@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, scheduled operator cycle (~20:5x UTC): fresh end-to-end preflight run, independently reconfirmed exhausted, declined to manufacture another synonym fix
+
+**Did:** Attached per Step 0 (`git fetch origin main` reported a forced-update shallow clone, the standard quirk; `git fetch --unshallow`, `checkout main`, ff-only onto `fd52c5d8f`, 160 commits, tree clean). Read `BACKLOG-2026-09-07.md` section 0 and the done table, `STATUS.md` sections 0-2, `ROADMAP-2026-2029.md`'s honest arithmetic, `CLAUDE.md`, `GOALS.md`'s crawl-coverage row, and this log's last four entries directly rather than trust a summary.
+
+**Verified, each myself rather than cited:** ran my own `ops/preflight.py --skip-tests` via the safe `ops/run_preflight.sh` detached wrapper (the foreground-timeout trap this file documents repeatedly). It reached every gate with 0 FAIL, then parked at `gate_etsy_pdfs_current`; confirmed the hang was real network starvation, not a silent stall, by reading the process's CPU time twice 6 seconds apart (17s both times, elapsed climbing) before killing it, same method prior cycles use for `gate_tests`. Reported unchecked past that point, not assumed passing, per `CLAUDE.md` 0.4. The mid-run `ops/cycle-signal.json` checkpoint it wrote was committed and pushed separately (rebased onto a concurrent PM check-in's push rather than force-pushed). Ran `check_sellable.py` directly: 124 of 126 buyable products Stripe-matched, unchanged. `check_live_links.py`: no Stripe credential here, honestly UNKNOWN, not assumed working. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, unchecked. Pulled all 29 open GitHub issues fresh via the API, sorted by `updated_at`: unchanged, all `decision`/`blocked-on-art`, newest still #42 at 2026-11-07T02:18:11Z; `git log --since=2026-11-02` filtered to non-agent authors returns nothing, confirming no Phil activity in 5+ days still holds. `OWNER-ACTIONS.md`'s full "Open, ranked" section read directly: every remaining item needs Phil's own account, credential, or money (YouTube OAuth, Gemini billing, Amazon KDP, Etsy, Pinterest/Instagram, Facebook/X, Apple/Google developer accounts, the accounts-layer decision); nothing there is operator-actionable.
+
+**Decision this cycle:** did not pick up a sixteenth room-guide zone-vocabulary synonym fix. The 18:5x operator cycle already named the pattern (1,482 commits in 7 days against $0 monthly revenue movement) and declined for the same reason; re-ran that judgement independently rather than just trust it, and it still holds; `GOALS.md`'s own crawl-coverage baseline (210 of 211 sitemap URLs fetched in 14 days, 6 non-bot requests in the same window) separately confirms search discovery has no headroom left for more wording coverage, so marginal content-synonym work is not where the constraint sits even before counting the commit-volume argument. `STATUS.md`'s "Open claims" section: none open.
+
+**Checked whether a push notification was due rather than assume the standing suppression still holds.** `ops/last-owner-notification.json`: last push 2026-11-07T18:55:00Z, explicit no-repeat-before 2026-11-09T18:00Z. Nothing material changed since (same 29 issues, no Phil reply, no cleared decision, no new credential). Correctly withheld.
+
+**Went well:** ran a genuine fresh preflight to its real network-bound limit myself instead of citing an adjacent cycle's checkpoint, and it still found 0 FAIL.
+
+**Did not go well:** nothing new unblocked; every lever buildable ahead of Phil's gates is already built.
+
+**Changing next cycle:** none.
+
+**Next:** same standing handoff every recent cycle gives: `OWNER-ACTIONS.md`'s "Start here" items (YouTube OAuth #46, Gemini billing #47, Amazon KDP #43, Etsy #44, the accounts-layer decision #45) and issue #42's cadence question all sit with Phil.
+
+Regenerated the dashboard. Pushed to main. No content, price or product page touched; no new page, `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-07, PM check-in (20:4x slot, 30-minute triage): previous work reconfirmed finished a third independent way, nothing newly unblocked, no push due
 
 NEXT FOR THE OPERATOR: hold the standing exhausted state, because Kitchen's room-guide partial tier is still 38% uncovered (1 gap + 37 partial of 99 on-topic), unchanged from the last two cycles' own readings, and all 29 open GitHub issues are still decision/blocked-on-art with none newer than #42 at 2026-11-07T02:18:11Z.
