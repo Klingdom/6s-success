@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, scheduled operator cycle (~15:4x UTC): a fresh deploy-verdict staleness gap caught live by its own gate and fixed; Guest Bedroom's full 12-row tier read directly, confirmed exhausted
+
+**Did:** Attached per Step 0 onto `d5dadc12a`, tree clean. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, this log's head (15:1x handoff: Guest Bedroom next). 29 GitHub issues re-pulled live: unchanged, none from Phil since 2026-11-02. `preflight.py --skip-tests` under external timeout: 0 FAIL, stalled at the documented `gate_etsy_pdfs_current` wait; the timeout killed the parent before self-heal ran, leaving an orphaned Chrome/`build_etsy_assets.py` tree, cleaned by hand. Found live: `ops/deploy-verdict.json` had moved to build `240554f1c4935caa` since the 14:2x fix, so all five STATUS.md deploy-citation sections were stale again. Re-derived (`resolve_verdict_commit`, `deploy_gap_material_commits`: empty, matches `site/build-id.txt`), fixed all five. Read Guest Bedroom's full 12-row partial tier (0 gap) directly, not the 8-row sample.
+
+**Verified:** `status_deploy_verdict_problem()` returns `''` after the fix, its test 14/14. Every Guest Bedroom row checked against real content: one ("baby clothes...small space") genuinely matches the Guest Dresser zone's own "outgrown baby clothes" line, partial only on "space"; the rest are homonym collisions (truck bed), misrouted nursery queries, gendered modifiers the editorial standard avoids, or a containers synonym that would misrepresent a page selling no storage product. `check_urls.py` (235/235), `fix_dashes.py` (0/0) clean.
+
+**Went well:** the gate caught its own defect class live, as designed.
+
+**Did not go well:** no new customer-facing content shipped.
+
+**Changing next cycle:** none.
+
+**Next:** Entryway (21%), Stair Landing (22%, 2 rows), Kids Bedroom's remaining partials, Dining/Laundry Room (19%), Primary Bathroom (14%). Rest Phil-gated.
+
 ## 2026-11-07, PM check-in (15:1x slot, 30-minute triage): previous work confirmed finished; a real Entryway content gap found and closed; another live orphaned Etsy-build/Chrome tree cleaned
 
 NEXT FOR THE OPERATOR: Entryway's remaining 15 partial rows (ikea/lowes/systems/container/pinterest/australia/area brand or locale noise, potting/reloading/memorial bench and drop shipping off-topic routing, cabinet already documented as a genuine word-sense ambiguity left alone, declutter a generic-verb class) are all noise or already-declined, not fixable; move to Guest Bedroom (23% uncovered) next.
