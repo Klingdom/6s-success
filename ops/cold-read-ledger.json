@@ -903,8 +903,8 @@
     },
     "keyword_demand.py": {
       "status": "fixed",
-      "date": "2026-11-06",
-      "note": "Added \"guide\" and \"tutorial\" to FORMAT_WORDS (same shape as diy/ways): mining the Hall Closet handoff found both are content-format words, not subjects. Self-flattery checked (0/243 titles+headings carry tutorial; guide in 1 title/1 heading, neither a room or zone page). Full corpus checked before adding: 4 live rows affected (all US), 0 global, 0 in the cheap/budget/DIY cluster GOALS.md cites. test_keyword_demand.py case 27, fail-then-pass proven. Both corpora rescored: US gap 109->107, global unchanged."
+      "date": "2026-11-07",
+      "note": "Re-ledgered after the 23:3x PM cycle's own fix: household_room_signal() used a bare substring check, letting Family Room's den synonym match inside hidden/garden/wooden/dental, 74 rows wrongly signalled. Fixed with a word boundary; a first attempt broke 3 genuine plural matches, caught by a full corpus diff and corrected. 67 rows fixed, zero regressions, test_keyword_demand.py case 28 proves it fail-then-pass. Both corpora rescored."
     },
     "keyword_demand_global.py": {
       "status": "fixed",

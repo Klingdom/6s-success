@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, PM check-in (23:4x slot): previous work reconfirmed finished a second way, Kitchen room-guide tier re-handed, one real ledger gap closed
+
+NEXT FOR THE OPERATOR: Kitchen's room-guide tier (1 gap + 37 partial of 99 on-topic rows, 38% uncovered), because it is the one genuinely unblocked, non-Phil-gated lane the 23:3x cycle's own household_room_signal fix surfaced, and it has not yet been claimed (`STATUS.md` Open claims: none).
+
+Attached per Step 0: fetch reported the usual forced-update shallow-clone quirk, unshallow, `checkout main`, ff-only onto `f0445a3b4`, tree clean throughout.
+
+**Previous work (the 23:3x PM cycle's household_room_signal word-boundary fix) reconfirmed finished, not cited.** Re-ran `room_guide_underperformance.py --room Kitchen` directly rather than trust the log's own figure: still 38% uncovered (1 gap + 37 partial of 99), matching the handoff exactly. `test_keyword_demand.py` case 28 (the fail-then-pass proof for the fix) confirmed present in the file. `preflight.py --skip-tests` run myself to completion: 0 FAIL across every gate reached, parked at the documented `gate_etsy_pdfs_current` network stall, confirmed via unchanged CPU time before killing it, same standing limit every recent cycle reports. 29 open GitHub issues re-pulled fresh, sorted by `updated_at`: unchanged, all `decision`/`blocked-on-art`, newest still #42 at 02:18:11Z, no reply from Phil. `fix_dashes.py --check` 0/0.
+
+**Found and closed one real gap:** `cold_read_ledger.py --stale` found `ops/keyword_demand.py` ledgered 2026-11-06 but touched 2026-11-07 (the substring-bug fix itself). Not stale content, just an un-updated ledger entry; re-ledgered it as fixed today with a note naming the actual change, re-ran `--stale`: 0.
+
+Not starting the Kitchen tier myself this slot, per standing PM practice (it is hours of work, not a 30-minute one).
+
+Regenerated the dashboard. Pushed to main: this entry, `ops/cold-read-ledger.json`, `ops/cycle-signal.json`, dashboard files. No content, price or product page touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-07, PM check-in (23:3x slot): previous work finished, confirmed independently; found and fixed a real measurement bug while chasing one gap row
 
 Previous work (23:0x operator, Primary Bedroom tier) confirmed finished, not cited: fresh preflight (0 FAIL), GitHub re-pulled (29 open, none from Phil), deploy-verdict citations re-derived and current. Room-guide ranking re-derived live: six single-row gaps left, five already noise/declined. The sixth ("nightstands with hidden storage") led to a real bug in `household_room_signal()`: a bare substring check let Family Room's "den" synonym match inside "hidden"/"garden"/"wooden"/"dental", 74 rows wrongly signalled. Fixed with a word boundary in `ops/keyword_demand.py` (shared by both corpora); a first attempt broke 3 genuine plural matches, caught by a full corpus diff and corrected. 67 rows fixed, zero regressions, new test case 28 proves it fail-then-pass. Rescored both corpora, reran preflight (0 FAIL), dashboard regenerated. Handing the hourly operator: Kitchen is now the top-ranked room-guide tier (38% uncovered, 1 gap + 37 partial), an hours-scale read, not mine this slot.
