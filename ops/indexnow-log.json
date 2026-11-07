@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-03T21:51:48Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-03T22:16:38Z",
    "mode": "changed",
    "offered": 1,
@@ -657,6 +650,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-07T23:11:02Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -874,7 +874,7 @@
   "https://6s-success.com/articles/why-is-my-house-always-messy": "876da0c6fc6add95",
   "https://6s-success.com/articles/how-to-organize-a-basement": "b85177a96246ed6f",
   "https://6s-success.com/articles/how-to-organize-an-attic": "8a2a0913f50afde9",
-  "https://6s-success.com/articles/how-to-declutter-a-bedroom": "57543adb6aaee031",
+  "https://6s-success.com/articles/how-to-declutter-a-bedroom": "a68ad0b7b1186ebe",
   "https://6s-success.com/articles/how-to-organize-a-linen-closet": "e81b6fa6bdc1e77c",
   "https://6s-success.com/articles/how-to-organize-baby-clothes": "18bb5e44d8ced5e7",
   "https://6s-success.com/articles/how-to-organize-paperwork": "4e0505f6cf48a8db",
