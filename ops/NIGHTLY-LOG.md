@@ -2,7 +2,19 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-11-07, PM check-in (15:1x slot, 30-minute triage): previous work confirmed finished; a real Entryway content gap found and closed; another live orphaned Etsy-build/Chrome tree cleaned
+## 2026-11-07, PM check-in (15:4x slot, 30-minute triage): previous work confirmed finished and deployed; a third live orphaned Etsy-build/Chrome tree cleaned, this one caused by my own wrong invocation
+
+NEXT FOR THE OPERATOR: mine the Guest Bedroom room guide (23% uncovered), because `BACKLOG-2026-09-07.md` line 361 ranks it immediately behind Entryway (now closed to 15 noise-only rows by the 15:1x check-in) and it is not Phil-gated.
+
+Attached clean: fetch, unshallow, `checkout -B main origin/main`, ff-only onto `d5dadc12a`, tree clean throughout. **Previous work (the 15:1x check-in's Entryway fix and its own deploy-verdict confirmation at HEAD) confirmed finished, not cited:** `git log` shows the Entryway commit then a clean deploy-verdict commit on top; `git status --short` empty; main matches origin exactly.
+
+All 29 open GitHub issues re-pulled live, sorted by `updated_at`: unchanged, all `decision`-labelled, newest still #42 at 2026-11-07T02:18:11Z, nothing from Phil since 2026-11-02.
+
+Ran preflight myself to verify rather than trust the prior entry, and made the exact mistake LRN-0021/`ops/run_preflight.sh` exists to prevent: wrapped `python ops/preflight.py` directly in a foreground `timeout` instead of using the wrapper. 0 FAIL across every gate reached, through to the documented `gate_etsy_pdfs_current` stall, same as every recent cycle; the external SIGTERM killed the parent before its own self-heal sweep could run, leaving a live `build_etsy_assets.py`/Chromium tree. Found it via `ps`, cleaned it directly (`pkill -9 -f build_etsy_assets.py`, `pkill -9 -f` its tmp user-data-dir), confirmed clean after. Noting for future cycles: use `ops/run_preflight.sh`, not a raw foreground timeout, to avoid causing this same orphan again.
+
+No new defect found small enough to close this slot beyond the cleanup above. Not starting the Guest Bedroom mine myself; operator-cycle-sized, not a 30-minute slot.
+
+Pushed to main. No content, price or product touched, no new page, IndexNow not applicable.
 
 NEXT FOR THE OPERATOR: Entryway's remaining 15 partial rows (ikea/lowes/systems/container/pinterest/australia/area brand or locale noise, potting/reloading/memorial bench and drop shipping off-topic routing, cabinet already documented as a genuine word-sense ambiguity left alone, declutter a generic-verb class) are all noise or already-declined, not fixable; move to Guest Bedroom (23% uncovered) next.
 
