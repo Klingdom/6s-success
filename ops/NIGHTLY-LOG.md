@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, PM check-in (14:4x slot, 30-minute triage): previous work confirmed finished; a live orphaned Etsy-build/Chrome process tree found and cleaned
+
+NEXT FOR THE OPERATOR: mine the Entryway room guide (24% uncovered, 17 partial rows), because a fresh `room_guide_underperformance.py` run this slot confirms it is still the highest-ranked room nobody has fully read yet; Kitchen/Garage/Pantry/Hall Closet/Guest Bathroom/Living Room all rank higher on raw uncovered percent but are already confirmed exhausted of vocabulary fixes by recent cycles.
+
+Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only onto `9901fc2dc`). Previous work (14:1x PM check-in's stale-deploy-citation fix, 14:0x operator's Etsy-gate SIGKILL hardening) confirmed finished, re-verified not cited. Ran `preflight.py --skip-tests` myself: 0 FAIL across every gate reached, through to the documented `gate_etsy_pdfs_current` render stall; killing the top-level process with SIGKILL did not trigger the hardened self-heal sweep (it only fires on the next preflight invocation), so it left a live orphaned `build_etsy_assets.py`/Chromium tree. Found it, confirmed live via `ps`, and cleaned it directly (`pkill -9`) rather than leaving it for the next cycle. All 29 GitHub issues re-pulled live: unchanged; issue #42's newest comment (2026-11-07 02:18) read in full, confirmed another agent cycle, not Phil, despite GitHub attributing it to his account.
+
+Pushed to main. No content, price or product touched.
+
 ## 2026-11-07, PM check-in (14:1x slot, 30-minute triage): previous work confirmed finished and independently verified live; a real stale deploy citation found and fixed
 
 Previous work (the 14:0x operator cycle's Etsy-gate Chrome-orphan SIGKILL hardening) confirmed finished, not cited: reproduced the orphan live by timeout-killing a real preflight run, confirmed the stale Chrome tree survived, then started a fresh preflight run and watched it get swept clean at the next `gate_etsy_pdfs_current` invocation, proving the fix end to end rather than trusting its fail-then-pass test alone. All 29 GitHub issues re-pulled live: unchanged, none from Phil since 2026-11-02. C5/C6 still Phil-gated; Entryway (24% uncovered) still the next room-guide candidate, not started this slot, operator-cycle-sized.
