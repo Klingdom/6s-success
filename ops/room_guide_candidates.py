@@ -180,7 +180,22 @@ OFF_TOPIC_CONTEXT = re.compile(
     # "soap making" and "raised garden bed" each appear in exactly the one
     # row named here (the global harvest has no "raised garden bed" row at
     # all), so excluding them here cannot suppress a genuine match.
-    r"\bsoap making\b|\braised garden beds?\b", re.I)
+    r"\bsoap making\b|\braised garden beds?\b|"
+    # Found 2026-11-07 (Kitchen pass, 39% uncovered, the 38-row partial tier
+    # four PM check-ins in a row had deferred as operator-cycle-sized).
+    # "how to organise dressing table drawers" carries no room signal at
+    # all (attribute_room finds no room name in it) and lands on Kitchen's
+    # own declutter article purely on "organise"/"drawers" word overlap
+    # with no room tie to break; a dressing table is bedroom furniture, not
+    # a kitchen fixture. Checked the full corpus first: Primary Bedroom,
+    # Guest Bedroom and Kids Bedroom each already have a real dresser/drawer
+    # zone (Dresser Top, Dresser Drawers, Guest Dresser), so the query has a
+    # genuine home elsewhere on the site; it is simply not Kitchen's to
+    # answer, and forcing it onto a kitchen zone would misrepresent one the
+    # same way the "dinnerware" bare-word lesson warns against. Verified
+    # against both harvests: "dressing table" appears in exactly this one
+    # row, so excluding it here cannot suppress a genuine match.
+    r"\bdressing table\b", re.I)
 
 
 def guide_less_rooms():

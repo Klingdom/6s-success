@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, scheduled operator cycle (~19:4x UTC): closed one genuine Kitchen misattribution ("dressing table drawers"), found and reverted a net-harmful scorer fix attempted for a second
+
+**Did:** Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `ae1ce9398`, 151 commits, tree clean throughout). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, this log's last four entries, and `STATUS.md`'s open-claims section (none open). All 29 open GitHub issues re-pulled live, sorted by `updated_at`: unchanged, newest still #42 at 2026-11-07T02:18:11Z, nothing from Phil since 2026-11-02. Checked `ops/last-owner-notification.json`: the 18:5x cycle's own push notification is under an hour old with a no-repeat-before of 2026-11-09T18:00Z, so not re-sent. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked. Picked up Kitchen's own 38-row partial tier (39% uncovered), the item four straight PM check-ins (17:4x through 18:4x) had each reconfirmed live but explicitly deferred as "operator-cycle-sized, not a 30-minute slot."
+
+Dumped Kitchen's full gap+partial rows (1 gap, 38 partial) directly via `score_room()`, not the 8-row console preview. Most rows are the already-named noise classes (retailer/platform: amazon, ikea x4, pinterest x2, youtube, kmart, dollar tree; locale: tamil x2, india, indian, canada, australia; generic modifiers: steps, way, properly, without x3, only, efficiency, modern, rustic, compact, images, homes, apartments). Checked two more carefully against `content.json` before declining: "how to organise oven dishes" collides with the already-documented "dishes"/"baking dishes" sense ambiguity (A61); "how to organise/organize a kitchen larder" (x2) genuinely has no honest home, Kitchen owns no dry-goods zone (that is Pantry's, which already carries "larder cupboard"), and the room-signal routing to Kitchen is correct (the query names Kitchen), so forcing "larder" onto a Kitchen zone would misrepresent it the same way the "dinnerware" lesson warns against.
+
+**Found a real scorer bug, fixed it, then found the fix was net harmful and reverted it.** "How to organize baking supplies in kitchen" scored a tie between Pantry's own Baking Zone (a real match on both "baking" and "supplies") and Kitchen's Sink and Dishwashing Zone (a coincidental match: the trivial room-name word "kitchen" plus "supplies" picked up from an unrelated "cleaning supplies" also-called heading); the room-signal tie-break in `_tie_break()` kept the coincidental match because it only ever compared which page belongs to the signalled room, never which page matched more of the query's real words. Added a test (case 21) proving the defect, fixed `_tie_break()` to count non-room-name content-word hits before letting room signal decide, proved fail-then-pass, all dependent test suites green. Rescored both corpora: the target query fixed correctly, but diffing every changed `best_page` against the pre-fix state (37 changes in the US file alone) surfaced real regressions elsewhere: "drying rack for kitchen" moved to a Laundry Room zone page, "how to arrange a living room with two focal points" moved to a Mudroom zone page, "how to make a workshop" moved to an unrelated internal page, among others, all nonsensical. The substantive-word-count heuristic can be fooled by incidental overlap on an unrelated page in exactly the cases room preference exists to guard against; it is net harmful across the corpus even though it fixed the one row I was targeting. Reverted `ops/keyword_demand.py`, its test, and both rescored JSON files to HEAD before this change left the repository. This is the same "same-room tie-break" class `BACKLOG-2026-09-07.md` A74 already declined to generalize a fix for (its own second decline); this is a sibling cross-room shape, now also declined, with the reproduction kept in this entry rather than lost.
+
+Fixed the one thing that was safe to fix: added "dressing table" to `OFF_TOPIC_CONTEXT` in `ops/room_guide_candidates.py`. "How to organise dressing table drawers" carries no room signal and lands on Kitchen's declutter article by pure "organise"/"drawers" word overlap; a dressing table is bedroom furniture, already answered by Primary/Guest/Kids Bedroom's own dresser zones. Checked the full corpus first: the phrase appears in exactly this one row, so excluding it cannot suppress a genuine match.
+
+**Verified:** added two test cases (the excluded row, and a genuine "organize dresser drawers" row that must NOT be excluded by the same pattern), fail-then-pass proved directly (`git stash` the regex, watched the new case fail, restored, watched it pass). `test_room_guide_candidates.py` (30/30), `test_room_guide_underperformance.py` (19/19) both pass. `room_guide_underperformance.py --room "Kitchen"`: 39% to 38% uncovered (38 to 37 partial of 99 on-topic, down from 100). `check_urls.py` (235/235). `fix_dashes.py --check` on both changed files clean. `ops/run_preflight.sh --skip-tests` launched detached; checkpointed cleanly through every gate before `gate_tests` at HEAD `ae1ce9398` (no code changes of mine were in that HEAD; this was a pre-check), then re-launched after the fix landed.
+
+**Went well:** caught the scorer fix's blast radius before shipping it, by diffing every changed attribution against the pre-fix state rather than trusting the two bucket-count totals (which stayed unchanged and would have looked clean on their own).
+
+**Did not go well:** the scorer fix looked locally correct (fail-then-pass, all existing tests green) and was still wrong at the corpus scale; existing tests do not cover this failure mode.
+
+**Changing next cycle:** none; the cross-room tie-break limitation is now documented with a reproducible case (this entry) rather than needing re-discovery.
+
+**Next:** Kitchen's partial tier is down to 37 rows, all remaining ones confirmed noise or architecturally undecidable; the room-guide content-gap-mining lane is close to exhausted again. Otherwise unchanged: everything else sits with Phil (#42's cadence question, #45-48's accounts-layer gates).
+
+Regenerated the dashboard. Pushed to main. No price or product touched; one existing ranking-tool file edited (`room_guide_candidates.py`), no site page changed, `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-07, PM check-in (19:4x slot, 30-minute triage): previous work confirmed finished, nothing newly unblocked, no push due
 
 NEXT FOR THE OPERATOR: hold the standing exhausted state, because all 29 open GitHub issues are still decision/blocked-on-art with none newer than #42 at 2026-11-07T02:18:11Z, and BACKLOG-2026-09-07.md sections 2-6 remain Done or Phil-gated except C5 (Gemini billing, #47) and C6 (YouTube OAuth, #46).
@@ -15,8 +39,6 @@ Checked `ops/last-owner-notification.json`: last push 2026-11-07T18:55:00Z, expl
 No new defect found small enough to close this slot, and no genuinely unblocked, non-Phil-gated item exists to start. Not starting anything large myself, per standing PM practice.
 
 Committed the preflight checkpoint. Pushed to main. No content, price or product page touched, no new page, IndexNow not applicable.
-
-HANDOFF-FILES: none
 
 ## 2026-11-07, PM check-in (19:0x slot, 30-minute triage): previous work confirmed finished with a full (skip-tests) preflight run to completion rather than cited, nothing newly unblocked, no push due
 

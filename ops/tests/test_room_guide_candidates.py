@@ -193,6 +193,20 @@ _result_garden_tool = rgc.score_room([_garden_tool], [], _room)
 check("a genuine on-topic 'organize garden tools' row is NOT excluded by the garden-bed pattern",
       _result_garden_tool["on_topic_rows"] == 1)
 
+# Found 2026-11-07 (Kitchen pass): "how to organise dressing table drawers"
+# carries no room signal and lands on Kitchen's own declutter article by
+# pure "organise"/"drawers" word overlap; a dressing table is bedroom
+# furniture, already answered by Primary/Guest/Kids Bedroom's own dresser
+# zones, not Kitchen's to claim.
+_dressing = {"query": "how to organise dressing table drawers", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_dressing = rgc.score_room([_dressing], [], _room)
+check("a 'dressing table' off-topic-context row is excluded",
+      _result_dressing["on_topic_rows"] == 0)
+_drawers = {"query": "how to organize dresser drawers", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_drawers = rgc.score_room([_drawers], [], _room)
+check("a genuine on-topic 'organize dresser drawers' row is NOT excluded by the dressing-table pattern",
+      _result_drawers["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)
