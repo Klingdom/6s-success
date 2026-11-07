@@ -14,7 +14,39 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Changing next cycle:** none.
 
-**Next:** Entryway (21%), Stair Landing (22%, 2 rows), Kids Bedroom's remaining partials, Dining/Laundry Room (19%), Primary Bathroom (14%). Rest Phil-gated.
+**Next:** Entryway (21%), Stair Landing (22%, 2 rows), Kids Bedroom's remaining partials, Dining/Laundry Room (19%), Primary Bathroom (14%). Rest Phil-gated. **Concurrent-push note, merged in below this entry rather than restated:** a 15:4x PM check-in and a scheduled operator cycle landed on origin while this cycle was running; a corpus rotation re-surfaced Kitchen at 39-40% uncovered, above this entry's own Guest Bedroom work, so Kitchen (re-verified live, not cited) is the real next candidate, not the rooms named above.
+
+## 2026-11-07, PM check-in (15:4x slot, 30-minute triage): previous work confirmed finished and deployed; a third live orphaned Etsy-build/Chrome tree cleaned, this one caused by my own wrong invocation; handoff revised after a concurrent operator cycle landed
+
+NEXT FOR THE OPERATOR: continue mining Kitchen (39% uncovered, 38 partial rows left after this cycle's one fix), because a fresh `room_guide_underperformance.py` run just now ranks it highest of all rooms, well above the Guest Bedroom my own earlier draft of this line named; Garage (36%), Pantry (34%) and Hall Closet (33%) rank next and, per the prior entry's own note, their old "exhausted" findings predate this corpus rotation and need re-verifying live, not citing.
+
+Attached clean: fetch, unshallow, `checkout -B main origin/main`, ff-only onto `d5dadc12a`, tree clean throughout. **Previous work (the 15:1x check-in's Entryway fix and its own deploy-verdict confirmation at HEAD) confirmed finished, not cited:** `git log` shows the Entryway commit then a clean deploy-verdict commit on top; `git status --short` empty; main matches origin exactly.
+
+All 29 open GitHub issues re-pulled live, sorted by `updated_at`: unchanged, all `decision`-labelled, newest still #42 at 2026-11-07T02:18:11Z, nothing from Phil since 2026-11-02.
+
+Ran preflight myself to verify rather than trust the prior entry, and made the exact mistake LRN-0021/`ops/run_preflight.sh` exists to prevent: wrapped `python ops/preflight.py` directly in a foreground `timeout` instead of using the wrapper. 0 FAIL across every gate reached, through to the documented `gate_etsy_pdfs_current` stall, same as every recent cycle; the external SIGTERM killed the parent before its own self-heal sweep could run, leaving a live `build_etsy_assets.py`/Chromium tree. Found it via `ps`, cleaned it directly (`pkill -9 -f build_etsy_assets.py`, `pkill -9 -f` its tmp user-data-dir), confirmed clean after. Noting for future cycles: use `ops/run_preflight.sh`, not a raw foreground timeout, to avoid causing this same orphan again.
+
+**While pushing, a concurrent scheduled operator cycle landed on origin/main first** (the "Kitchen room-guide ranking re-surfaced by a corpus rotation" entry below), which is why my original Guest Bedroom handoff needed re-checking rather than just merging past it; see the revised NEXT line above. Merged rather than forced, regenerated every generated-file conflict (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`) from source instead of hand-resolving JSON, per STEP 8.
+
+No new defect found small enough to close this slot beyond the cleanup above. Not starting the next room-guide mine myself; operator-cycle-sized, not a 30-minute slot.
+
+Pushed to main. No content, price or product touched, no new page, IndexNow not applicable.
+
+## 2026-11-07, scheduled operator cycle: Kitchen room-guide ranking re-surfaced by a corpus rotation, one genuine FAQ-heading gap fixed
+
+**Did:** Attached per STEP 0 (unshallowed, 100 commits onto main, clean). Ran `preflight.py`, 0 FAIL. Re-derived `room_guide_underperformance.py` live rather than trust entry 149's "closed" reading: a corpus rotation in this pull's commits put Kitchen back on top at 40% uncovered. Read all 39 partial plus 1 gap row directly with `unmatched_words`, not the tool's 8-row sample. Found one genuine gap: "how to organise appliances in kitchen" scored partial because no heading said "appliances", though the FAQ answer already names them. Reworded the FAQ h3 and its FAQPage JSON-LD `name` in lockstep in `site/articles/how-to-declutter-a-kitchen.html` (hand-authored, no generator owns it). The other 38 rows are documented noise or honest out-of-scope gaps ("larder", "dressing table drawers").
+
+**Verified:** rescored both corpora, target query moved partial to covered, 0 other rows moved. `check_urls.py` 235/235, `audit_pages.py`/`fix_dashes.py`/`fix_dialect.py`/`affiliate.py --check` clean, `check_sellable.py` 124/126. Full `preflight.py` caught a real `gate_sitemap_lastmod_current` FAIL on the edited page; fixed with `ops/build_seo.py`, reran clean. Re-ledgered `ops/preflight.py` in the cold-read ledger after reading its one intervening commit (sound, already-tested SIGTERM-to-SIGKILL hardening). A concurrent cycle's own push (Entryway mining, below) landed on `origin/main` while this one was in progress; rebased onto it, re-resolved every generated-file conflict by regenerating from source rather than hand-merging JSON, and reconfirmed clean afterward. GitHub: 29 issues unchanged, none from Phil; issue #42 not re-raised. No mail credential here.
+
+**Went well:** catching the live gate failure before push rather than after.
+
+**Did not go well:** nothing material.
+
+**Changing next cycle:** none.
+
+**Next:** Garage, Pantry and Hall Closet's "exhausted" findings predate this same corpus rotation and should be re-verified live, not cited.
+
+HANDOFF-FILES: none
 
 ## 2026-11-07, PM check-in (15:1x slot, 30-minute triage): previous work confirmed finished; a real Entryway content gap found and closed; another live orphaned Etsy-build/Chrome tree cleaned
 
@@ -16683,4 +16715,3 @@ No new defect found small enough to close this slot, and no genuinely unblocked,
 **Handing to the operator (:43):** nothing new; hold the standing exhausted state, same as the last several cycles. The two items that would actually unblock new work (Gemini billing, YouTube OAuth) and the cadence decision (issue #42) all sit with Phil; everything buildable ahead of each gate is already built.
 
 Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
-
