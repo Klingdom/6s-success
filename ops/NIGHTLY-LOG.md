@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, PM check-in (12:4x slot, 30-minute triage): previous work confirmed finished independently, orphaned Etsy-gate processes cleaned up a second time, nothing newly unblocked
+
+NEXT FOR THE OPERATOR: mine the Entryway room guide for vocabulary gaps (24% uncovered, 17 partial rows, confirmed unchanged this cycle), because it is the highest-uncovered room nobody has read in full yet, genuinely unblocked, and non-Phil-gated; if issue #42 or any of the other 28 decision issues gets an owner reply, action that first instead.
+
+Attached per STEP 0: checkout arrived shallow and detached, `git fetch origin main`, real `git fetch --unshallow`, `checkout main`, ff-only merge onto `2919182a8` (the 12:1x PM check-in plus its own hourly check-in and deploy verdict on top), tree clean before this run.
+
+**Previous work (the 12:1x PM check-in) confirmed finished, re-derived rather than cited.** `ops/NIGHTLY-LOG.md` is newest-first, not newest-last; confirmed that from its own header line before reading anything, since the file's tail is two weeks of archive, not the real latest entry. Re-ran `room_guide_underperformance.py --room "Entryway"` fresh: still 24% uncovered, 17 partial rows, matching the 12:1x entry's own figure exactly, no drift. Re-pulled all 29 open GitHub issues live, sorted by `updated_at`: unchanged, all `decision`/`blocked-on-art`, the newest update (#42, 02:18 UTC today) predates this cycle and every cycle since, nothing from Phil. Working tree was clean and pushed on arrival.
+
+**Re-ran `preflight.py --skip-tests` myself rather than trust the prior cycle's run.** 0 FAIL across every gate reached (close to 100 gates, including the newer Etsy-listing and KDP gates), only the standing sandbox warnings (no Stripe/SSH/mail credential, site unreachable from here, cron cadence throttled by GitHub, a few `cron-cadence` "too few runs to measure" notes). Hit the documented network-bound `gate_etsy_pdfs_current` stall (Etsy fee page, HTTP 403 through the proxy) at the same point every recent cycle reports; let it run the full 170s before the hard timeout killed the parent, same practice as 12:1x.
+
+**Found the same orphan class the 12:1x cycle just cleaned, twice over in this cycle alone.** Killing the timed-out parent left a `build_etsy_assets.py` child and a full headless-Chromium tree rendering `6S-Whole-House-Print-Pack.pdf` still running. Killed both (`pkill -9 -f build_etsy_assets.py`, then by the render's own temp-profile dir name) and confirmed no `chrom`/`build_etsy_assets`/`preflight` process remained — except a second, independent Chromium render for a different file (`6S-Standards-Pack.pdf`, a different temp-profile dir) appeared within the same second, already orphaned (no live `build_etsy_assets.py` or `preflight.py` owned it, confirmed by the stale lock's dead pid). Killed that tree too; `ps aux` immediately after showed only defunct zombies awaiting reap, none live. The run's own lock directory held a dead pid throughout, left in place per the documented self-healing behaviour on the next run. This confirms the orphan is a real, recurring gap in how `build_etsy_assets.py` spawns Chromium per output file, not a one-off from the 12:1x cycle's own run; worth a real fix (killing the Chromium process group, not just the Python parent, on `preflight.py`'s own timeout path) rather than another cycle re-finding and re-killing it by hand.
+
+No new defect found small enough to close beyond the process cleanup above and confirming the pattern. Not starting anything large myself, per standing PM practice; the Entryway mine is operator-cycle-sized (hand-reading 17 rows against real `content.json`, the same shape as every prior A-series entry), not a 30-minute slot.
+
+Committed the `ops/cycle-signal.json` snapshot this run's own preflight pass wrote (the gate's standard clean-pass checkpoint, not a hand edit) along with this entry. Pushed to main. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-07, PM check-in (12:1x slot, 30-minute triage): previous work confirmed finished independently, orphaned Etsy-gate child processes cleaned up, nothing newly unblocked
 
 Attached per STEP 0: checkout arrived shallow and detached, `git fetch origin main`, real `git fetch --unshallow`, `checkout main`, ff-only merge onto `8cc9221d2` (the dashboard-trio merge and hourly check-in on top of the Home Office fix), tree clean before this run.
