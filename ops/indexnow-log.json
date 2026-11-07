@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-03T16:17:21Z",
-   "mode": "changed",
-   "offered": 2,
-   "accepted": 2,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-03T16:42:55Z",
    "mode": "changed",
    "offered": 2,
@@ -657,6 +650,13 @@
    "offered": 2,
    "accepted": 2,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-07T12:06:34Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -771,7 +771,7 @@
   "https://6s-success.com/zones/hall-closet-the-paper-and-household-backstock": "5164e680546f775b",
   "https://6s-success.com/zones/hall-closet-the-seasonal-and-guest-zone": "31d7810dcbfba098",
   "https://6s-success.com/zones/home-office-the-bookshelf-and-reference-zone": "e1023233c51816a5",
-  "https://6s-success.com/zones/home-office-the-desk-drawers-and-pedestal": "ab71e01fe60fc4d7",
+  "https://6s-success.com/zones/home-office-the-desk-drawers-and-pedestal": "37a57235500a37b4",
   "https://6s-success.com/zones/home-office-the-file-storage": "8dc256bce8977f87",
   "https://6s-success.com/zones/home-office-the-primary-desk": "6384a4ee4e6b1167",
   "https://6s-success.com/zones/home-office-the-printer-and-scanning-station": "1390f7012ecbebba",
