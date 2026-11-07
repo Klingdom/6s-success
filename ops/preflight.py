@@ -29762,8 +29762,25 @@ def gate_etsy_pdfs_current() -> None:
     # contain) at the top of every run, so a Chrome orphan from a run killed
     # before this one never accumulates past a single cycle.
     tmp_marker = os.path.join(ROOT, "build", "listings", "etsy", "_tmp")
+    # SIGKILL ("-9"), not pkill's own default SIGTERM. Reproduced live
+    # 2026-11-07: started build_etsy_assets.py, killed the orchestrating
+    # python process with SIGKILL the way an operator ends a stalled
+    # preflight.py run, and confirmed its Chrome tree (one browser process
+    # plus zygote/gpu-process/utility/renderer children, all sharing one
+    # pgid distinct from build_etsy_assets.py's own) kept running,
+    # unreachable from _reap_lock_children's registered-pgid cleanup for
+    # the same reason this function's own docstring already names: Chrome
+    # runs one session further down. A plain SIGTERM pkill happened to
+    # cascade a clean shutdown in that one trial, but this file's own
+    # doctrine everywhere else that kills a Chrome tree (_run_bounded,
+    # build_etsy_assets.py's own render()) uses SIGKILL specifically
+    # because a plain kill/SIGTERM is what crashpad and a wedged renderer
+    # can survive; this sweep was the one Chrome-cleanup path left on the
+    # weaker signal. The render this sweep tears down is always a stale,
+    # already-superseded one (restored by _restore_etsy_all right after),
+    # so an abrupt kill here has no correctness cost.
     try:
-        subprocess.run(["pkill", "-f", "--", tmp_marker],
+        subprocess.run(["pkill", "-9", "-f", "--", tmp_marker],
                        capture_output=True, timeout=10)
     except Exception:                                            # noqa: BLE001
         pass
@@ -29875,9 +29892,10 @@ def gate_etsy_pdfs_current() -> None:
         # is what actually reaches Chrome here: every render() call writes
         # its temp HTML under this one script's own _tmp directory, a path
         # nothing else in this repository's command line would ever
-        # contain.
+        # contain. SIGKILL, same reason as the identical sweep at the top
+        # of this function.
         try:
-            subprocess.run(["pkill", "-f", "--", tmp_marker],
+            subprocess.run(["pkill", "-9", "-f", "--", tmp_marker],
                            capture_output=True, timeout=10)
         except Exception:                                            # noqa: BLE001
             pass

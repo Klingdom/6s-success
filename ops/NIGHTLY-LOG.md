@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, scheduled operator cycle (~14:0x UTC): reproduced the recurring Etsy-gate Chrome-orphan live, hardened the self-heal sweep that several of today's PM check-ins had flagged but not fixed; keyword-mining lane re-verified exhausted (Kitchen, Garage, a declined Family Room attempt)
+
+**Did:** Attached per Step 0 onto `c0d4fdf34`. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, the last log entries. 29 open GitHub issues re-pulled live: unchanged, none from Phil since 2026-11-02; no mail credential. Ran `preflight.py --skip-tests`, killed it at the documented `gate_etsy_pdfs_current` network stall after confirming flat CPU. That kill reproduced, live, the orphaned-Chrome gap three PM check-ins today had named but not fixed: `_reap_lock_children`'s pgid reap only reaches `build_etsy_assets.py`'s own group, never Chrome's, one session further down. Confirmed (`ps -eo pid,ppid,pgid`): Chrome's whole tree shares one pgid, and the only sweep reaching it (`pkill -f`) sent default SIGTERM, unlike every other Chrome-kill here (SIGKILL, since crashpad/a wedged renderer survive a plain kill). Hardened both sweep sites to `-9`.
+
+**Verified:** Fail-then-pass proved directly (reverted, new static test failed naming both calls, restored, passed). Reproduced the orphan twice more live, confirmed no chrome-family process survived the sweep. `fix_dashes.py`, `check_urls.py` (235/235), the digital-collision check all clean. Separately tried and declined a Family Room "video game zone" synonym: the digital-collision gate caught a real PC-storage collision; recorded so it is not retried. Re-verified Kitchen's and Garage's partial tiers directly: genuinely exhausted, matching today's earlier entries.
+
+**Went well:** found a real, live, previously-unfixed defect by reproducing it myself rather than citing the PM check-ins that had already flagged it.
+
+**Did not go well:** no customer-facing change shipped this cycle.
+
+**Changing next cycle:** none; the gate itself is the fix, proven to fail and pass.
+
+**Next:** Entryway (24% uncovered) is the next un-mined room. Everything else sits with Phil; issue #42 unchanged.
+
 ## 2026-11-07, PM check-in (13:1x slot, 30-minute triage): previous work confirmed finished, a real stale citation found and fixed, orphaned Etsy-gate processes cleaned up again
 
 Previous work (the 12:4x PM check-in and the operator cycle mining Guest Bathroom/Living Room) confirmed finished independently: both entries re-derived rather than cited, nothing new unblocked. All 29 open GitHub issues re-pulled live, unchanged, all decision/blocked-on-art, none from Phil since 2026-11-02.
