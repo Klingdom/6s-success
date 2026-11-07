@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-03T13:16:04Z",
-   "mode": "changed",
-   "offered": 4,
-   "accepted": 4,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-03T14:05:35Z",
    "mode": "changed",
    "offered": 1,
@@ -657,6 +650,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-07T00:15:51Z",
+   "mode": "changed",
+   "offered": 2,
+   "accepted": 2,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -817,8 +817,8 @@
   "https://6s-success.com/zones/pantry-the-backstock-and-bulk": "41ceba1e7f974f86",
   "https://6s-success.com/zones/pantry-the-baking-zone": "3686985e5970532a",
   "https://6s-success.com/zones/pantry-the-canned-and-jarred-goods": "5a9df36c0fa48ca6",
-  "https://6s-success.com/zones/pantry-the-dry-goods-shelves": "a8c49c2ec8ca9c5c",
-  "https://6s-success.com/zones/pantry-the-snack-and-lunch-zone": "fca2c6772bf8461c",
+  "https://6s-success.com/zones/pantry-the-dry-goods-shelves": "f02d1bfcb0d02ad1",
+  "https://6s-success.com/zones/pantry-the-snack-and-lunch-zone": "0d717073716a5d63",
   "https://6s-success.com/zones/patio-or-deck-the-garden-and-plant-care-zone": "287d2156aa638fb9",
   "https://6s-success.com/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone": "45bfcaa82dd74d15",
   "https://6s-success.com/zones/patio-or-deck-the-outdoor-dining-zone": "ea09a81872e7b2ba",
