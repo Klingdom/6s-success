@@ -8,6 +8,28 @@ NEXT FOR THE OPERATOR: read Primary Bedroom's room-guide tier (33 partial + 1 ga
 
 Attached cleanly (unshallow, ff-only, 167 commits, tree clean). Ran a full `run_preflight.sh --skip-tests` myself: every gate passed, 0 FAIL, 34 warnings (sandbox credential gaps only). 29 GitHub issues re-pulled live: unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6: all Done, Hold or Phil-gated. `fix_dashes.py --check` 0/0. Owner-notification cooldown runs to 2026-11-09, nothing material changed, withheld. Fresh `room_guide_underperformance.py`: Kitchen/Garage/Pantry/Hall Closet already re-verified exhausted this week; Primary Bedroom is next by size, ahead of thinner, documented-noise Family Room/Mudroom. Dashboard regenerated. Pushed. No content/price touched.
 
+## 2026-11-07, scheduled operator cycle (~22:0x UTC): one real stale cold-read entry found and closed, declined the concurrent Primary Bedroom handoff rather than duplicate it
+
+**Did:** Attached per Step 0 (`git fetch origin main` reported a forced-update shallow clone, the standard quirk; `git fetch --unshallow`, `checkout main`, ff-only onto `6390ee24b`, 167 commits, tree clean throughout). Read `BACKLOG-2026-09-07.md` in full (sections 0 through 7, entries 148-158), `ROADMAP-2026-2029.md`'s theory-of-the-business section via `GOALS.md`, `CLAUDE.md`, and this log's own last several entries directly.
+
+**Verified, each myself:** `python ops/cold_read_ledger.py --stale` found one genuine gap this cycle's predecessors had not: `ops/room_guide_candidates.py`, ledgered 2026-11-06 but touched again 2026-11-07 (commit `019a783f8`, a dressing-table exclusion plus a reverted tie-break fix). Read the full 316-line file fresh rather than trust the commit message: the exclusion is well-evidenced against the real corpus, the revert is clean (code, test and rescored JSON all reverted together), and confirmed `GUIDE_LESS_ROOMS` is now genuinely empty (all 20 rooms guided), so the script's bare no-arg path is a dead no-op but not a live defect, since every current caller (`room_guide_underperformance.py`, every recent backlog entry) passes `--room` explicitly. Re-ledgered it clean. `--stale` now reports 0.
+
+Ran `python ops/preflight.py --skip-tests` via the documented `ops/run_preflight.sh` detached wrapper (not the foreground `timeout` anti-pattern its own docstring warns against, which I used by mistake on my first attempt this cycle and had to kill and redo correctly). It reached `gate_etsy_pdfs_current` with 0 FAIL across every prior gate, then genuinely stalled: confirmed via `/proc/<pid>/stat`, CPU jiffies identical across an 8-second elapsed gap (network starvation on a sandbox with no live egress to Etsy, not a silent hang), same pattern prior cycles document. Killed there, reported unchecked past that point, not assumed passing. `check_urls.py` 235/235. `check_sellable.py` 124/126 Stripe-matched (2 known service SKUs). `affiliate.py --check` clean, 165 documents. `inbox_agent.py --apply`: no mail credential, unchecked. All 29 open GitHub issues re-pulled fresh: unchanged, all `decision`/`blocked-on-art`, newest still #42, no comment from Phil since 2026-11-02. `git log --since=2026-11-01` filtered to non-agent authors: empty, confirming no Phil activity continues. `STATUS.md` Open claims: none.
+
+**Decision this cycle:** did not pick up the concurrent 21:4x cycle's Primary Bedroom room-guide-tier handoff (above), on push a rebase found landed at the same time this one's work was finishing. Two reasons, not one: first, `GOALS.md`'s own constraint reading (Stranger to Visitor, crawl coverage near its ceiling) and the dashboard's own commit count (1,486 commits in 7 days, $0 revenue movement) both still argue against another marginal synonym fix regardless of which room it targets; second, starting it now risks a third concurrent cycle picking the same tier before either of us finishes, the exact collision `STATUS.md` section 0 exists to prevent. The one genuinely new, non-Phil-gated item this cycle's own lane (cold-read) had was the stale ledger entry above, and it is now closed.
+
+**Went well:** caught my own foreground-timeout mistake before it cost real time, confirmed the network stall was real rather than assumed, and resolved a real rebase conflict against a concurrent push rather than force-pushing over it.
+
+**Did not go well:** nothing new unblocked beyond the one ledger entry; every lever ahead of Phil's gates is already built.
+
+**Changing next cycle:** none.
+
+**Next:** Primary Bedroom's handed-off room-guide tier (above) if no other cycle has claimed it by then; otherwise the same standing queue: YouTube OAuth (#46), Gemini billing (#47), Amazon KDP (#43), Etsy (#44), the accounts-layer decision (#45), and issue #42's cadence question.
+
+Regenerated the dashboard. Pushed to main. No content, price or product page touched; no new page, `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-07, PM check-in (21:0x slot, 30-minute triage): previous work confirmed finished independently, nothing newly unblocked, no push due
 
 NEXT FOR THE OPERATOR: hold the standing exhausted state; nothing new to pick up.

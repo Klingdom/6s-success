@@ -1113,8 +1113,8 @@
     },
     "room_guide_candidates.py": {
       "status": "clean",
-      "date": "2026-11-06",
-      "note": "Confirmed the ON_TOPIC regex fix (organi[sz]) directly against the committed diff a57996ed8; sound, matches NIGHTLY-LOG/BACKLOG A68 account."
+      "date": "2026-11-07",
+      "note": "Re-read fresh 2026-11-07 PM check-in after same-day edit (019a783f8, dressing-table exclusion + reverted scorer tie-break). File is correct: the Kitchen-pass exclusion is well-evidenced (checked against full corpus, genuine-match guard), the revert of the harmful tie-break fix is clean (code/test/JSON all reverted together). GUIDE_LESS_ROOMS is now empty (all 20 rooms guided) so this script's bare no-arg usage is a no-op; confirmed this is not a live defect since every current caller (room_guide_underperformance.py, and every recent backlog entry) passes --room explicitly or imports the regexes directly, never calls main() bare."
     },
     "room_guide_underperformance.py": {
       "status": "clean",
