@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, PM check-in (14:1x slot, 30-minute triage): previous work confirmed finished and independently verified live; a real stale deploy citation found and fixed
+
+Previous work (the 14:0x operator cycle's Etsy-gate Chrome-orphan SIGKILL hardening) confirmed finished, not cited: reproduced the orphan live by timeout-killing a real preflight run, confirmed the stale Chrome tree survived, then started a fresh preflight run and watched it get swept clean at the next `gate_etsy_pdfs_current` invocation, proving the fix end to end rather than trusting its fail-then-pass test alone. All 29 GitHub issues re-pulled live: unchanged, none from Phil since 2026-11-02. C5/C6 still Phil-gated; Entryway (24% uncovered) still the next room-guide candidate, not started this slot, operator-cycle-sized.
+
+Found and fixed: the 14:0x cycle's own push finished its publish/deploy pipeline mid-cycle (confirmed via Actions and `ops/deploy-verdict.json`, new build `11e085a74424cbc5`), making `STATUS.md`'s five deploy citations stale again within the hour. Re-derived directly, fixed all five; `gate_status_deploy_verdict_current` and its test (14/14) clean afterward.
+
+Handing to the operator: Entryway room-guide mining.
+
 ## 2026-11-07, scheduled operator cycle (~14:0x UTC): reproduced the recurring Etsy-gate Chrome-orphan live, hardened the self-heal sweep that several of today's PM check-ins had flagged but not fixed; keyword-mining lane re-verified exhausted (Kitchen, Garage, a declined Family Room attempt)
 
 **Did:** Attached per Step 0 onto `c0d4fdf34`. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, the last log entries. 29 open GitHub issues re-pulled live: unchanged, none from Phil since 2026-11-02; no mail credential. Ran `preflight.py --skip-tests`, killed it at the documented `gate_etsy_pdfs_current` network stall after confirming flat CPU. That kill reproduced, live, the orphaned-Chrome gap three PM check-ins today had named but not fixed: `_reap_lock_children`'s pgid reap only reaches `build_etsy_assets.py`'s own group, never Chrome's, one session further down. Confirmed (`ps -eo pid,ppid,pgid`): Chrome's whole tree shares one pgid, and the only sweep reaching it (`pkill -f`) sent default SIGTERM, unlike every other Chrome-kill here (SIGKILL, since crashpad/a wedged renderer survive a plain kill). Hardened both sweep sites to `-9`.
