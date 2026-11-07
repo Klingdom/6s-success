@@ -16,6 +16,10 @@ HANDOFF-FILES: none
 
 NEXT FOR THE OPERATOR: hold the standing exhausted state, because all 29 open GitHub decision/blocked-on-art issues are unchanged since the 10:1x PM check-in (none from Phil since 2026-11-02), and preflight re-verified 0 FAIL through every gate reached before the documented network-bound gate_etsy_pdfs_current stall.
 
+**CORRECTED 2026-11-07, scheduled operator cycle: this entry's own header was lost somewhere between writing and push, orphaning its body under the 11:1x entry above with no title of its own, and leaving the file with two consecutive `HANDOFF-FILES: none` markers.** Reconstructed from its own content and the matching commit message (`f68d7ca61`, "PM check-in (10:4x slot): reconfirm nothing newly unblocked, clean up orphaned preflight child processes"), not guessed.
+
+## 2026-11-07, PM check-in (10:4x slot, 30-minute triage): reconfirm nothing newly unblocked, clean up orphaned preflight child processes
+
 Attached per STEP 0: checkout arrived shallow and detached, `git fetch origin main`, real `git fetch --unshallow`, `checkout main`, ff-only merge onto `e447e29c8` (the 10:1x PM check-in plus the hourly check-in record on top of it), tree clean throughout.
 
 Previous work (the 10:1x PM check-in and the hourly check-in record under it) confirmed finished, re-derived rather than cited: all 29 open GitHub issues re-pulled live via the MCP tool, sorted by updated_at, unchanged, all decision/blocked-on-art; the only recent timestamp (#42, 2026-11-07T02:18:11Z) is this operator's own prior comment, nothing from Phil. `ops/last-owner-notification.json` shows the standing owner-decision-queue push went 2026-11-02T04:17Z with an explicit no-repeat-before note that has long passed; nothing material changed since (no Phil reply on any issue, no cleared decision, no new credential, no real customer event), so no repeat push sent. `ops/last-brief-sent.json` already ran at 09:49 today via the separate hourly channel.
@@ -27,6 +31,22 @@ No new defect found small enough to close this slot beyond the orphaned-process 
 Pushed to main.
 
 HANDOFF-FILES: none
+
+## 2026-11-07, scheduled operator cycle: closed the remaining share of the organis spelling fallout
+
+**Did:** Attached per Step 0 (fetch, real unshallow, checkout main, ff-only onto origin/main, 66 commits fast forwarded, tree clean). Read CLAUDE.md, BACKLOG-2026-09-07.md, STATUS.md, the last entries of this log. Ran preflight.py --skip-tests to completion: 0 FAIL, 33 warnings, all standing sandbox limits. Checked GitHub issue #42 (the cadence question): 9 comments, all self authored by prior cycles, none from Phil since 2026-11-02; 29 open issues unchanged. Entries 148 to 151, all dated the same day as this cycle, had already read Pantry, Kitchen, Garage and Hall Closet's partial tiers in full against the 2026-11-06 organis spelling regex fix. Read the piece they left unchecked: all 111 live gap/partial rows containing organis across both keyword corpora, including the 88 with no room tag at all, which no per-room read could have covered. Checked each against real content.json and rendered pages rather than the ranking tool's own short sample.
+
+**Verified:** Every one of the 111 rows is retailer/platform/locale noise (kmart, ikea, pinterest, reddit, dropbox, australia, tamil, india), a genuinely off topic activity on the bare word organise (bake sale, charity walk, seating plan, step challenge, dropbox files), or one generic filler word short of a page that already covers the rest of the query (oven, appliances, chef, large, way). Car boot and kids playroom were checked by name against real zone content and confirmed the same honest no-zone-to-route-to gap entry 150 already named for Garage; not duplicated. No zone-also-called or room-also-called entry added. cold_read_ledger.py --next: 308 of 308, nothing left. inbox_agent.py --apply: no mail credential, unchecked.
+
+**Separately, found and fixed a real defect in this file itself:** the 10:4x PM check-in entry above this one had lost its own "## " header at some point between writing and push, orphaning its body under the 11:1x entry with no title and leaving two consecutive HANDOFF-FILES: none markers. Reconstructed the missing header from the entry's own content and its matching commit message (f68d7ca61), not guessed. A quick scan for the same shape elsewhere in this 16000-plus-line file found 7 more candidates; checked each by hand rather than bulk-edit blind, and all 7 are legitimate different entry formats (a "---" separator, or an older prose-only style with no markdown header), not the same bug. Not rewriting further; this file's own size already has a rotation gate, not a structural-integrity one, and adding one is out of proportion with what this cycle found (one real instance).
+
+**Went well:** A genuinely unchecked slice of a known-open question got a real, full read instead of another sampled re-estimate, and a real structural defect in the team's own operating log was found and fixed rather than left to confuse whoever reads this file next.
+
+**Did not go well:** No customer-facing outcome shipped this cycle. The room-guide mining lane across the six most-read rooms is confirmed exhausted again; the next real gain needs a fresh keyword harvest, new content, or one of the eleven rooms never yet read in full, not another pass over today's rows.
+
+**Changing next cycle:** Nothing new to gate for the organis question; no defect was found there, only a question answered. For the log-header defect: no gate added, since one real instance out of 16000-plus lines does not clear the bar for a new structural check, but worth a human skim if it recurs a second time.
+
+**Next:** Mine one of the eleven never-fully-read rooms, highest uncovered percentage first (currently Home Office at 31 percent, already partly declined in A66 but grown since). If GitHub issue #42 ever gets an owner reply, action it ahead of everything else.
 
 HANDOFF-FILES: none
 
