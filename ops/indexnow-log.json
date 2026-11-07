@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-03T14:05:35Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-03T15:34:07Z",
    "mode": "changed",
    "offered": 5,
@@ -657,6 +650,13 @@
    "offered": 2,
    "accepted": 2,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-07T01:11:51Z",
+   "mode": "changed",
+   "offered": 2,
+   "accepted": 2,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -795,7 +795,7 @@
   "https://6s-success.com/zones/laundry-room-the-hanging-and-air-dry-zone": "0b1c06832d5bc39c",
   "https://6s-success.com/zones/laundry-room-the-sorting-and-hamper-zone": "f845cbaa8a5e89b3",
   "https://6s-success.com/zones/laundry-room-the-utility-and-cleaning-zone": "7b407e317e970fa8",
-  "https://6s-success.com/zones/laundry-room-the-washer-and-dryer": "240617e114769a7c",
+  "https://6s-success.com/zones/laundry-room-the-washer-and-dryer": "5bec246fe3d102ff",
   "https://6s-success.com/zones/living-room-the-bookshelves-and-display": "51650fae1c5235ce",
   "https://6s-success.com/zones/living-room-the-coffee-table": "3ff85dd0355de27b",
   "https://6s-success.com/zones/living-room-the-floor-and-circulation-path": "74dbca1e592c7b76",
@@ -811,7 +811,7 @@
   "https://6s-success.com/zones/nursery-the-baby-clothing-zone": "0329ea2eb5759301",
   "https://6s-success.com/zones/nursery-the-books-and-quiet-play-zone": "012b8f8b690bad61",
   "https://6s-success.com/zones/nursery-the-changing-station": "5a6af6d2ffe58c9b",
-  "https://6s-success.com/zones/nursery-the-crib-and-sleep-zone": "e094aaedcdd32de2",
+  "https://6s-success.com/zones/nursery-the-crib-and-sleep-zone": "5b286834af276d4a",
   "https://6s-success.com/zones/nursery-the-diaper-and-care-backstock": "720c6fa8eebc2ee9",
   "https://6s-success.com/zones/nursery-the-feeding-station": "2051dc79f2e644e7",
   "https://6s-success.com/zones/pantry-the-backstock-and-bulk": "41ceba1e7f974f86",
