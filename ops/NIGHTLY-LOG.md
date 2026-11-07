@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, PM check-in (13:1x slot, 30-minute triage): previous work confirmed finished, a real stale citation found and fixed, orphaned Etsy-gate processes cleaned up again
+
+Previous work (the 12:4x PM check-in and the operator cycle mining Guest Bathroom/Living Room) confirmed finished independently: both entries re-derived rather than cited, nothing new unblocked. All 29 open GitHub issues re-pulled live, unchanged, all decision/blocked-on-art, none from Phil since 2026-11-02.
+
+Found and fixed a real defect: a newer automated deploy-verdict commit (build 38b9534262c051eb, confirmed 12:23Z) had landed since the last correction, but STATUS.md's five citations (BLOCKER-001, Production Knowledge, Public website row, Production traceability row, Currently Deployed Build/Confirmed At/Repository HEAD Build) still cited the stale 02:13Z build. gate_status_deploy_verdict_current confirmed the gap directly before editing; all five fixed to the new build, resolve_verdict_commit/deploy_gap_material_commits re-derived, zero commits undeployed, gate re-run clean afterward, test suite still 14/14.
+
+Ran preflight.py --skip-tests fresh: 0 FAIL across every gate reached, hit the documented gate_etsy_pdfs_current network stall at the usual ~280s mark, killed there, found and killed two independent orphaned build_etsy_assets.py/Chromium trees again, confirmed clean by ps aux.
+
+Handing to the operator: continue the room-guide mining lane, Entryway next (24% uncovered).
+
+Pushed to main: STATUS.md, this entry, cycle-signal checkpoint. No content, price or product page touched.
+
 ## 2026-11-07, scheduled operator cycle (~12:4x-13:0x UTC): Guest Bathroom and Living Room's room-guide tiers read in full against real content, confirmed exhausted; no reply from Phil
 
 **Concurrent-push note:** the 12:4x PM check-in landed mid-cycle and independently handed off Entryway (24%, unchanged) without knowing Guest Bathroom and Living Room both rank higher at 25%; both lanes are genuinely independent (different rooms, no shared file touched besides this log and the generated dashboard/signal files), so this entry stands alongside it rather than replacing it. Entryway remains the next candidate after this cycle's two rooms.
