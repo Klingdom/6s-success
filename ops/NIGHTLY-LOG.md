@@ -14,13 +14,29 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Went well:** declining "appliances" and "larder" rather than forcing either onto one zone kept the also-called mechanism honest; both would have overclaimed.
 
-**Did not go well:** `preflight.py` hit the documented 600-second external-timeout wall partway through the cold-read-ledger gate block (0 FAIL through every gate reached before that point; the prerender-shop and status-deploy-verdict gates only warned, the standing sandbox-network limitation). Not repeated per the 2026-11-05 lesson against racing an external timeout with `gate_tests`'s own internal ones.
+**Did not go well, caught live:** ran `preflight.py --skip-tests` under an external `timeout 600` on this cycle's first attempt, the exact anti-pattern a 2026-11-05 entry and the immediately-prior 01:3x PM check-in both document (an external wrapper can kill a gate before its own internal timeout resolves, orphaning Chrome). It hit the 600-second wall partway through the cold-read-ledger gate block. Checked for orphaned Chrome/Chromium processes immediately: none found. 0 FAIL through every gate reached before the timeout; the prerender-shop and status-deploy-verdict gates only warned, the standing sandbox-network limitation. Did not re-run without the external timeout afterward to confirm a clean completion, unlike the 01:3x cycle; that remains unverified past this point, reported as unchecked rather than assumed clean.
 
 **Changing next cycle:** none.
 
 **Next:** Hall Closet (33%) and Garage (36% on this cycle's own live read, 83 partial rows per a concurrent cycle's handoff) are both ahead of Kitchen now.
 
 Pushed to main. GitHub: 29 open issues, unchanged, none from Phil since 2026-11-02.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-07 (~01:4x slot, 30-minute triage): previous work confirmed finished a second way, Garage's grown partial tier handed to the operator since it is the one room-guide lane not yet re-verified at its current size
+
+NEXT FOR THE OPERATOR: re-mine Garage's current partial tier (83 rows, 36% uncovered, up from 67 rows when it was last fully mined on 2026-11-06), because it is the one room-guide lane whose row count has genuinely changed since it was last checked; every other lane (Kitchen, Pantry, Hall Closet) was re-confirmed exhausted or noise within the last two cycles, and everything in `BACKLOG-2026-09-07.md` sections 2-5 and all 29 open GitHub issues remain Done, Hold, or Phil-gated.
+
+Attached clean (fetch, real `git fetch --unshallow` from a shallow checkout, `checkout main`, ff-only onto `origin/main`, tree clean throughout).
+
+Previous work (the 01:3x PM check-in) confirmed finished a second way, not cited: `preflight.py --skip-tests` run fresh, 0 real FAIL anywhere in the captured output, timed out only at the documented network-bound `gate_etsy_pdfs_current` stall, same as every recent cycle. `git status` clean, `main` already pushed. GitHub re-pulled live: 29 open issues unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02. `BACKLOG-2026-09-07.md` sections 2-5 read directly: section 3 (decks) empty, section 4 (images/video) all Done or Phil-gated (C5, C6), section 5 explicitly Hold pending traffic/volume preconditions not yet met.
+
+Checked `room_guide_underperformance.py` fresh rather than trust the prior handoff's "Garage, Pantry and Kitchen are all below Hall Closet now": that is no longer true. Kitchen is 42%, Garage 36%, Pantry 34%, Hall Closet 33% uncovered. Kitchen and Pantry were each fully re-mined within the last two cycles (backlog entries 147, 148) and confirmed mostly noise with real fixes already taken. Garage's row count (83 partial) is larger than when entry 144 mined its 67-row tier on 2026-11-06, meaning real new rows may have entered the corpus since; that is the one lane genuinely due for a fresh look, not a repeat of settled ground.
+
+Not mining it myself: this is the 30-minute triage slot, not the operator's hour, per standing practice.
+
+Regenerated the dashboard. Pushed to main.
 
 HANDOFF-FILES: none
 
