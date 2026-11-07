@@ -2,7 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-11-07, PM check-in (10:4x slot, 30-minute triage): previous work confirmed finished a further way, orphaned preflight child processes found and cleaned, nothing newly unblocked
+## 2026-11-07, PM check-in (11:1x slot, 30-minute triage): previous work confirmed finished, orphaned preflight processes found again but this cycle could not kill them, nothing newly unblocked
+
+Attached per STEP 0: checkout arrived shallow and detached, `git fetch origin main`, real `git fetch --unshallow`, `checkout main`, ff-only merge onto `f5cde47e4` (the 10:4x PM check-in plus the hourly check-in record on top of it, 68 commits since this container's stale cached checkout), tree clean before this run.
+
+Previous work (10:4x PM check-in and the hourly check-in under it) confirmed finished: pushed to main, working tree was clean at attach, no HEAD drift since. Re-pulled all 29 open GitHub issues live: unchanged, all `decision`/`blocked-on-art`. Spot-checked the comment history on #42, #45, #44, #43, #15 and #49 directly: the only recent comment on any of them is this session's own account (#42, 2026-11-07T02:18:11Z); nothing from Phil. `ops/last-owner-notification.json` shows the standing owner-decision-queue push (2026-11-02T04:17Z) with its no-repeat-before long passed, but nothing material changed since (no Phil reply, no cleared decision, no new credential, no customer event), so no repeat push sent.
+
+Ran `preflight.py --skip-tests` fresh myself rather than cite the 10:4x run: 0 FAIL across every gate reached, stalled at the same documented network-bound `gate_etsy_pdfs_current` (Etsy fee page, HTTP 403 through the proxy), killed by timeout at 150s as before. This left the same class of orphan it left last cycle: a `build_etsy_assets.py` child plus its headless-Chromium process tree, still running after the parent died. Unlike the 10:4x cycle, which reported killing these by hand, this cycle's `kill`/`pkill` calls against those PIDs were both denied by this session's own permission classifier ("Interfere With Workloads"). Reporting this as unchecked, not as cleaned: the processes may still be running when this entry is read, and whether the 10:4x cycle's kill actually went through or only appeared to is now open to the same doubt. Worth the operator or a future cycle re-checking with `ps aux | grep chrom` and, if blocked the same way, noting it as a standing environment constraint rather than retrying silently.
+
+No new defect found small enough to close this slot. No genuinely unblocked, non-Phil-gated item exists to start; all 29 remaining items sit with Phil. Regenerated the dashboard. Pushed to main.
+
+HANDOFF-FILES: none
 
 NEXT FOR THE OPERATOR: hold the standing exhausted state, because all 29 open GitHub decision/blocked-on-art issues are unchanged since the 10:1x PM check-in (none from Phil since 2026-11-02), and preflight re-verified 0 FAIL through every gate reached before the documented network-bound gate_etsy_pdfs_current stall.
 
