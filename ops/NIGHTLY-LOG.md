@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, scheduled operator cycle (~07:4x-08:0x UTC): full re-verification, state confirmed unchanged since the last snapshot, no push sent
+
+Did: Attached cleanly (fetch, confirmed real shallow then real unshallow, `checkout -B main origin/main`, ff-only onto `90c3c5013`, 46 commits fast-forwarded, tree clean). Read BACKLOG-2026-09-07.md section 0, STATUS.md sections 0-6, OWNER-ACTIONS.md head, and the last several NIGHTLY-LOG entries. Ran `ops/cycle_signal.py` first rather than re-deriving everything blind: it reported every signal file byte-identical to the 07:13:10Z snapshot, so a full local re-verification would be redundant; checked GitHub and the inbox directly anyway, as it itself says to. Ran `python ops/preflight.py` (full), then killed it and reran with `--skip-tests` once it became clear the full run would spend this cycle's whole budget on the documented ~90-minute `gate_tests` pass; `--skip-tests` reached 0 FAIL through every gate up to the documented network-bound `gate_etsy_pdfs_current` stall (both FAIL blocks printed `(none)`), unchecked past that point, not assumed passing. Ran all backlog/owner-actions/status rotation scripts in `--check` mode (section 1b/2/3/4, closed, done-items, status-metadata): all CLEAN, nothing due, confirming the two standing file-size tripwire warnings (`BACKLOG-2026-09-07.md` 196706/150000B, `OWNER-ACTIONS.md` 115514/110000B) are un-rotatable live content, not a missed rotation. `cold_read_ledger.py --stale`/`--next`: 0 stale, 308 of 308 files ledgered, 0 un-ledgered candidates. Re-pulled all open GitHub issues live via the API (not cited): 28 open, all `decision`/`blocked-on-art`, 9 `P0`; read issue #42's full comment thread directly, still only this repository's own status-update comments, nothing from Phil since 2026-11-02. Checked recent Actions runs live: `drafts`/`brief`/`deliver` all green on current HEAD, the one `in_progress` `Checks` run (72f6fb2d5f, started 07:24Z) was only 23 minutes old when checked, not stalled. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed empty.
+
+Verified: nothing moved since the 07:13Z snapshot. No new defect, no new unblocked backlog or room-guide/keyword-harvest item, no reply from Phil on any of the 28 open issues.
+
+Went well: `cycle_signal.py`'s SAME verdict was itself independently cross-checked (GitHub, CI, inbox) rather than taken as license to skip everything, consistent with CLAUDE.md 5d.
+
+Did not go well: started the full (non-`--skip-tests`) `preflight.py` first out of habit, lost ~5 minutes before switching to `--skip-tests`, the same avoidable cost CLAUDE.md step 6 already warns about.
+
+Changing next cycle: start `preflight.py --skip-tests` directly when `cycle_signal.py` already reads SAME; reserve a full `gate_tests` run for when something has actually changed.
+
+Next: every structured lane (backlog sections 2-6, cold-read ledger, room-guide mining, global keyword harvest) remains genuinely exhausted by repeated direct evidence; all forward motion is gated on the 28 open `decision`/`blocked-on-art` issues, none of which Phil has replied to. No push notification sent: nothing material changed since the last one.
+
+Regenerated the dashboard. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## 2026-11-07, PM check-in (07:4x slot, 30-minute triage): previous work reconfirmed finished, nothing newly unblocked, no push sent
 
 NEXT FOR THE OPERATOR: nothing newly unblocked, because the 29 open GitHub decision/blocked-on-art issues are unchanged and issue #42 still has no reply from Phil since 2026-11-02; continue standing re-verification rather than start new mining or content work.
