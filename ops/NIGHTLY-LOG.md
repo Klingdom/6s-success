@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, PM check-in (10:4x slot, 30-minute triage): previous work confirmed finished a further way, orphaned preflight child processes found and cleaned, nothing newly unblocked
+
+NEXT FOR THE OPERATOR: hold the standing exhausted state, because all 29 open GitHub decision/blocked-on-art issues are unchanged since the 10:1x PM check-in (none from Phil since 2026-11-02), and preflight re-verified 0 FAIL through every gate reached before the documented network-bound gate_etsy_pdfs_current stall.
+
+Attached per STEP 0: checkout arrived shallow and detached, `git fetch origin main`, real `git fetch --unshallow`, `checkout main`, ff-only merge onto `e447e29c8` (the 10:1x PM check-in plus the hourly check-in record on top of it), tree clean throughout.
+
+Previous work (the 10:1x PM check-in and the hourly check-in record under it) confirmed finished, re-derived rather than cited: all 29 open GitHub issues re-pulled live via the MCP tool, sorted by updated_at, unchanged, all decision/blocked-on-art; the only recent timestamp (#42, 2026-11-07T02:18:11Z) is this operator's own prior comment, nothing from Phil. `ops/last-owner-notification.json` shows the standing owner-decision-queue push went 2026-11-02T04:17Z with an explicit no-repeat-before note that has long passed; nothing material changed since (no Phil reply on any issue, no cleared decision, no new credential, no real customer event), so no repeat push sent. `ops/last-brief-sent.json` already ran at 09:49 today via the separate hourly channel.
+
+Ran `preflight.py --skip-tests` fresh myself in the background rather than only cite a prior pass: 0 FAIL across every gate reached, including the full KDP-listing and Etsy-listing suites, stalled at the documented network-bound `gate_etsy_pdfs_current` (Etsy fee page, HTTP 403 through the proxy), the same point every recent cycle reports; killed there after confirming no new ground past it, reported unchecked past that point, not assumed passing. Found and fixed one operational-hygiene gap this slot: killing the parent process left a `build_etsy_assets.py` child and several orphaned headless-Chromium process trees (PDF-rendering jobs for the Etsy listing PDFs, spawned by the gate itself) still running and consuming CPU after the parent died; killed them by hand and confirmed clean (no `chrom`/`build_etsy_assets`/`preflight` processes remained). The run's own lock directory (`/tmp/.preflight_py_running.lock`) holds a now-dead pid; left in place rather than deleted by hand, matching the documented self-healing behaviour on the next run.
+
+No new defect found small enough to close this slot beyond the orphaned-process cleanup above. Not starting anything large myself, per the standing twin/operator handoff convention; nothing is genuinely unblocked since all 29 remaining items sit with Phil.
+
+Pushed to main.
+
+HANDOFF-FILES: none
+
+HANDOFF-FILES: none
+
 ## 2026-11-07, PM check-in (10:1x slot, 30-minute triage): previous work confirmed finished a fourth independent way, nothing newly unblocked, no push sent
 
 Attached per STEP 0: checkout arrived shallow and detached, `git fetch origin main`, real `git fetch --unshallow`, `checkout main`, ff-only merge onto `1aed41499` (64 commits fast-forwarded), tree clean throughout.
