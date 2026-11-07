@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, scheduled operator cycle (~12:4x-13:0x UTC): Guest Bathroom and Living Room's room-guide tiers read in full against real content, confirmed exhausted; no reply from Phil
+
+**Did:** Attached per Step 0 (checkout arrived shallow and detached, `git fetch origin main`, real `git fetch --unshallow`, `checkout main`, ff-only merge onto `2919182a8`, 80 commits fast-forwarded, tree clean). Read CLAUDE.md, BACKLOG-2026-09-07.md sections 0-7 and entries 148-153, the last four NIGHTLY-LOG entries. Re-pulled all 29 open GitHub issues live, sorted by `updated_at`: unchanged, all `decision`/`blocked-on-art`, nothing from Phil since 2026-11-02. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed empty.
+
+Ran `room_guide_underperformance.py` fresh with no room filter to find the real current ranking rather than trust the 12:1x check-in's citation: Guest Bathroom and Living Room both rank at 25%, above the Entryway (24%) that check-in named, so both were mined first, per its own "or any above it" instruction. Dumped each room's full partial list directly via `score_room()`, not the CLI's 8-row sample, and pulled every row's `unmatched_words` field rather than guess. Full reasoning in `BACKLOG-2026-09-07.md` entry 154.
+
+**Found:** nothing fixable. Guest Bathroom's 26 partial rows are generic organizing verbs/modifiers, furniture-shopping queries, locale noise, and two genuine content gaps (`makeup`, `dividers`) checked directly against `content.json` and confirmed absent from the real zone text, not just missing from a heading. Living Room's 13 partial rows are the same generic-modifier/platform/brand-name classes plus one genuine content gap (`entertainment` center cords, absent from the Media Center zone, routed to a deck page with no also-called mechanism). Kids Bedroom's lone gap row and six of its highest-signal partial rows were also spot-checked: all off-topic or already fixed by a 2026-11-06 room-also-called entry, the remainder being the documented deck/room-page heading-mechanism limitation.
+
+**Verified:** `preflight.py --skip-tests` run fully backgrounded, reached 0 FAIL across both printed FAIL blocks before the documented ~300s `gate_etsy_pdfs_current` network stall (Etsy fee page, HTTP 403 through the proxy); killed there after confirming elapsed time had passed the documented mark, found and killed the same class of orphan every recent cycle reports (`build_etsy_assets.py` plus an 11-process headless-Chromium tree), confirmed clean by `ps aux`. `cold_read_ledger.py --stale`/`--next`: 0 stale, 308 of 308 ledgered, 0 un-ledgered candidates. No content, price or product page touched, so no rescoring, gate, or IndexNow submission applies this cycle.
+
+**Went well:** found two genuine content gaps (Guest Bathroom's makeup storage, its linen-zone dividers; Living Room's entertainment-center cords) and checked both directly against real content before declining them, rather than assuming absence from a heading meant absence from the page.
+
+**Did not go well:** no customer-facing fix shipped; the room-guide mining lane continues to show diminishing returns as more rooms get fully read.
+
+**Changing next cycle:** none; no new defect class, only further exhaustion confirmed by direct evidence.
+
+**Next:** Entryway (24%), Guest Bedroom (23%), Stair Landing (22%, tiny tier), Kids Bedroom's remaining partial rows, Dining Room (19%), Laundry Room (19%), Primary Bathroom (14%) are what is left unread. All other forward motion is gated on the 29 open decision/blocked-on-art issues, none answered since 2026-11-02; the standing push notification from that date still describes the live state honestly, so none was re-sent this cycle.
+
+Regenerated the dashboard. Pushed to main. No price, product, or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-07, PM check-in (12:1x slot, 30-minute triage): previous work confirmed finished independently, orphaned Etsy-gate child processes cleaned up, nothing newly unblocked
 
 Attached per STEP 0: checkout arrived shallow and detached, `git fetch origin main`, real `git fetch --unshallow`, `checkout main`, ff-only merge onto `8cc9221d2` (the dashboard-trio merge and hourly check-in on top of the Home Office fix), tree clean before this run.
