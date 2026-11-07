@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-07 (~00:1x slot): previous work confirmed finished, one real oversized-table warning closed with the tool already built for it, Hall Closet handoff reconfirmed, nothing new unblocked
+
+Attached clean (fetch, real unshallow, `checkout main`, ff-only onto `origin/main`, tree clean throughout; a concurrent hourly cycle pushed mid-slot, re-fetched and ff-merged cleanly, no conflict, disjoint files).
+
+Previous work (the operator's Pantry mining, the 23:4x PM check-in before it) confirmed finished, not cited: GitHub re-pulled live, 29 open issues unchanged since 2026-11-02, all `decision`/`blocked-on-art`, none from Phil. `preflight.py --skip-tests` run fresh: 0 FAIL through every gate reached; the run genuinely waited on a stale lock from a dead pid before proceeding, handled correctly rather than hand-deleted.
+
+Previous work was finished, so I started the next small thing rather than mine Hall Closet myself: `gate_status_production_table_rows_not_oversized` warned both Production Status rows (Public website, Production traceability) had grown to 5 entries each. The tool for exactly this already existed (`ops/rotate_status_history.py --apply-table-rows`), never run on these two rows before. Ran it: 8 entries (3409 bytes) moved to `STATUS-ARCHIVE.md`, one live entry kept in each row. Verified, not assumed: `--check-table-rows` now reads CLEAN; the gate function called directly against the real file returns zero warnings; `test_gate_status_production_table_rows_not_oversized.py` and `test_rotate_status_history.py` both pass. Re-ran after the concurrent merge to confirm the rotation still held against the newer file (it did; the hourly cycle touched unrelated files). `fix_dashes.py --check` 0/0, `check_urls.py` 235/235.
+
+Not mining Hall Closet (34% uncovered, 58 partial of 173 on-topic) myself: same call every recent PM slot has made, real row-by-row work is the operator's hour at :43, not this 30-minute window.
+
+Pushed to main. `STATUS.md`, `STATUS-ARCHIVE.md`, this log, command deck.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-07 (~00:0x UTC): mined Pantry's full 30-row partial tier, one real fix shipped, one real misattribution named but left honestly unresolved by a same-room scoring tie
 
 **Did:** Attached per Step 0 (fetch origin main, real `git fetch --unshallow` from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `origin/main` at `9cdf9d880`, 1473 commits fast-forwarded, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `STATUS.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four real `ops/NIGHTLY-LOG.md` entries (confirmed newest-first by `grep -n "^## "` against the top of the file, not a raw `tail`, which lands on stale 2026-10-23 content). `preflight.py --skip-tests` run fresh before touching anything: 0 FAIL through every gate reached, timed out at the documented network-bound `gate_etsy_pdfs_current` stall, same as every recent cycle. GitHub re-pulled live via `list_issues`: 29 open issues, all `decision`/`blocked-on-art`, timestamps unchanged since 2026-11-02, none from Phil; 0 open PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed empty.
