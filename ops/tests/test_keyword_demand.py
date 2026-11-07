@@ -853,6 +853,67 @@ def main():
                      "honest score: %r -> %r"
                      % (before5["score"], r5b["coverage"]))
 
+    # 28. Found live 2026-11-07, PM check-in: household_room_signal() used a
+    #     plain substring check, so Family Room's 3-letter synonym "den"
+    #     matched inside any word merely containing that letter run, no word
+    #     boundary required. "nightstands with hidden storage" (a Primary
+    #     Bedroom query) carried "hidden", which contains "den", and so
+    #     wrongly signalled Family Room; counted live, 74 corpus rows shared
+    #     this exact shape ("garden", "gardening", "wooden", "dental", etc),
+    #     none of them actually about Family Room. A real word boundary must
+    #     refuse the bare letter run while still matching a real synonym,
+    #     including one inside a longer phrase or carrying a plural "s".
+    rooms28 = ["Family Room", "Mudroom", "Primary Bedroom"]
+    synonyms28 = {"Family Room": ["den"], "Mudroom": ["locker"],
+                  "Primary Bedroom": ["master bedroom"]}
+    sig28a = kd.household_room_signal(
+        "nightstands with hidden storage", rooms28, synonyms28)
+    if sig28a != "":
+        fails.append("'den' inside 'hidden' still signals a room: %r"
+                     % sig28a)
+    sig28b = kd.household_room_signal(
+        "best garden tool organizer", rooms28, synonyms28)
+    if sig28b != "":
+        fails.append("'den' inside 'garden' still signals a room: %r"
+                     % sig28b)
+    sig28c = kd.household_room_signal(
+        "how to organize a den", rooms28, synonyms28)
+    if sig28c != "Family Room":
+        fails.append("a real 'den' query no longer signals Family Room: %r"
+                     % sig28c)
+    sig28d = kd.household_room_signal(
+        "master bedroom closet organization ideas", rooms28, synonyms28)
+    if sig28d != "Primary Bedroom":
+        fails.append("a multi-word synonym inside a longer phrase broke: %r"
+                     % sig28d)
+    sig28e = kd.household_room_signal(
+        "how to organize mudroom lockers", rooms28, synonyms28)
+    if sig28e != "Mudroom":
+        fails.append("a plural of a real synonym no longer matches: %r"
+                     % sig28e)
+    # A first version of this fix required a bare \bname\b with no plural
+    # tolerance and broke three real matches a full-corpus diff caught
+    # before shipping: a single-word synonym's plain "s" plural, standalone
+    # (not backed by an exact room-name match the way "mudroom lockers"
+    # above is), and a multi-word synonym's plural.
+    rooms28b = ["Patio or Deck", "Pantry", "Primary Bedroom"]
+    synonyms28b = {"Patio or Deck": ["backyard"], "Pantry": ["larder"],
+                   "Primary Bedroom": ["master bedroom"]}
+    sig28f = kd.household_room_signal(
+        "grill stations ideas for backyards", rooms28b, synonyms28b)
+    if sig28f != "Patio or Deck":
+        fails.append("'backyards' (plural) no longer signals Patio or "
+                     "Deck: %r" % sig28f)
+    sig28g = kd.household_room_signal("larders own", rooms28b, synonyms28b)
+    if sig28g != "Pantry":
+        fails.append("'larders' (plural) no longer signals Pantry: %r"
+                     % sig28g)
+    sig28h = kd.household_room_signal(
+        "types of master bedrooms", rooms28b, synonyms28b)
+    if sig28h != "Primary Bedroom":
+        fails.append("'master bedrooms' (plural) no longer signals "
+                     "Primary Bedroom: %r" % sig28h)
+
     if fails:
         print("FAIL")
         for f in fails:

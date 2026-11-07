@@ -330,6 +330,32 @@ def household_room_signal(query, rooms, synonyms):
     shape first surfaced as A25 and was fixed only for that one zone. This
     closes the whole class: any query naming a room by its household word
     now carries the same room signal a literal room name would.
+
+    Found 2026-11-07, PM check-in: a plain substring check (`name in low`)
+    let Family Room's 3-letter synonym "den" match inside any word that
+    merely contains that letter run, never mind a word boundary. Tracing why
+    "nightstands with hidden storage" (a Primary Bedroom query) scored a
+    Family Room room_signal found it: "den" is a substring of "hidden",
+    which then won a tie-break against the actual Primary Bedroom nightstand
+    pages that Family Room's zone page had no real business winning. Counted
+    directly against the live corpus before fixing: 74 rows, all "den"
+    inside "garden"/"gardening"/"wooden"/"dental"/etc, none of them actually
+    about Family Room. Now requires a real word boundary, so a multi-word
+    synonym ("master bedroom") still matches inside a longer phrase
+    ("...master bedroom closet...") but a bare letter run inside an
+    unrelated word does not.
+
+    A first version required `\bname\b` with no tolerance at all and broke
+    three real, previously-correct matches found by diffing every row of
+    both corpora against the old substring behaviour before shipping:
+    "backyards" (plural of "backyard"), "larders own" (plural of "larder")
+    and "types of master bedrooms" (plural of "master bedroom"), none of
+    which a bare trailing \b allows since the 's' it would need to swallow
+    is itself a word character with no boundary before it. A single
+    optional trailing 's' restores all three without reopening the
+    original bug: the boundary that rejects "den" inside "garden" is the
+    one BEFORE "den", which an optional suffix after the match does not
+    touch.
     """
     exact = attribute_room(query, rooms)
     if exact:
@@ -338,7 +364,8 @@ def household_room_signal(query, rooms, synonyms):
     best_room, best_len = "", 0
     for room, names in synonyms.items():
         for name in names:
-            if name in low and len(name) > best_len:
+            if (len(name) > best_len
+                    and re.search(r"\b" + re.escape(name) + r"s?\b", low)):
                 best_room, best_len = room, len(name)
     return best_room
 

@@ -17631,12 +17631,12 @@
         "how to organise outdoor storage"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-family-room.html",
-      "best_page_title": "How to organize a family room, step by step",
+      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
+      "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-family-room.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
+      "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
         "garden"
@@ -48343,6 +48343,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "cfb9483d8",
-  "scored_at": "2026-11-07T23:00:55Z"
+  "scored_against_commit": "dd0afb5f6",
+  "scored_at": "2026-11-07T23:26:40Z"
 }

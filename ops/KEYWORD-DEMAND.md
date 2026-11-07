@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-07T23:00:52Z against 243 page(s) at commit cfb9483d8. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-07T23:26:39Z against 243 page(s) at commit dd0afb5f6. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1609 covered, 1108 partial, 106 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1610 covered, 1107 partial, 106 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -43,7 +43,7 @@ Showing the top 80 of 106, ordered by the best rank the phrase reached in any on
 | 4 | ideas for decks and patios | - | How to organize a patio or deck, step by step (0.00) | decks, patios |
 | 4 | why am i frequently using the bathroom | - | How to organize a guest bathroom, step by step (0.33) | frequently, using |
 | 5 | decks and patios design ideas | - | How to organize an entryway, zone by zone (0.00) | decks, patios |
-| 5 | dental organization ideas | - | How to organize a family room, step by step (0.00) | dental |
+| 5 | dental organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | dental |
 | 5 | guest bathroom decorating ideas pictures pinterest | Guest Bathroom | How to organize a guest bathroom, step by step (0.40) | decorating, pictures, pinterest |
 | 5 | how to organize belts | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | belts |
 | 5 | kindergarten organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | kindergarten |
@@ -104,7 +104,7 @@ Showing the top 80 of 106, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1108.
+Showing the top 60 of 1107.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|

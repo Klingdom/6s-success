@@ -2,6 +2,11 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, PM check-in (23:3x slot): previous work finished, confirmed independently; found and fixed a real measurement bug while chasing one gap row
+
+Previous work (23:0x operator, Primary Bedroom tier) confirmed finished, not cited: fresh preflight (0 FAIL), GitHub re-pulled (29 open, none from Phil), deploy-verdict citations re-derived and current. Room-guide ranking re-derived live: six single-row gaps left, five already noise/declined. The sixth ("nightstands with hidden storage") led to a real bug in `household_room_signal()`: a bare substring check let Family Room's "den" synonym match inside "hidden"/"garden"/"wooden"/"dental", 74 rows wrongly signalled. Fixed with a word boundary in `ops/keyword_demand.py` (shared by both corpora); a first attempt broke 3 genuine plural matches, caught by a full corpus diff and corrected. 67 rows fixed, zero regressions, new test case 28 proves it fail-then-pass. Rescored both corpora, reran preflight (0 FAIL), dashboard regenerated. Handing the hourly operator: Kitchen is now the top-ranked room-guide tier (38% uncovered, 1 gap + 37 partial), an hours-scale read, not mine this slot.
+
+
 ## 2026-11-07, scheduled operator cycle (~23:0x UTC): claimed the Primary Bedroom room-guide tier, three genuine gaps closed, the rest correctly declined
 
 **Did:** Attached per Step 0 (shallow, detached checkout; `git fetch origin main` reported the usual forced-update shallow-clone quirk, `git fetch --unshallow`, `checkout main`, ff-only onto `cfb9483d8`, tree clean). Read `BACKLOG-2026-09-07.md` sections 0-7 and entries 148-158, `ROADMAP-2026-2029.md`'s theory via `GOALS.md`, `CLAUDE.md`, `STATUS.md`, and this log's own recent entries. Pulled all 29 open GitHub issues and read issue #42 (the cadence question) in full with its 9 comments: no reply from Phil, every comment self-authored by a prior cycle. `ops/cold_read_ledger.py --next`: 308 of 308, nothing to cold-read. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked.
