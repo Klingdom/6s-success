@@ -18000,13 +18000,11 @@
       "best_page": "/articles/how-to-declutter-a-kitchen.html",
       "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-kitchen.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "appliances"
-      ],
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "in"
       ],
@@ -48353,6 +48351,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "d5323bd17",
-  "scored_at": "2026-11-07T15:17:14Z"
+  "scored_against_commit": "63f6519d3",
+  "scored_at": "2026-11-07T15:33:08Z"
 }

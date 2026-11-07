@@ -1028,8 +1028,8 @@
     },
     "preflight.py": {
       "status": "clean",
-      "date": "2026-11-06",
-      "note": "re-ledgered: 2026-11-06 touch was the html.unescape() apostrophe fix in check_also_called_is_heading / check_zone_also_called_is_heading (498a995ce), already fail-then-pass verified by that cycle; read the diff directly, no new concern"
+      "date": "2026-11-07",
+      "note": "Re-verified 2026-11-07 scheduled operator cycle after the ledger flagged this file as touched since its last read (gate_cold_read_ledger_entries_not_stale). The intervening commit (4d622ee0c) only hardened gate_etsy_pdfs_current's own Chrome-orphan sweep from pkill's default SIGTERM to SIGKILL, reproduced live and already proved fail-then-pass by its own author in the same commit. Read the diff directly: scoped to two identical pkill calls inside one function, consistent with every other Chrome-kill in this file already using SIGKILL, no new defect found."
     },
     "prerender_shop.py": {
       "status": "clean",
