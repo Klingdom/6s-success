@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-07 (~01:5x UTC): Kitchen's partial tier mined, two genuine British-English zone synonyms closed, rest confirmed noise or honestly declined
+
+**Did:** Attached per Step 0 (shallow and detached, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the real head of this file (confirmed newest-first by the header, not a raw `tail`). Ran `preflight.py --skip-tests` before touching anything; re-ran `room_guide_underperformance.py` live rather than cite a handoff: Kitchen topped the ranking at 42% uncovered. Read its full 41-row partial list directly against `content.json`, not the tool's own sample.
+
+**Fixed:** "worktop" (British/Irish for countertop) added to Kitchen's Primary Prep Counter also-called heading alongside "kitchen benchtop"; "cooker" (British/Irish for stove) added to the Cooking Zone heading, matched against that zone's own "burners" purpose text. Both checked for zero collision across the whole site and both keyword corpora before shipping.
+
+**Declined, checked not assumed:** "appliances" (too overloaded across multiple real Kitchen/Pantry zones to name honestly), "larder" (a Pantry concept, not Kitchen's, and Pantry already has an open larder thread from entry 148), "dressing table drawers" (a real misattribution with no honest Kitchen or Bedroom zone to route it to; forcing it onto Dresser Drawers would misclaim content that is not there), and the rest of the tier's already-documented retailer/locale/filler-word noise.
+
+**Verified:** `build_zone_pages.py` re-run, both headings grep-confirmed on the real committed pages. `check_also_called_digital_collision_fast.py` clean. All five relevant test files pass (6/6, 2/2, 5/5, 32/32, 19/19). `keyword_demand_global.py --rescore` moved both target queries from `partial` to `covered` (partial 840 to 838, covered 1236 to 1238); `keyword_demand.py --rescore` unaffected (US corpus, as expected). `room_guide_underperformance.py --room Kitchen`: 42% to 40% uncovered. `check_urls.py` (235/235), `audit_pages.py` (0 dup), `fix_dashes.py`/`fix_dialect.py --check` (0/0), `affiliate.py --check`, `check_sellable.py` (124/126, unchanged), `link_graph_report.py` (0 orphans), `build_id.py --check`, `cold_read_ledger.py --stale` (0 of 308) all clean. `audit_visual.py` scoped to both pages, desktop and mobile, 0 findings each. `build_seo.py` re-run, sitemap `lastmod` advanced for both pages.
+
+**Went well:** declining "appliances" and "larder" rather than forcing either onto one zone kept the also-called mechanism honest; both would have overclaimed.
+
+**Did not go well:** `preflight.py` hit the documented 600-second external-timeout wall partway through the cold-read-ledger gate block (0 FAIL through every gate reached before that point; the prerender-shop and status-deploy-verdict gates only warned, the standing sandbox-network limitation). Not repeated per the 2026-11-05 lesson against racing an external timeout with `gate_tests`'s own internal ones.
+
+**Changing next cycle:** none.
+
+**Next:** Hall Closet (33%) and Garage (36% on this cycle's own live read, 83 partial rows per a concurrent cycle's handoff) are both ahead of Kitchen now.
+
+Pushed to main. GitHub: 29 open issues, unchanged, none from Phil since 2026-11-02.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-07 (~01:3x slot): previous work confirmed finished, caught and avoided a near-repeat of the documented external-timeout orphaned-Chrome mistake before it shipped anything
 
 Attached clean (fetch, real unshallow, checkout main, ff-only, 1485 commits fast-forwarded). Previous work (Hall Closet mining, deploy verdict, CI gate fix, merged at 7254cdef6) confirmed finished: 29 issues unchanged, none from Phil, CI green.

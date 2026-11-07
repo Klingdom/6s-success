@@ -193,11 +193,12 @@
   "Kitchen|Primary Prep Counter": {
    "names": [
     "kitchen countertops",
-    "kitchen benchtop"
+    "kitchen benchtop",
+    "kitchen worktop"
    ],
-   "queries": 4,
+   "queries": 5,
    "covered": 0,
-   "source": "ops/keyword-demand.json + ops/keyword-demand-global.json, scored 2026-10-26. 'kitchen benchtop' added 2026-11-06: ops/keyword-demand-global.json (au): 'how to organise kitchen benchtop', partial (0.5 title coverage), unmatched word 'benchtop', the Australian/NZ word for a countertop. This zone's own also-called heading already reads 'the kitchen countertops', the exact concept under its US name; checked the site and both keyword corpora first for a collision (the bare word 'benchtop' appears nowhere else in this repository, and no Workshop benchtop-tool query exists in either corpus), so naming it here cannot misroute an unrelated query. Named 'kitchen benchtop', not the bare word 'benchtop', matching this zone's own existing 'kitchen countertops' phrasing rather than the '<word> zone' precedent, since this zone's wording convention is already the possessive-room-noun shape, not '<word> zone'."
+   "source": "ops/keyword-demand.json + ops/keyword-demand-global.json, scored 2026-10-26. 'kitchen benchtop' added 2026-11-06: ops/keyword-demand-global.json (au): 'how to organise kitchen benchtop', partial (0.5 title coverage), unmatched word 'benchtop', the Australian/NZ word for a countertop. This zone's own also-called heading already reads 'the kitchen countertops', the exact concept under its US name; checked the site and both keyword corpora first for a collision (the bare word 'benchtop' appears nowhere else in this repository, and no Workshop benchtop-tool query exists in either corpus), so naming it here cannot misroute an unrelated query. Named 'kitchen benchtop', not the bare word 'benchtop', matching this zone's own existing 'kitchen countertops' phrasing rather than the '<word> zone' precedent, since this zone's wording convention is already the possessive-room-noun shape, not '<word> zone'. 'kitchen worktop' added 2026-11-07: ops/keyword-demand-global.json (gb): 'how to organise a kitchen worktop', partial (0.5 title coverage), unmatched word 'worktop', the British/Irish word for the same countertop this zone already names under its US and AU/NZ forms. Checked the site and both keyword corpora first: the bare word 'worktop' appears nowhere else in this repository and no other query anywhere uses it, so naming it here carries zero collision risk. Named 'kitchen worktop', matching the existing possessive-room-noun shape of its two siblings rather than introducing a different pattern."
   },
   "Guest Bathroom|Guest Vanity Counter": {
    "names": [
@@ -235,11 +236,12 @@
   },
   "Kitchen|Cooking Zone": {
    "names": [
-    "cooking utensils zone"
+    "cooking utensils zone",
+    "cooker zone"
    ],
-   "queries": 1,
+   "queries": 2,
    "covered": 0,
-   "source": "ops/keyword-demand-global.json 2026-10-29 (ca): 'how to organize large cooking utensils', rank 3, 0.0 title coverage (0.333 heading coverage against an unrelated page, /articles/how-to-organize-toys.html, a coincidental word overlap, not a real match). Checked against the zone's own purpose/done_looks_like text in content.json before adding: 'A utensil crock holding no more than six tools' sits in this zone's own done_looks_like, naming the exact object a search for large cooking utensils is about (the big spoons, tongs and ladles kept by the stove, not the shallow-drawer flatware/spatulas the Utensil and Utility Drawers zone already owns). Named 'cooking utensils zone', the same '<word> zone' precedent as 'car maintenance zone'/'snacks zone'/'drying racks zone', not the bare word 'utensils', which nobody searching this calls the zone."
+   "source": "ops/keyword-demand-global.json 2026-10-29 (ca): 'how to organize large cooking utensils', rank 3, 0.0 title coverage (0.333 heading coverage against an unrelated page, /articles/how-to-organize-toys.html, a coincidental word overlap, not a real match). Checked against the zone's own purpose/done_looks_like text in content.json before adding: 'A utensil crock holding no more than six tools' sits in this zone's own done_looks_like, naming the exact object a search for large cooking utensils is about (the big spoons, tongs and ladles kept by the stove, not the shallow-drawer flatware/spatulas the Utensil and Utility Drawers zone already owns). Named 'cooking utensils zone', the same '<word> zone' precedent as 'car maintenance zone'/'snacks zone'/'drying racks zone', not the bare word 'utensils', which nobody searching this calls the zone. 'cooker zone' added 2026-11-07: ops/keyword-demand-global.json (gb): 'how to organise cooker in kitchen', partial (0.5 title coverage), unmatched word 'cooker', the British/Irish word for a stove or cooking range. This zone's own purpose text ('The strip of space either side of the burners where cooking happens') is exactly a cooker's working area, not a coincidental match. Checked the site and both keyword corpora first: the bare word 'cooker' appears nowhere in any page heading (one incidental mention in a downloadable sample PDF, not a heading and not scanned by the scorer) and no other query anywhere uses it, so naming it here carries zero collision risk. Named 'cooker zone', the same '<word> zone' precedent as its sibling name in this same entry."
   },
   "Garage|Lawn and Garden Tool Zone": {
    "names": [
