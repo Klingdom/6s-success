@@ -29047,16 +29047,14 @@
         "how to organize crib"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/zones/nursery-the-crib-and-sleep-zone.html",
+      "best_page_title": "How to organize the nursery crib",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/nursery-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "crib"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/nursery-the-crib-and-sleep-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -48367,6 +48365,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "9cdf9d880",
-  "scored_at": "2026-11-07T00:00:53Z"
+  "scored_against_commit": "e7f15faa3",
+  "scored_at": "2026-11-07T00:58:12Z"
 }

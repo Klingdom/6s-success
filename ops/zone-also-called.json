@@ -64,11 +64,12 @@
   },
   "Nursery|Crib and Sleep Zone": {
    "names": [
-    "cribs zone"
+    "cribs zone",
+    "crib sheets"
    ],
-   "queries": 1,
+   "queries": 2,
    "covered": 0,
-   "source": "ops/keyword-demand-global.json 2026-11-01 (ca): 'how to arrange twin cribs', rank 10, gap, 0.0 coverage, scored to /about.html via tie-break. The same exact-word-not-stem gap A34/A36 already fixed once each for 'nappy'/'nappies' and 'craft'/'crafts': this zone's own title word is 'Crib' (singular), so the scorer never matched the query's plural 'cribs'. Checked the zone's own purpose ('The one surface in the house where your baby is left alone, which is why it holds a fitted sheet and nothing more') before adding; a household with twins still has this same one zone, repeated, not a different zone. Named 'cribs zone', the '<word> zone' precedent from the A-series, not the bare plural alone. 'Twin' stays unmatched: nothing in this zone's real content is specific to multiples, so no honest heading claims it."
+   "source": "ops/keyword-demand-global.json 2026-11-01 (ca): 'how to arrange twin cribs', rank 10, gap, 0.0 coverage, scored to /about.html via tie-break. The same exact-word-not-stem gap A34/A36 already fixed once each for 'nappy'/'nappies' and 'craft'/'crafts': this zone's own title word is 'Crib' (singular), so the scorer never matched the query's plural 'cribs'. Checked the zone's own purpose ('The one surface in the house where your baby is left alone, which is why it holds a fitted sheet and nothing more') before adding; a household with twins still has this same one zone, repeated, not a different zone. Named 'cribs zone', the '<word> zone' precedent from the A-series, not the bare plural alone. 'Twin' stays unmatched: nothing in this zone's real content is specific to multiples, so no honest heading claims it. 'crib sheets' added 2026-11-07, scheduled operator cycle, same Hall Closet mining pass: 'how to organize crib sheets' (both tiers, partial 0.5, unmatched ['crib']) scored to the linen-closet article on the bare word \"sheets\" alone, the same misattribution shape as 'dryer sheets' above. This zone's own content.json already describes exactly this item (\"the crib holds a fitted sheet and nothing more\", \"strip and hot-wash the sheet\", \"match the sheet tight to all four corners\") under the household name 'crib sheet', just never rendered as a heading. No collision: 'crib' appears in several other pages' body text but never in any h1-h3 heading anywhere on the site."
   },
   "Primary Bathroom|Vanity Drawers": {
    "names": [
@@ -252,11 +253,12 @@
   },
   "Laundry Room|Washer and Dryer": {
    "names": [
-    "washing machine"
+    "washing machine",
+    "dryer sheets"
    ],
-   "queries": 1,
+   "queries": 2,
    "covered": 0,
-   "source": "ops/keyword-demand-global.json 2026-10-31 (ca): 'utility room design with washing machine', rank 13, gap, 0.4 title coverage, scored to /laundry-room-deck.html; the 'utility room' half of this query already matches since A37 added that room-level synonym, but 'washing' and 'machine' do not, the same exact-word-not-stem gap A34/A36 already fixed once each: the zone's own title word is 'Washer', not 'washing', and 'machine' never appears in any heading at all. Checked the zone's own purpose text in content.json before adding: 'Run loads reliably, and stay maintained well enough that the machines are never the reason laundry stops' is literally about the washing machine, and the zone's own common_items/standard text already says 'washing machine' in body copy, just never in a heading. Named 'washing machine' as a single phrase (the precedent from 'nappy change table'/'makeup vanity'), not 'washing' or 'machine' separately. Moves the query from gap (0.4) to partial (0.8, matched on heading); the query's remaining word, 'design', is generic layout filler this product does not honestly claim for a single zone heading, the same reason 'plan' was dropped from the room-layout tips in A40."
+   "source": "ops/keyword-demand-global.json 2026-10-31 (ca): 'utility room design with washing machine', rank 13, gap, 0.4 title coverage, scored to /laundry-room-deck.html; the 'utility room' half of this query already matches since A37 added that room-level synonym, but 'washing' and 'machine' do not, the same exact-word-not-stem gap A34/A36 already fixed once each: the zone's own title word is 'Washer', not 'washing', and 'machine' never appears in any heading at all. Checked the zone's own purpose text in content.json before adding: 'Run loads reliably, and stay maintained well enough that the machines are never the reason laundry stops' is literally about the washing machine, and the zone's own common_items/standard text already says 'washing machine' in body copy, just never in a heading. Named 'washing machine' as a single phrase (the precedent from 'nappy change table'/'makeup vanity'), not 'washing' or 'machine' separately. Moves the query from gap (0.4) to partial (0.8, matched on heading); the query's remaining word, 'design', is generic layout filler this product does not honestly claim for a single zone heading, the same reason 'plan' was dropped from the room-layout tips in A40. 'dryer sheets' added 2026-11-07, scheduled operator cycle, mining Hall Closet's partial tier (room_guide_underperformance.py --room \"Hall Closet\"): 'how to organize dryer sheets' (US, partial 0.5, unmatched ['dryer']) scored to /articles/how-to-organize-a-linen-closet.html on the bare word \"sheets\" alone, a genuine misattribution, not a real answer: a dryer sheet is a laundry chemical, not bed linen. This zone's own content.json sort-pass text already names the real item twice (\"the hardened box of dryer sheets\" in both the pass text and the common_items list) and its own lint-screen tip (\"If dryer sheets have left a waxy film...\") but never in a heading, the same exact-word-never-in-a-heading shape every A-series fix in this file already closed for a different word. Checked the whole corpus first: 'dryer'/'crib' appear in body text on several other pages (bathroom/garage/mudroom decks, the blanket article) but never inside any h1-h3 heading, so no collision risk. Named the literal searched phrase 'dryer sheets', not a bare word, since nobody calls this zone 'dryer sheets zone'."
   },
   "Pantry|Baking Zone": {
    "names": [
