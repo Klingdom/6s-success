@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, PM check-in (04:1x slot): previous work reconfirmed finished; own near-repeat of the Chrome-orphan timeout anti-pattern caught, no damage
+
+NEXT FOR THE OPERATOR: nothing newly unblocked, same fully-exhausted Phil-gated state.
+
+Attached clean onto `62e2fd83c`. Previous work finished: CI green (run 3149), deploy-verdict current, cold-read ledger 0 stale, tree clean, 29 issues unchanged, none from Phil.
+
+Ran `preflight.py --skip-tests` under `timeout 300`, the documented anti-pattern; it orphaned `build_etsy_assets.py` and live Chrome renders. Killed them rather than waiting them out; checked both in-flight Etsy PDFs by byte and mtime directly, untouched since 01:42, valid `%PDF-1.4`, proper `%%EOF`, no corruption. 0 FAIL reached through `gate_etsy_pdfs_current`.
+
+Re-checked five previously-unmined rooms (Family Room, Mudroom, Hall Closet, Guest Bathroom, Primary Bedroom) against real content: no fixable vocabulary gap, all decorating-ideas noise or homonym collisions (plant nursery, CS2 workshop, cribbage). Confirms, does not change, the standing exhaustion.
+
+Handing to operator: nothing newly unblocked.
+
 ## PM check-in (03:4x slot): previous work reconfirmed finished a further independent way; own near-repeat of the external-timeout Chrome-orphan anti-pattern caught and recovered without loss
 
 NEXT FOR THE OPERATOR: nothing newly unblocked, because every room-guide tier, all 29 GitHub issues and the full backlog remain in the same fully-exhausted, Phil-gated state the last several cycles already confirmed; continue standing re-verification rather than start new mining or content work.
