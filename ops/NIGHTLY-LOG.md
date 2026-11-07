@@ -2,6 +2,34 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (03:4x slot): previous work reconfirmed finished a further independent way; own near-repeat of the external-timeout Chrome-orphan anti-pattern caught and recovered without loss
+
+NEXT FOR THE OPERATOR: nothing newly unblocked, because every room-guide tier, all 29 GitHub issues and the full backlog remain in the same fully-exhausted, Phil-gated state the last several cycles already confirmed; continue standing re-verification rather than start new mining or content work.
+
+Attached clean (fetch, real unshallow, checkout -B main origin/main, ff-only onto `0a45062b0`, tree clean, 0 commits behind).
+
+**A mistake, caught and fixed before it cost anything:** first ran `preflight.py --skip-tests` under an external `timeout 115`, the exact anti-pattern several 2026-11-05/07 entries document by name. It killed the parent at 115s and orphaned a Chromium PDF render (`build/listings/build_etsy_assets.py`, reparented to PID 1) mid-batch. Checked immediately: the orphan was 52s into its own 300s-class internal budget and actively progressing (moved from one listing's PDF to the next over the following minutes), not stalled, so killing it further would have risked a corrupt or partial Etsy deliverable file for no reason. Let it run to natural completion instead (about 12 more minutes total), confirmed via `ps` that it exited cleanly and left no Chrome process behind, then reran `preflight.py --skip-tests` with no external wrapper.
+
+**Verified clean on the unwrapped run:** every gate passed, 0 FAIL, 31 warnings, all previously-diagnosed standing sandbox gaps (no SSH key at `~/.ssh/6s_deploy` so T2/delivery checks are UNCHECKED not zero, no Stripe credential, no narrated films in this container, a handful of tag/taxonomy/fee-schedule items Etsy itself does not expose to a sandbox). `fix_dashes.py --check` 0/0. `check_urls.py` 235/235. `cold_read_ledger.py --stale` 0 stale. `STATUS.md`'s own Open claims section: none currently open, matching.
+
+GitHub re-pulled live via REST (the GraphQL-based `gh issue list` 403'd in this container; used `gh api repos/.../issues` instead): 29 open issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs, none from Phil since 2026-11-02 (checked issue #42's thread directly, latest comment is this morning's own 02:1x PM check-in).
+
+Deploy gap re-derived directly rather than cited: `ops/deploy-verdict.json` confirms build `d857d06c4ba14040` at 2026-11-07T02:13:32Z, resolving to commit `10140be3`; confirmed `10140be3` is an ancestor of current `HEAD`, so 0 commits are genuinely undeployed. `STATUS.md`'s Production Knowledge/BLOCKER-001 rows already say this; no correction needed.
+
+Room-guide tiers re-ranked fresh via `room_guide_underperformance.py` rather than cited: Kitchen 40%, Garage 36% (83 partial), Pantry 34%, Hall Closet 33% (56 partial), all unchanged in row count from the state the last full mining pass on each already confirmed exhausted or genuine off-topic content gaps. No tier has grown since its last full read, so none is due for re-mining under the standing rule (re-mine only when row count changes).
+
+**Went well:** recognizing the orphaned Chromium process was progressing, not stuck, and choosing to let it finish rather than kill it mid-write avoided turning one mistake into a corrupted build artifact.
+
+**Did not go well:** used an external `timeout` wrapper on `preflight.py` despite this being documented by name in at least two recent entries as the thing not to do. Re-reading the relevant entries before running a long gate, not just knowing they exist, would have prevented this.
+
+**Changing next cycle:** before running `preflight.py` (or any gate known to shell out to Chromium) under any time pressure, do not reach for an external `timeout`; if a budget is genuinely needed, run it with `run_in_background` and poll, as this cycle eventually did only after the damage was already done.
+
+Not starting new work myself this slot (30-minute triage); nothing in `BACKLOG-2026-09-07.md` sections 2-6 is genuinely unblocked and issue #42 already tracks the exhausted-cadence pattern itself.
+
+Pushed to main. Regenerated the dashboard.
+
+HANDOFF-FILES: none
+
 ## PM check-in (03:2x slot): previous work confirmed finished, nothing newly unblocked
 
 Attached clean (fetch, real unshallow, checkout -B main origin/main, ff-only onto `de97ecd5`, 13 commits fast-forwarded, tree clean). Previous work (entry 150, Garage's 83-row partial tier) confirmed finished, not cited: `preflight.py --skip-tests` reran fresh, 0 FAIL, 34 warnings, all standing sandbox gaps. GitHub re-pulled directly: 29 open issues, unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02. Room-guide also-called mining lane confirmed genuinely exhausted per entry 150; no smaller defect found to close this slot. Not starting new work: every backlog lane is Done, Hold, or Phil-gated.
