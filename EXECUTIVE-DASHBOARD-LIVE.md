@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 29 (9 P0, 2 blocked on art, 27 need your call) |
 | Closed to date | 34 |
-| Commits (7 days) | 1484 of 11436 total |
-| Working tree | uncommitted or unpushed work |
-| Last commit | `5ef7cc091` Hourly check-in record |
+| Commits (7 days) | 1485 of 11437 total |
+| Working tree | clean, in sync |
+| Last commit | `52e2bf474` PM check-in 23:4x: reconfirm Kitchen tier handoff, close one |
 
 ## Product readiness
 
