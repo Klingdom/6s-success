@@ -2,7 +2,21 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-11-07, PM check-in (11:1x slot, 30-minute triage): previous work confirmed finished, orphaned preflight processes found again but this cycle could not kill them, nothing newly unblocked
+## 2026-11-07, PM check-in (11:4x slot, 30-minute triage): previous work confirmed finished, Home Office's grown partial tier handed to the operator
+
+NEXT FOR THE OPERATOR: mine Home Office's room-guide partial tier (29 rows, 31% uncovered, up from the 23-row tier A66 read in full and correctly declined on 2026-11-06), because it is the one room-guide tier that has genuinely grown since its last full read and is the highest-ranked non-Phil-gated candidate left; every other room (Kitchen, Garage, Pantry, Hall Closet, Mudroom) was re-confirmed exhausted earlier today and the global keyword-harvest lane was closed out this cycle's predecessor (the organis-spelling pass). Read the new rows against real zone `content.json`, not just the 8-row CLI sample.
+
+Attached per Step 0: checkout arrived shallow and detached, `git fetch origin main`, real `git fetch --unshallow`, `checkout main`, ff-only merge onto `27f1edad0` (the 11:1x PM check-in, the organis-spelling-fallout operator cycle, and two hourly check-ins on top), tree clean before this run.
+
+Previous work (the organis-spelling-fallout operator cycle and the 11:1x PM check-in before it) confirmed finished, re-derived rather than cited: working tree clean at attach, `EXECUTIVE-DASHBOARD-LIVE.md` already fresh (generated 11:35, YELLOW, 9 P0, revenue $0 of $20,000, 29 open issues). All 29 open GitHub issues re-pulled live via `gh api`, sorted by `updated_at`: unchanged, all `decision`/`blocked-on-art`; the only recent timestamp is issue #42 at 2026-11-07T02:18:11Z, this operator's own prior comment, nothing from Phil since 2026-11-02. `fix_dashes.py --check` 0/0, `check_urls.py` 235/235, both run fresh this slot rather than cited. Not re-running the full `preflight.py --skip-tests`: the 11:1x cycle ran it fresh 26 minutes before this one started and reached 0 FAIL through every gate before the documented network-bound `gate_etsy_pdfs_current` stall; nothing in the repo or on GitHub has moved since, so re-running it now would be the exact redundant re-verification issue #42 exists to flag.
+
+Checked for genuinely new unblocked work rather than only re-citing the standing exhaustion: ran `room_guide_underperformance.py` fresh (no `--room` filter). Kitchen (40%), Garage (36%), Pantry (34%), Hall Closet (33%) and Mudroom (30%) all unchanged in row count from entries mined and declined earlier today. Home Office is the one exception: 29 partial rows now (31% uncovered), against the 23-row tier `BACKLOG-2026-09-07.md` entry A66 read in full and correctly declined on 2026-11-06 ("every unmatched word was either a platform/audience mention... or a generic modifier... none the specific-page-missing-synonym shape this mechanism fixes"). A tier that has grown by 6 rows since its last full read is not a re-citation candidate; it is genuinely due for a fresh full read, per the standing rule (re-mine only when row count changes). Not mining it myself this slot: this is hours-scale work that belongs to the operator at :43, and this slot's job is triage and handoff, not starting something sized.
+
+No new defect found small enough to close here beyond the checks above. The orphaned-preflight-process concern the 11:1x entry raised (kill denied by the sandbox's own classifier) was not re-tested this slot since no new preflight run was started.
+
+Pushed to main.
+
+HANDOFF-FILES: none
 
 Attached per STEP 0: checkout arrived shallow and detached, `git fetch origin main`, real `git fetch --unshallow`, `checkout main`, ff-only merge onto `f5cde47e4` (the 10:4x PM check-in plus the hourly check-in record on top of it, 68 commits since this container's stale cached checkout), tree clean before this run.
 
