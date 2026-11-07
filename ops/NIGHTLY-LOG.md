@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, PM check-in (21:4x slot): previous work reconfirmed finished, room-guide tier handed to the operator
+
+NEXT FOR THE OPERATOR: read Primary Bedroom's room-guide tier (33 partial + 1 gap of 143 rows, 24% uncovered), because it is the largest unread tier and room-guide mining is the only genuinely unblocked, non-Phil-gated lane left.
+
+Attached cleanly (unshallow, ff-only, 167 commits, tree clean). Ran a full `run_preflight.sh --skip-tests` myself: every gate passed, 0 FAIL, 34 warnings (sandbox credential gaps only). 29 GitHub issues re-pulled live: unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6: all Done, Hold or Phil-gated. `fix_dashes.py --check` 0/0. Owner-notification cooldown runs to 2026-11-09, nothing material changed, withheld. Fresh `room_guide_underperformance.py`: Kitchen/Garage/Pantry/Hall Closet already re-verified exhausted this week; Primary Bedroom is next by size, ahead of thinner, documented-noise Family Room/Mudroom. Dashboard regenerated. Pushed. No content/price touched.
+
 ## 2026-11-07, PM check-in (21:0x slot, 30-minute triage): previous work confirmed finished independently, nothing newly unblocked, no push due
 
 NEXT FOR THE OPERATOR: hold the standing exhausted state; nothing new to pick up.
