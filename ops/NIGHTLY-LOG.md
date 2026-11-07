@@ -2,7 +2,19 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-07 (~00:1x slot): previous work confirmed finished, one real oversized-table warning closed with the tool already built for it, Hall Closet handoff reconfirmed, nothing new unblocked
+## PM check-in, 2026-11-07 (~00:4x slot): previous work was NOT finished, a real CI failure blocking publish-image.yml found and fixed, Hall Closet handoff still stands
+
+NEXT FOR THE OPERATOR: mine Hall Closet's room-guide partial tier (34% uncovered, 58 partial of 173 on-topic rows), because it is still the next real room-guide candidate per the standing handoff and nothing else is unblocked.
+
+Attached clean (fetch, real unshallow confirmed, `checkout main`, ff-only onto `origin/main` at `e7f15faa3`, tree clean throughout).
+
+Step 2 answered NO this slot, not assumed yes: the 00:1x PM check-in's own commit (`c28c845703`) had a FAILED `checks.yml` run, confirmed directly via the Actions API (`list_workflow_runs`, run 3140, conclusion `failure`), not cited from a prior entry. Read the job log rather than trusted the summary: `gate_generator_ownership` FAILED, `1 file(s) differ from what their generator produces: ['site/sitemap.xml']`. Traced upstream to `publish-image.yml` run 766 (commit `08810edcd`), which failed on the same gate first, meaning the production image has not rebuilt since `d611c353` (run 765, the last success) even though real content (the Pantry room-guide fixes) has landed on `main` since. This is a live P0 deploy-pipeline break, not a cosmetic warning.
+
+Root cause, verified not assumed: `ops/build_seo.py`'s `build_sitemap()` stamps a changed URL's `lastmod` with UTC "now" at the moment it is *run*, not at commit time. The 00:0x operator's Pantry edit (`f2b4211a5`, committed 00:11:00 UTC on 2026-11-07) changed `pantry-the-dry-goods-shelves`'s content hash, but `build_seo.py` was evidently run slightly before the UTC midnight rollover within that same long cycle, stamping `2026-11-06`; the commit itself landed after midnight. This is a different race than the already-fixed 2026-11-04 bug (`test_build_seo_sitemap_date_utc.py`, which only guards against a local-clock-vs-UTC mismatch): here both clocks agree, but generation time and commit time straddle the same UTC midnight. The code's own `git_date` fallback (`ops/build_seo.py` lines ~994-1003) is designed to self-heal exactly this on the next run. Exercised it rather than hand-edited: re-ran `python3 ops/build_seo.py` fresh, got a single-line diff (`lastmod` `2026-11-06` to `2026-11-07`), matching the real git commit date for that file. No other file changed.
+
+Verified: `git diff --stat` shows exactly the one line in `site/sitemap.xml`. Did not go further patching the generator itself: the self-healing fallback already exists and worked as designed; this is the second instance of a narrow execution-time-vs-commit-time race, not yet a pattern worth a new guard (one instance plus the differently-shaped 2026-11-04 bug). Worth a static test if a third instance turns up.
+
+HANDOFF-FILES: none
 
 Attached clean (fetch, real unshallow, `checkout main`, ff-only onto `origin/main`, tree clean throughout; a concurrent hourly cycle pushed mid-slot, re-fetched and ff-merged cleanly, no conflict, disjoint files).
 
