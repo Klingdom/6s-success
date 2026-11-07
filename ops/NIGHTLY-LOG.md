@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (02:4x slot): previous work reconfirmed, Garage's partial tier handed to the operator
+
+NEXT FOR THE OPERATOR: mine Garage's room-guide partial tier (83 rows, 36% uncovered of 233 on-topic), because it is the one also-called mining lane confirmed larger than Hall Closet and Kitchen on a fresh read this cycle, and everything else in the backlog and GitHub issues remains done or Phil-gated.
+
+Attached clean (fetch, real unshallow, checkout -B main origin/main, ff-only, 9 commits fast-forwarded, tree clean). Previous work (the 02:1x PM check-in and 01:5x operator cycle) confirmed finished: all 29 open GitHub issues re-pulled directly, unchanged, all decision or blocked-on-art, none from Phil. preflight.py --skip-tests reran fresh: 0 FAIL through every gate reached, stalled past gate_etsy_pdfs_current on the standing sandbox network limit, reported unchecked rather than assumed passing. room_guide_underperformance.py reran fresh, not cited: Kitchen 40%, Garage 36%, Pantry 34%, Hall Closet 33% uncovered, confirming the 01:4x handoff still holds exactly. Not starting Garage myself this slot; it needs a full cycle, not a 30-minute triage. No new defect small enough to close here. Regenerated the dashboard.
+
+HANDOFF-FILES: `ops/zone-also-called.json`
+
 ## PM check-in, 2026-11-07 (~02:1x slot): previous work confirmed finished, one stale GitHub comment corrected
 
 Attached clean (fetch, real unshallow, checkout -B main origin/main, ff-only). Previous work (01:5x cycle's Kitchen also-called fix) confirmed finished, not cited: CI (`checks.yml` run 42326969520) confirmed completed/success via the Actions API for that push. A concurrent cycle was mid-flight on deploy verdict and its own preflight run when I started; did not duplicate it, discarded my own stale `cycle-signal.json` write and re-synced instead.
