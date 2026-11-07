@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, PM check-in (17:4x slot, 30-minute triage): a live deploy-verdict staleness gap closed in five places, Kitchen reconfirmed as the next operator target
+
+NEXT FOR THE OPERATOR: continue mining Kitchen's 38 partial rows (39% uncovered, still the highest-ranked room this slot, ahead of Garage 36%, Pantry 34%, Hall Closet 33%, all unchanged), because nothing has touched Kitchen's partial rows yet and it remains the single highest-value, genuinely unblocked content gap.
+
+Attached per Step 0: fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `c4bcdcb7c` (131 commits), tree clean on arrival. **Previous work (the 16:5x scheduled operator cycle's Nursery fix, the 17:1x PM check-in, a `github-actions` deploy-verdict confirmation and a same-slot "Record a clean full preflight pass" commit, all merged together at `76b81bbf7`) confirmed finished, re-derived not cited:** `deploy-verdict.json` showed a fresh confirmation, build `0cceb9d4f0d6f915` at 2026-11-07T17:20:16Z, 0cceb9d4f0d6f915 matching `site/build-id.txt` directly; `resolve_verdict_commit` resolves it to `f0819c5d5` (the Nursery fix itself) and `deploy_gap_material_commits` against real current `HEAD` returns an empty list. Working tree clean, main already in sync with origin.
+
+**Found live:** `status_deploy_verdict_problem()`, re-derived directly rather than cited, flagged that this newer `0cceb9d4f0d6f915` confirmation had landed since the 17:1x cycle's own citations and none of STATUS.md's five sections had been told: BLOCKER-001, the Production Knowledge paragraph (section 30), section 4's "Public website" row, section 6's "Production traceability" row, and section 5's "Currently Deployed Build"/"Confirmed At"/"Repository HEAD Build" lines all still cited the superseded `487501b2f0a027f7`/16:00:02Z. The same recurring "source corrected, sibling never told" shape this gate exists to catch, not a new defect class. Fixed all five citations to `0cceb9d4f0d6f915`/`f0819c5d5`/17:20:16Z; `status_deploy_verdict_problem()` re-run afterward returns `''`. `test_gate_status_deploy_verdict_current.py` 14/14 pass. `check_urls.py` 235/235. `fix_dashes.py --check` 0 em/en dashes.
+
+Noted but not acted on: the merge at `76b81bbf7` resolved a conflict on `ops/cycle-signal.json` in favor of the older (partial-pass, pre-merge) side, so the "Record a clean full preflight pass after the merge, CI green" commit's own checkpoint content never actually landed in the merged history; the checkpoint still reads "partial pass" against an older `git_head`. This is bookkeeping lag, not a false-passing claim (the note is honest about what it covers), and it self-heals on the next preflight run, so not hand-edited.
+
+`room_guide_underperformance.py` re-run live: ranking unchanged from the 16:4x/16:5x cycles (Kitchen 39%, Garage 36%, Pantry 34%, Hall Closet 33%), confirming the standing Kitchen handoff is still correct rather than stale. All 29 open GitHub issues re-pulled fresh, sorted by `updated_at`: unchanged, all `decision`, newest still #42 at 2026-11-07T02:18:11Z, nothing from Phil since 2026-11-02.
+
+No new defect found beyond the staleness gap above. Not starting the Kitchen partial-row review myself: 38 rows needing individual content checks is operator-cycle-sized, not a 30-minute slot.
+
+Regenerated the dashboard. Pushed to main. No content, price or product page touched, no new page, IndexNow not applicable.
+
 ## 2026-11-07, PM check-in (17:1x slot, 30-minute triage): previous work confirmed finished a further independent way, nothing newly unblocked, no push sent
 
 NEXT FOR THE OPERATOR: Garage (36%) and Hall Closet (33%) still need live re-verification against the current corpus rotation, the same handoff the 16:5x cycle named; I did not start it myself, operator-cycle-sized, not a 30-minute slot.
