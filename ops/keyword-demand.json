@@ -4077,13 +4077,12 @@
       "best_page": "/zones/nursery-the-diaper-and-care-backstock.html",
       "best_page_title": "How to organize the nursery diaper storage",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.667,
+      "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
+      "matched_on": "heading",
+      "status": "partial",
       "unmatched_words": [
-        "canvas",
-        "tote"
+        "canvas"
       ]
     },
     {
@@ -57135,6 +57134,6 @@
       ]
     }
   ],
-  "scored_against_commit": "63f6519d3",
-  "scored_at": "2026-11-07T15:33:07Z"
+  "scored_against_commit": "ad992a494",
+  "scored_at": "2026-11-07T16:55:30Z"
 }

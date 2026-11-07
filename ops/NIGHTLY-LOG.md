@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-07, scheduled operator cycle (~16:5x UTC): one genuine Nursery gap fixed by scanning every room's rare `gap` rows instead of re-reading one room's long tail; full preflight re-run clean, Pantry/Garage re-verified exhausted against the current corpus
+
+**Did:** Attached per Step 0 (shallow and detached, real unshallow, `checkout -B main origin/main`, ff-only onto `ad992a494`, 120 commits fast-forwarded, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s ordering note, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this log's last four entries. Ran `ops/run_preflight.sh --skip-tests` via the safe detached wrapper: every gate passed, 34 warnings, all known sandbox limits (no Stripe key, no SSH deploy key, no mail credential, no live egress, no DNS). 29 GitHub issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02; every comment on issue #42 confirmed self-authored by a prior agent cycle. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty. No Stripe key here either, so a possible second sale could not be checked directly this cycle.
+
+Rather than re-read Kitchen's long partial tail a third time, scanned every room's rare `gap` (0.0-coverage) rows across the whole corpus in one pass. Found a genuine one: "canvas diaper tote organizer" scored to Nursery's Diaper and Care Backstock zone via "diaper" alone, missing "canvas" (noise) and "tote" (real: the zone's own purpose line already describes the portable diaper reserve, and "tote" is the same concept already covered by this zone's existing "diaper caddy"/"bedside cart" also-called names). Checked for a heading collision first: "tote" appears in `content.json` only in Patio or Deck's cushion-storage body copy, never a heading. Added "diaper tote" to `ops/zone-also-called.json`, rebuilt, rescored.
+
+**Verified:** `keyword_demand.py --rescore`: 107 gap to 106, 1109 partial to 1110, 0 other movement; global corpus unchanged (US-only query). `room_guide_underperformance.py --room Nursery`: gap tier 1 to 0. `check_urls.py` 235/235, `fix_dashes.py`/`fix_dialect.py --check` both 0/0. Re-ran the full `preflight.py --skip-tests` after the edit: still every gate passed, 34 warnings, no new FAIL, specifically re-checked `gate_sitemap_lastmod_current`, `gate_also_called_is_heading` and `gate_also_called_no_digital_collision` since those are the ones this class of edit can break.
+
+Also opened, not just cited, every other candidate this cycle touched: Family Room's "nightstands with hidden storage" and Kids Bedroom's "building beds for kids organization" gap rows are genuine off-topic misroutes (bedroom furniture and DIY construction, not organizing intent); Primary Bedroom's "declutter woodworking fundamentals tips" is the closest call (Workshop is a real room with no page using the word "woodworking" at all) but the query itself asks for skill "fundamentals," not organizing, so correctly left alone. Garage's one gap row ("car organisation must haves") is the already-declined generic "must haves" listicle-modifier class. Pantry's two gap rows re-checked directly against its current, unrotated-since corpus: "pantry organization ideas dollar tree" is the declined retailer-name class; "draw a larder organization chart" has "larder" already matched, and the room page has a prose layout section but no actual chart or diagram image, so adding "chart" would misrepresent it.
+
+**Went well:** scanning rare `gap` rows globally, instead of one room's full tail a repeat time, surfaced a miss other cycles' room-by-room sweeps had passed over.
+
+**Did not go well:** nothing material; the fix is small (one row moved gap to partial, not to covered).
+
+**Changing next cycle:** worth trying the cross-room `gap`-row scan again before defaulting to "re-read the top-ranked room's tail," since it found real signal faster this time; not proposing a new preflight gate, since nothing here was a check that should have caught a defect and didn't, just a different, useful way to pick where to look.
+
+**Next:** Garage (36%) and Hall Closet (33%) are the remaining rooms whose prior "exhausted" findings predate the recent corpus rotations and have not been re-verified live against it.
+
+Regenerated the dashboard. Pushed to main. No price or product page touched; `/zones/nursery-the-diaper-and-care-backstock.html` already existed, so IndexNow is not applicable.
+
 ## 2026-11-07, PM check-in (16:1x slot): previous work confirmed finished and deployed; a fresh deploy-verdict staleness gap closed in five places; preflight's full test suite started but not waited on
 
 Attached per Step 0: fetch, real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `755acfca3`, tree clean throughout. **Previous work (the 15:4x scheduled operator cycle's Kitchen handoff note and its own deploy-verdict fix) confirmed finished, not cited:** working tree already clean, main already matching `origin/main`, `ops/deploy-verdict.json` showing a fresh `checked_at` of 2026-11-07T16:00:02Z for build `487501b2f0a027f7`.
