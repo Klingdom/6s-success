@@ -9303,11 +9303,11 @@
         "hall closet organization ideas"
       ],
       "room": "",
-      "best_page": "/rooms/entryway.html",
-      "best_page_title": "How to organize an entryway, zone by zone",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/rooms/entryway.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -9372,13 +9372,11 @@
       "best_page": "/articles/how-to-organize-an-entryway.html",
       "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "hallway"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -9415,11 +9413,11 @@
         "entryway organisation ideas"
       ],
       "room": "",
-      "best_page": "/rooms/entryway.html",
-      "best_page_title": "How to organize an entryway, zone by zone",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.0,
       "heading_coverage": 1.0,
-      "heading_page": "/rooms/entryway.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -9437,11 +9435,11 @@
         "entryway organization ideas"
       ],
       "room": "",
-      "best_page": "/rooms/entryway.html",
-      "best_page_title": "How to organize an entryway, zone by zone",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.0,
       "heading_coverage": 1.0,
-      "heading_page": "/rooms/entryway.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -13560,11 +13558,11 @@
         "how to declutter a entryway"
       ],
       "room": "",
-      "best_page": "/rooms/entryway.html",
-      "best_page_title": "How to organize an entryway, zone by zone",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/rooms/entryway.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -16828,11 +16826,11 @@
         "how to organise a entryway"
       ],
       "room": "",
-      "best_page": "/rooms/entryway.html",
-      "best_page_title": "How to organize an entryway, zone by zone",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.0,
       "heading_coverage": 1.0,
-      "heading_page": "/rooms/entryway.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -17662,13 +17660,11 @@
       "best_page": "/articles/how-to-organize-an-entryway.html",
       "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "hallway"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -25286,15 +25282,15 @@
         "how to declutter a hall closet"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/zones/hall-closet-the-cleaning-supply-zone.html",
+      "best_page_title": "How to organize the hall closet cleaning supplies",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/zones/hall-closet-the-cleaning-supply-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "hallway"
+        "small"
       ],
       "markets": [
         "gb",
@@ -43411,15 +43407,15 @@
         "hall closet organisation ideas"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/zones/hall-closet-the-cleaning-supply-zone.html",
+      "best_page_title": "How to organize the hall closet cleaning supplies",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/zones/hall-closet-the-cleaning-supply-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "hallway"
+        "small"
       ],
       "markets": [
         "gb",
@@ -48355,6 +48351,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "9901fc2dc",
-  "scored_at": "2026-11-07T15:04:32Z"
+  "scored_against_commit": "63f6519d3",
+  "scored_at": "2026-11-07T15:33:08Z"
 }
