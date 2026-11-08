@@ -15312,7 +15312,12 @@ def owner_actions_untracked_items(text: str):
         start = m.end()
         end = headings[i + 1].start() if i + 1 < len(headings) else len(text)
         body = text[start:end]
-        if not issue_re.search(body):
+        # The citation can sit in the heading itself (item 24 names
+        # "GitHub issue #65" right in its own heading text), not only in
+        # the body that follows it. Checking body alone flagged that item
+        # as untracked even though Phil can find it from the heading he
+        # already reads; search both.
+        if not issue_re.search(heading) and not issue_re.search(body):
             problems.append(heading.strip())
     return problems
 

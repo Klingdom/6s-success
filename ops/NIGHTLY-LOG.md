@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-08 (~23:5x UTC): a real false positive found and fixed in gate_owner_actions_items_tracked itself, full exhaustion otherwise reconfirmed
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `4801fbefd` (391 commits fast-forwarded), tree clean. Read `GOALS.md`, `CLAUDE.md`, `BACKLOG-2026-09-07.md` sections 0-7 and entries 161-164, `STATUS.md`, `OWNER-ACTIONS.md`, and the head of `ops/NIGHTLY-LOG.md`. The room-guide keyword-mining lane was already closed across all 20 rooms as of today's entry 164, and every section 2-6 backlog row is Done, Hold, or Phil-gated (31 open GitHub issues, all `decision`/`blocked-on-art`, re-pulled live via the API, none from Phil, no new comment on #65 or #64).
+
+Found and fixed a real false positive in `gate_owner_actions_items_tracked` itself (`ops/preflight.py`), not in any customer-facing page. The gate warned that `OWNER-ACTIONS.md` item 24 cites no GitHub issue, but it does: "GitHub issue #65" sits directly in the item's own heading text. `owner_actions_untracked_items()` matched the heading, then searched only the body text strictly after it for the citation, missing a citation embedded in the heading itself, which item 24 is the first item in this file to do. Fixed by also searching the heading text. Fail-then-pass proved directly: added a case reproducing item 24's exact shape to `ops/tests/test_gate_owner_actions_items_tracked.py`, ran the new test file against the unfixed function first (`git stash` the one-line fix, keep the test), 2 of 8 cases failed (the new case and the real-file regression check, both naming item 24); restored the fix, reran, 8/8 passed. Checked directly against the real file both ways, not just the synthetic case: `owner_actions_untracked_items()` returns `['24. ...']` before the fix and `[]` after it.
+
+**Verified:** `python ops/preflight.py --skip-tests` run to real completion rather than killed early: 0 FAIL in both FAIL blocks reached, genuinely stalled (confirmed by flat CPU and no log growth over repeated checks, not assumed) at the documented network-bound `gate_etsy_pdfs_current` (Etsy fee schedule, HTTP 403 from this sandbox). The gate's own `build_etsy_assets.py` subprocess was left orphaned when the wrapper process was stopped; sent it `SIGTERM` directly (not `SIGKILL` on the wrapper a second time), confirmed it exited cleanly, and checked `git status` on `build/listings/` found no truncated or modified file, avoiding the exact defect entry 161 recorded from an earlier cycle's interrupted render. All 14 `rotate_*.py` tools re-checked directly: CLEAN, nothing due; the standing `BACKLOG-2026-09-07.md`/`OWNER-ACTIONS.md`/`STATUS.md` size-tripwire warnings are real but genuinely unrotatable live content. `fix_dashes.py --check` clean on the touched files. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty.
+
+**Went well:** found a genuine, narrow, provable defect in the gate layer itself rather than inventing a content change to fill the cycle, matching CLAUDE.md 0.2's instruction to fix rather than merely report, and 10b's instruction to turn a found lesson into a gate rather than prose; here the gate already existed, so the fix is to the gate's own correctness, not a new gate.
+
+**Did not go well:** lost several minutes to `preflight.py`'s background run needing its orphaned child process handled by hand after the wrapper stopped; the mechanism matches a risk entry 161 already named, so nothing new to add there.
+
+**Changing next cycle:** none new. The existing "do not interrupt `gate_etsy_pdfs_current` by killing the Python wrapper alone" lesson from entry 161 held exactly as written; this cycle is a second confirmation of it, not a new finding.
+
+**Next:** hold, same standing 31-issue Phil-gated queue (newest #65), because every one is still `decision` or `blocked-on-art` and nothing has moved. No push notification sent: `ops/last-owner-notification.json` shows one sent 2026-11-07T18:55:00Z, no-repeat-before 2026-11-09T18:00Z not yet passed, nothing material changed (same issue set, no Phil reply).
+
+Regenerated the dashboard and pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/preflight.py`, `ops/tests/test_gate_owner_actions_items_tracked.py`, `BACKLOG-2026-09-07.md` entry 165, this entry. No content, price or product page touched; a tooling gate fixed, not a site page, so `IndexNow` is not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-08 (~23:4x slot): previous work confirmed finished, full exhaustion re-verified independently, no new work to start, no duplicate notification
 
 NEXT FOR THE OPERATOR: hold, same standing 31-issue Phil-gated queue (newest #65), because every issue is still decision or blocked-on-art and none has moved since the 23:1x PM cycle roughly 20 minutes earlier.

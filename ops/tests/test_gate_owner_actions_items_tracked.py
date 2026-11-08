@@ -92,6 +92,20 @@ def case_issue_cited_anywhere_in_the_section_counts():
     assert "22. Turn on the photos API." not in problems, problems
 
 
+def case_issue_cited_in_the_heading_itself_counts():
+    """Found 2026-11-08: item 24's own heading names "GitHub issue #65"
+    directly, but the body that follows it says nothing, because the
+    heading already told Phil where to look. The gate used to search only
+    the body after the heading and missed a citation sitting in the
+    heading text itself, flagging a correctly-tracked item as untracked."""
+    text = (
+        "# Owner actions\n\n"
+        "### 24. Fix a stale logging line. GitHub issue #65.\n\n"
+        "No further mention of the issue number in this body.\n"
+    )
+    assert preflight.owner_actions_untracked_items(text) == []
+
+
 def case_real_committed_file_has_no_item_14_or_15_problem():
     """The real file, read live: items 14 and 15 (the first ones this
     gate's own history fixed) must never regress back onto the list, even
@@ -105,7 +119,8 @@ def case_real_committed_file_has_no_item_14_or_15_problem():
     for must_be_clean in ("14. Create the Amazon KDP", "15. Create the Etsy",
                            "1. Authorise YouTube", "6. Accounts layer",
                            "8. Close two public ports",
-                           "16. Create Pinterest"):
+                           "16. Create Pinterest",
+                           "24. Fix a stale logging"):
         assert must_be_clean not in flat, (must_be_clean, problems)
 
 
@@ -116,6 +131,7 @@ CASES = [
     case_done_by_heading_is_skipped,
     case_narrative_heading_is_never_flagged,
     case_issue_cited_anywhere_in_the_section_counts,
+    case_issue_cited_in_the_heading_itself_counts,
     case_real_committed_file_has_no_item_14_or_15_problem,
 ]
 
