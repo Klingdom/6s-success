@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-08 (~20:5x UTC slot): fresh checkout, full independent re-verification, no new defect, no new work unblocked
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: real `git fetch --unshallow`, `checkout main`, ff-only merge onto `2a53eb33d` (365 commits fast-forwarded), tree clean throughout, no unrelated-histories symptom. A concurrent 20:4x PM check-in landed mid-cycle (`ac0ba80ac`); fetched and fast-forward merged cleanly onto it before pushing, no conflicting site/content files. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7 and entries 161-164 in full (not a summary), `ROADMAP-2026-2029.md`'s arithmetic (already known from the backlog's own citation), `CLAUDE.md`, and the top of this log, not a prior cycle's citation of it.
+
+**Verified, not cited:** ran `preflight.py --skip-tests` myself from a cold process, unbuffered to a file: 0 FAIL through every gate reached, including KDP cover/EPUB and all three Etsy listings (L1/L4/L5) PASS, stalling only at the documented network-bound `gate_etsy_pdfs_current` (Etsy fee schedule, HTTP 403 from this sandbox, confirmed genuinely stalled at 4.3% CPU over 6+ minutes before killing by pid, confirmed dead, no orphan left). `cold_read_ledger.py --stale` 0/308; `--next` reports 308 of 308 already ledgered, nothing un-ledgered left to cold-read. All 5 rotate-tool `--check` runs CLEAN, within their own retention windows. 30 open GitHub issues re-pulled live via the API, sorted by `updated_at`: unchanged, every one `decision`/`blocked-on-art`, newest still #64 (filed 2026-11-08T16:59:32Z), no reply from Phil. 0 open PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed empty. `STATUS.md`'s Open claims section confirmed empty. Living-doc tripwires re-measured directly: BACKLOG-2026-09-07.md 200518B, OWNER-ACTIONS.md 115999B, STATUS.md 115394B, all already-rotated to the limit of what's genuinely live within retention (prior cycles' own finding, not re-litigated).
+
+**Went well:** independent re-derivation agreed with every one of today's prior cycles on every axis checked, including the concurrent 20:4x cycle that overlapped it; the room-guide keyword-mining lane's closure (entry 164) and the backlog's section 2-6 exhaustion both held up again.
+
+**Did not go well:** this cycle overlapped the concurrent 20:4x PM check-in within the same half hour, the exact cost issue #42 is open about.
+
+**Changing next cycle:** none beyond #42's own standing recommendation, which this overlap is fresh evidence for, not a new argument.
+
+**Next:** hold, same standing 30-issue Phil-gated queue (newest #64, the traffic-read ask). No push notification sent: last one 2026-11-07T18:55:00Z, no-repeat-before 2026-11-09T18:00:00Z not yet passed, nothing material changed since (same issue set, no Phil reply, no new credential, no revenue event).
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-11-08 (~20:4x slot): previous work confirmed finished and pushed; re-verified full exhaustion independently a further way, no new work to start, no duplicate notification
 
 NEXT FOR THE OPERATOR: hold, same standing 30-issue Phil-gated queue (newest #64), unchanged since the 20:1x cycle 30 minutes ago.
