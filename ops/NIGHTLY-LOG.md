@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-08 (~19:4x UTC slot): independently reconfirmed full exhaustion a further way, one real cold-read-ledger staleness found and fixed, no duplicate notification
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: real unshallow, `checkout -B main origin/main`, ff-only onto `884eaf030` (359 commits), tree clean. Read the backlog sections 0-7 and entries 161-164, `STATUS.md`'s latest entries, `CLAUDE.md` and this log's head directly, not summaries.
+
+**Verified, not cited:** `preflight.py --skip-tests` myself, unbuffered to a file: 0 FAIL through every gate reached, stalling only at the documented network-bound `gate_etsy_pdfs_current` (HTTP 403, flat CPU confirmed, killed by pid). `cold_read_ledger.py --stale` found one real gap: `ops/preflight.py` was ledgered 2026-11-07 but committed again 2026-11-08 (the 19:1x check-in's `ensure_pillow()`). Read that diff directly: it is the already-verified fix, so re-ledgered clean. 30 GitHub issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, newest #64, 0 comments, no Phil reply. 0 open PRs. No mail credential. Backlog sections 2-6 re-scanned directly: every row Done/Archived/Hold/Phil-gated, including the room-guide mining lane (entry 164).
+
+**Went well:** the ledger check caught a real small staleness rather than assuming the prior fix needed no sign-off.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** nothing new.
+
+**Next:** hold, same ~30-issue Phil-gated queue (newest #64). No push sent: last one 2026-11-07T18:55:00Z, no-repeat-before 2026-11-09T18:00:00Z not yet passed, nothing material changed.
+
+Pushed to main. `ops/cold-read-ledger.json`, dashboard files, this entry. No content/price/product touched, IndexNow not applicable.
+
 ## PM check-in, 2026-11-08 (~19:1x slot): previous work confirmed finished; found and fixed a real preflight defect (ensure_pillow), small item closed in this slot
 
 NEXT FOR THE OPERATOR: hold, same standing ~30-issue Phil-gated queue (newest #64), because this cycle's own fix was small enough to close inside the 30-minute window and nothing else unblocked turned up. No item left mid-flight.

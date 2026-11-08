@@ -1028,8 +1028,8 @@
     },
     "preflight.py": {
       "status": "clean",
-      "date": "2026-11-07",
-      "note": "Re-verified 2026-11-07 scheduled operator cycle after the ledger flagged this file as touched since its last read (gate_cold_read_ledger_entries_not_stale). The intervening commit (4d622ee0c) only hardened gate_etsy_pdfs_current's own Chrome-orphan sweep from pkill's default SIGTERM to SIGKILL, reproduced live and already proved fail-then-pass by its own author in the same commit. Read the diff directly: scoped to two identical pkill calls inside one function, consistent with every other Chrome-kill in this file already using SIGKILL, no new defect found."
+      "date": "2026-11-08",
+      "note": "Re-ledgered 2026-11-08: re-read the 07420d9f0 diff (ensure_pillow() self-heal, mirrors ensure_pymupdf), already verified clean in the 19:1x PM check-in that authored it."
     },
     "prerender_shop.py": {
       "status": "clean",
