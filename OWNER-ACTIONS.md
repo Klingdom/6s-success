@@ -1669,3 +1669,17 @@ green on `main` with no silent failures, and the Etsy/KDP listing packages
 pass with zero failures, so items 14/15 below remain genuinely a single
 step away. No new comment added to issue #42 this cycle, matching its own
 last comment's stated intent; both options above still stand, unchanged.
+
+### 24. Fix a stale logging instruction in all three Routines' prompts: they say "Append", the correct tool prepends. About two minutes, once. GitHub issue #65.
+
+**Found 2026-11-08, scheduled operator cycle, by comparing this cycle's own live prompt against `ops/routine-prompt.md` directly rather than trusting either on sight.** `ops/NIGHTLY-LOG.md` is newest first, and `ops/nightly_log.py` exists specifically to prepend an entry "at the correct position" (confirmed by running it with `--help`, not assumed from its name). `ops/routine-prompt.md`'s own STEP 10 already documents using it correctly. But the live hourly operator Routine's STEP 10, and both PM Routines' STEP 7, still literally say "Append one dated entry to ops/NIGHTLY-LOG.md", with no mention of the script. This is not a theoretical risk: `ops/preflight.py`'s own comment on `gate_nightly_log_ordering` records "a fourth instance of the exact defect (two more entries appended to the tail instead of prepended, by two different pushes) still reached main" as of 2026-10-21. Every session so far has self-corrected by reading the file's own convention or `ops/routine-prompt.md` before writing, which is why this has not caused a fifth visible instance since, but a session that follows the literal live instruction has no reason to know it is wrong.
+
+**I cannot fix this myself.** All three Routines show `created_via: http_api`, the same restriction item 23 above already hit; `update_trigger` refuses with "Agents can only update routines they created."
+
+**The fix is one paste per Routine, at the three links item 23 already collected:**
+
+- Hourly operator (`trig_011oe2y7KR3AiPxUTd6b9P6c`): in STEP 10, replace `Append one dated entry to ops/NIGHTLY-LOG.md, under 250 words` with `Prepend one dated entry to the TOP of ops/NIGHTLY-LOG.md (the file is newest first; never add to the end), using python ops/nightly_log.py --title "..." --handoff none --body-file <file>, which places it correctly and writes atomically, under 250 words`. This exact sentence is already sitting in the repo at `ops/routine-prompt.md`'s own STEP 10, ready to copy.
+- PM :40 (`trig_01JCURkStiuxTMyZDNbVGumL`): in STEP 7, replace `Append one dated entry to ops/NIGHTLY-LOG.md under the heading "PM check-in", at most 120 words` with `Prepend one dated entry to the TOP of ops/NIGHTLY-LOG.md (the file is newest first; never add to the end), using python ops/nightly_log.py --title "PM check-in (...)" --handoff none --body-file <file>, which places it correctly and writes atomically, under the heading "PM check-in", at most 120 words`.
+- PM :10 (`trig_01KYMpAJo7UHBMtUYmqXj25L`): in STEP 7, the same substitution (its own tail wording, "saying: whether the previous work was finished...", is unaffected and should stay).
+
+Nothing else here is blocked on this; the detection gate (`gate_nightly_log_ordering`) already catches a misordered entry after the fact, so the cost of leaving this unfixed is small and has not recurred since 2026-10-21, but the root cause has never actually been corrected, only worked around by every session that happened to read the right file first.
