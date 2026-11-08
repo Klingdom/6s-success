@@ -218,7 +218,7 @@ COMPONENTS = [
      "supervisor weekly, the manager monthly, each against the same scoring "
      "sheet the baseline used, so the trend line is comparable to day one. We "
      "train your auditors and run the first two audits with them. This is the "
-     "part most 5S programmes skip, and skipping it is why most 5S programmes "
+     "part most 5S programs skip, and skipping it is why most 5S programs "
      "get run twice."),
 ]
 
@@ -289,7 +289,7 @@ YOU_SUPPLY = [
      "here than discover it in week two."),
     ("One named area",
      "Agreed before we start. The whole plant is not a first engagement, it is "
-     "a programme, and it is scoped differently."),
+     "a program, and it is scoped differently."),
     ("A red-tag holding area, and somebody who can decide",
      "Somewhere items can sit while their fate is settled, and a person who is "
      "allowed to settle it."),
@@ -309,7 +309,7 @@ YOU_SUPPLY = [
     ("Two hours of leadership time",
      "One at the start to agree the measure, one at the end to walk the area "
      "and accept the standard. If leadership never walks it, the floor learns "
-     "what the programme is worth."),
+     "what the program is worth."),
 ]
 
 # Questions a real buyer asks, answered on the page and mirrored into FAQPage

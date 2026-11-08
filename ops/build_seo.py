@@ -352,7 +352,7 @@ PAGES = {
         path="/how-we-make-money.html",
         title="How we make money: what we sell, and what we do not earn on",
         desc="Where 6S Success revenue comes from: our own books, packs, decks "
-             "and consulting. No ads, no sponsorship, no affiliate programme "
+             "and consulting. No ads, no sponsorship, no affiliate program "
              "earning us anything.",
         image="calm-living.jpg",
         image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household's shared picture should be.",
@@ -363,7 +363,7 @@ PAGES = {
     "affiliate-disclosure.html": dict(
         path="/affiliate-disclosure.html",
         title="Affiliate disclosure: no link on this site earns a commission",
-        desc="6S Success has no approved affiliate programme, so no link here "
+        desc="6S Success has no approved affiliate program, so no link here "
              "earns a commission today. What that means, and where a paying "
              "link would never appear.",
         image="calm-living.jpg",

@@ -433,7 +433,7 @@ def article_one(rooms):
              "at the same conclusion: none of the rest of it matters if "
              "somebody gets hurt.</p>")
     b.append("<p>The second difference is placement, and that is the one that "
-             "changes the work. Where workplace programmes do include Safety, "
+             "changes the work. Where workplace programs do include Safety, "
              "it is commonly bolted on at the end, after the standard is set, "
              "which turns it into an audit rather than a decision. Plenty of 5S "
              "implementations leave it out entirely and treat it as somebody "

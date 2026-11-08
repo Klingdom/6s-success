@@ -83,7 +83,7 @@ DISCLOSURE_HTML = """\
 # page of the site that recommends anything.
 NO_LINK_HTML = """<aside class="disclosure" id="{id}">
   <p><b>Nothing on this page earns us anything.</b> No retailer affiliate
-  programme has approved us, so not one product below carries a paying link
+  program has approved us, so not one product below carries a paying link
   and we take no cut of anything you buy after reading it.</p>
   <p>Each is listed as a <i>type</i> of thing a micro zone needs, with the
   reason next to it, so you can use what you already own or buy it wherever
@@ -105,7 +105,7 @@ NO_LINK_HTML = """<aside class="disclosure" id="{id}">
 PLAIN_LINK_HTML = """<aside class="disclosure" id="{id}">
   <p><b>These links pay us nothing.</b> The products below link to a search at
   a retailer, and those links carry no tracking code and earn no commission.
-  No affiliate programme has approved us, so there is nothing for us to gain
+  No affiliate program has approved us, so there is nothing for us to gain
   from which one you click.</p>
   <p>They are searches for a <i>type</i> of thing rather than a particular
   item on purpose. The method knows what kind of thing removes the problem; it
