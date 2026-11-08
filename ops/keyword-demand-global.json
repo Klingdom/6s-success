@@ -12096,16 +12096,14 @@
         "how to organise stove area"
       ],
       "room": "Kitchen",
-      "best_page": "/articles/how-to-declutter-a-kitchen.html",
-      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
+      "best_page": "/zones/kitchen-the-cooking-zone.html",
+      "best_page_title": "How to organize the kitchen stove area",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "oven"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/kitchen-the-cooking-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "in"
       ],
@@ -15999,13 +15997,12 @@
       "best_page": "/zones/kitchen-the-cooking-zone.html",
       "best_page_title": "How to organize the kitchen stove area",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
+      "heading_coverage": 0.333,
       "heading_page": "/zones/kitchen-the-cooking-zone.html",
-      "matched_on": "title",
+      "matched_on": "heading",
       "status": "gap",
       "unmatched_words": [
         "operate",
-        "oven",
         "stoves"
       ],
       "markets": [
@@ -20770,16 +20767,14 @@
         "how to organise stove area"
       ],
       "room": "",
-      "best_page": "/kitchen-deck.html",
-      "best_page_title": "The Kitchen Deck: 72 cards, typeset and free to read or print",
+      "best_page": "/zones/kitchen-the-cooking-zone.html",
+      "best_page_title": "How to organize the kitchen stove area",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
-      "heading_page": "/kitchen-deck.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/kitchen-the-cooking-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "oven"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb"
       ],
@@ -34520,13 +34515,11 @@
       "best_page": "/zones/kitchen-the-cooking-zone.html",
       "best_page_title": "How to organize the kitchen stove area",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kitchen-the-cooking-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "oven"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -48341,6 +48334,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "3e392d1ba",
-  "scored_at": "2026-11-08T00:57:55Z"
+  "scored_against_commit": "fa34a5dfc",
+  "scored_at": "2026-11-08T01:57:27Z"
 }
