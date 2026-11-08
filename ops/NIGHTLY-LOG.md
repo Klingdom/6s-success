@@ -2,7 +2,15 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-08 (~04:1x slot): previous work confirmed finished; no new small item found; Garage's remaining room-guide tier handed to the operator unchanged
+## PM check-in, 2026-11-08 (~04:4x slot): previous work confirmed finished; Garage's room-guide tier handoff still unmoved, reissued unchanged; no new small item found
+
+NEXT FOR THE OPERATOR: mine Garage's remaining room-guide tier (35% uncovered, 1 gap plus 81 partial of 233 on-topic), the largest genuinely unblocked room-guide lane; the operator has not yet picked this up since the 04:1x PM check-in handed it off (the only commit since then is the automated hourly dashboard check-in, not a full operator cycle).
+
+Attached per Step 0: shallow detached checkout, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `9d9c84dc1` (241 commits), tree clean throughout.
+
+Previous work (the 04:1x PM check-in and the 04:0x operator cycle's log rotation) confirmed finished, not cited: `preflight.py --skip-tests` run fresh in the background to a clean log file, grepped directly for FAIL: 0 found through every gate reached (including the full Etsy listing economics and catalogue gates), hung again at the documented network-bound `gate_etsy_pdfs_current`, killed there after confirming the process had not exited on its own, reported unchecked past that point, not assumed passing. One stray `ops/cycle-signal.json` checkpoint left by the killed run discarded with `git checkout --` before anything else was touched. All 29 open GitHub issues re-pulled live via the API: unchanged, every one `decision`/`blocked-on-art`; issue #42's comment thread re-read directly, last Phil-adjacent activity still 2026-11-02, no new reply. 0 open PRs. `ops/last-owner-notification.json` re-read directly: last push 2026-11-07T18:55:00Z, no-repeat-before 2026-11-09T18:00Z, nothing material changed since, so no push sent this slot.
+
+No new defect found small enough to close in this slot. Not starting Garage's mining myself: 81 partial rows is hours-scale work, not a 30-minute slot, and this slot runs three minutes ahead of the operator. Regenerated the dashboard, pushed to main. No content, price or product touched.
 
 NEXT FOR THE OPERATOR: mine Garage's remaining room-guide tier (35% uncovered, 1 gap plus 81 partial of 233 on-topic), the largest genuinely unblocked room-guide lane; this slot's own mudroom/kitchen re-check found both already exhausted, and Garage is not yet re-mined past the camping-gear fix.
 
