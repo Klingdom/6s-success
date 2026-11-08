@@ -19319,16 +19319,14 @@
         "how to organise outdoor storage"
       ],
       "room": "",
-      "best_page": "/zones/garage-the-sports-and-recreation-zone.html",
-      "best_page_title": "How to organize the garage sports gear storage",
+      "best_page": "/zones/garage-the-bulk-and-overhead-storage.html",
+      "best_page_title": "How to organize the garage bulk and overhead storage",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-garage.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "camping"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/garage-the-bulk-and-overhead-storage.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -48334,6 +48332,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "fa34a5dfc",
-  "scored_at": "2026-11-08T01:57:27Z"
+  "scored_against_commit": "d602f2f8c",
+  "scored_at": "2026-11-08T02:54:54Z"
 }
