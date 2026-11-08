@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-08 (~19:1x slot): previous work confirmed finished; found and fixed a real preflight defect (ensure_pillow), small item closed in this slot
+
+NEXT FOR THE OPERATOR: hold, same standing ~30-issue Phil-gated queue (newest #64), because this cycle's own fix was small enough to close inside the 30-minute window and nothing else unblocked turned up. No item left mid-flight.
+
+Attached per Step 0 onto a shallow, detached checkout: fetched, real `git fetch --unshallow`, `checkout main`, ff-only merge onto `d544e0287`, tree clean throughout.
+
+Previous work (the 18:5x scheduled operator cycle) confirmed finished, not cited: re-pulled all 30 open GitHub issues live via the API, unchanged, all `decision`/`blocked-on-art`, newest still #64, no reply from Phil. 0 open PRs. Working tree was clean and already pushed.
+
+**Found and fixed a real defect, not a re-verification.** Ran `preflight.py --skip-tests` myself from a cold process: it stalled over 5 minutes inside `ensure_pymupdf()`'s own pip install (a one-off slow pull of the pinned 25.8MB `pymupdf==1.28.2` wheel, confirmed by hand afterward to complete in under 30s on a fresh attempt, so not a policy block). Killed that stalled attempt, installed pymupdf directly, and reran: this time `gate_kdp_cover_current` genuinely FAILed (`build_kdp_cover.py could not regenerate the cover ... exit 1`) and `gate_etsy_listing_valid` WARNed with `ImportError: cannot import name '_imaging' from 'PIL'`. Traced it: this sandbox's apt-installed `python3-pil` (Pillow 10.2.0) is missing its compiled `_imaging` extension, and `bootstrap_fresh_sandbox()` only calls `ensure_pymupdf()`, whose install (`pip install -r ops/requirements.txt`, which also pins `Pillow==11.3.0`) is skipped entirely once pymupdf alone is already importable. A sandbox where pymupdf happens to already be present (as this one was, after my manual install) never gets Pillow fixed at all, so a genuinely broken system package reads as a content defect in two separate gates. Added `ensure_pillow()` to `ops/preflight.py`, mirroring `ensure_pymupdf()`'s own retry/report shape exactly, and wired it into `bootstrap_fresh_sandbox()` alongside it. New `ops/tests/test_ensure_pillow.py` (4/4, same four cases as `test_ensure_pymupdf.py`: already-importable skips install, a failure that recovers on retry, a failure that never recovers reports False, attempts is honoured exactly). Reran `preflight.py --skip-tests` end to end after the fix: `gate_kdp_cover_current` now passes silently and `gate_etsy_listing_valid` reports PASS, 0 FAIL through every gate reached, stalling again only at the documented network-bound `gate_etsy_pdfs_current` (Etsy fee schedule, HTTP 403), killed by pid once confirmed genuinely stalled, confirmed dead rather than left zombied. `fix_dashes.py --check` 0/0. `cold_read_ledger.py --stale` 0/308.
+
+**Went well:** found by actually reading the exception rather than assuming the FAIL meant a real cover/listing regression; the fix is the same shape issue the file's own docstrings already document for pymupdf, just never generalized to its sibling pin.
+
+**Did not go well:** the first preflight attempt wasted several minutes on a one-off slow wheel pull before I killed it and installed directly; not a defect, just this slot's own overhead.
+
+No push notification sent: last one 2026-11-07T18:55:00Z, no-repeat-before 2026-11-09T18:00:00Z not yet passed, and this fix is an internal tooling correction, not something Phil needs to act on.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_ensure_pillow.py`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-08 (~18:5x UTC slot): full 13-step routine run, independently reconfirmed exhaustion a third time this hour, no new defect, no duplicate notification
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout: fetched, real `git fetch --unshallow`, `checkout main`, ff-only merge onto `aa13990a5` then later `9cb721be4` (a concurrent 18:4x PM check-in landed mid-cycle and merged cleanly, no conflicting files). Read `BACKLOG-2026-09-07.md` sections 0-7 and entries 161-164 in full, `STATUS.md`'s section 0/2 and latest entries, and the newest head of this log, not a summary.

@@ -10972,23 +10972,83 @@ def ensure_pymupdf(importable=_pymupdf_importable,
     return False
 
 
+def _pillow_importable() -> bool:
+    import importlib
+    importlib.invalidate_caches()
+    try:
+        from PIL import Image  # noqa: F401
+        return True
+    except ImportError:
+        return False
+
+
+def ensure_pillow(importable=_pillow_importable,
+                   install=lambda: subprocess.run(
+                       [PY, "-m", "pip", "install", "-q",
+                        "--timeout", "60", "-r",
+                        os.path.join(ROOT, "ops", "requirements.txt")],
+                       cwd=ROOT),
+                   attempts: int = 3) -> bool:
+    """Install Pillow, tolerating a broken system package, and prove it.
+
+    Found 2026-11-08: a cold sandbox's apt-installed `python3-pil` (Pillow
+    10.2.0, `/usr/lib/python3/dist-packages`) imported its pure-Python
+    `__init__.py` but was missing the compiled `_imaging` extension, so
+    `from PIL import Image` raised `ImportError: cannot import name
+    '_imaging' from 'PIL'`. `gate_kdp_cover_current` read that as a real
+    FAIL (`build_kdp_cover.py` could not regenerate the cover) and
+    `gate_etsy_listing_valid` WARNed the same way, both looking like content
+    defects until someone noticed the exception was an import failure, not
+    a build one. The pinned `Pillow==11.3.0` wheel in `ops/requirements.txt`
+    installs cleanly over the broken system copy and fixes it, but
+    `ensure_pymupdf()`'s own install call only ran when pymupdf itself was
+    missing; a sandbox where pymupdf already imported (left over from an
+    earlier partial bootstrap) skipped that install entirely and never
+    touched Pillow, even though the same `-r requirements.txt` line would
+    have fixed it too. Pillow needs its own check, mirroring
+    `ensure_pymupdf()`: don't install if already genuinely importable,
+    retry a transient failure, and report the real result rather than
+    assuming one pinned package's success implies the other's.
+
+    Returns True once `from PIL import Image` actually succeeds in this
+    process, False if it still cannot be imported after every attempt.
+    """
+    if importable():
+        return True
+    for attempt in range(1, attempts + 1):
+        print(f"  bootstrap: installing ops/requirements.txt "
+              f"(Pillow missing or broken, attempt {attempt}/{attempts})")
+        install()
+        if importable():
+            return True
+    print(f"  bootstrap: Pillow still not importable after {attempts} "
+          f"attempts. Image-dependent checks (kdp-cover, etsy-listing) "
+          f"will fail or warn closed this run, correctly, but the cause "
+          f"is this install, not a site defect.")
+    return False
+
+
 def bootstrap_fresh_sandbox() -> None:
-    """Heal the two artifacts every fresh-checkout cycle has hit, on its own.
+    """Heal the artifacts every fresh-checkout cycle has hit, on its own.
 
     This used to run only under `--fix`, which the STEP 2 operator
     instruction ("Run: python ops/preflight.py") never passes, so a bare run
     kept failing on a fresh checkout and every cycle re-diagnosed the same
-    two causes by hand instead of running the flag that fixed them.
+    causes by hand instead of running the flag that fixed them.
     `ops/NIGHTLY-LOG.md` shows this exact pair, missing `pymupdf` and an
     unbuilt `build/products/`, repeating across at least seven consecutive
     entries even with the flag already written, because nobody's first
-    command passes it. Both fixes are idempotent and side-effect free (a pip
-    install of one pinned package, a deterministic rebuild already proven
-    byte-stable across reruns), so this now runs unconditionally, every
-    invocation, fast or deep, `--fix` or not: there is no case where running
-    it is wrong, only cases where it is a fast no-op.
+    command passes it. `ensure_pillow()` joined 2026-11-08 for the same
+    reason: a broken Pillow import looks exactly like a content defect
+    until someone checks the exception. All three fixes are idempotent and
+    side-effect free (a pip install of pinned packages, a deterministic
+    rebuild already proven byte-stable across reruns), so this now runs
+    unconditionally, every invocation, fast or deep, `--fix` or not: there
+    is no case where running it is wrong, only cases where it is a fast
+    no-op.
     """
     ensure_pymupdf()
+    ensure_pillow()
     if not os.path.isdir(os.path.join(ROOT, "build", "products")):
         print("  bootstrap: running ops/build_catalog.py --build (build/products/ missing)")
         subprocess.run([PY, os.path.join(ROOT, "ops", "build_catalog.py"),
