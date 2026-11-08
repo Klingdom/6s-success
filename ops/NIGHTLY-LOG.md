@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-08 (~22:0x UTC): full exhaustion re-verified, a real stale Append-vs-prepend logging defect found in all three live Routine prompts and escalated
+
+**Did:** Scheduled operator cycle. Attached per Step 0 onto a shallow, detached checkout (fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only merge, 371 commits fast-forwarded). Pulled all 30-then-31 open GitHub issues fresh via the API: every one already `decision` or `blocked-on-art`, the standing fully-Phil-gated queue `STATUS.md`/issue #42 already describe. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked. Revenue re-read from `ops/state.json`: $0 this month, $19/1 sale all time, last measured 21:17 UTC by an earlier cycle today, unchanged. The weekly global keyword harvest (`checked_at` 2026-11-05) is still the one mined down to exhaustion by today's A1 to A75 chain; next harvest is not due until Thursday 2026-11-12, so that lane has nothing new either.
+
+Found and fixed the one new thing this cycle turned up: diffed this cycle's own live hourly-operator prompt directly against `ops/routine-prompt.md` rather than trusting either on sight. `ops/routine-prompt.md`'s STEP 10 correctly uses `ops/nightly_log.py` to prepend; all three live Routines (hourly operator, PM :10, PM :40) still say "Append... to ops/NIGHTLY-LOG.md." `preflight.py`'s own `gate_nightly_log_ordering` comment records a real, recurring consequence of exactly this stale instruction (a fourth append-to-tail incident, 2026-10-21). Could not fix the Routines myself (`created_via: http_api`, same refusal issue #40/#42 already hit), so filed GitHub issue #65 and OWNER-ACTIONS.md item 24 with the exact three paste-in replacements.
+
+**Verified:** `preflight.py --skip-tests` run fresh, unbuffered to a file: one self-correcting FAIL (a stray probe file left by this session's own earlier interrupted full run, deleted by the gate itself before the pages/footer gates below it), otherwise 0 FAIL through every gate reached. Genuinely stalled inside `gate_cold_read_ledger_entries_not_stale` (log unchanged 300s+, confirmed by watching byte growth, not assumed), killed by pid; everything after it in gate order is unchecked, not passing, this cycle. `ops/nightly_log.py --help` run directly to confirm its prepend behaviour before citing it as the fix. 0 open PRs.
+
+**Went well:** the append-vs-prepend finding came from comparing two files directly rather than trusting either; it is a real, previously-undiagnosed root cause for a defect class the repo already had a detection gate for but never a fix for.
+
+**Did not go well:** `preflight.py --skip-tests` took over 10 minutes and still did not finish; `gate_prerender_shop_current` also reported "could not check" before the later stall.
+
+**Changing next cycle:** none new; `gate_nightly_log_ordering` already catches the symptom this cycle's root-cause fix targets, so no new gate needed.
+
+**Next:** hold, same standing Phil-gated queue, now also covering issue #65/item 24. No push notification: last one 2026-11-07T18:55:00Z, no-repeat-before 2026-11-09T18:00Z not yet passed, and this cycle's own finding is cheap/non-urgent, not the kind of material change that resets that floor.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-08 (~21:4x slot): previous work confirmed finished and pushed, full exhaustion re-verified a further independent way, no new work to start, no duplicate notification
 
 NEXT FOR THE OPERATOR: hold, same standing 30-issue Phil-gated queue (newest #64), because every one is still `decision`/`blocked-on-art` and the room-guide content-gap-mining lane, re-run fresh this slot rather than cited, still shows 0 `gap` rows across the rooms sampled (only already-vetted wording-mismatch `partial` rows, the documented noise class).
