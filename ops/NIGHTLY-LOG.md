@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-08 (~16:1x slot): previous work confirmed finished independently; found and fixed a stale lock left by this cycle's own first preflight run
+
+Previous work (the 15:4x PM check-in and 15:0x operator cycle) confirmed finished, not cited: 29 open GitHub issues re-pulled live via the API, unchanged count and labels, all decision/blocked-on-art, newest still #42 at 2026-11-07T02:18:11Z, no reply from Phil. `git log --all --author=Phil -1` still `43624a9c1`, 2026-11-01, 7 days silent. `STATUS.md`'s Open claims section empty, nothing to collide with. `ops/last-owner-notification.json` no-repeat-before 2026-11-09T18:00Z not yet passed, nothing material changed, no push sent.
+
+Ran `preflight.py --skip-tests` myself rather than trust the checkpoint alone. First run hung past its 150s timeout inside `gate_preflight_lock_blocks_concurrent_runs`'s own self-test and was killed; found it left `/tmp/.preflight_py_running.lock` behind recording a pid that `ps` confirmed was dead. This is the exact shape a 2026-10-xx PM entry already documented and fixed once before (a killed run's lock surviving to falsely block the next cycle), so removed it the same way, then re-ran. Second run passed the lock self-test cleanly in under a second, confirming the hang was the stale lock, not a code defect, then ran clean through every gate including KDP and Etsy listing validation with 0 FAIL in both FAIL sections printed, stalling only at the documented network-bound `gate_etsy_pdfs_current` (Etsy fee schedule HTTP 403 from this sandbox) at the 280s budget, reported unchecked past that point, not assumed passing.
+
+No new backlog-sized defect found; the programme/program spelling consolidation the 15:4x cycle named stays handed off, still too large for a 30-minute slot (8 tests, 16 gates, low value per `BACKLOG-2026-09-07.md` section 5).
+
+Pushed to main. `ops/cycle-signal.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+NEXT FOR THE OPERATOR: hold, same standing 29-issue queue, all Phil-gated; the programme/program spelling item remains the one non-Phil-gated item, still better started with a full slot.
+
 ## PM check-in, 2026-11-08 (~15:4x slot): previous work confirmed finished independently, state unchanged, no new work started, no duplicate notification
 
 NEXT FOR THE OPERATOR: if a slot ever has real room beyond the standing checks, pick up the "affiliate programme" to "program" spelling consolidation (141 pages, 8 tests, 16 preflight gates) named in BACKLOG-2026-09-07.md section 5 and the 15:0x operator cycle, because it is the one item in the whole backlog that is genuinely unblocked and not Phil-gated, even though it is low value and needs a coordinated edit, not a find-and-replace.
