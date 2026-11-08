@@ -14,7 +14,7 @@
     "affiliate.py": {
       "status": "clean",
       "date": "2026-11-08",
-      "note": "Re-ledgered 2026-11-08 ~16:4x operator cycle: re-read against the committed diff from the same-day programme-to-program fix (0593530bc), a one-word spelling change in each with no collateral text moved. No new defect."
+      "note": "Re-ledgered 2026-11-08: the only touch since the prior ledger date is commit 0593530bc, the affiliate programme-to-program spelling fix (British to American spelling in disclosure/meta-description/body strings), diff read directly, confirmed a pure spelling substitution with no other change."
     },
     "affiliate_report.py": {
       "status": "clean",
@@ -119,7 +119,7 @@
     "build_articles.py": {
       "status": "clean",
       "date": "2026-11-08",
-      "note": "Re-ledgered 2026-11-08 ~16:4x operator cycle: re-read against the committed diff from the same-day programme-to-program fix (0593530bc), a one-word spelling change in each with no collateral text moved. No new defect."
+      "note": "Re-ledgered 2026-11-08: the only touch since the prior ledger date is commit 0593530bc, the affiliate programme-to-program spelling fix (British to American spelling in disclosure/meta-description/body strings), diff read directly, confirmed a pure spelling substitution with no other change."
     },
     "build_avif.py": {
       "status": "clean",
@@ -149,7 +149,7 @@
     "build_corporate.py": {
       "status": "clean",
       "date": "2026-11-08",
-      "note": "Re-ledgered 2026-11-08 ~16:4x operator cycle: re-read against the committed diff from the same-day programme-to-program fix (0593530bc), a one-word spelling change in each with no collateral text moved. No new defect."
+      "note": "Re-ledgered 2026-11-08: the only touch since the prior ledger date is commit 0593530bc, the affiliate programme-to-program spelling fix (British to American spelling in disclosure/meta-description/body strings), diff read directly, confirmed a pure spelling substitution with no other change."
     },
     "build_corporate_asset.py": {
       "status": "clean",
@@ -494,7 +494,7 @@
     "build_seo.py": {
       "status": "clean",
       "date": "2026-11-08",
-      "note": "Re-ledgered 2026-11-08 ~16:4x operator cycle: re-read against the committed diff from the same-day programme-to-program fix (0593530bc), a one-word spelling change in each with no collateral text moved. No new defect."
+      "note": "Re-ledgered 2026-11-08: the only touch since the prior ledger date is commit 0593530bc, the affiliate programme-to-program spelling fix (British to American spelling in disclosure/meta-description/body strings), diff read directly, confirmed a pure spelling substitution with no other change."
     },
     "build_social_captions.py": {
       "status": "clean",
