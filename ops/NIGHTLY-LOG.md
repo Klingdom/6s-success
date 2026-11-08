@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-08 (~17:1x slot): previous work confirmed finished; a real but small staleness closed, not just re-confirmed
+
+Previous work (16:4x PM's share-cards fix, 16:0x operator's programme/program fix) confirmed finished: ran `preflight.py --skip-tests` myself, 0 FAIL through every gate reached, stalled only at the documented network-bound `gate_etsy_pdfs_current` (403). 30 open GitHub issues re-pulled live, unchanged except #64, a new Phil-gated decision the 16:4x cycle filed (never tracked before: run the traffic read and paste it back), not a reply from Phil. No open claims.
+
+Found and closed a real gap instead of just re-confirming: `cold_read_ledger.py --stale` showed 4 entries outdated by today's programme-to-program commit (`0593530bc`) that nobody had re-ledgered. Read each diff directly, confirmed pure spelling substitutions, re-ledgered all four as clean. `--stale` now 0.
+
+No push notification: last one 2026-11-07T18:55Z, no-repeat-before 2026-11-09T18:00Z not yet passed, nothing material changed (no Phil reply, no new credential, no revenue event). Dashboard regenerated (YELLOW, $0/$20,000, Stripe unreachable this run). Pushed to main.
+
 ## PM check-in, 2026-11-08 (~16:4x slot): previous work confirmed finished; one real gate FAIL found and fixed, standing Phil-gated queue unchanged
 
 NEXT FOR THE OPERATOR: hold on the standing 29-issue Phil-gated queue (newest #42), because the backlog's non-Phil-gated items are confirmed empty again this cycle and nothing unblocked remains to start.

@@ -12,9 +12,9 @@
       "note": "Second-pass cold read, 2026-10-12 scheduled operator cycle: read in full (738 lines) and run directly, not just inspected. --self-test: 4/4 historical outcomes reproduced (EM-003's missing key correctly fails, the landing-zone and garage-tool-wall cases score correctly, the levitating-sink must_not_show hard-fail holds). --check: 89 card and 114 zone checklists all derive with 0 errors against the real corpus. No GEMINI_API_KEY or source images in this sandbox, so --all cannot run here; --one/--all both report BLOCKED plainly rather than guessing, confirmed by reading that branch. No defect found."
     },
     "affiliate.py": {
-      "status": "fixed",
-      "date": "2026-11-01",
-      "note": "Self-heal: bootstrap pymupdf + build/products before check(), so a standalone run cannot misreport the known fresh-sandbox gap as a content regression"
+      "status": "clean",
+      "date": "2026-11-08",
+      "note": "Re-ledgered 2026-11-08: the only touch since the prior ledger date is commit 0593530bc, the affiliate programme-to-program spelling fix (British to American spelling in disclosure/meta-description/body strings), diff read directly, confirmed a pure spelling substitution with no other change."
     },
     "affiliate_report.py": {
       "status": "clean",
@@ -118,8 +118,8 @@
     },
     "build_articles.py": {
       "status": "clean",
-      "date": "2026-10-23",
-      "note": "Re-ledgered 2026-10-23: the only touch since the last ledger date was the 2026-10-22 share_cards/article_figures wiring commits, a trivial try/import/apply()/except ImportError:pass addition (or, for audit_pages.py, a one-line hero-lazy exclusion for article figures); diff read directly, confirmed mechanical."
+      "date": "2026-11-08",
+      "note": "Re-ledgered 2026-11-08: the only touch since the prior ledger date is commit 0593530bc, the affiliate programme-to-program spelling fix (British to American spelling in disclosure/meta-description/body strings), diff read directly, confirmed a pure spelling substitution with no other change."
     },
     "build_avif.py": {
       "status": "clean",
@@ -148,8 +148,8 @@
     },
     "build_corporate.py": {
       "status": "clean",
-      "date": "2026-10-23",
-      "note": "Re-ledgered 2026-10-23: the only touch since the last ledger date was the 2026-10-22 share_cards/article_figures wiring commits, a trivial try/import/apply()/except ImportError:pass addition (or, for audit_pages.py, a one-line hero-lazy exclusion for article figures); diff read directly, confirmed mechanical."
+      "date": "2026-11-08",
+      "note": "Re-ledgered 2026-11-08: the only touch since the prior ledger date is commit 0593530bc, the affiliate programme-to-program spelling fix (British to American spelling in disclosure/meta-description/body strings), diff read directly, confirmed a pure spelling substitution with no other change."
     },
     "build_corporate_asset.py": {
       "status": "clean",
@@ -493,8 +493,8 @@
     },
     "build_seo.py": {
       "status": "clean",
-      "date": "2026-11-04",
-      "note": "PM check-in cold read, 2026-11-04 03:3x slot: re-read in full (1083 lines) after the UTC-rollover sitemap lastmod fix landed. _git_content_date() and _content_hash() strip the same fingerprint/data-sku attributes consistently, so dating and detection cannot disagree; build_sitemap()'s today = datetime.now(timezone.utc) is the fix itself. No new defect found."
+      "date": "2026-11-08",
+      "note": "Re-ledgered 2026-11-08: the only touch since the prior ledger date is commit 0593530bc, the affiliate programme-to-program spelling fix (British to American spelling in disclosure/meta-description/body strings), diff read directly, confirmed a pure spelling substitution with no other change."
     },
     "build_social_captions.py": {
       "status": "clean",
