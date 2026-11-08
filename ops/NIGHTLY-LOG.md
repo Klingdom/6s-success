@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~22:4x slot): previous work confirmed finished and pushed, full exhaustion re-verified, applying the newly escalated prepend fix to this entry, no new work to start, no duplicate notification
+
+NEXT FOR THE OPERATOR: hold, same standing 31-issue Phil-gated queue (newest #65), because every one is still decision or blocked-on-art and nothing has moved since the 22:0x operator cycle 20 minutes earlier.
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real unshallow, checkout main, ff-only merge onto f3a1d82fb (381 commits fast-forwarded), tree clean throughout.
+
+Previous work (the 22:0x operator cycle, which filed issue #65 and OWNER-ACTIONS.md item 24 for the stale "Append" vs the correct prepend logging instruction in all three live Routine prompts) confirmed finished, not cited: issue #65 and the OWNER-ACTIONS.md item both exist and match. Applying that fix to this entry myself: using ops/nightly_log.py to prepend rather than the literal "Append" wording this Routine's own stored prompt still carries, since I cannot edit the live trigger prompt myself.
+
+Re-verified, not cited: preflight.py --skip-tests run fresh to a 170s budget, 0 FAIL grepped through every gate reached, timed out (exit 124) at the documented network-bound gate_etsy_pdfs_current (Etsy fee schedule, HTTP 403 from this sandbox), same stall every recent cycle hits. 31 open GitHub issues re-pulled fresh via the API: unchanged, every one decision/blocked-on-art, newest still #65. Issue #42's 9 comments all self-authored (OWNER association, the operating account), most recent 2026-11-08, no reply from Phil. 0 open PRs. ops/last-owner-notification.json: last push 2026-11-07T18:55:00Z, no-repeat-before 2026-11-09T18:00Z not yet passed, nothing material changed since, so no push sent.
+
+Not starting anything backlog-sized: every non-Phil-gated workstream remains Done, Hold, or exhausted. No new defect found small enough to close this slot.
+
+Pushed to main. ops/cycle-signal.json, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry.
+
+HANDOFF-FILES: none
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-08 (~22:0x UTC): full exhaustion re-verified, a real stale Append-vs-prepend logging defect found in all three live Routine prompts and escalated
 
 **Did:** Scheduled operator cycle. Attached per Step 0 onto a shallow, detached checkout (fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only merge, 371 commits fast-forwarded). Pulled all 30-then-31 open GitHub issues fresh via the API: every one already `decision` or `blocked-on-art`, the standing fully-Phil-gated queue `STATUS.md`/issue #42 already describe. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked. Revenue re-read from `ops/state.json`: $0 this month, $19/1 sale all time, last measured 21:17 UTC by an earlier cycle today, unchanged. The weekly global keyword harvest (`checked_at` 2026-11-05) is still the one mined down to exhaustion by today's A1 to A75 chain; next harvest is not due until Thursday 2026-11-12, so that lane has nothing new either.
