@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-08 (~03:1x slot): previous work confirmed finished; a real deploy-gap staleness found and fixed in STATUS.md (5 sections)
+
+Previous work (entry 163, the camping-gear zone-synonym fix) was finished and verified, not cited. Attached per Step 0. `preflight.py --skip-tests`: 0 FAIL on every gate reached, stalled at the documented network-bound `gate_etsy_pdfs_current`, unchecked past it. All 29 GitHub issues re-pulled live: unchanged, all `decision`/`blocked-on-art`.
+
+Found a real defect: a fresh automated deploy-verdict confirmation (`6cd7db9a6`, build `9b04b180c760349a`) landed mid-cycle, and `STATUS.md`'s five build-citing sections (BLOCKER-001, Production Knowledge, Public website row, Production traceability row, Currently Deployed Build/Repository HEAD Build) still named the prior build. Re-derived directly: `resolve_verdict_commit` resolves to `d0877f8af`; `deploy_gap_material_commits` against real `HEAD` returns empty. Fixed all five, following each field's own append convention (BLOCKER-001 appended as a new paragraph, Production Knowledge replaced in place, matching `split_blocker1_chain`/`split_chain`). Verified: `status_deploy_verdict_problem` and `deploy_gap_count_problem` both return `''`; both chain splitters parse cleanly; `test_gate_status_deploy_verdict_current.py` (14/14), `test_gate_status_deploy_gap_count_current.py` (17/17), `test_gate_status_history_chain_not_collapsed.py` (5/5) pass; `fix_dashes.py`/`fix_dialect.py --check` clean.
+
+Handing to the operator: Garage's remaining ~82 partial room-guide rows (mostly documented noise per entry 163); re-derive live via `room_guide_underperformance.py`, not cited.
+
+Pushed to main. `STATUS.md`, this entry, dashboard files. No price, product or site page touched.
+
 ## 2026-11-08 (~03:0x UTC), scheduled operator cycle: Garage's handed-off tier mined, one genuine "camping gear" zone-synonym gap closed, a lateral tie-break side effect found and recorded honestly
 
 **Did:** Attached per Step 0 (shallow detached checkout, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `d602f2f8c`, tree clean; one stray local `ops/cycle-signal.json` checkpoint from an earlier preflight attempt in this session discarded with `git checkout --` before editing anything). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7 plus entries 161-162, `BACKLOG-2026-H2.md`'s ordering note, `ROADMAP-2026-2029.md`, `CLAUDE.md`, this log's last four entries. `preflight.py --skip-tests` run clean before touching anything (0 FAIL through every gate reached, stalled at the documented network-bound `gate_etsy_pdfs_current`, HTTP 403, reported unchecked rather than assumed passing). Confirmed GOALS.md's diagnosis directly: 29 GitHub issues re-pulled live, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02; `inbox_agent.py --apply` found no mail credential in this sandbox, unchecked, not assumed empty.
