@@ -12048,7 +12048,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-mudroom.html",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -19135,7 +19135,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -23799,16 +23799,14 @@
         "how to declutter a kitchen"
       ],
       "room": "Kitchen",
-      "best_page": "/kitchen-deck.html",
-      "best_page_title": "The Kitchen Deck: 72 cards, typeset and free to read or print",
+      "best_page": "/articles/how-to-declutter-a-kitchen.html",
+      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.25,
-      "heading_coverage": 0.75,
-      "heading_page": "/kitchen-deck.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "limited"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -27521,7 +27519,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -30375,11 +30373,11 @@
         "how to organize stove area"
       ],
       "room": "Kitchen",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-declutter-a-kitchen.html",
+      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -48343,6 +48341,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "dd0afb5f6",
-  "scored_at": "2026-11-07T23:26:40Z"
+  "scored_against_commit": "3e392d1ba",
+  "scored_at": "2026-11-08T00:57:55Z"
 }

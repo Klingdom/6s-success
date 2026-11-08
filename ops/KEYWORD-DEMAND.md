@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-07T23:26:39Z against 243 page(s) at commit dd0afb5f6. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-08T00:57:54Z against 243 page(s) at commit 3e392d1ba. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1610 covered, 1107 partial, 106 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1612 covered, 1105 partial, 106 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -93,7 +93,7 @@ Showing the top 80 of 106, ordered by the best rank the phrase reached in any on
 | 12 | ideas for patios and decks | - | How to organize a patio or deck, step by step (0.00) | decks, patios |
 | 12 | master bedroom design as per vastu | - | How to organize a primary bedroom, zone by zone (0.20) | design, per, vastu |
 | 12 | organize hard drive space | - | Small space organizing: why doesn't anything fit? (0.33) | drive, hard |
-| 13 | cover for space between stove and counter | - | How to organize a primary bathroom, step by step (0.20) | between, cover, stove |
+| 13 | cover for space between stove and counter | - | How to declutter a kitchen: counters, cabinets and drawers (0.20) | between, cover, stove |
 | 14 | computer storage for games | - | How to organize the family room game storage (0.33) | computer, games |
 | 14 | explore decluttering pro guide | - | Decluttering vs. organizing: what's actually different (0.33) | explore, pro |
 | 14 | grill stations ideas for backyards | - | How to organize the patio or deck grill station (0.33) | backyards, stations |
@@ -104,7 +104,7 @@ Showing the top 80 of 106, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1107.
+Showing the top 60 of 1105.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -182,7 +182,7 @@ Showing the top 60 of 1107.
 | Hall Closet | 27 | 0 | 10 | 17 |
 | Home Office | 58 | 0 | 21 | 37 |
 | Kids Bedroom | 22 | 0 | 8 | 14 |
-| Kitchen | 97 | 2 | 36 | 59 |
+| Kitchen | 97 | 2 | 34 | 61 |
 | Laundry Room | 72 | 0 | 16 | 56 |
 | Living Room | 97 | 2 | 39 | 56 |
 | Mudroom | 43 | 0 | 20 | 23 |
