@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-08 (~16:4x slot): previous work confirmed finished; one real gate FAIL found and fixed, standing Phil-gated queue unchanged
+
+NEXT FOR THE OPERATOR: hold on the standing 29-issue Phil-gated queue (newest #42), because the backlog's non-Phil-gated items are confirmed empty again this cycle and nothing unblocked remains to start.
+
+Attached per Step 0: shallow, detached checkout, fetched, unshallowed, ff-only onto origin/main (336 commits), clean. Previous work (16:0x operator's programme/program fix, 16:1x PM's stale-lock fix) confirmed finished: 29 open issues re-pulled, unchanged, all decision or blocked-on-art.
+
+Ran preflight.py myself rather than cite it: found a genuine FAIL, gate_share_cards_current, 2 pages (affiliate-disclosure, how-we-make-money) no longer matching their cards. Ran ops/share_cards.py, regenerated both, gate confirmed clean by direct re-run. Test suite hangs in this sandbox as documented; reported unchecked, not passing.
+
+No new notification: last push 2026-11-07T18:55Z, no-repeat before 2026-11-09T18:00Z, nothing material changed. Pushed to main.
+
 ## Scheduled operator cycle, 2026-11-08 (~16:0x slot, full 13-step routine): closed the one non-Phil-gated backlog item left standing, "affiliate programme" to "program" across 141 pages
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `origin/main` (328 commits fast-forwarded), tree clean throughout. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` in full (not a summary), `ROADMAP-2026-2029.md`'s arithmetic, `STATUS.md` sections 0-1, and the last several `ops/NIGHTLY-LOG.md` entries. Confirmed rather than assumed: `preflight.py --skip-tests` ran clean before touching anything (0 FAIL, stalled at the documented network-bound `gate_etsy_pdfs_current`, killed by hand); 29 open GitHub issues re-pulled live via the API sorted by `updated_at`, unchanged, newest still #42 at 2026-11-07T02:18:11Z, none from Phil; `inbox_agent.py --apply` found no mail credential in this sandbox, reported unchecked; `b9_claims.py --status` shows zero rooms undiagnosed, no open claim to collide with.
