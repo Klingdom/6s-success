@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-08 (~18:5x UTC slot): full 13-step routine run, independently reconfirmed exhaustion a third time this hour, no new defect, no duplicate notification
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: fetched, real `git fetch --unshallow`, `checkout main`, ff-only merge onto `aa13990a5` then later `9cb721be4` (a concurrent 18:4x PM check-in landed mid-cycle and merged cleanly, no conflicting files). Read `BACKLOG-2026-09-07.md` sections 0-7 and entries 161-164 in full, `STATUS.md`'s section 0/2 and latest entries, and the newest head of this log, not a summary.
+
+**Verified, not cited:** ran `python ops/preflight.py --skip-tests` myself, unbuffered to a file. 0 FAIL through every gate reached, including EPUB/KDP and all three Etsy listings (L1/L4/L5) PASS; stalled only at the documented network-bound `gate_etsy_pdfs_current` (Etsy fee schedule, HTTP 403), confirmed genuinely stalled (5-6% CPU, not progressing) before killing it by pid, confirmed dead, not left as a zombie. All 7 rotate-tool `--check` runs report CLEAN (sizes: backlog 200518B, owner-actions 115999B, status 115394B, checkin-log 90149B, all within their own retention windows per their own tools, not assumed from a prior citation). 30 open GitHub issues re-pulled live via the API, sorted by `updated_at`: unchanged, all `decision`/`blocked-on-art`, newest #64 (2026-11-08T16:59:32Z), none from Phil. 0 open PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed empty. Specifically checked OWNER-ACTIONS.md items 21 (public MCP endpoint) and 22 (photos API) for any remaining prep work beyond the decision itself: both are fully built, reviewed and hardened already (37 end-to-end checks passing on the photos API), genuinely one owner decision away, nothing left for this sandbox to build. Scanned `BACKLOG-2026-H2.md` for any row not already folded into the 09-07 reprioritisation: none found.
+
+**Went well:** the room-guide keyword-mining lane's closure (entry 164) and the backlog's section 2-6 exhaustion held up under yet another independent check; a concurrent session's own near-simultaneous 18:4x check-in reached the identical conclusion by a different path (preflight reaching Etsy PASS before the same stall), corroborating rather than conflicting.
+
+**Did not go well:** this cycle and the concurrent 18:4x check-in substantially overlapped in scope within the same half hour, the exact cost issue #42 is open about; no way from inside either session to see the other was about to run.
+
+**Changing next cycle:** none beyond issue #42's own standing recommendation, which this cycle's own overlap is fresh evidence for, not a new argument.
+
+**Next:** hold, same standing 30-issue Phil-gated queue (newest #64, the traffic-read ask). No genuinely unblocked, non-Phil-gated item exists anywhere checked this cycle, independently reconfirmed a third time this hour. No push notification sent: `ops/last-owner-notification.json` shows one sent 2026-11-07T18:55:00Z, no-repeat-before 2026-11-09T18:00:00Z not yet passed, nothing material changed since.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-11-08 (~18:4x slot): previous work confirmed finished independently a second time this hour; standing Phil-gated queue unchanged, no new work to start
 
 NEXT FOR THE OPERATOR: hold, same standing 30-issue Phil-gated queue (newest #64), because this cycle independently re-confirmed nothing non-Phil-gated remains unblocked.
