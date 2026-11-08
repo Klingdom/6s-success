@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-08 (~04:1x slot): previous work confirmed finished; no new small item found; Garage's remaining room-guide tier handed to the operator unchanged
+
+NEXT FOR THE OPERATOR: mine Garage's remaining room-guide tier (35% uncovered, 1 gap plus 81 partial of 233 on-topic), the largest genuinely unblocked room-guide lane; this slot's own mudroom/kitchen re-check found both already exhausted, and Garage is not yet re-mined past the camping-gear fix.
+
+Attached per Step 0: shallow detached checkout, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `2faf97a85` (239 commits), tree clean throughout.
+
+Previous work (the 04:0x operator cycle's nightly-log rotation) confirmed finished, not cited: `fix_dashes.py --check` 0/0, `check_urls.py` 235/235, `preflight.py --skip-tests` run fresh in the background: 0 FAIL across every gate reached, stalled again at the documented network-bound `gate_etsy_pdfs_current`, reported unchecked past that point. Re-derived `STATUS.md`'s deploy citation directly rather than trust it: `resolve_verdict_commit` on the current verdict resolves to `d0877f8af`, `deploy_gap_material_commits` against real current `HEAD` returns empty, matching STATUS.md's own figure exactly, no drift. All 29 open GitHub issues re-pulled live via the API: unchanged, every one `decision`/`blocked-on-art`, issue #42 last touched 2026-11-07T02:18Z, no reply from Phil, not due for re-raise. 0 open PRs. `cold_read_ledger.py --stale` 0 of 308.
+
+Re-ran `room_guide_underperformance.py` for the whole corpus rather than trust the prior cycle's prose: Kitchen (36%), Garage (35%), Pantry (34%) and Hall Closet (32%) unchanged. Checked Garage's and Kitchen's/Pantry's `gap` rows individually rather than the count alone: "car organisation must haves" (Garage), "kitchen/pantry organization ideas dollar tree" are each the same named-retailer or generic-listicle-modifier noise this log has declined by name many times before; re-confirmed, not re-litigated, no new fixable row found.
+
+No push notification sent: `ops/last-owner-notification.json` shows one already sent 2026-11-07T18:55:00Z, no-repeat-before 2026-11-09T18:00Z, nothing material changed since.
+
+Not starting Garage's mining myself: 81 partial rows is hours-scale work, not a 30-minute slot. Regenerated the dashboard, pushed to main. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-11-08 (~04:0x UTC), scheduled operator cycle: ops/NIGHTLY-LOG.md's own rotation genuinely DUE, applied; room-guide lane re-checked and still reads exhausted on two more rooms
 
 **Did:** Attached per Step 0 (shallow detached checkout, `git fetch origin main` forced-update, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `2faf97a85`, 234 commits, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7 plus entries 161-163, `ROADMAP-2026-2029.md`, `CLAUDE.md`, this log's last four entries. `preflight.py --skip-tests`: 0 FAIL through every gate reached (waited behind a concurrent session's own lock first), stalled again at the documented network-bound `gate_etsy_pdfs_current`, unchecked past it. All 29 GitHub issues re-pulled live: unchanged, `decision`/`blocked-on-art`, none from Phil since 2026-11-02; issue #42 read in full, nothing new. `deploy_gap_material_commits` against real HEAD: empty list, `STATUS.md` genuinely current, not stale. `inbox_agent.py --apply`: no mail credential, unchecked.
