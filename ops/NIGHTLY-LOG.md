@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-08 (~05:0x UTC), scheduled operator cycle: Garage's remaining 81-row tier read in full, confirmed genuinely exhausted; this closes the room-guide keyword-mining lane across all 20 rooms
+
+**Did:** Attached per Step 0 (shallow detached checkout, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `origin/main`, 241 commits, tree clean throughout). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, this log's last four entries, which handed Garage's remaining room-guide tier to this cycle by name. `preflight.py --skip-tests`: 0 FAIL through every gate reached, stalled again at the documented network-bound `gate_etsy_pdfs_current` (HTTP 403), unchecked past that point, not assumed passing. All 29 GitHub issues re-pulled live: unchanged, every one `decision`/`blocked-on-art`, none from Phil since 2026-11-02. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked. All 14 `rotate_*.py` tools checked directly with `--check`: every one CLEAN, confirming `BACKLOG-2026-09-07.md`'s standing size-tripwire warning (193KB of 150KB) is genuinely unrotatable live content, not a defect to close further.
+
+**Verified, not cited:** `room_guide_underperformance.py --room Garage` re-derived live: 35% uncovered, 1 gap + 81 partial of 233 on-topic, matching the handoff exactly. Dumped the full tier directly, not the 8-row CLI sample, and checked every row against Garage's real `content.json`. Every row is a documented noise shape (retailer/platform/locale suffixes, filler verbs/adjectives, DIY-build intent, off-topic gardening/sale/craft collisions on a shared generic word, the already-declined fishing/hunting/tactical/gym/workout/sports-card cluster, and the deliberately tie-break-only plural/singular matching limitation). Three rows that looked promising on a first pass were checked against the real content before declining: "hardware" appears once, as an incidental workbench aside about returning stock, not organizing guidance; "interior" appears twice, as "cabinet interior" and "cooler interior", never a car's interior; "food" appears once, about keeping garden chemicals away from food, and the Bulk and Overhead Storage zone's real text never names food at all (bulk food storage is honestly Pantry's job). All three declined rather than shipped, the same fabricated-specificity risk entry 162 already caught once this week.
+
+**Found:** nothing fixable. Cross-checked the other 19 rooms' current row counts against the counts each room carried when it was last declared exhausted (spot-checked Guest Bathroom: 26 partial rows now, exactly the 26 confirmed exhausted on 2026-11-07, no growth). Every room now reads as genuinely exhausted of vocabulary fixes, closing the lane this week's cycles have been working since Kitchen was first mined.
+
+**Went well:** checking the three best-looking candidates against the real content, not just the pattern of prior noise categories, caught zero false positives before shipping rather than after.
+
+**Did not go well:** nothing new this cycle.
+
+**Changing next cycle:** none; no new defect class found, so no new gate needed.
+
+**Next:** the structured room-guide mining lane is closed; the next genuinely new work is whatever lands from Phil (29 open decision/blocked-on-art issues, none from him since 2026-11-02) or a fresh traffic/search-console read once Search Console access exists. No push notification sent: last one 2026-11-07T18:55:00Z, no-repeat-before 2026-11-09T18:00Z, nothing material changed since.
+
+Pushed to main. `BACKLOG-2026-09-07.md` entry 164, this entry, dashboard files. No price, product or site page touched; no code change, a measurement question answered, not a defect found.
+
 ## PM check-in, 2026-11-08 (~04:1x slot): previous work confirmed finished; no new small item found; Garage's remaining room-guide tier handed to the operator unchanged
 
 NEXT FOR THE OPERATOR: mine Garage's remaining room-guide tier (35% uncovered, 1 gap plus 81 partial of 233 on-topic), the largest genuinely unblocked room-guide lane; this slot's own mudroom/kitchen re-check found both already exhausted, and Garage is not yet re-mined past the camping-gear fix.
