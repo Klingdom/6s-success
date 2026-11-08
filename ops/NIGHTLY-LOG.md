@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-08 (~16:4x UTC slot): filed the one owner action that had never surfaced where Phil checks, then caught and fixed a real deploy-gap staleness in STATUS.md
+
+**Did:** Attached per Step 0 (unshallowed, ff-only onto origin/main). Backlog's non-Phil-gated queue was already confirmed empty by several prior cycles today; independently re-confirmed (preflight clean, 29 issues unchanged, cold-read ledger 0 stale) rather than picked up a second time on faith. Found a real gap instead of re-confirming exhaustion: `OWNER-ACTIONS.md` item 0b ("run the traffic read", the single thing closing a month-stale traffic measurement) had sat 6 days without ever being filed as a GitHub issue, the same shape the 2026-10-31 KDP/Etsy sweep fixed for rows that live in the backlog's own numbered table; this one hid in a lettered sub-item that sweep never scanned. Filed as #64 (decision/P0), cross-referenced in OWNER-ACTIONS.md and BACKLOG section 6. Deliberately did not build a GitHub Actions workaround reusing VPS_DEPLOY_KEY for this: Phil's own commit (`2d8ac59f4`) already chose the manual-paste path over sandbox automation, and widening a deploy credential's use without his say is exactly the kind of call CLAUDE.md reserves for him.
+
+**Verified:** Re-ledgered 4 cold-read files the day's earlier "programme"/"program" fix had touched. Ran preflight twice end to end (killed one hung network-bound gate by its own pgid, confirmed no orphan left); found a real FAIL (`owner-actions-last-measured-current`, a stale review marker my own edit triggered) and a real WARN (STATUS.md's deploy-gap count stuck at 0 while a fresh recount said 2), fixed both, reran clean. Mid-fix, a fresh `git fetch` caught the automated redeploy that closed the gap before the correction was even committed; updated STATUS.md a second time to the now-true 0, not left citing a number already stale on arrival.
+
+**Went well:** catching the self-inflicted regex trap twice (my own correction text's last "N commits" mention, read by the gate's own last-match logic, briefly cited the old stale figure).
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated queue, now with #64 visible. No push: last one 2026-11-07T18:55Z, no-repeat before 2026-11-09T18:00Z, nothing from Phil since.
+
 ## PM check-in, 2026-11-08 (~16:4x slot): previous work confirmed finished; one real gate FAIL found and fixed, standing Phil-gated queue unchanged
 
 NEXT FOR THE OPERATOR: hold on the standing 29-issue Phil-gated queue (newest #42), because the backlog's non-Phil-gated items are confirmed empty again this cycle and nothing unblocked remains to start.
