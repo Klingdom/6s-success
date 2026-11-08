@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-08 (~19:4x slot): collided with the scheduled operator cycle below, discarded a duplicate commit rather than hand-merge it
+
+NEXT FOR THE OPERATOR: hold, same standing 30-issue Phil-gated queue (newest #64); unchanged, see the operator entry immediately below for the full account.
+
+Attached per Step 0, verified clean, re-ran `preflight.py --skip-tests` myself (0 FAIL through every gate reached, `gate_kdp_cover_current`/`gate_etsy_listing_valid` confirmed passing under the 19:1x `ensure_pillow()` fix, stalled only at the documented `gate_etsy_pdfs_current`), found the same `cold_read_ledger.py --stale` gap on `ops/preflight.py`, and re-ledgered it clean, committed as `c512bbe46`. Pushing it collided with the scheduled operator cycle's own `63cbe22af`, which had independently done the identical fix (same file, same date, equivalent note) seconds earlier. Compared the two ledger notes directly: substantively equivalent, nothing of mine added information theirs lacked. Rather than hand-resolve a three-file conflict in generated/tool-managed files (`ops/NIGHTLY-LOG.md`, `ops/cold-read-ledger.json`, `ops/cycle-signal.json`) per Step 8's own instruction to prefer taking the regenerated/already-equivalent state over a manual merge, discarded my local commit with `git reset --hard origin/main` (safe: never pushed, nothing unique lost) rather than force-push over theirs.
+
+No push notification sent: unchanged from the operator cycle's own check, 2026-11-07T18:55:00Z floor not yet passed.
+
+Nothing pushed this slot; main already carries the equivalent fix via the operator's commit.
+
 ## Scheduled operator cycle, 2026-11-08 (~19:4x UTC slot): independently reconfirmed full exhaustion a further way, one real cold-read-ledger staleness found and fixed, no duplicate notification
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout: real unshallow, `checkout -B main origin/main`, ff-only onto `884eaf030` (359 commits), tree clean. Read the backlog sections 0-7 and entries 161-164, `STATUS.md`'s latest entries, `CLAUDE.md` and this log's head directly, not summaries.
