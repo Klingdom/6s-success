@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-08 (~00:1x UTC), PM check-in: previous work confirmed finished, found and fixed a real stale BLOCKER-001 count while verifying it
+
+Previous work (feed.xml fix, 00:01 hourly check-in) confirmed finished: tree clean, main pushed, preflight 0 FAIL through every gate reached twice (same documented `gate_etsy_pdfs_current` HTTP 403 stall, exit 124). 29 GitHub issues unchanged, none from Phil.
+
+Found and fixed one real defect while verifying: BLOCKER-001 still claimed 0 undeployed commits against its cited build, but a fresh `gate_status_deploy_gap_count_current` recount found 3 (`234ba1c32`, `9a429b2a2`, `247349a93`). Corrected the section, honest that this sandbox cannot reach `6s-success.com` to confirm they are live. Both deploy gates and their tests pass clean now.
+
+No new content gap mined this slot (hours-scale, left to the operator). Dashboard regenerated, figures correctly carried forward as unmeasured, not fabricated. Pushed to main.
+
 ## 2026-11-07 (~23:5x UTC), scheduled operator cycle: re-verified Kitchen and Garage with no new fixable gap, then caught and fixed a real CI-red feed.xml staleness from this morning's bedroom-article edit
 
 **Did:** Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `f0445a3b4`, tree clean). Read `GOALS.md`, `STATUS.md`, `BACKLOG-2026-09-07.md` (sections 0-7 plus entries 148-160, all dated today), `CLAUDE.md`. Live-ranked rooms with `room_guide_underperformance.py`: Kitchen (38% uncovered) and Garage (36%) top the list despite each being fully read earlier today (entries 149/155, 150/158). Read both rooms' real gap+partial rows directly against `content.json` and `zone-also-called.json` rather than trust the earlier "exhausted" finding; found nothing fixable (the "container" word spans three Kitchen zones, "must haves" is unaddressable filler). Pushed that finding, then checked `checks.yml` directly rather than assume green: run 42425630602 (a concurrent cycle's `household_room_signal` fix, landed after my own local preflight had already run) was red on `gate_feed_current` and its matching test, 1 of 474 test files failing. Root cause: entry 159's Primary Bedroom article edits earlier today bumped `how-to-declutter-a-bedroom`'s updated date, but nothing re-ran `ops/build_feed.py` afterward, so the shipped feed carried the old entry order and a stale top-level `<updated>`. Re-ran it; re-verified clean (`python ops/build_feed.py` a second time after rebasing onto two more concurrent pushes produced no further diff).
