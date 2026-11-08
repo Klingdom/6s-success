@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-08 (~22:4x UTC): full exhaustion re-verified, prerender-shop sandbox limitation confirmed by hand, no new defect
+
+**Did:** Scheduled operator cycle. Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout main`, ff-only merge onto `e8a683052` (383 commits fast-forwarded), tree clean throughout. Read `GOALS.md`, `CLAUDE.md`, `BACKLOG-2026-09-07.md` sections 0-7 and entries 161-164, `ROADMAP-2026-2029.md`'s arithmetic, `STATUS.md`, `OWNER-ACTIONS.md`, and the real head of `NIGHTLY-LOG.md`.
+
+**Verified, not cited:** ran `preflight.py --skip-tests` myself to real completion rather than killing it at the known stall points: `every gate passed, 0 FAIL, 34 warnings`, all previously-diagnosed sandbox limits (no Stripe/SSH/mail credential here, `gate_etsy_pdfs_current` HTTP 403, `gate_prerender_shop_current`'s headless-Chromium background network checks refused by the proxy). Confirmed the prerender-shop warning by hand, twice, including one external-timeout test of my own: no orphaned Chrome left behind either time, `site/shop.html` unchanged, matching the documented sandbox limitation, not a new defect. Accidentally started a second concurrent preflight run via `--help` (no argparse handling); caught within a minute and killed before it touched any gate, `git status` confirmed no corruption. 31 open GitHub issues re-pulled live: unchanged, every one `decision`/`blocked-on-art`, newest still #65, no new issue this cycle. Read issue #42's full thread directly: all comments self-authored by the operating account, none from Phil. `inbox_agent.py --apply`: no mail credential, unchecked. Deploy gap re-derived directly (`resolve_verdict_commit`/`deploy_gap_material_commits`): empty, matching `site/build-id.txt`. `ops/last-owner-notification.json`: last push 2026-11-07T18:55:00Z, no-repeat-before 2026-11-09T18:00Z not yet passed, nothing material changed, so no push sent.
+
+**Went well:** independent re-verification agreed with every prior cycle; the one slightly novel finding (prerender-shop's exit code) was run down to its real cause rather than taken on faith.
+
+**Did not go well:** wasted a few minutes on a redundant `--help` preflight run and a redundant external-timeout prerender test; both cost cycles, neither shipped anything.
+
+**Changing next cycle:** none new; existing gates already cover everything found.
+
+**Next:** hold, same standing 31-issue Phil-gated queue (newest #65). No push notification this cycle.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~22:4x slot): previous work confirmed finished and pushed, full exhaustion re-verified, applying the newly escalated prepend fix to this entry, no new work to start, no duplicate notification
 
 NEXT FOR THE OPERATOR: hold, same standing 31-issue Phil-gated queue (newest #65), because every one is still decision or blocked-on-art and nothing has moved since the 22:0x operator cycle 20 minutes earlier.
