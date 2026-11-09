@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-09 (~08:1x UTC): STATUS.md's deploy-gap citations found stale by a real preflight run, fixed, then found stale again at merge, fixed again against the newer confirmation
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout (fetch, --unshallow, checkout -B main origin/main, ff-only onto `00a4ad185`, 450 commits). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md`'s "Start here" block, `CLAUDE.md` and the last several `ops/NIGHTLY-LOG.md` entries directly. Ran a real `preflight.py` fast (killed at the documented `gate_tests` sandbox hang after confirming 0 FAIL up to it) and then `preflight.py --skip-tests` to completion: 1 FAIL (a stray probe file from my own earlier killed run, self-deleted by the gate), 35 warnings.
+
+**Found and fixed a real stale claim, not re-cited it.** `gate_status_deploy_gap_count_current` and `gate_status_table_rows_gap_count_current` both warned that `STATUS.md` still said "0 commits undeployed" against build `ee4228a91742fdac`, while `deploy_gap_material_commits(resolve_verdict_commit('ee4228a91742fdac'))` re-derived directly against real current `HEAD` returned one commit, `a2eddf620` (the Garage power-tool-plural zone-synonym fix from an hour earlier). Corrected all five places this figure is cited (`BLOCKER-001`'s last entry, the Production Knowledge paragraph, the Public website and Production traceability table rows, and the fifth gate-unparsed narrative section), re-ran all three deploy-verdict gates and their test suites directly: clean.
+
+**Caught the fix going stale before pushing it, the same collision shape this section has recorded before.** A `git fetch` before pushing found a concurrent automated redeploy confirmation (`e6c91ab88`, `ops/deploy-verdict.json` now `09751d63e8b0bdde`/2026-11-09T07:49:26Z) had landed in the meantime, closing the exact gap just documented. Re-derived again against the merged `HEAD`: `deploy_gap_material_commits(resolve_verdict_commit('09751d63e8b0bdde'))` returns an empty list. Rewrote all five citations a second time to the real current state (0 commits undeployed) rather than push the now-stale "1 commit" figure. Also investigated `gate_prerender_shop_current`'s "exited 1" warning directly rather than assume it was a real defect: ran `ops/prerender_shop.py` by hand and it genuinely timed out after 180s rendering `shop.html` in headless Chromium, the same documented sandbox CPU/rendering limitation as `gate_tests` and `gate_etsy_pdfs_current`, not a code regression; no orphaned Chromium tree left behind. GitHub re-pulled: 31 open issues, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02 (issue #42 unchanged). No mail/Stripe/SSH credential in this sandbox, reported unchecked, not assumed clean or empty.
+
+**Went well:** fetching before pushing caught the collision before a stale figure reached `main`, rather than after.
+
+**Did not go well:** spent real time chasing a fix that itself went stale mid-cycle; the deploy pipeline is now closing gaps fast enough that a manual correction can be overtaken within the same cycle that writes it.
+
+**Changing next cycle:** none structural; this is the same recurring shape prior entries already describe, not a new defect class.
+
+**Next:** hold the standing decision/blocked-on-art queue; nothing genuinely unblocked beyond the fix above. No push notification sent: the standing cooldown (no-repeat-before 2026-11-09T18:00Z) has not expired and nothing material changed on that topic.
+
+Pushed to main. `STATUS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-11-09 (~07:4x slot, 30-minute triage, previous work confirmed finished, no new defect small enough for this slot)
 
 NEXT FOR THE OPERATOR: keep mining Garage's remaining room-guide partial tier (79 partial + 1 gap of 233 on-topic rows, 34% uncovered), because it is still the only genuinely unmined lane after the 07:2x cycle closed 3 rows via the power-tools fix, and nothing else is genuinely unblocked.
