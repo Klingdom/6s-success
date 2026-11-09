@@ -5591,14 +5591,11 @@
       "best_page": "/rooms/pantry.html",
       "best_page_title": "How to organize a pantry, zone by zone",
       "coverage": 0.0,
-      "heading_coverage": 0.333,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/pantry.html",
       "matched_on": "heading",
-      "status": "gap",
-      "unmatched_words": [
-        "chart",
-        "draw"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -36713,13 +36710,11 @@
       "best_page": "/rooms/pantry.html",
       "best_page_title": "How to organize a pantry, zone by zone",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/pantry.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "chart"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -36804,13 +36799,11 @@
       "best_page": "/rooms/pantry.html",
       "best_page_title": "How to organize a pantry, zone by zone",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/pantry.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "chart"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -36887,11 +36880,11 @@
         "larder organisation"
       ],
       "room": "",
-      "best_page": "/pantry-deck.html",
-      "best_page_title": "The Pantry Deck: 57 cards, free to read",
+      "best_page": "/rooms/pantry.html",
+      "best_page_title": "How to organize a pantry, zone by zone",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/pantry-deck.html",
+      "heading_page": "/rooms/pantry.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -48310,6 +48303,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "1966bc538",
-  "scored_at": "2026-11-09T18:00:44Z"
+  "scored_against_commit": "01a0b118e",
+  "scored_at": "2026-11-09T19:09:27Z"
 }

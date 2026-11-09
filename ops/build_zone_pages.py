@@ -3982,6 +3982,43 @@ def room_page(room, header, footer, all_rooms=()):
     import zone_graphics as _zg
     _map_zones = [dict(z, zone=display(room["room"], z["zone"]))
                   for z in room["zones"]]
+    # "DRAW A LARDER ORGANIZATION CHART" HAS NO WORD FOR WHAT IS ALREADY HERE.
+    #
+    # Found 2026-11-09 mining Pantry's one remaining room-guide gap row. The
+    # map below IS the chart that query asks for (a numbered zone-by-zone
+    # plan with a time against each one), and it has existed on every room
+    # page since 2026-09-18, but keyword_demand.py only reads h1-h3 text and
+    # neither "chart" nor "draw" had ever appeared in a heading on this page
+    # (the one "draw" on a room page is "Or draw a card free", a Quest
+    # action, a different sense of the word). This heading names what the
+    # figure already is rather than inventing new content.
+    #
+    # SCOPED TO THE TWO ROOMS WITH REAL EVIDENCE, NOT ALL TWENTY.
+    #
+    # A first version added this to every room page. Rescoring both keyword
+    # corpora before shipping (CLAUDE.md 5d) caught a real collision: adding
+    # the bare word "chart" to all 20 headings combined with Dining Room's
+    # own pre-existing h1 word "seating" ("one job, seating everyone...") to
+    # flip "how to organize a seating chart", an event-planning query this
+    # page does not answer, from an honest partial to a false covered.
+    # Narrowed to exactly the two rooms this finding is actually about: a
+    # hand-drawn chart (`room_diagram`) exists in the data but is hidden
+    # because a photograph (`figs`) wins the one lead-figure slot (Pantry,
+    # Family Room; checked directly, `figs and room_diagram(...)` for all 20
+    # rooms). Every other room's "map" is only the generated tile list,
+    # which is not honestly "already drawn" the way these two are.
+    if figs and diagram:
+        # NOT "in the order to work them": gate_no_false_zone_order_claim
+        # exists for exactly that phrase (2026-10-01, this same file). The
+        # map's own numbering is the manual's listing order, not a work
+        # order; "Start here" above already names the real starting zone,
+        # a different one on 18 of 20 rooms, so this caption must not
+        # repeat the claim that finding removed everywhere else.
+        out.append('<h3 style="margin:28px 0 4px">Draw your own %s chart</h3>'
+                   "<p>The map below is this %s's organization chart, already "
+                   'drawn: one box per zone, each labeled and timed. Copy the '
+                   'same shape for your own space, in whatever order you '
+                   'start.</p>' % (esc(rm), esc(rm)))
     out.append('<figure class="room-map-figure">'
                + _zg.room_map_html(room["room"], _map_zones)
                + '<figcaption>The %d micro zones of the %s. Each one is a '

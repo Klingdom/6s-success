@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-09T17:58:21Z against 243 page(s) at commit 1966bc538. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-09T19:09:26Z against 243 page(s) at commit 01a0b118e. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1629 covered, 1089 partial, 105 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1631 covered, 1089 partial, 103 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,11 +17,10 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 105, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 103, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
-| 1 | how to draw a railing on a floor plan | - | Venture plan (0.25) | draw, floor, railing |
 | 1 | how to organize sidewalk chalk | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | chalk, sidewalk |
 | 1 | how to organize soap making supplies | - | How to organize the garage car care supplies (0.33) | making, soap |
 | 2 | how to build a railing on a porch | - | How to organize the patio or deck railing and surface (0.33) | build, porch |
@@ -31,7 +30,6 @@ Showing the top 80 of 105, ordered by the best rank the phrase reached in any on
 | 2 | landings on a staircase | - | How to organize a stair landing, step by step (0.00) | landings, staircase |
 | 3 | daycare organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | daycare |
 | 3 | den office design ideas | - | How to organize a family room, zone by zone (0.33) | design, office |
-| 3 | draw a larder organization chart | - | How to organize a pantry, zone by zone (0.00) | chart, draw |
 | 3 | how to arrange logs in solo stove | - | How to organize the kitchen stove area (0.33) | logs, solo |
 | 3 | how to organize cricut vinyl | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cricut, vinyl |
 | 3 | organized nurse designs | - | What is a micro zone? The unit that actually gets organized (0.33) | designs, nurse |
@@ -101,6 +99,8 @@ Showing the top 80 of 105, ordered by the best rank the phrase reached in any on
 | 14 | starting a nursery for plants | Nursery | The Nursery Deck: 66 cards, free to read (0.33) | plants, starting |
 | 15 | declutter woodworking fundamentals tips | - | How to declutter a bedroom in one day, step by step (0.33) | fundamentals, woodworking |
 | 15 | decorating ideas for patios and decks | - | More storage will not fix a messy room (0.00) | decks, patios |
+| 15 | how to organize beads for jewelry making | - | 6S Success: Home Edition &#183; Chapters 1 to 30 (0.00) | beads, jewelry |
+| 15 | woodworking plans for nightstand | - | How to organize the guest bedroom nightstand (0.33) | plans, woodworking |
 
 ## Partial: we are close, and the title does not use their words
 

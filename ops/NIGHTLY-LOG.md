@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-09 (~19:1x UTC), scheduled operator cycle: closed Pantry's handed-off "larder chart" gap, a real orphaned asset, not the missing art A80 assumed
+
+**Did:** Attached per Step 0 onto a shallow checkout (fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `01a0b118e`, 541 commits fast-forwarded, tree clean). Read CLAUDE.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, STATUS.md and the last several NIGHTLY-LOG entries. GitHub: 31 open issues re-pulled live, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02; this run's own choice follows unchanged.
+
+Took the top handoff: Pantry's "draw a larder organization chart" (named by A80 as a genuine content gap needing new art). Checked that claim before building anything (CLAUDE.md 5d) and found it wrong: `ops/room-maps.json` already has a hand-drawn Pantry zone-map SVG, and the generator that renders it (`room_diagram()` in `ops/build_zone_pages.py`) only fires when the room has no photo, which Pantry does, so the real chart has been sitting unused since 2026-09-18. The query's unmatched words (`chart`, `draw`) never appear in any room-page heading because `keyword_demand.py` only reads `<h1>`-`<h3>` text. Fixed with one heading and one sentence naming the existing room-map figure as the room's own chart, gated on `figs and diagram` so it lands only where both exist (Pantry, Family Room; checked all 20).
+
+**Two self-caught defects before shipping:** a first, unscoped version put the heading on all 20 rooms and rescoring (CLAUDE.md 5d) caught a real collision it would have created (Dining Room's own "seating" + the new word "chart" falsely flipping "how to organize a seating chart" to `covered`); narrowed to the 2-room gate. The reworded text then tripped `gate_no_false_zone_order_claim` ("in the order to work them"), the exact 2026-10-01 finding already fixed everywhere else on the site; reworded again to drop the ordering claim and reran the gate clean.
+
+**Verified:** both keyword corpora rescored live, target queries `covered`, 0 regressions anywhere. `room_guide_underperformance.py --room Pantry`: the row is gone. `test_keyword_demand.py` (34/34), `test_room_guide_underperformance.py` (19/19), `test_room_guide_candidates.py` (39/39), `fix_dashes.py --check` (0/0), `check_urls.py` (235/235), `audit_pages.py` (0 duplicates) all clean.
+
+**Separately fixed:** this run's first `preflight.py --skip-tests` surfaced a real pre-existing FAIL carried in by the fast-forward: an Etsy listing image (`6S-Whole-House-Print-Pack-1-first-page.png`) was committed at 0 bytes. Regenerated via `build/listings/build_etsy_assets.py`, verified the real PNG decodes, `check_etsy.py` clean.
+
+`preflight.py --skip-tests` reran clean: 0 FAIL through every gate reached, same documented network-bound stalls (Etsy fee-schedule HTTP 403, `gate_prerender_shop_current`).
+
+**Went well:** checking A80's own claim before building to it caught that the "missing art" was actually a hidden asset; rescoring before shipping caught a real self-inflicted collision and a real false work-order claim, both before either reached main.
+
+**Did not go well:** the first version of this fix needed two separate corrections before it was honest; should have checked `gate_no_false_zone_order_claim`'s own history and the collision risk before writing the first draft, not after.
+
+**Changing next cycle:** none structural; both gates that caught this already existed and did their job.
+
+**Next:** whichever owner gate Phil clears first; the two-minute traffic-read paste (#64) and the five-minute YouTube OAuth paste (#46) are cheapest, Etsy/KDP (#43/#44) and the accounts-layer decision (#45) unblock the most revenue.
+
+Dashboard regenerated, pushed to main. `IndexNow` submitted for the two changed room pages.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-09 (~18:1x slot, 30-minute triage, previous work confirmed finished, no new defect)
 
 NEXT FOR THE OPERATOR: Pantry's "draw a larder organization chart" (named by the 18:0x operator cycle as a genuine content gap, not a wording fix); otherwise hold the standing queue (31 open issues, all `decision`/`blocked-on-art`), because nothing is genuinely unblocked.
