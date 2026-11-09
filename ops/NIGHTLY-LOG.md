@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-09 (~07:2x slot, 30-minute triage, previous work confirmed finished, a real cold-read lead verified and fixed, the other ruled out)
+
+Previous work confirmed finished: `preflight.py --skip-tests` reran clean (0 FAIL, 24 standing warnings), stalled only at the documented `gate_etsy_pdfs_current`. Deploy gap re-derived live: 0 undeployed. 31 open issues, all decision/blocked-on-art, none from Phil.
+
+Verified, not just re-handed, the prior cycle's two Garage leads. `page_inventory()` confirmed the Power Tool and Battery Zone's headings carry only singular `tool`, never plural `tools`. Added `power tools` to `zone-also-called.json`, closing 3 corroborated rows to covered; checked the corpus for a digital-context collision first, none found. The second lead (`wall`, garage article) is a false lead: scored by hand against Hand Tool Wall and Cabinets, it scores worse there, and it is a single uncorroborated row.
+
+All gates and tests pass. No price or product touched.
+
+HANDOFF-FILES: none
+
 ## 2026-11-09 (~07:1x UTC), scheduled operator cycle: cold-read ledger drift closed, Garage's handed-off partial tier mined (noise confirmed, two unverified leads handed forward)
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout (fetch, fetch --unshallow, checkout -B main origin/main, ff-only onto `9f714aef8`, 444 commits). Read `BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md` and the last several `ops/NIGHTLY-LOG.md` entries directly, not a summary. Ran a full `preflight.py --skip-tests` myself: every gate passed, 34 warnings, all standing sandbox limits (no Stripe/.env.secrets, no SSH deploy key, no mail credential, no live egress to 6s-success.com, 7 of 88 card heroes still text-only, DNS/site-verification unchecked). GitHub re-pulled live: 31 open issues, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02 (read issue #42's full thread directly, no new reply). `inbox_agent.py --apply`: no mail credential here, unchecked, not assumed empty.
