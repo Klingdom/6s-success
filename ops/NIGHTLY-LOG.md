@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (04:1x slot, 30-minute triage, previous work confirmed finished, no new defect)
+
+Previous work (03:5x scheduled operator cycle and 03:4x PM check-in) confirmed finished, re-verified directly: preflight --skip-tests, 0 FAIL through every gate before the documented gate_etsy_pdfs_current sandbox stall; killed there after checking for corruption (no diff, old mtime), matching the known shape. All 17 rotate tools CLEAN, nothing due. 31 open GitHub issues re-pulled live: unchanged, all decision/blocked-on-art; issue 65 confirmed genuinely unfixable here (update_trigger refuses a Routine this session did not create). 0 open PRs. No genuinely unblocked item found this slot; cold-read and room-guide lanes left to the hourly operator, which has more runway for that depth. No push notification: cooldown holds until 2026-11-09T18:00Z, nothing material changed. Dashboard regenerated, pushed.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-09 (~03:5x UTC): a genuine scorer gap found mining Kitchen's partial tier, 'way' (singular) joined FORMAT_WORDS, 13 corpus rows closed, 0 regressions
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow` (424 commits), `checkout -B main origin/main`, ff-only merge onto `d80e21914`, tree clean. Read `GOALS.md`'s implicit ordering via `BACKLOG-2026-09-07.md` sections 0-7 and `STATUS.md`'s latest entries, then `ops/preflight.py`.
