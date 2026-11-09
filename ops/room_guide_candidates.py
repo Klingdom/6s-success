@@ -238,7 +238,27 @@ OFF_TOPIC_CONTEXT = re.compile(
     # one-off). Verified against both harvests: "car travel storage" and
     # "interior car storage" each appear in exactly the one row named
     # here, so excluding them here cannot suppress a genuine match.
-    r"\bcar travel storage organizer\b|\binterior car storage organizers?\b",
+    r"\bcar travel storage organizer\b|\binterior car storage organizers?\b|"
+    # Found 2026-11-09 (scheduled operator cycle, mining Primary Bedroom's
+    # own 1 gap row rather than Garage's partial tier, which a same-day
+    # cycle, A78, already closed the two cleanest finds in). "declutter
+    # woodworking fundamentals tips" carries seed "how to declutter a
+    # workshop", not a bedroom seed at all; it drifted to Primary Bedroom
+    # only because no "how-to-declutter-a-workshop" article exists on the
+    # site, so the generic title-overlap scorer fell back to
+    # "how-to-declutter-a-bedroom.html" on "declutter"+"a" alone. The
+    # query itself (a woodworking skills tutorial) is not a household
+    # organizing question for any room; Workshop's own genuine row, "how
+    # to organize a woodworking workshop", already answers correctly
+    # (`partial`, routed to Workshop's own article) and shares no words
+    # with "fundamentals", so excluding this phrase cannot touch it.
+    # Verified against both harvests: "woodworking fundamentals" appears in
+    # exactly this one row; "woodworking" alone also appears in "woodworking
+    # plans for nightstand" (construction-intent noise, Guest Bedroom,
+    # already its own declined class, untouched by this narrower phrase)
+    # and the genuine Workshop row above, neither of which this exact
+    # two-word phrase matches.
+    r"\bwoodworking fundamentals\b",
     re.I)
 
 

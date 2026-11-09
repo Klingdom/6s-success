@@ -250,6 +250,23 @@ _result_car_interior_organize = rgc.score_room([_car_interior_organize], [], _ro
 check("a genuine on-topic 'organize in car interior' row is NOT excluded by the car-storage-organizer pattern",
       _result_car_interior_organize["on_topic_rows"] == 1)
 
+# Found 2026-11-09 (scheduled operator cycle): "declutter woodworking
+# fundamentals tips" carries seed "how to declutter a workshop" but lands
+# on Primary Bedroom's own declutter article by title-overlap fallback,
+# since no "how-to-declutter-a-workshop" article exists. It is a
+# woodworking-skills tutorial, not a household organizing query for any
+# room.
+_woodworking_fundamentals = {"query": "declutter woodworking fundamentals tips",
+                              "best_page": "/test-room-deck.html", "status": "gap"}
+_result_woodworking_fundamentals = rgc.score_room([_woodworking_fundamentals], [], _room)
+check("a 'woodworking fundamentals' off-topic-context row is excluded",
+      _result_woodworking_fundamentals["on_topic_rows"] == 0)
+_woodworking_workshop = {"query": "how to organize a woodworking workshop",
+                          "best_page": "/test-room-deck.html", "status": "partial"}
+_result_woodworking_workshop = rgc.score_room([_woodworking_workshop], [], _room)
+check("a genuine on-topic 'organize a woodworking workshop' row is NOT excluded by the woodworking-fundamentals pattern",
+      _result_woodworking_workshop["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

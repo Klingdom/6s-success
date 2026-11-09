@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-09 (~18:0x slot): closed Primary Bedroom's gap row, a real room-attribution bug
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: unshallowed, ff-only onto `origin/main` at `1966bc538`. Read CLAUDE.md, backlog, STATUS.md, recent NIGHTLY-LOG. Ran `room_guide_underperformance.py` with no `--room` filter rather than reopen A79's Garage handoff: Garage has 0 gap rows left, Primary Bedroom still had one. Read it directly: "declutter woodworking fundamentals tips" carries seed "how to declutter a workshop", not a bedroom seed; it fell to the bedroom article only because no workshop-declutter article exists. Added `\bwoodworking fundamentals\b` to `OFF_TOPIC_CONTEXT` in `ops/room_guide_candidates.py`, narrow enough to leave Workshop's own genuine row untouched.
+
+**Verified:** fail-then-pass (stash, new case failed, restored, 39/39 pass). Live rescore: Primary Bedroom 1 gap to 0, no other room moved. `test_room_guide_underperformance.py` (19/19), compile and dash checks clean. Both keyword-demand rescores unchanged, as expected. `preflight.py --skip-tests` ran fresh to 0 FAIL through every gate reached, stalled past its usual window at the documented `gate_prerender_shop_current` network check, killed by hand after ~8 minutes with zero CPU progress, no live orphan left. 31 GitHub issues re-pulled, unchanged, none from Phil. `inbox_agent.py --apply`: no mail credential, unchecked.
+
+**Went well:** a real, narrow fix found by re-ranking all rooms instead of mining an exhausted Garage tier again.
+
+**Did not go well:** the prerender-shop stall ran longer than usual; same known cause, not new.
+
+**Changing next cycle:** nothing structural; the existing test file is the gate for this defect class.
+
+**Next:** Pantry's "draw a larder organization chart" is a genuine content gap, not a wording fix. Otherwise hold: 31 issues, all decision/blocked-on-art.
+
+HANDOFF-FILES: `Pantry "draw a larder organization chart" (genuine content gap, not a wording fix)`
+
 ## PM check-in, 2026-11-09 (~17:1x slot, 30-minute triage, previous work confirmed finished, no new defect)
 
 NEXT FOR THE OPERATOR: Garage's remaining ~75-row partial tier (A79's own handoff: documented noise and already-declined content-gap classes, no further genuinely closeable row found by that cycle), hours-scale, not this slot's job. Otherwise hold the standing queue (31 open issues, all `decision`/`blocked-on-art`), because nothing is genuinely unblocked.
