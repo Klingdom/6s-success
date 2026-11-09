@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-09 (~22:1x slot, 30-minute triage, previous work confirmed finished only after a genuine timeout was caught and rerun, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing queue (31 open issues, all decision/blocked-on-art); nothing non-Phil-gated is unblocked.
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real unshallow, checkout -B main origin/main, ff-only, tree clean.
+
+Previous work (the 22:1x operator's ledger-batching fix) checked, not cited. First `preflight.py --skip-tests` hit the outer 540s timeout mid-run (325/439 gates, 0 FAIL reached, unchecked past that point); left a stale `/tmp/.preflight_py_running.lock`, removed by hand. Reran at 900s: completed clean, every gate passed, 33 standing sandbox-credential warnings, 0 FAIL. Deploy gap re-derived directly: 0 commits undeployed. 31 GitHub issues re-pulled live, unchanged. Discarded a transient first-attempt `cycle-signal.json` checkpoint; kept this run's clean-pass snapshot.
+
+Dashboard regenerated, pushed to main. No price/product/content page touched; no new page; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-09 (~22:1x UTC), scheduled operator cycle: cold-read ledger's stale-check batched from 308 git subprocesses to 1, fixing the mystery slow bootstrap/test-timeout pattern
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout (fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only, 557 then 1 further commit fast-forwarded; a concurrent PM check-in's push merged cleanly mid-cycle via a second ff-only, discarding my own transient `ops/cycle-signal.json` checkpoint first, established precedent). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. Re-pulled 31 open GitHub issues live: unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02. No mail credentials (`inbox_agent.py` unchecked). Independently reconfirmed every mining lane exhausted: `cold_read_ledger.py` 308/308 ledgered, 0 stale, 0 un-ledgered candidates; `room_guide_underperformance.py` run live across the top six rooms; checked Garage's "back of stove storage" row by hand against `ops/zone-also-called.json`'s own history before treating it as new, found it already a named, deliberately-reverted limitation from hours earlier in the same day (the "stovetop" entry's own padding-risk note).
