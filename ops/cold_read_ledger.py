@@ -213,6 +213,57 @@ def last_touched(path: str) -> str | None:
     return date or None
 
 
+def _batch_last_touched(paths: list[str]) -> dict[str, str]:
+    """Same answer as calling last_touched() once per path, but one git
+    process for the whole batch instead of one per path.
+
+    Found 2026-11-09, scheduled operator cycle: stale_entries() against the
+    real 308-entry ledger took 64s (measured, not guessed) because
+    last_touched() shells out to a fresh `git log -1 -- path` per entry, and
+    this repository's history (11822 commits after the mandatory Step 0
+    unshallow) makes each git process's own startup and pack-loading cost
+    about 150-200ms regardless of how little work the actual query does.
+    308 x ~200ms is the whole 64s; the per-path query itself is cheap once
+    git is already running. A single `git log --name-only -- path1 path2
+    ...` walks history once for every path together, so 308 calls become 1:
+    measured 11.5s against the real ledger, an 82% cut, and it is the
+    reason test_cold_read_ledger_stale.py (case 6, the real committed
+    ledger) and `--stale`/`--next` were slow enough to look like a hang
+    rather than a passing check, costing roughly a minute of every cold
+    preflight run that reaches this lane.
+
+    Not switched to a single all-history `git log --name-only` with no
+    pathspec: that still walks every commit but also has to list every file
+    in commits that touch hundreds of paths at once, which measured slower
+    here than the per-path-set batch above for this ledger's real size.
+
+    Git's own history order is newest commit first, so the first time a
+    path appears in the output is its most recent touch; a path that
+    appears in no commit here (untracked, or git could not resolve it) is
+    simply absent from the returned dict, the same "unknown, not touched
+    today" rule last_touched() already follows (CLAUDE.md 0.4).
+    """
+    if not paths:
+        return {}
+    try:
+        out = subprocess.run(
+            ["git", "log", "--name-only", "--format=@@%cd", "--date=short",
+             "--"] + list(paths),
+            cwd=ROOT, capture_output=True, text=True, timeout=120)
+    except Exception:                                            # noqa: BLE001
+        return {}
+    wanted = set(paths)
+    found: dict[str, str] = {}
+    current_date = None
+    for line in out.stdout.splitlines():
+        if line.startswith("@@"):
+            current_date = line[2:]
+            continue
+        if line and current_date and line in wanted and line not in found:
+            found[line] = current_date
+    return found
+
+
 def stale_entries(ledger: dict | None = None) -> list[tuple[str, str, str]]:
     """Ledger entries whose file has been committed to AFTER the date the
     ledger recorded it clean/fixed on, so the entry's "no defect found" (or
@@ -238,14 +289,18 @@ def stale_entries(ledger: dict | None = None) -> list[tuple[str, str, str]]:
     positive out of a sandbox limitation.
     """
     ledger = load_ledger() if ledger is None else ledger
-    out = []
+    candidates = []
     for base, entry in ledger.items():
         if entry.get("status") not in VALID_STATUSES:
             continue
         rel = lane_path(base)
         if rel is None:
             continue
-        touched = last_touched(rel)
+        candidates.append((base, entry, rel))
+    touched_by_path = _batch_last_touched([rel for _, _, rel in candidates])
+    out = []
+    for base, entry, rel in candidates:
+        touched = touched_by_path.get(rel)
         if touched and touched > entry.get("date", ""):
             out.append((base, entry["date"], touched))
     out.sort(key=lambda t: t[1])

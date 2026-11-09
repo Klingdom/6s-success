@@ -119,12 +119,32 @@ def main() -> int:
     #    about wall-clock repository state, not this test's business, the
     #    same reasoning test_gate_cold_read_handoff_not_stale.py already
     #    gives for not asserting against the live, ever-changing log).
+    #
+    #    Also bounds wall-clock time. Found 2026-11-09, scheduled operator
+    #    cycle: this call used to spawn one `git log -1 -- path` subprocess
+    #    per ledger entry (308 of them); on this repository's history
+    #    (11822 commits after the mandatory Step 0 unshallow) that measured
+    #    64s, past this test's own 60s run and the reason it looked like a
+    #    hang rather than a slow pass. Fixed by batching all 308 lookups
+    #    into one `git log --name-only` call (_batch_last_touched(),
+    #    measured 11.5s). 45s is a loose ceiling. well above the ~12-25s
+    #    this now takes but far below the 64s the old per-path
+    #    implementation cost, so a regression back to one-subprocess-per-
+    #    path is caught here rather than rediscovered as a third "mystery
+    #    slow bootstrap" entry in the nightly log.
+    import time
     real_ledger = crl.load_ledger()
+    t0 = time.time()
     try:
         crl.stale_entries(real_ledger)
     except Exception as e:                                        # noqa: BLE001
         fails.append("stale_entries() raised against the real committed "
                       "ledger: %r" % e)
+    elapsed = time.time() - t0
+    if elapsed > 45:
+        fails.append("stale_entries() against the real ledger took %.1fs, "
+                      "over the 45s ceiling; this regressed back to a slow "
+                      "per-path git call instead of a batched one" % elapsed)
 
     # 7. --stale and --check both surface the same signal via the CLI;
     #    smoke-test only (exit code, not exact wording, since wording is

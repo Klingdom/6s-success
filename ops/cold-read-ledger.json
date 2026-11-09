@@ -677,9 +677,9 @@
       "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found."
     },
     "cold_read_ledger.py": {
-      "status": "clean",
-      "date": "2026-10-18",
-      "note": "Edited this cycle to add the build/listings lane (7th lane); re-ledgered with today's date after the edit so the stale check doesn't flag the tool against its own change."
+      "status": "fixed",
+      "date": "2026-11-09",
+      "note": "stale_entries() called last_touched() once per ledger entry (308 git subprocess spawns); on this repo's 11822-commit history each call costs ~150-200ms regardless of actual work, so --stale/--next took 64s and test_cold_read_ledger_stale.py timed out past 60s. Added _batch_last_touched(), one git log --name-only call for all paths at once (11.5s measured, 82% cut), wired into stale_entries(). Verified: 0 mismatches vs old per-path results on a 25-path random sample; sabotaged the new function and confirmed the test fails (7/7 pass after restore); --stale and --next return identical output, just faster."
     },
     "collect.py": {
       "status": "clean",
