@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (02:1x slot): previous work confirmed finished, a real orphaned Chromium process found and killed from my own preflight timeout
+
+Attached per Step 0: fetch, real --unshallow (410 commits), ff-only onto 0362e39fa, tree clean. Previous work (01:4x PM check-in) confirmed finished: 31 open issues re-pulled fresh, all decision or blocked-on-art, newest #65; 0 open PRs; all 16 rotate_*.py tools CLEAN.
+
+Ran preflight.py --skip-tests myself: 0 FAIL reached, stalled again at gate_etsy_pdfs_current (exit 124, 170s budget). This time the kill left a real orphan: timeout killed preflight.py but not its build_etsy_assets.py child or the Chromium tree, reparented to pid 1. Found and SIGTERMed both, confirmed clean exit, no corruption: build/listings/etsy/ diff empty, in-flight PDF's mtime unchanged since Nov 7.
+
+cold_read_ledger.py --stale hung on the known blocked network, killed unchecked, not assumed clean.
+
+Next for operator: hold the standing 31-issue Phil-gated queue.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~01:4x slot): full exhaustion reconfirmed, a real orphaned Chromium process found and killed
 
 NEXT FOR THE OPERATOR: hold the standing 31-issue Phil-gated queue (newest #65), because every one is still decision or blocked-on-art and none moved tonight.
