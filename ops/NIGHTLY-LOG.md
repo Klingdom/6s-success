@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-09 (~18:4x slot, 30-minute triage, previous work NOT finished: checks.yml red for three pushes, broken Etsy listing image, fixed; stale operator handoff corrected)
+
+NEXT FOR THE OPERATOR: hold the standing queue (31 open issues, all `decision`/`blocked-on-art`), because nothing is genuinely unblocked. Correcting the stale handoff the 18:0x operator and 18:1x PM check-in both carried forward: Pantry's "draw a larder organization chart" is NOT a genuine content gap. This exact row was already checked and explicitly declined twice before, by name: the 2026-11-06 (~06:4x) operator cycle ("Pantry and Kitchen's remaining gaps (dollar tree, larder chart) are genuinely unfixable on the current rules, not left for a future cycle to re-discover") and the 2026-11-07 (~mid-day) cycle ("both already named and declined as retailer-name/format-mismatch noise"). The query asks to "draw a chart", a format request the page cannot satisfy by adding words; today's 18:0x entry re-surfaced it without checking this file's own prior history on the exact phrase, and the 18:1x PM repeated it unverified. Re-sending it to the operator would have cost a third cycle rediscovering the same answer.
+
+Attached per Step 0 onto a shallow, detached checkout: `git fetch origin main`, real `git fetch --unshallow`, `checkout main` then `checkout -B main origin/main`, ff-only onto `01a0b118e`, tree clean before this cycle touched anything.
+
+**Previous work was NOT finished.** `checks.yml` has been RED on `main` for three consecutive pushes (727aa471c at 18:05, cdc5b7c8a at 17:47, 82fd400fe at 18:19), confirmed directly via the GitHub Actions API, not assumed from any cycle's own "no new defect" narrative; all three of those cycles' local `preflight.py --skip-tests` runs reported "0 FAIL through every gate reached" without the gate that was actually failing ever showing in their own account. Root cause, traced to source: commit `cdc5b7c8a` (the 17:4x PM check-in) silently committed `build/listings/etsy/L1-whole-house/listing-images/6S-Whole-House-Print-Pack-1-first-page.png` as a 0-byte file (`Bin 433486 -> 0 bytes`), almost certainly a headless-Chromium render that failed mid-write during that cycle's own `ship.py` run and got committed anyway, uncaught because `gate_ci_conclusion_current`'s own hard FAIL on this exact commit was never read from the real CI log by either cycle that followed it. `gate_etsy_listing_valid` and two test files (`test_check_etsy_free_duplicate.py`, `test_check_etsy_stale_economics.py`) all failed on the real committed package, confirmed directly from the run 42673100840 job log, not inferred.
+
+**Fixed, not just diagnosed.** Re-ran `build/listings/build_etsy_assets.py` (the real generator; this file is not hand-edited) to regenerate the PNG: valid 4167x3125 RGB image, 433486 bytes, matching the pre-corruption committed size exactly. Verified before committing: `build/listings/check_etsy.py` now PASS / FAIL (none); all three previously-failing test files pass directly (`test_gate_etsy_listing_valid.py` 4/4, `test_check_etsy_free_duplicate.py` 6/6, `test_check_etsy_stale_economics.py` 5/5); `git status` shows only this one file touched, nothing else drifted. `fix_dashes.py --check`: 0/0.
+
+**Went well:** read the real GitHub Actions job log instead of trusting three consecutive cycles' own "0 FAIL" claims, which never actually reached this gate's true state because `gate_ci_conclusion_current`'s own FAIL line names the commit and the run but still requires someone to go read it.
+
+**Did not go well:** this is the third cycle in a row to touch this commit chain without catching it; the render-failure-silently-committed shape (CLAUDE.md 0.4, "unchecked is not passing") cost two extra red CI runs before anyone looked at the actual job log rather than the local sandbox's own gate_tests-adjacent stall.
+
+**Changing next cycle:** when `gate_ci_conclusion_current` FAILs locally, read the actual GitHub Actions job log for the named run before writing "no new defect"; a local preflight pass that stops short of this gate (sandbox stalls routinely do) cannot stand in for it.
+
+31 GitHub issues re-pulled live via the API: unchanged, all `decision`/`blocked-on-art`, none from Phil.
+
+Dashboard regenerated; pushed to main. No content, price or product page touched; no new page; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-09 (~18:1x slot, 30-minute triage, previous work confirmed finished, no new defect)
 
 NEXT FOR THE OPERATOR: Pantry's "draw a larder organization chart" (named by the 18:0x operator cycle as a genuine content gap, not a wording fix); otherwise hold the standing queue (31 open issues, all `decision`/`blocked-on-art`), because nothing is genuinely unblocked.
