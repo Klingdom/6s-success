@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-09 (~00:1x slot): previous work confirmed finished, closed three overdue document rotations instead of only re-verifying exhaustion
+
+NEXT FOR THE OPERATOR: hold, same standing 31-issue Phil-gated queue (newest #65), unchanged since the ~23:5x operator cycle 20 minutes earlier. No new issue, no Phil reply on #42, 0 open PRs, re-pulled live via the API.
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real git fetch --unshallow, checkout -B main origin/main, ff-only merge onto 01a41f1c2 (395 commits fast-forwarded), tree clean.
+
+Previous work (the gate_owner_actions_items_tracked false-positive fix) confirmed finished, re-verified directly: the fix and its fail-then-pass test are already on main; ran preflight.py --skip-tests myself to a 170s budget, 0 FAIL grepped through every gate reached, genuinely stalled (exit 124) at the documented network-bound gate_etsy_pdfs_current (Etsy fee schedule, HTTP 403 from this sandbox), everything after it unchecked, not assumed passing.
+
+Found and closed real small work instead of only re-confirming exhaustion: three of the backlog/checkin rotation tools reported DUE rather than CLEAN (rotate_backlog_closed.py: 5 numbered sections, 21372 bytes; rotate_checkin_log.py: 23 entries past the 8-day window, 10066 bytes; rotate_backlog_section2_items.py: 1 row past the 14-day window, 1053 bytes), the first time in recent cycles any of them had real work queued rather than nothing due. Ran all three with --apply, then re-ran --check on each: all now report CLEAN. fix_dashes.py --check: 0 em/en dashes on the touched files. Diffed each change: content only moved to its own archive file, nothing dropped.
+
+Not starting anything backlog-sized beyond that: every other non-Phil-gated workstream remains Done, Hold, or exhausted, confirmed again via a fresh pull of all 31 open GitHub issues (unchanged, all decision/blocked-on-art) rather than assumed.
+
+No push sent: ops/last-owner-notification.json shows one already sent 2026-11-07T18:55:00Z, no-repeat-before 2026-11-09T18:00Z not yet passed, nothing material changed since.
+
+Pushed to main. BACKLOG-2026-09-07.md, BACKLOG-2026-09-07-CLOSED-ARCHIVE.md, BACKLOG-2026-09-07-SECTION2-ARCHIVE.md, CHECKIN-LOG.md, CHECKIN-LOG-ARCHIVE.md, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, ops/cycle-signal.json, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-08 (~23:5x UTC): a real false positive found and fixed in gate_owner_actions_items_tracked itself, full exhaustion otherwise reconfirmed
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `4801fbefd` (391 commits fast-forwarded), tree clean. Read `GOALS.md`, `CLAUDE.md`, `BACKLOG-2026-09-07.md` sections 0-7 and entries 161-164, `STATUS.md`, `OWNER-ACTIONS.md`, and the head of `ops/NIGHTLY-LOG.md`. The room-guide keyword-mining lane was already closed across all 20 rooms as of today's entry 164, and every section 2-6 backlog row is Done, Hold, or Phil-gated (31 open GitHub issues, all `decision`/`blocked-on-art`, re-pulled live via the API, none from Phil, no new comment on #65 or #64).
