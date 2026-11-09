@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-09 (~22:4x-23:0x UTC), scheduled operator cycle: independently reconfirmed exhaustion with fresh methods rather than cited, no genuine fix found, no busywork manufactured
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout (fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `f5511e71e`, 575 commits fast-forwarded, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. Pulled all 31 open GitHub issues live via the API directly (not cited from a prior cycle's count): all 31 are `decision` or `blocked-on-art`, none from Phil since 2026-11-02, matching issue #42's own standing diagnosis. `ops/inbox_agent.py --apply` run directly: no mail credential in this sandbox, confirmed not carried forward. No Stripe, Gemini, YouTube or Umami credential present either (checked `env` directly).
+
+**Checked the keyword-gap lane a different way than the last ~15 cycles rather than trust their "exhausted" citation.** Instead of the per-room `room_guide_underperformance.py` sampling those cycles used, dumped every `status=="gap"` row directly from the real committed `ops/keyword-demand.json` (fresh, `scored_at` 2026-11-09T20:51:47Z, 0 `site/`-touching commits since `scored_against_commit`, so no rescore was owed) and read all 103 by hand rather than count them (`CLAUDE.md` 5c). The set is dominated by genuine off-topic noise already outside this product's scope (cribbage tournaments, Dropbox, Sims 4 mods, Path of Exile stashes, bench-press grip, solo stove log arrangement, floating-staircase construction) plus a handful of previously-triaged clusters (the Kitchen/Pantry "dollar tree" queries A62 already checked and declined). No row surfaced a genuine, previously-unseen, on-topic content or routing gap. Declined to manufacture a 83rd nano-fix on a weak signal rather than report a defect that is not there.
+
+**Preflight run twice, the second time correctly.** First attempt (`python ops/preflight.py`, full test suite) stalled past a 280s wrapper timeout mid-`gate_tests` (`test_audit_catalog.py`, actively CPU-bound in a child `audit_catalog.py --include-fixtures` process, not hung); killed it and found it had left a stale lock directory at `/tmp/.preflight_py_running.lock` (a directory with `pid`/`start`/`children` files, not a plain file, which the first `rm` attempt did not expect), removed by hand. `python ops/preflight.py --skip-tests` then ran clean to the one documented, already-known network/render-bound stall (`gate_etsy_pdfs_current`, this time spending its budget rendering the three Etsy PDFs through a headless Chromium `print-to-pdf`, confirmed by inspecting the live process tree rather than assumed) and was stopped there at its own 180s budget. 0 FAIL through every gate reached; standing warnings are the same sandbox-credential set every cycle today has reported (no Stripe, no mail, no DNS reach, no live-site reach). Killed the orphaned `build_etsy_assets.py`/Chromium tree by hand; the three Etsy PDFs are unchanged (dated 2026-11-07, matching the 2026-11-07 cycle's own account; `build/` is gitignored regardless).
+
+**Verified:** deploy gap not re-derivable from this sandbox (no VPS key); the two concurrent pushes that landed mid-cycle (`a8519ae29`, `9d253fe53`, both PM check-ins independently reconfirming the same "nothing new unblocked" state) merged cleanly by a second `ff-only`. `ops/dashboard.py` regenerated clean.
+
+**Went well:** used a genuinely different verification method (a full raw dump of the keyword-gap tail, a live GitHub API pull, a direct `env` check) rather than re-stating the last cycle's own count, so this entry's "nothing unblocked" is independently derived, not copied.
+
+**Did not go well:** two preflight invocations needed a by-hand kill and lock cleanup before a usable run completed; no data loss, both are the documented, harmless sandbox-timeout class.
+
+**Changing next cycle:** none structural. Every lane genuinely unblocked without a Phil credential or decision has now been independently re-verified exhausted by many cycles today using different methods; the compounding cost of that is already filed and owned by Phil in issue #42, not something to re-litigate here.
+
+**Next:** hold the standing queue (31 open issues, all `decision`/`blocked-on-art`); cheapest unlocks unchanged (#64 traffic-read paste, 2 min; #58 Stripe description/logo, 2 min; #46 YouTube OAuth, 5 min; #44 Etsy account, ~40 min, the only channel with buyers already in it per `CLAUDE.md`'s own step-4 framing this cycle).
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No content, price or product page touched; no new page; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-09 (~22:4x slot, 30-minute triage, previous work confirmed finished, a stale 14-hour-old deploy-build citation found and fixed across four STATUS.md sections, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: hold the standing queue (31 open issues, all decision/blocked-on-art); nothing non-Phil-gated is unblocked.
