@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-09 (~07:1x UTC), scheduled operator cycle: cold-read ledger drift closed, Garage's handed-off partial tier mined (noise confirmed, two unverified leads handed forward)
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout (fetch, fetch --unshallow, checkout -B main origin/main, ff-only onto `9f714aef8`, 444 commits). Read `BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md` and the last several `ops/NIGHTLY-LOG.md` entries directly, not a summary. Ran a full `preflight.py --skip-tests` myself: every gate passed, 34 warnings, all standing sandbox limits (no Stripe/.env.secrets, no SSH deploy key, no mail credential, no live egress to 6s-success.com, 7 of 88 card heroes still text-only, DNS/site-verification unchecked). GitHub re-pulled live: 31 open issues, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02 (read issue #42's full thread directly, no new reply). `inbox_agent.py --apply`: no mail credential here, unchecked, not assumed empty.
+
+**Closed a real cold-read-ledger drift:** `cold_read_ledger.py --stale` flagged `ops/keyword_demand.py` as ledgered 2026-11-07 but touched 2026-11-09 (the day's earlier 03:5x cycle's own singular-"way" FORMAT_WORDS addition, commit `cbd5f0527`). Cold-read that diff directly: same self-flattery/collision pattern as every prior FORMAT_WORDS addition, no latent defect. Re-ledgered clean.
+
+**Mined Garage's handed-off 81-row partial tier (35% uncovered of 233 on-topic), per the 06:4x PM check-in's handoff, since it was named the only genuinely unmined lane.** Pulled the full raw-JSON partial list directly (the ranking tool's own CLI has no row-count flag, so read `ops/keyword-demand.json`/`-global.json` filtered to Garage's `best_page` myself, 132 raw rows across both corpora). Checked each cluster against this log's own history before acting: retailer/platform suffixes (home depot, lowes, pinterest, reddit, youtube, canadian tire, rona, australia, india), format words already excluded (plan/plans, build, pdf, template, list, daily), and the cricut/prepping-supplies, hunting/fishing-gear, pics-on-wall, and car-boot/organisation-essentials clusters are all the same already-declined noise this log closed out across entries 129-152. No new row met the evidence bar for a zone-also-called.json addition (CLAUDE.md 5c/5d: forcing a synonym on fewer than several corroborating, collision-checked rows is exactly the dishonest-labelling shape this log has declined before).
+
+**Two leads found, deliberately not acted on, handed forward rather than forced:** (1) several "power tool[s]" queries ("how to store power tools", "...in tool box", "...in garage") show the plural "tools" as the sole unmatched word against the Power Tool and Battery Zone, while sibling queries against the same zone cluster show "tools" already matching; `_morphology_variants()` in `ops/keyword_demand.py` is documented as tie-break only, never applied to the primary coverage score, so this could be either a real singular/plural scoring gap or a surface (title vs heading) inconsistency, not yet distinguished. (2) "how to put tools on the wall" scores against the generic garage article with "wall" unmatched, even though a "Hand Tool Wall and Cabinets" zone exists and names that exact word; a single query, not yet corroborated by siblings. Neither was changed without the multi-row, full-corpus-diff evidence this repository's own practice requires; both are concrete enough to verify quickly next cycle rather than re-derive from scratch.
+
+**Went well:** reading the raw scored JSON directly, rather than the ranking tool's own short sample, surfaced two specific, traceable leads instead of a vague "lane is noisy" conclusion.
+
+**Did not go well:** a concurrent PM check-in pushed to main (dashboard/log/checkin files) between this cycle's attach and its own push; resolved by discarding this cycle's own redundant copies of the shared generated files and re-deriving them fresh on top of the fast-forwarded merge, keeping only the two genuinely new pieces of work (the ledger entry, this log entry).
+
+**Changing next cycle:** none structural.
+
+**Next:** verify the two Garage leads above against real zone headings before touching `zone-also-called.json` or `keyword_demand.py`; the 31 open owner-gated decisions and issue #42's cadence question remain the standing queue otherwise.
+
+HANDOFF-FILES: `ops/keyword_demand.py` (power-tool plural coverage, needs tracing before any fix)
+
+HANDOFF-FILES: `ops/keyword_demand.py`
+
 ## PM check-in, 2026-11-09 (~06:4x slot, 30-minute triage, previous work confirmed finished, a second orphaned Etsy render tree found but left running this time)
 
 NEXT FOR THE OPERATOR: mine Garage's remaining 81-row partial tier (35% uncovered of 233 on-topic rows), because it is still the only genuinely unmined lane and nothing else is unblocked.

@@ -902,9 +902,9 @@
       "note": "Second-pass cold read, 2026-10-12 operator cycle: re-read in full end to end (not just cited), independently of the two prior cycles that read these same files and reported no defect without re-ledgering, which is what let the nightly-log handoff keep naming them as if nobody had looked (caught by preflight.py's own gate_cold_read_handoff_not_stale). wire_landmarks.py and indexnow.py also re-verified live via --check (214 pages current; 211 sitemap URLs, 0 never submitted). No new defect found in any of the five; each still matches its own extensively documented history."
     },
     "keyword_demand.py": {
-      "status": "fixed",
-      "date": "2026-11-07",
-      "note": "Re-ledgered after the 23:3x PM cycle's own fix: household_room_signal() used a bare substring check, letting Family Room's den synonym match inside hidden/garden/wooden/dental, 74 rows wrongly signalled. Fixed with a word boundary; a first attempt broke 3 genuine plural matches, caught by a full corpus diff and corrected. 67 rows fixed, zero regressions, test_keyword_demand.py case 28 proves it fail-then-pass. Both corpora rescored."
+      "status": "clean",
+      "date": "2026-11-09",
+      "note": "Cold-read 2026-11-09 scheduled operator cycle: re-ledgered after the 03:5x cycle's own singular-'way' FORMAT_WORDS addition (commit cbd5f0527). Reviewed that diff directly: same self-flattery/collision-check pattern as every prior FORMAT_WORDS addition, 0 regressions claimed and the commit's own test case (29, 34/34) proves it fail-then-pass. Separately traced two Garage partial-tier leads (power-tool plural coverage inconsistency, hand-tool-wall misattribution on 'how to put tools on the wall') while mining the handed-off partial tier; neither corroborated enough to act on yet, handed to the next cycle rather than forced. No latent defect found in the file itself."
     },
     "keyword_demand_global.py": {
       "status": "fixed",
