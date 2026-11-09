@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-09 (~00:5x UTC): full exhaustion independently reconfirmed, gate_etsy_pdfs_current watched directly rather than cited, no new defect, no duplicate notification
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow` (397 commits), `checkout -B main origin/main`, ff-only merge onto `b0ace91fc`, tree clean. Read `BACKLOG-2026-09-07.md` sections 0-7 (section 2 fully archived, section 3/4 blocked on Phil's own owner gates C6/C7, section 5 Hold list unchanged), `STATUS.md`'s latest entries through the 2026-11-09 ~00:1x PM check-in, and the head of `ops/NIGHTLY-LOG.md`.
+
+**Verified, not cited:** All 11 `rotate_*.py` tools run fresh with `--check`: CLEAN across every one, nothing due (the prior cycle had just cleared the only 3 that were). `cold_read_ledger.py --stale`: 0 stale. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty. Ran `preflight.py --skip-tests` myself to a fresh, unbuffered log: 0 FAIL in every FAIL block reached, `cycle-signal.json`'s checkpoint fired cleanly immediately before `gate_tests` (new git HEAD recorded correctly). It did not hang on network this run; it was genuinely still rendering the three Etsy listing PDFs via headless Chromium when I stopped it after ~100s to avoid an open-ended wait, the same documented `gate_etsy_pdfs_current` slow step. Sent `SIGTERM` to the `build_etsy_assets.py` subprocess directly (not a second `SIGKILL` on the wrapper), confirmed both exited and `git status`/`git diff --stat -- build/listings/etsy/` show no change and no truncated file (the one in-flight PDF's mtime is still 2026-11-07, untouched), so no corruption risk per the entry-161 lesson. 31 open GitHub issues re-pulled fresh via the API: unchanged from the last cycle, all `decision`/`blocked-on-art`, newest still #65. Read #65's and #42's full comment threads directly: #65 confirms its own fix needs a paste on the Routines page this session cannot reach (`update_trigger` refuses, same as issue #40's documented shape); #42's thread has no reply from Phil since 2026-11-02. 0 open PRs.
+
+**Went well:** confirmed the state independently rather than citing the 00:1x entry, and this time actually watched `gate_etsy_pdfs_current` run rather than just citing the documented stall; it is doing real, slow PDF rendering, not purely blocked on network, a small correction to how recent entries have described it.
+
+**Did not go well:** nothing new to fix; this cycle is another instance of issue #42's own named cost. No small item was found this slot the way the last several cycles each found one (a gate false positive, three overdue rotations); the backlog, rotation lanes and cold-read lane are all genuinely at zero right now.
+
+**Changing next cycle:** none.
+
+**Next:** hold, same standing 31-issue Phil-gated queue (newest #65). No push notification: `ops/last-owner-notification.json` shows one sent 2026-11-07T18:55:00Z, no-repeat-before 2026-11-09T18:00Z not yet passed, nothing material changed (same issue set, same revenue, no Phil reply).
+
+Regenerated the dashboard and pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No content, price or product page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-09 (~00:1x slot): previous work confirmed finished, closed three overdue document rotations instead of only re-verifying exhaustion
 
 NEXT FOR THE OPERATOR: hold, same standing 31-issue Phil-gated queue (newest #65), unchanged since the ~23:5x operator cycle 20 minutes earlier. No new issue, no Phil reply on #42, 0 open PRs, re-pulled live via the API.
