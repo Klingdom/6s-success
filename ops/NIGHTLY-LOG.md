@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-09 (~09:4x slot, 30-minute triage, previous work confirmed finished, no new defect small enough for this slot)
+
+NEXT FOR THE OPERATOR: keep mining Garage's remaining room-guide partial tier (79 partial of 233 on-topic rows, 34% uncovered, 0 gap), because it is still the only genuinely unmined lane and nothing else is unblocked.
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout main` then `checkout -B main origin/main`, ff-only onto `7595f9051`, 466 commits fast-forwarded, tree clean before this cycle touched anything.
+
+Previous work (the 09:1x PM cycle's confirmation and the Garage FORMAT_WORDS fix before it) checked again, not cited. Ran `preflight.py --skip-tests` fresh myself in the background: 0 FAIL through every gate reached, including a full PASS on `gate_kdp_listing_valid` and `gate_etsy_listing_valid`, same documented standing warnings only (living-docs size tripwires on BACKLOG/OWNER-ACTIONS/STATUS, no Stripe/mail/SSH credential in this sandbox, deck-print-tier note). Stopped it at the same network-bound `gate_etsy_pdfs_current` stall every recent cycle hits (6s-success.com not reachable from this sandbox), reported unchecked past that point, not assumed clean. Deploy gap re-derived directly: `deploy_gap_material_commits(resolve_verdict_commit('09751d63e8b0bdde'))` returns an empty list, matching `STATUS.md`'s own "0 commits undeployed" citation exactly. `room_guide_underperformance.py --room Garage` re-run fresh: still 79 partial + 0 gap of 233 on-topic, unchanged, confirming the handoff lane is real and still not started. 31 open GitHub issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02. Issue #65 (the stale "Append" instruction in all three Routines' own stored prompts) is correctly already filed as `decision`: this session cannot edit a Routine it did not create, and `OWNER-ACTIONS.md` item 24 already carries the exact paste-in fix for Phil. This entry itself uses `ops/nightly_log.py` to prepend, the convention issue #65 names, not the stale "append" wording still live in this Routine's own stored prompt. 0 open PRs.
+
+No new defect found small enough to close in this slot. Dashboard regenerated and pushed per Step 6.
+
+HANDOFF-FILES: none
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-09 (~09:1x slot, 30-minute triage, previous work confirmed finished, no new defect small enough for this slot)
 
 Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout main` then `checkout -B main origin/main`, ff-only onto `12f0a44c1` (464 commits fast-forwarded), tree clean before this cycle touched anything.
