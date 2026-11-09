@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-09 (~09:1x slot, 30-minute triage, previous work confirmed finished, no new defect small enough for this slot)
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout main` then `checkout -B main origin/main`, ff-only onto `12f0a44c1` (464 commits fast-forwarded), tree clean before this cycle touched anything.
+
+Previous work (the 08:5x scheduled operator's Garage FORMAT_WORDS fix and the 08:4x PM cycle's confirmation) checked again, not cited. Ran `preflight.py --skip-tests` fresh myself: 0 FAIL through every gate reached, cut off only at the documented render-bound `gate_manual_print_fonts_current` stall (this run got further than usual, past `gate_kdp_listing_valid` clean, before the sandbox CPU limit hit). Deploy gap re-derived directly: `deploy_gap_material_commits(resolve_verdict_commit('09751d63e8b0bdde'))` returns an empty list, matching `STATUS.md`'s own "0 commits undeployed" citation and `BLOCKER-001` exactly, no stale claim found. 31 open GitHub issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02. 0 open PRs. `cold_read_ledger.py --stale` hit the same standing sandbox-blocked outbound-host stall prior cycles have hit; killed unchecked after 20s, not assumed clean.
+
+Noted for the record, not acted on beyond this: issue #65 (filed 2026-11-08, still open) names this Routine's own prompt as carrying the stale "append" instruction for this file; `ops/nightly_log.py --help` confirms the correct convention is prepend, which this entry follows, matching how every recent cycle has already self-corrected.
+
+No new defect found small enough to close in this slot. Regenerated the dashboard anyway per Step 6 (it was only 16 minutes stale). Handing to the operator: Garage's remaining room-guide partial tier, the only genuinely unmined lane, still hours-scale and not attempted here.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-09 (~08:5x UTC), scheduled operator cycle: closed Garage's one standing gap row ("must"/"haves" joined FORMAT_WORDS), a wrong first hypothesis caught before shipping
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout (fetch, real `git fetch --unshallow`, `checkout main` then `checkout -B main origin/main`, ff-only onto `d6a4af4be`, 459 commits fast-forwarded, tree clean). Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `CLAUDE.md` and the last several `ops/NIGHTLY-LOG.md` entries directly. Ran `preflight.py --skip-tests` in the background to completion: 0 FAIL through every gate reached, killed by the documented sandbox-bound `gate_etsy_pdfs_current` network stall, same shape every recent entry records.
