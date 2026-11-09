@@ -225,6 +225,31 @@ _result_car_care = rgc.score_room([_car_care], [], _room)
 check("a genuine on-topic 'car care products' row is NOT excluded by the care-package pattern",
       _result_car_care["on_topic_rows"] == 1)
 
+# Found 2026-11-09 (Garage pass, closing the "car boot"/"interior car
+# storage" cluster A78 twice left as "a closer call"): "car travel storage
+# organizer" and "interior car storage organizers" are retail-product
+# searches, the same shape \bcar organizers?\b already excludes, just with
+# "storage" breaking the word adjacency those patterns require. "car boot"
+# organizing queries and "organize in car interior" are a genuine content
+# gap, not product noise, and must stay on-topic/uncovered rather than be
+# swept away by the same fix.
+_car_travel = {"query": "car travel storage organizer", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_car_travel = rgc.score_room([_car_travel], [], _room)
+check("a 'car travel storage organizer' off-topic-context row is excluded",
+      _result_car_travel["on_topic_rows"] == 0)
+_interior_car = {"query": "interior car storage organizers", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_interior_car = rgc.score_room([_interior_car], [], _room)
+check("an 'interior car storage organizers' off-topic-context row is excluded",
+      _result_interior_car["on_topic_rows"] == 0)
+_car_boot = {"query": "how to organise a car boot", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_car_boot = rgc.score_room([_car_boot], [], _room)
+check("a genuine on-topic 'car boot' organizing row is NOT excluded by the car-storage-organizer pattern",
+      _result_car_boot["on_topic_rows"] == 1)
+_car_interior_organize = {"query": "organize in car interior", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_car_interior_organize = rgc.score_room([_car_interior_organize], [], _room)
+check("a genuine on-topic 'organize in car interior' row is NOT excluded by the car-storage-organizer pattern",
+      _result_car_interior_organize["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

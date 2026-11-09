@@ -212,7 +212,34 @@ OFF_TOPIC_CONTEXT = re.compile(
     # home care package" (which already routes to a different, unrelated
     # article, not Garage), and "bedazzl" appears in exactly the one row
     # named here, so excluding them here cannot suppress a genuine match.
-    r"\bcare package\b|\bbedazzl\w*\b", re.I)
+    r"\bcare package\b|\bbedazzl\w*\b|"
+    # Found 2026-11-09 (Garage pass, closing the "car boot"/"interior car
+    # storage" cluster A78 twice left as "a closer call" rather than
+    # decided). "car travel storage organizer" and "interior car storage
+    # organizers" are retail-product searches for a trunk organizer or
+    # caddy, the exact shape \bcar organizers?\b and the "organizer(s) for
+    # car" branches above already exclude; these two rows only escaped
+    # that net because "storage" sits between "car"/"interior" and
+    # "organizer(s)", breaking the adjacency those patterns require. Added
+    # as exact phrases rather than widening the regex, since exactly these
+    # two rows carry the shape (checked against both harvests, below).
+    # Decided and NOT added: "how to organise a car boot"/"how to organise
+    # your car boot" are an organizing VERB on the car's cargo space, the
+    # same shape as "organize in car interior", which this file's own
+    # 2026-11-03 comment above already names as a genuine on-topic row to
+    # keep, not exclude. The Automotive Care Zone's content.json purpose
+    # (fluids, cables, a cleaning kit kept in the garage) genuinely does
+    # not address organizing the space inside the vehicle itself, so both
+    # "boot" rows stay honestly `partial`: a real content gap, not a
+    # wording gap a synonym could close, and not product-shopping noise
+    # either. This is the decision, not a further deferral: a third cycle
+    # should not reopen it without new evidence (a zone that actually
+    # discusses the car's cargo area, or a query that stops being a
+    # one-off). Verified against both harvests: "car travel storage" and
+    # "interior car storage" each appear in exactly the one row named
+    # here, so excluding them here cannot suppress a genuine match.
+    r"\bcar travel storage organizer\b|\binterior car storage organizers?\b",
+    re.I)
 
 
 def guide_less_rooms():

@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-09, scheduled operator cycle: closed the "car boot"/"interior car storage" cluster A78 twice left as "a closer call" rather than decided
+
+**Did:** Attached per Step 0 (unshallow, ff-only onto `22970d612`, tree clean). Preflight clean (0 FAIL, 33 standing warnings) before touching anything. GitHub: 31 open issues, decision/blocked-on-art, none from Phil (checked #64/#65 directly, empty). Mined Garage's remaining 77-row partial tier via `score_room()` with `unmatched_words`, not the 8-row sample. Closed the "car boot"/"interior car storage" cluster A78 twice left as "a closer call." "car travel storage organizer" and "interior car storage organizers" are retail-product searches, the shape `\bcar organizers?\b` already excludes, just broken by "storage" between the words; added both as exact phrases to `OFF_TOPIC_CONTEXT`. "how to organise a/your car boot" are an organizing verb on the car's cargo space, the same class as "organize in car interior," already kept on-topic per this file's 2026-11-03 comment; Automotive Care Zone's real content.json genuinely does not address the car's interior, so both stay honestly partial: decided now, not deferred again.
+
+**Verified:** Fail-then-pass (stash, both new cases FAIL, restore, 37/37 pass). Garage: 231 to 229 on-topic, 77 to 75 partial, 33% uncovered (rows dropped, not credited as a fix). `test_room_guide_underperformance.py` (19/19), `fix_dashes.py --check` (0/0), `py_compile` clean. Full preflight reran clean after. `inbox_agent.py`: no mail credential, unchecked.
+
+**Went well:** splitting the cluster into product-noise vs. genuine content gap avoided overclaiming and under-fixing.
+
+**Did not go well:** nothing new; standing sandbox gaps only.
+
+**Changing next cycle:** none; closes a deferral, not a new defect class.
+
+**Next:** Garage's remaining ~75-row tier (noise/declined-gap classes) if nothing higher unblocks.
+
+No price or product touched; ranking-tool fix only, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-09 (~10:1x slot, 30-minute triage, previous work confirmed finished, no new defect)
 
 Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `d69bba437` (472 commits fast-forwarded), tree clean before this cycle touched anything.
