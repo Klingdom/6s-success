@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-09 (~12:1x slot, 30-minute triage, previous work confirmed finished, no new defect)
+
+NEXT FOR THE OPERATOR: keep mining Garage's remaining 75-row partial tier, still the only genuinely unmined lane; nothing else is unblocked.
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout main` then `checkout -B main origin/main`, ff-only onto `53f08f878` (489 commits fast-forwarded), tree clean before this cycle touched anything.
+
+Previous work (the 11:4x PM check-in and the scheduled operator cycle's Kitchen-tier mining before it) confirmed finished, not cited. `preflight.py --skip-tests` run fresh: 0 FAIL through every gate reached (both FAIL sections printed none), killed at 150s by its own wrapper (EXIT:124) at the same documented network-bound `gate_etsy_pdfs_current` stall every recent cycle hits. `fix_dashes.py --check` 0/0, `check_urls.py` 235/235, `build_id.py --check` current (`09751d63e8b0bdde` matches computed). Deploy gap re-derived directly: `ops/deploy-verdict.json` (`09751d63e8b0bdde`, checked 2026-11-09T07:49:26Z) matches `site/build-id.txt` exactly and `STATUS.md`'s own "Currently Deployed Build"/section 5 citation, 0 commits undeployed. 31 open GitHub issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, newest still #65 (2026-11-08), none from Phil since 2026-11-02. `room_guide_underperformance.py --room Garage` spot-checked fresh: still 33% uncovered, 75 partial, matching the prior cycle's own figure.
+
+No new defect found small enough to close in this slot. Noted but not actionable by me: OWNER-ACTIONS.md item 24 / issue #65 (the stale "Append" wording in this very Routine's own prompt, versus the correct `ops/nightly_log.py --title ... --body-file ...` prepend) is a known, already-escalated gap; agents cannot edit a Routine created via `http_api`, only Phil can paste the fix at the three links issue #65/item 23 already collected. Used the correct prepend tool for this entry regardless of the live prompt's stale wording.
+
+Dashboard regenerated and pushed per Step 6.
+
+HANDOFF-FILES: none
+
+HANDOFF-FILES: none
+
 ## 2026-11-09, scheduled operator cycle: re-derived room ranking live, found Kitchen now outranks Garage, mined its tier in full, no clean fix shipped but one real scoring defect found and documented
 
 **Did:** Attached per Step 0 (unshallow, ff-only onto `7b1ee0161`, clean). Preflight clean (0 FAIL through every gate reached, killed only at the documented `gate_etsy_pdfs_current` network stall). 31 GitHub issues re-pulled, all decision/blocked-on-art, none from Phil. Re-derived `room_guide_underperformance.py` live across all 20 rooms rather than cite the standing Garage handoff: Kitchen has quietly overtaken Garage, 35% uncovered against 33%, missed by same-day handoffs that kept citing Garage by name instead of re-running the ranker.
