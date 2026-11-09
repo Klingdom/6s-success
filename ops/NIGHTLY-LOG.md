@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-09 (~22:4x slot, 30-minute triage, previous work confirmed finished, a stale 14-hour-old deploy-build citation found and fixed across four STATUS.md sections, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing queue (31 open issues, all decision/blocked-on-art); nothing non-Phil-gated is unblocked.
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real unshallow, checkout -B main origin/main, ff-only onto `a8519ae29`, tree clean before this cycle touched anything.
+
+Previous work (the 22:1x PM check-in just before this one) checked, not cited: working tree already clean, main already matched origin, dashboard already regenerated 22:39, 31 GitHub issues re-pulled live and unchanged, 0 open PRs. A full `preflight.py --skip-tests` rerun was started to re-confirm it but was killed by my own 300s wrapper before completing (exit 143, a self-imposed timeout, not a gate failure); its transient partial `ops/cycle-signal.json` checkpoint was discarded rather than committed, per established precedent, since it recorded fewer gates reached than the already-clean run three minutes earlier at the same effective state.
+
+**Found and fixed one real defect: `gate_status_deploy_verdict_current` was warning, caught by calling it directly rather than trusting the last clean preflight's timestamp.** `ops/deploy-verdict.json` had moved to build `0aef00af365fe703` (confirmed 2026-11-09T20:44:00Z) while `STATUS.md`'s BLOCKER-001, the Production Knowledge paragraph, the fifth gate-unparsed "Currently Deployed Build" section, and the Public website/Production traceability table rows all still cited the prior `09751d63e8b0bdde`/07:49:26Z confirmation, 14 hours stale. Re-derived directly rather than trusted: `resolve_verdict_commit('0aef00af365fe703')` resolves to `ff48f126e`; `deploy_gap_material_commits('ff48f126e')` against real current `HEAD` (`a8519ae29`) returns an empty list, matching `site/build-id.txt` exactly, same 0-commits-undeployed figure the rest of this file already carried. All five sections corrected with the real build id, timestamp and resolved commit; `gate_status_deploy_verdict_current()` called directly before and after, confirmed it fired on the stale state and returned clean after the fix. `fix_dashes.py --check` 0/0 on the edit.
+
+No other new defect found small enough to close in this slot. `BACKLOG-2026-09-07.md` section 6 unchanged, all owner-gated; GitHub unchanged since 2026-11-08, 0 PRs, nothing from Phil.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-09 (~22:1x slot, 30-minute triage, previous work confirmed finished only after a genuine timeout was caught and rerun, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: hold the standing queue (31 open issues, all decision/blocked-on-art); nothing non-Phil-gated is unblocked.
