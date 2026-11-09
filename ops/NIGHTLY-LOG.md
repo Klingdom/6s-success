@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-09, scheduled operator cycle: both keyword-gap lanes (Garage room tier, global gap tier) now read genuinely exhausted
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout (fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto 66247ae99, 1240 commits fast-forwarded). Confirmed BACKLOG-2026-09-07.md sections 2 through 4 are fully done/archived except the two explicit Phil gates (C5 Gemini billing, C6 YouTube OAuth); Garage's room tier was already drained by this morning's five earlier cycles, so this slot mined the other standing lane instead: `keyword_demand_global.py`'s gap tier. Rescored fresh (free, no network): 89 gap rows, unchanged from 2026-11-05. Read all 89 directly, not a count. Every one is the same already-declined off-topic noise this log has named repeatedly: cribbage tournaments, bench press form, Revit/CAD railing questions, vastu bedroom direction, dropped kerbs, pasta/paneer cooking failures, dollar-tree/pinterest/mumsnet platform mentions, classroom-bench and daycare queries, "why is my mum always late." Zero genuine on-topic misattributions. No fix forced.
+
+**Verified:** `ops/inbox_agent.py --apply`: no mail credential, reported unchecked, not assumed empty. GitHub: 31 open issues re-pulled live, unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02, nothing newly actionable. Dashboard regenerated and pushed.
+
+**Went well:** Did not re-mine Garage's already-drained tier a sixth time this slot; checked the actual gap rows in the other lane instead of trusting the row count alone (CLAUDE.md 5c).
+
+**Did not go well:** `preflight.py` still cannot complete past its documented network-bound gates in this sandbox; unchecked past that point, not assumed passing, same known limitation every recent cycle reports.
+
+**Changing next cycle:** Both keyword-gap lanes (Garage room tier, global gap tier) now read genuinely exhausted. Next operator slot should check the US `keyword_demand.py` partial tier for a real misattribution, or fall back to Section 5 Hold items once their preconditions move.
+
+**Next:** Nothing backlog-actionable remains outside Phil's gates (C5, C6, and the 31 open decision issues). Push is live; awaiting the owner's Redeploy click as always.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-09 (~12:4x slot, 30-minute triage, previous work confirmed finished, no new defect)
 
 NEXT FOR THE OPERATOR: keep mining Garage's remaining 75-row partial tier, because it is still the only genuinely unmined lane and nothing else is unblocked.
