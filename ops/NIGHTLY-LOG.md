@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-09 (~08:1x slot, 30-minute triage, previous work confirmed finished, a real BLOCKER-001 oversize warning closed)
+
+Previous work finished. Attached per Step 0 onto a shallow, detached checkout (fetch, real unshallow, checkout -B main origin/main, ff-only onto 8d78e1635, tree clean). Ran preflight.py --skip-tests fresh myself rather than cite the handoff: 0 FAIL through every gate reached, same documented network/render-bound gate_etsy_pdfs_current stall; the cycle_signal checkpoint confirms clean at current HEAD. Deploy gap re-derived directly: 0 commits undeployed, matching STATUS.md's own current BLOCKER-001 entry and site/build-id.txt exactly. 30 open GitHub issues re-pulled live: all decision or blocked-on-art, none from Phil since 2026-11-02, so no genuinely unblocked item exists.
+
+Closed a real warning rather than leave it standing: gate_status_blocker001_not_oversized flagged 6 live BLOCKER-001 entries where only the newest should stay. ops/rotate_status_history.py --check-blocker1 confirmed DUE; --apply-blocker1 moved 5 entries (4342 bytes) to STATUS-ARCHIVE.md, keeping the one current entry. Verified: test_rotate_status_history.py OK, gate_status_history_chain_not_collapsed clean, fix_dashes.py --check 0/0.
+
+Handing to the operator: Garage's remaining 79-row partial tier (34% uncovered of 233 on-topic), the only genuinely unmined lane, still hours-scale and not attempted here. No push notification: the standing cooldown (no-repeat-before 2026-11-09T18:00Z) has not expired and nothing material changed.
+
 ## Scheduled operator cycle, 2026-11-09 (~08:1x UTC): STATUS.md's deploy-gap citations found stale by a real preflight run, fixed, then found stale again at merge, fixed again against the newer confirmation
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout (fetch, --unshallow, checkout -B main origin/main, ff-only onto `00a4ad185`, 450 commits). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md`'s "Start here" block, `CLAUDE.md` and the last several `ops/NIGHTLY-LOG.md` entries directly. Ran a real `preflight.py` fast (killed at the documented `gate_tests` sandbox hang after confirming 0 FAIL up to it) and then `preflight.py --skip-tests` to completion: 1 FAIL (a stray probe file from my own earlier killed run, self-deleted by the gate), 35 warnings.
