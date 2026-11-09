@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-09 (~21:1x slot, 30-minute triage, previous work confirmed finished, a stale GitHub issue-count citation fixed, nothing new unblocked)
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `6dc2ee696`, tree clean before this cycle touched anything.
+
+**Previous work (the 20:4x PM check-in and the operator's hourly check-in after it) confirmed finished, not cited.** `preflight.py --skip-tests` reran fresh this cycle: 0 FAIL through every gate reached, PASS on both the KDP and Etsy listing checks, genuinely stalled (confirmed by flat CPU, not assumed) at the documented network-bound `gate_etsy_pdfs_current`; killed the stuck Chromium tree by PID afterward, confirmed only defunct zombies remained, no corruption. 31 open GitHub issues re-pulled live: unchanged in substance, all `decision`/`blocked-on-art`, 0 open PRs, none from Phil.
+
+**Found and fixed one real stale citation.** `STATUS.md` section 6's "Repository hygiene" row still read "29 open issues (9 P0, 27 decision, 2 blocked-on-art)" from 2026-11-04; the live count is 31 (10 P0, 29 decision, 2 blocked-on-art) because issues #64 and #65 (opened 2026-11-08) were never folded in. Both were already tracked with a backlink in `OWNER-ACTIONS.md`, so this was a missed count, not a missed issue. Corrected with the live-API citation style this row's own history already uses. Dashboard regenerated (`python ops/dashboard.py`); it independently confirms 31 open issues, 10 P0, 29 need-your-call, and honestly carries forward revenue/reachability as unmeasured this run (no Stripe credential, no site egress from here), not fabricated.
+
+No new defect found small enough to close beyond that correction. Not starting new work: the standing 31-issue queue is unchanged and every item is `decision`/`blocked-on-art`; the zone-synonym/room-guide mining lane the 20:4x cycle flagged (Kitchen now top at 35% uncovered) is hours-scale and belongs to the operator, not this 30-minute slot.
+
+No price, product or content page touched. No new page. `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-09 (~20:4x slot, 30-minute triage, previous work confirmed finished, a slow cold-bootstrap anomaly diagnosed and worked around, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: continue mining Kitchen's remaining partial tier (now top-ranked at 35% uncovered after A82's close, 34 partial rows of 101 on-topic), because the standing queue (31 open GitHub issues, all `decision`/`blocked-on-art`) and the cold-read ledger (308/308 ledgered, 0 stale) are both exhausted, so zone-synonym and room-guide mining remains the only lane still finding real unblocked work.
