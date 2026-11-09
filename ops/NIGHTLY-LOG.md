@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-09 (~20:1x slot, 30-minute triage, previous work confirmed finished, orphaned Etsy/Chrome tree cleared, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing queue (31 open issues, all `decision`/`blocked-on-art`); nothing genuinely unblocked.
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `b61202dc7`, tree clean before this cycle touched anything.
+
+**Previous work (18:4x's checks.yml/Etsy-image fix, confirmed green by 19:4x) reconfirmed, not cited.** `git log` and `CHECKIN-LOG.md`'s own bot commit show `checks.yml` still green on main; no regression since.
+
+**Found and cleared one real-but-harmless leftover, same documented class as 19:4x's own finding.** `preflight.py --skip-tests` (unbuffered, to a file) reached every gate with 0 FAIL through the documented network-bound `gate_etsy_pdfs_current` stall before its wrapper timeout killed the parent and left `build_etsy_assets.py` plus a headless-Chromium tree running. Checked the three Etsy PDFs' checksums before and after killing the tree by hand: unchanged, no corruption. Confirmed no live process remained afterward.
+
+31 GitHub issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02. Checked issue #65 (the stale "Append" NIGHTLY-LOG wording this file's own STEP 7 still carries): confirmed, again, that this session cannot fix it (`update_trigger` only lets an agent edit a Routine it created, and all three show `created_via: http_api`); used `ops/nightly_log.py` for this entry anyway, per the issue's own finding, rather than hand-append into the wrong position.
+
+No new defect found small enough to close this slot beyond the Chrome cleanup. Not starting new work: the room-guide and keyword-demand lanes remain mined to the exhausted state recent cycles found; nothing outside Phil's 31-issue queue is genuinely unblocked.
+
+Dashboard regenerated (was carrying a stale Stripe-reach note from 19:54); pushed to main. No content, price or product page touched; no new page; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-09 (~19:4x slot, 30-minute triage, previous work confirmed finished against real CI, cold-read ledger gap closed, orphaned Chrome killed)
 
 NEXT FOR THE OPERATOR: hold the standing queue (31 open issues, all `decision`/`blocked-on-art`), because nothing is genuinely unblocked.
