@@ -2225,7 +2225,7 @@
       "room": "",
       "best_page": "/articles/how-to-declutter-a-bedroom.html",
       "best_page_title": "How to declutter a bedroom in one day, step by step",
-      "coverage": 0.333,
+      "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
@@ -2242,12 +2242,12 @@
         "how to organize garden area"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-garage.html",
-      "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.5,
+      "best_page": "/zones/garage-the-lawn-and-garden-tool-zone.html",
+      "best_page_title": "How to organize the garage garden tool storage",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -2261,12 +2261,12 @@
         "how to organize garden area"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-garage.html",
-      "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "best_page": "/zones/garage-the-lawn-and-garden-tool-zone.html",
+      "best_page_title": "How to organize the garage garden tool storage",
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
       "heading_page": "/articles/how-to-organize-a-garage.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
         "layout"
@@ -2282,16 +2282,14 @@
         "how to organize bookshelf"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-junk-drawer.html",
-      "best_page_title": "How to organize a junk drawer (and keep it that way)",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
+      "best_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
+      "best_page_title": "How to organize the home office bookshelf",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "bookshelf"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "best way to organize a gallery wall",
@@ -2305,14 +2303,12 @@
       "room": "",
       "best_page": "/zones/stair-landing-the-wall-and-display-zone.html",
       "best_page_title": "How to organize the stair landing gallery wall",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/stair-landing-the-wall-and-display-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "way"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "best way to organize a hall closet",
@@ -2326,14 +2322,12 @@
       "room": "Hall Closet",
       "best_page": "/hall-closet-deck.html",
       "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/hall-closet-deck.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "way"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "best way to organize a home office",
@@ -2345,12 +2339,12 @@
         "how to organize a home office"
       ],
       "room": "Home Office",
-      "best_page": "/articles/how-to-organize-paperwork.html",
-      "best_page_title": "How to organize paperwork at home with a simple filing system",
-      "coverage": 0.667,
+      "best_page": "/home-office-deck.html",
+      "best_page_title": "The Home Office Deck: 66 cards, free to read",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-paperwork.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -2366,10 +2360,10 @@
       "room": "Laundry Room",
       "best_page": "/articles/how-to-organize-a-laundry-room.html",
       "best_page_title": "How to organize a laundry room, step by step",
-      "coverage": 0.667,
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-laundry-room.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -2385,10 +2379,10 @@
       "room": "Living Room",
       "best_page": "/articles/how-to-organize-a-living-room.html",
       "best_page_title": "How to organize a living room, step by step",
-      "coverage": 0.667,
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-living-room.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -2404,10 +2398,10 @@
       "room": "Mudroom",
       "best_page": "/articles/how-to-organize-a-mudroom.html",
       "best_page_title": "How to organize a mudroom, step by step",
-      "coverage": 0.5,
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-mudroom.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -2421,12 +2415,12 @@
         "how to organize a nursery"
       ],
       "room": "Nursery",
-      "best_page": "/articles/how-to-organize-baby-clothes.html",
-      "best_page_title": "How to organize baby clothes by size, without drowning in them",
-      "coverage": 0.5,
+      "best_page": "/nursery-deck.html",
+      "best_page_title": "The Nursery Deck: 66 cards, free to read",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-baby-clothes.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -2442,7 +2436,7 @@
       "room": "Nursery",
       "best_page": "/articles/how-to-organize-baby-clothes.html",
       "best_page_title": "How to organize baby clothes by size, without drowning in them",
-      "coverage": 0.333,
+      "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
@@ -2461,10 +2455,10 @@
       "room": "Workshop",
       "best_page": "/articles/how-to-organize-a-workshop.html",
       "best_page_title": "How to organize a workshop, step by step",
-      "coverage": 0.5,
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-workshop.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -2480,10 +2474,10 @@
       "room": "",
       "best_page": "/articles/how-to-organize-baby-clothes.html",
       "best_page_title": "How to organize baby clothes by size, without drowning in them",
-      "coverage": 0.667,
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-baby-clothes.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -2499,7 +2493,7 @@
       "room": "",
       "best_page": "/articles/how-to-organize-baby-clothes.html",
       "best_page_title": "How to organize baby clothes by size, without drowning in them",
-      "coverage": 0.5,
+      "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
@@ -2518,7 +2512,7 @@
       "room": "",
       "best_page": "/articles/how-to-organize-baby-clothes.html",
       "best_page_title": "How to organize baby clothes by size, without drowning in them",
-      "coverage": 0.5,
+      "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
@@ -2537,7 +2531,7 @@
       "room": "",
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.333,
+      "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
@@ -2556,14 +2550,12 @@
       "room": "",
       "best_page": "/zones/pantry-the-baking-zone.html",
       "best_page_title": "How to organize the pantry baking supplies",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-garage.html",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/pantry-the-baking-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "way"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "best way to organize bathroom counter",
@@ -2575,12 +2567,12 @@
         "how to organize vanity counter"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-guest-bathroom.html",
-      "best_page_title": "How to organize a guest bathroom, step by step",
-      "coverage": 0.667,
+      "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
+      "best_page_title": "How to organize the guest bathroom vanity counter",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-guest-bathroom.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -2594,12 +2586,12 @@
         "how to organize bed and linens"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-guest-bedroom.html",
-      "best_page_title": "How to organize a guest bedroom, step by step",
-      "coverage": 0.667,
+      "best_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
+      "best_page_title": "How to organize the guest bedroom bed and linens",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -2613,11 +2605,11 @@
         "how to organize book storage"
       ],
       "room": "",
-      "best_page": "/living-room-deck.html",
-      "best_page_title": "The Living Room Deck: 69 cards, free to read",
-      "coverage": 0.333,
+      "best_page": "/book.html",
+      "best_page_title": "6S Success: Home Edition, the book, 50 chapters, 20 rooms",
+      "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/living-room-deck.html",
+      "heading_page": "/book.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -2632,16 +2624,14 @@
         "how to organize bookshelf"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-junk-drawer.html",
-      "best_page_title": "How to organize a junk drawer (and keep it that way)",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
+      "best_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
+      "best_page_title": "How to organize the home office bookshelf",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "bookshelf"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "best way to organize car cleaning supplies",
@@ -2655,7 +2645,7 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-garage.html",
       "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.5,
+      "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
@@ -2674,14 +2664,12 @@
       "room": "",
       "best_page": "/zones/family-room-the-charging-and-device-zone.html",
       "best_page_title": "How to organize the family room charging station",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-dining-room.html",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "way"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "best way to organize cleaning supplies",
@@ -2693,12 +2681,12 @@
         "how to organize cleaning equipment"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-garage.html",
-      "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.667,
+      "best_page": "/zones/hall-closet-the-cleaning-supply-zone.html",
+      "best_page_title": "How to organize the hall closet cleaning supplies",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -2712,12 +2700,12 @@
         "how to organize craft area"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-family-room.html",
-      "best_page_title": "How to organize a family room, step by step",
-      "coverage": 0.667,
+      "best_page": "/zones/family-room-the-craft-and-activity-zone.html",
+      "best_page_title": "How to organize the family room craft area",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-family-room.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -2731,12 +2719,12 @@
         "how to organize desk drawers"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-kids-bedroom.html",
-      "best_page_title": "How to organize a kids bedroom, step by step",
-      "coverage": 0.667,
+      "best_page": "/zones/home-office-the-desk-drawers-and-pedestal.html",
+      "best_page_title": "How to organize the home office desk drawers",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -2752,14 +2740,12 @@
       "room": "",
       "best_page": "/zones/nursery-the-diaper-and-care-backstock.html",
       "best_page_title": "How to organize the nursery diaper storage",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "way"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "best way to organize dresser",
@@ -2771,12 +2757,12 @@
         "how to organize dresser"
       ],
       "room": "",
-      "best_page": "/articles/how-to-declutter-a-bedroom.html",
-      "best_page_title": "How to declutter a bedroom in one day, step by step",
-      "coverage": 0.5,
+      "best_page": "/zones/guest-bedroom-the-guest-dresser.html",
+      "best_page_title": "How to organize the guest bedroom dresser",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-bedroom.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -2792,7 +2778,7 @@
       "room": "",
       "best_page": "/articles/how-to-declutter-a-bedroom.html",
       "best_page_title": "How to declutter a bedroom in one day, step by step",
-      "coverage": 0.333,
+      "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
@@ -2811,7 +2797,7 @@
       "room": "",
       "best_page": "/articles/how-to-organize-baby-clothes.html",
       "best_page_title": "How to organize baby clothes by size, without drowning in them",
-      "coverage": 0.333,
+      "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
@@ -2830,7 +2816,7 @@
       "room": "Entryway",
       "best_page": "/articles/how-to-organize-an-entryway.html",
       "best_page_title": "How to organize an entryway, step by step",
-      "coverage": 0.333,
+      "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
@@ -2849,8 +2835,8 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-family-room.html",
       "best_page_title": "How to organize a family room, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.0,
+      "heading_coverage": 0.5,
       "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "heading",
       "status": "partial",
@@ -2868,12 +2854,12 @@
         "how to organize craft area"
       ],
       "room": "",
-      "best_page": "/articles/how-long-to-keep-a-maybe.html",
-      "best_page_title": "How long should you keep something you can't decide about?",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-long-to-keep-a-maybe.html",
-      "matched_on": "heading",
+      "best_page": "/articles/sentimental-items-without-guilt.html",
+      "best_page_title": "How to declutter sentimental items without the guilt",
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/everyday-things-out-of-reach.html",
+      "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
         "minecraft"
@@ -2891,10 +2877,10 @@
       "room": "Kids Bedroom",
       "best_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "best_page_title": "How to organize a kids bedroom, step by step",
-      "coverage": 0.667,
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -2910,14 +2896,12 @@
       "room": "Kitchen",
       "best_page": "/zones/kitchen-the-cooking-zone.html",
       "best_page_title": "How to organize the kitchen stove area",
-      "coverage": 0.25,
-      "heading_coverage": 0.75,
+      "coverage": 0.333,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kitchen-the-cooking-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "way"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "best way to organize linen closet",
@@ -2929,12 +2913,12 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-guest-bathroom.html",
-      "best_page_title": "How to organize a guest bathroom, step by step",
-      "coverage": 0.667,
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-guest-bathroom.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -2948,12 +2932,12 @@
         "how to organize nightstand"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-guest-bedroom.html",
-      "best_page_title": "How to organize a guest bedroom, step by step",
-      "coverage": 0.5,
+      "best_page": "/zones/guest-bedroom-the-guest-nightstand.html",
+      "best_page_title": "How to organize the guest bedroom nightstand",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -2969,14 +2953,12 @@
       "room": "",
       "best_page": "/zones/home-office-the-desk-drawers-and-pedestal.html",
       "best_page_title": "How to organize the home office desk drawers",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "way"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "best way to organize outdoor shed",
@@ -2990,7 +2972,7 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-garage.html",
       "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.333,
+      "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
@@ -3009,7 +2991,7 @@
       "room": "Garage",
       "best_page": "/articles/how-to-organize-a-garage.html",
       "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.5,
+      "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
@@ -3026,12 +3008,12 @@
         "how to organize tool wall"
       ],
       "room": "",
-      "best_page": "/primary-bathroom-deck.html",
-      "best_page_title": "The Primary Bathroom Deck: 76 cards, free to read",
-      "coverage": 0.667,
+      "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
+      "best_page_title": "How to organize the garage tool wall",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/primary-bathroom-deck.html",
-      "matched_on": "heading",
+      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -3045,12 +3027,12 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
-      "coverage": 0.667,
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -3064,16 +3046,14 @@
         "how to organize garden area"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-garage.html",
-      "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-garage.html",
+      "best_page": "/garage-deck.html",
+      "best_page_title": "The Garage Deck: 80 cards, free to read",
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/garage-deck.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "set"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "best way to store baby clothes",
@@ -3087,7 +3067,7 @@
       "room": "",
       "best_page": "/articles/how-to-organize-baby-clothes.html",
       "best_page_title": "How to organize baby clothes by size, without drowning in them",
-      "coverage": 0.5,
+      "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
@@ -3104,16 +3084,14 @@
         "how to organize book storage"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-basement.html",
-      "best_page_title": "How to organize a basement, one zone at a time",
-      "coverage": 0.25,
-      "heading_coverage": 0.75,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "best_page": "/zones/kids-bedroom-the-study-desk.html",
+      "best_page_title": "How to organize the kids bedroom study desk",
+      "coverage": 0.333,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/kids-bedroom-the-study-desk.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "books"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "best ways to garden",
@@ -10223,16 +10201,14 @@
         "how to organize a entryway"
       ],
       "room": "Entryway",
-      "best_page": "/articles/how-to-organize-an-entryway.html",
-      "best_page_title": "How to organize an entryway, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page": "/entryway-deck.html",
+      "best_page_title": "The Entryway Deck, Five Zones: 57 cards, free to read",
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/entryway-deck.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "entry"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "entryway closet ideas",
@@ -18797,16 +18773,15 @@
         "how to organize a entryway"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-junk-drawer.html",
-      "best_page_title": "How to organize a junk drawer (and keep it that way)",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "gap",
+      "best_page": "/downloads/6S-Standards-Pack.html",
+      "best_page_title": "The 6S Success Standards Pack",
+      "coverage": 0.0,
+      "heading_coverage": 0.5,
+      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "matched_on": "heading",
+      "status": "partial",
       "unmatched_words": [
-        "decorate",
-        "entry"
+        "decorate"
       ]
     },
     {
@@ -49396,8 +49371,8 @@
       "room": "Garage",
       "best_page": "/articles/index.html",
       "best_page_title": "Articles: why homes get messy, and where to start",
-      "coverage": 0.2,
-      "heading_coverage": 0.8,
+      "coverage": 0.25,
+      "heading_coverage": 0.75,
       "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
@@ -55119,7 +55094,7 @@
       "room": "",
       "best_page": "/articles/index.html",
       "best_page_title": "Articles: why homes get messy, and where to start",
-      "coverage": 0.333,
+      "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/index.html",
       "matched_on": "heading",
@@ -57121,6 +57096,6 @@
       ]
     }
   ],
-  "scored_against_commit": "d602f2f8c",
-  "scored_at": "2026-11-08T02:54:53Z"
+  "scored_against_commit": "d80e21914",
+  "scored_at": "2026-11-09T03:52:02Z"
 }

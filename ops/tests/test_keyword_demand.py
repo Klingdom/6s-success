@@ -914,6 +914,50 @@ def main():
         fails.append("'master bedrooms' (plural) no longer signals "
                      "Primary Bedroom: %r" % sig28h)
 
+    # 29. Found live 2026-11-09, mining Kitchen: "way" (singular) is the
+    #     same task-verb-family shape as "ways" ("best way to organize
+    #     kitchen cooking utensils" asks for the same thing as "how to
+    #     organize kitchen cooking utensils"), simply never added alongside
+    #     the plural when it joined FORMAT_WORDS on 2026-11-05. Checked for
+    #     self-flattery first, same bar as "ways" required: zero of our own
+    #     page titles carry the literal word "way".
+    if "way" in kd.content_words("best way to organize kitchen utensils"):
+        fails.append("'way' is still a content word; the FORMAT_WORDS "
+                     "addition did not take")
+    way_inv = [
+        {"url": "/zones/kitchen-the-cooking-zone.html",
+         "title": "How to organize the kitchen stove area",
+         "words": set(kd.words("How to organize the kitchen stove area")),
+         "head_words": set(kd.words("How to organize the kitchen stove "
+                                     "area utensil crock")),
+         "room": "Kitchen"},
+    ]
+    before5 = {"best_page": None, "score": None}
+    old_format3 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format3 - {"way"}
+    try:
+        r5a = kd.score_rows(
+            {"best way to organize kitchen cooking utensils":
+             {"query": "best way to organize kitchen cooking utensils",
+              "sources": ["bing"], "best_rank": 15, "seeds": ["x"]}},
+            ["Kitchen"], way_inv)[0]
+        before5["best_page"] = r5a["best_page"]
+        before5["score"] = r5a["coverage"]
+    finally:
+        kd.FORMAT_WORDS = old_format3
+    r5b = kd.score_rows(
+        {"best way to organize kitchen cooking utensils":
+         {"query": "best way to organize kitchen cooking utensils",
+          "sources": ["bing"], "best_rank": 15, "seeds": ["x"]}},
+        ["Kitchen"], way_inv)[0]
+    if r5b["best_page"] != before5["best_page"]:
+        fails.append("excluding 'way' from content words changed which "
+                     "page the query routes to: %r -> %r"
+                     % (before5["best_page"], r5b["best_page"]))
+    if not (r5b["coverage"] > before5["score"]):
+        fails.append("excluding 'way' did not improve the honest score: "
+                     "%r -> %r" % (before5["score"], r5b["coverage"]))
+
     if fails:
         print("FAIL")
         for f in fails:

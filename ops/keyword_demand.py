@@ -185,7 +185,8 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "organizer", "organizers", "organise", "organising",
                           "arrange", "arranging", "arranged", "arrangement",
                           "arrangements", "rearrange", "rearranging",
-                          "rearranged", "ways", "diy", "guide", "tutorial"))
+                          "rearranged", "ways", "way", "diy", "guide",
+                          "tutorial"))
 
 # "ways" joined 2026-11-05, same shape as "arrange": "ways to organize a
 # nightstand" and "how to organize a nightstand" ask for the same thing about
@@ -238,6 +239,21 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
 # boundary, so that citation does not move. All three can only improve
 # (gap/partial toward covered or partial), none can move the other way,
 # same reasoning as every prior FORMAT_WORDS addition.
+
+# "way" (singular) joined 2026-11-09, mining Kitchen's remaining partial
+# rows: "best way to organize kitchen cooking utensils" and "how to organize
+# kitchen cooking utensils" ask for the same thing about the same subject;
+# the plural "ways" already carried this exact reasoning on 2026-11-05 and
+# the singular form was simply never added alongside it. Self-flattery
+# checked first, same bar as every prior addition: 0 of 114 zone titles and
+# 0 of 243 page titles carry the literal word "way"; it appears in 4 of 243
+# pages' <h3> "watch for" questions only (idiomatic uses like "out of the
+# way" and "the rest of the way", not a subject noun), well under the bar
+# "systems" failed. Checked the full corpus before adding: 13 live rows (7
+# US, 6 global) have "way" as their only unmatched word, all genuine
+# "best way to organize X" queries already routed to the correct page. All
+# 13 can only improve (partial toward covered); none can move the other
+# way, same reasoning as every prior FORMAT_WORDS addition.
 
 
 def room_names():

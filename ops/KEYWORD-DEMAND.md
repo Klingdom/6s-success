@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-08T02:54:53Z against 243 page(s) at commit d602f2f8c. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-09T03:52:02Z against 243 page(s) at commit d80e21914. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1613 covered, 1104 partial, 106 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1625 covered, 1093 partial, 105 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 106, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 105, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -104,7 +104,7 @@ Showing the top 80 of 106, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1104.
+Showing the top 60 of 1093.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -135,8 +135,6 @@ Showing the top 60 of 1104.
 | 1 | how to use a drying rack | How to organize the laundry room drying rack | 0.67 |
 | 1 | primary bedroom design ideas | The Primary Bedroom Deck: 66 cards, free to read | 0.67 |
 | 1 | stair landing design ideas | How to organize a stair landing, step by step | 0.67 |
-| 2 | best way to organize a hall closet | The Hall Closet Deck: 58 cards, free to read | 0.67 |
-| 2 | best way to organize charging station | How to organize the family room charging station | 0.67 |
 | 2 | bonus room storage | How to organize the family room blanket storage | 0.67 |
 | 2 | building a stair landing | How to organize a stair landing, step by step | 0.67 |
 | 2 | diy drop zone plans | How to organize the entryway drop zone | 0.67 |
@@ -168,21 +166,23 @@ Showing the top 60 of 1104.
 | 3 | home office organization ideas for teachers | The Home Office Deck: 66 cards, free to read | 0.67 |
 | 3 | home office organization ideas pinterest | The Home Office Deck: 66 cards, free to read | 0.67 |
 | 3 | how to arrange gallery wall art | How to organize the stair landing gallery wall | 0.67 |
+| 3 | how to create a drop zone | How to organize the entryway drop zone | 0.67 |
+| 3 | how to decorate a guest bathroom | How to organize a guest bathroom, step by step | 0.67 |
 
 ## By room
 
 | Room | Queries | Gap | Partial | Covered |
 |---|---|---|---|---|
 | Dining Room | 38 | 0 | 17 | 21 |
-| Entryway | 50 | 1 | 9 | 40 |
+| Entryway | 50 | 1 | 8 | 41 |
 | Family Room | 27 | 0 | 17 | 10 |
 | Garage | 77 | 1 | 24 | 52 |
 | Guest Bathroom | 22 | 1 | 14 | 7 |
 | Guest Bedroom | 24 | 0 | 12 | 12 |
-| Hall Closet | 27 | 0 | 10 | 17 |
+| Hall Closet | 27 | 0 | 9 | 18 |
 | Home Office | 58 | 0 | 21 | 37 |
 | Kids Bedroom | 22 | 0 | 8 | 14 |
-| Kitchen | 97 | 2 | 34 | 61 |
+| Kitchen | 97 | 2 | 33 | 62 |
 | Laundry Room | 72 | 0 | 16 | 56 |
 | Living Room | 97 | 2 | 39 | 56 |
 | Mudroom | 43 | 0 | 20 | 23 |

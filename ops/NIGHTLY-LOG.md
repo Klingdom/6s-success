@@ -2,6 +2,36 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-09 (~03:5x UTC): a genuine scorer gap found mining Kitchen's partial tier, 'way' (singular) joined FORMAT_WORDS, 13 corpus rows closed, 0 regressions
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow` (424 commits), `checkout -B main origin/main`, ff-only merge onto `d80e21914`, tree clean. Read `GOALS.md`'s implicit ordering via `BACKLOG-2026-09-07.md` sections 0-7 and `STATUS.md`'s latest entries, then `ops/preflight.py`.
+
+**Verified, not cited:** `preflight.py --skip-tests` run fresh: 0 FAIL in every block reached, genuinely stalled at the documented network-bound `gate_etsy_pdfs_current` (confirmed by a live Chromium PDF render process, not a hang) and killed by hand after ~170s. Both this run and a second verification run after the fix left `build_etsy_assets.py`/its Chromium tree running past the kill (the `timeout` wrapper kills only `preflight.py`, not its child), the same orphan shape recent entries describe; checked for corruption each time (`git status`/`git diff --stat -- build/listings/etsy/` empty, the one in-flight PDF's mtime unchanged since 2026-11-07) before sending `SIGTERM` to the real tree. 31 open GitHub issues re-pulled live via the API and their comment threads read directly on the two newest (#64, #65) and the cadence issue (#42): unchanged, all `decision`/`blocked-on-art`, every comment self-authored by a prior agent cycle, none from Phil since 2026-11-02. 0 open PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked.
+
+Rather than re-confirm the same exhaustion a dozen prior cycles already proved, ran `room_guide_underperformance.py` fresh and read Kitchen's own remaining partial-row list directly against `content.json` (CLAUDE.md 5c/5d), not a cited summary. Found a real, bounded scorer gap: "best way to organize kitchen cooking utensils" scored only `partial` against the correctly-matching Cooking Zone page because the generic word "way" (singular) was never added to `FORMAT_WORDS`, though its plural "ways" joined on 2026-11-05 for the exact same reason. Checked the full corpus before touching anything: 13 live rows (7 US, 6 global), all genuine "best way to organize X" queries already on the right page. Self-flattery checked first: 0 of 114 zone titles, 0 of 243 page titles carry the bare word "way"; it appears in only 4 pages' `<h3>` "watch for" questions, all idiomatic, well under the bar "systems" failed when that word was rejected.
+
+Added "way" to `FORMAT_WORDS` in `ops/keyword_demand.py`, with a dated rationale comment following the file's own established convention for "ways"/"diy"/"guide"/"tutorial". Added test case 29 to `ops/tests/test_keyword_demand.py`, following case 25's ("ways") structure exactly.
+
+**Fail-then-pass proved directly:** `git stash` on the one-line `FORMAT_WORDS` change, ran the test, watched case 29 fail with the exact diagnosed message ("'way' is still a content word"); restored, reran, 34/34 numbered cases pass.
+
+Rescored both corpora live (`keyword_demand.py --rescore`, `keyword_demand_global.py --rescore`): US gap 106 to 105, partial 1104 to 1093, covered 1613 to 1625; global partial 824 to 816, covered 1252 to 1260. Spot-checked every row containing "best way to organize" plus the one global "how to organize large cooking utensils" row directly in the regenerated JSON: all 13 target rows now read `covered` with `unmatched_words: []`; the only two other rows sharing the bare token "way" ("organize games on desktop", "organize items in minecraft") correctly stay `partial` on their own, genuinely unrelated unmatched words. 0 regressions found across either file.
+
+Room-guide impact re-derived live, not assumed: Kitchen 36% to 35% uncovered, Pantry 34% to 33%, Hall Closet 32% to 30% (its on-topic row count also shifted, from the same rescore).
+
+`test_room_guide_underperformance.py` (19/19), `test_room_guide_candidates.py` (30/30), `fix_dashes.py --check` on both edited files (0/0) all clean. The four live `gate_keyword_demand*`/`gate_keyword_demand_global*` preflight functions re-run directly (not just their own test suites) against the real committed files: all four return clean. Full `preflight.py --skip-tests` rerun after the fix: 0 FAIL through every gate reached, same documented stall; the second orphaned Chromium tree it left behind was checked for corruption and killed the same way as the first.
+
+**Went well:** read a room's real partial-row list cold rather than trust the "structurally exhausted" finding dozens of prior cycles had already reached for the backlog's own queue, and found a genuine, narrow, well-evidenced gap in the measurement tool itself rather than the content, the dominant productive lane this whole project has run on since 2026-10-02.
+
+**Did not go well:** nothing structural; the orphaned-Chromium-on-timeout shape recurred a third time this session alone (two separate preflight runs), confirming it is a property of this sandbox's `timeout` wrapper rather than a one-off.
+
+**Changing next cycle:** none; the existing lesson (check for corruption, then kill the real child process tree, not just the wrapper) already covers this and worked cleanly again.
+
+**Next:** mine Garage's own remaining 35%-uncovered partial tier (233 on-topic rows, the next-highest room after Kitchen), or hold the standing 31-issue Phil-gated queue if nothing else closes. No push notification: nothing newly owner-facing or customer-facing changed (a measurement-tool fix only), and the 2026-11-07T18:55:00Z cooldown has not yet passed its next natural trigger point.
+
+Regenerated the dashboard and pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, `BACKLOG-2026-09-07.md` (A76), `ops/keyword_demand.py`, `ops/tests/test_keyword_demand.py`, `ops/keyword-demand.json`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND.md`, `ops/KEYWORD-DEMAND-GLOBAL.md`, this entry. No price, product or site page touched; a ranking-tool fix only, `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-09 (~03:1x slot, 30-minute triage, previous work confirmed finished, no new defect)
 
 NEXT FOR THE OPERATOR: hold the standing 31-issue Phil-gated queue (29 decision, 2 blocked-on-art; newest #65, #64 P0 traffic read); nothing moved.
