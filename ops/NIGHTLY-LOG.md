@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-09 (~23:2x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked, log-append convention self-corrected)
+
+NEXT FOR THE OPERATOR: hold the standing queue (31 open issues, all decision/blocked-on-art); nothing non-Phil-gated is unblocked this slot.
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real unshallow, checkout -B main origin/main, ff-only onto `c96508ed8`, tree clean before this cycle touched anything.
+
+Previous work checked, not cited. `python ops/preflight.py --skip-tests` ran to the documented `gate_etsy_pdfs_current` network/render-bound Chromium PDF stall (killed at a 280s budget, exit 124); 0 real FAIL in every gate reached, confirmed by parsing the output directly rather than trusting the exit code, and both the two literal "FAIL" headers in the transcript read "(none)" underneath. Killed the orphaned `build_etsy_assets.py`/Chromium process tree and the stale `/tmp/.preflight_py_running.lock` directory by hand; checked the three Etsy PDFs first, unchanged (dated 2026-11-07), no corruption, `build/` gitignored regardless. 31 GitHub issues re-pulled live via the API: unchanged, every one `decision`/`blocked-on-art`, none from Phil since 2026-11-02. No Stripe, mail, SSH or YouTube credential present in this sandbox, checked `env` directly.
+
+Read issue #65 in full while triaging: all three scheduled Routines' stored prompts, including this one, still say "Append one dated entry to ops/NIGHTLY-LOG.md," which is stale since the file is newest-first and `ops/nightly_log.py` exists to prepend at the correct position. This session cannot fix the Routines themselves (`created_via: http_api`, `update_trigger` refuses), but used `ops/nightly_log.py` for this entry instead of a literal append, so this cycle does not become a fifth instance of the exact defect `gate_nightly_log_ordering`'s own comment already names. Issue #65 stays open for Phil per OWNER-ACTIONS.md item 24.
+
+No new defect found small enough to close this slot. `BACKLOG-2026-09-07.md` sections 2-6 unchanged, all Done/Hold/Phil-gated. Dashboard regenerated, stale since 23:00; it correctly reported this run's own fresh unknowns (no Stripe reach, no SSH key, no live-site reach) as carried-forward/unconfirmed rather than silently reusing old confirmed figures.
+
+Pushed to main.
+
+HANDOFF-FILES: none
+
 ## 2026-11-09 (~22:4x-23:0x UTC), scheduled operator cycle: independently reconfirmed exhaustion with fresh methods rather than cited, no genuine fix found, no busywork manufactured
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout (fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `f5511e71e`, 575 commits fast-forwarded, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. Pulled all 31 open GitHub issues live via the API directly (not cited from a prior cycle's count): all 31 are `decision` or `blocked-on-art`, none from Phil since 2026-11-02, matching issue #42's own standing diagnosis. `ops/inbox_agent.py --apply` run directly: no mail credential in this sandbox, confirmed not carried forward. No Stripe, Gemini, YouTube or Umami credential present either (checked `env` directly).
