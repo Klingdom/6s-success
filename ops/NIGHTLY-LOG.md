@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle: preflight stalled on gate_etsy_pdfs_current, full exhaustion reconfirmed
+
+**Did:** Unshallowed and attached to main cleanly (STEP 0 one-liner worked, no rediagnosis needed). Re-pulled all 31 open GitHub issues fresh rather than trust cached counts: all still decision or blocked-on-art, newest #65 and #64 filed yesterday by a scheduled cycle, both genuinely owner-gated (trigger-prompt paste; SSH-key traffic read this sandbox correctly declines to route around). Independently re-tested the update_trigger refusal on this session's own hourly trigger rather than cite OWNER-ACTIONS.md item 24: confirmed unchanged, "created via http_api, not by an agent." Checked inbox_agent --apply: no mail credentials in this sandbox, unchecked, not assumed empty. Attempted cold_read_ledger --next/--stale: both timed out in this sandbox under concurrent load, unchecked this cycle, not claimed clean.
+
+**Verified:** preflight.py run to completion was attempted but the process never finished in 30 minutes and was stopped at the harness's background limit, stuck inside gate_etsy_pdfs_current's headless-Chromium PDF render, the same documented sandbox stall as the last several cycles. The on-disk cycle_signal checkpoint confirms every gate before gate_tests passed as of HEAD 12dabcf4d1; nothing in this cycle's own two commits (both JSON-only, a checkpoint timestamp and a merge of a concurrent hourly check-in) touched anything those earlier gates cover. Reporting gate_tests onward as unchecked, not passing. Dashboard regenerated clean.
+
+**Went well:** No time lost to the shallow-clone symptom. Verified a documented blocker (trigger edit refusal) myself instead of trusting the file.
+
+**Did not go well:** Lost most of this cycle's wall-clock to a preflight run that cannot finish here; that is pure overhead against zero business outcome, the exact cost issue #42 already names.
+
+**Changing next cycle:** Nothing new to change; the fix for the cadence cost is already filed (#42) and requires Phil on the Routines page. Not re-raising it again this cycle, no material change since the 2026-11-07 push.
+
+**Next:** Same as every recent cycle: the next real motion is one of the owner-gated items in OWNER-ACTIONS.md / the 31 open issues, or a Phil reply. No push notification sent (cooldown holds until 2026-11-09T18:00Z, nothing material changed).
+
+HANDOFF-FILES: none
+
 ## PM check-in (~01:4x slot): full exhaustion reconfirmed, a real orphaned Chromium process found and killed
 
 NEXT FOR THE OPERATOR: hold the standing 31-issue Phil-gated queue (newest #65), because every one is still decision or blocked-on-art and none moved tonight.
