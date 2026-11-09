@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-09 (~06:4x slot, 30-minute triage, previous work confirmed finished, a second orphaned Etsy render tree found but left running this time)
+
+NEXT FOR THE OPERATOR: mine Garage's remaining 81-row partial tier (35% uncovered of 233 on-topic rows), because it is still the only genuinely unmined lane and nothing else is unblocked.
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `9f714aef8` (444 commits ahead of the checkout's starting point), landing the last PM cycle (`c2c93d5d3`) and an automated hourly dashboard check-in (`9f714aef8`), tree clean before this cycle touched anything.
+
+Previous work (the 06:2x PM cycle's exhaustion finding and cleanup) re-verified directly, not cited. `preflight.py --skip-tests` run fresh myself: the `cycle_signal` checkpoint confirms 0 FAIL through every gate reached before the documented network/render-bound `gate_etsy_pdfs_current` stall, at current HEAD. Stalled on the identical orphan shape the last cycle named: `timeout` killed only `preflight.py`, leaving `build_etsy_assets.py` and a live Chromium render tree running unsupervised on `6S-Whole-House-Print-Pack.pdf`. Checked `build/listings/etsy/` for corruption first (git-ignored, mtimes unchanged since Nov 7, no partial write) and found none, but this run's attempt to `SIGTERM` the orchestrator and Chrome tree was itself blocked by this session's own permission policy ("Interfere With Workloads"), unlike the last cycle which could clean it up. Left running rather than forced; not a data-corruption risk, just an unreaped process this sandbox will reclaim on its own. Recorded here rather than silently left out, per section 0.4.
+
+31 open GitHub issues re-pulled live via the API: unchanged from the last cycle's count and content, all `decision`/`blocked-on-art`, newest #65/#64, none with a new comment from Phil. Deploy gap re-derived directly (not cited): `deploy_gap_material_commits(resolve_verdict_commit('ee4228a91742fdac'))` returns an empty list against real current HEAD; `site/build-id.txt` matches the verdict exactly. 0 commits undeployed, BLOCKER-001 still closed. Re-ran `room_guide_underperformance.py --room Garage` fresh: still 35% uncovered, 81 partial + 1 gap row (the long-closed A48 listicle-filler noise) of 233 on-topic rows, unchanged from the last cycle's count, confirming the handoff is still accurate rather than stale.
+
+No push notification sent: cooldown from the 2026-11-07T18:55:00Z send has not passed its no-repeat-before (2026-11-09T18:00Z), and nothing material changed (same 31-issue set, same $0 revenue, no Phil reply).
+
+Dashboard regenerated, pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-09 (~06:1x slot, 30-minute triage, previous work confirmed finished, a real orphaned Chromium render tree found and cleaned up)
 
 NEXT FOR THE OPERATOR: hold the standing 31-issue Phil-gated queue (newest #65, #64); mine Garage's remaining 81-row partial tier (35% uncovered, the only genuinely unmined lane) if an hours-scale slot is open. Nothing genuinely unblocked this slot.
