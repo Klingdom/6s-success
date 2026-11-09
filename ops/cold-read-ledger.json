@@ -1113,8 +1113,8 @@
     },
     "room_guide_candidates.py": {
       "status": "clean",
-      "date": "2026-11-07",
-      "note": "Re-read fresh 2026-11-07 PM check-in after same-day edit (019a783f8, dressing-table exclusion + reverted scorer tie-break). File is correct: the Kitchen-pass exclusion is well-evidenced (checked against full corpus, genuine-match guard), the revert of the harmful tie-break fix is clean (code/test/JSON all reverted together). GUIDE_LESS_ROOMS is now empty (all 20 rooms guided) so this script's bare no-arg usage is a no-op; confirmed this is not a live defect since every current caller (room_guide_underperformance.py, and every recent backlog entry) passes --room explicitly or imports the regexes directly, never calls main() bare."
+      "date": "2026-11-09",
+      "note": "2026-11-09 PM check-in: cold-read the 2026-11-09 car-boot/interior-car-storage OFF_TOPIC_CONTEXT addition directly. Regex is well-scoped (two exact phrases, not a widened pattern), test file extended to 37/37 with both exclude and do-not-exclude cases, fail-then-pass already proved by the operator cycle that wrote it, re-run here and still 37/37. No defect found."
     },
     "room_guide_underperformance.py": {
       "status": "clean",
