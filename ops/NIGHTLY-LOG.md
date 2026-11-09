@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-09 (~08:5x UTC), scheduled operator cycle: closed Garage's one standing gap row ("must"/"haves" joined FORMAT_WORDS), a wrong first hypothesis caught before shipping
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout (fetch, real `git fetch --unshallow`, `checkout main` then `checkout -B main origin/main`, ff-only onto `d6a4af4be`, 459 commits fast-forwarded, tree clean). Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `CLAUDE.md` and the last several `ops/NIGHTLY-LOG.md` entries directly. Ran `preflight.py --skip-tests` in the background to completion: 0 FAIL through every gate reached, killed by the documented sandbox-bound `gate_etsy_pdfs_current` network stall, same shape every recent entry records.
+
+**Followed the standing handoff, caught a wrong hypothesis before it shipped.** Every PM check-in and operator cycle since 2026-11-05 has pointed at Garage's room-guide partial tier as the only genuinely unmined, unblocked lane. `room_guide_underperformance.py --room Garage` confirmed one remaining `gap`-status row, `"car organisation must haves"`. First theory was that the GB noun "organisation" needed adding to FORMAT_WORDS next to the already-present "organise"/"organising." Checked before writing anything: `words()` already normalises "organisation" to "organization" upstream, so `content_words()` already dropped it with zero code change; a stashed probe proved this directly rather than trust the theory. The real gap was "must haves": "have" is already a STOPWORD, its plural noun form "haves" never joined it, and "must" was never added at all, both the same list-format-descriptor shape "ideas"/"tips" already cover. Self-flattery checked first, same bar every prior FORMAT_WORDS addition cleared: "must" and "haves" (the noun, not the verb "have") each appear in 0 of 243 page titles or headings. Checked the full corpus before adding: only 2 live rows (1 US, 1 global) carry either word as their sole unmatched word, both already on their correct page. Rescored both corpora, diffed against a pre-change snapshot of every row: exactly those 2 rows moved toward `covered`, 0 regressions, no routing changed anywhere. Garage's gap row is closed (1 to 0 of 233 on-topic); its 79-row partial tier is unchanged and still handed to the next cycle.
+
+**Verified:** `test_keyword_demand.py` (34/34), the four `gate_keyword_demand*` tests, `test_gate_goals_keyword_cluster_citation_current` (its pre-existing warnings are the unrelated "small space"/"cheap/budget/DIY" clusters, confirmed stale before this change, out of scope here), `fix_dashes.py --check` (0/0) all clean. GitHub re-pulled live: 31 open issues, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty.
+
+**Went well:** the wrong first hypothesis was checked against the live tokenizer before any edit, not shipped and found wrong later.
+
+**Did not go well:** nothing new; same documented sandbox limits as every recent cycle (no Stripe/mail/SSH credential, `gate_etsy_pdfs_current` network-bound).
+
+**Changing next cycle:** none; no new defect class, so no new gate this cycle (CLAUDE.md 10b, this is not a three-strikes shape).
+
+**Next:** keep mining Garage's remaining 79-row partial tier, the only genuinely unmined lane.
+
+Dashboard regenerated, pushed to main. No price or product touched, no site page changed, `IndexNow` not applicable.
+
 ## PM check-in, 2026-11-09 (~08:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: mine Garage's remaining room-guide partial tier (79 partial plus 1 gap of 233 on-topic rows, 34% uncovered), because it is still the only genuinely unmined lane and nothing else is unblocked.

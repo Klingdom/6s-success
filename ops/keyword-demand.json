@@ -42264,14 +42264,12 @@
       "room": "",
       "best_page": "/zones/pantry-the-baking-zone.html",
       "best_page_title": "How to organize the pantry baking supplies",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/pantry-the-baking-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "must"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "my room isn't messy it's under construction",
@@ -57090,6 +57088,6 @@
       ]
     }
   ],
-  "scored_against_commit": "fc38e36df",
-  "scored_at": "2026-11-09T07:32:12Z"
+  "scored_against_commit": "d6a4af4be",
+  "scored_at": "2026-11-09T08:52:35Z"
 }

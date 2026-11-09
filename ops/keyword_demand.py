@@ -186,7 +186,7 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "arrange", "arranging", "arranged", "arrangement",
                           "arrangements", "rearrange", "rearranging",
                           "rearranged", "ways", "way", "diy", "guide",
-                          "tutorial"))
+                          "tutorial", "must", "haves"))
 
 # "ways" joined 2026-11-05, same shape as "arrange": "ways to organize a
 # nightstand" and "how to organize a nightstand" ask for the same thing about
@@ -254,6 +254,27 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
 # "best way to organize X" queries already routed to the correct page. All
 # 13 can only improve (partial toward covered); none can move the other
 # way, same reasoning as every prior FORMAT_WORDS addition.
+
+# "must" and "haves" joined 2026-11-09, mining Garage's own gap row: "car
+# organisation must haves" ("organisation" normalises to "organization"
+# upstream in words() and was already a FORMAT_WORD, so that part of the
+# query was never the problem). "must haves" names the kind of list a reader
+# wants (its essential items), the same role "ideas" and "tips" already play
+# in STOPWORDS, not a storage subject of its own; "have" is already a
+# STOPWORD but its plural noun form "haves" (as in "must-haves") was never
+# added alongside it, and "must" was never added at all. Self-flattery
+# checked first, same bar every prior addition cleared: "must" appears in 0
+# of 243 page titles or headings; "haves" (the noun, distinct from the verb
+# "have", which is the literal STOPWORD and appears in 43 headings in its
+# own right) appears in 0 of 243 titles or headings. Neither word can ever
+# win a page a point it does not already have. Checked the full corpus
+# before adding: only 2 live rows (1 US, 1 global) have "must" and/or
+# "haves" as their only unmatched word(s) ("must have baking supplies",
+# "car organisation must haves"), both already routed to the correct page
+# and both moving toward covered; a third row ("detergents and cleaners
+# must be stored") has other unmatched words regardless and does not move.
+# None can move the other way, same reasoning as every prior FORMAT_WORDS
+# addition.
 
 
 def room_names():
