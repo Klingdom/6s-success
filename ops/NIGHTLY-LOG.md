@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle (~02:4x-03:0x UTC): room-guide 'exhausted' lane re-verified against live tool output, all remaining gap rows confirmed already-declined noise, no push sent
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: fetch, real git fetch --unshallow, checkout main, ff-only merge onto 7ec273771 (415 commits fast-forwarded), tree clean. Read GOALS.md, CLAUDE.md, BACKLOG-2026-09-07.md sections 0-2, recent STATUS.md entries, and the head of ops/NIGHTLY-LOG.md.
+
+**Verified, not cited:** preflight.py --skip-tests fresh: 0 real FAIL, genuinely stalled at the documented gate_etsy_pdfs_current. Deploy gap re-derived directly: resolve_verdict_commit('ee4228a91742fdac') to c7436c3d5, deploy_gap_material_commits against HEAD is empty, matching STATUS.md. 31 open GitHub issues re-pulled live: unchanged, all decision/blocked-on-art, newest #65; comments on #64/#65 pulled directly, 0 from Phil. 0 open PRs. All 16 rotate_*.py --check CLEAN. cold_read_ledger.py --stale: 0. inbox_agent.py --apply: no mail credential, unchecked. Ran room_guide_underperformance.py fresh rather than trust the "exhausted" citation: top rooms still show 1-2 "gap" rows ("dollar tree" x2, "car organisation must haves", "draw a larder organization chart"); checked each against BACKLOG-2026-09-07.md and confirmed all four are already-declined noise (A48/A62: a named retailer, generic filler words, a drawn-chart format request). No new fix exists; "exhausted" holds.
+
+**Went well:** verified the exhaustion claim against live tool output instead of only citing prose.
+
+**Did not go well:** real wall-clock spent re-deriving a conclusion dozens of prior cycles already reached.
+
+**Changing next cycle:** none; no honest fix exists to gate toward here, only a correct leave-alone decision.
+
+**Next:** hold the standing 31-issue Phil-gated queue (newest #65); nothing genuinely unblocked. No push sent: cooldown holds until 2026-11-09T18:00Z, nothing material changed.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle: preflight stalled on gate_etsy_pdfs_current, full exhaustion reconfirmed
 
 **Did:** Unshallowed and attached to main cleanly (STEP 0 one-liner worked, no rediagnosis needed). Re-pulled all 31 open GitHub issues fresh rather than trust cached counts: all still decision or blocked-on-art, newest #65 and #64 filed yesterday by a scheduled cycle, both genuinely owner-gated (trigger-prompt paste; SSH-key traffic read this sandbox correctly declines to route around). Independently re-tested the update_trigger refusal on this session's own hourly trigger rather than cite OWNER-ACTIONS.md item 24: confirmed unchanged, "created via http_api, not by an agent." Checked inbox_agent --apply: no mail credentials in this sandbox, unchecked, not assumed empty. Attempted cold_read_ledger --next/--stale: both timed out in this sandbox under concurrent load, unchecked this cycle, not claimed clean.
