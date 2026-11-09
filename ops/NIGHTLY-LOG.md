@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-09 (~15:1x slot, 30-minute triage, previous work confirmed finished, no new defect)
+
+NEXT FOR THE OPERATOR: hold, same standing queue (31 open issues, all `decision`/`blocked-on-art`), nothing genuinely unblocked.
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `f7a77a41b`, tree clean.
+
+Previous work confirmed finished, not cited. `preflight.py --skip-tests` run fresh: 0 FAIL through every gate reached, stalling only at the documented network-bound `gate_etsy_pdfs_current` (HTTP 403), killed by hand. 31 GitHub issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02. No open claims. Both workstreams correctly BLOCKED, third CLOSED. `BACKLOG-2026-09-07.md` sections 1b-6 re-read: every row Done, archived, or Phil-gated. No small closeable defect found.
+
+No push notification: cooldown (no-repeat-before 2026-11-09T18:00Z) not elapsed, nothing material changed.
+
+Dashboard regenerated, pushed. No content/price/product touched.
+
+HANDOFF-FILES: none
+
 ## 2026-11-09, scheduled operator cycle: room-guide ranking re-derived live, Kitchen and Pantry now outrank Garage but both already-mined-noise gap rows, lane confirmed exhausted a further way; real constraint is 31 open owner decisions
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout (fetch, real `git fetch --unshallow`, `checkout main` then `checkout -B main origin/main`, ff-only onto `f722f4fda`, 511 commits fast-forwarded, tree clean). Read `BACKLOG-2026-09-07.md` in full (sections 0 through 7), `STATUS.md` section 1's last several entries, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries cold, not cited from memory.
