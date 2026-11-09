@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~01:4x slot): full exhaustion reconfirmed, a real orphaned Chromium process found and killed
+
+NEXT FOR THE OPERATOR: hold the standing 31-issue Phil-gated queue (newest #65), because every one is still decision or blocked-on-art and none moved tonight.
+
+Attached per Step 0 on a shallow checkout (fetch, unshallow 405 commits, ff-only merge onto 12dabcf4d), tree clean. Re-verified rather than cited: 31 open issues unchanged, 0 open PRs, preflight 0 FAIL through every gate before gate_tests (cycle-signal.json checkpoint). It stalled again at gate_etsy_pdfs_current, and this time the kill left a real orphan: `timeout` killed `preflight.py` but not its `build_etsy_assets.py` child, which kept rendering Chromium PDFs unsupervised. Found and killed the whole tree; git confirms no tracked PDF changed, only gitignored `_tmp/` scratch remains.
+
+Pushed. No content, price or product touched.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-09 (~01:1x slot): previous work confirmed finished, full exhaustion re-verified independently, no new work to start
 
 Attached per Step 0 onto a shallow, detached checkout: fetch, real git fetch --unshallow, checkout -B main origin/main, ff-only merge onto e6f7a5489 (403 commits fast-forwarded), tree clean before this cycle touched anything.
