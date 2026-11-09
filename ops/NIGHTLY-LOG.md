@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-09, scheduled operator cycle: re-derived room ranking live, found Kitchen now outranks Garage, mined its tier in full, no clean fix shipped but one real scoring defect found and documented
+
+**Did:** Attached per Step 0 (unshallow, ff-only onto `7b1ee0161`, clean). Preflight clean (0 FAIL through every gate reached, killed only at the documented `gate_etsy_pdfs_current` network stall). 31 GitHub issues re-pulled, all decision/blocked-on-art, none from Phil. Re-derived `room_guide_underperformance.py` live across all 20 rooms rather than cite the standing Garage handoff: Kitchen has quietly overtaken Garage, 35% uncovered against 33%, missed by same-day handoffs that kept citing Garage by name instead of re-running the ranker.
+
+**Mined Kitchen's full 35-row tier via `score_room()` directly, not the tool's 8-row sample.** The one gap row is retailer noise, same class as already-declined amazon/ikea/kmart rows. Most of the 34 partial rows are the same declined classes: retailer/platform/locale suffixes, and style adjectives (modern, rustic, chef, efficiency) this room's real content does not address, checked directly rather than padded.
+
+**Found one real scoring defect, traced, declined to fix broadly.** "baking supplies in kitchen" scores to Kitchen's Sink Zone (no baking content) over Pantry's own Baking Zone, whose heading literally reads "the baking supplies." Traced with `best_by()`: both pages tie on word overlap, and the room-signal tie-break then favors the same-room page on the generic word "supplies," not the actually-relevant word "baking." A general fix risks moving many unrelated rows for a 2-row gain; a page-specific fix collides with Pantry's own "baking zone" name. Left honest, documented for a future pass.
+
+**Verified:** `inbox_agent.py --apply`: no mail credential, unchecked. No site/content/price change this cycle, IndexNow not applicable.
+
+**Went well:** re-deriving the ranking live caught Garage being stale.
+
+**Did not go well:** thorough Kitchen mining found no clean fix to ship this slot.
+
+**Changing next cycle:** none; not a three-strikes shape.
+
+**Next:** Kitchen's tier is mostly exhausted; Garage's ~75-row tier is next if nothing outranks it. The baking-supplies tie-break deserves its own pass.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-09 (~11:4x slot, 30-minute triage, previous work confirmed finished, no new defect)
 
 NEXT FOR THE OPERATOR: keep mining Garage's remaining 75-row partial tier, because it is still the only genuinely unmined lane and nothing else is unblocked.
