@@ -195,7 +195,24 @@ OFF_TOPIC_CONTEXT = re.compile(
     # same way the "dinnerware" bare-word lesson warns against. Verified
     # against both harvests: "dressing table" appears in exactly this one
     # row, so excluding it here cannot suppress a genuine match.
-    r"\bdressing table\b", re.I)
+    r"\bdressing table\b|"
+    # Found 2026-11-09 (Garage pass, the 79-row partial tier handed off
+    # since the FORMAT_WORDS "must haves" fix closed the room's only gap
+    # row). Two word-sense collisions on the Automotive Care Zone's own
+    # title. "how to organise a care package" lands there purely because
+    # "care" overlaps "Automotive Care Zone"; a care package (a gift box
+    # for someone sick, deployed, or a new parent) has nothing to do with
+    # fluid bottles and jumper cables, and content.json's purpose names
+    # only "fluids, cables, and cleaning kit." "how to organize bedazzling
+    # kit" is seed drift, not a household query at all: its own seed field
+    # reads "how to organize bed", the same autosuggest-noise shape as
+    # "Benchmark Advance" above, with nothing to do with rhinestone craft
+    # kits or a garage. Checked the full corpus first: "care package"
+    # appears in exactly two rows, the one above and "how to organise a
+    # home care package" (which already routes to a different, unrelated
+    # article, not Garage), and "bedazzl" appears in exactly the one row
+    # named here, so excluding them here cannot suppress a genuine match.
+    r"\bcare package\b|\bbedazzl\w*\b", re.I)
 
 
 def guide_less_rooms():

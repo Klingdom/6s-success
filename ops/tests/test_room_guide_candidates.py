@@ -207,6 +207,24 @@ _result_drawers = rgc.score_room([_drawers], [], _room)
 check("a genuine on-topic 'organize dresser drawers' row is NOT excluded by the dressing-table pattern",
       _result_drawers["on_topic_rows"] == 1)
 
+# Found 2026-11-09 (Garage pass, the 79-row partial tier): "how to organise
+# a care package" collides on the Automotive Care Zone's title alone (a
+# gift package for someone, nothing to do with car fluids/cables/rags);
+# "how to organize bedazzling kit" is seed drift from "how to organize
+# bed", nothing to do with a garage at all.
+_care_package = {"query": "how to organise a care package", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_care = rgc.score_room([_care_package], [], _room)
+check("a 'care package' off-topic-context row is excluded",
+      _result_care["on_topic_rows"] == 0)
+_bedazzling = {"query": "how to organize bedazzling kit", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_bedazzling = rgc.score_room([_bedazzling], [], _room)
+check("a 'bedazzling kit' off-topic-context row is excluded",
+      _result_bedazzling["on_topic_rows"] == 0)
+_car_care = {"query": "how to organize car care products", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_car_care = rgc.score_room([_car_care], [], _room)
+check("a genuine on-topic 'car care products' row is NOT excluded by the care-package pattern",
+      _result_car_care["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

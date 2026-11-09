@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-09, scheduled operator cycle: two genuine word-sense collisions closed in Garage's handed-off partial tier, three other candidate clusters checked and correctly declined as content gaps rather than wording gaps
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout (fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `225090752`, 466 commits fast-forwarded, tree clean). Read `BACKLOG-2026-09-07.md`, `STATUS.md`, `CLAUDE.md` and the last several `ops/NIGHTLY-LOG.md` entries directly. Ran `preflight.py --skip-tests` in full before touching anything: 0 FAIL through every gate reached, killed only at the documented sandbox-bound `gate_etsy_pdfs_current` network stall every recent cycle records. 31 open GitHub issues re-pulled live, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed empty.
+
+**Followed the standing handoff** (mine Garage's 79-row partial tier, the only genuinely unmined lane after the 08:5x cycle's "must haves" fix). Dumped the full tier directly via `score_room()` rather than trust the ranking tool's own 8-row sample. Found two genuine word-sense collisions on the Automotive Care Zone's own title, the same shape "cricut"/"prepping supplies"/"soap making" already close: "how to organise a care package" (a gift box, nothing to do with fluid bottles and cables) and "how to organize bedazzling kit" (pure seed drift from "how to organize bed", nothing to do with a garage). Checked and declined three other candidate clusters as genuine content gaps, not wording gaps, the bar "gym equipment"/"hunting gear" already failed in earlier cycles: gym/workout-equipment storage (4 queries, never mentioned in any Garage zone's `content.json`); "storage for painting supplies" (that belongs to Workshop's Finishing and Chemical Zone; Garage's own Primary Workbench text says a tin of paint is "not a bench item and never was"); and "car boot"/"interior car storage organizer" queries, which ask about organizing a product inside the vehicle itself, a closer call than the other two because the zone's own Hand Tool Wall text references "the boot of the car" as a legitimate secondary storage location, left alone this cycle rather than forced.
+
+**Verified:** self-flattery and full-corpus collision checked before shipping ("care package" appears in exactly 2 rows total, the other already routing elsewhere untouched; "bedazzl" in exactly 1). Added both phrases to `OFF_TOPIC_CONTEXT` in `ops/room_guide_candidates.py`. Fail-then-pass proved directly: stashed the regex change, the two new test cases failed with the exact pre-fix count, restored, both passed; `ops/tests/test_room_guide_candidates.py` 33/33. Re-ran `room_guide_underperformance.py --room Garage` live: 233 to 231 on-topic, 79 to 77 partial, 34% to 33% uncovered, exactly the 2 rows expected, 0 regressions. `test_room_guide_underperformance.py` (19/19), `fix_dashes.py --check` (0/0), `py_compile` both files clean. `preflight.py --skip-tests` reran clean a second time afterward, same documented network stall.
+
+**Went well:** declining the three borderline clusters rather than forcing a synonym kept the fix honest; the "boot of the car" content line would have made a blanket car-interior exclusion a real judgment call, not a clean win, so it was left for a future cycle to weigh properly instead of rushed.
+
+**Did not go well:** nothing new; same documented sandbox limits as every recent cycle (no Stripe/mail/SSH credential, `gate_etsy_pdfs_current` network-bound).
+
+**Changing next cycle:** none; no new defect class, so no new gate (CLAUDE.md 10b, this is not a three-strikes shape).
+
+**Next:** keep mining Garage's remaining 77-row partial tier (mostly documented retailer/locale/generated-listicle noise), and specifically weigh the "car boot"/"interior car storage organizer" cluster against the zone's own "boot of the car" content line before excluding or keeping it.
+
+Dashboard regenerated, pushed to main. No price or product touched, no site page changed, `IndexNow` not applicable.
+
 ## PM check-in, 2026-11-09 (~09:1x slot, 30-minute triage, previous work confirmed finished, no new defect small enough for this slot)
 
 Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout main` then `checkout -B main origin/main`, ff-only onto `12f0a44c1` (464 commits fast-forwarded), tree clean before this cycle touched anything.
