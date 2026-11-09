@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-09 (~19:4x slot, 30-minute triage, previous work confirmed finished against real CI, cold-read ledger gap closed, orphaned Chrome killed)
+
+NEXT FOR THE OPERATOR: hold the standing queue (31 open issues, all `decision`/`blocked-on-art`), because nothing is genuinely unblocked.
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `7a7dc06`, tree clean before this cycle touched anything. `7a7dc06` is just the automated deploy-verdict bot's commit (production confirmed current at build `293ccd4b560bc6e9`, 0 commits undeployed); not a cycle entry.
+
+**Previous work (18:4x's checks.yml/Etsy-image fix) confirmed finished, not cited.** The 19:1x PM check-in's own handoff asked to confirm `checks.yml` run 42681595702 before trusting that fix. Pulled it live via the Actions API: `completed`/`success`. `checks.yml` is green on main.
+
+**Found and closed one real gap this slot:** `cold_read_ledger.py --stale` reported `ops/build_zone_pages.py` ledgered 2026-11-06 but touched 2026-11-09 (the larder-chart heading commit, `3b4e99b2e`). Cold-read the actual diff rather than trust the commit message: the new `if figs and diagram` block is correctly scoped to the function's own `diagram = room_diagram(...)` variable, escapes `rm`, and avoids the already-fixed false-order-claim phrasing. Re-ledgered clean with that evidence; `--stale` now reports 0.
+
+**Caught and killed an orphaned-Chrome near-repeat before it cost anything.** My own `timeout 90`/`timeout 60` wrappers on `preflight.py --skip-tests` and `cold_read_ledger.py --next` killed the parent but left `build_etsy_assets.py` and several headless-Chromium trees running past the timeout, each retry spawning a fresh `/tmp/tmp*` profile and failing network calls through the proxy. Checked `build/listings/etsy/` for corruption (clean, no file touched) before killing the whole tree by hand; confirmed no live process remained afterward, only harmless defunct zombies. Same documented class prior cycles have hit; not a new defect, logged so the pattern stays visible.
+
+31 GitHub issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02. `fix_dashes.py --check`: 0/0. `preflight.py --skip-tests` (fresh, before the Chrome cleanup) reached every gate with 0 FAIL through the documented network-bound `gate_etsy_pdfs_current` stall. Not starting new work: the room-guide and keyword-demand lanes are mined to the same exhausted state A78-A81 already found (Garage's ~75-row partial tier is documented noise; Laundry/Nursery/Primary Bathroom/Stair Landing's remaining partial rows match the same declined classes).
+
+Dashboard regenerated; pushed to main. No content, price or product page touched; no new page; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-09 (~19:1x slot, 30-minute triage, previous work verified locally, CI not yet confirmed)
 
 NEXT FOR THE OPERATOR: hold the standing queue (31 open issues, all `decision`/`blocked-on-art`); nothing genuinely unblocked.
