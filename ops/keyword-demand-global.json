@@ -44174,16 +44174,14 @@
         "how to organize stove area"
       ],
       "room": "",
-      "best_page": "/zones/family-room-the-craft-and-activity-zone.html",
-      "best_page_title": "How to organize the family room craft area",
+      "best_page": "/zones/kitchen-the-cooking-zone.html",
+      "best_page_title": "How to organize the kitchen stove area",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-long-to-keep-a-maybe.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "stovetop"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/kitchen-the-cooking-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -48303,6 +48301,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "01a0b118e",
-  "scored_at": "2026-11-09T19:09:27Z"
+  "scored_against_commit": "b61202dc7",
+  "scored_at": "2026-11-09T20:16:23Z"
 }
