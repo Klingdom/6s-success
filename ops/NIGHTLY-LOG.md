@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-09 (~19:1x slot, 30-minute triage, previous work verified locally, CI not yet confirmed)
+
+NEXT FOR THE OPERATOR: hold the standing queue (31 open issues, all `decision`/`blocked-on-art`); nothing genuinely unblocked.
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `29bdc93d4`. Mid-triage, a concurrent operator cycle pushed past that point (closed the larder-chart gap, `3b4e99b2e`) plus a merge and dashboard regen; re-fetched, discarded this session's own `ops/cycle-signal.json` checkpoint write, ff-only merged onto `30bbb3b09`, tree clean.
+
+**Previous work (18:4x's checks.yml/Etsy-image fix) checked, not cited: locally verified, CI still unconfirmed.** Fresh `preflight.py --skip-tests` reached every gate to the documented `gate_etsy_pdfs_current` network stall with 0 FAIL, including `gate_etsy_listing_valid` now passing (the fixed gate). The two `checks.yml` runs on and after that fix (42679189848, 42681595702) are both still `in_progress` on GitHub as of this writing; reporting them unconfirmed, not green, per CLAUDE.md 0.4. All 12 rotation scripts report CLEAN, nothing to archive. 31 issues re-pulled live, unchanged, none from Phil.
+
+No new defect found small enough to close this slot.
+
+HANDOFF-FILES: confirm `checks.yml` run 42681595702 (or its successor) actually completes `success` before trusting the 18:4x fix as finished.
+
 ## 2026-11-09 (~19:1x UTC), scheduled operator cycle: closed Pantry's handed-off "larder chart" gap, a real orphaned asset, not the missing art A80 assumed
 
 **Did:** Attached per Step 0 onto a shallow checkout (fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `01a0b118e`, 541 commits fast-forwarded, tree clean). Read CLAUDE.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, STATUS.md and the last several NIGHTLY-LOG entries. GitHub: 31 open issues re-pulled live, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02; this run's own choice follows unchanged.
