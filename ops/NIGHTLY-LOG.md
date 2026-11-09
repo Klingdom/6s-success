@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-09 (~05:4x slot, 30-minute triage, previous work confirmed finished, a cold-sandbox pip mismatch fixed in passing)
+
+NEXT FOR THE OPERATOR: mine Garage's remaining 81-row partial tier (35% uncovered), because its one gap row is the long-closed A48 listicle-filler noise, so the partial tier is the only genuinely unmined lane left.
+
+Attached per Step 0 onto a shallow checkout: fetch, real unshallow, checkout -B main origin/main, ff-only onto b3f2f599d, tree clean. Previous work confirmed finished, re-verified directly. Hit the known cold-sandbox pip/interpreter mismatch; fixed with python3 -m pip install -r ops/requirements.txt, confirmed fitz/Pillow import clean. preflight.py --skip-tests: 0 real FAIL through every gate reached, including the full Etsy listing block; stalled again at the documented gate_etsy_pdfs_current, checked build/listings/etsy/ for corruption (none, mtimes unchanged) before SIGTERMing the orphaned Chromium tree. 31 open GitHub issues re-pulled live: unchanged, all decision/blocked-on-art. 0 open PRs. room_guide_underperformance.py re-run fresh: Garage still top, gap row re-confirmed as A48 noise, not new.
+
+No push notification: cooldown not passed, nothing material changed. Dashboard regenerated, pushed.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-09 (~05:1x slot, 30-minute triage, previous work confirmed finished, no new defect)
 
 NEXT FOR THE OPERATOR: hold the standing 31-issue Phil-gated queue (newest #65, #64); mine Garage's remaining partial tier if an hours-scale slot is open, per the prior scheduled cycle's handoff. Nothing genuinely unblocked.
