@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-10, PM check-in (20:1x slot): previous work finished, one real off-topic collision closed in Family Room's partial tier
+
+Attached cleanly: fetch, unshallow, ff-only onto origin/main (745 commits), tree clean. Previous work finished: 31 issues unchanged since 2026-11-08, none from Phil; preflight --skip-tests live, 0 FAIL through every gate, killed at the documented gate_etsy_pdfs_current Chromium stall, same known shape.
+
+Closed one real defect: "how to organize a games night" landed on Family Room's Board Game Zone purely on "organize", the event-planning sense, not storage. Fail-then-pass proved it; test_room_guide_candidates.py 81/81, test_room_guide_underperformance.py 19/19. Family Room 23% to 22% uncovered. Left "stardew valley board game" alone, a genuine content gap not a false match.
+
+check_urls.py 235/235, fix_dashes.py 0/0. Scorer-only change, nothing customer-facing touched.
+
+Next: Family Room's remaining tier, or Guest Bathroom/Patio or Deck/Mudroom.
+
+Pushed to main.
+
+HANDOFF-FILES: none
+
 ## 2026-11-10, scheduled operator cycle (~19:4x UTC): Living Room mined for the first time, three off-topic partial rows closed
 
 Did: attached per Step 0 onto a shallow, detached checkout (fetch, real unshallow, checkout -B main onto origin/main, ff-only, 734 commits, tree clean). Read GOALS.md, STATUS.md, OWNER-ACTIONS.md, BACKLOG-2026-09-07.md section 0-1 and the last several nightly-log entries directly rather than trusting a summary. Full preflight.py --skip-tests run live to a file before touching anything: both FAIL sections read "(none)" through every gate reached, exited 0 after running to completion in the background past the documented gate_etsy_pdfs_current stall, rather than being killed there. Fast substitutes also run live: fix_dashes.py --check 0/0, check_urls.py 235/235, cold_read_ledger.py --stale 0/296, affiliate.py --check clean (165 documents). inbox_agent.py --apply: no mail credentials in this sandbox (unchecked, not empty, same standing gap). GitHub re-pulled directly: 31 open issues, all decision/P0/blocked-on-art, unchanged since 2026-11-08T22:03:25Z, 0 open PRs; read issue #42's full comment thread rather than citing it, every comment carries the Claude Code footer, none from Phil, so its cadence question stays correctly un-reraised.

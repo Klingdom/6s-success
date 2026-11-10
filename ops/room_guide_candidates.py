@@ -456,7 +456,23 @@ OFF_TOPIC_CONTEXT = re.compile(
     # bookcase", "how to organise bookcase", "how to arrange outdoor
     # seating", the whole outdoor-seating cluster on Patio or Deck) contain
     # neither phrase and cannot be touched.
-    r"\bseating chart\b|\bbilly bookcase\b",
+    r"\bseating chart\b|\bbilly bookcase\b|"
+    # Found 2026-11-10, mining Family Room's 21-row partial tier. "how to
+    # organize a games night" lands on the Family Room deck purely on the
+    # word "organize"; this is the event-planning sense (deciding who to
+    # invite, what to play, what to serve for a games night), not storing
+    # the games themselves, the same host-an-event shape "seating chart"
+    # excludes above. The Board Game and Puzzle Zone's own content.json
+    # purpose ("Store games and puzzles so that anything you pull off the
+    # shelf is complete and playable tonight") is about keeping game
+    # components intact in storage, never about planning the event itself.
+    # Checked against both harvests before adding: "games night"/"game
+    # night" appears in exactly this one row; the other low-coverage Family
+    # Room row this same pass looked at, "how to organize stardew valley
+    # board game" (a specific board-game title, the real on-topic shape
+    # this zone already serves), does not contain the phrase and is left
+    # alone as a genuine content gap, not excluded.
+    r"\bgames? night\b",
     re.I)
 
 

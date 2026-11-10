@@ -492,6 +492,20 @@ _result_seating_genuine = rgc.score_room([_seating_genuine], [], _room)
 check("a genuine 'organize outdoor seating' row is NOT excluded by the seating-chart pattern",
       _result_seating_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-10, mining Family Room's 21-row partial tier. "how to
+# organize a games night" is the event-planning sense (deciding who to
+# invite, what to play), not storing the games themselves; the Board Game
+# and Puzzle Zone's own content.json purpose is about keeping game
+# components complete in storage, never about planning the event.
+_games_night = {"query": "how to organize a games night", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_games_night = rgc.score_room([_games_night], [], _room)
+check("a 'how to organize a games night' off-topic-context row is excluded",
+      _result_games_night["on_topic_rows"] == 0)
+_game_night_genuine_title = {"query": "how to organize stardew valley board game", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_game_night_genuine_title = rgc.score_room([_game_night_genuine_title], [], _room)
+check("a genuine specific-board-game-title row is NOT excluded by the games-night pattern",
+      _result_game_night_genuine_title["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)
