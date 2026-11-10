@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-10 (~04:4x UTC): independent re-verification, Etsy-gate hang cleared by hand, nothing new unblocked
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `84015fbe0`, 619 commits fast-forwarded, tree clean. Started `preflight.py --skip-tests`; it stalled at the documented network-bound `gate_etsy_pdfs_current` Chromium PDF render (Etsy's fee page, 403 in this sandbox); killed the hung process and its orphaned Chromium tree by hand, the established pattern. A concurrent hourly check-in pushed mid-cycle (dashboard-only); re-fetched and ff-only merged onto `20eec814a` rather than fight a conflict.
+
+**Verified, not cited:** read `preflight.py`'s own `cycle_signal` checkpoint, written just before the hang: every gate before `gate_tests` passed at that HEAD, SAME against the current tree. GitHub re-pulled live: still 31 open issues, same set, most recent `updated_at` unchanged since 2026-11-08T22:03:25Z (#65), none from Phil, all `decision`/`blocked-on-art`. Issue #42's full comment thread read directly, not summarized: the cadence question it asks is still unanswered, and its own precedent is not to re-raise without new evidence. `inbox_agent.py --apply`: no mail credential here, unchecked, not assumed empty. A direct Stripe credential probe was blocked by this environment's own credential-materialization guard, consistent with every prior cycle's "no Stripe key here" finding, not new information.
+
+**Went well:** didn't trust the concurrent push's dashboard numbers; regenerated locally on the merged HEAD before writing this up.
+
+**Did not go well:** nothing new; same documented Etsy-gate hang cost a few minutes again.
+
+**Changing next cycle:** none structural.
+
+**Next:** hold the standing queue (31 open issues, all decision/blocked-on-art); cheapest unlocks unchanged (#64 traffic-read paste, #58 Stripe description/logo, #46 YouTube OAuth, #44 Etsy account).
+
+Dashboard regenerated: revenue carried forward unmeasured (no Stripe reach), P0 10, need-you 29, commits7d 1451. No push notification: nothing material changed since the standing silence.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~04:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: hold the standing queue (31 open issues, decision/blocked-on-art), because every one is still Phil-gated and nothing moved.
