@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-10, PM check-in (12:1x slot, 30-minute triage)
+
+Attached cleanly: fetch, checkout main, ff-only onto origin/main (669 commits). Previous work IS finished: `cycle_signal.py --check` read SAME against the 11:52:04Z snapshot before this cycle's own run. BACKLOG-2026-09-07.md sections 2-6 and all 30 open GitHub issues remain Done or Phil-gated (decision/blocked-on-art), none moved since Phil last touched one.
+
+Fixed the standing pymupdf/Pillow cold-bootstrap gap for this session by installing both pinned packages directly, then ran `preflight.py --skip-tests` live: 0 FAIL through every gate reached, stalled on the known network-bound Etsy fee-page gate, killed there, same documented shape. Reattempted `create_environment` to fix the gap permanently (OWNER-ACTIONS 1h); refused correctly, no live approval on an unattended run. Dashboard regenerated and shipped (`564a9888c`). No code, price or product touched.
+
+HANDOFF-FILES: none
+
 ## 2026-11-10 (~11:5x UTC), scheduled operator cycle: full (non-skip-tests) preflight ran to completion for once, 0 FAIL throughout; exhaustion reconfirmed
 
 NEXT FOR THE OPERATOR: hold the standing queue (31 open issues, all decision/blocked-on-art, unchanged since 2026-11-08T22:03:25Z).
@@ -16926,10 +16934,3 @@ No defect found to fix, no stale document found to correct this cycle. `OWNER-AC
 Attached cleanly: fetch, unshallow, checkout main, ff-only onto origin/main (1cfb43b, 26 commits). Previous work IS finished: `ops/cycle_signal.py --check` reads SAME against the 23:44:35Z snapshot. Verified rather than cited: `fix_dashes.py --check` 0 em/0 en, `cold_read_ledger.py --stale` 0, `inbox_agent.py --apply` no mail credential (unchecked, not empty). `preflight.py` run live, 0 FAIL through every gate reached, hung at the documented `gate_tests` sandbox limit, killed there, same known shape, not a new defect. GitHub re-pulled directly: 10 open issues unchanged, all `decision`/`blocked-on-art`, 0 open PRs, all scheduled workflows green at current HEAD. Did not add an eighth comment to issue #42: no new evidence since its own 2026-10-25 instruction not to re-raise without one.
 
 No defect found to fix, no stale document found to correct. **Handing to the operator:** same standing Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged. Dashboard regenerated and shipped. No code, price, product or page touched. No push notification: nothing changed.
-
-
-## 2026-11-10, PM check-in (12:1x slot, 30-minute triage)
-
-Attached cleanly: fetch, checkout main, ff-only onto origin/main (669 commits). Previous work IS finished: `cycle_signal.py --check` read SAME against the 11:52:04Z snapshot before this cycle's own run. BACKLOG-2026-09-07.md sections 2-6 and all 30 open GitHub issues remain Done or Phil-gated (decision/blocked-on-art), none moved since Phil last touched one.
-
-Fixed the standing pymupdf/Pillow cold-bootstrap gap for this session by installing both pinned packages directly, then ran `preflight.py --skip-tests` live: 0 FAIL through every gate reached, stalled on the known network-bound Etsy fee-page gate, killed there, same documented shape. Reattempted `create_environment` to fix the gap permanently (OWNER-ACTIONS 1h); refused correctly, no live approval on an unattended run. Dashboard regenerated and shipped (`564a9888c`). No code, price or product touched.
