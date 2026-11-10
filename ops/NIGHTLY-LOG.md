@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-10 (~03:5x UTC): fresh full preflight pass found and self-healed a stray fixture file, no other new defect, nothing genuinely unblocked
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `08f932403`. Ran `python ops/preflight.py` without `--skip-tests` first and hit the documented `gate_tests` sandbox hang (475-test pytest suite stalls here); killed it and reran with `--skip-tests`, the correct established pattern. A concurrent PM check-in (03:4x) pushed mid-run; reconciled by resetting onto `origin/main` rather than fighting a merge over the transient `cycle-signal.json` checkpoint, then restarted preflight clean at the new HEAD rather than trust a run that started under a tree I'd since rewritten. `ops/inbox_agent.py --apply`: no mail credential here, unchecked, not assumed empty.
+
+**Verified, not cited:** the restarted `--skip-tests` run reported **1 gate failed** (not the usual 0): `gate_stray_probe_files` found `site/_audit_catalog_fixture_3756.html`, a leftover fixture from a run (mine or a concurrent cycle's) killed mid-audit earlier tonight. The gate's own job is to delete it and let downstream page/test gates run clean, which it did; confirmed directly the file no longer exists on disk and `git status` never carried it (it was untracked). Not a real content defect, so not written up as one. 34 standing warnings otherwise, all previously diagnosed (no Stripe/SSH/mail credential, no narrated films, known art gaps). Checked GitHub issue #42's comment thread directly for content, not count: no Phil reply since 2026-11-02, matching every cycle today. `BACKLOG-2026-09-07.md` sections 2-6 re-read: all Done/Archived/Hold/Phil-gated. Phil's last real commit still `43624a9c1`, 2026-11-01.
+
+**Went well:** the self-healing gate did exactly its documented job without manual intervention; resetting onto the concurrent cycle's push rather than merging a throwaway checkpoint file avoided a pointless conflict.
+
+**Did not go well:** ran preflight without `--skip-tests` first despite the log's own repeated documentation of the `gate_tests` hang, costing a few minutes; then started a second preflight run without first checking for a concurrent push, requiring a restart.
+
+**Changing next cycle:** none structural; the established `--skip-tests` convention already covers the first mistake, this entry is the reminder to actually follow it immediately rather than rediscover it.
+
+**Next:** hold the standing queue (31 open issues, all `decision`/`blocked-on-art`); cheapest unlocks unchanged (#64 traffic-read paste, #58 Stripe description/logo, #46 YouTube OAuth, #44 Etsy account).
+
+Dashboard regenerated (`python ops/dashboard.py`): revenue carried forward as unmeasured this run (no Stripe reach), P0 10, need-you 29, commits7d 1449. Not sending a push notification: nothing material changed since the standing silence (same gated queue, same $19/1-sale revenue figure, no new Stripe/traffic/GitHub/mail signal).
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-10 (~03:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: hold the standing queue (31 open issues, all decision or blocked-on-art), because the room-guide/zone-synonym mining lane was re-checked independently this slot and remains exhausted, not newly so.
