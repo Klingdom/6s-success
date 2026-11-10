@@ -434,7 +434,29 @@ OFF_TOPIC_CONTEXT = re.compile(
     # genuine on-topic rows ("how to organize clothing", "off season
     # clothing storage ideas", "seasonal clothing storage solutions") do not
     # contain "drive" and so cannot be touched by this phrase.
-    r"\bbuilding\s+beds?\b|\bclothing\s+drive\b",
+    r"\bbuilding\s+beds?\b|\bclothing\s+drive\b|"
+    # Found 2026-11-10, mining Living Room's 12-row partial tier (the first
+    # pass this room has had; every prior cycle mined Garage/Hall Closet
+    # instead). "how to organize/organise a seating chart" lands on the
+    # Sofa and Seating Zone purely on the word "seating"; a seating chart
+    # is the event-planning sense (assigning named guests to numbered
+    # seats at a wedding or banquet), not arranging the room's own
+    # furniture, and content.json's purpose for this zone ("somewhere
+    # every person in the house can sit down without first moving
+    # something") never addresses assigning seats to guests. "how to
+    # organize billy bookcase" lands on the Living Room deck purely on
+    # "organize"/"bookcase"; Billy is IKEA's own bookcase product line
+    # name, the same brand-name shape CLAUDE.md section 5 ("product
+    # types, never brand names") already bars this site from chasing, and
+    # the exact kind the "ikea"/"home depot" branch above excludes for
+    # other rooms, just not spelled with the word "ikea" itself here.
+    # Checked against both harvests before adding: "seating chart" appears
+    # in exactly these two rows (organize/organise spellings) and "billy"
+    # in exactly this one; the genuine on-topic rows ("how to organize a
+    # bookcase", "how to organise bookcase", "how to arrange outdoor
+    # seating", the whole outdoor-seating cluster on Patio or Deck) contain
+    # neither phrase and cannot be touched.
+    r"\bseating chart\b|\bbilly bookcase\b",
     re.I)
 
 

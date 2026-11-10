@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-10, scheduled operator cycle (~19:4x UTC): Living Room mined for the first time, three off-topic partial rows closed
+
+Did: attached per Step 0 onto a shallow, detached checkout (fetch, real unshallow, checkout -B main onto origin/main, ff-only, 734 commits, tree clean). Read GOALS.md, STATUS.md, OWNER-ACTIONS.md, BACKLOG-2026-09-07.md section 0-1 and the last several nightly-log entries directly rather than trusting a summary. Full preflight.py --skip-tests run live to a file before touching anything: both FAIL sections read "(none)" through every gate reached, exited 0 after running to completion in the background past the documented gate_etsy_pdfs_current stall, rather than being killed there. Fast substitutes also run live: fix_dashes.py --check 0/0, check_urls.py 235/235, cold_read_ledger.py --stale 0/296, affiliate.py --check clean (165 documents). inbox_agent.py --apply: no mail credentials in this sandbox (unchecked, not empty, same standing gap). GitHub re-pulled directly: 31 open issues, all decision/P0/blocked-on-art, unchanged since 2026-11-08T22:03:25Z, 0 open PRs; read issue #42's full comment thread rather than citing it, every comment carries the Claude Code footer, none from Phil, so its cadence question stays correctly un-reraised.
+
+The 19:1x PM check-in handed off Garage or Hall Closet as the next partial-tier target. Checked first rather than following the handoff blind: grep of ops/room_guide_candidates.py's own dated comments shows Garage mined on at least eight separate dates since 2026-11-02, with every remaining row in its 51-row tier individually checked and declined more than once (fishing/hunting/tactical/gym cluster, "hardware"/"interior"/"food" wording gaps). Picked Living Room instead, third-ranked at 24% uncovered with only one incidental prior mention, on the theory a fresh room yields more than a 16th Garage pass.
+
+Found and fixed: "how to organize/organise a seating chart" (2 rows) was landing on the Sofa and Seating Zone purely on "seating"; a seating chart is the event-planning sense (assigning guests to numbered seats), not room furniture, and the zone's content.json purpose never addresses that. "how to organize billy bookcase" was landing on the Living Room deck purely on "organize"/"bookcase"; Billy is IKEA's own product-line name, the brand-name shape CLAUDE.md section 5 already bars elsewhere ("ikea"/"home depot"), just not spelled "ikea" here.
+
+Checked and declined: "how to organize cords behind entertainment center" looked like a zone-synonym opportunity (Living Room's own Media Center zone never says "entertainment"), but the site already covers "entertainment center" extensively elsewhere (24 US-harvest rows, mostly covered, routed to Family Room's Primary Media Zone). Adding the word to a second room's zone to chase one ambiguous, already-low-priority row would be the fabricated-specificity risk this lane has reverted twice before, so left honestly partial.
+
+Verified, not assumed: checked both harvests before excluding anything (CLAUDE.md 5c/5d): "seating chart" appears in exactly the two rows named, "billy" in exactly one. Added both to a new OFF_TOPIC_CONTEXT branch in ops/room_guide_candidates.py, the same mechanism every prior fix in this lane uses. Fail-then-pass proved directly: git stash the fix, watched the 3 new assertions fail with the exact pre-fix behaviour (plus a bad first negative-control query that needed its own ON_TOPIC word, caught before it could hide a false pass), restored, watched all pass. test_room_guide_candidates.py 79/79 (5 new assertions, two negative controls proving "how to organize a bookcase" and "organize outdoor seating" stay on-topic), test_room_guide_underperformance.py 19/19. Re-ran the live ranking before and after: Living Room 50 to 47 on-topic rows, 12 to 9 partial, 24% to 19% uncovered; full 20-room rescan confirmed every other room, including Garage and Hall Closet, unchanged.
+
+Went well: checking which rooms had actually been mined, instead of re-mining the room a handoff named, found real new work instead of a 16th Garage reconfirmation.
+
+Did not go well: this is still single-digit-row content polish, five epics below the actual constraint (traffic), because every item in epics 1 through 4 is genuinely Phil-gated (31 open issues, all decision/P0/blocked-on-art, confirmed fresh this cycle, none answered since 2026-11-02).
+
+Changing next cycle: a future pass in this lane should grep ops/room_guide_candidates.py's own dated comments for a room name before picking it, the same check this cycle did, rather than trusting the previous cycle's handoff at face value; Garage and Hall Closet are both mined near-exhaustion and should be the last choice, not the default.
+
+Next: Family Room (23% uncovered, 21 partial), Guest Bathroom (21%, 20 partial) and Patio or Deck/Mudroom (both 21%, 6 partial) are the least-mined rooms with meaningful tiers left; same standing 31 Phil-gated issues otherwise.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; this is a scorer-only change under ops/, not a generator-owned site/ file.
+
+HANDOFF-FILES: none
+
 ## PM check-in (19:1x slot): gap-tier room-guide lane now exhausted, partial-tier handed to the operator
 
 Previous work IS finished, verified fresh rather than cited. Attached cleanly (fetch, ff-only onto `origin/main`, 732 commits, tree clean). `preflight.py` run live: 0 FAIL through every gate reached, 1 known WARN (image-coverage source pictures gitignored, not present in this sandbox), hung at the documented `gate_tests` sandbox limit after recording a clean cycle-signal checkpoint, killed there, same known shape. Fast substitutes all clean: `fix_dashes.py --check` 0/0, `check_urls.py` 235/235, `cold_read_ledger.py --stale` 0/296. `cycle_signal.py --record` refreshed the stale snapshot (BACKLOG had changed since the last one).

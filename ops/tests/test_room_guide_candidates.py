@@ -466,6 +466,32 @@ _result_clothing_genuine = rgc.score_room([_clothing_genuine], [], _room)
 check("a genuine 'how to organize clothing' row is NOT excluded by the clothing-drive pattern",
       _result_clothing_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-10, mining Living Room's 12-row partial tier. "how to
+# organize/organise a seating chart" is the event-planning sense (assigning
+# guests to seats), not arranging the room's own furniture. "how to organize
+# billy bookcase" is IKEA's own product-line name, a brand-name query this
+# site cannot honestly chase (CLAUDE.md section 5).
+_seating_chart_1 = {"query": "how to organize a seating chart", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_seating_chart_1 = rgc.score_room([_seating_chart_1], [], _room)
+check("a 'how to organize a seating chart' off-topic-context row is excluded",
+      _result_seating_chart_1["on_topic_rows"] == 0)
+_seating_chart_2 = {"query": "how to organise a seating chart", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_seating_chart_2 = rgc.score_room([_seating_chart_2], [], _room)
+check("a 'how to organise a seating chart' off-topic-context row is excluded",
+      _result_seating_chart_2["on_topic_rows"] == 0)
+_billy_bookcase = {"query": "how to organize billy bookcase", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_billy_bookcase = rgc.score_room([_billy_bookcase], [], _room)
+check("a 'how to organize billy bookcase' off-topic-context row is excluded",
+      _result_billy_bookcase["on_topic_rows"] == 0)
+_bookcase_genuine = {"query": "how to organize a bookcase", "best_page": "/test-room-deck.html", "status": "covered"}
+_result_bookcase_genuine = rgc.score_room([_bookcase_genuine], [], _room)
+check("a genuine 'how to organize a bookcase' row is NOT excluded by the billy-bookcase pattern",
+      _result_bookcase_genuine["on_topic_rows"] == 1)
+_seating_genuine = {"query": "organize outdoor seating", "best_page": "/test-room-deck.html", "status": "covered"}
+_result_seating_genuine = rgc.score_room([_seating_genuine], [], _room)
+check("a genuine 'organize outdoor seating' row is NOT excluded by the seating-chart pattern",
+      _result_seating_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)
