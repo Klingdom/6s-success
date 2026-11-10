@@ -903,8 +903,8 @@
     },
     "keyword_demand.py": {
       "status": "clean",
-      "date": "2026-11-09",
-      "note": "Cold-read 2026-11-09 scheduled operator cycle: re-ledgered after the 03:5x cycle's own singular-'way' FORMAT_WORDS addition (commit cbd5f0527). Reviewed that diff directly: same self-flattery/collision-check pattern as every prior FORMAT_WORDS addition, 0 regressions claimed and the commit's own test case (29, 34/34) proves it fail-then-pass. Separately traced two Garage partial-tier leads (power-tool plural coverage inconsistency, hand-tool-wall misattribution on 'how to put tools on the wall') while mining the handed-off partial tier; neither corroborated enough to act on yet, handed to the next cycle rather than forced. No latent defect found in the file itself."
+      "date": "2026-11-10",
+      "note": "Re-cold-read after the 2026-11-10 'quickly' FORMAT_WORDS addition. Verified independently, not cited: 'quickly' appears in 0 of 243 page titles and 2 of 243 headings (confirmed directly via grep on rendered site/, matching the commit's own self-flattery check exactly); all 4 US and 3 global 'quickly' queries read covered in the real committed keyword-demand files, including the garage-sale row now routed to /rooms/garage.html rather than the unrelated article. 36/36 test_keyword_demand.py cases pass. No defect found."
     },
     "keyword_demand_global.py": {
       "status": "fixed",
