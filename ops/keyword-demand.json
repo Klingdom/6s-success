@@ -23137,16 +23137,14 @@
         "how to declutter a kitchen"
       ],
       "room": "Kitchen",
-      "best_page": "/articles/how-to-declutter-a-kitchen.html",
-      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
+      "best_page": "/rooms/kitchen.html",
+      "best_page_title": "How to organize a kitchen, zone by zone",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "without"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/kitchen.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a kitchen without drawers",
@@ -23159,16 +23157,14 @@
         "how to declutter a kitchen"
       ],
       "room": "Kitchen",
-      "best_page": "/articles/how-to-declutter-a-kitchen.html",
-      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
+      "best_page": "/rooms/kitchen.html",
+      "best_page_title": "How to organize a kitchen, zone by zone",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "without"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/kitchen.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a kitchen without pantry",
@@ -57082,6 +57078,6 @@
       ]
     }
   ],
-  "scored_against_commit": "9282723e5",
-  "scored_at": "2026-11-09T20:51:47Z"
+  "scored_against_commit": "87c474a1e",
+  "scored_at": "2026-11-10T08:08:01Z"
 }
