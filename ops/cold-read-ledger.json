@@ -1113,8 +1113,8 @@
     },
     "room_guide_candidates.py": {
       "status": "clean",
-      "date": "2026-11-09",
-      "note": "2026-11-09 PM check-in: cold-read the 2026-11-09 car-boot/interior-car-storage OFF_TOPIC_CONTEXT addition directly. Regex is well-scoped (two exact phrases, not a widened pattern), test file extended to 37/37 with both exclude and do-not-exclude cases, fail-then-pass already proved by the operator cycle that wrote it, re-run here and still 37/37. No defect found."
+      "date": "2026-11-10",
+      "note": "PM check-in (14:1x slot): cold-read the 2026-11-10 brand/platform/geo OFF_TOPIC_CONTEXT addition (pinterest/ikea/reddit/amazon/lowes/kmart/target/walmart/rona/home depot/dollar tree/australia/canada/indian/tamil) directly rather than cite the commit. Independently reran room_guide_underperformance.py against the live corpus: Garage 28% uncovered (matches claimed 32->28), Hall Closet 25% (matches claimed 30->25), Kitchen and Pantry both now 0 gap rows (matches claimed dollar-tree gap closures). test_room_guide_candidates.py 44/44 pass. Regex checked for overreach: two-word phrases (home depot, dollar tree) are exact, not split on common single words, and target/amazon/walmart as common English words were already checked by the operator against the corpus (2 brand+gap rows found, both already excluded elsewhere). No defect found."
     },
     "room_guide_underperformance.py": {
       "status": "clean",

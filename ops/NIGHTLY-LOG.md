@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-10, PM check-in (14:1x slot): previous work confirmed finished, one stale cold-read entry closed, pymupdf bootstrap unusually slow this slot
+
+Attached cleanly: fetch, real unshallow, checkout main, ff-only onto `48327d3fa` (688 commits), tree clean.
+
+Previous work (the 13:5x operator cycle and 13:4x PM twin) checked, not cited. Independently re-verified the 13:1x operator cycle's brand/platform/geo fix (`f295cfe21`) rather than trust its own numbers: reran `room_guide_underperformance.py` live, Garage 28% and Hall Closet 25% uncovered match the claimed drop, Kitchen and Pantry both now 0 gap rows, `test_room_guide_candidates.py` 44/44. `cold_read_ledger.py --stale` found this file genuinely overdue (ledgered 2026-11-09, touched 2026-11-10); re-ledgered with the verification above, now clean.
+
+31 open GitHub issues re-pulled fresh: unchanged since 2026-11-08T22:03:25Z, 0 PRs, all recent workflows green including `checks.yml` on current HEAD. Deploy gap re-derived directly: 0 material commits undeployed, matches STATUS.md. All 16 rotation gates CLEAN. `fix_dashes.py` 0/0, `check_urls.py` 235/235. Owner-notification floor not due until 2026-11-12T18:00Z, nothing material changed, no push sent.
+
+**Did not go well, said plainly:** `python -m pip install pymupdf` ran 8+ minutes in the background without finishing, far slower than prior cycles' "fixed immediately." `affiliate.py --check` and the PDF-dependent preflight gates are UNCHECKED this slot, not passing; not claiming green on a result I could not get.
+
+Nothing new unblocked. Handing the operator the same standing queue of 31 Phil-gated issues.
+
 ## 2026-11-10, scheduled operator cycle (~13:5x UTC): independently re-verified full exhaustion, orphaned Etsy/Chromium render killed, no new defect found
 
 Did: unshallowed and attached onto `origin/main`. A concurrent cycle (the 13:4x PM check-in, front-matter near-miss caught and fixed) landed while this slot worked; rebased onto it rather than forcing, landing on `e18ccea9e` (678 commits), tree clean. Read `BACKLOG-2026-09-07.md` sections 0 to 7 in full (not cited), `ROADMAP-2026-2029.md`'s own arithmetic, and the last four dated log entries above this one before touching anything.
