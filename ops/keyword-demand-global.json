@@ -17086,16 +17086,14 @@
         "how to organise a kitchen"
       ],
       "room": "Kitchen",
-      "best_page": "/articles/how-to-declutter-a-kitchen.html",
-      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
+      "best_page": "/rooms/kitchen.html",
+      "best_page_title": "How to organize a kitchen, zone by zone",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "without"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/kitchen.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -23812,16 +23810,14 @@
         "how to organize a kitchen"
       ],
       "room": "Kitchen",
-      "best_page": "/articles/how-to-declutter-a-kitchen.html",
-      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
+      "best_page": "/rooms/kitchen.html",
+      "best_page_title": "How to organize a kitchen, zone by zone",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "only"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/kitchen.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -23855,16 +23851,14 @@
         "how to declutter a kitchen"
       ],
       "room": "Kitchen",
-      "best_page": "/articles/how-to-declutter-a-kitchen.html",
-      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
+      "best_page": "/rooms/kitchen.html",
+      "best_page_title": "How to organize a kitchen, zone by zone",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "without"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/kitchen.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca",
         "gb",
@@ -23881,16 +23875,14 @@
         "how to declutter a kitchen"
       ],
       "room": "Kitchen",
-      "best_page": "/articles/how-to-declutter-a-kitchen.html",
-      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
+      "best_page": "/rooms/kitchen.html",
+      "best_page_title": "How to organize a kitchen, zone by zone",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "without"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/kitchen.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca",
         "gb",
@@ -48301,6 +48293,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "6dc2ee696",
-  "scored_at": "2026-11-09T21:18:52Z"
+  "scored_against_commit": "9e1a344b4",
+  "scored_at": "2026-11-10T07:57:24Z"
 }

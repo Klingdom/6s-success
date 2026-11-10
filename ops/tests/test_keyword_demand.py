@@ -958,6 +958,27 @@ def main():
         fails.append("excluding 'way' did not improve the honest score: "
                      "%r -> %r" % (before5["score"], r5b["coverage"]))
 
+    # 30. Found live 2026-11-10, mining Kitchen: every prior FORMAT_WORDS
+    #     addition ("ways"/"diy"/"guide"/"tutorial"/"way"/"must"/"haves")
+    #     was a framing or format word, where dropping it from
+    #     content_words() cannot make a query's honest coverage worse,
+    #     because the two phrasings ask for the same subject. A negation or
+    #     scope word ("without", "only", "no", "except", "excluding") is a
+    #     different shape: "a kitchen without cabinets" is a genuinely
+    #     different situation than "a kitchen", not a wording choice, so
+    #     treating it as free would mark a query `covered` by a page that
+    #     does not actually address the missing feature, exactly the
+    #     dishonest-coverage shape CLAUDE.md 0.4/5d exist to block. This
+    #     pins that none of these words is ever silently added to
+    #     FORMAT_WORDS the way "ways"/"diy"/"way" were.
+    NEGATION_WORDS = ("without", "only", "no", "except", "excluding",
+                      "besides", "unless", "instead")
+    for _nw in NEGATION_WORDS:
+        if _nw in kd.FORMAT_WORDS:
+            fails.append("%r is a negation/scope word and must never be "
+                         "in FORMAT_WORDS; it changes the query's real "
+                         "subject, it does not just rephrase it" % _nw)
+
     if fails:
         print("FAIL")
         for f in fails:
