@@ -788,7 +788,7 @@ past.
 
 ## BLOCKER-001: Production State Verifiable Only From a Session With Real Access
 
-**CORRECTED 2026-11-09 (~22:4x slot), PM check-in: this section still cited the 08:1x confirmation below, 14 hours stale against `ops/deploy-verdict.json`'s own newer record.** Re-derived directly: `resolve_verdict_commit('0aef00af365fe703')` resolves to `ff48f126e`; `deploy_gap_material_commits('ff48f126e')` against real current `HEAD` (`a8519ae29`) returns an empty list, and `site/build-id.txt` matches exactly. Production matches the repository exactly, 0 commits undeployed. Prior state, kept because the shape recurs: **CORRECTED 2026-11-09 (~08:1x UTC), scheduled operator cycle: closed, found at merge rather than assumed from the pipeline's own design.** A fresh `git fetch` before pushing the entry above turned up `e6c91ab88`, an automated redeploy confirmation at `2026-11-09T07:49:26Z` for build `09751d63e8b0bdde`. `resolve_verdict_commit('09751d63e8b0bdde')` resolves to `a2eddf620`; `deploy_gap_material_commits('a2eddf620')` against real current `HEAD` returns an empty list, and `site/build-id.txt` matches exactly. Production matches the repository exactly, 0 commits undeployed.
+**CORRECTED 2026-11-09 (~22:4x slot), PM check-in: this section still cited the 08:1x confirmation below, 14 hours stale against `ops/deploy-verdict.json`'s own newer record.** Re-derived directly: `resolve_verdict_commit('0aef00af365fe703')` resolves to `ff48f126e`; `deploy_gap_material_commits('ff48f126e')` against real current `HEAD` (`a8519ae29`) returns an empty list, and `site/build-id.txt` matches exactly. Production matches the repository exactly, 0 commits undeployed.
 
 ## BLOCKER-002: Live Business Data Established, Not Yet a Live Feed
 

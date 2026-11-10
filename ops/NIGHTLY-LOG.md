@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-10 (~05:2x slot, 30-minute triage, a real warn-level gate defect found and fixed, not merely reconfirmed)
+
+NEXT FOR THE OPERATOR: hold the standing queue (31 open issues, decision/blocked-on-art, unchanged since 2026-11-08T22:03:25Z), none of it mine to move.
+
+Attached per Step 0 onto a shallow checkout: fetch, fetch --unshallow, checkout -B main origin/main, ff-only onto `c9f21d4cc`, 622 commits fast-forwarded, tree clean before this cycle touched anything. Previous work (the 04:4x scheduled operator and PM cycles) checked, not cited: GitHub re-pulled live via `gh api`, same 29 open issues plus #64/#65 (31 total), all decision/blocked-on-art, none new, none mine.
+
+**Found, not just reconfirmed:** `preflight.py`'s `gate_status_history_chain_not_collapsed` warned that STATUS.md's `BLOCKER-001` field had 2 superseded corrections glued onto one physical paragraph via the "Prior state, kept because the shape recurs: " handoff phrase, the exact shape `rotate_status_history.py --check-blocker1` cannot see into (it reported "1 entry live" while 2 were actually there). Fixed, not reported twice: split the glued paragraph into its two real entries in file order (oldest first, matching BLOCKER-001's own growth convention, no handoff phrase, that marker belongs to the Production Knowledge/table-row chains, not this one), then ran `rotate_status_history.py --apply-blocker1`, which moved the older entry (576 bytes) to STATUS-ARCHIVE.md verbatim and kept the newest live. Re-ran `--check`, `--check-blocker1`, `--check-focus`: all three CLEAN.
+
+`preflight.py --skip-tests` run to verify: every gate before the documented `gate_etsy_pdfs_current` network/Chromium hang passed, including the now-silent `gate_status_history_chain_not_collapsed`; `cycle_signal` recorded a clean snapshot just before that gate. Killed the hung process and its orphaned Chromium tree by hand at that point, the established pattern for this sandbox's blocked Etsy fee-page fetch. `gate_tests` itself not run (documented sandbox limitation, not assumed passing).
+
+Dashboard regenerated: revenue carried forward unmeasured (no Stripe reach from here), P0 10, need-you 29, commits7d 1449. Not pursuing the three `living-docs-total-size-tripwire` warnings (BACKLOG-2026-09-07.md, OWNER-ACTIONS.md, STATUS.md all over their byte tripwires) this slot: each is a bigger rotation pass than fits a 30-minute triage, left for the hourly operator or a future PM slot to pick up explicitly rather than half-done here.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-10 (~04:4x UTC): independent re-verification, Etsy-gate hang cleared by hand, nothing new unblocked
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `84015fbe0`, 619 commits fast-forwarded, tree clean. Started `preflight.py --skip-tests`; it stalled at the documented network-bound `gate_etsy_pdfs_current` Chromium PDF render (Etsy's fee page, 403 in this sandbox); killed the hung process and its orphaned Chromium tree by hand, the established pattern. A concurrent hourly check-in pushed mid-cycle (dashboard-only); re-fetched and ff-only merged onto `20eec814a` rather than fight a conflict.
