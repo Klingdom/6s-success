@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-10 (~10:1x slot): previous work confirmed finished, CHECKIN-LOG.md rotation applied
+
+Attached per Step 0, ff-only onto `7880db0ba`, tree clean. Previous work (the overdue owner-notification send) checked, not cited: tree clean, main pushed, BLOCKER-001 already fresh (08:4x slot). `preflight.py --skip-tests`: 0 FAIL through every gate reached, killed by its own 180s timeout at the documented network-bound `gate_etsy_pdfs_current`, confirmed genuinely stalled, not assumed. 31 open GitHub issues re-pulled fresh: unchanged, all decision/blocked-on-art, none from Phil since 2026-11-01. Found one genuinely unblocked item: `rotate_checkin_log.py --check` was DUE (24 of 221 entries, 10464 bytes over the 8-day window). Applied `--apply`; its own tests and `test_gate_checkin_log_not_oversized.py` pass; `--check` now CLEAN. Dashboard regenerated, pushed.
+
+NEXT FOR THE OPERATOR: hold the standing queue; nothing genuinely unblocked beyond routine housekeeping.
+
+HANDOFF-FILES: none
+
 ## scheduled operator cycle, 2026-11-10: owner-notification floor re-checked and found overdue, sent
 
 Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow` (waited for it rather than racing a second copy), `checkout -B main origin/main`, ff-only onto `6b0ae3ae0`, then a second ff-only pull picked up two concurrent PM check-ins already landed (`d51c3e04f`); discarded a stale local `ops/cycle-signal.json` diff from a read-only triage pass rather than fight the merge over a transient checkpoint file.
