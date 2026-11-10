@@ -341,6 +341,69 @@ _result_organize_storage_genuine = rgc.score_room([_organize_storage_genuine], [
 check("a genuine 'how to organize ... storage' row is NOT excluded by the build-construction pattern",
       _result_organize_storage_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-10, this operator cycle (Workshop pass): "workshop" collides
+# with the professional seminar/class/meeting sense (a dance workshop, a
+# training workshop, a writing workshop, "organize meditation workshop",
+# "organize negotiation workshop", "organize logistics for a workshop", "how
+# to organize a workshop presentation", "how to organize a successful
+# workshop"), none of which concern a home garage workshop. Two more
+# collisions in the same room's tier: "how to organize power tools in truck"
+# (vehicle-interior storage, the same mismatched-physical-space shape the
+# car-organizer branch already excludes for Garage) and "how to store
+# paintings in storage" (fine-art paintings, not the Finishing and Chemical
+# Zone's own paint cans). "woodworking workshop" was checked and left alone:
+# it is genuinely ambiguous (a home workshop used for woodworking is common
+# usage too), so excluding it would risk suppressing a real match on weak
+# evidence (CLAUDE.md 5d).
+_dance_workshop = {"query": "how to organize a dance workshop", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_dance_workshop = rgc.score_room([_dance_workshop], [], _room)
+check("a 'dance workshop' off-topic-context row is excluded",
+      _result_dance_workshop["on_topic_rows"] == 0)
+_training_workshop = {"query": "how to organize a training workshop", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_training_workshop = rgc.score_room([_training_workshop], [], _room)
+check("a 'training workshop' off-topic-context row is excluded",
+      _result_training_workshop["on_topic_rows"] == 0)
+_writing_workshop = {"query": "how to organize a writing workshop", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_writing_workshop = rgc.score_room([_writing_workshop], [], _room)
+check("a 'writing workshop' off-topic-context row is excluded",
+      _result_writing_workshop["on_topic_rows"] == 0)
+_successful_workshop = {"query": "how to organize a successful workshop", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_successful_workshop = rgc.score_room([_successful_workshop], [], _room)
+check("a 'successful workshop' off-topic-context row is excluded",
+      _result_successful_workshop["on_topic_rows"] == 0)
+_workshop_presentation = {"query": "how to organize a workshop presentation", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_workshop_presentation = rgc.score_room([_workshop_presentation], [], _room)
+check("a 'workshop presentation' off-topic-context row is excluded",
+      _result_workshop_presentation["on_topic_rows"] == 0)
+_meditation_workshop = {"query": "organize meditation workshop", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_meditation_workshop = rgc.score_room([_meditation_workshop], [], _room)
+check("an 'organize meditation workshop' off-topic-context row is excluded",
+      _result_meditation_workshop["on_topic_rows"] == 0)
+_negotiation_workshop = {"query": "organize negotiation workshop", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_negotiation_workshop = rgc.score_room([_negotiation_workshop], [], _room)
+check("an 'organize negotiation workshop' off-topic-context row is excluded",
+      _result_negotiation_workshop["on_topic_rows"] == 0)
+_logistics_workshop = {"query": "organize logistics for a workshop", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_logistics_workshop = rgc.score_room([_logistics_workshop], [], _room)
+check("an 'organize logistics for a workshop' off-topic-context row is excluded",
+      _result_logistics_workshop["on_topic_rows"] == 0)
+_truck_tools = {"query": "how to organize power tools in truck", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_truck_tools = rgc.score_room([_truck_tools], [], _room)
+check("a 'power tools in truck' vehicle-storage off-topic-context row is excluded",
+      _result_truck_tools["on_topic_rows"] == 0)
+_paintings_storage = {"query": "how to store paintings in storage", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_paintings_storage = rgc.score_room([_paintings_storage], [], _room)
+check("a 'store paintings in storage' fine-art off-topic-context row is excluded",
+      _result_paintings_storage["on_topic_rows"] == 0)
+_home_workshop_genuine = {"query": "how to organize a home workshop", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_home_workshop_genuine = rgc.score_room([_home_workshop_genuine], [], _room)
+check("a genuine 'home workshop' row is NOT excluded by the workshop-event pattern",
+      _result_home_workshop_genuine["on_topic_rows"] == 1)
+_woodworking_workshop_left_alone = {"query": "how to organize a woodworking workshop", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_woodworking_workshop_left_alone = rgc.score_room([_woodworking_workshop_left_alone], [], _room)
+check("the ambiguous 'woodworking workshop' row is deliberately left on-topic, not excluded",
+      _result_woodworking_workshop_left_alone["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

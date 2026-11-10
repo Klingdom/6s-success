@@ -2,9 +2,27 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-10, scheduled operator cycle (~17:0x UTC): declined a scope-overclaiming handoff, then closed Workshop's "workshop as event" noise cluster, 24% to 9% uncovered
+
+**Did:** attached per Step 0 onto a shallow, detached checkout (fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `8a5c5417c`, 712 commits, tree clean). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md` and the last four `NIGHTLY-LOG.md` entries before touching anything. Verified rather than cited: 31 open GitHub issues re-pulled fresh, unchanged since 2026-11-08T22:03:25Z, all `decision`/`blocked-on-art`/P0-decision, none from Phil, 0 open PRs; `inbox_agent.py --apply` no mail credential. The 15:4x PM check-in had handed forward "add a recipe cards and wrapping paper mention to Hall Closet's Paper and Household Backstock zone" as its one non-Phil-gated finding. Checked it before building anything (CLAUDE.md 5c/5d): `zones-v2-inventory.json`'s own definition of that zone lists only toilet paper, tissues, paper towels, light bulbs and batteries, and the only two places "wrapping paper"/"gift wrap" already appear in `content.json` (Guest Dresser, Home Office desk) name them as clutter to remove, not something any zone is written to store. Shipping the PM's suggestion as written would have overclaimed the zone's scope to chase one low-volume query, the same mistake A55 shipped and reverted for Family Room's "games" heading; declined, matching the original A43 call, recorded in `BACKLOG-2026-09-07.md` A86 so it is not repeated unchecked.
+
+Re-ran `room_guide_underperformance.py` live instead (CLAUDE.md 5d): Workshop was next at 24% uncovered. Pulled its real 15-row partial tier directly via `score_room()`, not the tool's own 8-row sample, and found a consolidated "workshop as professional seminar" noise cluster never named before (dance/training/writing/successful workshop, workshop presentation, organize meditation/negotiation workshop, organize logistics for a workshop) plus two more collisions (power tools in a truck; storing fine-art paintings, not paint cans).
+
+**Verified:** checked the full corpus before adding (CLAUDE.md 5c): every genuine on-topic row ("home workshop," "garage/diy/wood workshop organization ideas," "workshop storage ideas") names the workshop as a physical space directly and matches none of the new pattern. "Woodworking workshop" checked and deliberately left alone as genuinely ambiguous. Fail-then-pass proved directly: 10 new assertions added to `test_room_guide_candidates.py`, all 10 failed pre-fix with the exact pre-fix behaviour, added the `OFF_TOPIC_CONTEXT` branch, 64/64 passed. `test_room_guide_underperformance.py` 19/19 unaffected. Re-ran all 20 rooms' live ranking before/after to rule out a regression: Workshop 24% to 9% (15 to 5 partial of 63 to 53 on-topic), every other room unchanged. `fix_dashes.py --check` 0/0, `check_urls.py` 235/235, `affiliate.py --check` clean. `preflight.py --skip-tests` run live to a file twice (once before, once after the fix): both FAIL sections read "(none)" through every gate reached, stalled on the documented network-bound `gate_etsy_pdfs_current` each time, killed by hand along with the orphaned Chromium render tree, confirmed no stray files left.
+
+**Went well:** caught a PM handoff before it shipped a scope-overclaiming fix, and found a bigger, cleanly-excludable noise cluster in the room it pointed to next instead of starting the flawed suggestion.
+
+**Did not go well:** nothing notable this cycle.
+
+**Changing next cycle:** none; the process held.
+
+**Next:** same standing 31 Phil-gated issues. Workshop's remaining 5 partial rows (a "small garages" wording gap, the ambiguous "woodworking workshop," "paint in the workplace," and two "free plans" phrasings) are thin and mostly genuine wording gaps rather than noise; Garage (26%) is now the single highest-ranked room again.
+
+HANDOFF-FILES: none
+
 ## 2026-11-10, PM check-in (16:4x slot): previous work confirmed finished, the repeated Hall Closet recipe-card handoff closed by decision instead of handed on a fifth time, Garage handed to the operator
 
-NEXT FOR THE OPERATOR: mine Garage's 54-row partial tier (26% uncovered, the highest of any room right now) for one genuine zone-level wording gap, using `ops/room_guide_underperformance.py --room Garage` and the `zone-also-called.json` precedent (A21/A31/A32/A33/A74), because that lane is the one place this queue keeps finding real, non-Phil-gated, unblocked work.
+**Note, same operator cycle above:** this PM check-in and the 17:0x operator cycle above it independently reached the same conclusion on the Hall Closet handoff (decline, do not overclaim scope) at nearly the same time; the operator cycle also mined Workshop rather than waiting for this slot's own "Garage next" handoff, so Garage (26% uncovered, the single highest-ranked room again) is still the real next pick, not yet started.
 
 Attached per Step 0 onto a shallow, detached checkout: fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `8a5c5417c` (712 commits), tree clean before this cycle touched anything.
 

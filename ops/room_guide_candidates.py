@@ -351,7 +351,31 @@ OFF_TOPIC_CONTEXT = re.compile(
     r"tool\s*organizer|drop\s*zone|mudroom\s*storage|bench\s*storage|"
     r"outdoor\s*storage|outdoor\s*seat(?:ing|s)?|"
     r"outdoor\s*(?:dining\s*table|table\s*and\s*chairs)|handrail|"
-    r"exterior\s*stairs|book\s*storage\s*box)\b",
+    r"exterior\s*stairs|book\s*storage\s*box)\b|"
+    # Found 2026-11-10 (Workshop pass): "workshop" collides with the
+    # professional seminar/class/meeting sense (a dance workshop, a training
+    # workshop, a writing workshop, "a successful workshop," "a workshop
+    # presentation," "organize meditation/negotiation workshop," "organize
+    # logistics for a workshop"), none of which concern a home garage
+    # workshop; this site has no event-planning content to answer them with.
+    # Two more collisions in the same room's tier: "how to organize power
+    # tools in truck" is vehicle-interior storage, the same mismatched-
+    # physical-space shape the car-organizer branch above already excludes
+    # for Garage, and "how to store paintings in storage" means fine-art
+    # paintings, not the Finishing and Chemical Zone's own paint cans.
+    # "woodworking workshop" was checked and deliberately left alone: a home
+    # workshop used for woodworking is also common usage, so excluding it
+    # would risk suppressing a real match on weak evidence (CLAUDE.md 5d).
+    # Checked against the full corpus before adding: every genuine on-topic
+    # row ("how to organize a home workshop", "garage workshop organization
+    # ideas", "workshop storage ideas", "wood workshop organization ideas")
+    # names the workshop as a physical space directly and matches none of
+    # these branches.
+    r"\b(?:dance|successful|training|writing)\s+workshop\b|"
+    r"\bworkshop\s+presentation\b|"
+    r"\borganize\s+(?:logistics\s+for\s+a|meditation|negotiation)\s+workshop\b|"
+    r"\bpower\s+tools?\s+in\s+(?:a\s+)?truck\b|"
+    r"\bstore\s+paintings?\s+in\s+storage\b",
     re.I)
 
 
