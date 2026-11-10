@@ -444,6 +444,28 @@ _result_card_games_genuine = rgc.score_room([_card_games_genuine], [], _room)
 check("a genuine 'card games organizer storage' row is NOT excluded by the sports-card pattern",
       _result_card_games_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-10, mining Kids Bedroom's single gap-tier row. "building
+# beds for kids organization" asks how to construct a bed frame, not how to
+# organize a bedroom. "how to organize a clothing drive" / "organizing a
+# clothing drive" ask how to run a charity clothing collection event, not
+# how to arrange clothes in storage.
+_building_beds = {"query": "building beds for kids organization", "best_page": "/test-room-deck.html", "status": "gap"}
+_result_building_beds = rgc.score_room([_building_beds], [], _room)
+check("a 'building beds' off-topic-context row is excluded",
+      _result_building_beds["on_topic_rows"] == 0)
+_clothing_drive_1 = {"query": "how to organize a clothing drive", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_clothing_drive_1 = rgc.score_room([_clothing_drive_1], [], _room)
+check("a 'how to organize a clothing drive' off-topic-context row is excluded",
+      _result_clothing_drive_1["on_topic_rows"] == 0)
+_clothing_drive_2 = {"query": "organizing a clothing drive", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_clothing_drive_2 = rgc.score_room([_clothing_drive_2], [], _room)
+check("an 'organizing a clothing drive' off-topic-context row is excluded",
+      _result_clothing_drive_2["on_topic_rows"] == 0)
+_clothing_genuine = {"query": "how to organize clothing", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_clothing_genuine = rgc.score_room([_clothing_genuine], [], _room)
+check("a genuine 'how to organize clothing' row is NOT excluded by the clothing-drive pattern",
+      _result_clothing_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

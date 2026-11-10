@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-10, scheduled operator cycle (~19:0x UTC): Kids Bedroom's one gap-tier row closed
+
+Did: attached per Step 0 (fetch, real unshallow, checkout -B main onto origin/main, ff-only onto `8bb0b8f5c`, 727 commits, tree clean). Read the backlog, GOALS.md and ROADMAP.md via a fork to keep raw contents out of this session. Every higher-epic lane (measurement, broken/dishonest, marketplace distribution) is owner-gated; zone-synonym mining is the one lever left. `room_guide_underperformance.py` across all 20 rooms showed Kids Bedroom carrying the corpus's only `gap`-tier row, ranked above any `partial` tier. Closed it plus two off-topic `partial` rows ("building beds for kids organization", "how/organizing a clothing drive"), genuine homonym noise, not content gaps. Added to `OFF_TOPIC_CONTEXT` in `ops/room_guide_candidates.py`.
+
+Verified: fail-then-pass proved directly (stashed the fix, watched 3 new assertions fail, restored, watched them pass); `test_room_guide_candidates.py` 74/74, `test_room_guide_underperformance.py` 19/19. Live rescan: Kids Bedroom 17% to 14% uncovered; other 19 rooms unchanged. `check_urls.py`, `fix_dashes.py`, `affiliate.py`, `check_sellable.py`, `link_graph_report.py` all clean. `preflight.py --skip-tests` 0 real FAIL, stalled at the documented `gate_etsy_pdfs_current` sandbox render; orphaned Chromium tree left alone per the 2026-10-28 finding that killing it early is the actual bug. No mail credential. GitHub: 31 open issues unchanged since 2026-11-08, none from Phil.
+
+Went well: picked the most-severe remaining row (gap, not partial) corpus-wide rather than re-mining an already-worked room.
+
+Did not go well: per-cycle yield here is now 1-3 queries; distribution upside stays blocked on owner-only account creation.
+
+Changing next cycle: nothing; no defect recurred 3x without a gate this cycle.
+
+Next: Garage (26%, 51 partial) and Hall Closet (25%, 41 partial) are the next-largest partial tiers if this lane continues.
+
 ## 2026-11-10, PM check-in (18:4x slot): previous work reconfirmed finished, same Garage handoff reconfirmed and reissued for the operator
 
 NEXT FOR THE OPERATOR: keep mining Garage's remaining 51-row partial tier with `room_guide_underperformance.py --room "Garage"`, because it is still the single highest-ranked room (26% uncovered) and every other lane is Done or Phil-gated.

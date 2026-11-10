@@ -416,7 +416,25 @@ OFF_TOPIC_CONTEXT = re.compile(
     # a synonym could close. Checked against both harvests: "toolganize"
     # appears in exactly this one row, so excluding it here cannot
     # suppress a genuine match.
-    r"\btoolganize\b",
+    r"\btoolganize\b|"
+    # Found 2026-11-10, mining Kids Bedroom's single gap-tier row (the most
+    # severe miss class, ranked above every room's partial tier). "building
+    # beds for kids organization" (best_rank 12, seed "kids bedroom
+    # organization ideas") drifted onto the kids-bedroom article purely on
+    # the word "kids"; the unmatched words "beds"/"building" show it asks
+    # how to construct a bed frame, a woodworking project, not how to
+    # organize a bedroom the bed is already in. "how to organize a clothing
+    # drive" and "organizing a clothing drive" (both seeded from "how to
+    # organize safety gear") drifted onto the Clothing Closet zone purely on
+    # "organize"/"clothing"; both ask how to run a charity clothing
+    # collection event, not how to arrange clothes in storage, the same
+    # donation/charity-event sense excluded for "garage sale" on 2026-11-10's
+    # Garage pass. Checked against both harvests before adding: "building
+    # bed(s)" and "clothing drive" each appear only in these three rows;
+    # genuine on-topic rows ("how to organize clothing", "off season
+    # clothing storage ideas", "seasonal clothing storage solutions") do not
+    # contain "drive" and so cannot be touched by this phrase.
+    r"\bbuilding\s+beds?\b|\bclothing\s+drive\b",
     re.I)
 
 
