@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-10, scheduled operator cycle: fixed a brand/platform/geo measurement bug in room_guide_underperformance.py, closing 89 false 'uncovered' rows across 16 rooms
+
+Did: unshallowed and attached to main, read the backlog/status/owner-actions and recent log entries (dozens in a row since 2026-10-24 reconfirming "everything is Phil-gated"), then verified that claim live instead of trusting it. Mining Garage's top-ranked partial tier found a recurring, unnamed noise class: 89 on-topic gap/partial rows across 16 rooms score uncovered for one reason, the query names a retailer, platform or country ("pinterest", "ikea", "reddit", "dollar tree", "canada", "tamil"), which CLAUDE.md section 5 ("never brand names") means this site will never honestly match. Added as a new OFF_TOPIC_CONTEXT branch in `ops/room_guide_candidates.py`.
+
+Verified: checked both harvests first; only 2 of 89+ brand-bearing rows pair a brand word with a different unmatched word, both already excluded elsewhere, so no genuine gap is hidden. Fail-then-pass proved. `test_room_guide_candidates.py` 44/44, `test_room_guide_underperformance.py` 19/19, `fix_dashes.py`/`check_urls.py`/`affiliate.py --check`/`check_sellable.py` all clean. `preflight.py --skip-tests` run live twice: 0 FAIL both times (only FAIL was the self-healing stray-probe-files gate, cleaning up a killed headless-Chromium test's leftover). Stalled on the known network-bound `gate_etsy_pdfs_current` (HTTP 403), killed there. GitHub: 31 open issues, all decision, nothing new; no mail credential.
+
+Went well: verified the standing "nothing to do" claim instead of repeating it, and found real work.
+
+Did not go well: an earlier preflight hung on headless Chromium, killed by hand, same known sandbox limit.
+
+Changing next cycle: none; the gate is the fix.
+
+Next: mine Garage (28%, down from 32%) or Hall Closet (25%, down from 30%) for the next genuine wording gap.
+
+HANDOFF-FILES: none
+
 ## 2026-11-10, PM check-in (12:1x slot, 30-minute triage)
 
 Attached cleanly: fetch, checkout main, ff-only onto origin/main (669 commits). Previous work IS finished: `cycle_signal.py --check` read SAME against the 11:52:04Z snapshot before this cycle's own run. BACKLOG-2026-09-07.md sections 2-6 and all 30 open GitHub issues remain Done or Phil-gated (decision/blocked-on-art), none moved since Phil last touched one.

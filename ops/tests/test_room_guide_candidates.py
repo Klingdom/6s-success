@@ -267,6 +267,34 @@ _result_woodworking_workshop = rgc.score_room([_woodworking_workshop], [], _room
 check("a genuine on-topic 'organize a woodworking workshop' row is NOT excluded by the woodworking-fundamentals pattern",
       _result_woodworking_workshop["on_topic_rows"] == 1)
 
+# Found 2026-11-10 (scheduled operator cycle, Garage's 74-row partial
+# tier): 89 on-topic rows across 16 rooms score partial/gap for exactly one
+# reason, naming a retailer, a content platform, or a country/language
+# ("pinterest", "ikea", "reddit", "dollar tree", "canada", "australia",
+# "tamil"). CLAUDE.md section 5 ("Product types, never brand names") means
+# this site will never honestly earn these words in a heading, so they are
+# not a content gap a synonym can close.
+_pinterest = {"query": "test room organization ideas pinterest", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_pinterest = rgc.score_room([_pinterest], [], _room)
+check("a 'pinterest' brand-noise row is excluded",
+      _result_pinterest["on_topic_rows"] == 0)
+_dollar_tree = {"query": "test room organization dollar tree", "best_page": "/test-room-deck.html", "status": "gap"}
+_result_dollar_tree = rgc.score_room([_dollar_tree], [], _room)
+check("a 'dollar tree' brand-noise row is excluded",
+      _result_dollar_tree["on_topic_rows"] == 0)
+_canada = {"query": "test room storage organizer canada", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_canada = rgc.score_room([_canada], [], _room)
+check("a 'canada' geo-noise row is excluded",
+      _result_canada["on_topic_rows"] == 0)
+_home_office = {"query": "how to organize a home office", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_home_office = rgc.score_room([_home_office], [], _room)
+check("a genuine 'home office' row is NOT excluded by the 'home depot' two-word phrase",
+      _result_home_office["on_topic_rows"] == 1)
+_amazon_shopping = {"query": "amazon shopping car organizer", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_amazon_shopping = rgc.score_room([_amazon_shopping], [], _room)
+check("'amazon shopping car organizer' stays excluded (already caught by the car-organizer pattern too)",
+      _result_amazon_shopping["on_topic_rows"] == 0)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

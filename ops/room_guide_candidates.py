@@ -258,7 +258,42 @@ OFF_TOPIC_CONTEXT = re.compile(
     # already its own declined class, untouched by this narrower phrase)
     # and the genuine Workshop row above, neither of which this exact
     # two-word phrase matches.
-    r"\bwoodworking fundamentals\b",
+    r"\bwoodworking fundamentals\b|"
+    # Found 2026-11-10 (scheduled operator cycle, mining Garage's 74-row
+    # partial tier, the shape entries A68-A78 kept re-discovering one word
+    # at a time without ever naming the class). "garage organization ideas
+    # pinterest/ikea/reddit/lowes/youtube/home depot", "garden tool
+    # organizer canada/rona", "kitchen organization ideas dollar
+    # tree/amazon/tamil/indian", "linen cupboard organisation
+    # kmart/target/australia" and 70 more rows across 16 rooms score
+    # `partial`/`gap` for exactly one reason: the query names a retailer, a
+    # content platform, or a country/language, and the room's real content
+    # does not. It never will, by design: CLAUDE.md section 5 is explicit,
+    # "Product types, never brand names," so this site cannot honestly
+    # become the page that ranks for "ikea" or "pinterest" without breaking
+    # its own rule, and a country/language word ("canada", "australia",
+    # "tamil", "indian") is not a wording gap a synonym closes either,
+    # since the advice itself does not change by country. Counted directly
+    # against the live corpus before adding (CLAUDE.md 5c/5d): 89 on-topic
+    # `gap`/`partial` rows across 16 rooms have unmatched_words that are
+    # entirely one of these words, and only 2 rows anywhere in either
+    # harvest contain one of these words AND a different unmatched word
+    # ("amazon shopping car organizer", "how to declutter my life
+    # reddit"), both already excluded above by the `car organizers?` and
+    # `declutter my life` branches, so this cannot suppress a genuine
+    # match or hide a second real gap behind a brand mention. This is a
+    # measurement-tool correction, not a content fix: every room's
+    # uncovered percentage was counting rows that cannot be fixed without
+    # violating section 5, inflating Garage/Kitchen/Pantry/Hall Closet/Home
+    # Office's own shortfall and sending cycle after cycle back through
+    # the same retailer-name rows. "home depot" and "dollar tree" are
+    # exact two-word phrases, not split on "home"/"dollar"/"tree" alone,
+    # since those single words are common and unrelated (e.g. "home
+    # office", "linen closet organization amazon" already matches
+    # \bamazon\b without needing "tree").
+    r"\bpinterest\b|\bikea\b|\breddit\b|\byoutube\b|\bamazon\b|\blowes\b|"
+    r"\bkmart\b|\btarget\b|\bwalmart\b|\brona\b|\bhome depot\b|"
+    r"\bdollar tree\b|\baustralia\b|\bcanada\b|\bindian?\b|\btamil\b",
     re.I)
 
 
