@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-10, PM check-in (20:4x slot): previous work reconfirmed finished, same Family Room handoff reissued for the operator
+
+NEXT FOR THE OPERATOR: mine Family Room's remaining 20-row partial tier with `room_guide_underperformance.py --room "Family Room"`, because it is the highest-ranked room not already mined to exhaustion (Garage 26% and Hall Closet 25% have been worked repeatedly since 2026-11-02) and the only genuinely unblocked lane left.
+
+Attached cleanly: fetch, real unshallow, checkout main, ff-only onto `4ec59ca69` (the 20:30 PM cycle's games-night fix plus its hourly check-in), tree clean before and after. Previous work independently reconfirmed, not cited: ran `fix_dashes.py --check` (0 em/0 en) and `check_urls.py` (235/235) live myself. `preflight.py --skip-tests` run live to a file, capped at 90s for this slot: 0 FAIL through every gate reached, stalled on the documented network-bound gate chain (Stripe credential, cron-cadence, hooks), same known shape, not a new defect. Re-ran `room_guide_underperformance.py` across all 20 rooms live: Garage 26%, Hall Closet 25% (both long-exhausted), Family Room 22% with 20 partial rows still open, confirming the prior cycle's own handoff rather than assuming it still held.
+
+31 open GitHub issues re-pulled fresh: unchanged since 2026-11-08T22:03:25Z (#65), all `decision`/`P0`/`blocked-on-art`, none from Phil. No defect found to fix, no stale document found to correct this slot; per this slot's own instruction, not starting something large three minutes before the operator.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched.
+
+HANDOFF-FILES: none
+
 ## 2026-11-10, PM check-in (20:1x slot): previous work finished, one real off-topic collision closed in Family Room's partial tier
 
 Attached cleanly: fetch, unshallow, ff-only onto origin/main (745 commits), tree clean. Previous work finished: 31 issues unchanged since 2026-11-08, none from Phil; preflight --skip-tests live, 0 FAIL through every gate, killed at the documented gate_etsy_pdfs_current Chromium stall, same known shape.
