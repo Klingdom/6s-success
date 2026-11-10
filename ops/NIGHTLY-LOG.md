@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (13:1x slot, 30-minute triage, exhausted queue reconfirmed, orphaned Etsy render killed)
+
+NEXT FOR THE OPERATOR: hold the standing queue (31 open issues, all decision/blocked-on-art, unchanged since 2026-11-08T22:03:25Z); nothing genuinely unblocked beyond routine re-verification.
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow` (ran long in the background, waited for it), `checkout -B main origin/main`, ff-only onto `4b0e1e549` (676 commits), tree clean before this cycle touched anything.
+
+Previous work (the 12:4x PM check-in's orphan kill and the hourly job after it) checked, not cited: tree clean, main matched origin exactly, `cycle_signal.py --check` read SAME against the 12:44:33Z snapshot. Ran the live checks anyway rather than stop at SAME. `preflight.py --skip-tests` run fresh to a file: both FAIL sections read "(none)", 0 real FAIL through every gate reached, stopped at its own documented network-bound `gate_etsy_pdfs_current` stall (Etsy's fee page, HTTP 403 in this sandbox). Found and killed the same recurring orphaned process tree (`build_etsy_assets.py` plus its live Chromium children) still running after the stall; killed by hand, the established pattern. All 11 rotation gates checked individually (`rotate_checkin_log`, `rotate_backlog`, `rotate_backlog_closed`, `rotate_backlog_section1b/2/3/4_items`, `rotate_backlog_done_items`, `rotate_owner_actions`, `rotate_owner_actions_closed_items`, `rotate_owner_actions_gemini_billing`, `rotate_owner_actions_item_history`, `rotate_status_history`, `rotate_status_metadata`, `rotate_status_workstreams`, `rotate_backlog_journal_core`, `rotate_nightly_log`): all CLEAN, nothing due. `cold_read_ledger.py --stale`: 0. Re-derived the deploy verdict directly (`resolve_verdict_commit('aeb22db95bcb7ece')` -> `87c474a1e`, `deploy_gap_material_commits` against real current HEAD returns empty), and independently called `status_deploy_verdict_problem()` against the real committed `STATUS.md`: returns clean, no stale citation this time.
+
+31 open GitHub issues re-pulled fresh via the REST API (not cited from `STATUS.md`): unchanged, same set, every one `decision`/`blocked-on-art`, most recent `updated_at` still 2026-11-08T22:03:25Z (#65), none from Phil. 0 open PRs. Read issue #42 (the standing cadence decision) directly rather than cite it: still open, 9 comments, unchanged since 2026-11-07, Phil has not weighed in. `ops/last-owner-notification.json` checked against its own rule: no-repeat-before 2026-11-12T18:00Z, still in the future, issue count still 31, nothing material changed, no push sent.
+
+Mined the global keyword-demand gap tier (88 rows, all ranks) for a genuine on-topic zone/room synonym fresh rather than trust a prior read: every row is the same already-documented noise shape (construction/DIY-from-scratch: handrails, walkways, decking, Revit stair railings, garden steps; commercial/institutional settings: classroom benches, daycare, cribbage tournaments, a CS2 workshop map; Vastu spiritual direction; retailer-branded queries naming a store; plain autocomplete noise). No confident on-topic match found; nothing added to `zone-also-called.json`.
+
+No new defect found small enough to close beyond the orphan kill. Dashboard regenerated, pushed. No code, price, product or page touched.
+
+HANDOFF-FILES: none
+
+HANDOFF-FILES: none
+
 ## 2026-11-10, PM check-in (12:4x slot, 30-minute triage, exhausted queue reconfirmed, orphaned Etsy render killed)
 
 NEXT FOR THE OPERATOR: hold the standing queue (31 open issues, all decision/blocked-on-art, unchanged since 2026-11-08T22:03:25Z), because nothing is genuinely unblocked beyond routine re-verification.
