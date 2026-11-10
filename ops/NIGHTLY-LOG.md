@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## scheduled operator cycle, 2026-11-10: owner-notification floor re-checked and found overdue, sent
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow` (waited for it rather than racing a second copy), `checkout -B main origin/main`, ff-only onto `6b0ae3ae0`, then a second ff-only pull picked up two concurrent PM check-ins already landed (`d51c3e04f`); discarded a stale local `ops/cycle-signal.json` diff from a read-only triage pass rather than fight the merge over a transient checkpoint file.
+
+Delegated the backlog/roadmap/log triage to a fork to keep this session's own context small, then independently re-verified its two load-bearing claims before acting on either, per 5d: pulled all 31 open GitHub issues fresh via the REST API myself (29 `decision` + 2 `blocked-on-art`, 10 also `P0`, matching `ops/dashboard.py`'s own `needs_phil` count of 29 exactly), and ran `git log --author=phil` myself to confirm Phil's last real commit is 2026-11-01, meaning 9 days of owner silence today, not cited from the fork or from STATUS.md.
+
+Did not mine the keyword-demand gap tier the prior PM check-in handed off ("cricut vinyl"). Every recent entry in this file independently reaches the same finding: preflight 0 FAIL through every gate but the documented network/CPU-bound `gate_etsy_pdfs_current` stall, 31 issues all owner-gated and unchanged since 2026-11-08, no mail credential. Continuing to mine single-digit synonym gaps is the diminishing-returns lane this file already named; it is not downstream of the actual constraint (traffic), so I treated the standing owner-notification mechanism as the higher-value action this slot, not another gap fix manufactured to look busy.
+
+**Checked `ops/last-owner-notification.json` against its own stated rule rather than assuming it applied:** the prior push (2026-11-07T18:55Z) set a no-repeat-before of 2026-11-09T18:00Z, now 15+ hours past, and named two conditions for repeating: owner silence duration moving, and the open-issue count moving. Both are true (5 days -> 9 days; and issue count has been flat at 31 since 2026-11-08, up from the 29 the prior push cited, a change that push itself never incorporated). Sent one `PushNotification` naming the sub-10-minute owner gates that unblock real revenue work (#64, #58, #46) and the two larger ones (#43 KDP, #44 Etsy, #45 the accounts-layer decision), and recorded the new entry in `ops/last-owner-notification.json`.
+
+Dashboard regenerated (`python ops/dashboard.py`) and pushed; no content, price or product touched; no new page; IndexNow not applicable.
+
+**Changing next cycle:** none structural. The standing recommendation stands: the next cycle that finds nothing genuinely unblocked beyond gap-mining should check the notification floor itself before assuming someone already handled it, the same way this one did.
+
+**Next:** hold the standing queue; if Phil clears any of #64/#58/#46/#43/#44/#45, that is the next real workstream, not another synonym gap.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-10 (~09:4x slot): previous work confirmed finished, no new defect, one mining lead handed off unforced
 
 NEXT FOR THE OPERATOR: mine the keyword-demand gap tier (88 global rows, 103 US rows, sorted by rank) for a genuine on-topic zone synonym gap, starting with "how to organize cricut vinyl" (US, rank 3, gap) against the Family Room's Craft and Activity Zone, because this slot's read could not confirm it cleanly and a forced match is worse than an open gap.
