@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-10 (~08:4x slot): a real stale deploy-verdict citation found and fixed across four STATUS.md sections, standing exhaustion reconfirmed
+
+NEXT FOR THE OPERATOR: cold-read `ops/build_zone_pages.py` and re-ledger it (`cold_read_ledger.py --stale` names it directly: ledgered 2026-11-09, but last touched 2026-11-10 by this morning's Kitchen content-gap fix), because it is the one concrete, genuinely unblocked item this slot found; everything else is still decision or blocked-on-art.
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow` (waited for it in the background rather than racing a second copy), `checkout -B main origin/main`, ff-only onto `c0d74250f`, tree clean before this cycle touched anything.
+
+Previous work (the 08:1x PM check-in and the automated Kitchen-gap merge and deploy-verdict checks after it) checked, not cited. Working tree was clean and main matched origin exactly. GitHub re-pulled live: still 31 open issues, same set, every one `decision`/`blocked-on-art`, most recent `updated_at` unchanged at 2026-11-08T22:03:25Z (#65), none from Phil, 0 open PRs.
+
+**Found and fixed: the automated `Deploy verdict` job that ran at 08:28:29Z (commit `152bf94e1`, build `aeb22db95bcb7ece`) only writes `ops/deploy-verdict.json` and never touches `STATUS.md`, so by the time this cycle read it, four sections (`BLOCKER-001`, the "Public website" table row, the "Production traceability" table row, and the "Production Knowledge" paragraph, plus the gate-unparsed "Currently Deployed Build"/"Confirmed At"/"Repository HEAD Build" fifth section) all still cited the prior 2026-11-09T20:44:00Z confirmation.** The same recurring "source corrected, sibling never told" shape this file's own history names repeatedly. Re-derived directly before touching anything: `resolve_verdict_commit('aeb22db95bcb7ece')` resolves to `87c474a1e`; `deploy_gap_material_commits('87c474a1e')` against real current `HEAD` returns an empty list, matching `site/build-id.txt` exactly. All five citations corrected to the real build and commit; `status_deploy_verdict_problem()` called directly against the edited file returns clean (empty string), where it had returned a four-part problem string before the fix.
+
+`preflight.py --skip-tests` run fresh to a file after the edit (not a short timeout that would misreport a stale wait as a failure): confirmed 0 FAIL through every gate before `gate_tests`, including `gate_status_deploy_verdict_current` itself, via the run's own mid-pass checkpoint (`ops/cycle-signal.json`, recorded 08:47:23Z against this cycle's edited `STATUS.md` hash). The run then reached the documented CPU-bound `gate_etsy_pdfs_current` stage (real local Chromium PDF rendering of the three Etsy listing packages, not a network hang this time; two of three PDFs had already rendered when stopped); stopped it by hand once the checkpoint had already proven everything this cycle touched, the established pattern, rather than wait out a multi-minute local render in a 30-minute slot. `check_urls.py` (235/235), `audit_pages.py` (0 duplicates), `fix_dashes.py --check` (0 em, 0 en dashes), `affiliate.py --check`, `check_sellable.py`, `link_graph_report.py` (0 orphans), `build_id.py --check` (current) each re-run directly and clean.
+
+No new content or product gap found or manufactured to fill this slot; this was a documentation-honesty fix, not a site change, so IndexNow is not applicable.
+
+Dashboard regenerated (`python ops/dashboard.py`), pushed to main. `STATUS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No content, price or product touched, no new page.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-10 (~08:1x slot): previous work confirmed finished, standing exhaustion reconfirmed, nothing new unblocked
 
 NEXT FOR THE OPERATOR: hold the standing queue (31 open issues, all decision/blocked-on-art, unchanged since 2026-11-08T22:03:25Z), because nothing is genuinely unblocked.
