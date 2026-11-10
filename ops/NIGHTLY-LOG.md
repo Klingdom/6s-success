@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-10, PM check-in (13:4x slot): caught and fixed my own near-miss, front matter briefly blanked by a self-inflicted timeout kill
+
+NEXT FOR THE OPERATOR: mine Garage (28% uncovered) or Hall Closet (25%) for the next genuine on-topic wording gap, because the 13:1x operator cycle's own measurement-bug fix just cleared 89 false rows and named these two as the next place a real gap might still hide; nothing else is genuinely unblocked beyond routine re-verification (31 open issues, all decision/P0-decision, unchanged since 2026-11-08T22:03:25Z, none from Phil).
+
+Attached cleanly: fetch, real unshallow, checkout main, ff-only onto `6faa075d1` (676 commits, hourly job only ahead of the 13:1x PM check-in). Working tree clean before this cycle touched anything. Previous work (13:1x PM check-in's own triage plus the operator cycle just before it, the brand/platform/geo measurement-bug fix) checked, not cited: `cycle_signal.py --check` correctly flagged BACKLOG-2026-09-07.md as changed since the 13:22:23Z snapshot, which was the new Done row the operator cycle added and the PM cycle had already verified (fail-then-pass, 44/44 and 19/19 tests, preflight clean) before I started. GitHub re-pulled directly: 31 open issues unchanged since 2026-11-08, 0 PRs, matches the prior cycle exactly.
+
+**Caused and fixed one defect this slot.** Ran `preflight.py --skip-tests` under a 90s `timeout` rather than letting it run to its own stall; the kill landed mid-way through `gate_manual_print_fonts_current`'s call into `build_manual_print.py main()`, after it had rewritten the three committed manual files with the bracketed template copyright page but before that function's own chained `fill_front_matter.FFM.main(True)` call restored the real values. Caught in the diff before committing, exactly as `gate_front_matter_filled`'s own docstring describes: "Philip Kling" and "Nova Consulting, 4328 North Morninggale Place, Boise, ID 83713" briefly read back as "[AUTHOR OR RIGHTS HOLDER]" and "[PUBLISHER ADDRESS]," plus two ISBN/printing-number lines that should be dropped reappeared. Root cause was my own kill, not the generator: `ops/front-matter.json`'s real answers were untouched throughout. Fixed by running `ops/fill_front_matter.py --apply` directly to completion, confirmed all 11 fields re-filled (39 occurrences), re-ran `gate_front_matter_filled` directly, passes clean. Working tree was clean again before any commit; nothing resembling this ever reached origin.
+
+**Changing next cycle:** when this repository's own preflight needs killing early, kill it after it stalls at the documented network-bound Etsy gate (the established pattern every recent cycle uses), not with a blanket wall-clock `timeout` that can land mid multi-file-write inside an earlier gate. No new gate needed; the existing `gate_front_matter_filled` already caught this correctly and immediately.
+
+No orphaned Etsy/Chromium process found this slot (none spawned before the kill landed). Dashboard regenerated and shipped. No price, product or customer-facing site page touched; the two manual files that were briefly wrong were never committed in that state.
+
+HANDOFF-FILES: none
+
 ## PM check-in (13:1x slot, 30-minute triage, exhausted queue reconfirmed, orphaned Etsy render killed)
 
 NEXT FOR THE OPERATOR: hold the standing queue (31 open issues, all decision/blocked-on-art, unchanged since 2026-11-08T22:03:25Z); nothing genuinely unblocked beyond routine re-verification.
