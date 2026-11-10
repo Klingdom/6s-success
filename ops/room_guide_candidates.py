@@ -387,7 +387,36 @@ OFF_TOPIC_CONTEXT = re.compile(
     r"\bworkshop\s+presentation\b|"
     r"\borganize\s+(?:logistics\s+for\s+a|meditation|negotiation)\s+workshop\b|"
     r"\bpower\s+tools?\s+in\s+(?:a\s+)?truck\b|"
-    r"\bstore\s+paintings?\s+in\s+storage\b",
+    r"\bstore\s+paintings?\s+in\s+storage\b|"
+    # Found 2026-11-10 (scheduled operator cycle, mining Garage's remaining
+    # 54-row partial tier, the one the 17:1x PM check-in handed forward as
+    # the single highest-ranked room, 27% uncovered). Two more word-overlap
+    # collisions, checked against both harvests before excluding (CLAUDE.md
+    # 5c/5d). "sports card storage ideas" lands on the Sports and Recreation
+    # Zone purely because "sports" overlaps that zone's title; the zone's
+    # own content.json ("Bikes on wall hooks," "One labeled bin per
+    # activity," helmets, cleats) is about gear for sports a household
+    # plays, not a collectible trading-card hobby. "organize tool adobe"
+    # lands on the Hand Tool Wall and Cabinets zone on "tool" alone; "adobe"
+    # names design software (Photoshop/Acrobat) or a construction material,
+    # neither of which this site's pegboard-and-hand-tool zone addresses.
+    # Checked against both harvests before adding: "card" appears in
+    # exactly two rows total, this one and the genuine on-topic "card games
+    # organizer storage" (Family Room's Board Game and Puzzle Zone, an
+    # activity noun this exact phrase does not touch), so excluding the
+    # two-word phrase here cannot suppress that match; "adobe" appears in
+    # exactly the one row named here.
+    r"\bsports cards?\b|\badobe\b|"
+    # Same pass: "toolganize power tool organiser" is a single Bing-sourced
+    # row (best_rank 21, seed "how to organize power tool storage") whose
+    # unmatched word, "toolganize," is not an English word a page could
+    # honestly carry; it reads as a scrape/autosuggest concatenation
+    # glitch of "tool" and "organize," the same non-fixable-artifact shape
+    # as this file's existing brand/platform exclusions, not a wording gap
+    # a synonym could close. Checked against both harvests: "toolganize"
+    # appears in exactly this one row, so excluding it here cannot
+    # suppress a genuine match.
+    r"\btoolganize\b",
     re.I)
 
 

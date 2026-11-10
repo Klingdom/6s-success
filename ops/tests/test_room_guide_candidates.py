@@ -417,6 +417,33 @@ _result_woodworking_workshop_left_alone = rgc.score_room([_woodworking_workshop_
 check("the ambiguous 'woodworking workshop' row is deliberately left on-topic, not excluded",
       _result_woodworking_workshop_left_alone["on_topic_rows"] == 1)
 
+# Found 2026-11-10 (scheduled operator cycle, mining Garage's remaining
+# 54-row partial tier). "sports card storage ideas" collides with the
+# Sports and Recreation Zone's title on "sports" alone; that zone's real
+# content is bikes, bins, cleats and helmets for sports a household plays,
+# nothing about collectible trading cards. "organize tool adobe" collides
+# with the Hand Tool Wall and Cabinets zone on "tool" alone; "adobe" names
+# design software or a construction material, neither addressed by a
+# pegboard-and-hand-tool zone. "toolganize power tool organiser" is a
+# single Bing-sourced scrape/autosuggest artifact ("toolganize" is not an
+# English word), not a real query a page could honestly answer.
+_sports_card = {"query": "sports card storage ideas", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_sports_card = rgc.score_room([_sports_card], [], _room)
+check("a 'sports card' off-topic-context row is excluded",
+      _result_sports_card["on_topic_rows"] == 0)
+_organize_tool_adobe = {"query": "organize tool adobe", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_organize_tool_adobe = rgc.score_room([_organize_tool_adobe], [], _room)
+check("an 'organize tool adobe' off-topic-context row is excluded",
+      _result_organize_tool_adobe["on_topic_rows"] == 0)
+_toolganize = {"query": "toolganize power tool organiser", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_toolganize = rgc.score_room([_toolganize], [], _room)
+check("a 'toolganize' scrape-artifact row is excluded",
+      _result_toolganize["on_topic_rows"] == 0)
+_card_games_genuine = {"query": "card games organizer storage", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_card_games_genuine = rgc.score_room([_card_games_genuine], [], _room)
+check("a genuine 'card games organizer storage' row is NOT excluded by the sports-card pattern",
+      _result_card_games_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

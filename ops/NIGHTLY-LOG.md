@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-10, scheduled operator cycle (~17:4x UTC): three more Garage word-overlap collisions closed in the room's remaining 54-row partial tier
+
+**Did:** attached per Step 0 onto a shallow, detached checkout (fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `b7391ea20`, 720 commits, tree clean). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md` and the last four log entries before touching anything. Ran `preflight.py --skip-tests` live: 0 real FAIL through every gate reached, stalled on the documented network-bound `gate_etsy_pdfs_current`, killed the orphaned Chromium/`build_etsy_assets.py` tree by hand (confirmed zombie, not stray files; `git status` clean afterward). GitHub re-pulled directly: 31 open issues, all `decision`/`P0`/`blocked-on-art`, unchanged since 2026-11-08T22:03:25Z, 0 open PRs, none from Phil. `inbox_agent.py --apply`: no mail credential in this sandbox (unchecked, not empty). Picked up the 17:1x PM check-in's own handoff: Garage's remaining 54-row partial tier, 27% uncovered, "operator-cycle-sized, left for :43."
+
+**Verified:** read all 54 partial rows directly via `score_room()`, not the tool's own 8-row sample, and checked each candidate against the real zone content (CLAUDE.md 5c/5d) before touching anything. "sports card storage ideas" and "organize tool adobe" are word-overlap collisions on "sports" and "tool" alone (Sports and Recreation Zone is team/outdoor gear, not trading cards; Hand Tool Wall and Cabinets is pegboard tools, not design software or adobe brick). "toolganize power tool organiser" is a single Bing scrape/autosuggest artifact, not a real English word. Confirmed "card" appears in exactly two rows total so excluding "sports card(s)" cannot touch the genuine "card games organizer storage" row; "adobe" and "toolganize" each appear in exactly one row. Deliberately left alone, matching the 2026-11-05 hunting/fishing/camping-gear precedent on this same room: the 4-row gym/workout-equipment cluster is a genuine unaddressed gap (no room in the 20-room corpus covers home-gym equipment), not noise, and forcing a mention in would be fabricated relevance. Added the three exclusions to `OFF_TOPIC_CONTEXT` in `ops/room_guide_candidates.py`. Fail-then-pass proved directly: stashed the fix, the 3 new assertions failed with the exact pre-fix behaviour, restored, all passed. `test_room_guide_candidates.py` 70/70 (4 new, including a negative control), `test_room_guide_underperformance.py` 19/19. Re-ran the live ranking before/after: Garage 54 to 51 partial (203 to 200 on-topic, 27% to 26% uncovered); full 20-room rescan confirmed every other room unchanged, including the Family Room control case. `fix_dashes.py --check` 0/0, `check_urls.py` 235/235, `affiliate.py --check` clean, `check_sellable.py` 124/126 (2 person-delivered services by design).
+
+**Went well:** followed the prior slot's own handoff instead of re-deriving a pick from scratch, and the hunting/fishing-gear precedent made the gym-equipment judgment call fast and consistent rather than a fresh debate.
+
+**Did not go well:** `preflight.py` without `--skip-tests` was not attempted this time (lesson from the 15:4x cycle already applied); no new defect otherwise.
+
+**Changing next cycle:** none; the process held.
+
+**Next:** same standing 31 Phil-gated issues. Garage's remaining 51 partial rows (fishing/hunting/tactical-gear, gym-equipment, and several single-word wording gaps like "food"/"gym"/"boxes"/"mount") are now a mix of documented genuine gaps and thinner wording differences; Hall Closet (25% uncovered) is the next-highest room if a future slot wants to keep mining rather than pick a fresh room.
+
+HANDOFF-FILES: none
+
 ## 2026-11-10, PM check-in (17:4x slot): previous work confirmed finished independently, nothing new unblocked, Garage handed straight to the operator
 
 NEXT FOR THE OPERATOR: mine Garage's remaining 54-row partial tier with `room_guide_underperformance.py`, because the 17:1x PM cycle already sized and queued it and Garage (26% uncovered) is the single highest-ranked room again.
