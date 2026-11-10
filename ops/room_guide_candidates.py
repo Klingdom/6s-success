@@ -532,7 +532,44 @@ OFF_TOPIC_CONTEXT = re.compile(
     # exactly this one; genuine on-topic rows ("how to organize craft
     # room", "how to organise craft materials", "how to organize sewing
     # craft room") contain neither phrase and cannot be touched.
-    r"\bcraft fair\b|\bcraft market\b",
+    r"\bcraft fair\b|\bcraft market\b|"
+    # Found 2026-11-10, PM check-in mining Dining Room's 5-row partial
+    # tier, its first pass. Four of the five rows are noise from the
+    # underlying page-similarity routing itself, not a zone-vocabulary
+    # collision this file's other patterns fix, but the same exclusion
+    # mechanism removes them from the on-topic tally either way. "above
+    # stove storage ideas" and "what to store above stove" land on Dining
+    # Room pages (the deck, then the sideboard storage zone) purely on
+    # "storage"; a stove is a kitchen appliance, and neither query names a
+    # dining-room fixture. The wider stove cluster in both harvests routes
+    # just as randomly elsewhere (primary-bedroom-deck.html, kids-bedroom-
+    # deck.html, invest.html), confirming this is a routing artifact, not a
+    # real dining-room query; the correctly-routed stove rows ("arrange
+    # stove", "stove organization", "how to store a stove") land on the
+    # Kitchen's own Cooking Zone and are already "covered", unaffected
+    # since neither contains the phrase "above stove". "how to organize a
+    # small desk without drawers" lands on the dining-room article purely
+    # on "organize"/"desk"; checked against both harvests first, the near-
+    # identical "how to organize desk without drawers" and "...office desk
+    # without drawers" (no "small") correctly route to Home Office's own
+    # Desk Drawers and Pedestal zone and are already "covered", proving
+    # this is the one genuinely misrouted variant, not a desk-vocabulary
+    # gap in that zone. "how to organize docking station" lands on the
+    # Beverage or Coffee Station zone purely on "station"; a docking
+    # station charges a phone or laptop, the same digital-device
+    # confusion DIGITAL already excludes for "pc"/"hard drive", not a
+    # drink station, and the zone's own genuine "coffee station" rows
+    # ("how to organize a coffee station", "coffee station organizer
+    # ideas") do not contain the word "docking" and stay on-topic. "how to
+    # organize dish cloths" lands on the dining-room deck purely on
+    # "organize"; the zone's own content.json text uses "cloth" only for
+    # tablecloths and cleaning rags, never a dish cloth (a kitchen rag for
+    # washing or drying dishes), so this is a different household item
+    # with no dining-room page to answer it honestly. Checked each phrase
+    # against the full corpus before adding: "above stove" appears in
+    # exactly these two rows, "small desk" in exactly one, "docking
+    # station" in exactly one, "dish cloth(s)" in exactly one.
+    r"\babove stove\b|\bsmall desk\b|\bdocking station\b|\bdish cloths?\b",
     re.I)
 
 

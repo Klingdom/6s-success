@@ -605,6 +605,61 @@ _result_game_library_genuine = rgc.score_room([_game_library_genuine], [], _room
 check("a genuine 'how to organize game library' row is NOT excluded by the game-files/systems pattern",
       _result_game_library_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-10, PM check-in mining Dining Room's 5-row partial tier.
+# "above stove storage ideas"/"what to store above stove" land on Dining
+# Room pages purely on "storage"; a stove is a kitchen appliance, not a
+# dining-room fixture.
+_above_stove_1 = {"query": "above stove storage ideas", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_above_stove_1 = rgc.score_room([_above_stove_1], [], _room)
+check("an 'above stove storage ideas' off-topic-context row is excluded",
+      _result_above_stove_1["on_topic_rows"] == 0)
+_above_stove_2 = {"query": "what to store above stove", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_above_stove_2 = rgc.score_room([_above_stove_2], [], _room)
+check("a 'what to store above stove' off-topic-context row is excluded",
+      _result_above_stove_2["on_topic_rows"] == 0)
+_stove_genuine = {"query": "stove organization", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_stove_genuine = rgc.score_room([_stove_genuine], [], _room)
+check("a genuine 'stove organization' row is NOT excluded by the above-stove pattern",
+      _result_stove_genuine["on_topic_rows"] == 1)
+
+# Same pass: "how to organize a small desk without drawers" lands on the
+# dining-room article purely on "organize"/"desk"; the near-identical
+# "desk without drawers" (no "small") already routes correctly to Home
+# Office's own Desk Drawers and Pedestal zone and must stay on-topic.
+_small_desk = {"query": "how to organize a small desk without drawers", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_small_desk = rgc.score_room([_small_desk], [], _room)
+check("a 'how to organize a small desk without drawers' off-topic-context row is excluded",
+      _result_small_desk["on_topic_rows"] == 0)
+_desk_genuine = {"query": "how to organize desk without drawers", "best_page": "/test-room-deck.html", "status": "covered"}
+_result_desk_genuine = rgc.score_room([_desk_genuine], [], _room)
+check("a genuine 'how to organize desk without drawers' row is NOT excluded by the small-desk pattern",
+      _result_desk_genuine["on_topic_rows"] == 1)
+
+# Same pass: "how to organize docking station" lands on the Beverage or
+# Coffee Station zone purely on "station"; a docking station charges a
+# phone or laptop, the same digital-device confusion DIGITAL already
+# excludes elsewhere, not a drink station.
+_docking_station = {"query": "how to organize docking station", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_docking_station = rgc.score_room([_docking_station], [], _room)
+check("a 'how to organize docking station' off-topic-context row is excluded",
+      _result_docking_station["on_topic_rows"] == 0)
+_coffee_station_genuine = {"query": "how to organize a coffee station", "best_page": "/test-room-deck.html", "status": "covered"}
+_result_coffee_station_genuine = rgc.score_room([_coffee_station_genuine], [], _room)
+check("a genuine 'how to organize a coffee station' row is NOT excluded by the docking-station pattern",
+      _result_coffee_station_genuine["on_topic_rows"] == 1)
+
+# Same pass: "how to organize dish cloths" lands on the dining-room deck
+# purely on "organize"; the zone's own content only ever uses "cloth" for
+# tablecloths and cleaning rags, never a kitchen dish cloth.
+_dish_cloths = {"query": "how to organize dish cloths", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_dish_cloths = rgc.score_room([_dish_cloths], [], _room)
+check("a 'how to organize dish cloths' off-topic-context row is excluded",
+      _result_dish_cloths["on_topic_rows"] == 0)
+_tablecloth_genuine = {"query": "how to organize tablecloths", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_tablecloth_genuine = rgc.score_room([_tablecloth_genuine], [], _room)
+check("a genuine 'how to organize tablecloths' row is NOT excluded by the dish-cloths pattern",
+      _result_tablecloth_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)
