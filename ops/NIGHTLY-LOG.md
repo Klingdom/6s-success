@@ -12,7 +12,7 @@ Previous work (the 07:4x PM check-in) checked, not cited. `preflight.py --skip-t
 
 No new defect found small enough to close this slot, and none manufactured to fill it.
 
-Dashboard regenerated (`python ops/dashboard.py`; it was 32 minutes stale), pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+Dashboard regenerated (`python ops/dashboard.py`; it was 32 minutes stale). First push attempt collided with a concurrent scheduled operator cycle that had landed a real Kitchen content-gap fix while this cycle was reading state; merged rather than forced, took origin's copy of the three generated dashboard files and regenerated fresh on top of the merge rather than resolve them by hand, then pushed clean. Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
 
 HANDOFF-FILES: none
 
