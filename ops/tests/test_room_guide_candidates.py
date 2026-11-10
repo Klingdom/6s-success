@@ -534,6 +534,32 @@ _result_room_genuine = rgc.score_room([_room_genuine], [], _room)
 check("a genuine 'how to organize your room' row is NOT excluded by the middle-class pattern",
       _result_room_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-10, PM check-in mining Patio or Deck's 6-row partial tier.
+# "how to organize anking step deck" lands on the patio-or-deck article
+# purely on "step"/"deck"; AnKing is the name of a widely used Anki
+# flashcard deck for medical exam study (the "AnKing Step deck"), nothing
+# to do with outdoor furniture. "outdoor storage rental tips" lands on the
+# Outdoor Storage Zone purely on "outdoor"/"storage"; it asks about renting
+# space at a self-storage facility, not organizing the household's own
+# patio storage, the same different-domain shape "adobe" and "toolganize"
+# already exclude elsewhere.
+_anking = {"query": "how to organize anking step deck", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_anking = rgc.score_room([_anking], [], _room)
+check("a 'how to organize anking step deck' off-topic-context row is excluded",
+      _result_anking["on_topic_rows"] == 0)
+_deck_genuine = {"query": "how to organize a deck", "best_page": "/test-room-deck.html", "status": "covered"}
+_result_deck_genuine = rgc.score_room([_deck_genuine], [], _room)
+check("a genuine 'how to organize a deck' row is NOT excluded by the anking pattern",
+      _result_deck_genuine["on_topic_rows"] == 1)
+_storage_rental = {"query": "outdoor storage rental tips", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_storage_rental = rgc.score_room([_storage_rental], [], _room)
+check("an 'outdoor storage rental tips' off-topic-context row is excluded",
+      _result_storage_rental["on_topic_rows"] == 0)
+_storage_genuine = {"query": "outdoor storage ideas cheap", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_storage_genuine = rgc.score_room([_storage_genuine], [], _room)
+check("a genuine 'outdoor storage ideas cheap' row is NOT excluded by the rental pattern",
+      _result_storage_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

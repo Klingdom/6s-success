@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-10, PM check-in (21:1x slot): previous work finished, two real off-topic collisions closed in Patio or Deck's partial tier
+
+Attached cleanly: fetch, real unshallow, checkout -B main onto origin/main (755 commits), tree clean before and after. Previous work independently reconfirmed finished, not cited: 31 open GitHub issues re-pulled fresh via REST API (GraphQL search is blocked in this session), unchanged since 2026-11-08T22:03:25Z, all decision/P0/blocked-on-art, none from Phil. Local HEAD matched origin/main before I started, tree clean: last cycle's work was genuinely pushed, not just committed. preflight.py --skip-tests run live, capped at 90s: 0 FAIL through every gate reached, only the known living-docs-total-size-tripwire warns (BACKLOG/OWNER-ACTIONS/STATUS all over their byte tripwires but each one's own section-rotation gate still passes; this is chronic and larger than a 30-minute slot, left alone rather than touched blind).
+
+Closed two real defects in Patio or Deck's 6-row partial tier: "how to organize anking step deck" was landing on the patio article purely on "step"/"deck"; AnKing is a well-known Anki flashcard deck for medical exam study, nothing to do with outdoor furniture. "outdoor storage rental tips" was landing on the Outdoor Storage Zone purely on "outdoor"/"storage"; it asks about renting a self-storage facility, not organizing the household's own patio storage. Checked both against the full corpus before excluding: "anking" appears in exactly one row per harvest file (same query, harvested twice), "rental" in exactly one row total. Fail-then-pass proved directly: wrote the test assertions first, watched both fail with the exact pre-fix behavior, then added the OFF_TOPIC_CONTEXT branch and watched all pass. test_room_guide_candidates.py 90/90 (4 new assertions, 2 negative controls), test_room_guide_underperformance.py 19/19. Patio or Deck 21% to 15% uncovered (6 to 4 partial rows); full 20-room rescan confirmed every other room unchanged.
+
+Checked and left alone: Mudroom's "how to organize a storage locker" (mudroom locker systems are a real storage-furniture category, not a clean collision) and "outdoor storage buildings for seasonal items" (adjacent, not a false-domain match); Patio or Deck's "how to organize indoor plants" (this room has its own Garden and Plant Care Zone, so "plants" is genuine on-topic vocabulary here, not a word to exclude). Excluding any of these would be the fabricated-specificity risk this lane has reverted twice before.
+
+fix_dashes.py --check 0/0, check_urls.py 235/235, both files compile clean.
+
+Next for the operator: Family Room's remaining 20-row partial tier (handed off repeatedly, not yet mined this cycle), or Mudroom (6 partial, smaller tier, two genuine gaps left after this check). Same standing 31 Phil-gated issues otherwise.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; scorer-only change.
+
+HANDOFF-FILES: none
+
 ## 2026-11-10, scheduled operator cycle (~20:5x UTC): Guest Bathroom mined for the first time, two off-topic rows closed
 
 Did: attached per Step 0 (fetch, real unshallow since the checkout arrived shallow and detached, checkout -B main onto origin/main, ff-only, 749 commits, tree clean). Read CLAUDE.md, GOALS.md, BACKLOG-2026-09-07.md and the last several NIGHTLY-LOG entries directly. Confirmed independently, not cited: all 31 open GitHub issues are decision/P0/blocked-on-art, none from Phil since 2026-11-08; no mail credential in this sandbox; every epic above the room-guide lane (measurement, broken/dishonest, traffic/distribution, conversion, product) is genuinely owner-gated, per the backlog's own section 6 and the open-issue list, both read fresh.

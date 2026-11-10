@@ -487,7 +487,22 @@ OFF_TOPIC_CONTEXT = re.compile(
     # no connection to a bathroom or any other room, and neither query names
     # a fixture, zone or activity this site addresses. Checked against both
     # harvests: "middle class" appears in exactly these two rows.
-    r"\bmiddle class\b",
+    r"\bmiddle class\b|"
+    # Found 2026-11-10, PM check-in mining Patio or Deck's 6-row partial
+    # tier. "how to organize anking step deck" lands on the patio-or-deck
+    # article purely on "step"/"deck"; AnKing is the name of a widely used
+    # Anki flashcard deck for medical exam study (the "AnKing Step deck"),
+    # nothing to do with outdoor furniture. "outdoor storage rental tips"
+    # lands on the Outdoor Storage Zone purely on "outdoor"/"storage"; it
+    # asks about renting space at a self-storage facility, not organizing
+    # the household's own patio storage, the same different-domain shape
+    # "adobe" and "toolganize" already exclude above. Checked against both
+    # harvests before adding: "anking" appears in exactly one row in each
+    # harvest file (the same query, harvested twice) and "rental" in
+    # exactly one row total; genuine on-topic rows ("how to organize a
+    # deck", "outdoor storage ideas cheap") contain neither word and cannot
+    # be touched.
+    r"\banking\b|\brental\b",
     re.I)
 
 
