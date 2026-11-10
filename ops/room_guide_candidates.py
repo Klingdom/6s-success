@@ -293,7 +293,32 @@ OFF_TOPIC_CONTEXT = re.compile(
     # \bamazon\b without needing "tree").
     r"\bpinterest\b|\bikea\b|\breddit\b|\byoutube\b|\bamazon\b|\blowes\b|"
     r"\bkmart\b|\btarget\b|\bwalmart\b|\brona\b|\bhome depot\b|"
-    r"\bdollar tree\b|\baustralia\b|\bcanada\b|\bindian?\b|\btamil\b",
+    r"\bdollar tree\b|\baustralia\b|\bcanada\b|\bindian?\b|\btamil\b|"
+    # Found 2026-11-10 (scheduled operator cycle, finally executing the
+    # Garage/Hall Closet zone-level mining four prior cycles had named as
+    # the one deferred lane but never opened). Three more word-overlap
+    # collisions in Garage's 60-row and Hall Closet's 42-row partial tiers.
+    # "garage sale" queries ("how to organize items for a garage sale",
+    # "how to organize a garage sale without tables") are about selling
+    # possessions at an event, not about organizing the garage as a room;
+    # the word "garage" is the same homonym collision "declutter my life"
+    # and "dental" above already exclude for other rooms. "back of stove
+    # storage" is a kitchen-appliance query (seed: "how to organize stove
+    # area") that only reached Garage because "storage" overlaps the
+    # garage article's title; a stove has nothing to do with a garage.
+    # "list of equipment for cleaning services" is the same commercial/B2B
+    # shape \bequipment list\b already excludes, just reordered ("equipment
+    # for cleaning services" vs "cleaning equipment list"): someone
+    # researching what a cleaning business needs, not a household closet.
+    # Verified against both harvests before adding: "garage sale" appears
+    # only in the rows named above plus a handful already scored `covered`
+    # (e.g. "how to organize a garage sale", which already has a real
+    # answer and is untouched by this exclusion); "back of stove" and
+    # "cleaning services" each appear in exactly the one row named here.
+    # None of these three phrases ever appears on a genuine on-topic row
+    # that lacks another exclusion already, so this cannot suppress a real
+    # gap.
+    r"\bgarage sale\b|\bback of stove\b|\bcleaning services\b",
     re.I)
 
 

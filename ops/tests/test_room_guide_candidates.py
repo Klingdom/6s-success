@@ -295,6 +295,29 @@ _result_amazon_shopping = rgc.score_room([_amazon_shopping], [], _room)
 check("'amazon shopping car organizer' stays excluded (already caught by the car-organizer pattern too)",
       _result_amazon_shopping["on_topic_rows"] == 0)
 
+# Found 2026-11-10 (scheduled operator cycle, finally executing the
+# Garage/Hall Closet zone-level mining four prior cycles had named but
+# deferred). Three more word-overlap collisions: a garage-sale-event
+# homonym, a kitchen-appliance query reaching the garage article on
+# "storage" alone, and a B2B cleaning-services-equipment-list query
+# reordering the words the existing \bequipment list\b pattern expects.
+_garage_sale = {"query": "how to organize a garage sale without tables", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_garage_sale = rgc.score_room([_garage_sale], [], _room)
+check("a 'garage sale' off-topic-context row is excluded",
+      _result_garage_sale["on_topic_rows"] == 0)
+_back_of_stove = {"query": "back of stove storage", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_back_of_stove = rgc.score_room([_back_of_stove], [], _room)
+check("a 'back of stove' off-topic-context row is excluded",
+      _result_back_of_stove["on_topic_rows"] == 0)
+_cleaning_services = {"query": "list of equipment for cleaning services", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_cleaning_services = rgc.score_room([_cleaning_services], [], _room)
+check("a 'cleaning services' equipment-list off-topic-context row is excluded",
+      _result_cleaning_services["on_topic_rows"] == 0)
+_organize_car_boot = {"query": "how to organise a test room boot", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_organize_car_boot = rgc.score_room([_organize_car_boot], [], _room)
+check("a genuine on-topic 'organise a car boot' row is NOT excluded by the garage-sale pattern",
+      _result_organize_car_boot["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

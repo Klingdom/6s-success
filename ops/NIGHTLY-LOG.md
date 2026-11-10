@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-10, scheduled operator cycle (~15:0x UTC): executed the Garage/Hall Closet zone-level mining four prior cycles named but deferred, closed 3 more off-topic-noise rows, found and logged one genuine single-row content gap
+
+**Did:** unshallowed and attached onto `origin/main` (688 commits, tree clean). Read `BACKLOG-2026-09-07.md` sections 0-2, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four log entries before touching anything. Verified the standing "everything is Phil-gated" claim rather than trust it: 31 open GitHub issues re-pulled fresh, unchanged since 2026-11-08T22:03:25Z, 0 PRs, no mail credentials (unchecked, not empty). `ops/cycle_signal.py --check` read SAME against the 13:48:06Z snapshot.
+
+Opened Garage's 60-row and Hall Closet's 42-row `partial` tiers in full, the lane four of today's own prior cycles (13:1x, 13:4x, 13:5x, 14:1x) each named as "the one deferred lane" without ever reading it. Found and verified three word-overlap noise rows (a "garage sale" event homonym, a kitchen-stove query that only reached Garage on "storage" overlap, a "cleaning services" B2B equipment-list reorder of the already-excluded shape) and added them to `ops/room_guide_candidates.py`'s `OFF_TOPIC_CONTEXT`. Also opened the zero-coverage rows before concluding anything: "detergents and cleaners must be stored" is already well covered in the Cleaning Supply Zone's body text, a scoring-wording miss not a real gap; "how to organize paper recipes" and "wrapping paper organizer storage" are genuinely unaddressed anywhere on the live site (checked the zone's own `content.json`-equivalent inventory, scoped to toilet paper/tissues/light bulbs/batteries only), a real but single-row gap, logged in `BACKLOG-2026-09-07.md` rather than silently dropped or built into a new zone on this little evidence.
+
+**Verified:** fail-then-pass proved directly (`git stash` the fix, 3 new assertions failed with the exact pre-fix behaviour, restored, passed). `test_room_guide_candidates.py` 48/48 (4 new), `test_room_guide_underperformance.py` 19/19. Garage 60 to 57 partial rows, Hall Closet 42 to 41, re-ranked live before and after. `fix_dashes.py`/`check_urls.py`/`affiliate.py --check`/`check_sellable.py` all clean. `preflight.py --skip-tests` run live to a file: both FAIL sections "(none)" through every gate reached.
+
+**Went well:** actually opened the deferred lane instead of re-deferring it a fifth time; the three noise rows and the one genuine gap were both findings a sample-read surfaced, not a count repeated from memory (CLAUDE.md 5c).
+
+**Did not go well:** `preflight.py` stalled again at the documented `gate_shop_prerendered`/`gate_prerender_shop_current` headless-Chromium render (0:00 CPU time after 9 minutes wall-clock); killed by hand at that specific, previously-documented point, then confirmed the kill left no stray or mid-write files (`git status` showed exactly the 3 files this cycle touched) before trusting the "0 FAIL" reading.
+
+**Changing next cycle:** nothing in process; the exclusion mechanism already exists and worked as designed.
+
+**Next:** the wrapping-paper/recipe-card gap is real but single-row and low-volume; worth a synonym/mention addition to the Paper and Household Backstock zone copy if a future cycle is mining Hall Closet again, not worth a dedicated new zone on this evidence alone. Otherwise the same standing queue of 31 Phil-gated issues.
+
+HANDOFF-FILES: none
+
 ## 2026-11-10, PM check-in (14:4x slot): planned closing job landed first by a concurrent cycle, independently reconfirmed rather than duplicated
 
 NEXT FOR THE OPERATOR: hold the standing queue (31 open issues, all decision/blocked-on-art, unchanged since 2026-11-08T22:03:25Z), because nothing is genuinely unblocked beyond routine re-verification.
