@@ -979,6 +979,59 @@ def main():
                          "in FORMAT_WORDS; it changes the query's real "
                          "subject, it does not just rephrase it" % _nw)
 
+    # 31. Found live 2026-11-10, mining Garage: "quickly" scored as a
+    #     content word was causing a real wrong tie-break, the same "diy"
+    #     shape (case concerning case 2026-11-06 above): "how to organize a
+    #     garage sale quickly" tied 2-of-3 between the Garage room page's
+    #     own "Garage sale" heading (matching garage+sale, missing
+    #     "quickly") and an unrelated article's "How do I declutter a
+    #     garage quickly?" heading (matching garage+quickly, missing
+    #     "sale"), and the tie-break happened to prefer the unrelated page.
+    if "quickly" in kd.content_words(
+            "how to organize a garage sale quickly"):
+        fails.append("'quickly' is still a content word; the FORMAT_WORDS "
+                     "addition did not take")
+    quickly_inv = [
+        {"url": "/rooms/garage.html",
+         "title": "Garage",
+         "words": set(kd.words("Garage Garage sale")),
+         "head_words": set(kd.words("Garage sale")),
+         "room": "Garage"},
+        {"url": "/articles/how-to-organize-a-garage.html",
+         "title": "How to organize a garage full of stuff, step by step",
+         "words": set(kd.words("How do I declutter a garage quickly")),
+         "head_words": set(kd.words("How do I declutter a garage "
+                                     "quickly")),
+         "room": "Garage"},
+    ]
+    old_format4 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format4 - {"quickly"}
+    try:
+        r6a = kd.score_rows(
+            {"how to organize a garage sale quickly":
+             {"query": "how to organize a garage sale quickly",
+              "sources": ["bing"], "best_rank": 2, "seeds": ["x"]}},
+            ["Garage"], quickly_inv)[0]
+        before6_page = r6a["best_page"]
+        before6_score = r6a["coverage"]
+    finally:
+        kd.FORMAT_WORDS = old_format4
+    r6b = kd.score_rows(
+        {"how to organize a garage sale quickly":
+         {"query": "how to organize a garage sale quickly",
+          "sources": ["bing"], "best_rank": 2, "seeds": ["x"]}},
+        ["Garage"], quickly_inv)[0]
+    if before6_page != "/articles/how-to-organize-a-garage.html":
+        fails.append("test fixture no longer reproduces the pre-fix tie "
+                     "break onto the unrelated article: %r" % before6_page)
+    if r6b["best_page"] != "/rooms/garage.html":
+        fails.append("excluding 'quickly' did not route the query to the "
+                     "room's own 'Garage sale' section: got %r"
+                     % r6b["best_page"])
+    if not (r6b["coverage"] > before6_score):
+        fails.append("excluding 'quickly' did not improve the honest "
+                     "score: %r -> %r" % (before6_score, r6b["coverage"]))
+
     if fails:
         print("FAIL")
         for f in fails:

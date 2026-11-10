@@ -186,7 +186,7 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "arrange", "arranging", "arranged", "arrangement",
                           "arrangements", "rearrange", "rearranging",
                           "rearranged", "ways", "way", "diy", "guide",
-                          "tutorial", "must", "haves"))
+                          "tutorial", "must", "haves", "quickly"))
 
 # "ways" joined 2026-11-05, same shape as "arrange": "ways to organize a
 # nightstand" and "how to organize a nightstand" ask for the same thing about
@@ -254,6 +254,30 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
 # "best way to organize X" queries already routed to the correct page. All
 # 13 can only improve (partial toward covered); none can move the other
 # way, same reasoning as every prior FORMAT_WORDS addition.
+
+# "quickly" joined 2026-11-10, mining Garage: "how to organize a garage
+# sale quickly" asks for the same thing as "how to organize a garage sale",
+# a speed qualifier on the task, not a different subject, same shape as
+# every entry above. It was also causing a real wrong-tie-break, the same
+# "diy" shape: with "quickly" scored as a content word, the query tied at
+# 2 of 3 words between the Garage room page's own "Garage sale" heading
+# (matching "garage"+"sale", missing "quickly") and the article's unrelated
+# "How do I declutter a garage quickly?" heading (matching "garage"+
+# "quickly", missing "sale"), and the tie-break happened to prefer the
+# article, leaving the room's own on-topic "Garage sale" section unused by
+# this query entirely. Self-flattery checked first, same bar every prior
+# addition cleared: "quickly" appears in 0 of 243 page titles and only 2 of
+# 243 headings (the garage declutter FAQ above, and an unrelated "why does
+# my house get messy again so quickly" FAQ), well under the bar "systems"
+# failed. Checked the full corpus before adding: of the 7 live rows (both
+# corpora) containing "quickly" at all, 2 already read `covered`, 2 move
+# from `partial` to `covered` on the garage-sale wording (now routed
+# honestly to the room's own "Garage sale" section instead of the
+# unrelated article), and 2 more ("how to organize closet quickly",
+# "how to declutter bedroom quickly") move from `partial` to `covered` on
+# their own already-correct page once the lone remaining word matches.
+# None can move the other way, same reasoning as every prior FORMAT_WORDS
+# addition.
 
 # "must" and "haves" joined 2026-11-09, mining Garage's own gap row: "car
 # organisation must haves" ("organisation" normalises to "organization"

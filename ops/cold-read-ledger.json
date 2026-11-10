@@ -568,8 +568,8 @@
     },
     "build_zone_pages.py": {
       "status": "clean",
-      "date": "2026-11-09",
-      "note": "Cold-read the 2026-11-09 diff (3b4e99b2e): the new figs-and-diagram heading in room_page() is correctly scoped (checked diagram's definition at room_diagram() call), escapes rm, avoids the already-fixed false-order-claim phrasing, and was already fail-then-pass verified in its own cycle (corpora rescored, 0 regressions)."
+      "date": "2026-11-10",
+      "note": "Re-ledgered 2026-11-10, scheduled operator cycle: file flagged stale after the same-day Kitchen No-cabinets fix (87c474a1e). Read the real diff directly rather than the whole 4402-line file again (already cold-read first/second/third-pass in prior cycles): room_faq() and room_page() both wire the new 'No cabinets' tip correctly, the tip-exclusion list extended from 7 to 8 entries to prevent double-render (verified: not present in the generic 'For this room' list on the rendered page), heading and FAQ text match content.json's own tip exactly. Verified live: content.json carries the tip, site/rooms/kitchen.html renders both the FAQPage entry and the h2/p block with identical text. ops/tests/test_keyword_demand.py case 30 (the FORMAT_WORDS negation guard) reruns clean, 35/35 numbered cases pass. No defect found."
     },
     "canonical_links.py": {
       "status": "clean",

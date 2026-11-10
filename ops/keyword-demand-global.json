@@ -13142,7 +13142,7 @@
       "room": "Garage",
       "best_page": "/articles/how-to-organize-a-garage.html",
       "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.333,
+      "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
@@ -13349,14 +13349,12 @@
       "room": "",
       "best_page": "/articles/how-to-declutter-a-bedroom.html",
       "best_page_title": "How to declutter a bedroom in one day, step by step",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "quickly"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb"
       ],
@@ -22877,16 +22875,14 @@
         "how to declutter a garage"
       ],
       "room": "Garage",
-      "best_page": "/articles/how-to-organize-a-garage.html",
-      "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-garage.html",
+      "best_page": "/rooms/garage.html",
+      "best_page_title": "How to organize a garage, zone by zone",
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/garage.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "sale"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -48293,6 +48289,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "87c474a1e",
-  "scored_at": "2026-11-10T08:08:02Z"
+  "scored_against_commit": "c0d74250f",
+  "scored_at": "2026-11-10T09:00:33Z"
 }
