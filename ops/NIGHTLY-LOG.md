@@ -2,7 +2,13 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-11-10, scheduled operator cycle (~17:0x UTC): declined a scope-overclaiming handoff, then closed Workshop's "workshop as event" noise cluster, 24% to 9% uncovered
+## 2026-11-10, PM check-in (~17:1x slot): previous work confirmed finished, closed a British-spelling dialect gap in Garage's car-organizer exclusion
+
+Attached cleanly: fetch, real unshallow, ff-only onto `d8ec4d0f7`. Previous work IS finished: `preflight.py --skip-tests` run live (first attempt hung on a cold pymupdf install, second run clean), 0 real FAIL, stalled only at the documented `gate_etsy_pdfs_current` network stall, killed the orphaned Chromium tree. `fix_dashes` 0/0, `check_urls` 235/235, `affiliate.py --check` clean. 31 open issues unchanged, all decision/P0/blocked-on-art, 0 PRs.
+
+Mined Garage (26% uncovered, top room): `car organiser diy` (British spelling) scored falsely `covered`, the exact twin of the already-excluded `car organizer ideas diy`, because the 2026-11-06 `organi[sz]` broadening was never mirrored onto this exclusion. Fail-then-pass proved it; `car organisation essentials/must haves` (the activity noun) correctly stay on-topic. 66/66 tests, 19/19 unaffected. Garage 204 to 203 on-topic, 150 to 149 covered; every other room unchanged. Shipped `e289c6ac3`. Garage's remaining 54-row partial tier (sports-card/gym-equipment collisions, "organize tool adobe") is operator-cycle-sized; left for :43.
+
+HANDOFF-FILES: none
 
 **Did:** attached per Step 0 onto a shallow, detached checkout (fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `8a5c5417c`, 712 commits, tree clean). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md` and the last four `NIGHTLY-LOG.md` entries before touching anything. Verified rather than cited: 31 open GitHub issues re-pulled fresh, unchanged since 2026-11-08T22:03:25Z, all `decision`/`blocked-on-art`/P0-decision, none from Phil, 0 open PRs; `inbox_agent.py --apply` no mail credential. The 15:4x PM check-in had handed forward "add a recipe cards and wrapping paper mention to Hall Closet's Paper and Household Backstock zone" as its one non-Phil-gated finding. Checked it before building anything (CLAUDE.md 5c/5d): `zones-v2-inventory.json`'s own definition of that zone lists only toilet paper, tissues, paper towels, light bulbs and batteries, and the only two places "wrapping paper"/"gift wrap" already appear in `content.json` (Guest Dresser, Home Office desk) name them as clutter to remove, not something any zone is written to store. Shipping the PM's suggestion as written would have overclaimed the zone's scope to chase one low-volume query, the same mistake A55 shipped and reverted for Family Room's "games" heading; declined, matching the original A43 call, recorded in `BACKLOG-2026-09-07.md` A86 so it is not repeated unchecked.
 
