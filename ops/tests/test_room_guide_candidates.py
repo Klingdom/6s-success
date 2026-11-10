@@ -506,6 +506,34 @@ _result_game_night_genuine_title = rgc.score_room([_game_night_genuine_title], [
 check("a genuine specific-board-game-title row is NOT excluded by the games-night pattern",
       _result_game_night_genuine_title["on_topic_rows"] == 1)
 
+# Found 2026-11-10, mining Guest Bathroom's 20-row partial tier.
+# "linen cupboard organisation bunnings" names Bunnings, an Australian
+# hardware retailer, the same no-brand-names shape the pinterest/ikea/
+# target/etc branch above already excludes, just one brand that list
+# missed. "how to organise middle class room" and "how to organize your
+# room middle class" are a socioeconomic descriptor with no connection to
+# any room, zone or activity this site addresses.
+_bunnings = {"query": "linen cupboard organisation bunnings", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_bunnings = rgc.score_room([_bunnings], [], _room)
+check("a 'bunnings' off-topic-context row is excluded",
+      _result_bunnings["on_topic_rows"] == 0)
+_linen_genuine = {"query": "linen cupboard organisation ideas", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_linen_genuine = rgc.score_room([_linen_genuine], [], _room)
+check("a genuine 'linen cupboard organisation ideas' row is NOT excluded by the bunnings pattern",
+      _result_linen_genuine["on_topic_rows"] == 1)
+_middle_class_1 = {"query": "how to organise middle class room", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_middle_class_1 = rgc.score_room([_middle_class_1], [], _room)
+check("a 'how to organise middle class room' off-topic-context row is excluded",
+      _result_middle_class_1["on_topic_rows"] == 0)
+_middle_class_2 = {"query": "how to organize your room middle class", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_middle_class_2 = rgc.score_room([_middle_class_2], [], _room)
+check("a 'how to organize your room middle class' off-topic-context row is excluded",
+      _result_middle_class_2["on_topic_rows"] == 0)
+_room_genuine = {"query": "how to organize your room", "best_page": "/test-room-deck.html", "status": "covered"}
+_result_room_genuine = rgc.score_room([_room_genuine], [], _room)
+check("a genuine 'how to organize your room' row is NOT excluded by the middle-class pattern",
+      _result_room_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

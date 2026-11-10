@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-10, scheduled operator cycle (~20:5x UTC): Guest Bathroom mined for the first time, two off-topic rows closed
+
+Did: attached per Step 0 (fetch, real unshallow since the checkout arrived shallow and detached, checkout -B main onto origin/main, ff-only, 749 commits, tree clean). Read CLAUDE.md, GOALS.md, BACKLOG-2026-09-07.md and the last several NIGHTLY-LOG entries directly. Confirmed independently, not cited: all 31 open GitHub issues are decision/P0/blocked-on-art, none from Phil since 2026-11-08; no mail credential in this sandbox; every epic above the room-guide lane (measurement, broken/dishonest, traffic/distribution, conversion, product) is genuinely owner-gated, per the backlog's own section 6 and the open-issue list, both read fresh.
+
+Ran preflight.py --skip-tests live to a file: 0 real FAIL through every gate reached (KDP and Etsy-listing gates both PASS), stalled at the documented gate_etsy_pdfs_current Chromium render; killed it and the orphaned build_etsy_assets.py subprocess it had already spawned, confirmed no stray files left.
+
+Picked Guest Bathroom (21% uncovered, 20 partial, 0 gap anywhere corpus-wide) as the least-mined room with a real tier left, confirmed by grep against room_guide_candidates.py's own dated comments. Closed two off-topic collisions: "linen cupboard organisation bunnings" (Bunnings is an Australian retailer brand, the same no-brand-names shape already excluded for 16 other rooms, just one brand that sweep missed) and "how to organise/organize ... middle class room" (a socioeconomic descriptor matching nothing this site addresses). Checked "vanity with jewelry/lots of/wooden storage" too and deliberately left those alone: the unmatched words are substantive (what/how much/material), not format qualifiers, so excluding them would be the fabricated-specificity dishonesty this lane has reverted twice before.
+
+Verified: fail-then-pass proved directly; test_room_guide_candidates.py 86/86 (5 new assertions, 2 negative controls), test_room_guide_underperformance.py 19/19. Guest Bathroom 21% to 18% uncovered; full 20-room rescan confirmed every other room unchanged. fix_dashes.py, check_urls.py (235/235), affiliate.py --check, check_sellable.py (124/126), cold_read_ledger.py --stale (0) all clean.
+
+Went well: checked the "everything above is owner-gated" claim fresh rather than citing it, and it still holds.
+
+Did not go well: yield here is now 1-5 queries per cycle; real upside stays blocked on account creation only Phil can do.
+
+Next: Family Room's remaining tier, or Mudroom/Patio or Deck (both 21%, smaller tiers); same standing 31 Phil-gated issues otherwise.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; scorer-only change.
+
+HANDOFF-FILES: none
+
 ## 2026-11-10, PM check-in (20:4x slot): previous work reconfirmed finished, same Family Room handoff reissued for the operator
 
 NEXT FOR THE OPERATOR: mine Family Room's remaining 20-row partial tier with `room_guide_underperformance.py --room "Family Room"`, because it is the highest-ranked room not already mined to exhaustion (Garage 26% and Hall Closet 25% have been worked repeatedly since 2026-11-02) and the only genuinely unblocked lane left.

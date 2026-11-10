@@ -306,6 +306,14 @@ OFF_TOPIC_CONTEXT = re.compile(
     r"\bpinterest\b|\bikea\b|\breddit\b|\byoutube\b|\bamazon\b|\blowes\b|"
     r"\bkmart\b|\btarget\b|\bwalmart\b|\brona\b|\bhome depot\b|"
     r"\bdollar tree\b|\baustralia\b|\bcanada\b|\bindian?\b|\btamil\b|"
+    # Found 2026-11-10, mining Guest Bathroom's 20-row partial tier (least-
+    # mined room this lane has reached, per the 19:1x PM check-in's own
+    # handoff). "linen cupboard organisation bunnings" is the same retailer-
+    # name shape the branch above already excludes for kmart/target/ikea
+    # etc, just one brand (Bunnings, an Australian hardware chain) the
+    # original list missed. Checked against both harvests: "bunnings"
+    # appears in exactly this one row.
+    r"\bbunnings\b|"
     # Found 2026-11-10 (scheduled operator cycle, finally executing the
     # Garage/Hall Closet zone-level mining four prior cycles had named as
     # the one deferred lane but never opened). Three more word-overlap
@@ -472,7 +480,14 @@ OFF_TOPIC_CONTEXT = re.compile(
     # board game" (a specific board-game title, the real on-topic shape
     # this zone already serves), does not contain the phrase and is left
     # alone as a genuine content gap, not excluded.
-    r"\bgames? night\b",
+    r"\bgames? night\b|"
+    # Same pass: "how to organise middle class room" and "how to organize
+    # your room middle class" land on the Guest Bathroom deck purely on
+    # "organize"/"room"; "middle class" is a socioeconomic descriptor with
+    # no connection to a bathroom or any other room, and neither query names
+    # a fixture, zone or activity this site addresses. Checked against both
+    # harvests: "middle class" appears in exactly these two rows.
+    r"\bmiddle class\b",
     re.I)
 
 
