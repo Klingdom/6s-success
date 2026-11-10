@@ -560,6 +560,28 @@ _result_storage_genuine = rgc.score_room([_storage_genuine], [], _room)
 check("a genuine 'outdoor storage ideas cheap' row is NOT excluded by the rental pattern",
       _result_storage_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-10, PM check-in mining Family Room's 20-row partial tier.
+# "how to organize/organise a craft fair" and "how to organise a craft
+# market" land on the Craft and Activity Zone purely on "craft"; a craft
+# fair or market is the event-planning sense (running a sale event), not
+# storing craft supplies at home.
+_craft_fair_us = {"query": "how to organize a craft fair", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_craft_fair_us = rgc.score_room([_craft_fair_us], [], _room)
+check("a 'how to organize a craft fair' off-topic-context row is excluded",
+      _result_craft_fair_us["on_topic_rows"] == 0)
+_craft_fair_gl = {"query": "how to organise a craft fair", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_craft_fair_gl = rgc.score_room([_craft_fair_gl], [], _room)
+check("a 'how to organise a craft fair' off-topic-context row is excluded",
+      _result_craft_fair_gl["on_topic_rows"] == 0)
+_craft_market = {"query": "how to organise a craft market", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_craft_market = rgc.score_room([_craft_market], [], _room)
+check("a 'how to organise a craft market' off-topic-context row is excluded",
+      _result_craft_market["on_topic_rows"] == 0)
+_craft_genuine = {"query": "how to organize craft room", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_craft_genuine = rgc.score_room([_craft_genuine], [], _room)
+check("a genuine 'how to organize craft room' row is NOT excluded by the craft-fair pattern",
+      _result_craft_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

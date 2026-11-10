@@ -502,7 +502,23 @@ OFF_TOPIC_CONTEXT = re.compile(
     # exactly one row total; genuine on-topic rows ("how to organize a
     # deck", "outdoor storage ideas cheap") contain neither word and cannot
     # be touched.
-    r"\banking\b|\brental\b",
+    r"\banking\b|\brental\b|"
+    # Found 2026-11-10, PM check-in mining Family Room's 20-row partial
+    # tier. "how to organize a craft fair" (US and global spellings) and
+    # "how to organise a craft market" land on the Craft and Activity Zone
+    # purely on the word "craft"; a craft fair or craft market is the
+    # event-planning sense (setting up and running a sale event where
+    # handmade goods are sold to the public), the same host-an-event shape
+    # "games night"/"seating chart"/"clothing drive" already exclude above,
+    # not storing craft supplies at home. The zone's own content.json
+    # purpose ("Hold craft supplies grouped by activity so a project can
+    # start in one motion") never addresses running a sale event. Checked
+    # against both harvests before adding: "craft fair" appears in exactly
+    # these two rows (organize/organise spellings) and "craft market" in
+    # exactly this one; genuine on-topic rows ("how to organize craft
+    # room", "how to organise craft materials", "how to organize sewing
+    # craft room") contain neither phrase and cannot be touched.
+    r"\bcraft fair\b|\bcraft market\b",
     re.I)
 
 
