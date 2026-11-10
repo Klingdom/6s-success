@@ -37,7 +37,6 @@ Previous work (the 19:1x PM cycle's gap-tier exhaustion finding and the hourly c
 31 open GitHub issues re-pulled fresh via the API: unchanged since 2026-11-08T22:03:25Z (#65), all `decision`/`P0`/`blocked-on-art`, none from Phil. 0 open PRs.
 
 No defect found to fix, no stale document found to correct this slot. Per this slot's own instruction (three minutes before the operator, do not start something large here, and this cycle ran into the operator's own 19:43 slot), not mining Garage myself; handing it over as-is. Dashboard regenerated and shipped. No code, price, product or page touched. No push notification: nothing material changed since the last one.
->>>>>>> origin/main
 
 HANDOFF-FILES: none
 
