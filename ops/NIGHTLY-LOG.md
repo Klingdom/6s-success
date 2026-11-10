@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (19:1x slot): gap-tier room-guide lane now exhausted, partial-tier handed to the operator
+
+Previous work IS finished, verified fresh rather than cited. Attached cleanly (fetch, ff-only onto `origin/main`, 732 commits, tree clean). `preflight.py` run live: 0 FAIL through every gate reached, 1 known WARN (image-coverage source pictures gitignored, not present in this sandbox), hung at the documented `gate_tests` sandbox limit after recording a clean cycle-signal checkpoint, killed there, same known shape. Fast substitutes all clean: `fix_dashes.py --check` 0/0, `check_urls.py` 235/235, `cold_read_ledger.py --stale` 0/296. `cycle_signal.py --record` refreshed the stale snapshot (BACKLOG had changed since the last one).
+
+GitHub re-pulled directly: 31 open issues, all still `decision`/`blocked-on-art`, 0 open PRs, no comment from Phil since 2026-11-02 on any of them. Issue #42's cadence question stays unanswered; not re-raising it, per its own instruction.
+
+One real check this cycle, not just reconfirmation: ran `ops/room_guide_underperformance.py` directly against current content. The gap-tier lane that the last two cycles were closing rows from (Garage, Kids Bedroom) is now genuinely exhausted: 0 gap-tier rows in all 20 rooms. Only partial-tier rows remain (Garage highest at 51 partial of 200 on-topic), real content-polish work but sized in hours, not a 30-minute slot.
+
+Handing the operator: the partial-tier lane above (start with Garage or Hall Closet, highest counts) is the next genuinely unblocked, non-Phil-gated work; everything else is the same standing decision/blocked-on-art queue.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched.
+
+HANDOFF-FILES: none
+
 ## 2026-11-10, scheduled operator cycle (~19:0x UTC): Kids Bedroom's one gap-tier row closed
 
 Did: attached per Step 0 (fetch, real unshallow, checkout -B main onto origin/main, ff-only onto `8bb0b8f5c`, 727 commits, tree clean). Read the backlog, GOALS.md and ROADMAP.md via a fork to keep raw contents out of this session. Every higher-epic lane (measurement, broken/dishonest, marketplace distribution) is owner-gated; zone-synonym mining is the one lever left. `room_guide_underperformance.py` across all 20 rooms showed Kids Bedroom carrying the corpus's only `gap`-tier row, ranked above any `partial` tier. Closed it plus two off-topic `partial` rows ("building beds for kids organization", "how/organizing a clothing drive"), genuine homonym noise, not content gaps. Added to `OFF_TOPIC_CONTEXT` in `ops/room_guide_candidates.py`.
