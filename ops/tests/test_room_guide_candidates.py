@@ -582,6 +582,29 @@ _result_craft_genuine = rgc.score_room([_craft_genuine], [], _room)
 check("a genuine 'how to organize craft room' row is NOT excluded by the craft-fair pattern",
       _result_craft_genuine["on_topic_rows"] == 1)
 
+# Same Family Room pass: "how to organize game files" and "how to organize
+# game systems" land on the Board Game and Puzzle Zone purely on
+# "organize"/"game"; "game files" and "game systems" are the video-game-
+# console sense (a save file, a PS5 or Xbox console), the same digital-
+# library confusion DIGITAL already excludes for "hard drive"/"pc"/
+# "steam", not a question about board games.
+_game_files = {"query": "how to organize game files", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_game_files = rgc.score_room([_game_files], [], _room)
+check("a 'how to organize game files' digital-context row is excluded",
+      _result_game_files["on_topic_rows"] == 0)
+_game_systems = {"query": "how to organize game systems", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_game_systems = rgc.score_room([_game_systems], [], _room)
+check("a 'how to organize game systems' digital-context row is excluded",
+      _result_game_systems["on_topic_rows"] == 0)
+_video_game_genuine = {"query": "video game storage ideas", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_video_game_genuine = rgc.score_room([_video_game_genuine], [], _room)
+check("a genuine 'video game storage ideas' row is NOT excluded by the game-files/systems pattern",
+      _result_video_game_genuine["on_topic_rows"] == 1)
+_game_library_genuine = {"query": "how to organize game library", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_game_library_genuine = rgc.score_room([_game_library_genuine], [], _room)
+check("a genuine 'how to organize game library' row is NOT excluded by the game-files/systems pattern",
+      _result_game_library_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

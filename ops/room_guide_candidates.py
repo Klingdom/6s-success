@@ -57,7 +57,21 @@ ON_TOPIC = re.compile(r"organi[sz]|declutter|clean|storage|stock", re.I)
 # named yet.
 DIGITAL = re.compile(
     r"\b(pc|steam|computer|desktop|digital|online|software|app|download)\b"
-    r"|hard drive", re.I)
+    r"|hard drive"
+    # Found 2026-11-10, mining Family Room's remaining partial tier
+    # alongside the PM check-in's own craft-fair/market fix. "how to
+    # organize game files" and "how to organize game systems" route to the
+    # Board Game and Puzzle Zone by word overlap on "organize"/"game", but
+    # both name the video-game-console sense (a save file, a PS5 or Xbox
+    # console), the same digital-library confusion this regex already
+    # excludes for "pc"/"steam"/"hard drive", not the zone's own physical
+    # board games and puzzles. Checked against both harvests first: "game
+    # files" and "game systems" each appear in exactly the one row named
+    # here; "video game storage ideas", "storage for video games" and "how
+    # to organize game library" (storing the physical cases/discs/consoles,
+    # a real different question) contain neither phrase and must stay
+    # on-topic.
+    r"|\bgame (?:files|systems?)\b", re.I)
 
 # Found 2026-11-03 (Garage pass): "car organizer"/"car trunk"/retailer-named
 # queries route to the Automotive Care Zone by word overlap on

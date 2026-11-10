@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-10, scheduled operator cycle (~21:5x UTC): Family Room's partial tier mined further, game files/systems digital-console collision closed, after a concurrent push landed mid-cycle
+
+Did: attached per Step 0 onto a shallow, detached checkout (fetch, real unshallow, checkout -B main onto origin/main, ff-only onto `b10da613e`, 758 commits, tree clean). Read CLAUDE.md, BACKLOG-2026-09-07.md and the last several NIGHTLY-LOG entries directly. Ran `preflight.py --skip-tests` live to a file: 0 real FAIL through every gate reached, only known WARN/UNCHECKED (Stripe credential, mail credential, cron throttling, site unreachable from this sandbox); `gate_hooks_enabled` found `core.hooksPath` unset and re-enabled it, a self-healing gate action, not a defect. Re-pulled all 31 open GitHub issues fresh: unchanged since 2026-11-08T22:03:25Z, all `decision`/`P0`/`blocked-on-art`, none from Phil. `inbox_agent.py --apply`: no mail credential in this sandbox (unchecked, not empty).
+
+Re-ran `room_guide_underperformance.py` across all 20 rooms, picked Family Room's own remaining partial tier, and independently found the same craft-fair/market collision the 21:4x PM check-in was closing concurrently, plus a second, different collision: "how to organize game files" and "how to organize game systems" landing on the Board Game and Puzzle Zone purely on "organize"/"game", the video-game-console sense (a save file, a PS5 console), not the zone's own physical board games, the same digital-library confusion `DIGITAL` already excludes for "pc"/"steam"/"hard drive".
+
+Committed and attempted to push; `git fetch origin main` then showed the 21:4x PM cycle's own commits had landed first (its craft-fair/market fix plus its dashboard regen), so a plain push would have been a non-fast-forward, caught before forcing anything through. Reset local `main` onto `origin/main` (the superseded commit's hash kept in this entry for the record, `de10e9d2b`, recoverable via reflog, not destroyed) and reapplied only the part of this cycle's own diff the concurrent commit did not already carry: the `game (?:files|systems?)` addition to `DIGITAL` and its 4 test assertions, dropping the now-redundant craft-fair/market regex and its 3 duplicate assertions rather than re-adding a second, functionally identical branch.
+
+Verified: checked both harvests before excluding anything (CLAUDE.md 5c/5d), "game files" and "game systems" each unique to the one row named; genuine on-topic rows this pass found ("video game storage ideas", "storage for video games", "how to organize game library", "bonus room storage", "den storage ideas") checked and left alone, real content opportunities rather than noise. Fail-then-pass proved directly against the rebased file (`git stash` the fix, watched the 2 new off-topic assertions fail with the exact pre-fix behaviour, restored, watched all pass). `test_room_guide_candidates.py` 98/98 (4 new assertions layered on the PM check-in's own 4, 2 negative controls), `test_room_guide_underperformance.py` 19/19. Re-ran the live ranking before/after on the rebased tree: Family Room 20% to 18% uncovered (17 to 15 partial); full 20-room rescan confirmed every other room unchanged from the PM check-in's own snapshot, same final numbers this cycle would have produced had it landed first. `fix_dashes.py`, `check_urls.py` (235/235), `affiliate.py --check` (165 documents) all clean.
+
+Went well: catching the non-fast-forward before pushing rather than force-pushing over a concurrent cycle's own committed work, and isolating only the non-duplicate half of this cycle's diff instead of discarding it outright or landing a redundant regex branch.
+
+Did not go well: two concurrent cycles converging on the exact same craft-fair/market finding independently is itself a signal this lane's remaining yield per cycle is now small enough that duplicate discovery is becoming likely; worth naming if it recurs.
+
+Changing next cycle: nothing; this is the first time this specific collision (two concurrent cycles, same finding) has happened, not yet a 3x pattern needing a gate.
+
+Next: Mudroom's remaining 6-row partial tier (the PM check-in's own handoff, smallest unmined tier left, 21% uncovered), or Guest Bathroom/Home Office (both 18%); same standing 31 Phil-gated issues otherwise.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; this is a scorer-only change under `ops/`, not a generator-owned `site/` file.
+
+HANDOFF-FILES: none
+
 ## 2026-11-10, PM check-in (21:4x slot): previous work finished, one real off-topic collision closed in Family Room's partial tier, Mudroom handed to the operator
 
 NEXT FOR THE OPERATOR: mine Mudroom's remaining 6-row partial tier with `room_guide_underperformance.py --room "Mudroom"`, because it is the smallest unmined tier left (21% uncovered) and Family Room's own tier was just worked this slot.
