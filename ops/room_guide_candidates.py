@@ -73,9 +73,21 @@ DIGITAL = re.compile(
 # car interior") use "organize" as a verb on supplies/maintenance and do not
 # match any branch of this pattern.
 OFF_TOPIC_CONTEXT = re.compile(
-    r"\bcar organizers?\b|\bcar trunk\b|canadian tire|"
-    r"organizers?\s+(?:bag\s+)?for\s+car\b|"
-    r"organizers?\s+for\s+car\s+interior|"
+    # "organi[sz]er" joined 2026-11-10, mining Garage: the ON_TOPIC pattern
+    # was broadened to the British/Australian/Canadian "organis" spelling on
+    # 2026-11-06, but this exclusion was never given the same treatment, so
+    # "car organiser diy" (the exact British-spelling twin of the already-
+    # excluded "car organizer ideas diy") was leaking through as a false
+    # on-topic match. Checked the corpus first: only that one row uses the
+    # "organiser(s)" spelling anywhere near "car"; "car organisation
+    # essentials/must haves" use the noun "organisation" (the activity, not
+    # the product), the exact same shape as the already-kept z-spelling
+    # "car organization and storage"/"car organization india" rows, so
+    # broadening to "organi[sz]er" rather than "organi[sz](?:er)?" cannot
+    # touch them.
+    r"\bcar organi[sz]ers?\b|\bcar trunk\b|canadian tire|"
+    r"organi[sz]ers?\s+(?:bag\s+)?for\s+car\b|"
+    r"organi[sz]ers?\s+for\s+car\s+interior|"
     # Found 2026-11-04 (Workshop pass): "how to organize bench" as a seed
     # picked up "Benchmark Advance" (a K-12 curriculum brand) autosuggest
     # noise, nothing to do with a home workshop's Material Rack. "craft

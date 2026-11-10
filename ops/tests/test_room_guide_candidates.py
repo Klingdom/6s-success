@@ -93,6 +93,19 @@ _result_car2 = rgc.score_room([_car_maint], [], _room)
 check("a genuine on-topic car-maintenance row is NOT excluded by that same pattern",
       _result_car2["on_topic_rows"] == 1)
 
+# Found 2026-11-10 (Garage pass): "car organiser diy" (British spelling) was
+# leaking through as a false on-topic match, the exact twin of the already-
+# excluded z-spelling "car organizer ideas diy", because ON_TOPIC's
+# 2026-11-06 "organi[sz]" broadening was never mirrored onto this exclusion.
+_car_organiser_gb = {"query": "car organiser diy", "best_page": "/test-room-deck.html", "status": "covered"}
+_result_car_organiser_gb = rgc.score_room([_car_organiser_gb], [], _room)
+check("the British-spelling 'car organiser diy' off-topic-context row is excluded",
+      _result_car_organiser_gb["on_topic_rows"] == 0)
+_car_organisation_essentials = {"query": "car organisation essentials", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_car_organisation_essentials = rgc.score_room([_car_organisation_essentials], [], _room)
+check("'car organisation essentials' (the activity, not the product) is NOT excluded",
+      _result_car_organisation_essentials["on_topic_rows"] == 1)
+
 # Found 2026-11-04 (Workshop pass): "craft paint"/"diamond painting" seeded
 # from "how to organize paint and chemical storage" drift to a hobbyist
 # audience the Finishing and Chemical Zone's own content.json purpose
