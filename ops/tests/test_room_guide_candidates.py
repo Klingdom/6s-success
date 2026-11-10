@@ -318,6 +318,29 @@ _result_organize_car_boot = rgc.score_room([_organize_car_boot], [], _room)
 check("a genuine on-topic 'organise a car boot' row is NOT excluded by the garage-sale pattern",
       _result_organize_car_boot["on_topic_rows"] == 1)
 
+# Found 2026-11-10 (Mudroom/Patio or Deck pass, both tied top at 28%
+# uncovered): 61 on-topic gap/partial rows across at least 10 rooms ask how
+# to BUILD a physical structure from raw materials (a railing, a walkway, a
+# staircase, mudroom/bench/outdoor storage, a wall tool organizer...)
+# rather than how to ORGANIZE one that already exists. This site has no
+# carpentry/construction content and cannot honestly close these.
+_build_storage = {"query": "how to build mudroom storage", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_build_storage = rgc.score_room([_build_storage], [], _room)
+check("a 'how to build storage' construction-intent row is excluded",
+      _result_build_storage["on_topic_rows"] == 0)
+_build_organizer = {"query": "how to build a wall tool organizer", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_build_organizer = rgc.score_room([_build_organizer], [], _room)
+check("a 'how to build a ... organizer' construction-intent row is excluded",
+      _result_build_organizer["on_topic_rows"] == 0)
+_building_storage_box = {"query": "building an outdoor storage box", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_building_storage_box = rgc.score_room([_building_storage_box], [], _room)
+check("a 'building an outdoor storage box' construction-intent row is excluded",
+      _result_building_storage_box["on_topic_rows"] == 0)
+_organize_storage_genuine = {"query": "how to organize mudroom storage", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_organize_storage_genuine = rgc.score_room([_organize_storage_genuine], [], _room)
+check("a genuine 'how to organize ... storage' row is NOT excluded by the build-construction pattern",
+      _result_organize_storage_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

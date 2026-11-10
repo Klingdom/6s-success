@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-10, scheduled operator cycle (~15:4x UTC): consolidated a construction/DIY-build-intent noise class, closing Mudroom and Patio or Deck from 28% to 21% uncovered
+
+**Did:** attached per Step 0 onto a shallow, detached checkout (fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `1ee34149f`, tree clean). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md` and the last four log entries before touching anything. Verified the standing "everything is Phil-gated" claim live rather than trust it: 31 open GitHub issues re-pulled fresh, unchanged since 2026-11-08T22:03:25Z, 0 PRs, no mail credentials (unchecked, not empty). Re-ran `room_guide_underperformance.py` live: Mudroom and Patio or Deck tied top at 28% uncovered, both previously called "exhausted" by name. Read both rooms' full partial tiers and found the same shape repeating: queries asking how to BUILD a structure from raw materials (a bench, a railing, a storage box), not how to organize one that exists. Checked against both keyword corpora with a standalone script before acting (CLAUDE.md 5c/5d): a consolidated pattern matched exactly 61 on-topic gap/partial rows across at least 10 rooms and exactly 1 covered row (left untouched by design), all genuine construction intent on inspection, none already answered elsewhere. This exact class had been named piecemeal across several prior cycles ("woodworking plans for nightstand" and others) but never consolidated into one exclusion. Added as a new `OFF_TOPIC_CONTEXT` branch in `ops/room_guide_candidates.py`.
+
+**Verified:** fail-then-pass proved directly (`git stash` the fix, 3 new assertions failed with the exact pre-fix behaviour, restored, passed). `test_room_guide_candidates.py` 52/52 (4 new, including a negative control for a genuine "organize ... storage" query), `test_room_guide_underperformance.py` 19/19. Mudroom 28% to 21%, Patio or Deck 28% to 21%, Garage 28% to 26% (partial overlap with same-day Garage work). `fix_dashes.py`/`check_urls.py`/`affiliate.py --check`/`check_sellable.py` all clean. `preflight.py --skip-tests` run live to a file: both FAIL sections "(none)" through every gate reached.
+
+**Went well:** found a real, previously-unnamed noise class by reading full partial tiers instead of trusting a prior "exhausted" claim, and consolidated several cycles' worth of one-off exclusions into a single, tested mechanism (CLAUDE.md 10b).
+
+**Did not go well:** `preflight.py` (without `--skip-tests`) was started first and left running nearly 15 minutes with no output before being killed; should have gone straight to the documented `--skip-tests` fast path. The subsequent `--skip-tests` run stalled at the documented network-bound `gate_etsy_pdfs_current` after 300s wall-clock; killed by hand along with the orphaned `build_etsy_assets.py`/Chromium render tree, confirmed no stray files left behind.
+
+**Changing next cycle:** go straight to `preflight.py --skip-tests` rather than trying the full (non-skip-tests) run first; it reliably hangs on `gate_tests` in this sandbox and wastes the opening minutes.
+
+**Next:** the same standing queue of 31 Phil-gated issues; no new room-level gap found beyond this one. A full room-by-room re-read for any further construction-intent stragglers this pattern's noun list does not yet cover (e.g. a shed, a pergola, a workbench) would be the next place to look if this class resurfaces. Separately, the previous (concurrent) PM check-in named one real small candidate not yet started: a "recipe cards and wrapping paper" content mention on the Hall Closet Paper and Household Backstock zone (a genuine, single-row, low-volume gap the 15:0x cycle verified but declined to build a whole new zone for).
+
+HANDOFF-FILES: none
+
 ## 2026-11-10, PM check-in (~15:4x slot): previous work confirmed finished a further independent way, one real candidate handed to the operator
 
 NEXT FOR THE OPERATOR: add a "recipe cards and wrapping paper" mention to the Paper and Household Backstock zone's content (Hall Closet), because the 15:0x cycle verified that gap is real and unaddressed on the live site, and it is the only non-Phil-gated item this slot found.

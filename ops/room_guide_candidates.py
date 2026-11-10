@@ -318,7 +318,40 @@ OFF_TOPIC_CONTEXT = re.compile(
     # None of these three phrases ever appears on a genuine on-topic row
     # that lacks another exclusion already, so this cannot suppress a real
     # gap.
-    r"\bgarage sale\b|\bback of stove\b|\bcleaning services\b",
+    r"\bgarage sale\b|\bback of stove\b|\bcleaning services\b|"
+    # Found 2026-11-10, this operator cycle (Mudroom/Patio or Deck pass,
+    # both tied top at 28% uncovered once the retailer/platform/geo and
+    # garage-sale/stove/B2B noise above was already excluded). "woodworking
+    # plans for nightstand" and "woodworking fundamentals" above were each
+    # excluded one query at a time as they turned up; the underlying class
+    # was never named or consolidated anywhere in this file. 61 on-topic
+    # gap/partial rows across at least 10 rooms (Patio or Deck, Mudroom,
+    # Stair Landing, Family Room, Garage, Guest Bedroom, Laundry Room,
+    # Nursery, Entryway, Living Room) ask how to BUILD a physical structure
+    # from raw materials (a deck, a railing, a walkway, a staircase, an
+    # entertainment center, a charging station, a grill station, a drying
+    # rack, a nightstand, a wall tool organizer, a drop zone, mudroom or
+    # bench or outdoor storage, a handrail, exterior stairs, a book storage
+    # box) rather than how to ORGANIZE one that already exists. This site
+    # teaches the 6S method on belongings a household already owns; it has
+    # no carpentry, woodworking or construction content anywhere, and
+    # answering these would mean writing a different trade's how-to, not
+    # closing an organizing-wording gap a synonym could ever fix. Checked
+    # against the full corpus before adding (CLAUDE.md 5c/5d): the pattern
+    # matches exactly 61 gap/partial rows across both harvests and 1
+    # covered row ("how to make a nightstand"), left untouched since this
+    # exclusion only narrows the gap/partial on-topic tally and never
+    # reclassifies a covered row. Spot-checked a sample of the 61 against
+    # their real routed pages: every one is construction intent, and none
+    # is already answered as an organizing question anywhere else in
+    # either corpus.
+    r"\b(?:build(?:ing)?|how to (?:build|make))\b.{0,40}\b(?:railing|walkway|"
+    r"staircase|stair\s*landing|patio\s*deck|entertainment\s*center|"
+    r"charging\s*station|grill\s*station|drying\s*rack|nightstand|"
+    r"tool\s*organizer|drop\s*zone|mudroom\s*storage|bench\s*storage|"
+    r"outdoor\s*storage|outdoor\s*seat(?:ing|s)?|"
+    r"outdoor\s*(?:dining\s*table|table\s*and\s*chairs)|handrail|"
+    r"exterior\s*stairs|book\s*storage\s*box)\b",
     re.I)
 
 
