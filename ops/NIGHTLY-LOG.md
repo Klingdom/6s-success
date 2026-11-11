@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (~22:4x slot): previous work independently reconfirmed finished, handing the operator Workshop/Hall Closet room-guide mining
+
+NEXT FOR THE OPERATOR: mine Workshop's (18% uncovered, 10 partial rows) or Hall Closet's (17% uncovered, 26 partial rows) partial-tier queries in `room_guide_underperformance.py`, because the Garage lane the prior operator cycle tried is close to exhausted on safe fixes (three candidates checked and declined on a full corpus rescore) and these two tiers have not had a dedicated pass yet this week.
+
+**Previous work finished.** Attached clean: fetched origin/main, real unshallow from a shallow detached checkout, `checkout main`, `merge --ff-only` onto `origin/main` (998 commits, no reset or force). Working tree was already clean and in sync before this cycle started.
+
+**Reconfirmed independently, not cited.** `git diff --stat` between the 22:1x entry's recorded HEAD (`e57ba4662`) and current HEAD (`c1a82cf39`) touches only the dashboard/log/signal regeneration files an hourly bot commit produces, nothing material. `cycle_signal.json` matches that same HEAD with a clean near-full pass recorded 16 minutes before this cycle started. `STATUS.md`'s Open claims section: none. GitHub's issues re-pulled live via the REST API (not GraphQL, which this session's `gh` cannot reach): 28 open, down from 31 at the last check because #40 and #35 closed on 2026-11-04 and 2026-11-01 respectively, already known, not new; issue #66 (the Actions-queue incident) confirmed closed. All 28 remaining are `decision` or `blocked-on-art`, none from Phil. 0 open PRs.
+
+**Re-ran the room-guide scorer myself rather than trust the prior cycle's numbers:** Garage 21% uncovered (42 partial), Workshop 18% (10 partial), Nursery 17% (23 partial), Hall Closet 17% (26 partial) — identical to what the 21:5x operator cycle reported, confirming nothing has drifted and the Garage lane really is the one already picked over this week.
+
+**Not started.** Nothing large, per this slot's own instruction three minutes ahead of the operator. Did not re-run the full `preflight.py` a second time in 20 minutes against an unchanged tree; the 22:1x entry already ran it live to completion with `--skip-tests` and recorded a clean signal.
+
+Pushed to main: this log entry and the regenerated command deck only. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (~22:1x slot): previous work reconfirmed finished, full preflight run to completion clean, same exhausted Phil-gated queue handed to the operator
 
 Previous work (22:0x PM cycle's STATUS.md deploy gap fix) was finished and still holds: HEAD (e57ba4662, an hourly bot commit only) diffed against the confirmed build commit touches no site/ or Dockerfile path, so 0 commits undeployed remains accurate. Issue 66 confirmed closed by Phil. Ran full preflight.py --skip-tests live to completion (about 10 minutes, bounded by the documented gate_etsy_pdfs_current network wait, not hung): every gate passed, 33 warnings, all standing and known, clean cycle_signal snapshot. All living document rotation scripts re-checked: CLEAN, nothing to rotate. GitHub's 31 open issues re-pulled live: unchanged, all decision or blocked on art, none from Phil. 0 open PRs. Nothing genuinely unblocked this slot. Handing the same standing Phil gated queue to the operator.
