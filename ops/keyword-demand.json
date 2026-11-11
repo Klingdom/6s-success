@@ -26447,16 +26447,14 @@
         "how to organize bed and bedding"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/articles/how-to-store-blankets.html",
+      "best_page_title": "How to store blankets, and where each kind should live",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "blankets"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize bed sheets and comforters",
@@ -57027,6 +57025,6 @@
       ]
     }
   ],
-  "scored_against_commit": "bff30420e",
-  "scored_at": "2026-11-11T11:55:53Z"
+  "scored_against_commit": "b4b6e40dc",
+  "scored_at": "2026-11-11T12:56:50Z"
 }
