@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (12:1x slot): previous work independently reconfirmed finished with a full clean preflight; closed a real 2-entry BLOCKER-001 rotation backlog instead of opening new work
+
+**Previous work finished.** Attached clean (fetch, checkout main, ff-only onto `origin/main`). Ran `preflight.py --skip-tests` to its real end, not a short kill: every one of 436 gates passed, 0 FAIL, 34 warnings, all the standing known kind (no Stripe/SSH/mail credential in this sandbox, films-vs-captions skipped for lack of local video, cron-cadence throttling GitHub already documents). CI green on HEAD (`4ddd249`). `STATUS.md` Open claims: none. Dashboard was already fresh (generated 12:02, matching HEAD). GitHub re-pulled: 31 open issues, unchanged since 2026-11-08, all `decision`/`blocked-on-art`, none from Phil.
+
+**Nothing new unblocked.** `BACKLOG-2026-09-07.md` sections outside the owner-gate table are Done or Hold; the room-guide mining lane (Garage, 21% uncovered, 43 partial rows) is real but operator-sized, not a 30-minute PM item, so left for the operator rather than half-started here.
+
+**Closed instead of re-citing.** The standing "three living docs over their size tripwire" warning has been repeated for weeks without anyone checking whether the existing rotation tooling could actually act on it. Ran all 16 `ops/rotate_*.py --check` scripts rather than assuming the tripwire was unfixable: 15 of 16 lanes were genuinely clean (everything live is within its own retention window, nothing stale to archive), but `rotate_status_history.py --check-blocker1` reported 2 of 3 BLOCKER-001 entries due for archival. Applied it: moved the 2026-11-09 and 2026-11-10 superseded deploy-verdict corrections to `STATUS-ARCHIVE.md`, kept the 2026-11-11 entry live. `STATUS.md` 117,874 to 115,803 bytes (still over its 110,000 tripwire; this was one due lane, not the whole fix). Verified via the tool's own test (`python ops/tests/test_rotate_status_history.py`: OK) and by calling `gate_status_blocker001_not_oversized()` and `gate_status_history_chain_not_collapsed()` directly post-change (both ran clean); not re-run through a second full `preflight.py` pass given the first had just finished clean against the pre-change tree and the change is a mechanical, generator-driven archival move, not hand-edited content.
+
+**Went well:** checking whether a long-repeated warning actually had an unclaimed fix available, instead of restating it a ninth time.
+
+**Did not go well:** the other two oversized docs (`BACKLOG-2026-09-07.md` 294KB, `OWNER-ACTIONS.md` 121KB) have no due rotation lane right now; their content is all within its own retention window, so shrinking them needs either a shorter window (a product decision, not mine to make unilaterally) or waiting for more of today's content to age out.
+
+**Changing next cycle:** none.
+
+**Next:** same standing 31-issue Phil-gated queue; Garage room-guide mining for the operator, unchanged.
+
+Pushed to main. `STATUS.md`, `STATUS-ARCHIVE.md`, this log entry, regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, scheduled operator cycle (~12:0x UTC): Kitchen's remaining partial tier mined, 21% to 14% uncovered, one construction-intent exclusion added alongside five FORMAT_WORDS qualifiers
 
 **Did.** Unshallowed and attached clean onto `bff30420e`, then ff-only onto a concurrent push (`62adbca14`) before pushing. Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `OWNER-ACTIONS.md` and the last four `NIGHTLY-LOG.md` entries: all 31 GitHub issues (re-pulled live) are `decision`/`P0`/`blocked-on-art`, authored by this repo's own automation account, none from Phil; every backlog row outside the owner-gate table is Done or Hold. Kitchen/Garage/Hall Closet (tied ~21% uncovered) was the one lead the last several PM check-ins had named as real but not yet claimed. Picked Kitchen (smallest tier, 89 on-topic) to finish one thing rather than open a second.
