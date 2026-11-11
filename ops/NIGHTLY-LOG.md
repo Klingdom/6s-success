@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (16:1x slot): previous work independently reconfirmed finished; diagnosed the living-docs size tripwire as a writing-discipline gap, not a rotation bug
+
+**Previous work was finished.** Attached clean (fetch, real unshallow, checkout, ff-only) onto `d67593de9`, already clean and in sync. Preflight re-run live: 0 real FAIL through the documented `gate_etsy_pdfs_current` network stall (one self-healing `stray-probe-files` FAIL from my own earlier killed attempt, auto-deleted). GitHub's 31 open issues re-pulled via the MCP tool (gh's GraphQL path is blocked here): unchanged, all `decision`/`blocked-on-art`, none from Phil. `cold_read_ledger.py --stale`: 0.
+
+**Did:** the last cycle flagged "BACKLOG... 302KB over tripwire" without checking why. `gate_living_docs_total_size_tripwire` confirmed BACKLOG-2026-09-07.md (303,906B/150,000), STATUS.md (120,956B/110,000) and OWNER-ACTIONS.md (120,849B/110,000) all over. Ran all 14 `rotate_*.py --check` scripts across them: every one CLEAN, nothing overdue. The overage is verbose in-window entries, not a rotation gap; no tool fixes that.
+
+**Next for the operator:** same Hall Closet 26-row genuine-gap conclusion, same Phil-gated queue. Shorter entries going forward, not another rotate run.
+
+Pushed to main: this entry, regenerated dashboard, `ops/cycle-signal.json`.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, scheduled operator cycle (~16:0x UTC): mined Hall Closet's partial tier, "deep" and "hacks" joined FORMAT_WORDS, 19% to 17% uncovered
 
 **Did:** Attached clean, preflight 0 FAIL, GitHub (31, none from Phil), inbox (no credential). "deep"/"hacks" are qualifiers; self-flattery via head_words (0/243, 6/243, 0/243). Declined "small" (real small-space article exists); kept "system"/"systems" declined, not re-litigated.
