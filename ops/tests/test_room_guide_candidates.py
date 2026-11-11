@@ -786,6 +786,17 @@ _result_declutter_step_by_step_genuine = rgc.score_room([_declutter_step_by_step
 check("a genuine 'step by step' row is NOT excluded by the step-challenge pattern",
       _result_declutter_step_by_step_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-11, mining Stair Landing's 2-row tier. A classroom/museum
+# teaching technique, nothing to do with a photo-and-art display wall.
+_gallery_walk = {"query": "how to organize a gallery walk", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_gallery_walk = rgc.score_room([_gallery_walk], [], _room)
+check("a 'gallery walk' off-topic-context row is excluded",
+      _result_gallery_walk["on_topic_rows"] == 0)
+_gallery_wall_genuine = {"query": "how to organize a gallery wall", "best_page": "/test-room-deck.html", "status": "covered"}
+_result_gallery_wall_genuine = rgc.score_room([_gallery_wall_genuine], [], _room)
+check("a genuine 'gallery wall' row is NOT excluded by the gallery-walk pattern",
+      _result_gallery_wall_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

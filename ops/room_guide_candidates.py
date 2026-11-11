@@ -671,7 +671,22 @@ OFF_TOPIC_CONTEXT = re.compile(
     # both harvests: "step challenge" appears in exactly these 4 rows (2 US,
     # 2 global, organize/organise spellings), every one already partial, 0
     # covered, so excluding it cannot suppress a genuine match.
-    r"\bstep\s+challenge\b",
+    r"\bstep\s+challenge\b|"
+    # Found 2026-11-11, mining Stair Landing's 2-row partial tier (the
+    # smallest remaining tier, not yet mined). "how to organize a gallery
+    # walk" lands on the stair landing's wall-and-display zone purely on
+    # "organize"/"gallery" word overlap with the page's own title ("How to
+    # organize the stair landing gallery wall"); a gallery walk is a
+    # classroom/museum teaching technique (walking round viewing displayed
+    # work), not a photo-and-art display wall at home, the same
+    # different-activity collision "gardening series"/"dental"/"step
+    # challenge" already exclude above for an unrelated field colliding on a
+    # bare word. Checked against both harvests before adding: "gallery walk"
+    # appears in exactly this one row (US only, 0 in the global harvest), and
+    # the real "gallery wall" sense is already covered separately via
+    # zone-also-called.json's "photos zone" entry, so excluding this phrase
+    # cannot suppress a genuine match.
+    r"\bgallery walk\b",
     re.I)
 
 

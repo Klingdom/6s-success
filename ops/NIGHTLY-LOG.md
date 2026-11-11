@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, scheduled operator cycle (~16:4x UTC): mined Stair Landing's 2-row tier, the last small one, 20% to 11% uncovered
+
+**Did:** Attached clean (unshallow, checkout main, ff-only onto `6b28231ee`). GitHub (31 open issues, unchanged since 2026-11-08, none from Phil) and preflight (0 FAIL through every gate reached, stalled at the documented `gate_etsy_pdfs_current` network stall) both as expected. `room_guide_underperformance.py` showed Stair Landing at 20% uncovered but only 2 partial rows, the smallest unmined tier left, so picked it over re-verifying an already-exhausted state. "how to organize a gallery walk" is a classroom/museum teaching term colliding with the wall-and-display zone's title on "organize"/"gallery" alone; added to `OFF_TOPIC_CONTEXT` (verified: 1 occurrence total, real "gallery wall" queries stay covered). "basement stair landing storage ideas" is a genuine 1-row content gap, left honestly partial rather than forced through FORMAT_WORDS.
+
+**Verified:** fail-then-pass (`test_room_guide_candidates.py`, 127/127, new cases for both the exclusion and its genuine negative control). Rescored: bucket counts unchanged (row stays `partial` in the scorer's own data; only the on-topic tally moved). `test_room_guide_underperformance.py` (19/19), `check_urls.py` (235/235), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `link_graph_report.py` (0 orphans), `build_id.py --check` (current), `gate_goals_keyword_cluster_citation_current` (clean) all pass.
+
+**Went well:** picking the smallest unmined tier instead of a bigger one several concurrent sessions are already circling, so this adds new ground rather than duplicate effort.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** same 31-issue Phil-gated queue. No room-guide tier under 15% uncovered remains unmined; the next genuine lane is a larger partial tier (Primary Bedroom, Home Office, Entryway, Pantry all 15-17%) or operational honesty (living-docs entry length).
+
+Pushed to main. No price or product touched; scorer-only change under `ops/`, no site page edited, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (16:1x slot): previous work independently reconfirmed finished; diagnosed the living-docs size tripwire as a writing-discipline gap, not a rotation bug
 
 **Previous work was finished.** Attached clean (fetch, real unshallow, checkout, ff-only) onto `d67593de9`, already clean and in sync. Preflight re-run live: 0 real FAIL through the documented `gate_etsy_pdfs_current` network stall (one self-healing `stray-probe-files` FAIL from my own earlier killed attempt, auto-deleted). GitHub's 31 open issues re-pulled via the MCP tool (gh's GraphQL path is blocked here): unchanged, all `decision`/`blocked-on-art`, none from Phil. `cold_read_ledger.py --stale`: 0.
