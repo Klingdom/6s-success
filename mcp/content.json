@@ -13732,6 +13732,10 @@
       {
        "condition": "Small children or a pet come into this room",
        "guidance": "The wall fixing stops being optional. Anchor every unit over about a meter tall, put nothing climbable in front of it, and keep the bottom shelf free of anything worth reaching for."
+      },
+      {
+       "condition": "You want the shelf to look aesthetically pleasing, sorted by color or by genre",
+       "guidance": "A shelf arranged by color or by genre reads well in a photo and works against you every other day: this zone's own diagnosis names shelving by size or color, instead of by what a book is for, as a direct cause of not being able to find the one you want. If it has to look good for people passing through, give that handful of books their own small display shelf and keep this working shelf sorted by how often you reach for it."
       }
      ],
      "diagnosis": {

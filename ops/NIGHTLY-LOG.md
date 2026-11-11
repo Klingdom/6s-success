@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (~20:1x slot): previous work's own CI run turned red after it landed; fixed the two real gate failures instead of re-reporting them
+
+NEXT FOR THE OPERATOR: same standing 31-issue Phil-gated queue; mine Garage's remaining partial tier (41 rows) or Hall Closet's remainder if nothing else surfaces, per the prior cycle's own handoff.
+
+**Previous work was not actually finished.** Attached clean (fetch, real unshallow, `checkout main`, ff-only onto `5fbb81bcd`, no reset or force). Working tree and `main`/`origin` were already in sync. The 20:0x operator cycle's own commit (`9be11e17e`, the Home Office Bookshelf fix plus FORMAT_WORDS merge) had already pushed and looked done, but its CI run (`checks.yml` run 3440) completed red while this check was in progress: `gate_build_id_current` FAIL (`site/build-id.txt` stale, stamped before the content/deck rebuild that followed it) and `gate_mcp_corpus_current` FAIL (`mcp/content.json` had not been re-copied from `content/manual/source/content.json` after the Bookshelf content note landed, so the MCP server's bundled corpus was 4 lines behind the real one). Per CLAUDE.md 0.2 and 0.4, a green commit message is not a passing CI run, so this is the work this slot did instead of starting anything new.
+
+**Fixed, not just named.** `cp content/manual/source/content.json mcp/content.json` (byte-identical confirmed); `python ops/build_id.py` restamped `site/build-id.txt` (`7645342d6913ae17` to `0ebc1e6899196667`), both generator-owned files, not hand-edited.
+
+**Verified.** `ops/build_id.py --check`: current. `ops/tests/test_gate_mcp_corpus_current.py` run directly (no pytest in this sandbox): all 4 cases pass, including "the real committed files match right now." Called `gate_build_id_current()` and `gate_mcp_corpus_current()` directly against the working tree after staging: both recorded zero FAIL (one informational warn only, about unstaged-at-the-time changes, expected before commit). Diff limited to exactly the two generator-owned files, 5 lines total. `fix_dashes.py --check`, `cold_read_ledger.py --stale`, `check_urls.py` all clean. GitHub's 31 open issues re-pulled live: unchanged since 2026-11-08, none from Phil. `preflight.py --skip-tests` itself still hits the documented sandbox egress stall (`android.clients.google.com`/`www.google.com`/`redirector.gvt1.com` refused by the proxy) before reaching the full gate list; reported unchecked past that point, not passing, per CLAUDE.md 0.4.
+
+**Went well:** caught a real red CI run from the immediately preceding cycle instead of handing off a queue re-scan that would have missed it; fixed both gates with the exact remedies their own messages named rather than guessing.
+
+**Did not go well:** the operator's own post-work CI check (step 5/6 of its cycle) evidently did not catch this before pushing; worth a line in `BACKLOG-2026-09-07.md` if it recurs.
+
+**Changing next cycle:** none yet; one recurrence is not a pattern.
+
+Pushed to main. No price, product or site page touched; `mcp/content.json` and `site/build-id.txt` only (both generator-owned, regenerated not hand-edited). IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11 (~20:0x UTC), scheduled operator cycle: a real content fix for Home Office's Bookshelf zone (not a wordlist entry), plus one closeable FORMAT_WORDS word it exposed
 
 Did: Added a genuine content note to Home Office's Bookshelf and Reference Zone (content.json variants) honestly answering "organize bookshelf by color/genre": the zone's own diagnosis already names sorting by color or category as a cause of not finding a book, so the new note argues against the literal query rather than fabricating agreement with it. Rebuilt via ops/build_zone_pages.py (generator-owned, not hand-edited). Separately, "aesthetically" (style qualifier, same shape as "quickly"/"simple") joined FORMAT_WORDS, closing the one row it was the sole unmatched word on in each corpus; "color"/"genre" deliberately stay real content words since the honest answer disagrees with the query. Merged this cycle's own FORMAT_WORDS addition with a concurrent cycle's "categories"/"pro" addition (renumbered as separate test cases 46/47) rather than overwrite either.
