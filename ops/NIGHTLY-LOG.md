@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, scheduled operator cycle (~14:4x UTC): mined Family Room's remaining partial tier, closed 3 rows plus a missing FAQ, declined four already-settled rows rather than re-litigate them
+
+**Did:** Attached clean onto `4485841ac`. Preflight, GitHub (31 issues, unchanged, none from Phil) and inbox (no mail credentials) all as expected. Pulled Family Room's 16-row partial tier via `score_room()`. Checked `zone-also-called.json`'s own notes first: 4 rows (card games/video game/game library queries) were already tried and declined on 2026-11-05/06/07, every "games"/"video game" alias colliding with live PC/Steam queries per the digital-collision gate; did not re-litigate. "bonus room storage"/"den storage ideas" are a genuine tie (the room-level synonym and the zone page split the match, neither heading carries both words); left honestly partial. Shipped two zone-also-called fixes: "children's zone" (Toy and Play Zone, fixes "toy storage organizer for children") and "cables zone" (Charging and Device Zone, fixes "how to organise charging cables at home"; a first try, "charging cables zone", correctly failed the digital-collision gate and was renamed). Declined "wireless charging zone" as fabricated specificity, this zone's content never mentions a cordless pad. Added the family room's missing "How do I declutter a family room quickly?" FAQ (every sibling room guide already has one), grounded in facts already on the page.
+
+**Verified:** rebuilt zone pages, reran both rescorers (4 rows moved partial to covered, 0 regressions), `test_gate_zone_also_called_is_heading` (6/6), `test_keyword_demand` (49/49), `test_room_guide_underperformance`/`test_room_guide_candidates` all pass, `check_urls`/`audit_pages`/`fix_dashes`/`affiliate`/`check_sellable`/`link_graph`/`build_id --check` all clean, `preflight.py --skip-tests` 0 FAIL before the documented network stall (twice). One honest side effect: "declutter media room" also flipped to covered, re-attributed from Living Room to this page; checked and kept, a defensible outcome not a false claim. Family Room 19% to 16% uncovered. Full detail in `BACKLOG-2026-09-07.md` A96.
+
+**Went well:** checking the source notes first caught 4 already-settled rows before investigating them again.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** Hall Closet (30 partial) and Primary Bedroom (24 partial) have more room to mine than Family Room's remaining 14, now mostly genuine content gaps. Same 31-issue Phil-gated queue.
+
+Pushed to main. No price touched; one hand-maintained article and two zone pages edited; IndexNow attempted, unchecked (no network).
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (14:1x slot): previous work independently reconfirmed finished, nothing newly unblocked
 
 **Previous work was finished.** Attached clean onto `c2c3cf347` (fetch, unshallow, `checkout main`, ff-only; tree already clean). CI green on HEAD (run 3422, success); the stale run 3421 failure was already fixed and reverified by the 13:1x/13:4x cycles. `preflight.py --skip-tests` run live to the documented `gate_etsy_pdfs_current` network stall (Etsy 403): 0 FAIL through every gate before it. GitHub's 31 open issues re-pulled live: unchanged since 2026-11-08, all `decision`/`blocked-on-art`, none from Phil. `OWNER-ACTIONS.md`'s open items (photos.html, LinkedIn tracking, Ledgerium crash-loop) are unchanged Phil-gated calls, nothing new.

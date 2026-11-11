@@ -44425,13 +44425,11 @@
       "best_page": "/zones/family-room-the-toy-and-play-zone.html",
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "children"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/family-room-the-toy-and-play-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -48282,6 +48280,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "909c64298",
-  "scored_at": "2026-11-11T13:55:45Z"
+  "scored_against_commit": "4485841ac",
+  "scored_at": "2026-11-11T14:59:45Z"
 }

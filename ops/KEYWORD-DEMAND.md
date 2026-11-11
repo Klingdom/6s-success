@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-11T13:55:44Z against 243 page(s) at commit 909c64298. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-11T14:59:41Z against 243 page(s) at commit 4485841ac. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1657 covered, 1058 partial, 108 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1660 covered, 1055 partial, 108 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -104,7 +104,7 @@ Showing the top 80 of 108, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1058.
+Showing the top 60 of 1055.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -125,7 +125,6 @@ Showing the top 60 of 1058.
 | 19 | primary bathroom designs with shower | How to organize the primary bathroom shower or tub | 0.75 |
 | 21 | stair stringer landing to landing | How to organize a stair landing, step by step | 0.75 |
 | 1 | craft paint organizers and storage | How to organize the workshop paint and chemical storage | 0.67 |
-| 1 | declutter family room | How to organize a family room, step by step | 0.67 |
 | 1 | drop zone design ideas | How to organize the entryway drop zone | 0.67 |
 | 1 | family room decorating ideas | How to organize a family room, step by step | 0.67 |
 | 1 | how to build a drop zone | How to organize the entryway drop zone | 0.67 |
@@ -158,7 +157,6 @@ Showing the top 60 of 1058.
 | 3 | acrylic paint storage organizer | How to organize the workshop paint and chemical storage | 0.67 |
 | 3 | building a patio deck | How to organize a patio or deck, step by step | 0.67 |
 | 3 | cabinet to organize cleaning supplies | How to organize the hall closet cleaning supplies | 0.67 |
-| 3 | declutter media room | How to organize the living room media center | 0.67 |
 | 3 | design ideas for dining room | How to organize a dining room, step by step | 0.67 |
 | 3 | family room design ideas | How to organize a family room, step by step | 0.67 |
 | 3 | guest bathroom design ideas | How to organize a guest bathroom, step by step | 0.67 |
@@ -168,6 +166,8 @@ Showing the top 60 of 1058.
 | 3 | how to create a drop zone | How to organize the entryway drop zone | 0.67 |
 | 3 | how to decorate a guest bathroom | How to organize a guest bathroom, step by step | 0.67 |
 | 3 | how to get more storage for games | More storage will not fix a messy room | 0.67 |
+| 3 | how to make a power tool organizer | How to organize the garage power tool storage | 0.67 |
+| 3 | how to organize baking supplies in.cabinet | How to organize the pantry baking supplies | 0.67 |
 
 ## By room
 
@@ -175,7 +175,7 @@ Showing the top 60 of 1058.
 |---|---|---|---|---|
 | Dining Room | 38 | 0 | 14 | 24 |
 | Entryway | 50 | 1 | 10 | 39 |
-| Family Room | 27 | 0 | 17 | 10 |
+| Family Room | 27 | 0 | 16 | 11 |
 | Garage | 77 | 1 | 22 | 54 |
 | Guest Bathroom | 22 | 1 | 14 | 7 |
 | Guest Bedroom | 24 | 0 | 12 | 12 |
