@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, scheduled operator (03:4x slot): Guest Bedroom mined for the first time, 20% to 8% uncovered; a self-caught false claim in my own first draft
+
+**Did:** Unshallowed and attached to `main` cleanly (`fetch`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, fast-forwarded 811 commits). Read `BACKLOG-2026-09-07.md` sections 0-7 in full (not cited), `OWNER-ACTIONS.md`'s top, `STATUS.md`'s current-priority section, and GitHub's 31 open issues live: every section-2/3/4 item is Done or Phil-gated, confirming the room-guide keyword-mining lane (epic 3) is still the only genuinely unblocked work. `room_guide_underperformance.py` run live across all 20 rooms: Guest Bedroom (20% uncovered) had never been named in this lane, unlike the repeatedly-mined Garage/Hall Closet, so picked it instead of a 16th pass on either of those. Pulled its real 10-row partial tier directly via `score_room()`, checked each against `content.json` before acting. Shipped two fixes: added "her"/"him"/"men"/"women" to `FORMAT_WORDS` (a gendered qualifier on an otherwise-matched organizing question, same shape as "original"/"quickly"); added "container"/"containers" to the same list (a storage-product noun the target page already answers in generic terms). Added `\btruck\s+bed\b` to `OFF_TOPIC_CONTEXT` (a pickup truck's cargo area, not a bedroom's bed). Declined three rows as a genuine, harder content-routing bug (a winning cross-room ZONE beating the correct room's own ARTICLE, which the existing `_prefer_in_room_zone()` override does not run in reverse) and one as a real small content gap, handed forward rather than forced; full reasoning in `BACKLOG-2026-09-07.md` A87.
+
+**Verified:** Fail-then-pass for both changes. Rescored both corpora live (0 regressions in either gap count). Guest Bedroom 20% to 8% uncovered live, full 20-room rescan confirmed no other room moved. `check_urls.py`, `audit_pages.py`, `fix_dashes.py --check`, `affiliate.py --check`, `check_sellable.py` all clean. `preflight.py --skip-tests` 0 real FAIL, stalled only at the documented `gate_etsy_pdfs_current`. GitHub re-pulled: 31 open issues unchanged, none from Phil. `inbox_agent.py --apply`: no mail credential, unchecked.
+
+**Went well:** My own first draft of the "truck bed" test asserted "how to organize power tools in truck" was a genuine on-topic control that my new pattern must not touch. Running it live before shipping showed that query is already excluded by an older, different pattern (A86, vehicle-interior storage) — my assumption was simply wrong. CLAUDE.md 5d's "verify a claim before acting on it" caught this before it reached the comment or the test, not after.
+
+**Did not go well:** A full (not `--skip-tests`) `preflight.py` run, started to honor this prompt's own STEP 2 literally, hung for over 6 minutes at `test_contact_form_interactive.py`'s headless-Chromium child (0:00 CPU time past its own 25-second virtual-time budget, file:// only, no network), a different shape than the documented network-bound `gate_etsy_pdfs_current` stall. Killed by hand; left only its own gitignored probe file.
+
+**Changing next cycle:** Not filing a new gate for the `test_contact_form_interactive.py` hang yet: this is its first observed occurrence, and CLAUDE.md 10b asks for three consecutive occurrences before a symptom earns a gate, not one. If a future cycle sees the same test hang again, that is the trigger to add a timeout wrapper around it in `gate_tests`.
+
+**Next:** Three real Guest Bedroom rows left open (baby clothes/newborn/diaper-bag misattribution to its dresser/deck, rooted in `_prefer_in_room_zone()` only overriding one direction of a cross-room tie) are a genuine next-cycle candidate if no higher-priority item surfaces first; full detail in A87. Otherwise the same standing 31-issue Phil-gated queue.
+
+Pushed to main: this entry, `BACKLOG-2026-09-07.md` A87, the two scorer files, two test files, the rescored corpora and their summaries, and the regenerated command deck. No price, product or site page touched; this is a scorer-only change under `ops/`, not a generator-owned `site/` file, so IndexNow does not apply.
+
+HANDOFF-FILES: none
+
 ## PM check-in (03:4x slot): previous work independently reconfirmed finished, preflight run to the documented gate_etsy_pdfs_current stall with 0 real FAIL, same Hall Closet/Garage mining handoff
 
 NEXT FOR THE OPERATOR: continue room-guide partial-tier mining, because that is still the only genuinely unblocked, non-Phil-gated workstream. Hall Closet and Garage are tied at 22% uncovered (both reconfirmed live, not cited), Guest Bedroom next at 20%; read the live number again rather than trust this one, since mining has moved it within the hour before.

@@ -3129,14 +3129,12 @@
       "room": "",
       "best_page": "/rooms/family-room.html",
       "best_page_title": "How to organize a family room, zone by zone",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/family-room.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "men"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -28398,14 +28396,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-linen-closet.html",
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "men"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -29590,14 +29586,12 @@
       "room": "",
       "best_page": "/zones/guest-bedroom-the-guest-dresser.html",
       "best_page_title": "How to organize the guest bedroom dresser",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "men"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -37245,14 +37239,12 @@
       "room": "Laundry Room",
       "best_page": "/articles/how-to-organize-a-laundry-room.html",
       "best_page_title": "How to organize a laundry room, step by step",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-laundry-room.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "containers"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -42523,14 +42515,12 @@
       "room": "Pantry",
       "best_page": "/articles/how-to-organize-a-pantry.html",
       "best_page_title": "How to organize a pantry, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/pantry-deck.html",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-pantry.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "containers"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -48265,6 +48255,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "0cd1f0295",
-  "scored_at": "2026-11-11T02:54:13Z"
+  "scored_against_commit": "8f11619bd",
+  "scored_at": "2026-11-11T04:11:07Z"
 }

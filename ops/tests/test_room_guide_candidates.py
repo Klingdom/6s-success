@@ -734,6 +734,24 @@ _result_baking_supplies_genuine = rgc.score_room([_baking_supplies_genuine], [],
 check("a genuine 'how to organize baking supplies' row is NOT excluded by the baking/craft-stuff pattern",
       _result_baking_supplies_genuine["on_topic_rows"] == 1)
 
+
+# Found 2026-11-11, mining Guest Bedroom's partial tier. "how to organize
+# truck bed" lands on the Guest Bed and Linens zone purely on "bed"; a
+# truck bed is a pickup truck's cargo area, not a bedroom's bed.
+_truck_bed = {"query": "how to organize truck bed", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_truck_bed = rgc.score_room([_truck_bed], [], _room)
+check("a 'truck bed' off-topic-context row is excluded",
+      _result_truck_bed["on_topic_rows"] == 0)
+# Negative control is a genuine on-topic row, not "power tools in truck":
+# that query is already excluded by its own, older pattern a few lines
+# above (vehicle-interior storage), confirmed live before this test was
+# written, so it would be the wrong row to prove this new pattern is
+# narrowly scoped.
+_truck_genuine = {"query": "how to organize a workbench", "best_page": "/test-room-deck.html", "status": "covered"}
+_result_truck_genuine = rgc.score_room([_truck_genuine], [], _room)
+check("a genuine 'how to organize a workbench' row is NOT excluded by the truck-bed pattern",
+      _result_truck_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

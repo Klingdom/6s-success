@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-11T02:54:06Z against 243 page(s) at commit 0cd1f0295. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-11T04:11:00Z against 243 page(s) at commit 8f11619bd. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1652 covered, 1068 partial, 103 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1666 covered, 1054 partial, 103 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -84,7 +84,7 @@ Showing the top 80 of 103, ordered by the best rank the phrase reached in any on
 | 11 | how to plan a workshop for students | Workshop | How to organize a workshop, step by step (0.33) | plan, students |
 | 11 | how to properly dispose of adult diapers | - | Why does a shared zone never stay reset? (0.00) | diapers, dispose, properly |
 | 11 | organize seasonal pricing model | - | How to organize the hall closet seasonal storage (0.33) | model, pricing |
-| 12 | adult diaper disposal container | - | How to organize the nursery diaper storage (0.25) | adult, container, disposal |
+| 12 | adult diaper disposal container | - | How to organize the nursery diaper storage (0.33) | adult, disposal |
 | 12 | building beds for kids organization | - | How to organize a kids bedroom, step by step (0.33) | beds, building |
 | 12 | how to decorate a living room with white walls | Living Room | How to organize a living room, step by step (0.40) | decorate, walls, white |
 | 12 | how to host a workshop map cs2 | Workshop | How to organize a workshop, step by step (0.25) | cs2, host, map |
@@ -104,7 +104,7 @@ Showing the top 80 of 103, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1068.
+Showing the top 60 of 1054.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -183,11 +183,11 @@ Showing the top 60 of 1068.
 | Home Office | 58 | 0 | 20 | 38 |
 | Kids Bedroom | 22 | 0 | 8 | 14 |
 | Kitchen | 97 | 2 | 31 | 64 |
-| Laundry Room | 72 | 0 | 16 | 56 |
+| Laundry Room | 72 | 0 | 15 | 57 |
 | Living Room | 97 | 2 | 39 | 56 |
 | Mudroom | 43 | 0 | 19 | 24 |
 | Nursery | 61 | 1 | 20 | 40 |
-| Pantry | 60 | 1 | 20 | 39 |
+| Pantry | 60 | 1 | 19 | 40 |
 | Primary Bathroom | 13 | 0 | 8 | 5 |
 | Primary Bedroom | 16 | 1 | 12 | 3 |
 | Stair Landing | 24 | 0 | 12 | 12 |

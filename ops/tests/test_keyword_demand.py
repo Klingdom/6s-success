@@ -1097,6 +1097,33 @@ def main():
     finally:
         kd.FORMAT_WORDS = old_format6
 
+    # 35. Found live 2026-11-11, mining Guest Bedroom's partial tier.
+    #     "nightstand organizer for men" and "how to organize dresser men"
+    #     ask the same organizing question regardless of the demographic
+    #     named; "storage containers for linens" asks the same thing as
+    #     "storage for linens", "containers" naming a product category the
+    #     page already answers in generic terms.
+    if "men" in kd.content_words("nightstand organizer for men"):
+        fails.append("'men' is still a content word; the FORMAT_WORDS "
+                     "addition did not take")
+    if "containers" in kd.content_words("storage containers for linens"):
+        fails.append("'containers' is still a content word; the "
+                     "FORMAT_WORDS addition did not take")
+    old_format7 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format7 - {"her", "him", "men", "women",
+                                      "container", "containers"}
+    try:
+        if "men" not in kd.content_words("nightstand organizer for men"):
+            fails.append("test fixture no longer reproduces the pre-fix "
+                         "behaviour: 'men' was dropped even with the "
+                         "word removed from FORMAT_WORDS")
+        if "containers" not in kd.content_words("storage containers for linens"):
+            fails.append("test fixture no longer reproduces the pre-fix "
+                         "behaviour: 'containers' was dropped even with "
+                         "the word removed from FORMAT_WORDS")
+    finally:
+        kd.FORMAT_WORDS = old_format7
+
     if fails:
         print("FAIL")
         for f in fails:

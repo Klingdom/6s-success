@@ -188,7 +188,36 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "rearranged", "ways", "way", "diy", "guide",
                           "tutorial", "must", "haves", "quickly",
                           "original", "deals", "overview", "routine", "setup",
-                          "review", "buy", "template"))
+                          "review", "buy", "template", "her", "him", "men",
+                          "women", "container", "containers"))
+
+# "her", "him", "men" and "women" joined 2026-11-11, mining Guest Bedroom's
+# partial tier. "nightstand organizer for her/men/women" and "how to
+# organize dresser men" ask the same organizing question as "nightstand
+# organizer" and "how to organize dresser"; naming a demographic does not
+# change the answer on a site with no gendered storage advice anywhere in
+# its own content, the same not-a-different-subject reasoning "original"/
+# "quickly" already use. Self-flattery checked first: 0 of 243 page titles
+# or headings carry any of the four words. Checked the full corpus before
+# adding: "her" is the sole unmatched word on exactly 1 live row, "him" on
+# 0, "men" on 7 (Guest Bedroom, Family Room, Hall Closet/Linen Closet
+# article, all genuine organizing queries), "women" on 2; every one is
+# already partial and can only move toward covered.
+#
+# "container"/"containers" joined the same cycle, mining the same tier.
+# "storage containers for linens" asks the same thing as "storage for
+# linens"; "containers" names a storage product category the query's own
+# page already answers in generic terms (bins, totes, bins), not a
+# different subject, the same shopping-frame role "buy" already plays
+# for a product noun rather than a format noun. Checked the full corpus
+# first: 8 headings and 0 titles already use "container"/"containers"
+# (above the 0-heading bar some prior additions cleared, but this change
+# only drops a word from scoring, it cannot create a false match to a page
+# that never otherwise matches); "containers" is the sole unmatched word on
+# exactly 4 live rows (Guest Bedroom, Laundry Room, Pantry, Primary
+# Bathroom), all genuine organizing queries already routed to their own
+# room's correct page, so this can only move partial toward covered, never
+# the other way.
 
 # "buy" and "template" joined 2026-11-11, mining Garage's remaining partial
 # tier. "buy garden tool storage" asks the same thing as "garden tool

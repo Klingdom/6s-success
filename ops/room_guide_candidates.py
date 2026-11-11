@@ -624,7 +624,21 @@ OFF_TOPIC_CONTEXT = re.compile(
     # those; "baking stuff" and "craft stuff" each appear in exactly the
     # one row named here, so excluding them here cannot suppress a genuine
     # match.
-    r"\bbaking\s+stuff\b|\bcraft\s+stuff\b",
+    r"\bbaking\s+stuff\b|\bcraft\s+stuff\b|"
+    # Found 2026-11-11, mining Guest Bedroom's partial tier (the least-mined
+    # room with a meaningful tier left, per the live ranking). "how to
+    # organize truck bed" lands on the Guest Bed and Linens zone purely on
+    # the word "bed"; a truck bed is a pickup truck's cargo area, the same
+    # different-domain collision "car trunk"/"canadian tire" already
+    # exclude for "car", just the word "bed" doing it this time instead of
+    # "car". Checked against both harvests before adding: "truck bed" as a
+    # phrase appears in exactly this one row. The corpus's other "truck"
+    # row, "how to organize power tools in truck", is already excluded a
+    # few lines above by its own dedicated pattern (vehicle-interior
+    # storage, same shape as the car-organizer branch), re-verified live
+    # before writing this comment rather than assumed on-topic, so this
+    # narrower phrase-level exclusion is the only "truck" row it can touch.
+    r"\btruck\s+bed\b",
     re.I)
 
 
