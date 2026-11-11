@@ -8205,14 +8205,12 @@
       "room": "Dining Room",
       "best_page": "/articles/how-to-organize-a-dining-room.html",
       "best_page_title": "How to organize a dining room, step by step",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-dining-room.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "setup"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "dining room storage ideas",
@@ -35157,14 +35155,12 @@
       "room": "",
       "best_page": "/zones/family-room-the-charging-and-device-zone.html",
       "best_page_title": "How to organize the family room charging station",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "setup"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to sit in steep stair landing",
@@ -43386,14 +43382,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-garage.html",
       "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "overview"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "organize car maintenance routine",
@@ -43407,14 +43401,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-garage.html",
       "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "routine"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "organize car maintenance techniques",
@@ -49078,14 +49070,12 @@
       "room": "Garage",
       "best_page": "/articles/how-to-organize-a-garage.html",
       "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "setup"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "setup declutter home office",
@@ -49099,14 +49089,12 @@
       "room": "Home Office",
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "setup"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "shop deals on mudroom organization ideas",
@@ -57066,6 +57054,6 @@
       ]
     }
   ],
-  "scored_against_commit": "3ece71704",
-  "scored_at": "2026-11-11T00:04:01Z"
+  "scored_against_commit": "d8914442e",
+  "scored_at": "2026-11-11T00:52:07Z"
 }

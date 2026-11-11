@@ -187,7 +187,28 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "arrangements", "rearrange", "rearranging",
                           "rearranged", "ways", "way", "diy", "guide",
                           "tutorial", "must", "haves", "quickly",
-                          "original", "deals"))
+                          "original", "deals", "overview", "routine", "setup"))
+
+# "overview", "routine" and "setup" joined 2026-11-11, mining Garage's
+# remaining partial tier. "organize car maintenance overview" and "organize
+# car maintenance routine" ask for the same thing as "organize car
+# maintenance", the query only naming the kind of write-up it wants (a
+# summary, a recurring habit description), not a different storage subject,
+# the same role "guide"/"tutorial" already play. "setup declutter garage"
+# asks for the same thing as "declutter garage", "setup" marking an action
+# synonym for "organize" itself, the same shape "arrange" already covers.
+# Self-flattery checked first, same bar every prior addition cleared:
+# "overview" appears in 0 of 243 page titles or headings; "routine" appears
+# in 0 titles and 1 heading (an unrelated FAQ, no room or zone); "setup"
+# appears in 0 titles and 2 headings (also-called style zone subheadings,
+# not a room/zone name), all well under the bar "systems" failed. Checked
+# the full corpus before adding: "overview" and "routine" are each the sole
+# unmatched word on exactly one live row (the two Garage queries named
+# above); "setup" is the sole unmatched word on 4 live rows (the two above
+# plus "dining room setup ideas" and "how to setup charging station"), all
+# genuine organize/declutter queries already routed to their correct page.
+# All can only improve (partial toward covered); none can move the other
+# way, since dropping a required word from a match can only raise a score.
 
 # "original" and "deals" joined 2026-11-11, mining Mudroom's remaining
 # partial tier. "original coat hooks with storage" and "coat hooks with

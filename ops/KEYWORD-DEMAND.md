@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-11T00:04:01Z against 243 page(s) at commit 3ece71704. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-11T00:52:07Z against 243 page(s) at commit d8914442e. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1639 covered, 1081 partial, 103 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1645 covered, 1075 partial, 103 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -104,7 +104,7 @@ Showing the top 80 of 103, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1081.
+Showing the top 60 of 1075.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -173,14 +173,14 @@ Showing the top 60 of 1081.
 
 | Room | Queries | Gap | Partial | Covered |
 |---|---|---|---|---|
-| Dining Room | 38 | 0 | 17 | 21 |
+| Dining Room | 38 | 0 | 16 | 22 |
 | Entryway | 50 | 1 | 8 | 41 |
 | Family Room | 27 | 0 | 17 | 10 |
-| Garage | 77 | 1 | 22 | 54 |
+| Garage | 77 | 1 | 21 | 55 |
 | Guest Bathroom | 22 | 1 | 14 | 7 |
 | Guest Bedroom | 24 | 0 | 12 | 12 |
 | Hall Closet | 27 | 0 | 9 | 18 |
-| Home Office | 58 | 0 | 21 | 37 |
+| Home Office | 58 | 0 | 20 | 38 |
 | Kids Bedroom | 22 | 0 | 8 | 14 |
 | Kitchen | 97 | 2 | 31 | 64 |
 | Laundry Room | 72 | 0 | 16 | 56 |

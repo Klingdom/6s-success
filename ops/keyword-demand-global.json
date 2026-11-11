@@ -21156,16 +21156,14 @@
         "how to organise tool wall"
       ],
       "room": "",
-      "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
-      "best_page_title": "How to organize the garage tool wall",
+      "best_page": "/zones/garage-the-power-tool-and-battery-zone.html",
+      "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-workshop.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "boxes"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/garage-the-power-tool-and-battery-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -48287,6 +48285,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "3ece71704",
-  "scored_at": "2026-11-11T00:04:11Z"
+  "scored_against_commit": "d8914442e",
+  "scored_at": "2026-11-11T00:52:11Z"
 }

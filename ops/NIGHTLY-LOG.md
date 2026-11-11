@@ -16454,3 +16454,21 @@ Pushed to main. Command deck regenerated.
 
 HANDOFF-FILES: none
 
+## 2026-11-11, scheduled operator cycle: mined Garage's remaining partial tier further, 26% to 24% uncovered
+
+**Did:** Attached clean (fetch, unshallow, ff-only onto `d8914442e`). Re-ran `room_guide_underperformance.py` live across all 20 rooms: Garage still top at 26% uncovered. Read its full partial tier via `score_room()`, not the 8-row CLI sample, against `content.json` before acting. Added "overview", "routine" and "setup" to `FORMAT_WORDS` (`ops/keyword_demand.py`), each a style/action qualifier on an already-covered subject, not a new topic. Added "tool boxes" (plural) to `Garage|Power Tool and Battery Zone` in `zone-also-called.json`, closing a singular/plural stemming gap the existing "tool box"/"toolbox" entry (A73) never covered, the same shape A34 (nappy/nappies) already fixed once.
+
+**Verified:** Fail-then-pass proved directly via `git stash` (resolved a stash-pop conflict from a stale rescore, recovered the real fix cleanly). All 7 target queries moved `partial` to `covered`. `test_keyword_demand.py` (36 cases), `test_room_guide_underperformance.py` (19/19), `test_gate_zone_also_called_is_heading.py` (6/6), `test_gate_also_called_no_digital_collision.py` (5/5) all pass. `check_urls.py` (235/235), `audit_pages.py`, `fix_dashes.py --check`, `affiliate.py --check`, `check_sellable.py` (124/126, 2 services by design), `link_graph_report.py` (0 orphans), `build_id.py --check` all clean. `preflight.py --skip-tests` reached 0 FAIL twice (once to full completion, once stalled at the documented `gate_etsy_pdfs_current` sandbox stall under concurrent CPU load); killed the second run by hand, only harmless defunct zombies left, no stray files. GitHub: 31 open issues, unchanged since 2026-11-08, none from Phil. No mail credentials.
+
+**Went well:** The stemming-gap class (A34, now this fix) keeps paying off; checking the actual rendered heading, not just the also-called JSON, caught the real tie-break cause fast.
+
+**Did not go well:** `git stash`/`pop` collided with a concurrent rescore writing the same JSON files mid-cycle; cost a few minutes to untangle, no data lost.
+
+**Changing next cycle:** None; standard mining continues.
+
+**Next:** Garage (24%) and Hall Closet (25%) both still have meaningful partial tiers; Primary Bedroom and Guest Bedroom are next after those. Standing 31-issue Phil-gated queue unchanged.
+
+Pushed to main. Command deck regenerated.
+
+HANDOFF-FILES: none
+
