@@ -1,5 +1,5 @@
 {
- "checked_at": "2026-11-04T17:59:59Z",
+ "checked_at": "2026-11-11T17:51:57Z",
  "confirmed": {
   "https://6s-success.com/": {
    "section": "home",
@@ -102,7 +102,7 @@
   "http://www.bing.com:80/search?q=site%3a6s-success.com": {
    "section": "other",
    "first_seen": "2026-10-14T15:04:51Z",
-   "last_seen": "2026-11-04T17:59:59Z",
+   "last_seen": "2026-11-11T17:51:57Z",
    "first_engine": "bing_rss",
    "last_engine": "bing_rss"
   },
@@ -223,6 +223,21 @@
     "bing_rss": {
      "status": "ok",
      "url_count": 11,
+     "voided": false
+    }
+   }
+  },
+  {
+   "checked_at": "2026-11-11T17:51:57Z",
+   "engines": {
+    "duckduckgo": {
+     "status": "http 202",
+     "url_count": 0,
+     "voided": true
+    },
+    "bing_rss": {
+     "status": "ok",
+     "url_count": 1,
      "voided": false
     }
    }

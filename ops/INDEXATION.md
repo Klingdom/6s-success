@@ -8,7 +8,7 @@ whose canary check passed that run. Absence is NOT evidence of
 non-indexation: an engine shows a short ranked list, not the whole
 index.
 
-Last checked: 2026-11-04T17:59:59Z
+Last checked: 2026-11-11T17:51:57Z
 
 | Section | URLs ever confirmed indexed |
 |---|---|
@@ -18,8 +18,8 @@ Last checked: 2026-11-04T17:59:59Z
 | article | 1 |
 | other | 14 |
 
-**No /zones/ page has ever been confirmed indexed by this ledger.** That is the open question GOALS.md O1 names: indexed-and-not-ranking (an intent/competition problem) versus not indexed at all (an authority problem), and they need opposite fixes. Still unresolved after 7 run(s).
+**No /zones/ page has ever been confirmed indexed by this ledger.** That is the open question GOALS.md O1 names: indexed-and-not-ranking (an intent/competition problem) versus not indexed at all (an authority problem), and they need opposite fixes. Still unresolved after 8 run(s).
 
 Last run detail:
-- bing_rss: ok, 11 URL(s)
-- duckduckgo: ok, 10 URL(s)
+- bing_rss: ok, 1 URL(s)
+- duckduckgo: http 202, 0 URL(s) (VOIDED, canary missing)
