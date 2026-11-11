@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, scheduled operator cycle: checked for higher-value work before mining again, found none unblocked, closed four Garage rows
+
+**Did:** Attached clean (fetch, unshallow, ff-only, no reset or force). Before defaulting to another room-guide pass, checked for higher-value unblocked work: read BACKLOG-2026-09-07.md sections 2 to 7, OWNER-ACTIONS.md's open items, and ops/affiliate-accounts.json. Every Etsy/KDP/affiliate item is "ready and checked," waiting on Phil's own account creation or a click; none is operator-actionable further. Re-pulled GitHub's 31 open issues myself: unchanged, all decision/blocked-on-art/P0, none from Phil since 2026-11-08; issue #42 (the cadence concern) last updated 2026-11-07, already fully described in OWNER-ACTIONS.md item 23, nothing new to add.
+
+Mined Garage's remaining 47-row partial tier against real content.json. Added "buy" and "template" to FORMAT_WORDS (shopping-frame and document-format qualifiers, same shape as "deals"/"overview"). Excluded "baking stuff" and "craft stuff" via OFF_TOPIC_CONTEXT: both land on the Garage article purely on "organise"/"stuff", neither hobby ever addressed by any Garage zone. Declined "flower garden"/"vegetable garden"/"grow a garden" (genuine unaddressed gap, same shape as the gym-equipment cluster already left alone) and "car boot" (already decided 2026-11-09, stays partial).
+
+**Verified:** Fail-then-pass proved directly for both changes. test_keyword_demand.py 39/39, test_room_guide_candidates.py 118/118, test_room_guide_underperformance.py 19/19. Rescored both corpora: 4 queries moved partial to covered/excluded, 0 regressions (US gap 103->103, partial 1070->1068, covered 1650->1652). Garage 24% to 22% uncovered; full 20-room rescan confirmed every other room unchanged. check_urls (235/235), fix_dashes, affiliate.py --check, check_sellable.py (124/126), link_graph_report.py (0 orphans), build_id.py --check, GOALS.md cluster citation gate (clean, no drift) all pass. preflight.py --skip-tests run unbuffered to a file: 0 real FAIL through every gate reached, confirmed genuinely progressing via /proc (a real headless-Chromium Etsy PDF render), killed by hand at the documented network-bound gate_etsy_pdfs_current; only harmless defunct zombies left, no stray files.
+
+**Went well:** the higher-value check was real, not theater; it confirmed rather than assumed that nothing beyond the standing 31-issue queue is unblocked.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** Hall Closet is now top at 22% uncovered (unchanged); Garage tied at 22%. Same 31-issue Phil-gated queue otherwise.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; scorer-only change, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (02:2x slot): previous work independently reconfirmed finished, nothing broken or stale found, handed the operator the Garage mining lane
 
 NEXT FOR THE OPERATOR: same 31-issue Phil-gated queue, unchanged; only unblocked lane is room-guide mining, now Garage (24% uncovered, 47 partial).

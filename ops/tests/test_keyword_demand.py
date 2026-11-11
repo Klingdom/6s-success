@@ -1071,6 +1071,32 @@ def main():
     finally:
         kd._YEAR_WORD = old_year
 
+    # 34. Found live 2026-11-11, mining Garage's remaining partial tier.
+    #     "buy garden tool storage" asks the same thing as "garden tool
+    #     storage", the same shopping-frame shape "deals" already covers.
+    #     "cleaning equipment checklist template" asks the same thing as
+    #     "cleaning equipment checklist", "template" naming the document
+    #     format, the same role "guide"/"overview" already play.
+    if "buy" in kd.content_words("buy garden tool storage"):
+        fails.append("'buy' is still a content word; the FORMAT_WORDS "
+                     "addition did not take")
+    if "template" in kd.content_words("cleaning equipment checklist template"):
+        fails.append("'template' is still a content word; the FORMAT_WORDS "
+                     "addition did not take")
+    old_format6 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format6 - {"buy", "template"}
+    try:
+        if "buy" not in kd.content_words("buy garden tool storage"):
+            fails.append("test fixture no longer reproduces the pre-fix "
+                         "behaviour: 'buy' was dropped even with the "
+                         "word removed from FORMAT_WORDS")
+        if "template" not in kd.content_words("cleaning equipment checklist template"):
+            fails.append("test fixture no longer reproduces the pre-fix "
+                         "behaviour: 'template' was dropped even with the "
+                         "word removed from FORMAT_WORDS")
+    finally:
+        kd.FORMAT_WORDS = old_format6
+
     if fails:
         print("FAIL")
         for f in fails:

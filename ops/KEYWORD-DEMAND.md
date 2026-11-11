@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-11T01:53:38Z against 243 page(s) at commit cac4544b4. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-11T02:54:06Z against 243 page(s) at commit 0cd1f0295. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1650 covered, 1070 partial, 103 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1652 covered, 1068 partial, 103 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -49,7 +49,7 @@ Showing the top 80 of 103, ordered by the best rank the phrase reached in any on
 | 6 | how to build a floating staircase landing | - | How to organize a stair landing, step by step (0.25) | build, floating, staircase |
 | 6 | how to hold bench press bar correctly | - | The Patio or Deck Deck: 68 cards, free to read (0.20) | bar, bench, correctly |
 | 6 | how to operate a wood stove | - | How to organize the kitchen stove area (0.33) | operate, wood |
-| 6 | how to organize a cribbage tournament template | - | The 6S Zone Scoring Sheet and Layered Audit Template (0.33) | cribbage, tournament |
+| 6 | how to organize a cribbage tournament template | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, tournament |
 | 6 | kitchen organization ideas dollar tree | Kitchen | How to declutter a kitchen: counters, cabinets and drawers (0.33) | dollar, tree |
 | 6 | trouble going to bathroom | - | How to organize a guest bathroom, step by step (0.33) | going, trouble |
 | 7 | cover space between stove and countertop | - | The Primary Bedroom Deck: 66 cards, free to read (0.20) | countertop, cover, stove |
@@ -78,7 +78,7 @@ Showing the top 80 of 103, ordered by the best rank the phrase reached in any on
 | 10 | laundry problems and solutions | - | How to organize a laundry room, step by step (0.33) | problems, solutions |
 | 11 | foyer design ideas for flat indian style | - | How to organize an entryway, zone by zone (0.20) | flat, indian, style |
 | 11 | how to decorate a living room with high ceilings | Living Room | How to organize a living room, step by step (0.40) | ceilings, decorate, high |
-| 11 | how to host a cribbage tournament template | - | The 6S Zone Scoring Sheet and Layered Audit Template (0.25) | cribbage, host, tournament |
+| 11 | how to host a cribbage tournament template | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, host, tournament |
 | 11 | how to operate a gas stove | - | How to organize the kitchen stove area (0.33) | gas, operate |
 | 11 | how to organize recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | recipes |
 | 11 | how to plan a workshop for students | Workshop | How to organize a workshop, step by step (0.33) | plan, students |
@@ -104,7 +104,7 @@ Showing the top 80 of 103, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1070.
+Showing the top 60 of 1068.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -122,7 +122,6 @@ Showing the top 60 of 1070.
 | 13 | how to declutter dining room table | How to organize the dining room dining table | 0.75 |
 | 15 | how to arrange a living room with l shaped sofa | How to organize the living room sofa and seating | 0.75 |
 | 19 | primary bathroom designs with shower | How to organize the primary bathroom shower or tub | 0.75 |
-| 21 | buy garden tool storage | How to organize the garage garden tool storage | 0.75 |
 | 21 | stair stringer landing to landing | How to organize a stair landing, step by step | 0.75 |
 | 1 | craft paint organizers and storage | How to organize the workshop paint and chemical storage | 0.67 |
 | 1 | drop zone design ideas | How to organize the entryway drop zone | 0.67 |
@@ -168,6 +167,7 @@ Showing the top 60 of 1070.
 | 3 | how to arrange gallery wall art | How to organize the stair landing gallery wall | 0.67 |
 | 3 | how to create a drop zone | How to organize the entryway drop zone | 0.67 |
 | 3 | how to decorate a guest bathroom | How to organize a guest bathroom, step by step | 0.67 |
+| 3 | how to get more storage for games | More storage will not fix a messy room | 0.67 |
 
 ## By room
 

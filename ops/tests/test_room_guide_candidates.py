@@ -717,6 +717,23 @@ _result_organize_closet_genuine = rgc.score_room([_organize_closet_genuine], [],
 check("a genuine 'how to organize a closet' row is NOT excluded by the marie-kondo/near-me pattern",
       _result_organize_closet_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-11, mining Garage's remaining 47-row partial tier. "how to
+# organise baking stuff" and "how to organise craft stuff" land on the
+# Garage article purely on "organise"/"stuff"; neither a baking hobby nor
+# a craft hobby is ever addressed by any Garage zone.
+_baking_stuff = {"query": "how to organise baking stuff", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_baking_stuff = rgc.score_room([_baking_stuff], [], _room)
+check("a 'baking stuff' off-topic-context row is excluded",
+      _result_baking_stuff["on_topic_rows"] == 0)
+_craft_stuff = {"query": "how to organise craft stuff", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_craft_stuff = rgc.score_room([_craft_stuff], [], _room)
+check("a 'craft stuff' off-topic-context row is excluded",
+      _result_craft_stuff["on_topic_rows"] == 0)
+_baking_supplies_genuine = {"query": "how to organize baking supplies", "best_page": "/test-room-deck.html", "status": "covered"}
+_result_baking_supplies_genuine = rgc.score_room([_baking_supplies_genuine], [], _room)
+check("a genuine 'how to organize baking supplies' row is NOT excluded by the baking/craft-stuff pattern",
+      _result_baking_supplies_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)
