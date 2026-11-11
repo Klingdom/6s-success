@@ -903,8 +903,8 @@
     },
     "keyword_demand.py": {
       "status": "clean",
-      "date": "2026-11-10",
-      "note": "Re-cold-read after the 2026-11-10 'quickly' FORMAT_WORDS addition. Verified independently, not cited: 'quickly' appears in 0 of 243 page titles and 2 of 243 headings (confirmed directly via grep on rendered site/, matching the commit's own self-flattery check exactly); all 4 US and 3 global 'quickly' queries read covered in the real committed keyword-demand files, including the garage-sale row now routed to /rooms/garage.html rather than the unrelated article. 36/36 test_keyword_demand.py cases pass. No defect found."
+      "date": "2026-11-11",
+      "note": "PM check-in 2026-11-11 00:4x-5x slot: re-verified both 2026-11-11 additions (overview/routine/setup FORMAT_WORDS, tool boxes plural) against test_keyword_demand.py (36/36) and the logged self-flattery check; sound."
     },
     "keyword_demand_global.py": {
       "status": "fixed",
@@ -1113,8 +1113,8 @@
     },
     "room_guide_candidates.py": {
       "status": "clean",
-      "date": "2026-11-10",
-      "note": "PM check-in (14:1x slot): cold-read the 2026-11-10 brand/platform/geo OFF_TOPIC_CONTEXT addition (pinterest/ikea/reddit/amazon/lowes/kmart/target/walmart/rona/home depot/dollar tree/australia/canada/indian/tamil) directly rather than cite the commit. Independently reran room_guide_underperformance.py against the live corpus: Garage 28% uncovered (matches claimed 32->28), Hall Closet 25% (matches claimed 30->25), Kitchen and Pantry both now 0 gap rows (matches claimed dollar-tree gap closures). test_room_guide_candidates.py 44/44 pass. Regex checked for overreach: two-word phrases (home depot, dollar tree) are exact, not split on common single words, and target/amazon/walmart as common English words were already checked by the operator against the corpus (2 brand+gap rows found, both already excluded elsewhere). No defect found."
+      "date": "2026-11-11",
+      "note": "PM check-in 2026-11-11 00:4x-5x slot: re-verified both 2026-11-11 OFF_TOPIC_CONTEXT additions (diy lab, storage locker, outdoor bench seat) against test_room_guide_candidates.py (111/111); sound."
     },
     "room_guide_underperformance.py": {
       "status": "clean",
