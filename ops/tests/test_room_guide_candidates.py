@@ -752,6 +752,20 @@ _result_truck_genuine = rgc.score_room([_truck_genuine], [], _room)
 check("a genuine 'how to organize a workbench' row is NOT excluded by the truck-bed pattern",
       _result_truck_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-11, mining Kitchen's partial tier. "guest bathroom
+# renovation ideas" and "how to organise a kitchen renovation" land on the
+# Kitchen/Guest Bathroom articles purely on the room word; a renovation is
+# a construction/remodeling project, a different question from organizing
+# the room that already exists.
+_renovation = {"query": "how to organise a kitchen renovation", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_renovation = rgc.score_room([_renovation], [], _room)
+check("a 'renovation' off-topic-context row is excluded",
+      _result_renovation["on_topic_rows"] == 0)
+_renovation_genuine = {"query": "how to organize a kitchen", "best_page": "/test-room-deck.html", "status": "covered"}
+_result_renovation_genuine = rgc.score_room([_renovation_genuine], [], _room)
+check("a genuine 'how to organize a kitchen' row is NOT excluded by the renovation pattern",
+      _result_renovation_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

@@ -6556,14 +6556,12 @@
       "room": "Kitchen",
       "best_page": "/articles/how-to-declutter-a-kitchen.html",
       "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "modern"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "declutter modern living room",
@@ -6577,14 +6575,12 @@
       "room": "Living Room",
       "best_page": "/articles/how-to-organize-toys.html",
       "best_page_title": "How to organize toys so a child can put them away",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "modern"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "declutter motorcycle garage",
@@ -6702,14 +6698,12 @@
       "room": "Kitchen",
       "best_page": "/articles/how-to-declutter-a-kitchen.html",
       "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "rustic"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "declutter rustic living room",
@@ -6723,14 +6717,12 @@
       "room": "Living Room",
       "best_page": "/articles/how-to-organize-toys.html",
       "best_page_title": "How to organize toys so a child can put them away",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "rustic"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "declutter singing room",
@@ -8674,14 +8666,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "best_page_title": "How to organize a patio or deck, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "modern"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "diy organization for bathroom",
@@ -10829,14 +10819,12 @@
       "room": "Family Room",
       "best_page": "/articles/how-to-organize-a-family-room.html",
       "best_page_title": "How to organize a family room, step by step",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "images"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "family room inspiration ideas",
@@ -11338,14 +11326,12 @@
       "room": "",
       "best_page": "/rooms/entryway.html",
       "best_page_title": "How to organize an entryway, zone by zone",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.0,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "simple"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "foyer design ideas with mirror",
@@ -14089,14 +14075,12 @@
       "room": "Home Office",
       "best_page": "/home-office-deck.html",
       "best_page_title": "The Home Office Deck: 66 cards, free to read",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "images"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "home office organization ideas on a budget",
@@ -20163,12 +20147,12 @@
         "how to organize walkway"
       ],
       "room": "",
-      "best_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
-      "best_page_title": "6S Success: Home Edition &#183; Chapters 1 to 30",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
-      "matched_on": "heading",
+      "best_page": "/how-we-make-money.html",
+      "best_page_title": "How we make money: what we sell, and what we do not earn on",
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/family-wont-put-things-back.html",
+      "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
         "walkway"
@@ -22919,14 +22903,12 @@
       "room": "Kitchen",
       "best_page": "/articles/how-to-declutter-a-kitchen.html",
       "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "efficiency"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a kitchen island",
@@ -22980,14 +22962,12 @@
       "room": "Kitchen",
       "best_page": "/zones/kitchen-the-cooking-zone.html",
       "best_page_title": "How to organize the kitchen stove area",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kitchen-the-cooking-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "chef"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a kitchen pantry",
@@ -37699,14 +37679,12 @@
       "room": "Primary Bathroom",
       "best_page": "/rooms/primary-bathroom.html",
       "best_page_title": "How to organize a primary bathroom, zone by zone",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/primary-bathroom.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "images"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "images of primary bedrooms",
@@ -37720,14 +37698,13 @@
       "room": "Primary Bedroom",
       "best_page": "/primary-bedroom-deck.html",
       "best_page_title": "The Primary Bedroom Deck: 66 cards, free to read",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
       "heading_page": "/primary-bedroom-deck.html",
       "matched_on": "title",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
-        "bedrooms",
-        "images"
+        "bedrooms"
       ]
     },
     {
@@ -38625,14 +38602,12 @@
       "room": "Kitchen",
       "best_page": "/articles/how-to-declutter-a-kitchen.html",
       "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "simple"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "kitchen organization ideas small kitchen",
@@ -40206,14 +40181,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-linen-closet.html",
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-guest-bathroom.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "images"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "linen closet organization nearby",
@@ -40836,12 +40809,12 @@
         "living room organization ideas"
       ],
       "room": "Living Room",
-      "best_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
-      "best_page_title": "6S Success: Home Edition &#183; Chapters 1 to 30",
-      "coverage": 0.667,
+      "best_page": "/articles/how-to-organize-a-living-room.html",
+      "best_page_title": "How to organize a living room, step by step",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-a-living-room.html",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -41917,14 +41890,12 @@
       "room": "",
       "best_page": "/zones/family-room-the-primary-media-zone.html",
       "best_page_title": "How to organize the family room entertainment center",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/family-room-the-primary-media-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "modern"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "modern garden decluttering checklist",
@@ -41938,14 +41909,13 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-garage.html",
       "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "decluttering",
-        "modern"
+        "decluttering"
       ]
     },
     {
@@ -41960,14 +41930,13 @@
       "room": "Primary Bedroom",
       "best_page": "/primary-bedroom-deck.html",
       "best_page_title": "The Primary Bedroom Deck: 66 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/primary-bedroom-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "modern"
+        "design"
       ]
     },
     {
@@ -41982,14 +41951,13 @@
       "room": "Primary Bedroom",
       "best_page": "/primary-bedroom-deck.html",
       "best_page_title": "The Primary Bedroom Deck: 66 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/primary-bedroom-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "modern"
+        "design"
       ]
     },
     {
@@ -43978,14 +43946,12 @@
       "room": "Living Room",
       "best_page": "/articles/how-to-organize-a-living-room.html",
       "best_page_title": "How to organize a living room, step by step",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-living-room.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "modern"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "organize mudroom closet",
@@ -44262,12 +44228,12 @@
         "how to organize a home office"
       ],
       "room": "Home Office",
-      "best_page": "/articles/how-to-organize-paperwork.html",
-      "best_page_title": "How to organize paperwork at home with a simple filing system",
-      "coverage": 0.667,
+      "best_page": "/home-office-deck.html",
+      "best_page_title": "The Home Office Deck: 66 cards, free to read",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-paperwork.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -49176,14 +49142,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-linen-closet.html",
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "simple"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "simple decluttering pro tips",
@@ -49198,14 +49162,13 @@
       "room": "",
       "best_page": "/articles/decluttering-vs-organizing.html",
       "best_page_title": "Decluttering vs. organizing: what's actually different",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
       "heading_page": "/articles/decluttering-vs-organizing.html",
       "matched_on": "title",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
-        "pro",
-        "simple"
+        "pro"
       ]
     },
     {
@@ -49220,14 +49183,12 @@
       "room": "Dining Room",
       "best_page": "/articles/how-to-organize-a-dining-room.html",
       "best_page_title": "How to organize a dining room, step by step",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-dining-room.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "simple"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "simple entertainment center ideas",
@@ -49241,14 +49202,12 @@
       "room": "",
       "best_page": "/zones/family-room-the-primary-media-zone.html",
       "best_page_title": "How to organize the family room entertainment center",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/family-room-the-primary-media-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "simple"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "simple guest bathroom decorating ideas pictures",
@@ -49262,15 +49221,14 @@
       "room": "Guest Bathroom",
       "best_page": "/articles/how-to-organize-a-guest-bathroom.html",
       "best_page_title": "How to organize a guest bathroom, step by step",
-      "coverage": 0.4,
-      "heading_coverage": 0.4,
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
       "heading_page": "/articles/how-to-organize-a-guest-bathroom.html",
       "matched_on": "title",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
         "decorating",
-        "pictures",
-        "simple"
+        "pictures"
       ]
     },
     {
@@ -49285,14 +49243,12 @@
       "room": "Guest Bedroom",
       "best_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "best_page_title": "How to organize a guest bedroom, step by step",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "simple"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "simple living room declutter",
@@ -49308,14 +49264,12 @@
       "room": "Living Room",
       "best_page": "/articles/how-to-organize-toys.html",
       "best_page_title": "How to organize toys so a child can put them away",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "simple"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "simple outdoor grill station",
@@ -49329,14 +49283,12 @@
       "room": "",
       "best_page": "/downloads/6S-Standards-Pack.html",
       "best_page_title": "The 6S Success Standards Pack",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "simple"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "simple way to declutter garage for beginners",
@@ -49350,14 +49302,13 @@
       "room": "Garage",
       "best_page": "/articles/how-to-organize-a-garage.html",
       "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "beginners",
-        "simple"
+        "beginners"
       ]
     },
     {
@@ -57076,6 +57027,6 @@
       ]
     }
   ],
-  "scored_against_commit": "230de9c42",
-  "scored_at": "2026-11-11T11:02:20Z"
+  "scored_against_commit": "bff30420e",
+  "scored_at": "2026-11-11T11:55:53Z"
 }

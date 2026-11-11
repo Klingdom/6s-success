@@ -191,7 +191,49 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "original", "deals", "overview", "routine", "setup",
                           "review", "buy", "template", "her", "him", "men",
                           "women", "container", "containers", "essentials",
-                          "household", "daily", "inspo", "inspiration"))
+                          "household", "daily", "inspo", "inspiration",
+                          "images", "efficiency", "chef", "modern", "rustic",
+                          "simple"))
+
+# "images", "efficiency" and "chef" joined 2026-11-11, mining Kitchen's
+# partial tier. "kitchen organisation ideas images" and "linen closet
+# organization images" ask the same question with "images" naming the
+# visual format wanted, the same role "inspo"/"guide" already play, not a
+# different subject. "how to organize a kitchen for efficiency" and "...like
+# a chef" are a goal and a skill-level qualifier on the same task, the same
+# shape "quickly"/"original" already cover. Self-flattery checked first: 0
+# of 244 page titles or headings carry any of the three. Checked the full
+# corpus before adding: "images" is the sole unmatched word on 5 of its 6
+# live rows (the 6th, "images of primary bedrooms", keeps a second genuine
+# unmatched word, "bedrooms", a separate plural-stemming gap not touched
+# here, and only moves closer); "efficiency" is the sole unmatched word on
+# both its rows (the same US query duplicated in the global harvest);
+# "chef" is the sole unmatched word on its one row. None can move the other
+# way.
+#
+# "modern" and "rustic" joined the same cycle. "declutter modern kitchen"
+# and "declutter rustic kitchen ideas" ask the same question about any
+# kitchen; the decor style does not change which page answers it, the same
+# not-a-different-subject reasoning "original" already uses for a style
+# qualifier. Self-flattery checked first: 0 of 244 pages carry either word
+# in a title or heading. Checked the full corpus before adding: "modern" is
+# the sole unmatched word on 4 of its 12 live rows, pairs only with the
+# separate already-real word "design" on 6 more (unaffected, since "design"
+# stays unmatched), and is paired with "decluttering" on the remaining one
+# (also unaffected); "rustic" is the sole unmatched word on both its rows.
+# None can move the other way.
+#
+# "simple" joined the same cycle. "kitchen organization ideas simple" and
+# "simple closet organization ideas" ask the same question with "simple"
+# naming the style wanted (easy, uncomplicated), the same shape "quickly"
+# already covers. Self-flattery checked first: 2 of 244 page headings and 1
+# title carry the word, both well under the bar "household" (11 of 243)
+# already cleared. Checked the full corpus before adding: of 18 live rows,
+# 9 keep "simple" as the sole unmatched word and move partial to covered;
+# the rest keep a second genuine unmatched word each ("beginners", "pro",
+# "decorating", "pictures", "walkway", "design") and only move closer, or
+# (the 2 already-covered rows) are unaffected since they have no unmatched
+# words to drop. None can move the other way.
 
 # "inspo"/"inspiration" joined 2026-11-11, mining Home Office and Guest
 # Bathroom's remaining partial rows: "desk organisation inspo" and "desk

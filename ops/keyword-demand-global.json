@@ -5162,14 +5162,13 @@
       "room": "Dining Room",
       "best_page": "/articles/how-to-organize-a-dining-room.html",
       "best_page_title": "How to organize a dining room, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-a-dining-room.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "modern"
+        "design"
       ],
       "markets": [
         "gb",
@@ -5212,14 +5211,13 @@
       "room": "Dining Room",
       "best_page": "/articles/how-to-organize-a-dining-room.html",
       "best_page_title": "How to organize a dining room, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-a-dining-room.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "simple"
+        "design"
       ],
       "markets": [
         "gb",
@@ -7092,14 +7090,12 @@
       "room": "",
       "best_page": "/rooms/entryway.html",
       "best_page_title": "How to organize an entryway, zone by zone",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.0,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "simple"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -23636,14 +23632,12 @@
       "room": "Kitchen",
       "best_page": "/articles/how-to-declutter-a-kitchen.html",
       "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "efficiency"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca",
         "gb",
@@ -35841,14 +35835,12 @@
       "room": "Kitchen",
       "best_page": "/articles/how-to-declutter-a-kitchen.html",
       "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "images"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -38561,14 +38553,13 @@
       "room": "Living Room",
       "best_page": "/articles/how-to-organize-a-living-room.html",
       "best_page_title": "How to organize a living room, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-a-living-room.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "modern"
+        "design"
       ],
       "markets": [
         "gb",
@@ -40038,14 +40029,13 @@
       "room": "",
       "best_page": "/rooms/primary-bedroom.html",
       "best_page_title": "How to organize a primary bedroom, zone by zone",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/primary-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "modern"
+        "design"
       ],
       "markets": [
         "ca"
@@ -40107,14 +40097,13 @@
       "room": "",
       "best_page": "/rooms/primary-bedroom.html",
       "best_page_title": "How to organize a primary bedroom, zone by zone",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/primary-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "simple"
+        "design"
       ],
       "markets": [
         "ca"
@@ -40565,14 +40554,13 @@
       "room": "Primary Bedroom",
       "best_page": "/primary-bedroom-deck.html",
       "best_page_title": "The Primary Bedroom Deck: 66 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/primary-bedroom-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "modern"
+        "design"
       ],
       "markets": [
         "ca"
@@ -43089,15 +43077,14 @@
       "room": "Guest Bathroom",
       "best_page": "/articles/how-to-organize-a-guest-bathroom.html",
       "best_page_title": "How to organize a guest bathroom, step by step",
-      "coverage": 0.4,
-      "heading_coverage": 0.4,
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
       "heading_page": "/articles/how-to-organize-a-guest-bathroom.html",
       "matched_on": "title",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
         "decorating",
-        "pictures",
-        "simple"
+        "pictures"
       ],
       "markets": [
         "ca"
@@ -48297,6 +48284,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "230de9c42",
-  "scored_at": "2026-11-11T11:02:47Z"
+  "scored_against_commit": "bff30420e",
+  "scored_at": "2026-11-11T11:56:19Z"
 }

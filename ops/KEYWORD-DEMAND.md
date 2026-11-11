@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-11T11:02:20Z against 243 page(s) at commit 230de9c42. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-11T11:55:53Z against 243 page(s) at commit bff30420e. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1633 covered, 1079 partial, 111 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1654 covered, 1061 partial, 108 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 111, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 108, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -89,7 +89,6 @@ Showing the top 80 of 111, ordered by the best rank the phrase reached in any on
 | 11 | how to plan a workshop for students | Workshop | How to organize a workshop, step by step (0.33) | plan, students |
 | 11 | how to properly dispose of adult diapers | - | Why does a shared zone never stay reset? (0.00) | diapers, dispose, properly |
 | 11 | organize seasonal pricing model | - | How to organize the hall closet seasonal storage (0.33) | model, pricing |
-| 11 | simple guest bathroom decorating ideas pictures | Guest Bathroom | How to organize a guest bathroom, step by step (0.40) | decorating, pictures, simple |
 | 12 | adult diaper disposal container | - | How to organize the nursery diaper storage (0.33) | adult, disposal |
 | 12 | building beds for kids organization | - | How to organize a kids bedroom, step by step (0.33) | beds, building |
 | 12 | how to decorate a living room with white walls | Living Room | How to organize a living room, step by step (0.40) | decorate, walls, white |
@@ -101,10 +100,11 @@ Showing the top 80 of 111, ordered by the best rank the phrase reached in any on
 | 14 | computer storage for games | - | How to organize the family room game storage (0.33) | computer, games |
 | 14 | explore decluttering pro guide | - | Decluttering vs. organizing: what's actually different (0.33) | explore, pro |
 | 14 | grill stations ideas for backyards | - | How to organize the patio or deck grill station (0.33) | backyards, stations |
+| 14 | how to dispose of adult diapers | - | Why does a shared zone never stay reset? (0.00) | diapers, dispose |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1079.
+Showing the top 60 of 1061.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -150,7 +150,6 @@ Showing the top 60 of 1079.
 | 2 | how to decorate a guest bedroom | How to organize a guest bedroom, step by step | 0.67 |
 | 2 | how to organize baking supplies in kitchen | How to organize the kitchen sink area | 0.67 |
 | 2 | linen closet organization hacks | How to organize a linen closet: sheets, towels and shelves | 0.67 |
-| 2 | organize modern living room | How to organize a living room, step by step | 0.67 |
 | 2 | patio deck design ideas | How to organize a patio or deck, step by step | 0.67 |
 | 2 | patio off of deck | How to organize a patio or deck, step by step | 0.67 |
 | 2 | primary bedroom decorating ideas | The Primary Bedroom Deck: 66 cards, free to read | 0.67 |
@@ -168,28 +167,29 @@ Showing the top 60 of 1079.
 | 3 | how to arrange gallery wall art | How to organize the stair landing gallery wall | 0.67 |
 | 3 | how to create a drop zone | How to organize the entryway drop zone | 0.67 |
 | 3 | how to decorate a guest bathroom | How to organize a guest bathroom, step by step | 0.67 |
+| 3 | how to get more storage for games | More storage will not fix a messy room | 0.67 |
 
 ## By room
 
 | Room | Queries | Gap | Partial | Covered |
 |---|---|---|---|---|
-| Dining Room | 38 | 0 | 15 | 23 |
+| Dining Room | 38 | 0 | 14 | 24 |
 | Entryway | 50 | 1 | 10 | 39 |
-| Family Room | 27 | 0 | 18 | 9 |
+| Family Room | 27 | 0 | 17 | 10 |
 | Garage | 77 | 1 | 22 | 54 |
-| Guest Bathroom | 22 | 2 | 13 | 7 |
-| Guest Bedroom | 24 | 0 | 13 | 11 |
+| Guest Bathroom | 22 | 1 | 14 | 7 |
+| Guest Bedroom | 24 | 0 | 12 | 12 |
 | Hall Closet | 27 | 0 | 9 | 18 |
-| Home Office | 58 | 0 | 20 | 38 |
+| Home Office | 58 | 0 | 19 | 39 |
 | Kids Bedroom | 22 | 0 | 8 | 14 |
-| Kitchen | 97 | 2 | 34 | 61 |
+| Kitchen | 97 | 2 | 29 | 66 |
 | Laundry Room | 72 | 0 | 15 | 57 |
-| Living Room | 97 | 2 | 40 | 55 |
+| Living Room | 97 | 2 | 36 | 59 |
 | Mudroom | 43 | 0 | 19 | 24 |
 | Nursery | 61 | 1 | 20 | 40 |
 | Pantry | 60 | 1 | 20 | 39 |
-| Primary Bathroom | 13 | 0 | 8 | 5 |
-| Primary Bedroom | 16 | 1 | 12 | 3 |
+| Primary Bathroom | 13 | 0 | 7 | 6 |
+| Primary Bedroom | 16 | 0 | 13 | 3 |
 | Stair Landing | 24 | 0 | 13 | 11 |
 | Workshop | 66 | 4 | 28 | 34 |
 

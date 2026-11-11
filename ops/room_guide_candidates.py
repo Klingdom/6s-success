@@ -638,7 +638,21 @@ OFF_TOPIC_CONTEXT = re.compile(
     # storage, same shape as the car-organizer branch), re-verified live
     # before writing this comment rather than assumed on-topic, so this
     # narrower phrase-level exclusion is the only "truck" row it can touch.
-    r"\btruck\s+bed\b",
+    r"\btruck\s+bed\b|"
+    # Found 2026-11-11, mining Kitchen's partial tier. "guest bathroom
+    # renovation ideas", "how to organise a bathroom renovation" and "how to
+    # organise a kitchen renovation" land on the Guest Bathroom and Kitchen
+    # articles purely on the room word; a renovation is a construction/
+    # remodeling project (tearing out cabinets, replacing a countertop), a
+    # different question from organizing the room that already exists, the
+    # same different-intent shape "gardening series"/"dental" already
+    # exclude above for an unrelated activity colliding on a bare word.
+    # Checked against both harvests before adding: "renovation" appears in
+    # exactly these 3 rows (1 US, 2 global after US/global dedup), every one
+    # already partial with "renovation" as its sole unmatched word, 0
+    # covered rows anywhere use the word, so excluding it cannot suppress a
+    # genuine match.
+    r"\brenovation\b",
     re.I)
 
 

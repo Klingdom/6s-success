@@ -1342,6 +1342,35 @@ def main():
                          "must still count as this page's own content: "
                          "%r" % idx["head_words"])
 
+    # 42. Found live 2026-11-11, mining Kitchen's partial tier. "images",
+    #     "efficiency", "chef", "modern", "rustic" and "simple" each name a
+    #     format, goal, skill-level or style qualifier on the same organizing
+    #     question, the same not-a-different-subject shape "guide"/"quickly"/
+    #     "original" already cover, not a different subject.
+    new_format_words = ("images", "efficiency", "chef", "modern", "rustic", "simple")
+    samples = {
+        "images": "kitchen organisation ideas images",
+        "efficiency": "how to organize a kitchen for efficiency",
+        "chef": "how to organize a kitchen like a chef",
+        "modern": "declutter modern kitchen",
+        "rustic": "declutter rustic kitchen ideas",
+        "simple": "kitchen organization ideas simple",
+    }
+    for word in new_format_words:
+        if word in kd.content_words(samples[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format12 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format12 - set(new_format_words)
+    try:
+        for word in new_format_words:
+            if word not in kd.content_words(samples[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format12
+
     if fails:
         print("FAIL")
         for f in fails:
