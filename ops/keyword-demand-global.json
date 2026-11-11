@@ -2565,7 +2565,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "best way to organize dresser for baby",
@@ -2585,7 +2585,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "best way to organize entryway closet",
@@ -2749,7 +2749,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "bonus associates",
@@ -3739,7 +3739,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "childrens bedroom organization ideas",
@@ -4969,7 +4969,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "dining room decorating ideas on a budget",
@@ -9154,7 +9154,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "hall closet storage ideas",
@@ -10584,7 +10584,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to arrange a living room with only one wall",
@@ -11571,7 +11571,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to arrange dresser drawers",
@@ -13758,7 +13758,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to declutter when you use everything",
@@ -14028,7 +14028,7 @@
         "gb",
         "au"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to decor entryway",
@@ -14909,7 +14909,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to hang jackets on hanger",
@@ -19557,7 +19557,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organise cleaning tools",
@@ -20160,7 +20160,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organise kids bookshelf",
@@ -22973,14 +22973,12 @@
       "room": "Garage",
       "best_page": "/articles/how-to-organize-a-garage.html",
       "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "lots"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -23814,7 +23812,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organize a kitchen without a pantry",
@@ -24288,7 +24286,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organize a mudroom",
@@ -26211,7 +26209,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organize baby clothes without a closet",
@@ -26233,7 +26231,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize baby clothes without a dresser",
@@ -28381,7 +28379,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize closet clothes",
@@ -28574,14 +28572,12 @@
       "room": "",
       "best_page": "/articles/how-to-declutter-a-bedroom.html",
       "best_page_title": "How to declutter a bedroom in one day, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "lots"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -29421,7 +29417,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize dresser clothes",
@@ -29441,7 +29437,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize dresser drawers",
@@ -29513,7 +29509,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize dresser for baby",
@@ -29563,7 +29559,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize dresser for nursery",
@@ -29587,7 +29583,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize dresser men",
@@ -29962,7 +29958,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organize guest bathroom",
@@ -30403,7 +30399,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organize laundry room without cabinets",
@@ -30694,7 +30690,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organize living room shelves",
@@ -32177,7 +32173,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organize teacher desk drawers",
@@ -35176,7 +35172,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "kids bedroom design ideas",
@@ -35448,7 +35444,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "kids bedroom storage ideas ikea",
@@ -37744,7 +37740,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "linen closet organization hacks",
@@ -39936,7 +39932,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "master bedroom design ideas",
@@ -40024,7 +40020,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "master bedroom design pinterest",
@@ -40092,7 +40088,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "master bedroom design with wardrobe",
@@ -44807,7 +44803,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "utility room organisation ideas",
@@ -44913,7 +44909,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "utility room storage shelves",
@@ -48262,6 +48258,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "9b36337c5",
-  "scored_at": "2026-11-11T15:58:10Z"
+  "scored_against_commit": "a6447ed4f",
+  "scored_at": "2026-11-11T17:57:42Z"
 }

@@ -193,7 +193,7 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "women", "container", "containers", "essentials",
                           "household", "daily", "inspo", "inspiration",
                           "images", "efficiency", "chef", "modern", "rustic",
-                          "simple", "choose", "deep", "hacks"))
+                          "simple", "choose", "deep", "hacks", "lots"))
 
 # "deep" and "hacks" joined 2026-11-11, mining Hall Closet's remaining
 # partial tier. "how to organize a deep hall closet" and "deep hall closet
@@ -219,6 +219,26 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
 # (3 unique: Hall Closet's linen closet article and the unrelated walk-in-
 # closet article), also each already correctly routed. None can move the
 # other way, same reasoning as every prior FORMAT_WORDS addition.
+
+# "lots" joined 2026-11-11, mining Garage's remaining partial tier. "how to
+# organize a garage with lots of tools" asks the same question as "how to
+# organize a garage with tools", "lots" naming a quantity rather than a
+# different subject, the same role "too much"/"many" would play if either
+# were already in scope. Self-flattery checked first: 0 of 244 page titles
+# or headings carry "lots" at all, well under the "household" bar (11/243)
+# already cleared. "much" and "items" were checked for the same slot and
+# declined: both appear in well over 100 of 244 page headings (naturally,
+# in genuine content like "too much stuff" and "sentimental items", not
+# gaming), and a direct before/after rescore of the full corpus with each
+# added to FORMAT_WORDS changed which page several rows credit as their
+# best_page (e.g. "how to organize cleaning items" moved from the Garage's
+# own Automotive Care Zone to /disclaimer.html), the exact silent
+# misattribution class the 2026-11-05 best_page/heading-surface fix above
+# exists to prevent. "lots" produces zero best_page changes across either
+# corpus when tested the same way, only status moves. Checked the full
+# corpus before adding: "lots" is the sole unmatched word on 3 live rows
+# (1 Garage, 1 Guest Bathroom vanity-storage, 1 global bedroom-closet row),
+# each already routed to its own correct page. None can move the other way.
 
 # "images", "efficiency" and "chef" joined 2026-11-11, mining Kitchen's
 # partial tier. "kitchen organisation ideas images" and "linen closet

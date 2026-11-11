@@ -1432,6 +1432,35 @@ def main():
         for f in fails:
             print(" -", f)
         return 1
+
+    # 45. Found live 2026-11-11, mining Garage's remaining partial tier.
+    #     "lots" names a quantity ("how to organize a garage with lots of
+    #     tools" asks the same question as "...with tools"), not a
+    #     different subject, so it joined FORMAT_WORDS.
+    new_format_words15 = ("lots",)
+    samples15 = {
+        "lots": "how to organize a garage with lots of tools",
+    }
+    for word in new_format_words15:
+        if word in kd.content_words(samples15[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format15 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format15 - set(new_format_words15)
+    try:
+        for word in new_format_words15:
+            if word not in kd.content_words(samples15[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format15
+
+    if fails:
+        print("FAIL")
+        for f in fails:
+            print(" -", f)
+        return 1
     # Counted from the numbered cases in this file rather than typed, because
     # a hardcoded tally goes stale the first time somebody adds a case and
     # then the test reports a number that is simply false. It said 14/14
