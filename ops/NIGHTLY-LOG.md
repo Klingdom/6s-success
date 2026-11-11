@@ -20,6 +20,26 @@ Pushed to main: this log entry, `BACKLOG-2026-09-07.md` A90, the article, both r
 
 HANDOFF-FILES: none
 
+## 2026-11-11, PM check-in (07:1x slot): previous work independently reconfirmed finished; found a specific, checkable routing collision in the Hall Closet vocabulary-gap fix before it could ship wrong, handed to the operator instead
+
+NEXT FOR THE OPERATOR: the same two Hall Closet leads, still unshipped, plus one new concrete reason the vocabulary-gap half is riskier than it first looked. Checked whether the four blankets/comforters/washcloths/bedding rows could be closed with a quick heading or FAQ edit this slot, since that half reads smaller than the "organized bathroom cupboard" misroute. It is not quick: "bedding" alone already routes 11 real queries ("how to organize bedding", "how to arrange bedding", "how to sort bedding" among them) to `/zones/primary-bedroom-the-bed-and-bedding-zone.html` at a clean 1.0 covered score. Adding the word "bedding" to any heading on `/articles/how-to-organize-a-linen-closet.html` would tie that zone page on every one of those single-word queries, and `_tie_break`'s alphabetical fallback (no room signal fires on a bare "bedding" query) resolves `/articles/...` before `/zones/...`, so the linen closet article would silently win and the real answer page would stop being credited, a status-invisible regression (still reports "covered") of exactly the kind this repository's own gates exist to catch. "Blankets" carries a smaller version of the same risk against `/articles/how-to-store-blankets.html`'s own covered rows and needs the same check before it is added anywhere. "Comforters" and "washcloths" were not checked this slot; do that first, not last. The misroute fix (heading-tie scoring on "organized bathroom cupboard" plus a full-corpus regression check) is unchanged from the 06:1x handoff.
+
+**Previous work independently reconfirmed finished.** Attached clean: fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` (`060f62ab0`), 839 commits fast-forwarded, tree clean throughout, no unrelated-history symptom. GitHub's 31 open issues re-pulled live via the search API: unchanged, all `decision`/`blocked-on-art`/`P0`, newest update 2026-11-08T22:03Z (#65), none from Phil. `fix_dashes.py --check` 0/0. `check_urls.py` 235/235. `cold_read_ledger.py --stale` 0 stale. `test_keyword_demand.py` (41 cases) and `test_room_guide_underperformance.py` (19/19) both pass, re-run fresh, no regression since the 05:5x operator cycle's own FORMAT_WORDS change. `preflight.py --skip-tests` run live, backgrounded: `cycle-signal.json`'s own checkpoint confirms every gate through the one before `gate_tests` passed before the run hit the documented network-bound `gate_etsy_pdfs_current` stall and was killed without writing further output; reported unchecked past that point, not passing, per CLAUDE.md 0.4, same shape every recent cycle has hit.
+
+**Did not ship a heading or FAQ edit this slot.** The bedding/primary-bedroom collision above was found by checking, not assumed; shipping any of the four words without the same check against the other three, plus a live rescore of the full corpus to confirm no `best_page` moved on an already-covered row, would be the silent-regression shape CLAUDE.md 0.3/0.4 and this repository's own recent history (BOILERPLATE_HEADINGS, the band-heading revert) both warn against. That is a real check, not a 30-minute one.
+
+**Went well:** found a specific, checkable collision this slot's investigation would otherwise have left for the operator to discover the hard way, after a heading edit had already shipped.
+
+**Did not go well:** nothing closed this slot; two PM cycles and one operator cycle have now each separately confirmed this same workstream needs more runway than they have, without any of them actually unblocking it with more runway.
+
+**Changing next cycle:** when the operator picks this up, check "comforters" and "washcloths" for the same already-covered-elsewhere collision before adding either to a heading, the same way "bedding" and "blankets" were checked here.
+
+**Next:** same 31-issue Phil-gated queue, unchanged since 2026-11-08. The Hall Closet misroute and vocabulary-gap pair above is the only non-Phil-gated workstream, and needs the operator's longer runway, not another reconfirmation.
+
+Pushed to main: this log entry, `ops/cycle-signal.json`, the regenerated command deck. No price, product or site page touched; this cycle made no scorer or content edit, so IndexNow does not apply.
+
+HANDOFF-FILES: none
+
 ## PM check-in (06:4x slot, 30-minute triage): previous work still unactioned, same Hall Closet handoff reconfirmed for the operator
 
 NEXT FOR THE OPERATOR: the same two concrete Hall Closet leads the 06:1x slot named and did not yet ship (the "organized bathroom cupboard" heading-tie misroute needing a narrow, scoped fix plus a full-corpus regression check, and the four blankets/comforters/washcloths/bedding heading-or-FAQ gaps), because no full operator cycle has run since that handoff landed, only the routine hourly dashboard regeneration, so the work is still exactly where it was left.
