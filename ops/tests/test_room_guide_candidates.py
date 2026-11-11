@@ -660,6 +660,38 @@ _result_tablecloth_genuine = rgc.score_room([_tablecloth_genuine], [], _room)
 check("a genuine 'how to organize tablecloths' row is NOT excluded by the dish-cloths pattern",
       _result_tablecloth_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-11, mining Mudroom's remaining 6-row partial tier.
+# "organize outdoor diy lab" lands on the Seasonal Outdoor Gear Zone purely
+# on "outdoor"; a "diy lab" names a home science or maker workspace,
+# nothing this zone's own content (coolers, sports gear, holiday
+# decorations) addresses.
+_diy_lab = {"query": "organize outdoor diy lab", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_diy_lab = rgc.score_room([_diy_lab], [], _room)
+check("an 'organize outdoor diy lab' off-topic-context row is excluded",
+      _result_diy_lab["on_topic_rows"] == 0)
+
+# Same pass: "how to organize a storage locker" lands on the Shoe and Boot
+# Storage zone purely on "storage"; a "storage locker" overwhelmingly
+# names a rented self-storage-facility unit, distinct from this room's own
+# built-in mudroom lockers, which must stay on-topic and covered.
+_storage_locker = {"query": "how to organize a storage locker", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_storage_locker = rgc.score_room([_storage_locker], [], _room)
+check("a 'how to organize a storage locker' off-topic-context row is excluded",
+      _result_storage_locker["on_topic_rows"] == 0)
+_mudroom_lockers_genuine = {"query": "how to organize mudroom lockers", "best_page": "/test-room-deck.html", "status": "covered"}
+_result_mudroom_lockers_genuine = rgc.score_room([_mudroom_lockers_genuine], [], _room)
+check("a genuine 'how to organize mudroom lockers' row is NOT excluded by the storage-locker pattern",
+      _result_mudroom_lockers_genuine["on_topic_rows"] == 1)
+
+# Same pass: "how to make an outdoor bench seat with storage" is a
+# construction-intent query (building a physical bench), the same
+# build-intent noise class the "outdoor storage"/"bench storage" branch
+# already excludes, just a word order that branch did not yet cover.
+_bench_seat = {"query": "how to make an outdoor bench seat with storage", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_bench_seat = rgc.score_room([_bench_seat], [], _room)
+check("a 'how to make an outdoor bench seat with storage' off-topic-context row is excluded",
+      _result_bench_seat["on_topic_rows"] == 0)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

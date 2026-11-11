@@ -186,7 +186,24 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "arrange", "arranging", "arranged", "arrangement",
                           "arrangements", "rearrange", "rearranging",
                           "rearranged", "ways", "way", "diy", "guide",
-                          "tutorial", "must", "haves", "quickly"))
+                          "tutorial", "must", "haves", "quickly",
+                          "original", "deals"))
+
+# "original" and "deals" joined 2026-11-11, mining Mudroom's remaining
+# partial tier. "original coat hooks with storage" and "coat hooks with
+# storage" ask for the same thing about the same subject; "original" marks a
+# style/authenticity qualifier, the same shape "ways"/"diy" already cover,
+# not a different subject. "shop deals on mudroom organization ideas" and
+# "mudroom organization ideas" are the same question wrapped in a shopping
+# frame, the same shape "guide"/"tutorial" already cover. Self-flattery
+# checked first, same bar every prior FORMAT_WORDS addition used: 0 of this
+# site's page titles and at most 1 of its headings carry either word.
+# Checked the full corpus before adding: "original" is the sole unmatched
+# word on exactly 1 on-topic row (2 more exist but fail ON_TOPIC entirely,
+# so this change cannot touch them); "deals" is the sole unmatched word on
+# exactly 1 row (duplicated across the US and global harvest, one real
+# query). Both can only move gap/partial toward covered, never the other
+# way, same reasoning as every prior FORMAT_WORDS addition.
 
 # "ways" joined 2026-11-05, same shape as "arrange": "ways to organize a
 # nightstand" and "how to organize a nightstand" ask for the same thing about

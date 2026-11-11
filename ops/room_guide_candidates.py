@@ -383,7 +383,7 @@ OFF_TOPIC_CONTEXT = re.compile(
     r"staircase|stair\s*landing|patio\s*deck|entertainment\s*center|"
     r"charging\s*station|grill\s*station|drying\s*rack|nightstand|"
     r"tool\s*organizer|drop\s*zone|mudroom\s*storage|bench\s*storage|"
-    r"outdoor\s*storage|outdoor\s*seat(?:ing|s)?|"
+    r"outdoor\s*storage|outdoor\s*seat(?:ing|s)?|outdoor\s*bench\s*seat|"
     r"outdoor\s*(?:dining\s*table|table\s*and\s*chairs)|handrail|"
     r"exterior\s*stairs|book\s*storage\s*box)\b|"
     # Found 2026-11-10 (Workshop pass): "workshop" collides with the
@@ -569,7 +569,27 @@ OFF_TOPIC_CONTEXT = re.compile(
     # against the full corpus before adding: "above stove" appears in
     # exactly these two rows, "small desk" in exactly one, "docking
     # station" in exactly one, "dish cloth(s)" in exactly one.
-    r"\babove stove\b|\bsmall desk\b|\bdocking station\b|\bdish cloths?\b",
+    r"\babove stove\b|\bsmall desk\b|\bdocking station\b|\bdish cloths?\b|"
+    # Found 2026-11-11, mining Mudroom's remaining 6-row partial tier.
+    # "organize outdoor diy lab" lands on the Seasonal Outdoor Gear Zone
+    # purely on "outdoor"/the already-excused "diy"; a "diy lab" names a home
+    # science or maker workspace, the same seed-drift-to-an-unrelated-topic
+    # shape "dental"/"gardening series" already exclude above, and the
+    # zone's own content.json purpose (coolers, sports gear, holiday
+    # decorations) never addresses a lab. "how to organize a storage locker"
+    # lands on the Shoe and Boot Storage zone purely on "storage"; a
+    # "storage locker" overwhelmingly names a rented self-storage-facility
+    # unit, the exact sense a 2026-11-05 Mudroom fix already distinguished
+    # from this room's own built-in lockers when it added "locker(s)" at
+    # room level only for queries that also say "mudroom" (`ops/room-also-
+    # called.json`'s own note: "locker" appears in this site's prose about a
+    # RENTED storage locker, not a heading), and the same self-storage sense
+    # "outdoor storage rental tips" already excludes above for Patio or
+    # Deck. Checked against both harvests before adding: "diy lab" appears
+    # in exactly this one row; "storage locker" (the two words adjacent) in
+    # exactly this one row, distinct from "mudroom locker(s)", which stays
+    # covered and untouched since it never contains the word "storage".
+    r"\bdiy\s+lab\b|\bstorage\s+locker\b",
     re.I)
 
 

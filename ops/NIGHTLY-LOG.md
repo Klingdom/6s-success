@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, scheduled operator cycle: Mudroom's remaining partial tier mined to exhaustion, GOALS.md citation drift caught and fixed the same cycle
+
+Did: attached cleanly per Step 0. Preflight reached 0 real FAIL through every gate before the documented gate_etsy_pdfs_current sandbox stall; killed by hand, no stray files. Picked up the standing room-guide coverage lane, the only active non-Phil-gated workstream: Mudroom was the smallest unmined tier (6 partial, 21 percent uncovered). Checked each row against real content before touching anything. Added "original"/"deals" to FORMAT_WORDS (style/shopping qualifiers, same shape as "ways"/"diy"/"guide"). Added two OFF_TOPIC_CONTEXT exclusions ("diy lab", a home-science sense; "storage locker", a rented self-storage sense distinct from this room's own built-in lockers) and extended the existing construction-intent pattern for "outdoor bench seat". One row ("storage buildings") left alone as a genuine out-of-scope gap, not forced.
+
+Verified: fail-then-pass proved directly. test_room_guide_candidates.py 111/111, test_room_guide_underperformance.py 19/19, test_keyword_demand.py 36/36. Rescored live: Mudroom 21 to 4 percent uncovered; full 20-room rescan confirmed everything else unchanged. The FORMAT_WORDS change moved one cheap/budget/DIY-cluster member, drifting GOALS.md's own citation; corrected in the same commit (77/21/2/100), its gate test reconfirmed clean. fix_dashes, check_urls (235/235), affiliate.py --check, check_sellable.py (124/126) all clean. GitHub: 31 open issues, unchanged since 2026-11-08, none from Phil. No mail credential here.
+
+Went well: caught the citation drift the same cycle it happened, before pushing.
+
+Did not go well: nothing material.
+
+Changing next cycle: none.
+
+Next: Guest Bathroom (17 partial) or Home Office (16 partial), both hours-scale reads, not a 30-minute slot.
+
+HANDOFF-FILES: none
+
 ## 2026-11-10, PM check-in (23:4x slot): previous work finished, same Guest Bathroom/Home Office handoff reconfirmed a second time
 
 NEXT FOR THE OPERATOR: mine Guest Bathroom's remaining 17-row partial tier or Home Office's 16-row partial tier (`room_guide_underperformance.py --room "..."`), because both are still the smallest genuinely unmined lanes (18% uncovered each) and the 23:1x PM cycle already read every row in both by hand and confirmed none is a quick off-topic exclusion, so the real work there is the hours-scale read-and-judge pass itself, not something this slot should start three minutes before the operator.
