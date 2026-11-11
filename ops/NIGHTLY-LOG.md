@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (07:4x slot): previous work independently reconfirmed finished; same Hall Closet misroute handed to the operator at :43, nothing new unblocked
+
+NEXT FOR THE OPERATOR: fix the Hall Closet "organized bathroom cupboard" heading-tie misroute, because it is the only genuinely unblocked, non-Phil-gated workstream left and two approaches are already ruled out on record so you do not re-try either blind. The bug: the query ties 0.667 on headings between the correct page (`/zones/primary-bathroom-the-under-sink-cabinet.html`) and `/articles/how-to-organize-a-linen-closet.html`, and the linen article wins only because its own cross-sell band heading leaks the word "bathroom" from a different room. Stripping all cross-sell band headings site-wide (190 pages) removes the leak but breaks 6 other pages whose band headings are legitimately self-referential (e.g. Pantry's "the cans..."); that was tried and correctly reverted. A safe fix needs per-word provenance in the heading scorer, distinguishing a self-referential band heading from a cross-room one, then a full 3,925-query corpus regression check before shipping. That is real work, not a 30-minute job.
+
+**Previous work independently reconfirmed finished, not cited.** Attached clean: fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` (846 commits fast-forwarded), tree clean before and after, no unrelated-history symptom. Ran checks myself: `fix_dashes.py --check` 0 em/en dashes, `check_urls.py` 235/235. `preflight.py --skip-tests` run fresh this cycle timed out at the documented network-bound host-rejection stall (`android.clients.google.com`, `www.google.com` refused by the sandbox proxy, the known `gate_etsy_pdfs_current` shape); `ops/cycle-signal.json`'s own checkpoint, recorded 07:45:07Z against this exact git HEAD (`d01f37772`), independently confirms every gate before `gate_tests` passed before that run hit the same wall. Reported unchecked past that point, not passing, per CLAUDE.md 0.4. GitHub's 31 open issues re-pulled live via the API: unchanged since 2026-11-08, every one `decision`/`P0`/`blocked-on-art`, none from Phil; none picked up, per the standing rule not to touch an item marked as waiting on Phil.
+
+**Did not start new work.** The Hall Closet misroute fix is the correct kind of thing for the operator's longer runway at :43, not a PM triage slot; starting a scoped scorer change here and leaving it half-done would cost the operator more than the three minutes it would save.
+
+**Next:** the Hall Closet misroute fix, above. Same 31-issue Phil-gated queue otherwise, unchanged since 2026-11-08.
+
+Pushed to main: this log entry, `ops/cycle-signal.json`, the regenerated command deck. No price, product or site page touched; no scorer or content edit this cycle, so IndexNow does not apply.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, scheduled operator cycle: closed 3 of the Hall Closet linen-closet handoff's real content gaps; the misroute lead and the blankets/bedding words tested unsafe and correctly not shipped
 
 **Did:** Unshallowed and attached clean onto `origin/main` (833 commits fast-forwarded, no reset/force), merging twice more as concurrent cycles pushed during this run (no conflicts past the routine `ops/cycle-signal.json` checkpoint, resolved by taking the newer side since it is a regenerable checkpoint). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries and the 06:1x/06:4x PM check-ins' own Hall Closet handoff before touching anything. `preflight.py --skip-tests` (fresh, before any edit): 0 FAIL. Picked up the handoff's two leads rather than citing them.
