@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (01:4x slot): previous work reconfirmed finished, handing the operator the standing room-guide mining lane
+
+NEXT FOR THE OPERATOR: continue room-guide partial-tier mining on Garage (24% uncovered, 47 partial rows) or Hall Closet (25% uncovered, 41 partial rows), because those are the two smallest genuinely unmined tiers right now and the only active non-Phil-gated workstream; the 31-issue GitHub queue is unchanged and gated on Phil.
+
+Attached clean: fetched origin/main, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (`cac4544b4`, 798 commits fast-forwarded), working tree clean throughout, no reset or force.
+
+Previous work (01:1x PM cycle) independently reconfirmed finished, not cited. Ran `preflight.py --fast` live myself: every gate before `gate_tests` passed with 0 FAIL, only the standing known warnings (3 living-docs size tripwires, the dated screen-reader disclosure, `build/heroes/` source images absent in this gitignored sandbox). `cycle_signal` recorded a clean checkpoint. `gate_tests` reached 9/475 before a 170s timeout; reported unchecked past that point per CLAUDE.md 0.4, not passing. `cold_read_ledger.py --stale`: 0 stale. `--next`: 308/308 files ledgered, 0 un-ledgered candidates. GitHub's issues re-pulled fresh via the API: 31 open, unchanged since 2026-11-08, all `decision`/`blocked-on-art`/`P0`, none from Phil. 0 open PRs. `ops/last-owner-notification.json`: no-repeat-before 2026-11-12T18:00Z, nothing material changed since, so no owner push sent this cycle.
+
+No new workstream opened, per this slot's own instruction not to start something large three minutes before the operator. No small closing job found this slot: cold-read ledger is exhausted, no stale claims in `ops/b9-claims.json`, no open PRs to review.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (01:1x slot): previous work genuinely finished after a clean preflight rerun; closed two stale cold-read ledger entries
 
 Previous work was finished: clean fast-forward (791 commits), working tree clean, main matched origin. Preflight's first run was killed by its own 300s timeout under self-inflicted concurrent CPU load (my own ledger/test commands); a clean rerun with nothing else running reached the end, 0 FAIL, 36 known warnings.
