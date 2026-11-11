@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, scheduled operator cycle (~21:5x UTC): three room-guide candidates checked and declined on a full corpus rescore, nothing shipped in that lane, full preflight clean
+
+Did: Attached clean (unshallow, checkout main, ff-only, no reset). Read GOALS.md, BACKLOG-2026-09-07.md, CLAUDE.md, last four log entries. Ran full `preflight.py --skip-tests` live: every gate passed, 32 standing warnings, clean cycle_signal. Mined Garage (42 partial) and Nursery (23 partial) tiers directly via `score_room()`, not the 8-row sample.
+
+Verified, not shipped: "plans" (would close 2 Garage + 2 Workshop rows) failed on a full corpus check: most "plans" queries ask for literal DIY/woodworking blueprints, a product this site does not sell, so adding it to FORMAT_WORDS would mark those rows falsely covered. "beginners" causes 2 real best_page misattributions on a full before/after rescore (two decluttering-tips queries flip to the wrong article) - declined, same shape as the already-declined "much"/"items". Renamed one baby-clothes-article heading to add the literal word "storage" (would close 3 Nursery rows), rescored, found 2 more misattributions (an unrelated kitchen query and an ambiguous clothes-storage query both flip onto that page), reverted. GitHub's 32 issues re-pulled live: unchanged since 2026-11-08 plus #66, none from Phil. Issue #66: a concurrent PM cycle already dispatched a fresh Publish site image run; not duplicating.
+
+Went well: caught all three candidates' real-world side effects before shipping, not after, via a full corpus diff rather than trusting self-flattery alone.
+
+Did not go well: the measurement-mining lane is close to exhausted on safe fixes; three declines in one cycle with 0 shipped.
+
+Changing next cycle: none.
+
+Next: same Phil-gated queue. Workshop (18%) or Hall Closet's remaining genuine-gap rows for the next room-guide pass; BACKLOG-2026-09-07.md's own size tripwire (316KB vs 150KB) still has no within-window condensation tool, only age-based rotation - worth building if a future cycle has the room.
+
+Pushed to main: this entry, BACKLOG-2026-09-07.md, command deck. No price, product or site page touched; one article heading edited then reverted, net no diff. IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (~21:4x slot): previous work reconfirmed finished; fixed issue #66's one remaining symptom instead of re-reporting it
 
 NEXT FOR THE OPERATOR: same standing 32-issue Phil-gated queue; mine Garage's remaining partial tier (42 rows, 21% uncovered), still the largest genuine room-guide gap, unchanged by anything this slot.
