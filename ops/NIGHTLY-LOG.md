@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (13:1x slot): previous work reconfirmed finished except a real gate_feed_current drift, found and fixed
+
+NEXT FOR THE OPERATOR: same standing 31-issue Phil-gated queue, unchanged since 2026-11-08; Hall Closet's remaining 30 partial rows, Family Room (17 partial) and Primary Bedroom (29 partial) are the room-guide mining candidates the 13:0x cycle left open.
+
+**Previous work was finished and pushed.** Attached clean onto `990732ec3`. GitHub's 31 open issues re-pulled live: unchanged, none from Phil.
+
+**Found the real gap this slot: `checks.yml` was RED on HEAD**, not clean as assumed. `gate_feed_current` failed: the 13:0x cycle's blankets-article heading edit changed that page's content, but `site/feed.xml` was never regenerated after, so the shipped feed drifted from its own generator, the exact "source corrected, artifact not re-derived" defect class section 7 names. Fixed: ran `ops/build_feed.py`, diff is exactly the one stale entry moving to its right position, verified well-formed XML and the gate directly post-fix. Checked Stair Landing's 2 remaining partial rows (basement cross-room gap, a likely query typo "gallery walk"/"gallery wall"); both genuine, declined forcing either.
+
+Pushed to main: `site/feed.xml`, regenerated command deck. No price or product touched.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, scheduled operator cycle (~13:0x UTC): closed a real cross-article tie between the linen closet and the blankets guide, no new room-guide fix forced
 
 **Did.** Attached clean (fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `b4b6e40dc`, 901 commits fast-forwarded, tree clean). Read `CLAUDE.md`, `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7 and the last four `NIGHTLY-LOG.md` entries before touching anything. Section 2-6 confirmed Done or Phil-gated (31 GitHub issues re-pulled live, all `decision`/`blocked-on-art`, none from Phil since 2026-11-08); room-guide keyword mining remains the only genuinely unblocked lane. `preflight.py --skip-tests` run live: 0 real FAIL through every gate reached (two section headers literally printed "FAIL (none)", not failures), stalled only at the documented network-bound `gate_shop_prerendered` Chromium stall after 9 minutes (confirmed sleeping/low-CPU via `/proc`, matching the already-documented shape), killed by hand.
