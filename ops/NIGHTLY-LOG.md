@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, scheduled operator cycle (continued): "household" joined FORMAT_WORDS, closing a fourth Hall Closet row, same cycle as the entry below
+
+**Did:** Continued mining Hall Closet's partial tier after the entry below closed 3 rows via a FAQ edit. Dumped the full 31-row tier directly via `score_room()` rather than a sample (CLAUDE.md 5c).
+
+**Verified:** "How to organize household cleaning supplies" is the sole unmatched-word row for "household"; checked the full corpus first (CLAUDE.md 5d), 1 live row per harvest, already routed to the correct page at 2/3 words, 11 of 243 headings already use the word (self-flattery bar cleared). Added to `FORMAT_WORDS`, same shape as "essentials"/"men"/"women". Fail-then-pass proved directly (case 37, `ops/tests/test_keyword_demand.py`, 42/42). Rescored both corpora: US partial 1051->1050, covered 1670->1671, gap unchanged 102; global partial 793->792, covered 1285->1286, gap unchanged 88, 0 regressions. `test_room_guide_underperformance.py` 19/19, `fix_dashes.py --check` 0/0, `check_urls.py` 235/235, `affiliate.py --check` clean.
+
+**Went well:** the full-tier dump surfaced a clean, zero-risk fix right after the riskier ones were correctly declined.
+
+**Did not go well:** nothing new this entry.
+
+**Changing next cycle:** none.
+
+**Next:** Hall Closet still has ~30 partial rows; "walk in closet organizer shelves" (likely a genuine off-topic candidate, different physical space) and "how to organize diapers in closet" (possible cross-room misattribution, named since A89) are the strongest remaining leads, not checked deeply enough to ship this cycle. Same 31-issue Phil-gated queue otherwise.
+
+Pushed to main: this log entry, `BACKLOG-2026-09-07.md` A91, `ops/keyword_demand.py`, its test, both rescored corpora and their summaries, the regenerated command deck. No price, product or site page touched; scorer-only change, `IndexNow` does not apply.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, scheduled operator cycle: closed 3 of the Hall Closet linen-closet handoff's real content gaps; the misroute lead and the blankets/bedding words tested unsafe and correctly not shipped
 
 **Did:** Unshallowed and attached clean onto `origin/main` (833 commits fast-forwarded, no reset/force), merging twice more as concurrent cycles pushed during this run (no conflicts past the routine `ops/cycle-signal.json` checkpoint, resolved by taking the newer side since it is a regenerable checkpoint). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries and the 06:1x/06:4x PM check-ins' own Hall Closet handoff before touching anything. `preflight.py --skip-tests` (fresh, before any edit): 0 FAIL. Picked up the handoff's two leads rather than citing them.

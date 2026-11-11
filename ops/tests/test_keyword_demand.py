@@ -1141,6 +1141,24 @@ def main():
     finally:
         kd.FORMAT_WORDS = old_format8
 
+    # 37. Found live 2026-11-11, mining Hall Closet's remaining partial
+    #     tier. "how to organize household cleaning supplies" asks the
+    #     same thing as "how to organize cleaning supplies", "household"
+    #     naming the same not-a-different-subject scope qualifier
+    #     "essentials"/"men"/"women" already cover.
+    if "household" in kd.content_words("how to organize household cleaning supplies"):
+        fails.append("'household' is still a content word; the "
+                     "FORMAT_WORDS addition did not take")
+    old_format9 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format9 - {"household"}
+    try:
+        if "household" not in kd.content_words("how to organize household cleaning supplies"):
+            fails.append("test fixture no longer reproduces the pre-fix "
+                         "behaviour: 'household' was dropped even with "
+                         "the word removed from FORMAT_WORDS")
+    finally:
+        kd.FORMAT_WORDS = old_format9
+
     if fails:
         print("FAIL")
         for f in fails:

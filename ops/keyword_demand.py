@@ -189,7 +189,23 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "tutorial", "must", "haves", "quickly",
                           "original", "deals", "overview", "routine", "setup",
                           "review", "buy", "template", "her", "him", "men",
-                          "women", "container", "containers", "essentials"))
+                          "women", "container", "containers", "essentials",
+                          "household"))
+
+# "household" joined 2026-11-11, mining Hall Closet's remaining partial tier.
+# "how to organize household cleaning supplies" asks the same question as
+# "how to organize cleaning supplies", the same not-a-different-subject
+# shape "essentials"/"men"/"women" already cover: naming the supplies as
+# household ones (rather than industrial or commercial) does not change
+# which page answers it. Not a self-flattery risk by the usual bar (11 of
+# 243 headings already carry the word, from zone names like "Paper and
+# Household Backstock"), and this only drops a word from scoring, so it
+# cannot create a false match on a page that never otherwise matches.
+# Checked the full corpus before adding: "household" is the sole unmatched
+# word on exactly 1 live row per harvest (the same query, "how to organize
+# household cleaning supplies"), already routed to the correct page
+# (Hall Closet's Cleaning Supply Zone) at 2 of 3 words; moves it to
+# covered, 0 regressions anywhere else in either corpus.
 
 # "her", "him", "men" and "women" joined 2026-11-11, mining Guest Bedroom's
 # partial tier. "nightstand organizer for her/men/women" and "how to
