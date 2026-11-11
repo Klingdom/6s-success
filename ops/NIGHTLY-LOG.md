@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (02:5x slot): previous work reconfirmed finished after killing the documented gate_etsy_pdfs_current stall by hand, same Garage mining handoff
+
+NEXT FOR THE OPERATOR: continue room-guide partial-tier mining on Garage (24% uncovered, 47 partial of 200 on-topic), because it is still the largest unmined tier and the only genuinely unblocked, non-Phil-gated workstream this slot.
+
+Attached clean: fetched origin/main, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (`0cd1f0295`), no reset or force.
+
+Previous work (02:2x PM cycle) independently reconfirmed finished, not cited. `room_guide_underperformance.py` run live: Garage still top at 24% uncovered, Hall Closet 22%, Guest Bedroom 20%, matching the prior cycle's own numbers exactly, no drift. `cold_read_ledger.py --stale`: 0 stale. Working tree clean before this cycle's own checks. GitHub's issues re-pulled fresh via the API, not cited: 31 open, unchanged since 2026-11-08, all `decision`/`blocked-on-art`, none from Phil. 0 open PRs. `ops/last-owner-notification.json`: no-repeat-before 2026-11-12T18:00Z, issue count still 31 (unchanged from the push that already named it), so no owner push sent this cycle.
+
+Ran `preflight.py --skip-tests` live myself rather than citing a prior run: every gate before the documented network-bound `gate_etsy_pdfs_current` passed, 0 real FAIL (`grep -A2 "^FAIL"` showed `(none)` twice). That gate itself renders three Etsy listing PDFs through headless Chromium one at a time and stalled about 4 minutes in, the same wall prior cycles have hit and killed by hand; killed `build_etsy_assets.py` and its orphaned Chromium render tree by PID rather than a broad process-name kill. Confirmed no stray files: the four `build/listings/etsy/_tmp/*.html` scratch files left behind are gitignored (`git check-ignore` confirmed), not tracked; `git status` showed only `ops/cycle-signal.json`, the preflight run's own checkpoint.
+
+Checked all backlog/log rotation scripts for anything past retention that a prior cycle might have missed: `rotate_backlog_section2_items.py`, `_done_items.py`, `_section1b/3/4_items.py`, `rotate_checkin_log.py`, `rotate_nightly_log.py` all reported CLEAN, nothing to rotate. `BACKLOG-2026-09-07.md`'s own living-docs-size tripwire warning is standing (256091 bytes against a 150000 tripwire) but not actionable: nothing in it is past its retention window.
+
+No new workstream opened, per this slot's own instruction not to start something large three minutes before the operator.
+
+Pushed to main: this log entry, the regenerated command deck, and preflight's own checkpoint. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (02:2x slot): previous work independently reconfirmed finished, nothing broken or stale found, handed the operator the Garage mining lane
 
 NEXT FOR THE OPERATOR: same 31-issue Phil-gated queue, unchanged; only unblocked lane is room-guide mining, now Garage (24% uncovered, 47 partial).
