@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (09:1x slot): previous work independently reconfirmed finished; same Hall Closet misroute handed to the operator again, nothing new unblocked
+
+NEXT FOR THE OPERATOR: fix the Hall Closet "organized bathroom cupboard" heading-tie misroute at :43, unchanged from the last four handoffs. No operator cycle has actually run since the 07:1x handoff first named it in detail; between then and now only PM check-ins and automated hourly dashboard refreshes have landed. The bug and the two ruled-out fixes are unchanged: the query ties 0.667 on headings between the correct page (`/zones/primary-bathroom-the-under-sink-cabinet.html`) and `/articles/how-to-organize-a-linen-closet.html`, the linen article wins only because its own cross-sell band heading leaks the word "bathroom" from a different room, stripping cross-sell band headings site-wide breaks 6 other pages that self-reference legitimately, and a safe fix needs per-word provenance in the heading scorer plus a full 3,925-query regression check before shipping. That is real work, not a 30-minute job.
+
+**Previous work independently reconfirmed finished, not cited.** Attached clean: fetch, real unshallow from a shallow detached checkout (869 commits), `checkout main`, ff-only onto `origin/main`. Working tree clean before and after; the only commit since the 08:4x PM entry is an automated hourly dashboard refresh (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/state.json`, `ops/dashboard.html`), not a full operator cycle.
+
+**Ran the checks myself rather than trusting the prior entry's own claim.** `gate_status_deploy_verdict_current()` called directly: returns `None`, clean, still citing the same `d979ab225efc1ae3` build the 08:1x fix was written against. `ops/cold_read_ledger.py --stale`: 0 stale. `fix_dashes.py --check`: 0 em/en dashes. `check_urls.py`: 235/235 sitemap URLs resolve. `preflight.py --skip-tests` run live to its real wall (150s): 0 FAIL across every gate reached, including `gate_nightly_log_ordering` and `gate_nightly_log_no_duplicate_entries`; it stopped at the documented network-bound `gate_etsy_pdfs_current`/KDP stall (Etsy's fee page returns HTTP 403 from this sandbox, no JRE for epubcheck), reported unchecked past that point per CLAUDE.md 0.4, not passing. GitHub's 31 open issues re-pulled live via the search API: unchanged since 2026-11-08, every one `decision`/`P0`/`blocked-on-art`, author `Klingdom` on all of them (the repository's own automation posting under the owner account, not a live decision from Phil), none newly actionable, none picked up per the standing rule against touching a Phil-gated item. `STATUS.md`'s "Open claims" section: none open.
+
+**Did not start new work.** The misroute fix needs a scorer change plus a full corpus regression check, the operator's longer runway, not a PM triage slot; starting it here and leaving it half-done would cost the operator more than this slot would save.
+
+**Next:** the Hall Closet misroute fix, above. Same 31-issue Phil-gated queue otherwise, unchanged since 2026-11-08.
+
+Pushed to main: this log entry and the regenerated command deck only. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (08:4x slot): previous work independently reconfirmed finished; same Hall Closet misroute handed to the operator at :43 again, nothing new unblocked
 
 NEXT FOR THE OPERATOR: fix the Hall Closet "organized bathroom cupboard" heading-tie misroute, because it is still the only genuinely unblocked, non-Phil-gated workstream and this is the fourth consecutive handoff naming it unshipped. The bug and the two ruled-out fixes are unchanged from the 07:4x entry: the query ties 0.667 on headings between the correct page (`/zones/primary-bathroom-the-under-sink-cabinet.html`) and `/articles/how-to-organize-a-linen-closet.html`, the linen article wins only because its own cross-sell band heading leaks the word "bathroom" from a different room, stripping cross-sell band headings site-wide breaks 6 other pages that self-reference legitimately, and a safe fix needs per-word provenance in the heading scorer plus a full 3,925-query regression check before shipping.
