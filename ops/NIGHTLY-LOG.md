@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, scheduled operator cycle: mined Hall Closet's remaining partial tier, added a general year-suffix filter instead of a one-off fix
+
+Did: Attached clean (fetch, unshallow, ff-only onto `cac4544b4`). Preflight 0 real FAIL through every gate before the documented `gate_etsy_pdfs_current` stall. Re-ran `room_guide_underperformance.py` live: Hall Closet top at 25% uncovered (41 partial of 164). Read the full tier against real `content.json`. Added "review" to FORMAT_WORDS (style qualifier, same shape as "guide"/"overview"). Found the same "bare year" shape (2024/2025) repeating 32 times across 8+ rooms; rather than hand-add each year, added a one-line `_YEAR_WORD` regex to `content_words()` so no future year needs a manual entry. Added three OFF_TOPIC_CONTEXT exclusions: "marie kondo" (branded method, same product-types-never-brands rule), "near me"/"nearby" (local-intent this content site cannot honestly answer). Declined "walk in closet" after checking the corpus: 57 rows, mostly already covered elsewhere, not noise.
+
+Verified: fail-then-pass proved directly for all four changes. test_keyword_demand.py 38/38, test_room_guide_candidates.py 115/115, test_room_guide_underperformance.py 19/19. Rescored both corpora: 0 regressions in either gap count, 7 queries moved partial to covered. Hall Closet 25% to 22% uncovered; full 20-room rescan confirmed everything else unchanged (Garage still exactly 24%). GOALS.md cluster citation gate re-derived clean, no drift. check_urls (235/235), fix_dashes, affiliate.py --check, check_sellable.py (124/126), link_graph_report.py (0 orphans) all clean. preflight.py --skip-tests 0 FAIL twice, same documented stall, no stray files. GitHub: 31 open issues, unchanged since 2026-11-08, none from Phil. No mail credential.
+
+Went well: the year-suffix fix generalises past this one room (32 rows, 8+ rooms) instead of repeating a one-off FORMAT_WORDS entry forever.
+
+Did not go well: nothing new.
+
+Changing next cycle: none.
+
+Next: Garage (24%) still has the largest remaining partial tier; Guest Bedroom, Primary Bedroom, Living Room, Pantry, Kitchen all sit around 19-20%. Same 31-issue Phil-gated queue otherwise.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; scorer-only change, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (01:4x slot): previous work reconfirmed finished, handing the operator the standing room-guide mining lane
 
 NEXT FOR THE OPERATOR: continue room-guide partial-tier mining on Garage (24% uncovered, 47 partial rows) or Hall Closet (25% uncovered, 41 partial rows), because those are the two smallest genuinely unmined tiers right now and the only active non-Phil-gated workstream; the 31-issue GitHub queue is unchanged and gated on Phil.

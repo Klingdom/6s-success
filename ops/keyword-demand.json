@@ -7923,14 +7923,12 @@
       "room": "Dining Room",
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "2025"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "dining room decorating ideas 2026",
@@ -7944,14 +7942,12 @@
       "room": "Dining Room",
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "2026"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "dining room decorating ideas for small spaces",
@@ -10708,13 +10704,12 @@
       "room": "Family Room",
       "best_page": "/articles/how-to-organize-a-family-room.html",
       "best_page_title": "How to organize a family room, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "2025",
         "decorating"
       ]
     },
@@ -10730,13 +10725,12 @@
       "room": "Family Room",
       "best_page": "/articles/how-to-organize-a-family-room.html",
       "best_page_title": "How to organize a family room, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-a-family-room.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "2026",
         "decorating"
       ]
     },
@@ -12875,13 +12869,12 @@
       "room": "Guest Bedroom",
       "best_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "best_page_title": "How to organize a guest bedroom, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "2025",
         "design"
       ]
     },
@@ -28169,14 +28162,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-linen-closet.html",
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "2024"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize closet 2025",
@@ -28190,14 +28181,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-linen-closet.html",
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "2025"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize closet and dresser",
@@ -28446,14 +28435,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-linen-closet.html",
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "review"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize closet shelves",
@@ -40504,13 +40491,12 @@
       "room": "Living Room",
       "best_page": "/articles/how-to-organize-a-living-room.html",
       "best_page_title": "How to organize a living room, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-a-living-room.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "2025",
         "decorating"
       ]
     },
@@ -40526,13 +40512,12 @@
       "room": "Living Room",
       "best_page": "/articles/how-to-organize-a-living-room.html",
       "best_page_title": "How to organize a living room, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-a-living-room.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "2026",
         "decorating"
       ]
     },
@@ -41416,13 +41401,12 @@
       "room": "",
       "best_page": "/rooms/primary-bedroom.html",
       "best_page_title": "How to organize a primary bedroom, zone by zone",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/primary-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "2025",
         "decorating"
       ]
     },
@@ -41459,13 +41443,12 @@
       "room": "",
       "best_page": "/rooms/primary-bedroom.html",
       "best_page_title": "How to organize a primary bedroom, zone by zone",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/primary-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "2026",
         "design"
       ]
     },
@@ -41525,13 +41508,12 @@
       "room": "",
       "best_page": "/rooms/primary-bedroom.html",
       "best_page_title": "How to organize a primary bedroom, zone by zone",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/primary-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "2025",
         "design"
       ]
     },
@@ -41547,13 +41529,12 @@
       "room": "",
       "best_page": "/rooms/primary-bedroom.html",
       "best_page_title": "How to organize a primary bedroom, zone by zone",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/primary-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "2026",
         "design"
       ]
     },
@@ -48445,13 +48426,12 @@
       "room": "Primary Bedroom",
       "best_page": "/primary-bedroom-deck.html",
       "best_page_title": "The Primary Bedroom Deck: 66 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/primary-bedroom-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "2025",
         "design"
       ]
     },
@@ -57054,6 +57034,6 @@
       ]
     }
   ],
-  "scored_against_commit": "d8914442e",
-  "scored_at": "2026-11-11T00:52:07Z"
+  "scored_against_commit": "cac4544b4",
+  "scored_at": "2026-11-11T01:53:38Z"
 }

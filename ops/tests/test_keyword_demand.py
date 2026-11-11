@@ -1032,6 +1032,45 @@ def main():
         fails.append("excluding 'quickly' did not improve the honest "
                      "score: %r -> %r" % (before6_score, r6b["coverage"]))
 
+    # 32. Found live 2026-11-11, mining Hall Closet's remaining partial
+    #     tier: "how to organize closet review" asks for the same thing as
+    #     "how to organize closet", "review" naming the write-up format
+    #     wanted, the same role "guide"/"tutorial"/"overview" already play.
+    if "review" in kd.content_words("how to organize closet review"):
+        fails.append("'review' is still a content word; the FORMAT_WORDS "
+                     "addition did not take")
+    old_format5 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format5 - {"review"}
+    try:
+        if "review" not in kd.content_words("how to organize closet review"):
+            fails.append("test fixture no longer reproduces the pre-fix "
+                         "behaviour: 'review' was dropped even with the "
+                         "word removed from FORMAT_WORDS")
+    finally:
+        kd.FORMAT_WORDS = old_format5
+
+    # 33. Found live 2026-11-11, same pass: "how to organize closet 2024"
+    #     and "how to organize closet 2025" each failed on their bare year
+    #     alone, and the same shape repeats across other rooms; a year
+    #     suffix is a freshness qualifier, not a different subject, so
+    #     content_words() now drops any bare 20xx token via a regex rather
+    #     than a frozenset entry that would need yearly upkeep.
+    if "2025" in kd.content_words("how to organize closet 2025"):
+        fails.append("'2025' is still a content word; the year-suffix "
+                     "regex did not take")
+    if "2099" in kd.content_words("decorating ideas for 2099"):
+        fails.append("a future year is still a content word; the "
+                     "year-suffix regex is not general")
+    old_year = kd._YEAR_WORD
+    kd._YEAR_WORD = kd.re.compile(r"$never-matches$")
+    try:
+        if "2025" not in kd.content_words("how to organize closet 2025"):
+            fails.append("test fixture no longer reproduces the pre-fix "
+                         "behaviour: '2025' was dropped even with the "
+                         "year regex disabled")
+    finally:
+        kd._YEAR_WORD = old_year
+
     if fails:
         print("FAIL")
         for f in fails:

@@ -692,6 +692,31 @@ _result_bench_seat = rgc.score_room([_bench_seat], [], _room)
 check("a 'how to make an outdoor bench seat with storage' off-topic-context row is excluded",
       _result_bench_seat["on_topic_rows"] == 0)
 
+# Found 2026-11-11, mining Hall Closet's remaining partial tier. "how to
+# organize linen closet marie kondo" names a specific author's own branded
+# method, the same product-types-never-brand-names shape already excluded
+# for retailers and platforms.
+_marie_kondo = {"query": "how to organize linen closet marie kondo", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_marie_kondo = rgc.score_room([_marie_kondo], [], _room)
+check("a 'marie kondo' off-topic-context row is excluded",
+      _result_marie_kondo["on_topic_rows"] == 0)
+
+# Same pass: "how to organize closet near me" and "linen closet
+# organization nearby" ask for a local store or service, not organizing
+# advice; this site has no storefront to recommend.
+_near_me = {"query": "how to organize closet near me", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_near_me = rgc.score_room([_near_me], [], _room)
+check("a 'near me' off-topic-context row is excluded",
+      _result_near_me["on_topic_rows"] == 0)
+_nearby = {"query": "linen closet organization nearby", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_nearby = rgc.score_room([_nearby], [], _room)
+check("a 'nearby' off-topic-context row is excluded",
+      _result_nearby["on_topic_rows"] == 0)
+_organize_closet_genuine = {"query": "how to organize a closet", "best_page": "/test-room-deck.html", "status": "covered"}
+_result_organize_closet_genuine = rgc.score_room([_organize_closet_genuine], [], _room)
+check("a genuine 'how to organize a closet' row is NOT excluded by the marie-kondo/near-me pattern",
+      _result_organize_closet_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

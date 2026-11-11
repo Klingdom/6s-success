@@ -187,7 +187,19 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "arrangements", "rearrange", "rearranging",
                           "rearranged", "ways", "way", "diy", "guide",
                           "tutorial", "must", "haves", "quickly",
-                          "original", "deals", "overview", "routine", "setup"))
+                          "original", "deals", "overview", "routine", "setup",
+                          "review"))
+
+# "review" joined 2026-11-11, mining Hall Closet's remaining partial tier:
+# "how to organize closet review" asks for the same thing as "how to
+# organize closet", "review" naming the kind of write-up wanted (an
+# opinion piece), the same role "guide"/"tutorial"/"overview" already play,
+# not a different storage subject. Self-flattery checked first, same bar
+# every prior addition used: "review" appears in 0 of 244 page titles and 0
+# headings, well under the bar that blocked "systems". Checked the full
+# corpus before adding: it is the sole unmatched word on exactly 1 live row
+# (no global-harvest match), which can only move toward covered, never the
+# other way, same reasoning as every prior FORMAT_WORDS addition.
 
 # "overview", "routine" and "setup" joined 2026-11-11, mining Garage's
 # remaining partial tier. "organize car maintenance overview" and "organize
@@ -621,10 +633,27 @@ def _near_miss_count(page, cw, field="words"):
     return count
 
 
+# Found 2026-11-11, mining Hall Closet: "how to organize closet 2024" and
+# "how to organize closet 2025" each failed on their bare year alone, and
+# the same shape repeats 32 times across at least 8 rooms (dining room,
+# family room, guest bedroom, living room, primary bedroom among them),
+# none of them already covered. A year suffix on a decorating/organizing
+# query ("ideas for 2025") marks a freshness qualifier, the same role
+# "ways"/"guide"/"overview" already play, not a different subject; unlike
+# those, a literal year is not a fixed vocabulary word (2027 is coming), so
+# a frozenset entry would need manual upkeep every January. A regex check
+# is the same one-line fix without that maintenance cost. Checked the full
+# corpus before adding: every row this matches is gap/partial already
+# (0 covered rows contain a bare 20xx year), so this can only improve a
+# score, never suppress a genuine match.
+_YEAR_WORD = re.compile(r"^20\d\d$")
+
+
 def content_words(query):
     """The words a coverage check should care about."""
     return [w for w in words(query)
-            if w not in STOPWORDS and w not in FORMAT_WORDS and len(w) > 2]
+            if w not in STOPWORDS and w not in FORMAT_WORDS and len(w) > 2
+            and not _YEAR_WORD.fullmatch(w)]
 
 
 # A zone-page template heading verified byte-identical across all 114 zone

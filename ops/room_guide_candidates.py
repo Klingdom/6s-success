@@ -589,7 +589,27 @@ OFF_TOPIC_CONTEXT = re.compile(
     # in exactly this one row; "storage locker" (the two words adjacent) in
     # exactly this one row, distinct from "mudroom locker(s)", which stays
     # covered and untouched since it never contains the word "storage".
-    r"\bdiy\s+lab\b|\bstorage\s+locker\b",
+    r"\bdiy\s+lab\b|\bstorage\s+locker\b|"
+    # Found 2026-11-11, mining Hall Closet's remaining partial tier.
+    # "how to organize linen closet marie kondo" names a specific author's
+    # own branded method, the same product-types-never-brand-names shape
+    # CLAUDE.md section 5 already bars for a retailer or platform name; this
+    # site teaches the 6S method, not hers, and cannot honestly become the
+    # page that ranks for her name. "how to organize closet near me" and
+    # "linen closet organization nearby" (plus their siblings elsewhere in
+    # the corpus: a clothes hamper, a diaper caddy, decluttering help, an
+    # outdoor dining set, an under-sink organizer, all "near me"/"nearby")
+    # ask for a local store or service, not organizing advice; this is a
+    # national content site with no storefront to recommend, the same
+    # unanswerable-intent shape the retailer-name branch above already
+    # excludes, just a different kind of thing the query cannot honestly
+    # get from here. Checked against both harvests before adding: "marie
+    # kondo" appears in exactly 2 rows (one duplicated across harvests, this
+    # Hall Closet query and one declutter query, both already partial, 0
+    # covered); "near me"/"nearby" appear in 10 rows across 6 rooms, every
+    # one already gap/partial, 0 covered, so excluding either phrase cannot
+    # suppress a genuine match.
+    r"\bmarie\s+kondo\b|\bnear\s+me\b|\bnearby\b",
     re.I)
 
 
