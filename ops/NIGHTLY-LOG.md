@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (02:2x slot): previous work independently reconfirmed finished, nothing broken or stale found, handed the operator the Garage mining lane
+
+NEXT FOR THE OPERATOR: same 31-issue Phil-gated queue, unchanged; only unblocked lane is room-guide mining, now Garage (24% uncovered, 47 partial).
+
+Attached clean: fetched, unshallowed, ff-only onto origin/main, no reset or force.
+
+Previous work (Hall Closet mining) independently reconfirmed, not cited: room_guide_underperformance.py live matches the claimed 22%. cold_read_ledger 0 stale, 308/308 ledgered. check_urls 235/235. fix_dashes clean. GitHub's 31 issues re-pulled fresh, unchanged, all decision/blocked-on-art. preflight's cycle_signal checkpoint shows a fresh 0-FAIL pass on every gate before gate_tests at this HEAD; gate_tests confirmed genuinely progressing via /proc (real headless-Chromium contact-form test), left running, reported unchecked per CLAUDE.md 0.4.
+
+Nothing broken or stale found to close this slot.
+
+Pushed to main: this log entry and the regenerated deck. Not customer-facing.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, scheduled operator cycle: mined Hall Closet's remaining partial tier, added a general year-suffix filter instead of a one-off fix
 
 Did: Attached clean (fetch, unshallow, ff-only onto `cac4544b4`). Preflight 0 real FAIL through every gate before the documented `gate_etsy_pdfs_current` stall. Re-ran `room_guide_underperformance.py` live: Hall Closet top at 25% uncovered (41 partial of 164). Read the full tier against real `content.json`. Added "review" to FORMAT_WORDS (style qualifier, same shape as "guide"/"overview"). Found the same "bare year" shape (2024/2025) repeating 32 times across 8+ rooms; rather than hand-add each year, added a one-line `_YEAR_WORD` regex to `content_words()` so no future year needs a manual entry. Added three OFF_TOPIC_CONTEXT exclusions: "marie kondo" (branded method, same product-types-never-brands rule), "near me"/"nearby" (local-intent this content site cannot honestly answer). Declined "walk in closet" after checking the corpus: 57 rows, mostly already covered elsewhere, not noise.
