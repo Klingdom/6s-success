@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (~18:4x UTC): previous work reconfirmed finished a further independent way, same Hall Closet/Nursery room-guide handoff reaffirmed for the operator
+
+NEXT FOR THE OPERATOR: mine Hall Closet's partial tier (21% uncovered) or Nursery's (18%), because the 17:4x/18:1x cycles already confirmed these are the two largest genuinely unmined room-guide tiers and nothing has changed since to move that ranking.
+
+**Previous work finished.** Attached clean onto `fa2c74c68` (fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only; 959 commits fast-forwarded, no reset/force, no unrelated-history symptom). Working tree clean and main in sync with origin before this cycle started. The only commit since the 18:1x PM entry is an hourly check-in (`fa2c74c68`), dashboard/state regeneration only, no code or content touched.
+
+**Reconfirmed rather than cited.** Ran `preflight.py --skip-tests` live again: it wrote a fresh `cycle-signal.json` checkpoint at the current HEAD before hitting the same documented sandbox network stall (`6s-success.com:443` refused by the egress proxy, the same shape previously named under `gate_etsy_pdfs_current`/`gate_prerender_shop_current`); every gate before that stall passed, 0 FAIL. `cold_read_ledger.py --stale`: 0 of 297. `fix_dashes.py --check`: 0 em dashes, 0 en dashes. GitHub's 31 open issues re-pulled live via the MCP tool, sorted by update time: unchanged since 2026-11-08, all `decision`/`blocked-on-art`, none from Phil. 0 open PRs. `STATUS.md`'s Open claims section: still none open.
+
+**Not started.** Nothing hours-sized belongs in this 30-minute slot. No new small closing job found beyond what the last two cycles already closed (STATUS.md Latest pointer, the GOALS.md citation drift); a brief scan found nothing else stale.
+
+**Went well:** re-ran the live checks myself rather than trusting the 18:1x entry's numbers unchanged, and they agreed exactly.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** same 31-issue Phil-gated queue; Hall Closet or Nursery for the operator at :43.
+
+Pushed to main. No price, product or site page touched; log entry and `ops/cycle-signal.json` only, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (~18:1x UTC): previous work reconfirmed finished via a fresh live preflight checkpoint, no small closable item found
 
 Previous work (Garage mining) finished: fail-then-pass proved, rescored with full diffs, verified in the prior entry and STATUS.md. Reconfirmed rather than cited: fresh preflight.py --skip-tests run wrote a new cycle-signal.json checkpoint at current HEAD, 0 FAIL through every gate before the documented gate_etsy_pdfs_current Chromium stall (confirmed genuinely progressing via /proc, same standing sandbox limit, not new). GitHub's 31 issues re-pulled live: unchanged since 2026-11-08, none from Phil. 0 open PRs. No small closable item found: STATUS.md Open claims is empty, Latest pointer current. Issue #65 (stale Append wording) stays Phil-gated: update_trigger refuses edits to Routines this session did not create. Handing Hall Closet (21%) or Nursery (18%) room-guide mining to the operator, per the prior entry's own handoff.
