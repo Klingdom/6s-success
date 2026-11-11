@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-11T14:59:41Z against 243 page(s) at commit 4485841ac. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-11T15:58:09Z against 243 page(s) at commit 9b36337c5. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1660 covered, 1055 partial, 108 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1668 covered, 1047 partial, 108 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -104,7 +104,7 @@ Showing the top 80 of 108, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1055.
+Showing the top 60 of 1047.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -148,7 +148,6 @@ Showing the top 60 of 1055.
 | 2 | how to declutter a bathroom counter | How to organize the guest bathroom vanity counter | 0.67 |
 | 2 | how to decorate a guest bedroom | How to organize a guest bedroom, step by step | 0.67 |
 | 2 | how to organize baking supplies in kitchen | How to organize the kitchen sink area | 0.67 |
-| 2 | linen closet organization hacks | How to organize a linen closet: sheets, towels and shelves | 0.67 |
 | 2 | patio deck design ideas | How to organize a patio or deck, step by step | 0.67 |
 | 2 | patio off of deck | How to organize a patio or deck, step by step | 0.67 |
 | 2 | primary bedroom decorating ideas | The Primary Bedroom Deck: 66 cards, free to read | 0.67 |
@@ -168,6 +167,7 @@ Showing the top 60 of 1055.
 | 3 | how to get more storage for games | More storage will not fix a messy room | 0.67 |
 | 3 | how to make a power tool organizer | How to organize the garage power tool storage | 0.67 |
 | 3 | how to organize baking supplies in.cabinet | How to organize the pantry baking supplies | 0.67 |
+| 3 | how to organize bathroom counter clutter | How to organize the guest bathroom vanity counter | 0.67 |
 
 ## By room
 
@@ -179,15 +179,15 @@ Showing the top 60 of 1055.
 | Garage | 77 | 1 | 22 | 54 |
 | Guest Bathroom | 22 | 1 | 14 | 7 |
 | Guest Bedroom | 24 | 0 | 12 | 12 |
-| Hall Closet | 27 | 0 | 9 | 18 |
+| Hall Closet | 27 | 0 | 8 | 19 |
 | Home Office | 58 | 0 | 19 | 39 |
 | Kids Bedroom | 22 | 0 | 8 | 14 |
-| Kitchen | 97 | 2 | 29 | 66 |
+| Kitchen | 97 | 2 | 28 | 67 |
 | Laundry Room | 72 | 0 | 15 | 57 |
 | Living Room | 97 | 2 | 36 | 59 |
 | Mudroom | 43 | 0 | 19 | 24 |
 | Nursery | 61 | 1 | 20 | 40 |
-| Pantry | 60 | 1 | 20 | 39 |
+| Pantry | 60 | 1 | 19 | 40 |
 | Primary Bathroom | 13 | 0 | 7 | 6 |
 | Primary Bedroom | 16 | 0 | 13 | 3 |
 | Stair Landing | 24 | 0 | 13 | 11 |

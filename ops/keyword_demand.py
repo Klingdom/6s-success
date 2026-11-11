@@ -193,7 +193,32 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "women", "container", "containers", "essentials",
                           "household", "daily", "inspo", "inspiration",
                           "images", "efficiency", "chef", "modern", "rustic",
-                          "simple", "choose"))
+                          "simple", "choose", "deep", "hacks"))
+
+# "deep" and "hacks" joined 2026-11-11, mining Hall Closet's remaining
+# partial tier. "how to organize a deep hall closet" and "deep hall closet
+# organization ideas" ask the same question as "how to organize a hall
+# closet", "deep" naming the closet's own depth, a descriptive qualifier on
+# the subject rather than a different one, the same shape "small"/"narrow"
+# would be if either were safe to add (checked and declined: "small" is not
+# a format word here, since /articles/zone-too-small-for-what-it-holds.html
+# is a real page about small spaces specifically, so dropping "small" from
+# scoring risks a false match there). "linen closet organization hacks"
+# asks the same question as "linen closet organization", "hacks" naming an
+# informal tips format, the same role "tips"/"ideas" already play in
+# STOPWORDS. Self-flattery checked first, using the same head_words/
+# title_words fields the scorer itself reads (not a raw grep across page
+# body text, which is what incorrectly sank "systems" below; body text is
+# never scored): "deep" appears in 0 of 243 page titles and 6 of 243
+# headings, well under the "household" bar (11/243) already cleared;
+# "hacks" appears in 0 of 243 titles and 0 of 243 headings. Checked the
+# full corpus before adding: "deep" is the sole unmatched word on 6 live
+# rows across both corpora (2 Hall Closet, 1 Primary Bathroom, 1 Pantry, 2
+# a stray nightstand/drawers row), each already routed to its own correct
+# page; "hacks" is the sole unmatched word on 2 live rows per corpus
+# (3 unique: Hall Closet's linen closet article and the unrelated walk-in-
+# closet article), also each already correctly routed. None can move the
+# other way, same reasoning as every prior FORMAT_WORDS addition.
 
 # "images", "efficiency" and "chef" joined 2026-11-11, mining Kitchen's
 # partial tier. "kitchen organisation ideas images" and "linen closet

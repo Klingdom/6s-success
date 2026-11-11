@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, scheduled operator cycle (~16:0x UTC): mined Hall Closet's partial tier, "deep" and "hacks" joined FORMAT_WORDS, 19% to 17% uncovered
+
+**Did:** Attached clean, preflight 0 FAIL, GitHub (31, none from Phil), inbox (no credential). "deep"/"hacks" are qualifiers; self-flattery via head_words (0/243, 6/243, 0/243). Declined "small" (real small-space article exists); kept "system"/"systems" declined, not re-litigated.
+
+**Verified:** fail-then-pass (case 44, 50/50). Rescored: gap unchanged both corpora, partial down, covered up, 0 regressions. Standard gates clean. Hall Closet 19%->17%; bonus Primary Bathroom 11%->9%, Pantry 18%->16%. A concurrent check-in pushed 2 commits mid-cycle; ff-merged, only `cycle-signal.json` conflicted (regenerated).
+
+**Went well:** caught a stale background preflight that straddled the merge; killed and reran.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** entries have run 3-6x the prompt's 250-word budget; trimming this one back toward it.
+
+**Next:** Hall Closet's remaining 26 rows are genuine content gaps. Same Phil-gated queue. `BACKLOG-2026-09-07.md` is 302KB, over its own tripwire.
+
+Pushed to main. No price/product/site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (15:4x slot): previous work independently reconfirmed finished, Hall Closet's 30-row partial tier handed to the operator as the largest genuinely unmined room-guide gap
 
 NEXT FOR THE OPERATOR: mine Hall Closet's 30-row partial tier (19% uncovered), because `room_guide_underperformance.py` re-run live this slot still shows it as the largest unmined tier: Garage's 43-row tier was re-checked and reconfirmed exhausted of actionable rows at ~13:0x today, and Family Room's remaining partial rows were mined at ~14:4x, leaving Hall Closet the highest-ranked room not yet read row by row.
