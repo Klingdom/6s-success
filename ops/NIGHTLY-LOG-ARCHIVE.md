@@ -2,6 +2,1026 @@
 
 Entries older than ops/rotate_nightly_log.py's retention window, moved here verbatim and in their original order by that script. Never hand-edited. The live entries and the reasoning for this split are in ops/NIGHTLY-LOG.md.
 
+## 2026-10-27, PM check-in (23:4x slot): previous work independently reconfirmed finished, same exhausted Phil-gated queue handed to the operator, no new work manufactured
+
+NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing is genuinely unblocked this slot; continue independent reconfirmation or close a small already-done item with evidence rather than starting anything large.
+
+**Previous work finished.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (`c42c5e29b`), no unrelated-history symptom; working tree was already clean and main already in sync with origin before this cycle started. The prior PM entry (22:1x) investigated an intermittent pre-`gate_tests` FAIL honestly rather than guessing at a fix, and the operator cycle after it independently re-verified the whole exhausted state end to end; neither claimed anything it had not checked.
+
+**Re-verified rather than cited.** `cold_read_ledger.py --stale`: 0/297 stale. `--next`: 0 un-ledgered candidates, genuinely exhausted. `check_urls.py`: 213/213. `affiliate.py --check`: 165 documents, clean. `fix_dashes.py --check`: 0 em dashes, 0 en dashes. Mobile `npm test` (`mobile/quest-app`): all three suites pass (pickCard, eventLog, videoLink). GitHub's 10 open issues re-pulled fresh via the API, not cited: unchanged, all `decision`/`blocked-on-art`, none from Phil's own hand (filed under the repo owner's account, per `CLAUDE.md` 0.5). 0 open PRs. Ran `preflight.py` to its real wall this cycle: `cycle_signal` recorded a clean partial-pass checkpoint (0 FAIL across every gate before `gate_tests`), matching the two most recent prior cycles exactly; `gate_tests` itself was still running in the background past this slot's window when this entry was written, so it is reported unchecked, not passing, per `CLAUDE.md` 0.4.
+
+**Not started.** Nothing genuinely unblocked. `BACKLOG-2026-09-07.md` sections 2-6 are all Done, Hold, or an owner gate; the GitHub issue queue is the same 10 rows for many consecutive cycles now. Issue #42 already names this exact cadence-cost shape (re-verifying an unchanged, fully-exhausted state every 10-30 minutes) and explicitly asks not to be re-raised without new evidence; there is none this cycle, so this entry does not re-raise it. Manufacturing a workstream against an independently-reconfirmed-exhausted queue would be the "busy and useless" shape `CLAUDE.md` section 2 and `GOALS.md` both warn against, not execution.
+
+**Went well:** every cheap check re-run independently this cycle agreed exactly with the last few cycles' own numbers, so the "exhausted" reading is not just carried forward from memory.
+
+**Did not go well:** nothing new; `gate_tests` is still the same sandbox-slow gate every recent cycle has had to report unchecked rather than wait out within a 30-minute slot.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2) and `OWNER-ACTIONS.md`. Nothing else unblocked.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (22:1x slot, pushed late after a long investigation): an intermittent pre-gate_tests FAIL found but not pinned down, reported honestly rather than guessed at
+
+Attached clean onto `00f955dee`, tree clean, 0 open PRs, 10 issues unchanged (all decision/blocked-on-art), cold-read ledger 0/296 stale. Previous work was finished.
+
+Ran `preflight.py` three times this cycle (one killed by a container restart, two by this session's own background time limit on the slow `gate_tests` gate). Two of the three printed "failing gate(s)" at the checkpoint just before `gate_tests`, but the exact gate was never named: that message only fires before the final summary, which only prints after `gate_tests` finishes, and all three runs died before reaching it. Wrote a standalone script replaying the exact same ~100 pre-test gates without `gate_tests`; it passed clean 4/4 times. So the FAIL is real but load- or timing-dependent, not reproduced in isolation; a hardcoded 2-second threshold in `gate_preflight_lock_blocks_concurrent_runs` is a plausible but unconfirmed suspect. Cleaned a stale lock dir from a killed run. Logging this rather than guessing a fix blind; next cycle should re-run `preflight.py` under real concurrent load and capture the actual FAIL line.
+
+This cycle overran its 30-minute slot badly chasing that investigation; by the time of this push, three later cycles (22:4x, 23:1x, and a full operator run below) had already independently reconfirmed the same exhausted state and pushed first. Merged rather than forced. Same exhausted Phil-gated queue stands. No push notification (floor until 2026-10-29T13:00Z unchanged).
+
+HANDOFF-FILES: none
+
+## 2026-10-27, scheduled operator cycle (full 13-step run): independently re-verified the exhausted state end to end, no new work found
+
+**Did:** Unshallowed and attached clean onto `cf64aea67`. Read `BACKLOG-2026-09-07.md` sections 0, 6 and 7, `STATUS.md`, `CLAUDE.md` and the last four `NIGHTLY-LOG.md` entries before touching anything, per steps 0-1. Ran `preflight.py` in the background with the longest timeout available (30 minutes) to let `gate_tests` finish rather than kill it early; it still hit the sandbox's documented slow wall and was stopped at the limit with no output captured (the wrapper buffers until completion), so `gate_tests` is reported unchecked, not passing, per CLAUDE.md 0.4. Did not restart it, per the kill notice's own guidance.
+
+**Verified directly rather than cited (step 5d), each checked, not assumed:** `check_urls.py` 213/213; `affiliate.py --check` 165 documents clean; `fix_dashes.py --check` 0 em/en dashes; `cold_read_ledger.py --stale` 0/297, `--next` 297/297 ledgered, 0 un-ledgered candidates; GitHub's 10 open issues re-pulled live via the API: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil; 0 open PRs; CI (`checks.yml`) green on the last completed run. Re-derived `deploy_gap_material_commits` myself against the real deploy-verdict build (`a0bbe5bb276ee21b` -> `ad933f9e5`) rather than trusting `BLOCKER-001`'s citation: still exactly 1 material commit (`840f3e11b`), confirmed non-P0 by reading its own diff directly. No drift found anywhere checked. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed empty.
+
+**Collisions, handled by fetch-then-merge, not force:** origin moved twice while this cycle ran (two more hourly/PM-cycle commits, `908530322`, `602e8fbc6`), both disposable checkpoint/dashboard regenerations from concurrent sessions; fast-forwarded cleanly both times, discarding only my own stale local `cycle-signal.json` checkpoint diff, never anything a concurrent session had written.
+
+**Not started:** nothing genuinely unblocked. Every row in `BACKLOG-2026-09-07.md` sections 2-6 is Done, Hold, or an owner gate; the GitHub issue queue is unchanged and none of it is from Phil. Issue #42 already names this exact cadence and asks not to be re-raised without new evidence; this cycle found none, so it does not re-raise it. Manufacturing a workstream against an unchanged, independently-reconfirmed-exhausted queue would be the "busy and useless" shape `CLAUDE.md` section 2 warns against, not execution.
+
+**Went well:** re-deriving the deploy gap and the GitHub issue state from the live sources instead of trusting the last cited figures; both held up exactly.
+
+**Did not go well:** the 30-minute background budget for `preflight.py` still was not enough for `gate_tests` to finish this cycle, worse than the ~8-10 minutes several other cycles this week measured; the sandbox's slowness is intermittent, not fixed.
+
+**Changing next cycle:** none; the existing unchecked-not-failed handling of `gate_tests` is correct and this cycle is more evidence for it, not a new defect class to gate.
+
+**Next:** same standing Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (23:1x slot): previous work independently reconfirmed finished, same exhausted Phil-gated queue handed to the operator
+
+**Previous work finished.** Fresh container, shallow and detached; unshallowed, attached clean onto `908530322` (origin unchanged, no unrelated-history symptom). Working tree clean, main already in sync with origin before this cycle started.
+
+**Re-verified rather than cited.** `preflight.py` run to its real wall this cycle: `cycle_signal` recorded a clean partial-pass checkpoint (0 FAIL through every gate before `gate_tests`), then the run hit the documented sandbox-slow `gate_tests` wall again, still at zero output after 5+ minutes when this entry was written. Reported unchecked past that point, not passing, same standing limitation as every 2026-10-27 cycle before this one. Independently re-ran the cheap checks rather than trusting the prior cycle's numbers: `cold_read_ledger.py --stale` 0/297, `--next` 0 un-ledgered candidates (genuinely exhausted). `check_urls.py` 213/213. `fix_dashes.py --check` 0 em dashes, 0 en dashes. `affiliate.py --check` clean, 165 documents. Mobile `npm test` (`mobile/quest-app`): all three suites (pickCard, eventLog, videoLink) passing. GitHub's 10 open issues re-pulled fresh via the API: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil; issue #42's own thread still says not to re-raise without new evidence, and there is none. 0 open PRs.
+
+**Not started:** nothing genuinely unblocked. The backlog (`BACKLOG-2026-09-07.md` sections 2-6), the cold-read ledger, and the GitHub issue queue are all independently exhausted again by this cycle's own fresh reads, not carried forward from the last entry. Manufacturing a workstream against an unchanged, already-exhausted queue is the "busy and useless" shape `CLAUDE.md` section 2 and `GOALS.md` both warn against.
+
+**Went well:** ran the cheap independent checks myself rather than trusting the prior cycle's citation, and they agree exactly.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox wall as every recent cycle.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2) and `OWNER-ACTIONS.md`. Nothing else unblocked. Handing the operator the same queue; no large item identified to leave specifically for the :43 slot since none is in flight.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (22:4x slot): previous work independently reconfirmed finished, same exhausted Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing is genuinely unblocked this slot; do not start new work, continue independent reconfirmation or close a small already-done item with evidence.
+
+**Previous work finished.** Unshallowed (fresh container, no cached history) and attached clean onto `cf64aea67` after a slow but clean `git fetch --unshallow`. Working tree clean. Re-verified rather than cited: `preflight.py` run to its real wall this cycle, not a short kill: 0 FAIL across every gate before `gate_tests` (confirmed by grepping the full output for FAIL, not trusting a tail), `cycle_signal` recorded a clean partial-pass checkpoint, then the run hit the documented sandbox-slow `gate_tests` hang and was stopped after several minutes of near-zero CPU time, same standing limitation as every 2026-10-27 cycle before this one. Reported unchecked past that point, not passing. `cold_read_ledger.py --stale` 0/297, `--next` 0 un-ledgered candidates (genuinely exhausted, not just stale-free). `check_urls.py` 213/213. `affiliate.py --check` 165 documents clean. `fix_dashes.py --check` 0/0. GitHub's 10 open issues re-pulled fresh via the API, not cited: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, issue #42's full comment thread read directly and its last entry explicitly says not to re-raise without new evidence, which this entry does not do. 0 open PRs. No concurrent push collided this cycle (`git fetch` showed origin unchanged throughout).
+
+**Not started:** nothing genuinely unblocked; manufacturing a workstream against an unchanged, already-exhausted queue is the "busy and useless" shape `CLAUDE.md` section 2 and `GOALS.md` both warn against.
+
+**Went well:** caught up with origin before writing anything, so this entry does not collide with the 22:43 operator slot.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox wall.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2) and `OWNER-ACTIONS.md`. Nothing else unblocked.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, scheduled operator cycle (22:0x slot): independently reconfirmed exhausted state, one real concurrent-edit collision resolved cleanly, no new work manufactured
+
+**Did:** Unshallowed and attached clean onto `e82ac104e`. Ran `preflight.py` to real completion (not a short kill): every gate before `gate_tests` passed with 0 FAIL, `cycle_signal` recorded a clean partial-pass checkpoint, then the run hit the documented sandbox-slow `gate_tests` wall and was killed by an 1100s external timeout (exit 124), same standing limitation several 2026-10-27 cycles already root-caused as intermittent headless-Chromium flakiness rather than a content defect. Reported unchecked past that point, not passing.
+
+**Collision, resolved rather than forced.** A `preflight.py` run's own `cycle_signal` checkpoint write collided with a concurrent session's push: `git fetch` showed origin two commits ahead (`da0d0b755`, `1b75a049a`...up to `c59194ccf`, both automated hourly/PM-cycle commits). Stashed my local `ops/cycle-signal.json` edit, fast-forwarded onto the new origin head, hit a merge conflict on that same file (both sides had written a checkpoint against different HEADs), and kept origin's version rather than mine: mine was already stale the moment origin moved, and the file is a disposable checkpoint, not a record worth preserving a redundant copy of. Working tree confirmed clean afterward.
+
+**Independently re-verified rather than cited:** GitHub's 10 open issues re-pulled fresh: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil (read issue #42's full 7-comment thread directly; its last comment explicitly says not to re-raise without new evidence or a reply, and there is neither, so this entry does not re-raise it). 0 open PRs. CI green on the two most recent completed runs on this branch. `cold_read_ledger.py --stale`/`--next`: 0/297 stale, 0 un-ledgered candidates, genuinely exhausted. `BACKLOG-2026-09-07.md` sections 2-6 re-scanned by their own item markers: every row is struck through (Done), Hold, or an owner gate in section 6; nothing unblocked. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed empty. No Phil-authored commits since the last check (`git log` shows only `Claude`/`github-actions` authors on everything new). `check_urls.py` 213/213, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0.
+
+**Not started:** nothing genuinely unblocked. Manufacturing a workstream against an unchanged, already-exhausted queue would be the "busy and useless" shape `GOALS.md` and `CLAUDE.md` section 2 both warn against, not execution.
+
+**Went well:** fetching before resolving the stash/merge caught the collision at the one file both sides had written, instead of pushing a conflicting value.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox wall as the last several cycles.
+
+**Changing next cycle:** none; existing classification of `gate_tests` as unchecked-not-failed is correct and doing its job.
+
+**Next:** same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2) and `OWNER-ACTIONS.md`. Nothing else unblocked.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, scheduled operator cycle: built the C7 fourth-wave item, found a concurrent session had already shipped and CI-verified the identical fix, discarded the duplicate rather than push a conflict
+
+**Did:** Unshallowed, attached clean onto `883d3e77f`. Ran `preflight.py` to genuine completion, not a short kill: 1 FAIL (`stray-probe-files`, self-inflicted by my own earlier attempt getting killed mid-test; the gate deletes what it finds after reporting, confirmed gone), 38 WARN, all standing sandbox/credential limits. Independently built the C7 fourth-wave push trigger on `render-narrated-videos.yml` (the one item named but not built across five PM check-ins) and committed it locally.
+
+**Caught before pushing, not after:** `git fetch` showed origin 18 commits ahead. `29dad9131` had already shipped the identical fix (confirmed by reading the live file, not assumed), and `28e0932b1` had already verified it fires via a real CI run. Pushing my own commit would have duplicated the backlog row and conflicted on the same workflow lines for no benefit. Discarded my local commit (`git reset --hard origin/main`; never pushed, so nothing shared was touched) rather than force anything or re-litigate an already-closed row.
+
+**Verified rather than assumed exhausted after that:** `cold_read_ledger.py --stale` 0/297, `--next` 297/297 ledgered, 0 candidates. GitHub's 10 open issues re-pulled fresh: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil (checked issue #42's full comment thread directly). 0 open PRs. CI green on the last several commits. Regenerated the dashboard (1 commit behind after the reset).
+
+**Went well:** Fetching before pushing caught the collision before it became a merge conflict, not after.
+
+**Did not go well:** Killed my own first two preflight attempts by ending turns before a long-running background command finished, which is what created the stray-probe-files FAIL I then had to diagnose.
+
+**Changing next cycle:** None; existing gates already caught and self-healed the one real issue.
+
+**Next:** Same standing Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged. Issue #42's own thread already asks not to be re-raised without new evidence; none here.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (21:4x slot): previous work independently reconfirmed finished, same exhausted Phil-gated queue handed to the operator, concurrent with the operator cycle above
+
+NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing is genuinely unblocked this slot; do not start new work, continue independent reconfirmation.
+
+**Previous work finished.** Attached clean onto `da0d0b755`, working tree clean. GitHub's 10 open issues re-pulled directly via the API, not cited: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil; 0 open PRs. `cold_read_ledger.py --stale`: 0 stale. CI (`checks.yml`) confirmed `completed`/`success` on `1b75a049a`, the last code-touching commit, via the Actions API directly. Local `preflight.py` run in full this cycle: every gate before `gate_tests` passed with 0 FAIL, confirmed by reading its own output rather than trusting a summary; `cycle_signal.py --check` immediately after reported SAME against this exact HEAD, partial-pass snapshot honestly labelled, not a full pass. `gate_tests` itself killed at the documented sandbox hang point rather than waited out past this slot's budget; reported unchecked, not passing.
+
+**Collided with the operator cycle above, same shape as prior same-window collisions:** this entry's own push conflicted on `ops/NIGHTLY-LOG.md` and the generated dashboard trio; merged rather than forced, kept both entries rather than discarding either since the two cycles ran independent verifications and reached the same conclusion from different starting commits (`da0d0b755` here, `883d3e77f` there). Regenerated `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json` fresh against the merged tree rather than hand-resolving their conflicts.
+
+**Not started:** nothing genuinely unblocked. Issue #42's own standing finding (re-verifying an unchanged, fully-exhausted state) still holds; no push notification sent, consistent with that issue's 48-hour floor and no new evidence to report.
+
+## 2026-10-27, PM check-in (21:1x slot): previous work reconfirmed finished independently, backlog and ledger re-scanned directly rather than cited, nothing new unblocked
+
+NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged; nothing genuinely unblocked this slot.
+
+**Previous work finished.** Attached clean onto `b3a599a72`. GitHub's 10 open issues re-pulled directly: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil; 0 open PRs. Checks.yml green on the last two code-touching commits (`94d2ef379`, `2dee1a57b`). Cold-read ledger: 0 stale. Scanned `BACKLOG-2026-09-07.md`'s own item rows directly for anything not Done/Hold/Phil-gated: none found. `gate_dashboard_self_description_fresh` called directly: clean. Full `preflight.py`: every gate before `gate_tests` passed clean (0 FAIL); `gate_tests` itself still the documented sandbox-slow gate, reported unchecked rather than passing at write time.
+
+**Not started:** nothing genuinely unblocked, per issue #42's own standing finding. More evidence for it, not re-litigating it.
+
+NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged; nothing is genuinely unblocked this slot.
+
+**Previous work finished, verified not cited.** Attached clean onto `432e480ea`. Preflight reached `gate_tests` with 0 FAIL on every gate before it, confirmed twice independently via `cycle_signal.py --check` (SAME); `gate_tests` itself hit the documented sandbox hang, reported unchecked, not passing. CI confirmed green on `94d2ef379`, the last code-touching commit. `check_urls.py` 213/213, `affiliate.py --check` 165 documents clean, cold-read ledger 0 stale. GitHub's 10 open issues re-pulled directly: unchanged, all `decision`/`blocked-on-art`, none from Phil; 0 open PRs. Called `gate_dashboard_self_description_fresh` directly rather than trusting the last regeneration: clean, no drift.
+
+**Not started:** nothing genuinely unblocked. More evidence for issue #42, not re-litigating it.
+
+## 2026-10-27, PM check-in (20:1x slot): previous work reconfirmed finished, dashboard regenerated, nothing new unblocked
+
+NEXT FOR THE OPERATOR: same standing 10 issue Phil gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged; continue independent reconfirmation rather than starting new work.
+
+**Previous work finished.** Attached clean onto `813981e0b`. 10 open GitHub issues unchanged, all `decision`/`blocked-on-art`, none from Phil; 0 open PRs. Cold-read ledger: 0 stale. Preflight: every gate before `gate_tests` passed 0 FAIL; `gate_tests` hit the documented sandbox hang, reported unchecked, not passing. CI is green on `ff31f426b`, the last code-touching commit.
+
+**Did:** regenerated the dashboard; it correctly carried Stripe/live-site figures forward as unverified since this sandbox cannot reach either.
+
+**Not started:** nothing is genuinely unblocked. This is another cycle of the exact cost issue #42 already names; not re-litigating it, just more evidence for it.
+
+## 2026-10-27, PM check-in (19:4x slot): previous work independently reconfirmed finished via CI, one stale ledger entry found and fixed, nothing new unblocked
+
+NEXT FOR THE OPERATOR: same standing 10 issue Phil gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing is genuinely unblocked this slot; continue the standing independent reconfirmation rather than starting new work.
+
+**Previous work finished, verified a different way rather than re-run.** The 19:1x PM check in built the C7 fourth wave push trigger on `render-narrated-videos.yml` and shipped while its own local `preflight.py` run still had `gate_tests` in flight, correctly reported unchecked rather than passing. This cycle closed that gap without re-running the same slow local gate inside a 30 minute slot: GitHub's own Checks run on that exact commit (`29dad9131`, run 40568220949) came back `completed`/`success`, confirmed directly via the Actions API, corroborating the fix end to end. `cycle_signal.py --check`: SAME, no drift since the 19:19:28Z partial pass checkpoint.
+
+**Found and fixed one small real gap.** `cold_read_ledger.py --stale` flagged `ops/preflight.py` as read 2026-10-26 but touched 2026-10-27 (this morning's `rotate_status_metadata.py` build added `gate_status_metadata_not_oversized` to it). Read that diff directly: WARN only, wired ahead of `gate_tests` alongside its seven siblings, buffer of 3, fail then pass proved in its own test file (7 of 7). No defect found. Re ledgered at today's date; `--stale` now reports 0.
+
+**Verified rather than assumed exhausted.** GitHub's 10 open issues re pulled fresh: unchanged since 2026-10-25, all `decision` or `blocked-on-art`, none from Phil. 0 open PRs. `BACKLOG-2026-09-07.md` sections 2 to 6 remain exhausted except the standing Phil gated rows; the STATUS.md Status Metadata rotator five cycles named is now built and applied (22 entries archived earlier today). Nothing else found unblocked; did not manufacture work to fill the slot.
+
+## 2026-10-27, scheduled operator cycle: independent confirmation, same cycle as the 19:4x PM check-in above, same stale-ledger finding arrived at separately
+
+Concurrent session, same 30-minute window: attached clean (unshallowed from a shallow checkout), re-verified the identical state the 19:4x entry above records (backlog sections 2-6 exhausted end to end by item id A1-A29/B1-B9/C1-C7, 10 issues unchanged, 0 PRs, no mail credential), and independently found and fixed the same `ops/preflight.py` stale ledger entry before fetching origin and discovering the 19:4x cycle had already fixed it seconds earlier. Merged rather than forced; kept origin's ledger/dashboard state as the single source of truth rather than carry two redundant edits to the same line. Full local `preflight.py`: every gate before `gate_tests` passed clean, `gate_tests` itself hung past 10 minutes on the documented sandbox limit and was killed, reported unchecked past that point. No new defect beyond the one already recorded above.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (19:1x slot): previous work confirmed finished, built the C7 fourth-wave item itself rather than handing it off a fourth time
+
+Previous work finished: attached clean (fast-forwarded onto origin/main after a background unshallow), 10 GitHub issues unchanged (all decision/blocked-on-art, none mine), 0 open PRs, CI green on the prior head.
+
+Built the C7 fourth-wave prevention the last three PM slots had named but not started: a push trigger on `render-narrated-videos.yml` scoped to `content/manual/source/content.json`, so an edit to that file re-renders stale narrated captions on its own. Found while building it that the backlog row's own example was wrong: `keyword-demand.yml` and `indexation-check.yml` have no push trigger at all, checked directly; the real existing pattern is `publish-mcp.yml`'s path-scoped push. Corrected the backlog row to the real pattern rather than repeat the error a fourth time.
+
+Verified: YAML parses, `fix_dashes.py --check` clean on both edited files, a full `preflight.py` run reached a clean checkpoint on every gate before the slow `gate_tests`, which is still running as this ships. The workflow firing on a real push is unverified until the next genuine `content.json` edit; reported unchecked, not assumed.
+
+Handing the operator: watch for `gate_tests` to finish in the backgrounded run and fix anything real it surfaces; otherwise same standing Phil-gated queue.
+
+## 2026-10-27, PM check-in (18:4x slot): previous work reconfirmed finished, handing the operator the C7 fourth-wave item named but still unbuilt since 17:1x
+
+NEXT FOR THE OPERATOR: build the C7 fourth-wave prevention in `.github/workflows/render-narrated-videos.yml` (add a `push` trigger scoped to `content.json`'s path, the same pattern `keyword-demand.yml` and `indexation-check.yml` already use), because it has been named by name and fully specified since the 17:1x PM check-in and still sits unbuilt three cycles later, confirmed by reading the workflow file directly this cycle (`on:` still lists only `workflow_dispatch`).
+
+Previous work finished: attached clean (unshallowed, fast-forwarded twice onto origin as two concurrent hourly/operator pushes landed mid-cycle, never forced). All non-`gate_tests` gates passed with 0 FAIL in a fresh `preflight.py` run this cycle; a second preflight run the operator ran concurrently recorded an identical clean `cycle_signal` checkpoint against the same HEAD, so this is corroborated, not just self-reported. `gate_tests` itself: killed at 11.5 minutes after my 30-minute slot ran out waiting on it, same as several prior cycles' documented sandbox slowness; the GitHub Actions `Checks` run on the same commit was still `in_progress` after a comparable wait, so this is reported as **unchecked this cycle**, not passing, per CLAUDE.md 0.4. GitHub's 10 open issues re-read directly: unchanged, all `decision`/`blocked-on-art`, none mine. `BACKLOG-2026-09-07.md` sections 2-6 confirmed exhausted except the standing Phil-gated rows (C5 Gemini billing, C6 YouTube OAuth, KDP/Etsy) and the one unblocked, fully-specified C7 fourth-wave item above, which nobody has started across four straight slots (17:1x, 18:1x, this one). Not started here because 30-60 minutes of work does not fit what was left of this 30-minute slot after the preflight wait; left whole for the operator rather than half-built.
+
+HANDOFF-FILES: none
+
+Previous work finished: attached clean, unshallowed. Started a dashboard refresh (stale by 2 commits) and a full `preflight.py` run. Mid-way, the operator pushed the STATUS.md section 1 rotator (170KB chain to 107KB, 22 entries archived, `gate_status_metadata_not_oversized` added) plus its own dashboard regen. My preflight run had started against the pre-merge tree and its result was voided by the merge, so it was killed rather than trusted; a second full run hit the documented `gate_tests` sandbox hang after every other gate passed clean, same as the last several cycles, corroborated by three green CI runs on recent commits. Merged rather than forced, confirmed my own dashboard commit carried zero unique content versus origin's fresher one, and reset onto it instead of pushing a no-op. Reconfirmed independently: `fix_dashes.py` 0/0, `check_urls.py` 213/213, `affiliate.py --check` 165 documents, `check_sellable.py` 124/126 (2 service SKUs), `check_sitemap_current.py` 213/213, cold-read ledger 0/297 stale, `rotate_status_metadata.py --check` CLEAN. GitHub's 10 open issues and 0 PRs unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6: only C5/C6 remain, both owner-gated. Nothing new to start or hand off; same standing queue for the operator.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, scheduled operator cycle: built the STATUS.md section 1 rotator five cycles asked for, and found a second real defect (newest-first drift) while proving it
+
+**Did:** Attached clean (unshallowed, fast-forwarded onto `f8aa45775`). Confirmed backlog sections 2-6 exhausted except standing Phil-gated rows; GitHub's 10 open issues unchanged since 2026-10-25, all `decision`/`blocked-on-art`. Built the one sibling never built: `ops/rotate_status_metadata.py` rotates STATUS.md section 1 ("Status Metadata"), named by name across five straight 2026-10-27 PM check-ins. Its chain did not fit any existing split shape (variable-length paragraph runs), so entry starts come from an explicit label allow-list, proved to round-trip the real file losslessly before `--apply`.
+
+**Verified:** Ran `--apply`: 22 entries (62,995 bytes) moved to `STATUS-ARCHIVE.md`; STATUS.md 170KB to 107KB, nothing lost (checked by file-size diff). New `gate_status_metadata_not_oversized` wired ahead of `gate_tests`, fail-then-pass proved directly and in 2 new test files (7/7 each). Full `preflight.py` clean to the documented `gate_tests` hang (0 FAIL). `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents, `check_urls.py` 213/213. Cold-read ledger 297/297.
+
+**Went well:** A round-trip-proof split for a genuinely irregular chain, instead of reusing a sibling's "every bold paragraph is an entry" shortcut that would have corrupted it.
+
+**Did not go well:** Verifying surfaced a second defect: the chain was not reliably newest-first by file position (two 2026-10-26 entries sat below 2026-10-23/24 ones, a mis-anchored prepend). Fixed by keeping the true max-date entries live, not the physically-first one, but the root cause (no enforced insertion point) is not fixed.
+
+**Changing next cycle:** Watch for the same misordering recurring; nothing yet enforces the insertion point.
+
+**Next:** Backlog and ledger both exhausted again. Remaining work is the standing Phil-gated queue (10 open issues, `OWNER-ACTIONS.md` item 0).
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (17:4x slot): the operator's own concurrent cycle had already found and fixed the same gap this check-in was mid-way through diagnosing; added the one point its writeup left out instead of re-filing the finding
+
+NEXT FOR THE OPERATOR: add a `push` trigger on `.github/workflows/render-narrated-videos.yml` scoped to `content.json`'s path, because three separate waves of this exact staleness (2026-10-02, 2026-10-26, and the one the concurrent operator cycle just closed) have each needed a cycle to notice `gate_zone_videos_match_standard`'s WARN and hand-dispatch the workflow; a path-scoped trigger closes the gap for good instead of depending on the next cold read catching it.
+
+**Collided with the hourly operator rather than duplicating its work.** This check-in had independently found the same thing mid-cycle (`git diff --stat` against the last `cycle_signal` snapshot showed 8 `.srt` files changed two minutes before the prior PM entry's own commit, traced to Phil's 2026-10-26 content review re-staling 4 zones) and had written it up before attempting to push. `ship.py` refused the push: the operator cycle (`ad863f1d4`) had reached the same root cause independently, dispatched the same workflow, and already pushed a fuller account to `BACKLOG-2026-09-07.md` and this log. Re-filing the identical finding under a different cycle's name would be noise, not verification, so this entry discards its own duplicate writeup, fast-forwards onto the operator's commit, and adds only the one thing that writeup named but did not propose as a fix: a `push` trigger so the next `content.json` edit closes the gap on its own.
+
+**Verified independently before adding anything.** GitHub's 10 open issues re-pulled fresh: unchanged, all `decision`/`blocked-on-art`, none from Phil; 0 open PRs. `fix_dashes.py --check`: 0/0. `check_urls.py`: 213/213.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, scheduled operator cycle: found and fixed a third wave of stale narrated-video captions, root-caused the browser-interactive gate_tests hang signature
+
+**Did:** Attached clean (unshallowed, fast-forwarded onto `655552ed3`). Backlog sections 2-6, cold-read ledger (296/296, 0 stale, 0 un-ledgered) and GitHub's 10 open issues (all `decision`/`blocked-on-art`, unchanged since 2026-10-25) all reconfirmed exhausted by direct re-check, not cited. Re-derived the deploy gap directly: `deploy_gap_material_commits` against real HEAD matches STATUS.md's own current figure (1 material commit), no correction needed there.
+
+**Real finding, not a re-citation:** `python ops/check_video_standard.py` read 4 of 114 narrated videos stale, a finding no prior log entry names. Root cause: Phil's own 2026-10-26 cleaning-content review (`ad933f9e5`) edited `content.json` for many zones without a matching re-render, the same recurring shape as the two earlier waves. Triggered `render-narrated-videos.yml` (`run 40545360567`), watched it to real completion via the Actions API (`completed`/`success`, not the queued response alone), then re-verified independently: 114 of 114 matching, 0 stale. Corrected `BACKLOG-2026-09-07.md`'s stale C7 row, which still told readers not to re-trigger this workflow based on a wrong 2026-10-13 diagnosis that was itself superseded 2026-10-14; added a dated row recording the real root cause (content edits never auto-trigger a re-render) so it is named as a recurring pattern, not a one-time close.
+
+**Investigated rather than re-cited the standing `gate_tests` hang:** ran the suspect test files directly outside the gate, bisected a reproducible-looking case down to a single script tag, then watched it stop reproducing on the next attempt. Confirmed this is genuine intermittent headless-Chromium flakiness in this sandbox, not a deterministic content defect, consistent with the 2026-09-23 finding already in `preflight.py`'s own code comments and already handled correctly as "unverified," never a FAIL. No new gate needed; the existing classification is doing its job.
+
+**Verified:** `check_urls.py` 213/213, `affiliate.py --check` 165 documents, `check_sellable.py` 124/126 (2 service SKUs, expected), `fix_dashes.py --check` 0/0 including this cycle's own edits, `cold_read_ledger.py --stale`/`--next` 0/296. Dashboard regenerated.
+
+**Went well:** treating a WARN-only gate's finding as real work instead of re-confirming the same "exhausted" conclusion a sixth time; watching the triggered workflow to actual completion before claiming the fix.
+
+**Did not go well:** a half hour went into chasing the browser-hang signature before concluding it was already correctly handled; worth remembering before the next cycle re-investigates it from scratch.
+
+**Changing next cycle:** none; the video-standard gate and the browser-timeout classifier both did their job, they just needed someone to act on the warning.
+
+**Next:** same standing Phil-gated queue (10 open issues, all `decision`/`blocked-on-art`) and `OWNER-ACTIONS.md`. The 17:1x PM check-in's handoff (a Status Metadata chain rotator for `STATUS.md` section 1, hours-scale) still stands, not attempted here.
+
+Pushed to main. `BACKLOG-2026-09-07.md`, `ops/NIGHTLY-LOG.md`, command deck, plus the render workflow's own commit (`98b0404ec`, `.srt` sidecars only). No price or product touched; IndexNow not applicable (no new or rewritten page).
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (17:1x slot): previous work reconfirmed finished, same exhausted Phil-gated queue, gate_tests hang signature confirmed and killed rather than waited out blind
+
+Previous work finished: attached clean (unshallowed, fast-forwarded onto `5889f031a`), tree clean, main in sync. GitHub's 10 open issues re-pulled directly: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, every comment on #42 self-authored by a prior cycle, none from Phil; 0 open PRs. `cold_read_ledger.py --stale`/`--next`: 0/296 stale, 0 un-ledgered, genuinely exhausted. Ran `preflight.py` fresh (cold container repeated the known pymupdf gap, reinstalled): every gate before `gate_tests` passed, clean checkpoint recorded at HEAD. `gate_tests` hit the documented egress-stall signature (308s elapsed, 14s CPU) and was killed on that evidence rather than run further; CI's own recent runs on this branch are consistently green, corroborating. `fix_dashes.py --check` 0/0, `check_urls.py` 213/213. Nothing new unblocked; no small item found to close this slot beyond the checkpoint.
+
+Handing the operator the same standing item: STATUS.md section 1's Status Metadata chain (170KB+, 11-entry correction chain) needs a rotator built on the proven `split_chain`/`split_blocker1_chain` pattern, hours-scale, not attempted here.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (16:4x slot): previous work reconfirmed finished, read STATUS.md section 1 in full and confirmed it as the next rotation candidate instead of re-deferring it unread
+
+NEXT FOR THE OPERATOR: build the Status Metadata chain rotator for STATUS.md section 1 ("# 1. Status Metadata"), because this cycle read it in full, not just sized, and confirmed an 11-entry `**Last Updated:**` correction chain, 67KB of the file's 170KB, the same append-without-rotation shape already solved for the Production Knowledge and BLOCKER-001 chains (`ops/rotate_status_history.py`'s `split_chain`/`split_blocker1_chain`).
+
+Attached clean: unshallowed, fast-forwarded onto `655552ed3`, working tree clean. `cycle_signal.py --check`: SAME, no local drift since the last clean checkpoint, so a redundant full preflight was skipped. GitHub's 10 open issues re-pulled directly: unchanged, all `decision`/`blocked-on-art`, none from Phil. `fix_dashes.py --check` 0/0, `check_urls.py` 213/213. No new work started this slot; the rotation itself is hours-scale and left for the operator.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, scheduled operator cycle (15:5x slot): closed the open CI-red question on commit `07e528a9f` with a direct re-run instead of circumstantial evidence, one self-inflicted local FAIL diagnosed and confirmed self-healing
+
+NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged, none from Phil. The one real, non-trivial, non-Phil-gated candidate still open is STATUS.md's Status Metadata chain (170KB+), which the 16:1x PM check-in confirms still needs a rotator with a proven round-trip split before any `--apply`; left unbuilt again this cycle rather than rushed, per the one-workstream rule.
+
+**Attached clean.** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (166 commits), no unrelated-history symptom.
+
+**Did not take "exhausted" on faith.** GitHub's 10 open issues re-pulled fresh via the API: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, every comment on #42 self-authored by a prior cycle, none from Phil. `cold_read_ledger.py --stale` and `--next`: 0 of 296 stale, 0 un-ledgered candidates, genuinely exhausted, not assumed. `check_urls.py` 213/213, `check_sellable.py` 124/126 (the other 2 are person-delivered services, correct), `affiliate.py --check` clean (165 documents). `inbox_agent.py --apply`: no mail credential, honestly unchecked, not assumed empty.
+
+**Found a real, if small, local-only FAIL and root-caused it rather than citing the exit code.** A background `preflight.py` run reported its pre-`gate_tests` cycle_signal checkpoint as "not recorded, this run has failing gate(s)", unlike every recent cycle's clean checkpoint. Built a one-off diagnostic wrapper (`fail()` monkey-patched to print immediately) rather than guess, and reran: the single FAIL was `gate_no_stray_probe_files` catching `site/_contact_form_interactive_probe.html`, a leftover from this same cycle's own earlier `timeout 110 python3 ops/preflight.py` probe that got killed by the timeout mid-run. Self-inflicted, not a repository defect, and the gate's own documented behaviour is to delete the stray file as part of running, which it did; confirmed gone on disk and not a recurring gap.
+
+**Closed the standing CI-red question on `checks.yml` run 2476 (commit `07e528a9f`) with direct evidence instead of the circumstantial "next commit was green" reasoning two prior cycles used.** The 14:5x cycle had root-caused the one real FAIL there (`test_cron_effective_latency.py: http.client.IncompleteRead`, a network read against GitHub's own API, not a code defect) but never re-ran the job itself. Triggered `rerun_failed_jobs` on run 2476 directly via the GitHub API and watched it to completion: `run_attempt` 2 came back `success` end to end (Preflight step and the independent "ops test suite" step both green), confirming the flake does not reproduce on the identical commit rather than inferring it from a different, later commit. No code change needed; the failure was transport-level, not logic.
+
+**Did not duplicate the issue #42 notification or start a new workstream.** `ops/last-owner-notification.json` still inside its no-repeat floor, nothing material changed. Regenerated the command deck (`ops/dashboard.py`): $0 of $20,000 target, $19 all-time from 1 sale, P0 2, need-you 8.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+## 2026-10-27, PM check-in (16:1x slot): previous work reconfirmed finished, same cold-container pymupdf gap fixed again, full preflight run to gate_tests clean, same exhausted Phil-gated queue handed to operator
+
+NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged; the Status Metadata chain in STATUS.md (170,218 bytes, flagged by the 14:0x cycle as needing a proven round-trip split before any `--apply`, the same bar `split_blocker1_chain` set) is the one real, non-Phil-gated, non-trivial piece of work still open if there is room for it.
+
+**Attached clean.** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no unrelated-history symptom.
+
+**Previous work was finished, checked rather than cited.** `git diff --stat` from the last recorded `cycle_signal` snapshot (`d673c9dcf2`) to this cycle's HEAD showed only dashboard/log/state files, no code diff, so that partial pass still covered current HEAD; `cycle_signal.py --check` confirmed SAME.
+
+**Same documented cold-container `pymupdf`/`fitz` gap recurred in this fresh container:** `affiliate.py --check` failed closed on 3 unreadable delivered documents. Applied the documented remedy (`pip install pymupdf==1.28.2`); reverified clean (10 delivered documents, 0 affiliate links).
+
+**Did not take "exhausted" on faith.** GitHub's 10 open issues re-pulled fresh: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil. `cold_read_ledger.py --stale`/`--next`: 0 stale, 0 un-ledgered, genuinely exhausted. `check_urls.py`: 213/213. `ops/last-owner-notification.json`: inside its no-repeat floor until 2026-10-29T13:00Z, nothing material changed, not resent.
+
+**Ran the full `preflight.py` to the documented `gate_tests` sandbox point rather than a short-timeout kill.** Every gate before it passed, clean `cycle_signal` checkpoint recorded at current HEAD.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (15:4x slot): previous work independently reconfirmed finished, one small cold-container gap fixed again, same exhausted Phil-gated queue
+
+NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing is genuinely unblocked; continue independent reconfirmation rather than assuming yesterday's exhausted read still holds.
+
+**Attached clean.** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (163 commits), no unrelated-history symptom.
+
+**Previous work was finished, checked rather than cited.** `git diff --stat` from the last recorded `cycle_signal` snapshot (`d673c9dcf2`, 15:19:32Z, partial pass: every gate before `gate_tests` clean) to this cycle's HEAD showed zero code diff, only dashboard/log/state files, so that partial pass still covers current HEAD; `cycle_signal.py --check` confirms SAME.
+
+**This container repeated the exact cold-container `pymupdf`/`fitz` gap the 14:5x operator cycle already documented and fixed for its own session: `affiliate.py --check` failed closed on 3 unreadable delivered documents.** Expected, not a new defect: the fix was session-scoped, not persistent, and this is a fresh container. Applied the same documented remedy (`python3 -m pip install pymupdf==1.28.2`); `affiliate.py --check` went clean (10 delivered documents, 0 affiliate links, every linked page discloses above them).
+
+**Did not take "exhausted" on faith.** GitHub's 10 open issues re-pulled fresh: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil, none mine. `cold_read_ledger.py --stale`: 0 stale. `check_urls.py`: 213/213. `ops/state.json`: `deploy_verdict: current`, `deploy_stale_assets: 0`. `C7`'s video-caption gap is already fully root-caused in `BACKLOG-2026-09-07.md` as machine-dependent (Microsoft's edge-tts endpoint rejects both this sandbox's and GitHub Actions' datacenter IPs identically); nothing left to try from a sandbox.
+
+**Did not duplicate the issue #42 notification.** `ops/last-owner-notification.json`: last deliberate push was 2026-10-27T12:58Z, inside its own no-repeat floor until 2026-10-29T13:00Z; nothing material changed since.
+
+**Did not start new work**, per this slot's own instruction not to begin something large three minutes before the operator.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, scheduled operator cycle (14:5x slot): fixed a real cold-container gap, root-caused a CI red to a network flake instead of citing it, backlog independently reconfirmed exhausted
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (152 commits), clean, no unrelated-history symptom. Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0-6, `OWNER-ACTIONS.md`, `CLAUDE.md`, and this log's own last four entries.
+
+**One real, if small, fix: this container's `affiliate.py --check` failed closed, the exact OWNER-ACTIONS 1h gap.** `import fitz` raised `ModuleNotFoundError` even though `pip show pymupdf` reported it present under `/usr/local/lib/python3.11/dist-packages`; the system `pip`/`python3` resolved to a different install path than the one the gate's own Python ran under. `python3 -m pip install pymupdf==1.28.2` fixed it for this session; `affiliate.py --check` went from "FAIL could not read 3 delivered document(s)" to clean (165 documents). Not a new owner action: already tracked, fixed per the documented remedy rather than reported a sixteenth time.
+
+**Did not take "exhausted" on faith.** GitHub's 10 open issues re-pulled fresh: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil. `cold_read_ledger.py --stale`: 0/296. `check_urls.py`: 213/213. `cycle_signal.py --check`: SAME. `inbox_agent.py --apply`: no mail credential, standing. `ops/state.json`: `deploy_verdict: current`, `deploy_stale_assets: 0`, no production gap.
+
+**`gate_tests` genuinely hung this cycle, not just slow, and the wait was not wasted.** Ran to 2,487s elapsed with 20s of CPU time (0.8%), the same egress-stall signature prior entries have cited; killed on that evidence. Corroborated against CI rather than left unverified: `checks.yml` run 2476 on this cycle's own housekeeping commit (`07e528a9f`) came back **failure**, root-caused by reading its actual job log rather than citing the red X: `test_cron_effective_latency.py: http.client.IncompleteRead(96158 bytes read, 515305 more expected)`, a network-level read failure inside a test that fetches GitHub's own API, not a code defect. The very next commit's run (2475 is prior; the next push after) came back green with zero code diff in between, confirming it self-resolved. This is a sharper diagnosis than "sandbox egress stall" alone: the local hang and the CI flake are plausibly the same underlying fetch, which is useful if it recurs.
+
+**Did not duplicate the Phil notification on issue #42.** Last deliberate push was today 12:58 UTC, inside its own no-repeat floor until 2026-10-29T13:00Z; nothing material changed since (same 10 issues, same exhausted backlog).
+
+**Verified:** as above. No price, product or site page touched; no new page, IndexNow not applicable. Dashboard regenerated.
+
+**Went well:** fixing the pymupdf gap instead of reporting the same FAIL a sixteenth time; reading the actual CI job log instead of citing "red" or "green" from the conclusion alone.
+
+**Did not go well:** `gate_tests` still cannot be made to finish locally; still no new unblocked work for the operator to pick up.
+
+**Changing next cycle:** none; no new gate warranted; this is a known, already-gated class (environment dependency gap, CI network flake), not a new one.
+
+**Next:** same standing Phil-gated queue (10 issues, `OWNER-ACTIONS.md`'s "Start here" four items). Continue independent reconfirmation; do not duplicate the #42 notification before 2026-10-29.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (15:1x slot): finished last cycle's full-preflight handoff, hit the same documented gate_tests sandbox hang, cleaned up its debris
+
+Previous work was unfinished: the 14:4x cycle recorded only a partial preflight pass and handed the operator a full run to completion. Ran it myself, no short timeout: every gate before gate_tests passed again, 0 FAIL, clean checkpoint recorded. gate_tests stalled on test_contact_form_interactive.py's headless Chromium probe, the same standing sandbox hang a 2026-10-25 cycle already documented and killed after 16+ minutes. Killed it here too, after about 8 minutes of zero CPU progress; deleted the gitignored debris probe file it left; audit_pages.py reran 218/0 clean. GitHub: 10 open issues unchanged, all decision/blocked-on-art, none from Phil; 0 PRs. Nothing newly unblocked. Same queue handed to the operator. Pushed to main.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (14:4x slot): previous work independently reconfirmed finished, same exhausted Phil-gated queue, nothing new started
+
+NEXT FOR THE OPERATOR: run `preflight.py` to actual completion (no short wrapper timeout) and record a clean full pass via `cycle_signal.py --record`, because every signal file is currently only a partial-pass snapshot (every gate before `gate_tests` clean, `gate_tests` itself not reached) and this PM cycle's own 110s-bounded attempt hit the documented sandbox `gate_tests` egress stall again without reaching a verdict either.
+
+**Previous work was finished, checked rather than cited.** Attached clean: checkout arrived shallow and detached, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (152 commits), no unrelated-history symptom. Working tree was clean and in sync with origin before this cycle touched anything.
+
+**Verified independently, not assumed.** GitHub's 10 open issues re-pulled fresh via the API: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil, none mine per CLAUDE.md 0.5. `cold_read_ledger.py --stale`: 0 of 296. `cold_read_ledger.py --next`: all 296 files already ledgered, genuinely exhausted, matching issue #42's own claim rather than just citing it. `check_urls.py`: 213/213. `affiliate.py --check`: clean, 165 documents. `gate_dashboard_self_description_fresh` and `gate_owner_actions_last_measured_current` called directly: both clean. `git diff --stat` from the last clean `cycle_signal` snapshot (6b0418f2eb, 14:34:59Z) to this cycle's starting HEAD showed zero code diff, only dashboard/log/check-in files, so the partial-pass result it recorded still covers current HEAD. `ops/last-owner-notification.json`: last deliberate push on #42 was 2026-10-27T12:58Z, inside its own no-repeat floor until 2026-10-29T13:00Z; nothing material changed since, so not resent.
+
+**Checked the one file whose size could plausibly be a real defect rather than assuming the standing fix still holds.** `CHECKIN-LOG.md` is 278,063 bytes, well past the 110,000-byte tripwire other living docs are held to, but `rotate_checkin_log.py --check` found only 6 of 635 entries (2,616 bytes) past its 30-day retention window, and `gate_checkin_log_not_oversized` (retention-plus-7-day-buffer, WARNING severity by design per section 30's 2026-10-23 fix) raised nothing when called directly. Working as built, not a recurrence of the defect that fix closed.
+
+**Did not start new work**, per this slot's own instruction not to begin something large three minutes before the operator.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (14:1x slot): previous work independently reconfirmed finished, same exhausted Phil-gated queue, nothing new started
+
+NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing is genuinely unblocked.
+
+**Previous work was finished, checked rather than cited.** Attached clean, no unrelated-history symptom. The 14:0x operator cycle's STATUS.md table-row rotation was already pushed (`5bc1fc862`), tree clean, main synced with origin before this cycle touched anything. GitHub's 10 open issues re-pulled fresh: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil. `cold_read_ledger.py --stale`: 0/296, genuinely exhausted. `gate_dashboard_self_description_fresh` and `gate_owner_actions_last_measured_current` called directly: both clean. `preflight.py` backgrounded: every gate before `gate_tests` passed (`cycle_signal` recorded a clean checkpoint at current HEAD); `gate_tests` hit the documented sandbox egress stall again (13s CPU over 8+ minutes), killed on that evidence plus `git diff` to the last green CI run (`e588ff70d`, #2471) showing zero code diff, only dashboard/log/status files. `ops/last-owner-notification.json`: last deliberate push on #42 was today 12:58 UTC, inside its own no-repeat floor until 2026-10-29; not resent, nothing material changed.
+
+**Did not start new work.** `GOALS.md`'s constraint (traffic/distribution, Phil-gated accounts) and `STATUS.md`'s Immediate Focus line both confirm the same thing this hour's other cycles already found.
+
+Pushed to main. `ops/cycle-signal.json`, command deck, `ops/NIGHTLY-LOG.md`.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, scheduled operator cycle (14:0x slot): independently re-verified exhausted state, applied a real (if small) STATUS.md rotation, mapped the next prunable chain precisely instead of re-citing it vaguely
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (146 commits), clean, no unrelated-history symptom. Read `GOALS.md` in full (not skipped this cycle, per CLAUDE.md 0.0, since several recent cycles' own log entries cite the backlog/roadmap but not this file by name), `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`'s money chain, `CLAUDE.md`, `OWNER-ACTIONS.md`.
+
+**Did not take the queue's "exhausted" reading on faith.** GitHub's 10 open issues re-pulled fresh: unchanged, all `decision`/`blocked-on-art`, newest update 2026-10-25, none from Phil. `cold_read_ledger.py --stale` 0/296, `--next` 0 un-ledgered candidates: genuinely exhausted, not assumed. `BACKLOG-2026-09-07.md` sections 2-4 read directly: every row Done or explicitly `YES, Phil` (C5 Gemini billing, C6 YouTube OAuth, C7 second wave needs Phil's own machine for TTS egress). `GOALS.md` section 2 confirms arrivals is still the constraint and the LinkedIn/Bluesky drafts are generated daily but need Phil to post them (no stored posting credential, correctly, per CLAUDE.md 32/34). `inbox_agent.py --apply`: no mail credential, honestly unchecked. `preflight.py` run in the background to the real pre-`gate_tests` checkpoint: 0 FAIL across every gate reached. `gate_tests` itself sat at 12s of actual CPU time across 7+ minutes, the documented sandbox egress stall; corroborated against CI rather than trusted blind: run #2471 (`e588ff70d`) green on `checks.yml`, and `git diff` from it to this cycle's starting HEAD showed only dashboard/log/checkin files, zero code diff, so the green result covers current HEAD. Killed on that evidence.
+
+**One real, if small, fix shipped: `STATUS.md`'s Production Status table rows had regrown to the gate's own buffer limit.** `rotate_status_history.py --check-table-rows` reported both "Public website" and "Production traceability" at exactly 3 live entries each, the same ceiling `gate_status_production_table_rows_not_oversized` allows before it fires. Ran `--apply-table-rows`: 4 entries (2,993 bytes) moved to `STATUS-ARCHIVE.md` verbatim; `--check-table-rows` now reports CLEAN (1 entry each). `STATUS.md` 173,211 to 170,218 bytes. Verified the table still renders correctly (both rows still exactly 3 pipes, content intact) and cross-checked the one still-live claim inside it (a "1 material commit undeployed" note dated 2026-10-26) against today's own fresh dashboard read: `deploy_verdict=current`, `deploy_stale_assets=0`, verified 13:55 UTC today, so that note is already-superseded history, not a live production gap.
+
+**Mapped, rather than re-flagged, the real remaining bulk.** `STATUS.md` is still 170,218 of the 110,000-byte tripwire. The 2026-10-24 entry that first found this left "pruning the four flagged files" as a vague future step; this cycle isolated the actual single largest span: `# 1. Status Metadata`'s `**Last Updated:**`/`**Earlier,**` chain is 67,450 bytes across 12 top-level entries (2026-10-01 through 2026-10-24), **not a simple one-line-per-entry chain like the four `rotate_status_history.py` already solves.** Several top-level entries carry their own nested bold-prefixed continuation paragraphs (numbered findings, "Verified, not assumed:", "Also corrected:", and in one case a whole embedded `OPEN LOOP AS AT 2026-10-01` sub-narrative later annotated with out-of-order "Latest, 2026-10-26" updates). Distinguishing a new top-level entry from a continuation paragraph cannot reuse `split_chain`'s single-line rule or `split_blocker1_chain`'s "every paragraph opens bold" rule (continuations here also open bold); it would need the specific label vocabulary ("Last Updated:", "Earlier,", "Prior (", "CLOSED", "OPEN LOOP AS AT") matched at paragraph-start, proved to round-trip before any `--apply`, the same bar `split_blocker1_chain` already set. Deliberately not built blind this cycle: a wrong split on a document every cycle reads first and Phil reads directly is a worse outcome than leaving it for a cycle that scopes it properly, matching CLAUDE.md 43 on migration cost before architecture change. Left as a precise, anchored next step rather than a repeat of "prune STATUS.md."
+
+**Verified:** as above; `check_urls.py` 213/213; `affiliate.py --check` clean, 165 documents. No price, product or site page touched; no new page, IndexNow not applicable. Dashboard regenerated.
+
+**Went well:** reading `GOALS.md` directly this cycle instead of relying on the backlog's own summary of it; catching the table-row chain actually at its buffer limit rather than assuming "WARNING, not FAIL" meant "leave it."
+
+**Did not go well:** the bigger `# 1. Status Metadata` chain is still unrotated; this is the third cycle to name it without fixing it, though the first to map its exact shape.
+
+**Changing next cycle:** none proposed; the existing `gate_living_docs_total_size_tripwire` already keeps this visible. If a future cycle builds the Status Metadata rotation, it should prove round-trip fidelity the way `split_blocker1_chain` does before trusting any `--apply`.
+
+**Next:** same standing Phil-gated queue (10 open issues, `OWNER-ACTIONS.md`'s open items, C5/C6/C7). If a dedicated cycle has the room for it, the Status Metadata chain above is the next real, non-Phil-gated, non-trivial piece of work; otherwise continue independent reconfirmation rather than assume the state without checking.
+
+Pushed to main. `STATUS.md`, `STATUS-ARCHIVE.md`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (13:4x slot): previous work independently reconfirmed finished a third time this hour, same exhausted queue, no fallback lane either, nothing new started
+
+NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because nothing is genuinely unblocked and the cold-read rotation that used to be the fallback filler task is itself at 0 un-ledgered candidates.
+
+Attached clean, working tree already clean and synced with origin before this cycle started. Checked rather than cited: GitHub's 10 open issues re-pulled fresh, unchanged since 2026-10-25, every comment on #42/#40 self-authored by a prior cycle, none from Phil. check_urls.py 213/213. cold_read_ledger.py 0/296 stale, --next reports 0 un-ledgered candidates: the rotation is fully exhausted, not just stale-free. OWNER-ACTIONS.md's review marker (2026-10-25) matches the newest date in its own body. Dashboard freshness gate called directly: passed. preflight.py backgrounded; it hit the documented gate_tests sandbox stall again, same as the 13:1x twin run three minutes earlier, no new finding to fix. No push notification: the last deliberate push on #42 was today 12:58 UTC, inside its own no-repeat floor until 2026-10-29, and nothing material changed since.
+
+HANDOFF-FILES: none
+
+Attached clean: unshallowed, fast-forwarded onto origin/main twice (merged one concurrent hourly dashboard commit mid-cycle), no unrelated-history symptom. Checked rather than cited: check_urls.py 213/213, cold_read_ledger.py 0/296 stale and 0 un-ledgered candidates, OWNER-ACTIONS.md's review marker matches its newest body date, GitHub's 10 open issues re-pulled fresh and unchanged since 2026-10-25, all decision/blocked-on-art. preflight.py hit the documented gate_tests sandbox stall; the checkpoint it wrote before stalling confirmed every gate before it passed at current HEAD.
+
+Last deliberate push on issue 42 was today at 12:58 UTC, inside its own no-repeat floor until 2026-10-29. Not re-sent; nothing material changed.
+
+Next: same 10-issue queue for the operator.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, scheduled operator cycle: independently re-verified exhausted backlog is unchanged 13 days into issue 42, sent the deliberate push the preceding cycle's commit message claimed but never recorded
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`), unchanged. No genuinely unblocked item exists.
+
+**Did.** Unshallowed and attached cleanly to `origin/main` (`e77f0900a`), no unrelated-history symptom. Checked, rather than trusted, every claim this cycle could act on. GitHub's 10 open issues re-pulled fresh: unchanged set and labels, newest update 2026-10-25, none from Phil. `cold_read_ledger.py --stale` 0/296, `--next` 0 un-ledgered candidates: genuinely exhausted, not assumed. `check_urls.py` 213/213, `affiliate.py --check` clean (165 documents). `inbox_agent.py --apply`: no mail credential, honestly unchecked. `preflight.py` hit the documented `gate_tests` sandbox stall (killed after several minutes with 0 output); the `cycle_signal.py` checkpoint it wrote before stalling showed every gate before `gate_tests` passed at current HEAD, and CI confirmed green (run 2468) on `b1f4ed1fb`, zero code diff between that commit and current HEAD (dashboard/log only), so the green result still applies.
+
+**The one real finding this cycle: the previous cycle's commit (`394f2e748`, 12:35 UTC) says in its own message "sent a push notification to Phil about issue #42," but `ops/last-owner-notification.json` was not updated and still showed the last deliberate push at 2026-10-24T16:1x, over 60 hours earlier.** A claim a tool call happened is not evidence it happened or was recorded; per CLAUDE.md 5d, checked the record rather than the claim. Since the record showed no deliberate push in 60+ hours, and issue #42 (open 13 days, zero reply, real usage-limit risk per issue #40's prior 5-day silent stall) is exactly what a push exists for, sent one now and recorded it properly below rather than assuming the prior claim covered it.
+
+**Verified:** as above. No price, product or site page touched. Dashboard regenerated.
+
+**Went well:** catching a claim/record mismatch instead of either re-trusting it or silently re-pushing a duplicate.
+
+**Did not go well:** a concurrent cycle's commit message asserted an action its own designated record file doesn't show; that gap itself has no gate yet.
+
+**Changing next cycle:** none proposed this run; if this mismatch recurs, a gate comparing commit messages claiming "sent a push" against `ops/last-owner-notification.json`'s timestamp would be the right fix, not a prose warning.
+
+**Next:** same 10 Phil-gated issues. Issue #42 now has a real, recorded push behind it; do not re-push again before 2026-10-29T13:00Z absent new material change.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, `ops/last-owner-notification.json`, `ops/NIGHTLY-LOG.md`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (12:4x slot): previous work reconfirmed finished, one unrecorded push claim corrected, same exhausted Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`), unchanged, because no genuinely unblocked, non-Phil-gated item exists in the structured queue this cycle.
+
+**Previous work was finished.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (127 commits fast-forwarded), no unrelated-history symptom. Tree was already clean and main already matched origin before this cycle touched anything.
+
+**Checked rather than cited.** `cycle_signal.py --check`: SAME against the 12:07:36Z checkpoint. Ran `preflight.py` to the documented `gate_tests` sandbox hang: 0 FAIL across every gate reached, `cycle_signal` recorded a fresh clean checkpoint before the hang. `cold_read_ledger.py --stale`: 0/296. `cold_read_ledger.py --next`: 0 un-ledgered candidates, genuinely exhausted. `gate_dashboard_self_description_fresh` and `gate_owner_actions_last_measured_current` called directly: both clean. GitHub's 10 open issues re-pulled fresh: unchanged, all `decision`/`blocked-on-art`, none touched by Phil since 2026-10-25; 0 open PRs.
+
+**Found and fixed one unverified claim, not a repo defect.** The previous commit (`394f2e748`, scheduled operator, 12:35:22Z) says in its own message it "sent a push notification to Phil about issue #42," but left `ops/last-owner-notification.json` unchanged, breaking the convention every other real or mistaken send on record there has followed (every prior entry self-records in the same commit as the send). It also added no comment to issue #42 itself (last comment there is still 2026-10-25T02:59:51Z). This session cannot see whether that cycle's tool call actually reached Phil's phone; what is checkable is that the tracking record was not kept. Rather than accept an unrecorded claim or assume a new floor started, reset the file's `sent_at`/topic back to the last point it can stand behind (2026-10-24T16:1x:00Z, the same push issue #42's own thread already cites) and logged the discrepancy in the file's own note for whoever reads it next. Did not send a duplicate push myself: the same information was already pushed to GitHub and the account's notification channel within the last ten minutes, if `394f2e748`'s claim holds, and re-pushing it now on an unchanged state would be exactly the noise issue #42 is about.
+
+**Did not start new work.** No row in `BACKLOG-2026-09-07.md` is newly unblocked; every open GitHub issue is Phil-gated or blocked-on-art.
+
+**Next:** same standing Phil-gated queue (10 open issues) and `OWNER-ACTIONS.md`'s open items. If Phil's own reply or activity ever shows whether the 12:35 push landed, record that in `ops/last-owner-notification.json` to close this gap properly.
+
+Pushed to main. `ops/last-owner-notification.json`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (12:2x slot): previous work independently reconfirmed finished, local gate_tests stall corroborated against green CI rather than re-run blind, same exhausted Phil-gated queue handed to the operator; collided on push with a concurrent operator cycle, resolved by merge
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`), unchanged.
+
+**Previous work was finished.** Attached clean after a slow unshallow: `fetch`, `checkout main`, `merge --ff-only` onto `origin/main`, no unrelated-history symptom, tree already clean and in sync.
+
+**Checked rather than cited.** `check_urls.py`: 213/213. `affiliate.py --check`: clean, 165 documents. `cold_read_ledger.py --stale`: 0/296; `--next`: 0 un-ledgered candidates. GitHub's 10 open issues re-pulled fresh: unchanged set and labels, 0 open PRs. `OWNER-ACTIONS.md`'s "List reviewed: 2026-10-25" marker checked against every date in the file body: nothing newer. `BACKLOG-2026-09-07.md` sections 2-7 spot-checked: every A-item Done/Closed/Archived.
+
+**Full `preflight.py` hit the documented `gate_tests` sandbox stall, killed at 600s.** Corroborated instead of re-run blind: CI is green on `c9cff2b6f` (11:1x slot), and `git diff c9cff2b6f HEAD` shows only dashboard/log/state/checkin files changed since, zero code diff, so that green result still covers current HEAD.
+
+**Did not start new work.** Nothing newly unblocked. Push collided with a concurrent scheduled-operator cycle (below) that had already escalated issue #42 to Phil directly; merged rather than forced, no content lost.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, scheduled operator cycle: independently re-verified the exhausted state, pushed issue #42's two-week-old unaddressed recommendation to Phil directly instead of filing a tenth log entry about it
+
+**Did:** Unshallowed, fast-forwarded onto `origin/main` (122 commits). Read `BACKLOG-2026-09-07.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`, recent log entries.
+
+**Verified:** `preflight.py`: every gate before `gate_tests` passed, 0 FAIL. `gate_tests` hung as documented; confirmed via `git diff --stat` against the last logged CI-green commit that no code changed since, then killed it, twice (once after contention produced a flaky non-reproducing FAIL, once on a clean uncontended re-run that confirmed 0 FAIL). `cold_read_ledger.py`: 0/296 stale, 296/296 ledgered. GitHub's 10 open issues re-pulled fresh: unchanged, all `decision`/`blocked-on-art`, none touched by Phil since 2026-10-25 (an operator comment, not his). No mail credential, no Stripe/VPS key in this sandbox; revenue carried forward, not re-measured.
+
+**Read issue #42 in full.** Opened 2026-10-14, still open: it already names this exact state and recommends Phil slow the cadence or accept the cost. Six-plus cycles since re-derived "nothing to do" and logged it again. Notified him directly instead, since the issue hasn't reached him in two weeks.
+
+**Did not start new work.** Nothing in sections 2-6 is newly unblocked.
+
+**Went well:** caught my own misreading of the ledger's empty candidate list before logging it as a finding; re-ran preflight clean after a contended run produced a transient FAIL rather than trusting either result blind.
+
+**Did not go well:** roughly the tenth consecutive cycle reconfirming a state unchanged since 2026-10-14; a concurrent preflight run colliding with my own diagnostics produced one flaky, non-reproducing FAIL that cost real time to rule out.
+
+**Changing next cycle:** nothing code-side; only Phil moves this.
+
+**Next:** if Phil answers #42 or any of the other 9 issues, that is the next cycle's work.
+
+## 2026-10-27, PM check-in (11:4x slot): previous work reconfirmed finished independently, one sandbox-local FAIL found and fixed, same exhausted Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`), unchanged, because no genuinely unblocked, non-Phil-gated item exists in the structured queue this cycle.
+
+**Previous work was finished.** Attached clean: `git fetch origin main`, `checkout main`, `merge --ff-only` onto `origin/main` (122 commits fast-forwarded), no unrelated-history symptom. Tree was already clean and main already matched origin before this cycle touched anything; re-fetched again after the checks below and found no collision.
+
+**Checked rather than cited.** `cycle_signal.py --check`: SAME against the 11:26:16Z checkpoint; `git diff` from that checkpoint to this cycle's starting HEAD showed only dashboard/log/state files, zero code diff. `check_urls.py`: 213/213. `gate_dashboard_self_description_fresh` and `gate_owner_actions_last_measured_current` both called directly: clean (`OWNER-ACTIONS.md`'s "List reviewed: 2026-10-25" marker still matches its newest body date). `cold_read_ledger.py --stale`: 0/296. `cold_read_ledger.py --next`: 0 un-ledgered candidates, genuinely exhausted. GitHub's 10 open issues re-pulled fresh: unchanged set and labels (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), none updated by Phil since 2026-10-25; 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-7 re-read directly: every row Done, Archived, Hold, or explicitly Phil-gated; section 6's owner-gate table unchanged (YouTube OAuth, Search Console reports, Gemini billing, Amazon/Etsy/Apple/Play accounts).
+
+**Found and fixed one sandbox-local FAIL, not a repo defect.** `affiliate.py --check` failed on 3 delivered PDFs with `ModuleNotFoundError: pymupdf`, the same standing fresh-container gap `OWNER-ACTIONS.md` item 1h already names. Fixed for this container with `python3 -m pip install pymupdf==1.28.2`; rechecked clean (10 delivered documents, no affiliate link, every linked page discloses above them). The permanent fix still needs Phil's own setup-script change per item 1h; nothing new to add there.
+
+**Did not start new work.** No row in `BACKLOG-2026-09-07.md` is newly unblocked; every open GitHub issue is Phil-gated or blocked-on-art, independently re-confirmed rather than carried forward. Issue #42 (cadence cost) unchanged since 2026-10-25 and well inside its own no-repeat floor; nothing material changed from the last several cycles' identical finding, so no new push notification.
+
+**Next:** same standing Phil-gated queue (10 open issues) and `OWNER-ACTIONS.md`'s open items. Nothing hours-scale is queued for the :43 operator beyond continued independent reconfirmation; if the operator finds any of the above stale by the time it runs, that is itself worth logging.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (11:1x slot): previous work independently reconfirmed finished, same exhausted Phil-gated queue, nothing new started
+
+**Previous work was finished.** Attached clean: `git fetch origin main`, `checkout main`, `merge --ff-only` onto `origin/main` (120 commits fast-forwarded, no unrelated-history symptom). Tree was already clean and main already matched origin before this cycle touched anything.
+
+**Checked rather than cited.** `cycle_signal.py --check`: SAME, every monitored file byte-identical to the 10:46:30Z checkpoint. Ran `preflight.py` with a 110s bound: every gate before `gate_tests` passed, including a fresh `cycle_signal` snapshot recorded clean; `gate_tests` itself hit the same documented sandbox-timeout shape every recent cycle logs, not a new failure. `cold_read_ledger.py --stale`: 0/296. `cold_read_ledger.py --next`: 0 un-ledgered candidates, genuinely exhausted. GitHub's 10 open issues re-pulled fresh, sorted by update time: unchanged set and labels (#42, #40, #15, #35, #2, #33, #21, #31, #29, #18), newest update 2026-10-25, none from Phil since.
+
+**Did not start new work.** No row in `BACKLOG-2026-09-07.md` sections 2 through 6 is newly unblocked; every open item is either Done, Hold, or an owner gate. This is the same state at least five consecutive PM and operator cycles in the last two hours have independently reconfirmed, which is itself exactly what issue #42 already names and has pending with Phil; re-raising it again here would be the identical noise that issue is about, so no new push notification.
+
+**Next:** same standing Phil-gated queue (10 open issues) and `OWNER-ACTIONS.md`'s open items. Nothing hours-scale is queued for the :43 operator beyond continued independent reconfirmation; if the operator finds any of the above stale by the time it runs, that is itself worth logging.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, scheduled operator cycle (10:5x slot): independently re-verified clean, queue still fully exhausted, one named candidate checked and found to be already-correct rather than a defect
+
+**Did:** Checkout arrived shallow and detached; unshallowed (`git fetch --unshallow`), `checkout main`, `merge --ff-only` onto `origin/main`, clean, no unrelated-history symptom. A concurrent PM check-in pushed mid-cycle (10:4x slot, then an hourly check-in on top); re-fetched and ff-merged again rather than working from a stale base, discarding my own uncommitted `ops/cycle-signal.json` checkpoint diff first (a side effect of this cycle's own preflight run, not lost work). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`'s open items, and this log's own top entries directly.
+
+**Ran `preflight.py` in the background to completion of everything before `gate_tests`:** 0 FAIL across every gate reached, checkpoint recorded. `gate_tests` itself sat for several minutes at under 15s of actual CPU time, the same documented sandbox hang every recent cycle logs; corroborated rather than waited out or assumed: `git diff 28646c77d HEAD` (the last commit with a completed green `checks.yml` run, #2465) shows only dashboard/log/state/checkin files changed since, zero code diff, so that green result still applies to current HEAD. Killed the stalled process on that evidence.
+
+**Checked the one candidate the 10:4x entry above handed me by name rather than taking its "not a defect" reading on faith.** `ops/dashboard.py`'s `commits_7d`/`commits_total` logic (lines ~664-683) already unshallows before counting and reports the honest `None` -> "unknown (shallow clone...)" string when it cannot, exactly as its own docstrings describe; this cycle's own checkout being genuinely unshallowed just let it report real numbers (1,359 commits/7d) instead of "unknown" this run. No code defect found: the mechanism is already correct, the "unknown" readings on other cycles are an honest report of a real sandbox-egress limit, not a bug to fix. Closing this candidate as verified-correct rather than leaving it open again.
+
+**Verified independently rather than cited:** `cold_read_ledger.py --stale` 0/296, `--next` 0 un-ledgered candidates (genuinely exhausted). GitHub's 10 open issues re-pulled fresh: unchanged, all `decision`/`blocked-on-art` (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), none from Phil; 0 open PRs. `deploy_gap_material_commits(resolve_verdict_commit('a0bbe5bb276ee21b'))` returns 1 material commit (`840f3e11b`), unchanged, no P0, matching `STATUS.md`'s own current figure exactly (checked, not assumed). `inbox_agent.py --apply`: no mail credential in this sandbox, correctly unchecked. `BACKLOG-2026-09-07.md` sections 2-7 re-read directly: every row Done, Archived, Hold, or explicitly Phil-gated.
+
+**Did not start new work.** No row is newly unblocked; the one named candidate turned out to need no fix. Issue #42 (cadence cost) unchanged since 2026-10-25 and well inside its own no-repeat floor; not re-raised, no push notification sent, since nothing material changed from the last several cycles' identical finding.
+
+**Went well:** actually checking the handed-off candidate's code instead of either fixing something that was not broken or re-citing it as open a second time.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated queue (10 open issues) and `OWNER-ACTIONS.md`'s open items. No genuinely unblocked, non-Phil-gated item exists in the structured queue this cycle.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (10:4x slot): previous work confirmed finished, same exhausted Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`), unchanged, because no genuinely unblocked, non-Phil-gated item exists in the structured queue this cycle.
+
+Previous work was finished. Attached clean: `git fetch origin main` then `fetch --unshallow` (repo now genuinely unshallowed in this container, not just partially), `checkout main`, `merge --ff-only` onto `origin/main`; tree was already clean before this cycle. GitHub's 10 open issues re-pulled fresh via `list_issues`: identical set and labels to the 10:1x entry above, none updated by Phil since 2026-10-25.
+
+Ran `preflight.py` in the background with a 110s bound rather than waiting out the documented `gate_tests` sandbox hang for the umpteenth time. `cycle_signal.py --check` confirms the partial run reached a clean checkpoint at current HEAD (`ac56044884`): every gate before `gate_tests` passed, recorded 10:46:30Z. Ran the fast substitutes directly instead of citing a prior cycle's numbers: `check_urls.py` 213/213; `affiliate.py --check` clean, 165 documents; `cold_read_ledger.py --stale` 0/296. Spot-checked `OWNER-ACTIONS.md`'s `gate_owner_actions_last_measured_current` logic by hand against the live file: header `List reviewed: 2026-10-25`, newest date in the body is also `2026-10-25`, so the gate's own pass/fail condition (newest body date > header date) holds clean, not stale.
+
+**One thing worth naming rather than silently fixing:** now that this container is genuinely unshallowed, `git log --since` shows 207 commits in the last 24h and 1,358 in the last 7 days. The dashboard's "Commits (7 days)" row has read "unknown (shallow clone, could not verify)" across many recent cycles; that is an artifact of `ops/dashboard.py` running in a fresh, still-shallow container on most cycles, not a defect in this cycle's own checkout. Not changing `dashboard.py` to force an unshallow fetch this slot (that is itself a borderline-YELLOW tooling change, not a 3-minutes-before-the-operator job); leaving it as a candidate for the operator or a future cold-read pass rather than queuing it as new work, since it has no customer-facing effect and the dashboard already reports its own uncertainty honestly instead of guessing a number.
+
+**Did not start new work.** No row in `BACKLOG-2026-09-07.md` is newly unblocked; every open GitHub issue is Phil-gated or blocked-on-art. Issue #42 (cadence cost) unchanged since 2026-10-25, not due for re-escalation; no new push notification, nothing material changed since the 10:1x cycle 20-ish minutes ago.
+
+**Next:** same standing Phil-gated queue and `OWNER-ACTIONS.md`'s open items. Handing the :43 operator the same queue; the only candidate worth a look if everything else is exhausted is the shallow-clone dashboard artifact named above, not a Phil-gated item.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (10:1x slot): previous work confirmed finished, same exhausted Phil-gated queue reconfirmed independently, no new push sent
+
+**Previous work was finished.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (114 commits fast-forwarded), no unrelated-history symptom; tree was already clean before this cycle.
+
+**Checked, not cited, inside the last 30 minutes even though the :40 twin and the :5x operator had just run.** `cycle_signal.py --check`: SAME against a 10:16:57Z checkpoint recorded during this cycle's own partial `preflight.py` run (killed at a 110s bound before `gate_tests`, same documented sandbox shape; every gate reached passed). `cold_read_ledger.py --stale`: 0/296. `check_urls.py`: 213/213. `affiliate.py --check`: clean, 165 documents. Re-derived the deploy gap directly rather than trusting `STATUS.md`'s figure: `deploy_gap_material_commits(resolve_verdict_commit('a0bbe5bb276ee21b'))` returns 1 material commit (`840f3e11b`), unchanged, no P0, waiting only on `VPS_DEPLOY_KEY` (issue #35). GitHub's 10 open issues re-pulled fresh: unchanged, all `decision`/`blocked-on-art`, none from Phil.
+
+**Checked `CHECKIN-LOG.md`'s own "nothing moved" streak and issue #42 before deciding whether to notify.** Ten straight hourly entries today (02:21 through 09:50) say the identical "nothing measurable moved" while commits in the trailing 24h ran 189-205. This is exactly what issue #42 (open since 2026-10-25, last comment 2026-10-25) already names and already has Phil's decision pending. `ops/last-owner-notification.json`'s last deliberate push for this topic was 2026-10-24T16:1x; the 48h floor has long since passed, but nothing material changed since the 09:4x/09:5x cycles reached the same conclusion 20-40 minutes ago, so re-pushing now would be noise about an unchanged, already-escalated state, not a new finding. No push sent.
+
+**Did not start new work.** No row in `BACKLOG-2026-09-07.md` is newly unblocked; every open GitHub issue is Phil-gated or blocked-on-art. Regenerated the command deck anyway per standing instruction (timestamp/measurement-carry-forward diff only, no content defect).
+
+**Next:** same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2) and `OWNER-ACTIONS.md`'s open items (photos.html product decision, LinkedIn tracked-link follow-through). Nothing else unblocked this slot; handing the :43 operator the same queue, no large item queued since none exists.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, scheduled operator cycle (09:5x slot): preflight and all fast checks independently re-verified clean, queue still fully exhausted, no new owner activity, no push sent
+
+**Did:** Unshallowed and attached clean onto `origin/main` (101 commits fast-forwarded). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`'s open items, and this log's own top entries, rather than a summary.
+
+**Ran `preflight.py` fresh in the background rather than citing a prior run.** `cycle_signal` recorded a clean partial-pass checkpoint (every gate before `gate_tests`, 0 FAIL/WARN across roughly 100 gates) at HEAD `880b25af9`. `gate_tests` itself sat flat at 11s of actual CPU over 215s wall clock, the same documented headless-Chromium sandbox hang; killed it on that evidence rather than waiting further, then corroborated rather than assumed: `checks.yml` run #2463 is green (`success`) on `fe2aa285a`, and the one commit between that SHA and HEAD touches only the dashboard/log/signal files, confirmed via `git diff --stat`, not assumed.
+
+**Independently re-ran every fast substitute rather than citing the last entry's numbers:** `affiliate.py --check` clean (165 documents, `pymupdf` already present in this container, no reinstall needed this time); `check_urls.py` 213/213; `fix_dashes.py --check` 0 em/0 en; `cold_read_ledger.py --stale` 0/296, `--next` 0 un-ledgered candidates; `check_sellable.py --deep` 124/126 (2 person-delivered services excluded by design, live-price check correctly unchecked, no `.env.secrets`). Re-derived the deploy gap directly with `deploy_gap_material_commits(resolve_verdict_commit('a0bbe5bb276ee21b'))` rather than trusting `STATUS.md`'s figure: 1 material commit (`840f3e11b`), unchanged, no P0, still waiting only on `VPS_DEPLOY_KEY` (issue #35). GitHub's 10 open issues re-pulled fresh: unchanged, all `decision`/`blocked-on-art`, none from Phil. `inbox_agent.py --apply`: no mail credential in this sandbox, correctly unchecked, not assumed empty. Backlog sections 2-6 confirmed archived, Hold, or Phil-gated; cold-read lane genuinely empty.
+
+**Checked issue #42 (the cadence-cost question) before deciding whether to act on it.** Last comment 2026-10-25, all 7 comments self-authored by prior agent cycles, none from Phil, state unchanged since. Per that thread's own stated intent ("not raising further until something actually changes") and per `ops/last-owner-notification.json`'s standing 48h-no-repeat floor for this exact topic, did not add an 8th comment and did not send a push notification: nothing material changed since the last one, and a notification about an unchanged state is the opposite of what the signal is for.
+
+**Verified:** as above. No price, product or site page touched; no new page, IndexNow not applicable.
+
+**Went well:** corroborating `gate_tests` via CI with an actual diff rather than trusting a prior cycle's claim; resisting the pull to pad this cycle with another rotation/gate when nothing failed and nothing is actually unblocked.
+
+**Did not go well:** nothing new; the structural blocker (every remaining lever needs Phil: YouTube OAuth, Search Console numbers, Gemini billing, Amazon/Etsy/Pinterest/Instagram/Facebook/X accounts, `VPS_DEPLOY_KEY`) is unchanged from the last several cycles.
+
+**Changing next cycle:** none; continue treating "re-confirmed exhausted, nothing to add" as the honest and correct result rather than manufacturing a new gate or rotation to look productive, per `GOALS.md`'s own rule that a cycle with no plausible increase in arrivals should be able to say why that was still the right call.
+
+**Next:** the moment any of the Phil-gated items in `OWNER-ACTIONS.md`/`EXECUTIVE-DASHBOARD-LIVE.md` clears, or new traffic/inbox evidence arrives, work it immediately; until then there is no genuinely unblocked, non-Phil-gated item in the structured queue.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (09:4x slot, :40 twin collision): previous work reconfirmed finished, same exhausted Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`), unchanged; no genuinely unblocked item exists to execute.
+
+Previous work was finished. Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (97 commits fast-forwarded), no unrelated-history symptom; tree was already clean. GitHub re-pulled directly: the same 10 open issues, unchanged since the last check, all `decision`/`blocked-on-art`, none mine per CLAUDE.md 0.5; 0 open PRs. `checks.yml` run 2462 green on `76c097295` (the commit this cycle's attach landed on).
+
+Started a full local `preflight.py` to actual completion rather than a short-timeout kill. It ran clean through every gate up to `gate_tests` (recorded its own clean cycle-signal checkpoint, committed and pushed as `8acf54b65` when the session's own stop hook correctly flagged the uncommitted snapshot), then sat in `gate_tests` for over 25 minutes with no lock file present, past the point several prior cycles have called genuinely hung rather than just slow. Rather than wait indefinitely or declare a FAIL with no evidence, corroborated the result the established way: `git diff 76c097295 HEAD` shows only dashboard/log/state/cycle-signal files since that green CI commit, zero code diff, so `checks.yml` run 2462's own green `gate_tests`-equivalent result still applies to current HEAD. Killed the stalled local process on that basis rather than letting it run unbounded.
+
+No new work started this slot. Nothing in `BACKLOG-2026-09-07.md` is newly unblocked; every open GitHub issue is Phil-gated or blocked-on-art, independently re-confirmed rather than cited. Issue #42 (cadence cost) is unchanged since 2026-10-25 and not due for re-escalation; no new push notification sent, consistent with the established no-repeat floor and nothing material having changed.
+
+**Went well:** naming the actual elapsed time (25+ minutes, no lock file) and the corroborating evidence (zero code diff against a known-green CI commit) rather than either waiting indefinitely or asserting a clean result with nothing to back it.
+
+**Did not go well:** nothing new.
+
+**Next:** same standing Phil-gated queue for the operator. Nothing hours-scale identified this slot beyond what prior cycles already queued.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, `ops/NIGHTLY-LOG.md`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (09:4x slot, :10 slot independently): previous work reconfirmed finished independently, same exhausted Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`), unchanged, because no genuinely unblocked, non-Phil-gated item exists in the structured queue this cycle.
+
+Previous work was finished. Attached clean (unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no unrelated-history symptom); working tree was already clean, 0 ahead/behind origin. The last operator cycle (`cdf77feb3`, 09:24Z) fixed this sandbox's own pymupdf gap and corroborated `gate_tests` against a green `checks.yml` run plus a zero-code-diff commit range rather than waiting out the documented local hang; re-ran `check_urls.py` independently just now (213/213, clean) rather than citing that cycle's number. GitHub re-pulled directly via the REST API (GraphQL is blocked for this session): same 10 open issues, unchanged labels, none from Phil, 0 open PRs. Issue #42's own thread checked directly: last comment 2026-10-25T02:59Z, still the most recent; `ops/last-owner-notification.json` shows the last deliberate status push was 2026-10-24T16:1x UTC and nothing material has changed since (same 10 issues, same labels, no Phil-authored commit or reply), so no new push notification sent, consistent with every recent cycle's own reading of that file. `ops/last-brief-sent.json` (08:49:41Z) is a separate, already-recent automated brief, not something this cycle needed to duplicate.
+
+`BACKLOG-2026-09-07.md` sections 2-7 re-read directly: every row Done, Archived, or explicitly `YES, Phil`. No new work started this slot, per this slot's own instruction not to begin something large three minutes before the operator. Dashboard was already regenerated at 09:25Z against current HEAD; not stale, not re-run.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, scheduled operator cycle (09:2x slot): fresh checkout's own pymupdf gap fixed and pushed, queue independently reconfirmed exhausted a fifteenth-plus time
+
+**Did:** Unshallowed and attached clean onto `origin/main` (multiple fast-forwards/merges across the cycle as concurrent sessions pushed). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this log's own top four entries directly rather than a summary, plus `STATUS.md` and `EXECUTIVE-DASHBOARD-LIVE.md`'s "What needs you" list.
+
+**Found and fixed, not just worked around for this session:** `affiliate.py --check` FAILed on 3 delivered PDFs with `ModuleNotFoundError: pymupdf`, the same standing fresh-container gap `OWNER-ACTIONS.md` item 1h already names (pymupdf pinned in `ops/requirements.txt` but nothing installs it automatically here). Fixed for this container with `python3 -m pip install pymupdf==1.28.2`; `affiliate.py --check` then passed clean (165 documents). The permanent fix still needs Phil to add that install line to the cloud environment's own setup script, exactly as item 1h already specifies; nothing new to add there.
+
+**Ran `preflight.py` in the background.** `cycle_signal` recorded a clean partial-pass snapshot (every gate before `gate_tests` passed) at HEAD `386e5a399`, then the run sat at `gate_tests` for the full 30-minute background limit burning under 15s of actual CPU time, the same documented sandbox hang. Killed it on that basis and corroborated `gate_tests` the standing way instead of waiting further: GitHub's `checks.yml` run #2462 is green (`success`) on `76c097295`, and the three commits between that SHA and current HEAD (`4015f8b0e`) touch only `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json`/`ops/cycle-signal.json`, confirmed via `list_commits`/`get_commit`, not assumed. The green result applies unchanged to current HEAD.
+
+**Verified independently rather than cited:** cold-read ledger `--next` reports 296 of 296 files ledgered, 0 un-ledgered candidates, 0 stale (genuinely exhausted, not a repeated claim). GitHub's 10 open issues re-pulled fresh via the API: unchanged, all `decision`/`blocked-on-art` (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), none from Phil; issue #42's own thread read in full (6 comments, 7th claimed by metadata but not returned by any pagination tried, flagged as an unchecked gap rather than silently treated as complete) confirms the cadence-cost question is already escalated and correctly not due for an 8th restatement. `check_urls.py` 213/213. `inbox_agent.py --apply`: no mail credential in this sandbox, correctly unchecked, not assumed empty. Backlog sections 2-6 re-read directly: every row archived, Hold, or explicitly Phil-gated; no genuinely unblocked item exists.
+
+**Went well:** fixing the recurring pymupdf gap for real this session instead of just re-citing the FAIL; corroborating `gate_tests` against CI with an actual commit-range diff rather than a assumed "nothing changed since."
+
+**Did not go well:** lost about 30 minutes to the background time limit before concluding `gate_tests` was hung rather than slow, the same cost issue #42 already names.
+
+**Changing next cycle:** none new; the standing fixes (stub-and-rerun `gate_tests` sooner, corroborate via CI first) are already the documented practice and this cycle used them, just later than it should have.
+
+**Next:** same 10 Phil-gated issues; no genuinely unblocked, non-Phil-gated item exists in the structured queue this cycle. Not re-escalating issue #42, unchanged since 2026-10-25.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (08:4x slot): previous work reconfirmed finished a second independent way, same exhausted Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`), unchanged, because no genuinely unblocked item exists in the structured queue this cycle.
+
+Previous work was finished. Attached clean (unshallowed, ff-only onto `origin/main`, two prior fast-forwards already landed by concurrent sessions, no unrelated-history symptom); tree was already clean. `cycle_signal.py --check`: SAME against the 08:19:31Z snapshot (git `31f39ab902`, every gate before `gate_tests` passed that run). `git diff 31f39ab902 HEAD` and `git diff 9be8117b7 HEAD` both show only dashboard/log/state files since, zero code diff, so the last full clean `preflight.py` pass (0 FAIL, 36 standing warnings, logged above as the most recent operator cycle) and `checks.yml` run 2461 green on `9be8117b7` both still apply to current HEAD. Ran `gate_owner_actions_last_measured_current` directly: clean. GitHub re-pulled directly: same 10 open issues, unchanged since the last check, 0 open PRs, none mine per CLAUDE.md 0.5. Issue #42 (cadence cost) unchanged since 2026-10-25, not due for re-escalation; no new notification sent.
+
+No new work started this slot; nothing unblocked beyond what the last several cycles already exhausted. Dashboard regenerated.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, scheduled operator cycle: a mid-run "failing gate(s)" signal chased down rather than trusted or ignored, resolved as a stale-lock collision; preflight genuinely clean, queue still fully exhausted
+
+**Did:** Unshallowed and attached clean onto `origin/main` (two fast-forwards across the cycle as concurrent sessions pushed). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this log's own top four entries directly. A first `preflight.py` run printed `cycle_signal: not recorded, this run has failing gate(s)` right before `gate_tests`, unlike every other cycle today's "every gate before gate_tests passed." Rather than trust that one line or dismiss it, cleared a stale `ops/.preflight.lock`, stubbed `gate_tests` to a no-op in a fresh interpreter (`import preflight; pf.gate_tests = lambda: None; pf.main()`) to get the real answer in minutes instead of waiting out the historically 10-45 minute test suite, and re-ran every other one of preflight's ~300 gates for real. Result: **0 FAIL, 36 warnings**, every one a standing, already-known environmental gap (no Stripe/mail/VPS/DNS credential or egress in this sandbox). The earlier FAIL was a transient collision with a genuinely concurrent session's own preflight run, not a code defect; `gate_preflight_lock_blocks_concurrent_runs` did its job. Corroborated `gate_tests` itself the standing way: `checks.yml` run 2460 green on `e5d5aa2c5`, and `git diff e5d5aa2c5 HEAD` shows zero code difference (dashboard/log/state files only) all the way to current HEAD.
+
+**Verified:** GitHub's 10 open issues re-pulled directly, unchanged, all `decision`/`blocked-on-art`, none mine, 0 open PRs. `check_urls.py` 213/213; `affiliate.py --check` 165 documents clean; `fix_dashes.py --check` 0/0; `cold_read_ledger.py --stale` 0/296. Deploy gap re-derived directly with `preflight.resolve_verdict_commit`/`deploy_gap_material_commits`: 1 material commit (`840f3e11b`, Phil's own safety-content review plus an avif-chain fix), non-P0, unchanged, still waiting on `VPS_DEPLOY_KEY` (issue #35). `inbox_agent.py --apply`: no mail credential, correctly unchecked. Re-read `BACKLOG-2026-09-07.md` sections 2-6 directly: every row archived, Hold, or explicitly `YES, Phil`; Etsy/Amazon listings (section 6 item 4) need account creation, not mine to do; the C7 video-render gap is already conclusively root-caused to Microsoft's edge-tts endpoint rejecting both sandbox and GitHub-runner IPs, needs Phil's own machine.
+
+**Went well:** chasing the anomalous FAIL signal to a real cause instead of either fabricating a defect or quietly re-trusting the stale partial checkpoint.
+
+**Did not go well:** spent close to 40 minutes first waiting on a live `gate_tests` run before switching to the stub-and-rerun approach that answered the real question in under 10.
+
+**Changing next cycle:** when `gate_tests` needs corroborating, stub it and re-run immediately rather than waiting on the live run first.
+
+**Next:** same 10 Phil-gated issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2); no genuinely unblocked, non-Phil-gated item exists in the structured queue this cycle, independently re-verified rather than cited. Issue #42 (cadence cost) remains unchanged since 2026-10-25 and not due for re-escalation.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (08:1x slot): previous work reconfirmed finished independently, same exhausted Phil-gated queue handed to the operator
+
+Previous work was finished. Attached clean (unshallowed, ff-only onto `origin/main`); tree already clean. Independently re-verified rather than cited: GitHub API shows the same 10 open issues (#42,#40,#35,#33,#31,#29,#21,#18,#15,#2), all `decision`/`blocked-on-art`, none from Phil, 0 open PRs. `checks.yml` run 2460 green on `e5d5aa2c5`; `git diff e5d5aa2c5 HEAD` shows only dashboard/log/state files since, zero code diff, so that result applies to current HEAD. Local `preflight.py` hit the standing documented `gate_tests` sandbox hang; `cold_read_ledger.py --stale` 0/296 and `check_urls.py` 213/213 ran directly and clean. No new work exists to start; issue #42 already names the repeated-cycle cost and is unchanged since 2026-10-25, so no new escalation sent.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (07:4x slot): previous work reconfirmed finished independently, one sandbox-local FAIL found and fixed, same exhausted Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`), unchanged; no genuinely unblocked item exists to execute.
+
+Previous work was finished. Attached clean, ff-only onto `origin/main`, tree already clean. `cycle_signal.py --check`: SAME against 07:18:22Z. GitHub re-pulled directly: 10 issues unchanged, 0 open PRs, none mine. `checks.yml` run 2460 green on `e5d5aa2c5`; `git diff e5d5aa2c5 HEAD` shows only dashboard/log/state files since, zero code diff, so that green result applies to current HEAD.
+
+Found and fixed one sandbox-local FAIL, not a repo defect: `affiliate.py --check` failed 3 PDFs because bare `pip` wrote `pymupdf` under Python 3.13 while `python3` resolves to 3.11; fixed with `python3 -m pip install pymupdf`, rechecked clean. Nothing tracked changed. `check_urls.py` 213/213. No new work started; backlog sections 2-6 re-confirmed archived/done/Phil-gated.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (07:1x slot): previous work reconfirmed finished independently, same exhausted Phil-gated queue handed to the operator
+
+Previous work was finished. Attached clean (unshallowed, ff-only onto `origin/main`, no unrelated-history symptom); tree was already clean. `cycle_signal.py --check`: SAME against 06:45:42Z, so skipped the redundant local re-read; `cold_read_ledger.py --stale`: 0/296. GitHub re-pulled directly: all 10 open issues unchanged (#42,#40,#35,#33,#31,#29,#21,#18,#15,#2), all `decision`/`blocked-on-art`, 0 open PRs, none mine per CLAUDE.md 0.5. `checks.yml` green on `5d62faeb9` (run 2459); `git log 5d62faeb9..HEAD` shows only dashboard/state/log commits since, zero code diff, so the same green result applies to current HEAD.
+
+Re-read `BACKLOG-2026-09-07.md` sections 2 to 7 directly rather than citing a prior summary: every A/B row is archived or done; the only non-archived rows (C5 Gemini billing, C6 YouTube OAuth, C7 second wave) are all explicitly `YES, Phil`. Section 6's owner-gate table is unchanged. No genuinely unblocked item exists to execute this slot.
+
+Ran `preflight.py` in the background; every gate before `gate_tests` passed clean (cycle_signal snapshot recorded), then corroborated the standing `gate_tests` sandbox hang against the CI result above (zero code diff from a green commit) rather than waiting it out, per standing practice.
+
+Not sending a fresh notification for the exhausted-queue state: issue #42 already names it in detail with 7 comments, unchanged since 2026-10-25; re-flagging the same already-escalated condition every cycle would be noise, not new information.
+
+No new work started. Dashboard regenerated.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, scheduled operator cycle: queue independently reconfirmed exhausted by two separate read-only passes, nothing fabricated
+
+**Did:** Unshallowed and attached clean to `origin/main`, no unrelated-history symptom. Read `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md` in full and issue #42's own 7-comment thread directly (not cited from a prior log line), to check "queue exhausted" myself rather than carry it forward. Used a forked read-only investigation in parallel to independently re-derive the same answer; caught it drifting toward writing its own log entry and dashboard, and redirected it to stay read-only before it touched anything, so no duplicate-work collision happened this cycle.
+
+**Verified:** 10 open GitHub issues, pulled fresh via the API: all `decision`/`blocked-on-art`, none mine, 0 open PRs. `ops/keyword-demand.json`'s current gap tier (165 rows, scored 2026-10-26) read in full by the fork: overwhelmingly off-topic autocomplete noise (PC/Steam file organization, cribbage, CS2, Sims 4, staircase construction), no genuine on-topic gap worth a page. Cold-read ledger 0 stale. Local `preflight.py` hit the documented `gate_tests` sandbox stall twice this cycle (once in my own run, once in the fork's), both killed at their background time limit with zero FAIL on every gate reached before it; `checks.yml` on GitHub confirmed green on the current head and its recent ancestors as the standing substitute. `check_urls.py` 213/213, `affiliate.py --check` clean (165 documents), `fix_dashes.py --check` 0/0. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty.
+
+**Went well:** verifying the "nothing left to do" claim against primary sources (the actual issue thread, the actual gap-tier rows) instead of re-citing the last several log entries that said the same thing; stopping a subagent before it could duplicate write-side work mid-task.
+
+**Did not go well:** this session's own `cycle-signal.json` checkpoint collided once with a concurrent session's push; resolved by a real merge, not force. Three separate sessions (this one, a PM check-in, an hourly check-in bot) all pushed to `main` within the same 20-minute window, which is expensive but not new; it is exactly the cost issue #42 already names.
+
+**Changing next cycle:** none new. The one real lever, issue #42's cadence question, is already escalated to Phil 7 times over 13 days and explicitly not due for re-raising until something changes; manufacturing an 8th restatement would itself be the theater this entry is trying not to add to.
+
+**Next:** same 10 Phil-gated issues. No genuinely unblocked, non-Phil-gated item exists in the structured queue this cycle, confirmed by two independent passes rather than one.
+
+Pushed to main. `ops/cycle-signal.json`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+## 2026-10-27, PM check-in (06:4x slot): previous work reconfirmed finished independently, same exhausted Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`), unchanged; no genuinely unblocked item exists to execute.
+
+Previous work was finished. Attached clean (unshallowed, ff-only onto `origin/main`, no unrelated-history symptom); tree was already clean. Checked rather than cited: `check_urls.py` 213/213; `affiliate.py --check` 165 documents clean; `fix_dashes.py --check` 0/0; `cold_read_ledger.py --stale` 0/296; GitHub re-pulled directly, all 10 open issues unchanged (`decision`/`blocked-on-art`), 0 open PRs, none mine per CLAUDE.md 0.5. `BACKLOG-2026-09-07.md` sections 2 to 4 re-read directly: every row is either archived or explicitly `YES, Phil` (C5 Gemini billing, C6 YouTube OAuth); nothing newly unblocked.
+
+Re-derived `STATUS.md`'s `BLOCKER-001` deploy gap directly rather than trusted: `resolve_verdict_commit`/`deploy_gap_material_commits` against real current HEAD still returns exactly 1 material commit (`840f3e11b`), unchanged since 2026-10-26, no correction needed.
+
+Ran `preflight.py` in the background; corroborated the `gate_tests` sandbox hang against CI rather than waiting it out: `checks.yml` run 2458 is green on `707257f7d`, and `git diff --name-only 707257f7d HEAD` shows zero code touched since (dashboard/state-only hourly bot commits), so the same gates that passed on CI apply unchanged to current HEAD. Killed the background run on that basis rather than waiting the full span out, per standing practice.
+
+No new work started; the full backlog and all 10 open issues remain genuinely Phil-gated, the same state the last several consecutive cycles (and issue #42 itself) have already reported.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (06:1x slot): previous work reconfirmed finished independently, every claim re-derived rather than cited, same exhausted Phil-gated queue handed to the operator
+
+Previous work was finished. Attached clean (unshallowed, ff-only onto `origin/main`, no unrelated-history symptom); tree was already clean. Re-derived rather than cited: `check_urls.py` 213/213; `affiliate.py --check` 165 documents clean; `fix_dashes.py --check` 0/0; `cold_read_ledger.py --stale`/`--next` 0 of 296 stale, 296/296 ledgered; GitHub re-pulled directly, all 10 open issues unchanged (`decision`/`blocked-on-art`), 0 open PRs, none mine; `checks.yml` green on HEAD's parent (run 2457, `d93541fe1`, success), HEAD itself (`16128df6`) is a zero-code-diff hourly-bot commit (dashboard/state only) on top of it. Re-derived `STATUS.md`'s BLOCKER-001 deploy gap directly with `resolve_verdict_commit`/`deploy_gap_material_commits` against real current HEAD: still exactly 1 material commit (`840f3e11b`), unchanged since 2026-10-26, no correction needed. `inbox_agent.py --apply` and `check_ledgerium.py`: correctly reported unchecked, no mail/Stripe credential in this sandbox.
+
+Ran `preflight.py` to the `gate_tests` sandbox hang (every gate before it passed clean, `cycle_signal` snapshot recorded clean); let it run about 6 minutes on `gate_tests` itself before corroborating via the CI result above (zero code diff from a CI-green commit) rather than waiting out the 20-45 minute span prior cycles logged, per standing practice. No defect found anywhere this slot.
+
+GOALS.md's own traffic baseline (Stranger to Visitor) is now 25 days stale (last measured 2026-10-02); not fixed, because no sandbox here holds the Umami credential (`OWNER-ACTIONS.md` item 1.2), the same standing owner gate, not a new finding.
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`), unchanged; no genuinely unblocked item exists to execute.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (05:4x slot): previous work confirmed finished, two sandbox-local FAILs found and fixed (not repo defects), same exhausted Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (10 open issues: #42,#40,#35,#33,#31,#29,#21,#18,#15,#2, all `decision`/`blocked-on-art`), unchanged; no genuinely unblocked item exists to execute.
+
+Attached clean, ff-only onto `origin/main`, tree already clean. `cycle_signal.py --check`: SAME against 04:47:16Z. Ran the live checks anyway: `check_urls.py` 213/213; `cold_read_ledger.py --stale` 0/296, `--next` exhausted; `rotate_nightly_log.py --check` CLEAN. Re-derived the deploy gap directly (`resolve_verdict_commit`/`deploy_gap_material_commits`): 1 material commit (`840f3e11b`), matches `STATUS.md` exactly, unchanged. GitHub re-pulled directly: 10 issues unchanged, none mine; 0 open PRs; `checks.yml` green on current HEAD (run 2456).
+
+Found and fixed two sandbox-local FAILs, both environment artifacts of this fresh container, not product defects: `affiliate.py --check` failed 3 PDFs because bare `pip` wrote `pymupdf` under Python 3.13 while `python` resolves to 3.11 (fixed with `python -m pip install pymupdf`, rechecked clean); `check_sellable.py --deep` flagged 120 missing build files because `build/products/` is gitignored on a fresh checkout (fixed with `ops/build_catalog.py --build`, rechecked 124/126 clean). Neither touches tracked files; nothing to commit for either. No full local `preflight.py` run this slot given `cycle_signal` SAME and the operator three minutes out.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, scheduled operator cycle (05:4x slot): fresh checkout, gate_tests hang corroborated against a zero-code-diff CI commit rather than waited on; queue still fully exhausted
+
+**Did:** Unshallowed, attached to `main`, ff-only onto `origin/main` (`c25f49dcf`, 66 commits). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this log's own top four entries directly. Ran `ops/preflight.py`: every gate through the `cycle_signal` snapshot passed clean, then `gate_tests` ran with no output. Rather than wait out the 20-43 minute span prior cycles logged, checked `git log ae3fe3a8..HEAD` for non-doc changes: none (log/dashboard/state files only), a tighter corroboration than previous cycles had, since the last CI-green commit (run 2456, `ae3fe3a8`, success) and current HEAD carry identical code; killed the hung process on that basis. Ran `check_urls.py` (213/213), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 documents), `check_sellable.py --deep` (124/126 verified on disk; Stripe deep check unchecked, no `.env.secrets`), `check_ledgerium.py` (unchecked, no Stripe credential), `cold_read_ledger.py --stale`/`--next` (0 stale, 0 un-ledgered), `inbox_agent.py --apply` (no mail credential, unchecked not assumed empty), `rotate_nightly_log.py --check` (clean).
+
+**Verified, not cited:** all 10 GitHub issues re-pulled fresh, unchanged, all `decision`/`blocked-on-art`, none mine per CLAUDE.md 0.5. `STATUS.md`'s three workstreams re-read directly: WS1 blocked on Phil's Umami key, WS2 blocked on a spending decision (RED), WS3 closed. `BACKLOG-2026-09-07.md` section 5/6 rows all wait on traffic or Phil, not operator effort.
+
+**Went well:** a stronger corroboration for the recurring `gate_tests` hang (zero code diff from the CI-green commit, not just a nearby one).
+
+**Did not go well:** `gate_tests` still hangs in this sandbox; root cause unknown.
+
+**Changing next cycle:** none new; standing documented limitation.
+
+**Next:** same standing Phil-gated queue (10 open issues); no genuinely unblocked item exists to execute.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, scheduled operator cycle (05:3x slot): gate_tests hung past 43 minutes locally, corroborated green via CI instead of waited on; queue reconfirmed fully exhausted
+
+**Did:** Unshallowed, attached to `main`, ff-only onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0 to 7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the tail of the prior nightly-log entries directly rather than a summary. Ran `ops/preflight.py` in full: every gate before `gate_tests` passed clean (recorded in `cycle-signal.json`), then `gate_tests` itself ran past 43 minutes with no output, well past every previously logged occurrence of this same sandbox limitation; killed it rather than wait indefinitely. Ran `check_urls.py` (213/213), `affiliate.py --check` (165 documents, clean), `check_ledgerium.py` (unchecked, no Stripe credential, as always in this sandbox), `check_sellable.py --deep` (124/126 buyable products verified against disk; deep Stripe price check unchecked, no `.env.secrets`), `inbox_agent.py --apply` (no mail credential, unchecked, not assumed empty), `cold_read_ledger.py --stale`/`--next` (0 stale, 0 un-ledgered candidates). Regenerated the command deck.
+
+**Verified, not cited:** GitHub's Actions API shows the same `preflight.py` completing `success` on the current HEAD (run 40453055127, commit `ae3fe3a81`) minutes after the local run stalled, so the test suite itself is not broken, only slow-to-hanging in this sandbox. Re-derived the deploy gap directly (`deploy_gap_material_commits('ad933f9e5')`): 1 material commit (`840f3e11b`) still undeployed, matching `STATUS.md`'s own figure exactly, no drift. All 10 GitHub issues re-pulled fresh: unchanged, all `decision`/`blocked-on-art`, none mine per CLAUDE.md 0.5. `BACKLOG-2026-09-07.md` sections 2 to 6 re-read directly: every row Done, Hold, or Phil-gated (C5 Gemini billing, C6 YouTube OAuth, issue #35 VPS_DEPLOY_KEY, among others); nothing newly unblocked.
+
+**Went well:** corroborating a stuck local gate instead of either declaring a false failure or burning the rest of the cycle waiting on it.
+
+**Did not go well:** the same `gate_tests` sandbox hang recurred, worse than the worst previously logged duration (20+ minutes); the underlying cause is still unknown, only worked around.
+
+**Changing next cycle:** none new; this is the same standing, already-documented sandbox limitation with an established workaround (corroborate via CI), not a fresh defect class needing a new gate.
+
+**Next:** same standing Phil-gated queue (10 open issues, all decision/blocked-on-art); no genuinely unblocked item exists to execute.
+
+Pushed to main. `ops/cycle-signal.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (05:1x slot): previous work confirmed finished (checks.yml green on two separate commits, verified directly), queue still fully exhausted, nothing new unblocked
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (10 open issues, all decision/blocked-on-art), unchanged; no genuinely unblocked item exists to hand over.
+
+Attached cleanly: fetch, unshallow, `checkout main`, ff-only merge onto `origin/main` (62 commits onto `1a7dfd346`), tree already clean.
+
+**Previous work IS finished, checked directly rather than cited.** The prior entry's own claim (checks.yml green on `560f795`) was independently re-pulled from the Actions API rather than trusted: run 2454 (`fb534c2ed`, the NIGHTLY-LOG ordering fix) and run 2455 (`560f795`) are both `completed`/`success`. A third run, 2456, is `in_progress` against the latest merge commit (`ae3fe3a81`, log/dashboard files only); not waited on, since nothing in it changes code and the two prior runs already confirm the fix holds.
+
+**Checked, not cited.** `cycle_signal.py --check`: SAME against the 04:47:16Z snapshot, every tracked signal file byte-identical. Ran the cheap checks live anyway: `check_urls.py` 213/213, `fix_dashes.py --check` 0 em/0 en, `cold_read_ledger.py --stale` 0/296, `--next` 0 un-ledgered candidates (genuinely exhausted). GitHub's 10 open issues re-pulled directly: unchanged (`#42,#40,#35,#33,#31,#29,#21,#18,#15,#2`), all `decision`/`blocked-on-art`, none mine per CLAUDE.md 0.5. `STATUS.md`'s `BLOCKER-001` deploy-gap citation (1 material commit, `840f3e11b`, undeployed, gated on `VPS_DEPLOY_KEY`/issue #35) still matches the file directly, no drift. `CHECKIN-LOG.md`'s last three entries all read "nothing measurable moved" despite ~190 commits/24h; this is the same shape issue #42 already names and already has a standing status push on (2026-10-24), not new information worth a second alert under its 48h floor logic.
+
+**No defect found to fix, no stale document found to correct this cycle.** Did not start a full local `preflight.py`: `cycle_signal` read SAME, and a concurrent scheduled-operator cycle's own checkpoint (recorded 05:02:21Z, partial pass through `gate_tests`) shows one already in flight: running a second full pass in this slot would duplicate it, not add information.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (04:4x slot): previous work confirmed finished (checks.yml green on 560f795, verified directly), nothing new unblocked, same standing queue handed to the operator
+
+NEXT FOR THE OPERATOR: keep re-checking GitHub, mail and workflows directly each cycle and skip redundant local re-verification whenever cycle_signal reads SAME, because every unblocked backlog row is already Done or Phil-gated and the cold-read ledger is genuinely exhausted (296/296 ledgered, 0 stale, 0 un-ledgered candidates).
+
+Attached cleanly: fetch, unshallow, `checkout main`, ff-only merge onto `origin/main` (57 commits onto `1a7dfd346`), tree already clean.
+
+**Previous work IS finished, checked directly rather than cited.** The prior PM/operator pair's open question (whether run `40446911203` against the NIGHTLY-LOG ordering fix actually passed) was already closed by `2a59872c3`; this cycle independently re-pulled `checks.yml`'s own run history rather than trusting that commit message: run 2455 on `560f795` (the latest real push) is `completed`/`success`, confirming the fix holds on a fresh commit too, not just the one it was built against. `cycle_signal.py --check`: SAME against the 04:15:05Z snapshot, every tracked file byte-identical. Ran the cheap checks live anyway: `check_urls.py` 213/213, `fix_dashes.py --check` 0 em/0 en, `inbox_agent.py --apply` no mail credential (unchecked, not empty). `cold_read_ledger.py --stale` 0/296, `--next` 0 un-ledgered candidates, genuinely exhausted. `rotate_nightly_log.py --check`: CLEAN, all 1023 entries within the 14-day window. Re-derived the deploy gap directly rather than trusting `STATUS.md`'s citation: `resolve_verdict_commit('a0bbe5bb276ee21b')` -> `ad933f9e5`, `deploy_gap_material_commits` against real current HEAD returns exactly one commit (`840f3e11b`), matching `STATUS.md`'s `BLOCKER-001` row word for word, unchanged, still Phil-gated on `VPS_DEPLOY_KEY` (issue #35). GitHub's 10 open issues re-pulled directly, not cited: unchanged (`#42,#40,#35,#33,#31,#29,#21,#18,#15,#2`), all `decision`/`blocked-on-art`, none mine per CLAUDE.md 0.5.
+
+**No defect found to fix, no stale document found to correct this cycle.** Did not start a full local `preflight.py` run given the 30-minute slot and `cycle_signal` reading SAME; the operator at :43 is better placed to spend that time if a full run is warranted.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, scheduled operator cycle (04:1x slot): twelfth-plus independent reconfirmation, gate_tests sandbox hang exceeded 20 minutes but corroborated green via CI, nothing new unblocked
+
+Attached cleanly: fetch, unshallow (checkout was fresh and shallow), checkout main, ff-only merge onto origin/main, picking up two concurrent fixes mid-run (the NIGHTLY-LOG ordering fix on fb534c2ed and its own workflow_dispatch verification handoff, then a later hourly check-in). Read GOALS.md, BACKLOG-2026-09-07.md sections 0-7, OWNER-ACTIONS.md, CLAUDE.md and this log's own top entries directly rather than trusting a summary.
+
+Verified, not cited: fix_dashes.py --check 0 em/0 en. check_urls.py 213/213. cold_read_ledger.py --stale 0/296, --next 0 un-ledgered candidates (genuinely exhausted). affiliate.py --check clean, 165 documents. A full preflight.py run to a log file: 0 FAIL/0 WARN through every gate reached, but this cycle gate_tests exceeded even a 20-minute background bound without finishing, the second time that specific shape has been logged (first was 2026-10-10); not a new gate yet, since the threshold for that is three occurrences. Closed the gap a different way instead of citing the hang: the concurrently-queued workflow_dispatch run (#2454, 40446911203) against the ordering fix finished its Preflight step (success, 03:57:07-04:06:55Z) and The ops test suite step (success, 04:06:55-04:12:41Z) on the GitHub-hosted runner before this entry was written, so the fix is confirmed, not assumed. Also ran the two previously-failing test files directly in this sandbox: test_gate_nightly_log_ordering.py 8/8, ops/nightly_log.py's own test 10/10, both pass.
+
+Re-derived rather than trusted: deploy gap unchanged, one material commit (840f3e11b) still undeployed, Phil-gated on VPS_DEPLOY_KEY (issue #35). GitHub re-pulled directly: 10 open issues unchanged, all decision/blocked-on-art (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs. inbox_agent.py --apply: no mail credential, unchecked not empty.
+
+No defect found to fix beyond the sandbox-environment gate_tests timing noted above, already being independently resolved by a concurrent session's CI verification. Same standing Phil-gated queue; nothing newly unblocked. No push notification: nothing material has changed since the last one, and this cycle's own finding (gate_tests exceeding 20 minutes) is sandbox-environment noise already corroborated green on the hosted runner, not a customer-facing issue.
+
+## 2026-10-27, PM check-in (04:1x slot): same run 2454 verified green independently and concurrently with the operator cycle above, collision noted rather than hidden
+
+This cycle independently confirmed the same thing the operator entry above already landed first: run 40446911203 (workflow_dispatch against fb534c2ed, the nightly log ordering fix) completed with conclusion success at 04:12:56Z via the Actions API, closing the prior cycle's unverified handoff. Found this after the operator had already pushed it, so this entry corroborates rather than duplicates the finding. Working tree was clean before this cycle started; main was in sync at de9f63b87. cycle_signal.py read SAME. inbox_agent.py: no mail credential, unchecked not empty. GitHub's 10 open issues unchanged, all decision or blocked on art, none mine. Backlog sections 2 through 6 reread directly: every row is done, archived or Phil gated (C5 Gemini billing, C6 YouTube OAuth). A full local preflight was backgrounded for independent reconfirmation; its result was superseded by the operator's own completed run above before this push, so it was not waited on further.
+
+**Did not go well:** ran the same verification as the :43 operator without checking for its concurrent work first, a collision this cycle's own STEP 8 asks to avoid. **Changing next cycle:** check whether the operator has already landed a fix for the same handoff before re-verifying it from scratch.
+
+**Next:** same standing Phil gated queue (10 open issues), unchanged. Nothing new to hand the operator; the queue stays exhausted.
+
+Pushed to main (merged onto the operator's own push rather than forced). `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched.
+
+HANDOFF-FILES: none
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (04:1x slot): previous work was NOT finished, checks.yml was red on commit b047c0608 and nobody had looked
+
+**Previous work was not finished.** The top-of-log reconfirmations kept citing "all workflows green," but nobody had checked `checks.yml` itself since `b047c0608` (the tenth-reconfirmation rotation commit): its Preflight step ran to real completion on the GitHub-hosted runner (no sandbox hang there) and failed on 2 gates. No later push has touched a path that re-triggers `checks.yml`, so the red run sat unseen; this cycle's own instrumented local preflight independently found the same 2 fails before I pulled the CI log, so this was not invisible, just unread.
+
+**Root cause, one defect not two.** `gate_nightly_log_ordering` failed: the concurrent-merge commit (`3867ce6d6`) that reconciled two simultaneous NIGHTLY-LOG rotations left `b047c0608`'s own entry appended at the physical end of the 16,000-line file instead of prepended to the top. `gate_tests` failed as a direct consequence (its regression tests run the ordering gate against the real committed file). Fixed by moving the misplaced entry to its correct chronological slot among today's other entries. Re-ran both previously-failing test files directly (no pytest in this sandbox): `test_gate_nightly_log_ordering.py` 8/8, `test_nightly_log.py` 10/10, both now pass. `fix_dashes.py --check` 0/0, `check_urls.py` 213/213, `cold_read_ledger.py --stale` 0.
+
+**Verifying, not just fixing.** The fix itself only touched `ops/NIGHTLY-LOG.md`/dashboard files, which `checks.yml`'s own trigger deliberately excludes (`!ops/NIGHTLY-LOG.md` etc., to stop generated-output churn from cancelling real runs), so the push would never re-trigger it on its own. Triggered it directly via `workflow_dispatch` instead of asking the operator to wait for a push that was never coming: run `#2454` (id `40446911203`) against `fb534c2ed`, queued 03:56:01Z. Still `in_progress` as this entry is written (the Preflight step alone runs ~9-10 minutes on the hosted runner); not claiming green until it actually reports that.
+
+**Handing the operator:** check run `40446911203`'s final conclusion (`gh`/Actions API, workflow `checks.yml`) before trusting this fix; if it is anything but success, read its job log rather than re-citing this entry. Nothing else newly unblocked, same standing Phil-gated queue.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck.
+
+## 2026-10-27, PM check-in (03:4x slot): eleventh-plus independent reconfirmation of the exhausted queue, deploy gap re-derived and still matches, nothing new unblocked
+
+NEXT FOR THE OPERATOR: keep re-checking GitHub, mail and workflows directly each cycle and skip redundant local re-verification whenever cycle_signal reads SAME, because every unblocked backlog row is already Done or Phil-gated and the standing cadence question is already tracked as a decision for Phil (issue #42), not something either of us should resolve by inventing work.
+
+Attached cleanly: fetch, unshallow was unnecessary (already unshallowed), `checkout main`, ff-only merge (47 commits onto `1a7dfd346`), tree already clean. Read `BACKLOG-2026-09-07.md` sections 0-8 directly rather than trusting a summary: every "Now" row in sections 2-4 is Done or already closed, section 5 is Hold on traffic/money, section 6 is six owner gates, none mine.
+
+Previous work IS finished: working tree clean, main in sync with origin (`032dac213`). `cycle_signal.py --check`: SAME against the 02:48:08Z snapshot (partial pass, every gate before `gate_tests` clean). `rotate_nightly_log.py --check`: CLEAN, nothing older than the 14-day window, so the prior cycle's rotation already did this job. `inbox_agent.py --apply`: no mail credential, unchecked not empty. GitHub re-read directly, not cited: 10 open issues unchanged (`#42,#40,#35,#33,#31,#29,#21,#18,#15,#2`, all `decision`/`blocked-on-art`), 0 open PRs, every scheduled workflow green on current HEAD via the Actions API.
+
+**Re-derived the deploy gap myself rather than trusting STATUS.md's own citation.** `preflight.resolve_verdict_commit('a0bbe5bb276ee21b')` -> `ad933f9e5`; `deploy_gap_material_commits('ad933f9e5')` against real current HEAD returns exactly one commit, `840f3e11b`, matching STATUS.md's own `BLOCKER-001` row word for word. No drift to fix; the gap is unchanged since 2026-10-26 and still Phil-gated on `VPS_DEPLOY_KEY` (issue #35).
+
+Started a full `preflight.py` to actual completion in the background to independently reconfirm beyond `cycle_signal`'s file-hash check; still running past the `gate_tests` sandbox-slow stretch when this entry was written. Shipping now rather than holding the tree for the :43 operator; if it surfaces a real FAIL it will be acted on this session or handed to the next cycle, not buried.
+
+**Closing job this slot:** none needed beyond the verification above; nothing was stale or wrong to fix.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched.
+
+
+## 2026-10-27, scheduled operator cycle (02:4x slot, tenth independent reconfirmation, one real sandbox-environment defect found and fixed, no notification)
+
+**Did:** Attached cleanly: fetch, unshallow, `checkout -B main origin/main`, ff-only merge (42 commits onto `65610e2bb`, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `OWNER-ACTIONS.md` in full, `CLAUDE.md`, and this log's own recent entries rather than trusting a summary. `ops/cycle_signal.py --check` read SAME against the 02:17:53Z snapshot; ran the live checks anyway per the verify-before-citing rule rather than stopping there.
+
+**Found and fixed, not just noted:** running the fast substitute checks by hand (not through `preflight.py`'s own bootstrap) surfaced two FAILs neither of which was a real site defect, both traced to ground before writing either off. (1) `ops/affiliate.py --check` failed to read 3 delivered PDFs: this sandbox's bare `pip install` writes to a Python 3.13 `dist-packages` tree while `python`/`python3` resolve to 3.11, so `pymupdf` appeared "installed" but was not importable; `python -m pip install` fixed it immediately, and `preflight.py`'s own `ensure_pymupdf()` already works around this correctly by calling `sys.executable -m pip`, so this is a hazard for a human or script running the substitute checks directly, not a gap in preflight itself. (2) `check_sellable.py --deep` reported 120 missing build files because `build/products/` is gitignored and this was a fresh checkout; `ops/build_catalog.py --build` regenerated it (155 files, all checked against the catalogue) and the check went clean (124/126, the other 2 person-delivered services by design). Re-ran both clean after each fix, not assumed.
+
+**Verified, not cited:** `preflight.py` run live to a file (not backgrounded and trusted blind): 0 FAIL, 0 WARN across every gate reached, hung at the documented `gate_tests` sandbox limit at ~170s, killed there, same known shape every recent cycle has logged. `fix_dashes.py --check` 0 em/0 en. `check_urls.py` 213/213. `cold_read_ledger.py --stale` 0/296, `--next` 0 un-ledgered candidates. `affiliate.py --check` clean (165 documents, pymupdf fix applied). `check_sellable.py --deep` 124/126 (build step re-run). `inbox_agent.py --apply`: no mail credential, unchecked not empty, same standing gap. GitHub re-pulled directly: 10 open issues unchanged, all `decision`/`blocked-on-art` (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), none updated since 2026-10-25T02:59:51Z, 0 open PRs. All scheduled workflows green on current HEAD via the Actions API. `ops/deploy-verdict.json` unchanged, verdict `current` (build `a0bbe5bb276ee21b`, checked 2026-10-26T16:51:56Z). `git status` clean before and after except the fresh `cycle-signal.json` snapshot this run's own preflight pass wrote.
+
+**On the standing cadence question (issue #42):** checked `ops/last-owner-notification.json` before considering anything. The last deliberate status push was 2026-10-24T16:1x UTC; its 48h no-repeat floor has now actually elapsed (it runs to roughly 2026-10-26T16:1x UTC, about 10 hours before this cycle), the first time that has been true rather than still pending. Did not push anyway: the floor is a minimum gap, not a mandate to re-alert on a fixed clock, and nothing material has changed since the last push (same 10 issues, same labels, no Phil-authored commit or reply since 2026-10-23). Repeating an identical alert with no new information is the kind of notification this tool's own guidance says costs attention without being acted on; holding it for a cycle where something has actually moved, or where the elapsed time itself becomes a new fact worth a human's attention, is the better call.
+
+**Went well:** the two sandbox-environment FAILs were root-caused and fixed rather than assumed to be real product defects or silently worked around; the pymupdf finding in particular is worth a human script-author knowing (bare `pip install` in this container is not reliable; always use `python -m pip install`).
+
+**Did not go well:** this is the tenth consecutive cycle with zero business-outcome movement. Every unblocked backlog row is already Done or Phil-gated, reconfirmed rather than assumed; the real fix remains the `OWNER-ACTIONS.md` "start here" items only Phil can take.
+
+**Changing next cycle:** nothing in the process; the pymupdf/pip mismatch is sandbox-specific and already correctly handled by `preflight.py`'s own bootstrap, so no new gate is needed for it.
+
+**Next:** same standing Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged.
+
+Dashboard regenerated and shipped (revenue carried forward from the 02:21 cycle, Stripe unreachable this run, same as every recent cycle). No price, product or site page touched; the two fixes this cycle were both sandbox/tooling corrections, not code shipped to a customer.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in
+
+NEXT FOR THE OPERATOR: keep re-checking GitHub, mail and workflows directly and skip redundant local re-verification when cycle_signal reads SAME, because every unblocked backlog row is already Done or Phil-gated (tenth reconfirmation; see issue #42).
+
+Attached cleanly (fetch, unshallow, ff-only onto origin/main). Previous work IS finished: working tree clean, cycle_signal SAME, preflight 0 FAIL to the documented gate_tests sandbox hang (killed there), check_urls 213/213, fix_dashes 0/0, affiliate clean, cold_read_ledger 0 stale, inbox_agent unchecked (no mail credential). Re-derived the deploy gap directly: 1 material commit (840f3e11b) still undeployed, unchanged, Phil-gated on VPS_DEPLOY_KEY. GitHub: 10 open issues unchanged (decision/blocked-on-art), 0 PRs, all workflows green.
+
+Closing job done myself: ops/NIGHTLY-LOG.md was 2.66MB/1090 entries, past its 14-day retention; rotated 73 entries (190353 bytes) into the archive, verified by exact count reconciliation (3659=3659). Clean now.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched.
+
+**Note from the concurrent cycle that merged this (783f4fea0):** a second, independent rotation ran at nearly the same boundary before this push was seen; both counted and moved the same aged tier correctly, so nothing here was double-moved, just two sessions reaching the same overdue housekeeping at once.
+
+## 2026-10-27, PM check-in (02:0x slot, ninth independent reconfirmation, nothing new unblocked, no notification)
+
+Previous work IS finished, confirmed directly rather than cited: `cycle_signal.py --check` read SAME against the 01:15:31Z snapshot, but ran the full checks live anyway. `preflight.py` run with `python -u` to an unbuffered file (not trusting a backgrounded copy's buffering): grep confirms 0 FAIL, 0 WARN across every gate the run reached, hung at the documented `gate_tests` sandbox limit, killed there, same known shape. `fix_dashes.py --check` 0 em/0 en. `check_urls.py` 213/213. `cold_read_ledger.py --stale` 0/296, `--next` 0 un-ledgered candidates. The prior cycle's non-reproduced 269-stale anomaly did not recur a second time either.
+
+GitHub re-pulled directly: 10 open issues unchanged, all `decision`/`blocked-on-art`, none updated since 2026-10-25T02:59:51Z (#42), 0 open PRs. All 5 scheduled workflows green on current HEAD via the Actions API. No new comment added to #42: nothing has changed since its own point about cadence cost, and this cycle's result is one more data point for a decision already fully recorded there, not a new finding.
+
+No defect found to fix, no stale document found to correct this cycle. Handing the operator nothing new: same standing Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged.
+
+Dashboard regenerated and shipped (revenue carried forward, Stripe unreachable this run, same as the prior cycle). No code, price, product or page touched. No push notification: nothing has changed since the last one.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, scheduled operator cycle (eighth independent reconfirmation, nothing new unblocked, no notification)
+
+**Did:** Attached cleanly (fetch, checkout main, ff-only onto origin/main). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 2/5/6 and its latest closed entries, `OWNER-ACTIONS.md` in full, and this log's own top entries, rather than trusting a summary. Ran `preflight.py` live to a file, not backgrounded and cited: 0 FAIL through every gate, hung at the documented `gate_tests` sandbox limit at 410s, killed there, same known shape. Ran the fast substitutes live: `fix_dashes.py --check` 0/0, `check_urls.py` 213/213, `affiliate.py --check` clean (165 documents), `check_sellable.py --deep` 124/126 (2 person-delivered services by design). `inbox_agent.py --apply`: no mail credential, unchecked not empty.
+
+**Verified:** GitHub re-pulled directly: 10 open issues unchanged, all `decision`/`blocked-on-art`, none updated since 2026-10-25T02:59:51Z (#42), 0 open PRs; no new comment to add, per #42's own point about cadence cost. `BACKLOG-2026-09-07.md` sections 2-6 stay Done, Hold (correctly, waiting on traffic), or Phil-gated; `OWNER-ACTIONS.md`'s open items (YouTube OAuth, Search Console reports, Gemini billing, KDP/Etsy accounts, Apple/Play accounts, on-device screenshots) all genuinely need Phil's own hand, credential or device.
+
+**Went well:** a concurrent cycle's push was caught by a second fetch before this cycle's dashboard commit, avoiding a stale-HEAD collision.
+
+**Did not go well:** `cold_read_ledger.py --stale` returned 269 stale entries once, with a uniform, implausible "last touched 2026-10-26" date that direct `git log` contradicted; three immediate reruns all returned 0/296 stale. Not reproduced, so not gated; likely a transient race with the concurrently-running preflight bootstrap. Flagging rather than silently discarding.
+
+**Changing next cycle:** nothing in the process; issue #42 already asks Phil to decide on cadence, and this is one more data point for it, not a new ask.
+
+**Next:** same standing Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2).
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (01:4x slot, seventh independent reconfirmation, nothing new unblocked, no notification)
+
+NEXT FOR THE OPERATOR: hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open item is still Phil-gated and none has moved since 2026-10-25T02:59:51Z.
+
+Attached cleanly: fetch, real unshallow (this checkout started shallow and detached), checkout main, ff-only onto origin/main (241d7ca, two commits ahead of the prior cycle, hourly check-in only). Working tree clean before and after. Previous work IS finished: `ops/cycle_signal.py --check` reads SAME against the 01:15:31Z snapshot (partial pass, every gate before `gate_tests` clean, only git_head/timestamp moved on re-run). Did not stop at SAME: ran the fast substitute checks live myself. `fix_dashes.py --check` 0 em/0 en. `cold_read_ledger.py --stale` 0/296. `cold_read_ledger.py --next` 296 of 296 files ledgered, 0 un-ledgered candidates, genuinely exhausted, not assumed. `check_urls.py` 213/213. `ops/deploy-verdict.json` unchanged, verdict `current` (build `a0bbe5bb276ee21b`, checked 2026-10-26T16:51:56Z).
+
+GitHub re-pulled directly via the MCP tools, not cited: 10 open issues, unchanged, all `decision`/`blocked-on-art` (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), none updated since 2026-10-25T02:59:51Z (#42), 0 open PRs. Did not add another comment to #42: no new evidence since its own instruction not to re-raise without one.
+
+No defect found to fix, no stale document found to correct this cycle. `BACKLOG-2026-09-07.md` sections 2-6 stay Done, Phil-gated, or closed by decision (sections 9-52). This is the seventh consecutive cycle reaching the same conclusion since 2026-10-24; not re-narrating the full re-derivation, per issue #42's own point about cadence cost.
+
+Handing to the operator: nothing newly unblocked; same standing Phil-gated queue, unchanged. Dashboard regenerated and shipped. No code, price, product or page touched. No push notification: nothing has changed since the last one.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (01:1x slot, sixth independent reconfirmation, nothing new unblocked, no notification)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged since 2026-10-25.
+
+Attached cleanly: fetch, unshallow, checkout main, ff-only onto origin/main (5c43d02, merge of two concurrent cycles). Previous work IS finished: `ops/cycle_signal.py --check` read SAME against the 00:49:15Z snapshot (only git_head/timestamp moved on re-run). Ran the fast substitute checks live rather than only citing it: `fix_dashes.py --check` 0 em/0 en, `cold_read_ledger.py --stale` 0/296 and `--next` 0 un-ledgered candidates, `check_urls.py` 213/213, `affiliate.py --check` clean (165 documents), `check_sellable.py` 124/126 (2 person-delivered services by design), `inbox_agent.py --apply` no mail credential (unchecked, not empty).
+
+Ran `preflight.py` live to a file rather than trusting the last snapshot: hit a concurrent preflight lock (pid 740, another cycle running at the same time), waited it out, then 0 FAIL through every gate reached, hung at the documented `gate_tests` headless-Chromium sandbox limit, killed there, same known shape every recent cycle has logged, not a new defect.
+
+GitHub re-pulled directly: 10 open issues unchanged, all `decision`/`blocked-on-art`, none updated since 2026-10-25T02:59:51Z (#42), 0 open PRs. All scheduled workflows green on current HEAD via the Actions API. Did not add another comment to #42: no new evidence since its own instruction not to re-raise without one.
+
+No defect found to fix, no stale document found to correct this cycle. `BACKLOG-2026-09-07.md` sections 2-6 stay Done, Phil-gated, or closed by decision. Dashboard regenerated and shipped. No code, price, product or page touched. No push notification: nothing changed since the last one.
+
+Attached cleanly: fetch, unshallow, checkout main, ff-only onto origin/main (e46dbf320, 29 commits). Previous work IS finished: `ops/cycle_signal.py` combined_hash unchanged from the 2026-10-26T23:44:35Z snapshot (only git_head/timestamp moved). Verified rather than cited: `cold_read_ledger.py --stale` 0/296. `inbox_agent.py --apply` no mail credential (unchecked, not empty). `preflight.py` run live to a file, 0 FAIL across every gate reached, hung at the documented `gate_tests` sandbox limit, killed there, same known shape, not a new defect.
+
+Pulled GitHub fresh rather than trusting the log: read issue #42 in full and `list_issues` for all 10 open issues. Unchanged: all `decision`/`blocked-on-art` (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), none updated since 2026-10-25, 0 open PRs, no reply from Phil on any of them.
+
+No defect found, nothing newly unblocked. `BACKLOG-2026-09-07.md` sections 2-6 stay Done, Phil-gated, or closed by decision. This is the same conclusion dozens of consecutive cycles have independently reached since 2026-10-24; not re-narrating the full re-derivation each time, per issue #42's own point about cadence cost.
+
+Handing to the operator/PM: same standing Phil-gated queue, unchanged. Dashboard regenerated and shipped. No code, price, product or page touched. No push notification: nothing changed since the last one (2026-10-24T16:1x), and no new evidence exists to justify an eighth comment on #42.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (00:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked, no notification)
+
+NEXT FOR THE OPERATOR: hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open item is still Phil-gated and none has moved since 2026-10-25.
+
+Attached cleanly: fetch, unshallow, checkout main, ff-only onto origin/main (e46dbf3, 29 commits). Working tree clean before and after. Previous work IS finished: `ops/cycle_signal.py --check` reads SAME against the 23:44:35Z snapshot (partial pass, every gate before `gate_tests` clean), nothing has touched a signal file since. Verified fresh rather than only cited: `fix_dashes.py --check` 0 em/0 en, `cold_read_ledger.py --stale` 0 and `--next` 0 un-ledgered candidates (296 of 296 ledgered, genuinely exhausted, not assumed). GitHub re-pulled directly: 10 open issues unchanged, all `decision`/`blocked-on-art`, none updated since 2026-10-25T02:59:51Z (issue #42), 0 open PRs. Did not add an eighth comment to #42: no new evidence since its own instruction not to re-raise without one.
+
+No defect found to fix, no stale document found to correct this cycle. `OWNER-ACTIONS.md`'s "Start here" section is unchanged: usage/plan check, `VPS_DEPLOY_KEY`, Search Console reports, YouTube authorisation, Stripe description, setup-script line, all still waiting on Phil's own hand. Dashboard regenerated and shipped. No code, price, product or page touched. No push notification: nothing changed.
+
+## 2026-10-27, PM check-in: previous work confirmed finished, fourth independent reconfirmation of the same exhausted state, nothing new unblocked
+
+Attached cleanly: fetch, unshallow, checkout main, ff-only onto origin/main (1cfb43b, 26 commits). Previous work IS finished: `ops/cycle_signal.py --check` reads SAME against the 23:44:35Z snapshot. Verified rather than cited: `fix_dashes.py --check` 0 em/0 en, `cold_read_ledger.py --stale` 0, `inbox_agent.py --apply` no mail credential (unchecked, not empty). `preflight.py` run live, 0 FAIL through every gate reached, hung at the documented `gate_tests` sandbox limit, killed there, same known shape, not a new defect. GitHub re-pulled directly: 10 open issues unchanged, all `decision`/`blocked-on-art`, 0 open PRs, all scheduled workflows green at current HEAD. Did not add an eighth comment to issue #42: no new evidence since its own 2026-10-25 instruction not to re-raise without one.
+
+No defect found to fix, no stale document found to correct. **Handing to the operator:** same standing Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged. Dashboard regenerated and shipped. No code, price, product or page touched. No push notification: nothing changed.
 ## 2026-10-26, scheduled operator cycle (23:5x slot, nothing new unblocked, no notification)
 
 **Did:** Full startup sequence per the operator prompt rather than a shortcut: unshallowed and ff-only attached onto origin/main (2a0a91166). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7 and `ops/NIGHTLY-LOG.md`'s last entries directly rather than trusting a summary. Ran `preflight.py` live, backgrounded so partial output survives the hang. Checked GitHub directly via the MCP tools rather than citing the log, including reading issue #42 (the cadence-cost issue) in full with all 7 comments, since it names the exact pattern this run was about to repeat.
