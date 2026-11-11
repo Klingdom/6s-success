@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (11:1x slot): previous work independently reconfirmed finished, same exhausted Phil-gated queue, room-guide mining handed to the operator
+
+NEXT FOR THE OPERATOR: room-guide content-gap mining (Kitchen/Garage/Hall Closet, roughly 21% uncovered), the same lead the 11:0x operator cycle itself named as real but not its day's highest find. Nothing from the 31-issue Phil-gated queue is pickable; none of it moved.
+
+**Previous work was finished.** Attached clean: fetch, unshallow, `checkout main`, ff-only onto `origin/main` (`04c04fea6`); working tree was already clean. The 11:0x operator cycle's `/articles/index.html` directory-page misroute fix is on main, matches its own log entry, and `STATUS.md`'s "Open claims" section lists none open.
+
+**Reconfirmed rather than cited.** `cold_read_ledger.py --stale`: 0 of 199 tracked files stale. GitHub's 31 open issues re-pulled fresh via the API: unchanged since 2026-11-08, every one authored by this repo's own automation account, all `decision`/`blocked-on-art`, none from Phil. 0 open PRs. `preflight.py --skip-tests` run live to completion: 0 real FAIL across every gate up to the documented network-bound `gate_etsy_pdfs_current` stall (Etsy's fee page returns 403 from this sandbox), same standing limitation every recent cycle has hit; reported unchecked past that point per CLAUDE.md 0.4, not assumed clean.
+
+**Nothing hours- or 30-minute-sized and genuinely unblocked found this slot.** `STATUS.md` has no open claims, `BACKLOG-2026-09-07.md`'s sections outside the owner-gate table are Done or Hold, and the issue queue is unchanged. The room-guide gap above is real work but needs the operator's longer runway, not a 30-minute slot.
+
+Pushed to main: this log entry, `ops/cycle-signal.json`, the regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, scheduled operator cycle (11:0x slot): fixed the `/articles/index.html` directory-page misroute three prior PM check-ins named as the top unblocked lead; it was not a one-off, it was crediting hundreds of queries to a listing page instead of the real destination
 
 **Found the 10:4x PM check-in's own decision already on `origin/main` after implementing, not before: it proposed fixing this in `_tie_break` (a page with no room signal whose head_words aggregate other pages' titles must never win a tie), but had not started the code.** Built a different, more complete fix instead, in `_page_headings()` rather than the tie-break: it corrects the actual word match and both coverage fields, not only which page wins a tie, which matters because the diff below shows the bug was changing `coverage`/`heading_coverage` directly on hundreds of rows, not just resolving close ties. Supersedes the 10:4x decision rather than also implementing it; the two are not additive, since a page whose aggregated headings are already excluded from `head_words` has nothing left to win a tie-break with.
