@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, scheduled operator cycle: closed 3 of the Hall Closet linen-closet handoff's real content gaps; the misroute lead and the blankets/bedding words tested unsafe and correctly not shipped
+
+**Did:** Unshallowed and attached clean onto `origin/main` (833 commits fast-forwarded, no reset/force), merging twice more as concurrent cycles pushed during this run (no conflicts past the routine `ops/cycle-signal.json` checkpoint, resolved by taking the newer side since it is a regenerable checkpoint). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries and the 06:1x/06:4x PM check-ins' own Hall Closet handoff before touching anything. `preflight.py --skip-tests` (fresh, before any edit): 0 FAIL. Picked up the handoff's two leads rather than citing them.
+
+**Verified:** Simulated both leads against the live scorer before writing anything (CLAUDE.md 5d), not after. Lead 2 (blankets/comforters/washcloths/bedding as real content gaps): adding "comforters"+"washcloths" to a new FAQ heading closes 3 queries with 0 regressions across the full 3,925-query corpus, confirmed by diffing every row before/after; shipped as a new FAQ pair (visible h3/p plus its JSON-LD duplicate) in `site/articles/how-to-organize-a-linen-closet.html`, grounded only in facts the article already states. Adding bare "blankets" or "bedding" instead causes 6 **new** misroutes elsewhere (e.g. "how to store bedding" would flip from the correct bed-and-bedding-zone page to this one), confirmed the same way; correctly not shipped. Lead 1 (the "organized bathroom cupboard" tie-break bug, a cross-sell band heading leaking "bathroom"): tried stripping all promotional `<section class="band">` headings from the heading-scoring surface; this removes the leak but causes 6 **different** regressions elsewhere (legitimate self-referential band headings, e.g. Pantry's own "the cans" cross-sell, were providing genuine matches). Neither fix is safe; not shipped. `ops/tests/test_keyword_demand.py` (41/41) and `test_room_guide_underperformance.py` (19/19) pass unchanged. Rescored both corpora live: US partial 1054->1051, covered 1667->1670, gap unchanged 102; global partial 796->793, covered 1282->1285, gap unchanged 88. `fix_dashes.py --check` 0/0, `check_urls.py` 235/235, `audit_pages.py` 240/0, `audit_visual.py` scoped to the page 0 findings. `preflight.py --skip-tests` reran clean, 0 FAIL, same documented `gate_etsy_pdfs_current` stall. GitHub re-pulled live: 31 open issues, unchanged since 2026-11-08, none from Phil.
+
+**Went well:** testing both leads against the real scorer before writing any code or content caught two plausible-looking fixes that would each have traded one bug for several new ones.
+
+**Did not go well:** the tie-break bug (lead 1) is real and still open; a safe fix needs per-word provenance (whether a matched word came from a self-referential vs. cross-room heading), which is more than this cycle's own change.
+
+**Changing next cycle:** none yet; this is one occurrence of the band-heading-leak shape, not three (CLAUDE.md 10b).
+
+**Next:** the tie-break bug stays open, now with two ruled-out approaches on record so no future cycle repeats either; same 31-issue Phil-gated queue otherwise.
+
+Pushed to main: this log entry, `BACKLOG-2026-09-07.md` A90, the article, both rescored corpora and their summaries, the regenerated command deck. No price or product touched; `IndexNow` queued for the article's edit.
+
+HANDOFF-FILES: none
+
 ## PM check-in (06:4x slot, 30-minute triage): previous work still unactioned, same Hall Closet handoff reconfirmed for the operator
 
 NEXT FOR THE OPERATOR: the same two concrete Hall Closet leads the 06:1x slot named and did not yet ship (the "organized bathroom cupboard" heading-tie misroute needing a narrow, scoped fix plus a full-corpus regression check, and the four blankets/comforters/washcloths/bedding heading-or-FAQ gaps), because no full operator cycle has run since that handoff landed, only the routine hourly dashboard regeneration, so the work is still exactly where it was left.
