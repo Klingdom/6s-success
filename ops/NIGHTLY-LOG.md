@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (15:1x slot): previous work NOT finished, CI was red on main; found and fixed the real gap, then closed a live stale-citation defect in STATUS.md
+
+**Previous work was not finished.** Attached clean onto `8695f8e8c`. CI's "Checks" run (43045396949) on the immediately preceding commit was RED: `gate_feed_current` and `gate_generator_ownership` both FAIL, `site/feed.xml` out of sync with `ops/build_feed.py` after the Family Room article's `dateModified` bump shifted its feed position. "Publish site image" failed the same way. Fixed: ran `ops/build_feed.py`, diff is exactly the one entry's position moving; `gate_feed_current` and `test_gate_feed_current.py` (5/5) both clean afterward.
+
+**Also found and fixed, not just reported: all five STATUS.md sections that cite the deploy verdict (BLOCKER-001, Production Knowledge, Public website row, Production traceability row, Currently Deployed Build) were stale**, citing a 05:13:38Z confirmation superseded by `ops/deploy-verdict.json`'s 13:38:56Z one (build `d7667b56d6455689`). `gate_status_deploy_verdict_current` confirmed the warning before the fix and clean after. Re-derived directly: `resolve_verdict_commit` -> `fb8d77c98`; `deploy_gap_material_commits` against `HEAD` (`8695f8e8c`) returns one commit (`4e67c69a3`, Family Room mining), already shipped and gated; deploys are automatic so production has likely caught up, but unconfirmed (no SSH/VPS credential here).
+
+**Verified before shipping:** `preflight.py --skip-tests` run live to the documented `gate_etsy_pdfs_current` network stall, 0 FAIL through every gate reached. `cold_read_ledger.py --stale`: 0 stale. GitHub's 31 open issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-08.
+
+**Went well:** checked CI directly instead of trusting the prior cycle's "finished" claim; the gap was real and would have kept shipping red builds.
+
+**Did not go well:** the feed drift (an article's `dateModified` bump moving its own feed position) is the same class of generator-vs-source gap this log already names; nothing new about the shape, just a fresh instance.
+
+**Changing next cycle:** none.
+
+**Next:** same 31-issue Phil-gated queue. Hall Closet's 30-row partial tier is still the largest unmined room-guide tier for the operator.
+
+Pushed to main (`3fcf5eeac`) plus this entry and the regenerated dashboard. No price or product page touched; IndexNow not applicable (feed/status fixes only).
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, scheduled operator cycle (~14:4x UTC): mined Family Room's remaining partial tier, closed 3 rows plus a missing FAQ, declined four already-settled rows rather than re-litigate them
 
 **Did:** Attached clean onto `4485841ac`. Preflight, GitHub (31 issues, unchanged, none from Phil) and inbox (no mail credentials) all as expected. Pulled Family Room's 16-row partial tier via `score_room()`. Checked `zone-also-called.json`'s own notes first: 4 rows (card games/video game/game library queries) were already tried and declined on 2026-11-05/06/07, every "games"/"video game" alias colliding with live PC/Steam queries per the digital-collision gate; did not re-litigate. "bonus room storage"/"den storage ideas" are a genuine tie (the room-level synonym and the zone page split the match, neither heading carries both words); left honestly partial. Shipped two zone-also-called fixes: "children's zone" (Toy and Play Zone, fixes "toy storage organizer for children") and "cables zone" (Charging and Device Zone, fixes "how to organise charging cables at home"; a first try, "charging cables zone", correctly failed the digital-collision gate and was renamed). Declined "wireless charging zone" as fabricated specificity, this zone's content never mentions a cordless pad. Added the family room's missing "How do I declutter a family room quickly?" FAQ (every sibling room guide already has one), grounded in facts already on the page.
