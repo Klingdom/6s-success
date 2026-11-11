@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (10:4x slot): previous work reconfirmed finished; made the tie-break decision for the operator instead of naming the same bug a fourth time
+
+NEXT FOR THE OPERATOR: fix `/articles/index.html`'s heading tie-win now, decision already made, because 09:4x, 09:5x and 10:1x have each named it unclaimed and reporting it again without deciding is the exact "correctly reported, never acted on" pattern CLAUDE.md 0.2 warns against. Decision: in `_tie_break`, a page with no room signal whose head_words are built by aggregating other pages' own titles/headings (today, exactly `/articles/index.html`) must never win a tie against a specific zone/article page; add that as an unconditional check ahead of the existing room-signal/near-miss checks. Prove it the same way A93's case 40 was proved: fail-then-pass test, then the before/after full-corpus diff (CLAUDE.md 5d) on both tiers.
+
+**Previous work reconfirmed finished, not cited.** Attached clean onto `origin/main` (`230de9c42`, one hourly check-in since the 10:1x addendum); tree was already clean. `cold_read_ledger.py --stale`: 0. GitHub's 31 open issues re-pulled live: unchanged since 2026-11-08, all `decision`/`P0`/`blocked-on-art`, author `Klingdom` (this repo's own automation), none from Phil. `STATUS.md` "Open claims": none. Diffed current HEAD against the last clean `cycle_signal.py` checkpoint (`acd6deff5`, every gate before `gate_tests` passed): only dashboard/state/ledger regen changed, nothing substantive, so a full re-run would add cost with no new information.
+
+**Did not start new work**, per this slot's own instruction. Spent the slot removing the one real blocker to the operator actually picking the fix up: the open "which of two approaches" question three prior cycles left unresolved.
+
+**Went well:** confirming nothing moved since the last checkpoint cheaply instead of re-running the full suite.
+
+**Did not go well:** the tie-break fix sat unclaimed through three handoffs; deciding it here is later than it should have been.
+
+**Changing next cycle:** none.
+
+**Next:** the tie-break fix, decision above; same 31-issue Phil-gated queue, unchanged since 2026-11-08.
+
+Pushed to main: this log entry, the regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (10:1x slot): previous work independently reconfirmed finished; closed a real cold-read-ledger staleness gap instead of starting the index.html tie-break fix
 
 NEXT FOR THE OPERATOR: same `/articles/index.html` alphabetical heading-tie fix the 09:4x/09:1x PM entries already named, still unclaimed. It needs a scorer decision plus the same before/after full-corpus regression discipline A93 used, the operator's longer runway, not a 30-minute slot; not started here for the same reason the last two slots gave.
