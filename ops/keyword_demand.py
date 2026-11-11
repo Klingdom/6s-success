@@ -194,7 +194,8 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "household", "daily", "inspo", "inspiration",
                           "images", "efficiency", "chef", "modern", "rustic",
                           "simple", "choose", "deep", "hacks", "lots",
-                          "categories", "pro", "aesthetically"))
+                          "categories", "pro", "aesthetically", "newborn",
+                          "planning"))
 
 # "deep" and "hacks" joined 2026-11-11, mining Hall Closet's remaining
 # partial tier. "how to organize a deep hall closet" and "deep hall closet
@@ -588,6 +589,48 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
 # must be stored") has other unmatched words regardless and does not move.
 # None can move the other way, same reasoning as every prior FORMAT_WORDS
 # addition.
+
+# "newborn" and "planning" joined 2026-11-11, mining Garage's and Nursery's
+# remaining partial tiers. "newborn baby nursery organizer" and "how to
+# organize dresser for newborn" ask the same organizing question as
+# "baby nursery organizer"/"how to organize dresser", "newborn" naming the
+# occupant's age rather than a different subject, the same
+# not-a-different-subject role "her"/"him"/"men"/"women" already play for a
+# demographic qualifier. "planning a gallery wall" and "nursery planning
+# ideas" ask the same thing as "arranging a gallery wall"/"nursery ideas",
+# "planning" a task-verb synonym for the layout work "arrange" already
+# covers, not a different activity (checked against "plan", singular,
+# which was tried for the same tier and declined: a full before/after
+# corpus rescore found 2 literal architectural-blueprint queries, "railings
+# in floor plan" and "stove on floor plan", flip their best_page onto the
+# Entryway's door-mat zone on the word "floor" alone once "plan" stopped
+# distinguishing them, the exact silent misattribution class the
+# 2026-11-05 best_page/heading-surface fix exists to prevent; "planning",
+# the gerund, produces zero such moves against the same two queries or
+# anywhere else in either corpus, a different word with different
+# collision behaviour, not the same fix tried twice). Declined in the same
+# pass: "activities" ("activities to do in a nursery", "ideas for nursery
+# activities") is not a format word here, because it asks what to DO in the
+# room, a different question from how to organize it, and the deck page it
+# would route to answers neither; marking it covered would be the
+# dishonest-labelling shape CLAUDE.md section 8 forbids, so it stays
+# partial even though it is technically safe (zero misattribution) by the
+# mechanical test alone. "messy" was also tried and declined hard: every
+# style-qualifier shape it might fit ("messy room", "why is my X always
+# messy") is itself a real distinguishing content word on several pages
+# (the complaint-cluster article, the before/after-photo rows), and a full
+# corpus rescore found 44 best_page changes, by far the largest
+# misattribution risk any FORMAT_WORDS candidate has produced in this
+# file's history. Self-flattery checked first for the two words that
+# shipped: "newborn" is 0 of 243 page titles or headings; "planning" is 1
+# of 243 (same low bar every prior addition cleared). Checked the full
+# corpus before adding: "newborn" is the sole unmatched word on 2 live rows
+# (1 US, 1 global), "planning" on 6 (4 US: a gallery wall, a workshop, a
+# nursery-setting query, a help-planning-a-garden query that keeps a second
+# unmatched word and stays honestly gap; 2 global: guest bedroom, nursery),
+# zero best_page changes across either corpus for either word, confirmed by
+# a direct before/after score_rows() diff, not assumed from the self-
+# flattery count alone.
 
 
 def room_names():

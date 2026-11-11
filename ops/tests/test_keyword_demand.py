@@ -1523,6 +1523,41 @@ def main():
         for f in fails:
             print(" -", f)
         return 1
+
+    # 48. Found live 2026-11-11, mining Garage's and Nursery's remaining
+    #     partial tiers. "newborn" names the occupant's age, not a
+    #     different subject ("newborn baby nursery organizer" asks the same
+    #     thing as "baby nursery organizer"). "planning" is a task-verb
+    #     synonym for the layout work "arrange" already covers ("planning a
+    #     gallery wall" asks the same thing as "arranging a gallery wall").
+    #     Both joined FORMAT_WORDS. "plan" (singular) was tried for the same
+    #     tier and declined: it flips 2 literal floor-plan queries onto the
+    #     wrong page.
+    new_format_words18 = ("newborn", "planning")
+    samples18 = {
+        "newborn": "newborn baby nursery organizer",
+        "planning": "planning a gallery wall",
+    }
+    for word in new_format_words18:
+        if word in kd.content_words(samples18[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format18 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format18 - set(new_format_words18)
+    try:
+        for word in new_format_words18:
+            if word not in kd.content_words(samples18[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format18
+
+    if fails:
+        print("FAIL")
+        for f in fails:
+            print(" -", f)
+        return 1
     # Counted from the numbered cases in this file rather than typed, because
     # a hardcoded tally goes stale the first time somebody adds a case and
     # then the test reports a number that is simply false. It said 14/14

@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, scheduled operator cycle (~22:5x UTC): "newborn" and "planning" joined FORMAT_WORDS, closing 7 rows, Nursery 17% to 16% uncovered; six other candidates checked and declined on a full corpus diff
+
+Did: Attached clean (fetch, real unshallow from a shallow detached checkout, checkout main, ff-only onto origin/main, 998 commits, no reset). Read GOALS.md, BACKLOG-2026-09-07.md, CLAUDE.md, last four log entries. Ran preflight.py --skip-tests live: 0 FAIL through every gate reached, stalled at the documented gate_etsy_pdfs_current network wait, killed by its own timeout. Continued the ~21:5x cycle's handoff (three candidates checked, nothing shipped): dumped Garage's and Nursery's full partial tiers from the raw JSON and tested nine FORMAT_WORDS candidates against a full before/after score_rows() diff, not self-flattery alone.
+
+Verified, not shipped: "hardware"/"chairs"/"open"/"things"/"start" each cause 1-5 real best_page misattributions. "declutter" causes 80, the largest found to date (a real distinguishing word on several dedicated articles). "messy" causes 44, same shape. "plan" singular flips 2 literal floor-plan queries onto the wrong zone. "spending"/"money" are safe but close nothing. "activities" is mechanically safe (0 misattributions) but changes the question asked (what to do, not how to organize), so shipping it would be dishonest labelling; declined on that basis alone.
+
+Shipped: "newborn" and "planning", both 0 best_page changes, only status moves. Fail-then-pass proved (case 48, test_keyword_demand.py, 54/54). Rescored both corpora: 0 misattributions, Nursery 17% to 16%. gate_goals_keyword_cluster_citation_current clean. GitHub: 31 issues, unchanged, none from Phil.
+
+Went well: the misattribution check caught two words ("declutter", "messy") that would have been serious, silent regressions.
+
+Did not go well: six of nine candidates tested were unsafe; this tier is close to exhausted on safe fixes.
+
+Changing next cycle: none.
+
+Next: same Phil-gated queue; Garage's remaining 41-row tier, largely noise, for whoever mines it next.
+
+Pushed to main: ops/keyword_demand.py, ops/tests/test_keyword_demand.py, both keyword-demand JSON/MD files, STATUS.md, BACKLOG-2026-09-07.md, this entry, command deck. No price, product or site page touched; scorer-only change, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (~22:1x slot): previous work reconfirmed finished, full preflight run to completion clean, same exhausted Phil-gated queue handed to the operator
 
 Previous work (22:0x PM cycle's STATUS.md deploy gap fix) was finished and still holds: HEAD (e57ba4662, an hourly bot commit only) diffed against the confirmed build commit touches no site/ or Dockerfile path, so 0 commits undeployed remains accurate. Issue 66 confirmed closed by Phil. Ran full preflight.py --skip-tests live to completion (about 10 minutes, bounded by the documented gate_etsy_pdfs_current network wait, not hung): every gate passed, 33 warnings, all standing and known, clean cycle_signal snapshot. All living document rotation scripts re-checked: CLEAN, nothing to rotate. GitHub's 31 open issues re-pulled live: unchanged, all decision or blocked on art, none from Phil. 0 open PRs. Nothing genuinely unblocked this slot. Handing the same standing Phil gated queue to the operator.

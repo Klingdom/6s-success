@@ -8718,14 +8718,12 @@
       "room": "Guest Bedroom",
       "best_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "best_page_title": "How to organize a guest bedroom, step by step",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "planning"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "in"
       ],
@@ -29541,14 +29539,12 @@
       "room": "",
       "best_page": "/zones/guest-bedroom-the-guest-dresser.html",
       "best_page_title": "How to organize the guest bedroom dresser",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "newborn"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -41143,14 +41139,12 @@
       "room": "Nursery",
       "best_page": "/nursery-deck.html",
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "planning"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "in"
       ],
@@ -48254,6 +48248,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "64ab97c09",
-  "scored_at": "2026-11-11T20:03:01Z"
+  "scored_against_commit": "c1a82cf39",
+  "scored_at": "2026-11-11T22:57:44Z"
 }
