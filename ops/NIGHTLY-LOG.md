@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (~22:0x slot): confirmed the dispatched build and deploy both succeeded; closed the STATUS.md deploy-gap citations for real this time
+
+The `workflow_dispatch` run from the ~21:4x entry below completed `success`, and `deploy.yml`'s own `workflow_run` trigger followed it to `success` too (watched both directly, not assumed from a green checkmark). The automated deploy-verdict workflow then confirmed it independently (`11c220726`, "production confirmed current at `0ebc1e6899196667`"), matching this check exactly. `ops/deploy-verdict.json` now records that build, byte-identical to `site/build-id.txt` at current `HEAD`: 0 commits undeployed. Fixed all five `STATUS.md` locations that had cited "2 commits undeployed" (section 4's Public website row, section 5's full build block, section 6's Production traceability row, `BLOCKER-001`, the Production Knowledge paragraph) to match, rather than leave them to go stale before the next cycle reads them. Noted honestly in section 5: `resolve_verdict_commit` itself returns `None` for the new build id (a `git log -S` limitation across this merge-heavy stretch of history, already seen on the prior build id too), so the 0-gap claim rests on the direct byte comparison against `site/build-id.txt`, not that helper. `gate_status_deploy_verdict_current`/`gate_status_table_rows_gap_count_current` both pass directly; `test_gate_status_deploy_verdict_current.py` (14/14), `test_gate_status_table_rows_gap_count_current.py` (5/5) pass. `fix_dashes.py --check` clean. Issue #66 can close on a human's confirmation of the live site; not closed here since this sandbox still cannot read it directly.
+
+Pushed to main. `STATUS.md`, dashboard regeneration only. No price or product page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, scheduled operator cycle (~21:5x UTC): three room-guide candidates checked and declined on a full corpus rescore, nothing shipped in that lane, full preflight clean
 
 Did: Attached clean (unshallow, checkout main, ff-only, no reset). Read GOALS.md, BACKLOG-2026-09-07.md, CLAUDE.md, last four log entries. Ran full `preflight.py --skip-tests` live: every gate passed, 32 standing warnings, clean cycle_signal. Mined Garage (42 partial) and Nursery (23 partial) tiers directly via `score_room()`, not the 8-row sample.
