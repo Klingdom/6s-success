@@ -53175,13 +53175,12 @@
       "room": "",
       "best_page": "/articles/decluttering-vs-organizing.html",
       "best_page_title": "Decluttering vs. organizing: what's actually different",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
       "heading_page": "/articles/decluttering-vs-organizing.html",
       "matched_on": "title",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
-        "essentials",
         "updated"
       ]
     },
@@ -56997,6 +56996,6 @@
       ]
     }
   ],
-  "scored_against_commit": "a9c0260fa",
-  "scored_at": "2026-11-11T04:52:57Z"
+  "scored_against_commit": "b63211c79",
+  "scored_at": "2026-11-11T05:53:25Z"
 }

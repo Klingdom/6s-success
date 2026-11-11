@@ -189,7 +189,7 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "tutorial", "must", "haves", "quickly",
                           "original", "deals", "overview", "routine", "setup",
                           "review", "buy", "template", "her", "him", "men",
-                          "women", "container", "containers"))
+                          "women", "container", "containers", "essentials"))
 
 # "her", "him", "men" and "women" joined 2026-11-11, mining Guest Bedroom's
 # partial tier. "nightstand organizer for her/men/women" and "how to
@@ -243,6 +243,19 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
 # corpus before adding: it is the sole unmatched word on exactly 1 live row
 # (no global-harvest match), which can only move toward covered, never the
 # other way, same reasoning as every prior FORMAT_WORDS addition.
+
+# "essentials" joined 2026-11-11, mining Garage's remaining partial tier.
+# "car organisation essentials" asks for the same thing as "car
+# organisation", "essentials" naming the necessary-items framing, the same
+# role "must"/"haves" already play, not a different storage subject.
+# Self-flattery checked first, same bar every prior addition cleared:
+# "essentials" appears in 0 of 243 page titles or headings. Checked the full
+# corpus before adding: it is the sole unmatched word on exactly 1 live row
+# (the Garage query above). Checked, not assumed, what happens to the one
+# other row carrying it ("updated decluttering essentials tips", "updated"
+# also unmatched): dropping "essentials" from its unmatched list moves it
+# gap to partial, a genuine coverage gain, not the no-op the word's
+# Garage role alone would suggest. Nothing moves the other way.
 
 # "overview", "routine" and "setup" joined 2026-11-11, mining Garage's
 # remaining partial tier. "organize car maintenance overview" and "organize

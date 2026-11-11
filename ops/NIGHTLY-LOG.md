@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, scheduled operator cycle (~05:5x UTC): "essentials" joined FORMAT_WORDS, closing one Garage row and lifting a second from gap to partial
+
+**Did:** Attached clean (fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `b63211c79`, 825 commits fast-forwarded, tree clean throughout). Read BACKLOG-2026-09-07.md sections 0-7, GOALS.md's constraint section, STATUS.md's current-priority entries, and GitHub's 31 open issues live (not cited): every section 2-6 item is Done or Phil-gated, confirming room-guide keyword mining is still the only genuinely unblocked workstream. Checked `ops/last-owner-notification.json`: no-repeat-before 2026-11-12T18:00Z still holds, nothing material changed since, so no push sent. Ran `inbox_agent.py --apply`: no mail credential in this sandbox. Pulled Garage's full 42-row partial tier directly via `score_room()`, checked each candidate against real content before acting: added "essentials" to `FORMAT_WORDS` in `ops/keyword_demand.py` ("car organisation essentials" asks the same thing as "car organisation", same role "must"/"haves" already play). Declined several other candidates after checking the corpus: "plans" collides with genuine construction/build-intent rows elsewhere (would have wrongly suppressed them); "mount"/"systems"/"boot" and the hunting/fishing/gym cluster were already correctly declined by prior cycles.
+
+**Verified:** Caught my own false claim before shipping: assumed the one other row carrying "essentials" ("updated decluttering essentials tips") would stay gap regardless since "updated" is also unmatched; checked rather than trusted, and it actually moves gap to partial. Fixed the comment to say what was checked, not what was assumed. Fail-then-pass proved directly: added case 36 to `ops/tests/test_keyword_demand.py`, `git stash`'d the fix, watched the new assertion fail with the exact pre-fix message, restored, watched it pass. `test_keyword_demand.py` (41 numbered cases, no problems), `test_room_guide_underperformance.py` (19/19) both pass. Rescored both corpora live: US gap 103->102, partial 1053->1054; global partial 797->796, covered 1281->1282; 0 regressions in either gap count. Live ranking before/after: Garage 42->41 partial rows, 21% uncovered at this rounding both times; full 20-room rescan confirmed no other room moved. `fix_dashes.py --check` (0/0), `check_urls.py` (235/235), `affiliate.py --check` (165 documents) all clean. `preflight.py --skip-tests` run live: 0 real FAIL through every gate reached, stalled only at the documented network-bound `gate_etsy_pdfs_current` (confirmed genuinely progressing via `/proc`, a real headless-Chromium Etsy PDF render, not hung).
+
+**Went well:** catching my own unverified assumption about the "updated decluttering essentials tips" row before it shipped as a false claim, the same CLAUDE.md 5d discipline recent cycles have each independently needed.
+
+**Did not go well:** nothing new; Hall Closet's own partial tier has several candidates (blankets/comforters/washcloths/bedding as genuine zone-vocabulary gaps, plus two possible cross-room misattributions on "bathroom cupboard" and "diapers in closet") that needed more checking than this slot allowed, so they were named rather than forced.
+
+**Changing next cycle:** none; this is a one-word, two-row fix, not a new systemic bug, so no new gate is warranted (CLAUDE.md 10b needs three consecutive occurrences of the same defect class).
+
+**Next:** Hall Closet's linen-vocabulary candidates named above are the strongest next lead; Garage still has 41 partial rows (hunting/fishing/gym cluster, car-boot cluster, already correctly declined as genuine content gaps or settled calls). Same 31-issue Phil-gated queue otherwise, unchanged since 2026-11-08, none from Phil.
+
+Pushed to main: this log entry, `BACKLOG-2026-09-07.md` A89, `ops/keyword_demand.py`, `ops/tests/test_keyword_demand.py`, the rescored corpora and their summaries, and the regenerated command deck. No price, product or site page touched; this is a scorer-only change under `ops/`, not a generator-owned `site/` file, so IndexNow does not apply.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (05:1x slot): previous work independently reconfirmed finished, same Garage/Hall Closet mining handoff for the operator
 
 NEXT FOR THE OPERATOR: continue room-guide partial-tier mining, still the only genuinely unblocked, non-Phil-gated workstream. Garage and Hall Closet are tied at 21% uncovered (42 and 34 partial rows, reconfirmed live this cycle, not cited), both too large for a 30-minute PM slot.

@@ -1124,6 +1124,23 @@ def main():
     finally:
         kd.FORMAT_WORDS = old_format7
 
+    # 36. Found live 2026-11-11, mining Garage's partial tier. "car
+    #     organisation essentials" asks the same thing as "car
+    #     organisation", "essentials" naming the necessary-items framing,
+    #     the same role "must"/"haves" already play.
+    if "essentials" in kd.content_words("car organisation essentials"):
+        fails.append("'essentials' is still a content word; the "
+                     "FORMAT_WORDS addition did not take")
+    old_format8 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format8 - {"essentials"}
+    try:
+        if "essentials" not in kd.content_words("car organisation essentials"):
+            fails.append("test fixture no longer reproduces the pre-fix "
+                         "behaviour: 'essentials' was dropped even with "
+                         "the word removed from FORMAT_WORDS")
+    finally:
+        kd.FORMAT_WORDS = old_format8
+
     if fails:
         print("FAIL")
         for f in fails:
