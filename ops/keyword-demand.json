@@ -4004,14 +4004,12 @@
       "room": "",
       "best_page": "/zones/garage-the-bulk-and-overhead-storage.html",
       "best_page_title": "How to organize the garage bulk and overhead storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/garage-the-bulk-and-overhead-storage.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "reorganize"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "cabinet to organize cleaning supplies",
@@ -5918,13 +5916,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-garage.html",
       "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "daily",
         "gardening"
       ]
     },
@@ -5940,14 +5937,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-garage.html",
       "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "daily"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "daycare organization ideas",
@@ -7010,13 +7005,12 @@
       "room": "",
       "best_page": "/articles/decluttering-vs-organizing.html",
       "best_page_title": "Decluttering vs. organizing: what's actually different",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
       "heading_page": "/articles/decluttering-vs-organizing.html",
       "matched_on": "title",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
-        "daily",
         "starter"
       ]
     },
@@ -34993,14 +34987,12 @@
       "room": "",
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "reorganize"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to save on diapers",
@@ -56988,6 +56980,6 @@
       ]
     }
   ],
-  "scored_against_commit": "8d81bcfcf",
-  "scored_at": "2026-11-11T07:39:42Z"
+  "scored_against_commit": "87bdc21ed",
+  "scored_at": "2026-11-11T07:49:53Z"
 }

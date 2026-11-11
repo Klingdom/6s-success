@@ -1159,6 +1159,40 @@ def main():
     finally:
         kd.FORMAT_WORDS = old_format9
 
+    # 38. Found live 2026-11-11, mining Garage's remaining partial tier.
+    #     "how to reorganize storage" asks the same thing as "how to
+    #     organize storage", "reorganize" naming the same not-a-different-
+    #     subject verb "rearrange" already covers.
+    if "reorganize" in kd.content_words("how to reorganize storage"):
+        fails.append("'reorganize' is still a content word; the "
+                     "FORMAT_WORDS addition did not take")
+    old_format10 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format10 - {"reorganize"}
+    try:
+        if "reorganize" not in kd.content_words("how to reorganize storage"):
+            fails.append("test fixture no longer reproduces the pre-fix "
+                         "behaviour: 'reorganize' was dropped even with "
+                         "the word removed from FORMAT_WORDS")
+    finally:
+        kd.FORMAT_WORDS = old_format10
+
+    # 39. Found live 2026-11-11, same cycle. "daily equipment cleaning
+    #     checklist" asks the same thing as "equipment cleaning checklist",
+    #     "daily" naming the same frequency qualifier "quickly"/"routine"
+    #     already cover.
+    if "daily" in kd.content_words("daily equipment cleaning checklist"):
+        fails.append("'daily' is still a content word; the "
+                     "FORMAT_WORDS addition did not take")
+    old_format11 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format11 - {"daily"}
+    try:
+        if "daily" not in kd.content_words("daily equipment cleaning checklist"):
+            fails.append("test fixture no longer reproduces the pre-fix "
+                         "behaviour: 'daily' was dropped even with "
+                         "the word removed from FORMAT_WORDS")
+    finally:
+        kd.FORMAT_WORDS = old_format11
+
     if fails:
         print("FAIL")
         for f in fails:

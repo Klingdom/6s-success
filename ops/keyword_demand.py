@@ -185,12 +185,38 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "organizer", "organizers", "organise", "organising",
                           "arrange", "arranging", "arranged", "arrangement",
                           "arrangements", "rearrange", "rearranging",
-                          "rearranged", "ways", "way", "diy", "guide",
+                          "rearranged", "reorganize", "reorganizing",
+                          "reorganized", "ways", "way", "diy", "guide",
                           "tutorial", "must", "haves", "quickly",
                           "original", "deals", "overview", "routine", "setup",
                           "review", "buy", "template", "her", "him", "men",
                           "women", "container", "containers", "essentials",
-                          "household"))
+                          "household", "daily"))
+
+# "reorganize"/"reorganizing"/"reorganized" joined 2026-11-11, mining
+# Garage's remaining partial tier. "how to reorganize storage" and "buy
+# items in bulk to reorganize storage" ask the same question as "how to
+# organize storage", the same not-a-different-subject shape "rearrange"
+# already covers two lines above; "reorganize" is already folded from its
+# British spelling "reorganise" by `_SPELLING`, so adding the American form
+# here covers both. Checked the full corpus before adding: "reorganize" is
+# the sole unmatched word on both of its live rows (both US, 0 global), each
+# already routed to its own correct page (the garage bulk-and-overhead zone,
+# and the generic more-storage-wont-fix-clutter article); self-flattery is
+# not a risk here since 10 pages already use some form of the word in body
+# text and this only drops a word from scoring, it cannot create a false
+# match on a page that never otherwise matches.
+#
+# "daily" joined the same cycle. "daily equipment cleaning checklist" asks
+# the same thing as "equipment cleaning checklist", a frequency qualifier on
+# the task, not a different subject, the same shape "quickly"/"routine"
+# already cover. Self-flattery checked first: "daily" appears in 7 of 243
+# headings, under the bar "household" (11/243) already cleared. Checked the
+# full corpus before adding: 3 live rows (all US) contain "daily"; one
+# ("daily equipment cleaning checklist") has it as the sole unmatched word
+# and moves partial to covered, the other two still carry a second genuine
+# unmatched word each ("gardening", "starter") and only move closer, never
+# the other way, same reasoning as every prior FORMAT_WORDS addition.
 
 # "household" joined 2026-11-11, mining Hall Closet's remaining partial tier.
 # "how to organize household cleaning supplies" asks the same question as
