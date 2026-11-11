@@ -16,6 +16,42 @@ Pushed to main: this log entry, `ops/cycle-signal.json`, the regenerated command
 
 HANDOFF-FILES: none
 
+## 2026-11-11, scheduled operator cycle (continued): fixed a real misroute, "walk in closet organizer shelves" now routes to the page that already answers all its sibling queries
+
+**Did:** Followed up on the "walk in closet organizer shelves" lead named in the entry below. `/articles/more-storage-wont-fix-clutter.html` already has a dedicated walk-in-closet section and already answers roughly 50 sibling "walk in closet" queries across both corpora; only this one scored to the wrong page.
+
+**Verified:** Traced the exact tie: the correct page's own heading matched "walk"+"closet" but not "shelves" (its paragraph says "a single new rod or shelf," singular); the Hall Closet linen-closet article supplied "closet"+"shelves" from an unrelated heading and won a tie across 8+ pages. Retitled the heading to "Walk-in closet rods and shelves, on a budget", grounded in the paragraph's own existing text, taking the correct page to 3-of-3 — strictly above every tied page, so the fix does not depend on tie-break order at all. Checked side effects first (CLAUDE.md 5d): 3 other rows change which tied page gets credited, but status is unchanged in each case and credit moves toward a page that actually discusses the matching section, not away from one. Rescored both corpora: US partial 1050->1049, covered 1671->1672, gap unchanged 102; global partial 792->791, covered 1286->1287, gap unchanged 88, 0 regressions. `fix_dashes.py --check` 0/0, `check_urls.py` 235/235, `audit_pages.py` 240/0, `audit_visual.py` scoped to the page 0 findings. `test_keyword_demand.py` 42/42, `test_room_guide_underperformance.py` 19/19 unaffected.
+
+**Went well:** a genuine misroute turned out to have a clean, tie-break-independent fix (push the correct page to an outright win) rather than needing a riskier scorer change.
+
+**Did not go well:** nothing new this entry.
+
+**Changing next cycle:** none.
+
+**Next:** "how to organize diapers in closet" (possible cross-room misattribution to Nursery) is the strongest remaining Hall Closet lead, not checked this cycle. Same 31-issue Phil-gated queue otherwise.
+
+Pushed to main: this log entry, `BACKLOG-2026-09-07.md` A92, the article, both rescored corpora and their summaries, the rebuilt sitemap, the regenerated command deck. No price or product touched; `IndexNow` queued for this article's edit.
+
+HANDOFF-FILES: none
+
+## 2026-11-11, scheduled operator cycle (continued): "household" joined FORMAT_WORDS, closing a fourth Hall Closet row, same cycle as the entry below
+
+**Did:** Continued mining Hall Closet's partial tier after the entry below closed 3 rows via a FAQ edit. Dumped the full 31-row tier directly via `score_room()` rather than a sample (CLAUDE.md 5c).
+
+**Verified:** "How to organize household cleaning supplies" is the sole unmatched-word row for "household"; checked the full corpus first (CLAUDE.md 5d), 1 live row per harvest, already routed to the correct page at 2/3 words, 11 of 243 headings already use the word (self-flattery bar cleared). Added to `FORMAT_WORDS`, same shape as "essentials"/"men"/"women". Fail-then-pass proved directly (case 37, `ops/tests/test_keyword_demand.py`, 42/42). Rescored both corpora: US partial 1051->1050, covered 1670->1671, gap unchanged 102; global partial 793->792, covered 1285->1286, gap unchanged 88, 0 regressions. `test_room_guide_underperformance.py` 19/19, `fix_dashes.py --check` 0/0, `check_urls.py` 235/235, `affiliate.py --check` clean.
+
+**Went well:** the full-tier dump surfaced a clean, zero-risk fix right after the riskier ones were correctly declined.
+
+**Did not go well:** nothing new this entry.
+
+**Changing next cycle:** none.
+
+**Next:** Hall Closet still has ~30 partial rows; "walk in closet organizer shelves" (likely a genuine off-topic candidate, different physical space) and "how to organize diapers in closet" (possible cross-room misattribution, named since A89) are the strongest remaining leads, not checked deeply enough to ship this cycle. Same 31-issue Phil-gated queue otherwise.
+
+Pushed to main: this log entry, `BACKLOG-2026-09-07.md` A91, `ops/keyword_demand.py`, its test, both rescored corpora and their summaries, the regenerated command deck. No price, product or site page touched; scorer-only change, `IndexNow` does not apply.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, scheduled operator cycle: closed 3 of the Hall Closet linen-closet handoff's real content gaps; the misroute lead and the blankets/bedding words tested unsafe and correctly not shipped
 
 **Did:** Unshallowed and attached clean onto `origin/main` (833 commits fast-forwarded, no reset/force), merging twice more as concurrent cycles pushed during this run (no conflicts past the routine `ops/cycle-signal.json` checkpoint, resolved by taking the newer side since it is a regenerable checkpoint). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries and the 06:1x/06:4x PM check-ins' own Hall Closet handoff before touching anything. `preflight.py --skip-tests` (fresh, before any edit): 0 FAIL. Picked up the handoff's two leads rather than citing them.

@@ -14143,11 +14143,11 @@
         "home office organization ideas"
       ],
       "room": "Home Office",
-      "best_page": "/downloads/6S-Standards-Pack.html",
-      "best_page_title": "The 6S Success Standards Pack",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -30370,14 +30370,12 @@
       "room": "",
       "best_page": "/zones/hall-closet-the-cleaning-supply-zone.html",
       "best_page_title": "How to organize the hall closet cleaning supplies",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "household"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize indoor plants",
@@ -36537,11 +36535,11 @@
         "how to declutter a home office"
       ],
       "room": "",
-      "best_page": "/downloads/6S-Standards-Pack.html",
-      "best_page_title": "The 6S Success Standards Pack",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -53908,16 +53906,14 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "walk"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "walk in closet organizer with drawers and shelves",
@@ -53929,15 +53925,15 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/downloads/6S-Standards-Pack.html",
-      "best_page_title": "The 6S Success Standards Pack",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "walk"
+        "drawers"
       ]
     },
     {
@@ -56990,6 +56986,6 @@
       ]
     }
   ],
-  "scored_against_commit": "060f62ab0",
-  "scored_at": "2026-11-11T07:28:25Z"
+  "scored_against_commit": "87bdc21ed",
+  "scored_at": "2026-11-11T07:43:32Z"
 }
