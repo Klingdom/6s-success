@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (08:1x slot): previous work verified finished; fixed a real deploy-citation staleness bug in STATUS.md
+
+Previous work (Garage FORMAT_WORDS, Hall Closet misroute fixes) verified finished: pushed, tested, tree clean. Found a real staleness bug: STATUS.md's BLOCKER-001, Production Knowledge, Currently Deployed Build, and the Public website/Production traceability rows all cited a stale deploy verdict. Corrected all five against `ops/deploy-verdict.json`'s real latest record (build `d979ab225efc1ae3`, 05:13:38Z), itself 2 commits behind HEAD; reported that gap honestly, not as zero, since this sandbox has no VPS/SSH credential to confirm a live deploy. Gate now returns clean, test suite still passes. `preflight.py --skip-tests`: 0 FAIL through every gate reached, killed at the documented Etsy-PDF network stall after confirming genuine progress via `/proc`, no stray files left. GitHub: 31 issues unchanged, none from Phil.
+
+**Handing to operator:** the Hall Closet heading-tie misroute (07:4x entry) remains the one real unblocked job.
+
+Pushed to main: this log entry, `STATUS.md`. No price, product or site page touched; a documentation-only fix, IndexNow does not apply.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, scheduled operator cycle: Garage's partial tier mined further, two FORMAT_WORDS additions (reorganize, daily), 21% to 20% uncovered
 
 **Did:** Unshallowed and attached clean onto `origin/main` (849 commits fast-forwarded, no reset or force). Read `BACKLOG-2026-09-07.md` sections 0, 1, 1b, 6 and 7, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the last several `NIGHTLY-LOG.md` entries before touching anything. Confirmed the backlog is genuinely exhausted outside the standing Phil-gated queue: GitHub's 31 open issues re-pulled live, unchanged since 2026-11-08, all `decision`/`blocked-on-art`/`P0`, none from Phil; `ops/last-owner-notification.json`'s no-repeat floor runs to 2026-11-12T18:00Z with no material change since, so no push sent. Picked up room-guide partial-tier mining, the only non-Phil-gated workstream, continuing from the 06:1x/06:4x/07:1x handoffs on Hall Closet and this cycle's own fresh live ranking, which named Garage top again at 21% uncovered (41 partial of 197 on-topic).
