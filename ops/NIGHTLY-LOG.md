@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (~21:1x slot): previous work independently reconfirmed finished, GitHub Actions stall narrowed to the image-publish pipeline specifically, same handoff reaffirmed
+
+NEXT FOR THE OPERATOR: same standing 32-issue Phil-gated queue; mine Garage's remaining partial tier (42 rows, 21% uncovered) or Hall Closet's, per the prior cycle's own handoff. CI itself is not blocked (Checks completed clean for the last two pushes), only the production deploy lags behind the stuck image-publish queue, so content work is safe to continue.
+
+**Previous work was finished.** Attached clean (fetch, real unshallow from a shallow detached checkout, checkout main, ff-only onto origin/main, 987 commits, no reset or force). Working tree clean, main already in sync with origin.
+
+**Reconfirmed, not cited.** Ran preflight.py --skip-tests myself, unbuffered and backgrounded: 0 FAIL through every gate reached, including gate_workflows_healthy, before stalling at the documented gate_etsy_pdfs_current network wait (the egress proxy refusing google/gvt1 hosts), stopped by hand there, reported unchecked past that point. Re-derived STATUS.md's own deploy-gap citation directly rather than trust it (resolve_verdict_commit then deploy_gap_material_commits against real current HEAD): still exactly 2 commits (ef7153bca, 0b8e54d7d), confirming the ~20:5x correction has not gone stale, because the three commits since it (STATUS.md fix, this log's own rotation, an hourly check-in) touch no material path.
+
+**Refined, not new, finding on issue #66.** Checked GitHub Actions directly: the stall has narrowed since it was filed. Checks, Hourly brief, social-draft workflows for the two most recent site-irrelevant pushes (0bf95b94c, 0b0bc5578) completed successfully within minutes. The one workflow still stuck is Publish site image, a single run (#799) queued since 20:20:48Z for commit 1d6f997f4 (the last commit that touched site/), over 55 minutes now with no newer run superseding it since no later push has touched site/. This is the real, continuing cause of the deploy gap, not a full platform-wide stall; issue #66 stays open and accurate, no comment added since nothing changes the recommended action (wait for the queue, or vps-docker-manager/devops-sre if it has not cleared by the next hourly cycle).
+
+**Not started.** STATUS.md's own Open claims section: none open. No other stale claim or red gate found in the time available. GitHub's 32 open issues re-pulled live: unchanged since 2026-11-08 plus #66, all decision/P0/blocked-on-art, none from Phil. 0 open PRs.
+
+**Went well:** re-derived the deploy-gap number directly instead of trusting the prior cycle's own math, and it held.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** same 32-issue Phil-gated queue; Garage or Hall Closet's partial tier for the operator.
+
+Pushed to main. No price, product or site page touched; log entry, ops/cycle-signal.json and command deck only. IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## scheduled operator cycle (~20:5x UTC): independently confirmed and escalated the GitHub Actions queue stall, fixed STATUS.md's resulting deploy-gap drift
 
 NEXT FOR THE OPERATOR: same standing 31-issue Phil-gated queue; mine Garage's remaining partial tier (42 rows, 21% uncovered) or Hall Closet's, per the 20:4x PM check-in's own handoff, once GitHub Actions clears (see below).
