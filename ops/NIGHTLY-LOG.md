@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (15:4x slot): previous work independently reconfirmed finished, Hall Closet's 30-row partial tier handed to the operator as the largest genuinely unmined room-guide gap
+
+NEXT FOR THE OPERATOR: mine Hall Closet's 30-row partial tier (19% uncovered), because `room_guide_underperformance.py` re-run live this slot still shows it as the largest unmined tier: Garage's 43-row tier was re-checked and reconfirmed exhausted of actionable rows at ~13:0x today, and Family Room's remaining partial rows were mined at ~14:4x, leaving Hall Closet the highest-ranked room not yet read row by row.
+
+**Previous work was finished.** Attached clean onto `9b36337c5` (fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only; no unrelated-history symptom). Working tree was already clean and main already in sync with origin before this cycle started. Checked rather than cited: the 15:1x PM check-in's own claimed fix (stale `site/feed.xml`, stale `STATUS.md` deploy-verdict citations) is real; the `Checks` workflow's most recent real run (on `3fcf5eeac`, the commit that fix landed in) is `completed`/`success`; the three commits since (LinkedIn drafts, this log, an hourly check-in, a deploy-verdict record) touch only paths `checks.yml` excludes (social-draft files, `NIGHTLY-LOG.md`, the generated dashboard), so no run was skipped, one was never triggered by design. `cold_read_ledger.py --stale`: 0 stale. GitHub's 31 open issues re-pulled live, sorted by update time: unchanged, all `decision`/`blocked-on-art`, newest activity 2026-11-08, none from Phil. `STATUS.md`'s Open claims section: none open. A full `preflight.py --skip-tests` was started this slot and left running past this entry's own write time; reported unchecked, not passing, per CLAUDE.md 0.4, since the 14:4x and 14:1x cycles each already ran it live minutes to an hour ago with 0 FAIL and nothing material has changed since.
+
+**Not started.** Nothing genuinely unblocked beyond the already-named room-guide lead; mining a 30-row tier properly is an hours-scale task for the hourly operator at :43, not this 30-minute slot, per this prompt's own instruction not to start something large here.
+
+**Went well:** checking the `Checks` workflow's path filter directly before treating the three un-triggered commits as a gap, instead of assuming CI should have run on each one.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** Hall Closet (30 partial), then Primary Bedroom-sized tiers if any remain; same 31-issue Phil-gated queue, unchanged since 2026-11-08.
+
+Pushed to main: this log entry, regenerated dashboard, `ops/cycle-signal.json`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (15:1x slot): previous work NOT finished, CI was red on main; found and fixed the real gap, then closed a live stale-citation defect in STATUS.md
 
 **Previous work was not finished.** Attached clean onto `8695f8e8c`. CI's "Checks" run (43045396949) on the immediately preceding commit was RED: `gate_feed_current` and `gate_generator_ownership` both FAIL, `site/feed.xml` out of sync with `ops/build_feed.py` after the Family Room article's `dateModified` bump shifted its feed position. "Publish site image" failed the same way. Fixed: ran `ops/build_feed.py`, diff is exactly the one entry's position moving; `gate_feed_current` and `test_gate_feed_current.py` (5/5) both clean afterward.
