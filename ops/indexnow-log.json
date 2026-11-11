@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-05T03:09:10Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-05T03:22:01Z",
    "mode": "changed",
    "offered": 1,
@@ -657,6 +650,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-11T15:09:28Z",
+   "mode": "changed",
+   "offered": 3,
+   "accepted": 3,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -744,10 +744,10 @@
   "https://6s-success.com/zones/entryway-the-shoes-and-boots": "450ad0cf33c3cc10",
   "https://6s-success.com/zones/family-room-the-blanket-and-comfort-zone": "93a92f3c73ad40df",
   "https://6s-success.com/zones/family-room-the-board-game-and-puzzle-zone": "03f7815b6fe5aa78",
-  "https://6s-success.com/zones/family-room-the-charging-and-device-zone": "2ef2ee313262ca42",
+  "https://6s-success.com/zones/family-room-the-charging-and-device-zone": "329977b35e2df65b",
   "https://6s-success.com/zones/family-room-the-craft-and-activity-zone": "1eb51300e885ab98",
   "https://6s-success.com/zones/family-room-the-primary-media-zone": "03220d3bd8f166e0",
-  "https://6s-success.com/zones/family-room-the-toy-and-play-zone": "273d1deb7d60c453",
+  "https://6s-success.com/zones/family-room-the-toy-and-play-zone": "cc8ca6ddc684decb",
   "https://6s-success.com/zones/garage-the-automotive-care-zone": "39eb2cad88303dc2",
   "https://6s-success.com/zones/garage-the-bulk-and-overhead-storage": "7fd55583a67df330",
   "https://6s-success.com/zones/garage-the-hand-tool-wall-and-cabinets": "aa9515798714737a",
@@ -890,7 +890,7 @@
   "https://6s-success.com/articles/how-to-organize-a-kids-bedroom": "5bf8014e1f51655c",
   "https://6s-success.com/articles/how-to-organize-a-patio-or-deck": "a00db250c5242bfa",
   "https://6s-success.com/articles/how-to-organize-a-primary-bathroom": "4c7dfeb25857dd4a",
-  "https://6s-success.com/articles/how-to-organize-a-family-room": "3712255fb43c28c6",
+  "https://6s-success.com/articles/how-to-organize-a-family-room": "136d18b418bb67d7",
   "https://6s-success.com/articles/how-to-organize-a-mudroom": "d65b122c1e3a8729",
   "https://6s-success.com/articles/how-to-organize-a-guest-bedroom": "05fa83b14f969564",
   "https://6s-success.com/articles/how-to-organize-an-entryway": "890d336361963855",
