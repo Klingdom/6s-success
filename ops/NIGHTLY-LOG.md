@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (13:4x slot): previous work independently reconfirmed finished, verified the feed fix directly, handed Family Room's small partial tier to the operator
+
+**Previous work was finished and verified, not just cited.** Attached clean: fetched `origin/main`, unshallowed (checkout arrived shallow and detached as documented), `checkout main`, `merge --ff-only` onto `origin/main` (879aadf73, clean fast-forward, 911 commits, no reset or force). Working tree was already clean and main already in sync with origin before this slot started.
+
+The 13:1x PM check-in's claimed fix (`gate_feed_current`, the `site/feed.xml` drift against `ops/build_feed.py`) was re-run directly by this cycle, not trusted from its own write-up: `gate_feed_current()` returns clean (`None`). Also re-ran `gate_cold_read_handoff_not_stale`, `gate_nightly_log_ordering`, and `gate_also_called_no_digital_collision` directly: all clean.
+
+GitHub's 31 open issues re-pulled live via the API, not cited from the dashboard: all 31 authored by Klingdom (Phil's own account, filed by prior operator cycles as decision requests), all labelled `decision`, `blocked-on-art`, or `P0`, none a fresh instruction from Phil since 2026-11-08. Matches the dashboard exactly, no drift.
+
+**Previous work is finished.** Deciding what comes next: ran `ops/room_guide_underperformance.py` fresh rather than cite a stale ranking. Current state: Garage 21% uncovered (43 partial, already independently re-confirmed exhausted across nine prior cycles per `BACKLOG-2026-09-07.md` entry A94), Primary Bedroom 20% (29 partial, last substantively mined 2026-11-07 and its genuine rows already closed then, so today's 29 rows are mostly the generic "declutter checklist"/"declutter room by room" noise class the backlog already names), Family Room 20% (17 partial, the smallest unexhausted tier, only lightly touched once on 2026-11-02 for two unrelated queries), Hall Closet 19% (30 partial, just mined this cycle's own prior pass for one row).
+
+NEXT FOR THE OPERATOR: mine Family Room's 17-row partial tier (the smallest tier, not recently exhausted, best odds of a clean full close this slot rather than another half-mined handoff), because it is the one room-guide lane with a real chance of finishing in one 13-step cycle instead of leaving more partial rows open; claim it first in `STATUS.md` per section 0's convention. Read every row directly via `score_room()`, not the CLI's 8-row sample, check each against the real `content.json` before adding any `also-called`/`FORMAT_WORDS` entry, and verify with a full before/after rescore plus `preflight.py --skip-tests` as every recent mining entry in `BACKLOG-2026-09-07.md` has done. If Family Room turns out genuinely exhausted (all noise, no real gap), say so plainly rather than force a match, and fall back to Hall Closet's remaining rows or Primary Bedroom next.
+
+**Went well:** verified the previous cycle's own fix directly instead of taking its write-up on faith, and picked the smallest unexhausted tier specifically to raise the odds of a clean close instead of another partial handoff.
+
+**Did not go well:** nothing new this slot; no closing job of my own was found beyond the verification above, since the previous cycle had already used its own slot to find and fix the one real defect present (the feed drift).
+
+**Changing next cycle:** none.
+
+Pushed to main: this log entry and the regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in (13:1x slot): previous work reconfirmed finished except a real gate_feed_current drift, found and fixed
 
 NEXT FOR THE OPERATOR: same standing 31-issue Phil-gated queue, unchanged since 2026-11-08; Hall Closet's remaining 30 partial rows, Family Room (17 partial) and Primary Bedroom (29 partial) are the room-guide mining candidates the 13:0x cycle left open.
