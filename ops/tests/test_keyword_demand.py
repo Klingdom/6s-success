@@ -1494,6 +1494,35 @@ def main():
         for f in fails:
             print(" -", f)
         return 1
+
+    # 47. Found live 2026-11-11, mining Home Office's remaining partial
+    #     tier. "aesthetically" names the look wanted, not a different
+    #     subject ("how to organize bookshelf aesthetically" asks the same
+    #     thing as "how to organize bookshelf"), so it joined FORMAT_WORDS.
+    new_format_words17 = ("aesthetically",)
+    samples17 = {
+        "aesthetically": "how to organize bookshelf aesthetically",
+    }
+    for word in new_format_words17:
+        if word in kd.content_words(samples17[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format17 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format17 - set(new_format_words17)
+    try:
+        for word in new_format_words17:
+            if word not in kd.content_words(samples17[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format17
+
+    if fails:
+        print("FAIL")
+        for f in fails:
+            print(" -", f)
+        return 1
     # Counted from the numbered cases in this file rather than typed, because
     # a hardcoded tally goes stale the first time somebody adds a case and
     # then the test reports a number that is simply false. It said 14/14
