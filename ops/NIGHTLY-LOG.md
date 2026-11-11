@@ -18,6 +18,38 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main: this log entry, `BACKLOG-2026-09-07.md` section 1, `ops/keyword_demand.py`, `ops/tests/test_keyword_demand.py`, `ops/KEYWORD-DEMAND.md`, both rescored corpora and their summaries, the regenerated command deck. No price, product or site page touched; this is a scorer-only change under `ops/`, not a generator-owned `site/` file, so IndexNow does not apply.
 
+**Landed alongside a concurrent 07:4x-slot PM check-in and operator continuation (entries immediately below), which fixed the Hall Closet "walk in closet organizer shelves" misroute while this cycle was working Garage; no file overlap, both merged cleanly.**
+
+## 2026-11-11, PM check-in (07:4x slot): previous work independently reconfirmed finished; same Hall Closet misroute handed to the operator at :43, nothing new unblocked
+
+NEXT FOR THE OPERATOR: fix the Hall Closet "organized bathroom cupboard" heading-tie misroute, because it is the only genuinely unblocked, non-Phil-gated workstream left and two approaches are already ruled out on record so you do not re-try either blind. The bug: the query ties 0.667 on headings between the correct page (`/zones/primary-bathroom-the-under-sink-cabinet.html`) and `/articles/how-to-organize-a-linen-closet.html`, and the linen article wins only because its own cross-sell band heading leaks the word "bathroom" from a different room. Stripping all cross-sell band headings site-wide (190 pages) removes the leak but breaks 6 other pages whose band headings are legitimately self-referential (e.g. Pantry's "the cans..."); that was tried and correctly reverted. A safe fix needs per-word provenance in the heading scorer, distinguishing a self-referential band heading from a cross-room one, then a full 3,925-query corpus regression check before shipping. That is real work, not a 30-minute job.
+
+**Previous work independently reconfirmed finished, not cited.** Attached clean: fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` (846 commits fast-forwarded), tree clean before and after, no unrelated-history symptom. Ran checks myself: `fix_dashes.py --check` 0 em/en dashes, `check_urls.py` 235/235. `preflight.py --skip-tests` run fresh this cycle timed out at the documented network-bound host-rejection stall (`android.clients.google.com`, `www.google.com` refused by the sandbox proxy, the known `gate_etsy_pdfs_current` shape); `ops/cycle-signal.json`'s own checkpoint, recorded 07:45:07Z against this exact git HEAD (`d01f37772`), independently confirms every gate before `gate_tests` passed before that run hit the same wall. Reported unchecked past that point, not passing, per CLAUDE.md 0.4. GitHub's 31 open issues re-pulled live via the API: unchanged since 2026-11-08, every one `decision`/`P0`/`blocked-on-art`, none from Phil; none picked up, per the standing rule not to touch an item marked as waiting on Phil.
+
+**Did not start new work.** The Hall Closet misroute fix is the correct kind of thing for the operator's longer runway at :43, not a PM triage slot; starting a scoped scorer change here and leaving it half-done would cost the operator more than the three minutes it would save.
+
+**Next:** the Hall Closet misroute fix, above. Same 31-issue Phil-gated queue otherwise, unchanged since 2026-11-08.
+
+Pushed to main: this log entry, `ops/cycle-signal.json`, the regenerated command deck. No price, product or site page touched; no scorer or content edit this cycle, so IndexNow does not apply.
+
+HANDOFF-FILES: none
+
+## 2026-11-11, scheduled operator cycle (continued): fixed a real misroute, "walk in closet organizer shelves" now routes to the page that already answers all its sibling queries
+
+**Did:** Followed up on the "walk in closet organizer shelves" lead named in the entry below. `/articles/more-storage-wont-fix-clutter.html` already has a dedicated walk-in-closet section and already answers roughly 50 sibling "walk in closet" queries across both corpora; only this one scored to the wrong page.
+
+**Verified:** Traced the exact tie: the correct page's own heading matched "walk"+"closet" but not "shelves" (its paragraph says "a single new rod or shelf," singular); the Hall Closet linen-closet article supplied "closet"+"shelves" from an unrelated heading and won a tie across 8+ pages. Retitled the heading to "Walk-in closet rods and shelves, on a budget", grounded in the paragraph's own existing text, taking the correct page to 3-of-3 — strictly above every tied page, so the fix does not depend on tie-break order at all. Checked side effects first (CLAUDE.md 5d): 3 other rows change which tied page gets credited, but status is unchanged in each case and credit moves toward a page that actually discusses the matching section, not away from one. Rescored both corpora: US partial 1050->1049, covered 1671->1672, gap unchanged 102; global partial 792->791, covered 1286->1287, gap unchanged 88, 0 regressions. `fix_dashes.py --check` 0/0, `check_urls.py` 235/235, `audit_pages.py` 240/0, `audit_visual.py` scoped to the page 0 findings. `test_keyword_demand.py` 42/42, `test_room_guide_underperformance.py` 19/19 unaffected.
+
+**Went well:** a genuine misroute turned out to have a clean, tie-break-independent fix (push the correct page to an outright win) rather than needing a riskier scorer change.
+
+**Did not go well:** nothing new this entry.
+
+**Changing next cycle:** none.
+
+**Next:** "how to organize diapers in closet" (possible cross-room misattribution to Nursery) is the strongest remaining Hall Closet lead, not checked this cycle. Same 31-issue Phil-gated queue otherwise.
+
+Pushed to main: this log entry, `BACKLOG-2026-09-07.md` A92, the article, both rescored corpora and their summaries, the rebuilt sitemap, the regenerated command deck. No price or product touched; `IndexNow` queued for this article's edit.
+
 HANDOFF-FILES: none
 
 ## 2026-11-11, scheduled operator cycle (continued): "household" joined FORMAT_WORDS, closing a fourth Hall Closet row, same cycle as the entry below
