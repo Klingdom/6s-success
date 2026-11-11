@@ -1193,6 +1193,83 @@ def main():
     finally:
         kd.FORMAT_WORDS = old_format11
 
+    # 40. Found live 2026-11-11: "organized bathroom cupboard" tied on
+    #     headings between the real bathroom zone pages and the Hall
+    #     Closet linen article, and the linen article won only because its
+    #     own promotional band heading names "the bathroom towels", a
+    #     different room's own words, not anything the linen article is
+    #     about. page_inventory() must drop a band word from head_words
+    #     only when that word identifies another room (>=3 zone-title
+    #     occurrences, owned by <=2 rooms) and this page's own room is not
+    #     one of them; a non-band heading, and a band word with too few
+    #     occurrences to call room-specific (the "cabinets" case below,
+    #     the regression a careless version of this fix produced live
+    #     against the real corpus before it shipped), must never be
+    #     touched.
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        zones_dir = os.path.join(tmp, "zones")
+        os.makedirs(zones_dir)
+
+        def zone_page(fname, title, extra_head=""):
+            with open(os.path.join(zones_dir, fname), "w",
+                      encoding="utf-8") as fh:
+                fh.write("<html><head><title>%s</title></head><body>"
+                          "<h1>%s</h1>%s</body></html>" % (title, title, extra_head))
+
+        # Three zone pages give "bathroom" 3 occurrences across exactly 2
+        # rooms, clearing the room-identifying bar.
+        zone_page("primary-bathroom-the-vanity-counter.html",
+                   "The primary bathroom vanity counter")
+        zone_page("primary-bathroom-the-shower-or-tub.html",
+                   "The primary bathroom shower or tub")
+        zone_page("guest-bathroom-the-vanity-counter.html",
+                   "The guest bathroom vanity counter")
+        # Two zone pages give "cabinets" only 2 occurrences, one short of
+        # the bar, so it must stay unflagged everywhere.
+        zone_page("kitchen-the-upper-cabinets.html",
+                   "The kitchen upper cabinets")
+        zone_page("kitchen-the-lower-cabinets.html",
+                   "The kitchen lower cabinets")
+        # The Hall Closet page itself: a real, non-band heading ("linen
+        # shelf") plus a promotional band that leaks "bathroom" (foreign)
+        # and "cabinets" (not foreign, below the bar) from other rooms.
+        zone_page("hall-closet-the-linen-shelf-zone.html",
+                   "How to organize the hall closet linen shelf zone",
+                   '<section class="band"><h2>The linen shelf, the '
+                   'bathroom towels and the cabinets, zone by zone</h2>'
+                   '</section>')
+        old_site = kd.SITE
+        kd.SITE = tmp
+        try:
+            inv = kd.page_inventory(rooms=["Hall Closet", "Primary Bathroom",
+                                           "Guest Bathroom", "Kitchen"])
+        finally:
+            kd.SITE = old_site
+    by_url = {r["url"]: r for r in inv}
+    hall = by_url.get("/zones/hall-closet-the-linen-shelf-zone.html")
+    if hall is None:
+        fails.append("page_inventory() did not read the Hall Closet "
+                     "throwaway page")
+    else:
+        if "bathroom" in hall["head_words"]:
+            fails.append("'bathroom', another room's own word, still "
+                         "leaked into the Hall Closet page's head_words "
+                         "via its band heading: %r" % hall["head_words"])
+        if "cabinets" not in hall["head_words"]:
+            fails.append("'cabinets' was dropped from the Hall Closet "
+                         "page's band heading despite having too few "
+                         "occurrences (2) to count as room-identifying: "
+                         "%r" % hall["head_words"])
+        if "linen" not in hall["head_words"] or "shelf" not in hall["head_words"]:
+            fails.append("a real, non-band heading word was dropped "
+                         "along with the band fix: %r" % hall["head_words"])
+    primary = by_url.get("/zones/primary-bathroom-the-vanity-counter.html")
+    if primary and "bathroom" not in primary["head_words"]:
+        fails.append("'bathroom' was dropped from a Primary Bathroom "
+                     "page's own title, which is not a band heading at "
+                     "all: %r" % primary["head_words"])
+
     if fails:
         print("FAIL")
         for f in fails:

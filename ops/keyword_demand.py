@@ -785,6 +785,68 @@ BOILERPLATE_HEADINGS = {
 }
 
 
+def _band_and_body_text(body):
+    """Split a page's <body> into (band heading text, everything else).
+
+    A promotional "band" (`<section class="band">`, see `offer()`/
+    `room_offer()` in build_zone_pages.py) is the one place on the site
+    whose <h2> is a sales pitch, not a description of this page's own
+    content. Most bands are self-referential (a zone's band says "Carry
+    The Under-Sink Cabinet into the room"; Pantry's room-pack band names
+    only Pantry's own zones), but a room with no room-specific pack (e.g.
+    Hall Closet) falls back to a hand-authored Whole House Pack band that
+    can legitimately name OTHER rooms' zones (linen storage shows up in a
+    bathroom too). Both kinds are read here; `page_inventory` below is the
+    one that decides, per word, whether a band word naming another room
+    is allowed to count.
+    """
+    band_sections = re.findall(r'(?is)<section\s+class="band".*?</section>',
+                               body)
+    rest = body
+    for b in band_sections:
+        rest = rest.replace(b, " ", 1)
+    return " ".join(band_sections), rest
+
+
+def _page_headings(text):
+    return [t for t in (
+                re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", h)).strip()
+                for h in re.findall(r"(?is)<h[1-3][^>]*>(.*?)</h[1-3]>", text))
+            if t.lower() not in BOILERPLATE_HEADINGS]
+
+
+def _room_identifying_words(raw_pages):
+    """Words that name one room (or two, e.g. "bathroom") on the strength
+    of the room's own zone-page titles, not a single coincidental hit.
+
+    Found 2026-11-11, fixing the Hall Closet "organized bathroom cupboard"
+    misroute (see page_inventory). A first attempt required only 2
+    occurrences, and "cabinets" qualified on that bar (Kitchen's own "Upper
+    Cabinets" and "Lower Cabinets and Cookware" zones), which then wrongly
+    stripped "cabinets" out of Primary Bathroom's own, genuinely self-
+    referential band heading ("the drawers, the cabinets and the linen
+    shelf"), regressing "master bathroom storage cabinets" from covered to
+    partial. Checked directly against the live corpus before shipping
+    (CLAUDE.md 5d), the same run that caught it: requiring 3 lifts
+    "cabinets" (2 occurrences) out of the map entirely, which only means
+    nobody treats it as room-specific any more, the safe default. The
+    words this fix actually needs, "bathroom" (12 occurrences) and "guest"
+    (10), both clear 3 easily. A second attempt at 2 also flagged "zone"
+    itself (1 of 114 zone pages, "the entryway drop zone", happens to carry
+    the literal word), which would have stripped "zone" from the "zone by
+    zone" phrase on nearly every other room's own band heading; 3 clears
+    that too.
+    """
+    counts = {}
+    for p in raw_pages:
+        if not p["url"].startswith("/zones/") or not p["room"]:
+            continue
+        for w in set(words(p["title"])):
+            counts.setdefault(w, []).append(p["room"])
+    return {w: set(rs) for w, rs in counts.items()
+            if len(rs) >= 3 and len(set(rs)) <= 2}
+
+
 def page_inventory(rooms=None):
     """Every published page as its title and its section headings.
 
@@ -804,11 +866,31 @@ def page_inventory(rooms=None):
     heading score is reported next to it with the surface that matched. A
     measurement that quietly got more generous would be the worse outcome
     here than one that was too strict.
+
+    BAND HEADINGS, ADDED 2026-11-11, AND WHY A WORD CAN BE DROPPED FROM ONE.
+
+    Found live: "organized bathroom cupboard" tied 0.667 on headings
+    between the correct page (`/zones/primary-bathroom-the-under-sink-
+    cabinet.html`) and `/articles/how-to-organize-a-linen-closet.html`, and
+    the linen article won the tie only because its own promotional band
+    heading ("The linen shelf, the bathroom towels and the guest bed, zone
+    by zone") names Primary/Guest Bathroom's own zones, not anything this
+    page is actually about. A prior cycle tried dropping every band heading
+    site-wide and reverted it: Pantry's own band ("the cans, the baking
+    bin...") names only Pantry's own zones and genuinely helps Pantry
+    queries, so losing it was a real regression on 6 pages.
+    The distinction neither attempt drew is PER WORD, not per heading: a
+    band word that is one of a ROOM's own identifying words (built by
+    `_room_identifying_words` from the real zone-page titles) is dropped
+    from `head_words` only when that room is not this page's own room;
+    every other band word, and every word of a non-band heading, counts as
+    it always has. This cannot touch any page with no room signal (most
+    articles), since there is nothing to compare "foreign" against.
     """
     if rooms is None:
         rooms = room_names()
     guide_rooms = guide_article_rooms()
-    rows = []
+    raw = []
     for dirpath, _dirs, files in os.walk(SITE):
         for name in sorted(files):
             if not name.endswith(".html"):
@@ -827,18 +909,27 @@ def page_inventory(rooms=None):
             title = re.sub(r"[ \n\t]+", " ", m.group(1)).strip()
             title = title.split("|")[0].strip()
             body = re.sub(r"(?is)<(script|style)\b.*?</\1>", " ", whole)
-            heads = " ".join(
-                t for t in (
-                    re.sub(r"\s+", " ",
-                           re.sub(r"<[^>]+>", " ", h)).strip()
-                    for h in re.findall(r"(?is)<h[1-3][^>]*>(.*?)</h[1-3]>", body))
-                if t.lower() not in BOILERPLATE_HEADINGS)
+            band_text, rest_text = _band_and_body_text(body)
             url = "/" + os.path.relpath(path, SITE).replace(os.sep, "/")
-            rows.append({"url": url,
-                         "title": title,
-                         "words": set(words(title)),
-                         "head_words": set(words(title + " " + heads)),
-                         "room": room_of(url, rooms, guide_rooms)})
+            raw.append({"url": url, "title": title,
+                        "own_heads": " ".join(_page_headings(rest_text)),
+                        "band_heads": " ".join(_page_headings(band_text)),
+                        "room": room_of(url, rooms, guide_rooms)})
+    room_words = _room_identifying_words(raw)
+    rows = []
+    for r in raw:
+        head_words = set(words(r["title"] + " " + r["own_heads"]))
+        band_words = set(words(r["band_heads"]))
+        if r["room"]:
+            band_words = {w for w in band_words
+                          if w not in room_words
+                          or r["room"] in room_words[w]}
+        head_words |= band_words
+        rows.append({"url": r["url"],
+                     "title": r["title"],
+                     "words": set(words(r["title"])),
+                     "head_words": head_words,
+                     "room": r["room"]})
     return sorted(rows, key=lambda r: r["url"])
 
 
