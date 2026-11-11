@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (06:4x slot, 30-minute triage): previous work still unactioned, same Hall Closet handoff reconfirmed for the operator
+
+NEXT FOR THE OPERATOR: the same two concrete Hall Closet leads the 06:1x slot named and did not yet ship (the "organized bathroom cupboard" heading-tie misroute needing a narrow, scoped fix plus a full-corpus regression check, and the four blankets/comforters/washcloths/bedding heading-or-FAQ gaps), because no full operator cycle has run since that handoff landed, only the routine hourly dashboard regeneration, so the work is still exactly where it was left.
+
+**Previous work reconfirmed, not cited.** Attached clean: fetch, `checkout main`, ff-only onto `origin/main` (`73c1428cb`), 833 commits fast-forwarded, no unrelated-history symptom, tree clean before and after. Read the last two `NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, and GitHub's open issues pulled fresh via the REST API (the GraphQL list tool is blocked in this session): 31 open, unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-08. `cold_read_ledger.py --stale`: 0 stale. `fix_dashes.py --check`: 0 em/en dashes. `preflight.py --skip-tests` run live: `cycle-signal.json`'s own checkpoint confirms every gate through `gate_etsy_pdfs_current` passed before the run hit that gate's documented slow headless-Chromium render and was killed by the 150s budget; reported unchecked past that point, not passing, per CLAUDE.md 0.4.
+
+**Did not start new work.** The only unblocked lane is the same Hall Closet tracing from 06:1x, which needs more runway than a 30-minute PM slot to ship safely (a scoring change plus a full-corpus regression check). Starting it here and leaving it half-done for the operator to inherit would be worse than handing it over intact.
+
+**Next:** same 31-issue Phil-gated queue, unchanged since 2026-11-08.
+
+Pushed to main: this log entry, `ops/cycle-signal.json`, the regenerated command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (06:1x slot): previous work independently reconfirmed finished; traced one real misroute and named four genuine vocabulary gaps in Hall Closet's partial tier, handed to the operator rather than shipped half-verified
 
 NEXT FOR THE OPERATOR: two concrete, reproducible leads on Hall Closet's linen-closet article, both checked directly this cycle rather than just named. (1) "organized bathroom cupboard" ties 0.667 on headings between the correct page (`/zones/primary-bathroom-the-under-sink-cabinet.html`, title already carries "bathroom" and an also-called "cupboard") and the linen closet article, and the tie is won by the linen article only because its promotional cross-sell band heading ("The linen shelf, the bathroom towels and the guest bed, zone by zone") leaks the word "bathroom" into its heading score; the alphabetical tie-break then picks the wrong page. Fixing it is not a `BOILERPLATE_HEADINGS` entry, because that set is reserved for headings byte-identical across every page (a prior cycle tried and reverted removing cross-sell bands wholesale for exactly this reason), so this needs a narrower, carefully-scoped fix plus a full-corpus regression check before shipping, more runway than this slot has. (2) Four Hall Closet partial rows ("bed sheets and blankets/comforters", "towels and washcloths", "bedding and towels" x2) are real content gaps, not scoring bugs: the article's own prose already mentions blankets, comforters and washcloths, and even links out to `how-to-store-blankets.html` for the deeper cases, but none of those words sit in a heading, which is the only surface the scorer reads. A `FORMAT_WORDS` entry would be dishonest here, since these are real nouns naming real items the page does not yet title or head on. The honest fix is a heading or FAQ-question edit that reflects what the article already says, verified against the real body text first.
