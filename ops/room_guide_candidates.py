@@ -320,6 +320,15 @@ OFF_TOPIC_CONTEXT = re.compile(
     r"\bpinterest\b|\bikea\b|\breddit\b|\byoutube\b|\bamazon\b|\blowes\b|"
     r"\bkmart\b|\btarget\b|\bwalmart\b|\brona\b|\bhome depot\b|"
     r"\bdollar tree\b|\baustralia\b|\bcanada\b|\bindian?\b|\btamil\b|"
+    # Found 2026-11-11, mining Primary Bedroom's partial tier. "mumsnet" is a
+    # UK parenting-forum brand, the same retailer/platform-name shape this
+    # branch already excludes for pinterest/reddit/bunnings, just a brand
+    # that list had not named yet. Checked against both harvests: "mumsnet"
+    # appears in 5 rows across 4 pages (Primary Bedroom declutter, Patio or
+    # Deck, Pantry, the general clutter article), every one already
+    # gap/partial, 0 covered, so excluding it cannot suppress a genuine
+    # match.
+    r"\bmumsnet\b|"
     # Found 2026-11-10, mining Guest Bathroom's 20-row partial tier (least-
     # mined room this lane has reached, per the 19:1x PM check-in's own
     # handoff). "linen cupboard organisation bunnings" is the same retailer-
@@ -652,7 +661,17 @@ OFF_TOPIC_CONTEXT = re.compile(
     # already partial with "renovation" as its sole unmatched word, 0
     # covered rows anywhere use the word, so excluding it cannot suppress a
     # genuine match.
-    r"\brenovation\b",
+    r"\brenovation\b|"
+    # Found 2026-11-11, mining Primary Bedroom's partial tier. "how to
+    # organize/organise a step challenge" and "...at work" name a workplace
+    # step-count fitness challenge, nothing to do with a bedroom or any
+    # physical space; it lands on the bedroom declutter article purely on
+    # the word "organize"/"organise", the same different-activity collision
+    # "gardening series"/"dental" already exclude above. Checked against
+    # both harvests: "step challenge" appears in exactly these 4 rows (2 US,
+    # 2 global, organize/organise spellings), every one already partial, 0
+    # covered, so excluding it cannot suppress a genuine match.
+    r"\bstep\s+challenge\b",
     re.I)
 
 

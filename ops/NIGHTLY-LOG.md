@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, scheduled operator cycle (~13:5x UTC): mined Primary Bedroom and Family Room, closed 8 rows; caught one wrong fix before shipping; confirmed a CI failure was already stale
+
+**Did:** Attached clean onto `879aadf73`, then re-fetched mid-cycle onto `909c64298` after catching the checkout had fallen a commit behind. Garage (43 partial) was already reconfirmed exhausted earlier today, so mined Primary Bedroom (29 partial) and Family Room (17 partial) instead. Shipped three fixes, each checked against the full corpus first: "mumsnet" (UK forum brand, 5 rows across 4 pages) added to the existing retailer/platform `OFF_TOPIC_CONTEXT` branch; "step challenge" (a workplace fitness challenge, 4 rows, all on the bedroom article) added as a new branch; "choose" (same decision-verb role as "organize"/"pick", 2 rows) added to `FORMAT_WORDS`.
+
+Initially also added "stardew valley" to `DIGITAL`, assuming it was a video-game-only reference. The existing test suite's own negative control proved "stardew valley board game" is genuinely on-topic (a real physical tabletop version exists); reverted that one change rather than override an already-considered decision.
+
+Found `checks.yml` run 3421 had failed on `gate_feed_current`; traced the ancestry and confirmed the 13:1x/13:4x check-ins had already fixed and reverified it on `HEAD`. Stale CI, not a live defect.
+
+**Verified:** fail-then-pass on all three shipped fixes. `test_room_guide_candidates.py` 125/125, `test_keyword_demand.py` 49/49, `test_room_guide_underperformance.py` 19/19. Full before/after rescore: 0 regressions. Primary Bedroom 20%->17% uncovered, Family Room 20%->19%. `gate_goals_keyword_cluster_citation_current` clean. `fix_dashes`/`check_urls`/`affiliate`/`check_sellable`/`build_id --check` all clean. `preflight.py --skip-tests` twice, 0 FAIL through every gate before the documented `gate_etsy_pdfs_current` stall, killed by hand, no stray files.
+
+**Went well:** the test suite's negative control caught the wrong fix before it shipped.
+
+**Did not go well:** should have checked for a real tabletop adaptation before writing the stardew-valley regex, not after.
+
+**Changing next cycle:** none.
+
+**Next:** same 31-issue Phil-gated queue. Family Room's remaining 16 partial rows are genuine content gaps (bonus room, basement, sewing), not wording fixes. Hall Closet (30 partial) is next if picked up again.
+
+Pushed to main. No price or product page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in (13:4x slot): previous work independently reconfirmed finished, verified the feed fix directly, handed Family Room's small partial tier to the operator
 
 **Previous work was finished and verified, not just cited.** Attached clean: fetched `origin/main`, unshallowed (checkout arrived shallow and detached as documented), `checkout main`, `merge --ff-only` onto `origin/main` (879aadf73, clean fast-forward, 911 commits, no reset or force). Working tree was already clean and main already in sync with origin before this slot started.

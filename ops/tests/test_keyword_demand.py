@@ -1376,6 +1376,29 @@ def main():
         for f in fails:
             print(" -", f)
         return 1
+
+    # 43. Found live 2026-11-11, mining Family Room and Guest Bedroom's
+    #     partial tiers. "choose" names the same decision the verb
+    #     "organize"/"pick" already covers ("how to choose toy organizer",
+    #     "how to choose nightstand"), not a different subject.
+    if "choose" in kd.content_words("how to choose toy organizer"):
+        fails.append("'choose' is still a content word; the FORMAT_WORDS "
+                     "addition did not take")
+    old_format13 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format13 - {"choose"}
+    try:
+        if "choose" not in kd.content_words("how to choose toy organizer"):
+            fails.append("test fixture no longer reproduces the pre-fix "
+                         "behaviour: 'choose' was dropped even with the "
+                         "word removed from FORMAT_WORDS")
+    finally:
+        kd.FORMAT_WORDS = old_format13
+
+    if fails:
+        print("FAIL")
+        for f in fails:
+            print(" -", f)
+        return 1
     # Counted from the numbered cases in this file rather than typed, because
     # a hardcoded tally goes stale the first time somebody adds a case and
     # then the test reports a number that is simply false. It said 14/14

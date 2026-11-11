@@ -766,6 +766,26 @@ _result_renovation_genuine = rgc.score_room([_renovation_genuine], [], _room)
 check("a genuine 'how to organize a kitchen' row is NOT excluded by the renovation pattern",
       _result_renovation_genuine["on_topic_rows"] == 1)
 
+
+# Found 2026-11-11, mining Primary Bedroom's tier. "mumsnet" is a UK
+# parenting-forum brand, the same retailer/platform-name shape already
+# excluded for pinterest/reddit/bunnings.
+_mumsnet = {"query": "how to declutter mumsnet", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_mumsnet = rgc.score_room([_mumsnet], [], _room)
+check("a 'mumsnet' off-topic-context row is excluded",
+      _result_mumsnet["on_topic_rows"] == 0)
+
+# Found 2026-11-11, mining Primary Bedroom's tier. A workplace step-count
+# fitness challenge, nothing to do with a bedroom.
+_step_challenge = {"query": "how to organize a step challenge", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_step_challenge = rgc.score_room([_step_challenge], [], _room)
+check("a 'step challenge' off-topic-context row is excluded",
+      _result_step_challenge["on_topic_rows"] == 0)
+_declutter_step_by_step_genuine = {"query": "how to declutter your home step by step", "best_page": "/test-room-deck.html", "status": "covered"}
+_result_declutter_step_by_step_genuine = rgc.score_room([_declutter_step_by_step_genuine], [], _room)
+check("a genuine 'step by step' row is NOT excluded by the step-challenge pattern",
+      _result_declutter_step_by_step_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

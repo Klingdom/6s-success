@@ -193,7 +193,7 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "women", "container", "containers", "essentials",
                           "household", "daily", "inspo", "inspiration",
                           "images", "efficiency", "chef", "modern", "rustic",
-                          "simple"))
+                          "simple", "choose"))
 
 # "images", "efficiency" and "chef" joined 2026-11-11, mining Kitchen's
 # partial tier. "kitchen organisation ideas images" and "linen closet
