@@ -4,6 +4,8 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## 2026-11-11, scheduled operator cycle (11:0x slot): fixed the `/articles/index.html` directory-page misroute three prior PM check-ins named as the top unblocked lead; it was not a one-off, it was crediting hundreds of queries to a listing page instead of the real destination
 
+**Found the 10:4x PM check-in's own decision already on `origin/main` after implementing, not before: it proposed fixing this in `_tie_break` (a page with no room signal whose head_words aggregate other pages' titles must never win a tie), but had not started the code.** Built a different, more complete fix instead, in `_page_headings()` rather than the tie-break: it corrects the actual word match and both coverage fields, not only which page wins a tie, which matters because the diff below shows the bug was changing `coverage`/`heading_coverage` directly on hundreds of rows, not just resolving close ties. Supersedes the 10:4x decision rather than also implementing it; the two are not additive, since a page whose aggregated headings are already excluded from `head_words` has nothing left to win a tie-break with.
+
 **Did.** Attached clean (unshallow, `checkout -B main origin/main`, ff-only onto `230de9c42`). Added "inspo"/"inspiration" to `FORMAT_WORDS` after mining Home Office/Guest Bathroom (checked and declined "plans", "lots", "large", "steps", "properly", "homes" first; each failed a self-flattery or full-corpus-risk check). Then chased the named `/articles/index.html` lead: it mechanically repeats all 56 linked articles' own titles as its own `<h2>`s, so it ties or beats the real page on hundreds of queries. Fixed in `ops/keyword_demand.py`'s `_page_headings()`: a heading that is entirely one hyperlink to another page is dropped from a page's own `head_words`. Checked site-wide first: only 3 of 244 pages are built this way (all directory pages), so no legitimate heading anywhere else is touched.
 
 **Verified.** New test case 41, fail-then-pass proved by hand. Full before/after diff of both corpora (saved a snapshot first): 0 rows moved to a better status, 90 moved to a worse, honest one, all 90 previously attributed to one of the 3 directory pages, 0 side effects elsewhere. `GOALS.md`'s cluster citation corrected in place (one row moved). `check_urls.py`, `fix_dashes.py`, `build_id.py`, `affiliate.py --check`, both room-guide test suites all clean. `preflight.py --skip-tests` run twice (before and after the big fix): 0 real FAIL either time, same documented network-bound `gate_etsy_pdfs_current` stall, confirmed genuinely stuck via flat `/proc` CPU before killing it, no stray files left. GitHub: 31 open issues, unchanged since 2026-11-08, none from Phil. No mail credential.
@@ -17,6 +19,26 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** same standing Phil-gated queue; room-guide mining remains real (Kitchen/Garage/Hall Closet ~21% uncovered) but is not the day's highest find.
 
 Pushed to main: this entry, the fixes above, regenerated command deck. No price, product or site page touched; scorer-only change under `ops/`, IndexNow not applicable.
+
+## 2026-11-11, PM check-in (10:4x slot): previous work reconfirmed finished; made the tie-break decision for the operator instead of naming the same bug a fourth time
+
+NEXT FOR THE OPERATOR: fix `/articles/index.html`'s heading tie-win now, decision already made, because 09:4x, 09:5x and 10:1x have each named it unclaimed and reporting it again without deciding is the exact "correctly reported, never acted on" pattern CLAUDE.md 0.2 warns against. Decision: in `_tie_break`, a page with no room signal whose head_words are built by aggregating other pages' own titles/headings (today, exactly `/articles/index.html`) must never win a tie against a specific zone/article page; add that as an unconditional check ahead of the existing room-signal/near-miss checks. Prove it the same way A93's case 40 was proved: fail-then-pass test, then the before/after full-corpus diff (CLAUDE.md 5d) on both tiers.
+
+**Previous work reconfirmed finished, not cited.** Attached clean onto `origin/main` (`230de9c42`, one hourly check-in since the 10:1x addendum); tree was already clean. `cold_read_ledger.py --stale`: 0. GitHub's 31 open issues re-pulled live: unchanged since 2026-11-08, all `decision`/`P0`/`blocked-on-art`, author `Klingdom` (this repo's own automation), none from Phil. `STATUS.md` "Open claims": none. Diffed current HEAD against the last clean `cycle_signal.py` checkpoint (`acd6deff5`, every gate before `gate_tests` passed): only dashboard/state/ledger regen changed, nothing substantive, so a full re-run would add cost with no new information.
+
+**Did not start new work**, per this slot's own instruction. Spent the slot removing the one real blocker to the operator actually picking the fix up: the open "which of two approaches" question three prior cycles left unresolved.
+
+**Went well:** confirming nothing moved since the last checkpoint cheaply instead of re-running the full suite.
+
+**Did not go well:** the tie-break fix sat unclaimed through three handoffs; deciding it here is later than it should have been.
+
+**Changing next cycle:** none.
+
+**Next:** the tie-break fix, decision above; same 31-issue Phil-gated queue, unchanged since 2026-11-08.
+
+Pushed to main: this log entry, the regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
 
 ## 2026-11-11, PM check-in (10:1x slot): previous work independently reconfirmed finished; closed a real cold-read-ledger staleness gap instead of starting the index.html tie-break fix
 
