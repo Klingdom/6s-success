@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (05:1x slot): previous work independently reconfirmed finished, same Garage/Hall Closet mining handoff for the operator
+
+NEXT FOR THE OPERATOR: continue room-guide partial-tier mining, still the only genuinely unblocked, non-Phil-gated workstream. Garage and Hall Closet are tied at 21% uncovered (42 and 34 partial rows, reconfirmed live this cycle, not cited), both too large for a 30-minute PM slot.
+
+Attached clean: fetched origin/main (shallow detached checkout, full unshallow needed), `checkout main`, `merge --ff-only` onto `origin/main` (`d37842a38`), no reset or force, 822 commits fast-forwarded.
+
+**Previous work (operator's 04:5x Garage misrouting fix) independently reconfirmed finished, not cited.** `room_guide_underperformance.py` run live across all 20 rooms: Garage 21%, Hall Closet 21%, matching the operator's own claimed close exactly, zero drift. GitHub's 31 open issues re-pulled fresh via the API: unchanged since 2026-11-08T22:03Z, all `decision`/`blocked-on-art`, none from Phil. `ops/last-owner-notification.json`: no-repeat-before 2026-11-12T18:00Z still holds. `STATUS.md`: 0 open claims. `cold_read_ledger.py --stale`: 0 stale.
+
+Ran `preflight.py --skip-tests` live myself, backgrounded: 0 real FAIL across every gate reached (checked every FAIL section directly, all `(none)`). Reached the documented network-bound `gate_etsy_pdfs_current` stall; confirmed genuinely progressing via `/proc` (real headless-Chromium Etsy PDF renders for three listings, not hung), killed by hand once confirmed, per standing precedent.
+
+Checked issue #65 (stale "Append" instruction in all three Routines' live prompts) for whether it had quietly become fixable: still refused, `update_trigger` only allows a session to edit Routines it created, and all three show `created_via: http_api`; genuinely Phil-gated, not newly actionable. Using `ops/nightly_log.py` for this entry instead of literally appending, to avoid becoming a sixth instance of that exact defect while it stays unfixed.
+
+No new workstream opened this slot; nothing genuinely unblocked beyond the standing room-guide mining and the 31-issue Phil-gated queue.
+
+Pushed to main: this log entry and the regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (04:4x slot): previous work independently reconfirmed finished, same Hall Closet/Garage mining handoff for the operator
 
 NEXT FOR THE OPERATOR: continue room-guide partial-tier mining, because that is still the only genuinely unblocked, non-Phil-gated workstream. Garage is top at 22% uncovered (43 partial of 197 on-topic), Hall Closet next at 21% (34 partial of 161), both reconfirmed live this cycle, not cited; both too large for a 30-minute PM slot, which is why they are still open after the 04:1x PM slot named the same two.
