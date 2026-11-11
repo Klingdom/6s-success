@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## scheduled operator cycle (~20:5x UTC): independently confirmed and escalated the GitHub Actions queue stall, fixed STATUS.md's resulting deploy-gap drift
+
+NEXT FOR THE OPERATOR: same standing 31-issue Phil-gated queue; mine Garage's remaining partial tier (42 rows, 21% uncovered) or Hall Closet's, per the 20:4x PM check-in's own handoff, once GitHub Actions clears (see below).
+
+**Did:** Attached clean (fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main`, 982 commits, no reset or force). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `CLAUDE.md` and the last several `ops/NIGHTLY-LOG.md` entries per steps 0-1. `preflight.py --skip-tests` run live: 0 real FAIL through every gate reached, stalled at the documented `gate_etsy_pdfs_current` network wait. Checked inbox (`inbox_agent.py --apply`: no mail credential in this sandbox, unchecked not empty) and GitHub's 31 open issues (re-pulled live, unchanged since 2026-11-08, all `decision`/`P0`/`blocked-on-art`, none from Phil).
+
+**Independently confirmed and escalated the GitHub Actions queue stall the 20:4x PM check-in first flagged.** `list_workflow_runs` showed 19 runs still `queued` (Checks, Publish site image, Publish MCP image, Hourly brief, three social-draft workflows) across two pushes going back to 20:20:48Z, 0 `in_progress` repo-wide, and the oldest queued `Checks` run had **0 jobs** materialized at all, not merely jobs waiting for a runner, pointing at a delay inside GitHub's own Actions scheduling. Ruled out the obvious alternative before escalating: the repo is **public** (`private: false`), so this cannot be a GitHub Actions minutes/billing cap; all affected workflows use `ubuntu-latest` (GitHub-hosted), not a dead self-hosted runner. Could not reach `githubstatus.com` to check for a platform incident independently (this sandbox's network policy). Filed **issue #66** with the full diagnostic trail, since this is the second independent confirmation the queue has not moved (the 20:4x entry's own stated bar for filing rather than a third silent re-check). Separately confirmed this sandbox's own scheduled Claude Code sessions (this one included) push commits directly via git and are unaffected by the Actions stall; only Actions-run workflows (CI checks, image publish, the deploy that depends on it) are blocked.
+
+**Found and fixed the real consequence while it was still small.** Because `Publish site image` (which `deploy.yml` waits on via `workflow_run`) is stuck queued, production has not received a new build since the 15:38:35Z confirmation, and two more `site/`-touching commits have landed since (`ef7153bca`, `0b8e54d7d`). STATUS.md's 18:5x correction had said "0 commits undeployed" and gone stale within about two hours, the exact recurring shape section 7 names. Fixed all five locations that restate this (section 1's Public website and Production traceability rows, section 5's Currently Deployed Build/Confirmed At/Repository HEAD Build block, the Production Knowledge paragraph, and `BLOCKER-001`) with the real re-derived count (2) and the likely cause (the queue stall, not a missing credential). Also caught and fixed a second, separate defect in section 5 while re-deriving it directly: a leftover, non-matching build id (`aeb22db95bcb7ece`) had survived an earlier correction's copy-paste and never matched the row's own cited build; "Repository HEAD Build" now correctly shows the real current `site/build-id.txt` (`0ebc1e6899196667`) rather than silently repeating the confirmed-deployed build id as if the two always matched.
+
+**Verified:** `gate_status_deploy_verdict_current()` and `gate_status_table_rows_gap_count_current()` both return clean (`None`) re-run directly against the edited files; `test_gate_status_deploy_verdict_current.py` (14/14) and `test_gate_status_table_rows_gap_count_current.py` (5/5) pass. First edit pass accidentally left the literal substring "0 commits undeployed" inside quoted prose describing the stale prior claim, which the gate's own regex (last match in the row wins) picked up instead of the real "2 commits undeployed" a few words earlier; caught by re-running the gate function directly rather than assuming the edit worked, and rephrased to avoid the false match. `fix_dashes.py --check` (0/0), `check_urls.py` (235/235) clean. No price, product or site page touched; this is a STATUS.md-only correction, `IndexNow` not applicable.
+
+**Went well:** treated "GitHub Actions itself looks stalled" as worth independently re-verifying with deeper diagnostics (0 jobs, not just 0 in_progress; ruled out the billing-cap explanation directly) rather than citing the prior entry's finding, and traced the stall to its real, growing production consequence instead of only re-confirming the queue hadn't moved.
+
+**Did not go well:** caught my own documentation mistake (the false-positive gate match) only by re-running the gate directly after editing, not before; worth doing that check first next time rather than after.
+
+**Changing next cycle:** none; the existing gates already caught both the original staleness and my own near-miss.
+
+**Next:** once issue #66 resolves (queue clears) or a human confirms a platform incident, re-verify `Checks`/`Publish site image` actually complete on the next push before trusting any future "0 commits undeployed" claim at face value for a while. Otherwise, same 31-issue Phil-gated queue; Garage or Hall Closet's partial tier for the next content-mining pass.
+
+Pushed to main. No price, product or site page touched; `STATUS.md` only, plus GitHub issue #66 filed. IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~20:4x slot)
 
 NEXT FOR THE OPERATOR: mine Garage's remaining partial tier (42 rows, 21% uncovered), because it is unchanged as the largest genuinely unmined room-guide tier, matching the 20:1x cycle's own handoff and this slot's independent re-check.
