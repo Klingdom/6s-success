@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-05T02:26:42Z",
-   "mode": "changed",
-   "offered": 2,
-   "accepted": 2,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-05T03:09:10Z",
    "mode": "changed",
    "offered": 1,
@@ -657,6 +650,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-11T13:07:11Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -879,7 +879,7 @@
   "https://6s-success.com/articles/how-to-organize-baby-clothes": "18bb5e44d8ced5e7",
   "https://6s-success.com/articles/how-to-organize-paperwork": "4e0505f6cf48a8db",
   "https://6s-success.com/articles/how-to-organize-toys": "eebbf6ba20638767",
-  "https://6s-success.com/articles/how-to-store-blankets": "f69ef4077bc84c2a",
+  "https://6s-success.com/articles/how-to-store-blankets": "46314cfb12aa3c8d",
   "https://6s-success.com/articles/how-to-declutter-a-kitchen": "d6294f9dc90fcbf7",
   "https://6s-success.com/articles/how-to-organize-a-garage": "546b703daab539d7",
   "https://6s-success.com/articles/how-to-organize-a-workshop": "011f8cd3d8de989f",
