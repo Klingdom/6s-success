@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (17:4x slot): previous work reconfirmed finished, Hall Closet's partial tier handed to the operator after a fresh rescore against the new weekly harvest data
+
+NEXT FOR THE OPERATOR: mine Hall Closet's remaining partial tier (now 28 rows, 18% uncovered), because it is the one room whose remainder prior cycles already classified as genuine content gaps rather than noise, and it is still the largest such tier after the weekly keyword harvest reshuffled the data.
+
+**Previous work finished.** Attached clean (fetch, real unshallow from a shallow detached checkout, `checkout main`, `merge --ff-only`, 951 commits fast-forwarded, no reset/force). Working tree clean, main in sync with origin before and after. CI `Checks` green on `d1bc48818` (the last code-touching commit); the two commits on top (`ac17aa894` hourly check-in, `a6447ed4f` weekly keyword harvest) are both bot-generated data refreshes, not code, so no separate CI run was expected or needed. 0 open PRs. GitHub's 31 open issues re-pulled live: unchanged since 2026-11-08, all `decision`/`blocked-on-art`, none from Phil. My own `preflight.py --skip-tests` ran to the documented `gate_etsy_pdfs_current` network stall and was killed at the 170s wrapper timeout with no output captured (known sandbox buffering limit), but it did write a fresh `cycle-signal.json` checkpoint at `git_head` `a6447ed4f` before being killed: every gate before `gate_tests` passed, 0 FAIL, consistent with the prior cycle's own live run.
+
+**Checked the handoff against fresh data rather than re-citing it.** The weekly keyword-demand harvest (`a6447ed4f`, landed 17:34) reshuffled `ops/keyword-demand.json` since the last room-guide check, so I re-ran `room_guide_underperformance.py` with no filter rather than trust the 16:4x/17:1x entries' counts unchanged. Hall Closet moved 17% to 18% uncovered (26 to 28 partial rows) under the new data, still the largest tier already classified as genuine gaps rather than noise; Garage (22%, 43 partial), Workshop (18%, 10 partial) and Nursery (17%, 23 partial) are unchanged in kind, still the standing reconfirmed-exhausted noise tiers this log has carried for many cycles.
+
+**Not started.** Nothing hours-sized belongs in this 30-minute slot. No other small closing job found: `STATUS.md`'s Open claims section is empty, the living-docs size tripwire is unchanged from the 16:1x PM check-in's own diagnosis (writing-discipline gap, not a rotation bug; not re-litigated), nothing else stale found in a brief scan of `STATUS.md` and the dashboard.
+
+**Went well:** re-ran the room-guide ranking against the just-landed weekly harvest instead of assuming the last cycle's row counts still held.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** same 31-issue Phil-gated queue; Hall Closet's 28-row tier for the operator.
+
+Pushed to main: this log entry and the regenerated command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (17:1x slot): previous work (Stair Landing mining) finished and verified; closed a stale STATUS.md Latest line instead of starting new work
 
 **Previous work finished.** Attached clean onto `6bc1f672b` (unshallow, checkout, ff-only, 948 commits, no reset/force). Working tree clean, main in sync with origin before and after. CI `Checks` green on `3c39fb9cc` (the last site-touching commit); the 16:4x operator cycle's own Stair Landing fix was fail-then-pass proved in its entry (`test_room_guide_candidates.py` 127/127) before it pushed. GitHub's 31 open issues re-pulled live via REST (gh's GraphQL path is blocked here): unchanged since 2026-11-08, all `decision`/`blocked-on-art`, none from Phil. 0 open PRs. My own backgrounded `preflight.py --skip-tests` hit this sandbox's standing buffered-output limit and was killed with no output; reported unchecked for my own run, not substituted for the operator's live result minutes earlier.
