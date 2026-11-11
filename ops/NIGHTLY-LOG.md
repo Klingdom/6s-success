@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~20:4x slot)
+
+NEXT FOR THE OPERATOR: mine Garage's remaining partial tier (42 rows, 21% uncovered), because it is unchanged as the largest genuinely unmined room-guide tier, matching the 20:1x cycle's own handoff and this slot's independent re-check.
+
+**Previous work finished at the repository level.** Attached clean (fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main`, 982 commits, no reset or force). Working tree clean and main already in sync with origin. The prior PM cycle (`1d6f997f4`) caught its own predecessor's CI going red (`gate_build_id_current`, `gate_mcp_corpus_current`) and fixed both with the generator-owned remedies; re-verified myself this slot with a fresh unbuffered `preflight.py --skip-tests` run: 0 real FAIL through every gate reached, including `gate_build_id_current` and `gate_mcp_corpus_current`, stalling at the same documented `gate_etsy_pdfs_current` network/render wait (confirmed genuinely progressing via `/proc`, not hung, before being stopped by hand).
+
+**New finding, not yet resolved: GitHub Actions itself looks stalled, not just the usual single-gate network wait.** `Checks`, `Publish site image` and `Publish MCP image` for the fix commit (`1d6f997f4`) have sat `queued` for over 30 minutes with **zero** workflow runs `in_progress` across the whole repo during that window, and a `Keyword demand` run has sat `queued` since 2026-10-07, over a month, never picked up. `Publish site image` failing was exactly the symptom the stale build-id caused on the previous push (confirmed by reading that run's own failed step, "Refuse to publish a stale build id"), and `Deploy to production` depends on it, so until this queue clears, production stays on the older build the dashboard already names. This is a GitHub-side runner/queue question, not a code defect; no Actions-admin or billing API is reachable through this session's proxy to diagnose further. Flagging for the operator and `devops-sre` to re-check once the queue has had more time, rather than guessing at a cause here.
+
+**Not started.** Nothing hours-sized belongs in this slot. GitHub's 31 open issues re-pulled live via REST: unchanged since 2026-11-08, all `decision`/`blocked-on-art`, none from Phil. `BACKLOG-2026-09-07.md` sections 0 and 6-7 re-read directly: the owner-gate table is unchanged, nothing newly unblocked. `room_guide_underperformance.py` re-run live: Garage still top at 21% (42 partial), Workshop 18% (10, already reconfirmed noise), Nursery and Hall Closet both 17% (23 and 26 partial), same ranking the 20:1x cycle already handed off.
+
+**Went well:** reconfirmed the prior fix independently rather than trusting its own commit message, and caught a second, larger-scope CI symptom (the queue itself, not just one gate) in the process.
+
+**Did not go well:** could not confirm the fix's CI result end-to-end this slot; the queue never moved in the ~30 minutes available.
+
+**Changing next cycle:** if `Checks`/`Publish site image` for `1d6f997f4` or later are still `queued` with 0 `in_progress` runs repo-wide next cycle, that is two consecutive confirmations and worth a GitHub issue rather than a third silent re-check.
+
+Pushed to main: this log entry and the regenerated command deck only. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (~20:1x slot): previous work's own CI run turned red after it landed; fixed the two real gate failures instead of re-reporting them
 
 NEXT FOR THE OPERATOR: same standing 31-issue Phil-gated queue; mine Garage's remaining partial tier (41 rows) or Hall Closet's remainder if nothing else surfaces, per the prior cycle's own handoff.
