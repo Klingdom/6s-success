@@ -22120,6 +22120,82 @@ def gate_nightly_log_not_oversized() -> None:
                 len(text.encode("utf-8")), len(entries)))
 
 
+def gate_nightly_log_entries_not_overlong() -> None:
+    """Individual ops/NIGHTLY-LOG.md entries must not be running many
+    times past the operating prompt's own stated budget (STEP 10: "under
+    250 words" for a scheduled-operator entry, OWNER-ACTIONS.md item 24's
+    text: "at most 120 words" for a PM check-in).
+
+    Found 2026-11-11: gate_nightly_log_not_oversized and its siblings
+    already watch the FILE's total size and rotate old entries out on a
+    schedule, and both were passing clean this cycle, yet
+    gate_living_docs_total_size_tripwire still warned BACKLOG-2026-09-07.md
+    was 289KB against a 150KB tripwire. The rotation gates cannot keep a
+    living doc small if each new entry keeps arriving at 10 to 20 times
+    its stated budget: several entries logged the same day as this gate
+    (the room-guide "partial tier" keyword-mining lane's own self-audit
+    trail) ran 1,500 to 6,000+ words each, one single row-worth of prose
+    per cycle, while the prompt that generates them asks for under 250.
+    Rotation only ever treats the symptom (old entries); this is the
+    first gate to watch the actual cause (oversized new ones), and it is
+    scoped to NIGHTLY-LOG.md specifically because that is the file the
+    operating prompt gives an explicit word budget for.
+
+    Deliberately generous and deliberately a WARNING, not a FAIL: an
+    overlong entry wastes every later cycle's reading time (the exact
+    cost this whole living-docs gate family exists to bound), it does not
+    ship anything broken to a customer, and a single legitimately dense
+    entry should not trip this the day it is written. The threshold is
+    set at 3x the larger of the two stated budgets (250 words), i.e. 750
+    words, comfortably above any entry that is merely a little over
+    budget and squarely below the 1,500+ word entries that prompted this
+    gate. Only entries still inside the file's own retention-plus-buffer
+    window are checked (the same window gate_nightly_log_not_oversized
+    uses), so this never relitigates history that predates the problem
+    or that a later rotation has already archived.
+
+    Proof this can fail: ops/tests/test_gate_nightly_log_entries_not_
+    overlong.py builds a synthetic recent entry well past the threshold
+    and asserts this gate warns, then confirms a short recent entry and a
+    long but out-of-window old entry both stay silent.
+    """
+    path = os.path.join(ROOT, "ops", "NIGHTLY-LOG.md")
+    if not os.path.exists(path):
+        return
+    import rotate_nightly_log as rnl
+    text = io.open(path, encoding="utf-8").read()
+    try:
+        header, entries = rnl.split_header_and_entries(
+            text, rnl.HEADER_FIRST_LINE, rnl.HEADER_THIRD_PREFIX)
+    except ValueError:
+        return
+    threshold_words = 750
+    buffered_days = rnl.DEFAULT_RETENTION_DAYS + 7
+    cutoff = dt.date.today() - dt.timedelta(days=buffered_days)
+    dates = rnl.effective_dates(entries)
+    offenders = []
+    for entry, d in zip(entries, dates):
+        if d is not None and d < cutoff:
+            continue
+        body = entry.split("\n", 1)[1] if "\n" in entry else ""
+        word_count = len(body.split())
+        if word_count > threshold_words:
+            heading = entry.split("\n", 1)[0].lstrip("#").strip()
+            offenders.append((word_count, heading))
+    if offenders:
+        offenders.sort(reverse=True)
+        worst = "; ".join(
+            "%d words: %s" % (wc, h[:80]) for wc, h in offenders[:3])
+        warn("nightly-log-entries-not-overlong",
+             "%d recent ops/NIGHTLY-LOG.md entry(ies) run past %d words, "
+             "well over the operating prompt's own 250/120-word budget "
+             "(worst first): %s. A long self-audit trail per entry is "
+             "exactly what crowds out the next cycle's reading time; keep "
+             "new entries inside the stated budget rather than relying on "
+             "rotation to clean up after the fact."
+             % (len(offenders), threshold_words, worst))
+
+
 def gate_status_production_knowledge_not_oversized() -> None:
     """STATUS.md's section 30 "Production Knowledge" chain must not carry
     more than a small buffer of superseded entries.
@@ -32369,6 +32445,7 @@ def main() -> int:
     # moving them here means every `python ops/preflight.py` run catches the
     # defect before the hang, hook or no hook, sandbox or no sandbox.
     run_gate(gate_nightly_log_not_oversized)
+    run_gate(gate_nightly_log_entries_not_overlong)
     run_gate(gate_status_production_knowledge_not_oversized)
     run_gate(gate_status_immediate_focus_not_oversized)
     run_gate(gate_checkin_log_not_oversized)
