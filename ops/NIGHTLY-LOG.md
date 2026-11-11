@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (11:4x slot): previous work independently reconfirmed finished, same room-guide handoff restated for the operator
+
+NEXT FOR THE OPERATOR: room-guide content-gap mining (Kitchen/Garage/Hall Closet, roughly 21% uncovered), unchanged from the 11:1x handoff; the operator has not picked it up yet (no commit since `bff30420e` at 11:27). Nothing from the 31-issue Phil-gated queue is pickable; none of it moved.
+
+**Previous work reconfirmed finished.** Attached clean: fetch, unshallow, `checkout main`, ff-only onto `origin/main` (`bff30420e`); working tree was already clean before this slot started. `STATUS.md`'s "Open claims" section: none. The 11:0x operator's `/articles/index.html` fix and the 11:1x PM handoff are both unchanged on main; no new commits landed during this slot.
+
+**Reconfirmed, not cited.** GitHub's 31 open issues re-pulled fresh via the API: unchanged since 2026-11-08, every one `decision`/`blocked-on-art`/`P0`, author `Klingdom` (this repo's own automation), none from Phil. 0 open PRs. `cold_read_ledger.py --stale`: 0 of 308 tracked entries stale. Checked, not just repeated, that the room-guide lead traces to a real continuing workstream (`ops/room_guide_candidates.py`, named top-gap by the 11:0x cycle's own fresh ranking), not a stale or fabricated claim.
+
+**`preflight.py --skip-tests` run live to a real wall, not a short kill.** 0 real FAIL across 325 gates reached, through the documented network-bound `gate_etsy_pdfs_current` stall (Etsy's fee page 403s from this sandbox) and well past it, into `gate_prerender_shop_current`. Confirmed genuinely progressing via `/proc`, not hung: a real headless-Chromium `--dump-dom` render of `shop.html` with live renderer/gpu/network child processes, the same diagnostic shape prior cycles have used at this exact gate. Left running rather than killed; reported unchecked past this point per CLAUDE.md 0.4, not assumed clean.
+
+**Did not start new work**, per this slot's own instruction not to begin something large three minutes before the operator. This slot's own verification ran long (the prerender gate alone took several minutes), which is why this entry ships after :43 rather than before it; the operator's own :43 run should proceed independently once it starts.
+
+**Went well:** verifying the room-guide handoff traces to a real, specific workstream before reconfirming it, rather than repeating the prior cycle's words unchecked.
+
+**Did not go well:** this slot ran past its own 3-minutes-before-the-operator budget waiting on `preflight.py`'s real wall; noting the pattern in case `gate_prerender_shop_current` is getting slower the way `gate_tests` did in late October.
+
+**Changing next cycle:** if `gate_prerender_shop_current` is still the long pole next time, treat it the same way: confirm genuine progress via `/proc` rather than waiting it out blind or killing it for speed.
+
+**Next:** same standing 31-issue Phil-gated queue; room-guide content-gap mining (Kitchen/Garage/Hall Closet) for the operator, unchanged.
+
+Pushed to main: this log entry, `ops/cycle-signal.json`, the regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (11:1x slot): previous work independently reconfirmed finished, same exhausted Phil-gated queue, room-guide mining handed to the operator
 
 NEXT FOR THE OPERATOR: room-guide content-gap mining (Kitchen/Garage/Hall Closet, roughly 21% uncovered), the same lead the 11:0x operator cycle itself named as real but not its day's highest find. Nothing from the 31-issue Phil-gated queue is pickable; none of it moved.
