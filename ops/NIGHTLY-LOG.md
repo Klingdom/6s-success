@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (09:4x slot): previous work independently reconfirmed finished; the newly-surfaced /articles/index.html tie-break bug handed to the operator
+
+NEXT FOR THE OPERATOR: fix the `/articles/index.html` alphabetical heading-tie bug the last operator cycle surfaced and named as its own next lead, because it is a real misrouting bug on a live query, already diagnosed, genuinely unblocked, and not Phil-gated. The all-articles directory page mechanically aggregates every other article's title words into its own headings, so it wins a heading tie against a specific zone page on nothing but alphabetical order whenever both score the same (confirmed: "organized bathroom cupboard" now ties 0.667 between `/articles/index.html` and the correct `/zones/primary-bathroom-the-under-sink-cabinet.html`, and the directory page wins only because it sorts first). A real fix needs a decision in the scorer, not another one-off word patch: either a directory/index page should never win a heading tie against a specific zone page, or its own heading words should be excluded from the tie the same way a cross-sell band's words now are. Whichever approach is picked, prove it with the same before/after full-corpus diff pattern test case 40 and A93 just used (CLAUDE.md 5d), since the same keyword_demand.py code path is involved.
+
+**Previous work independently reconfirmed finished, not cited.** Attached clean: fetch, `checkout main`, ff-only onto `origin/main` (`bcb5c5e30`, an automated deploy-verdict commit landed since the last PM entry; no unrelated-history symptom, no reset or force needed). `git log -12`: the real work since the 09:1x PM entry is the operator's own cycle (`7a2b6247e`, "Fix Hall Closet bathroom-cupboard misroute via band-heading provenance; fix CI-failing feed.xml drift"), merged cleanly, deck regenerated, two hourly check-ins and one automated deploy-verdict refresh since. Working tree was clean before this cycle; one file, `ops/cycle-signal.json`, changed during this cycle's own check below and is part of what this cycle pushes.
+
+**Checked, not cited.** `cold_read_ledger.py --stale`: 0 stale, every clean/fixed date current against the file's own last commit. `preflight.py --skip-tests`, run live and backgrounded rather than killed blind: it did not reach a full completion inside this slot (the documented standing Chromium-contention wall at `gate_etsy_pdfs_current`/`gate_prerender_shop_current`, same class every recent cycle has hit, reported unchecked past that point per CLAUDE.md 0.4, not assumed clean), but it recorded a genuine `cycle_signal.py` checkpoint confirming every gate before `gate_tests` passed with 0 FAIL at git HEAD `50d63a0a5` (the commit immediately before this cycle's own fetch), independent evidence the operator's Hall Closet/feed.xml fix introduced no regression any of those gates would catch. GitHub's 31 open issues re-pulled live via the API, ordered by most recently updated: unchanged since 2026-11-08 (#65, #64 newest), every one `decision`/`P0`/`blocked-on-art`, author `Klingdom` throughout (this repository's own automation posting under the owner account, not a live decision from Phil), none newly actionable, none touched per the standing rule against acting on a Phil-gated item. `STATUS.md` "Open claims": none open. `BACKLOG-2026-09-07.md` section 0 (traffic, the one number that decides order): still a 2026-10-02 carry-forward, over five weeks stale now; already tracked as #64 (filed 2026-11-08) and OWNER-ACTIONS.md item 0b, needs the VPS SSH key only Phil holds, not newly flagged here.
+
+**Did not start new work.** The `/articles/index.html` tie-break fix needs the same before/after full-corpus regression discipline as this morning's band-heading fix, which is real work for the operator's longer runway, not a 30-minute PM slot; starting it here and leaving it half-done would cost the operator more than this slot saves.
+
+**Went well:** using the backgrounded preflight run's own `cycle_signal.py` checkpoint as real evidence once it stalled, instead of discarding the run as pure waste.
+
+**Did not go well:** nothing new; the Chromium-serial wall on `gate_etsy_pdfs_current`/`gate_prerender_shop_current` is now hit by nearly every cycle that runs the full suite, same standing limitation, not re-diagnosed further this slot.
+
+**Changing next cycle:** none.
+
+**Next:** the `/articles/index.html` tie-break fix, above; same 31-issue Phil-gated queue otherwise, unchanged since 2026-11-08.
+
+Pushed to main: this log entry, `ops/cycle-signal.json`, the regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, scheduled operator cycle: fixed the Hall Closet "organized bathroom cupboard" misroute named in A89/A90, plus an unrelated feed.xml drift that was failing CI
 
 **Did:** Unshallowed and attached clean onto `origin/main` (867 commits fast-forwarded, no reset or force). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four `NIGHTLY-LOG.md` entries before touching anything; three consecutive prior entries (07:1x, 07:4x, 08:1x) all named the same thing as the only unblocked, non-Phil-gated job: the "organized bathroom cupboard" heading tie, where the linen-closet article's own promotional band heading ("the bathroom towels and the guest bed") leaks another room's words into the score. Picked that up.
