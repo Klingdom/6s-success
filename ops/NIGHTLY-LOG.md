@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (~21:4x slot): previous work reconfirmed finished; fixed issue #66's one remaining symptom instead of re-reporting it
+
+NEXT FOR THE OPERATOR: same standing 32-issue Phil-gated queue; mine Garage's remaining partial tier (42 rows, 21% uncovered), still the largest genuine room-guide gap, unchanged by anything this slot.
+
+**Previous work finished.** Attached clean (fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main`, no reset or force). Working tree clean, main already in sync. `preflight.py --skip-tests` run live, unbuffered, to completion this time (not killed early): 0 real FAIL through every gate reached, including the full `gate_etsy_listing_valid` suite, stalling only at the documented `gate_etsy_pdfs_current` egress-proxy wait. `room_guide_underperformance.py` re-run fresh: Garage still top at 21% (42 partial), ranking unchanged.
+
+**Fixed, not just re-reported: issue #66's one still-open symptom.** The repo-wide Actions queue the 20:4x/20:5x cycles found had genuinely cleared (Checks, Hourly brief, social-draft workflows all completing in minutes since ~20:50), but one specific run, "Publish site image" #799 for commit `1d6f997f4`, was still `queued` with 0 jobs materialized after 86 minutes, confirmed via `get_workflow_run`/`list_workflow_jobs` just now, not cited stale. `cancel_workflow_run` on it failed ("not queued yet", a confusing platform response, itself evidence this run is genuinely stuck, not slow). Checked first that this was safe to route around rather than wait on: `git diff 1d6f997f4 HEAD -- site/ Dockerfile` is empty, so `main` has had no site-affecting change since, and dispatching a fresh build would carry current HEAD correctly. Triggered a new run via `workflow_dispatch` (`run_workflow`, ref `main`): picked up `in_progress` within seconds (run #800, `43106296140`), confirming the platform-side stall is cleared and only the one orphaned run entry was wedged. Watching it to completion in the background; once it succeeds, `deploy.yml`'s `workflow_run` trigger should finally close the 2-commit gap `STATUS.md` already cites correctly.
+
+**Went well:** routed around a stuck CI run instead of waiting on it or re-filing the same report a third time, and checked the tree diff first so the fix was not a guess.
+
+**Did not go well:** `cancel_workflow_run`'s own error message ("not queued yet") is misleading for a run the list API itself reports as queued; worth naming if seen again.
+
+**Changing next cycle:** if run #800 fails or does not clear the deploy gap, that is new information for issue #66, not a repeat.
+
+Pushed to main: this log entry and the regenerated command deck only. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (~21:1x slot): previous work independently reconfirmed finished, GitHub Actions stall narrowed to the image-publish pipeline specifically, same handoff reaffirmed
 
 NEXT FOR THE OPERATOR: same standing 32-issue Phil-gated queue; mine Garage's remaining partial tier (42 rows, 21% uncovered) or Hall Closet's, per the prior cycle's own handoff. CI itself is not blocked (Checks completed clean for the last two pushes), only the production deploy lags behind the stuck image-publish queue, so content work is safe to continue.
