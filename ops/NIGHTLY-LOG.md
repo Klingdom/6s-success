@@ -2,6 +2,44 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, scheduled operator cycle: mined Garage's remaining partial tier further, 26% to 24% uncovered
+
+**Did:** Attached clean (fetch, unshallow, ff-only onto `d8914442e`). Re-ran `room_guide_underperformance.py` live across all 20 rooms: Garage still top at 26% uncovered. Read its full partial tier via `score_room()`, not the 8-row CLI sample, against `content.json` before acting. Added "overview", "routine" and "setup" to `FORMAT_WORDS` (`ops/keyword_demand.py`), each a style/action qualifier on an already-covered subject, not a new topic. Added "tool boxes" (plural) to `Garage|Power Tool and Battery Zone` in `zone-also-called.json`, closing a singular/plural stemming gap the existing "tool box"/"toolbox" entry (A73) never covered, the same shape A34 (nappy/nappies) already fixed once.
+
+**Verified:** Fail-then-pass proved directly via `git stash` (resolved a stash-pop conflict from a stale rescore, recovered the real fix cleanly). All 7 target queries moved `partial` to `covered`. `test_keyword_demand.py` (36 cases), `test_room_guide_underperformance.py` (19/19), `test_gate_zone_also_called_is_heading.py` (6/6), `test_gate_also_called_no_digital_collision.py` (5/5) all pass. `check_urls.py` (235/235), `audit_pages.py`, `fix_dashes.py --check`, `affiliate.py --check`, `check_sellable.py` (124/126, 2 services by design), `link_graph_report.py` (0 orphans), `build_id.py --check` all clean. `preflight.py --skip-tests` reached 0 FAIL twice (once to full completion, once stalled at the documented `gate_etsy_pdfs_current` sandbox stall under concurrent CPU load); killed the second run by hand, only harmless defunct zombies left, no stray files. GitHub: 31 open issues, unchanged since 2026-11-08, none from Phil. No mail credentials.
+
+**Went well:** The stemming-gap class (A34, now this fix) keeps paying off; checking the actual rendered heading, not just the also-called JSON, caught the real tie-break cause fast.
+
+**Did not go well:** `git stash`/`pop` collided with a concurrent rescore writing the same JSON files mid-cycle; cost a few minutes to untangle, no data lost.
+
+**Changing next cycle:** None; standard mining continues.
+
+**Next:** Garage (24%) and Hall Closet (25%) both still have meaningful partial tiers; Primary Bedroom and Guest Bedroom are next after those. Standing 31-issue Phil-gated queue unchanged.
+
+Pushed to main. Command deck regenerated.
+
+HANDOFF-FILES: none
+
+## 2026-11-11, PM check-in (00:4x slot): fixed a real CI FAIL left by the previous cycle, not a new workstream
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (31 issues, unchanged since 2026-11-08), because nothing new is unblocked this slot; the room-guide partial-tier mining lane is still the one operator-cycle-sized non-Phil-gated workstream if time allows.
+
+Previous work was NOT finished: CI's checks.yml run on 746277c57 genuinely FAILED (Preflight step, exit 1), not a flake. Root cause: that same PM cycle's own log entry was appended to the end of NIGHTLY-LOG.md instead of prepended to the top, tripping gate_nightly_log_ordering (the rotation it ran moments earlier). Fixed this slot: moved the misplaced entry (lines 16445-16456) to the top, pure cut-and-paste, byte count unchanged. Reran gate_nightly_log_ordering, gate_nightly_log_no_duplicate_entries, gate_nightly_log_not_oversized, gate_cold_read_handoff_not_stale and both CI-failing test files directly: all clean. fix_dashes --check: 0/0. Attached clean, ff-only, no force.
+
+HANDOFF-FILES: none
+
+## 2026-11-11, PM check-in (00:1x slot)
+
+Previous work IS finished: attached cleanly (fetch, ff-only onto `356505ee6`), working tree clean, `cycle_signal.py --check` read SAME against the 00:15:01Z snapshot. Ran `preflight.py` live anyway: 0 FAIL/WARN through every gate reached, hung at the documented sandbox-bound `gate_tests` limit on `test_audit_catalog.py` (same slow test prior cycles have logged, not a new defect), killed by the 180s timeout. GitHub re-pulled directly: 31 open issues unchanged, all decision/blocked-on-art, none from Phil since 2026-11-08. Checked `ops/last-owner-notification.json`: pushed 2026-11-10T09:58Z with an explicit no-repeat-before of 2026-11-12T18:00Z; nothing material changed since, so no push sent this cycle.
+
+Closing job this slot: three rotation tools reported entries past retention that no prior cycle had applied: `rotate_checkin_log.py` (22 of 211 entries, 9592 bytes), `rotate_backlog_section4_items.py` (2 rows, 3343 bytes) and `rotate_nightly_log.py` (66 of 1080 entries, 159902 bytes). Applied all three with `--apply`, reran each `--check` to CLEAN, ran their own test files (`test_rotate_checkin_log.py`, `test_rotate_nightly_log.py`) both OK. `fix_dashes.py --check` 0/0. No price, product or code behavior touched; pure archive housekeeping.
+
+Handing to the operator: same standing Phil-gated queue (31 issues), unchanged; the room-guide partial-tier mining lane (several rooms still have open partial tiers) is operator-cycle-sized, left for :43.
+
+Pushed to main. Command deck regenerated.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, scheduled operator cycle: Mudroom's remaining partial tier mined to exhaustion, GOALS.md citation drift caught and fixed the same cycle
 
 Did: attached cleanly per Step 0. Preflight reached 0 real FAIL through every gate before the documented gate_etsy_pdfs_current sandbox stall; killed by hand, no stray files. Picked up the standing room-guide coverage lane, the only active non-Phil-gated workstream: Mudroom was the smallest unmined tier (6 partial, 21 percent uncovered). Checked each row against real content before touching anything. Added "original"/"deals" to FORMAT_WORDS (style/shopping qualifiers, same shape as "ways"/"diy"/"guide"). Added two OFF_TOPIC_CONTEXT exclusions ("diy lab", a home-science sense; "storage locker", a rented self-storage sense distinct from this room's own built-in lockers) and extended the existing construction-intent pattern for "outdoor bench seat". One row ("storage buildings") left alone as a genuine out-of-scope gap, not forced.
@@ -16439,36 +16477,6 @@ NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #
 **Next:** same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2) and `OWNER-ACTIONS.md`. Nothing else unblocked.
 
 Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json`, command deck. No price, product or site page touched; IndexNow not applicable.
-
-HANDOFF-FILES: none
-
-## 2026-11-11, PM check-in (00:1x slot)
-
-Previous work IS finished: attached cleanly (fetch, ff-only onto `356505ee6`), working tree clean, `cycle_signal.py --check` read SAME against the 00:15:01Z snapshot. Ran `preflight.py` live anyway: 0 FAIL/WARN through every gate reached, hung at the documented sandbox-bound `gate_tests` limit on `test_audit_catalog.py` (same slow test prior cycles have logged, not a new defect), killed by the 180s timeout. GitHub re-pulled directly: 31 open issues unchanged, all decision/blocked-on-art, none from Phil since 2026-11-08. Checked `ops/last-owner-notification.json`: pushed 2026-11-10T09:58Z with an explicit no-repeat-before of 2026-11-12T18:00Z; nothing material changed since, so no push sent this cycle.
-
-Closing job this slot: three rotation tools reported entries past retention that no prior cycle had applied: `rotate_checkin_log.py` (22 of 211 entries, 9592 bytes), `rotate_backlog_section4_items.py` (2 rows, 3343 bytes) and `rotate_nightly_log.py` (66 of 1080 entries, 159902 bytes). Applied all three with `--apply`, reran each `--check` to CLEAN, ran their own test files (`test_rotate_checkin_log.py`, `test_rotate_nightly_log.py`) both OK. `fix_dashes.py --check` 0/0. No price, product or code behavior touched; pure archive housekeeping.
-
-Handing to the operator: same standing Phil-gated queue (31 issues), unchanged; the room-guide partial-tier mining lane (several rooms still have open partial tiers) is operator-cycle-sized, left for :43.
-
-Pushed to main. Command deck regenerated.
-
-HANDOFF-FILES: none
-
-## 2026-11-11, scheduled operator cycle: mined Garage's remaining partial tier further, 26% to 24% uncovered
-
-**Did:** Attached clean (fetch, unshallow, ff-only onto `d8914442e`). Re-ran `room_guide_underperformance.py` live across all 20 rooms: Garage still top at 26% uncovered. Read its full partial tier via `score_room()`, not the 8-row CLI sample, against `content.json` before acting. Added "overview", "routine" and "setup" to `FORMAT_WORDS` (`ops/keyword_demand.py`), each a style/action qualifier on an already-covered subject, not a new topic. Added "tool boxes" (plural) to `Garage|Power Tool and Battery Zone` in `zone-also-called.json`, closing a singular/plural stemming gap the existing "tool box"/"toolbox" entry (A73) never covered, the same shape A34 (nappy/nappies) already fixed once.
-
-**Verified:** Fail-then-pass proved directly via `git stash` (resolved a stash-pop conflict from a stale rescore, recovered the real fix cleanly). All 7 target queries moved `partial` to `covered`. `test_keyword_demand.py` (36 cases), `test_room_guide_underperformance.py` (19/19), `test_gate_zone_also_called_is_heading.py` (6/6), `test_gate_also_called_no_digital_collision.py` (5/5) all pass. `check_urls.py` (235/235), `audit_pages.py`, `fix_dashes.py --check`, `affiliate.py --check`, `check_sellable.py` (124/126, 2 services by design), `link_graph_report.py` (0 orphans), `build_id.py --check` all clean. `preflight.py --skip-tests` reached 0 FAIL twice (once to full completion, once stalled at the documented `gate_etsy_pdfs_current` sandbox stall under concurrent CPU load); killed the second run by hand, only harmless defunct zombies left, no stray files. GitHub: 31 open issues, unchanged since 2026-11-08, none from Phil. No mail credentials.
-
-**Went well:** The stemming-gap class (A34, now this fix) keeps paying off; checking the actual rendered heading, not just the also-called JSON, caught the real tie-break cause fast.
-
-**Did not go well:** `git stash`/`pop` collided with a concurrent rescore writing the same JSON files mid-cycle; cost a few minutes to untangle, no data lost.
-
-**Changing next cycle:** None; standard mining continues.
-
-**Next:** Garage (24%) and Hall Closet (25%) both still have meaningful partial tiers; Primary Bedroom and Guest Bedroom are next after those. Standing 31-issue Phil-gated queue unchanged.
-
-Pushed to main. Command deck regenerated.
 
 HANDOFF-FILES: none
 
