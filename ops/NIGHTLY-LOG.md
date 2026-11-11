@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11 (~09:5x UTC), scheduled operator cycle: closed-lane judgment call, gate added for living-doc entry size rather than another room-guide row
+
+**Did:** Attached cleanly (unshallowed, `checkout -B main origin/main`, ff-only). Read `BACKLOG-2026-09-07.md` section 0/1, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`'s 24 numbered items, and the last several `NIGHTLY-LOG.md`/`CHECKIN-LOG.md` entries directly rather than trusting a prior cycle's conclusion. `CHECKIN-LOG.md` itself was already saying "commits in 24h: 220, recorded as effort, not as a result" for the last six consecutive check-ins. A forked research pass and my own direct read of all 31 open GitHub issues and `OWNER-ACTIONS.md` both confirmed every epic above room-guide keyword-mining is genuinely Phil-gated; a push notification on that exact gap already went out 2026-11-10 with a stated no-repeat-before of 2026-11-12, so not repeated.
+
+Rather than mine another room's partial tier, added `gate_nightly_log_entries_not_overlong` to `ops/preflight.py`: recent room-guide self-audit entries were running 1,500-6,000+ words against the prompt's own 250/120-word budget (41 such entries in the current window), which is why `gate_living_docs_total_size_tripwire` keeps flagging the backlog oversized even with every per-section rotation gate clean. Fail-then-pass proved (`ops/tests/test_gate_nightly_log_entries_not_overlong.py`, 4/4), confirmed firing on the real file.
+
+**Verified:** `preflight.py --skip-tests` 0 real FAIL through every gate; killed at the documented `gate_etsy_pdfs_current` network stall, confirmed no stray files. All sibling oversized-doc gates still pass.
+
+**Went well:** caught the cause, not the symptom.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** keep new entries under budget; this gate will say so now.
+
+**Next:** same 31 Phil-gated issues; #42's cadence question still open.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (09:4x slot): previous work independently reconfirmed finished; the newly-surfaced /articles/index.html tie-break bug handed to the operator
 
 NEXT FOR THE OPERATOR: fix the `/articles/index.html` alphabetical heading-tie bug the last operator cycle surfaced and named as its own next lead, because it is a real misrouting bug on a live query, already diagnosed, genuinely unblocked, and not Phil-gated. The all-articles directory page mechanically aggregates every other article's title words into its own headings, so it wins a heading tie against a specific zone page on nothing but alphabetical order whenever both score the same (confirmed: "organized bathroom cupboard" now ties 0.667 between `/articles/index.html` and the correct `/zones/primary-bathroom-the-under-sink-cabinet.html`, and the directory page wins only because it sorts first). A real fix needs a decision in the scorer, not another one-off word patch: either a directory/index page should never win a heading tie against a specific zone page, or its own heading words should be excluded from the tie the same way a cross-sell band's words now are. Whichever approach is picked, prove it with the same before/after full-corpus diff pattern test case 40 and A93 just used (CLAUDE.md 5d), since the same keyword_demand.py code path is involved.
