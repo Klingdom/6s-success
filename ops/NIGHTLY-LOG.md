@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, scheduled operator cycle (11:0x slot): fixed the `/articles/index.html` directory-page misroute three prior PM check-ins named as the top unblocked lead; it was not a one-off, it was crediting hundreds of queries to a listing page instead of the real destination
+
+**Did.** Attached clean (unshallow, `checkout -B main origin/main`, ff-only onto `230de9c42`). Added "inspo"/"inspiration" to `FORMAT_WORDS` after mining Home Office/Guest Bathroom (checked and declined "plans", "lots", "large", "steps", "properly", "homes" first; each failed a self-flattery or full-corpus-risk check). Then chased the named `/articles/index.html` lead: it mechanically repeats all 56 linked articles' own titles as its own `<h2>`s, so it ties or beats the real page on hundreds of queries. Fixed in `ops/keyword_demand.py`'s `_page_headings()`: a heading that is entirely one hyperlink to another page is dropped from a page's own `head_words`. Checked site-wide first: only 3 of 244 pages are built this way (all directory pages), so no legitimate heading anywhere else is touched.
+
+**Verified.** New test case 41, fail-then-pass proved by hand. Full before/after diff of both corpora (saved a snapshot first): 0 rows moved to a better status, 90 moved to a worse, honest one, all 90 previously attributed to one of the 3 directory pages, 0 side effects elsewhere. `GOALS.md`'s cluster citation corrected in place (one row moved). `check_urls.py`, `fix_dashes.py`, `build_id.py`, `affiliate.py --check`, both room-guide test suites all clean. `preflight.py --skip-tests` run twice (before and after the big fix): 0 real FAIL either time, same documented network-bound `gate_etsy_pdfs_current` stall, confirmed genuinely stuck via flat `/proc` CPU before killing it, no stray files left. GitHub: 31 open issues, unchanged since 2026-11-08, none from Phil. No mail credential.
+
+**Went well:** checking the named example against the full corpus before fixing it narrowly, which found the bug was 90 rows wide, not 1.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; this entry's own gate (`gate_nightly_log_entries_not_overlong`) is the reason it stays short.
+
+**Next:** same standing Phil-gated queue; room-guide mining remains real (Kitchen/Garage/Hall Closet ~21% uncovered) but is not the day's highest find.
+
+Pushed to main: this entry, the fixes above, regenerated command deck. No price, product or site page touched; scorer-only change under `ops/`, IndexNow not applicable.
+
 ## 2026-11-11, PM check-in (10:1x slot): previous work independently reconfirmed finished; closed a real cold-read-ledger staleness gap instead of starting the index.html tie-break fix
 
 NEXT FOR THE OPERATOR: same `/articles/index.html` alphabetical heading-tie fix the 09:4x/09:1x PM entries already named, still unclaimed. It needs a scorer decision plus the same before/after full-corpus regression discipline A93 used, the operator's longer runway, not a 30-minute slot; not started here for the same reason the last two slots gave.

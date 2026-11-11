@@ -1193,6 +1193,31 @@ def main():
     finally:
         kd.FORMAT_WORDS = old_format11
 
+    # 39b. Found live 2026-11-11, mining Home Office and Guest Bathroom's
+    #     partial tiers. "desk organisation inspo" and "desk organisation
+    #     inspiration" ask the same thing as "desk organisation", "inspo"/
+    #     "inspiration" naming the same content-format wish "guide"/"ideas"
+    #     already cover, not a different subject.
+    if "inspo" in kd.content_words("desk organisation inspo"):
+        fails.append("'inspo' is still a content word; the FORMAT_WORDS "
+                     "addition did not take")
+    if "inspiration" in kd.content_words("desk organisation inspiration"):
+        fails.append("'inspiration' is still a content word; the "
+                     "FORMAT_WORDS addition did not take")
+    old_format11b = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format11b - {"inspo", "inspiration"}
+    try:
+        if "inspo" not in kd.content_words("desk organisation inspo"):
+            fails.append("test fixture no longer reproduces the pre-fix "
+                         "behaviour: 'inspo' was dropped even with "
+                         "the word removed from FORMAT_WORDS")
+        if "inspiration" not in kd.content_words("desk organisation inspiration"):
+            fails.append("test fixture no longer reproduces the pre-fix "
+                         "behaviour: 'inspiration' was dropped even with "
+                         "the word removed from FORMAT_WORDS")
+    finally:
+        kd.FORMAT_WORDS = old_format11b
+
     # 40. Found live 2026-11-11: "organized bathroom cupboard" tied on
     #     headings between the real bathroom zone pages and the Hall
     #     Closet linen article, and the linen article won only because its
@@ -1269,6 +1294,53 @@ def main():
         fails.append("'bathroom' was dropped from a Primary Bathroom "
                      "page's own title, which is not a band heading at "
                      "all: %r" % primary["head_words"])
+
+    # 41. Found live 2026-11-11, chasing the "organized bathroom cupboard"
+    #     misroute entry 40 above named as its own next lead:
+    #     `/articles/index.html` mechanically repeats every one of its 56
+    #     linked articles' own titles as its own <h2>, so it ties or beats
+    #     the real destination page on hundreds of unrelated queries. A
+    #     heading that is entirely one hyperlink to another page is that
+    #     other page's own title, not this page's own content, and must be
+    #     dropped from head_words; a real, non-link heading on the same
+    #     page, and a heading that MIXES a link with its own prose, must
+    #     both survive untouched.
+    with tempfile.TemporaryDirectory() as tmp2:
+        articles_dir = os.path.join(tmp2, "articles")
+        os.makedirs(articles_dir)
+        with open(os.path.join(articles_dir, "index.html"), "w",
+                  encoding="utf-8") as fh:
+            fh.write(
+                "<html><head><title>Articles: an index</title></head>"
+                "<body><h1>The reasoning behind the method</h1>"
+                "<h2><a href=\"how-to-organize-an-attic\">How to organize "
+                "an attic without overloading it</a></h2>"
+                "<h2>Why mixed headings still count</h2>"
+                "<h3>Not a link <a href=\"x\">at all</a>, real prose</h3>"
+                "</body></html>")
+        old_site2 = kd.SITE
+        kd.SITE = tmp2
+        try:
+            inv2 = kd.page_inventory(rooms=[])
+        finally:
+            kd.SITE = old_site2
+    idx = {r["url"]: r for r in inv2}.get("/articles/index.html")
+    if idx is None:
+        fails.append("page_inventory() did not read the throwaway "
+                     "articles/index.html page")
+    else:
+        if "attic" in idx["head_words"] or "overloading" in idx["head_words"]:
+            fails.append("a pure-hyperlink heading (another page's own "
+                         "title) still leaked into index.html's own "
+                         "head_words: %r" % idx["head_words"])
+        if "mixed" not in idx["head_words"] or "headings" not in idx["head_words"]:
+            fails.append("a real, non-link heading on the same hub page "
+                         "was dropped along with the link-heading fix: "
+                         "%r" % idx["head_words"])
+        if "prose" not in idx["head_words"] or "link" not in idx["head_words"]:
+            fails.append("a heading that mixes a link with its own prose "
+                         "must still count as this page's own content: "
+                         "%r" % idx["head_words"])
 
     if fails:
         print("FAIL")

@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-04T17:38:07Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-11T09:08:11Z against 243 page(s) at commit c39e49af3. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-11T11:02:20Z against 243 page(s) at commit 230de9c42. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2823. Checked against 243 published page titles: 1675 covered, 1047 partial, 101 gap.
+**Queries found:** 2823. Checked against 243 published page titles: 1633 covered, 1079 partial, 111 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,12 +17,13 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 101, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 111, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
 | 1 | how to organize sidewalk chalk | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | chalk, sidewalk |
 | 1 | how to organize soap making supplies | - | How to organize the garage car care supplies (0.33) | making, soap |
+| 2 | attic storage ideas ikea | - | How to organize an attic without overloading it (0.33) | ikea, storage |
 | 2 | how to build a railing on a porch | - | How to organize the patio or deck railing and surface (0.33) | build, porch |
 | 2 | how to build walkway steps | - | What is 6S? The six steps, and how it differs from 5S (0.33) | build, walkway |
 | 2 | how to organize benchmark advance materials | - | How to organize the workshop material rack (0.00) | advance, benchmark, materials |
@@ -46,12 +47,15 @@ Showing the top 80 of 101, ordered by the best rank the phrase reached in any on
 | 5 | how to organize belts | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | belts |
 | 5 | kindergarten organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | kindergarten |
 | 5 | why are garages left unfinished | Garage | The Garage Deck: 80 cards, free to read (0.33) | garages, unfinished |
+| 6 | attic storage ideas pinterest | - | How to organize an attic without overloading it (0.33) | pinterest, storage |
+| 6 | how to begin decluttering your home | - | Decluttering vs. organizing: what's actually different (0.33) | begin, home |
 | 6 | how to build a floating staircase landing | - | How to organize a stair landing, step by step (0.25) | build, floating, staircase |
 | 6 | how to hold bench press bar correctly | - | The Patio or Deck Deck: 68 cards, free to read (0.20) | bar, bench, correctly |
 | 6 | how to operate a wood stove | - | How to organize the kitchen stove area (0.33) | operate, wood |
 | 6 | how to organize a cribbage tournament template | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, tournament |
 | 6 | kitchen organization ideas dollar tree | Kitchen | How to declutter a kitchen: counters, cabinets and drawers (0.33) | dollar, tree |
 | 6 | trouble going to bathroom | - | How to organize a guest bathroom, step by step (0.33) | going, trouble |
+| 7 | attic storage ideas pictures | - | How to organize an attic without overloading it (0.33) | pictures, storage |
 | 7 | cover space between stove and countertop | - | The Primary Bedroom Deck: 66 cards, free to read (0.20) | countertop, cover, stove |
 | 7 | going to the bathroom problems | - | How to organize a guest bathroom, step by step (0.33) | going, problems |
 | 7 | how to design a walkway garden | - | How to organize the garage garden tool storage (0.33) | design, walkway |
@@ -64,6 +68,7 @@ Showing the top 80 of 101, ordered by the best rank the phrase reached in any on
 | 8 | how to plan a workshop templates | Workshop | How to organize a workshop, step by step (0.33) | plan, templates |
 | 8 | nine steps on how to organize a cooperative | - | What is 6S? The six steps, and how it differs from 5S (0.33) | cooperative, nine |
 | 8 | stove on floor plan | - | Venture plan (0.33) | floor, stove |
+| 9 | attic storage ideas australia | - | How to organize an attic without overloading it (0.33) | australia, storage |
 | 9 | clothes sorter hamper near me target | - | 6S Success: Home Edition &#183; Chapters 1 to 30 (0.20) | clothes, hamper, near |
 | 9 | how to host a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, host, tournament |
 | 9 | how to install a stove top range | - | How to organize the kitchen stove area (0.25) | install, range, top |
@@ -84,6 +89,7 @@ Showing the top 80 of 101, ordered by the best rank the phrase reached in any on
 | 11 | how to plan a workshop for students | Workshop | How to organize a workshop, step by step (0.33) | plan, students |
 | 11 | how to properly dispose of adult diapers | - | Why does a shared zone never stay reset? (0.00) | diapers, dispose, properly |
 | 11 | organize seasonal pricing model | - | How to organize the hall closet seasonal storage (0.33) | model, pricing |
+| 11 | simple guest bathroom decorating ideas pictures | Guest Bathroom | How to organize a guest bathroom, step by step (0.40) | decorating, pictures, simple |
 | 12 | adult diaper disposal container | - | How to organize the nursery diaper storage (0.33) | adult, disposal |
 | 12 | building beds for kids organization | - | How to organize a kids bedroom, step by step (0.33) | beds, building |
 | 12 | how to decorate a living room with white walls | Living Room | How to organize a living room, step by step (0.40) | decorate, walls, white |
@@ -95,19 +101,14 @@ Showing the top 80 of 101, ordered by the best rank the phrase reached in any on
 | 14 | computer storage for games | - | How to organize the family room game storage (0.33) | computer, games |
 | 14 | explore decluttering pro guide | - | Decluttering vs. organizing: what's actually different (0.33) | explore, pro |
 | 14 | grill stations ideas for backyards | - | How to organize the patio or deck grill station (0.33) | backyards, stations |
-| 14 | how to dispose of adult diapers | - | Why does a shared zone never stay reset? (0.00) | diapers, dispose |
-| 14 | starting a nursery for plants | Nursery | The Nursery Deck: 66 cards, free to read (0.33) | plants, starting |
-| 15 | declutter woodworking fundamentals tips | - | How to declutter a bedroom in one day, step by step (0.33) | fundamentals, woodworking |
-| 15 | decorating ideas for patios and decks | - | More storage will not fix a messy room (0.00) | decks, patios |
-| 15 | how to organize beads for jewelry making | - | 6S Success: Home Edition &#183; Chapters 1 to 30 (0.00) | beads, jewelry |
-| 15 | woodworking plans for nightstand | - | How to organize the guest bedroom nightstand (0.33) | plans, woodworking |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1047.
+Showing the top 60 of 1079.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
+| 6 | how to declutter a bedroom in one day without | How to declutter a bedroom in one day, step by step | 0.80 |
 | 3 | outdoor patio and deck design ideas | How to organize the patio or deck outdoor dining | 0.75 |
 | 4 | how to organize cleaning supplies without a closet | How to organize the hall closet cleaning supplies | 0.75 |
 | 4 | why does my house always look messy | Why is my house always messy? | 0.75 |
@@ -124,6 +125,7 @@ Showing the top 60 of 1047.
 | 19 | primary bathroom designs with shower | How to organize the primary bathroom shower or tub | 0.75 |
 | 21 | stair stringer landing to landing | How to organize a stair landing, step by step | 0.75 |
 | 1 | craft paint organizers and storage | How to organize the workshop paint and chemical storage | 0.67 |
+| 1 | declutter family room | How to organize a family room, step by step | 0.67 |
 | 1 | drop zone design ideas | How to organize the entryway drop zone | 0.67 |
 | 1 | family room decorating ideas | How to organize a family room, step by step | 0.67 |
 | 1 | how to build a drop zone | How to organize the entryway drop zone | 0.67 |
@@ -166,32 +168,30 @@ Showing the top 60 of 1047.
 | 3 | how to arrange gallery wall art | How to organize the stair landing gallery wall | 0.67 |
 | 3 | how to create a drop zone | How to organize the entryway drop zone | 0.67 |
 | 3 | how to decorate a guest bathroom | How to organize a guest bathroom, step by step | 0.67 |
-| 3 | how to get more storage for games | More storage will not fix a messy room | 0.67 |
-| 3 | how to make a power tool organizer | How to organize the garage power tool storage | 0.67 |
 
 ## By room
 
 | Room | Queries | Gap | Partial | Covered |
 |---|---|---|---|---|
-| Dining Room | 38 | 0 | 14 | 24 |
-| Entryway | 50 | 1 | 8 | 41 |
-| Family Room | 27 | 0 | 17 | 10 |
-| Garage | 77 | 1 | 21 | 55 |
-| Guest Bathroom | 22 | 1 | 14 | 7 |
-| Guest Bedroom | 24 | 0 | 12 | 12 |
+| Dining Room | 38 | 0 | 15 | 23 |
+| Entryway | 50 | 1 | 10 | 39 |
+| Family Room | 27 | 0 | 18 | 9 |
+| Garage | 77 | 1 | 22 | 54 |
+| Guest Bathroom | 22 | 2 | 13 | 7 |
+| Guest Bedroom | 24 | 0 | 13 | 11 |
 | Hall Closet | 27 | 0 | 9 | 18 |
 | Home Office | 58 | 0 | 20 | 38 |
 | Kids Bedroom | 22 | 0 | 8 | 14 |
-| Kitchen | 97 | 2 | 31 | 64 |
+| Kitchen | 97 | 2 | 34 | 61 |
 | Laundry Room | 72 | 0 | 15 | 57 |
-| Living Room | 97 | 2 | 39 | 56 |
+| Living Room | 97 | 2 | 40 | 55 |
 | Mudroom | 43 | 0 | 19 | 24 |
 | Nursery | 61 | 1 | 20 | 40 |
-| Pantry | 60 | 1 | 19 | 40 |
+| Pantry | 60 | 1 | 20 | 39 |
 | Primary Bathroom | 13 | 0 | 8 | 5 |
 | Primary Bedroom | 16 | 1 | 12 | 3 |
-| Stair Landing | 24 | 0 | 12 | 12 |
-| Workshop | 66 | 3 | 26 | 37 |
+| Stair Landing | 24 | 0 | 13 | 11 |
+| Workshop | 66 | 4 | 28 | 34 |
 
 1929 queries name no room of ours. Those are either a different subject the engine wandered into, or a room-independent question, and the second kind is where an article earns its place.
 

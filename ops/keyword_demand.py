@@ -191,7 +191,22 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "original", "deals", "overview", "routine", "setup",
                           "review", "buy", "template", "her", "him", "men",
                           "women", "container", "containers", "essentials",
-                          "household", "daily"))
+                          "household", "daily", "inspo", "inspiration"))
+
+# "inspo"/"inspiration" joined 2026-11-11, mining Home Office and Guest
+# Bathroom's remaining partial rows: "desk organisation inspo" and "desk
+# organisation inspiration" ask for the same thing about the same subject,
+# naming the content format wanted (visual inspiration), the same role
+# "ideas"/"guide" already play, not a different subject. Self-flattery
+# checked first, same bar every prior addition cleared: 0 of 244 pages'
+# titles or headings carry either word. Checked the full corpus before
+# adding: 9 live rows across both corpora (6 "inspo", 3 "inspiration") have
+# one of these as their only unmatched word, or paired only with "design"
+# (a separate already-real word, unaffected); each already routes to its
+# own correct room or zone page (Home Office desk, Guest Bathroom vanity
+# and linen zones, Family Room, Attic, Hall Closet, Primary/Kids Bedroom).
+# All 9 can only improve (partial toward covered); none can move the other
+# way, same reasoning as every prior FORMAT_WORDS addition.
 
 # "reorganize"/"reorganizing"/"reorganized" joined 2026-11-11, mining
 # Garage's remaining partial tier. "how to reorganize storage" and "buy
@@ -809,10 +824,33 @@ def _band_and_body_text(body):
 
 
 def _page_headings(text):
-    return [t for t in (
-                re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", h)).strip()
-                for h in re.findall(r"(?is)<h[1-3][^>]*>(.*?)</h[1-3]>", text))
-            if t.lower() not in BOILERPLATE_HEADINGS]
+    out = []
+    for h in re.findall(r"(?is)<h[1-3][^>]*>(.*?)</h[1-3]>", text):
+        # A heading that is entirely one hyperlink to another page is that
+        # other page's own title, repeated here as a directory pointer,
+        # not anything this page is itself about, the same leak shape the
+        # band filter already guards against for a promotional section.
+        # Found 2026-11-11, chasing the "organized bathroom cupboard"
+        # misroute (see page_inventory): `/articles/index.html` mechanically
+        # repeats every one of its 56 linked articles' own titles as its
+        # own <h2>, so it ties or beats the real destination page on
+        # hundreds of unrelated queries, crediting a directory listing
+        # instead of the specific page that actually answers each one.
+        # Checked site-wide before adding (CLAUDE.md 5d), not assumed
+        # narrow: of 244 published pages, exactly 3 ever have a heading
+        # built this way (`/articles/index.html`, `/resources.html`,
+        # `/how-to-clean-anything.html`, all directory/index pages by
+        # design); every zone, room, deck and article page's own headings
+        # are real prose, not a link, so this cannot drop a legitimate
+        # heading anywhere else on the site. A general structural rule
+        # (any heading shaped like this), not a per-URL special case, so
+        # a future hub page built the same way is covered automatically.
+        if re.fullmatch(r'(?is)\s*<a\s+href="[^"]*"[^>]*>.*?</a>\s*', h):
+            continue
+        t = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", h)).strip()
+        if t and t.lower() not in BOILERPLATE_HEADINGS:
+            out.append(t)
+    return out
 
 
 def _room_identifying_words(raw_pages):

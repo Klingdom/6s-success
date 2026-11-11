@@ -58,14 +58,16 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "attic"
+      ],
       "markets": [
         "ca"
       ],
@@ -78,15 +80,15 @@
         "attic organisation ideas"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/home-office-deck.html",
+      "best_page_title": "The Home Office Deck: 66 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/home-office-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "group"
+        "attic"
       ],
       "markets": [
         "au"
@@ -124,14 +126,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "inspiration"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -253,14 +253,16 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "storage"
+      ],
       "markets": [
         "ca"
       ],
@@ -274,15 +276,16 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "partial",
+      "heading_coverage": 0.333,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "title",
+      "status": "gap",
       "unmatched_words": [
-        "australia"
+        "australia",
+        "storage"
       ],
       "markets": [
         "au",
@@ -297,14 +300,16 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "storage"
+      ],
       "markets": [
         "ca"
       ],
@@ -317,14 +322,16 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-a-basement.html",
+      "best_page_title": "How to organize a basement, one zone at a time",
       "coverage": 0.333,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "status": "partial",
+      "unmatched_words": [
+        "attic"
+      ],
       "markets": [
         "ca"
       ],
@@ -337,15 +344,16 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "partial",
+      "heading_coverage": 0.333,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "title",
+      "status": "gap",
       "unmatched_words": [
-        "ikea"
+        "ikea",
+        "storage"
       ],
       "markets": [
         "ca"
@@ -381,15 +389,16 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "partial",
+      "heading_coverage": 0.333,
+      "heading_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
+      "matched_on": "title",
+      "status": "gap",
       "unmatched_words": [
-        "pictures"
+        "pictures",
+        "storage"
       ],
       "markets": [
         "ca"
@@ -403,15 +412,16 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "partial",
+      "heading_coverage": 0.333,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "title",
+      "status": "gap",
       "unmatched_words": [
-        "pinterest"
+        "pinterest",
+        "storage"
       ],
       "markets": [
         "ca"
@@ -425,14 +435,16 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "storage"
+      ],
       "markets": [
         "ca"
       ],
@@ -467,14 +479,16 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "storage"
+      ],
       "markets": [
         "ca"
       ],
@@ -487,15 +501,15 @@
         "attic organisation ideas"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/rooms/hall-closet.html",
+      "best_page_title": "How to organize a hall closet, zone by zone",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/rooms/hall-closet.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "rooms"
+        "attic"
       ],
       "markets": [
         "au"
@@ -589,11 +603,11 @@
         "back porch organization"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/patio-or-deck-deck.html",
+      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -990,14 +1004,16 @@
         "basement organisation ideas"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/everything-needs-an-assigned-home.html",
+      "best_page_title": "Why everything needs an assigned home",
       "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/everything-needs-an-assigned-home.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "basement"
+      ],
       "markets": [
         "in"
       ],
@@ -1174,14 +1190,16 @@
         "stair landing organization ideas"
       ],
       "room": "Stair Landing",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/rooms/stair-landing.html",
+      "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_coverage": 0.75,
+      "heading_page": "/rooms/stair-landing.html",
       "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "status": "partial",
+      "unmatched_words": [
+        "basement"
+      ],
       "markets": [
         "ca"
       ],
@@ -1254,14 +1272,16 @@
         "basement organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-a-basement.html",
+      "best_page_title": "How to organize a basement, one zone at a time",
       "coverage": 0.333,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "status": "partial",
+      "unmatched_words": [
+        "toys"
+      ],
       "markets": [
         "ca"
       ],
@@ -1576,14 +1596,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-guest-bathroom.html",
       "best_page_title": "How to organize a guest bathroom, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/decluttering-vs-organizing.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "inspo"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -1790,14 +1808,12 @@
       "room": "",
       "best_page": "/articles/how-to-declutter-a-bedroom.html",
       "best_page_title": "How to declutter a bedroom in one day, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "inspo"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -2991,14 +3007,13 @@
       "room": "",
       "best_page": "/rooms/family-room.html",
       "best_page_title": "How to organize a family room, zone by zone",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/family-room.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "inspo"
+        "design"
       ],
       "markets": [
         "gb",
@@ -4378,11 +4393,11 @@
         "how to declutter a guest bedroom"
       ],
       "room": "Guest Bedroom",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -4399,11 +4414,11 @@
         "how to declutter a guest bedroom"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -4675,14 +4690,12 @@
       "room": "",
       "best_page": "/zones/home-office-the-desk-drawers-and-pedestal.html",
       "best_page_title": "How to organize the home office desk drawers",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-dining-room.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "inspiration"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -4697,14 +4710,12 @@
       "room": "",
       "best_page": "/zones/home-office-the-desk-drawers-and-pedestal.html",
       "best_page_title": "How to organize the home office desk drawers",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-dining-room.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "inspo"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -5199,15 +5210,16 @@
         "dining room organisation ideas"
       ],
       "room": "Dining Room",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-a-dining-room.html",
+      "best_page_title": "How to organize a dining room, step by step",
       "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-a-dining-room.html",
+      "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "design"
+        "design",
+        "simple"
       ],
       "markets": [
         "gb",
@@ -6482,11 +6494,11 @@
         "entryway organisation ideas"
       ],
       "room": "Entryway",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "best_page_title": "6S Success: Home Edition &#183; Chapters 1 to 30",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -7560,11 +7572,11 @@
         "mudroom organization ideas"
       ],
       "room": "Mudroom",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -7952,11 +7964,11 @@
         "garage organization ideas"
       ],
       "room": "Garage",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -8774,11 +8786,11 @@
         "guest bathroom organisation ideas"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/downloads/6S-Standards-Pack.html",
+      "best_page_title": "The 6S Success Standards Pack",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -13448,14 +13460,16 @@
         "how to declutter a entryway"
       ],
       "room": "Entryway",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "declutter"
+      ],
       "markets": [
         "gb",
         "au",
@@ -13650,11 +13664,11 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -13692,14 +13706,16 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/family-wont-put-things-back.html",
+      "best_page_title": "Why your family won't put things back where they belong",
       "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/where-to-start-decluttering.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "declutter"
+      ],
       "markets": [
         "in"
       ],
@@ -13758,11 +13774,11 @@
         "how to declutter a guest bedroom"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/sentimental-items-without-guilt.html",
+      "best_page_title": "How to declutter sentimental items without the guilt",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/sentimental-items-without-guilt.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -13822,11 +13838,11 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -13870,11 +13886,11 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -13892,11 +13908,11 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -13914,11 +13930,11 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -13937,11 +13953,11 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -13959,11 +13975,11 @@
         "how to declutter a guest bathroom"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -14004,14 +14020,16 @@
         "how to declutter a workshop"
       ],
       "room": "Workshop",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-a-workshop.html",
+      "best_page_title": "How to organize a workshop, step by step",
       "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "declutter"
+      ],
       "markets": [
         "gb",
         "au"
@@ -14461,11 +14479,11 @@
         "how to declutter a guest bedroom"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/why-you-cant-see-your-own-clutter.html",
+      "best_page_title": "Why can't you see the clutter in your own house anymore?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/why-you-cant-see-your-own-clutter.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -14505,11 +14523,11 @@
         "how to declutter a kids bedroom"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.25,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -17023,11 +17041,11 @@
         "how to organise a kitchen"
       ],
       "room": "Kitchen",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -17778,14 +17796,16 @@
         "how to organise outdoor storage"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "unit"
+      ],
       "markets": [
         "gb"
       ],
@@ -17902,14 +17922,16 @@
         "how to organise a workshop"
       ],
       "room": "Workshop",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-a-workshop.html",
+      "best_page_title": "How to organize a workshop, step by step",
       "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "event"
+      ],
       "markets": [
         "gb",
         "au",
@@ -19359,11 +19381,11 @@
         "how to organise charging station"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/garage-deck.html",
+      "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/garage-deck.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -20173,11 +20195,11 @@
         "how to organise baby clothes"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/zones/kids-bedroom-the-clothing-closet.html",
+      "best_page_title": "How to organize the kids bedroom clothing closet",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/zones/kids-bedroom-the-clothing-closet.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -20215,11 +20237,11 @@
         "how to organise a kids bedroom"
       ],
       "room": "",
-      "best_page": "/resources.html",
-      "best_page_title": "Rooms and micro zones: 20 rooms, 114 micro zones",
+      "best_page": "/rooms/kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, zone by zone",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/resources.html",
+      "heading_page": "/rooms/kids-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -21021,14 +21043,16 @@
         "how to organise outdoor storage"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "unit"
+      ],
       "markets": [
         "au"
       ],
@@ -21399,11 +21423,11 @@
         "how to organise toy storage"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/kids-bedroom-deck.html",
+      "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/kids-bedroom-deck.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -21951,14 +21975,16 @@
         "how to declutter a family room"
       ],
       "room": "Family Room",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-a-family-room.html",
+      "best_page_title": "How to organize a family room, step by step",
       "coverage": 0.667,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/how-to-organize-a-family-room.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "basement"
+      ],
       "markets": [
         "ca",
         "gb",
@@ -22981,11 +23007,11 @@
         "how to declutter a garage"
       ],
       "room": "Garage",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -23005,14 +23031,16 @@
         "how to declutter a garage"
       ],
       "room": "Garage",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-a-garage.html",
+      "best_page_title": "How to organize a garage full of stuff, step by step",
       "coverage": 0.667,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/how-to-organize-a-garage.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "much"
+      ],
       "markets": [
         "ca",
         "gb",
@@ -23029,11 +23057,11 @@
         "how to declutter a garage"
       ],
       "room": "Garage",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -23677,11 +23705,11 @@
         "how to declutter a kitchen"
       ],
       "room": "Kitchen",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -23809,11 +23837,11 @@
         "how to organize a kitchen"
       ],
       "room": "Kitchen",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -23877,11 +23905,11 @@
         "how to declutter a kitchen"
       ],
       "room": "Kitchen",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -23972,11 +24000,11 @@
         "how to declutter a laundry room"
       ],
       "room": "Laundry Room",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -24022,11 +24050,11 @@
         "how to declutter a laundry room"
       ],
       "room": "Laundry Room",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -24260,14 +24288,16 @@
         "how to declutter a workshop"
       ],
       "room": "Workshop",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-a-workshop.html",
+      "best_page_title": "How to organize a workshop, step by step",
       "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "messy"
+      ],
       "markets": [
         "ca",
         "in"
@@ -24575,14 +24605,16 @@
         "how to declutter a pantry"
       ],
       "room": "Pantry",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-a-pantry.html",
+      "best_page_title": "How to organize a pantry, step by step",
       "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-a-pantry.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "drawer"
+      ],
       "markets": [
         "gb",
         "au",
@@ -24862,11 +24894,11 @@
         "how to declutter a pantry"
       ],
       "room": "Pantry",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.25,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -25677,14 +25709,16 @@
         "how to declutter a workshop"
       ],
       "room": "Workshop",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-a-workshop.html",
+      "best_page_title": "How to organize a workshop, step by step",
       "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "event"
+      ],
       "markets": [
         "ca",
         "gb",
@@ -25911,15 +25945,16 @@
         "how to organize baby clothes"
       ],
       "room": "Garage",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/rooms/garage.html",
+      "best_page_title": "How to organize a garage, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
+      "heading_coverage": 0.5,
+      "heading_page": "/rooms/garage.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "sale"
+        "baby",
+        "clothes"
       ],
       "markets": [
         "ca"
@@ -25934,14 +25969,16 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.667,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "storage"
+      ],
       "markets": [
         "gb",
         "au",
@@ -26003,15 +26040,16 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "cube"
+        "cube",
+        "storage"
       ],
       "markets": [
         "ca"
@@ -26175,14 +26213,15 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
+        "fit",
         "longer"
       ],
       "markets": [
@@ -27072,11 +27111,11 @@
         "how to organize bed"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -27092,11 +27131,11 @@
         "how to organize bed"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -27846,7 +27885,7 @@
       "best_page_title": "Why can't you ever find the right charger?",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -28458,11 +28497,11 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -29864,14 +29903,16 @@
         "how to declutter a entryway"
       ],
       "room": "Entryway",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.333,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "status": "partial",
+      "unmatched_words": [
+        "without"
+      ],
       "markets": [
         "gb",
         "au",
@@ -30130,14 +30171,16 @@
         "how to organize toy storage"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/zones/kids-bedroom-the-toy-storage-zone.html",
+      "best_page_title": "How to organize the kids bedroom toy storage",
       "coverage": 0.667,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "clothes"
+      ],
       "markets": [
         "ca"
       ],
@@ -30174,11 +30217,11 @@
         "how to organize a kids bedroom"
       ],
       "room": "",
-      "best_page": "/resources.html",
-      "best_page_title": "Rooms and micro zones: 20 rooms, 114 micro zones",
+      "best_page": "/rooms/kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, zone by zone",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/resources.html",
+      "heading_page": "/rooms/kids-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -30389,11 +30432,11 @@
         "how to declutter a laundry room"
       ],
       "room": "Laundry Room",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -33535,14 +33578,15 @@
         "how to organize a workshop"
       ],
       "room": "Workshop",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-a-workshop.html",
+      "best_page_title": "How to organize a workshop, step by step",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "partial",
+      "heading_coverage": 0.333,
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
+      "matched_on": "title",
+      "status": "gap",
       "unmatched_words": [
+        "event",
         "plan"
       ],
       "markets": [
@@ -35072,14 +35116,16 @@
         "how to organise baby clothes"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.667,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "shelves"
+      ],
       "markets": [
         "gb",
         "au",
@@ -35269,11 +35315,11 @@
         "why is my kids bedroom always messy"
       ],
       "room": "Kids Bedroom",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -35453,11 +35499,11 @@
         "why is my kids bedroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -35657,11 +35703,11 @@
         "why is my kitchen always messy"
       ],
       "room": "Kitchen",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/why-is-my-house-always-messy.html",
+      "best_page_title": "Why is my house always messy?",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/why-is-my-house-always-messy.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -35679,11 +35725,11 @@
         "why is my kitchen always messy"
       ],
       "room": "Kitchen",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -37907,7 +37953,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-guest-bathroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -38063,14 +38109,12 @@
       "room": "",
       "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "best_page_title": "How to organize the guest bathroom towels",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "inspo"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -40457,11 +40501,11 @@
         "why is my kids bedroom always messy"
       ],
       "room": "Kids Bedroom",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -40477,11 +40521,11 @@
         "why is my kitchen always messy"
       ],
       "room": "Kitchen",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -40499,11 +40543,11 @@
         "why is my pantry always messy"
       ],
       "room": "Pantry",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -40562,11 +40606,11 @@
         "mudroom organization ideas"
       ],
       "room": "Mudroom",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -40582,11 +40626,11 @@
         "mudroom organization ideas"
       ],
       "room": "Mudroom",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -40602,11 +40646,11 @@
         "mudroom organization ideas"
       ],
       "room": "Laundry Room",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -40692,11 +40736,11 @@
         "mudroom organisation ideas"
       ],
       "room": "Mudroom",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -41629,11 +41673,11 @@
         "how to declutter a mudroom"
       ],
       "room": "Mudroom",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -41692,15 +41736,15 @@
         "primary bathroom organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
+      "best_page_title": "How to organize the guest bathroom towels",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "cupboard"
+        "organized"
       ],
       "markets": [
         "ca"
@@ -43043,16 +43087,17 @@
         "guest bathroom organization ideas"
       ],
       "room": "Guest Bathroom",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-a-guest-bathroom.html",
+      "best_page_title": "How to organize a guest bathroom, step by step",
       "coverage": 0.4,
-      "heading_coverage": 0.6,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "partial",
+      "heading_coverage": 0.4,
+      "heading_page": "/articles/how-to-organize-a-guest-bathroom.html",
+      "matched_on": "title",
+      "status": "gap",
       "unmatched_words": [
         "decorating",
-        "pictures"
+        "pictures",
+        "simple"
       ],
       "markets": [
         "ca"
@@ -45198,14 +45243,12 @@
       "room": "",
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "inspo"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -45845,11 +45888,11 @@
         "how to organize toy storage"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/zones/family-room-the-toy-and-play-zone.html",
+      "best_page_title": "How to organize the family room toy storage",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/zones/family-room-the-toy-and-play-zone.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -45911,14 +45954,16 @@
         "guest bedroom organisation ideas"
       ],
       "room": "Guest Bedroom",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-a-guest-bedroom.html",
+      "best_page_title": "How to organize a guest bedroom, step by step",
       "coverage": 0.667,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "put"
+      ],
       "markets": [
         "gb",
         "au",
@@ -46025,7 +46070,7 @@
       "best_page_title": "Why is my house always messy?",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/why-is-my-house-always-messy.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -46087,11 +46132,11 @@
         "why is my mudroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/why-is-my-house-always-messy.html",
+      "best_page_title": "Why is my house always messy?",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/why-is-my-house-always-messy.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -46135,7 +46180,7 @@
       "best_page_title": "Why can't you see the clutter in your own house anymore?",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/family-wont-put-things-back.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -46154,14 +46199,16 @@
         "why is my kids bedroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, step by step",
       "coverage": 0.333,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
       "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "status": "partial",
+      "unmatched_words": [
+        "stay"
+      ],
       "markets": [
         "ca"
       ],
@@ -46219,16 +46266,16 @@
         "why is my kids bedroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/why-you-cant-find-the-right-charger.html",
+      "best_page_title": "Why can't you ever find the right charger?",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
         "bedtime",
-        "mess"
+        "child"
       ],
       "markets": [
         "gb"
@@ -46242,11 +46289,11 @@
         "why is my kids bedroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/why-is-my-house-always-messy.html",
+      "best_page_title": "Why is my house always messy?",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/why-is-my-house-always-messy.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -46264,11 +46311,11 @@
         "why is my patio or deck always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/entryway-deck.html",
+      "best_page_title": "The Entryway Deck, Five Zones: 57 cards, free to read",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/entryway-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -46315,7 +46362,7 @@
       "best_page_title": "Why is my house always messy?",
       "coverage": 0.75,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/why-is-my-house-always-messy.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -46336,11 +46383,11 @@
         "why is my mudroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/why-is-my-house-always-messy.html",
+      "best_page_title": "Why is my house always messy?",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/why-is-my-house-always-messy.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -46488,11 +46535,11 @@
         "why is my mudroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/why-is-my-house-always-messy.html",
+      "best_page_title": "Why is my house always messy?",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/why-is-my-house-always-messy.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -46548,14 +46595,16 @@
         "why is my kids bedroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_coverage": 0.75,
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "status": "partial",
+      "unmatched_words": [
+        "always"
+      ],
       "markets": [
         "gb",
         "au",
@@ -46594,11 +46643,11 @@
         "why is my kids bedroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/why-is-my-house-always-messy.html",
+      "best_page_title": "Why is my house always messy?",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/why-is-my-house-always-messy.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -46644,11 +46693,11 @@
         "why is my patio or deck always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/entryway-deck.html",
+      "best_page_title": "The Entryway Deck, Five Zones: 57 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/entryway-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -46733,14 +46782,16 @@
         "why is my mudroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/why-is-my-house-always-messy.html",
+      "best_page_title": "Why is my house always messy?",
       "coverage": 0.667,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/why-is-my-house-always-messy.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "flat"
+      ],
       "markets": [
         "gb"
       ],
@@ -46782,7 +46833,7 @@
       "best_page_title": "Why is my house always messy?",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/why-is-my-house-always-messy.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -46801,11 +46852,11 @@
         "why is my kids bedroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/why-is-my-house-always-messy.html",
+      "best_page_title": "Why is my house always messy?",
       "coverage": 0.25,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/why-is-my-house-always-messy.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -46823,11 +46874,11 @@
         "why is my kids bedroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/why-is-my-house-always-messy.html",
+      "best_page_title": "Why is my house always messy?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/why-is-my-house-always-messy.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -46846,11 +46897,11 @@
         "why is my kids bedroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -46889,11 +46940,11 @@
         "why is my pantry always messy"
       ],
       "room": "Kitchen",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/why-is-my-house-always-messy.html",
+      "best_page_title": "Why is my house always messy?",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/why-is-my-house-always-messy.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -46912,11 +46963,11 @@
         "why is my kitchen always messy"
       ],
       "room": "Kitchen",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/why-is-my-house-always-messy.html",
+      "best_page_title": "Why is my house always messy?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/why-is-my-house-always-messy.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -47203,15 +47254,15 @@
         "why is my patio or deck always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/patio-or-deck-deck.html",
+      "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.25,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "closing"
+        "not"
       ],
       "markets": [
         "gb"
@@ -47225,11 +47276,11 @@
         "why is my patio or deck always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
+      "best_page_title": "How to organize the patio or deck outdoor seating",
       "coverage": 0.25,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -47247,11 +47298,11 @@
         "why is my patio or deck always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/downloads/6S-Standards-Pack.html",
+      "best_page_title": "The 6S Success Standards Pack",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -47292,11 +47343,11 @@
         "why is my mudroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/why-is-my-house-always-messy.html",
+      "best_page_title": "Why is my house always messy?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/why-is-my-house-always-messy.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -47315,11 +47366,11 @@
         "why is my mudroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/why-is-my-house-always-messy.html",
+      "best_page_title": "Why is my house always messy?",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/why-is-my-house-always-messy.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -47360,11 +47411,11 @@
         "why is my kids bedroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/why-is-my-house-always-messy.html",
+      "best_page_title": "Why is my house always messy?",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/why-is-my-house-always-messy.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -47592,11 +47643,11 @@
         "why is my kids bedroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -47892,14 +47943,16 @@
         "why is my workshop always messy"
       ],
       "room": "Workshop",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-a-workshop.html",
+      "best_page_title": "How to organize a workshop, step by step",
       "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "always"
+      ],
       "markets": [
         "ca"
       ],
@@ -47932,14 +47985,16 @@
         "why is my workshop always messy"
       ],
       "room": "Workshop",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-a-workshop.html",
+      "best_page_title": "How to organize a workshop, step by step",
       "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": [],
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "messy"
+      ],
       "markets": [
         "ca"
       ],
@@ -48242,6 +48297,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "c39e49af3",
-  "scored_at": "2026-11-11T09:08:17Z"
+  "scored_against_commit": "230de9c42",
+  "scored_at": "2026-11-11T11:02:47Z"
 }
