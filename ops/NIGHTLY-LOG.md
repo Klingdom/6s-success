@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, scheduled operator cycle (continued): fixed a real misroute, "walk in closet organizer shelves" now routes to the page that already answers all its sibling queries
+
+**Did:** Followed up on the "walk in closet organizer shelves" lead named in the entry below. `/articles/more-storage-wont-fix-clutter.html` already has a dedicated walk-in-closet section and already answers roughly 50 sibling "walk in closet" queries across both corpora; only this one scored to the wrong page.
+
+**Verified:** Traced the exact tie: the correct page's own heading matched "walk"+"closet" but not "shelves" (its paragraph says "a single new rod or shelf," singular); the Hall Closet linen-closet article supplied "closet"+"shelves" from an unrelated heading and won a tie across 8+ pages. Retitled the heading to "Walk-in closet rods and shelves, on a budget", grounded in the paragraph's own existing text, taking the correct page to 3-of-3 — strictly above every tied page, so the fix does not depend on tie-break order at all. Checked side effects first (CLAUDE.md 5d): 3 other rows change which tied page gets credited, but status is unchanged in each case and credit moves toward a page that actually discusses the matching section, not away from one. Rescored both corpora: US partial 1050->1049, covered 1671->1672, gap unchanged 102; global partial 792->791, covered 1286->1287, gap unchanged 88, 0 regressions. `fix_dashes.py --check` 0/0, `check_urls.py` 235/235, `audit_pages.py` 240/0, `audit_visual.py` scoped to the page 0 findings. `test_keyword_demand.py` 42/42, `test_room_guide_underperformance.py` 19/19 unaffected.
+
+**Went well:** a genuine misroute turned out to have a clean, tie-break-independent fix (push the correct page to an outright win) rather than needing a riskier scorer change.
+
+**Did not go well:** nothing new this entry.
+
+**Changing next cycle:** none.
+
+**Next:** "how to organize diapers in closet" (possible cross-room misattribution to Nursery) is the strongest remaining Hall Closet lead, not checked this cycle. Same 31-issue Phil-gated queue otherwise.
+
+Pushed to main: this log entry, `BACKLOG-2026-09-07.md` A92, the article, both rescored corpora and their summaries, the rebuilt sitemap, the regenerated command deck. No price or product touched; `IndexNow` queued for this article's edit.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, scheduled operator cycle (continued): "household" joined FORMAT_WORDS, closing a fourth Hall Closet row, same cycle as the entry below
 
 **Did:** Continued mining Hall Closet's partial tier after the entry below closed 3 rows via a FAQ edit. Dumped the full 31-row tier directly via `score_room()` rather than a sample (CLAUDE.md 5c).
