@@ -609,7 +609,22 @@ OFF_TOPIC_CONTEXT = re.compile(
     # covered); "near me"/"nearby" appear in 10 rows across 6 rooms, every
     # one already gap/partial, 0 covered, so excluding either phrase cannot
     # suppress a genuine match.
-    r"\bmarie\s+kondo\b|\bnear\s+me\b|\bnearby\b",
+    r"\bmarie\s+kondo\b|\bnear\s+me\b|\bnearby\b|"
+    # Found 2026-11-11 (Garage pass, the 47-row partial tier). "how to
+    # organise baking stuff" and "how to organise craft stuff" land on the
+    # Garage article purely on "organise"/"stuff"; both name a kitchen
+    # baking hobby or a craft-room hobby, neither ever addressed by any
+    # Garage zone (the room's own content.json zones are workbench, hand
+    # tools, power tools, car care, sports gear, lawn and garden tools, and
+    # overhead bulk storage; nothing about mixing bowls or scrapbooking
+    # supplies). Checked against both harvests before adding: "baking" and
+    # "craft" are each real, heavily covered words elsewhere in the corpus
+    # (Kitchen/Pantry baking-supply rows, Home Office/craft-room rows), so
+    # this phrase-level exclusion, not a bare-word one, cannot touch any of
+    # those; "baking stuff" and "craft stuff" each appear in exactly the
+    # one row named here, so excluding them here cannot suppress a genuine
+    # match.
+    r"\bbaking\s+stuff\b|\bcraft\s+stuff\b",
     re.I)
 
 

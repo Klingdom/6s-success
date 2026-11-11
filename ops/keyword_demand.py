@@ -188,7 +188,21 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "rearranged", "ways", "way", "diy", "guide",
                           "tutorial", "must", "haves", "quickly",
                           "original", "deals", "overview", "routine", "setup",
-                          "review"))
+                          "review", "buy", "template"))
+
+# "buy" and "template" joined 2026-11-11, mining Garage's remaining partial
+# tier. "buy garden tool storage" asks the same thing as "garden tool
+# storage", "buy" marking a shopping frame on an already-covered subject,
+# the same role "deals" already plays. "cleaning equipment checklist
+# template" asks the same thing as "cleaning equipment checklist", "template"
+# naming the kind of document wanted, the same role "guide"/"overview"
+# already play, not a different subject. Checked the full corpus before
+# adding, not just the room's own tier: "buy" is the sole or partial
+# unmatched word on exactly 2 live rows, both Garage, neither elsewhere;
+# "template" is the sole unmatched word on exactly 1 live row (4 other
+# "template" rows are an off-topic cribbage-tournament cluster that stays
+# gap on other unmatched words regardless), so this cannot suppress a
+# genuine match anywhere in either corpus.
 
 # "review" joined 2026-11-11, mining Hall Closet's remaining partial tier:
 # "how to organize closet review" asks for the same thing as "how to

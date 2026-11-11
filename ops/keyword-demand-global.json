@@ -15230,11 +15230,11 @@
         "how to organize crib"
       ],
       "room": "",
-      "best_page": "/downloads/6S-Zone-Scoring-and-Audit-Template.html",
-      "best_page_title": "The 6S Zone Scoring Sheet and Layered Audit Template",
-      "coverage": 0.25,
-      "heading_coverage": 0.25,
-      "heading_page": "/articles/why-5s-decays-after-six-months.html",
+      "best_page": "/about.html",
+      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "coverage": 0.0,
+      "heading_coverage": 0.0,
+      "heading_page": "/about.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -22306,11 +22306,11 @@
         "how to organize crib"
       ],
       "room": "",
-      "best_page": "/downloads/6S-Zone-Scoring-and-Audit-Template.html",
-      "best_page_title": "The 6S Zone Scoring Sheet and Layered Audit Template",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/why-5s-decays-after-six-months.html",
+      "best_page": "/about.html",
+      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "coverage": 0.0,
+      "heading_coverage": 0.0,
+      "heading_page": "/about.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -48265,6 +48265,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "cac4544b4",
-  "scored_at": "2026-11-11T01:53:48Z"
+  "scored_against_commit": "0cd1f0295",
+  "scored_at": "2026-11-11T02:54:13Z"
 }

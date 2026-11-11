@@ -3988,14 +3988,12 @@
       "room": "",
       "best_page": "/zones/garage-the-lawn-and-garden-tool-zone.html",
       "best_page_title": "How to organize the garage garden tool storage",
-      "coverage": 0.75,
-      "heading_coverage": 0.75,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "buy"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "buy items in bulk to reorganize storage",
@@ -4009,13 +4007,12 @@
       "room": "",
       "best_page": "/zones/garage-the-bulk-and-overhead-storage.html",
       "best_page_title": "How to organize the garage bulk and overhead storage",
-      "coverage": 0.4,
-      "heading_coverage": 0.6,
+      "coverage": 0.5,
+      "heading_coverage": 0.75,
       "heading_page": "/zones/garage-the-bulk-and-overhead-storage.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "buy",
         "reorganize"
       ]
     },
@@ -4538,14 +4535,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-garage.html",
       "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "template"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "cleaning equipment for office",
@@ -19581,11 +19576,11 @@
         "how to organize crib"
       ],
       "room": "",
-      "best_page": "/downloads/6S-Zone-Scoring-and-Audit-Template.html",
-      "best_page_title": "The 6S Zone Scoring Sheet and Layered Audit Template",
-      "coverage": 0.25,
-      "heading_coverage": 0.25,
-      "heading_page": "/articles/why-5s-decays-after-six-months.html",
+      "best_page": "/about.html",
+      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "coverage": 0.0,
+      "heading_coverage": 0.0,
+      "heading_page": "/about.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -21439,11 +21434,11 @@
         "how to organize crib"
       ],
       "room": "",
-      "best_page": "/downloads/6S-Zone-Scoring-and-Audit-Template.html",
-      "best_page_title": "The 6S Zone Scoring Sheet and Layered Audit Template",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/why-5s-decays-after-six-months.html",
+      "best_page": "/about.html",
+      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "coverage": 0.0,
+      "heading_coverage": 0.0,
+      "heading_page": "/about.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -57034,6 +57029,6 @@
       ]
     }
   ],
-  "scored_against_commit": "cac4544b4",
-  "scored_at": "2026-11-11T01:53:38Z"
+  "scored_against_commit": "0cd1f0295",
+  "scored_at": "2026-11-11T02:54:06Z"
 }
