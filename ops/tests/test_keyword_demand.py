@@ -1461,6 +1461,39 @@ def main():
         for f in fails:
             print(" -", f)
         return 1
+
+    # 46. Found live 2026-11-11, mining Hall Closet's remaining partial
+    #     tier. "categories" names the structure of the answer wanted
+    #     ("linen closet organization categories" asks the same question
+    #     as "linen closet organization"), the same role "overview" already
+    #     plays; "pro" is an informal-expertise qualifier on the tips
+    #     wanted ("how to organize closet quickly pro tips"), the same
+    #     shape "hacks" already covers. Both joined FORMAT_WORDS.
+    new_format_words16 = ("categories", "pro")
+    samples16 = {
+        "categories": "linen closet organization categories",
+        "pro": "how to organize closet quickly pro tips",
+    }
+    for word in new_format_words16:
+        if word in kd.content_words(samples16[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format16 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format16 - set(new_format_words16)
+    try:
+        for word in new_format_words16:
+            if word not in kd.content_words(samples16[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format16
+
+    if fails:
+        print("FAIL")
+        for f in fails:
+            print(" -", f)
+        return 1
     # Counted from the numbered cases in this file rather than typed, because
     # a hardcoded tally goes stale the first time somebody adds a case and
     # then the test reports a number that is simply false. It said 14/14

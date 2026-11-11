@@ -193,7 +193,8 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "women", "container", "containers", "essentials",
                           "household", "daily", "inspo", "inspiration",
                           "images", "efficiency", "chef", "modern", "rustic",
-                          "simple", "choose", "deep", "hacks", "lots"))
+                          "simple", "choose", "deep", "hacks", "lots",
+                          "categories", "pro"))
 
 # "deep" and "hacks" joined 2026-11-11, mining Hall Closet's remaining
 # partial tier. "how to organize a deep hall closet" and "deep hall closet
@@ -239,6 +240,25 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
 # corpus before adding: "lots" is the sole unmatched word on 3 live rows
 # (1 Garage, 1 Guest Bathroom vanity-storage, 1 global bedroom-closet row),
 # each already routed to its own correct page. None can move the other way.
+
+# "categories" and "pro" joined 2026-11-11, mining Hall Closet's remaining
+# partial tier. "linen closet organization categories" asks the same
+# question as "linen closet organization", "categories" naming the
+# structure of the answer wanted (a breakdown by type), the same role
+# "overview" already plays; "how to organize closet quickly pro tips" and
+# "simple decluttering pro tips" ask the same question as their plain
+# "quickly"/"simple" forms, "pro" an informal-expertise qualifier on the
+# tips wanted, the same shape "hacks" already covers. Self-flattery checked
+# first, using head_words/title_words: both 0 of 243 page titles and 0 of
+# 243 headings, under every prior bar cleared. Checked the full corpus
+# before adding: because neither word appears in any page's own title or
+# heading words, removing either from scoring cannot change any row's
+# best_page (a page can only be credited for words it already carries), so
+# this is a status-only improvement everywhere it fires; "categories" is
+# the sole unmatched word on 1 live row (Hall Closet linen closet),
+# "pro" on 2 (same Hall Closet row plus a Decluttering vs Organizing row),
+# with a third row ("explore decluttering pro guide") left honestly a gap
+# since "explore" stays an unmatched content word there too.
 
 # "images", "efficiency" and "chef" joined 2026-11-11, mining Kitchen's
 # partial tier. "kitchen organisation ideas images" and "linen closet

@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, scheduled operator cycle (~18:5x UTC): acted on a live preflight warning instead of re-reporting it, then mined Hall Closet's remaining partial tier
+
+**Did:** Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `b43e2a7cd`, 961 commits fast-forwarded, tree clean). Read `BACKLOG-2026-09-07.md`, `CLAUDE.md`, the last four log entries and `OWNER-ACTIONS.md` per steps 0-1. `preflight.py --skip-tests` run live: 0 FAIL, 36 warnings, two real: `STATUS.md`'s Public website row, Production traceability row, section 5, `BLOCKER-001`, and the Production Knowledge paragraph all still cited a 13:38:56Z deploy confirmation (1-commit gap) stale against a newer `ops/deploy-verdict.json` record (`checked_at` 2026-11-11T15:38:35Z). Per CLAUDE.md 0.2, fixing it IS the work: re-derived directly (`deploy_gap_material_commits` against the new build returns an empty list, matching `site/build-id.txt`) and corrected all five locations rather than filing it again. Then re-ran `room_guide_underperformance.py` fresh: Hall Closet next at 18% uncovered. Dumped its full partial tier via `score_room()`; most rows are the same grammatical-not-vocabulary class A74 already declined against this room's own `content.json` ("stored," "cabinet," "box," "recipes," etc.) or a genuine room-identity gap ("attic" vs the separate attic guide, D-031). "categories" and "pro" passed self-flattery and joined `FORMAT_WORDS`.
+
+**Verified:** `gate_status_deploy_verdict_current`/`gate_status_table_rows_gap_count_current` both clean after the STATUS.md fix; `test_gate_status_deploy_verdict_current.py` (14/14), `test_gate_status_table_rows_gap_count_current.py` (5/5) pass. Fail-then-pass proved directly for the keyword fix (case 46, `test_keyword_demand.py`, 52/52). Rescored both corpora: US partial 1043->1041, covered 1661 unchanged by net (gap 109->108); global unchanged. 0 best_page changes, confirmed by full diff, not sampled. Hall Closet 18% to 17% uncovered. `test_room_guide_underperformance.py` (19/19), `test_room_guide_candidates.py` (127/127), `check_urls.py` (235/235), `fix_dashes.py --check` (0/0), `check_sellable.py` (124/126) all clean. `preflight.py --skip-tests` reran clean twice more: 36 to 33 to 32 warnings, 0 FAIL throughout, same documented network stall. GitHub's 31 open issues re-pulled live: unchanged since 2026-11-08, none from Phil. No mail credential in this sandbox (unchecked, not empty).
+
+**Went well:** caught and acted on a gate's own warning in the same cycle instead of leaving it for a future cycle to re-discover, closing the exact "corrected source, sibling never told" shape section 7 names.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the existing gate already covers this defect class, no new one needed.
+
+**Next:** same 31-issue Phil-gated queue; Hall Closet's remaining tier (mostly genuine gaps now) or Nursery (17%) for the next room-guide pass.
+
+Pushed to main. No price or product touched; `STATUS.md`, `ops/keyword_demand.py`, `ops/tests/test_keyword_demand.py`, `BACKLOG-2026-09-07.md` changed, no `site/` page edited, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (~18:4x UTC): previous work reconfirmed finished a further independent way, same Hall Closet/Nursery room-guide handoff reaffirmed for the operator
 
 NEXT FOR THE OPERATOR: mine Hall Closet's partial tier (21% uncovered) or Nursery's (18%), because the 17:4x/18:1x cycles already confirmed these are the two largest genuinely unmined room-guide tiers and nothing has changed since to move that ranking.
