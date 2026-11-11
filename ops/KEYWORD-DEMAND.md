@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-11T17:34:53Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-11T19:37:44Z against 243 page(s) at commit b43e2a7cd. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-11T19:55:29Z against 243 page(s) at commit 213e27585. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2810. Checked against 243 published page titles: 1661 covered, 1041 partial, 108 gap.
+**Queries found:** 2810. Checked against 243 published page titles: 1659 covered, 1042 partial, 109 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 108, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 109, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -98,13 +98,13 @@ Showing the top 80 of 108, ordered by the best rank the phrase reached in any on
 | 13 | cover for space between stove and counter | - | How to declutter a kitchen: counters, cabinets and drawers (0.20) | between, cover, stove |
 | 13 | kitchen organization ideas dollar tree | Kitchen | How to declutter a kitchen: counters, cabinets and drawers (0.33) | dollar, tree |
 | 14 | computer storage for games | - | How to organize the family room game storage (0.33) | computer, games |
+| 14 | explore decluttering pro guide | - | Decluttering vs. organizing: what's actually different (0.33) | explore, pro |
 | 14 | grill stations ideas for backyards | - | How to organize the patio or deck grill station (0.33) | backyards, stations |
 | 14 | how to dispose of adult diapers | - | Why does a shared zone never stay reset? (0.00) | diapers, dispose |
-| 14 | how to plan a workshop event | Workshop | How to organize a workshop, step by step (0.33) | event, plan |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1041.
+Showing the top 60 of 1042.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|

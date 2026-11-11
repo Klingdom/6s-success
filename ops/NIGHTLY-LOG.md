@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11 (~20:0x UTC), scheduled operator cycle: a real content fix for Home Office's Bookshelf zone (not a wordlist entry), plus one closeable FORMAT_WORDS word it exposed
+
+Did: Added a genuine content note to Home Office's Bookshelf and Reference Zone (content.json variants) honestly answering "organize bookshelf by color/genre": the zone's own diagnosis already names sorting by color or category as a cause of not finding a book, so the new note argues against the literal query rather than fabricating agreement with it. Rebuilt via ops/build_zone_pages.py (generator-owned, not hand-edited). Separately, "aesthetically" (style qualifier, same shape as "quickly"/"simple") joined FORMAT_WORDS, closing the one row it was the sole unmatched word on in each corpus; "color"/"genre" deliberately stay real content words since the honest answer disagrees with the query. Merged this cycle's own FORMAT_WORDS addition with a concurrent cycle's "categories"/"pro" addition (renumbered as separate test cases 46/47) rather than overwrite either.
+
+Verified: self-flattery (0/243 titles+headings), full-corpus check (1 US + 2 global rows, all sole-unmatched, all already routed correctly, confirmed via diff: only coverage/status moved, best_page unchanged, 0 regressions). Fail-then-pass (case 47, test_keyword_demand.py, 53/53 after the merge). test_room_guide_underperformance.py (19/19), test_room_guide_candidates.py (127/127). Rescored both corpora live. Home Office 17% to 16% uncovered. check_urls.py (235/235), audit_pages.py (0 findings once the unrelated gitignored stray probe file was cleared), fix_dashes.py --check (0/0), link_graph_report.py (0 orphans), affiliate.py --check, check_sellable.py all clean. gate_goals_keyword_cluster_citation_current: None. preflight.py --skip-tests: 1 self-healing stray-probe-files FAIL (deleted a pre-existing gitignored leftover, not from this cycle's work), 0 other FAIL through every gate reached, stalled at gate_scheduled_workflow_cadence (confirmed network-blocked via /proc, not hung). GitHub: 31 open issues, unchanged since 2026-11-08, none from Phil. No mail credentials in this sandbox.
+
+Went well: found one fix that is real content rather than another wordlist entry, caught in time that the scorer only reads h1-h3 so dt/dd content correctly can't be gamed into coverage, and merged cleanly with a concurrent cycle's own FORMAT_WORDS addition rather than clobbering it.
+
+Did not go well: the measurement-mining lane (A1-A99) is visibly near-exhausted; issue #42 already flags this cadence concern and remains undecided. Two concurrent pushes landed during this cycle, needing two rebases.
+
+Changing next cycle: none.
+
+Next: same Phil-gated queue (31 issues, GOALS.md O1-O7). Mine Garage's 41-row partial tier if nothing else surfaces.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, scheduled operator cycle (~18:5x-19:4x UTC): acted on a live preflight warning instead of re-reporting it, then mined Hall Closet's remaining partial tier
 
 **Did:** Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `b43e2a7cd`, 961 commits fast-forwarded, tree clean). Read `BACKLOG-2026-09-07.md`, `CLAUDE.md`, the last four log entries and `OWNER-ACTIONS.md` per steps 0-1. `preflight.py --skip-tests` run live: 0 FAIL, 36 warnings, two real: `STATUS.md`'s Public website row, Production traceability row, section 5, `BLOCKER-001`, and the Production Knowledge paragraph all still cited a 13:38:56Z deploy confirmation (1-commit gap) stale against a newer `ops/deploy-verdict.json` record (`checked_at` 2026-11-11T15:38:35Z). Per CLAUDE.md 0.2, fixing it IS the work: re-derived directly (`deploy_gap_material_commits` against the new build returns an empty list, matching `site/build-id.txt`) and corrected all five locations rather than filing it again. Then re-ran `room_guide_underperformance.py` fresh: Hall Closet next at 18% uncovered. Dumped its full partial tier via `score_room()`; most rows are the same grammatical-not-vocabulary class A74 already declined against this room's own `content.json` ("stored," "cabinet," "box," "recipes," etc.) or a genuine room-identity gap ("attic" vs the separate attic guide, D-031). "categories" and "pro" passed self-flattery and joined `FORMAT_WORDS`.
@@ -17,8 +33,6 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** same 31-issue Phil-gated queue; Hall Closet's remaining tier (mostly genuine gaps now) or Nursery (17%) for the next room-guide pass.
 
 Pushed to main. No price or product touched; `STATUS.md`, `ops/keyword_demand.py`, `ops/tests/test_keyword_demand.py`, `BACKLOG-2026-09-07.md` changed, no `site/` page edited, IndexNow not applicable.
-
-HANDOFF-FILES: none
 
 ## 2026-11-11, PM check-in (~19:4x UTC): previous work reconfirmed finished, confirmed the standing handoff is unclaimed because the operator is mid-cycle, not stalled
 

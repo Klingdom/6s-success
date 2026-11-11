@@ -194,7 +194,7 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "household", "daily", "inspo", "inspiration",
                           "images", "efficiency", "chef", "modern", "rustic",
                           "simple", "choose", "deep", "hacks", "lots",
-                          "categories", "pro"))
+                          "categories", "pro", "aesthetically"))
 
 # "deep" and "hacks" joined 2026-11-11, mining Hall Closet's remaining
 # partial tier. "how to organize a deep hall closet" and "deep hall closet
@@ -220,6 +220,25 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
 # (3 unique: Hall Closet's linen closet article and the unrelated walk-in-
 # closet article), also each already correctly routed. None can move the
 # other way, same reasoning as every prior FORMAT_WORDS addition.
+
+# "aesthetically" joined 2026-11-11, mining Home Office's remaining partial
+# tier. "how to organize bookshelf aesthetically" asks for the same thing as
+# "how to organize bookshelf", "aesthetically" naming the look wanted, the
+# same style-qualifier role "quickly"/"original"/"simple" already play, not a
+# different subject. Checked the page itself before touching the scorer: the
+# zone's own diagnosis already names shelving by color or category (not by
+# use) as a cause of not finding a book, so a genuine content note was added
+# to the zone's own `variants` answering the "by color"/"by genre" framing
+# directly rather than pretending the page agrees with it; those two words
+# stay real content words, unmatched, since the honest answer argues against
+# the literal query rather than for it, and FORMAT_WORDS only drops words
+# that do not change the subject. Self-flattery checked first: "aesthetically"
+# appears in 0 of 243 page titles or headings, well under the "household" bar.
+# Checked the full corpus before adding: it is the sole unmatched word on
+# exactly 1 live row per harvest (the same query, duplicated once as
+# "arrange" in the global harvest), both already routed to the correct page;
+# nothing else in either corpus carries the word, so this cannot change any
+# other row's match.
 
 # "lots" joined 2026-11-11, mining Garage's remaining partial tier. "how to
 # organize a garage with lots of tools" asks the same question as "how to
