@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (10:1x slot): previous work independently reconfirmed finished; closed a real cold-read-ledger staleness gap instead of starting the index.html tie-break fix
+
+NEXT FOR THE OPERATOR: same `/articles/index.html` alphabetical heading-tie fix the 09:4x/09:1x PM entries already named, still unclaimed. It needs a scorer decision plus the same before/after full-corpus regression discipline A93 used, the operator's longer runway, not a 30-minute slot; not started here for the same reason the last two slots gave.
+
+**Previous work independently reconfirmed finished.** Attached clean: fetch, `checkout main`, ff-only onto `origin/main` (`acd6deff5`, one commit since the 09:5x operator cycle, an hourly check-in only). Working tree clean before this slot started. `git log -12`, `ops/NIGHTLY-LOG.md`'s own last entry, and `BACKLOG-2026-09-07.md` all agree on what the 09:5x cycle actually did: added `gate_nightly_log_entries_not_overlong` (WARNING-only, fail-then-pass proved) rather than mining another room's partial tier, a closed-lane judgment call, not an open claim.
+
+**Checked, not cited.** GitHub's 31 open issues re-pulled live, sorted by `updated_at`: unchanged since 2026-11-08, every one `decision`/`blocked-on-art`/`P0`, none from Phil; the 2026-11-10 push notification on exactly this gap carries a stated no-repeat-before of 2026-11-12, so not repeated. 0 open PRs. `STATUS.md`'s "Open claims" section: none open. `gate_status_deploy_verdict_current()` called directly: `None`, clean. `cold_read_ledger.py --stale` found a real, if small, gap: `ops/preflight.py` was ledgered clean 2026-11-08 but had been touched twice since (`ec38ce412`, `5cfdb2cf9`, the latter being the 09:5x cycle's own new gate), never re-read. Read both diffs directly rather than assume a self-authored gate is sound: `ec38ce412` lets `gate_owner_actions_items_tracked` find an issue citation in a heading, not only the body (fixing a real false positive, fail-then-pass 2/8 to 8/8); `5cfdb2cf9` is scoped to the file's own retention window, warns rather than fails, and is proven fail-then-pass in its own test file. Both sound; re-ledgered clean. `cold_read_ledger.py --stale` now reports 0 stale.
+
+**`preflight.py --skip-tests` run live, unbuffered, to a file rather than killed blind:** 0 real FAIL through every gate reached, including the new `gate_nightly_log_entries_not_overlong` (confirms its own 41-offender warning fires, not a FAIL) and `gate_owner_actions_items_tracked`; stalled at the documented `gate_etsy_pdfs_current`/`gate_prerender_shop_current` Chromium-serial wall, confirmed genuinely progressing via `/proc` (a real `prerender_shop.py` child process, not hung), left unchecked past that point per CLAUDE.md 0.4, not assumed clean. A prior short-timeout attempt (`timeout 170 | tail`) left a corrupted zero-byte PNG under `build/listings/etsy/`, a side effect of the kill, not a new defect; restored from git with `git checkout --`, not committed.
+
+**Did not start new work beyond the ledger fix.** The `/articles/index.html` fix remains the one genuinely unblocked, non-Phil-gated item, and it is hours-sized, not 30-minutes-sized; leaving it for the operator at :43 again, same reasoning as the last two handoffs.
+
+**Went well:** treating `cold_read_ledger.py --stale`'s own finding as real work rather than noise, and actually reading the diffs instead of rubber-stamping a self-authored gate as sound.
+
+**Did not go well:** nothing new; the Chromium-serial wall is still hit by nearly every cycle that runs the full suite, same standing limitation.
+
+**Changing next cycle:** none.
+
+**Next:** the `/articles/index.html` tie-break fix, above; same 31-issue Phil-gated queue otherwise, unchanged since 2026-11-08.
+
+Pushed to main: this log entry, `ops/cold-read-ledger.json`, `ops/cycle-signal.json`, the regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11 (~09:5x UTC), scheduled operator cycle: closed-lane judgment call, gate added for living-doc entry size rather than another room-guide row
 
 **Did:** Attached cleanly (unshallowed, `checkout -B main origin/main`, ff-only). Read `BACKLOG-2026-09-07.md` section 0/1, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`'s 24 numbered items, and the last several `NIGHTLY-LOG.md`/`CHECKIN-LOG.md` entries directly rather than trusting a prior cycle's conclusion. `CHECKIN-LOG.md` itself was already saying "commits in 24h: 220, recorded as effort, not as a result" for the last six consecutive check-ins. A forked research pass and my own direct read of all 31 open GitHub issues and `OWNER-ACTIONS.md` both confirmed every epic above room-guide keyword-mining is genuinely Phil-gated; a push notification on that exact gap already went out 2026-11-10 with a stated no-repeat-before of 2026-11-12, so not repeated.
