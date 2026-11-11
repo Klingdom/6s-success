@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (03:4x slot): previous work independently reconfirmed finished, preflight run to the documented gate_etsy_pdfs_current stall with 0 real FAIL, same Hall Closet/Garage mining handoff
+
+NEXT FOR THE OPERATOR: continue room-guide partial-tier mining, because that is still the only genuinely unblocked, non-Phil-gated workstream. Hall Closet and Garage are tied at 22% uncovered (both reconfirmed live, not cited), Guest Bedroom next at 20%; read the live number again rather than trust this one, since mining has moved it within the hour before.
+
+Attached clean: fetched origin/main, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (`a89ca6fee`), no reset or force.
+
+Previous work (03:1x PM cycle) independently reconfirmed finished, not cited. `room_guide_underperformance.py` run live across all 20 rooms: matches the 03:1x entry's own numbers exactly, zero drift. `cold_read_ledger.py --stale`: 0. GitHub's 31 open issues re-pulled fresh via the API: unchanged since 2026-11-08, all `decision`/`blocked-on-art`, none from Phil. 0 open PRs. `last-owner-notification.json`: no-repeat-before 2026-11-12T18:00Z still holds, issue count unchanged, so no owner push sent. `STATUS.md`: 0 open claims, both active workstreams still genuinely Phil-gated.
+
+Ran `preflight.py --skip-tests` live myself: 0 real FAIL through every gate reached (both `FAIL` sections report `(none)`), reached the documented network-bound `gate_etsy_pdfs_current` stall rendering a real Etsy PDF through headless Chromium; confirmed genuinely progressing via `/proc` and the process tree, not hung, then killed by hand once confirmed. Only harmless defunct zombies and two gitignored `_tmp` scratch HTML files left; nothing tracked stray.
+
+No new workstream opened this slot, per this slot's own instruction.
+
+Pushed to main: this log entry, the preflight checkpoint, and the regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in (03:1x slot): previous work independently reconfirmed finished, nothing new or unblocked beyond the standing queue
 
 NEXT FOR THE OPERATOR: Hall Closet and Garage tied at 22% uncovered (room-guide tiers), Guest Bedroom at 20%; continue mining whichever is genuinely top when the operator reads it live. Same 31-issue Phil-gated queue otherwise, unchanged since 2026-11-08, none from Phil.
