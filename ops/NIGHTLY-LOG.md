@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-11, PM check-in (01:1x slot): previous work genuinely finished after a clean preflight rerun; closed two stale cold-read ledger entries
+
+Previous work was finished: clean fast-forward (791 commits), working tree clean, main matched origin. Preflight's first run was killed by its own 300s timeout under self-inflicted concurrent CPU load (my own ledger/test commands); a clean rerun with nothing else running reached the end, 0 FAIL, 36 known warnings.
+
+This cycle's close: cold_read_ledger.py --stale found keyword_demand.py and room_guide_candidates.py still dated 2026-11-10 after 2026-11-11's Garage/Mudroom edits. Re-verified both independently (imports clean, test_keyword_demand.py 36/36, test_room_guide_candidates.py 111/111) rather than re-stamping blind; re-ledgered clean, --stale now 0.
+
+No new workstream opened: room-guide mining (Garage 24%, Hall Closet 25%) is operator-sized; GitHub's 31 issues remain decision/blocked-on-art, none from Phil since 2026-11-08.
+
+Handing to operator: continue room-guide mining (Garage, then Hall Closet); same Phil-gated queue otherwise.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, scheduled operator cycle: mined Garage's remaining partial tier further, 26% to 24% uncovered
 
 **Did:** Attached clean (fetch, unshallow, ff-only onto `d8914442e`). Re-ran `room_guide_underperformance.py` live across all 20 rooms: Garage still top at 26% uncovered. Read its full partial tier via `score_room()`, not the 8-row CLI sample, against `content.json` before acting. Added "overview", "routine" and "setup" to `FORMAT_WORDS` (`ops/keyword_demand.py`), each a style/action qualifier on an already-covered subject, not a new topic. Added "tool boxes" (plural) to `Garage|Power Tool and Battery Zone` in `zone-also-called.json`, closing a singular/plural stemming gap the existing "tool box"/"toolbox" entry (A73) never covered, the same shape A34 (nappy/nappies) already fixed once.
