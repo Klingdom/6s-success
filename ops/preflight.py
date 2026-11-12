@@ -20108,6 +20108,104 @@ def gate_keyword_demand_global_rescored_current() -> None:
                       "python ops/keyword_demand_global.py --rescore"))
 
 
+def room_guide_mining_diminishing_returns(results, max_shortfall=0.15):
+    """Pure logic for gate_room_guide_mining_diminishing_returns, testable
+    without the real keyword-demand files.
+
+    results: a list of dicts shaped like room_guide_underperformance.
+    score_room()'s own return value (needs only 'room', 'gap' and
+    'shortfall'). Returns a warning string once EVERY room has 0 genuine
+    on-topic `gap` rows and no room's partial-tier shortfall exceeds
+    max_shortfall (15% by default); otherwise ''.
+
+    Found live 2026-11-12: two scheduled cycles a few hours apart reached
+    opposite verdicts on the exact same question ("is the FORMAT_WORDS/
+    room-guide mining lane in BACKLOG-2026-09-07.md section 2 still worth a
+    cycle's one workstream") from the same underlying data, because the
+    answer was derived by hand each time, from a fresh 20-room dump plus a
+    read of dozens of kilobytes of backlog prose (by then past 30
+    consecutive dated entries, A94 through A123 and still climbing, each
+    shaving well under 1% off one room's uncovered figure). One cycle
+    (21:5x) correctly declined to mine further, citing GOALS.md's own test
+    ("no plausible increase in arrivals"); the very next scheduled cycle
+    (A123) mined it anyway. Neither cycle was wrong about the data it looked
+    at; they disagreed because nothing made the verdict mechanical. This
+    gate does that: it is the epic-ordering rule BACKLOG-2026-09-07.md's own
+    instructions and CLAUDE.md section 0 already state (measurement, then
+    broken-or-dishonest, then traffic-and-distribution, then conversion,
+    THEN product/content precision), applied to one specific lane instead
+    of re-derived from scratch by every cycle that reaches it. A WARNING,
+    not a failure: continuing to mine is not broken, it is just the wrong
+    epic to spend a cycle's one workstream on while epics 1-4 still have
+    anything genuinely unblocked, and this lane's own coverage figure is
+    scored against autocomplete-harvested phrases, never a live Search
+    Console query (GOALS.md section 3's own caveat on that data), so
+    closing it further has no confirmed traffic effect to show for the
+    cycle it costs.
+    """
+    if not results:
+        return ""
+    total_gap = 0
+    for r in results:
+        gap = r.get("gap", 0)
+        total_gap += len(gap) if isinstance(gap, list) else gap
+    if total_gap:
+        return ""
+    worst = max(results, key=lambda r: r["shortfall"])
+    if worst["shortfall"] > max_shortfall:
+        return ""
+    return (
+        "the room-guide keyword-scorer mining lane (BACKLOG-2026-09-07.md "
+        "section 2) is in diminishing returns site-wide: every room scores 0 "
+        f"genuine on-topic gap rows, and the worst partial-tier shortfall is "
+        f"{worst['room']} at {worst['shortfall']:.0%}, at or under the "
+        f"{max_shortfall:.0%} line. Before opening another FORMAT_WORDS/"
+        "also-called/off-topic-context cycle on it, check epics 1-4 "
+        "(measurement, broken-or-dishonest, traffic-and-distribution, "
+        "conversion) and the open GitHub issues for anything genuinely "
+        "unblocked first; this lane's own coverage figure is scored against "
+        "autocomplete-harvested phrases, not a live Search Console query, so "
+        "closing it further has no confirmed traffic effect (GOALS.md "
+        "section 3)."
+    )
+
+
+def gate_room_guide_mining_diminishing_returns() -> None:
+    """Warn once the room-guide keyword-scorer mining lane is genuinely
+    exhausted site-wide, so a cycle does not have to re-derive that by hand
+    from a fresh 20-room dump plus dozens of kilobytes of backlog prose the
+    way roughly 30 consecutive dated BACKLOG-2026-09-07.md entries already
+    have, two of them (2026-11-12's 21:5x cycle and the A123 cycle right
+    after it) reaching opposite verdicts from the same data. See
+    room_guide_mining_diminishing_returns's own docstring for the full
+    account.
+
+    Proof this can fail: ops/tests/test_gate_room_guide_mining_diminishing_
+    returns.py constructs a synthetic per-room result set carrying a real
+    gap row and confirms the gate stays silent, then one where every room
+    clears the bar and confirms it warns, then runs the real gate against
+    the real committed keyword-demand files and confirms today's real state
+    (0 gap everywhere, worst room under the line) warns too.
+    """
+    us_path = os.path.join(ROOT, "ops", "keyword-demand.json")
+    global_path = os.path.join(ROOT, "ops", "keyword-demand-global.json")
+    if not (os.path.exists(us_path) and os.path.exists(global_path)):
+        return
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import room_guide_underperformance as rgu
+        us_rows = json.loads(io.open(us_path, encoding="utf-8").read())["rows"]
+        global_rows = json.loads(
+            io.open(global_path, encoding="utf-8").read())["rows"]
+        results = [rgu.score_room(us_rows, global_rows, r)
+                   for r in rgu.all_rooms()]
+    except Exception:                                          # noqa: BLE001
+        return
+    problem = room_guide_mining_diminishing_returns(results)
+    if problem:
+        warn("room-guide-mining-diminishing-returns", problem)
+
+
 def owner_questions_staleness_problem(payload, now, limit_days=10):
     """Pure logic for gate_owner_questions_not_stale, testable without a clock.
 
@@ -32857,6 +32955,7 @@ def main() -> int:
     run_gate(gate_keyword_demand_global_not_stale)
     run_gate(gate_keyword_demand_rescored_current)
     run_gate(gate_keyword_demand_global_rescored_current)
+    run_gate(gate_room_guide_mining_diminishing_returns)
     run_gate(gate_owner_questions_not_stale)
     run_gate(gate_roadmap_gate_in_owner_email)
     run_gate(gate_indexation_check_not_stale)

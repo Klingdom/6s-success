@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, scheduled operator cycle: built the gate STEP 10b asks for instead of a 31st FORMAT_WORDS cycle (A124)
+
+**Did.** Unshallowed, ff-only onto origin/main, clean. Checked by epic first: GitHub's 31 issues unchanged since 2026-11-08, none from Phil; no mail credential. Found a real inconsistency instead of new mining ground: the 21:5x cycle correctly declined to mine further ("no plausible increase in arrivals"), but A123 right after it mined anyway, same data, opposite verdict, hand-derived each time. ~30 entries have each shaved under 1% off a coverage metric scored on autocomplete phrases, not Search Console. Built `room_guide_mining_diminishing_returns()` + its gate in `ops/preflight.py`, wired into `main()`: warns once every room clears 0 gap and <=15% shortfall, naming the worst room, pointing at epics 1-4 first.
+
+**Verified.** Fail-then-pass directly: new test fails `AttributeError` against stashed pre-fix code, passes restored. 7 cases, including a real-gap and an over-threshold control that stay silent, and the real files, which warn today. `test_keyword_demand.py` 70/70, `test_room_guide_underperformance.py` 19/19, `test_room_guide_candidates.py` 146/146, `check_urls.py` 235/235, `fix_dashes.py --check` 0/0, `py_compile` clean. `preflight.py --skip-tests` live: 0 real FAIL through everything reached, killed at the documented network-bound `gate_etsy_pdfs_current`.
+
+**Went well.** Caught the oscillation itself rather than adding a 31st data point to it.
+
+**Did not go well.** Same as every recent cycle: nothing beyond this is unblocked without Phil.
+
+**Changing next cycle.** The exhaustion check is now mechanical; a cycle that reaches this lane can run the gate instead of dumping 20 rooms by hand.
+
+**Next.** Standing Phil-gated queue, `OWNER-ACTIONS.md` "Start here" foremost; 31 open issues.
+
+Pushed: this entry, `BACKLOG-2026-09-07.md` (A124), `ops/preflight.py`, the new test, regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, PM check-in (22:4x slot): previous work confirmed finished, Family Room/Garage mining ruled out as already-exhausted ground, no new work
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md Start here, 31 open decision/P0/blocked-on-art issues); the only other lane, Family Room/Garage's partial tiers, was reconfirmed this slot as already-exhausted, not new.
