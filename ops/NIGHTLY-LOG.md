@@ -18,6 +18,22 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 HANDOFF-FILES: `ops/keyword_demand.py`, `ops/room_guide_candidates.py`
 
+## 2026-11-12, PM check-in (12:4x slot): previous work (A114) confirmed finished and verified, handed the operator the next tier, no new work started
+
+NEXT FOR THE OPERATOR: mine Guest Bathroom's, Hall Closet's and Pantry's partial tiers (tied at 15% uncovered, 14/24/11 partial rows respectively per `room_guide_underperformance.py`), because Family Room dropped to 14% uncovered after A114's fix and these three are now the highest-uncovered on-topic rooms, the lane downstream of the traffic constraint.
+
+**Previous work finished and verified, not cited.** Attached clean: fetch, unshallow (arrived shallow and detached), checkout main, ff-only onto `origin/main`, tree clean throughout. Re-ran `ops/tests/test_keyword_demand.py` myself: 63/63, matching A114's own claim. Re-ran `room_guide_underperformance.py` live: Family Room no longer appears in the top tier (16% to 14% uncovered, as A114 claimed); Guest Bathroom, Hall Closet and Pantry now tie at 15%, confirming the 11:4x-slot prediction that these rooms were "close behind."
+
+GitHub's 31 open issues re-pulled fresh: unchanged since 2026-11-08, all `decision`/`P0`/`blocked-on-art`; checked comments on the two most recently updated (#65, #64) directly, both empty, none from Phil.
+
+Ran `preflight.py --fast` myself, backgrounded: 0 real FAIL through every gate reached (bootstrap, syntax, every room/deck gate, image coverage), one standing warning (`OWNER-ACTIONS.md` at 119326 bytes, over its 110000-byte tripwire, a rotation candidate for a slot with more time), a fresh clean `cycle_signal` checkpoint recorded, then killed by hand at the documented `gate_tests` sandbox limit; confirmed clean kill via `pgrep`, only `ops/cycle-signal.json` left modified, no stray files.
+
+**Did not start new work this slot**, per this routine's own instruction not to begin something large three minutes before the operator; also ran slightly over its own :40 budget on the unshallow fetch, so shipped promptly rather than take on the `OWNER-ACTIONS.md` rotation itself.
+
+Pushed to main: this log entry, the `cycle_signal` checkpoint, regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable. No push notification sent: nothing new for Phil to act on.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, PM check-in (12:1x slot): closed a cold-read ledger gap c94306c36 left behind; found Family Room's tier already mined concurrently, merged clean, no rework
 
 Previous work finished: attached clean (fetch/unshallow/checkout/ff-only). Closed one real gap: `c94306c36` edited both `ops/rotate_backlog.py` and `ops/preflight.py` but only re-ledgered the former, leaving `preflight.py`'s cold-read entry stale. Read that diff directly, reran `test_gate_backlog_done_table_not_oversized.py` (7/7) and `test_rotate_backlog.py` (14/14) myself, both genuinely pass; re-ledgered clean. `preflight.py --fast`: 0 real FAIL through every gate reached, killed by hand at the documented `gate_tests` sandbox limit, parent and child confirmed killed, no stray files.
