@@ -196,7 +196,8 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "simple", "choose", "deep", "hacks", "lots",
                           "categories", "pro", "aesthetically", "newborn",
                           "planning", "workplace", "disposal", "basket",
-                          "baskets", "mount", "workout", "plans", "interior"))
+                          "baskets", "mount", "workout", "plans", "interior",
+                          "begin", "extreme", "smart", "pdf"))
 
 # "mount", "workout", "plans" and "interior" joined 2026-11-12, mining
 # Garage's remaining partial tier (the 01:1x PM check-in's own handoff after

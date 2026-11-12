@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, scheduled operator cycle: "begin", "extreme", "smart" and "pdf" joined FORMAT_WORDS, Primary Bedroom 16% to 13% uncovered; declined "list" for a real guest-list misattribution
+
+Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `4e9ccf9a0`, 1026 commits fast-forwarded, no reset). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Confirmed the backlog's sections 2-6 are all Done, Hold, or an owner gate, and GitHub's 31 open issues (re-pulled live) are all `decision`/`blocked-on-art`, unchanged since 2026-11-08, none from Phil: nothing is genuinely unblocked beyond keyword-demand mining.
+
+Did: Garage's own tier was declared exhausted by A103 (the immediately prior cycle). Re-ran `room_guide_underperformance.py` and found three rooms tied at 16% (Nursery, Entryway, Primary Bedroom). Dumped all three full partial tiers directly via `score_room()` (CLAUDE.md 5c), not the ranking tool's 8-row sample; all genuine candidates came from Primary Bedroom's own tier. "begin"/"extreme"/"smart"/"pdf" each name a qualifier on the same subject. Self-flattery checked first: 0 of 243 titles, 0 headings, for all four.
+
+Verified, not shipped on the mechanical test alone: "list" closes 3 more US rows and passes self-flattery cleanly, but a full before/after `score_rows()` diff across both corpora caught a real misattribution: "how to organize a guest list" and "bedroom guest list" (party-planning queries, nothing to do with storage) moved off `/kids-bedroom-deck.html` onto the Guest Bedroom/Bathroom pages on the word "guest" alone once "list" stopped distinguishing them. Not shipped. "complete" declined as a no-op (never the sole unmatched word on any row in either corpus).
+
+Shipped: fail-then-pass proved (case 52, `test_keyword_demand.py`, reverted the fix, watched all four fail with the exact pre-fix message, restored, 58/58 passed). Rescored both corpora live: US gap 103 unchanged, partial 1011->1006, covered 1695->1701; global gap 93 unchanged, partial 782->779, covered 1291->1294; confirmed 0 `best_page` changes in either corpus by a full before/after diff, not sampled. Primary Bedroom: 16% to 13% uncovered (23 to 19 partial of 141 on-topic). Nursery and Entryway unchanged (neither word was the sole unmatched word on any row in either tier). `gate_goals_keyword_cluster_citation_current` re-derived directly: `None`, no drift. `gate_keyword_demand_rescored_current`, `gate_keyword_demand_global_rescored_current`, `gate_ops_python_syntax` all called directly, clean. `test_room_guide_underperformance.py` (19/19), `test_room_guide_candidates.py` (127/127), `check_urls.py` (235/235), `fix_dashes.py --check` (0/0), `link_graph_report.py` (0 orphans), `affiliate.py --check` (165 documents), `check_sellable.py` (124/126) all clean.
+
+Also verified rather than assumed: the LinkedIn/Bluesky/Facebook+X draft-and-send pipeline is genuinely sending, not silently standing down the way the 2026-09-30 push-fallback anti-pattern once did. Checked real GitHub Actions job steps for a scheduled Bluesky run (most recent one correctly stood down, having already sent earlier that day) and `ops/corpus-rotation.json`'s own commit history: one real rotation-advance commit per channel per day through 2026-11-11, the day before this cycle. No action needed; recorded because it was asserted, not checked, in several prior cycles' prose.
+
+`preflight.py --skip-tests` run live, unbuffered (the earlier `timeout 540` attempt buffered its output through `tail` and produced nothing readable on kill; re-run directly to a file instead): one `stray-probe-files` FAIL, self-corrected by the gate deleting a leftover from that same killed earlier attempt, not a defect from this cycle's own work. 0 other FAIL through every gate reached. Stalled at the documented `gate_etsy_pdfs_current` network wait, confirmed via `/proc`'s own TCP table rather than assumed, killed after 158s rather than left to its own wall.
+
+Went well: the full corpus diff caught a real misattribution risk ("list") that both self-flattery and the room-level sample would have missed, and the daily-send verification closed a standing "asserted, not checked" gap in this log's own recent entries.
+
+Did not go well: this lane is close to exhausted across every room checked so far; most remaining partial-tier rows are retailer/platform noise or real content words already correctly left alone.
+
+Changing next cycle: none.
+
+Next: same Phil-gated queue (31 issues, unchanged since 2026-11-08). Nursery's and Entryway's own 22-row and 11-row partial tiers are mostly noise now (checked, not just cited); nothing else is genuinely unblocked.
+
+Pushed to main: `ops/keyword_demand.py`, `ops/tests/test_keyword_demand.py`, `ops/keyword-demand.json`, `ops/keyword-demand-global.json`, `STATUS.md`, `BACKLOG-2026-09-07.md`, this log entry, command deck. No price, product or site page touched; scorer-only change, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-12 (~01:1x slot): previous handoff finished; closed Garage's handoff with 4 new FORMAT_WORDS, caught the stale GOALS.md citation it caused
 
 Previous work finished: clean attach, preflight 0 FAIL short of the documented network stall, GitHub's 31 issues unchanged, none from Phil.

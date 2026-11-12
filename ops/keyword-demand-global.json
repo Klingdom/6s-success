@@ -13359,14 +13359,12 @@
       "room": "",
       "best_page": "/articles/how-to-declutter-a-bedroom.html",
       "best_page_title": "How to declutter a bedroom in one day, step by step",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "smart"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -13500,14 +13498,12 @@
       "room": "",
       "best_page": "/articles/how-to-declutter-a-bedroom.html",
       "best_page_title": "How to declutter a bedroom in one day, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/decluttering-vs-organizing.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "extreme"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -48160,14 +48156,12 @@
       "room": "Workshop",
       "best_page": "/workshop-deck.html",
       "best_page_title": "The Workshop Deck: 68 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/workshop-deck.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pdf"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -48234,6 +48228,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "a06748c6d",
-  "scored_at": "2026-11-12T01:28:35Z"
+  "scored_against_commit": "4e9ccf9a0",
+  "scored_at": "2026-11-12T01:56:35Z"
 }

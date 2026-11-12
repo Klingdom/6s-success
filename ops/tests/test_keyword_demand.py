@@ -1670,6 +1670,49 @@ def main():
         for f in fails:
             print(" -", f)
         return 1
+
+    # 52. Found live 2026-11-12, mining Primary Bedroom's partial tier (one
+    #     of three rooms tied at 16% uncovered once Garage's own tier was
+    #     exhausted by A103). "begin"/"extreme"/"smart"/"pdf" each
+    #     name a qualifier on the same subject ("how to begin to declutter"
+    #     asks the same thing as "how to declutter"), not a different
+    #     subject, so they joined FORMAT_WORDS. "list" was tried for the
+    #     same tier and declined: a full corpus diff found 2 real best_page
+    #     misattributions ("how to organize a guest list" and "bedroom
+    #     guest list", both party-planning queries, moved off
+    #     `/kids-bedroom-deck.html` onto the Guest Bedroom/Bathroom pages on
+    #     the word "guest" alone once "list" stopped distinguishing them),
+    #     the same misattribution shape "gear"/"declutter"/"messy" were each
+    #     declined for earlier. "complete" was also tried and declined as a
+    #     no-op: it is never the sole unmatched word on any row in either
+    #     corpus, so adding it would close nothing.
+    new_format_words22 = ("begin", "extreme", "smart", "pdf")
+    samples22 = {
+        "begin": "how to begin to declutter",
+        "extreme": "how to declutter extreme",
+        "smart": "walk in closet smart organization",
+        "pdf": "declutter bedroom checklist pdf",
+    }
+    for word in new_format_words22:
+        if word in kd.content_words(samples22[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format22 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format22 - set(new_format_words22)
+    try:
+        for word in new_format_words22:
+            if word not in kd.content_words(samples22[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format22
+
+    if fails:
+        print("FAIL")
+        for f in fails:
+            print(" -", f)
+        return 1
     # Counted from the numbered cases in this file rather than typed, because
     # a hardcoded tally goes stale the first time somebody adds a case and
     # then the test reports a number that is simply false. It said 14/14

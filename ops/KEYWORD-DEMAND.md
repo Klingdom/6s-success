@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-11T17:34:53Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-12T01:28:28Z against 243 page(s) at commit a06748c6d. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-12T01:56:34Z against 243 page(s) at commit 4e9ccf9a0. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2810. Checked against 243 published page titles: 1695 covered, 1011 partial, 104 gap.
+**Queries found:** 2810. Checked against 243 published page titles: 1701 covered, 1006 partial, 103 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 104, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 103, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -48,7 +48,6 @@ Showing the top 80 of 104, ordered by the best rank the phrase reached in any on
 | 5 | kindergarten organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | kindergarten |
 | 5 | why are garages left unfinished | Garage | The Garage Deck: 80 cards, free to read (0.33) | garages, unfinished |
 | 6 | attic storage ideas pinterest | - | How to organize an attic without overloading it (0.33) | pinterest, storage |
-| 6 | how to begin decluttering your home | - | Decluttering vs. organizing: what's actually different (0.33) | begin, home |
 | 6 | how to build a floating staircase landing | - | How to organize a stair landing, step by step (0.25) | build, floating, staircase |
 | 6 | how to hold bench press bar correctly | - | The Patio or Deck Deck: 68 cards, free to read (0.20) | bar, bench, correctly |
 | 6 | how to operate a wood stove | - | How to organize the kitchen stove area (0.33) | operate, wood |
@@ -101,10 +100,11 @@ Showing the top 80 of 104, ordered by the best rank the phrase reached in any on
 | 14 | how to dispose of adult diapers | - | Why does a shared zone never stay reset? (0.00) | diapers, dispose |
 | 14 | how to plan a workshop event | Workshop | How to organize a workshop, step by step (0.33) | event, plan |
 | 14 | master bedroom design as per vastu | - | How to organize a primary bedroom, zone by zone (0.20) | design, per, vastu |
+| 14 | starting a nursery for plants | Nursery | The Nursery Deck: 66 cards, free to read (0.33) | plants, starting |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1011.
+Showing the top 60 of 1006.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -191,7 +191,7 @@ Showing the top 60 of 1011.
 | Primary Bathroom | 13 | 0 | 7 | 6 |
 | Primary Bedroom | 16 | 0 | 13 | 3 |
 | Stair Landing | 24 | 0 | 13 | 11 |
-| Workshop | 66 | 4 | 26 | 36 |
+| Workshop | 66 | 4 | 25 | 37 |
 
 1926 queries name no room of ours. Those are either a different subject the engine wandered into, or a room-independent question, and the second kind is where an article earns its place.
 
