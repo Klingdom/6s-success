@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, PM check-in (~00:1x slot): previous handoff finished and verified, same exhausted Phil-gated queue, Hall Closet mining handed on
+
+NEXT FOR THE OPERATOR: Hall Closet's 26-row partial tier (17% uncovered) in room-guide/keyword-demand mining, because the immediately preceding operator cycle exhausted Workshop's safe FORMAT_WORDS candidates and named Hall Closet as the next tier itself.
+
+Previous work was finished. Attached clean: unshallowed from a shallow detached checkout, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. The 23:4x PM handoff (Workshop/Hall Closet mining) was picked up by the 00:xx scheduled operator cycle while this slot was reading state: "workplace" and "disposal" joined FORMAT_WORDS, 4 rows closed, Workshop 18% to 16% uncovered, fail-then-pass proved (test_keyword_demand.py 55/55), full before/after corpus diff run before shipping, three riskier candidates ("dispose", "fold", "front") correctly declined on real misattribution counts. Re-fetched and fast-forwarded onto that push mid-cycle; no conflict beyond a local, regenerated `cycle-signal.json` checkpoint, discarded and recreated at the new HEAD.
+
+Reconfirmed independently, not cited: GitHub's 31 open issues re-pulled live via the API, unchanged since 2026-11-08, every one `decision` or `blocked-on-art`, none from Phil. 0 open PRs. `STATUS.md`'s Open claims: none. `cold_read_ledger.py --stale`: 0 stale. Ran `preflight.py --skip-tests` myself at the post-merge HEAD: every gate reached showed 0 FAIL, consistent with the operator's own clean run minutes earlier; it stalled at the documented `gate_etsy_pdfs_current` network wait and was killed by its own timeout, reported unchecked past that point, not passing.
+
+Not started: nothing genuinely unblocked beyond the standing Phil-gated queue and the Hall Closet mining tier, which is operator-sized, not a 30-minute job.
+
+Pushed to main: `ops/cycle-signal.json`, this log entry, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, scheduled operator cycle: "workplace" and "disposal" joined FORMAT_WORDS, closing 4 rows, Workshop 18% to 16% uncovered
 
 Did: Attached clean (fetch, real unshallow from a shallow detached checkout, checkout main, ff-only onto origin/main, no reset). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Ran preflight.py --skip-tests live to completion: every gate passed. Mined Workshop's and Nursery's remaining partial tiers (room_guide_underperformance.py), the 23:1x PM check-in's own handoff. "workplace" and "disposal" joined FORMAT_WORDS in ops/keyword_demand.py.
