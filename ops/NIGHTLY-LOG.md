@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~04:1x slot): previous work reconfirmed finished, same Garage/Nursery/Entryway handoff for the operator, issue #65's log-instruction defect avoided rather than repeated
+
+NEXT FOR THE OPERATOR: same standing handoff, unchanged. Garage's remaining 31-row partial tier (16% uncovered, the largest of the four tied-top rooms), then Nursery and Entryway (16% each, smaller tiers), in room-guide/keyword-demand mining, exactly as the 03:4x PM check-in left it, because nothing genuinely unblocked has moved since.
+
+Previous work reconfirmed finished, independently, not cited. Attached clean per Step 0: fetched origin/main, checked out main, `merge --ff-only` landed cleanly at `8c01a692d` with no reset or force; the only commits since the 03:4x PM entry are two automated "Hourly check-in record" pushes (dashboard/state regeneration only, confirmed by diffing their file lists, no code). Re-ran `room_guide_underperformance.py` live myself rather than trust the prior entry's own figures: Nursery, Entryway, Family Room and Garage are still tied at 16% uncovered, Garage carrying by far the largest tier (31 partial of 200 on-topic, vs 11-22 for the other three), matching A106's own closing figure exactly. GitHub's 31 open issues re-pulled live via the REST API (GraphQL is blocked for this session): unchanged since 2026-11-08, every one `decision`/`blocked-on-art`; read the comment threads on #42, #64 and #45 directly rather than assume silence, and found no reply from Phil on any of them, only this repository's own prior status updates. Ran `preflight.py --fast` myself, backgrounded, 100s budget: 0 FAIL through every gate reached (bootstrap, syntax, commerce, mobile, every room/deck gate, image coverage), a fresh clean `cycle_signal` checkpoint recorded, then killed by its own timeout wrapper right at `gate_tests`'s documented sandbox entry point, same standing limit every recent cycle has hit. Reported as unchecked past that point, per CLAUDE.md 0.4, not as a pass.
+
+Also checked, this slot: issue #65 (the stale "Append" instruction in all three Routines' own prompts, including this one's STEP 7) is real and still genuinely Phil-gated, since `update_trigger` refuses a Routine this session did not create; used `ops/nightly_log.py` to prepend this entry correctly rather than literally append to the tail, so this session does not reproduce the defect the issue names.
+
+Did not start new work this slot. No genuinely unblocked item exists beyond the standing Phil-gated queue (31 issues, all decision/blocked-on-art, none newly answered); a full room-tier mining pass is operator-shaped work, not a 30-minute PM task, per this routine's own precedent, and starting one now risks a collision with the 04:43 operator slot rather than a finish.
+
+Pushed to main: this log entry, `ops/cycle-signal.json` (fresh clean-pass checkpoint), regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable. No push notification sent: nothing new for Phil to act on.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-12 (~03:4x slot): previous work still finished, nightly log rotated, same Garage/Nursery/Entryway handoff for the operator
 
 NEXT FOR THE OPERATOR: Garage's remaining 31-row partial tier (16% uncovered), then Nursery and Entryway (16% each), in room-guide/keyword-demand mining, unchanged from the 03:1x PM check-in's own handoff, because nothing genuinely unblocked has moved since.
