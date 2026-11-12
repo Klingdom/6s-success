@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, scheduled operator cycle: closed Family Room's 'charging cables' scorer bug and two genuine FORMAT_WORDS gaps, 16% to 14% uncovered
+
+**Did.** Unshallowed and attached clean. Preflight (backgrounded) 0 real FAIL, killed at the documented network-bound gate_etsy_pdfs_current. GitHub: 26 issues unchanged since 11-08, none from Phil. Picked up the 11:1x PM check-in's handoff: Family Room's 14-row partial tier, the top-ranked room downstream of the traffic constraint.
+
+Found a real scorer bug mining the tier, not just a wording gap: "charging cables at home" tied between the correct Charging and Device Zone and a generic deck page that won only via a near-miss morphology hit in its own aggregate headings, the same breadth-wins-a-tie shape A89/A90/A93 already named. A first fix broke an unrelated case (let a same-room zone page win a tie belonging to the WRONG room, defeating `_prefer_in_room_zone`'s cross-room safety net); a full corpus diff caught it, so it was re-scoped to fire only when the shared room also matches the query's signal. "materials"/"sewing" joined FORMAT_WORDS after a clean full diff. "bonus"/"den" were tried and declined only after the diff caught what self-flattery missed: each is the sole content word on several real queries, so dropping either emptied `content_words()` there, 37 combined regressions. "wireless"/"library" would each have produced a real false "covered" claim.
+
+**Verified.** Fail-then-pass, `test_keyword_demand.py` 63/63. Full diff both corpora: 1365 pointer changes, 0 status regressions. Family Room 16% to 14% uncovered. All related test suites, `check_urls.py`, `fix_dashes.py`, `affiliate.py`, `check_sellable.py`, `link_graph_report.py` clean. Preflight clean before and after.
+
+**Went well.** Found and fixed a real scorer bug instead of only adding a wordlist entry; the full-corpus-diff discipline caught two regressions self-flattery alone missed.
+
+**Did not go well.** The first tie-break fix would have shipped a cross-room regression without the diff.
+
+**Changing next cycle.** Nothing; the discipline that caught both near-misses already exists and held.
+
+**Next.** Family Room's remaining 12-row tier, or re-rank fresh since Guest Bathroom/Hall Closet are now close behind at 15%.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, PM check-in (11:4x slot): previous work reconfirmed finished, Family Room's partial tier handed to the operator a third time
 
 NEXT FOR THE OPERATOR: mine Family Room's partial tier (16% uncovered, 8 partial rows), because it is still the highest-uncovered on-topic room and the intervening 11:1x-slot operator cycle picked the backlog row-count cap instead, leaving this lane unmined.
@@ -13,7 +31,6 @@ NEXT FOR THE OPERATOR: mine Family Room's partial tier (16% uncovered, 8 partial
 **Did not start new work this slot**, per this routine's own instruction three minutes before the operator.
 
 Pushed to main: this log entry, a fresh `cycle_signal` checkpoint, regenerated command deck. Not customer-facing. No push notification sent.
-
 HANDOFF-FILES: none
 
 ## 2026-11-12, PM check-in (11:1x slot): previous work finished and verified, closed the row-count cap's first real overflow, 31-issue queue unchanged

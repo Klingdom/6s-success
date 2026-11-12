@@ -199,7 +199,39 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "baskets", "mount", "workout", "plans", "interior",
                           "begin", "extreme", "smart", "pdf", "fishing",
                           "hunting", "tactical", "motorcycle", "fresh",
-                          "bins", "wood"))
+                          "bins", "wood", "materials", "sewing"))
+
+# "materials" and "sewing" joined 2026-11-12, mining Family Room's partial
+# tier. The room's own Craft and Activity Zone states its own purpose as
+# activity-agnostic ("Pack the bins by what gets made, not by what the
+# material is... one project bin"), so "materials" names the same generic
+# shopping-noun role "container"/"containers"/"bins" already play, and
+# "sewing" names one specific craft the zone already holds supplies for
+# generically, not a different subject. Self-flattery checked first: 0 of
+# 243 titles or headings carry either word. Checked the full corpus before
+# shipping (not sampled): "bonus" and "den" were tried first for the same
+# tier (both already room-level synonyms for Family Room in
+# ops/room-also-called.json, 19 measured queries, 0 covered) and declined
+# hard: both are the SOLE content word on several real household queries
+# ("how to organize den", "organizing den"), so removing them from scoring
+# entirely emptied content_words() on those rows and dropped them from
+# `covered` straight to `gap`, 10 US + 27 global status regressions, the
+# opposite of the intended fix. "wireless" was also tried and declined: the
+# Charging and Device Zone's own content is entirely about cables, plugs
+# and a power strip and never mentions a wireless charging pad, so marking
+# "wireless organize charging station" covered there would be the same
+# dishonest-labelling CLAUDE.md section 8 forbids, a genuine content gap
+# rather than a wording gap. "library" was also tried and declined: it
+# causes a false `covered` on an unrelated query ("how to organize books in
+# a library") that already ties /contact.html on the coincidental word
+# "books" (that page's own press-kit heading, not the query's sense); with
+# "library" also removed from scoring, that page reaches a hollow 1.0.
+# "cabinets", "seasonal" and "storage" were declined on the standard
+# full-diff risk test (2-46 real `best_page`/status changes each,
+# "storage" alone causing 46 US + 23 global regressions, by far the
+# riskiest word tried this cycle). "materials"/"sewing" passed clean: 0
+# `best_page` changes, 0 status regressions, only the 2 targeted rows
+# moving partial to covered.
 
 # "bins" joined 2026-11-12, mining Nursery's remaining partial tier (tied
 # top-ranked with Entryway/Family Room/Garage at 16% uncovered; Garage was
@@ -1413,6 +1445,35 @@ def _tie_break(page, best, room_signal, cw=None, field="words"):
     content word now wins over a page with none, before url order. This does
     not touch the score itself, only which tied page is credited, so it
     cannot move any query off gap/partial/covered.
+
+    Found 2026-11-12, mining Family Room's partial tier: "how to organise
+    charging cables at home" (room signal empty, the query names no room)
+    tied at 0.667 between the real answer, the Charging and Device Zone (an
+    exact hit on "charging"+"cables"), and `/family-room-deck.html`, which
+    only exact-matches "charging"+"home" but ALSO near-misses "cables"
+    against a stray "cable" singular somewhere in its own aggregate
+    headings. The near-miss check above was built to reward a genuine
+    morphology match ("grilling"/"grill") and had no way to tell that one
+    from a deck page's incidental breadth, the same "a giant page wins a
+    tie by breadth, not by actually answering the question" shape A89/A90/
+    A93 already named for band headings and the articles directory; this is
+    a fourth instance, on deck pages. So before the near-miss check runs,
+    prefer the query's own room's `/zones/` page over a same-room page that
+    is not a zone (a deck, room hub, or article), since a single zone page
+    is a coherent one-topic answer and the broader page is not. Scoped
+    narrowly, the same way `_prefer_in_room_zone` is scoped, so it cannot
+    reopen the cross-room case that function already guards: only when
+    `page` and `best` already carry the SAME room (so this can never be
+    the mechanism that decides which ROOM a query belongs to), and, when a
+    room signal exists, only when that shared room equals the signal (so a
+    same-room tie between two pages that are both in the WRONG room, as in
+    "how to organize hardware in garage" tying two Workshop pages against a
+    Garage signal, still falls through unresolved to `_prefer_in_room_zone`
+    rather than being silently decided here first). Full before/after
+    `score_rows()` diff across both corpora: 1,365 pointer changes, 0
+    status changes, 0 cross-room changes bar one already-`gap` row moving
+    from a coincidental Kitchen tie to the genuinely relevant Patio or Deck
+    page (status unchanged either way).
     """
     if room_signal:
         want = page.get("room") == room_signal
@@ -1421,6 +1482,12 @@ def _tie_break(page, best, room_signal, cw=None, field="words"):
             return True
         if have and not want:
             return False
+    if (page.get("room") and page.get("room") == best.get("room")
+            and (not room_signal or page.get("room") == room_signal)):
+        p_zone = page["url"].startswith("/zones/")
+        b_zone = best["url"].startswith("/zones/")
+        if p_zone != b_zone:
+            return p_zone
     if cw:
         p_near = _near_miss_count(page, cw, field)
         b_near = _near_miss_count(best, cw, field)

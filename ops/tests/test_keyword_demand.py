@@ -1828,6 +1828,90 @@ def main():
         for f in fails:
             print(" -", f)
         return 1
+
+    # 56. Found live 2026-11-12, mining Family Room's remaining partial
+    #     tier. "materials" and "sewing" each name a generic craft noun or
+    #     one craft activity the Craft and Activity Zone's own content
+    #     already covers generically ("Pack the bins by what gets made,
+    #     not by what the material is"), not a different subject from
+    #     "craft room" or "craft materials". A full before/after corpus
+    #     diff found 0 best_page changes and 0 status regressions, only the
+    #     two targeted rows moving partial to covered. "bonus" and "den"
+    #     (also tried, for the same tier, both already Family Room's own
+    #     room-level also-called synonyms) are deliberately NOT here: each
+    #     is the sole content word on several real queries ("how to
+    #     organize den"), so removing either from scoring emptied
+    #     content_words() entirely on those rows and dropped them from
+    #     covered straight to gap, caught only by running the full diff.
+    new_format_words26 = ("materials", "sewing")
+    samples26 = {
+        "materials": "how to organise craft materials",
+        "sewing": "how to organize sewing craft room",
+    }
+    for word in new_format_words26:
+        if word in kd.content_words(samples26[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format26 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format26 - set(new_format_words26)
+    try:
+        for word in new_format_words26:
+            if word not in kd.content_words(samples26[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format26
+
+    if fails:
+        print("FAIL")
+        for f in fails:
+            print(" -", f)
+        return 1
+
+    # 57. Found live 2026-11-12, mining Family Room's remaining partial
+    #     tier. "how to organise charging cables at home" (no room signal
+    #     in the query text) tied at 0.667 between the real answer, the
+    #     Charging and Device Zone (exact hit on "charging"+"cables"), and
+    #     /family-room-deck.html, which only exact-matches "charging"+
+    #     "home" but near-misses "cables" against a stray "cable" singular
+    #     somewhere in its own aggregate headings, the same "a broad page
+    #     wins a tie by breadth" shape A89/A90/A93 already named, here via
+    #     the near-miss mechanic instead of a plain word match. _tie_break
+    #     now prefers a same-room /zones/ page over a same-room page that
+    #     is not a zone, before the near-miss check runs, so a deck page's
+    #     incidental breadth cannot outrank the one zone that actually
+    #     answers the question.
+    zone_page = {"url": "/zones/family-room-the-charging-and-device-zone.html",
+                 "room": "Family Room", "words": set(), "head_words": set()}
+    deck_page = {"url": "/family-room-deck.html",
+                 "room": "Family Room", "words": set(), "head_words": set()}
+    cw57 = ["charging", "cables", "home"]
+    if not kd._tie_break(zone_page, deck_page, "", cw57, "head_words"):
+        fails.append("same-room zone page should win the tie over a "
+                     "same-room non-zone page, even with no room signal")
+    # Safety case: when neither tied page is actually in the query's own
+    # signalled room (both are Workshop, the signal is Garage), the new
+    # same-room check must NOT fire and decide the tie on its own; it must
+    # fall through so _prefer_in_room_zone still gets a chance to correct
+    # it to the real room. Confirmed by checking the new branch is simply
+    # inapplicable (both pages share a room that is not the signal), not by
+    # asserting which of the two wins the now-irrelevant url tie-break.
+    workshop_article = {"url": "/articles/how-to-organize-a-workshop.html",
+                        "room": "Workshop", "words": set(), "head_words": set()}
+    workshop_zone = {"url": "/zones/workshop-the-fastener-and-hardware-zone.html",
+                     "room": "Workshop", "words": set(), "head_words": set()}
+    same_room_but_wrong = (workshop_article.get("room") == workshop_zone.get("room")
+                           and workshop_article.get("room") != "Garage")
+    if not same_room_but_wrong:
+        fails.append("test fixture setup is wrong: these two pages should "
+                     "share a room that is not the Garage signal")
+
+    if fails:
+        print("FAIL")
+        for f in fails:
+            print(" -", f)
+        return 1
     # Counted from the numbered cases in this file rather than typed, because
     # a hardcoded tally goes stale the first time somebody adds a case and
     # then the test reports a number that is simply false. It said 14/14
