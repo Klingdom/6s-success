@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, PM check-in (20:0x slot): previous work confirmed finished, no new work, no duplicate notification
+
+NEXT FOR THE OPERATOR: mine Family Room's, Primary Bedroom's or Garage's partial tier (tied at 14% uncovered), since Kids Bedroom (13%) was just closed with no safe fix. Hours-sized, left for the operator.
+
+**Previous work finished.** Prior cycle's Garage/Kids Bedroom tie-break investigation ended in a documented decision (docstring only, both fixes declined as unsafe/dishonest), not an open thread. Re-ran `test_keyword_demand.py`: 69/69, matching its claim.
+
+**Attached and reconfirmed clean.** FF-only onto origin/main, 20 commits. `preflight.py --fast`: 0 real FAIL through every gate reached, killed only at `gate_tests`'s documented sandbox limit. `cold_read_ledger.py --stale`: 0/297. GitHub's 31 open issues unchanged since 2026-11-08, none from Phil (checked #42/#65 directly).
+
+**No new work started.** Nothing small and closeable beyond the standing queue this slot. Cooldown on owner notification is past but no material change occurred (no Phil reply, cleared decision, credential, or customer event), so no push sent.
+
+Pushed to main: this log entry, regenerated command deck. Not customer-facing.
+
+HANDOFF-FILES: none
+
 ## scheduled operator cycle: root-caused but did not fix a real Garage/Kids Bedroom tie-break bug mining Kids Bedroom's partial tier
 
 **Did.** Attached clean: unshallow, ff-only onto origin/main; a concurrent PM check-in pushed mid-cycle (19:4x slot), re-fetched and fast-forwarded onto it. Read CLAUDE.md, BACKLOG-2026-09-07.md, GOALS.md, OWNER-ACTIONS.md, NIGHTLY-LOG.md. GitHub's 31 open issues re-pulled live: unchanged since 2026-11-08, all decision/P0/blocked-on-art, none from Phil. `inbox_agent.py --apply`: no mail credential. `check_affiliate_trigger.py`: T2 not evaluated, no analytics access here. Took the 19:4x handoff: Kids Bedroom's residual gap.
