@@ -239,13 +239,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-05T04:15:57Z",
-   "mode": "changed",
-   "offered": 2,
-   "accepted": 2,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-05T04:35:35Z",
    "mode": "changed",
    "offered": 1,
@@ -657,6 +650,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-12T10:36:15Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -730,7 +730,7 @@
   "https://6s-success.com/rooms/patio-or-deck": "69f429359e7ff043",
   "https://6s-success.com/rooms/primary-bathroom": "169e02224a3a9422",
   "https://6s-success.com/rooms/primary-bedroom": "c348833f5ad733b2",
-  "https://6s-success.com/rooms/stair-landing": "21b35ff5f3e32264",
+  "https://6s-success.com/rooms/stair-landing": "792efd04098ac85f",
   "https://6s-success.com/rooms/workshop": "39d803bca8f18f5b",
   "https://6s-success.com/zones/dining-room-the-beverage-or-coffee-station": "a053f1d49b3a498b",
   "https://6s-success.com/zones/dining-room-the-china-or-display-cabinet": "bc66a1d6f6708f4e",
