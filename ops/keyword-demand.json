@@ -139,14 +139,13 @@
       "room": "",
       "best_page": "/zones/nursery-the-diaper-and-care-backstock.html",
       "best_page_title": "How to organize the nursery diaper storage",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
       "heading_page": "/articles/why-a-shared-zone-never-stays-reset.html",
       "matched_on": "title",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
-        "adult",
-        "disposal"
+        "adult"
       ]
     },
     {
@@ -48621,14 +48620,12 @@
       "room": "",
       "best_page": "/zones/workshop-the-safety-and-ppe-station.html",
       "best_page_title": "How to organize the workshop safety gear",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "workplace"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "safety gears for construction",
@@ -51694,14 +51691,12 @@
       "room": "",
       "best_page": "/zones/workshop-the-finishing-and-chemical-zone.html",
       "best_page_title": "How to organize the workshop paint and chemical storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "workplace"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "storage organizer for painting with diamonds",
@@ -56740,6 +56735,6 @@
       ]
     }
   ],
-  "scored_against_commit": "c1a82cf39",
-  "scored_at": "2026-11-11T22:57:40Z"
+  "scored_against_commit": "c16a5f6bf",
+  "scored_at": "2026-11-11T23:55:36Z"
 }

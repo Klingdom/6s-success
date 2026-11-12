@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, scheduled operator cycle: "workplace" and "disposal" joined FORMAT_WORDS, closing 4 rows, Workshop 18% to 16% uncovered
+
+Did: Attached clean (fetch, real unshallow from a shallow detached checkout, checkout main, ff-only onto origin/main, no reset). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Ran preflight.py --skip-tests live to completion: every gate passed. Mined Workshop's and Nursery's remaining partial tiers (room_guide_underperformance.py), the 23:1x PM check-in's own handoff. "workplace" and "disposal" joined FORMAT_WORDS in ops/keyword_demand.py.
+
+Verified, not shipped on self-flattery alone: "workplace" appears in 1 of 243 titles (corporate.html, a genuinely different page, not gaming) and 0 headings; "disposal" in 0 of 243. Full before/after score_rows() diff across both corpora before touching anything: "workplace" produces 0 best_page changes, only 3 status moves, all already on their correct Workshop page. "disposal" produces 0 best_page changes, 1 status move on Nursery's own Diaper and Care Backstock zone. "dispose" (verb), "fold" and "front" were each tried for the same tiers and declined: 2, 5 and 11 real best_page changes respectively, the same misattribution risk "declutter" and "messy" were declined for yesterday.
+
+Shipped: fail-then-pass proved (case 49, test_keyword_demand.py, 55/55). Rescored both corpora live: US gap 107->106, partial 1037->1036, covered 1666->1668; global partial 788->787, covered 1285->1286. Workshop 18% to 16% uncovered. gate_goals_keyword_cluster_citation_current, gate_keyword_demand_rescored_current, gate_keyword_demand_global_rescored_current, gate_ops_python_syntax all called directly and clean. test_room_guide_underperformance.py (19/19), test_room_guide_candidates.py (127/127), check_urls.py (235/235), fix_dashes.py --check (0/0), link_graph_report.py (0 orphans), affiliate.py --check, check_sellable.py all clean. GitHub's 31 open issues re-pulled live: unchanged since 2026-11-08, all decision/blocked-on-art, none from Phil. No mail credential in this sandbox.
+
+Went well: the full corpus diff again caught three real misattribution risks before shipping.
+
+Did not go well: this lane is close to exhausted; most candidates this cycle were declines, not ships.
+
+Changing next cycle: none.
+
+Next: same Phil-gated queue. Hall Closet's 26-row partial tier (17% uncovered) for whoever mines it next.
+
+HANDOFF-FILES: none
+
 ## 2026-11-11, PM check-in (~23:4x slot): previous work independently reconfirmed finished, same Workshop/Hall Closet room-guide pick handed to the operator
 
 NEXT FOR THE OPERATOR: Workshop or Hall Closet room-guide/keyword-demand mining (18%/17% uncovered), unchanged since the 22:4x and 23:1x entries, because nothing moved since and nothing else is genuinely unblocked ahead of it.

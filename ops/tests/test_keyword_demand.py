@@ -1558,6 +1558,45 @@ def main():
         for f in fails:
             print(" -", f)
         return 1
+
+    # 49. Found live 2026-11-11, mining Workshop's and Nursery's remaining
+    #     partial tiers (BACKLOG-2026-09-07.md's own room-guide handoff).
+    #     "workplace" names the setting, not a different subject ("safety
+    #     gear in the workplace" asks the same thing as "safety gear",
+    #     already answered by the Workshop's PPE zone). "disposal" is a
+    #     noun form of "dispose", which the query already treats as the
+    #     action word, not a different subject ("adult diaper disposal
+    #     container" asks the same thing as "adult diaper container").
+    #     "dispose" (verb) and "fold" and "front" were each tried for the
+    #     same tiers and declined: a full before/after corpus rescore found
+    #     2, 5 and 11 real best_page changes respectively, moving queries
+    #     between pages rather than only moving status, the same risk shape
+    #     "declutter" and "messy" were declined for in case 46.
+    new_format_words19 = ("workplace", "disposal")
+    samples19 = {
+        "workplace": "safety gear in the workplace",
+        "disposal": "adult diaper disposal container",
+    }
+    for word in new_format_words19:
+        if word in kd.content_words(samples19[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format19 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format19 - set(new_format_words19)
+    try:
+        for word in new_format_words19:
+            if word not in kd.content_words(samples19[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format19
+
+    if fails:
+        print("FAIL")
+        for f in fails:
+            print(" -", f)
+        return 1
     # Counted from the numbered cases in this file rather than typed, because
     # a hardcoded tally goes stale the first time somebody adds a case and
     # then the test reports a number that is simply false. It said 14/14

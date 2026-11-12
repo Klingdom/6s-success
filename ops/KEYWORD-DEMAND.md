@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-11T17:34:53Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-11T22:57:40Z against 243 page(s) at commit c1a82cf39. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-11T23:55:36Z against 243 page(s) at commit c16a5f6bf. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2810. Checked against 243 published page titles: 1666 covered, 1037 partial, 107 gap.
+**Queries found:** 2810. Checked against 243 published page titles: 1668 covered, 1036 partial, 106 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 107, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 106, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -89,7 +89,6 @@ Showing the top 80 of 107, ordered by the best rank the phrase reached in any on
 | 11 | how to plan a workshop for students | Workshop | How to organize a workshop, step by step (0.33) | plan, students |
 | 11 | how to properly dispose of adult diapers | - | Why does a shared zone never stay reset? (0.00) | diapers, dispose, properly |
 | 11 | organize seasonal pricing model | - | How to organize the hall closet seasonal storage (0.33) | model, pricing |
-| 12 | adult diaper disposal container | - | How to organize the nursery diaper storage (0.33) | adult, disposal |
 | 12 | building beds for kids organization | - | How to organize a kids bedroom, step by step (0.33) | beds, building |
 | 12 | how to decorate a living room with white walls | Living Room | How to organize a living room, step by step (0.40) | decorate, walls, white |
 | 12 | how to host a workshop map cs2 | Workshop | How to organize a workshop, step by step (0.25) | cs2, host, map |
@@ -101,10 +100,11 @@ Showing the top 80 of 107, ordered by the best rank the phrase reached in any on
 | 14 | grill stations ideas for backyards | - | How to organize the patio or deck grill station (0.33) | backyards, stations |
 | 14 | how to dispose of adult diapers | - | Why does a shared zone never stay reset? (0.00) | diapers, dispose |
 | 14 | how to plan a workshop event | Workshop | How to organize a workshop, step by step (0.33) | event, plan |
+| 14 | master bedroom design as per vastu | - | How to organize a primary bedroom, zone by zone (0.20) | design, per, vastu |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1037.
+Showing the top 60 of 1036.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|

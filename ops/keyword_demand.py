@@ -195,7 +195,29 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "images", "efficiency", "chef", "modern", "rustic",
                           "simple", "choose", "deep", "hacks", "lots",
                           "categories", "pro", "aesthetically", "newborn",
-                          "planning"))
+                          "planning", "workplace", "disposal"))
+
+# "workplace" and "disposal" joined 2026-11-11, mining Workshop's and
+# Nursery's remaining partial tiers (the 23:1x PM check-in's own handoff).
+# "safety gear in the workplace" asks the same question as "safety gear",
+# already answered by the Workshop's Safety and PPE Station zone;
+# "storage of paint in the workplace" likewise already matches the
+# Finishing and Chemical Zone. "adult diaper disposal container" asks the
+# same thing as "adult diaper container", the noun form of "dispose" naming
+# the setting/action rather than a different subject. Self-flattery checked
+# first: "workplace" appears in 1 of 243 titles (`/corporate.html`'s own,
+# a genuinely different page about workplace 6S engagements, not gaming),
+# 0 of 243 headings; "disposal" appears in 0 of 243 titles or headings.
+# Checked the full corpus before adding (before/after `score_rows()` diff
+# across both corpora): "workplace" produces 0 best_page changes, only 3
+# status moves (partial to covered), all already on their correct Workshop
+# page; "disposal" produces 0 best_page changes, 1 status move (gap to
+# partial) on the Nursery's own Diaper and Care Backstock zone. "dispose"
+# (verb), "fold" and "front" were each tried for the same tiers and
+# declined: a full corpus rescore found 2, 5 and 11 real best_page changes
+# respectively, moving queries between pages rather than only moving
+# status, the same risk shape "declutter" and "messy" were declined for
+# mining Garage and Nursery the same day.
 
 # "deep" and "hacks" joined 2026-11-11, mining Hall Closet's remaining
 # partial tier. "how to organize a deep hall closet" and "deep hall closet

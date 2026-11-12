@@ -47722,14 +47722,12 @@
       "room": "Workshop",
       "best_page": "/articles/how-to-organize-a-workshop.html",
       "best_page_title": "How to organize a workshop, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "workplace"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -48248,6 +48246,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "c1a82cf39",
-  "scored_at": "2026-11-11T22:57:44Z"
+  "scored_against_commit": "c16a5f6bf",
+  "scored_at": "2026-11-11T23:55:37Z"
 }
