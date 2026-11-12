@@ -977,9 +977,9 @@
       "note": "First cold read of this file, same cycle the photos/ lane was added. _load() builds the zone-slug map the same way the rest of the site does (room/zone slugified and joined), reading directly from content/manual/source/content.json and ops/zone-name-map.json rather than re-deriving either; method() returns None for an unknown slug (checked by server.py and analyze.py both) and only emits a surface id for a surface that has both a surface and a method string. No defect found."
     },
     "nightly_log.py": {
-      "status": "fixed",
-      "date": "2026-10-11",
-      "note": "Third-pass cold-read, PM check-in: re-verified prepend_entry()/format_handoff() against today's own two real changes (the hardcoded-date fix now derives from datetime.date.today(), and the --handoff flag this very entry is written with). test_nightly_log.py 10/10. No new defect found; ledger was stale only because it predated these same-day changes, not because anything is wrong."
+      "status": "clean",
+      "date": "2026-11-12",
+      "note": "Fourth-pass cold-read, PM check-in: re-verified against A110's own same-week change (word_budget_for()/warn_if_overlong(), 120/250-word write-time budget matching STEP 10/OWNER-ACTIONS.md item 24's stated figures, deliberately looser than gate_nightly_log_entries_not_overlong's own flat 750-word post-hoc tripwire, consistent with that gate's own docstring). prepend_entry()/format_handoff() unchanged and still correct. python ops/tests/test_nightly_log.py: 12/12 pass. No new defect found; ledger was stale only because it predated this same-week change."
     },
     "ops/build_pwa.py": {
       "status": "clean",

@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (08:1x slot): corrected a stale, looping handoff on OWNER-ACTIONS.md items 1/1b/4, closed a genuinely stale cold-read ledger entry
+
+**Previous work finished.** A110 verified live (`test_nightly_log.py` 12/12), tree clean, attached cleanly.
+
+**Corrected a stale, looping handoff.** Today's 07:1x/07:4x entries name OWNER-ACTIONS.md items 1/1b/4's split as "the one concrete item left." Checked first: this was already investigated by six 2026-11-03 cycles (`ops/rotate_owner_actions_item_history.py`'s docstring, `NIGHTLY-LOG.md` ~9960-10486), which found the remaining prose genuinely live and not safely archivable, and shipped two smaller cuts instead. Nobody cited that finding since; two cycles today reopened a settled question with no new evidence (CLAUDE.md 21). OWNER-ACTIONS.md is 119326 bytes, barely moved from 118214 on 11-03, confirming nothing more is cuttable. Not attempting it again.
+
+**Closed one real item.** `cold_read_ledger.py --stale` found `ops/nightly_log.py` stale (ledgered before A110's change). Cold-read: no defect, re-ledgered. 0 of 308 stale now.
+
+**Next:** same 31-issue Phil-gated queue. Stop citing items 1/1b/4 as open.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle: reconfirmed exhausted, issue #65 permission check re-verified directly
 
 **Did:** Attached cleanly to main (shallow checkout unshallowed, ff-only merge, 0/0 ahead/behind). Tried the genuine fix for issue #65 (stale "Append" instruction in the hourly Routine's own STEP 10) directly against the live trigger rather than just citing the prior finding: `update_trigger` refused with the exact documented reason ("Agents can only update routines they created"), confirming OWNER-ACTIONS.md item 24 is correctly still open and not agent-fixable. Ran `preflight.py` fresh (not cited): one self-correcting FAIL (a stray probe file from an earlier killed run, deleted by the gate itself), otherwise 0 real FAIL across every gate including gate_tests' first 50 cases, all remaining warnings the standing documented sandbox limits (no Stripe/mail credential, no DNS resolution, Etsy fee page 403).
