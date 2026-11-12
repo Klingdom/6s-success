@@ -1,9 +1,9 @@
 {
- "generated": "2026-11-12 10:22",
- "commit": "6e734daf1",
- "commit_msg": "Hourly check-in record",
- "commits_7d": 1486,
- "commits_total": 12348,
+ "generated": "2026-11-12 10:25",
+ "commit": "36fd82224",
+ "commit_msg": "Close Stair Landing's staircase-landing synonym gap, exclude three off-topic collisions on Entryway's tier",
+ "commits_7d": 1489,
+ "commits_total": 12352,
  "traffic_line": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-10-03 21:13",
@@ -12,8 +12,8 @@
  "affiliate_trigger_last_measured": "T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised.",
  "affiliate_trigger_measured_at": "2026-10-03 21:13",
  "affiliate_trigger_carried_from": "2026-10-03 21:13",
- "clean": false,
- "ahead": "0",
+ "clean": true,
+ "ahead": "1",
  "deploy": {
   "reachable": true,
   "assets": [],
@@ -35,7 +35,7 @@
  "link_retirement_refused": [],
  "link_retirement_refused_at": null,
  "zone_pages_with_image": 114,
- "zone_photos_undeployed": null,
+ "zone_photos_undeployed": false,
  "issues_available": true,
  "issues": [
   {

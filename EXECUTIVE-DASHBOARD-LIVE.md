@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-11-12 10:22 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-11-12 10:25 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,9 +28,9 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 31 (10 P0, 2 blocked on art, 29 need your call) |
 | Closed to date | 35 |
-| Commits (7 days) | 1486 of 12348 total |
+| Commits (7 days) | 1489 of 12352 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `6e734daf1` Hourly check-in record |
+| Last commit | `36fd82224` Close Stair Landing's staircase-landing synonym gap, exclude |
 
 ## Product readiness
 
