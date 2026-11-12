@@ -2057,6 +2057,57 @@ def main():
                          "declined (cluster-tracked or misattribution "
                          "risk)" % declined)
 
+    # 61. Found live 2026-11-12, mining Nursery's partial tier (20 rows,
+    #     tied largest at 15% uncovered, handed off by the 15:1x PM
+    #     check-in). "canvas" names the tote's material, the same
+    #     adjectival-material role "wood"/"wooden" already play. "pouch" is
+    #     a container-type noun, the same role "container"/"basket"/"bins"
+    #     already play. "church" names where the nursery is, not a
+    #     different subject, the same role "workplace" already plays.
+    #     "insert" names a bag accessory, the same generic-product-noun
+    #     role "labels"/"dividers" already play. A full before/after
+    #     score_rows() diff across both corpora found 0 best_page changes,
+    #     only 4 status moves (the 4 targeted rows), 0 regressions.
+    new_format_words30 = ("canvas", "pouch", "church", "insert")
+    samples30 = {
+        "canvas": "canvas diaper tote organizer",
+        "pouch": "diapers bag organiser pouch",
+        "church": "how to organize a church nursery",
+        "insert": "diaper bag organizer insert",
+    }
+    for word in new_format_words30:
+        if word in kd.content_words(samples30[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format30 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format30 - set(new_format_words30)
+    try:
+        for word in new_format_words30:
+            if word not in kd.content_words(samples30[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format30
+    # "small", "shelves", "cupboard", "cube" and "storage" were tried on the
+    # same tier and deliberately NOT added: "small" is GOALS.md's own
+    # tracked cluster; "shelves"/"cupboard" are real distinguishing
+    # storage-furniture nouns already declined in A108; "cube" names the
+    # same furniture-type role; "storage" is the site's own central
+    # subject, the riskiest word tried to date (A114). "diaper" singular
+    # was investigated (a genuine singular/plural scoring mismatch against
+    # the destination page's own plural "diapers") and deliberately NOT
+    # added to FORMAT_WORDS: that would also stop "diaper" counting as a
+    # real content word on every other room's rows, a stemming problem,
+    # not a wording gap.
+    for declined in ("small", "shelves", "cupboard", "cube", "storage",
+                     "diaper"):
+        if declined in kd.FORMAT_WORDS:
+            fails.append("%r must not join FORMAT_WORDS: already "
+                         "declined (cluster-tracked, misattribution risk, "
+                         "or a stemming problem, not a wording gap)"
+                         % declined)
+
     if fails:
         print("FAIL")
         for f in fails:

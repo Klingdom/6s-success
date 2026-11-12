@@ -204,8 +204,45 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "minimal", "category", "pictures",
                           "system", "dispose", "fold", "stored", "wrapping",
                           "recipes", "wooden", "necessities", "practical",
-                          "teen", "labels", "dividers"))
+                          "teen", "labels", "dividers", "canvas", "pouch",
+                          "church", "insert"))
 
+# "canvas", "pouch", "church" and "insert" joined 2026-11-12, scheduled
+# operator cycle, mining Nursery's partial tier (the 20-row tier handed off
+# by the 15:1x PM check-in once Guest Bathroom and Garage closed/exhausted).
+# Dumped the full tier directly via score_room() (CLAUDE.md 5c). "canvas"
+# ("canvas diaper tote organizer") names the bag's material, the same
+# adjectival-material role "wood"/"wooden" already play. "pouch" ("diapers
+# bag organiser pouch") is a container-type noun, the same role
+# "container"/"containers"/"basket"/"baskets"/"bins" already play. "church"
+# ("how to organize a church nursery") names where the nursery is, not a
+# different organizing problem, the same role "workplace" already plays for
+# a workshop. "insert" ("diaper bag organizer insert") names a bag
+# accessory, the same generic-organizing-product role "labels"/"dividers"
+# already play. Self-flattery checked first using the same head_words/
+# title_words fields the scorer itself reads: 0 of 243 titles for all four,
+# 0 headings for "canvas"/"church"/"insert", 1 of 243 for "pouch"
+# (unrelated). Full before/after score_rows() diff across both corpora
+# before shipping: 0 best_page changes anywhere, only 4 status moves
+# (partial to covered), exactly the four targeted Nursery rows, 0
+# regressions. "small" (x2 rows, GOALS.md's own tracked cluster) and
+# "shelves"/"cupboard" (real distinguishing storage-furniture nouns,
+# already declined for "shelf"/"shelves"/"cupboard" in A108) were declined
+# without re-testing. "cube" ("baby clothes in cube storage") and "storage"
+# (3 rows) were checked and declined on the same basis: "storage" is the
+# site's own central subject, already the riskiest word tried to date
+# (A114), and "cube" names a furniture type the same way "cabinet"/"shelf"
+# do. "declutter" (2 rows) was not re-tried, settled since A101/A114.
+# "diaper" singular ("how to organize diapers in diaper bag") was
+# investigated and NOT shipped: the destination page's own head_words carry
+# only the plural "diapers", so the row is a genuine singular/plural
+# scoring mismatch rather than a wording gap, but normalizing it belongs in
+# a stemming fix to content_words() itself, not a FORMAT_WORDS entry that
+# would also stop "diaper" from counting as a real content word on every
+# other room's rows; left as a named next lead rather than forced. "ribbon
+# spools" is the same cross-room misattribution A108 already named and
+# left for a destination-content fix, not retried.
+#
 # "wooden", "necessities", "practical", "teen", "labels" and "dividers"
 # joined 2026-11-12, scheduled operator cycle, mining Guest Bathroom's
 # partial tier (14 rows, tied with Nursery and Garage at 15% uncovered,

@@ -724,7 +724,23 @@ OFF_TOPIC_CONTEXT = re.compile(
     # in exactly their one named row across either corpus, all already
     # partial, 0 covered, so excluding them cannot suppress a genuine
     # match.
-    r"\bpotting bench\b|\breloading bench\b|\bdrop ?shipping\b",
+    r"\bpotting bench\b|\breloading bench\b|\bdrop ?shipping\b|"
+    # Found 2026-11-12, mining Nursery's partial tier. Three rows land on
+    # Nursery zones purely on "organize"+(crib|diaper) word overlap with a
+    # different, unrelated activity. "how to organize a crib tournament"
+    # names a cribbage (card game) tournament, not a baby crib, the same
+    # different-domain collision "dental"/"outlook"/"gallery walk" already
+    # exclude above. "how to organize a diaper drive" and "how to organize
+    # a diaper party" both name organizing a charity-collection or
+    # baby-shower EVENT where guests bring diapers, not organizing diaper
+    # storage at home, the same event/business-intent collision
+    # "business"/"pricing model" already exclude above. Checked against
+    # both harvests before adding: "crib tournament" and "diaper drive"
+    # each appear in exactly their one row in both US and global corpora
+    # (the same phrase, not a coincidence); "diaper party" appears only in
+    # the global corpus, 1 row. All three already partial, 0 covered, so
+    # excluding them cannot suppress a genuine match.
+    r"\bcrib tournament\b|\bdiaper drive\b|\bdiaper party\b",
     re.I)
 
 

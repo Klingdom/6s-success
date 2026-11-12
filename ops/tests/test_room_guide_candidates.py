@@ -855,6 +855,32 @@ _result_paperwork_genuine = rgc.score_room([_paperwork_genuine], [], _room)
 check("a genuine 'paperwork files' row is NOT excluded by the dropbox pattern",
       _result_paperwork_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-12, mining Nursery's partial tier (20 rows, the tier
+# handed off by the 15:1x PM check-in). A cribbage tournament and a
+# diaper drive/party (charity-collection or baby-shower events) collide
+# only on "organize"+(crib|diaper) with Nursery zones, not the household
+# organizing problem the page actually answers.
+_crib_tournament = {"query": "how to organize a crib tournament", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_crib_tournament = rgc.score_room([_crib_tournament], [], _room)
+check("a 'crib tournament' off-topic-context row is excluded",
+      _result_crib_tournament["on_topic_rows"] == 0)
+_diaper_drive = {"query": "how to organize a diaper drive", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_diaper_drive = rgc.score_room([_diaper_drive], [], _room)
+check("a 'diaper drive' off-topic-context row is excluded",
+      _result_diaper_drive["on_topic_rows"] == 0)
+_diaper_party = {"query": "how to organize a diaper party", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_diaper_party = rgc.score_room([_diaper_party], [], _room)
+check("a 'diaper party' off-topic-context row is excluded",
+      _result_diaper_party["on_topic_rows"] == 0)
+_crib_genuine = {"query": "how to organize a crib and sleep zone", "best_page": "/test-room-deck.html", "status": "covered"}
+_result_crib_genuine = rgc.score_room([_crib_genuine], [], _room)
+check("a genuine 'crib' row is NOT excluded by the crib-tournament pattern",
+      _result_crib_genuine["on_topic_rows"] == 1)
+_diaper_genuine = {"query": "how to organize diapers in diaper bag", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_diaper_genuine = rgc.score_room([_diaper_genuine], [], _room)
+check("a genuine 'diaper' row is NOT excluded by the diaper-drive/party pattern",
+      _result_diaper_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

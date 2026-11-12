@@ -4048,14 +4048,12 @@
       "room": "",
       "best_page": "/zones/nursery-the-diaper-and-care-backstock.html",
       "best_page_title": "How to organize the nursery diaper storage",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "canvas"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "car organization and storage",
@@ -7780,14 +7778,12 @@
       "room": "",
       "best_page": "/nursery-deck.html",
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/nursery-deck.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "insert"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "diaper bag with organizer",
@@ -7880,13 +7876,11 @@
       "best_page": "/zones/nursery-the-changing-station.html",
       "best_page_title": "How to organize the nursery changing station",
       "coverage": 0.0,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/nursery-the-changing-station.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pouch"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "dining room decorating ideas",
@@ -21041,14 +21035,12 @@
       "room": "Nursery",
       "best_page": "/zones/nursery-the-baby-clothing-zone.html",
       "best_page_title": "How to organize the nursery baby clothes",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/nursery-the-baby-clothing-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "church"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a closet",
@@ -56557,6 +56549,6 @@
       ]
     }
   ],
-  "scored_against_commit": "4d69bfd3a",
-  "scored_at": "2026-11-12T15:02:22Z"
+  "scored_against_commit": "4a194d39c",
+  "scored_at": "2026-11-12T15:53:16Z"
 }

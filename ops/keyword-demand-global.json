@@ -22115,14 +22115,12 @@
       "room": "Nursery",
       "best_page": "/zones/nursery-the-baby-clothing-zone.html",
       "best_page_title": "How to organize the nursery baby clothes",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/nursery-the-baby-clothing-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "church"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca",
         "gb",
@@ -48190,6 +48188,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "4d69bfd3a",
-  "scored_at": "2026-11-12T15:02:35Z"
+  "scored_against_commit": "4a194d39c",
+  "scored_at": "2026-11-12T15:53:17Z"
 }

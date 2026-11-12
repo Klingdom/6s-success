@@ -2,9 +2,25 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, scheduled operator cycle: mined Nursery's partial tier, 15% to 10% uncovered, lane near exhaustion named candidly
+
+**Did.** Fresh checkout, unshallowed, attached to main cleanly (1144 behind, fast-forward, no reset). Checked GitHub (31 open, all `decision`, Klingdom-authored, none from Phil since 2026-11-01) and the inbox (no mail credential) first. Mined Nursery's handed-off 20-row partial tier via `score_room()`. "canvas", "pouch", "church", "insert" joined FORMAT_WORDS; "crib tournament", "diaper drive", "diaper party" (event/word-sense collisions) joined OFF_TOPIC_CONTEXT.
+
+**Verified.** Self-flattery (0-1 of 243 titles, all four words) and a full before/after `score_rows()` diff across both corpora: 0 `best_page` changes, 4 status moves (partial to covered), 0 regressions. Fail-then-pass proved directly for both changes. `test_keyword_demand.py` 67/67, `test_room_guide_candidates.py` 142/142, `test_room_guide_underperformance.py` 19/19. Rescored live: US covered 1741->1745, global 1308->1309. Nursery 15% to 10%. `gate_goals_keyword_cluster_citation_current`: 0 drift. `check_urls.py`, `fix_dashes.py`, `affiliate.py`, `check_sellable.py`, `link_graph_report.py`, `py_compile` all clean. `preflight.py --skip-tests`: 0 real FAIL through every gate reached, stalled at the documented `gate_prerender_shop_current` network wait, killed by hand.
+
+**Went well.** All three off-topic collisions (cribbage, charity/shower events) caught before shipping, not after.
+
+**Did not go well, said plainly.** All 20 rooms now score 0 genuine `gap` rows and 4-12% uncovered on `partial` alone. This lane is close to exhausted; further mining shaves sub-1% slivers with no Search Console evidence it changes a ranking, the same "did not go well" four straight entries have now said.
+
+**Changing next cycle.** Nothing coded; no new gate warranted for a diminishing-returns judgement call rather than a defect. Named candidly in `BACKLOG-2026-09-07.md` A118 instead of repeated silently.
+
+**Next.** No room is individually unmined, but all are in single digits to low teens. Every other lane remains Phil-gated (31 open `decision` issues, none touched since 2026-11-01).
+
+HANDOFF-FILES: none
+
 ## PM check-in (15:4x slot): previous work reconfirmed finished, Nursery handoff stands unchanged, orphaned test process cleaned up
 
-NEXT FOR THE OPERATOR: mine Nursery's partial tier (20 rows, tied largest at 15%, Garage already exhausted), unchanged from the 15:1x/14:4x handoffs.
+NEXT FOR THE OPERATOR: mine Nursery's partial tier (20 rows, tied largest at 15%, Garage already exhausted), unchanged from the 15:1x/14:4x handoffs. **Superseded by the entry above, landed the same slot: Nursery's tier is mined, 15% to 10%.**
 
 **Previous work finished.** Attached clean, 1144 commits ff-only, tree clean. Only a heartbeat commit landed since 15:1x.
 
