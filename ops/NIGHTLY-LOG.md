@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, PM check-in (21:4x slot): previous work confirmed finished, Family Room/Garage handoff reconfirmed unchanged, no new work, no duplicate notification
+
+NEXT FOR THE OPERATOR: mine Family Room's or Garage's partial tier (still tied at 14% uncovered), the only unblocked lane beyond the standing Phil-gated queue.
+
+**Previous work finished, reconfirmed myself.** `room_guide_underperformance.py` live: Family Room 14%, Garage 14%, unchanged from 21:1x. FF-only onto origin/main, clean. `preflight.py --fast`: 0 FAIL through every gate reached, killed only at `gate_tests`'s sandbox limit, unchecked past that.
+
+**GitHub's 31 open issues** re-pulled live: unchanged, all decision/P0/blocked-on-art, none from Phil. Phil's last commit still 2026-11-01.
+
+**No new work, no push.** Mining is hours-sized, left to the operator. Cooldown passed but nothing material changed; re-pushing would be a duplicate.
+
+Pushed: this entry, regenerated deck.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, PM check-in (21:1x slot): previous work (A123) confirmed finished, Family Room/Garage handoff unchanged, no new work, no duplicate notification
 
 NEXT FOR THE OPERATOR: mine Family Room's or Garage's partial tier (tied 14% uncovered), the only unblocked lane beyond the standing Phil-gated queue.
