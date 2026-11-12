@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in: corrected the stale items 1/1b/4 split handoff, reconfirmed exhausted queue
+
+Previous work (09:47 PM check-in) finished: preflight clean through reached gates, 31 open GitHub issues unchanged since 2026-11-08, none from Phil.
+
+Checked the handed-off "split OWNER-ACTIONS.md items 1, 1b, 4" before taking it on. That split was investigated 2026-11-03 and declined: each item is live, cited-elsewhere content (OAuth steps, cost table, affiliate checklist), not safely archivable without a larger rewrite, per gate_owner_actions_item_history_not_oversized's own docstring. Confirmed this still holds. Stop handing it off as "the one concrete item left"; the 119326-byte overage past the 110000 tripwire is structural.
+
+Ran preflight.py --fast: 0 real FAIL through every gate reached, killed at gate_tests' documented sandbox entry.
+
+Handing operator: the standing Phil-gated queue plus the in-flight Garage mining lane.
+
+HANDOFF-FILES: none
+
 ## PM check-in
 
 NEXT FOR THE OPERATOR: continue mining Garage's remaining partial tier via `score_room()` (the A87-A92 lane), because it is the one genuinely unblocked, agent-executable work downstream of the traffic constraint.
