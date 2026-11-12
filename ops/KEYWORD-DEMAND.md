@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-11T17:34:53Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-12T05:08:45Z against 243 page(s) at commit da603f06d. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-12T09:08:04Z against 243 page(s) at commit 52731717c. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2810. Checked against 243 published page titles: 1708 covered, 999 partial, 103 gap.
+**Queries found:** 2810. Checked against 243 published page titles: 1709 covered, 999 partial, 102 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 103, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 102, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -50,7 +50,6 @@ Showing the top 80 of 103, ordered by the best rank the phrase reached in any on
 | 6 | attic storage ideas pinterest | - | How to organize an attic without overloading it (0.33) | pinterest, storage |
 | 6 | how to build a floating staircase landing | - | How to organize a stair landing, step by step (0.25) | build, floating, staircase |
 | 6 | how to hold bench press bar correctly | - | The Patio or Deck Deck: 68 cards, free to read (0.20) | bar, bench, correctly |
-| 6 | how to operate a wood stove | - | How to organize the kitchen stove area (0.33) | operate, wood |
 | 6 | how to organize a cribbage tournament template | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, tournament |
 | 6 | how to organize beads for jewelry making | - | 6S Success: Home Edition &#183; Chapters 1 to 30 (0.00) | beads, jewelry |
 | 6 | trouble going to bathroom | - | How to organize a guest bathroom, step by step (0.33) | going, trouble |
@@ -101,6 +100,7 @@ Showing the top 80 of 103, ordered by the best rank the phrase reached in any on
 | 14 | how to plan a workshop event | Workshop | How to organize a workshop, step by step (0.33) | event, plan |
 | 14 | master bedroom design as per vastu | - | How to organize a primary bedroom, zone by zone (0.20) | design, per, vastu |
 | 14 | starting a nursery for plants | Nursery | The Nursery Deck: 66 cards, free to read (0.33) | plants, starting |
+| 15 | declutter woodworking fundamentals tips | - | How to declutter a bedroom in one day, step by step (0.33) | fundamentals, woodworking |
 
 ## Partial: we are close, and the title does not use their words
 
