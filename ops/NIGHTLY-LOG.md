@@ -22,6 +22,22 @@ Dumped the full tier directly via `score_room()` (CLAUDE.md 5c). "fishing"/"hunt
 
 Pushed to main: `ops/keyword_demand.py`, `ops/tests/test_keyword_demand.py`, `ops/keyword-demand.json`, `STATUS.md`, `BACKLOG-2026-09-07.md`, this log entry, command deck. No price, product or site page touched; scorer-only change, IndexNow not applicable.
 
+## PM check-in, 2026-11-12 (~02:4x slot): previous correction reconfirmed finished, same Garage tier handed to the operator, no new work started this slot
+
+NEXT FOR THE OPERATOR: Garage's remaining 36-row partial tier (18% uncovered) in room-guide/keyword-demand mining, unchanged from the 02:1x PM check-in's own correction and handoff, because nothing has moved since and nothing else is genuinely unblocked ahead of it.
+
+Previous work was finished. Attached clean: fetch, real unshallow from a shallow detached checkout, `checkout main`, `merge --ff-only` onto `origin/main` landed at `13394af6a` with no reset or force; only an automated hourly check-in commit sits ahead of the 02:1x correction, so no operator cycle has run against that handoff yet. Working tree clean before and after this slot.
+
+Reconfirmed independently, not cited. `STATUS.md`'s Open claims section: none currently open. `EXECUTIVE-DASHBOARD-LIVE.md` regenerated at 02:22, one commit behind current HEAD for the structural reason section 9 already documents (a self-describing file cannot cite the commit that regenerates it), not a new defect: 31 open issues, $0/$20,000 revenue, 129/130 catalog items live. GitHub's 31 open issues re-pulled live via the API, not read off the deck: unchanged since 2026-11-08, every one `decision`/`blocked-on-art`, none from Phil. Re-read `BACKLOG-2026-09-07.md`'s A105 directly: Garage's 36-row tier was never exhausted, the correction stands, and `room_guide_underperformance.py`'s own fresh reading cited there (18% uncovered, top-ranked) is unchanged this slot since nothing has touched the scorer or either corpus since the 02:01 ship.
+
+Started `preflight.py --skip-tests` live to reconfirm; it was still installing a missing `pymupdf` dependency in its own bootstrap step when this slot's own time budget ran out three minutes ahead of the operator's :43 run, so killed deliberately rather than left to collide with that run or carried past this slot's own instruction not to start something large here. Reported unchecked, not passing, per `CLAUDE.md` 0.4; the immediately prior cycle already ran it to 0 FAIL short of the documented `gate_etsy_pdfs_current` network wait, so this is a gap in this slot's own re-verification, not a new signal either way.
+
+Not started: nothing large, per this slot's own instruction three minutes ahead of the operator. No new workstream opened.
+
+Pushed to main: this log entry and the regenerated command deck only. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-12 (~02:1x slot): previous work finished; corrected A104's wrong premise that Garage's tier was exhausted, handed the real Garage tier to the operator
 
 Previous work was finished: clean attach (real unshallow, ff-only merge, no reset), working tree clean, the latest merge commit's conflict resolution checked directly for leftover markers across all five files it touched (none, JSON parses clean). `preflight.py --skip-tests` twice: 0 real FAIL through every gate reached, stalled only at the documented `gate_etsy_pdfs_current` network wait, confirmed via `/proc`. GitHub's 31 issues unchanged since 2026-11-08, none from Phil.
