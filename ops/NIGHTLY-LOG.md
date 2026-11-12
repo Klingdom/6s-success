@@ -16,6 +16,24 @@ Pushed to main: this log entry, `ops/cycle-signal.json` (fresh clean-pass checkp
 
 HANDOFF-FILES: none
 
+## 2026-11-12, scheduled operator cycle: fixed gate_living_docs_total_size_tripwire's root cause on BACKLOG-2026-09-07.md instead of reporting it again
+
+**Did:** Attached per Step 0 (unshallow, checkout main, ff-only, clean). Read GOALS.md, BACKLOG-2026-09-07.md's structure (sections 0-7, since the full file is too large for one read), ROADMAP-2026-2029.md, CLAUDE.md, the top four NIGHTLY-LOG.md entries, GitHub's 31 open issues (unchanged since 2026-11-08, all decision/blocked-on-art, none from Phil, every major distribution unlock already filed). Ran `preflight.py --skip-tests`: 0 real FAIL, stalled at the documented `gate_etsy_pdfs_current` network wait. Sections 2-6 are Done/Hold/owner-gated; the only genuinely unblocked operator-shaped lane handed off by every recent entry was more FORMAT_WORDS mining on Garage's 31-row tier. Chose instead to fix a standing, repeatedly-reported, never-acted-on defect: `gate_living_docs_total_size_tripwire` had warned on BACKLOG-2026-09-07.md (340258 bytes against 150000) for many consecutive cycles, exactly the "correctly reported, nobody acts" shape CLAUDE.md 0.2 names by name.
+
+**Verified:** the rotation tools existed and worked, but `ops/rotate_backlog.py` and `ops/rotate_backlog_section2_items.py` both used a 14-day `DEFAULT_RETENTION_DAYS`, which made their own suggested bare `--apply` a no-op: today's FORMAT_WORDS entries run several KB each, so 14 days of them alone (section 2: 219KB) exceeded the whole file's budget. Lowered both to 2 days, ran `--apply`: 340258 to 139412 bytes. Fixed both scripts' own gate tests, which hardcoded day offsets assuming the old 14-day window, to derive from the real constant instead (still fail-then-pass, 5/5 each). `fix_dashes.py --check` 0/0, `check_urls.py` 235/235, `link_graph_report.py` 0 orphans, `py_compile` clean. STATUS.md (144608/110000) and OWNER-ACTIONS.md (120849/110000) checked directly, found still over: both are today's genuinely current content, correctly declined by their own rotation tools, not a retention-window gap; not fixed this cycle, named as the handoff.
+
+**Went well:** tracing the warning to its actual numeric cause (a stale constant) instead of accepting the standing "writing discipline gap" diagnosis repeated by prior cycles without anyone checking whether the existing tooling could already fix it.
+
+**Did not go well:** STATUS.md and OWNER-ACTIONS.md remain over budget; that fix is harder (same-day content, not stale rows) and was not attempted here to avoid a second, riskier workstream in one cycle.
+
+**Changing next cycle:** none.
+
+**Next:** fix STATUS.md's and OWNER-ACTIONS.md's own size tripwires, the harder same-day-content shape. Garage's remaining 31-row FORMAT_WORDS tier still waits behind that. Same 31-issue Phil-gated queue, unchanged.
+
+Pushed to main: `ops/rotate_backlog.py`, `ops/rotate_backlog_section2_items.py`, their tests, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-09-07-ARCHIVE.md`, `BACKLOG-2026-09-07-SECTION2-ARCHIVE.md`, this log entry, command deck. No price, product or site page touched; ops-only fix, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-12 (~03:4x slot): previous work still finished, nightly log rotated, same Garage/Nursery/Entryway handoff for the operator
 
 NEXT FOR THE OPERATOR: Garage's remaining 31-row partial tier (16% uncovered), then Nursery and Entryway (16% each), in room-guide/keyword-demand mining, unchanged from the 03:1x PM check-in's own handoff, because nothing genuinely unblocked has moved since.

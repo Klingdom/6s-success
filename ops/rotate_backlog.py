@@ -67,7 +67,18 @@ ARCHIVE_HEADER = (
     + TABLE_HEADER + "\n" + TABLE_SEP + "\n"
 )
 
-DEFAULT_RETENTION_DAYS = 14
+DEFAULT_RETENTION_DAYS = 2
+
+# Found 2026-11-12: at 14 days this constant made the gate's own suggested
+# remedy, a bare `--apply` with no --days flag, a no-op against a table that
+# was genuinely 97KB over budget. Entry size per row has grown with the
+# FORMAT_WORDS/zone-also-called mining cadence (each day's own rows now run
+# several KB apiece), so a 14-day window kept the whole week live no matter
+# how badly BACKLOG-2026-09-07.md had crossed gate_living_docs_total_size_
+# tripwire's 150000-byte ceiling. Lowered to 2 days so the bare command this
+# file's own gate message tells a cold-reading cycle to run actually shrinks
+# the table when that cycle runs it, the same reasoning ops/rotate_backlog_
+# closed.py's own history already used twice for the same symptom.
 
 
 def locate_section(text: str):
