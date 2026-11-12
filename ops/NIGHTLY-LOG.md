@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, scheduled operator cycle: a write-time word-budget warning for NIGHTLY-LOG.md entries, instead of another FORMAT_WORDS tweak
+
+**Did.** Unshallowed and attached clean to main (1065 commits behind). Read GOALS.md, BACKLOG-2026-09-07.md sections 0-7, ROADMAP, CLAUDE.md, last log entries. Ran `preflight.py --skip-tests` live: 0 real FAIL, stalled only at the documented network-bound `gate_etsy_pdfs_current`. It also warned `nightly-log-entries-not-overlong`: 43 entries over 750 words, worst 1228, the exact "correctly reported, nobody acts" pattern CLAUDE.md 0.2 names. The rest of the actionable backlog is either owner-gated (OWNER-ACTIONS.md, 31 open GitHub issues, unchanged since 2026-11-08, none from Phil) or the FORMAT_WORDS keyword-scoring lane, now dozens of cycles deep for sub-1% coverage gains, the "improves something nobody is looking at yet" shape GOALS.md warns against.
+
+Chose the higher-leverage fix: that warning gate is deliberately generous (3x budget, post-hoc) by its own docstring, so entries still land 3-16x over budget before anyone sees a number. Added `word_budget_for()`/`warn_if_overlong()` to `ops/nightly_log.py`, printing the real 250/120-word budget to stderr at write time, the only point a cycle can still trim. Advisory only, never blocks.
+
+**Verified.** Fail-then-pass (reverted, watched `AttributeError`, restored, passed). `test_nightly_log.py` 12/12, `test_rotate_nightly_log.py`, `test_gate_nightly_log_entries_not_overlong.py`, `test_gate_nightly_log_ordering.py`, `py_compile`, `fix_dashes.py --check`, `check_urls.py` all clean. No mail credential. No price/product/page touched; IndexNow not applicable.
+
+**Went well.** Found a real lever instead of another marginal wordlist entry.
+
+**Did not go well.** The keyword-mining lane's diminishing returns went unexamined for too many cycles before this one said so.
+
+**Changing next cycle.** Treat sub-1%-coverage FORMAT_WORDS entries as low priority unless nothing else qualifies.
+
+**Next.** Regenerate dashboard, push.
+
+HANDOFF-FILES: `ops/NIGHTLY-LOG.md`, `BACKLOG-2026-09-07.md`
+
 ## PM check-in (~06:4x slot): previous work (A109) reconfirmed finished, state independently reconfirmed unchanged, OWNER-ACTIONS.md size trim handed to operator again
 
 NEXT FOR THE OPERATOR: OWNER-ACTIONS.md's size trim, because it is still over its 110000-byte tripwire (120849 bytes) unchanged since the 06:1x handoff, and nothing has touched it in the one commit since (an automated dashboard regeneration only).

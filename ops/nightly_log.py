@@ -74,6 +74,42 @@ def prepend_entry(path: str, title: str, body: str) -> str:
     return header + "\n\n" + entry + "\n" + rest
 
 
+def word_budget_for(title: str) -> int:
+    """The operating prompt's own stated word budget for an entry with
+    this title: 120 for a "PM check-in" (OWNER-ACTIONS.md item 24's exact
+    text), 250 for everything else (the scheduled-operator default, STEP
+    10). Matches gate_nightly_log_entries_not_overlong()'s own 750-word
+    (3x) tripwire in spirit, but checked here, at the moment of writing,
+    instead of only after the fact in preflight: that gate's own docstring
+    says it is "deliberately generous" so a single dense entry does not
+    trip it, which is the right call for a post-hoc FAIL/WARN, but it also
+    means 43 entries ran 3 to 16 times over budget before anyone noticed,
+    because nothing surfaced the real 250/120 number until long after the
+    entry was already committed. This cannot block a write (the prompt
+    still has to finish the cycle), only tell the one person who can
+    still shorten it, at the one moment that is still possible.
+    """
+    return 120 if "pm check-in" in title.lower() else 250
+
+
+def warn_if_overlong(title: str, body: str) -> None:
+    """Print a stderr warning if body (the prose, not the trailing
+    HANDOFF-FILES line) runs past word_budget_for(title). Never raises or
+    blocks the write; this is advisory only, same as the preflight gate it
+    front-runs.
+    """
+    prose = body.split("\nHANDOFF-FILES:", 1)[0]
+    word_count = len(prose.split())
+    budget = word_budget_for(title)
+    if word_count > budget:
+        print(
+            "WARNING: this entry is %d words, over its %d-word budget "
+            "(STEP 10 / OWNER-ACTIONS.md item 24). Consider trimming "
+            "before this is pushed; preflight will only warn about it "
+            "once it is already 3x over." % (word_count, budget),
+            file=sys.stderr)
+
+
 def format_handoff(raw: str) -> str:
     """Turn --handoff's raw value into the canonical 'HANDOFF-FILES:' line
     cold_read_handoff_stale_files() in ops/preflight.py parses literally,
@@ -117,6 +153,7 @@ def main() -> int:
         print("Refusing to prepend an empty entry body.", file=sys.stderr)
         return 1
     body = body.rstrip("\n") + "\n\n" + format_handoff(args.handoff) + "\n"
+    warn_if_overlong(args.title, body)
     new_text = prepend_entry(LOG_PATH, args.title, body)
     # Write-then-rename so a crash mid-write cannot truncate the real log.
     tmp_path = LOG_PATH + ".tmp"

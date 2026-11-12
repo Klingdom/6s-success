@@ -229,12 +229,77 @@ def main() -> int:
             fails.append("main()'s written entry is missing the derived "
                           "HANDOFF-FILES line: %r" % (final6[:400],))
 
+    # 11. word_budget_for() reads the operating prompt's own two stated
+    #     budgets (STEP 10: 250 words; OWNER-ACTIONS.md item 24: "at most
+    #     120 words" for a PM check-in) straight off the title, the same
+    #     split gate_nightly_log_entries_not_overlong()'s own docstring
+    #     names but never itself distinguishes (it uses one flat 750-word
+    #     tripwire for both shapes, deliberately generous for a post-hoc
+    #     WARN). This check runs earlier and tighter, so it does need the
+    #     real number for each shape.
+    budget_cases = [
+        ("2026-11-12, scheduled operator cycle", 250),
+        ("2026-11-12, PM check-in (~02:1x slot)", 120),
+        ("PM check-in: something else entirely", 120),
+    ]
+    for title, expected in budget_cases:
+        got = nightly_log.word_budget_for(title)
+        if got != expected:
+            fails.append("word_budget_for(%r) = %r, expected %r"
+                          % (title, got, expected))
+
+    # 12. warn_if_overlong() prints to stderr only when the prose (not the
+    #     trailing HANDOFF-FILES line, which is metadata, not prose readers
+    #     pay for) exceeds that title's own budget. Proved both directions
+    #     so this cannot silently stop firing: a body well past budget
+    #     warns, a short body does not, and the HANDOFF-FILES line itself
+    #     is excluded from the count (a long file list must not itself
+    #     trip the warning).
+    def _captured_stderr(fn, *a, **kw):
+        old_stderr = sys.stderr
+        sys.stderr = io.StringIO()
+        try:
+            fn(*a, **kw)
+            return sys.stderr.getvalue()
+        finally:
+            sys.stderr = old_stderr
+
+    long_body = ("word " * 260) + "\nHANDOFF-FILES: none\n"
+    out = _captured_stderr(nightly_log.warn_if_overlong,
+                            "2026-11-12, scheduled operator cycle", long_body)
+    if "WARNING" not in out or "260" not in out:
+        fails.append("warn_if_overlong() did not warn on a 260-word "
+                      "scheduled-operator entry (over the 250 budget): %r"
+                      % (out,))
+
+    short_body = ("word " * 50) + "\nHANDOFF-FILES: none\n"
+    out2 = _captured_stderr(nightly_log.warn_if_overlong,
+                             "2026-11-12, scheduled operator cycle", short_body)
+    if out2:
+        fails.append("warn_if_overlong() warned on a 50-word entry, well "
+                      "under budget: %r" % (out2,))
+
+    pm_body = ("word " * 150) + "\nHANDOFF-FILES: none\n"
+    out3 = _captured_stderr(nightly_log.warn_if_overlong,
+                             "2026-11-12, PM check-in (~02:1x slot)", pm_body)
+    if "WARNING" not in out3:
+        fails.append("warn_if_overlong() did not warn on a 150-word PM "
+                      "check-in entry (over the 120 budget): %r" % (out3,))
+
+    handoff_heavy = ("word " * 50) + "\nHANDOFF-FILES: " + \
+        ", ".join("`ops/file_%d.py`" % i for i in range(60)) + "\n"
+    out4 = _captured_stderr(nightly_log.warn_if_overlong,
+                             "2026-11-12, scheduled operator cycle", handoff_heavy)
+    if out4:
+        fails.append("warn_if_overlong() counted the HANDOFF-FILES line "
+                      "itself toward the word budget: %r" % (out4,))
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: ops/nightly_log.py, 10/10 checks pass")
+    print("OK: ops/nightly_log.py, 12/12 checks pass")
     return 0
 
 
