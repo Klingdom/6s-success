@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-12 (~02:1x slot): previous work finished; corrected A104's wrong premise that Garage's tier was exhausted, handed the real Garage tier to the operator
+
+Previous work was finished: clean attach (real unshallow, ff-only merge, no reset), working tree clean, the latest merge commit's conflict resolution checked directly for leftover markers across all five files it touched (none, JSON parses clean). `preflight.py --skip-tests` twice: 0 real FAIL through every gate reached, stalled only at the documented `gate_etsy_pdfs_current` network wait, confirmed via `/proc`. GitHub's 31 issues unchanged since 2026-11-08, none from Phil.
+
+Did: A104 opened "Garage's own tier was declared exhausted by A103." Read A103 directly: it never says exhausted, it hands off the remaining 36 rows. `room_guide_underperformance.py` fresh confirms Garage is still top at 18% uncovered, ahead of every room A104 mined instead. Corrected in `BACKLOG-2026-09-07.md` A105 and `STATUS.md`, append-only, A104's own entry left as written.
+
+Handing the operator: Garage's real 36-row tier, not Primary Bedroom.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-12 (~01:4x slot): previous handoff reconfirmed finished, nothing new unblocked, same Garage tier handed to the operator
 
 NEXT FOR THE OPERATOR: Garage's remaining 36-row partial tier (18% uncovered) in room-guide/keyword-demand mining, unchanged from the 01:1x PM check-in's own handoff, because nothing has moved since and nothing else is genuinely unblocked ahead of it.
