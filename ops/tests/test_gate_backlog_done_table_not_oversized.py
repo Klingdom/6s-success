@@ -50,10 +50,13 @@ def main() -> int:
     today = datetime.date.today()
     d = lambda n: (today - datetime.timedelta(days=n)).isoformat()  # noqa: E731
 
-    # 1. A table with a row well past the buffered window (retention 14 +
-    #    7 day buffer = 21 days) must warn. This is the real defect found
-    #    2026-10-23: nothing before this gate ever caught it.
-    stale_text = _table([_row(d(40), "long overdue")])
+    # 1. A table with a row well past the buffered window (retention +
+    #    7 day buffer) must warn. This is the real defect found
+    #    2026-10-23: nothing before this gate ever caught it. Offset is
+    #    relative to rb.DEFAULT_RETENTION_DAYS, not hardcoded, so this
+    #    stays correct however that constant is tuned later.
+    buffer_days = rb.DEFAULT_RETENTION_DAYS + 7
+    stale_text = _table([_row(d(buffer_days + 19), "long overdue")])
     with tempfile.TemporaryDirectory() as tmp:
         fails1, warns1 = _run_gate(tmp, stale_text)
     if fails1:
@@ -74,8 +77,8 @@ def main() -> int:
 
     # 3. A row just inside the buffer (retention + buffer, minus a day)
     #    must not warn: the buffer exists specifically so rotation does
-    #    not need to run the instant a row crosses the bare 14-day line.
-    buffered_text = _table([_row(d(20), "inside the buffer")])
+    #    not need to run the instant a row crosses the retention line.
+    buffered_text = _table([_row(d(buffer_days - 1), "inside the buffer")])
     with tempfile.TemporaryDirectory() as tmp3:
         fails3, warns3 = _run_gate(tmp3, buffered_text)
     if fails3 or any(g == "backlog-done-table-not-oversized"

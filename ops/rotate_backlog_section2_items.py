@@ -61,7 +61,15 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BACKLOG_PATH = os.path.join(ROOT, "BACKLOG-2026-09-07.md")
 ARCHIVE_PATH = os.path.join(ROOT, "BACKLOG-2026-09-07-SECTION2-ARCHIVE.md")
 
-DEFAULT_RETENTION_DAYS = 14
+DEFAULT_RETENTION_DAYS = 2
+
+# Found 2026-11-12: this section had grown to 219KB on its own, almost all
+# of it within the 14-day window and therefore invisible to a bare --apply.
+# Individual FORMAT_WORDS/zone-also-called journal rows now run several KB
+# each at the current mining cadence, so 14 days of them alone exceeded
+# BACKLOG-2026-09-07.md's whole 150000-byte tripwire. Lowered to 2 days,
+# matching the same fix applied to ops/rotate_backlog.py's sibling table
+# the same day, for the same reason.
 
 SECTION_START_RE = re.compile(r"(?m)^## 2\. Now: micro zones and the web app")
 NEXT_SECTION_RE = re.compile(r"(?m)^## 3\. ")

@@ -17,6 +17,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 sys.path.insert(0, os.path.join(ROOT, "ops"))
 
 import preflight                                                 # noqa: E402
+import rotate_backlog_section2_items as rbs2                     # noqa: E402
 
 PREFIX = "# Backlog\n\n## 1. Done this week, for the record\n\nnothing.\n\n---\n\n"
 HEADER = "## 2. Now: micro zones and the web app\n\n"
@@ -56,9 +57,13 @@ def main() -> int:
     today = datetime.date.today()
     d = lambda n: (today - datetime.timedelta(days=n)).isoformat()  # noqa: E731
 
-    # 1. A dated row well past the buffered window (retention 14 + 7
-    #    day buffer = 21 days) must warn.
-    stale_text = _file([_row("A7", d(40), "a long narrative body " * 20)])
+    # 1. A dated row well past the buffered window (retention + 7 day
+    #    buffer) must warn. Offset is relative to rbs2.DEFAULT_RETENTION_
+    #    DAYS, not hardcoded, so this stays correct however that constant
+    #    is tuned later.
+    buffer_days = rbs2.DEFAULT_RETENTION_DAYS + 7
+    stale_text = _file([_row("A7", d(buffer_days + 19),
+                              "a long narrative body " * 20)])
     with tempfile.TemporaryDirectory() as tmp:
         fails1, warns1 = _run_gate(tmp, stale_text)
     if fails1:
@@ -79,7 +84,7 @@ def main() -> int:
 
     # 3. A row just inside the buffer (retention + buffer, minus a day)
     #    must not warn.
-    buffered_text = _file([_row("A7", d(20), "inside the buffer")])
+    buffered_text = _file([_row("A7", d(buffer_days - 1), "inside the buffer")])
     with tempfile.TemporaryDirectory() as tmp3:
         fails3, warns3 = _run_gate(tmp3, buffered_text)
     if fails3 or any(g == "backlog-section2-items-rotated"
