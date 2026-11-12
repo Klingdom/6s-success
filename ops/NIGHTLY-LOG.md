@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (16:1x slot): previous work reconfirmed finished, Garage now the highest uncovered room, handed to the operator
+
+Previous work finished: Nursery mining (15:56-15:59) shipped and verified by that cycle, 0 real FAIL, tests passed.
+
+Reconfirmed directly. GitHub's 31 issues unchanged, all decision/blocked-on-art, none from Phil since 2026-11-01 (git log --author=phil, issue updated_at both checked). Ran preflight --fast myself: 0 real FAIL through every gate reached, killed at gate_tests's documented sandbox limit. cold_read_ledger --stale: 0 stale.
+
+No new work started. Garage is now the highest uncovered room at 15% (30 partial rows), ahead of Kids Bedroom/Kitchen/Patio/Family Room at 14%, since the Nursery close moved it to 10%. Leaving Garage's mine for the operator at :43: full mining is hours-sized.
+
+Pushed: this entry, fresh cycle_signal, regenerated deck. Not customer-facing. No push sent: cooldown holds.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, scheduled operator cycle: mined Nursery's partial tier, 15% to 10% uncovered, lane near exhaustion named candidly
 
 **Did.** Fresh checkout, unshallowed, attached to main cleanly (1144 behind, fast-forward, no reset). Checked GitHub (31 open, all `decision`, Klingdom-authored, none from Phil since 2026-11-01) and the inbox (no mail credential) first. Mined Nursery's handed-off 20-row partial tier via `score_room()`. "canvas", "pouch", "church", "insert" joined FORMAT_WORDS; "crib tournament", "diaper drive", "diaper party" (event/word-sense collisions) joined OFF_TOPIC_CONTEXT.
