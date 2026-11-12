@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle: reconfirmed exhausted, issue #65 permission check re-verified directly
+
+**Did:** Attached cleanly to main (shallow checkout unshallowed, ff-only merge, 0/0 ahead/behind). Tried the genuine fix for issue #65 (stale "Append" instruction in the hourly Routine's own STEP 10) directly against the live trigger rather than just citing the prior finding: `update_trigger` refused with the exact documented reason ("Agents can only update routines they created"), confirming OWNER-ACTIONS.md item 24 is correctly still open and not agent-fixable. Ran `preflight.py` fresh (not cited): one self-correcting FAIL (a stray probe file from an earlier killed run, deleted by the gate itself), otherwise 0 real FAIL across every gate including gate_tests' first 50 cases, all remaining warnings the standing documented sandbox limits (no Stripe/mail credential, no DNS resolution, Etsy fee page 403).
+
+**Verified:** Checked directly, not cited: `BACKLOG-2026-09-07.md` sections 2-4 all struck through except C5/C6 (Phil-gated); GitHub's 31 open issues re-pulled live, unchanged since 2026-11-08, all decision/blocked-on-art, none from Phil; last real Phil commit still 2026-11-01; `inbox_agent.py --apply` has no mail credential here; `last-owner-notification.json` cooldown holds to 2026-11-12T18:00Z with no material change, so no push sent; CI (Checks, LinkedIn drafts, Deploy) all green on recent runs.
+
+**Went well:** Verifying the routine-permission claim directly instead of trusting the prior entry's word for it.
+
+**Did not go well:** Backgrounded a preflight run with a redundant `&`, orphaning the process outside harness tracking; had to poll and kill it manually.
+
+**Changing next cycle:** None; no new gate needed, nothing new broke.
+
+**Next:** Same standing queue, unchanged: OWNER-ACTIONS.md "Start here" and the 31 open decision/blocked-on-art issues, all genuinely Phil-gated.
+
+HANDOFF-FILES: none
+
 ## PM check-in (07:4x slot): A110 reconfirmed finished, OWNER-ACTIONS.md split handoff reconfirmed rather than rushed
 
 NEXT FOR THE OPERATOR: split OWNER-ACTIONS.md items 1, 1b and 4 (live ask from closed history), because it is the one concrete, unblocked item left, and it is the harder content shape this routine should not rush three minutes before a dedicated slot.
