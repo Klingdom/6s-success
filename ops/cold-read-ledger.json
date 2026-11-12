@@ -903,8 +903,8 @@
     },
     "keyword_demand.py": {
       "status": "clean",
-      "date": "2026-11-11",
-      "note": "PM check-in 2026-11-11 00:4x-5x slot: re-verified both 2026-11-11 additions (overview/routine/setup FORMAT_WORDS, tool boxes plural) against test_keyword_demand.py (36/36) and the logged self-flattery check; sound."
+      "date": "2026-11-12",
+      "note": "Re-ledgered after 2026-11-12 FORMAT_WORDS addition (workplace, disposal). Cold read of commit 9124a0d1 confirms the claim: frozenset add plus a comment documenting the 0 best_page-change full-corpus diff for both words, consistent with test_keyword_demand.py 55/55 and the nightly log entry."
     },
     "keyword_demand_global.py": {
       "status": "fixed",
