@@ -174,6 +174,51 @@ def test_real_world_entry_labels_are_recognised():
     return fails
 
 
+def test_row_count_cap_archives_same_day_overflow():
+    """Found 2026-11-12: once the label-recognition fix let plan_rotation
+    actually see the real chain, every one of its 11 entries carried
+    today's own date, so the date-only rule kept all 11, every cycle,
+    the identical "same-day volume, not an old-row gap" shape A113 had
+    already fixed for BACKLOG-2026-09-07.md's own table via a row-count
+    cap. Six same-dated entries, cap of 3: the first 3 by file position
+    (newest-first) must stay live and the oldest-by-position 3 must
+    archive, even though none of them is "stale" by date.
+    """
+    body = "\n\n".join(
+        "**2026-11-12, scheduled operator cycle: entry number %d.**" % i
+        for i in range(6)
+    )
+    text = _status_text(body)
+    new_text, archived = rsm.plan_rotation(text, "2026-11-12", max_entries=3)
+    fails = []
+    if len(archived) != 3:
+        fails.append("expected 3 archived entries, got %d: %r"
+                      % (len(archived), archived))
+    live_span = new_text.split("**Older entries (")[0]
+    for i in range(3):
+        if ("entry number %d." % i) not in live_span:
+            fails.append("entry number %d should stay live (top 3 by "
+                          "position)" % i)
+    for i in range(3, 6):
+        if ("entry number %d." % i) in live_span:
+            fails.append("entry number %d should have been archived "
+                          "(cap overflow), not kept live" % i)
+    return fails
+
+
+def test_row_count_cap_is_noop_under_the_cap():
+    body = "\n\n".join(
+        "**2026-11-12, scheduled operator cycle: entry number %d.**" % i
+        for i in range(3)
+    )
+    text = _status_text(body)
+    new_text, archived = rsm.plan_rotation(text, "2026-11-12", max_entries=5)
+    if archived or new_text != text:
+        return ["3 entries under a cap of 5 should not be rewritten: "
+                "archived=%r changed=%r" % (archived, new_text != text)]
+    return []
+
+
 def test_refuses_unrecognised_first_paragraph():
     body = "A plain paragraph with no recognised label at all."
     text = _status_text(body)
@@ -193,6 +238,8 @@ CASES = [
     test_lossless_roundtrip_on_real_file,
     test_no_change_when_already_rotated,
     test_real_world_entry_labels_are_recognised,
+    test_row_count_cap_archives_same_day_overflow,
+    test_row_count_cap_is_noop_under_the_cap,
     test_refuses_unrecognised_first_paragraph,
 ]
 

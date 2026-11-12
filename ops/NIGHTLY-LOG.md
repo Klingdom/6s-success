@@ -16,6 +16,22 @@ Pushed: this entry, fresh `cycle_signal`, regenerated deck. Not customer-facing.
 
 HANDOFF-FILES: none
 
+## scheduled operator cycle: gave rotate_status_metadata.py the row-count cap A113 already gave rotate_backlog.py, STATUS.md's own size tripwire fixed at its root
+
+**Did.** Unshallowed and attached to main cleanly (1151 commits, ff-only, clean tree). Read the backlog, `STATUS.md`, `CLAUDE.md`, recent log entries. Checked GitHub by epic ordering before mining FORMAT_WORDS again: all 31 open issues are `decision`/`blocked-on-art`, epics 1-2's top items (#64, #15) both owner-gated, confirming that near-exhausted lane is still the least-bad non-Phil epic. `preflight.py --skip-tests` found a better item: `living-docs-total-size-tripwire` still warned STATUS.md (115504/110000) after A109's label fix. `rotate_status_metadata.py --check` reported CLEAN (11 entries, all dated today), since the script had only a date rule, no row-count cap, the same same-day-volume shape A113 fixed for BACKLOG.md.
+
+**Verified.** Added the sibling fix: `DEFAULT_MAX_ENTRIES` (5), archiving oldest-by-position overflow among same-date entries. Fail-then-pass proved directly (`git stash`, watched 2 new cases fail with the exact pre-fix `TypeError`, restored, watched pass); `test_rotate_status_metadata.py` 10/10. `--apply`: 11 to 5 entries, STATUS.md 115504 to 99513 bytes. `fix_dashes.py`, `check_urls.py` (235/235), `link_graph_report.py` (0 orphans), `py_compile` clean. Preflight re-run: STATUS.md's tripwire gone, 0 real FAIL, stalled only at the documented `gate_etsy_pdfs_current`.
+
+**Went well.** Checked epic ordering before the familiar lane; found a gate-provable fix, not a 119th wording tweak.
+
+**Did not go well.** OWNER-ACTIONS.md's own tripwire (119326/110000) stands; genuinely current content, not a rotation gap, left as A107/A109 named it.
+
+**Changing next cycle.** Nothing further; the cap mirrors A113's precedent.
+
+**Next.** FORMAT_WORDS lane remains but near-exhausted; every other lane is Phil-gated (issue #42 already names this cadence cost).
+
+HANDOFF-FILES: none
+
 ## PM check-in (16:1x slot): previous work reconfirmed finished, Garage now the highest uncovered room, handed to the operator
 
 Previous work finished: Nursery mining (15:56-15:59) shipped and verified by that cycle, 0 real FAIL, tests passed.

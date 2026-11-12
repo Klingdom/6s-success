@@ -102,6 +102,18 @@ ENTRY_START_RE = re.compile(
 )
 DATE_RE = re.compile(r"\d{4}-\d{2}-\d{2}")
 
+# Found 2026-11-12, same cycle as the label-recognition fix above: once the
+# chain could actually be read, every one of its 11 live entries carried
+# today's own date, so the date rule above (keep only the max-date entries)
+# kept every single one, every time, on a single over-cadence day. That is
+# the identical "same-day volume, not an old-row gap" shape A113 already
+# named and fixed for BACKLOG-2026-09-07.md's own "Done this week" table
+# (DEFAULT_MAX_ROWS there); this file never got the sibling fix. A second,
+# independent trigger: once more than this many entries would stay live
+# under the date rule, archive the oldest-by-position overflow among them
+# regardless of date, same as rotate_backlog.py does.
+DEFAULT_MAX_ENTRIES = 5
+
 _PARA_SPLIT_RE = re.compile(r"(\n[ \t]*\n)")
 
 
@@ -232,23 +244,33 @@ def _updated_pointer_note(pointer_note: str, newly_archived: int,
     )
 
 
-def plan_rotation(text: str, apply_date: str):
+def plan_rotation(text: str, apply_date: str,
+                   max_entries: int = DEFAULT_MAX_ENTRIES):
     """Keep live every entry carrying the maximum date found in the
-    chain (in file order); archive the rest, also in file order.
-    Returns (new_status_text, archived_entries), or (text, []) if there
-    is nothing to rotate (one entry, or every entry already tied at the
-    same date). Pure function of its input; does no I/O.
+    chain (in file order), then, if more than `max_entries` of those
+    survive, keep only the first `max_entries` by file position (file
+    order is newest-first; see the module docstring) and archive the
+    oldest-by-position overflow too, regardless of date. Archive the
+    rest, also in file order. Returns (new_status_text,
+    archived_entries), or (text, []) if there is nothing to rotate (one
+    entry, or every entry already tied at the same date and within the
+    count cap). Pure function of its input; does no I/O.
     """
     before, entries, pointer_note, after = split_metadata_chain(text)
     if len(entries) <= 1:
         return text, []
     dates = [_entry_date(e) for e in entries]
     max_date = max(dates)
-    keep = [e for e, d in zip(entries, dates) if d == max_date]
-    archived = [e for e, d in zip(entries, dates) if d != max_date]
-    if not archived:
+    kept_idx = [i for i, d in enumerate(dates) if d == max_date]
+    archived_idx = {i for i, d in enumerate(dates) if d != max_date}
+    if len(kept_idx) > max_entries:
+        archived_idx.update(kept_idx[max_entries:])
+        kept_idx = kept_idx[:max_entries]
+    if not archived_idx:
         return text, []
 
+    keep = [entries[i] for i in kept_idx]
+    archived = [entries[i] for i in sorted(archived_idx)]
     new_pointer = _updated_pointer_note(pointer_note, len(archived),
                                          max_date, apply_date)
     new_text = before + "\n\n".join(keep) + "\n\n" + new_pointer + after
@@ -304,15 +326,26 @@ def main() -> int:
             print("REFUSING: %s" % exc)
             return 2
         max_date = max(dates) if dates else None
-        extra = sum(1 for d in dates if d != max_date)
+        date_extra = sum(1 for d in dates if d != max_date)
+        same_date_count = len(entries) - date_extra
+        cap_extra = max(0, same_date_count - DEFAULT_MAX_ENTRIES)
+        extra = date_extra + cap_extra
         if extra:
-            print("DUE: %d entries live, only %d carry the most recent "
-                  "date (%s); %d would move to %s on --apply."
-                  % (len(entries), len(entries) - extra, max_date, extra,
-                     ARCHIVE_PATH))
+            reasons = []
+            if date_extra:
+                reasons.append("%d stale (not dated %s)"
+                                % (date_extra, max_date))
+            if cap_extra:
+                reasons.append("%d over the %d-entry cap"
+                                % (cap_extra, DEFAULT_MAX_ENTRIES))
+            print("DUE: %d entries live, only %d would stay (%s); %d would "
+                  "move to %s on --apply."
+                  % (len(entries), len(entries) - extra,
+                     " and ".join(reasons), extra, ARCHIVE_PATH))
             return 1
         print("CLEAN: %d entry/entries live, all at the same most recent "
-              "date. Nothing to rotate." % len(entries))
+              "date and within the %d-entry cap. Nothing to rotate."
+              % (len(entries), DEFAULT_MAX_ENTRIES))
         return 0
 
     # --apply
