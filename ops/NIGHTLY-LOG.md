@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, scheduled operator cycle: "basket" and "baskets" joined FORMAT_WORDS, closing 6 rows, Hall Closet 17% to 15% uncovered; caught a stale citation before repeating it
+
+Did: attached per Step 0 (fetch, real unshallow from a shallow detached checkout, checkout main, ff-only onto origin/main, 1015 commits, no reset). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Ran preflight.py --skip-tests live: 0 FAIL through every gate reached, stalled at the documented gate_etsy_pdfs_current network wait. Picked up the 00:1x PM check-in's own handoff: Hall Closet's 26-row partial tier.
+
+Verified, not shipped on the mechanical test alone: tried "design" first, which passed self-flattery (0/243 titles, 1/243 headings) and a full before/after score_rows() diff across both corpora cleanly (0 US best_page changes, 9 global, all room-hub-to-guide improvements, 123 total status moves, the biggest FORMAT_WORDS candidate found yet). Checked the word's own history before shipping it (CLAUDE.md 5d) and found it already investigated and explicitly declined, repeatedly, in BACKLOG-2026-09-07-CLOSED-ARCHIVE.md: a different search intent, interior decor/renovation, not an organizing-vocabulary gap. Shipping it would have reversed a settled decision on a mechanical test alone, the same dishonest-labelling mistake "activities" was declined for in A101. Not shipped.
+
+"basket"/"baskets" (a storage-product noun, same role "container"/"containers" play) passed cleanly: self-flattery 0/243 titles, 14/243 headings; full diff found 0 US best_page changes, 1 global change (an improvement: towels-in-a-basket moved from the Laundry Room deck to the linen closet article, which already covers towel storage directly), 6 status moves total.
+
+Also found: A100's own citation in BACKLOG-2026-09-07.md said "baskets"/"bedding" were both already declined by A94 for a real regression risk against Primary Bedroom's bed-and-bedding zone. Read A94's actual text: it only ever tested and declined "bedding"; "baskets" was never run through that test. This cycle's own full-corpus diff confirms "baskets" does not carry that regression (0 best_page changes where "bedding" would cause several). Corrected in a new entry (A102) rather than editing the historical rows, per this file's append-only convention. "bedding" itself was not re-tried; A94's finding for it stands untouched.
+
+Shipped: fail-then-pass proved (case 50, test_keyword_demand.py, reverted the fix, watched the new case fail with the exact pre-fix message, restored, 56/56 passed). Rescored both corpora live: US partial 1036->1033, covered 1668->1671, gap unchanged 106; global partial 787->784, covered 1286->1289, gap unchanged 93. Hall Closet: 17% to 15% uncovered. gate_goals_keyword_cluster_citation_current, gate_keyword_demand_rescored_current, gate_keyword_demand_global_rescored_current, gate_ops_python_syntax all clean. test_room_guide_underperformance.py (19/19), test_room_guide_candidates.py (127/127), check_urls.py (235/235), fix_dashes.py --check (0/0), link_graph_report.py (0 orphans), affiliate.py --check (165 documents), check_sellable.py (124/126) all clean. GitHub's 31 open issues re-pulled live: unchanged since 2026-11-08, all decision/blocked-on-art, none from Phil. inbox_agent.py --apply: no mail credential in this sandbox.
+
+Went well: checking a mechanically-clean candidate's own history before shipping caught a real near-miss (reversing a settled, reasoned decision), and the same check surfaced a real, separate citation error in a sibling entry, both before either could cost anything.
+
+Did not go well: this lane is close to exhausted; most remaining Hall Closet rows are retailer/platform noise or already-settled grammatical declines.
+
+Changing next cycle: none.
+
+Next: same Phil-gated queue (31 issues, unchanged since 2026-11-08). Hall Closet's remaining 24-row partial tier is mostly noise now; Garage (21% uncovered) is the next room with real headroom for whoever mines next.
+
+Pushed to main: ops/keyword_demand.py, ops/tests/test_keyword_demand.py, ops/keyword-demand.json, ops/keyword-demand-global.json, ops/KEYWORD-DEMAND.md, ops/KEYWORD-DEMAND-GLOBAL.md, STATUS.md, BACKLOG-2026-09-07.md, this log entry, command deck. No price, product or site page touched; scorer-only change, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, PM check-in (~00:1x slot): previous handoff finished and verified, same exhausted Phil-gated queue, Hall Closet mining handed on
 
 NEXT FOR THE OPERATOR: Hall Closet's 26-row partial tier (17% uncovered) in room-guide/keyword-demand mining, because the immediately preceding operator cycle exhausted Workshop's safe FORMAT_WORDS candidates and named Hall Closet as the next tier itself.

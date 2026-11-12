@@ -1597,6 +1597,41 @@ def main():
         for f in fails:
             print(" -", f)
         return 1
+
+    # 50. Found live 2026-11-12, mining Hall Closet's remaining partial tier
+    #     (the 2026-11-12 PM check-in's own handoff). "basket"/"baskets" name
+    #     a storage product category the destination page already answers in
+    #     generic terms, the same shopping-noun role "container"/"containers"
+    #     already play, not a different subject ("linen closet organization
+    #     baskets" asks the same thing as "linen closet organization").
+    #     "design" was checked again for the same tier and declined again:
+    #     a different search intent (interior decor), not a vocabulary gap,
+    #     per the standing verdict in BACKLOG-2026-09-07-CLOSED-ARCHIVE.md.
+    new_format_words20 = ("basket", "baskets")
+    samples20 = {
+        "basket": "how to arrange towels in a basket",
+        "baskets": "linen closet organization baskets",
+    }
+    for word in new_format_words20:
+        if word in kd.content_words(samples20[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format20 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format20 - set(new_format_words20)
+    try:
+        for word in new_format_words20:
+            if word not in kd.content_words(samples20[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format20
+
+    if fails:
+        print("FAIL")
+        for f in fails:
+            print(" -", f)
+        return 1
     # Counted from the numbered cases in this file rather than typed, because
     # a hardcoded tally goes stale the first time somebody adds a case and
     # then the test reports a number that is simply false. It said 14/14

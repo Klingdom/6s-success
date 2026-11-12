@@ -195,7 +195,8 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "images", "efficiency", "chef", "modern", "rustic",
                           "simple", "choose", "deep", "hacks", "lots",
                           "categories", "pro", "aesthetically", "newborn",
-                          "planning", "workplace", "disposal"))
+                          "planning", "workplace", "disposal", "basket",
+                          "baskets"))
 
 # "workplace" and "disposal" joined 2026-11-11, mining Workshop's and
 # Nursery's remaining partial tiers (the 23:1x PM check-in's own handoff).
@@ -218,6 +219,33 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
 # respectively, moving queries between pages rather than only moving
 # status, the same risk shape "declutter" and "messy" were declined for
 # mining Garage and Nursery the same day.
+
+# "basket" and "baskets" joined 2026-11-12, mining Hall Closet's remaining
+# partial tier (the 2026-11-12 PM check-in's own handoff). "linen closet
+# organization baskets" asks the same question as "linen closet
+# organization", "baskets" naming a storage product category the query's
+# own page already answers in generic terms, the same shopping-noun role
+# "container"/"containers" already cover, not a different subject.
+# Self-flattery checked first: 0 of 243 page titles carry either word, 14
+# of 243 headings do (zone subheadings like "the linen shelf zone," not
+# gaming), a notch above the "household" bar (11/243) but the same shape as
+# "container"/"containers" (8 headings, 0 titles) already cleared, and this
+# only drops a word from scoring, so it cannot create a false match on a
+# page that never otherwise matches. Checked the full corpus before adding
+# (before/after `score_rows()` diff across both corpora): 0 best_page
+# changes in the US tier, 1 in the global tier ("how to arrange towels in a
+# basket" moving from the Laundry Room deck to the linen closet article,
+# which already covers towel storage directly, a better match, not a
+# misattribution). "design" was checked again for the same tier and found
+# unchanged from every prior verdict on it (cases below and
+# `BACKLOG-2026-09-07-CLOSED-ARCHIVE.md`'s own "design"/"decorating"
+# investigation): a different search intent (interior decor/renovation),
+# not an organizing-vocabulary gap, correctly left a real content word.
+# Rows found this time: "linen closet organization baskets" (US+global),
+# "linen cupboard organisation storage baskets" (global), "pantry
+# organization ideas with baskets" (US+global), "storage baskets for
+# organizing" (US). All 6 move partial to covered; none can move the other
+# way.
 
 # "deep" and "hacks" joined 2026-11-11, mining Hall Closet's remaining
 # partial tier. "how to organize a deep hall closet" and "deep hall closet
