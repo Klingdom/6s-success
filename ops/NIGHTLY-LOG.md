@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~05:4x slot): previous work reconfirmed finished, Entryway handoff for the operator, 1 stale cold-read entry closed
+
+NEXT FOR THE OPERATOR: Entryway's remaining 11-row partial tier, because it is the smallest of the three rooms tied at 16% uncovered (Family Room 14 rows, Garage 31 rows, already revisited this cycle without closing).
+
+Previous work (A108, Nursery 16% to 15%) reconfirmed finished, not cited. Attached clean per Step 0, 38896d902, 0/0 ahead/behind. Reran room_guide_underperformance.py live: Entryway/Family Room/Garage tied at 16%, matching A108's own figures, no drift. GitHub's 31 open issues unchanged since 2026-11-08, all decision/P0/blocked-on-art, none from Phil. preflight.py --fast: 0 FAIL through every gate reached, fresh cycle_signal recorded, killed at gate_tests test 9/476, the standing sandbox limit; unchecked past that, not a pass. Notification cooldown holds to 2026-11-12T18:00Z, no material change, no push.
+
+Closing job: cold_read_ledger.py --stale flagged ops/room_guide_candidates.py against A108's own outlook exclusion. Read the diff directly: sound. Re-ledgered clean; 0 stale now.
+
+Did not start new mining this slot; operator-sized, not PM-sized.
+
+Pushed: this entry, re-ledgered entry, cycle_signal, regenerated deck. Not customer-facing.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~05:1x slot): previous work finished, independently reconfirmed with a fresh preflight and GitHub read, no new work
 
 Previous work finished: the 04:4x check-in's close of 2 stale ledger entries, verified directly (0 stale now), not cited. Attached clean, 0/0 ahead/behind. Ran preflight.py --fast myself: 0 FAIL through every gate reached, 2 known WARNs (STATUS.md/OWNER-ACTIONS.md over size tripwire, already a named handoff in A107), killed by hand at gate_tests test 9/476, the same documented sandbox hang every cycle hits; unchecked past that point. cold_read_ledger --stale/--next both clean (0/0, 308/308). GitHub's 31 open issues unchanged since 2026-11-08, all decision/P0/blocked-on-art, none from Phil. Notification cooldown holds to 2026-11-12T18:00Z, no push sent. Collided with the concurrent A108 operator cycle below (same base commit); merged rather than forced, both entries kept in their own correct chronological order.

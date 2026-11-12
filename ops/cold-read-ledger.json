@@ -1113,8 +1113,8 @@
     },
     "room_guide_candidates.py": {
       "status": "clean",
-      "date": "2026-11-11",
-      "note": "PM check-in 2026-11-11 00:4x-5x slot: re-verified both 2026-11-11 OFF_TOPIC_CONTEXT additions (diy lab, storage locker, outdoor bench seat) against test_room_guide_candidates.py (111/111); sound."
+      "date": "2026-11-12",
+      "note": "Re-read A108's OFF_TOPIC_CONTEXT addition (outlook exclusion for ribbon-in-outlook collision): regex-anchored, rationale checked against both corpora before shipping per the commit message, 0 covered rows affected. Sound."
     },
     "room_guide_underperformance.py": {
       "status": "clean",
