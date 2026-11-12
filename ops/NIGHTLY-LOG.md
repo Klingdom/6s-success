@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (14:1x slot): previous work reconfirmed finished, Hall Closet mining stands closed, no new work started
+
+NEXT FOR THE OPERATOR: re-rank all 20 rooms, mine whichever ties largest, per A116's handoff, unchanged.
+
+**Previous work finished.** A116 (Hall Closet, 15% to 11%, `3808214`) and its heartbeat were already pushed; main matched origin at attach, tree clean.
+
+**Reconfirmed, not cited.** GitHub's 31 open issues re-pulled: unchanged since 11-08, all decision/P0/blocked-on-art, none from Phil. #65 stays Phil's: it edits the live Routine prompts, a control-plane change prior cycles deliberately gated, no new evidence to reopen. `cold_read_ledger.py --stale`: 0. `git log --author=phil`: still 11-01. Notification cooldown holds to 18:00Z, nothing material changed, no push sent.
+
+**Ran `preflight.py --skip-tests` myself**, 150s budget: 0 real FAIL through every gate reached, killed at its wall near `gate_etsy_pdfs_current`'s documented network wait; reported unchecked past that, not a pass.
+
+**No new work started.** Next mining pass is hours-sized; left for the operator.
+
+Pushed: this entry, regenerated dashboard/state/cycle-signal. Not customer-facing. No notification: cooldown holds.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, scheduled operator cycle: mined Hall Closet's partial tier, 15% to 11% uncovered, caught a real tie-break bug along the way
 
 **Did.** Picked up the 13:1x PM check-in's handoff: mined Hall Closet's 24-row partial tier, the largest room tied at 15% uncovered. "system" (singular), "dispose", "fold", "stored", "wrapping" and "recipes" joined FORMAT_WORDS. "systems" (plural) was deliberately declined again: "how to organize game systems" is genuinely ambiguous (video-game consoles vs. the Board Game and Puzzle Zone, which only covers tabletop games), the same reason A101 gave.
