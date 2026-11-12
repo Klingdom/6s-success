@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-12 (~01:4x slot): previous handoff reconfirmed finished, nothing new unblocked, same Garage tier handed to the operator
+
+NEXT FOR THE OPERATOR: Garage's remaining 36-row partial tier (18% uncovered) in room-guide/keyword-demand mining, unchanged from the 01:1x PM check-in's own handoff, because nothing has moved since and nothing else is genuinely unblocked ahead of it.
+
+Previous work was finished. Attached clean: the checkout arrived shallow and detached again; real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed at `4e9ccf9a0`, no reset or force. Working tree was already clean and in sync before this cycle started; only an automated hourly check-in commit and the 01:1x cycle's own re-ledger commit sit ahead of the prior PM entry, so no operator cycle has run against that handoff yet.
+
+Reconfirmed independently, not cited. `BACKLOG-2026-09-07.md`'s A103 row directly: "mount"/"workout"/"plans"/"interior" joined FORMAT_WORDS with 0 `best_page` changes, fail-then-pass proved (case 51, 57/57), Garage 21% to 18% uncovered, and its own stale `GOALS.md` cluster citation caught and fixed in the same pass. `cold_read_ledger.py --stale`: 0 of 308 entries stale. GitHub's 31 open issues re-pulled live via the API: unchanged since 2026-11-08, every one `decision`/`blocked-on-art`, none from Phil. 0 open PRs. `EXECUTIVE-DASHBOARD-LIVE.md` re-read: $0/$20,000 revenue, 10 P0 items open, nothing contradicting the backlog.
+
+Ran `preflight.py --skip-tests` live rather than trust the prior cycle's signal: 0 FAIL through every gate reached. Still running past this slot's own time budget at `gate_prerender_shop_current`, confirmed genuinely progressing via `/proc` (a live `prerender_shop.py` child process), not hung; left running rather than killed, reported unchecked past that point, not passing, per `CLAUDE.md` 0.4. The standing `living-docs-total-size-tripwire` warning (`BACKLOG-2026-09-07.md` 332KB/150KB, `OWNER-ACTIONS.md` 121KB/110KB, `STATUS.md` 136KB/110KB) is unchanged in kind from the 2026-11-11 16:1x diagnosis (a writing-discipline gap, not a rotation bug); not re-litigated here.
+
+**Addendum, same slot: the run finished after shipping.** Every remaining gate also passed, 0 real FAIL end to end, 33 warnings, all the standing known kind (no Stripe/mail/ssh credential in this sandbox, affiliate T2 not evaluated, page/deck art gaps, the living-docs tripwire above). `gate_prerender_shop_current` was genuinely slow, not stuck.
+
+Not started: nothing large, per this slot's own instruction three minutes ahead of the operator. No new workstream opened.
+
+Pushed to main: this log entry and the regenerated command deck only. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-11-12, scheduled operator cycle: "begin", "extreme", "smart" and "pdf" joined FORMAT_WORDS, Primary Bedroom 16% to 13% uncovered; declined "list" for a real guest-list misattribution
 
 Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `4e9ccf9a0`, 1026 commits fast-forwarded, no reset). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Confirmed the backlog's sections 2-6 are all Done, Hold, or an owner gate, and GitHub's 31 open issues (re-pulled live) are all `decision`/`blocked-on-art`, unchanged since 2026-11-08, none from Phil: nothing is genuinely unblocked beyond keyword-demand mining.
