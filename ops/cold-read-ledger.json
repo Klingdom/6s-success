@@ -902,9 +902,9 @@
       "note": "Second-pass cold read, 2026-10-12 operator cycle: re-read in full end to end (not just cited), independently of the two prior cycles that read these same files and reported no defect without re-ledgering, which is what let the nightly-log handoff keep naming them as if nobody had looked (caught by preflight.py's own gate_cold_read_handoff_not_stale). wire_landmarks.py and indexnow.py also re-verified live via --check (214 pages current; 211 sitemap URLs, 0 never submitted). No new defect found in any of the five; each still matches its own extensively documented history."
     },
     "keyword_demand.py": {
-      "status": "clean",
+      "status": "fixed",
       "date": "2026-11-12",
-      "note": "Re-ledgered after 2026-11-12 FORMAT_WORDS addition (workplace, disposal). Cold read of commit 9124a0d1 confirms the claim: frozenset add plus a comment documenting the 0 best_page-change full-corpus diff for both words, consistent with test_keyword_demand.py 55/55 and the nightly log entry."
+      "note": "mount/workout/plans/interior joined FORMAT_WORDS (case 51), full before/after corpus diff clean, declined gear/large/equipment/shed/painting/box/beginners/systems on real misattribution or ambiguity grounds"
     },
     "keyword_demand_global.py": {
       "status": "fixed",
