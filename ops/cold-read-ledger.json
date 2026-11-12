@@ -1153,8 +1153,8 @@
     },
     "rotate_backlog.py": {
       "status": "clean",
-      "date": "2026-10-23",
-      "note": "PM check-in cold read: locate_section/parse_rows/row_date/plan_rotation/apply_archive reviewed line by line against the real BACKLOG-2026-09-07.md (35 sequential, non-duplicate numbered headings, no false-positive heading matches). Edge cases checked by hand (all-rows-archived body, missing/duplicate anchors, degraded bare-paragraph rows) all fail safely or round-trip correctly. ops/tests/test_rotate_backlog.py 11/11 pass; python ops/rotate_backlog.py --check against the live file reports CLEAN (3 rows, 7795 bytes, within the 14-day window), matching the gate's own current silence. No defect found."
+      "date": "2026-11-12",
+      "note": "PM check-in cold read of the 2026-11-12 04:1x operator commit (67b13c41f): DEFAULT_RETENTION_DAYS lowered 14 to 2, a documented comment explains why (per-row entry size growth made the old window a no-op against the 150000-byte tripwire). Diff read line by line: only the constant and a comment changed, no logic touched. test_rotate_backlog.py 11/11 pass unmodified; --check against the live file reports CLEAN (23 rows, 70811 bytes, within the 2-day window). No defect found."
     },
     "rotate_backlog_closed.py": {
       "status": "clean",
@@ -1178,8 +1178,8 @@
     },
     "rotate_backlog_section2_items.py": {
       "status": "clean",
-      "date": "2026-10-29",
-      "note": "Read in full against its own documented 06:5x-slot fix (the ARCHIVED_MARKER re-archival guard). Verified logic: SECTION_START_RE/NEXT_SECTION_RE bound section 2 correctly, ROW_START_RE/find_rows correctly skip A1-A6 (dateless, ITEMS-ARCHIVE pointers) and already-rotated A7-A29 pointers (SECTION2-ARCHIVE marker). No live defect found; pointer-row non-greedy bold-match assumes no nested ** inside a lead sentence, true today, documented here as a fragility not a bug. --check against real committed file: CLEAN."
+      "date": "2026-11-12",
+      "note": "PM check-in cold read of the 2026-11-12 04:1x operator commit (67b13c41f): DEFAULT_RETENTION_DAYS lowered 14 to 2, matching the sibling rotate_backlog.py fix the same cycle and for the same documented reason. Diff read line by line: only the constant and a comment changed, no section-boundary or row-parsing logic touched. test_gate_backlog_section2_items_rotated.py re-run directly: fail-then-pass proved, 5/5. --check against the live file reports CLEAN. No defect found."
     },
     "rotate_backlog_section3_items.py": {
       "status": "clean",

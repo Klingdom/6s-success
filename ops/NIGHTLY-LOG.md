@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~04:4x slot): previous work reconfirmed finished, same Garage/Nursery/Entryway handoff for the operator, 2 stale cold-read ledger entries closed
+
+NEXT FOR THE OPERATOR: Garage's remaining 31-row partial tier (16% uncovered, the largest of the four tied-top rooms), then Nursery and Entryway (16% each), in room-guide/keyword-demand mining, because nothing genuinely unblocked has moved since the 04:1x PM check-in and the state is independently reconfirmed unchanged this slot.
+
+Previous work reconfirmed finished, independently, not cited. Attached clean per Step 0: fetched origin/main, unshallowed from a shallow detached checkout, `checkout main`, `merge --ff-only` landed cleanly at `bdc373383` with no reset or force; the only commit since the 04:1x PM entry is an automated "Hourly check-in record" (dashboard/state regeneration only, confirmed by diffing its file list, no code). Re-ran `room_guide_underperformance.py` live myself: Garage, Nursery, Entryway and Family Room are still tied at 16% uncovered, Garage carrying the largest tier (31 partial of 200 on-topic), matching the 04:1x entry's own figures exactly, no drift. GitHub's 31 open issues re-pulled live via the REST API: unchanged since 2026-11-08, every one `decision`/`P0`/`blocked-on-art`, none from Phil. Ran `preflight.py --fast` myself, backgrounded, 110s budget: 0 FAIL through every gate reached (bootstrap, syntax, commerce, mobile, every room/deck gate, image coverage), a fresh clean `cycle_signal` checkpoint recorded at current HEAD, then killed by its own timeout wrapper right at `gate_tests` test 9/476, the same documented sandbox limit every recent cycle has hit. Reported as unchecked past that point, per CLAUDE.md 0.4, not as a pass. `ops/last-owner-notification.json` cooldown on the standing owner-silence topic holds to 2026-11-12T18:00Z; Phil's last real commit is still 2026-11-01 and the issue count is unchanged at 31, so no material change and no push sent.
+
+Did one small closing job this slot: `cold_read_ledger.py --stale` found 2 real stale entries, `ops/rotate_backlog.py` and `ops/rotate_backlog_section2_items.py`, both ledgered before the 04:1x operator cycle's own commit (`67b13c41f`, lowering `DEFAULT_RETENTION_DAYS` 14 to 2 on both to fix `gate_living_docs_total_size_tripwire`'s real cause) but never re-ledgered after it, a cold read reported once and then left stale rather than closed. Read that commit's diff line by line myself: only the constant and an explanatory comment changed on each file, no parsing or section-boundary logic touched. Re-ran `test_rotate_backlog.py` (11/11) and `test_gate_backlog_section2_items_rotated.py` (fail-then-pass proved, 5/5) directly rather than cite the commit's own report; `--check` against the live file confirms CLEAN for both. Re-ledgered both with today's date and this verification; `--stale` now reports 0.
+
+Did not start the room-tier mining itself this slot: a full FORMAT_WORDS/zone-also-called pass (self-flattery check, full corpus diff, fail-then-pass test, rescoring) is operator-shaped work, not a 30-minute PM task, per this routine's own precedent, and the operator is due in under 3 minutes.
+
+Pushed to main: this log entry, `ops/cycle-signal.json` (fresh clean-pass checkpoint), `ops/cold-read-ledger.json` (2 re-ledgered entries), regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable. No push notification sent: nothing new for Phil to act on, cooldown holds to 2026-11-12T18:00Z.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~04:1x slot): previous work reconfirmed finished, same Garage/Nursery/Entryway handoff for the operator, issue #65's log-instruction defect avoided rather than repeated
 
 NEXT FOR THE OPERATOR: same standing handoff, unchanged. Garage's remaining 31-row partial tier (16% uncovered, the largest of the four tied-top rooms), then Nursery and Entryway (16% each, smaller tiers), in room-guide/keyword-demand mining, exactly as the 03:4x PM check-in left it, because nothing genuinely unblocked has moved since.
