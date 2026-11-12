@@ -29,6 +29,27 @@ FOCUS_MARKER_RE in rotate_status_history.py uses to pick dated corrections
 out of a line that also contains other bold text; anything else folds into
 the entry above it.
 
+Found 2026-11-12: that allow-list was already incomplete the day it
+shipped. Most of the chain's real entries use none of those six labels;
+they open bare ("**2026-11-12, scheduled operator cycle: ..."), as a
+correction ("**Corrected 2026-11-04 (~15:0x UTC): ..."), or as a PM
+check-in with no leading date in its own label ("**PM check-in (~05:1x
+slot): ..."). None of those matched, so none was ever recognised as an
+entry start: every single one silently folded into whichever earlier
+paragraph a recognised label did open, which by this date was just one
+("**Latest, ..."), collapsing the entire chain (32 distinct cycles since
+the last archive, 2026-11-04 through 2026-11-12) into one 59875-byte
+"entry". `plan_rotation` read that blob's date as 2026-11-12 (the first
+date `_entry_date` finds in it) and therefore never rotated anything,
+which is the real reason `gate_living_docs_total_size_tripwire` kept
+warning on STATUS.md cycle after cycle with this script reporting CLEAN
+every time: it was checking a file whose own entries it had never
+actually been able to see. Added "Corrected ", "PM check-in" and a bare
+`\d{4}-\d{2}-\d{2}` date to the allow-list; the max-date-keeping policy
+below needed no change, since its whole design (discussed next) already
+handles entries that are not in strict file order, which is exactly what
+unblocking this recognition gap exposes at scale.
+
 A second, genuine defect surfaced while building this: the chain is NOT
 reliably newest-first by file position. Two entries dated 2026-10-26 (the
 most recent work in the chain when this was built) sit well below entries
@@ -77,7 +98,7 @@ POINTER_MARKER = "**Older entries ("
 
 ENTRY_START_RE = re.compile(
     r"^\*\*(?:Last Updated:\*\*|Earlier, |Latest, |CLOSED |"
-    r"OPEN LOOP AS AT |Prior \()"
+    r"OPEN LOOP AS AT |Prior \(|Corrected |PM check-in|\d{4}-\d{2}-\d{2})"
 )
 DATE_RE = re.compile(r"\d{4}-\d{2}-\d{2}")
 

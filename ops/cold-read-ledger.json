@@ -1228,8 +1228,8 @@
     },
     "rotate_status_metadata.py": {
       "status": "clean",
-      "date": "2026-10-27",
-      "note": "New file, written and fail-then-pass tested this cycle (ops/tests/test_rotate_status_metadata.py, 7/7); builds STATUS.md section 1's rotator."
+      "date": "2026-11-12",
+      "note": "Found and fixed 2026-11-12: ENTRY_START_RE's allow-list never recognised the chain's own real labels (bare \"**YYYY-MM-DD, ...\" entries, \"**PM check-in...\", \"**Corrected ...\"), so every entry but one silently folded into a single 59875-byte blob and plan_rotation never found anything to archive, the real reason the size tripwire kept warning while this script reported CLEAN. Added the three missing label shapes to ENTRY_START_RE; fail-then-pass proved (new case, ops/tests/test_rotate_status_metadata.py, 8/8). --apply against the real file archived 25 of 32 entries (42690 bytes) to STATUS-ARCHIVE.md, keeping only today's 7; STATUS.md 145800 to 103110 bytes, under its 110000 tripwire. Lossless round-trip reconfirmed on the real file."
     },
     "rotate_status_workstreams.py": {
       "status": "clean",

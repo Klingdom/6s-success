@@ -142,6 +142,38 @@ def test_no_change_when_already_rotated():
     return []
 
 
+def test_real_world_entry_labels_are_recognised():
+    """The real chain's actual labels are not all the ones this file's
+    docstring originally allowed for. Found 2026-11-12: a bare dated
+    entry ("**2026-11-12, scheduled operator cycle: ..."), a "PM
+    check-in" entry with no leading date, and a "Corrected DATE: ..."
+    entry each failed ENTRY_START_RE, so none of them was ever
+    recognised as an entry start; every one silently folded into
+    whichever earlier entry a recognised label did start, collapsing
+    dozens of distinct cycles into one giant "entry" that read as
+    carrying only the first one's date and therefore never aged out.
+    That is why plan_rotation never found anything to archive even
+    while the file grew past its own size tripwire.
+    """
+    body = (
+        "**Last Updated:** 2026-10-24: the recognised anchor.\n\n"
+        "**2026-11-12, scheduled operator cycle: a bare-dated entry "
+        "with no Latest/Earlier prefix.**\n\n"
+        "**PM check-in (~05:1x slot): a PM check-in entry with no "
+        "leading date in its own label, dated 2026-11-12 in its body.**\n\n"
+        "**Corrected 2026-11-04 (~15:0x UTC): a Corrected-prefixed "
+        "entry.**"
+    )
+    text = _status_text(body)
+    _, entries, _, _ = rsm.split_metadata_chain(text)
+    fails = []
+    if len(entries) != 4:
+        fails.append("expected 4 separate entries (anchor + bare-date + "
+                      "PM check-in + Corrected), got %d: %r"
+                      % (len(entries), [e[:50] for e in entries]))
+    return fails
+
+
 def test_refuses_unrecognised_first_paragraph():
     body = "A plain paragraph with no recognised label at all."
     text = _status_text(body)
@@ -160,6 +192,7 @@ CASES = [
     test_tied_max_date_keeps_both,
     test_lossless_roundtrip_on_real_file,
     test_no_change_when_already_rotated,
+    test_real_world_entry_labels_are_recognised,
     test_refuses_unrecognised_first_paragraph,
 ]
 
