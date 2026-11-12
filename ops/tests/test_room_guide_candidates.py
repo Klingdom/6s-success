@@ -809,6 +809,34 @@ _result_ribbon_genuine = rgc.score_room([_ribbon_genuine], [], _room)
 check("a genuine 'ribbon spools' row is NOT excluded by the outlook pattern",
       _result_ribbon_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-12, mining Entryway's remaining partial tier. A potting
+# bench (gardening furniture) and a reloading bench (an ammunition
+# workbench) share only the word "bench" with the Entryway's own Bench or
+# Console Zone; neither is household entryway furniture.
+_potting_bench = {"query": "how to organize a potting bench", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_potting_bench = rgc.score_room([_potting_bench], [], _room)
+check("a 'potting bench' off-topic-context row is excluded",
+      _result_potting_bench["on_topic_rows"] == 0)
+_reloading_bench = {"query": "how to organize a reloading bench", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_reloading_bench = rgc.score_room([_reloading_bench], [], _room)
+check("a 'reloading bench' off-topic-context row is excluded",
+      _result_reloading_bench["on_topic_rows"] == 0)
+_bench_genuine = {"query": "how to organize an entryway bench", "best_page": "/test-room-deck.html", "status": "covered"}
+_result_bench_genuine = rgc.score_room([_bench_genuine], [], _room)
+check("a genuine 'entryway bench' row is NOT excluded by the potting/reloading pattern",
+      _result_bench_genuine["on_topic_rows"] == 1)
+
+# Drop shipping is an e-commerce fulfillment model, colliding only on
+# "organise" plus "landing" overlapping the Entryway's Landing Spot Zone.
+_drop_shipping = {"query": "how to organise drop shipping", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_drop_shipping = rgc.score_room([_drop_shipping], [], _room)
+check("a 'drop shipping' off-topic-context row is excluded",
+      _result_drop_shipping["on_topic_rows"] == 0)
+_landing_genuine = {"query": "how to organize the landing spot", "best_page": "/test-room-deck.html", "status": "covered"}
+_result_landing_genuine = rgc.score_room([_landing_genuine], [], _room)
+check("a genuine 'landing spot' row is NOT excluded by the drop-shipping pattern",
+      _result_landing_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

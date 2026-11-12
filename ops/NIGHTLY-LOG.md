@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, scheduled operator cycle: closed a real Stair Landing room-synonym gap and three Entryway off-topic collisions; verified and declined an oversized tie-break fix and two risky FORMAT_WORDS candidates
+
+**Did.** Unshallowed and attached clean (1094 commits behind). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP, CLAUDE.md, last log entries. Preflight clean (network-bound Etsy stall only). GitHub: 31 issues, unchanged since 11-08, none from Phil. No mail credential. Verified A111's "diapers in closet" tie is actually 11-33-way, not 3-way, dominated by near-miss mechanics crediting a downloads page over an exact match; confirmed a narrow fix would not even change the outcome, so declined it rather than ship a cosmetic patch. Mined Entryway's real 11-row tier instead: added "staircase landing" to Stair Landing's also-called synonyms (rebuilt via build_zone_pages.py), and three OFF_TOPIC_CONTEXT exclusions (potting bench, reloading bench, drop shipping). Declined "area" (real misattribution onto the wrong Garage zone) and "without" (fixes some rows, creates 3 new false-covered rows on the Standards Pack download).
+
+**Verified.** Fail-then-pass, 134/134 room_guide_candidates tests. Full before/after corpus diff: 10 rows changed, all correct re-attributions, 0 wrong-room. Confirmed newly-partial construction-intent "staircase" queries already fail ON_TOPIC, no new noise. Entryway 16%->11% uncovered. Preflight clean before and after.
+
+**Went well.** Caught a real misattribution ("area") and a real false-covered bug ("without") before shipping either, via the standard full-diff discipline.
+
+**Did not go well.** Spent real time on the oversized tie-break bug before concluding (correctly) it needs more than one slot.
+
+**Changing next cycle.** Nothing.
+
+**Next.** Entryway's "cabinet" row is a genuine gap, left alone. Same Phil-gated queue otherwise.
+
+HANDOFF-FILES: none
+
 ## PM check-in: corrected the stale items 1/1b/4 split handoff, reconfirmed exhausted queue
 
 Previous work (09:47 PM check-in) finished: preflight clean through reached gates, 31 open GitHub issues unchanged since 2026-11-08, none from Phil.

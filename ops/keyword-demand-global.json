@@ -43881,16 +43881,16 @@
         "stair landing organization ideas"
       ],
       "room": "",
-      "best_page": "/downloads/6S-Standards-Pack.html",
-      "best_page_title": "The 6S Success Standards Pack",
+      "best_page": "/rooms/stair-landing.html",
+      "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/rooms/stair-landing.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "decor",
-        "staircase"
+        "area",
+        "decor"
       ],
       "markets": [
         "ca"
@@ -43904,16 +43904,14 @@
         "stair landing organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-an-entryway.html",
-      "best_page_title": "How to organize an entryway, step by step",
+      "best_page": "/rooms/stair-landing.html",
+      "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-an-entryway.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/stair-landing.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "staircase"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -43926,15 +43924,14 @@
         "stair landing organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-stair-landing.html",
-      "best_page_title": "How to organize a stair landing, step by step",
+      "best_page": "/rooms/stair-landing.html",
+      "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/how-to-organize-a-stair-landing.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/stair-landing.html",
+      "matched_on": "heading",
+      "status": "partial",
       "unmatched_words": [
-        "staircase",
         "structure"
       ],
       "markets": [
@@ -47599,16 +47596,15 @@
         "why is my stair landing always messy"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-stair-landing.html",
-      "best_page_title": "How to organize a stair landing, step by step",
+      "best_page": "/rooms/stair-landing.html",
+      "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/how-to-organize-a-stair-landing.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/stair-landing.html",
+      "matched_on": "heading",
+      "status": "partial",
       "unmatched_words": [
-        "provided",
-        "staircase"
+        "provided"
       ],
       "markets": [
         "ca",
@@ -48226,6 +48222,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "52731717c",
-  "scored_at": "2026-11-12T09:08:13Z"
+  "scored_against_commit": "6e734daf1",
+  "scored_at": "2026-11-12T10:10:40Z"
 }

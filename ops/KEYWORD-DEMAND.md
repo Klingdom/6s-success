@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-11T17:34:53Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-12T09:08:04Z against 243 page(s) at commit 52731717c. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-12T10:10:39Z against 243 page(s) at commit 6e734daf1. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2810. Checked against 243 published page titles: 1709 covered, 999 partial, 102 gap.
+**Queries found:** 2810. Checked against 243 published page titles: 1711 covered, 1001 partial, 98 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 102, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 98, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -28,14 +28,12 @@ Showing the top 80 of 102, ordered by the best rank the phrase reached in any on
 | 2 | how to build walkway steps | - | What is 6S? The six steps, and how it differs from 5S (0.33) | build, walkway |
 | 2 | how to organize benchmark advance materials | - | How to organize the workshop material rack (0.00) | advance, benchmark, materials |
 | 2 | how to organize stash poe 2 | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | poe, stash |
-| 2 | landings on a staircase | - | How to organize a stair landing, step by step (0.00) | landings, staircase |
 | 3 | daycare organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | daycare |
 | 3 | den office design ideas | - | How to organize a family room, zone by zone (0.33) | design, office |
 | 3 | how to arrange logs in solo stove | - | How to organize the kitchen stove area (0.33) | logs, solo |
 | 3 | how to organize cricut vinyl | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cricut, vinyl |
 | 3 | organized nurse designs | - | What is a micro zone? The unit that actually gets organized (0.33) | designs, nurse |
 | 4 | how to build a nightstand for beginners | - | How to organize the guest bedroom nightstand (0.33) | beginners, build |
-| 4 | how to build a staircase with landing | - | How to organize a stair landing, step by step (0.33) | build, staircase |
 | 4 | how to make a disposable diaper | - | How we make money: what we sell, and what we do not earn on (0.33) | diaper, disposable |
 | 4 | how to organize a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, tournament |
 | 4 | how to organize hard drive files | - | How to organize paperwork at home with a simple filing system (0.00) | drive, hard |
@@ -48,7 +46,6 @@ Showing the top 80 of 102, ordered by the best rank the phrase reached in any on
 | 5 | kindergarten organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | kindergarten |
 | 5 | why are garages left unfinished | Garage | The Garage Deck: 80 cards, free to read (0.33) | garages, unfinished |
 | 6 | attic storage ideas pinterest | - | How to organize an attic without overloading it (0.33) | pinterest, storage |
-| 6 | how to build a floating staircase landing | - | How to organize a stair landing, step by step (0.25) | build, floating, staircase |
 | 6 | how to hold bench press bar correctly | - | The Patio or Deck Deck: 68 cards, free to read (0.20) | bar, bench, correctly |
 | 6 | how to organize a cribbage tournament template | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, tournament |
 | 6 | how to organize beads for jewelry making | - | 6S Success: Home Edition &#183; Chapters 1 to 30 (0.00) | beads, jewelry |
@@ -101,10 +98,13 @@ Showing the top 80 of 102, ordered by the best rank the phrase reached in any on
 | 14 | master bedroom design as per vastu | - | How to organize a primary bedroom, zone by zone (0.20) | design, per, vastu |
 | 14 | starting a nursery for plants | Nursery | The Nursery Deck: 66 cards, free to read (0.33) | plants, starting |
 | 15 | declutter woodworking fundamentals tips | - | How to declutter a bedroom in one day, step by step (0.33) | fundamentals, woodworking |
+| 15 | decluttering your home printable guide | - | Decluttering vs. organizing: what's actually different (0.33) | home, printable |
+| 15 | decorating ideas for patios and decks | - | More storage will not fix a messy room (0.00) | decks, patios |
+| 15 | master bedroom design floor plan | - | How to declutter a bedroom in one day, step by step (0.20) | design, master, plan |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 999.
+Showing the top 60 of 1001.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|

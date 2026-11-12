@@ -63,7 +63,8 @@
   },
   "Stair Landing": {
    "names": [
-    "stairway landing"
+    "stairway landing",
+    "staircase landing"
    ],
    "queries": 3,
    "covered": 0

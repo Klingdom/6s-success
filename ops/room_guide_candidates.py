@@ -697,7 +697,26 @@ OFF_TOPIC_CONTEXT = re.compile(
     # Checked against both harvests before adding: "outlook" appears in
     # exactly this one row across either corpus, already partial, 0
     # covered, so excluding it cannot suppress a genuine match.
-    r"\boutlook\b",
+    r"\boutlook\b|"
+    # Found 2026-11-12, mining Entryway's remaining partial tier. Three
+    # rows land on the Entryway's Bench or Console Zone or Landing Spot
+    # Zone purely on "organize"/"bench"/"landing" word overlap with a
+    # different, unrelated activity. "how to organize a potting bench"
+    # names a gardening workbench for potting plants (kept in a garage,
+    # shed or greenhouse), nothing to do with a hallway seat for shoes
+    # and mail. "how to organize a reloading bench" names an ammunition-
+    # reloading workbench (a shooting-sports hobby, typically garage or
+    # workshop), not household furniture at all. "how to organise drop
+    # shipping" names an e-commerce fulfillment model, landing on the
+    # Landing Spot Zone purely on "organise" + "landing" overlapping the
+    # unrelated word "drop shipping" shares with nothing else on the
+    # page; the same B2B-intent collision "business"/"pricing model"
+    # already exclude above. Checked against both harvests before adding:
+    # "potting bench", "reloading bench" and "drop shipping" each appear
+    # in exactly their one named row across either corpus, all already
+    # partial, 0 covered, so excluding them cannot suppress a genuine
+    # match.
+    r"\bpotting bench\b|\breloading bench\b|\bdrop ?shipping\b",
     re.I)
 
 
