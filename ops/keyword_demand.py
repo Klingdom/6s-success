@@ -207,7 +207,30 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "teen", "labels", "dividers", "canvas", "pouch",
                           "church", "insert", "durable", "lightweight",
                           "properly", "apartments", "large", "homes",
-                          "cheap"))
+                          "cheap", "list", "everyday", "tidying"))
+
+# "list", "everyday" and "tidying" joined 2026-11-12, this scheduled
+# operator cycle, mining Primary Bedroom's partial tier (19 rows, tied with
+# Family Room and Garage at 14% uncovered). "list" is the same
+# generic-listicle role "guide"/"tutorial"/"template"/"overview" already
+# play ("declutter list room by room"); "everyday" is a frequency
+# qualifier, the same role "daily" already plays ("how to declutter
+# everyday"); "tidying" is a task-verb synonym of "organize"/"declutter"
+# ("decluttering and tidying bedroom"). Self-flattery checked first: 0 of
+# 243 titles for all three, 3 of 243 headings for "list", 6 for "everyday",
+# 3 for "tidying", all well under the bar "home" (15 titles, 50 headings)
+# failed on the same tier and was correctly declined. Full before/after
+# score_rows() diff across both corpora before shipping: 0 status
+# regressions, 6 genuine partial-to-covered moves (2 inside Primary
+# Bedroom's own tier: "declutter list room by room", "how to declutter
+# everyday" (global); the other four are elsewhere in the corpus,
+# unrelated "...equipment list" and "list of baking supplies" rows, all
+# genuine), 2 best_page changes, both a single pre-existing word-sense
+# collision ("how to organize a guest list" / "bedroom guest list", a
+# party/event guest list, not a guest bedroom or bathroom), already
+# `covered` before and after either way; closed properly via
+# OFF_TOPIC_CONTEXT in ops/room_guide_candidates.py rather than by
+# declining "list" itself.
 
 # "cheap" joined 2026-11-12, scheduled operator cycle, mining Patio or Deck's
 # partial tier (the 4-row tier tied with Garage/Kids Bedroom/Family Room at

@@ -2212,6 +2212,49 @@ def main():
                      "central subject, the riskiest word tried to date "
                      "(A114)")
 
+    # 64. Found live 2026-11-12, this scheduled operator cycle, mining
+    #     Primary Bedroom's partial tier (19 rows, tied at 14% uncovered
+    #     with Family Room and Garage). "list" is the same generic-listicle
+    #     role "guide"/"tutorial"/"template"/"overview" already play
+    #     ("declutter list room by room"); "everyday" is a frequency
+    #     qualifier, the same role "daily" already plays ("how to declutter
+    #     everyday"); "tidying" is a task-verb synonym of "organize"/
+    #     "declutter" ("decluttering and tidying bedroom"). Self-flattery
+    #     checked first: 0 of 243 titles for all three, 3 of 243 headings
+    #     for "list", 6 for "everyday", 3 for "tidying". Full before/after
+    #     score_rows() diff across both corpora before shipping: 0 status
+    #     regressions, 6 genuine partial-to-covered moves (2 inside Primary
+    #     Bedroom's own tier), 2 best_page changes, both the same
+    #     pre-existing word-sense collision ("guest list", a party/event
+    #     term, not a guest bedroom or bathroom), already `covered` before
+    #     and after either way and closed separately below via
+    #     OFF_TOPIC_CONTEXT rather than by declining "list" itself.
+    new_format_words33 = ("list", "everyday", "tidying")
+    samples33 = {"list": "declutter list room by room",
+                 "everyday": "how to declutter everyday",
+                 "tidying": "decluttering and tidying bedroom"}
+    for word in new_format_words33:
+        if word in kd.content_words(samples33[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format33 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format33 - set(new_format_words33)
+    try:
+        for word in new_format_words33:
+            if word not in kd.content_words(samples33[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format33
+    # "home" must NOT be a FORMAT_WORD: 15 of 243 titles and 50 of 243
+    # headings carry it (the site's own brand language, "real homes"),
+    # the same breadth risk "storage" and "much" were already declined for.
+    if "home" in kd.FORMAT_WORDS:
+        fails.append("'home' must not join FORMAT_WORDS: 15/243 titles and "
+                     "50/243 headings carry it, the site's own brand "
+                     "language, too broad to ever be a safe qualifier")
+
     if fails:
         print("FAIL")
         for f in fails:

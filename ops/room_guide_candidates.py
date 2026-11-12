@@ -752,7 +752,20 @@ OFF_TOPIC_CONTEXT = re.compile(
     # against both harvests before adding: "staging" appears in exactly
     # this one row across either corpus, already partial, 0 covered, so
     # excluding it cannot suppress a genuine match.
-    r"\bstaging tips\b",
+    r"\bstaging tips\b|"
+    # Found 2026-11-12, this scheduled operator cycle, mining Primary
+    # Bedroom's partial tier: adding "list" to FORMAT_WORDS in
+    # keyword_demand.py (the same cycle, closing a real gap elsewhere)
+    # exposed a pre-existing word-sense collision rather than causing one.
+    # "how to organize a guest list" and "bedroom guest list" both mean a
+    # party or event guest list (who is invited), not Guest Bedroom or
+    # Guest Bathroom (where a guest sleeps), the same different-domain
+    # shape "diaper drive"/"crib tournament" already exclude above.
+    # Checked against both harvests before adding: "guest list" appears in
+    # exactly these two rows across either corpus, both already `covered`
+    # on the wrong page either way, so excluding them cannot suppress a
+    # genuine match.
+    r"\bguest list\b",
     re.I)
 
 

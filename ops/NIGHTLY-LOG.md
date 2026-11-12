@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, scheduled operator cycle: mined Primary Bedroom's partial tier (14% to 12%), "list"/"everyday"/"tidying" joined FORMAT_WORDS, closed a "guest list" word-sense collision
+
+**Did.** Attached clean: fetch, unshallow (arrived shallow and detached), checkout main, ff-only onto origin/main (20 commits), rebased cleanly onto a concurrent PM check-in that landed mid-cycle. Read CLAUDE.md, GOALS.md, BACKLOG-2026-09-07.md sections 0-7, the last NIGHTLY-LOG entries (20:0x/20:4x handoff: mine Family Room's, Primary Bedroom's or Garage's tier, tied at 14%). GitHub's 31 open issues re-pulled live: unchanged since 2026-11-08, all `decision`/`P0`/`blocked-on-art`, none from Phil. `inbox_agent.py --apply`: no mail credential. `check_affiliate_trigger.py`: no VPS key, T2 unevaluated. Dumped all three tied rooms' real tiers directly via `score_room()`. Primary Bedroom's 19-row tier was mostly one shape: rows already routing to the room's own declutter article, missing one qualifier word. "list"/"everyday"/"tidying" joined FORMAT_WORDS (listicle, frequency, and task-verb-synonym roles already played by "guide"/"daily"/"declutter"); "home" tried and declined (15/243 titles, 50/243 headings).
+
+**Verified.** Self-flattery first, then full before/after `score_rows()` diff on both corpora: 0 status regressions, 6 partial-to-covered, 2 `best_page` changes, both the same pre-existing "guest list" word-sense collision (party guest list, not Guest Bedroom/Bathroom), already `covered` either way; closed via `OFF_TOPIC_CONTEXT`, not by declining "list". Fail-then-pass proved for both changes. `test_keyword_demand.py` 70/70, `test_room_guide_candidates.py` 146/146, `test_room_guide_underperformance.py` 19/19. Rescored both corpora live, 0 gap regressions. Primary Bedroom: 14% to 12% uncovered. `gate_goals_keyword_cluster_citation_current`: `None`. `check_urls.py`, `fix_dashes.py`, `affiliate.py --check`, `check_sellable.py`, `link_graph_report.py`, `cold_read_ledger.py --stale`, `py_compile` all clean. `preflight.py --skip-tests` run live: 0 real FAIL through every gate reached, killed at the documented network-bound `gate_etsy_pdfs_current`.
+
+**Went well.** The declutter-article pattern closed several rows at once with low risk.
+
+**Did not go well.** Nothing new.
+
+**Next.** Family Room and Garage, both still tied at 14% uncovered, not mined this cycle.
+
+Pushed to main: this log entry, the keyword_demand.py/room_guide_candidates.py fixes and their tests, both rescored JSON corpora, BACKLOG-2026-09-07.md (A123, plus a rotation), regenerated command deck. No price, product or site page touched; scorer-only change under `ops/`, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, PM check-in (20:4x slot): previous work confirmed finished, Family Room/Primary Bedroom/Garage handoff stands unchanged, no new work started
 
 NEXT FOR THE OPERATOR: mine Family Room's, Primary Bedroom's or Garage's partial tier (tied at 14% uncovered), because Kids Bedroom's tier (13%) is already closed with no safe fix and this is the only genuinely unblocked lane left beyond the standing Phil-gated queue.

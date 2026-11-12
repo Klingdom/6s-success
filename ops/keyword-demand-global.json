@@ -1718,12 +1718,12 @@
         "guest bedroom organisation ideas"
       ],
       "room": "",
-      "best_page": "/kids-bedroom-deck.html",
-      "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
-      "coverage": 0.667,
+      "best_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
+      "best_page_title": "How to organize the guest bedroom bed and linens",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/kids-bedroom-deck.html",
-      "matched_on": "heading",
+      "heading_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
       "markets": [
@@ -11637,8 +11637,8 @@
       "room": "",
       "best_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
       "best_page_title": "6S Success: Home Edition &#183; Chapters 1 to 30",
-      "coverage": 0.25,
-      "heading_coverage": 0.75,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
       "matched_on": "heading",
       "status": "partial",
@@ -13484,14 +13484,12 @@
       "room": "",
       "best_page": "/articles/how-to-declutter-a-bedroom.html",
       "best_page_title": "How to declutter a bedroom in one day, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/decluttering-vs-organizing.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "everyday"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -35113,8 +35111,8 @@
       "room": "",
       "best_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
       "best_page_title": "6S Success: Home Edition &#183; Chapters 1 to 30",
-      "coverage": 0.2,
-      "heading_coverage": 0.6,
+      "coverage": 0.25,
+      "heading_coverage": 0.5,
       "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
       "matched_on": "heading",
       "status": "partial",
@@ -39130,14 +39128,13 @@
       "room": "",
       "best_page": "/zones/primary-bathroom-the-vanity-counter.html",
       "best_page_title": "How to organize the primary bathroom vanity counter",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/primary-bathroom-the-vanity-counter.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "accessories",
-        "list"
+        "accessories"
       ],
       "markets": [
         "in"
@@ -48228,5 +48225,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "7c76c624e"
+  "scored_against_commit": "3f12ecd07",
+  "scored_at": "2026-11-12T20:54:10Z"
 }

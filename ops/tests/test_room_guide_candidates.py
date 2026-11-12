@@ -896,6 +896,19 @@ _result_staging_genuine = rgc.score_room([_staging_genuine], [], _room)
 check("a genuine 'declutter a stair landing' row is NOT excluded by the staging-tips pattern",
       _result_staging_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-12, this scheduled operator cycle, mining Primary Bedroom's
+# partial tier. "how to organize a guest list" and "bedroom guest list"
+# both mean a party or event guest list, not Guest Bedroom or Guest
+# Bathroom.
+_guest_list = {"query": "how to organize a guest list", "best_page": "/test-room-deck.html", "status": "covered"}
+_result_guest_list = rgc.score_room([_guest_list], [], _room)
+check("a 'guest list' off-topic-context row is excluded",
+      _result_guest_list["on_topic_rows"] == 0)
+_guest_genuine = {"query": "how to organize a guest bedroom closet", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_guest_genuine = rgc.score_room([_guest_genuine], [], _room)
+check("a genuine 'guest bedroom closet' row is NOT excluded by the guest-list pattern",
+      _result_guest_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)
