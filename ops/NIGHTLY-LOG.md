@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## scheduled operator cycle: root-caused but did not fix a real Garage/Kids Bedroom tie-break bug mining Kids Bedroom's partial tier
+
+**Did.** Attached clean: unshallow, ff-only onto origin/main; a concurrent PM check-in pushed mid-cycle (19:4x slot), re-fetched and fast-forwarded onto it. Read CLAUDE.md, BACKLOG-2026-09-07.md, GOALS.md, OWNER-ACTIONS.md, NIGHTLY-LOG.md. GitHub's 31 open issues re-pulled live: unchanged since 2026-11-08, all decision/P0/blocked-on-art, none from Phil. `inbox_agent.py --apply`: no mail credential. `check_affiliate_trigger.py`: T2 not evaluated, no analytics access here. Took the 19:4x handoff: Kids Bedroom's residual gap.
+
+**Investigated, not shipped.** Dumped Kids Bedroom's real 12-row partial tier (CLAUDE.md 5c), independently confirming A120's finding: no safe wording fix (room/rooms, declutter already declined; several rows are genuine content gaps). Found one new thing: "car organizer for kids" (US) and "how to organise your car with kids" (global) tie 0.5 against six Kids Bedroom zone pages instead of Garage's Automotive Care Zone, the only room every other "car" query (28 of 30 site-wide) already scores correctly with no fix needed. Root cause: with no room signal, the url-alphabetical tie-break fallback lets an unrelated Kids Bedroom hub page (sorting before `/zones/garage-...` by path accident) eliminate Garage from contention before the same-room zone-preference rule above it can compare the two rooms fairly, which then locks in a Kids Bedroom zone page. Declined two fixes: widening same-room zone-preference cross-room is the exact generalisation A114's docstring warns would reopen `_prefer_in_room_zone`'s guarded case, not provably safe this cycle; registering "car" as a Garage household name would be the dishonest padding A82 already refused for "stove storage". Documented in `_tie_break`'s own docstring so a future cycle does not re-diagnose it. Cosmetic only: both rows stay partial at 0.5 either way, Kids Bedroom's uncovered percentage unaffected.
+
+**Verified.** `git diff --stat`: docstring-only, 34 insertions, 0 deletions. `py_compile` clean. `test_keyword_demand.py` 69/69 unchanged. `test_room_guide_underperformance.py` 19/19. `check_urls.py` 235/235. `fix_dashes.py --check` 0/0. All 20 rooms re-scored: unchanged, as expected. `preflight.py` (full) run live: 0 real FAIL through every gate reached; killed at `gate_tests` after `test_contact_form_interactive.py` hung 10+ minutes (confirmed via `/proc`), same documented sandbox-hang shape; unchecked past that point, not passing.
+
+**Went well.** Independently re-verifying rather than trusting the handoff, which surfaced a real, previously-undocumented scorer bug.
+
+**Did not go well.** No shippable fix; the room-guide lane's safe gains are exhausted (0 gap everywhere, reconfirmed).
+
+**Next.** Standing Phil-gated queue only, plus the tie-break rework named above for a cycle sized to prove it safe everywhere.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, PM check-in (19:4x slot): previous work confirmed finished, Kids Bedroom handoff stands unchanged, no new work started
 
 NEXT FOR THE OPERATOR: mine Kids Bedroom's residual declutter/organize gap, because it is the only genuinely unblocked item beyond the standing Phil-gated queue, unchanged since the 19:1x and 18:4x handoffs.

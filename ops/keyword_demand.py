@@ -1628,6 +1628,40 @@ def _tie_break(page, best, room_signal, cw=None, field="words"):
     status changes, 0 cross-room changes bar one already-`gap` row moving
     from a coincidental Kitchen tie to the genuinely relevant Patio or Deck
     page (status unchanged either way).
+
+    Found 2026-11-12, mining Kids Bedroom's partial tier, and verified as a
+    cross-room instance of the same breadth-wins shape above, NOT fixed:
+    "car organizer for kids" (US) and "how to organise your car with kids"
+    (global) both tie at 0.5 between Garage's Automotive Care Zone (an exact
+    title hit on "car", the query's only other content word) and SIX
+    different Kids Bedroom zone pages (each an exact title hit on "kids").
+    Neither query carries a room signal ("kids" alone is not a registered
+    household name for Kids Bedroom). Traced step by step: among all tied
+    candidates the alphabetically-smallest URL is actually an unrelated
+    Kids Bedroom page outside `/zones/` (a room hub or deck page sorts
+    before `/zones/garage-...` only by accident of this site's own path
+    structure), which wins the plain url fallback below and eliminates
+    Garage from contention before the same-room zone-preference check above
+    ever gets to compare it fairly against Garage's own zone page; THEN that
+    same-room check promotes a `/zones/` Kids Bedroom page over the hub page
+    that beat Garage, locking in the wrong room. Checked the obvious fixes
+    and declined both: widening the same-room zone preference to apply
+    cross-room, unconditionally, is exactly the generalisation A114's own
+    note above warns would reopen `_prefer_in_room_zone`'s guarded case, and
+    was not attempted without a full diff proving it safe everywhere, not
+    just here. Registering "car" in `ops/room-also-called.json` as a
+    household name for Garage was also declined: nobody calls a garage "the
+    car", so that would be the dishonest padding A82's own "stove storage"
+    finding already named and refused to do for the identical reason.
+    Verified narrow: every other "car ..." query in both corpora (28 rows)
+    already scores Garage correctly with no signal needed at all, because a
+    second content word disambiguates; only these two single-word-overlap
+    rows are affected, and the effect is cosmetic (which WRONG-ISH page gets
+    the pointer, not the 0.5 partial score itself, so Kids Bedroom's own
+    uncovered percentage does not move either way). Left exactly like A82:
+    diagnosed, verified, not papered over, handed to whichever future cycle
+    wants to take on the url-fallback's non-transitive ordering properly
+    rather than one more narrow patch on top of it.
     """
     if room_signal:
         want = page.get("room") == room_signal
