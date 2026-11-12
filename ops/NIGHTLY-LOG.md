@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, PM check-in (17:2x slot): previous work reconfirmed finished, backlog rotation closed (was due), Garage handoff stands unchanged
+
+**Previous work finished.** Attached cleanly (unshallow, ff-only, clean tree). Verified directly: `preflight.py --fast` fresh this slot, 0 real FAIL through every gate reached, killed only at `gate_tests`'s documented limit. 31 open GitHub issues re-pulled live: all `decision`/`blocked-on-art`, none from Phil. Garage still highest at 15% uncovered, unchanged since the 16:4x handoff; its mine is hours-sized, stays with the operator.
+
+**Did.** `rotate_backlog.py --check` was DUE (2 of 17 rows over the 15-row cap). Ran `--apply`: archived A103/A104 to `BACKLOG-2026-09-07-ARCHIVE.md`, re-checked CLEAN. `test_rotate_backlog.py` 14/14, `py_compile` clean, diff touches only the two rotated rows. Dashboard regenerated.
+
+**Next:** Garage's 30-row partial tier, for the operator. No push notification: nothing new for Phil.
+
+HANDOFF-FILES: none
+
 ## PM check-in (16:4x slot): previous work reconfirmed finished, Garage handoff stands unchanged, no new work started
 
 NEXT FOR THE OPERATOR: mine Garage's partial tier (30 rows, 15% uncovered, highest of any room), unchanged from the 16:1x handoff; it is the only genuinely unblocked work beyond the standing Phil-gated queue.
