@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in
+
+NEXT FOR THE OPERATOR: continue mining Garage's remaining partial tier via `score_room()` (the A87-A92 lane), because it is the one genuinely unblocked, agent-executable work downstream of the traffic constraint.
+
+Attached clean, ff-only onto origin/main (1094 commits), tree clean. Ran `preflight.py --fast`: 0 real FAIL through every gate reached, killed at `gate_tests`'s documented sandbox entry, unchecked past that. GitHub's 31 open issues re-pulled fresh: unchanged since 2026-11-08, all decision/P0/blocked-on-art, none from Phil. `BACKLOG-2026-09-07.md` sections 2-6 exhausted except the live mining lane and Phil-gated rows. Did not start the mining myself; it needs the fuller fail-then-pass treatment A87-A92 each used, not a rushed version three minutes before the operator.
+
+Pushed: this entry, regenerated command deck. Not customer-facing. No notification sent.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle: closed Garage's 'wood' row, root-caused the stuck diapers-in-closet tie-break
 
 **Did:** Fresh checkout, fast-forwarded 1078 commits attaching to main (unshallow, ff-only). `preflight.py --skip-tests` ran clean (0 real FAIL, standing network-bound stall at `gate_etsy_pdfs_current`). Dumped Garage's full 31-row partial tier via `score_room()`; "wood" joined FORMAT_WORDS, closing "wood power tool organizer" (16% to 15% uncovered), after "much" (124/243 headings, ordinary English) and "small" (GOALS.md's own tracked cluster) each failed self-flattery and were declined.
