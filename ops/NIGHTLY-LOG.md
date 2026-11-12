@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle: closed Garage's 'wood' row, root-caused the stuck diapers-in-closet tie-break
+
+**Did:** Fresh checkout, fast-forwarded 1078 commits attaching to main (unshallow, ff-only). `preflight.py --skip-tests` ran clean (0 real FAIL, standing network-bound stall at `gate_etsy_pdfs_current`). Dumped Garage's full 31-row partial tier via `score_room()`; "wood" joined FORMAT_WORDS, closing "wood power tool organizer" (16% to 15% uncovered), after "much" (124/243 headings, ordinary English) and "small" (GOALS.md's own tracked cluster) each failed self-flattery and were declined.
+
+**Verified:** Fail-then-pass (case 55, `test_keyword_demand.py`, 61/61). Rescored live, 0 wrong-direction `best_page` changes. `test_room_guide_underperformance.py`, `test_room_guide_candidates.py`, `check_urls.py`, `fix_dashes.py --check`, `affiliate.py --check`, `check_sellable.py` all clean. GitHub's 31 issues re-pulled, each comment thread on #42 read directly: still self-authored, none from Phil. `inbox_agent.py`: no mail credential here.
+
+**Went well:** Root-caused, not just re-flagged, why A89's 2026-11-05 "diapers zone" fix never closed "diapers in closet": `best_page` is title-only, the heading surface ties three ways, and the alphabetical tie-break picks a generic page over the real zone every time. A second concrete instance of A93's already-named "giant aggregator page wins heading ties" lead.
+
+**Did not go well:** Spent real time confirming retailer/platform noise words (depot, lowes, pinterest, reddit, youtube) were already excluded elsewhere before realizing it; should check `OFF_TOPIC_CONTEXT` first next time.
+
+**Changing next cycle:** Nothing new; the diapers-in-closet tie-break fix is handed forward, not gated.
+
+**Next:** Same 31-issue Phil-gated queue; Garage's remaining 30-row tier for the next cycle.
+
+HANDOFF-FILES: none
+
 ## PM check-in (08:1x slot): corrected a stale, looping handoff on OWNER-ACTIONS.md items 1/1b/4, closed a genuinely stale cold-read ledger entry
 
 **Previous work finished.** A110 verified live (`test_nightly_log.py` 12/12), tree clean, attached cleanly.

@@ -199,7 +199,7 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "baskets", "mount", "workout", "plans", "interior",
                           "begin", "extreme", "smart", "pdf", "fishing",
                           "hunting", "tactical", "motorcycle", "fresh",
-                          "bins"))
+                          "bins", "wood"))
 
 # "bins" joined 2026-11-12, mining Nursery's remaining partial tier (tied
 # top-ranked with Entryway/Family Room/Garage at 16% uncovered; Garage was
@@ -843,6 +843,43 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
 # zero best_page changes across either corpus for either word, confirmed by
 # a direct before/after score_rows() diff, not assumed from the self-
 # flattery count alone.
+
+# "wood" joined 2026-11-12, mining Garage's remaining 31-row partial tier
+# (the room tied top-ranked with Entryway/Family Room at 16% uncovered).
+# "wood power tool organizer" asks the same question as "power tool
+# organizer", "wood" naming the material being worked rather than a
+# different subject, checked against the zone's own content.json purpose
+# text (it already stores "drills and saws"; it never claims to be
+# material-specific). Several other candidates on the same tier were
+# checked and declined this cycle, each a real content-bearing word on the
+# destination zone's own stated purpose, not a qualifier: "gardening",
+# "grow", "flower", "vegetable" and "beds" (the Lawn and Garden Tool Zone
+# stores tools and chemicals, never garden-bed or planting layout, already
+# declined by name for this exact reason in the 2026-11-12 "fishing"/
+# "hunting" entry above); "decluttering" (the same risk shape "declutter"
+# was declined for); "gym" (the hunting/fishing/gym/workout-equipment
+# cluster is a genuine content gap, already declined by name in two
+# earlier cycles); "toolbox", "large", "set", "beginners", "hardware",
+# "systems" and "boot" (each already declined in an earlier cycle on this
+# same tier, re-confirmed rather than re-tried blind); "much" (124 of 243
+# page headings contain it, the "how much"/"too much" shape of ordinary
+# English rather than a rare qualifier, by far the worst self-flattery
+# result any FORMAT_WORDS candidate has produced in this file's history,
+# caught before shipping rather than after); "small" (a real distinguishing
+# qualifier this site tracks as its own named query cluster, GOALS.md's
+# "small space" cluster, not safe to drop from scoring everywhere).
+# Self-flattery for "wood" itself: 0 of 243 titles, 7 of 243 headings, well
+# under every prior bar. Checked the full corpus before shipping, not
+# sampled: a full before/after score_rows() diff across both corpora found
+# 0 wrong-direction best_page changes. Three rows move pages, all already
+# `covered` before and after, each to a more specific same-room page
+# ("coat hooks on wood" and "outdoor wood storage ideas" move off the
+# generic /mudroom-deck.html room page onto the Family Hook Zone and the
+# Patio or Deck Outdoor Storage Zone respectively; "wood workshop
+# organization ideas" moves from the Workshop's Material Rack zone to the
+# Workshop's own guide article, still the same room). One row changes
+# status, the genuine target: "wood power tool organizer" moves Garage's
+# own Power Tool and Battery Zone from partial (0.667) to covered (1.0).
 
 
 def room_names():

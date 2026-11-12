@@ -1791,6 +1791,43 @@ def main():
         for f in fails:
             print(" -", f)
         return 1
+
+    # 55. Found live 2026-11-12, mining Garage's remaining 31-row partial
+    #     tier. "wood" names the material a power tool organizer is made
+    #     of (or works on), not a different subject from "power tool
+    #     organizer"; self-flattery passed (0 of 243 titles, 7 of 243
+    #     headings), and a full before/after corpus diff found 0
+    #     wrong-direction best_page changes: every row it moves (coat
+    #     hooks on wood, outdoor wood storage ideas, wood workshop
+    #     organization ideas) stays in the same room and simply gets
+    #     credited to a more specific zone/article page than a generic
+    #     room-deck page, and the one genuine status change, "wood power
+    #     tool organizer", moves Garage's own Power Tool and Battery Zone
+    #     from partial to covered.
+    new_format_words25 = ("wood",)
+    samples25 = {
+        "wood": "wood power tool organizer",
+    }
+    for word in new_format_words25:
+        if word in kd.content_words(samples25[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format25 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format25 - set(new_format_words25)
+    try:
+        for word in new_format_words25:
+            if word not in kd.content_words(samples25[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format25
+
+    if fails:
+        print("FAIL")
+        for f in fails:
+            print(" -", f)
+        return 1
     # Counted from the numbered cases in this file rather than typed, because
     # a hardcoded tally goes stale the first time somebody adds a case and
     # then the test reports a number that is simply false. It said 14/14
