@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, scheduled operator cycle: mined Nursery's partial tier, "bins" joined FORMAT_WORDS plus an off-topic exclusion for a software-ribbon collision
+
+**Did.** Attached per Step 0 (unshallow, checkout main, ff-only, 1053 commits fast-forwarded). Read GOALS.md, BACKLOG-2026-09-07.md, CLAUDE.md, recent NIGHTLY-LOG entries. GitHub: 31 open issues, unchanged, all decision/blocked-on-art, none from Phil. Mined Nursery's 22-row partial tier (tied top at 16% with Entryway/Family Room/Garage) via `score_room()` directly, not the 8-row sample. Added "bins" to `FORMAT_WORDS`: same shopping-noun role "container"/"basket" play. Added "outlook" to `OFF_TOPIC_CONTEXT`: "ribbon in outlook" means Microsoft's UI ribbon, false-matching the baby-clothing zone's own ribbon-tie safety FAQ heading. Declined "storage"/"shelf"/"shelves"/"cupboard" (real distinguishing words, 11-56/243 headings) and "spools" (a genuine content gap, not off-topic).
+
+**Verified.** Self-flattery: "bins" 0/243 titles, 16/243 headings. Full before/after `score_rows()` diff, both corpora: 0 wrong-direction `best_page` changes, 7 genuine improvements, 1 row closed. Fail-then-pass proved (`test_keyword_demand.py` case 54, 61/61; `test_room_guide_candidates.py` 129/129). Rescored live: US 1000->999 partial, 1707->1708 covered; global 779->778, 1294->1295. Nursery 16%->15%. `gate_goals_keyword_cluster_citation_current`: no drift. `check_urls` (235/235), `fix_dashes --check` (0/0), `link_graph_report` (0 orphans), `affiliate.py --check`, `check_sellable.py` clean. `py_compile` clean. `preflight.py --skip-tests` run to completion in the background (~9 min, the documented `gate_prerender_shop_current`/`gate_etsy_pdfs_current` Chromium/network wait): 1 self-correcting FAIL (a stray probe file from an earlier killed run, deleted by the gate itself, confirmed gone), 31 warnings, all the standing documented sandbox limits (no Stripe/.env.secrets, no SSH deploy key, no mail credential). No mail credential (unchecked, not empty).
+
+**Went well.** Found 3 real misattributions as a side effect of the main fix.
+
+**Did not go well.** The first `preflight.py` attempt (no `--skip-tests`) was killed by a 540s shell timeout and left the stray probe file the rerun had to clean up.
+
+**Changing next cycle.** None.
+
+**Next.** Entryway or Family Room's partial tier (both 16%), or the smaller bathroom tiers; owner-gated queue unchanged.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~04:4x slot): previous work reconfirmed finished, same Garage/Nursery/Entryway handoff for the operator, 2 stale cold-read ledger entries closed
 
 NEXT FOR THE OPERATOR: Garage's remaining 31-row partial tier (16% uncovered, the largest of the four tied-top rooms), then Nursery and Entryway (16% each), in room-guide/keyword-demand mining, because nothing genuinely unblocked has moved since the 04:1x PM check-in and the state is independently reconfirmed unchanged this slot.

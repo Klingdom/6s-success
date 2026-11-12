@@ -797,6 +797,18 @@ _result_gallery_wall_genuine = rgc.score_room([_gallery_wall_genuine], [], _room
 check("a genuine 'gallery wall' row is NOT excluded by the gallery-walk pattern",
       _result_gallery_wall_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-12, mining Nursery's partial tier. Microsoft Outlook's UI
+# ribbon, nothing to do with a physical object, colliding on "ribbon" with
+# the nursery baby-clothing zone's own FAQ heading about ribbon ties.
+_ribbon_outlook = {"query": "how to organize ribbon in outlook", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_ribbon_outlook = rgc.score_room([_ribbon_outlook], [], _room)
+check("a 'ribbon in outlook' off-topic-context row is excluded",
+      _result_ribbon_outlook["on_topic_rows"] == 0)
+_ribbon_genuine = {"query": "how to organize ribbon spools", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_ribbon_genuine = rgc.score_room([_ribbon_genuine], [], _room)
+check("a genuine 'ribbon spools' row is NOT excluded by the outlook pattern",
+      _result_ribbon_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

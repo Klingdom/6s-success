@@ -1761,6 +1761,36 @@ def main():
         for f in fails:
             print(" -", f)
         return 1
+
+    # 54. Found live 2026-11-12, mining Nursery's remaining partial tier.
+    #     "bins" names a container type, the same shopping-noun role
+    #     "container"/"containers"/"basket"/"baskets" already play, not a
+    #     different subject from "how to organize baby clothes in cube
+    #     storage" or plain "storage for baby clothes".
+    new_format_words24 = ("bins",)
+    samples24 = {
+        "bins": "how to organize baby clothes in bins",
+    }
+    for word in new_format_words24:
+        if word in kd.content_words(samples24[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format24 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format24 - set(new_format_words24)
+    try:
+        for word in new_format_words24:
+            if word not in kd.content_words(samples24[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format24
+
+    if fails:
+        print("FAIL")
+        for f in fails:
+            print(" -", f)
+        return 1
     # Counted from the numbered cases in this file rather than typed, because
     # a hardcoded tally goes stale the first time somebody adds a case and
     # then the test reports a number that is simply false. It said 14/14

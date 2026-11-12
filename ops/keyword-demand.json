@@ -4971,11 +4971,11 @@
         "coat closet organization"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
-      "coverage": 0.333,
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
+      "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/guest-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -25334,14 +25334,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-baby-clothes.html",
       "best_page_title": "How to organize baby clothes by size, without drowning in them",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "bins"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize baby clothes in closet",
@@ -30667,12 +30665,12 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/guest-bathroom-deck.html",
-      "best_page_title": "The Guest Bathroom Deck: 60 cards, free to read",
-      "coverage": 0.667,
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/guest-bathroom-deck.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-a-guest-bathroom.html",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -34128,12 +34126,12 @@
         "how to organize paint and chemical storage"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-garage.html",
-      "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "best_page": "/zones/workshop-the-finishing-and-chemical-zone.html",
+      "best_page_title": "How to organize the workshop paint and chemical storage",
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-a-garage.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
         "plastic"
@@ -39673,12 +39671,12 @@
         "linen closet organization"
       ],
       "room": "",
-      "best_page": "/guest-bathroom-deck.html",
-      "best_page_title": "The Guest Bathroom Deck: 60 cards, free to read",
-      "coverage": 0.667,
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/guest-bathroom-deck.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-a-guest-bathroom.html",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -56644,6 +56642,6 @@
       ]
     }
   ],
-  "scored_against_commit": "13394af6a",
-  "scored_at": "2026-11-12T02:54:46Z"
+  "scored_against_commit": "da603f06d",
+  "scored_at": "2026-11-12T05:08:45Z"
 }
