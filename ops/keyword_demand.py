@@ -206,7 +206,26 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "recipes", "wooden", "necessities", "practical",
                           "teen", "labels", "dividers", "canvas", "pouch",
                           "church", "insert", "durable", "lightweight",
-                          "properly", "apartments", "large", "homes"))
+                          "properly", "apartments", "large", "homes",
+                          "cheap"))
+
+# "cheap" joined 2026-11-12, scheduled operator cycle, mining Patio or Deck's
+# partial tier (the 4-row tier tied with Garage/Kids Bedroom/Family Room at
+# 14% uncovered, the 18:1x PM check-in's own handoff). It is a price
+# qualifier on "outdoor storage ideas cheap", the same role "deals"/"free"
+# (already in this list, in "original"/context) already play, not a
+# different storage subject. Self-flattery checked first: 0 of 243 page
+# titles, 1 of 243 headings (`more-storage-wont-fix-clutter.html`, an
+# unrelated declutter article, not a zone/room/deck page that could win this
+# or any other query by the addition). The other three rows in the same
+# tier were investigated and NOT shipped: "gardening tool storage box" and
+# "how to organize indoor plants" both fail on a singular/plural or
+# gerund/root mismatch ("gardening" vs the destination's own "garden",
+# "plants" vs its "plant"), the same stemming-not-FORMAT_WORDS class the
+# Nursery mining cycle already named for "diaper"/"diapers" and left
+# un-shipped; "outdoor furniture seating storage" fails on "storage" itself,
+# already declined as the single riskiest word tried to date (A114, the
+# site's own central subject), never a FORMAT_WORDS candidate.
 
 # "canvas", "pouch", "church" and "insert" joined 2026-11-12, scheduled
 # operator cycle, mining Nursery's partial tier (the 20-row tier handed off

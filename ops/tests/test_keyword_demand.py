@@ -2174,6 +2174,44 @@ def main():
                      "it regresses them to gap (the 'bonus'/'den' trap, "
                      "A114)")
 
+    # 63. Found live 2026-11-12, scheduled operator cycle, mining Patio or
+    #     Deck's partial tier (4 rows, tied at 14% uncovered with Garage,
+    #     Kids Bedroom and Family Room). "cheap" is a price qualifier on
+    #     "outdoor storage ideas cheap", the same role "deals"/"free"
+    #     already play, not a different storage subject. Self-flattery
+    #     checked first: 0 of 243 titles, 1 of 243 headings
+    #     ("more-storage-wont-fix-clutter.html", an unrelated declutter
+    #     article, not a page that could win this or any other query by the
+    #     addition). The other three rows in the same tier were NOT
+    #     shipped: "gardening"/"plants" are singular-plural/gerund-root
+    #     mismatches against the destination's own "garden"/"plant", the
+    #     same stemming-not-FORMAT_WORDS class the Nursery cycle already
+    #     named for "diaper"/"diapers"; "storage" itself (on "outdoor
+    #     furniture seating storage") is the already-declined riskiest word
+    #     tried to date (A114).
+    new_format_words32 = ("cheap",)
+    samples32 = {"cheap": "outdoor storage ideas cheap"}
+    for word in new_format_words32:
+        if word in kd.content_words(samples32[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format32 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format32 - set(new_format_words32)
+    try:
+        for word in new_format_words32:
+            if word not in kd.content_words(samples32[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format32
+    # "storage" must NOT be a FORMAT_WORD: the site's own central subject,
+    # already the riskiest word tried to date (A114).
+    if "storage" in kd.FORMAT_WORDS:
+        fails.append("'storage' must not join FORMAT_WORDS: the site's own "
+                     "central subject, the riskiest word tried to date "
+                     "(A114)")
+
     if fails:
         print("FAIL")
         for f in fails:

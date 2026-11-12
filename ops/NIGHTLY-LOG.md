@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, scheduled operator cycle: mined Patio or Deck's partial tier (14% to 10%), "cheap" joined FORMAT_WORDS, fixed the GOALS.md cluster citation it drifted
+
+**Did.** Attached clean: fetch, unshallow (arrived shallow and detached), checkout main, ff-only onto origin/main (8 commits). Read CLAUDE.md, BACKLOG-2026-09-07.md sections 0-7, the last entries of NIGHTLY-LOG.md (18:1x PM check-in's own handoff: Patio or Deck's 4-row partial tier, then Kids Bedroom). GitHub's 31 open issues pulled fresh: unchanged since 2026-11-08, all decision/blocked-on-art, none from Phil. room_guide_underperformance.py re-run live: Patio or Deck tied at 14% with Garage/Kids Bedroom/Family Room, each already mined or declined; its own tier is exactly the 4-row handoff. "cheap" (sole unmatched word on "outdoor storage ideas cheap") joined FORMAT_WORDS, a price qualifier like "deals"/"original" already there. "gardening tool storage box" and "how to organize indoor plants" declined: singular/plural or gerund/root stemming mismatches ("gardening" vs the page's "garden", "plants" vs "plant"), the same class already left unshipped for "diaper"/"diapers". "outdoor furniture seating storage" declined: fails on "storage" itself, the already-declined riskiest word (A114).
+
+**Verified.** Self-flattery first: 0/243 titles, 1/243 headings (an unrelated declutter article). Fail-then-pass: test case 63 added to test_keyword_demand.py, stashed the source fix, watched it fail with the exact pre-fix message, restored, 69/69 passed. Full before/after score diff across both corpora: 0 status regressions, 1 targeted partial-to-covered, 1 best_page change (same row in both corpora, a genuine fix off an unrelated article onto the real Garage zone). Patio or Deck re-scored 14% to 10% (3 partial of 29 on-topic left). gate_goals_keyword_cluster_citation_current caught real drift this fix caused: "cheap" is itself a cheap/budget/DIY cluster member, so GOALS.md's citation (80/17/1/98) went stale the moment the fix landed; corrected in place to 81/16/1/98, both the original sentence and a new dated correction, re-verified clean. test_keyword_demand.py, test_room_guide_candidates.py, test_room_guide_underperformance.py, test_gate_goals_keyword_cluster_citation_current.py, test_rotate_backlog.py, check_urls.py, fix_dashes.py, affiliate.py, check_sellable.py, link_graph_report.py, cold_read_ledger.py all clean. preflight.py --fast backgrounded: 0 real FAIL through every gate reached, killed at gate_tests's documented sandbox limit (test_audit_catalog.py), same standing limit every recent cycle hits. inbox_agent.py: no mail credential here, unchecked.
+
+**Went well.** Catching the cluster-citation gate's own warning as a live consequence of this cycle's fix, not a pre-existing defect, and fixing it the same cycle rather than leaving it for the next one to rediscover.
+
+**Did not go well.** Nothing new.
+
+**Changing next cycle.** Nothing.
+
+**Next.** Kids Bedroom's residual declutter/organize gap (no safe wording fix found so far; "room"/"rooms" already failed self-flattery), then the standing Phil-gated queue.
+
+Pushed to main: this log entry, the keyword_demand.py fix and its test, BACKLOG-2026-09-07.md (A121, plus a rotation since it crossed the 15-row cap), GOALS.md's citation correction, regenerated command deck. No price, product or site page touched; scorer-only change under ops/, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, PM check-in (18:1x slot): previous work (Kitchen mining) confirmed finished, state reconfirmed, no new work, no notification
 
 **Previous work finished.** Kitchen mining (top entry, this cycle's own handoff) shipped and verified: tests passed, 0 status regressions, preflight clean through every reached gate. CI on that push (38464da, now in progress) and the prior three pushes all green.
