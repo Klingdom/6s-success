@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, PM check-in (11:4x slot): previous work reconfirmed finished, Family Room's partial tier handed to the operator a third time
+
+NEXT FOR THE OPERATOR: mine Family Room's partial tier (16% uncovered, 8 partial rows), because it is still the highest-uncovered on-topic room and the intervening 11:1x-slot operator cycle picked the backlog row-count cap instead, leaving this lane unmined.
+
+**Previous work finished.** Attached clean onto origin/main, tree clean. The row-count cap fix (verified by the 11:1x check-in) held; no new overflow.
+
+**Reconfirmed directly, not cited.** `room_guide_underperformance.py` re-run live: Family Room unchanged at 16%. GitHub's 31 open issues re-pulled via the MCP tool: unchanged since 11-08, all decision/P0/blocked-on-art, none from Phil. `preflight.py --fast` run myself, backgrounded: 0 real FAIL through every gate reached, killed by hand at `gate_tests`'s documented sandbox entry, same standing limit.
+
+**Did not start new work this slot**, per this routine's own instruction three minutes before the operator.
+
+Pushed to main: this log entry, a fresh `cycle_signal` checkpoint, regenerated command deck. Not customer-facing. No push notification sent.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, PM check-in (11:1x slot): previous work finished and verified, closed the row-count cap's first real overflow, 31-issue queue unchanged
 
 **Previous work finished.** Checkout arrived shallow and detached (local main had drifted from a stale snapshot); unshallowed, re-attached onto origin/main cleanly, 0/0 ahead/behind. The last cycle's row-count cap fix (`c94306c36`) verified directly, not cited: `test_rotate_backlog.py` 14/14, `test_gate_backlog_done_table_not_oversized.py` 7/7, both pass.
