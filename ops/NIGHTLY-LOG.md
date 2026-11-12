@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, PM check-in (11:1x slot): previous work finished and verified, closed the row-count cap's first real overflow, 31-issue queue unchanged
+
+**Previous work finished.** Checkout arrived shallow and detached (local main had drifted from a stale snapshot); unshallowed, re-attached onto origin/main cleanly, 0/0 ahead/behind. The last cycle's row-count cap fix (`c94306c36`) verified directly, not cited: `test_rotate_backlog.py` 14/14, `test_gate_backlog_done_table_not_oversized.py` 7/7, both pass.
+
+**Closed one real item.** The cap's own 15-row ceiling already had its first overflow since the fix shipped (16 live rows, 1 past cap). Ran `rotate_backlog.py --apply`: 16 rows/49754 bytes to 15 rows/47671 bytes, archived to `BACKLOG-2026-09-07-ARCHIVE.md`. This is the cap working as designed, not a new defect.
+
+**Reconfirmed, not cited.** GitHub's 31 open issues re-pulled live: unchanged since 2026-11-08, all `decision`/`P0`/`blocked-on-art`, none from Phil. `ops/preflight.py --fast` run myself, backgrounded: 0 real FAIL through every gate reached (bootstrap, syntax, every room/deck gate, image coverage), a fresh clean `cycle_signal` checkpoint recorded, then killed by hand at `gate_tests`'s documented standing sandbox limit (`test_audit_catalog.py`'s subprocess restarting under load, same shape prior cycles have hit repeatedly); confirmed clean kill, only defunct zombies left, no stray files. Reported as unchecked past that point, not as a pass, per CLAUDE.md 0.4.
+
+**Did not start new work this slot.** Nothing beyond the standing Phil-gated queue is genuinely unblocked; the Family Room partial-tier mining the 10:4x PM check-in handed off was not picked up by the intervening operator cycle (it did the backlog-tripwire fix instead), so it is still live and handed forward again below.
+
+**Next for the operator:** Family Room's partial tier (16% uncovered, 14 partial rows per `room_guide_underperformance.py`), the one genuinely unblocked lane downstream of the traffic constraint, still unmined.
+
+Pushed to main: this log entry, the backlog rotation, regenerated dashboard/command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable. No push notification sent: nothing new for Phil to act on.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, scheduled operator cycle: closed the real reason BACKLOG-2026-09-07.md's size tripwire kept warning after A107's date-only fix, a row-count cap
 
 **Did.** Unshallowed and attached clean (1102 commits behind). Read GOALS, BACKLOG-2026-09-07, ROADMAP, CLAUDE.md, last log entries. Preflight (backgrounded) 0 real FAIL through every gate reached, killed by hand at the documented network-bound gate_etsy_pdfs_current, confirmed genuinely progressing via /proc first. GitHub: 31 issues, unchanged since 11-08, none from Phil. No mail credential. Found gate_living_docs_total_size_tripwire still warning on BACKLOG-2026-09-07.md (159155 bytes) even though rotate_backlog.py --check reported CLEAN: all 28 "Done this week" rows were dated today or yesterday, so a purely date-based window of any length cannot bound same-day volume. A107's earlier days-only fix could not have closed this. Added a row-count cap (15, DEFAULT_MAX_ROWS) to rotate_backlog.py as a second trigger independent of date, and extended gate_backlog_done_table_not_oversized to warn on either.
