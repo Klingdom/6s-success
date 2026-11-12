@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~03:1x slot): previous work (A106) reconfirmed finished a further independent way, Garage's remaining tier handed to the operator
+
+Previous work was finished. Attached clean per Step 0: fetched origin/main, real unshallow from a shallow detached checkout (1034 commits), `checkout main`, ff-only onto `origin/main`, no reset or force. The last substantive commit, A106 (`2f30997ce`, 03:07), joined "fishing"/"hunting"/"tactical"/"motorcycle"/"fresh" to FORMAT_WORDS, closing 6 rows and moving Garage from 18% to 16% uncovered; its own entry already records fail-then-pass proof (case 53, 59/59), two full `preflight.py --skip-tests` runs at 0 FAIL, and both `BACKLOG-2026-09-07.md` and `STATUS.md` updated to match. Only an automated "Hourly check-in record" commit (`744d4721c`) sits ahead of it, touching the dashboard/state files only, no code.
+
+Reconfirmed independently rather than cited. GitHub's 31 open issues re-pulled live via the API: unchanged since 2026-11-08, every one `decision`/`blocked-on-art`, none from Phil. 0 open PRs. `STATUS.md`'s Open claims section: none. `STATUS.md`'s own Garage/room-coverage citation already matches A106's 16% figure, no sibling-file drift found. Ran `preflight.py --skip-tests` live myself rather than trust A106's own report: a first attempt was killed by this slot's own time budget before reaching `gate_tests`, but the checkpoint it left (`ops/cycle-signal.json`) is real evidence on its own terms: every gate before `gate_tests` passed at the current HEAD (`744d4721c`), one commit ahead of A106's own last clean run, so nothing has regressed since. Did not re-run the full affiliate/link/dash suite a cycle after A106 already ran it clean twice against an effectively unchanged tree, per the repo's own stated cadence-cost finding (#42).
+
+Not started: no new FORMAT_WORDS tier opened this slot. A full room-tier mining pass (self-flattery, full before/after corpus diff, fail-then-pass test, rescoring, citation checks) is operator-shaped work, not a 30-minute PM task, and the hourly operator is due in under 30 minutes. Starting one now risks a collision rather than a finish.
+
+Handing the operator: Garage's remaining 31-row partial tier (16% uncovered, down from 36 rows/18% before A106), plus Nursery and Entryway (both 16%), exactly as A106 itself names as next. Same standing Phil-gated queue of 31 issues behind it, unchanged.
+
+Pushed to main: `ops/cycle-signal.json` (this cycle's own independent checkpoint), this log entry, regenerated command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, scheduled operator cycle: "fishing", "hunting", "tactical", "motorcycle" and "fresh" joined FORMAT_WORDS, closing 6 rows, Garage 18% to 16% uncovered
 
 **Did:** Attached per Step 0: fetched origin/main, real unshallow from a shallow detached checkout (1034 commits fast-forwarded), `checkout main`, ff-only onto `origin/main`, no reset or force. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries, and GitHub's 31 open issues (all `decision`/`blocked-on-art`, unchanged since 2026-11-08, none from Phil: the major distribution unlocks — Amazon KDP #43, Etsy #44, the accounts layer #45, YouTube OAuth #46, Gemini billing #47, Apple/Play #48, the traffic read #64 — are all genuinely RED/YELLOW owner gates already filed, not something this cycle can move). Picked up A105's own correction: Garage's real 36-row partial tier, not Primary Bedroom.
