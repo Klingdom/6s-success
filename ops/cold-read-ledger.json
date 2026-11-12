@@ -1028,8 +1028,8 @@
     },
     "preflight.py": {
       "status": "clean",
-      "date": "2026-11-11",
-      "note": "Re-ledgered 2026-11-11 PM check-in: read both diffs since the 2026-11-08 entry directly. ec38ce412 lets gate_owner_actions_items_tracked find an issue citation in the heading, not only the body, fixing a real false positive (item 24 cites #65 in its own heading); fail-then-pass proved (2/8 to 8/8). 5cfdb2cf9 adds gate_nightly_log_entries_not_overlong, a WARNING-only gate flagging NIGHTLY-LOG.md entries over 750 words (3x the operating prompt's own 250-word budget), scoped to the file's own retention-plus-buffer window so it never relitigates archived history; wired into main() right after its sibling gate_nightly_log_not_oversized; fail-then-pass proved in its own test file (4/4). Both changes read in full, both sound, nothing to flag."
+      "date": "2026-11-12",
+      "note": "Re-ledgered PM check-in (12:1x slot): read the one diff since the 2026-11-11 entry directly, c94306c36's extension of gate_backlog_done_table_not_oversized (the row-count cap trigger alongside the existing date trigger). Logic checked: over_cap = max(0, len(rows) - (DEFAULT_MAX_ROWS + 10)), warns when either trigger fires, message combines both reasons via \" and \".join. Ran both fail-then-pass tests directly rather than citing the commit's own claim: test_gate_backlog_done_table_not_oversized.py 7/7, test_rotate_backlog.py 14/14, both genuinely pass. py_compile clean on both touched files. Nothing to flag."
     },
     "prerender_shop.py": {
       "status": "clean",

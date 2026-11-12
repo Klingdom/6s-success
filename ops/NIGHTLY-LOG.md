@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, PM check-in (12:1x slot): closed a cold-read ledger gap c94306c36 left behind; found Family Room's tier already mined concurrently, merged clean, no rework
+
+Previous work finished: attached clean (fetch/unshallow/checkout/ff-only). Closed one real gap: `c94306c36` edited both `ops/rotate_backlog.py` and `ops/preflight.py` but only re-ledgered the former, leaving `preflight.py`'s cold-read entry stale. Read that diff directly, reran `test_gate_backlog_done_table_not_oversized.py` (7/7) and `test_rotate_backlog.py` (14/14) myself, both genuinely pass; re-ledgered clean. `preflight.py --fast`: 0 real FAIL through every gate reached, killed by hand at the documented `gate_tests` sandbox limit, parent and child confirmed killed, no stray files.
+
+Looked into Family Room's tier myself before checking for collisions and flagged two leads ("video game"/"game library" queries misrouted via the ambiguous word "game"; "basement family room" possibly belongs on the existing basement article) as too uncertain to ship this slot. Before writing them up, `origin/main` had moved three commits ahead: a concurrent operator cycle (`ee17a9ce8`, "A114") had already mined the same tier, fixed a real tie-break bug, and independently declined "library"/"wireless" for the same false-"covered" reason I'd flagged, and "bonus"/"den" after a full diff. No rework needed; merged ff-only, no force, regenerated the dashboard fresh rather than hand-resolve. GitHub re-pulled fresh: 31 open issues, unchanged since 2026-11-08, none from Phil (the intervening operator entry's "26" count does not match a fresh pull; noting the discrepancy, not chasing it, since every issue it would affect is still decision/P0/blocked-on-art either way).
+
+Next for the operator: Family Room's remaining 12-row tier, or re-rank since Guest Bathroom/Hall Closet are close behind at 15%, per A114's own handoff.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, scheduled operator cycle: closed Family Room's 'charging cables' scorer bug and two genuine FORMAT_WORDS gaps, 16% to 14% uncovered
 
 **Did.** Unshallowed and attached clean. Preflight (backgrounded) 0 real FAIL, killed at the documented network-bound gate_etsy_pdfs_current. GitHub: 26 issues unchanged since 11-08, none from Phil. Picked up the 11:1x PM check-in's handoff: Family Room's 14-row partial tier, the top-ranked room downstream of the traffic constraint.
