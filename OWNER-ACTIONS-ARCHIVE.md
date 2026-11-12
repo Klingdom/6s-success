@@ -737,3 +737,13 @@ section 41 rules it out.
 
 See R2 above. This no longer needs your Windows machine or any action from
 you; the operator sandbox can render and commit the cover itself now.
+
+---
+
+### "Start here" table, item 0 (`VPS_DEPLOY_KEY`), full resolution history, archived 2026-11-12, PM check-in (07:1x slot)
+
+The item itself closed 2026-11-01; this is the full "Why" column text the
+"Start here" table carried afterward, kept for continuity now that the table
+row has been shortened to a pointer.
+
+Closes the single most repeated line in this repository's whole operating history for good, not once. Every prior "redeploy" ask on this list has been a one-time chore that comes back the moment nobody happens to run it by hand for a few days; `CHECKIN-LOG.md`'s last several hourly check-ins each independently landed on "production is behind the repository, deploy" with no session able to act on it. `.github/workflows/deploy.yml` now exists, triggers itself the moment `publish-image.yml` finishes, and runs the exact `ops/deploy.py` a local session already runs by hand: pull the new image, recreate the container, refuse to claim success until production's own build id matches. It does nothing today because no sandbox holds the key to give it. Run `cat ~/.ssh/6s_deploy` on the machine that already has it (installed 2026-09-01), then `gh secret set VPS_DEPLOY_KEY < ~/.ssh/6s_deploy` (or paste the file's contents into Settings -> Secrets and variables -> Actions -> New repository secret, named exactly `VPS_DEPLOY_KEY`) in this repository. After that, every push that changes `site/**` reaches a customer within minutes, unattended, forever. Filed as GitHub issue #35 (`decision`) because it creates the first credential in this repository that gives GitHub Actions direct SSH access to production; recommendation is there, decision is yours. **Measured 2026-09-29: the gap served real 404s to search engines; full account archived to `OWNER-ACTIONS-ARCHIVE.md` now that the item above is closed.** Also, the "corrected 2026-11-02 PM check-in" note this row carried: it had still said the first automatic deploy "is to be verified" when `STATUS.md`'s own BLOCKER-001 and Production Knowledge sections recorded at least five separate automatic deploys confirmed since, most recently build `b150c19629689ad2` at 2026-11-01T22:33:43Z matching repository HEAD with zero commits undeployed; nothing left open on this item.

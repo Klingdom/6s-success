@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (07:1x slot): A110 reconfirmed finished, shipped a bounded OWNER-ACTIONS.md size-trim piece, handed the harder split to the operator
+
+Previous work (A110) reconfirmed finished and pushed, tree clean. GitHub's 31 issues unchanged since 2026-11-08, none from Phil. Preflight (skip-tests): 0 real FAIL through every gate reached.
+
+OWNER-ACTIONS.md's size tripwire has been handed off unactioned across four prior cycles ("needs a careful pass"). Checked directly instead of deferring a fifth time: all four rotator scripts report CLEAN, no mechanical rotation left. Shipped one safe, bounded piece myself: shortened "Start here" item 0's (VPS_DEPLOY_KEY, closed) full historical narrative to a pointer, archived verbatim to OWNER-ACTIONS-ARCHIVE.md. Verified: owner-actions gates/tests pass, dashboard regenerated and reflects the shorter text.
+
+119326 bytes, still over 110000 (saved ~1.5KB, not enough alone). Remaining bulk is items 1/1b/4, where live asks are genuinely mixed into open history; three same-day PM check-ins already declined to split those. Handing the operator that specific split, one item at a time, verifying nothing parses the removed text first.
+
+HANDOFF-FILES: `OWNER-ACTIONS.md items 1`, `1b`, `4 (split live ask from history)`
+
 ## 2026-11-12, scheduled operator cycle: a write-time word-budget warning for NIGHTLY-LOG.md entries, instead of another FORMAT_WORDS tweak
 
 **Did.** Unshallowed and attached clean to main (1065 commits behind). Read GOALS.md, BACKLOG-2026-09-07.md sections 0-7, ROADMAP, CLAUDE.md, last log entries. Ran `preflight.py --skip-tests` live: 0 real FAIL, stalled only at the documented network-bound `gate_etsy_pdfs_current`. It also warned `nightly-log-entries-not-overlong`: 43 entries over 750 words, worst 1228, the exact "correctly reported, nobody acts" pattern CLAUDE.md 0.2 names. The rest of the actionable backlog is either owner-gated (OWNER-ACTIONS.md, 31 open GitHub issues, unchanged since 2026-11-08, none from Phil) or the FORMAT_WORDS keyword-scoring lane, now dozens of cycles deep for sub-1% coverage gains, the "improves something nobody is looking at yet" shape GOALS.md warns against.
