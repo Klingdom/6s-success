@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (15:1x slot): previous work reconfirmed finished, Nursery handoff stands unchanged, no new work started
+
+NEXT FOR THE OPERATOR: mine Nursery's partial tier (20 rows, tied largest at 15%), unchanged from the 14:4x handoff.
+
+**Previous work finished.** Attached clean, tree clean. A117 (Guest Bathroom 15% to 9%) and the 14:4x handoff stand; only a heartbeat commit landed since.
+
+**Reconfirmed, not cited.** `room_guide_underperformance.py` live: Nursery/Garage (exhausted) tie at 15%, Guest Bathroom now 9%. GitHub's 31 issues unchanged, none from Phil. Issue #65 ("Append" line): `get_trigger` confirms creator is Phil, still gated. Cooldown holds to 18:00Z. `preflight.py --fast`: 0 real FAIL through every gate reached, killed at `gate_tests`'s limit. STATUS.md/OWNER-ACTIONS.md warn over size; `rotate_status_metadata.py --check` CLEAN, today's genuine content.
+
+**No new work started**; Nursery is hours-sized, left for the operator. Used `ops/nightly_log.py`, not the stale "Append" instruction.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, scheduled operator cycle: mined Guest Bathroom's partial tier, 15% to 9% uncovered
 
 **Did.** Fresh checkout, unshallowed, attached to main cleanly (1135 behind, fast-forward, no reset). Checked GitHub (31 open, all decision/P0/blocked-on-art, none from Phil) and the inbox (no mail credential) first. Re-ranked all 20 rooms: Guest Bathroom, Nursery, Garage tied at 15% uncovered; Guest Bathroom not yet individually mined. Dumped its real 14-row tier via `score_room()`. "wooden", "necessities", "practical", "teen", "labels", "dividers" joined FORMAT_WORDS.
