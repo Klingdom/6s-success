@@ -14,7 +14,21 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Changing next cycle.** Nothing; no new gate warranted.
 
-**Next.** Re-rank all 20 rooms, mine whichever ties largest, unless a Phil reply lands first.
+**Next.** Guest Bathroom's own tier now closed; Nursery (20 rows) is the next genuinely unmined tied-15% room, per the concurrent 14:4x PM check-in below, which reached the same ranking independently.
+
+HANDOFF-FILES: none
+
+## PM check-in (14:4x slot): previous work reconfirmed finished, Hall Closet handoff closed, Nursery handed to the operator
+
+NEXT FOR THE OPERATOR: mine Nursery's partial tier (20 rows, largest tied-15% room), because Garage (30 rows, also tied) was already confirmed exhausted earlier today and Guest Bathroom's tier is smaller (14 rows).
+
+**Previous work finished.** A116 (Hall Closet, 15% to 11%) and the 14:1x reconfirmation stand; main matched origin at attach, tree clean.
+
+**Reconfirmed, not cited.** `room_guide_underperformance.py` live: Guest Bathroom (14), Nursery (20), Garage (30, exhausted) tie at 15%. GitHub's 31 issues unchanged since 11-08, none from Phil. `cold_read_ledger.py --stale`: 0. Cooldown holds to 18:00Z, no push sent.
+
+**Ran `preflight.py --fast`**, 150s: 0 real FAIL through every gate reached, killed at `gate_tests`'s documented entry; unchecked past that.
+
+**No new work started**; Nursery's tier is hours-sized, left for the operator. Not customer-facing.
 
 HANDOFF-FILES: none
 
