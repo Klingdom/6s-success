@@ -5232,14 +5232,13 @@
       "room": "",
       "best_page": "/zones/mudroom-the-family-hook-zone.html",
       "best_page_title": "How to organize the mudroom coat hooks",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/entryway-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "decorative",
-        "wooden"
+        "decorative"
       ]
     },
     {
@@ -16649,14 +16648,13 @@
       "room": "",
       "best_page": "/zones/patio-or-deck-the-garden-and-plant-care-zone.html",
       "best_page_title": "How to organize the patio or deck garden area",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/patio-or-deck-the-garden-and-plant-care-zone.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "build",
-        "wooden"
+        "build"
       ]
     },
     {
@@ -41958,14 +41956,12 @@
       "room": "",
       "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "best_page_title": "How to organize the guest bathroom towels",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "necessities"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "necessities for bathroom organization",
@@ -41980,14 +41976,12 @@
       "room": "",
       "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "best_page_title": "How to organize the guest bathroom towels",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/decluttering-vs-organizing.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "necessities"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "newborn baby nursery organizer",
@@ -47814,14 +47808,12 @@
       "room": "",
       "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "best_page_title": "How to organize the guest bathroom towels",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/decluttering-vs-organizing.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "practical"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "primary bathroom design ideas",
@@ -51745,14 +51737,12 @@
       "room": "",
       "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "best_page_title": "How to organize the guest bathroom towels",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/decluttering-vs-organizing.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "teen"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "the messy room problem",
@@ -56207,12 +56197,12 @@
         "how to organize power tool storage"
       ],
       "room": "",
-      "best_page": "/zones/workshop-the-power-tool-storage.html",
-      "best_page_title": "How to organize the workshop power tool storage",
-      "coverage": 0.667,
+      "best_page": "/zones/garage-the-power-tool-and-battery-zone.html",
+      "best_page_title": "How to organize the garage power tool storage",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/zones/workshop-the-power-tool-storage.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -56228,14 +56218,12 @@
       "room": "",
       "best_page": "/zones/guest-bathroom-the-guest-vanity-storage.html",
       "best_page_title": "How to organize the guest bathroom vanity storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bathroom-the-guest-vanity-storage.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "wooden"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "woodworking plans for nightstand",
@@ -56569,6 +56557,6 @@
       ]
     }
   ],
-  "scored_against_commit": "c583c2d5e",
-  "scored_at": "2026-11-12T13:54:21Z"
+  "scored_against_commit": "4d69bfd3a",
+  "scored_at": "2026-11-12T15:02:22Z"
 }

@@ -203,9 +203,43 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "teacher", "teachers", "creatives", "productivity",
                           "minimal", "category", "pictures",
                           "system", "dispose", "fold", "stored", "wrapping",
-                          "recipes"))
+                          "recipes", "wooden", "necessities", "practical",
+                          "teen", "labels", "dividers"))
 
-# "system" (singular only), "dispose", "fold", "stored", "wrapping" and
+# "wooden", "necessities", "practical", "teen", "labels" and "dividers"
+# joined 2026-11-12, scheduled operator cycle, mining Guest Bathroom's
+# partial tier (14 rows, tied with Nursery and Garage at 15% uncovered,
+# the top tier this cycle). "wooden" is the adjectival form of "wood"
+# (added 2026-11-11), the same material-descriptor role; "necessities" and
+# "practical" are generic qualifiers on the same request, the same role
+# "essentials"/"simple" already play; "teen" names who uses the space, not
+# a different subject, the same role "her"/"him"/"men"/"women" already
+# play; "labels" and "dividers" are organizing-product nouns the
+# destination zones already answer in generic terms, the same role
+# "container"/"baskets"/"bins" already play. "clutter" and "supplies" were
+# both tried on the same tier and declined: self-flattery found "supplies"
+# in 6 of 243 titles and 11 headings (the same breadth risk "office
+# supplies" was already flagged for on Home Office's own Supply Cabinet
+# zone) and "clutter" in 1 title and 7 headings, both well over the 0-2
+# bar every shipped word above cleared; neither was taken further. "small"
+# ("small guest bathroom storage ideas") and "box" ("how to organize vanity
+# box") were also on this tier and declined without re-testing: "small" is
+# GOALS.md's own tracked "small space" cluster, and "box" already caused
+# real best_page misattributions when tried on Hall Closet's tier (A114).
+# "declutter" was not re-tried, settled since A101/A114. Self-flattery
+# checked first for all six shipped words, using the same head_words/
+# title_words fields the scorer itself reads: 0 of 243 titles for all six,
+# 0 headings for five, 2 of 243 for "wooden" (unrelated garage/workshop
+# wood-material headings, not gaming). Checked the full corpus before
+# shipping (CLAUDE.md 5c/5d): a full before/after `score_rows()` diff
+# across both corpora found exactly 1 `best_page` change, a tie between
+# two legitimate power-tool-storage pages in different rooms (Workshop's
+# own Power Tool Storage zone and Garage's Power Tool and Battery Zone)
+# resolved the other way on "wooden power tool organizer", not a
+# misattribution onto an unrelated page, and 7 status moves toward
+# covered, 0 regressions. Neither tracked GOALS.md cluster ("small space",
+# "cheap/budget/DIY") contains any of the six words; re-derived directly,
+# 0 drift.
 # "recipes" joined 2026-11-12, mining Hall Closet's partial tier (24 rows,
 # the largest room tied at 15% uncovered). "system" names the same request
 # as "organizer"/"organization" already name ("a storage system" asks for

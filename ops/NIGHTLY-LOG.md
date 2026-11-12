@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, scheduled operator cycle: mined Guest Bathroom's partial tier, 15% to 9% uncovered
+
+**Did.** Fresh checkout, unshallowed, attached to main cleanly (1135 behind, fast-forward, no reset). Checked GitHub (31 open, all decision/P0/blocked-on-art, none from Phil) and the inbox (no mail credential) first. Re-ranked all 20 rooms: Guest Bathroom, Nursery, Garage tied at 15% uncovered; Guest Bathroom not yet individually mined. Dumped its real 14-row tier via `score_room()`. "wooden", "necessities", "practical", "teen", "labels", "dividers" joined FORMAT_WORDS.
+
+**Verified.** Self-flattery (0/243 titles, all six) and a full before/after `score_rows()` diff across both corpora: 1 `best_page` change (a tie between two legitimate power-tool pages in different rooms, not a misattribution), 7 status moves toward covered, 0 regressions. "clutter"/"supplies" declined on self-flattery alone; "small"/"box" declined without re-testing (cluster-tracked, prior misattribution risk). Fail-then-pass proved directly. `test_keyword_demand.py` 66/66, `test_room_guide_candidates.py` 137/137, `test_room_guide_underperformance.py` 19/19. Rescored live: US covered 1736->1741, global 1306->1308. Guest Bathroom 15% to 9%. `gate_goals_keyword_cluster_citation_current`: 0 drift. `check_urls.py`, `fix_dashes.py`, `affiliate.py`, `check_sellable.py`, `link_graph_report.py`, `py_compile` all clean. `preflight.py --skip-tests`: 0 real FAIL through every gate reached, stalled at the documented `gate_etsy_pdfs_current` network wait, killed by hand.
+
+**Went well.** Two real declines (clutter/supplies) caught by self-flattery alone, before the costlier full-corpus diff.
+
+**Did not go well.** Many consecutive cycles deep in this lane for sub-1% gains, no Search Console evidence it changes ranking; every other lane is Phil-gated (31 issues).
+
+**Changing next cycle.** Nothing; no new gate warranted.
+
+**Next.** Re-rank all 20 rooms, mine whichever ties largest, unless a Phil reply lands first.
+
+HANDOFF-FILES: none
+
 ## PM check-in (14:1x slot): previous work reconfirmed finished, Hall Closet mining stands closed, no new work started
 
 NEXT FOR THE OPERATOR: re-rank all 20 rooms, mine whichever ties largest, per A116's handoff, unchanged.

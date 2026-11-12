@@ -2010,6 +2010,53 @@ def main():
                      "ambiguous and marking it covered would be "
                      "dishonest labelling (A101)")
 
+    # 60. Found live 2026-11-12, mining Guest Bathroom's partial tier (14
+    #     rows, tied with Nursery and Garage at 15% uncovered). "wooden" is
+    #     the adjectival form of "wood" (added 2026-11-11), the same
+    #     material-descriptor role. "necessities"/"practical" are generic
+    #     qualifiers, the same role "essentials"/"simple" already play.
+    #     "teen" names who uses the space, the same role
+    #     "her"/"him"/"men"/"women" already play. "labels"/"dividers" are
+    #     organizing-product nouns the destination zones already answer in
+    #     generic terms, the same role "container"/"baskets"/"bins" already
+    #     play. A full before/after score_rows() diff across both corpora
+    #     found exactly 1 best_page change, a tie between two legitimate
+    #     power-tool-storage pages in different rooms, and 7 status moves
+    #     toward covered, 0 regressions.
+    new_format_words29 = ("wooden", "necessities", "practical", "teen",
+                          "labels", "dividers")
+    samples29 = {
+        "wooden": "wooden vanity with storage",
+        "necessities": "necessities for bathroom organization",
+        "practical": "practical bathroom organization ideas",
+        "teen": "teen bathroom organization ideas",
+        "labels": "linen cupboard organisation labels",
+        "dividers": "linen cupboard organisation shelf dividers",
+    }
+    for word in new_format_words29:
+        if word in kd.content_words(samples29[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format29 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format29 - set(new_format_words29)
+    try:
+        for word in new_format_words29:
+            if word not in kd.content_words(samples29[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format29
+    # "small" and "box" were tried on the same tier and deliberately NOT
+    # added: "small" is GOALS.md's own tracked "small space" cluster, and
+    # "box" already caused real best_page misattributions on Hall Closet's
+    # tier (A114).
+    for declined in ("small", "box"):
+        if declined in kd.FORMAT_WORDS:
+            fails.append("%r must not join FORMAT_WORDS: already "
+                         "declined (cluster-tracked or misattribution "
+                         "risk)" % declined)
+
     if fails:
         print("FAIL")
         for f in fails:
