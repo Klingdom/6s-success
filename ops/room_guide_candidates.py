@@ -686,7 +686,18 @@ OFF_TOPIC_CONTEXT = re.compile(
     # the real "gallery wall" sense is already covered separately via
     # zone-also-called.json's "photos zone" entry, so excluding this phrase
     # cannot suppress a genuine match.
-    r"\bgallery walk\b",
+    r"\bgallery walk\b|"
+    # Found 2026-11-12, mining Nursery's partial tier. "how to organize
+    # ribbon in outlook" lands on the Nursery's baby-clothing zone purely on
+    # "organize"/"ribbon" word overlap with that page's own FAQ heading
+    # (ribbon ties on hand-me-down clothing, a choking-hazard safety item);
+    # the query itself means Microsoft Outlook's UI ribbon, nothing to do
+    # with a physical object, the same different-domain collision
+    # "gardening series"/"dental"/"benchmark advance" already exclude above.
+    # Checked against both harvests before adding: "outlook" appears in
+    # exactly this one row across either corpus, already partial, 0
+    # covered, so excluding it cannot suppress a genuine match.
+    r"\boutlook\b",
     re.I)
 
 

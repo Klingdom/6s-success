@@ -198,7 +198,51 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "planning", "workplace", "disposal", "basket",
                           "baskets", "mount", "workout", "plans", "interior",
                           "begin", "extreme", "smart", "pdf", "fishing",
-                          "hunting", "tactical", "motorcycle", "fresh"))
+                          "hunting", "tactical", "motorcycle", "fresh",
+                          "bins"))
+
+# "bins" joined 2026-11-12, mining Nursery's remaining partial tier (tied
+# top-ranked with Entryway/Family Room/Garage at 16% uncovered; Garage was
+# mined the same cycle by the entry just below, so this picked a different
+# tied room rather than re-mining the same one twice). "how to organize
+# baby clothes in bins" asks the same question "how to organize baby
+# clothes in cube storage" or plain "storage for baby clothes" already
+# does, "bins" naming a container type rather than a different subject,
+# the same shopping-noun role "container"/"containers"/"basket"/"baskets"
+# already play. Self-flattery checked first (`page_inventory()`'s own
+# title_words/head_words): 0 of 243 titles, 16 of 243 headings, the same
+# shape "basket"/"baskets" (14/243) already cleared. Checked the full
+# corpus before shipping, not sampled: a full before/after `score_rows()`
+# diff across both corpora found 0 wrong-direction best_page changes and 7
+# real improvements (misattributions this word fixes, not causes): "coat
+# closet organization bins" and both "linen closet ... bins" rows move off
+# the wrong room's deck page onto the correct Entryway/Hall Closet article,
+# and "how to paint plastic storage bins" moves off the Garage article onto
+# the Workshop's own Finishing and Chemical Zone, each the same
+# "an improvement, not a misattribution" shape the 2026-11-11 "baskets"
+# entry already named. One row closes outright: "how to organize baby
+# clothes in bins" partial to covered. "storage"/"shelf"/"shelves"/
+# "cupboard" were checked on the same Nursery tier and declined: each is a
+# real distinguishing content word, not a qualifier (56, 51, 11 and 12 of
+# 243 headings respectively, far past the bar anything shipped here has
+# ever cleared, "storage" being the site's own central subject), so
+# dropping any of them from scoring would blur real distinctions rather
+# than remove a synonym. Also found on the same tier: "how to organize
+# ribbon in outlook" and "how to organize ribbon spools" both false-match
+# Nursery's baby-clothing zone purely on the word "ribbon" (that page's own
+# FAQ heading uses it for ribbon ties on clothing, a choking-hazard safety
+# item, not gift-wrap or craft ribbon). "outlook" is genuinely off-topic,
+# Microsoft Outlook's UI ribbon rather than a physical object, the same
+# shape as the existing "benchmark advance"/"dental" entries in
+# `OFF_TOPIC_CONTEXT` (`ops/room_guide_candidates.py`), where it was added
+# this cycle. "spools" is different and was NOT touched: it is a real
+# home-organizing question (craft/gift-wrap ribbon), just misattributed to
+# the wrong page, and OFF_TOPIC_CONTEXT would mislabel a genuine gap as
+# off-topic if used here; the honest fix is adding "ribbon" to the correct
+# destination's own heading content (Hall Closet's gift-wrap zone), a
+# content edit through its owning generator, not this scorer, left for a
+# cycle with room to verify it against the full corpus rather than rushed
+# here.
 
 # "mount", "workout", "plans" and "interior" joined 2026-11-12, mining
 # Garage's remaining partial tier (the 01:1x PM check-in's own handoff after

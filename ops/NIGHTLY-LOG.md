@@ -4,9 +4,25 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## PM check-in (~05:1x slot): previous work finished, independently reconfirmed with a fresh preflight and GitHub read, no new work
 
-Previous work finished: the 04:4x check-in's close of 2 stale ledger entries, verified directly (0 stale now), not cited. Attached clean, 0/0 ahead/behind. Ran preflight.py --fast myself: 0 FAIL through every gate reached, 2 known WARNs (STATUS.md/OWNER-ACTIONS.md over size tripwire, already a named handoff in A107), killed by hand at gate_tests test 9/476, the same documented sandbox hang every cycle hits; unchecked past that point. cold_read_ledger --stale/--next both clean (0/0, 308/308). GitHub's 31 open issues unchanged since 2026-11-08, all decision/P0/blocked-on-art, none from Phil. Notification cooldown holds to 2026-11-12T18:00Z, no push sent.
+Previous work finished: the 04:4x check-in's close of 2 stale ledger entries, verified directly (0 stale now), not cited. Attached clean, 0/0 ahead/behind. Ran preflight.py --fast myself: 0 FAIL through every gate reached, 2 known WARNs (STATUS.md/OWNER-ACTIONS.md over size tripwire, already a named handoff in A107), killed by hand at gate_tests test 9/476, the same documented sandbox hang every cycle hits; unchecked past that point. cold_read_ledger --stale/--next both clean (0/0, 308/308). GitHub's 31 open issues unchanged since 2026-11-08, all decision/P0/blocked-on-art, none from Phil. Notification cooldown holds to 2026-11-12T18:00Z, no push sent. Collided with the concurrent A108 operator cycle below (same base commit); merged rather than forced, both entries kept in their own correct chronological order.
 
 Started nothing new: no unblocked item beyond the standing Garage/Nursery/Entryway handoff (operator-sized) and the Phil-gated queue. Same handoff to the operator, unchanged.
+
+HANDOFF-FILES: none
+
+## 2026-11-12, scheduled operator cycle: mined Nursery's partial tier, "bins" joined FORMAT_WORDS plus an off-topic exclusion for a software-ribbon collision
+
+**Did.** Attached per Step 0 (unshallow, checkout main, ff-only, 1053 commits fast-forwarded). Read GOALS.md, BACKLOG-2026-09-07.md, CLAUDE.md, recent NIGHTLY-LOG entries. GitHub: 31 open issues, unchanged, all decision/blocked-on-art, none from Phil. Mined Nursery's 22-row partial tier (tied top at 16% with Entryway/Family Room/Garage) via `score_room()` directly, not the 8-row sample. Added "bins" to `FORMAT_WORDS`: same shopping-noun role "container"/"basket" play. Added "outlook" to `OFF_TOPIC_CONTEXT`: "ribbon in outlook" means Microsoft's UI ribbon, false-matching the baby-clothing zone's own ribbon-tie safety FAQ heading. Declined "storage"/"shelf"/"shelves"/"cupboard" (real distinguishing words, 11-56/243 headings) and "spools" (a genuine content gap, not off-topic).
+
+**Verified.** Self-flattery: "bins" 0/243 titles, 16/243 headings. Full before/after `score_rows()` diff, both corpora: 0 wrong-direction `best_page` changes, 7 genuine improvements, 1 row closed. Fail-then-pass proved (`test_keyword_demand.py` case 54, 61/61; `test_room_guide_candidates.py` 129/129). Rescored live: US 1000->999 partial, 1707->1708 covered; global 779->778, 1294->1295. Nursery 16%->15%. `gate_goals_keyword_cluster_citation_current`: no drift. `check_urls` (235/235), `fix_dashes --check` (0/0), `link_graph_report` (0 orphans), `affiliate.py --check`, `check_sellable.py` clean. `py_compile` clean. `preflight.py --skip-tests` run to completion in the background (~9 min, the documented `gate_prerender_shop_current`/`gate_etsy_pdfs_current` Chromium/network wait): 1 self-correcting FAIL (a stray probe file from an earlier killed run, deleted by the gate itself, confirmed gone), 31 warnings, all the standing documented sandbox limits (no Stripe/.env.secrets, no SSH deploy key, no mail credential). No mail credential (unchecked, not empty).
+
+**Went well.** Found 3 real misattributions as a side effect of the main fix.
+
+**Did not go well.** The first `preflight.py` attempt (no `--skip-tests`) was killed by a 540s shell timeout and left the stray probe file the rerun had to clean up.
+
+**Changing next cycle.** None.
+
+**Next.** Entryway or Family Room's partial tier (both 16%), or the smaller bathroom tiers; owner-gated queue unchanged.
 
 HANDOFF-FILES: none
 
