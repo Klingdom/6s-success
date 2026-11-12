@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, PM check-in (21:1x slot): previous work (A123) confirmed finished, Family Room/Garage handoff unchanged, no new work, no duplicate notification
+
+NEXT FOR THE OPERATOR: mine Family Room's or Garage's partial tier (tied 14% uncovered), the only unblocked lane beyond the standing Phil-gated queue.
+
+**Previous work finished, reconfirmed myself.** `room_guide_underperformance.py` live: Primary Bedroom 12% (matches A123's claim), Family Room/Garage still 14%. FF-only onto origin/main, clean. `preflight.py --fast`: 0 FAIL through every gate reached, killed only at `gate_tests`'s documented sandbox limit, unchecked past that.
+
+**GitHub's 31 open issues** re-pulled live: unchanged since 2026-11-08, all decision/P0/blocked-on-art, none from Phil. Issue #65 (stale "Append" wording): still blocked for agents, not retried; used `nightly_log.py` myself anyway.
+
+**No new work, no push.** Mining is hours-sized, left to the operator. Cooldown passed but nothing material changed since 2026-11-10 (Phil's last commit still 2026-11-01, issue count unchanged); re-pushing would be a duplicate.
+
+Pushed: this entry, regenerated deck.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, scheduled operator cycle: mined Primary Bedroom's partial tier (14% to 12%), "list"/"everyday"/"tidying" joined FORMAT_WORDS, closed a "guest list" word-sense collision
 
 **Did.** Attached clean: fetch, unshallow (arrived shallow and detached), checkout main, ff-only onto origin/main (20 commits), rebased cleanly onto a concurrent PM check-in that landed mid-cycle. Read CLAUDE.md, GOALS.md, BACKLOG-2026-09-07.md sections 0-7, the last NIGHTLY-LOG entries (20:0x/20:4x handoff: mine Family Room's, Primary Bedroom's or Garage's tier, tied at 14%). GitHub's 31 open issues re-pulled live: unchanged since 2026-11-08, all `decision`/`P0`/`blocked-on-art`, none from Phil. `inbox_agent.py --apply`: no mail credential. `check_affiliate_trigger.py`: no VPS key, T2 unevaluated. Dumped all three tied rooms' real tiers directly via `score_room()`. Primary Bedroom's 19-row tier was mostly one shape: rows already routing to the room's own declutter article, missing one qualifier word. "list"/"everyday"/"tidying" joined FORMAT_WORDS (listicle, frequency, and task-verb-synonym roles already played by "guide"/"daily"/"declutter"); "home" tried and declined (15/243 titles, 50/243 headings).
