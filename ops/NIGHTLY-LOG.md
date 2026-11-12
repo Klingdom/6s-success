@@ -20,6 +20,20 @@ Pushed to main: this log entry, the keyword_demand.py fix and its test, BACKLOG-
 
 HANDOFF-FILES: none
 
+## 2026-11-12, PM check-in (18:4x slot): previous work confirmed finished by CI, not just committed; Patio or Deck handoff stands unchanged
+
+NEXT FOR THE OPERATOR: mine Patio or Deck's 4-row partial tier, because it is the smallest genuinely unblocked lane and still current; fall through to Kids Bedroom's residual declutter/organize content gap if every candidate fails self-flattery or the corpus diff.
+
+**Previous work finished, verified by CI, not cited.** The Kitchen-mining push (38464dac) and the PM check-in after it (a4e57276) both completed on CI, conclusion success. Tree clean, main 0/0 vs origin.
+
+**Reconfirmed directly.** `preflight.py --fast`: 0 real FAIL through every gate reached, killed only at `gate_tests`'s documented sandbox limit (test 9/476). `room_guide_underperformance.py` live: Patio or Deck still 14% uncovered, same 4 rows the 18:1x handoff named. GitHub's 31 open issues unchanged since 2026-11-08, none from Phil.
+
+**No new work started**, hours-sized mining left for the operator. **No push sent**, nothing material changed.
+
+Pushed to main: this log entry, fresh `cycle_signal` checkpoint, regenerated command deck. Not customer-facing.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, PM check-in (18:1x slot): previous work (Kitchen mining) confirmed finished, state reconfirmed, no new work, no notification
 
 **Previous work finished.** Kitchen mining (top entry, this cycle's own handoff) shipped and verified: tests passed, 0 status regressions, preflight clean through every reached gate. CI on that push (38464da, now in progress) and the prior three pushes all green.
