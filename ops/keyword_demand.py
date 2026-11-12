@@ -196,7 +196,54 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "simple", "choose", "deep", "hacks", "lots",
                           "categories", "pro", "aesthetically", "newborn",
                           "planning", "workplace", "disposal", "basket",
-                          "baskets"))
+                          "baskets", "mount", "workout", "plans", "interior"))
+
+# "mount", "workout", "plans" and "interior" joined 2026-11-12, mining
+# Garage's remaining partial tier (the 01:1x PM check-in's own handoff after
+# "basket"/"baskets" exhausted Hall Closet's). "tool organizer wall mount"
+# asks the same question as "tool organizer wall", "mount" naming the
+# fastening method rather than a different subject; "storage for workout
+# equipment" asks the same thing as "storage for equipment" in the same
+# sense "daily"/"routine" already name a qualifier, not a new subject;
+# "power tool storage plans free" asks the same thing as "power tool
+# storage", "plans" naming the content format (a how-to/blueprint) the same
+# role "guide"/"tutorial" already play; "organize in car interior" asks the
+# same thing as "organize in car", "interior" naming which part of the car,
+# not a different subject. Self-flattery checked first, using the same
+# head_words/title_words fields the scorer itself reads: "mount" 0 of 243
+# titles and 0 headings, "workout" 0/2, "plans" 0/0, "interior" 0/0, each
+# under the "household" bar (11/243) already cleared. "gear" was tried for
+# the same tier and declined hard: it sits in 3 of 243 page titles (the
+# Garage sports-and-recreation zone, the Mudroom's own seasonal-outdoor-gear
+# zone, the Workshop's safety-and-PPE station), and a full corpus diff
+# confirmed the risk was real, not theoretical: 18 US and 2 global
+# best_page changes, moving genuinely-matched rows like "fishing gear
+# storage ideas" and "safety gear in the workplace" off their correct zone
+# pages onto /disclaimer.html and /articles/more-storage-wont-fix-clutter.html.
+# "large", "equipment", "shed", "painting", "box" and "beginners" were each
+# tried for the same tier and declined the same way, each producing real
+# best_page changes on a full corpus diff (6, 24, 5, 1, 15 and 2 respectively
+# in the US corpus alone), all for the same reason "gear" was declined: each
+# already names a page's own distinguishing content (the Garage bulk zone's
+# "overhead storage", the Hall Closet's own cleaning-equipment zone, a real
+# shed/outdoor-storage distinction, the Workshop's finishing-and-chemical
+# zone, several toy/bedroom/patio box pages, the decluttering-for-beginners
+# article), so dropping any of them from scoring moves real queries onto the
+# wrong page rather than only changing their status. "systems" was tried and
+# produces 0 best_page changes on its own merits, but one of the rows it
+# would move to covered, "how to organize game systems", reads as
+# ambiguous on inspection (video-game consoles, not board games, which is
+# where it is currently routed) independent of this FORMAT_WORDS question;
+# left alone rather than mechanically shipped, since upgrading an
+# already-uncertain match to "covered" on a clean word-count alone would be
+# the same dishonest-labelling risk "design" was declined for. Checked the
+# full corpus before adding the four that shipped (before/after
+# `score_rows()` diff across both corpora, combined and individually): 0
+# best_page changes anywhere for any of the four, only 26 US and 2 global
+# status moves (partial/gap toward covered), the largest being Garage's own
+# "tool organizer wall mount" and "storage for workout equipment" rows, with
+# the rest spread across Patio/Primary Bedroom/Home Office/Family Room DIY-
+# plans rows and car-interior-organizer rows. None can move the other way.
 
 # "workplace" and "disposal" joined 2026-11-11, mining Workshop's and
 # Nursery's remaining partial tiers (the 23:1x PM check-in's own handoff).

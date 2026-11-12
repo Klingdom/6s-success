@@ -4190,14 +4190,13 @@
       "room": "",
       "best_page": "/zones/garage-the-automotive-care-zone.html",
       "best_page_title": "How to organize the garage car care supplies",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "accessories",
-        "interior"
+        "accessories"
       ]
     },
     {
@@ -8509,14 +8508,12 @@
       "room": "",
       "best_page": "/zones/entryway-the-landing-spot.html",
       "best_page_title": "How to organize the entryway drop zone",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "plans"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "diy entertainment center ideas",
@@ -8723,14 +8720,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "best_page_title": "How to organize a patio or deck, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "plans"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "diy outdoor grill station with roof",
@@ -8848,14 +8843,12 @@
       "room": "",
       "best_page": "/zones/guest-bedroom-the-guest-nightstand.html",
       "best_page_title": "How to organize the guest bedroom nightstand",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "plans"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "diy plans for backyard bbq grill station",
@@ -8869,15 +8862,14 @@
       "room": "",
       "best_page": "/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html",
       "best_page_title": "How to organize the patio or deck grill station",
-      "coverage": 0.4,
-      "heading_coverage": 0.4,
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
       "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "title",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
         "backyard",
-        "bbq",
-        "plans"
+        "bbq"
       ]
     },
     {
@@ -9798,14 +9790,12 @@
       "room": "",
       "best_page": "/zones/family-room-the-primary-media-zone.html",
       "best_page_title": "How to organize the family room entertainment center",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/family-room-the-primary-media-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "plans"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "entertainment center organization ideas",
@@ -9838,14 +9828,13 @@
       "room": "",
       "best_page": "/zones/family-room-the-primary-media-zone.html",
       "best_page_title": "How to organize the family room entertainment center",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/family-room-the-primary-media-zone.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "pdf",
-        "plans"
+        "pdf"
       ]
     },
     {
@@ -9860,15 +9849,14 @@
       "room": "",
       "best_page": "/zones/family-room-the-primary-media-zone.html",
       "best_page_title": "How to organize the family room entertainment center",
-      "coverage": 0.2,
-      "heading_coverage": 0.2,
+      "coverage": 0.25,
+      "heading_coverage": 0.25,
       "heading_page": "/zones/family-room-the-primary-media-zone.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
         "build",
         "centers",
-        "plans",
         "yourself"
       ]
     },
@@ -10646,14 +10634,13 @@
       "room": "Mudroom",
       "best_page": "/articles/how-to-organize-a-mudroom.html",
       "best_page_title": "How to organize a mudroom, step by step",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-a-mudroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "layout",
-        "plans"
+        "layout"
       ]
     },
     {
@@ -11423,14 +11410,12 @@
       "room": "",
       "best_page": "/guest-bedroom-deck.html",
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/guest-bedroom-deck.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "plans"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "front entryway organization ideas",
@@ -37482,14 +37467,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-garage.html",
       "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "interior"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "interior stairs with landing",
@@ -37503,14 +37486,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-stair-landing.html",
       "best_page_title": "How to organize a stair landing, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-stair-landing.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "interior"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "kids bedroom decorating ideas",
@@ -43399,14 +43380,12 @@
       "room": "",
       "best_page": "/zones/garage-the-automotive-care-zone.html",
       "best_page_title": "How to organize the garage car care supplies",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "interior"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "organize interior home office",
@@ -43420,14 +43399,12 @@
       "room": "Home Office",
       "best_page": "/home-office-deck.html",
       "best_page_title": "The Home Office Deck: 66 cards, free to read",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "interior"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "organize interior living room",
@@ -43441,14 +43418,12 @@
       "room": "Living Room",
       "best_page": "/articles/how-to-organize-a-living-room.html",
       "best_page_title": "How to organize a living room, step by step",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-living-room.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "interior"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "organize intermediate steps",
@@ -44479,14 +44454,12 @@
       "room": "",
       "best_page": "/zones/garage-the-automotive-care-zone.html",
       "best_page_title": "How to organize the garage car care supplies",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "interior"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "organizers for cleaning supplies",
@@ -45580,14 +45553,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "best_page_title": "How to organize a patio or deck, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-patio-or-deck.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "plans"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "outdoor dining table plans free",
@@ -45601,14 +45572,12 @@
       "room": "",
       "best_page": "/patio-or-deck-deck.html",
       "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
-      "coverage": 0.4,
-      "heading_coverage": 0.8,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "plans"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "outdoor dinner table setting",
@@ -45859,14 +45828,12 @@
       "room": "",
       "best_page": "/downloads/6S-Standards-Pack.html",
       "best_page_title": "The 6S Success Standards Pack",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "plans"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "outdoor grilling station designs",
@@ -45939,14 +45906,12 @@
       "room": "",
       "best_page": "/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html",
       "best_page_title": "How to organize the patio or deck grill station",
-      "coverage": 0.25,
-      "heading_coverage": 0.75,
+      "coverage": 0.333,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "plans"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "outdoor patio and deck design ideas",
@@ -47605,14 +47570,12 @@
       "room": "Mudroom",
       "best_page": "/articles/how-to-organize-a-mudroom.html",
       "best_page_title": "How to organize a mudroom, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-mudroom.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "plans"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "plans for a night stand",
@@ -47629,13 +47592,11 @@
       "best_page": "/garage-deck.html",
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.0,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/garage-deck.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "plans"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "plans for entertainment center",
@@ -47649,14 +47610,12 @@
       "room": "",
       "best_page": "/zones/family-room-the-primary-media-zone.html",
       "best_page_title": "How to organize the family room entertainment center",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/family-room-the-primary-media-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "plans"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "plans to build a night stand",
@@ -47671,13 +47630,12 @@
       "best_page": "/garage-deck.html",
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
+      "heading_coverage": 0.667,
       "heading_page": "/garage-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "build",
-        "plans"
+        "build"
       ]
     },
     {
@@ -47886,14 +47844,12 @@
       "room": "",
       "best_page": "/zones/garage-the-power-tool-and-battery-zone.html",
       "best_page_title": "How to organize the garage power tool storage",
-      "coverage": 0.75,
-      "heading_coverage": 0.75,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "plans"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "power tool storage plans free",
@@ -47907,14 +47863,12 @@
       "room": "",
       "best_page": "/garage-deck.html",
       "best_page_title": "The Garage Deck: 80 cards, free to read",
-      "coverage": 0.6,
-      "heading_coverage": 0.8,
+      "coverage": 0.75,
+      "heading_coverage": 1.0,
       "heading_page": "/garage-deck.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "plans"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "power tool wall organizer",
@@ -48198,14 +48152,13 @@
       "room": "Primary Bedroom",
       "best_page": "/primary-bedroom-deck.html",
       "best_page_title": "The Primary Bedroom Deck: 66 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/primary-bedroom-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "interior"
+        "design"
       ]
     },
     {
@@ -50617,14 +50570,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-stair-landing.html",
       "best_page_title": "How to organize a stair landing, step by step",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-stair-landing.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "plans"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "stair rise before landing",
@@ -51429,14 +51380,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-garage.html",
       "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "workout"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "storage ideas for baking supplies",
@@ -52371,14 +52320,12 @@
       "room": "",
       "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
       "best_page_title": "How to organize the garage tool wall",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "mount"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "tool wall storage ideas",
@@ -56402,13 +56349,12 @@
       "room": "",
       "best_page": "/zones/guest-bedroom-the-guest-nightstand.html",
       "best_page_title": "How to organize the guest bedroom nightstand",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
       "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "title",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
-        "plans",
         "woodworking"
       ]
     },
@@ -56559,14 +56505,12 @@
       "room": "Workshop",
       "best_page": "/workshop-deck.html",
       "best_page_title": "The Workshop Deck: 68 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/workshop-deck.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "plans"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "workshop storage ideas free plans pdf",
@@ -56580,14 +56524,13 @@
       "room": "Workshop",
       "best_page": "/workshop-deck.html",
       "best_page_title": "The Workshop Deck: 68 cards, free to read",
-      "coverage": 0.4,
-      "heading_coverage": 0.6,
+      "coverage": 0.5,
+      "heading_coverage": 0.75,
       "heading_page": "/workshop-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "pdf",
-        "plans"
+        "pdf"
       ]
     },
     {
@@ -56729,6 +56672,6 @@
       ]
     }
   ],
-  "scored_against_commit": "02ec4017a",
-  "scored_at": "2026-11-12T00:56:25Z"
+  "scored_against_commit": "a06748c6d",
+  "scored_at": "2026-11-12T01:28:28Z"
 }

@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-11T17:34:53Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-12T00:56:25Z against 243 page(s) at commit 02ec4017a. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-12T01:28:28Z against 243 page(s) at commit a06748c6d. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2810. Checked against 243 published page titles: 1671 covered, 1033 partial, 106 gap.
+**Queries found:** 2810. Checked against 243 published page titles: 1695 covered, 1011 partial, 104 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 106, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 104, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -104,7 +104,7 @@ Showing the top 80 of 106, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1033.
+Showing the top 60 of 1011.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -116,7 +116,6 @@ Showing the top 60 of 1033.
 | 8 | dining room storage ideas ikea | How to organize the dining room sideboard storage | 0.75 |
 | 8 | home office storage ideas ikea | How to organize the home office file storage | 0.75 |
 | 9 | how to decorate a living room table | How to organize the living room coffee table | 0.75 |
-| 9 | power tool storage plans | How to organize the garage power tool storage | 0.75 |
 | 10 | home office storage ideas pinterest | How to organize the home office file storage | 0.75 |
 | 11 | kids bedroom storage ideas ikea | How to organize the kids bedroom toy storage | 0.75 |
 | 12 | small guest bathroom storage ideas | How to organize the guest bathroom vanity storage | 0.75 |
@@ -136,7 +135,6 @@ Showing the top 60 of 1033.
 | 1 | stair landing design ideas | How to organize a stair landing, step by step | 0.67 |
 | 2 | bonus room storage | How to organize the family room blanket storage | 0.67 |
 | 2 | building a stair landing | How to organize a stair landing, step by step | 0.67 |
-| 2 | diy drop zone plans | How to organize the entryway drop zone | 0.67 |
 | 2 | guest bathroom decorating ideas | How to organize a guest bathroom, step by step | 0.67 |
 | 2 | guest bedroom design ideas | How to organize a guest bedroom, step by step | 0.67 |
 | 2 | home office organization ideas ikea | The Home Office Deck: 66 cards, free to read | 0.67 |
@@ -168,6 +166,8 @@ Showing the top 60 of 1033.
 | 3 | how to organize baking supplies in.cabinet | How to organize the pantry baking supplies | 0.67 |
 | 3 | how to organize bathroom counter clutter | How to organize the guest bathroom vanity counter | 0.67 |
 | 3 | how to organize kids clothes storage | How to organize the kids bedroom toy storage | 0.67 |
+| 3 | how to plan a kids bedroom | How to organize a kids bedroom, step by step | 0.67 |
+| 3 | how to prepare a guest bedroom | How to organize a guest bedroom, step by step | 0.67 |
 
 ## By room
 
@@ -180,18 +180,18 @@ Showing the top 60 of 1033.
 | Guest Bathroom | 22 | 1 | 14 | 7 |
 | Guest Bedroom | 24 | 0 | 12 | 12 |
 | Hall Closet | 28 | 0 | 8 | 20 |
-| Home Office | 57 | 0 | 19 | 38 |
+| Home Office | 57 | 0 | 18 | 39 |
 | Kids Bedroom | 21 | 0 | 8 | 13 |
 | Kitchen | 97 | 2 | 28 | 67 |
 | Laundry Room | 71 | 0 | 15 | 56 |
-| Living Room | 92 | 2 | 34 | 56 |
-| Mudroom | 43 | 0 | 19 | 24 |
+| Living Room | 92 | 2 | 33 | 57 |
+| Mudroom | 43 | 0 | 18 | 25 |
 | Nursery | 61 | 1 | 19 | 41 |
 | Pantry | 58 | 1 | 19 | 38 |
 | Primary Bathroom | 13 | 0 | 7 | 6 |
 | Primary Bedroom | 16 | 0 | 13 | 3 |
 | Stair Landing | 24 | 0 | 13 | 11 |
-| Workshop | 66 | 4 | 27 | 35 |
+| Workshop | 66 | 4 | 26 | 36 |
 
 1926 queries name no room of ours. Those are either a different subject the engine wandered into, or a room-independent question, and the second kind is where an article earns its place.
 

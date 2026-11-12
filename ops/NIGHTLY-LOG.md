@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-12 (~01:1x slot): previous handoff finished; closed Garage's handoff with 4 new FORMAT_WORDS, caught the stale GOALS.md citation it caused
+
+Previous work finished: clean attach, preflight 0 FAIL short of the documented network stall, GitHub's 31 issues unchanged, none from Phil.
+
+Did: mined Garage's 42-row partial tier. Self-flattery then full corpus diff per candidate; declined "gear"/"large"/"equipment"/"shed"/"painting"/"box"/"beginners" (real best_page misattributions) and "systems" (one ambiguous row). Shipped "mount"/"workout"/"plans"/"interior": 0 best_page changes, 28 status moves. Fail-then-pass proved (case 51, 57/57). Garage 21% to 18% uncovered.
+
+Also fixed live: "plans" moved 5 cluster rows, so GOALS.md's citation went stale; corrected in place.
+
+Handing the operator: Garage's remaining 36-row tier. Full account in BACKLOG-2026-09-07.md A103 and STATUS.md.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, scheduled operator cycle: "basket" and "baskets" joined FORMAT_WORDS, closing 6 rows, Hall Closet 17% to 15% uncovered; caught a stale citation before repeating it
 
 Did: attached per Step 0 (fetch, real unshallow from a shallow detached checkout, checkout main, ff-only onto origin/main, 1015 commits, no reset). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Ran preflight.py --skip-tests live: 0 FAIL through every gate reached, stalled at the documented gate_etsy_pdfs_current network wait. Picked up the 00:1x PM check-in's own handoff: Hall Closet's 26-row partial tier.

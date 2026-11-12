@@ -1632,6 +1632,44 @@ def main():
         for f in fails:
             print(" -", f)
         return 1
+
+    # 51. Found live 2026-11-12, mining Garage's remaining partial tier (the
+    #     01:1x PM check-in's own handoff). "mount"/"workout"/"plans"/
+    #     "interior" each name a qualifier or format on the same subject
+    #     ("tool organizer wall mount" asks the same thing as "tool
+    #     organizer wall"), not a different subject, so they joined
+    #     FORMAT_WORDS. "gear"/"large"/"equipment"/"shed"/"painting"/"box"/
+    #     "beginners"/"systems" were each tried for the same tier and
+    #     declined: real best_page misattributions on a full corpus diff
+    #     (or, for "systems", one ambiguous row left alone rather than
+    #     mechanically marked covered).
+    new_format_words21 = ("mount", "workout", "plans", "interior")
+    samples21 = {
+        "mount": "tool organizer wall mount",
+        "workout": "storage for workout equipment",
+        "plans": "power tool storage plans free",
+        "interior": "organize in car interior",
+    }
+    for word in new_format_words21:
+        if word in kd.content_words(samples21[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format21 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format21 - set(new_format_words21)
+    try:
+        for word in new_format_words21:
+            if word not in kd.content_words(samples21[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format21
+
+    if fails:
+        print("FAIL")
+        for f in fails:
+            print(" -", f)
+        return 1
     # Counted from the numbered cases in this file rather than typed, because
     # a hardcoded tally goes stale the first time somebody adds a case and
     # then the test reports a number that is simply false. It said 14/14
