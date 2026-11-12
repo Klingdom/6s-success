@@ -1958,6 +1958,63 @@ def main():
         for f in fails:
             print(" -", f)
         return 1
+
+    # 59. Found live 2026-11-12, mining Hall Closet's partial tier (24
+    #     rows, the largest room tied at 15% uncovered). "system" (singular
+    #     only) names the same request as "organizer"/"organization"
+    #     already name. "systems" (plural) was deliberately NOT added:
+    #     "how to organize game systems" is genuinely ambiguous (video-game
+    #     consoles versus the Family Room's Board Game and Puzzle Zone,
+    #     which its own content.json purpose line confirms is tabletop
+    #     games and puzzles only), and A101 already declined it for the
+    #     same reason. "dispose"/"fold" are task verbs, the same role
+    #     "organize"/"arrange" already play. "stored" is the passive form
+    #     of "store" as a qualifier on an already-specific noun phrase.
+    #     "wrapping" names a paper sub-type the destination zone already
+    #     answers generically. "recipes" is format-agnostic like "pdf". A
+    #     full before/after score_rows() diff across both corpora found 0
+    #     best_page misattributions; every change moved a query onto a
+    #     more specific, more correct page (not a worse one), including
+    #     fixing a real bug where a 254-heading aggregator page won only
+    #     because it happened to contain the literal word "system" once.
+    new_format_words28 = ("system", "dispose", "fold", "stored", "wrapping",
+                          "recipes")
+    samples28 = {
+        "system": "linen closet organization system",
+        "dispose": "how to dispose of cleaning supplies",
+        "fold": "how to fold towels for storage",
+        "stored": "how should cleaning equipment be stored",
+        "wrapping": "wrapping paper organizer storage",
+        "recipes": "how to organize paper recipes",
+    }
+    for word in new_format_words28:
+        if word in kd.content_words(samples28[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format28 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format28 - set(new_format_words28)
+    try:
+        for word in new_format_words28:
+            if word not in kd.content_words(samples28[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format28
+    # "systems" (plural) must NOT be a FORMAT_WORD, so the ambiguous
+    # "game systems" query stays correctly unresolved rather than being
+    # marked covered on a clean word-count alone.
+    if "systems" in kd.FORMAT_WORDS:
+        fails.append("'systems' (plural) must not join FORMAT_WORDS: "
+                     "'how to organize game systems' is genuinely "
+                     "ambiguous and marking it covered would be "
+                     "dishonest labelling (A101)")
+
+    if fails:
+        print("FAIL")
+        for f in fails:
+            print(" -", f)
+        return 1
     # Counted from the numbered cases in this file rather than typed, because
     # a hardcoded tally goes stale the first time somebody adds a case and
     # then the test reports a number that is simply false. It said 14/14

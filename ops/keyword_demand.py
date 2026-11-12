@@ -201,7 +201,46 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "hunting", "tactical", "motorcycle", "fresh",
                           "bins", "wood", "materials", "sewing",
                           "teacher", "teachers", "creatives", "productivity",
-                          "minimal", "category", "pictures"))
+                          "minimal", "category", "pictures",
+                          "system", "dispose", "fold", "stored", "wrapping",
+                          "recipes"))
+
+# "system" (singular only), "dispose", "fold", "stored", "wrapping" and
+# "recipes" joined 2026-11-12, mining Hall Closet's partial tier (24 rows,
+# the largest room tied at 15% uncovered). "system" names the same request
+# as "organizer"/"organization" already name ("a storage system" asks for
+# the same thing as "organization"), the same style-qualifier role those
+# words already play; "systems" (plural) was deliberately NOT added, same
+# reason A101 already declined it: "how to organize game systems" is
+# genuinely ambiguous (video-game consoles, which the site has no page for,
+# versus the Family Room's own Board Game and Puzzle Zone, which its own
+# content.json purpose line confirms is about tabletop games and puzzles
+# only, nothing about consoles), and marking that match covered on a clean
+# word-count alone would be the dishonest-labelling CLAUDE.md section 8
+# forbids. "dispose" and "fold" are task verbs, the same not-a-different-
+# subject role "organize"/"arrange" already play. "stored" is the passive
+# form of "store", the site's own central subject, but only as a qualifier
+# on an already-specific noun phrase ("how should X be stored"), checked
+# individually rather than assumed from "store"'s own precedent. "wrapping"
+# names a sub-type of paper storage the destination zone already answers in
+# generic terms. "recipes" is file-storage-format-agnostic like "pdf"/
+# "template". Self-flattery checked first: 0 of 243 titles for all six, 1
+# heading for "dispose"/"fold"/"recipes"/"wrapping", 6 for "stored", 6 for
+# "system". Checked the full corpus before adding (CLAUDE.md 5c/5d): a full
+# before/after `score_rows()` diff across both corpora found 0 `best_page`
+# misattributions; "system" fixes a real bug rather than merely closing a
+# row (`/garage-deck.html` was winning "garage organization ideas storage
+# system" only because the word "system" appears once, incidentally, among
+# its 254 aggregated headings, not because it is the better answer; once
+# excluded, the tie correctly falls to the specific Bulk and Overhead
+# Storage zone, the same giant-aggregator-wins-by-breadth shape A92/A93/
+# A114 already named). "dispose" and "fold" each move several diaper- and
+# towel-folding queries off `/hall-closet-deck.html` and
+# `/laundry-room-deck.html` onto the actually-correct room (nursery
+# changing station, guest bathroom linen zone, primary bathroom linen
+# storage), the same shape. "how to organize recipes" moves from a
+# meaningless 0.0-coverage match on `/about.html` to no match at all, same
+# `gap` status, more honestly, not a regression.
 
 # "teacher"/"teachers"/"creatives" joined 2026-11-12, mining Home Office's
 # partial tier. Each names who uses the office (a teacher grading papers, a

@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-11T17:34:53Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-12T13:06:29Z against 243 page(s) at commit 728d01cd6. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-12T13:54:21Z against 243 page(s) at commit c583c2d5e. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2810. Checked against 243 published page titles: 1725 covered, 989 partial, 96 gap.
+**Queries found:** 2810. Checked against 243 published page titles: 1736 covered, 980 partial, 94 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 96, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 94, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -70,17 +70,16 @@ Showing the top 80 of 96, ordered by the best rank the phrase reached in any one
 | 9 | why do i have trouble climbing stairs | - | How to organize a basement, one zone at a time (0.00) | climbing, trouble |
 | 10 | how to hold a cribbage tournament | - | How to organize an attic without overloading it (0.00) | cribbage, tournament |
 | 10 | how to organize pc | - | - (0.00) | - |
-| 10 | how to organize printed recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | printed, recipes |
+| 10 | how to organize printed recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | printed |
 | 10 | how to organize script mods sims 4 | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | mods, script, sims |
-| 10 | how to properly dispose of diapers | - | The Hall Closet Deck: 58 cards, free to read (0.00) | diapers, properly |
 | 10 | laundry problems and solutions | - | How to organize the laundry room detergent and supplies (0.33) | problems, solutions |
 | 11 | foyer design ideas for flat indian style | - | How to organize an entryway, zone by zone (0.20) | flat, indian, style |
 | 11 | how to decorate a living room with high ceilings | Living Room | How to organize the living room bookshelves and display (0.40) | ceilings, decorate, high |
 | 11 | how to host a cribbage tournament template | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, host, tournament |
 | 11 | how to operate a gas stove | - | How to organize the kitchen stove area (0.33) | gas, operate |
-| 11 | how to organize recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | recipes |
+| 11 | how to organize recipes | - | - (0.00) | - |
 | 11 | how to plan a workshop for students | Workshop | How to organize the workshop hardware storage (0.33) | plan, students |
-| 11 | how to properly dispose of adult diapers | - | Why does a shared zone never stay reset? (0.00) | diapers, dispose, properly |
+| 11 | how to properly dispose of adult diapers | - | Why does a shared zone never stay reset? (0.00) | diapers, properly |
 | 11 | organize seasonal pricing model | - | How to organize the hall closet seasonal storage (0.33) | model, pricing |
 | 12 | building beds for kids organization | - | How to organize the kids bedroom bed (0.33) | beds, building |
 | 12 | how to decorate a living room with white walls | Living Room | How to organize the living room bookshelves and display (0.40) | decorate, walls, white |
@@ -91,7 +90,6 @@ Showing the top 80 of 96, ordered by the best rank the phrase reached in any one
 | 13 | kitchen organization ideas dollar tree | Kitchen | How to organize the kitchen stove area (0.33) | dollar, tree |
 | 14 | computer storage for games | - | How to organize the family room game storage (0.33) | computer, games |
 | 14 | grill stations ideas for backyards | - | How to organize the patio or deck grill station (0.33) | backyards, stations |
-| 14 | how to dispose of adult diapers | - | Why does a shared zone never stay reset? (0.00) | diapers, dispose |
 | 14 | how to plan a workshop event | Workshop | How to organize the workshop hardware storage (0.33) | event, plan |
 | 14 | master bedroom design as per vastu | - | How to organize the primary bedroom closet (0.20) | design, per, vastu |
 | 14 | starting a nursery for plants | Nursery | How to organize the nursery baby clothes (0.33) | plants, starting |
@@ -101,10 +99,12 @@ Showing the top 80 of 96, ordered by the best rank the phrase reached in any one
 | 15 | master bedroom design floor plan | - | How to organize the primary bedroom bed and bedding (0.20) | design, master, plan |
 | 16 | amazon shopping car organizer | - | How to organize the garage car care supplies (0.33) | amazon, shopping |
 | 16 | declutter gardening series lessons | - | How to declutter a bedroom in one day, step by step (0.25) | gardening, lessons, series |
+| 16 | how to give yourself custom entryway design | Entryway | How to organize an entryway, zone by zone (0.20) | custom, give, yourself |
+| 16 | how to organize dropbox | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | dropbox |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 989.
+Showing the top 60 of 980.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|

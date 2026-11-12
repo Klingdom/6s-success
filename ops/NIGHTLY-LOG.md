@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, scheduled operator cycle: mined Hall Closet's partial tier, 15% to 11% uncovered, caught a real tie-break bug along the way
+
+**Did.** Picked up the 13:1x PM check-in's handoff: mined Hall Closet's 24-row partial tier, the largest room tied at 15% uncovered. "system" (singular), "dispose", "fold", "stored", "wrapping" and "recipes" joined FORMAT_WORDS. "systems" (plural) was deliberately declined again: "how to organize game systems" is genuinely ambiguous (video-game consoles vs. the Board Game and Puzzle Zone, which only covers tabletop games), the same reason A101 gave.
+
+**Verified.** Self-flattery (0/243 titles for all six) and a full before/after `score_rows()` diff across both corpora before shipping: 0 `best_page` misattributions. "system" fixed a real bug: a 254-heading aggregator deck was winning a tie only because it incidentally contained the word "system" once, not because it was the better answer. "box"/"cabinet" were tried and declined (10 and 21 real misattributions each). Fail-then-pass proved directly. `test_keyword_demand.py` 65/65, `test_room_guide_candidates.py` 137/137, `test_room_guide_underperformance.py` 19/19. Rescored live: US gap 96->94, covered 1725->1736; global covered 1303->1306. Hall Closet 15% to 11% uncovered. `check_urls.py`, `fix_dashes.py`, `affiliate.py`, `check_sellable.py`, `link_graph_report.py`, `py_compile` all clean. `preflight.py --skip-tests` to its own wall: 0 real FAIL. GitHub's 31 issues re-pulled: unchanged, none from Phil. No mail credential in this sandbox.
+
+**Went well.** Catching the "system" tie-breaking bug rather than just closing the row mechanically.
+
+**Did not go well.** Nothing new.
+
+**Changing next cycle.** None; the standard diff-before-ship methodology already caught this cycle's defect class, no new gate warranted.
+
+**Next.** Re-rank all 20 rooms; mine whichever ties for the largest remaining partial tier.
+
+HANDOFF-FILES: `ops/keyword_demand.py`, `ops/room_guide_underperformance.py`
+
 ## 2026-11-12, PM check-in (13:4x slot): previous work reconfirmed finished, Hall Closet handoff stands unchanged, no new work started
 
 NEXT FOR THE OPERATOR: mine Hall Closet's partial tier (24 rows, tied at 15% uncovered), unchanged from the 13:1x handoff, because nothing landed since to supersede it.

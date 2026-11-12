@@ -4812,13 +4812,11 @@
       "best_page": "/zones/hall-closet-the-cleaning-supply-zone.html",
       "best_page_title": "How to organize the hall closet cleaning supplies",
       "coverage": 0.0,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/hall-closet-the-cleaning-supply-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "stored"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -10123,14 +10121,12 @@
       "room": "",
       "best_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
       "best_page_title": "How to organize the laundry room detergent and supplies",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "stored"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -14550,14 +14546,12 @@
       "room": "",
       "best_page": "/zones/laundry-room-the-hanging-and-air-dry-zone.html",
       "best_page_title": "How to organize the laundry room drying rack",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/laundry-room-the-hanging-and-air-dry-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "dispose"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb"
       ],
@@ -23325,7 +23319,7 @@
       "room": "Home Office",
       "best_page": "/articles/how-to-organize-paperwork.html",
       "best_page_title": "How to organize paperwork at home with a simple filing system",
-      "coverage": 0.75,
+      "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
@@ -33912,7 +33906,7 @@
       "room": "Home Office",
       "best_page": "/articles/how-to-organize-paperwork.html",
       "best_page_title": "How to organize paperwork at home with a simple filing system",
-      "coverage": 0.6,
+      "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
@@ -48200,6 +48194,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "728d01cd6",
-  "scored_at": "2026-11-12T13:06:35Z"
+  "scored_against_commit": "c583c2d5e",
+  "scored_at": "2026-11-12T13:54:25Z"
 }

@@ -11010,14 +11010,12 @@
       "room": "",
       "best_page": "/mudroom-deck.html",
       "best_page_title": "The Mudroom Deck: 69 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/mudroom-deck.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "fold"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "fold out drying rack",
@@ -11029,15 +11027,15 @@
         "how to organize drying rack"
       ],
       "room": "",
-      "best_page": "/laundry-room-deck.html",
-      "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/laundry-room-deck.html",
-      "matched_on": "heading",
+      "best_page": "/zones/laundry-room-the-hanging-and-air-dry-zone.html",
+      "best_page_title": "How to organize the laundry room drying rack",
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
+      "heading_page": "/zones/laundry-room-the-hanging-and-air-dry-zone.html",
+      "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "drying"
+        "out"
       ]
     },
     {
@@ -12008,12 +12006,12 @@
         "garage organization ideas"
       ],
       "room": "Garage",
-      "best_page": "/garage-deck.html",
-      "best_page_title": "The Garage Deck: 80 cards, free to read",
-      "coverage": 0.667,
+      "best_page": "/zones/garage-the-bulk-and-overhead-storage.html",
+      "best_page_title": "How to organize the garage bulk and overhead storage",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/garage-deck.html",
-      "matched_on": "heading",
+      "heading_page": "/zones/garage-the-bulk-and-overhead-storage.html",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -14582,14 +14580,12 @@
       "room": "",
       "best_page": "/zones/hall-closet-the-cleaning-equipment-zone.html",
       "best_page_title": "How to organize the hall closet cleaning equipment",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "stored"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how should paint be stored",
@@ -14603,14 +14599,12 @@
       "room": "",
       "best_page": "/zones/workshop-the-finishing-and-chemical-zone.html",
       "best_page_title": "How to organize the workshop paint and chemical storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "stored"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to add a railing to steps",
@@ -18852,13 +18846,12 @@
       "best_page": "/articles/why-a-shared-zone-never-stays-reset.html",
       "best_page_title": "Why does a shared zone never stay reset?",
       "coverage": 0.0,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.5,
       "heading_page": "/articles/why-a-shared-zone-never-stays-reset.html",
       "matched_on": "heading",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
-        "diapers",
-        "dispose"
+        "diapers"
       ]
     },
     {
@@ -18873,14 +18866,12 @@
       "room": "",
       "best_page": "/zones/hall-closet-the-cleaning-supply-zone.html",
       "best_page_title": "How to organize the hall closet cleaning supplies",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/garage-the-automotive-care-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "dispose"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to dispose of diapers",
@@ -18892,16 +18883,14 @@
         "how to organize diaper storage"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/zones/nursery-the-changing-station.html",
+      "best_page_title": "How to organize the nursery changing station",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
-      "heading_page": "/hall-closet-deck.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/nursery-the-changing-station.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "diapers"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to do a gallery wall",
@@ -18994,12 +18983,12 @@
         "how to organize blanket storage"
       ],
       "room": "",
-      "best_page": "/articles/how-to-store-blankets.html",
-      "best_page_title": "How to store blankets, and where each kind should live",
-      "coverage": 0.667,
+      "best_page": "/zones/family-room-the-blanket-and-comfort-zone.html",
+      "best_page_title": "How to organize the family room blanket storage",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-store-blankets.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -19015,10 +19004,10 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-linen-closet.html",
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
-      "matched_on": "heading",
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
+      "heading_page": "/zones/hall-closet-the-paper-and-household-backstock.html",
+      "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
         "decoratively"
@@ -19034,16 +19023,14 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/laundry-room-deck.html",
-      "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/laundry-room-deck.html",
+      "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
+      "best_page_title": "How to organize the guest bathroom towels",
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "guests"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to fold towels for storage",
@@ -19055,16 +19042,14 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-paper-and-household-backstock.html",
-      "best_page_title": "How to organize the hall closet paper goods storage",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/hall-closet-the-paper-and-household-backstock.html",
+      "best_page": "/zones/primary-bathroom-the-linen-and-towel-storage.html",
+      "best_page_title": "How to organize the primary bathroom linen and towel storage",
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bathroom-the-linen-and-towel-storage.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "fold"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to fold towels to hang decoratively",
@@ -19076,11 +19061,11 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/laundry-room-deck.html",
-      "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
-      "coverage": 0.25,
-      "heading_coverage": 0.75,
-      "heading_page": "/laundry-room-deck.html",
+      "best_page": "/guest-bathroom-deck.html",
+      "best_page_title": "The Guest Bathroom Deck: 60 cards, free to read",
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
+      "heading_page": "/guest-bathroom-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -19868,8 +19853,8 @@
       "room": "",
       "best_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
       "best_page_title": "6S Success: Home Edition &#183; Chapters 1 to 30",
-      "coverage": 0.25,
-      "heading_coverage": 0.75,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
       "matched_on": "heading",
       "status": "partial",
@@ -22455,7 +22440,7 @@
       "room": "Home Office",
       "best_page": "/articles/how-to-organize-paperwork.html",
       "best_page_title": "How to organize paperwork at home with a simple filing system",
-      "coverage": 0.75,
+      "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
@@ -31620,14 +31605,12 @@
       "room": "",
       "best_page": "/zones/hall-closet-the-paper-and-household-backstock.html",
       "best_page_title": "How to organize the hall closet paper goods storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/home-office-the-file-storage.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "recipes"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize papers at home",
@@ -31959,12 +31942,11 @@
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
       "heading_coverage": 0.0,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/about.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
-        "printed",
-        "recipes"
+        "printed"
       ]
     },
     {
@@ -32019,16 +32001,14 @@
         "how to organize baking supplies"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "",
+      "best_page_title": "",
       "coverage": 0.0,
       "heading_coverage": 0.0,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "",
       "matched_on": "title",
       "status": "gap",
-      "unmatched_words": [
-        "recipes"
-      ]
+      "unmatched_words": []
     },
     {
       "query": "how to organize ribbon",
@@ -34551,13 +34531,12 @@
       "best_page": "/articles/why-a-shared-zone-never-stays-reset.html",
       "best_page_title": "Why does a shared zone never stay reset?",
       "coverage": 0.0,
-      "heading_coverage": 0.25,
+      "heading_coverage": 0.333,
       "heading_page": "/articles/why-a-shared-zone-never-stays-reset.html",
       "matched_on": "heading",
       "status": "gap",
       "unmatched_words": [
         "diapers",
-        "dispose",
         "properly"
       ]
     },
@@ -34571,16 +34550,15 @@
         "how to organize diaper storage"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
+      "best_page_title": "How to organize the laundry room detergent and supplies",
       "coverage": 0.0,
-      "heading_coverage": 0.333,
-      "heading_page": "/hall-closet-deck.html",
+      "heading_coverage": 0.5,
+      "heading_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
       "matched_on": "heading",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
-        "diapers",
-        "properly"
+        "diapers"
       ]
     },
     {
@@ -39904,14 +39882,12 @@
       "room": "",
       "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
       "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "system"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "linen closet organization systems",
@@ -52768,10 +52744,10 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-linen-closet.html",
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
-      "matched_on": "heading",
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
+      "heading_page": "/zones/hall-closet-the-paper-and-household-backstock.html",
+      "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
         "unique"
@@ -53681,14 +53657,12 @@
       "room": "",
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "system"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "walk in wardrobe organization",
@@ -56547,14 +56521,12 @@
       "room": "",
       "best_page": "/zones/hall-closet-the-paper-and-household-backstock.html",
       "best_page_title": "How to organize the hall closet paper goods storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/dining-room-deck.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "wrapping"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "your backpack organization tips",
@@ -56597,6 +56569,6 @@
       ]
     }
   ],
-  "scored_against_commit": "728d01cd6",
-  "scored_at": "2026-11-12T13:06:29Z"
+  "scored_against_commit": "c583c2d5e",
+  "scored_at": "2026-11-12T13:54:21Z"
 }
