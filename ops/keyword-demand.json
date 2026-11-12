@@ -199,12 +199,12 @@
         "how to organize a family room"
       ],
       "room": "Family Room",
-      "best_page": "/zones/family-room-the-toy-and-play-zone.html",
-      "best_page_title": "How to organize the family room toy storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/zones/family-room-the-toy-and-play-zone.html",
-      "matched_on": "heading",
+      "best_page": "/zones/family-room-the-blanket-and-comfort-zone.html",
+      "best_page_title": "How to organize the family room blanket storage",
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
+      "heading_page": "/zones/family-room-the-blanket-and-comfort-zone.html",
+      "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
         "furniture"
@@ -6319,14 +6319,12 @@
       "room": "Kitchen",
       "best_page": "/articles/how-to-declutter-a-kitchen.html",
       "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "durable"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "declutter family room",
@@ -6458,14 +6456,13 @@
       "room": "Kitchen",
       "best_page": "/articles/how-to-declutter-a-kitchen.html",
       "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/kitchen-the-cooking-zone.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "items",
-        "lightweight"
+        "items"
       ]
     },
     {
@@ -6989,14 +6986,12 @@
       "room": "",
       "best_page": "/articles/how-to-declutter-a-kitchen.html",
       "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "homes"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "decluttering starter daily ideas",
@@ -18301,14 +18296,12 @@
       "room": "Entryway",
       "best_page": "/rooms/entryway.html",
       "best_page_title": "How to organize an entryway, zone by zone",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "large"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to decorate a living room",
@@ -19370,14 +19363,13 @@
       "room": "",
       "best_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
       "best_page_title": "How to organize the patio or deck outdoor seating",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "bench",
-        "properly"
+        "bench"
       ]
     },
     {
@@ -22834,14 +22826,12 @@
       "room": "Kitchen",
       "best_page": "/zones/kitchen-the-cooking-zone.html",
       "best_page_title": "How to organize the kitchen stove area",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kitchen-the-cooking-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "properly"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a kitchen utensil drawer",
@@ -23009,14 +22999,12 @@
       "room": "",
       "best_page": "/zones/home-office-the-desk-drawers-and-pedestal.html",
       "best_page_title": "How to organize the home office desk drawers",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/home-office-the-desk-drawers-and-pedestal.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "large"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a large living room",
@@ -23029,12 +23017,12 @@
         "how to declutter a family room"
       ],
       "room": "Living Room",
-      "best_page": "/articles/how-to-organize-toys.html",
-      "best_page_title": "How to organize toys so a child can put them away",
-      "coverage": 0.667,
+      "best_page": "/zones/living-room-the-bookshelves-and-display.html",
+      "best_page_title": "How to organize the living room bookshelves and display",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
-      "matched_on": "heading",
+      "heading_page": "/zones/living-room-the-bookshelves-and-display.html",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -34521,13 +34509,12 @@
       "best_page": "/articles/why-a-shared-zone-never-stays-reset.html",
       "best_page_title": "Why does a shared zone never stay reset?",
       "coverage": 0.0,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.5,
       "heading_page": "/articles/why-a-shared-zone-never-stays-reset.html",
       "matched_on": "heading",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
-        "diapers",
-        "properly"
+        "diapers"
       ]
     },
     {
@@ -34540,16 +34527,14 @@
         "how to organize diaper storage"
       ],
       "room": "",
-      "best_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
-      "best_page_title": "How to organize the laundry room detergent and supplies",
+      "best_page": "/zones/nursery-the-changing-station.html",
+      "best_page_title": "How to organize the nursery changing station",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
-      "heading_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/nursery-the-changing-station.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "diapers"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to properly store paint",
@@ -34561,16 +34546,14 @@
         "how to organize paint and chemical storage"
       ],
       "room": "",
-      "best_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
-      "best_page_title": "How to organize the laundry room detergent and supplies",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
+      "best_page": "/zones/workshop-the-finishing-and-chemical-zone.html",
+      "best_page_title": "How to organize the workshop paint and chemical storage",
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/workshop-the-finishing-and-chemical-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "paint"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to put in a walkway",
@@ -35363,14 +35346,12 @@
       "room": "",
       "best_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
       "best_page_title": "How to organize the home office bookshelf",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "properly"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to store cleaning products",
@@ -35522,10 +35503,10 @@
       "room": "",
       "best_page": "/articles/how-to-store-blankets.html",
       "best_page_title": "How to store blankets, and where each kind should live",
-      "coverage": 0.667,
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-store-blankets.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -35541,7 +35522,7 @@
       "room": "",
       "best_page": "/zones/family-room-the-toy-and-play-zone.html",
       "best_page_title": "How to organize the family room toy storage",
-      "coverage": 0.333,
+      "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/zones/family-room-the-toy-and-play-zone.html",
       "matched_on": "heading",
@@ -37985,14 +37966,12 @@
       "room": "Kitchen",
       "best_page": "/zones/kitchen-the-cooking-zone.html",
       "best_page_title": "How to organize the kitchen stove area",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kitchen-the-cooking-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "apartments"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "kitchen organization ideas for cabinets",
@@ -38680,12 +38659,12 @@
         "family room organization ideas"
       ],
       "room": "Family Room",
-      "best_page": "/zones/family-room-the-toy-and-play-zone.html",
-      "best_page_title": "How to organize the family room toy storage",
-      "coverage": 0.667,
+      "best_page": "/zones/family-room-the-blanket-and-comfort-zone.html",
+      "best_page_title": "How to organize the family room blanket storage",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/family-room-the-toy-and-play-zone.html",
-      "matched_on": "heading",
+      "heading_page": "/zones/family-room-the-blanket-and-comfort-zone.html",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -38701,14 +38680,12 @@
       "room": "",
       "best_page": "/zones/patio-or-deck-the-garden-and-plant-care-zone.html",
       "best_page_title": "How to organize the patio or deck garden area",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "large"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "large garden tool organizer",
@@ -38722,14 +38699,12 @@
       "room": "",
       "best_page": "/zones/garage-the-lawn-and-garden-tool-zone.html",
       "best_page_title": "How to organize the garage garden tool storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "large"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "large power tool organizer",
@@ -38743,14 +38718,12 @@
       "room": "",
       "best_page": "/zones/garage-the-power-tool-and-battery-zone.html",
       "best_page_title": "How to organize the garage power tool storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/workshop-the-power-tool-storage.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "large"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "large primary bedroom design ideas",
@@ -38764,14 +38737,13 @@
       "room": "Primary Bedroom",
       "best_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
       "best_page_title": "How to organize the primary bedroom bed and bedding",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "large"
+        "design"
       ]
     },
     {
@@ -38787,14 +38759,12 @@
       "room": "Primary Bedroom",
       "best_page": "/rooms/primary-bedroom.html",
       "best_page_title": "How to organize a primary bedroom, zone by zone",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/primary-bedroom.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "large"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "large storage box organizer",
@@ -38806,11 +38776,11 @@
         "how to organize bulk storage"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-toys.html",
-      "best_page_title": "How to organize toys so a child can put them away",
-      "coverage": 0.333,
+      "best_page": "/articles/how-to-organize-a-basement.html",
+      "best_page_title": "How to organize a basement, one zone at a time",
+      "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -38825,15 +38795,14 @@
         "how to organize bulk storage"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-toys.html",
-      "best_page_title": "How to organize toys so a child can put them away",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "best_page": "/zones/family-room-the-board-game-and-puzzle-zone.html",
+      "best_page_title": "How to organize the family room game storage",
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
+      "heading_page": "/zones/family-room-the-board-game-and-puzzle-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "boxes",
         "groceries"
       ]
     },
@@ -38847,12 +38816,12 @@
         "how to organize toy storage"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-toys.html",
-      "best_page_title": "How to organize toys so a child can put them away",
-      "coverage": 0.667,
+      "best_page": "/zones/family-room-the-toy-and-play-zone.html",
+      "best_page_title": "How to organize the family room toy storage",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
-      "matched_on": "heading",
+      "heading_page": "/zones/kids-bedroom-the-study-desk.html",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -54691,14 +54660,12 @@
       "room": "Entryway",
       "best_page": "/zones/entryway-the-bench-or-console.html",
       "best_page_title": "How to organize the entryway bench or console",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/entryway-the-bench-or-console.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "large"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "what to do with entertainment center",
@@ -56549,6 +56516,6 @@
       ]
     }
   ],
-  "scored_against_commit": "4a194d39c",
-  "scored_at": "2026-11-12T15:53:16Z"
+  "scored_against_commit": "acc8a1bf2",
+  "scored_at": "2026-11-12T17:58:02Z"
 }

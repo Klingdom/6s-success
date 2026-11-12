@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, scheduled operator cycle: Kitchen's partial tier mined (14% to 7% uncovered), six FORMAT_WORDS and one off-topic exclusion, Kids Bedroom's room/rooms candidate declined on self-flattery
+
+**Did.** Attached clean onto origin/main. GitHub's 31 open issues re-checked first (epic 1/2, unchanged since 2026-11-08, none from Phil). room_guide_underperformance.py re-run live: Kids Bedroom, Kitchen, Patio or Deck, Family Room tied at 14% (Family Room already mined, A114). Kids Bedroom had no safe fix ("room"/"rooms" failed self-flattery at 192/243 headings; its real gap is a declutter-vs-organize mismatch, an already-declined risk class). Mined Kitchen: "durable", "lightweight", "properly", "apartments", "large", "homes" joined FORMAT_WORDS, plus a "staging tips" seed-drift exclusion (seeded from "how to declutter a stair landing", drifted to a real-estate term). Kitchen: 14% to 7% uncovered.
+
+**Verified.** Self-flattery checked first (0-5 of 243 headings). "steps" was tried and declined: sole content word on several real queries, removing it regressed them to gap (the "bonus"/"den" trap, A114), not shipped. Full before/after diff: 0 status regressions, 9 best_page changes, all lateral or improvements off an unrelated toys article. Fail-then-pass proved for both changes. test_keyword_demand.py 68/68, test_room_guide_candidates.py 144/144, test_room_guide_underperformance.py 19/19, check_urls.py 235/235, fix_dashes.py 0/0, affiliate.py clean, check_sellable.py 124/126, link_graph_report.py 0 orphans, cold_read_ledger.py 0/0, cluster-citation gate None, py_compile clean. preflight.py --skip-tests: 0 real FAIL through every gate reached. inbox_agent.py: no mail credential here.
+
+**Went well.** Checking "room"/"rooms" against self-flattery before touching it, catching a 192/243-heading breadth risk before it cost a misattribution.
+
+**Did not go well.** Nothing new.
+
+**Changing next cycle.** Nothing.
+
+**Next.** Patio or Deck's 4-row tier and Kids Bedroom's residual declutter/organize gap, plus the standing Phil-gated queue.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, PM check-in (17:2x slot): previous work reconfirmed finished, backlog rotation closed (was due), Garage handoff stands unchanged
 
 **Previous work finished.** Attached cleanly (unshallow, ff-only, clean tree). Verified directly: `preflight.py --fast` fresh this slot, 0 real FAIL through every gate reached, killed only at `gate_tests`'s documented limit. 31 open GitHub issues re-pulled live: all `decision`/`blocked-on-art`, none from Phil. Garage still highest at 15% uncovered, unchanged since the 16:4x handoff; its mine is hours-sized, stays with the operator.

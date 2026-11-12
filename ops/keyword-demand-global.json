@@ -15125,14 +15125,13 @@
       "room": "",
       "best_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
       "best_page_title": "How to organize the patio or deck outdoor seating",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "bench",
-        "properly"
+        "bench"
       ],
       "markets": [
         "ca"
@@ -23889,14 +23888,12 @@
       "room": "",
       "best_page": "/zones/home-office-the-desk-drawers-and-pedestal.html",
       "best_page_title": "How to organize the home office desk drawers",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/home-office-the-desk-drawers-and-pedestal.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "large"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -23910,12 +23907,12 @@
         "how to declutter a family room"
       ],
       "room": "Living Room",
-      "best_page": "/articles/how-to-organize-toys.html",
-      "best_page_title": "How to organize toys so a child can put them away",
-      "coverage": 0.667,
+      "best_page": "/zones/living-room-the-bookshelves-and-display.html",
+      "best_page_title": "How to organize the living room bookshelves and display",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
-      "matched_on": "heading",
+      "heading_page": "/zones/living-room-the-bookshelves-and-display.html",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
       "markets": [
@@ -30312,13 +30309,11 @@
       "best_page": "/zones/kitchen-the-cooking-zone.html",
       "best_page_title": "How to organize the kitchen stove area",
       "coverage": 0.0,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kitchen-the-cooking-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "large"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -36003,14 +35998,12 @@
       "room": "Kitchen",
       "best_page": "/zones/kitchen-the-cooking-zone.html",
       "best_page_title": "How to organize the kitchen stove area",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kitchen-the-cooking-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "apartments"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -36840,14 +36833,13 @@
       "room": "Primary Bedroom",
       "best_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
       "best_page_title": "How to organize the primary bedroom bed and bedding",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "large"
+        "design"
       ],
       "markets": [
         "ca"
@@ -48188,6 +48180,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "4a194d39c",
-  "scored_at": "2026-11-12T15:53:17Z"
+  "scored_against_commit": "acc8a1bf2",
+  "scored_at": "2026-11-12T17:58:03Z"
 }

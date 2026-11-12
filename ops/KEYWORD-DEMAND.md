@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-11T17:34:53Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-12T15:53:16Z against 243 page(s) at commit 4a194d39c. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-12T17:58:02Z against 243 page(s) at commit acc8a1bf2. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2810. Checked against 243 published page titles: 1745 covered, 971 partial, 94 gap.
+**Queries found:** 2810. Checked against 243 published page titles: 1759 covered, 958 partial, 93 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 94, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 93, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -79,7 +79,6 @@ Showing the top 80 of 94, ordered by the best rank the phrase reached in any one
 | 11 | how to operate a gas stove | - | How to organize the kitchen stove area (0.33) | gas, operate |
 | 11 | how to organize recipes | - | - (0.00) | - |
 | 11 | how to plan a workshop for students | Workshop | How to organize the workshop hardware storage (0.33) | plan, students |
-| 11 | how to properly dispose of adult diapers | - | Why does a shared zone never stay reset? (0.00) | diapers, properly |
 | 11 | organize seasonal pricing model | - | How to organize the hall closet seasonal storage (0.33) | model, pricing |
 | 12 | building beds for kids organization | - | How to organize the kids bedroom bed (0.33) | beds, building |
 | 12 | how to decorate a living room with white walls | Living Room | How to organize the living room bookshelves and display (0.40) | decorate, walls, white |
@@ -101,10 +100,11 @@ Showing the top 80 of 94, ordered by the best rank the phrase reached in any one
 | 16 | declutter gardening series lessons | - | How to declutter a bedroom in one day, step by step (0.25) | gardening, lessons, series |
 | 16 | how to give yourself custom entryway design | Entryway | How to organize an entryway, zone by zone (0.20) | custom, give, yourself |
 | 16 | how to organize dropbox | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | dropbox |
+| 17 | examples of decks and patios | - | How to organize the patio or deck garden area (0.00) | decks, examples, patios |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 971.
+Showing the top 60 of 958.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -174,7 +174,7 @@ Showing the top 60 of 971.
 | Room | Queries | Gap | Partial | Covered |
 |---|---|---|---|---|
 | Dining Room | 38 | 0 | 15 | 23 |
-| Entryway | 50 | 1 | 10 | 39 |
+| Entryway | 50 | 1 | 8 | 41 |
 | Family Room | 27 | 0 | 16 | 11 |
 | Garage | 76 | 1 | 20 | 55 |
 | Guest Bathroom | 22 | 0 | 15 | 7 |
@@ -182,14 +182,14 @@ Showing the top 60 of 971.
 | Hall Closet | 28 | 0 | 8 | 20 |
 | Home Office | 57 | 0 | 14 | 43 |
 | Kids Bedroom | 21 | 0 | 8 | 13 |
-| Kitchen | 97 | 2 | 28 | 67 |
+| Kitchen | 97 | 2 | 25 | 70 |
 | Laundry Room | 71 | 0 | 15 | 56 |
 | Living Room | 92 | 2 | 31 | 59 |
 | Mudroom | 43 | 0 | 18 | 25 |
 | Nursery | 61 | 1 | 18 | 42 |
 | Pantry | 58 | 1 | 17 | 40 |
 | Primary Bathroom | 13 | 0 | 6 | 7 |
-| Primary Bedroom | 16 | 0 | 13 | 3 |
+| Primary Bedroom | 16 | 0 | 12 | 4 |
 | Stair Landing | 24 | 0 | 13 | 11 |
 | Workshop | 66 | 4 | 25 | 37 |
 

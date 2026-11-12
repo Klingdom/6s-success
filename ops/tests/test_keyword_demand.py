@@ -2108,6 +2108,72 @@ def main():
                          "or a stemming problem, not a wording gap)"
                          % declined)
 
+    # 62. Found live 2026-11-12, scheduled operator cycle, mining Kitchen's
+    #     partial tier (12 rows, tied at 14% uncovered with Kids Bedroom,
+    #     Patio or Deck and Family Room). "durable"/"lightweight" are
+    #     material/weight qualifiers on the same decluttering request, the
+    #     same role "simple"/"practical" already play. "properly" is a
+    #     style qualifier, the same role "quickly"/"efficiency" already
+    #     play. "apartments" names who/where the reader lives, the same
+    #     role "teen"/"workplace" already play. "large" is a size
+    #     qualifier, the same role material/style qualifiers already play
+    #     (distinct from "small", which stays declined below: GOALS.md's
+    #     own tracked cluster, not a general riskiness finding). "homes" is
+    #     the plural of "home", already implicit in every query this site
+    #     answers. Self-flattery checked first: 0 of 243 titles for all
+    #     six, 0 heads for "durable"/"lightweight"/"apartments", 2 of 243
+    #     heads for "properly" (already excluded from the "Cleaning it
+    #     properly, surface by surface" template heading repeated on all
+    #     114 zone pages), 4 of 243 for "large", 5 of 243 for "homes". A
+    #     full before/after score_rows() diff across both corpora found 0
+    #     status regressions (US gap 94->93, improved; global gap 89->89,
+    #     unchanged) and 9 best_page changes, every one lateral within the
+    #     same room or a genuine improvement off an unrelated
+    #     "how-to-organize-toys.html" article onto the correct zone
+    #     ("how to properly dispose of diapers" moving from Laundry Room's
+    #     Detergent Zone to Nursery's Changing Station; "how to properly
+    #     store paint" moving from the same Laundry Room zone to Workshop's
+    #     Finishing and Chemical Zone), 0 wrong-direction changes. "steps"
+    #     was tried on the same tier and found to be the sole content word
+    #     on four US rows and two global rows ("organize steps", "steps to
+    #     organise", "how to arrange golu steps"), the same "bonus"/"den"
+    #     trap A114 already named: removing it from content_words()
+    #     emptied those rows entirely, regressing them straight to `gap`
+    #     (US gap 94->95, global 89->91), so it was NOT added.
+    new_format_words31 = ("durable", "lightweight", "properly",
+                          "apartments", "large", "homes")
+    samples31 = {
+        "durable": "declutter durable kitchen containers",
+        "lightweight": "declutter lightweight kitchen items",
+        "properly": "how to organize a kitchen properly",
+        "apartments": "kitchen organization ideas for apartments",
+        "large": "how to organize large cooking utensils",
+        "homes": "decluttering ideas for small homes",
+    }
+    for word in new_format_words31:
+        if word in kd.content_words(samples31[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format31 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format31 - set(new_format_words31)
+    try:
+        for word in new_format_words31:
+            if word not in kd.content_words(samples31[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format31
+    # "steps" must NOT be a FORMAT_WORD: it is the sole content word on
+    # several real queries ("organize steps", "steps to organise"), and
+    # removing it regresses them from partial/covered straight to gap, the
+    # same "bonus"/"den" sole-content-word trap A114 already named.
+    if "steps" in kd.FORMAT_WORDS:
+        fails.append("'steps' must not join FORMAT_WORDS: it is the sole "
+                     "content word on several real queries and removing "
+                     "it regresses them to gap (the 'bonus'/'den' trap, "
+                     "A114)")
+
     if fails:
         print("FAIL")
         for f in fails:

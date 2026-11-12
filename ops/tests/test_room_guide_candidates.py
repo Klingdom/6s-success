@@ -881,6 +881,21 @@ _result_diaper_genuine = rgc.score_room([_diaper_genuine], [], _room)
 check("a genuine 'diaper' row is NOT excluded by the diaper-drive/party pattern",
       _result_diaper_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-12, scheduled operator cycle, mining Kitchen's partial
+# tier. "staging tips to declutter your space" is seeded from "how to
+# declutter a stair landing" (autosuggest drift to a home-staging-for-sale
+# real-estate term) and lands on a declutter article purely on
+# "declutter"+"space" word overlap, not a genuine kitchen or stair-landing
+# question.
+_staging_tips = {"query": "staging tips to declutter your space", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_staging_tips = rgc.score_room([_staging_tips], [], _room)
+check("a 'staging tips' off-topic-context row is excluded",
+      _result_staging_tips["on_topic_rows"] == 0)
+_staging_genuine = {"query": "how to declutter a stair landing", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_staging_genuine = rgc.score_room([_staging_genuine], [], _room)
+check("a genuine 'declutter a stair landing' row is NOT excluded by the staging-tips pattern",
+      _result_staging_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

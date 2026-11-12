@@ -740,7 +740,19 @@ OFF_TOPIC_CONTEXT = re.compile(
     # (the same phrase, not a coincidence); "diaper party" appears only in
     # the global corpus, 1 row. All three already partial, 0 covered, so
     # excluding them cannot suppress a genuine match.
-    r"\bcrib tournament\b|\bdiaper drive\b|\bdiaper party\b",
+    r"\bcrib tournament\b|\bdiaper drive\b|\bdiaper party\b|"
+    # Found 2026-11-12, scheduled operator cycle, mining Kitchen's partial
+    # tier. "staging tips to declutter your space" is seeded from "how to
+    # declutter a stair landing" (autosuggest drift from "landing" to
+    # "staging", a home-staging-for-sale real-estate term, not a stair
+    # landing or anything this product answers) and lands on Kitchen's own
+    # declutter article purely on "declutter"+"space" word overlap with no
+    # room tie to break, the same seed-drift shape "gardening series"/
+    # "dental"/"declutter my life reddit" already exclude above. Checked
+    # against both harvests before adding: "staging" appears in exactly
+    # this one row across either corpus, already partial, 0 covered, so
+    # excluding it cannot suppress a genuine match.
+    r"\bstaging tips\b",
     re.I)
 
 

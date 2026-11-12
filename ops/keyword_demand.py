@@ -205,7 +205,8 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "system", "dispose", "fold", "stored", "wrapping",
                           "recipes", "wooden", "necessities", "practical",
                           "teen", "labels", "dividers", "canvas", "pouch",
-                          "church", "insert"))
+                          "church", "insert", "durable", "lightweight",
+                          "properly", "apartments", "large", "homes"))
 
 # "canvas", "pouch", "church" and "insert" joined 2026-11-12, scheduled
 # operator cycle, mining Nursery's partial tier (the 20-row tier handed off
