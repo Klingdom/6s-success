@@ -1713,6 +1713,54 @@ def main():
         for f in fails:
             print(" -", f)
         return 1
+
+    # 53. Found live 2026-11-12, mining Garage's real 36-row partial tier
+    #     (A105's correction of A104's wrong premise that it was already
+    #     exhausted). "fishing"/"hunting"/"tactical" each name which
+    #     activity the gear is for, not a different subject, since the
+    #     Sports and Recreation Zone's own purpose is explicitly
+    #     activity-agnostic; "motorcycle" names which vehicle sits in the
+    #     garage, not a different decluttering task; "fresh" names the
+    #     goal (freshen up), the same style-qualifier role "simple"
+    #     already plays. "food"/"snacks"/"shirts"/"baby"/"clothes"/
+    #     "products"/"gardening"/"flower"/"vegetable"/"grow"/"beds"/
+    #     "boot"/"toolbox"/"set"/"decluttering" were each tried for the
+    #     same tier and declined: real best_page misattributions on a full
+    #     corpus diff, or a genuine content gap against the destination
+    #     zone's own stated purpose (the Bulk and Overhead Storage zone
+    #     never claims any specific bulk category, the Lawn and Garden
+    #     Tool Zone stores tools and chemicals rather than garden beds, the
+    #     Automotive Care Zone never addresses the car's own interior
+    #     storage compartment).
+    new_format_words23 = ("fishing", "hunting", "tactical", "motorcycle",
+                           "fresh")
+    samples23 = {
+        "fishing": "fishing gear storage ideas",
+        "hunting": "hunting gear storage ideas",
+        "tactical": "tactical gear storage ideas",
+        "motorcycle": "declutter motorcycle garage",
+        "fresh": "declutter fresh living room",
+    }
+    for word in new_format_words23:
+        if word in kd.content_words(samples23[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format23 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format23 - set(new_format_words23)
+    try:
+        for word in new_format_words23:
+            if word not in kd.content_words(samples23[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format23
+
+    if fails:
+        print("FAIL")
+        for f in fails:
+            print(" -", f)
+        return 1
     # Counted from the numbered cases in this file rather than typed, because
     # a hardcoded tally goes stale the first time somebody adds a case and
     # then the test reports a number that is simply false. It said 14/14

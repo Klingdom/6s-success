@@ -6363,14 +6363,12 @@
       "room": "Living Room",
       "best_page": "/articles/how-to-organize-toys.html",
       "best_page_title": "How to organize toys so a child can put them away",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "fresh"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "declutter gardening series lessons",
@@ -6586,14 +6584,12 @@
       "room": "Garage",
       "best_page": "/articles/how-to-organize-a-garage.html",
       "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "motorcycle"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "declutter nursery",
@@ -10996,14 +10992,12 @@
       "room": "",
       "best_page": "/zones/garage-the-sports-and-recreation-zone.html",
       "best_page_title": "How to organize the garage sports gear storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "fishing"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "fold out coat hooks",
@@ -12134,14 +12128,13 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-garage.html",
       "best_page_title": "How to organize a garage full of stuff, step by step",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "decluttering",
-        "fresh"
+        "decluttering"
       ]
     },
     {
@@ -36316,15 +36309,12 @@
       "room": "",
       "best_page": "/zones/garage-the-sports-and-recreation-zone.html",
       "best_page_title": "How to organize the garage sports gear storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/garage-deck.html",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "fishing",
-        "hunting"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "hunting gear storage ideas",
@@ -36338,14 +36328,12 @@
       "room": "",
       "best_page": "/zones/garage-the-sports-and-recreation-zone.html",
       "best_page_title": "How to organize the garage sports gear storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/garage-deck.html",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "hunting"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "i need to declutter",
@@ -51807,14 +51795,12 @@
       "room": "",
       "best_page": "/zones/garage-the-sports-and-recreation-zone.html",
       "best_page_title": "How to organize the garage sports gear storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "tactical"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "teen bathroom organization ideas",
@@ -56658,6 +56644,6 @@
       ]
     }
   ],
-  "scored_against_commit": "4e9ccf9a0",
-  "scored_at": "2026-11-12T01:56:34Z"
+  "scored_against_commit": "13394af6a",
+  "scored_at": "2026-11-12T02:54:46Z"
 }

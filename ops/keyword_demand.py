@@ -197,7 +197,8 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "categories", "pro", "aesthetically", "newborn",
                           "planning", "workplace", "disposal", "basket",
                           "baskets", "mount", "workout", "plans", "interior",
-                          "begin", "extreme", "smart", "pdf"))
+                          "begin", "extreme", "smart", "pdf", "fishing",
+                          "hunting", "tactical", "motorcycle", "fresh"))
 
 # "mount", "workout", "plans" and "interior" joined 2026-11-12, mining
 # Garage's remaining partial tier (the 01:1x PM check-in's own handoff after
@@ -245,6 +246,75 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
 # "tool organizer wall mount" and "storage for workout equipment" rows, with
 # the rest spread across Patio/Primary Bedroom/Home Office/Family Room DIY-
 # plans rows and car-interior-organizer rows. None can move the other way.
+
+# "begin", "extreme", "smart" and "pdf" joined 2026-11-12, mining Primary
+# Bedroom's partial tier (one of three rooms tied at 16% uncovered once
+# Garage's own tier was declared exhausted by A103, later corrected: see
+# the nightly log entry for the same date). "how to begin to declutter"
+# asks the same question as "how to declutter", "begin" naming a starting
+# point rather than a different subject; "how to declutter extreme" names
+# the degree of mess, not a different task; "walk in closet smart
+# organization" and "declutter bedroom checklist pdf" each name a style or
+# format qualifier on the same subject, the same shape "original"/"guide"
+# already cover. Self-flattery checked first: 0 of 243 titles and 0
+# headings for all four. "list" was tried for the same tier and declined:
+# it closes 3 more US rows on the mechanical test alone, but a full
+# before/after `score_rows()` diff across both corpora caught 2 real
+# `best_page` misattributions ("how to organize a guest list" and "bedroom
+# guest list", both party-planning queries, moving off
+# `/kids-bedroom-deck.html` onto the Guest Bedroom/Bathroom pages on the
+# word "guest" alone once "list" stopped distinguishing them), the same
+# misattribution shape "gear"/"declutter"/"messy" were each declined for
+# earlier. Not shipped. "complete" was also tried and declined as a no-op:
+# never the sole unmatched word on any row in either corpus, so it would
+# close nothing. Checked the full corpus before adding the four that
+# shipped: 0 `best_page` changes in either corpus, confirmed by a full
+# before/after diff, not sampled.
+
+# "fishing", "hunting", "tactical", "motorcycle" and "fresh" joined
+# 2026-11-12, mining Garage's real 36-row partial tier (A105's correction
+# of A104's wrong premise that it was already exhausted). "fishing gear
+# storage ideas", "hunting gear storage ideas" and "tactical gear storage
+# ideas" each name which activity the gear is for, not a different
+# subject: the Sports and Recreation Zone's own purpose is explicitly
+# activity-agnostic ("Holds the gear for the sports this household
+# currently plays... one labeled bin per activity"), the same
+# not-a-different-subject reasoning "her"/"him"/"men"/"women" already use
+# for a demographic rather than a storage distinction. "declutter
+# motorcycle garage" names which vehicle sits in the garage, not a
+# different decluttering task than the generic article already answers.
+# "declutter fresh living room" names the goal (freshen up), the same
+# style-qualifier role "simple"/"quickly" already play. Self-flattery
+# checked first, using head_words/title_words: 0 of 243 titles for all
+# five, 0 headings for four, 1 of 243 for "fresh" (a single unrelated
+# heading, not gaming). Checked the full corpus before adding, not the
+# room's own tier alone: 0 `best_page` changes anywhere across either
+# corpus (confirmed by a full before/after `score_rows()` diff, combined
+# and individually, including the two words together since "hunting and
+# fishing gear storage ideas" carries both as its only unmatched words),
+# only 6 status moves (partial toward covered). Declined for the same
+# tier on the same method, each a genuine content gap rather than a
+# format word: "food", "snacks" and "shirts" (the Bulk and Overhead
+# Storage zone's own purpose is "things you genuinely need once or twice
+# a year", not a claim about any specific category of bulk goods, and
+# "food" alone produced 9 real `best_page` changes on the full diff);
+# "baby" (49 real `best_page` changes, by far the largest risk found this
+# cycle); "clothes" (39) and "products" (14); "gardening", "flower",
+# "vegetable", "grow" and "beds" (the Lawn and Garden Tool Zone's own
+# purpose is storing yard tools and garden chemicals, not garden-bed or
+# planting layout, so marking "how to organize a flower garden" or
+# "organizing a vegetable garden" covered by it would be the same
+# dishonest-labelling risk "design" was declined for, a real content gap
+# rather than a wording difference, independent of "gardening" alone also
+# producing 1 real `best_page` change); "boot" (the Automotive Care Zone's
+# own purpose is fluids, cables and cleaning kit, never the car's interior
+# storage compartment, so "how to organise a car boot" is a genuine
+# content gap too, not a synonym for anything this zone already answers);
+# "toolbox" (its one row's existing route to the Sports and Recreation
+# Zone looks coincidental, winning only on the unrelated word "gear", not
+# a genuine fit); "set" (32 of 243 headings, well over every prior bar,
+# and 27 real `best_page` changes); "decluttering" (19 real `best_page`
+# changes, the same risk shape "declutter" was declined for in A101).
 
 # "workplace" and "disposal" joined 2026-11-11, mining Workshop's and
 # Nursery's remaining partial tiers (the 23:1x PM check-in's own handoff).
