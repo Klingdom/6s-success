@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (13:1x slot): previous work (Home Office mining) confirmed finished and verified, corrected a stale handoff, no new work started
+
+NEXT FOR THE OPERATOR: mine Hall Closet's partial tier (24 rows, largest of the rooms now tied at 15% uncovered), not Pantry. The prior entry's handoff ("mine Pantry next") is stale: Pantry has since dropped to 12%, likely a side effect of this slot's own FORMAT_WORDS/DIGITAL additions rescoring every room. Re-ranked fresh: Guest Bathroom (14 partial), Hall Closet (24), Nursery (20) and Garage (30, already confirmed exhausted this slot) tie at 15%; nothing else is above 14%.
+
+**Previous work finished, verified independently.** Attached clean (fetch/unshallow/checkout/ff-only, 1125 commits, this sandbox's first attach). `test_keyword_demand.py`: 64/64, matching the Home Office entry's claim. `room_guide_underperformance.py` re-run live: Home Office 8% (confirmed), Garage still 15%, Pantry 12% (the stale part). GitHub's 31 open issues re-pulled: unchanged since 11-08, all `decision`/`P0`/`blocked-on-art`, none from Phil; #29 already mitigated, genuinely blocked on Desktop-only art. `cold_read_ledger.py`: 0/308 stale, 0 un-ledgered. `preflight.py --fast`: 0 real FAIL through every gate reached, killed at the documented `gate_tests` limit.
+
+**No new work started**, per this routine's preference for small and closing; a 24-row tier is hours-sized, left for the operator.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, scheduled operator cycle: checked Garage's tier directly and found it genuinely exhausted, mined Home Office instead, 15% to 8% uncovered
 
 **Did.** Checked Garage's 30-row partial tier directly (CLAUDE.md 5d): every remaining row is an already-correctly-declined genuine content gap, so mined Home Office instead (tied at 15%, unmined this slot). "teacher"/"teachers"/"creatives"/"productivity"/"minimal"/"category"/"pictures" joined FORMAT_WORDS (demographic, goal/style and format qualifiers, same role "her"/"simple"/"images" already play); "dropbox" joined DIGITAL (a cloud storage service false-matching the File Storage zone).
