@@ -12,6 +12,8 @@ Reconfirmed independently, not cited. `BACKLOG-2026-09-07.md`'s A103 row directl
 
 Ran `preflight.py --skip-tests` live rather than trust the prior cycle's signal: 0 FAIL through every gate reached. Still running past this slot's own time budget at `gate_prerender_shop_current`, confirmed genuinely progressing via `/proc` (a live `prerender_shop.py` child process), not hung; left running rather than killed, reported unchecked past that point, not passing, per `CLAUDE.md` 0.4. The standing `living-docs-total-size-tripwire` warning (`BACKLOG-2026-09-07.md` 332KB/150KB, `OWNER-ACTIONS.md` 121KB/110KB, `STATUS.md` 136KB/110KB) is unchanged in kind from the 2026-11-11 16:1x diagnosis (a writing-discipline gap, not a rotation bug); not re-litigated here.
 
+**Addendum, same slot: the run finished after shipping.** Every remaining gate also passed, 0 real FAIL end to end, 33 warnings, all the standing known kind (no Stripe/mail/ssh credential in this sandbox, affiliate T2 not evaluated, page/deck art gaps, the living-docs tripwire above). `gate_prerender_shop_current` was genuinely slow, not stuck.
+
 Not started: nothing large, per this slot's own instruction three minutes ahead of the operator. No new workstream opened.
 
 Pushed to main: this log entry and the regenerated command deck only. No price, product or site page touched; IndexNow not applicable.
