@@ -22672,14 +22672,30 @@ def gate_backlog_done_table_not_oversized() -> None:
 
     A WARNING, not a FAIL: an oversized table wastes every later cycle's
     reading time, it does not ship anything broken to a customer. The
-    buffer (retention window plus 7 days) means this does not fire the
-    day after a rotation purely from a row drifting a day past the
-    window; it fires only once the gap is real.
+    buffer (retention window plus 7 days; row cap plus 10 rows) means
+    this does not fire the day after a rotation purely from a row
+    drifting a day past the window; it fires only once the gap is real.
+
+    Found again 2026-11-12, same cold-read lane, a few hours after the
+    --days lowering above: a purely date-based check cannot see this
+    table's real failure mode. The live table was 28 rows / 88717 bytes,
+    9155 bytes over gate_living_docs_total_size_tripwire's ceiling, every
+    row dated today or yesterday, so this gate's own date-only check
+    stayed silent (0 overdue) on a table that was genuinely oversized and
+    whose own suggested remedy (`--apply`, date-based) was a no-op
+    against it, the identical "gate warns, suggested fix does nothing"
+    shape this same gate itself was built to replace on 2026-10-23. Added
+    a second, independent trigger: ops/rotate_backlog.py's own row-count
+    cap (DEFAULT_MAX_ROWS), which archives the oldest-by-position rows
+    once there are too many, regardless of date, so a single over-cadence
+    day cannot hide behind "nothing is overdue yet."
 
     Proof this can fail: ops/tests/test_gate_backlog_done_table_not_
     oversized.py builds a synthetic table with a row well past the
     buffered window and asserts this gate warns, then confirms a table
-    with nothing past the window stays silent.
+    with nothing past the window stays silent; a third case builds an
+    all-today table past the buffered row cap and asserts this gate
+    warns on that alone, with 0 rows overdue by date.
     """
     path = os.path.join(ROOT, "BACKLOG-2026-09-07.md")
     if not os.path.exists(path):
@@ -22694,14 +22710,26 @@ def gate_backlog_done_table_not_oversized() -> None:
     buffered_days = rb.DEFAULT_RETENTION_DAYS + 7
     cutoff = dt.date.today() - dt.timedelta(days=buffered_days)
     overdue = [r for r in rows if (d := rb.row_date(r)) is not None and d < cutoff]
-    if overdue:
+    row_cap_buffer = 10
+    buffered_max_rows = rb.DEFAULT_MAX_ROWS + row_cap_buffer
+    over_cap = max(0, len(rows) - buffered_max_rows)
+    if overdue or over_cap:
+        parts = []
+        if overdue:
+            parts.append("%d row(s) older than %s (the %d-day retention "
+                         "window plus a 7-day buffer)" % (
+                             len(overdue), cutoff.isoformat(),
+                             rb.DEFAULT_RETENTION_DAYS))
+        if over_cap:
+            parts.append("%d row(s) past the %d-row cap (the %d-row cap "
+                         "plus a %d-row buffer)" % (
+                             over_cap, buffered_max_rows, rb.DEFAULT_MAX_ROWS,
+                             row_cap_buffer))
         warn("backlog-done-table-not-oversized",
-             "BACKLOG-2026-09-07.md's 'Done this week' table carries %d "
-             "row(s) older than %s (the %d-day retention window plus a "
-             "7-day buffer), %d rows total. Run `python ops/rotate_"
-             "backlog.py --apply` to move them into BACKLOG-2026-09-07-"
-             "ARCHIVE.md." % (len(overdue), cutoff.isoformat(),
-                               rb.DEFAULT_RETENTION_DAYS, len(rows)))
+             "BACKLOG-2026-09-07.md's 'Done this week' table carries %s, "
+             "%d rows total. Run `python ops/rotate_backlog.py --apply` "
+             "to move them into BACKLOG-2026-09-07-ARCHIVE.md."
+             % (" and ".join(parts), len(rows)))
 
 
 def gate_status_blocker001_not_oversized() -> None:

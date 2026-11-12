@@ -35,10 +35,11 @@ cycle, the same way this file's own section 30 deferred the OWNER-
 ACTIONS.md preamble work rather than guess at it.
 
 Usage:
-    python ops/rotate_backlog.py --check            report only, exit 1 if over the window
-    python ops/rotate_backlog.py --check --days N    use a different retention window
-    python ops/rotate_backlog.py --apply             rotate now (default 14-day window)
+    python ops/rotate_backlog.py --check                report only, exit 1 if over the window or the row cap
+    python ops/rotate_backlog.py --check --days N        use a different retention window
+    python ops/rotate_backlog.py --apply                 rotate now (default: 2-day window, 15-row cap)
     python ops/rotate_backlog.py --apply --days N
+    python ops/rotate_backlog.py --apply --max-rows N    use a different row-count cap (0 disables it)
 """
 import argparse
 import datetime
@@ -79,6 +80,22 @@ DEFAULT_RETENTION_DAYS = 2
 # file's own gate message tells a cold-reading cycle to run actually shrinks
 # the table when that cycle runs it, the same reasoning ops/rotate_backlog_
 # closed.py's own history already used twice for the same symptom.
+
+# Found again 2026-11-12, same cold-read, a few hours later: lowering the
+# days did not actually fix the root cause. The current hourly/sub-hourly
+# cadence writes 10-20+ rows in a single calendar day, so a purely date-
+# based window of ANY length keeps every one of today's own rows live no
+# matter how small --days is set, once --days >= 1. `--check` reported
+# CLEAN (0 overdue, cutoff respected) on a table that was still 88717 bytes
+# across 28 rows, every single one dated today or yesterday, 9155 bytes
+# over gate_living_docs_total_size_tripwire's ceiling. A second, row-count-
+# based cap closes that gap: once more than MAX_ROWS rows are live,
+# regardless of date, the oldest-by-position rows (this table's own
+# newest-first convention puts them at the end) rotate out too. Nothing
+# about date-based retention changes; this is purely an additional trigger
+# for the exact same archive-verbatim action, so a row that is both recent
+# and over the row cap still moves, unreworded, to the same archive file.
+DEFAULT_MAX_ROWS = 15
 
 
 def locate_section(text: str):
@@ -155,23 +172,39 @@ def row_date(row: str):
         return None
 
 
-def plan_rotation(text: str, cutoff: datetime.date):
+def plan_rotation(text: str, cutoff: datetime.date, max_rows: int = None):
     """Pure function of its inputs; does no I/O. Returns (new_text,
     archived_rows_in_original_order, kept_count). Rows with no resolvable
-    date are kept live, never guessed into the archive.
+    date are kept live, never guessed into the archive, by the date check
+    alone; the row-count cap below can still archive an undated row if it
+    is old enough by position, same as any other overflow row.
+
+    Two independent triggers decide the archive set, unioned together:
+    date (any row older than `cutoff`) and, if `max_rows` is given,
+    position (once more than `max_rows` rows remain live after the date
+    filter, the oldest-by-position among them, i.e. the ones nearest the
+    end of this newest-first table, archive too). Found 2026-11-12: a
+    purely date-based window cannot bound this table's size at the
+    current cadence, because a single day's own cycles can write more
+    rows than any sane retention window would ever exclude; see the
+    constant comment above DEFAULT_MAX_ROWS.
     """
     body_start, body_end = locate_section(text)
     body = text[body_start:body_end]
     rows = parse_rows(body)
-    keep, archived = [], []
-    for r in rows:
-        d = row_date(r)
-        if d is not None and d < cutoff:
-            archived.append(normalize_row(r))
-        else:
-            keep.append(normalize_row(r))
-    if not archived:
-        return text, [], len(keep)
+    normalized = [normalize_row(r) for r in rows]
+    archive_idx = set(
+        i for i, r in enumerate(rows)
+        if (d := row_date(r)) is not None and d < cutoff
+    )
+    if max_rows is not None:
+        remaining_in_order = [i for i in range(len(rows)) if i not in archive_idx]
+        if len(remaining_in_order) > max_rows:
+            archive_idx.update(remaining_in_order[max_rows:])
+    if not archive_idx:
+        return text, [], len(rows)
+    archived = [normalized[i] for i in sorted(archive_idx)]
+    keep = [normalized[i] for i in range(len(rows)) if i not in archive_idx]
     new_body = "\n" + TABLE_SEP + "\n" + "\n".join(keep)
     new_body += "\n" if keep else ""
     new_text = text[:body_start] + new_body + text[body_end:]
@@ -204,11 +237,12 @@ def apply_archive(archived_rows, existing_archive_text):
     return ARCHIVE_HEADER + body
 
 
-def count_stats(text: str, cutoff: datetime.date):
+def count_stats(text: str, cutoff: datetime.date, max_rows: int = None):
     body_start, body_end = locate_section(text)
     rows = parse_rows(text[body_start:body_end])
     overdue = sum(1 for r in rows if (d := row_date(r)) is not None and d < cutoff)
-    return len(rows), overdue, len((text[body_start:body_end]).encode("utf-8"))
+    over_cap = max(0, len(rows) - max_rows) if max_rows is not None else 0
+    return len(rows), overdue, over_cap, len((text[body_start:body_end]).encode("utf-8"))
 
 
 def main() -> int:
@@ -222,31 +256,41 @@ def main() -> int:
     ap.add_argument("--days", type=int, default=DEFAULT_RETENTION_DAYS,
                      help="Retention window in days (default %d)."
                           % DEFAULT_RETENTION_DAYS)
+    ap.add_argument("--max-rows", type=int, default=DEFAULT_MAX_ROWS,
+                     help="Row-count cap, independent of date: once more "
+                          "than this many rows are live, the oldest-by-"
+                          "position overflow rotates too (default %d). "
+                          "Pass 0 to disable the cap and rotate by date "
+                          "alone." % DEFAULT_MAX_ROWS)
     args = ap.parse_args()
     if not args.check and not args.apply:
         ap.error("pass --check or --apply")
+    max_rows = args.max_rows if args.max_rows > 0 else None
 
     text = io.open(BACKLOG_PATH, encoding="utf-8").read()
     cutoff = datetime.date.today() - datetime.timedelta(days=args.days)
-    n_rows, overdue, n_bytes = count_stats(text, cutoff)
+    n_rows, overdue, over_cap, n_bytes = count_stats(text, cutoff, max_rows)
 
     if args.check:
-        if overdue:
-            print("DUE: %d of %d rows (%d bytes in the table) are older "
-                  "than %s (retention %d days) and would move to %s on "
-                  "--apply." % (overdue, n_rows, n_bytes, cutoff.isoformat(),
-                                 args.days, ARCHIVE_PATH))
+        if overdue or over_cap:
+            print("DUE: %d of %d rows are older than %s (retention %d "
+                  "days), %d rows are past the %s-row cap, %d bytes in "
+                  "the table. Would move to %s on --apply."
+                  % (overdue, n_rows, cutoff.isoformat(), args.days,
+                     over_cap, max_rows, n_bytes, ARCHIVE_PATH))
             return 1
         print("CLEAN: all %d rows (%d bytes in the table) are within the "
-              "%d-day retention window (cutoff %s). Nothing to rotate."
-              % (n_rows, n_bytes, args.days, cutoff.isoformat()))
+              "%d-day retention window (cutoff %s) and the %s-row cap. "
+              "Nothing to rotate."
+              % (n_rows, n_bytes, args.days, cutoff.isoformat(), max_rows))
         return 0
 
     # --apply
-    new_text, archived, kept = plan_rotation(text, cutoff)
+    new_text, archived, kept = plan_rotation(text, cutoff, max_rows)
     if not archived:
-        print("Nothing older than %s (retention %d days); no change made."
-              % (cutoff.isoformat(), args.days))
+        print("Nothing older than %s (retention %d days) and nothing past "
+              "the %s-row cap; no change made."
+              % (cutoff.isoformat(), args.days, max_rows))
         return 0
 
     existing_archive_text = None

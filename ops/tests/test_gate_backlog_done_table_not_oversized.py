@@ -86,6 +86,37 @@ def main() -> int:
         fails.append("gate warned on a row still inside the retention+"
                       "buffer window: fails=%r warns=%r" % (fails3, warns3))
 
+    # 3b. All-today table, nothing overdue by date, but past the buffered
+    #     row cap (DEFAULT_MAX_ROWS + 10): must warn on the row-count
+    #     trigger alone. Found 2026-11-12: a purely date-based check
+    #     stayed silent on exactly this real shape (28 same-day rows,
+    #     9155 bytes over the live-docs size tripwire).
+    buffered_rows = rb.DEFAULT_MAX_ROWS + 10
+    many_today_rows = [_row(d(0), "today-%d" % i)
+                        for i in range(buffered_rows + 3)]
+    many_today_text = _table(many_today_rows)
+    with tempfile.TemporaryDirectory() as tmp3b:
+        fails3b, warns3b = _run_gate(tmp3b, many_today_text)
+    if fails3b:
+        fails.append("gate should WARN, not FAIL, on an all-today "
+                      "over-cap table: %r" % (fails3b,))
+    if not any(g == "backlog-done-table-not-oversized" for g, _ in warns3b):
+        fails.append("gate did not warn on an all-today table past the "
+                      "buffered row cap: %r" % (warns3b,))
+
+    # 3c. An all-today table at or under the buffered row cap stays
+    #     silent (the buffer exists so a normal day's cadence does not
+    #     fire this the moment it crosses DEFAULT_MAX_ROWS itself).
+    few_today_rows = [_row(d(0), "today-%d" % i) for i in range(buffered_rows)]
+    few_today_text = _table(few_today_rows)
+    with tempfile.TemporaryDirectory() as tmp3c:
+        fails3c, warns3c = _run_gate(tmp3c, few_today_text)
+    if fails3c or any(g == "backlog-done-table-not-oversized"
+                       for g, _ in warns3c):
+        fails.append("gate warned on an all-today table still inside the "
+                      "buffered row cap: fails=%r warns=%r"
+                      % (fails3c, warns3c))
+
     # 4. No BACKLOG-2026-09-07.md at all: must not crash.
     with tempfile.TemporaryDirectory() as tmp4:
         old_root = preflight.ROOT
@@ -113,7 +144,7 @@ def main() -> int:
             print(" -", f)
         return 1
     print("OK: gate_backlog_done_table_not_oversized, fail-then-pass "
-          "proved, 5/5 checks pass")
+          "proved, 7/7 checks pass")
     return 0
 
 

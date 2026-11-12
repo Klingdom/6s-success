@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, scheduled operator cycle: closed the real reason BACKLOG-2026-09-07.md's size tripwire kept warning after A107's date-only fix, a row-count cap
+
+**Did.** Unshallowed and attached clean (1102 commits behind). Read GOALS, BACKLOG-2026-09-07, ROADMAP, CLAUDE.md, last log entries. Preflight (backgrounded) 0 real FAIL through every gate reached, killed by hand at the documented network-bound gate_etsy_pdfs_current, confirmed genuinely progressing via /proc first. GitHub: 31 issues, unchanged since 11-08, none from Phil. No mail credential. Found gate_living_docs_total_size_tripwire still warning on BACKLOG-2026-09-07.md (159155 bytes) even though rotate_backlog.py --check reported CLEAN: all 28 "Done this week" rows were dated today or yesterday, so a purely date-based window of any length cannot bound same-day volume. A107's earlier days-only fix could not have closed this. Added a row-count cap (15, DEFAULT_MAX_ROWS) to rotate_backlog.py as a second trigger independent of date, and extended gate_backlog_done_table_not_oversized to warn on either.
+
+**Verified.** Fail-then-pass for both: git stash each fix, watched the new test_rotate_backlog.py and test_gate_backlog_done_table_not_oversized.py cases fail, restored, 14/14 and 7/7 pass. Ran --apply: 28 rows/88717 bytes to 15 rows/47458 bytes; file 159155 to 117896 bytes (now 120192 after this entry's own row), under the tripwire. fix_dashes.py --check 0/0, check_urls.py 235/235, py_compile clean on every touched file.
+
+**Went well.** Found the exact shape of a gate whose own suggested remedy was a no-op, same as A107's lesson, and closed the real gap this time.
+
+**Did not go well.** Nothing.
+
+**Changing next cycle.** Nothing.
+
+**Next.** Same Phil-gated queue; watch whether the 15-row cap needs retuning as entry size drifts.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, scheduled operator cycle: closed a real Stair Landing room-synonym gap and three Entryway off-topic collisions; verified and declined an oversized tie-break fix and two risky FORMAT_WORDS candidates
 
 **Did.** Unshallowed and attached clean (1094 commits behind). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP, CLAUDE.md, last log entries. Preflight clean (network-bound Etsy stall only). GitHub: 31 issues, unchanged since 11-08, none from Phil. No mail credential. Verified A111's "diapers in closet" tie is actually 11-33-way, not 3-way, dominated by near-miss mechanics crediting a downloads page over an exact match; confirmed a narrow fix would not even change the outcome, so declined it rather than ship a cosmetic patch. Mined Entryway's real 11-row tier instead: added "staircase landing" to Stair Landing's also-called synonyms (rebuilt via build_zone_pages.py), and three OFF_TOPIC_CONTEXT exclusions (potting bench, reloading bench, drop shipping). Declined "area" (real misattribution onto the wrong Garage zone) and "without" (fixes some rows, creates 3 new false-covered rows on the Standards Pack download).

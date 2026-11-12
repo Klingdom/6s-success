@@ -126,6 +126,40 @@ def main() -> int:
     if archived5 or new_text5 != new_text:
         fails.append("an already-rotated table was rotated again")
 
+    # 9b. The row-count cap: all rows dated today (so a date-based cutoff
+    #     alone would keep every one of them live), more rows than
+    #     max_rows. The oldest-by-position overflow (end of the newest-
+    #     first table) must archive, newest rows stay live, regardless of
+    #     date. Found 2026-11-12: a purely date-based window cannot bound
+    #     this table at the real cadence (10-20+ same-day rows), which is
+    #     exactly this case.
+    today_rows = [_row(d(0), "today-%d" % i) for i in range(5)]
+    text6 = _table(today_rows)
+    tight_cutoff = today - datetime.timedelta(days=14)  # nothing overdue by date
+    new_text6, archived6, kept6 = rb.plan_rotation(text6, tight_cutoff, max_rows=3)
+    if kept6 != 3:
+        fails.append("row-count cap kept %d rows, expected 3" % kept6)
+    if len(archived6) != 2:
+        fails.append("row-count cap archived %d rows, expected 2"
+                      % len(archived6))
+    if not any("today-3" in a for a in archived6) or \
+       not any("today-4" in a for a in archived6):
+        fails.append("row-count cap archived the wrong rows (expected the "
+                      "two oldest-by-position, today-3 and today-4): %r"
+                      % archived6)
+    if "today-0" not in new_text6 or "today-1" not in new_text6 \
+       or "today-2" not in new_text6:
+        fails.append("row-count cap dropped a row it should have kept "
+                      "live: %r" % new_text6[:200])
+
+    # 9c. max_rows=None (the flag disabled) rotates by date alone, same
+    #     behaviour as before this fix existed.
+    new_text7, archived7, kept7 = rb.plan_rotation(text6, tight_cutoff, max_rows=None)
+    if archived7 or kept7 != 5:
+        fails.append("max_rows=None should rotate by date alone (0 "
+                      "archived, 5 kept), got archived=%r kept=%d"
+                      % (archived7, kept7))
+
     # 10. apply_archive() with no existing archive writes the header once;
     #     with existing content it prepends the new block above it,
     #     leaving old entries intact and in place (newest-first).
@@ -152,7 +186,7 @@ def main() -> int:
         for f in fails:
             print(" -", f)
         return 1
-    print("PASS: 11/11 cases ok.")
+    print("PASS: 14/14 cases ok.")
     return 0
 
 
