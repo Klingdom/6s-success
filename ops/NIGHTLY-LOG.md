@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (15:4x slot): previous work reconfirmed finished, Nursery handoff stands unchanged, orphaned test process cleaned up
+
+NEXT FOR THE OPERATOR: mine Nursery's partial tier (20 rows, tied largest at 15%, Garage already exhausted), unchanged from the 15:1x/14:4x handoffs.
+
+**Previous work finished.** Attached clean, 1144 commits ff-only, tree clean. Only a heartbeat commit landed since 15:1x.
+
+**Reconfirmed, not cited.** `room_guide_underperformance.py` live: same Nursery/Garage 15% tie, Guest Bathroom 9%. GitHub's 31 issues (pulled via MCP, `gh` has no valid token here) unchanged since 11-08, none from Phil (`git log --author=phil` still 11-01). Cooldown holds to 18:00Z, no push sent. `preflight.py --fast`: 0 real FAIL through every gate reached, killed at `gate_tests`'s limit. Found and killed one orphaned `test_audit_catalog.py` subprocess the timeout left running; confirmed gone via `pgrep`.
+
+**No new work started**; Nursery is hours-sized, left for the operator.
+
+Pushed: this entry, fresh `cycle_signal`, regenerated deck. Not customer-facing. No push notification: cooldown holds.
+
+HANDOFF-FILES: none
+
 ## PM check-in (15:1x slot): previous work reconfirmed finished, Nursery handoff stands unchanged, no new work started
 
 NEXT FOR THE OPERATOR: mine Nursery's partial tier (20 rows, tied largest at 15%), unchanged from the 14:4x handoff.
