@@ -1,14 +1,14 @@
 {
-  "combined_hash": "a597fafaaf1be9488abf8435d47d31cda56ef0d8480900f1b4cb2ec37fc0992e",
-  "git_head": "9565a3995b0af39078cba66ac4b7c685df24d7c5",
-  "note": "PM check-in 12:1x: preflight --fast 0 real FAIL through every gate reached pre-merge; merged ff-only onto A114 (own full preflight run, clean); only post-merge diff is BACKLOG-2026-09-07.md rotation + keyword corpora, both already verified by A114's own test runs",
-  "recorded_at": "2026-11-12T12:29:02Z",
+  "combined_hash": "6ae2e81fb2a3ff4d70ee63ba2d7cf7cc7a5be995419477722889aa687625a150",
+  "git_head": "728d01cd610063b99d16a82e3f73af047832e490",
+  "note": "partial pass: every gate before gate_tests passed, gate_tests and everything after it not reached this run (cycle_signal checkpoint, not a full preflight pass), git HEAD 728d01cd61",
+  "recorded_at": "2026-11-12T13:08:57Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "d48c56630478ffb37623dbfaa419aee78ccd50c38a5eac8166cc4e9631bf80b5",
+    "BACKLOG-2026-09-07.md": "0220d884614d3cd83ff3e0fe3be1009bab0de3721142405c4ee9175b4c65b43d",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "7d45f86733f70a489ec95ab12ddc0c7613275ad3dfdb5d97860c14e7caa4bc4c",
     "OWNER-ACTIONS.md": "d027fc5627681222c2b5cc423550d7b00bc758274e383cc7f14f1d30e8513b91",
-    "STATUS.md": "760a233e50e3e31aadd04d37a380fea7e2ddf3eb7c284a1fa016ba872e6ce55d",
+    "STATUS.md": "3f4303a35e3eb15f2c9304fba9171cc2e5d93c3514836693ce42e30d127fa1f4",
     "ops/deploy-verdict.json": "f074e2b0fae8b4092d3ac4ba0f5bbbc1cdfbf2ff91294c1a0d2a8ff7dd9ee71e"
   }
 }

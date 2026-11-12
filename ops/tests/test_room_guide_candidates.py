@@ -837,6 +837,24 @@ _result_landing_genuine = rgc.score_room([_landing_genuine], [], _room)
 check("a genuine 'landing spot' row is NOT excluded by the drop-shipping pattern",
       _result_landing_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-12, mining Home Office's remaining partial tier. Dropbox is
+# a cloud storage service; "how to organize dropbox"/"...files in dropbox"
+# land on Home Office's File Storage zone purely on "organize"/"files", the
+# same digital-library confusion DIGITAL already excludes for "pc"/"hard
+# drive", not a physical filing question.
+_dropbox = {"query": "how to organize dropbox", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_dropbox = rgc.score_room([_dropbox], [], _room)
+check("a 'how to organize dropbox' digital-context row is excluded",
+      _result_dropbox["on_topic_rows"] == 0)
+_dropbox_files = {"query": "how to organise files in dropbox", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_dropbox_files = rgc.score_room([_dropbox_files], [], _room)
+check("a 'files in dropbox' digital-context row is excluded",
+      _result_dropbox_files["on_topic_rows"] == 0)
+_paperwork_genuine = {"query": "how to organize paperwork files", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_paperwork_genuine = rgc.score_room([_paperwork_genuine], [], _room)
+check("a genuine 'paperwork files' row is NOT excluded by the dropbox pattern",
+      _result_paperwork_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

@@ -55,8 +55,16 @@ ON_TOPIC = re.compile(r"organi[sz]|declutter|clean|storage|stock", re.I)
 # false on-topic gaps, the same digital-library shape this regex already
 # excludes "pc"/"steam"/"computer" for, just a phrase this list had not
 # named yet.
+# "dropbox" added 2026-11-12, mining Home Office: "how to organize dropbox",
+# "...organise dropbox photos", "...files in dropbox" and "...photos in
+# dropbox" all route into Home Office's File Storage zone or a nearby
+# article, the same cloud-storage-service shape "pc"/"hard drive" already
+# exclude, not a physical filing question. Checked both harvests: all five
+# rows containing "dropbox" name the software service; none is a genuine
+# physical "drop box" query.
 DIGITAL = re.compile(
-    r"\b(pc|steam|computer|desktop|digital|online|software|app|download)\b"
+    r"\b(pc|steam|computer|desktop|digital|online|software|app|download|"
+    r"dropbox)\b"
     r"|hard drive"
     # Found 2026-11-10, mining Family Room's remaining partial tier
     # alongside the PM check-in's own craft-fair/market fix. "how to

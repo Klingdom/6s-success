@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-11T17:34:53Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-12T12:10:52Z against 243 page(s) at commit b4bcbb9ca. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-12T13:06:29Z against 243 page(s) at commit 728d01cd6. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2810. Checked against 243 published page titles: 1712 covered, 1000 partial, 98 gap.
+**Queries found:** 2810. Checked against 243 published page titles: 1725 covered, 989 partial, 96 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 98, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 96, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -41,7 +41,6 @@ Showing the top 80 of 98, ordered by the best rank the phrase reached in any one
 | 4 | why am i frequently using the bathroom | - | How to organize the guest bathroom towels (0.33) | frequently, using |
 | 5 | decks and patios design ideas | - | How to organize an entryway, zone by zone (0.00) | decks, patios |
 | 5 | dental organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | dental |
-| 5 | guest bathroom decorating ideas pictures pinterest | Guest Bathroom | How to organize the guest bathroom towels (0.40) | decorating, pictures, pinterest |
 | 5 | how to organize belts | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | belts |
 | 5 | kindergarten organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | kindergarten |
 | 5 | why are garages left unfinished | Garage | How to organize the garage power tool storage (0.33) | garages, unfinished |
@@ -50,7 +49,6 @@ Showing the top 80 of 98, ordered by the best rank the phrase reached in any one
 | 6 | how to organize a cribbage tournament template | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, tournament |
 | 6 | how to organize beads for jewelry making | - | 6S Success: Home Edition &#183; Chapters 1 to 30 (0.00) | beads, jewelry |
 | 6 | trouble going to bathroom | - | How to organize the guest bathroom towels (0.33) | going, trouble |
-| 7 | attic storage ideas pictures | - | How to organize an attic without overloading it (0.33) | pictures, storage |
 | 7 | cover space between stove and countertop | - | The Primary Bedroom Deck: 66 cards, free to read (0.20) | countertop, cover, stove |
 | 7 | going to the bathroom problems | - | How to organize the guest bathroom towels (0.33) | going, problems |
 | 7 | how to design a walkway garden | - | How to organize the garage garden tool storage (0.33) | design, walkway |
@@ -101,10 +99,12 @@ Showing the top 80 of 98, ordered by the best rank the phrase reached in any one
 | 15 | decluttering your home printable guide | - | Decluttering vs. organizing: what's actually different (0.33) | home, printable |
 | 15 | decorating ideas for patios and decks | - | More storage will not fix a messy room (0.00) | decks, patios |
 | 15 | master bedroom design floor plan | - | How to organize the primary bedroom bed and bedding (0.20) | design, master, plan |
+| 16 | amazon shopping car organizer | - | How to organize the garage car care supplies (0.33) | amazon, shopping |
+| 16 | declutter gardening series lessons | - | How to declutter a bedroom in one day, step by step (0.25) | gardening, lessons, series |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1000.
+Showing the top 60 of 989.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -125,6 +125,7 @@ Showing the top 60 of 1000.
 | 1 | craft paint organizers and storage | How to organize the workshop paint and chemical storage | 0.67 |
 | 1 | drop zone design ideas | How to organize the entryway drop zone | 0.67 |
 | 1 | family room decorating ideas | How to organize the family room blanket storage | 0.67 |
+| 1 | guest bathroom decorating ideas pictures | How to organize the guest bathroom towels | 0.67 |
 | 1 | how to build a drop zone | How to organize the entryway drop zone | 0.67 |
 | 1 | how to build a patio deck | How to organize the patio or deck garden area | 0.67 |
 | 1 | how to build a stair landing | How to organize the stair landing landing surface or console | 0.67 |
@@ -156,7 +157,6 @@ Showing the top 60 of 1000.
 | 3 | design ideas for dining room | How to organize the dining room beverage or coffee station | 0.67 |
 | 3 | family room design ideas | How to organize the family room blanket storage | 0.67 |
 | 3 | guest bathroom design ideas | How to organize the guest bathroom towels | 0.67 |
-| 3 | home office organization ideas for teachers | How to organize the home office bookshelf | 0.67 |
 | 3 | home office organization ideas pinterest | How to organize the home office bookshelf | 0.67 |
 | 3 | how to arrange gallery wall art | How to organize the stair landing gallery wall | 0.67 |
 | 3 | how to create a drop zone | How to organize the entryway drop zone | 0.67 |
@@ -177,18 +177,18 @@ Showing the top 60 of 1000.
 | Entryway | 50 | 1 | 10 | 39 |
 | Family Room | 27 | 0 | 16 | 11 |
 | Garage | 76 | 1 | 20 | 55 |
-| Guest Bathroom | 22 | 1 | 14 | 7 |
+| Guest Bathroom | 22 | 0 | 15 | 7 |
 | Guest Bedroom | 24 | 0 | 12 | 12 |
 | Hall Closet | 28 | 0 | 8 | 20 |
-| Home Office | 57 | 0 | 18 | 39 |
+| Home Office | 57 | 0 | 14 | 43 |
 | Kids Bedroom | 21 | 0 | 8 | 13 |
 | Kitchen | 97 | 2 | 28 | 67 |
 | Laundry Room | 71 | 0 | 15 | 56 |
-| Living Room | 92 | 2 | 32 | 58 |
+| Living Room | 92 | 2 | 31 | 59 |
 | Mudroom | 43 | 0 | 18 | 25 |
 | Nursery | 61 | 1 | 19 | 41 |
-| Pantry | 58 | 1 | 19 | 38 |
-| Primary Bathroom | 13 | 0 | 7 | 6 |
+| Pantry | 58 | 1 | 17 | 40 |
+| Primary Bathroom | 13 | 0 | 6 | 7 |
 | Primary Bedroom | 16 | 0 | 13 | 3 |
 | Stair Landing | 24 | 0 | 13 | 11 |
 | Workshop | 66 | 4 | 25 | 37 |

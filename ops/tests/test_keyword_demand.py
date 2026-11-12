@@ -1912,6 +1912,52 @@ def main():
         for f in fails:
             print(" -", f)
         return 1
+
+    # 58. Found live 2026-11-12, mining Home Office's remaining partial
+    #     tier. "teacher"/"teachers"/"creatives" name who uses the office,
+    #     not a different subject (the same role "her"/"him"/"men"/"women"
+    #     already play). "productivity"/"minimal" name the goal or style of
+    #     the same organizing question ("organize a home office for
+    #     productivity" asks the same thing as "organize a home office").
+    #     "category" names an organizing scheme so generic it is close to
+    #     content-free on its own. "pictures" names the format of the
+    #     answer wanted, the same role "images" already plays. A full
+    #     before/after score_rows() diff across both corpora found 0
+    #     best_page misattributions for the first six; "pictures" moves 4
+    #     US + 1 global rows off a generic downloads sample PDF onto the
+    #     actually-relevant page, a quality improvement, not a
+    #     misattribution, and no row anywhere moves to a worse status.
+    new_format_words27 = ("teacher", "teachers", "creatives", "productivity",
+                          "minimal", "category", "pictures")
+    samples27 = {
+        "teacher": "how to organize teacher desk drawers",
+        "teachers": "home office organization ideas for teachers",
+        "creatives": "home office organization ideas for creatives",
+        "productivity": "how to organize a home office for productivity",
+        "minimal": "organize minimal home office",
+        "category": "how to organize a pantry by category",
+        "pictures": "garage organization ideas pictures",
+    }
+    for word in new_format_words27:
+        if word in kd.content_words(samples27[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format27 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format27 - set(new_format_words27)
+    try:
+        for word in new_format_words27:
+            if word not in kd.content_words(samples27[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format27
+
+    if fails:
+        print("FAIL")
+        for f in fails:
+            print(" -", f)
+        return 1
     # Counted from the numbered cases in this file rather than typed, because
     # a hardcoded tally goes stale the first time somebody adds a case and
     # then the test reports a number that is simply false. It said 14/14

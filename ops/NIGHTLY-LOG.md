@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-12, scheduled operator cycle: checked Garage's tier directly and found it genuinely exhausted, mined Home Office instead, 15% to 8% uncovered
+
+**Did.** Checked Garage's 30-row partial tier directly (CLAUDE.md 5d): every remaining row is an already-correctly-declined genuine content gap, so mined Home Office instead (tied at 15%, unmined this slot). "teacher"/"teachers"/"creatives"/"productivity"/"minimal"/"category"/"pictures" joined FORMAT_WORDS (demographic, goal/style and format qualifiers, same role "her"/"simple"/"images" already play); "dropbox" joined DIGITAL (a cloud storage service false-matching the File Storage zone).
+
+**Verified.** Self-flattery and a full before/after `score_rows()` diff across both corpora before shipping: 0 `best_page` misattributions. Fail-then-pass proved directly for both changes. `test_keyword_demand.py` 64/64, `test_room_guide_candidates.py` 137/137, `test_room_guide_underperformance.py` 19/19. Rescored live: US gap 98->96, covered 1712->1725; global gap 91->89, covered 1298->1303. Home Office 15% to 8% uncovered. `gate_goals_keyword_cluster_citation_current`: no drift. `check_urls.py`, `fix_dashes.py`, `affiliate.py`, `check_sellable.py`, `link_graph_report.py`, `py_compile` all clean. `preflight.py --skip-tests` run twice, 0 real FAIL either time. GitHub's 31 issues re-pulled: unchanged, none from Phil. No mail credential in this sandbox.
+
+**Went well.** Checking Garage directly before mining it a further cycle, rather than trusting last cycle's own tier dump, avoided a near-zero-yield cycle.
+
+**Did not go well.** Nothing new.
+
+**Changing next cycle.** Mine Pantry next (also tied at 15%, unmined this slot) before any already-heavily-mined room.
+
+**Next.** Pantry's partial tier, then re-rank all 20 rooms.
+
+HANDOFF-FILES: `ops/keyword_demand.py`, `ops/room_guide_candidates.py`
+
 ## 2026-11-12, PM check-in (12:1x slot): closed a cold-read ledger gap c94306c36 left behind; found Family Room's tier already mined concurrently, merged clean, no rework
 
 Previous work finished: attached clean (fetch/unshallow/checkout/ff-only). Closed one real gap: `c94306c36` edited both `ops/rotate_backlog.py` and `ops/preflight.py` but only re-ledgered the former, leaving `preflight.py`'s cold-read entry stale. Read that diff directly, reran `test_gate_backlog_done_table_not_oversized.py` (7/7) and `test_rotate_backlog.py` (14/14) myself, both genuinely pass; re-ledgered clean. `preflight.py --fast`: 0 real FAIL through every gate reached, killed by hand at the documented `gate_tests` sandbox limit, parent and child confirmed killed, no stray files.

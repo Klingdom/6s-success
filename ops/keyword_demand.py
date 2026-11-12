@@ -199,7 +199,31 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "baskets", "mount", "workout", "plans", "interior",
                           "begin", "extreme", "smart", "pdf", "fishing",
                           "hunting", "tactical", "motorcycle", "fresh",
-                          "bins", "wood", "materials", "sewing"))
+                          "bins", "wood", "materials", "sewing",
+                          "teacher", "teachers", "creatives", "productivity",
+                          "minimal", "category", "pictures"))
+
+# "teacher"/"teachers"/"creatives" joined 2026-11-12, mining Home Office's
+# partial tier. Each names who uses the office (a teacher grading papers, a
+# creative professional), not a different subject than the generic
+# organizing question, the same not-a-different-subject role "her"/"him"/
+# "men"/"women" already play for a demographic. "productivity" and "minimal"
+# name the goal or style of the same organizing question ("organize a home
+# office for productivity" asks the same thing as "organize a home office"),
+# the same style/goal-qualifier role "simple"/"efficiency" already cover.
+# "category" names an organizing scheme word so generic ("organize a pantry
+# by category") that it is close to content-free on its own. "pictures"
+# names the format of the answer wanted (show me pictures, not show me
+# ideas), the same role "images" already plays. Self-flattery checked first:
+# 0 of 243 titles for all six, 0 headings for five, 2 of 243 for "pictures".
+# Checked the full corpus before adding (CLAUDE.md 5c/5d): a full before/
+# after `score_rows()` diff across both corpora found 0 `best_page`
+# misattributions for "teacher"/"teachers"/"creatives"/"productivity"/
+# "minimal"/"category"; "pictures" moves 4 US + 1 global rows off a generic
+# downloads sample PDF onto the actually-relevant room/article page, a
+# quality improvement (the same giant-aggregator-loses-to-the-real-page
+# shape A92/A93 already named), not a misattribution, and no row moves to a
+# worse status either way.
 
 # "materials" and "sewing" joined 2026-11-12, mining Family Room's partial
 # tier. The room's own Craft and Activity Zone states its own purpose as
