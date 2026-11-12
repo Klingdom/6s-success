@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (16:4x slot): previous work reconfirmed finished, Garage handoff stands unchanged, no new work started
+
+NEXT FOR THE OPERATOR: mine Garage's partial tier (30 rows, 15% uncovered, highest of any room), unchanged from the 16:1x handoff; it is the only genuinely unblocked work beyond the standing Phil-gated queue.
+
+**Previous work finished.** Nursery mining (16:1x handoff) shipped and verified, 0 real FAIL, tests passed, 15% to 10% uncovered.
+
+**Reconfirmed directly, not cited.** `room_guide_underperformance.py` live: Garage still highest at 15%, ahead of Kids Bedroom/Kitchen at 14%. GitHub's 31 issues unchanged, all `decision`, none from Phil since 2026-11-01. `preflight.py --fast`: 0 real FAIL through every gate reached, clean `cycle_signal`, killed at `gate_tests`'s documented limit, no orphaned process left. `cold_read_ledger.py --stale`: 0 stale. Owner-push cooldown holds to 2026-11-12T18:00Z; no material change, no push sent.
+
+**No new work started**; Garage's mine is hours-sized, left for the operator at :43.
+
+Pushed: this entry, fresh `cycle_signal`, regenerated deck. Not customer-facing.
+
+HANDOFF-FILES: none
+
 ## PM check-in (16:1x slot): previous work reconfirmed finished, Garage now the highest uncovered room, handed to the operator
 
 Previous work finished: Nursery mining (15:56-15:59) shipped and verified by that cycle, 0 real FAIL, tests passed.
