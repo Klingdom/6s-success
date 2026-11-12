@@ -18,6 +18,22 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 HANDOFF-FILES: none
 
+## 2026-11-12, PM check-in (17:4x slot): previous work reconfirmed finished, Garage handoff stands unchanged, no new work started, ran late into the operator's own slot
+
+NEXT FOR THE OPERATOR: mine Garage's 30-row partial tier (15% uncovered, still the highest of any room), unchanged from the 17:2x and 16:4x handoffs; it is the only genuinely unblocked work beyond the standing Phil-gated queue.
+
+**Attach ran long.** Checkout arrived shallow and detached; this unshallow took several minutes in the background rather than failing, so the rest of this cycle's reads started late and landed inside the operator's own 17:43 slot rather than three minutes ahead of it. Waited for it rather than retrying a second `--unshallow`. ff-only onto `origin/main`, clean, nothing concurrent had landed by the time this entry was read.
+
+**Reconfirmed directly, not cited.** `room_guide_underperformance.py` run live: Garage still highest at 15% (30 partial rows of 202 on-topic), ahead of Kids Bedroom/Kitchen at 14%, same shape the last two handoffs named. GitHub's 31 open issues pulled fresh via the MCP tool: unchanged, all `decision`/`blocked-on-art`. `rotate_backlog.py --check` and `rotate_status_metadata.py --check`: both CLEAN, nothing due this slot (A103/A104 rotation already closed last cycle). `ops/last-owner-notification.json` cooldown on the standing owner-silence topic holds to 2026-11-12T18:00Z; nothing material changed (same 31 issues, same breakdown), so no push sent.
+
+**Ran `preflight.py --fast` myself**, backgrounded: 0 real FAIL through every gate reached (bootstrap, syntax, every room/deck gate, image coverage), a fresh clean `cycle_signal` checkpoint recorded, then killed at `gate_tests`'s documented sandbox entry point (hung on `test_audit_catalog.py`, the same standing limit every recent cycle hits). Reported as unchecked past that point, not as a pass, per CLAUDE.md 0.4.
+
+**Did not start new work this slot.** Garage's mine is hours-sized and this run started late; starting it now would hand the operator a half-finished diff at the exact moment it is reading state. Left for the operator at the top of this hour's actual work.
+
+Pushed to main: this log entry, `ops/cycle-signal.json` (fresh clean-pass checkpoint), regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable. No push notification sent.
+
+HANDOFF-FILES: none
+
 ## 2026-11-12, PM check-in (17:2x slot): previous work reconfirmed finished, backlog rotation closed (was due), Garage handoff stands unchanged
 
 **Previous work finished.** Attached cleanly (unshallow, ff-only, clean tree). Verified directly: `preflight.py --fast` fresh this slot, 0 real FAIL through every gate reached, killed only at `gate_tests`'s documented limit. 31 open GitHub issues re-pulled live: all `decision`/`blocked-on-art`, none from Phil. Garage still highest at 15% uncovered, unchanged since the 16:4x handoff; its mine is hours-sized, stays with the operator.
