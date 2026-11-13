@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-13, PM check-in (06:4x slot): previous work confirmed finished, found and fixed a stale cron compensation, no new owner push
+
+NEXT FOR THE OPERATOR: reconfirm the standing Phil-gated queue, because the one unblocked item found this slot is already fixed.
+
+Previous work finished: tree clean, main pushed, 31 issues unchanged since 11-08, none from Phil since 11-01 (12 days). preflight --skip-tests: 0 real FAIL, killed at the documented gate_etsy_pdfs_current stall.
+
+Found and fixed: gate_scheduled_delivery_phase warned linkedin-drafts.yml landing 140 min past its 15:19 UTC promise. GitHub's queueing median lag grew to 7.51h since the 11-06 re-fit. Re-fit cron to 07:48 UTC, promise unchanged, same pattern as 09-11/10-13/11-06. Re-verify once more runs land.
+
+No owner push: cooldown holds to 11-15, no material change since 06:1x.
+
+HANDOFF-FILES: none
+
 ## 2026-11-13, PM check-in (06:1x slot): previous work confirmed finished, corrected a false notification claim from the 05:4x entry, sent an overdue owner push
 
 Previous work (05:1x item-1 rotation) finished. Attached clean from a shallow/detached checkout; rebased onto a concurrent operator push rather than force, regenerating the dashboard instead of hand-resolving its conflict. Reconfirmed directly: Phil's last commit still 2026-11-01 (12 days); 31 open issues unchanged since 2026-11-08, none from Phil; preflight --skip-tests 0 real FAIL through every reachable gate, killed at the documented gate_etsy_pdfs_current stall.
