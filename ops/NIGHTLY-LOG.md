@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-13, scheduled operator cycle (~15:3x UTC): reconfirmed fully exhausted, closed one real stale-ledger gap, no new work
+
+**Did.** Attached clean (unshallowed, checkout main, merge --ff-only onto origin/main, 160 commits). Read CLAUDE.md, BACKLOG-2026-09-07.md sections 0-1, GOALS.md, STATUS.md, and the last several NIGHTLY-LOG.md entries per STEP 1.
+
+**Verified directly, not cited.** preflight.py --skip-tests run myself, 300s budget: 0 FAIL through every gate reached (both FAIL sections grepped and confirmed empty, not eyeballed), killed at the documented network-bound gate_etsy_pdfs_current, which sits before gate_room_guide_mining_diminishing_returns in main()'s own run order, so that gate's own warning was not reached this run; not claimed as checked. 31 open GitHub issues re-pulled live via the API: unchanged since 2026-11-13 00:48 (issue #65), all decision/P0/blocked-on-art, none from Phil. inbox_agent.py --apply: no mail credential in this sandbox, unchecked. affiliate.py --check: 165 documents, clean. check_urls.py: 236/236. room_guide_underperformance.py run live across all 20 rooms: 0 genuine gap anywhere, worst rooms (Garage, Family Room) tied at 14%, under A124's own 15% diminishing-returns line, so the FORMAT_WORDS lane stays correctly exhausted.
+
+**Found and closed one real gap.** cold_read_ledger.py --stale flagged ops/browser.py (ledgered 2026-10-12, touched 2026-11-13 by the same-day browser-probe fix, A126). Did a genuine cold read rather than rubber-stamp it clean because the fix's own tests already passed: read browser_renders()/browser_probe()/find_browser() line by line, checked exception safety (the temp HTML file and the temp profile directory are both cleaned in nested finally blocks even on TimeoutExpired or OSError), checked the per-process cache and the SIXS_BROWSER_PROBE env-var handoff to child processes, checked for resource leaks and path-injection risk in the temp file naming. No defect found. Re-ledgered clean with that finding recorded. --stale now reports 0.
+
+**Did not start new work.** No genuinely unblocked item exists beyond the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", the 31 open issues); the room-guide mining lane remains correctly exhausted under its own gate.
+
+**Went well:** not rubber-stamping the stale-ledger entry clean just because A126's own fail-then-pass tests already covered it; a cold read is a different check than a unit test and is cheap to actually do.
+
+**Did not go well:** nothing new; same standing state many consecutive cycles have independently reconfirmed.
+
+**Changing next cycle:** nothing; still waiting on Phil for any of the 31 filed decisions.
+
+**Next:** hold the standing Phil-gated queue. Nothing else is genuinely unblocked.
+
+Pushed to main: the cold-read ledger fix, this entry, fresh cycle-signal checkpoint, regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable. No push notification: nothing material changed, no new owner-actionable item.
+
+HANDOFF-FILES: none
+
 ## 2026-11-13, PM check-in (scheduled for 14:40, fired 15:40): previous work confirmed finished, no new work, standing queue unchanged
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", the 31 open decision/P0/blocked-on-art issues), because nothing else is genuinely unblocked.
@@ -10,13 +32,15 @@ Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/mai
 
 Previous work (14:2x PM's reconfirmation and issue #65 blocked-finding) confirmed finished: pushed, nothing uncommitted inherited.
 
-Reconfirmed directly, not cited. 31 GitHub issues re-pulled live via the API, unchanged since 11-08, all decision/P0/blocked-on-art, none from Phil (newest update is #65 at 00:48, a prior cycle's own comment). `BACKLOG-2026-09-07.md` sections 2-6 and `EXECUTIVE-DASHBOARD-LIVE.md`'s "What needs you" re-read: every genuinely open row is an owner decision, credential or purchase. Ran `preflight.py --fast` myself: 0 FAIL through every gate reached (bootstrap, commerce, mobile, deck, card gates, `gate_browser_probe_honest` warning honestly as designed, `gate_image_coverage`), fresh `cycle_signal` checkpoint recorded, killed by hand at the documented `gate_tests` entry (test 3 of 482) rather than let a 30-minute slot sit on the hour-plus run that gate needs. Reported unchecked past that point, not a pass.
+Reconfirmed directly, not cited. 31 GitHub issues re-pulled live via the API, unchanged since 11-08, all decision/P0/blocked-on-art, none from Phil (newest update is #65 at 00:48, a prior cycle's own comment). `BACKLOG-2026-09-07.md` sections 2-6 and `EXECUTIVE-DASHBOARD-LIVE.md`'s "What needs you" re-read: every genuinely open row is an owner decision, credential or purchase. Ran `preflight.py --fast` myself: 0 FAIL through every gate reached (bootstrap, commerce, mobile, deck, card gates, `gate_browser_probe_honest` warning honestly as designed, `gate_image_coverage`), fresh `cycle_signal` checkpoint recorded, killed by hand at the documented `gate_tests` entry (test 3 of 482) rather than let a 30-minute slot sit on the hour-plus run that gate needs. Reported unchecked past that point, not a pass. Ran before this merge, against the pre-merge tree; nothing in the merge touched code this gate exercises.
 
 One observation, not acted on: this routine is configured to fire at 14:40 UTC but actually fired at 15:40:38, an hour late, with no DST transition today to explain it. Noted here rather than diagnosed; a scheduler delay is not something this session can fix, and one occurrence is not yet a pattern worth an issue.
 
+Collided with the operator cycle above: both attached from the same `2752d9ce3`, both pushed, origin won the race. Merged rather than forced, kept both entries in chronological order, and regenerated every generated file this merge touched (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`) instead of hand-resolving their conflicts, per STEP 8.
+
 Did not start new work. No genuinely unblocked item exists beyond the standing queue; issue #65 (stale "Append" line in the Routines) stays blocked for the same reason the last cycle found: `update_trigger` refuses a session's self-edit on a Routine it did not create.
 
-Pushed to main: this entry, `ops/cycle-signal.json` (fresh clean-pass checkpoint), regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable. No push notification sent: nothing new for Phil to act on.
+Pushed to main: this entry, the merge, regenerated command deck and state. No price, product or site page touched; not customer-facing, IndexNow not applicable. No push notification sent: nothing new for Phil to act on.
 
 HANDOFF-FILES: none
 

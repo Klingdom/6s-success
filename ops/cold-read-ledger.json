@@ -93,8 +93,8 @@
     },
     "browser.py": {
       "status": "clean",
-      "date": "2026-10-12",
-      "note": "Second-pass cold read, PM check-in: read in full (42 lines). find_browser() tries Edge paths then the sandbox Chromium, returning the right --no-sandbox flag only for the container binary. No defect found."
+      "date": "2026-11-13",
+      "note": "Cold read 2026-11-13 PM: browser_renders()/browser_probe()/find_browser() reviewed line by line. Exception safety checked (tmp file and profile dir both cleaned in nested finally blocks even on TimeoutExpired/OSError), cache semantics checked (per-process, env-var handoff to children), no leaked resources, no injection risk in temp paths. No defect found; this re-ledgers the file A126 already fail-then-pass tested twice the same cycle."
     },
     "build.py": {
       "status": "clean",
