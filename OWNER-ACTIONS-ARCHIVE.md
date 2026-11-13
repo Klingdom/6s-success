@@ -4,6 +4,136 @@
 
 ---
 
+### "The one channel that has ever worked went silent on 28 September", full 2026-10-02 diagnostic, archived 2026-11-13, scheduled operator cycle
+
+Condensed in the live item to state plainly that this reading is now six weeks stale and blocked on item 0b (the traffic read), rather than reading as a live diagnostic from 28 September. Full original text below.
+
+**Measured 2026-10-02 from the analytics database, by day.** LinkedIn referred
+a visitor to this site on **sixteen separate days between 23 August and 28
+September**, one or two at a time, steadily. Since 28 September: **nothing, for
+four days.** Bluesky's last referral was 8 September.
+
+**Why this is near the top of the list.** `GOALS.md` says the constraint is
+arrivals, and of 96 visitors this site has ever had, search engines have
+delivered five. LinkedIn is not a nice-to-have here; on the evidence it is the
+only channel that has ever reliably produced a human, and it stopped.
+
+**The machine is not the problem, which is the part worth knowing before you
+look.** `linkedin-drafts.yml` has run and sent every day without a gap:
+rotation-advance commits land one to two a day from 25 September through today,
+including two already on 2 October. The drafts are arriving.
+
+**Three explanations and they are indistinguishable from here.** You can tell
+which in about ten seconds and this operator cannot tell at all:
+
+1. The posting stopped.
+2. The posts went out without a working link to the site.
+3. LinkedIn changed how it passes referrers, and the visits are arriving
+   counted as `(direct)`, which is 698 of the last 30 days' pageviews and
+   would hide them completely.
+
+Number 3 is a real possibility rather than a courtesy, and it is why this is
+written as a question rather than a reminder. If you have been posting as
+usual, say so and the right fix is a tracked link in the post (`?from=li`)
+rather than anything about posting cadence.
+
+**Fixed the same day, so this question answers itself from tomorrow.** Reading
+what the draft tools actually emit turned up something worse than the gap
+above: **not one draft from any of the three tools contained a URL at all.**
+LinkedIn's said "free in the online book", Bluesky's were bare excerpts,
+Facebook's said "Read it free in the online book". Nothing to click, in the
+posts written for the only channels that have ever produced a visitor here.
+
+All three now end every post with `https://6s-success.com/book.html` and a
+`from=` parameter (`li`, `bsky`, `fb`, `x`), and `ops/traffic_query.sh` reports
+arrivals grouped by it. That makes explanation 3 above testable rather than
+speculative: a visit from a post is now attributable even if the client strips
+the referrer.
+
+**Not yet proved end to end, and said plainly rather than claimed.** The tools
+emit the links when run by hand and all three workflows are green, but today's
+drafts had already gone out at 16:22 UTC, before the change. **No draft
+carrying a link has actually been emailed yet**; the first will be tomorrow's.
+Until one is posted, the `from=` query correctly returns zero rows.
+
+---
+
+### Item 4 (affiliate applications), the "IMPACT DECLINED US" discovery narrative, archived 2026-11-13, scheduled operator cycle
+
+Condensed in the live item to a two-sentence summary once the live, still-relevant "Five programmes route through Impact" finding was preserved separately. Full original text below.
+
+**IMPACT DECLINED US, and nobody had opened the email.** Corrected 2026-09-06.
+That "Application Update" of 29 August is not a task waiting on you. It reads:
+*"Your application to join Impact as a partner, 6S Success, was declined"*,
+against Media Partner account 7700618. It sat unread in the support inbox for
+eight days while this file asked you to go and click a verification link and
+`ops/affiliate-accounts.json` recorded the application as pending our own
+action. An earlier pass had logged the SUBJECT LINE and assumed what it meant.
+
+---
+
+### Item 16 (Pinterest/Instagram), the 2026-09-09 and 2026-09-15 build-history paragraphs, archived 2026-11-13, scheduled operator cycle
+
+Condensed in the live item to a single current-state sentence. Full original text below.
+
+**Added 2026-09-09, this operator:** the caption/board/tag
+text this item used to say still needed writing once the accounts existed.
+`ops/build_social_captions.py` writes it now, ahead of the accounts, so that
+step is no longer part of the manual job: `build/social/captions/*.json`,
+114 files plus a `boards.json` grouping into one board per room, every fact
+pulled from `content.json` (the same corpus the images and the zone pages
+themselves are built from), never typed in fresh. Verified before shipping:
+all 114 zone-page links resolve to a real file, no Pinterest title or
+description and no Instagram caption exceeds that platform's limit, no
+truncation artefact, no em or en dash. Gated in `preflight.py`
+(`gate_generator_ownership`) so a future content edit cannot leave this
+corpus silently stale. No further operator step is buildable here without
+the two accounts above.
+
+**Updated 2026-09-15:** the cards were rebuilt to lead with each zone's approved
+picture (106 of 114 zones; the other 8 have no approved picture and stay text
+only). Same file names and the same steps above. The captions were regenerated
+too: their checklist now quotes each standard whole, and 15 Pinterest
+descriptions that had lost their zone link to a length cut end in it again.
+
+---
+
+### Item 18 (Facebook/X), the corpus_posts.py sizing-note bug-fix narrative, archived 2026-11-13, scheduled operator cycle
+
+Condensed in the live item to one sentence. Full original text below.
+
+**Found and fixed on the way through:** `corpus_posts.py`'s `split_numbered()`
+only stripped the trailing "(NNN chars)" sizing note in one of the four
+shapes the corpus actually uses ("(NNN chars)", "(~NNN chars)",
+"(approx NNN chars)", "(approx. NNN chars)"). 261 of 741 real X posts still
+carried that note as the last line of the body, which would have read as
+obviously unedited if posted as written, the exact bar the module's own
+`clean()` docstring sets and fails on its own terms. Fixed the pattern to
+match all four; `ops/tests/test_corpus_posts.py` extended with the three
+previously-uncaught shapes, fail-then-pass proved directly against the real
+corpus (261 to 0).
+
+---
+
+### Item "New 2026-10-22" (unpushed PC commits), full 2026-10-22 security-check narrative, archived 2026-11-13, scheduled operator cycle
+
+Condensed in the live item to a two-sentence summary. Full original text below.
+
+**Checked 2026-10-22, scheduled operator cycle, line by line rather than
+guessed: two of the four security fixes were missing, and are now fixed
+directly in `photos/server.py` rather than left as an open question.**
+Decompression bombs and the disk ceiling were already covered by the two
+review passes `PHOTOS-API.md` records. Negative Content-Length and socket
+timeout were not, in either pass, and were not present in the code: a
+negative `Content-Length` bypassed the size check and reached an unbounded
+`rfile.read()`, and no socket timeout existed to close an idle connection.
+Both fixed and proved fail-then-pass in `ops/tests/test_photos_service.py`
+(39/39); full account in `PHOTOS-API.md`'s 2026-10-22 entry. This closes
+the "worth checking" question this item used to raise; what remains is only
+the product call below.
+
+---
+
 ### Item 1, the what-this-looked-like-yesterday done_items() bug narrative, archived 2026-11-13
 
 What this looked like yesterday is worth keeping, because it is why the item
@@ -820,5 +950,40 @@ you; the operator sandbox can render and commit the cover itself now.
 The item itself closed 2026-11-01; this is the full "Why" column text the
 "Start here" table carried afterward, kept for continuity now that the table
 row has been shortened to a pointer.
+
+---
+
+### Item 23 (reduce the autonomous cadence), 2026-10-17 addendum and the first half of the 2026-10-23 addendum, archived 2026-11-13, scheduled operator cycle
+
+Full narrative, trimmed to a short pointer in the live item once the Routine edit URLs were preserved there (OWNER-ACTIONS.md's own byte tripwire).
+
+**Addendum, 2026-10-17: confirmed again via `update_trigger`, same refusal as before.** The three Routines' direct edit pages, found that cycle and still the fastest way to do option 1:
+
+- PM :10: `https://claude.ai/code/routines/trig_01KYMpAJo7UHBMtUYmqXj25L`
+- PM :40: `https://claude.ai/code/routines/trig_01JCURkStiuxTMyZDNbVGumL`
+- Hourly operator :43: `https://claude.ai/code/routines/trig_011oe2y7KR3AiPxUTd6b9P6c`
+
+Option 1 is now genuinely two clicks on two pages, not a search through the
+product to find where Routines live.
+
+**Addendum, 2026-10-23, scheduled operator cycle: the "zero comments" line
+above is stale and was never corrected.** Issue #42 now carries 5 comments
+(2026-10-17 through 2026-10-23), all from this operator, all status updates
+re-verifying the same exhausted state and explicitly declining to re-raise
+again without new evidence; the last one reads "not raising further until
+something actually changes." That is still true as of this cycle: re-tested
+`update_trigger` on this session's own trigger
+(`trig_011oe2y7KR3AiPxUTd6b9P6c`) directly rather than trusting the prior
+finding, got the identical refusal ("created via http_api, not by an
+agent... A routine's own session may still disable itself (enabled=false
+only)"), and did not use the self-disable option for the same reason the
+2026-10-17 addendum gave: it would remove the one session that could pick
+up new work, which is worse than the status quo. Separately re-verified
+live rather than assumed: `checks.yml` and `fulfil-orders.yml` are both
+green on `main` with no silent failures, and the Etsy/KDP listing packages
+(`build/listings/check_etsy.py`, `build/listings/check_kdp.py`) both still
+pass with zero failures, so items 14/15 below remain genuinely a single
+step away. No new comment added to issue #42 this cycle, matching its own
+last comment's stated intent; both options above still stand, unchanged.
 
 Closes the single most repeated line in this repository's whole operating history for good, not once. Every prior "redeploy" ask on this list has been a one-time chore that comes back the moment nobody happens to run it by hand for a few days; `CHECKIN-LOG.md`'s last several hourly check-ins each independently landed on "production is behind the repository, deploy" with no session able to act on it. `.github/workflows/deploy.yml` now exists, triggers itself the moment `publish-image.yml` finishes, and runs the exact `ops/deploy.py` a local session already runs by hand: pull the new image, recreate the container, refuse to claim success until production's own build id matches. It does nothing today because no sandbox holds the key to give it. Run `cat ~/.ssh/6s_deploy` on the machine that already has it (installed 2026-09-01), then `gh secret set VPS_DEPLOY_KEY < ~/.ssh/6s_deploy` (or paste the file's contents into Settings -> Secrets and variables -> Actions -> New repository secret, named exactly `VPS_DEPLOY_KEY`) in this repository. After that, every push that changes `site/**` reaches a customer within minutes, unattended, forever. Filed as GitHub issue #35 (`decision`) because it creates the first credential in this repository that gives GitHub Actions direct SSH access to production; recommendation is there, decision is yours. **Measured 2026-09-29: the gap served real 404s to search engines; full account archived to `OWNER-ACTIONS-ARCHIVE.md` now that the item above is closed.** Also, the "corrected 2026-11-02 PM check-in" note this row carried: it had still said the first automatic deploy "is to be verified" when `STATUS.md`'s own BLOCKER-001 and Production Knowledge sections recorded at least five separate automatic deploys confirmed since, most recently build `b150c19629689ad2` at 2026-11-01T22:33:43Z matching repository HEAD with zero commits undeployed; nothing left open on this item.

@@ -43,73 +43,22 @@ be right, and choosing is a product call, so neither was merged. They are
 kept, untouched, on the local branch `local-unpushed-2026-10-14`; your local
 `main` now matches GitHub.
 
-**Checked 2026-10-22, scheduled operator cycle, line by line rather than
-guessed: two of the four security fixes were missing, and are now fixed
-directly in `photos/server.py` rather than left as an open question.**
-Decompression bombs and the disk ceiling were already covered by the two
-review passes `PHOTOS-API.md` records. Negative Content-Length and socket
-timeout were not, in either pass, and were not present in the code: a
-negative `Content-Length` bypassed the size check and reached an unbounded
-`rfile.read()`, and no socket timeout existed to close an idle connection.
-Both fixed and proved fail-then-pass in `ops/tests/test_photos_service.py`
-(39/39); full account in `PHOTOS-API.md`'s 2026-10-22 entry. This closes
-the "worth checking" question this item used to raise; what remains is only
-the product call below.
+**Checked 2026-10-22, scheduled operator cycle: of the four security fixes the unpushed commit claimed, decompression bombs and the disk ceiling were already covered elsewhere, but negative Content-Length and socket timeout were genuinely missing; both are now fixed in `photos/server.py`, proved fail-then-pass (`ops/tests/test_photos_service.py`, 39/39). Full account in `PHOTOS-API.md`'s 2026-10-22 entry.** This closes the "worth checking" question this item used to raise; what remains is only the product call below.
 
 **Still yours: `site/photos.html` vs. the live `site/photo-check.html`.**
 Reply "drop the old page" or "merge anything `9ac0bcea5`'s page did better"
 and it gets done; the security half no longer depends on your answer.
 
 
-### The one channel that has ever worked went silent on 28 September
+### The one channel that has ever worked went quiet, and nobody has been able to check it for six weeks
 
-**Measured 2026-10-02 from the analytics database, by day.** LinkedIn referred
-a visitor to this site on **sixteen separate days between 23 August and 28
-September**, one or two at a time, steadily. Since 28 September: **nothing, for
-four days.** Bluesky's last referral was 8 September.
+**Measured 2026-10-02 from the analytics database, by day, and not re-measured since.** LinkedIn referred a visitor on sixteen separate days between 23 August and 28 September, then nothing for four days; Bluesky's last referral was 8 September. Of 96 visitors this site has ever had, search engines delivered five, so whether the one channel that reliably produces a human is still working matters more than almost anything else on this list.
 
-**Why this is near the top of the list.** `GOALS.md` says the constraint is
-arrivals, and of 96 visitors this site has ever had, search engines have
-delivered five. LinkedIn is not a nice-to-have here; on the evidence it is the
-only channel that has ever reliably produced a human, and it stopped.
+**Why this reading is still the newest one.** Checking it needs the same VPS analytics key item 0b below names, and no sandboxed session has held it since 2026-10-02: this question and `GOALS.md`'s own traffic table went stale on the same day for the same reason. Running item 0b's traffic read answers both at once.
 
-**The machine is not the problem, which is the part worth knowing before you
-look.** `linkedin-drafts.yml` has run and sent every day without a gap:
-rotation-advance commits land one to two a day from 25 September through today,
-including two already on 2 October. The drafts are arriving.
+**Fixed the same day the gap was found, still unverified end to end.** None of the LinkedIn, Bluesky or Facebook drafts carried a working link before 2026-10-02; all three now end every post with a tracked URL (`?from=li`/`bsky`/`fb`/`x`), so a LinkedIn-sourced visit since should show up as `from=li` even if the client strips the referrer. No post carrying that link had gone out as of 2026-10-02. Whether any since produced a visit is exactly what item 0b's traffic read would show.
 
-**Three explanations and they are indistinguishable from here.** You can tell
-which in about ten seconds and this operator cannot tell at all:
-
-1. The posting stopped.
-2. The posts went out without a working link to the site.
-3. LinkedIn changed how it passes referrers, and the visits are arriving
-   counted as `(direct)`, which is 698 of the last 30 days' pageviews and
-   would hide them completely.
-
-Number 3 is a real possibility rather than a courtesy, and it is why this is
-written as a question rather than a reminder. If you have been posting as
-usual, say so and the right fix is a tracked link in the post (`?from=li`)
-rather than anything about posting cadence.
-
-**Fixed the same day, so this question answers itself from tomorrow.** Reading
-what the draft tools actually emit turned up something worse than the gap
-above: **not one draft from any of the three tools contained a URL at all.**
-LinkedIn's said "free in the online book", Bluesky's were bare excerpts,
-Facebook's said "Read it free in the online book". Nothing to click, in the
-posts written for the only channels that have ever produced a visitor here.
-
-All three now end every post with `https://6s-success.com/book.html` and a
-`from=` parameter (`li`, `bsky`, `fb`, `x`), and `ops/traffic_query.sh` reports
-arrivals grouped by it. That makes explanation 3 above testable rather than
-speculative: a visit from a post is now attributable even if the client strips
-the referrer.
-
-**Not yet proved end to end, and said plainly rather than claimed.** The tools
-emit the links when run by hand and all three workflows are green, but today's
-drafts had already gone out at 16:22 UTC, before the change. **No draft
-carrying a link has actually been emailed yet**; the first will be tomorrow's.
-Until one is posted, the `from=` query correctly returns zero rows.
+**If you have kept posting by hand and nothing above squares with what you see, say so.**
 
 
 ### Not ours, on your VPS, and crash-looping right now
@@ -651,13 +600,7 @@ verification step that was never completed:
 | Amazon | direct | three "Verify your new Amazon account" OTPs | OTPs long expired |
 | Ace | Impact | "Application Received" | **DECLINED, see below** |
 
-**IMPACT DECLINED US, and nobody had opened the email.** Corrected 2026-09-06.
-That "Application Update" of 29 August is not a task waiting on you. It reads:
-*"Your application to join Impact as a partner, 6S Success, was declined"*,
-against Media Partner account 7700618. It sat unread in the support inbox for
-eight days while this file asked you to go and click a verification link and
-`ops/affiliate-accounts.json` recorded the application as pending our own
-action. An earlier pass had logged the SUBJECT LINE and assumed what it meant.
+**IMPACT DECLINED US.** Corrected 2026-09-06, full discovery narrative archived to `OWNER-ACTIONS-ARCHIVE.md`: the 29 August "Application Update" was a decline, *"Your application to join Impact as a partner, 6S Success, was declined"* (Media Partner account 7700618), not a verification link waiting on you.
 
 **Five programmes route through Impact and all five are shut, not pending:**
 Walmart, Ace, Home Depot, Lowe's and Target. They share the one partner account,
@@ -1161,26 +1104,7 @@ production," and this is the plainest case of it on the list: 228 finished
 images sitting on a disk, zero of them in front of a stranger, while the
 whole business is gated on exactly one thing, arrivals.
 
-**Ready:** the images themselves, named `<room-slug>--<zone-slug>.png` in
-each directory. **Added 2026-09-09, this operator:** the caption/board/tag
-text this item used to say still needed writing once the accounts existed.
-`ops/build_social_captions.py` writes it now, ahead of the accounts, so that
-step is no longer part of the manual job: `build/social/captions/*.json`,
-114 files plus a `boards.json` grouping into one board per room, every fact
-pulled from `content.json` (the same corpus the images and the zone pages
-themselves are built from), never typed in fresh. Verified before shipping:
-all 114 zone-page links resolve to a real file, no Pinterest title or
-description and no Instagram caption exceeds that platform's limit, no
-truncation artefact, no em or en dash. Gated in `preflight.py`
-(`gate_generator_ownership`) so a future content edit cannot leave this
-corpus silently stale. No further operator step is buildable here without
-the two accounts above.
-
-**Updated 2026-09-15:** the cards were rebuilt to lead with each zone's approved
-picture (106 of 114 zones; the other 8 have no approved picture and stay text
-only). Same file names and the same steps above. The captions were regenerated
-too: their checklist now quotes each standard whole, and 15 Pinterest
-descriptions that had lost their zone link to a length cut end in it again.
+**Ready, archived build history in `OWNER-ACTIONS-ARCHIVE.md`:** 114 images per surface at `<room-slug>--<zone-slug>.png` in each directory (106 of 114 leading with each zone's approved photo, the other 8 text only), plus a matching caption/board/tag file per zone at `build/social/captions/*.json`, every fact pulled from `content.json` and gated by `gate_generator_ownership` so a future content edit cannot leave it silently stale. No further operator step is buildable here without the two accounts above.
 
 ---
 
@@ -1259,16 +1183,7 @@ That gap, not a missing asset, is what this item closes, and it is squarely
 O1 (arrivals, the constraint): distribution beats production, and the
 production side of this one was finished before this business existed.
 
-**Found and fixed on the way through:** `corpus_posts.py`'s `split_numbered()`
-only stripped the trailing "(NNN chars)" sizing note in one of the four
-shapes the corpus actually uses ("(NNN chars)", "(~NNN chars)",
-"(approx NNN chars)", "(approx. NNN chars)"). 261 of 741 real X posts still
-carried that note as the last line of the body, which would have read as
-obviously unedited if posted as written, the exact bar the module's own
-`clean()` docstring sets and fails on its own terms. Fixed the pattern to
-match all four; `ops/tests/test_corpus_posts.py` extended with the three
-previously-uncaught shapes, fail-then-pass proved directly against the real
-corpus (261 to 0).
+**Found and fixed on the way through, full account archived:** a `corpus_posts.py` bug left a sizing note on 261 of 741 real X posts; fixed, fail-then-pass proved.
 
 **What:** `ops/social_drafts.py` (new), a thin sibling of
 `ops/linkedin_drafts.py`: reads the same corpus through
@@ -1300,10 +1215,7 @@ whole business is gated on exactly one thing, arrivals.
 **Ready:** `ops/social_drafts.py --preview` shows today's combined draft
 without touching rotation state; `ops/tests/test_social_drafts.py` (6 cases)
 and the extended `ops/tests/test_corpus_posts.py` (18 cases) both pass.
-Verified this cycle against the live corpus, not a fixture: every X draft
-`build("x")` can hand back is 280 characters or fewer, and none carries a
-leftover sizing annotation. No further operator step is buildable here
-without the two accounts above.
+No further operator step is buildable here without the two accounts above.
 
 ---
 
@@ -1586,34 +1498,11 @@ cross-check).
 
 Nothing else here is blocked on this; it is pure cost reduction.
 
-**Addendum, 2026-10-17: confirmed again via `update_trigger`, same refusal as before; full narrative archived to `OWNER-ACTIONS-ARCHIVE.md`.** The three Routines' direct edit pages, found that cycle and still the fastest way to do option 1:
+**Addendum, 2026-10-23, scheduled operator cycle, full narrative archived to `OWNER-ACTIONS-ARCHIVE.md`: re-tested directly, same refusal, same two options still stand.** `update_trigger` on this session's own trigger (`trig_011oe2y7KR3AiPxUTd6b9P6c`) gave the identical refusal ("created via http_api, not by an agent"); self-disable was declined for the same reason as before, that it would remove the one session that could pick up new work. The three Routines' direct edit pages, still the fastest way to do option 1:
 
 - PM :10: `https://claude.ai/code/routines/trig_01KYMpAJo7UHBMtUYmqXj25L`
 - PM :40: `https://claude.ai/code/routines/trig_01JCURkStiuxTMyZDNbVGumL`
 - Hourly operator :43: `https://claude.ai/code/routines/trig_011oe2y7KR3AiPxUTd6b9P6c`
-
-Option 1 is now genuinely two clicks on two pages, not a search through the
-product to find where Routines live.
-
-**Addendum, 2026-10-23, scheduled operator cycle: the "zero comments" line
-above is stale and was never corrected.** Issue #42 now carries 5 comments
-(2026-10-17 through 2026-10-23), all from this operator, all status updates
-re-verifying the same exhausted state and explicitly declining to re-raise
-again without new evidence; the last one reads "not raising further until
-something actually changes." That is still true as of this cycle: re-tested
-`update_trigger` on this session's own trigger
-(`trig_011oe2y7KR3AiPxUTd6b9P6c`) directly rather than trusting the prior
-finding, got the identical refusal ("created via http_api, not by an
-agent... A routine's own session may still disable itself (enabled=false
-only)"), and did not use the self-disable option for the same reason the
-2026-10-17 addendum gave: it would remove the one session that could pick
-up new work, which is worse than the status quo. Separately re-verified
-live rather than assumed: `checks.yml` and `fulfil-orders.yml` are both
-green on `main` with no silent failures, and the Etsy/KDP listing packages
-(`build/listings/check_etsy.py`, `build/listings/check_kdp.py`) both still
-pass with zero failures, so items 14/15 below remain genuinely a single
-step away. No new comment added to issue #42 this cycle, matching its own
-last comment's stated intent; both options above still stand, unchanged.
 
 ### 24. Fix a stale logging instruction in all three Routines' prompts: they say "Append", the correct tool prepends. About two minutes, once. GitHub issue #65.
 
