@@ -158,9 +158,42 @@ def case_an_on_time_record_clears_degraded():
     inside 1.5x the configured interval clears degraded, and one outside it
     does not. Configured is 60 for hourly-brief.yml, so 45 passes and 200,
     which is roughly what it is really doing today, does not.
+
+    STUBBING delivery_gaps ALONE WAS NOT ENOUGH, AND THE GAP WENT RED IN A
+    REAL RUN.
+
+    Found 2026-11-13, in the first full preflight run that had been able to
+    reach its own end in weeks: this case failed with "a late delivery mean
+    did not leave the workflow degraded", then passed on a re-run minutes
+    later with nothing changed. check_one() only consults the delivery record
+    at all when the schedule-derived verdict is ALREADY degraded and the
+    push-trigger coverage branch above it has not cleared it, and both of
+    those read live GitHub Actions data. So on a day when GitHub's cron is
+    punctual, or when pushes have covered the gap, degraded is False before
+    delivery is ever reached, and the 200 minute expectation below cannot
+    hold no matter how correct the delivery seam is.
+
+    That is this file claiming to test one seam while actually depending on
+    two unstubbed live conditions, which is the same shape as the defect the
+    same cycle fixed in ops/browser.py: a check reporting something other
+    than what it says it checks. The existing verdict == "unknown" guard only
+    covers having no API at all, never GitHub simply behaving well.
+
+    Fixed by stubbing the two upstream inputs too, so the case exercises the
+    boundary it names, deterministically, on a good GitHub day and a bad one
+    alike. gaps_minutes is forced well past the 2.5x line so the schedule
+    verdict starts degraded, and has_push_trigger is forced False so the
+    coverage branch cannot clear it first.
     """
     real = C.delivery_gaps
+    real_gaps = C.gaps_minutes
+    real_push = C.has_push_trigger
     try:
+        # Upstream of the seam under test: start degraded on the schedule, and
+        # keep the push-coverage branch out of it. Without these two the case
+        # silently measures GitHub's current punctuality instead.
+        C.gaps_minutes = lambda *a, **k: [300.0] * 12
+        C.has_push_trigger = lambda *a, **k: False
         C.delivery_gaps = lambda *a, **k: [45.0] * 12
         r = C.check_one("hourly-brief.yml")
         if r.get("verdict") == "unknown":
@@ -181,6 +214,8 @@ def case_an_on_time_record_clears_degraded():
         assert r2.get("delivery_mean") == 200.0, r2
     finally:
         C.delivery_gaps = real
+        C.gaps_minutes = real_gaps
+        C.has_push_trigger = real_push
 
 def case_the_cron_throttling_is_still_reported_not_suppressed():
     """Silently passing would hide a real fact about the schedule."""
