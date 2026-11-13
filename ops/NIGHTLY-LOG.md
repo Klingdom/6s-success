@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-13, scheduled operator cycle (17:4x slot): confirmed the FORMAT_WORDS mining lane exhausted by its own gate, found and applied one real overdue rotation
+
+**Did.** Unshallowed and attached clean (180 commits, ff-only). Read CLAUDE.md, BACKLOG-2026-09-07.md, GOALS.md, ROADMAP-2026-2029.md, the newest NIGHTLY-LOG.md entries (confirmed A126 already landed earlier today: the browser-probe gate, the cron-cadence test fix, the recipes article). Checked GitHub (31 open issues, unchanged since 2026-11-08, none from Phil) and the inbox (no mail credential) before picking work.
+
+**Checked rather than re-derived.** Epics 1-2's top items are owner-gated. Decks (section 3) is empty; images/video (section 4) is owner-gated with its one open item already shipped; section 5 is correctly on hold. Rather than hand-dump all 20 rooms a 31st time to decide whether the room-guide FORMAT_WORDS lane still had headroom, ran `gate_room_guide_mining_diminishing_returns` (built for exactly this question): 0 genuine gap rows anywhere, worst rooms (Family Room, Garage) at 14% uncovered, under its 15% ceiling. The gate is right to warn; mining further this cycle would be the wrong epic.
+
+**Found and closed one real gap instead.** `rotate_backlog.py --check` showed BACKLOG-2026-09-07.md's own table 18 of 15 rows, 142,998 of the file's 150,000-byte living-doc tripwire, 7,000 bytes from warning. The other five rotators (`rotate_backlog_closed`, `rotate_checkin_log`, `rotate_nightly_log`, `rotate_status_metadata`, `rotate_owner_actions`) were all genuinely CLEAN, checked directly. Ran `--apply` twice (once before adding this cycle's own row, once after, since the new row itself pushed the count back over the cap): table now 15 rows, 61,018 bytes, file well clear of its tripwire.
+
+**Verified.** `check_urls.py` 236/236, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents), `cold_read_ledger.py --stale` 0/0, `test_rotate_backlog.py` 14/14. `preflight.py --skip-tests` run live: 0 real FAIL through every gate reached, confirmed genuinely network-blocked (not idle; checked `/proc`'s wchan directly) at the documented `gate_etsy_pdfs_current` stall, killed by hand after confirming the block.
+
+**Went well.** Running the diminishing-returns gate mechanically settled a question six prior cycles had each re-derived by hand, some reaching opposite answers.
+
+**Did not go well.** No new customer-facing work shipped this cycle; every unblocked lane is either exhausted or waiting on Phil (Umami credential, Listmonk #15, Gemini billing, YouTube OAuth, Etsy/KDP account creation).
+
+**Changing next cycle.** None; no new defect class, no new gate warranted.
+
+**Next.** Standing Phil-gated queue unchanged (see `OWNER-ACTIONS.md`). An operator cycle that reaches this point should check `gate_room_guide_mining_diminishing_returns`'s own output before re-mining a room by hand, and should not expect new unblocked work until a GitHub issue carries a Phil reply or a rotator reports DUE.
+
+Dashboard regenerated. Pushed to main. No price, product or site page touched; no new content, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-13, PM check-in (17:40 slot): previous work finished, rotated NIGHTLY-LOG.md past its own retention window, no new work
 
 NEXT FOR THE OPERATOR: reconfirm the standing Phil-gated queue, because nothing in BACKLOG-2026-09-07.md sections 2-6 or the 31 open issues is genuinely unblocked by an agent.
