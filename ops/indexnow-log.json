@@ -34,6 +34,7 @@
   "https://6s-success.com/articles/how-to-organize-an-entryway",
   "https://6s-success.com/articles/how-to-organize-baby-clothes",
   "https://6s-success.com/articles/how-to-organize-paperwork",
+  "https://6s-success.com/articles/how-to-organize-recipes",
   "https://6s-success.com/articles/how-to-organize-toys",
   "https://6s-success.com/articles/how-to-store-blankets",
   "https://6s-success.com/articles/is-that-really-a-backup",
@@ -238,13 +239,6 @@
   "https://6s-success.com/zones/workshop-the-safety-and-ppe-station"
  ],
  "runs": [
-  {
-   "at": "2026-11-05T05:33:18Z",
-   "mode": "changed",
-   "offered": 3,
-   "accepted": 3,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
   {
    "at": "2026-11-05T07:03:19Z",
    "mode": "changed",
@@ -657,6 +651,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-13T10:50:22Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -895,7 +896,8 @@
   "https://6s-success.com/articles/how-to-organize-a-guest-bedroom": "05fa83b14f969564",
   "https://6s-success.com/articles/how-to-organize-an-entryway": "890d336361963855",
   "https://6s-success.com/articles/how-to-organize-a-dining-room": "bc1c1780a2ded734",
-  "https://6s-success.com/articles/how-to-organize-a-stair-landing": "d3f3285427490b04"
+  "https://6s-success.com/articles/how-to-organize-a-stair-landing": "d3f3285427490b04",
+  "https://6s-success.com/articles/how-to-organize-recipes": "7c3ab5407c2c95d9"
  },
  "hash_algo": "sha256-16-lf-1"
 }
