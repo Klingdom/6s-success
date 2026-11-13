@@ -2277,6 +2277,39 @@ def main():
                      "50/243 headings carry it, the site's own brand "
                      "language, too broad to ever be a safe qualifier")
 
+    # 65. Found live 2026-11-13, scheduled operator cycle, a real
+    #     misattribution rather than a coverage-chasing cycle (every room
+    #     was already under the 15% diminishing-returns gate's own
+    #     threshold). "next to stove storage" (bing, rank 14) was scoring
+    #     against Kids Bedroom's Toy Storage Zone, the wrong room entirely,
+    #     on the filler word "next" (an incidental "...until the next
+    #     tidy-up" heading) plus the title word "storage", while Kitchen's
+    #     own Cooking Zone, which genuinely discusses "the stove area" in
+    #     three headings, lost the tie because "next" carried no real
+    #     content. Self-flattery is high (18 of 243 headings carry "next",
+    #     the highest of any word tried, ordinary filler prose), but the
+    #     full before/after score_rows() diff across both corpora (the real
+    #     test per CLAUDE.md 5d) came back clean: 0 status changes in
+    #     either corpus, exactly 1 best_page change, the named row, moving
+    #     off the wrong room onto a neutral storage article, partial to
+    #     partial, still honestly missing "stove".
+    new_format_words34 = ("next",)
+    samples34 = {"next": "next to stove storage"}
+    for word in new_format_words34:
+        if word in kd.content_words(samples34[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format34 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format34 - set(new_format_words34)
+    try:
+        for word in new_format_words34:
+            if word not in kd.content_words(samples34[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format34
+
     if fails:
         print("FAIL")
         for f in fails:

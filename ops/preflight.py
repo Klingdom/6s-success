@@ -2837,6 +2837,18 @@ def gate_tests(skip: bool = False) -> None:
     # runner needs to be told where it is, not left to be stopped by an
     # accident of the filesystem.
     env = {**os.environ, "PYTHONIOENCODING": "utf-8", "SIXS_UNDER_PREFLIGHT": "1"}
+    # Probe the browser ONCE here and hand the verdict down, rather than let
+    # each of ~130 children pay for it. Measured 2026-11-13: without this the
+    # probe is cheap (30s) but repeated; with it, browser driven test files
+    # report NOT VERIFIED immediately on a machine whose browser cannot
+    # render. See ops/browser.py browser_renders for what that measurement
+    # found and why it is not the per test timeout three log entries called it.
+    try:
+        import browser as _B
+        _ok, _why = _B.browser_probe()
+        env["SIXS_BROWSER_PROBE"] = "ok" if _ok else "unusable:%s" % _why
+    except Exception:                                            # noqa: BLE001
+        pass
     for i, f in enumerate(files, 1):
         # Found 2026-11-02: dozens of consecutive log entries across weeks
         # had to guess whether gate_tests was stalled or merely slow by
@@ -20206,6 +20218,72 @@ def gate_room_guide_mining_diminishing_returns() -> None:
         warn("room-guide-mining-diminishing-returns", problem)
 
 
+def browser_claimed_but_unusable(binary_present, renders, reason):
+    """Pure logic for gate_browser_probe_honest, testable without a browser.
+
+    binary_present: did the exists-only lookup find a browser binary.
+    renders: did that binary actually render a trivial local page and exit.
+    reason: the probe's own words for why not.
+
+    Returns the warning text when a binary is present but cannot render,
+    otherwise None. No binary at all is NOT this defect: that machine is
+    honestly browserless and every caller already says so.
+
+    WHY THIS EXISTS, AND WHY IT IS A WARNING RATHER THAN A FAIL.
+
+    Found live 2026-11-13 by measuring instead of inferring. In this cloud
+    sandbox /opt/pw-browsers/chromium exists, starts, forks its children and
+    then renders nothing and never exits, for a four line local page with a
+    two second virtual time budget. ops/browser.py's find_browser answered
+    from os.path.exists alone, so it reported that browser as usable, and
+    every browser driven test then committed to its own 600s render that
+    could never succeed. gate_tests runs those files in sequence, so a full
+    preflight run could not reach its own end inside any practical cycle
+    budget, and every recent cycle recorded "unchecked past gate_tests"
+    rather than a result.
+
+    Three consecutive nightly log entries (A87, A122, A125) each logged this
+    as "a sandbox hang in test_contact_form_interactive.py" and each handed
+    forward the same proposed fix: a per test timeout in gate_tests. That
+    timeout already existed (_run_bounded, 700s, process group kill) and was
+    never the defect, which is why three cycles of handing it forward closed
+    nothing. CLAUDE.md 5d is the lesson: a finding handed over is data, not
+    fact, and checking it took one command.
+
+    A browser that cannot render is a property of the machine, not a defect
+    in this repository, so failing here would paint every cloud run red and
+    teach the next reader to skip the line. It warns, by name, with the
+    probe's own reason, so no cycle has to rediscover it as a mystery hang.
+    """
+    if not binary_present or renders:
+        return None
+    return ("a browser binary is present but cannot render: %s. Every "
+            "browser driven check is reporting NOT VERIFIED rather than "
+            "passing, which is honest but means nothing in that class was "
+            "actually exercised on this machine." % (reason or "unknown"))
+
+
+def gate_browser_probe_honest() -> None:
+    """A browser that exists is not a browser that works, and the gap used to
+    cost an hour of every run. See browser_claimed_but_unusable's docstring
+    for the measurement and the three cycles that misdiagnosed it.
+
+    Proof this can fail: ops/tests/test_gate_browser_probe_honest.py drives
+    the pure function through all three states, then proves the real
+    ops/browser.py probe agrees with the real machine by running it.
+    """
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import browser as B
+        present = B.find_browser(require_working=False) is not None
+        renders, reason = B.browser_probe()
+    except Exception:                                          # noqa: BLE001
+        return
+    problem = browser_claimed_but_unusable(present, renders, reason)
+    if problem:
+        warn("browser-probe-honest", problem)
+
+
 def keyword_demand_unscoreable_rows(rows, content_words, on_topic):
     """Pure logic for gate_keyword_demand_no_content_words, testable without
     the real keyword-demand files.
@@ -32971,6 +33049,11 @@ def main() -> int:
               f"(cycle_signal checkpoint, not a full preflight pass), "
               f"git HEAD {cycle_signal.git_head()[:10]}"))
 
+    # Immediately before gate_tests, because it explains gate_tests' own
+    # result: on a machine whose browser cannot render, every browser driven
+    # test file below reports NOT VERIFIED, and a reader needs to see why on
+    # the line above rather than work it out from a stalled run.
+    run_gate(gate_browser_probe_honest)
     run_gate(gate_tests, skip_tests)
     run_gate(gate_conflict_markers)
     run_gate(gate_no_duplicate_html_close)

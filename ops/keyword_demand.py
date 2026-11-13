@@ -207,7 +207,7 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "teen", "labels", "dividers", "canvas", "pouch",
                           "church", "insert", "durable", "lightweight",
                           "properly", "apartments", "large", "homes",
-                          "cheap", "list", "everyday", "tidying"))
+                          "cheap", "list", "everyday", "tidying", "next"))
 
 # "list", "everyday" and "tidying" joined 2026-11-12, this scheduled
 # operator cycle, mining Primary Bedroom's partial tier (19 rows, tied with
@@ -232,6 +232,28 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
 # OFF_TOPIC_CONTEXT in ops/room_guide_candidates.py rather than by
 # declining "list" itself.
 
+# "next" joined 2026-11-13, scheduled operator cycle, found mining Kitchen's
+# "stove area" vocabulary rather than mining FORMAT_WORDS for coverage
+# percentage (gate_room_guide_mining_diminishing_returns, built 2026-11-12,
+# names every room under 15% uncovered now, so this is a misattribution fix,
+# not another coverage-chasing cycle). "next to stove storage" (bing, rank
+# 14) was scoring 0.667 against Kids Bedroom's Toy Storage Zone, the wrong
+# room entirely, because that page's own heading ("...sits untouched on the
+# floor until the next tidy-up") happens to carry the filler word "next"
+# alongside its title's "storage", while Kitchen's own Cooking Zone, which
+# genuinely discusses "the stove area" in three separate headings, lost the
+# tie because "next" is not a real content word there at all, the same
+# not-a-different-subject shape every FORMAT_WORDS addition already covers:
+# "next to the stove" names where, not what. Self-flattery alone would have
+# declined this (18 of 243 headings carry "next", the highest of any word
+# tried, because it is ordinary filler prose like "the next tidy-up" or "the
+# next step"), but the real test is the full before/after score_rows() diff
+# across both corpora (CLAUDE.md 5d), and it came back clean: 0 status
+# changes anywhere in either corpus, exactly 1 best_page change, the one
+# named row, moving off the wrong room onto a neutral storage article
+# (partial to partial, still correctly missing "stove", an honest content
+# gap rather than a misattribution). High self-flattery is a reason to run
+# the diff before shipping, not a reason to skip a word the diff clears.
 # "cheap" joined 2026-11-12, scheduled operator cycle, mining Patio or Deck's
 # partial tier (the 4-row tier tied with Garage/Kids Bedroom/Family Room at
 # 14% uncovered, the 18:1x PM check-in's own handoff). It is a price

@@ -41961,12 +41961,12 @@
         "how to organize stove area"
       ],
       "room": "",
-      "best_page": "/zones/kids-bedroom-the-toy-storage-zone.html",
-      "best_page_title": "How to organize the kids bedroom toy storage",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/kids-bedroom-the-toy-storage-zone.html",
-      "matched_on": "heading",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
         "stove"
@@ -56500,6 +56500,6 @@
       ]
     }
   ],
-  "scored_against_commit": "18b011c9a",
-  "scored_at": "2026-11-13T09:58:36Z"
+  "scored_against_commit": "9e6395264",
+  "scored_at": "2026-11-13T12:51:14Z"
 }
