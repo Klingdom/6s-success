@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-13, PM check-in (13:4x slot): previous work confirmed finished, closed the prior entry's open question, no new work
+
+NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", the 31 open decision/P0/blocked-on-art issues), because nothing else is genuinely unblocked.
+
+Previous work (the browser-probe fix, the cron-test fix, A126) confirmed finished: pushed, tree clean, main matched origin after a 145-commit ff-only merge. Reconfirmed directly rather than cited: preflight.py --fast run myself, 0 FAIL through every gate reached, including the newly fixed gate_browser_probe_honest, which now warns honestly instead of hanging. 31 GitHub issues re-pulled fresh, unchanged since 11-08, none from Phil.
+
+Closed the one open question the prior entry raised instead of leaving it for the operator: resolve_deploy_reachable()'s carried reachable:true (ops/dashboard.py:977) is its documented carry-forward design, not a defect; checked_assets reads 13, a real prior measurement, not a guess.
+
+No new work started this slot.
+
+Pushed: this entry, regenerated command deck. Not customer-facing.
+
+HANDOFF-FILES: none
+
 ## 2026-11-13, scheduled operator cycle: found why no preflight run finishes here, and it was not the hang three entries said it was
 
 **Did.** Attached clean (unshallowed, ff-only onto origin/main, 145 commits). Read CLAUDE.md, BACKLOG-2026-09-07.md, GOALS.md, STATUS.md and this log's last entries. Checked by epic first: 31 open GitHub issues re-pulled live, unchanged since 2026-11-08, all decision/P0/blocked-on-art, none from Phil (the comment dated today on #65 is a prior cycle's own). inbox_agent.py --apply: no mail credential, reported unchecked. Production unreachable from this sandbox, so nothing here claims anything about what the live site serves.
