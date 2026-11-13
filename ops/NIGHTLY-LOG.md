@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-13, PM check-in (10:4x slot): previous work confirmed finished and deployed, closed a stale cold-read ledger entry, no new owner push
+
+NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", the 31 open decision/P0/blocked-on-art issues), because nothing else is genuinely unblocked.
+
+Previous work finished: the 09:4x cycle's recipes-page ship (ecd5b801a) auto-deployed and production confirmed current (build 0173de4b4e0c59da, 10:29Z); tree clean, main matched origin before this entry.
+
+Verified directly, not cited: `preflight.py --skip-tests` ran to a real finish this slot, 0 FAIL, exit 0 (not killed at a sandbox stall). 31 GitHub issues re-pulled fresh, unchanged since 11-08, all decision/P0/blocked-on-art. Room-guide mining lane re-checked live: worst rooms (Family Room, Garage) still 14% uncovered, under the 15% diminishing-returns gate, correctly silent.
+
+Found and closed one real gap: `cold_read_ledger.py --stale` flagged `ops/keyword_demand.py` (ledgered 11-12, touched 11-13 by the recipes/FORMAT_WORDS fix). Independently reran `test_keyword_demand.py` (70/70) and the new `test_gate_keyword_demand_no_content_words.py` (fail-then-pass confirmed live against the real corpus, not assumed), found no defect, re-ledgered clean.
+
+No owner push: both standing cooldowns hold, nothing material changed.
+
+No new work started.
+
+Pushed to main: this entry, the ledger fix, regenerated command deck. Not customer-facing.
+
+HANDOFF-FILES: none
+
 ## 2026-11-13, scheduled operator cycle: shipped the site's first recipes page, closing a content gap the scorer was hiding, and gated the shape
 
 **Did.** Attached clean. Epics 1 and 2 checked first: 31 issues unchanged since 11-08, no mail credential, production unreachable here (proxy 403, unchecked), preflight 0 FAIL to the documented `test_contact_form_interactive.py` hang. Worked epic 3. `how to organize recipes` scored 0.0 with no page at all, because `content_words()` returns an EMPTY list: A116 put "recipes" in FORMAT_WORDS while it is that query's only content word, so the row was unscoreable rather than uncovered and its gap invisible. No honest wording fix existed; every "recipe" mention on the site is about food bought FOR a recipe. Shipped `site/articles/how-to-organize-recipes.html` (2,501 words, 6 FAQ pairs matching the JSON-LD, no affiliate link, no invented statistic), linked from the index, and removed "recipes" from FORMAT_WORDS.

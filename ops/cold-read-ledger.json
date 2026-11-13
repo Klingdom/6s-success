@@ -902,9 +902,9 @@
       "note": "Second-pass cold read, 2026-10-12 operator cycle: re-read in full end to end (not just cited), independently of the two prior cycles that read these same files and reported no defect without re-ledgering, which is what let the nightly-log handoff keep naming them as if nobody had looked (caught by preflight.py's own gate_cold_read_handoff_not_stale). wire_landmarks.py and indexnow.py also re-verified live via --check (214 pages current; 211 sitemap URLs, 0 never submitted). No new defect found in any of the five; each still matches its own extensively documented history."
     },
     "keyword_demand.py": {
-      "status": "fixed",
-      "date": "2026-11-12",
-      "note": "mount/workout/plans/interior joined FORMAT_WORDS (case 51), full before/after corpus diff clean, declined gear/large/equipment/shed/painting/box/beginners/systems on real misattribution or ambiguity grounds"
+      "status": "clean",
+      "date": "2026-11-13",
+      "note": "Re-ledgered 2026-11-13, PM check-in: flagged stale after the same-day recipes/FORMAT_WORDS fix (ecd5b801a). Read the real diff directly: 'recipes' removed from FORMAT_WORDS with its reasoning recorded in place, new gate_keyword_demand_no_content_words wired into preflight.py. Independently reran test_keyword_demand.py (70/70 numbered cases) and test_gate_keyword_demand_no_content_words.py (fail-then-pass against the real corpus confirmed live, not cited) rather than trust the shipping cycle's own report. No defect found."
     },
     "keyword_demand_global.py": {
       "status": "fixed",
