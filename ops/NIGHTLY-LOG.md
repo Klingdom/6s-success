@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-13, scheduled operator cycle (~07:4x UTC): checked the room-guide mining handoff against the gate built for it, found it already answered, reconfirmed exhausted
+
+**Did.** Attached clean, 103 commits fast-forwarded. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, the nightly-log tail, and the 07:1x PM check-in's own handoff: mine the room-guide partial tier (Family Room/Garage 14% uncovered, Kids Bedroom 13%, Workshop/Laundry/Pantry 12%), named "the only genuinely unblocked, non-Phil-gated lane."
+
+**Checked the handoff instead of acting on it (CLAUDE.md 5d).** A 2026-11-12 cycle built `gate_room_guide_mining_diminishing_returns` for exactly this question. Ran it directly: it warns right now, every room 0 genuine gap rows, worst shortfall (14%) under its 15% line. Its own message says check epics 1-4 and open issues before another mining pass. Also read Family Room's and Garage's rows by hand: each is already-diagnosed (genuine word-overlap ties, misroutes needing new content, not vocabulary) or would need inventing a word the real content never uses ("groceries", "gym"), which this file's own fabricated-specificity precedent forbids. The handoff's own target confirmed nothing genuine is left, not just the gate.
+
+**Verified.** 31 open GitHub issues, unchanged since 2026-11-08, all decision/P0/blocked-on-art, none from Phil since 2026-11-01 (12 days). `preflight.py --skip-tests`: 0 real FAIL, killed at the documented `gate_etsy_pdfs_current` stall. Full `preflight.py`: 0 FAIL up to a new documented sandbox hang, `test_contact_form_interactive.py` (test 50/480, CPU flat). `cold_read_ledger.py --stale` 0. `fix_dashes.py --check` 0/0. `check_urls.py` 235/235. `check_sellable.py --deep` 124/126 (2 person-delivered). `affiliate.py --check` clean. `inbox_agent.py --apply`: no mail credential. Cooldown on the standing owner push holds to 2026-11-15T18:00Z, nothing material changed, no push sent.
+
+**Went well:** using the gate a prior cycle built, instead of re-deriving this by hand.
+
+**Did not go well:** this cycle's own PM check-in handed off room-guide mining without running the gate that already answers it.
+
+**Changing next cycle:** nothing new; run the existing gate before handing off another mining pass, not after.
+
+**Next:** the standing Phil-gated queue: OWNER-ACTIONS.md "Start here" (#64, #58, #46, #1h) and the larger gaps (#43 KDP, #44 Etsy, #45 accounts layer). Issue #65 (stale "Append" wording in the Routines) stays open; this operator cannot self-edit a Routine it did not create.
+
+Pushed: this log entry, regenerated command deck. No price/product/page touched.
+
+HANDOFF-FILES: none
+
 ## PM check-in (07:1x slot): previous work confirmed finished, state independently reconfirmed exhausted, handing the room-guide mining lane to the operator
 
 NEXT FOR THE OPERATOR: mine the room-guide partial tier (Family Room/Garage 14% uncovered, Kids Bedroom 13%, Workshop/Laundry/Pantry 12% each), the only genuinely unblocked, non-Phil-gated lane; it needs a full CLAUDE.md 5c/5d simulation pass this slot lacked time for.
