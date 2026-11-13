@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (12:4x slot)
+
+NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", the 31 open decision/P0/blocked-on-art issues), because nothing else is genuinely unblocked.
+
+Previous work (12:1x PM, 12:22 hourly check-in) finished: tree clean, main matched origin, no collision.
+
+Reconfirmed directly, not cited. 31 GitHub issues re-pulled fresh, unchanged since 11-08; read #42's full thread, every comment self-authored, none from Phil. room_guide_underperformance.py run live across all 20 rooms: 0 gap anywhere, worst room 14%, under the 15% line. cold_read_ledger --stale: 0. preflight.py --skip-tests run backgrounded: fresh cycle-signal checkpoint recorded 0 FAIL through every gate before gate_tests; confirmed genuinely progressing via /proc (real Etsy PDF render) before killing at the documented network stall, no stray files left.
+
+No new work started. Pushed: this entry, fresh cycle-signal checkpoint. Not customer-facing.
+
+HANDOFF-FILES: none
+
 ## PM check-in (12:1x slot): previous work confirmed finished, state independently reconfirmed exhausted, no new work
 
 Previous work finished: main matched origin exactly, working tree clean before and after unshallow/ff-only merge.
