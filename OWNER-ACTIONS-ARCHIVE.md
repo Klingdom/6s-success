@@ -4,6 +4,45 @@
 
 ---
 
+### Item 1, the what-this-looked-like-yesterday done_items() bug narrative, archived 2026-11-13
+
+What this looked like yesterday is worth keeping, because it is why the item
+changed. `video_zone.done_items()`, which writes the "What done looks like"
+checklist into every video, was corrected on 15 September; every video on disk
+had been rendered on 7 and 8 September; so 100 of 114 were saying something
+different from their own zone page ("One wallet and one phone per adult" read
+"One phone per adult", and one Entryway zone lost an item outright).
+Authorising then would have published those permanently, because YouTube
+cannot swap the file behind a URL.
+
+All 99 affected videos were re-rendered on this machine overnight, free, in
+260 minutes, 0 failures. `ops/check_video_standard.py` now reads **114 of 114
+matching**, and `ops/youtube_upload.py` holds nothing back: `--check` lists
+102 ready.
+
+One more thing was fixed along the way, visible in the videos themselves: the
+slide holds four items and 16 zones have more, so it now ends with "+ N more
+on the zone page" rather than presenting four sixths of a standard as the
+whole of it. One of those hidden items was "The cabinet strapped to a wall
+stud", which is a safety line.
+
+### Item 1, the two-things-that-were-missing setup-fix narrative, archived 2026-11-13
+
+**Two things that were missing and are now done, 2026-09-27, so step 5 is safe
+to perform.**
+
+*The credential had nowhere safe to land.* `.gitignore` carried no rule for
+`ops/youtube-client-secret.json` or for the `ops/youtube-token.json` the tool
+writes beside it, so either could have been swept up by the next `git add -A`
+and pushed to a public repository. Both are ignored now, verified with
+`git check-ignore`. The token is the more dangerous of the two: it holds upload
+and force-ssl scope on the channel until revoked.
+
+*The client libraries were not installed.* `google-auth-oauthlib` and
+`google-api-python-client` were both absent, so the very first run would have
+failed on an import after the consent screen had already been approved.
+Installed and confirmed importable.
+
 ### Item 15, the five-to-four-to-three withdrawal history, archived 2026-11-13
 
 **Corrected 2026-09-09, this operator: it was five, then four.** A fifth,

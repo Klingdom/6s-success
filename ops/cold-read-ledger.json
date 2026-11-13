@@ -1221,6 +1221,11 @@
       "date": "2026-11-13",
       "note": "One-shot rotation script, sibling pattern to rotate_owner_actions_item_history.py and the other item-specific rotators. Both anchor regions use the same region_between()/plan_rotation() shape already proven safe by those siblings: exact-count anchor checks (missing or duplicated both raise), idempotent re-run (CLEAN once rotated), archive-prepend preserves existing content verbatim. Already applied to OWNER-ACTIONS.md (commit 2123f3693); --check now reports CLEAN. Test file ops/tests/test_gate_owner_actions_item15_not_oversized.py covers the gate side. No defect found."
     },
+    "rotate_owner_actions_item1_youtube.py": {
+      "status": "clean",
+      "date": "2026-11-13",
+      "note": "One-shot rotation script, sibling pattern to rotate_owner_actions_item15_etsy.py and the other item-specific rotators. Both anchor regions use the same region_between()/plan_rotation() shape already proven safe by those siblings: exact-count anchor checks (missing or duplicated both raise), idempotent re-run (CLEAN once rotated), archive-prepend preserves existing content verbatim. Both spans checked for citations elsewhere before writing (grep across *.py/*.md); already applied to OWNER-ACTIONS.md this cycle. Test file ops/tests/test_gate_owner_actions_item1_not_oversized.py covers the gate side, run and confirmed PASS 5/5. No defect found."
+    },
     "rotate_owner_actions_item_1h_pymupdf.py": {
       "status": "clean",
       "date": "2026-11-13",

@@ -451,25 +451,7 @@ disk where nobody can find them.
 **Resolved overnight, 2026-09-18: authorising now publishes all 102, and every
 one of them agrees with the page it links to.**
 
-What this looked like yesterday is worth keeping, because it is why the item
-changed. `video_zone.done_items()`, which writes the "What done looks like"
-checklist into every video, was corrected on 15 September; every video on disk
-had been rendered on 7 and 8 September; so 100 of 114 were saying something
-different from their own zone page ("One wallet and one phone per adult" read
-"One phone per adult", and one Entryway zone lost an item outright).
-Authorising then would have published those permanently, because YouTube
-cannot swap the file behind a URL.
-
-All 99 affected videos were re-rendered on this machine overnight, free, in
-260 minutes, 0 failures. `ops/check_video_standard.py` now reads **114 of 114
-matching**, and `ops/youtube_upload.py` holds nothing back: `--check` lists
-102 ready.
-
-One more thing was fixed along the way, visible in the videos themselves: the
-slide holds four items and 16 zones have more, so it now ends with "+ N more
-on the zone page" rather than presenting four sixths of a standard as the
-whole of it. One of those hidden items was "The cabinet strapped to a wall
-stud", which is a safety line.
+**The 2026-09-15 done_items() caption/narration bug and its 2026-09-18 overnight fix (100 of 114 videos re-rendered, 0 failures) are closed history; archived 2026-11-13 by `ops/rotate_owner_actions_item1_youtube.py`. Full account in `STATUS-ARCHIVE.md`, `LEARNINGS.md` and `ops/NIGHTLY-LOG-ARCHIVE.md`.**
 
 **A 2026-09-29 traffic snapshot once stood here; archived to `OWNER-ACTIONS-ARCHIVE.md`.** `GOALS.md` and `STATUS.md` are this file's own canonical, currently-maintained traffic sources (and item 0b above already flags that even those went stale after 2026-10-03), so a second, older copy of the same numbers does not need to live here too.
 
@@ -499,20 +481,7 @@ That is now guarded rather than trusted: `confirm_right_channel()` asks the API 
 5. Download the JSON and save it into the repo as
    `ops/youtube-client-secret.json`.
 
-**Two things that were missing and are now done, 2026-09-27, so step 5 is safe
-to perform.**
-
-*The credential had nowhere safe to land.* `.gitignore` carried no rule for
-`ops/youtube-client-secret.json` or for the `ops/youtube-token.json` the tool
-writes beside it, so either could have been swept up by the next `git add -A`
-and pushed to a public repository. Both are ignored now, verified with
-`git check-ignore`. The token is the more dangerous of the two: it holds upload
-and force-ssl scope on the channel until revoked.
-
-*The client libraries were not installed.* `google-auth-oauthlib` and
-`google-api-python-client` were both absent, so the very first run would have
-failed on an import after the consent screen had already been approved.
-Installed and confirmed importable.
+**Two setup gaps (a missing `.gitignore` rule for the credential and token files, and two missing client libraries) were found and fixed 2026-09-27, verified, and cited nowhere else; archived 2026-11-13 by `ops/rotate_owner_actions_item1_youtube.py`.**
 
 **On step 3, add both scopes** if the console asks for them explicitly:
 `youtube.upload` and `youtube.force-ssl`. The second is what attaches the real

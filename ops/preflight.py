@@ -22854,6 +22854,59 @@ def gate_owner_actions_item15_not_oversized() -> None:
              % (total, len(archived_blocks)))
 
 
+def gate_owner_actions_item1_not_oversized() -> None:
+    """OWNER-ACTIONS.md's item 1 ("Authorise YouTube uploads") must not
+    be carrying its what-this-looked-like-yesterday done_items() bug
+    narrative or its two-things-that-were-missing setup-fix narrative,
+    once each has been rotated to a short current-state pointer.
+
+    Found 2026-11-13, PM check-in: the 04:4x check-in's own handoff
+    named item 1 (10103 bytes) as OWNER-ACTIONS.md's largest remaining
+    section once gate_living_docs_total_size_tripwire kept warning
+    (115974 of 110000 bytes) and all five owner-actions gates above read
+    clean, because none of them reads item 1. Two spans were the same
+    already-settled, no-longer-cited-elsewhere shape those gates were
+    each built for: the 2026-09-15 done_items() caption bug and its
+    2026-09-18 fix are closed history fully covered in STATUS-ARCHIVE.md,
+    LEARNINGS.md and ops/NIGHTLY-LOG-ARCHIVE.md, and the two 2026-09-27
+    setup fixes (a missing .gitignore rule, missing client libraries)
+    are verified done and cited nowhere else. ops/rotate_owner_actions_
+    item1_youtube.py now archives both; this gate is what stops either
+    regrowing unnoticed, the same role its siblings above already play
+    for their own spans.
+
+    A WARNING, not a FAIL: closed narrative wastes a later cycle's
+    reading time, it does not ship anything broken to a customer.
+
+    Proof this can fail: ops/tests/test_gate_owner_actions_item1_not_
+    oversized.py builds a synthetic OWNER-ACTIONS.md with both spans
+    unrotated and asserts this gate warns, then confirms a freshly
+    rotated copy, and the real committed file, both stay silent.
+    """
+    path = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if not os.path.exists(path):
+        return
+    import rotate_owner_actions_item1_youtube as roa1
+    text = io.open(path, encoding="utf-8").read()
+    try:
+        _, archived_blocks = roa1.plan_rotation(text)
+    except ValueError as e:
+        warn("owner-actions-item1-not-oversized",
+             "could not check OWNER-ACTIONS.md's item 1 for closed "
+             "narrative: %s. Unchecked is not passing (CLAUDE.md 0.4): "
+             "this means an anchor rotate_owner_actions_item1_youtube.py "
+             "searches for has gone stale, most likely because another "
+             "edit changed the text it is tied to." % e)
+        return
+    if archived_blocks:
+        total = sum(len(c.encode("utf-8")) for _, c in archived_blocks)
+        warn("owner-actions-item1-not-oversized",
+             "OWNER-ACTIONS.md's item 1 has %d bytes across %d "
+             "block(s) of closed narrative still sitting live. Run "
+             "`python ops/rotate_owner_actions_item1_youtube.py --apply`."
+             % (total, len(archived_blocks)))
+
+
 def gate_backlog_done_table_not_oversized() -> None:
     """BACKLOG-2026-09-07.md's "Done this week, for the record" table
     must not be carrying more than a generous buffer past ops/rotate_
@@ -32688,6 +32741,7 @@ def main() -> int:
     run_gate(gate_owner_actions_item_history_not_oversized)
     run_gate(gate_owner_actions_item_1h_not_oversized)
     run_gate(gate_owner_actions_item15_not_oversized)
+    run_gate(gate_owner_actions_item1_not_oversized)
     run_gate(gate_backlog_done_table_not_oversized)
     run_gate(gate_status_blocker001_not_oversized)
     run_gate(gate_status_metadata_not_oversized)
