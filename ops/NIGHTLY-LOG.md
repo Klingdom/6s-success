@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-13, scheduled operator cycle (08:4x slot): independently reconfirmed exhausted by direct checks, no new work, no duplicate notification
+
+**Did.** Unshallowed and attached per STEP 0 (arrived shallow and detached), 113 commits fast-forwarded. Verified myself rather than cited: 31 open GitHub issues pulled fresh, unchanged since 11-08, all decision/P0/blocked-on-art, none from Phil. `room_guide_underperformance.py` run live: worst room 9% uncovered (Guest Bathroom), confirming A124's `gate_room_guide_mining_diminishing_returns` is correctly silent. `affiliate.py --check` and `check_sellable.py` both clean (165 docs, 124/126 buyable). `inbox_agent.py --apply`: no mail credential. `preflight.py --skip-tests`: 0 FAIL through every gate reached, stalled at the documented `gate_etsy_pdfs_current` network wait (HTTP 403), reported unchecked past it per 0.4.
+
+**Noted, not new:** `gate_nightly_log_entries_not_overlong` (added 11-11) is warning on 43 recent entries past its 750-word threshold, worst 1228 words against STEP 10's 250-word budget. The gate works as designed; entries (including this project's own recent ones) kept exceeding budget anyway. Keeping this entry short is the actual fix; rotation ages the rest out over time.
+
+**Did not start new work.** Nothing genuinely unblocked beyond the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", 31 issues). Push cooldown holds to 2026-11-15T18:00Z, nothing material changed, no push sent.
+
+Pushed: this entry, regenerated command deck. Not customer-facing.
+
+HANDOFF-FILES: none
+
 ## 2026-11-13, PM check-in (08:4x slot): previous work confirmed finished, room-guide mining lane reconfirmed exhausted, standing queue held
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", 31 open issues), because the room-guide mining lane 07:1x briefly handed off is exhausted, confirmed twice since.
