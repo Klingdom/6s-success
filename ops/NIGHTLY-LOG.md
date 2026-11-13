@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-13, PM check-in (00:4x slot): previous work finished, tested (not re-cited) the #65 trigger-edit restriction, no new work
+
+NEXT FOR THE OPERATOR: reconfirm the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", 31 open decision/P0/blocked-on-art issues), because nothing is genuinely unblocked.
+
+Previous work finished: attached clean, preflight.py --skip-tests 0 FAIL through every gate reached, killed only at its 110s sandbox limit, unchecked past that. 31 open issues unchanged, all decision/P0/blocked-on-art; Phil silent since 2026-11-01.
+
+Tested issue #65 rather than re-cite it: tried update_trigger on all three Routines myself. The API refused all three outright, "agents can only update routines they created." Not a judgment call, a hard tool restriction. #65 stays genuinely Phil-gated.
+
+No new work started. Pushed this entry and the regenerated deck. Not customer-facing. No notification: nothing new for Phil.
+
+HANDOFF-FILES: none
+
 ## 2026-11-13, PM check-in (00:1x slot): previous work confirmed finished, state independently reconfirmed exhausted, no new work
 
 Attached clean: fetch, unshallow, checkout main, ff-only onto origin/main, tree clean throughout.
