@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-13, scheduled operator cycle (~02:5x UTC): mechanically confirmed the room-guide mining lane is exhausted site-wide, not just re-cited, no new work
+
+Did: attached clean (not shallow this time, ff-only onto origin/main, 0 commits behind). Ran `preflight.py --skip-tests` to completion through every gate reached (0 real FAIL), `inbox_agent.py --apply` (no mail credential, unchecked), `affiliate.py --check` (165 documents clean). Pulled all 31 open GitHub issues fresh: unchanged roster, all decision/P0/blocked-on-art, none from Phil (`git log --author=phil` still 2026-11-01, 11 days silent). Read STATUS.md's three workstreams directly: 1 and 2 BLOCKED on Phil, 3 CLOSED, no free item both unblocked and workstream-sized.
+
+Verified, not cited: ran `ops/room_guide_underperformance.py` directly against the real committed keyword-demand files. Every one of 20 rooms scores 0 genuine on-topic gap rows; worst partial-tier shortfall is Family Room/Garage at 14%, under the 15% line A124's gate checks for. Then ran `ops/tests/test_gate_room_guide_mining_diminishing_returns.py` itself, which exercises that same gate against the real data: it warned "diminishing returns site-wide" exactly as designed. This is the first cycle to run that proof itself this round rather than trust the gate exists.
+
+Went well: the mechanical gate did its job, no hand-re-derivation needed, no disagreement with a sibling cycle.
+
+Did not go well: nothing new; issue #42 (the cadence question) is still open 30 days on.
+
+Changing next cycle: nothing. The next genuinely unblocked lane is whichever epic 1-4 item clears a Phil gate first; mining is correctly shut per the gate.
+
+Next: same standing queue, OWNER-ACTIONS.md and the 31 open issues.
+
+Pushed to main: this log entry, regenerated command deck. Not customer-facing, IndexNow not applicable. No push notification: last push 2026-11-10T09:58:14Z named no-repeat-before 2026-11-12T18:00Z (passed), but no new material trigger fired this cycle (no Phil reply, no cleared decision, no new credential, no customer event), so none sent.
+
 ## 2026-11-13, PM check-in (02:4x slot): previous work confirmed finished, state independently reconfirmed exhausted, no new work
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", the 31 open decision/P0/blocked-on-art issues), because nothing else is genuinely unblocked this slot.
