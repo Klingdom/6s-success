@@ -1,8 +1,8 @@
 {
   "combined_hash": "b0a38d86c7c8dd93d9a8fb395d89bf90c4bec925aff39f7952969bce180cc61b",
-  "git_head": "bd33690dc107263606866a7d1ac3be902b0089ae",
-  "note": "partial pass: every gate before gate_tests passed, gate_tests and everything after it not reached this run (cycle_signal checkpoint, not a full preflight pass), git HEAD bd33690dc1",
-  "recorded_at": "2026-11-13T03:15:20Z",
+  "git_head": "59cef618a7414acf2b3f224483cace10e5fa648e",
+  "note": "partial pass: every gate before gate_tests passed, gate_tests and everything after it not reached this run (cycle_signal checkpoint, not a full preflight pass), git HEAD 59cef618a7",
+  "recorded_at": "2026-11-13T03:44:52Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "7bfd708d4f795ff7fbc199e2921aa1d600ee85ad126b8f6cecd1835db19e2c06",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
