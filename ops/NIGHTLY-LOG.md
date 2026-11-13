@@ -20,6 +20,20 @@ Pushed to main: this log entry, fresh cycle-signal.json checkpoint, regenerated 
 
 HANDOFF-FILES: none
 
+## 2026-11-13, scheduled operator cycle (~03:3x UTC): new owner-actions size-tripwire gate written and proved, OWNER-ACTIONS.md trimmed
+
+Did: attached clean. Preflight, GitHub (31 issues, unchanged, all decision/P0/blocked-on-art), inbox (no mail credential), git log --author=phil (still 2026-11-01) re-verified, confirming the same exhausted state dozens of cycles today found. Rather than write another "nothing to do" entry, cold-read preflight's own warnings per CLAUDE.md 0.2: `gate_living_docs_total_size_tripwire` warned OWNER-ACTIONS.md at 119326 bytes, all four sibling rotation gates CLEAN, meaning a new span had grown uncovered. Found it: item 1h's third pymupdf occurrence paragraph (2026-11-09) left its first two unrotated.
+
+Verified: wrote `ops/rotate_owner_actions_item_1h_pymupdf.py` (same pattern as siblings), ran `--check` then `--apply`: 2435 bytes moved to the archive verbatim. Added `gate_owner_actions_item_1h_not_oversized`, wired into `main()`, wrote its test, proved fail-then-pass (5/5). Full owner-actions test sweep caught one real self-inflicted regression: `gate_owner_actions_last_measured_current` FAILed because my edit added a 2026-11-13 date past the stale "List reviewed: 2026-11-09" marker; bumped it, re-ran clean. Full `preflight.py --skip-tests`: 0 real FAIL, same documented `gate_etsy_pdfs_current` network stall.
+
+Went well: caught my own gate regression before pushing.
+
+Did not go well: this fix (117140 bytes now) doesn't clear the tripwire alone.
+
+Changing next cycle: nothing.
+
+Next: same standing queue; cold-read the next-largest unrotated span if the tripwire still fires.
+
 ## PM check-in (03:1x slot): previous work confirmed finished, state independently reconfirmed exhausted, no new work, no notification
 
 Previous work finished: attached clean, fast-forward onto origin/main, tree clean throughout. Reconfirmed, not cited: ran `preflight.py --skip-tests` myself, 0 real FAIL through every gate, killed by hand only at the documented network-bound `gate_etsy_pdfs_current` stall (Etsy fee page HTTP 403), unchecked past that. GitHub's 31 open issues pulled fresh: unchanged, all decision/P0/blocked-on-art, none from Phil; last real Phil commit still 2026-11-01, 12 days silent. `STATUS.md` workstreams 1/2 BLOCKED, 3 CLOSED. `BACKLOG-2026-09-07.md` sections 2-6 re-read: nothing non-struck and non-Phil-gated; room-guide mining stays correctly gated as diminishing returns.

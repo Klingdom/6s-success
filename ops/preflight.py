@@ -22748,6 +22748,60 @@ def gate_owner_actions_item_history_not_oversized() -> None:
              % (total, len(archived_blocks)))
 
 
+def gate_owner_actions_item_1h_not_oversized() -> None:
+    """OWNER-ACTIONS.md's item 1h ("Add one line to the cloud
+    environment's setup script") must not be carrying its first two
+    occurrence narratives (2026-10-15, 2026-10-20) once the third,
+    current occurrence paragraph already restates the same root cause
+    and fix.
+
+    Found 2026-11-13, scheduled operator cycle: gate_living_docs_total_
+    size_tripwire warned OWNER-ACTIONS.md at 119326 bytes, but neither
+    gate_owner_actions_history_not_oversized, gate_owner_actions_closed_
+    items_rotated, gate_owner_actions_gemini_billing_not_oversized nor
+    gate_owner_actions_item_history_not_oversized above fired, because
+    none touches item 1h: the 2026-11-03 rotation that produced the last
+    of those four checked item 1h's neighbours (items 1, 1b, 4) directly
+    and found each still live, but item 1h had not grown its third
+    occurrence paragraph yet that day, so it was not yet oversized and
+    was never considered. ops/rotate_owner_actions_item_1h_pymupdf.py
+    now archives the first two occurrences; this gate is what stops the
+    chain regrowing a fourth time unnoticed, the same role its siblings
+    above already play for their own spans.
+
+    A WARNING, not a FAIL: a repeated occurrence narrative wastes a
+    later cycle's reading time, it does not ship anything broken to a
+    customer.
+
+    Proof this can fail: ops/tests/test_gate_owner_actions_item_1h_not_
+    oversized.py builds a synthetic OWNER-ACTIONS.md with the chain
+    unrotated and asserts this gate warns, then confirms a freshly
+    rotated copy, and the real committed file, both stay silent.
+    """
+    path = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if not os.path.exists(path):
+        return
+    import rotate_owner_actions_item_1h_pymupdf as roa1h
+    text = io.open(path, encoding="utf-8").read()
+    try:
+        _, archived_blocks = roa1h.plan_rotation(text)
+    except ValueError as e:
+        warn("owner-actions-item-1h-not-oversized",
+             "could not check OWNER-ACTIONS.md's item 1h for a regrown "
+             "occurrence chain: %s. Unchecked is not passing (CLAUDE.md "
+             "0.4): this means an anchor rotate_owner_actions_item_1h_"
+             "pymupdf.py searches for has gone stale, most likely "
+             "because another edit changed the text it is tied to." % e)
+        return
+    if archived_blocks:
+        total = sum(len(c.encode("utf-8")) for _, c in archived_blocks)
+        warn("owner-actions-item-1h-not-oversized",
+             "OWNER-ACTIONS.md's item 1h has %d bytes of a repeated "
+             "occurrence narrative still sitting live. Run `python "
+             "ops/rotate_owner_actions_item_1h_pymupdf.py --apply`."
+             % total)
+
+
 def gate_backlog_done_table_not_oversized() -> None:
     """BACKLOG-2026-09-07.md's "Done this week, for the record" table
     must not be carrying more than a generous buffer past ops/rotate_
@@ -32580,6 +32634,7 @@ def main() -> int:
     run_gate(gate_owner_actions_closed_items_rotated)
     run_gate(gate_owner_actions_gemini_billing_not_oversized)
     run_gate(gate_owner_actions_item_history_not_oversized)
+    run_gate(gate_owner_actions_item_1h_not_oversized)
     run_gate(gate_backlog_done_table_not_oversized)
     run_gate(gate_status_blocker001_not_oversized)
     run_gate(gate_status_metadata_not_oversized)
