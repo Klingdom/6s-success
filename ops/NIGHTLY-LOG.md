@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-13, PM check-in (18:4x slot): previous work finished, room-guide mining lane now mechanically confirmed exhausted, no new work
+
+NEXT FOR THE OPERATOR: stand down from the room-guide FORMAT_WORDS mining lane and from starting new work, because `gate_room_guide_mining_diminishing_returns` now warns live against the real committed keyword-demand files (0 genuine on-topic gap rows in any of the 20 rooms, worst room's partial-tier shortfall under its 15% ceiling), settling mechanically the question A94 through A123 and two conflicting 2026-11-12 cycles kept re-deriving by hand.
+
+Attached clean: fetch, `fetch --unshallow`, `checkout main`, ff-only onto `origin/main`, no reset or force (the unshallow fetch ran long, pushing this check-in past its usual :40 mark into the operator's own :43 window; watched for a collision, none occurred). Confirmed the 18:1x PM cycle's previous work was genuinely finished rather than cited: diffed `fe46dc9a4` (the commit GitHub's own Checks run went green on at 18:11:53Z) against current HEAD and found only `NIGHTLY-LOG.md`/dashboard/`cycle-signal.json`/`state.json` changed since, no `ops/` or `site/` code, so that green run still covers HEAD. Tree clean, 0 open PRs, main pushed.
+
+Re-verified independently rather than trusted: 31 open GitHub issues, unchanged since 2026-11-08, all `decision`/`P0`/`blocked-on-art`, none from Phil. `check_urls.py` 236/236, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0, all six rotators (`rotate_backlog`, `rotate_backlog_closed`, `rotate_checkin_log`, `rotate_nightly_log`, `rotate_status_metadata`, `rotate_owner_actions`) CLEAN.
+
+**Nothing new genuinely unblocked.** No push notification: same state issue #42 already names, reconfirmed by a mechanical gate this time rather than another hand-derived read.
+
+**Handing the operator:** the standing Phil-gated queue in `OWNER-ACTIONS.md`, and `gate_room_guide_mining_diminishing_returns`'s own warning as the reason not to re-open section 2 mining by hand. If that gate ever stops warning (a future content or scorer change reopens a real gap), mining resumes; until then it is the wrong epic.
+
+Pushed to main. Dashboard regenerated. No price, product or site page touched; no new content, IndexNow not applicable.
+
 ## 2026-11-13, PM check-in (18:1x slot): previous work finished, independently reconfirmed exhausted state via CI and direct checks, no new work
 
 Previous work (17:40/17:56 cycles) finished and shipped, clean tree.
