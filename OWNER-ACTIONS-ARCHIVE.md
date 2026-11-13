@@ -4,6 +4,38 @@
 
 ---
 
+### Item 15, the five-to-four-to-three withdrawal history, archived 2026-11-13
+
+**Corrected 2026-09-09, this operator: it was five, then four.** A fifth,
+L3-entryway (30 cards, the six passes for the five Entryway zones), was
+written, priced, rendered and readied, then withdrawn: it sold the exact
+content `ops/generated_products.py` already excludes from the site's own
+paid catalogue because the free Entryway deck covers it, the same trust
+problem `MARKETPLACE-LISTINGS.md` section 3.1 already names for the
+Standards Pack, just never connected to L3 until now. Withdrawn before
+publishing, not after: its files are removed from
+`build/listings/etsy/L3-entryway/`, and `build/listings/check_etsy.py` now
+fails any listing that repeats this shape. Full account in
+`MARKETPLACE-LISTINGS.md` section 3.1.
+
+**Then, 2026-09-23: a second withdrawal, L2-kitchen, same reason** (it
+duplicated the free Kitchen deck, `MARKETPLACE-LISTINGS.md` section 3.1).
+That is what brought the real count from four to three; this item's own
+heading and step 5 never caught up to it until today.
+
+### Item 15, the already-fixed print-defect narrative, archived 2026-11-13
+
+A print defect was found and
+fixed on the way through: every pack was rendering with a near-empty page
+between every sheet of cards, so the Whole House PDF was 152 pages of which 76
+were litter. It is 76 pages now. **Corrected 2026-09-06, this operator:** the
+fix already landed upstream, in the same commit this note was written in.
+Checked directly rather than trusted: `ops/build_catalog.py`'s sheet CSS
+(0.3in page margin, 3.4in card height) and `ops/build_printpack.py`'s own copy
+of the same values, the generator that actually produces the file Stripe
+fulfilment delivers to a paying customer, both carry the fix, and the built
+Etsy PDF re-renders at 76 pages, not 152. Nothing further needed here.
+
 ### Item 1h, first two pymupdf occurrences (2026-10-15, 2026-10-20), archived 2026-11-13
 
 **Found 2026-10-15, PM check-in.** This session's fresh container had `pymupdf` missing even though it is pinned in `ops/requirements.txt`, so `ops/affiliate.py --check`, the gate that keeps affiliate links out of every document a customer receives (Amazon's own operating agreement requires this), failed closed on all three PDFs it tried to read with "could not read 3 delivered document(s)". That is not a real affiliate violation, it is a missing dependency: `python3 -m pip install -r ops/requirements.txt` fixed it for this session and the same check then passed clean. The gap recurs on every fresh container until someone happens to install it by hand first, which is luck, not a control. Open the cloud environment's Edit settings (the environment menu in a session's title bar) and add `python3 -m pip install -r ops/requirements.txt` (or just `pip install pymupdf==1.28.2`) to the setup script, so it runs once per new container automatically. One side fact for whoever reads the next cycle's numbers: this container's `affiliate.py --check` also reported 10 delivered documents instead of the 165 several recent cycles cited; that is this container's `build/products/` generated-pack cache starting empty, a separate, expected, per-container state fact, not a second regression. **Worse shape found 2026-10-20, PM check-in: on a cold enough container the gap is not "one gate fails closed", it is "preflight returns nothing at all".** `python ops/preflight.py` hit its own bootstrap retry loop (`ensure_pymupdf`, 3 attempts) and the first attempt alone ran past the fast-mode run's full budget, so the run timed out before a single gate executed: zero FAILs and zero WARNs is not a clean result here, it is no result. Traced the cause directly rather than assumed: this container's default `python3` is 3.11, with its own separate, cold pip cache from whatever `pip` resolves to; `python3 -m pip install -r ops/requirements.txt` by hand took about 90 seconds through this proxy to fetch Pillow and pymupdf fresh (no cache hit), which is longer than one bootstrap attempt is given. Once that one install finished, every later `preflight.py` invocation this session found pymupdf already importable and skipped straight to the real gates. Same fix as above, same owner action; this is a sharper argument for doing it, since the failure mode on a cold container is now "the whole check goes dark," not just the affiliate gate.

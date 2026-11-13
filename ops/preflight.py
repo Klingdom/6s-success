@@ -22802,6 +22802,58 @@ def gate_owner_actions_item_1h_not_oversized() -> None:
              % total)
 
 
+def gate_owner_actions_item15_not_oversized() -> None:
+    """OWNER-ACTIONS.md's item 15 ("Create the Etsy shop and publish
+    three listings") must not be carrying its five-to-four-to-three
+    withdrawal history or its already-fixed print-defect narrative,
+    once each has been rotated to a short current-state pointer.
+
+    Found 2026-11-13, PM check-in: gate_living_docs_total_size_tripwire
+    warned OWNER-ACTIONS.md at 117140 bytes, but none of the five
+    owner-actions gates above touches item 15, because none of the
+    rotations that produced them read it. Two spans were the same
+    already-settled, no-longer-cited-elsewhere shape those gates were
+    each built for: the 2026-10-31 correction already fixed this item's
+    own heading and step 5 to say "three", so the two withdrawal
+    paragraphs explaining how the count got there are closed history,
+    and the print-defect paragraph describes a fix already verified
+    landed, with nothing left to do. ops/rotate_owner_actions_item15_
+    etsy.py now archives both; this gate is what stops either regrowing
+    unnoticed, the same role its siblings above already play for their
+    own spans.
+
+    A WARNING, not a FAIL: closed narrative wastes a later cycle's
+    reading time, it does not ship anything broken to a customer.
+
+    Proof this can fail: ops/tests/test_gate_owner_actions_item15_not_
+    oversized.py builds a synthetic OWNER-ACTIONS.md with both spans
+    unrotated and asserts this gate warns, then confirms a freshly
+    rotated copy, and the real committed file, both stay silent.
+    """
+    path = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if not os.path.exists(path):
+        return
+    import rotate_owner_actions_item15_etsy as roa15
+    text = io.open(path, encoding="utf-8").read()
+    try:
+        _, archived_blocks = roa15.plan_rotation(text)
+    except ValueError as e:
+        warn("owner-actions-item15-not-oversized",
+             "could not check OWNER-ACTIONS.md's item 15 for closed "
+             "narrative: %s. Unchecked is not passing (CLAUDE.md 0.4): "
+             "this means an anchor rotate_owner_actions_item15_etsy.py "
+             "searches for has gone stale, most likely because another "
+             "edit changed the text it is tied to." % e)
+        return
+    if archived_blocks:
+        total = sum(len(c.encode("utf-8")) for _, c in archived_blocks)
+        warn("owner-actions-item15-not-oversized",
+             "OWNER-ACTIONS.md's item 15 has %d bytes across %d "
+             "block(s) of closed narrative still sitting live. Run "
+             "`python ops/rotate_owner_actions_item15_etsy.py --apply`."
+             % (total, len(archived_blocks)))
+
+
 def gate_backlog_done_table_not_oversized() -> None:
     """BACKLOG-2026-09-07.md's "Done this week, for the record" table
     must not be carrying more than a generous buffer past ops/rotate_
@@ -32635,6 +32687,7 @@ def main() -> int:
     run_gate(gate_owner_actions_gemini_billing_not_oversized)
     run_gate(gate_owner_actions_item_history_not_oversized)
     run_gate(gate_owner_actions_item_1h_not_oversized)
+    run_gate(gate_owner_actions_item15_not_oversized)
     run_gate(gate_backlog_done_table_not_oversized)
     run_gate(gate_status_blocker001_not_oversized)
     run_gate(gate_status_metadata_not_oversized)

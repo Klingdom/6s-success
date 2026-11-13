@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (04:1x slot): previous work finished, trimmed item 15's closed narrative past the OWNER-ACTIONS.md size tripwire
+
+Previous work finished: tree clean, main pushed, preflight 0 FAIL through every reachable gate, killed at gate_tests's documented sandbox limit, same as every recent cycle. GitHub: 31 open issues, all decision/blocked-on-art, 0 PRs, unchanged since the last read.
+
+OWNER-ACTIONS.md was 117140 bytes, over its 110000-byte tripwire. Item 15 (Etsy) carried a closed five-to-four-to-three withdrawal history and an already-fixed print-defect narrative, neither covered by any existing rotation gate. Added `ops/rotate_owner_actions_item15_etsy.py`, `gate_owner_actions_item15_not_oversized`, and its test; applied it, archived 1702 bytes to OWNER-ACTIONS-ARCHIVE.md. File now 115974 bytes, still over the tripwire.
+
+Handing the operator: the same Phil-gated queue, and the next prunable span in OWNER-ACTIONS.md if time allows.
+
+HANDOFF-FILES: `OWNER-ACTIONS.md (still over its size tripwire after this trim)`
+
 ## 2026-11-13, PM check-in (03:4x slot): previous work confirmed finished, state independently reconfirmed exhausted, no new work, no notification
 
 NEXT FOR THE OPERATOR: hold the standing Phil gated queue, OWNER-ACTIONS.md Start here and the 31 open decision/P0/blocked-on-art issues, because no backlog item is both unblocked and workstream sized, and this cycle re-verified rather than cited that.

@@ -1111,22 +1111,7 @@ with zero failures against these three.
 has buyers searching for exactly this today. Three listings are written, and
 their files are built and measured.
 
-**Corrected 2026-09-09, this operator: it was five, then four.** A fifth,
-L3-entryway (30 cards, the six passes for the five Entryway zones), was
-written, priced, rendered and readied, then withdrawn: it sold the exact
-content `ops/generated_products.py` already excludes from the site's own
-paid catalogue because the free Entryway deck covers it, the same trust
-problem `MARKETPLACE-LISTINGS.md` section 3.1 already names for the
-Standards Pack, just never connected to L3 until now. Withdrawn before
-publishing, not after: its files are removed from
-`build/listings/etsy/L3-entryway/`, and `build/listings/check_etsy.py` now
-fails any listing that repeats this shape. Full account in
-`MARKETPLACE-LISTINGS.md` section 3.1.
-
-**Then, 2026-09-23: a second withdrawal, L2-kitchen, same reason** (it
-duplicated the free Kitchen deck, `MARKETPLACE-LISTINGS.md` section 3.1).
-That is what brought the real count from four to three; this item's own
-heading and step 5 never caught up to it until today.
+**Two earlier withdrawals brought the count from five to four to three (L3-entryway, 2026-09-09; L2-kitchen, 2026-09-23, both the same free-deck-duplication reason); archived 2026-11-13 by `ops/rotate_owner_actions_item15_etsy.py`. Full account in `MARKETPLACE-LISTINGS.md` section 3.1.**
 
 1. Go to `https://www.etsy.com/sell` and open a shop. Country **United
    States**, currency **USD**, language **English**.
@@ -1158,16 +1143,7 @@ because inventing one is a claim about an object that does not exist.
 
 **Ready and checked:** `build/listings/check_etsy.py` passes with zero
 failures. Every file is US Letter, contains the exact page and card counts its
-title claims, and is far under any upload cap. A print defect was found and
-fixed on the way through: every pack was rendering with a near-empty page
-between every sheet of cards, so the Whole House PDF was 152 pages of which 76
-were litter. It is 76 pages now. **Corrected 2026-09-06, this operator:** the
-fix already landed upstream, in the same commit this note was written in.
-Checked directly rather than trusted: `ops/build_catalog.py`'s sheet CSS
-(0.3in page margin, 3.4in card height) and `ops/build_printpack.py`'s own copy
-of the same values, the generator that actually produces the file Stripe
-fulfilment delivers to a paying customer, both carry the fix, and the built
-Etsy PDF re-renders at 76 pages, not 152. Nothing further needed here.
+title claims, and is far under any upload cap. A print-defect fix (a near-empty page between every card sheet, cutting the Whole House PDF from 152 pages to 76) landed and was verified in the same commit this note was written in; archived 2026-11-13 by `ops/rotate_owner_actions_item15_etsy.py`.
 
 ### 16. Create Pinterest and Instagram business accounts, then post the 114 zone cards already built. About 20 minutes, once.
 
