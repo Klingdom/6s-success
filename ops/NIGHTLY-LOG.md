@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-13, correction to the ~16:4x entry below, same cycle: the backgrounded preflight.py --skip-tests run did not stall, it finished clean after the log entry was already written
+
+The entry below reported preflight stalled past the network-bound gate and
+was "unchecked past that point, not a pass," because the background process
+had not returned when the entry and the commit were written. It returned
+afterward, with exit code 0: "every gate passed, 35 warning(s) worth a
+read," cycle_signal recorded. All 35 warnings are the same already-documented
+standing conditions (no SSH key for traffic, no Stripe credential, no
+Chromium for the shop prerender, no narrated films locally, 11 of 20 room
+pages diagram-led, 7 of 88 card heroes rejected, the room-guide mining lane
+correctly at its diminishing-returns floor); no new FAIL, no new warning
+shape. Correcting here rather than editing the entry below, per this
+repository's own convention and CLAUDE.md 0.3/0.4: a claim that looked
+unverified when written and later turned out true should say so plainly,
+not be quietly fixed in place. No new work follows from this; the
+conclusion (nothing genuinely unblocked beyond the standing Phil-gated
+queue) is unchanged, now on firmer evidence than before.
+
 ## 2026-11-13, scheduled operator cycle (~16:4x UTC): independently reconfirmed fully exhausted by fresh measurement, no new work, no notification
 
 **Did.** Attached clean (unshallowed, checkout main, merge --ff-only onto origin/main, 171 commits). Read CLAUDE.md, BACKLOG-2026-09-07.md in full, ROADMAP-2026-2029.md's arithmetic section, OWNER-ACTIONS.md, and the last several NIGHTLY-LOG.md entries per STEP 1.
