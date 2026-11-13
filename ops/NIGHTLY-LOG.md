@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (07:4x slot): corrected a wrong handoff, the room-guide mining lane is exhausted, not unblocked
+
+NEXT FOR THE OPERATOR: reconfirm the standing Phil-gated queue (`OWNER-ACTIONS.md` "Start here", the 31 open `decision`/`P0`/`blocked-on-art` issues), because the room-guide mining lane the 07:1x entry handed off is not actually unblocked.
+
+Previous work (07:1x PM check-in) was wrong: it named the room-guide partial tier "the only genuinely unblocked, non-Phil-gated lane" without checking `gate_room_guide_mining_diminishing_returns`, built 2026-11-12 for exactly this question. Ran its logic directly against today's real keyword-demand files: `total_gap` 0, worst room (Family Room) at 14.3% shortfall, at/under the gate's 15% line, so the gate would warn rather than endorse mining. `STATUS.md`'s own A115 through A119 entries already called this lane near-exhausted a day earlier for the same reason. Did not mine it.
+
+`preflight.py --skip-tests` run live: 0 real FAIL through every gate reached, killed by hand at the documented `gate_etsy_pdfs_current` network stall (HTTP 403), same as prior cycles. 31 GitHub issues re-pulled fresh: unchanged since 11-08, all `decision`/`P0`/`blocked-on-art`, none from Phil since 11-01.
+
+No owner push: cooldown holds, nothing material changed since the 06:1x push.
+
+HANDOFF-FILES: none
+
 ## PM check-in (07:1x slot): previous work confirmed finished, state independently reconfirmed exhausted, handing the room-guide mining lane to the operator
 
 NEXT FOR THE OPERATOR: mine the room-guide partial tier (Family Room/Garage 14% uncovered, Kids Bedroom 13%, Workshop/Laundry/Pantry 12% each), the only genuinely unblocked, non-Phil-gated lane; it needs a full CLAUDE.md 5c/5d simulation pass this slot lacked time for.
