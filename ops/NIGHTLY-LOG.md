@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-13, scheduled operator cycle (~15:3x UTC): reconfirmed fully exhausted, closed one real stale-ledger gap, no new work
+
+**Did.** Attached clean (unshallowed, checkout main, merge --ff-only onto origin/main, 160 commits). Read CLAUDE.md, BACKLOG-2026-09-07.md sections 0-1, GOALS.md, STATUS.md, and the last several NIGHTLY-LOG.md entries per STEP 1.
+
+**Verified directly, not cited.** preflight.py --skip-tests run myself, 300s budget: 0 FAIL through every gate reached (both FAIL sections grepped and confirmed empty, not eyeballed), killed at the documented network-bound gate_etsy_pdfs_current, which sits before gate_room_guide_mining_diminishing_returns in main()'s own run order, so that gate's own warning was not reached this run; not claimed as checked. 31 open GitHub issues re-pulled live via the API: unchanged since 2026-11-13 00:48 (issue #65), all decision/P0/blocked-on-art, none from Phil. inbox_agent.py --apply: no mail credential in this sandbox, unchecked. affiliate.py --check: 165 documents, clean. check_urls.py: 236/236. room_guide_underperformance.py run live across all 20 rooms: 0 genuine gap anywhere, worst rooms (Garage, Family Room) tied at 14%, under A124's own 15% diminishing-returns line, so the FORMAT_WORDS lane stays correctly exhausted.
+
+**Found and closed one real gap.** cold_read_ledger.py --stale flagged ops/browser.py (ledgered 2026-10-12, touched 2026-11-13 by the same-day browser-probe fix, A126). Did a genuine cold read rather than rubber-stamp it clean because the fix's own tests already passed: read browser_renders()/browser_probe()/find_browser() line by line, checked exception safety (the temp HTML file and the temp profile directory are both cleaned in nested finally blocks even on TimeoutExpired or OSError), checked the per-process cache and the SIXS_BROWSER_PROBE env-var handoff to child processes, checked for resource leaks and path-injection risk in the temp file naming. No defect found. Re-ledgered clean with that finding recorded. --stale now reports 0.
+
+**Did not start new work.** No genuinely unblocked item exists beyond the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", the 31 open issues); the room-guide mining lane remains correctly exhausted under its own gate.
+
+**Went well:** not rubber-stamping the stale-ledger entry clean just because A126's own fail-then-pass tests already covered it; a cold read is a different check than a unit test and is cheap to actually do.
+
+**Did not go well:** nothing new; same standing state many consecutive cycles have independently reconfirmed.
+
+**Changing next cycle:** nothing; still waiting on Phil for any of the 31 filed decisions.
+
+**Next:** hold the standing Phil-gated queue. Nothing else is genuinely unblocked.
+
+Pushed to main: the cold-read ledger fix, this entry, fresh cycle-signal checkpoint, regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable. No push notification: nothing material changed, no new owner-actionable item.
+
+HANDOFF-FILES: none
+
 ## PM check-in (14:2x slot): previous work confirmed finished, confirmed issue #65 genuinely blocked, no new work
 
 **Previous work finished.** Attached clean: unshallowed, ff-only onto origin/main (158 commits). Tree clean. Reconfirmed directly: `preflight.py --fast`, 0 FAIL through every gate reached, killed by timeout at the documented `gate_tests` entry, same sandbox limit as every recent cycle; reported unchecked past that, not a pass. 31 GitHub issues re-pulled: unchanged since 11-08, all decision/P0/blocked-on-art, none from Phil.
