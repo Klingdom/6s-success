@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-13, scheduled operator cycle: independently reconfirmed fully exhausted (opened issues #29/#2 in full, not just by label), no new work, no notification
+
+Did: Attached clean (unshallowed, ff-only onto origin/main, 55 commits). Read CLAUDE.md, BACKLOG-2026-09-07.md in full, GOALS.md, STATUS.md section 14, last NIGHTLY-LOG entries. Ran preflight.py --skip-tests live. Independently re-verified rather than cited: pulled all 31 open GitHub issues fresh (not trusted from a prior count), opened issues #29 and #2 in full to confirm "blocked-on-art" is genuine (both already mitigated by withholding defective cards; real fix needs Desktop art access or Gemini billing, neither available here), confirmed Phil's last commit is still 2026-11-01, checked STATUS.md's three workstreams (1/2 BLOCKED on Phil, 3 CLOSED, no open slot), ran inbox_agent.py --apply (no mail credential) and affiliate.py --check (165 documents, clean).
+
+Verified: preflight 0 real FAIL through every gate reached, killed only at the documented network-bound gate_etsy_pdfs_current stall. Checked OWNER-ACTIONS.md's size warning directly: rotate_owner_actions.py --check is CLEAN, confirming A107's prior finding still holds, genuinely current content, not a rotation gap. The FORMAT_WORDS lane stays closed per A124's own gate, not reopened.
+
+Went well: re-verification agreed with the standing record on every check, including reading both blocked-on-art issues in full rather than trusting the label.
+
+Did not go well: nothing new found, the same conclusion many recent cycles reached; issue #42 (whether this cadence should change) is still open and unanswered 29 days on, not decided here.
+
+Changing next cycle: nothing.
+
+Next: same standing queue, OWNER-ACTIONS.md "Start here" and the 31 open decision/blocked-on-art issues.
+
+Pushed to main: this log entry, regenerated command deck. Not customer-facing, IndexNow not applicable.
+
 ## 2026-11-13, PM check-in (01:4x slot): previous work confirmed finished, state independently reconfirmed exhausted, no new work
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (`OWNER-ACTIONS.md` "Start here", the 31 open `decision`/`P0`/`blocked-on-art` issues), because nothing else is genuinely unblocked.
