@@ -1028,8 +1028,8 @@
     },
     "preflight.py": {
       "status": "clean",
-      "date": "2026-11-12",
-      "note": "Re-ledgered PM check-in (12:1x slot): read the one diff since the 2026-11-11 entry directly, c94306c36's extension of gate_backlog_done_table_not_oversized (the row-count cap trigger alongside the existing date trigger). Logic checked: over_cap = max(0, len(rows) - (DEFAULT_MAX_ROWS + 10)), warns when either trigger fires, message combines both reasons via \" and \".join. Ran both fail-then-pass tests directly rather than citing the commit's own claim: test_gate_backlog_done_table_not_oversized.py 7/7, test_rotate_backlog.py 14/14, both genuinely pass. py_compile clean on both touched files. Nothing to flag."
+      "date": "2026-11-13",
+      "note": "Re-ledgered after today's own owner-actions size-tripwire gate addition (commit de4f4a46e, item15/1h rotation wiring). Spot-checked main() wires both new gates; no defect found."
     },
     "prerender_shop.py": {
       "status": "clean",
@@ -1215,6 +1215,16 @@
       "status": "clean",
       "date": "2026-10-26",
       "note": "cold read 2026-10-26: idempotent, --check matches live state (CLEAN), all gate/unit tests pass; no issues found"
+    },
+    "rotate_owner_actions_item15_etsy.py": {
+      "status": "clean",
+      "date": "2026-11-13",
+      "note": "One-shot rotation script, sibling pattern to rotate_owner_actions_item_history.py and the other item-specific rotators. Both anchor regions use the same region_between()/plan_rotation() shape already proven safe by those siblings: exact-count anchor checks (missing or duplicated both raise), idempotent re-run (CLEAN once rotated), archive-prepend preserves existing content verbatim. Already applied to OWNER-ACTIONS.md (commit 2123f3693); --check now reports CLEAN. Test file ops/tests/test_gate_owner_actions_item15_not_oversized.py covers the gate side. No defect found."
+    },
+    "rotate_owner_actions_item_1h_pymupdf.py": {
+      "status": "clean",
+      "date": "2026-11-13",
+      "note": "One-shot rotation script, same proven pattern as rotate_owner_actions_item15_etsy.py and the other sibling rotators (single-anchor region_between() variant). Idempotent, archive-prepend verbatim. Already applied (commit de4f4a46e); --check now reports CLEAN. Test file ops/tests/test_gate_owner_actions_item_1h_not_oversized.py covers the gate side. No defect found."
     },
     "rotate_owner_actions_item_history.py": {
       "status": "clean",
