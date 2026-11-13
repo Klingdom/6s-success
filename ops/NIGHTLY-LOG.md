@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (14:2x slot): previous work confirmed finished, confirmed issue #65 genuinely blocked, no new work
+
+**Previous work finished.** Attached clean: unshallowed, ff-only onto origin/main (158 commits). Tree clean. Reconfirmed directly: `preflight.py --fast`, 0 FAIL through every gate reached, killed by timeout at the documented `gate_tests` entry, same sandbox limit as every recent cycle; reported unchecked past that, not a pass. 31 GitHub issues re-pulled: unchanged since 11-08, all decision/P0/blocked-on-art, none from Phil.
+
+**Tried one small closing job, found it genuinely blocked.** Attempted to fix #65 (stale "Append" line in two Routine prompts) via `update_trigger`. Both refused: `created_via: http_api`, no agent can edit a Routine it did not create. Matches #65's own body; nothing new to add.
+
+No new work started. Handing the operator the same standing queue; #65 needs Phil's own paste at the Routines page.
+
+HANDOFF-FILES: none
+
 ## 2026-11-13, PM check-in (13:4x slot): previous work confirmed finished, closed the prior entry's open question, no new work
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", the 31 open decision/P0/blocked-on-art issues), because nothing else is genuinely unblocked.
