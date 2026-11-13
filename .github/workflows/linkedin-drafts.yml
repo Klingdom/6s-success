@@ -45,6 +45,13 @@ name: LinkedIn drafts
 # Revert both by one hour back when Denver returns to MDT (second Sunday in
 # March, 2027-03-14), not before: reverting early would reopen the same gap
 # the RE-MEASURED entry was fixing.
+#
+# RE-MEASURED 2026-11-13, PM check-in: gate_scheduled_delivery_phase was
+# warning again, this time 140 minutes past promise. Over the 7 scheduled
+# runs since this cron last changed (2026-11-06), the median lag has grown
+# from 5.17h to 7.51h (450.65 min), so the 10:09 UTC fire was landing about
+# 17:39 UTC instead of the 15:19 UTC promise. Re-fit below; the promise
+# itself (15:19 UTC = 08:19 MST) is unchanged, only the compensation.
 
 # lands-at: 15:19 UTC
 #   Machine readable, and read by gate_scheduled_delivery_phase in
@@ -56,7 +63,7 @@ name: LinkedIn drafts
 
 on:
   schedule:
-    - cron: '09 10 * * *'      # fires 10:09 UTC, LANDS about 15:19 UTC = 08:19 MST (median 5.17h late, DST-shifted 2026-11-06)
+    - cron: '48 07 * * *'      # fires 07:48 UTC, LANDS about 15:19 UTC = 08:19 MST (median 7.51h late, re-fit 2026-11-13)
   workflow_dispatch:
 
   # A SECOND WAY IN, because the schedule above does not fire as asked.
