@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-13, scheduled operator cycle: rotated a due STATUS.md archive, re-confirmed the FORMAT_WORDS lane should not be mined a further cycle, no new unblocked work found
+
+**Did.** Attached clean: fetch, fetch --unshallow, checkout main, ff-only onto origin/main, 224 commits, no "unrelated histories" symptom. Read CLAUDE.md, BACKLOG-2026-09-07.md in full (sections 0 through 7), ROADMAP-2026-2029.md, GOALS.md, STATUS.md, the last several real NIGHTLY-LOG.md entries (today's own A126 through A129, each already landed). GitHub's 31 open issues re-pulled live via the API: unchanged since 2026-11-08, all decision/P0/blocked-on-art, none from Phil; checked issue #65's own comment directly rather than trust the count, it is this repository's own prior session confirming a hard tool restriction (Routines created via http_api cannot be updated by an agent), not owner input. 0 open PRs. inbox_agent.py --apply: no mail credential in this sandbox.
+
+**Checked by epic first (STEP 3).** Epic 1 (measurement) and epic 2 (broken/dishonest): every top item (the traffic read, Search Console exports, issue #15 Listmonk) is owner-gated, unchanged. Epic 3 (traffic): ran gate_room_guide_mining_diminishing_returns() directly rather than cite it: it WARNs, every room now scores 0 genuine on-topic gap and the worst (Family Room, Garage) sit at 14% uncovered on partial rows alone, matching A124/A127's own prior conclusion. Dumped the real remaining gap tiers in both the US and global keyword-demand corpora directly (91 and 90 rows) rather than trust the citation: both are the already-triaged noise classes named by name in prior entries (retailer-brand queries, off-topic entertainment/gaming/construction intent, single-query outliers below the basement/attic bar). Declined a further FORMAT_WORDS mining cycle on this evidence rather than force one.
+
+**Found instead, by running every rotator's own --check rather than citing prior "exhausted" entries (the same omission A118/A130's own predecessor found due work through once before):** rotate_status_metadata.py --check reported DUE (6 entries live, 5 stale against today's date, over its 5-entry cap), the other five rotators (rotate_backlog, rotate_backlog_closed, rotate_checkin_log, rotate_nightly_log, rotate_owner_actions) and cold_read_ledger.py --stale all CLEAN. Ran rotate_status_metadata.py --apply: moved 5 entries (14,840 bytes) to STATUS-ARCHIVE.md, STATUS.md to 88,091 bytes; --check re-run CLEAN (1 entry, at the most recent date). ops/tests/test_rotate_status_metadata.py 10/10 unchanged (no code touched, rotation only).
+
+**Verified directly, not cited:** check_urls.py (236/236), fix_dashes.py --check (0/0), affiliate.py --check (165 documents), link_graph_report.py (0 orphans), check_sellable.py (124/126, 2 person-delivered services by design), audit_pages.py (0 findings across 241 pages), all other rotators and cold_read_ledger.py --stale all CLEAN as above.
+
+**Preflight.** python ops/preflight.py (full, not --skip-tests) run live in the background for the whole cycle: confirmed genuinely computing throughout via ps/proc (test_audit_catalog.py's own repeated real subprocess spawns, then test_audit_visual_exit_code.py's real headless-Chromium launches with no --user-data-dir hang, confirming A129's earlier fix holds under this cycle's own fresh run, then a real git log scan inside cold_read_ledger's own staleness test), never idle. Did not reach a verdict inside this cycle's own working window; reporting the gate_tests tail as unchecked, not passing, per CLAUDE.md 0.4, rather than wait indefinitely or claim a result not yet in hand.
+
+**Went well.** Running every rotator's own --check directly, rather than trusting the standing "exhausted" framing, surfaced the one piece of real due work this cycle actually had.
+
+**Did not go well.** Nothing new; the full local gate_tests run is the same standing sandbox wall-clock question prior entries have already named, not a new defect.
+
+**Changing next cycle.** None; no new gate warranted. rotate_status_metadata.py's existing --check/--apply contract already caught this correctly, it had simply not been run yet today.
+
+**Next.** Standing Phil-gated queue unchanged: the traffic read (#64), YouTube OAuth (#46), Gemini billing (#47), Search Console Pages/Performance export, Amazon KDP (#43) and Etsy (#44) accounts, Apple/Play accounts (#48), the accounts-layer decision (#45), issue #15 (Listmonk), issue #42 (cadence decision, unanswered since 2026-10-25). No genuinely unblocked hours-sized lane open beyond routine maintenance.
+
+Dashboard regenerated (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json). Pushed to main. No price, product or site page touched; IndexNow not applicable (only archive/log/dashboard files moved).
+
+HANDOFF-FILES: none
+
 ## 2026-11-13, PM check-in (23:1x slot): previous work finished; own "network-bound" stall diagnosis corrected by a concurrent cycle before shipping
 
 Attached clean, ff-only, 213 commits onto origin/main. Previous work (22:4x PM, 22:0x operator) was finished: clean, pushed on attach. Re-verified GitHub live: 31 issues unchanged since 2026-11-08, none from Phil; issue #42 still unanswered.
