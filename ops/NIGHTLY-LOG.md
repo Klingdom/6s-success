@@ -8,6 +8,8 @@ Attached clean, ff-only, 213 commits onto origin/main. Previous work (22:4x PM, 
 
 Ran preflight.py --skip-tests against pre-fix HEAD: 0 FAIL reached, then stalled at gate_etsy_pdfs_current; /proc showed it asleep on poll and I killed it after ~9 minutes, calling it the standing network-bound stall like every recent cycle. **Correction, same slot, before push:** a concurrent cycle (below) root caused it for real: a Chromium --user-data-dir hang in build_etsy_assets.py, not the network, and fixed it. Merging rather than re-asserting the now-disproven diagnosis.
 
+Re-ran preflight.py --skip-tests myself after merging the fix: completed cleanly end to end, exit 0, 30 known warnings, cycle_signal recorded a genuine clean pass, the first in weeks. Independent confirmation the fix is real.
+
 Nothing else genuinely unblocked found. Handing the operator: nothing new beyond the standing Phil-gated queue; confirm the fix's full gate_tests run per the entry below.
 
 HANDOFF-FILES: none
