@@ -130,6 +130,25 @@ def write_preview(dest):
         fh.write(os.urandom(16))
 
 
+CHROMIUM_CANDIDATES = ("/opt/pw-browsers/chromium",)
+
+
+def isolated_profile(exe):
+    # Mirrors ops/browser.py's isolated_profile() inline: this fixture runs
+    # from an isolated throwaway git repo with no ops/ directory beside it,
+    # so it cannot import the real helper, but it must make the identical
+    # decision. See the real one's own docstring for the measurement:
+    # this sandbox's Chromium hangs outright on an explicit --user-data-dir.
+    if exe in CHROMIUM_CANDIDATES:
+        return [], (lambda: None)
+    profile = tempfile.mkdtemp(prefix="6s-browserprofile-")
+
+    def _cleanup():
+        shutil.rmtree(profile, ignore_errors=True)
+
+    return ["--user-data-dir=" + profile], _cleanup
+
+
 def render(browser, src_rel, dest):
     url = "file:///" + os.path.abspath(os.path.join(ROOT, src_rel)).replace(os.sep, "/")
     last = None
@@ -154,8 +173,18 @@ def render(browser, src_rel, dest):
     # no longer depends on the retry count either way, since
     # gate_etsy_pdfs_current now treats exhausted retries against
     # unchanged content as UNCHECKED, not a false FAIL (case 7 below).
+    # Found 2026-11-13: this fixture's own render() still built
+    # --user-data-dir by hand, the identical bug ops/browser.py's
+    # isolated_profile() found and fixed in every other headless-Chrome
+    # caller the same day (this sandbox's Chromium hangs outright, file://
+    # included, the moment that flag is explicitly passed). Watched this
+    # exact test hang past a 150s wrapper, idle Chromium children at 0% CPU,
+    # before the fix; matched build_etsy_assets.py's own real render() fix.
+    # Inlined rather than imported: this fixture's own isolated repo has no
+    # ops/ directory beside it for "import browser" to find.
     for attempt in range(3):
-        with tempfile.TemporaryDirectory() as profile:
+        profile_flags, cleanup_profile = isolated_profile(browser)
+        try:
             # Matches the same fix in build_etsy_assets.py's real render(),
             # found the same cycle: old "--headless" is the one headless mode
             # left in this repository, and it can leave a renderer/zygote
@@ -163,9 +192,9 @@ def render(browser, src_rel, dest):
             # exits, hanging subprocess.run() well past a real render's real
             # duration even though the PDF already landed. Every sibling
             # caller already uses "--headless=new".
-            flags = [browser, "--headless=new", "--disable-gpu",
-                     "--no-pdf-header-footer", "--user-data-dir=" + profile,
-                     "--print-to-pdf=" + dest, url]
+            flags = ([browser, "--headless=new", "--disable-gpu",
+                      "--no-pdf-header-footer"] + profile_flags +
+                     ["--print-to-pdf=" + dest, url])
             if os.name != "nt":
                 flags.insert(1, "--no-sandbox")
             # Found 2026-09-13: a run with every fix above still got
@@ -203,6 +232,8 @@ def render(browser, src_rel, dest):
                     proc.kill()
                 proc.communicate()
                 last = None
+        finally:
+            cleanup_profile()
         # A bare exists() check accepted a killed or still-writing Chrome's
         # own empty/partial file as success (found the very next CI run
         # after this retry loop was first added): existence alone proves

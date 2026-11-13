@@ -44,7 +44,6 @@ import shutil
 import signal
 import subprocess
 import sys
-import tempfile
 import time
 
 import pymupdf
@@ -124,7 +123,29 @@ INSTRUCTIONS = ("build/listings/print-instructions.html",
 
 def render(browser, src_rel, dest):
     """Render one HTML to PDF as-is: the source's own print CSS is correct
-    (see the module docstring for why no override is layered on top any more)."""
+    (see the module docstring for why no override is layered on top any more).
+
+    Found 2026-11-13, this cycle, while this exact gate was observed hanging
+    live (idle Chromium zygote/renderer/gpu children, 0% CPU, surviving every
+    retry below): every other headless-Chrome caller in this repository
+    (ops/render_cards.py, ops/prerender_shop.py, ops/video_zone.py,
+    ops/build_thumbnails.py, ops/build_social_pins.py, ops/product_links.py)
+    was moved 2026-11-13 onto ops/browser.py's isolated_profile(), which
+    found that THIS sandbox's own Chromium (/opt/pw-browsers/chromium, the
+    only browser an operator sandbox has) hangs outright the moment an
+    explicit --user-data-dir is passed, file:// included, five clean runs
+    with the flag omitted against three straight hangs with it present.
+    This function was never migrated: it still built its own
+    tempfile.TemporaryDirectory()-backed --user-data-dir by hand below, so
+    it carried the identical bug and every stall every prior cycle logged
+    against this gate as "network-bound" on 6s-success.com was, at least in
+    part, this, not the network: a direct curl to 6s-success.com fails fast
+    with a proxy refusal in under a second, it does not spend minutes with
+    Chrome's child processes idle at 0% CPU. Edge, on Phil's own Windows
+    machine, still gets an isolated throwaway profile (it has a real default
+    profile worth not touching); the sandbox binary gets none, exactly as
+    isolated_profile() already decided for every other caller.
+    """
     html = open(os.path.join(ROOT, src_rel), encoding="utf-8").read()
     tmp_html = os.path.join(TMP, os.path.basename(src_rel))
     with open(tmp_html, "w", encoding="utf-8") as fh:
@@ -184,8 +205,15 @@ def render(browser, src_rel, dest):
     # content as UNCHECKED, not a false FAIL (found the same day, after this
     # widening). Back to 3, which is enough to smooth a single transient
     # stall without compounding into a second, worse timeout two layers up.
+    ops_dir = os.path.join(ROOT, "ops")
+    sys.path.insert(0, ops_dir)
+    try:
+        import browser as B
+    finally:
+        sys.path.remove(ops_dir)
     for attempt in range(3):
-        with tempfile.TemporaryDirectory() as profile:
+        profile_flags, cleanup_profile = B.isolated_profile(browser)
+        try:
             # Found 2026-09-13, watching this gate hang past its own CI job's
             # 20-minute timeout on GitHub's runner while a local run of the
             # same script finished in 11 seconds flat. This was the one
@@ -228,9 +256,9 @@ def render(browser, src_rel, dest):
             # safer move; if the original /dev/shm hang recurs without it,
             # that needs real runner-level memory evidence, not another
             # blind flag.
-            flags = [browser, "--headless=new", "--disable-gpu",
-                     "--no-pdf-header-footer", f"--user-data-dir={profile}",
-                     "--print-to-pdf=" + dest, url]
+            flags = ([browser, "--headless=new", "--disable-gpu",
+                      "--no-pdf-header-footer"] + profile_flags +
+                     ["--print-to-pdf=" + dest, url])
             if os.name != "nt":
                 flags.insert(1, "--no-sandbox")
             # Found 2026-09-13, reading the job's own cleanup log after a run
@@ -282,6 +310,8 @@ def render(browser, src_rel, dest):
                 else:
                     proc.kill()
                 proc.wait()
+        finally:
+            cleanup_profile()
         # Found 2026-09-13, the very next CI run after adding the retry
         # above: a plain os.path.exists(dest) check accepted a killed or
         # still-writing Chrome's own empty/partial file as success, so a

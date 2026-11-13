@@ -2,19 +2,29 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-11-13, PM check-in (23:1x slot): previous work finished, independently reconfirmed exhausted, no new work
+## 2026-11-13, PM check-in (23:1x slot): previous work finished; own "network-bound" stall diagnosis corrected by a concurrent cycle before shipping
 
-Attached clean, ff-only, 213 commits onto origin/main, tree clean before and after. Previous work (22:4x PM, 22:0x operator) was finished: clean, pushed on attach.
+Attached clean, ff-only, 213 commits onto origin/main. Previous work (22:4x PM, 22:0x operator) was finished: clean, pushed on attach. Re-verified GitHub live: 31 issues unchanged since 2026-11-08, none from Phil; issue #42 still unanswered.
 
-Re-verified directly, not cited: pulled all 31 open GitHub issues live, unchanged since 2026-11-08 bar #65's own update, all decision/P0/blocked-on-art, none from Phil. Issue #42 (cadence-waste question) re-read, still unanswered, not re-raised on an unchanged state. BACKLOG-2026-09-07.md sections 2-6 remain archived/done/owner-gated.
+Ran preflight.py --skip-tests against pre-fix HEAD: 0 FAIL reached, then stalled at gate_etsy_pdfs_current; /proc showed it asleep on poll and I killed it after ~9 minutes, calling it the standing network-bound stall like every recent cycle. **Correction, same slot, before push:** a concurrent cycle (below) root caused it for real: a Chromium --user-data-dir hang in build_etsy_assets.py, not the network, and fixed it. Merging rather than re-asserting the now-disproven diagnosis.
 
-Ran preflight.py --skip-tests fresh myself: 0 FAIL through every gate reached (cycle-signal checkpoint at HEAD a1db19e8b confirms it), stalled only at the documented network-bound gate (/proc confirmed asleep on poll, not computing), killed by hand after a ~9 minute fair wait.
-
-Nothing genuinely unblocked found beyond the standing Phil-gated queue. No push notification sent: same exhausted state issue #42 already names.
-
-Handing the operator: nothing new; standing Phil-gated queue in OWNER-ACTIONS.md unchanged.
+Nothing else genuinely unblocked found. Handing the operator: nothing new beyond the standing Phil-gated queue; confirm the fix's full gate_tests run per the entry below.
 
 HANDOFF-FILES: none
+
+## Root caused and fixed the real reason gate_etsy_pdfs_current has stalled for weeks: not the network, a Chromium --user-data-dir hang this cycle's own earlier --user-data-dir-through-helper fix never reached
+
+**Did:** Attached clean. Checked backlog/GOALS/STATUS/GitHub: all 31 issues decision/blocked-on-art, FORMAT_WORDS lane gated exhausted. Ran preflight.py live and watched gate_etsy_pdfs_current hang directly: ps aux showed idle Chromium children spawned per listing, surviving every retry. Root cause: build_etsy_assets.py's render() still built --user-data-dir by hand, the bug ops/browser.py's isolated_profile() fixed everywhere else the same day, never migrated here. Every prior cycle that hit this stall called it network-bound on 6s-success.com; it was this too, a refused curl fails in under a second, not minutes of idle Chrome. Fixed render() to call isolated_profile(), fixed the identical bug in test_gate_etsy_pdfs_current.py's own fixture (inlined, no ops/ dir to import from there), removed both from preflight.py's allowlist, re-ledgered the file fixed.
+
+**Verified:** build_etsy_assets.py: 7 renders in 11.6s, was hanging. Its test: 7/7 in 11s, was hanging past 150s. preflight.py --skip-tests: every gate passed, 29 warnings, 113s total, first clean completion this lane has had in weeks. gate_user_data_dir_through_helper re-run: 0 bad files with both removed from the allowlist. check_urls.py 236/236, fix_dashes.py 0/0, cold_read_ledger.py --stale 0. Full gate_tests started in background; not yet concluded, reported unchecked, not assumed.
+
+**Went well:** a defect dozens of cycles blamed on the network got root caused by watching the process tree instead of trusting the standing diagnosis.
+
+**Did not go well:** this cost weeks, including this operator's own first assumption at the start of this cycle.
+
+**Changing next cycle:** when a gate stalls, check the process tree before accepting a standing network diagnosis, however documented.
+
+**Next:** confirm the full gate_tests run; nothing else unblocked beyond the standing Phil-gated queue.
 
 ## 2026-11-13, PM check-in (22:4x slot): previous work finished, independently reconfirmed exhausted, no new work
 

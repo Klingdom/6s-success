@@ -1,10 +1,10 @@
 {
-  "combined_hash": "1946a111c17c2f09eee145f900f52606e93efe4f329fc9b3d2b57523739915d1",
-  "git_head": "a1db19e8be900689e567c05b2a36b88c1a846a25",
-  "note": "partial pass: every gate before gate_tests passed, gate_tests and everything after it not reached this run (cycle_signal checkpoint, not a full preflight pass), git HEAD a1db19e8be",
-  "recorded_at": "2026-11-13T23:14:05Z",
+  "combined_hash": "bd235517f1b3eaf8eeb6c99c3c108cf224bd2072a5155a061b12c0e4f5946fc5",
+  "git_head": "73cfeba0c5e23f90788d9be3b66594554c0739fa",
+  "note": "auto-recorded by preflight.py's own clean completion, git HEAD 73cfeba0c5",
+  "recorded_at": "2026-11-13T23:18:36Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "fad6864cdba0a0b25aed1a73705bb6bc473b73354a6b0dd3e17001e66c6de2dd",
+    "BACKLOG-2026-09-07.md": "9102ee43ae0d030c8d59871fd44af50dc9ddbc0c356392e33117aa14e77846ab",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "0f3e73e210bf360eb444679a85e5e30752cd53837475a43660c6b707e315a4d0",
     "OWNER-ACTIONS.md": "a2ac40daae16420d5c6a1201eb7970610fce82a91c33253a572f3824f6c919b6",
