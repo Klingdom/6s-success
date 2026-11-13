@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-13, PM check-in (08:4x slot): previous work confirmed finished, room-guide mining lane reconfirmed exhausted, standing queue held
+
+NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", 31 open issues), because the room-guide mining lane 07:1x briefly handed off is exhausted, confirmed twice since.
+
+Previous work (08:1x PM, concurrent hourly operator) finished: tree clean, pushed; the two commits since are automated dashboard regen only.
+
+Reconfirmed, not cited: attached clean. 31 issues fresh via API, unchanged, all decision/P0/blocked-on-art, none from Phil since 11-01. `preflight.py --skip-tests`: 0 real FAIL, killed by hand at the documented `gate_etsy_pdfs_current` stall. `cold_read_ledger.py --stale`: 0. Owner-push cooldown holds to 11-15T18:00Z, nothing material changed, no push sent.
+
+No new work started: nothing else genuinely unblocked.
+
+Pushed: this entry only. Not customer-facing.
+
+HANDOFF-FILES: none
+
 ## PM check-in (08:1x slot): previous work confirmed finished, state independently reconfirmed exhausted including the room-guide lane, no new work
 
 Previous work finished: 07:4x PM check-in and the concurrent operator cycle both confirmed the room-guide mining lane exhausted against its own gate; tree clean, main matched origin.
