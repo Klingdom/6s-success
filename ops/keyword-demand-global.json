@@ -29,7 +29,7 @@
       "note": ""
     }
   },
-  "pages_checked": 243,
+  "pages_checked": 244,
   "rows": [
     {
       "query": "area craft activity",
@@ -48225,6 +48225,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "3f12ecd07",
-  "scored_at": "2026-11-12T20:54:10Z"
+  "scored_against_commit": "18b011c9a",
+  "scored_at": "2026-11-13T09:58:43Z"
 }

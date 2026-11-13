@@ -1971,21 +1971,28 @@ def main():
     #     "organize"/"arrange" already play. "stored" is the passive form
     #     of "store" as a qualifier on an already-specific noun phrase.
     #     "wrapping" names a paper sub-type the destination zone already
-    #     answers generically. "recipes" is format-agnostic like "pdf". A
-    #     full before/after score_rows() diff across both corpora found 0
-    #     best_page misattributions; every change moved a query onto a
-    #     more specific, more correct page (not a worse one), including
-    #     fixing a real bug where a 254-heading aggregator page won only
-    #     because it happened to contain the literal word "system" once.
-    new_format_words28 = ("system", "dispose", "fold", "stored", "wrapping",
-                          "recipes")
+    #     answers generically. A full before/after score_rows() diff across
+    #     both corpora found 0 best_page misattributions; every change
+    #     moved a query onto a more specific, more correct page (not a
+    #     worse one), including fixing a real bug where a 254-heading
+    #     aggregator page won only because it happened to contain the
+    #     literal word "system" once.
+    #
+    #     "recipes" was part of this group and was REMOVED again
+    #     2026-11-13: it is the sole content word on "how to organize
+    #     recipes", so excluding it left that query with an empty
+    #     content_words() list, unable to score above 0.0 against any page
+    #     ever, which hid a genuine content gap instead of closing one.
+    #     The negative assertion below now pins that, and
+    #     gate_keyword_demand_no_content_words in ops/preflight.py fails on
+    #     the shape generally.
+    new_format_words28 = ("system", "dispose", "fold", "stored", "wrapping")
     samples28 = {
         "system": "linen closet organization system",
         "dispose": "how to dispose of cleaning supplies",
         "fold": "how to fold towels for storage",
         "stored": "how should cleaning equipment be stored",
         "wrapping": "wrapping paper organizer storage",
-        "recipes": "how to organize paper recipes",
     }
     for word in new_format_words28:
         if word in kd.content_words(samples28[word]):
@@ -2009,6 +2016,21 @@ def main():
                      "'how to organize game systems' is genuinely "
                      "ambiguous and marking it covered would be "
                      "dishonest labelling (A101)")
+    # "recipes" must NOT be a FORMAT_WORD. It is the only content word on
+    # "how to organize recipes", so excluding it leaves that query
+    # unscoreable against every page forever rather than merely unmatched,
+    # which is the sole-content-word trap A114 ("bonus"/"den") and A120
+    # ("steps") each caught before shipping and this one did not.
+    if "recipes" in kd.FORMAT_WORDS:
+        fails.append("'recipes' must not join FORMAT_WORDS: it is the sole "
+                     "content word on 'how to organize recipes', so "
+                     "excluding it empties content_words() for that query "
+                     "and hides a real content gap (see "
+                     "gate_keyword_demand_no_content_words)")
+    if not kd.content_words("how to organize recipes"):
+        fails.append("'how to organize recipes' has no content words, so "
+                     "it can never score against any page; some word in "
+                     "FORMAT_WORDS is swallowing the whole query")
 
     # 60. Found live 2026-11-12, mining Guest Bathroom's partial tier (14
     #     rows, tied with Nursery and Garage at 15% uncovered). "wooden" is

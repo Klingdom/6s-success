@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-11T17:34:53Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-12T20:53:57Z against 243 page(s) at commit 3f12ecd07. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-13T09:58:36Z against 244 page(s) at commit 18b011c9a. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2810. Checked against 243 published page titles: 1765 covered, 952 partial, 93 gap.
+**Queries found:** 2810. Checked against 244 published page titles: 1767 covered, 952 partial, 91 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 93, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 91, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -70,14 +70,12 @@ Showing the top 80 of 93, ordered by the best rank the phrase reached in any one
 | 9 | why do i have trouble climbing stairs | - | How to organize a basement, one zone at a time (0.00) | climbing, trouble |
 | 10 | how to hold a cribbage tournament | - | How to organize an attic without overloading it (0.00) | cribbage, tournament |
 | 10 | how to organize pc | - | - (0.00) | - |
-| 10 | how to organize printed recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | printed |
 | 10 | how to organize script mods sims 4 | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | mods, script, sims |
 | 10 | laundry problems and solutions | - | How to organize the laundry room detergent and supplies (0.33) | problems, solutions |
 | 11 | foyer design ideas for flat indian style | - | How to organize an entryway, zone by zone (0.20) | flat, indian, style |
 | 11 | how to decorate a living room with high ceilings | Living Room | How to organize the living room bookshelves and display (0.40) | ceilings, decorate, high |
 | 11 | how to host a cribbage tournament template | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, host, tournament |
 | 11 | how to operate a gas stove | - | How to organize the kitchen stove area (0.33) | gas, operate |
-| 11 | how to organize recipes | - | - (0.00) | - |
 | 11 | how to plan a workshop for students | Workshop | How to organize the workshop hardware storage (0.33) | plan, students |
 | 11 | organize seasonal pricing model | - | How to organize the hall closet seasonal storage (0.33) | model, pricing |
 | 12 | building beds for kids organization | - | How to organize the kids bedroom bed (0.33) | beds, building |
@@ -101,6 +99,8 @@ Showing the top 80 of 93, ordered by the best rank the phrase reached in any one
 | 16 | how to give yourself custom entryway design | Entryway | How to organize an entryway, zone by zone (0.20) | custom, give, yourself |
 | 16 | how to organize dropbox | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | dropbox |
 | 17 | examples of decks and patios | - | How to organize the patio or deck garden area (0.00) | decks, examples, patios |
+| 17 | organizing hard drive files | - | How to organize paperwork at home with a simple filing system (0.00) | drive, hard |
+| 17 | snap on stationary storage | - | More storage will not fix a messy room (0.33) | snap, stationary |
 
 ## Partial: we are close, and the title does not use their words
 

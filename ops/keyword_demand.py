@@ -203,7 +203,7 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "teacher", "teachers", "creatives", "productivity",
                           "minimal", "category", "pictures",
                           "system", "dispose", "fold", "stored", "wrapping",
-                          "recipes", "wooden", "necessities", "practical",
+                          "wooden", "necessities", "practical",
                           "teen", "labels", "dividers", "canvas", "pouch",
                           "church", "insert", "durable", "lightweight",
                           "properly", "apartments", "large", "homes",
@@ -355,6 +355,28 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
 # storage), the same shape. "how to organize recipes" moves from a
 # meaningless 0.0-coverage match on `/about.html` to no match at all, same
 # `gap` status, more honestly, not a regression.
+#
+# "recipes" was REMOVED again 2026-11-13, scheduled operator cycle, and the
+# reasoning above is why it should never have gone in. "recipes" is the
+# SOLE content word on "how to organize recipes", so putting it in
+# FORMAT_WORDS left that row with an empty content_words() list. A row with
+# no content words cannot score above 0.0 against any page, ever, however
+# good a page the site later publishes: the entry above read that as "no
+# match at all, more honestly", but the honest reading is that the query
+# became unscoreable and its genuine content gap became invisible to every
+# room tally and every coverage reading built on them. That is the same
+# sole-content-word trap A114 caught for "bonus"/"den" and A120 caught for
+# "steps", both of which were correctly declined BEFORE shipping by a full
+# corpus diff; this one shipped because the row was already `gap`, so the
+# diff showed no status change to flag. `gate_keyword_demand_no_content_words`
+# in ops/preflight.py now fails on exactly this shape, so the third
+# occurrence is the last one that needs a human to notice it.
+#
+# The row is now genuinely answerable: site/articles/how-to-organize-recipes
+# shipped the same cycle, the site's first page on organizing a recipe
+# collection (checked first, CLAUDE.md 5d: every prior "recipe" mention on
+# the site is about food bought FOR a recipe, never about the recipes
+# themselves, so this was a real content gap and not a wording one).
 
 # "teacher"/"teachers"/"creatives" joined 2026-11-12, mining Home Office's
 # partial tier. Each names who uses the office (a teacher grading papers, a

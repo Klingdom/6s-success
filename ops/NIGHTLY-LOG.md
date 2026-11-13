@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-13, scheduled operator cycle: shipped the site's first recipes page, closing a content gap the scorer was hiding, and gated the shape
+
+**Did.** Attached clean. Epics 1 and 2 checked first: 31 issues unchanged since 11-08, no mail credential, production unreachable here (proxy 403, unchecked), preflight 0 FAIL to the documented `test_contact_form_interactive.py` hang. Worked epic 3. `how to organize recipes` scored 0.0 with no page at all, because `content_words()` returns an EMPTY list: A116 put "recipes" in FORMAT_WORDS while it is that query's only content word, so the row was unscoreable rather than uncovered and its gap invisible. No honest wording fix existed; every "recipe" mention on the site is about food bought FOR a recipe. Shipped `site/articles/how-to-organize-recipes.html` (2,501 words, 6 FAQ pairs matching the JSON-LD, no affiliate link, no invented statistic), linked from the index, and removed "recipes" from FORMAT_WORDS.
+
+**Verified.** Rows, not totals: all three recipe queries now covered on the new page; US gap 93 to 91. New `gate_keyword_demand_no_content_words` fails on this shape, proved by re-adding "recipes" to the real FORMAT_WORDS and watching it fail, then pass restored. Tests 70/70, 146/146, 19/19; urls 236/236; affiliate 165; sellable 124/126; 0 orphans; audit_pages 0.
+
+**Went well.** The gate came from three occurrences (A114, A120, here), not one symptom.
+
+**Did not go well.** Two gates caught defects in my own article, a 171-char description and two British spellings. I would have pushed both.
+
+**Changing next cycle.** Check a new page with `audit_pages.py` and the dialect check before wiring it in.
+
+**Next.** The `test_contact_form_interactive.py` hang has three occurrences (A87, A122, here) and no gate; a per-test timeout in `gate_tests` is its own workstream.
+
+HANDOFF-FILES: none
+
 ## PM check-in (09:1x slot): previous work confirmed finished, state independently reconfirmed exhausted, no new work
 
 Previous work finished: 08:4x PM/operator cycles confirmed exhausted; tree clean, main pushed after this session's ff-only merge (113 commits).

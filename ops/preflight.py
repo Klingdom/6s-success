@@ -20206,6 +20206,103 @@ def gate_room_guide_mining_diminishing_returns() -> None:
         warn("room-guide-mining-diminishing-returns", problem)
 
 
+def keyword_demand_unscoreable_rows(rows, content_words, on_topic):
+    """Pure logic for gate_keyword_demand_no_content_words, testable without
+    the real keyword-demand files.
+
+    rows: dicts carrying at least 'query'. content_words: a callable taking a
+    query and returning its scoreable content words (ops/keyword_demand.py's
+    own). on_topic: a callable taking a query and returning whether the room
+    ranking tool counts it at all. Returns the sorted list of on-topic
+    queries whose content_words() is empty, which is the defect; otherwise [].
+
+    Why this is a FAIL and not a warning. A query with no content words
+    cannot score above 0.0 against any page in the corpus, ever, no matter
+    what the site later publishes, because there is nothing left to match
+    on. It is not a low score, it is an unscoreable row, and it reads
+    exactly like a genuine uncovered query while being invisible to every
+    room tally and coverage figure derived from it. CLAUDE.md 0.4 names
+    this class precisely: unknown is not unused, and a measurement that
+    cannot see the thing it measures reports a clean zero forever.
+
+    Found live 2026-11-13, on the third occurrence of the same shape. Each
+    time, a word was added to FORMAT_WORDS as a harmless format qualifier
+    while being the SOLE content word on some real household query:
+    A114 caught it for "bonus"/"den", A120 caught it for "steps", and both
+    correctly declined to ship because a full corpus diff showed those rows
+    falling from covered/partial to gap. A116 shipped "recipes" anyway, and
+    the diff could not flag it: "how to organize recipes" was ALREADY gap,
+    so emptying its content words changed no status and showed up as no
+    change at all. That is the gap this gate closes, because the status
+    diff every one of those cycles relied on is structurally blind to it.
+
+    Deliberately scoped to on-topic queries only. "how to organize pc" also
+    scores with no content words and is correctly excluded by the ranking
+    tool's own DIGITAL filter (a pc is a computer, not a household zone),
+    so failing on it would be noise rather than a defect.
+    """
+    bad = []
+    for row in rows:
+        query = row.get("query", "")
+        if not query or not on_topic(query):
+            continue
+        if not content_words(query):
+            bad.append(query)
+    return sorted(set(bad))
+
+
+def gate_keyword_demand_no_content_words() -> None:
+    """Fail when an on-topic harvested query scores against zero content
+    words, which makes it permanently unscoreable and hides a genuine
+    content gap from every coverage reading built on it. See
+    keyword_demand_unscoreable_rows's own docstring for the three-occurrence
+    account that earned this gate.
+
+    The usual cause is a word in ops/keyword_demand.py's FORMAT_WORDS that
+    is the only content word on some real query. The fix is to take the
+    word back out of FORMAT_WORDS, not to exclude the query.
+
+    Proof this can fail: ops/tests/test_gate_keyword_demand_no_content_words
+    .py feeds synthetic rows through the pure function with a stub
+    content_words, confirms an on-topic empty row is reported and an
+    off-topic one is not, then puts "recipes" back into the real
+    FORMAT_WORDS and confirms the real committed corpus reports the real
+    row, before confirming today's shipped state is clean.
+    """
+    paths = [os.path.join(ROOT, "ops", "keyword-demand.json"),
+             os.path.join(ROOT, "ops", "keyword-demand-global.json")]
+    if not all(os.path.exists(p) for p in paths):
+        return
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import keyword_demand as kd
+        import room_guide_candidates as rgc
+
+        def on_topic(query):
+            if rgc.OFF_TOPIC_CONTEXT.search(query):
+                return False
+            if rgc.DIGITAL.search(query):
+                return False
+            return bool(rgc.ON_TOPIC.search(query))
+
+        rows = []
+        for path in paths:
+            rows += json.loads(io.open(path, encoding="utf-8").read())["rows"]
+    except Exception:                                          # noqa: BLE001
+        return
+    bad = keyword_demand_unscoreable_rows(rows, kd.content_words, on_topic)
+    if bad:
+        fail("keyword-demand-no-content-words",
+             "%d on-topic harvested quer(ies) score against zero content "
+             "words, so they can never match any page however good a page "
+             "the site publishes, and their real content gap is invisible "
+             "to every room tally: %s. The usual cause is a word in "
+             "ops/keyword_demand.py's FORMAT_WORDS that is the only content "
+             "word on that query; take the word back out of FORMAT_WORDS "
+             "rather than excluding the query."
+             % (len(bad), ", ".join(repr(q) for q in bad[:8])))
+
+
 def owner_questions_staleness_problem(payload, now, limit_days=10):
     """Pure logic for gate_owner_questions_not_stale, testable without a clock.
 
@@ -33118,6 +33215,7 @@ def main() -> int:
     run_gate(gate_keyword_demand_rescored_current)
     run_gate(gate_keyword_demand_global_rescored_current)
     run_gate(gate_room_guide_mining_diminishing_returns)
+    run_gate(gate_keyword_demand_no_content_words)
     run_gate(gate_owner_questions_not_stale)
     run_gate(gate_roadmap_gate_in_owner_email)
     run_gate(gate_indexation_check_not_stale)

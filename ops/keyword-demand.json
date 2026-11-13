@@ -19,7 +19,7 @@
       "note": ""
     }
   },
-  "pages_checked": 243,
+  "pages_checked": 244,
   "failures": [],
   "rows": [
     {
@@ -19890,15 +19890,15 @@
         "how to organize paper goods storage"
       ],
       "room": "",
-      "best_page": "/how-we-make-money.html",
-      "best_page_title": "How we make money: what we sell, and what we do not earn on",
+      "best_page": "/articles/how-to-organize-recipes.html",
+      "best_page_title": "How to organize recipes, on paper and on your phone",
       "coverage": 0.5,
       "heading_coverage": 0.5,
       "heading_page": "/articles/family-wont-put-things-back.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "paper"
+        "make"
       ]
     },
     {
@@ -31515,8 +31515,8 @@
         "how to organize paper goods storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-paper-and-household-backstock.html",
-      "best_page_title": "How to organize the hall closet paper goods storage",
+      "best_page": "/articles/how-to-organize-recipes.html",
+      "best_page_title": "How to organize recipes, on paper and on your phone",
       "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/zones/home-office-the-file-storage.html",
@@ -31574,11 +31574,11 @@
         "how to organize paper goods storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-paper-and-household-backstock.html",
-      "best_page_title": "How to organize the hall closet paper goods storage",
+      "best_page": "/articles/how-to-organize-recipes.html",
+      "best_page_title": "How to organize recipes, on paper and on your phone",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/home-office-the-file-storage.html",
+      "heading_page": "/articles/how-to-organize-recipes.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -31909,16 +31909,14 @@
         "how to organize baking supplies"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
-      "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap",
-      "unmatched_words": [
-        "printed"
-      ]
+      "best_page": "/articles/how-to-organize-recipes.html",
+      "best_page_title": "How to organize recipes, on paper and on your phone",
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-recipes.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize products on bathroom counter",
@@ -31972,13 +31970,13 @@
         "how to organize baking supplies"
       ],
       "room": "",
-      "best_page": "",
-      "best_page_title": "",
-      "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "",
+      "best_page": "/articles/how-to-organize-recipes.html",
+      "best_page_title": "How to organize recipes, on paper and on your phone",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-recipes.html",
       "matched_on": "title",
-      "status": "gap",
+      "status": "covered",
       "unmatched_words": []
     },
     {
@@ -56502,6 +56500,6 @@
       ]
     }
   ],
-  "scored_against_commit": "3f12ecd07",
-  "scored_at": "2026-11-12T20:53:57Z"
+  "scored_against_commit": "18b011c9a",
+  "scored_at": "2026-11-13T09:58:36Z"
 }
