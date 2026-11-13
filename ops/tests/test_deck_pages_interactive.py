@@ -23,10 +23,8 @@ import io
 import json
 import os
 import re
-import shutil
 import subprocess
 import sys
-import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SITE = os.path.join(ROOT, "site")
@@ -209,21 +207,21 @@ def _run_probe(idx: int, page_rel: str, page_probe: str):
     io.open(wrap_path, "w", encoding="utf-8", newline="").write(
         WRAPPER_TMPL % {"probe_rel": probe_rel, "page_probe": page_probe})
 
-    profile = tempfile.mkdtemp(prefix="6s-deck-probe-")
+    profile_flags, cleanup_profile = B.isolated_profile(exe)
     try:
         r = subprocess.run(
             [exe] + extra +
             ["--headless=new", "--disable-gpu", "--hide-scrollbars",
-             "--force-device-scale-factor=1", "--allow-file-access-from-files",
-             "--user-data-dir=" + profile,
-             "--window-size=1140,3300", "--virtual-time-budget=8000",
+             "--force-device-scale-factor=1", "--allow-file-access-from-files"]
+            + profile_flags +
+            ["--window-size=1140,3300", "--virtual-time-budget=8000",
              "--dump-dom", "file:///" + wrap_path.replace("\\", "/")],
             capture_output=True, timeout=90)
     finally:
         for p in (probe_path, wrap_path):
             if os.path.exists(p):
                 os.remove(p)
-        shutil.rmtree(profile, ignore_errors=True)
+        cleanup_profile()
 
     dom = r.stdout.decode("utf-8", "replace")
     m = re.search(r"S(?:&gt;&gt;|>>)(.*?)(?:&lt;&lt;|<<)E", dom, re.S)

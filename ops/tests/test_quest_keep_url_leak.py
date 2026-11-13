@@ -29,10 +29,8 @@ import io
 import json
 import os
 import re
-import shutil
 import subprocess
 import sys
-import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SITE = os.path.join(ROOT, "site")
@@ -132,7 +130,7 @@ def main():
         return 0
     edge, extra = found
 
-    profile = tempfile.mkdtemp(prefix="6s-quest-keep-profile-")
+    profile_flags, cleanup_profile = B.isolated_profile(edge)
     wrap = os.path.join(SITE, "_quest_keep_leak_probe.html")
     io.open(wrap, "w", encoding="utf-8", newline="").write(WRAPPER)
     try:
@@ -140,14 +138,14 @@ def main():
             [edge] + extra +
             ["--headless=new", "--disable-gpu", "--hide-scrollbars",
              "--force-device-scale-factor=1", "--allow-file-access-from-files",
-             "--user-data-dir=" + profile,
+             ] + profile_flags + [
              "--window-size=520,1440", "--virtual-time-budget=15000",
              "--dump-dom", "file:///" + wrap.replace("\\", "/")],
             capture_output=True, timeout=120)
     finally:
         if os.path.exists(wrap):
             os.remove(wrap)
-        shutil.rmtree(profile, ignore_errors=True)
+        cleanup_profile()
 
     dom = r.stdout.decode("utf-8", "replace")
     m = re.search(r"K(?:&gt;&gt;|>>)(.*?)(?:&lt;&lt;|<<)E", dom, re.S)

@@ -37,7 +37,6 @@ import os
 import re
 import subprocess
 import sys
-import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONTENT = os.path.join(ROOT, "content", "manual", "source", "content.json")
@@ -163,16 +162,21 @@ li b{{flex:0 0 54px;height:54px;border-radius:50%;background:{accent};
 
 
 def shot(exe: str, extra_args: list, html: str, png: str) -> None:
-    with tempfile.TemporaryDirectory() as prof:
-        f = png.replace(".png", ".html")
-        io.open(f, "w", encoding="utf-8", newline="").write(html)
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import browser as B
+    profile_flags, cleanup_profile = B.isolated_profile(exe)
+    f = png.replace(".png", ".html")
+    io.open(f, "w", encoding="utf-8", newline="").write(html)
+    try:
         subprocess.run([exe, "--headless=new", "--disable-gpu",
                         "--hide-scrollbars", "--force-device-scale-factor=1",
-                        f"--user-data-dir={prof}", f"--window-size={W},{H}",
-                        "--virtual-time-budget=6000", f"--screenshot={png}",
+                        f"--window-size={W},{H}"] + profile_flags +
+                       ["--virtual-time-budget=6000", f"--screenshot={png}",
                         *extra_args,
                         "file:///" + os.path.abspath(f).replace(os.sep, "/")],
                        capture_output=True, timeout=90)
+    finally:
+        cleanup_profile()
         os.remove(f)
 
 

@@ -20263,6 +20263,94 @@ def browser_claimed_but_unusable(binary_present, renders, reason):
             "actually exercised on this machine." % (reason or "unknown"))
 
 
+def user_data_dir_bypasses_helper(ops_dir) -> list:
+    """Pure logic for gate_user_data_dir_through_helper, testable against a
+    throwaway directory of fake .py files rather than the real repository.
+
+    Found and fixed 2026-11-13, this operator, the same cycle that root-
+    caused browser_claimed_but_unusable's own finding: the probe above
+    used to pass --user-data-dir unconditionally, which is exactly what
+    made this sandbox's Chromium hang, and seven other generator files
+    plus eighteen test files had each built the identical flag by hand,
+    independently, by copy-paste, with the identical bug. ops/browser.py's
+    isolated_profile(exe) is now the one place that decides whether a
+    binary needs an explicit throwaway profile at all (yes for Edge, on
+    Phil's own Windows machine, which has a real default profile worth
+    isolating from; no for the sandbox's own Chromium, which has none and
+    hangs outright on the flag). A future call site that builds the flag
+    text itself instead of calling that helper can reintroduce the exact
+    same sandbox-wide hang without anyone noticing until gate_tests
+    mysteriously stops finishing again, the shape that cost three
+    consecutive nightly log entries (A87, A122, A125) before anyone
+    checked the browser itself rather than the test files it kept failing.
+
+    OPS_DIR is scanned for *.py directly inside it and inside its own
+    tests/ subdirectory. Returns the sorted list of files (relative to
+    OPS_DIR's parent) that contain the literal flag text built by hand,
+    outside a short, named allowlist: ops/browser.py (the helper itself);
+    build/listings/build_etsy_assets.py and its own mirroring test (a
+    real, heavily documented, CI-proven retry/cleanup path this cycle
+    deliberately chose not to touch); and the two test files that already
+    route the decision of whether to pass the flag at all through an
+    explicit CHROMIUM_CANDIDATES check or isolated_profile() itself, for
+    a shared-profile-across-launches case the shared helper does not
+    support (ops/tests/test_thanks_schedule.py,
+    ops/tests/test_measure_events.py). Growing this allowlist to silence a
+    real new hit defeats the point of the gate; a genuine new exception
+    needs the same measurement and the same documentation the existing
+    ones carry.
+    """
+    repo_root = os.path.dirname(ops_dir)
+    # preflight.py is exempt for the same reason gate_browser_detection_
+    # portable exempts itself: this gate's own source necessarily names
+    # the literal text it is searching for, so it is a self-reference,
+    # not the regression being checked for.
+    allow = {
+        os.path.join("ops", "browser.py"),
+        os.path.join("ops", "preflight.py"),
+        os.path.join("ops", "tests", "test_thanks_schedule.py"),
+        os.path.join("ops", "tests", "test_measure_events.py"),
+        os.path.join("ops", "tests", "test_gate_etsy_pdfs_current.py"),
+        os.path.join("ops", "tests", "test_gate_user_data_dir_through_helper.py"),
+        os.path.join("build", "listings", "build_etsy_assets.py"),
+    }
+    candidates = (glob.glob(os.path.join(ops_dir, "*.py")) +
+                  glob.glob(os.path.join(ops_dir, "tests", "*.py")) +
+                  glob.glob(os.path.join(repo_root, "build", "listings", "*.py")))
+    bad = []
+    for path in sorted(candidates):
+        rel = os.path.relpath(path, repo_root)
+        if rel in allow:
+            continue
+        try:
+            text = io.open(path, encoding="utf-8").read()
+        except OSError:
+            continue
+        if '"--user-data-dir=' in text or "'--user-data-dir=" in text:
+            bad.append(rel)
+    return bad
+
+
+def gate_user_data_dir_through_helper() -> None:
+    """A headless-Chromium caller must get its --user-data-dir decision
+    from ops/browser.py's isolated_profile(exe), never build the flag text
+    itself. See user_data_dir_bypasses_helper's docstring for the incident
+    this closes: eight independent hand-built copies of the same flag, all
+    carrying the identical sandbox-hanging bug.
+
+    Proof this can fail: ops/tests/test_gate_user_data_dir_through_helper.py
+    plants a fake file that builds the flag by hand in a throwaway
+    directory and watches this fire by name, then removes it and watches
+    the gate go quiet.
+    """
+    bad = user_data_dir_bypasses_helper(os.path.join(ROOT, "ops"))
+    if bad:
+        fail("user-data-dir-through-helper",
+             "%d file(s) build --user-data-dir directly instead of through "
+             "ops/browser.py's isolated_profile(): %s"
+             % (len(bad), ", ".join(bad)))
+
+
 def gate_browser_probe_honest() -> None:
     """A browser that exists is not a browser that works, and the gap used to
     cost an hour of every run. See browser_claimed_but_unusable's docstring
@@ -33053,6 +33141,7 @@ def main() -> int:
     # result: on a machine whose browser cannot render, every browser driven
     # test file below reports NOT VERIFIED, and a reader needs to see why on
     # the line above rather than work it out from a stalled run.
+    run_gate(gate_user_data_dir_through_helper)
     run_gate(gate_browser_probe_honest)
     run_gate(gate_tests, skip_tests)
     run_gate(gate_conflict_markers)

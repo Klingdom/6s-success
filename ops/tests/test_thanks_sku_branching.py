@@ -40,10 +40,8 @@ import io
 import json
 import os
 import re
-import shutil
 import subprocess
 import sys
-import tempfile
 import urllib.parse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -150,13 +148,13 @@ def _run_probe(idx: int, sku: str):
     io.open(wrap_path, "w", encoding="utf-8", newline="").write(
         WRAPPER_TMPL % {"probe_rel": probe_rel})
 
-    profile = tempfile.mkdtemp(prefix="6s-thanks-probe-")
+    profile_flags, cleanup_profile = B.isolated_profile(exe)
     try:
         r = subprocess.run(
             [exe] + extra +
             ["--headless=new", "--disable-gpu", "--hide-scrollbars",
              "--force-device-scale-factor=1", "--allow-file-access-from-files",
-             "--user-data-dir=" + profile,
+             ] + profile_flags + [
              "--window-size=420,2500", "--virtual-time-budget=8000",
              "--dump-dom", "file:///" + wrap_path.replace("\\", "/")],
             capture_output=True, timeout=90)
@@ -164,7 +162,7 @@ def _run_probe(idx: int, sku: str):
         for p in (probe_path, wrap_path):
             if os.path.exists(p):
                 os.remove(p)
-        shutil.rmtree(profile, ignore_errors=True)
+        cleanup_profile()
 
     dom = r.stdout.decode("utf-8", "replace")
     m = re.search(r"T(?:&gt;&gt;|>>)(.*?)(?:&lt;&lt;|<<)E", dom, re.S)

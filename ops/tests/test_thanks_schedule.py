@@ -84,9 +84,19 @@ frame.addEventListener("load", function(){
 _PROFILE = None
 
 
-def _shared_profile() -> str:
-    """One Edge profile for every SKU this file drives."""
+def _shared_profile(exe):
+    """One Edge profile for every SKU this file drives, or None for EXE.
+
+    This sandbox's own Chromium has no real default profile to protect and
+    hangs outright on an explicit --user-data-dir, fresh or reused
+    (ops/browser.py's isolated_profile(), measured 2026-11-13), so it gets
+    no profile and none of the retry/reset dance below; Edge, which runs
+    against a real profile full of Phil's own data on his own machine,
+    keeps exactly the behaviour it always had.
+    """
     global _PROFILE
+    if exe in B.CHROMIUM_CANDIDATES:
+        return None
     if _PROFILE is None:
         _PROFILE = tempfile.mkdtemp(prefix="6s-thanks-profile-")
     return _PROFILE
@@ -148,7 +158,7 @@ def drive(sku: str) -> dict:
             WRAPPER % {"sku": sku})
         wraps.append(wrap)
         try:
-            return _launch(edge, extra, _shared_profile(), wrap, sku)
+            return _launch(edge, extra, _shared_profile(edge), wrap, sku)
         except subprocess.TimeoutExpired as e:
             last = e
             _reset_profile()
@@ -161,12 +171,13 @@ def drive(sku: str) -> dict:
 
 
 def _launch(edge, extra, profile, wrap, sku) -> dict:
+    flags = ["--user-data-dir=" + profile] if profile else []
     try:
         r = subprocess.run(
             [edge] + extra +
             ["--headless=new", "--disable-gpu", "--hide-scrollbars",
              "--force-device-scale-factor=1", "--allow-file-access-from-files",
-             "--user-data-dir=" + profile,
+             ] + flags + [
              "--window-size=940,1900", "--virtual-time-budget=20000",
              "--dump-dom", "file:///" + wrap.replace("\\", "/")],
             # 180s, matching test_corporate_form_interactive.py and the
@@ -196,7 +207,8 @@ def _launch(edge, extra, profile, wrap, sku) -> dict:
     finally:
         if os.path.exists(wrap):
             os.remove(wrap)
-        shutil.rmtree(profile, ignore_errors=True)
+        if profile:
+            shutil.rmtree(profile, ignore_errors=True)
 
     dom = r.stdout.decode("utf-8", "replace")
     m = re.search(r"S(?:&gt;&gt;|>>)(.*?)(?:&lt;&lt;|<<)E", dom, re.S)

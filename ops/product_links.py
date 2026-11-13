@@ -86,7 +86,6 @@ import os
 import re
 import subprocess
 import sys
-import tempfile
 import time
 import urllib.parse
 
@@ -664,17 +663,20 @@ def render(url: str) -> tuple:
     if not b:
         return "", "no headless browser on this machine"
     exe, extra = b
-    with tempfile.TemporaryDirectory() as tmp:
-        cmd = [exe, "--headless=new", "--disable-gpu", "--no-first-run",
-               f"--user-data-dir={tmp}",
-               f"--virtual-time-budget={RENDER_MS}", "--dump-dom", url] + extra
-        try:
-            p = subprocess.run(cmd, capture_output=True,
-                               timeout=RENDER_MS / 1000 + 45)
-        except subprocess.TimeoutExpired:
-            return "", "render timed out"
-        except Exception as e:                                 # noqa: BLE001
-            return "", f"render failed: {type(e).__name__}"
+    import browser as B
+    profile_flags, cleanup_profile = B.isolated_profile(exe)
+    cmd = ([exe, "--headless=new", "--disable-gpu", "--no-first-run"] +
+           profile_flags +
+           [f"--virtual-time-budget={RENDER_MS}", "--dump-dom", url] + extra)
+    try:
+        p = subprocess.run(cmd, capture_output=True,
+                           timeout=RENDER_MS / 1000 + 45)
+    except subprocess.TimeoutExpired:
+        return "", "render timed out"
+    except Exception as e:                                 # noqa: BLE001
+        return "", f"render failed: {type(e).__name__}"
+    finally:
+        cleanup_profile()
     html = p.stdout.decode("utf-8", errors="ignore")
     title = re.search(r"<title[^>]*>(.*?)</title>", html, re.S | re.I)
     t = (title.group(1) if title else "").strip().lower()

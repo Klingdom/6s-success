@@ -35,7 +35,6 @@ import os
 import re
 import subprocess
 import sys
-import tempfile
 import threading
 import http.server
 import socketserver
@@ -69,18 +68,22 @@ def serve(directory: str):
 def rendered_grid(port: int) -> str | None:
     """Load the page, let its own JS build the grid, return the grid's HTML."""
     import video_zone as vz
+    import browser as B
     exe, extra = vz.browser()
-    with tempfile.TemporaryDirectory() as prof:
-        out = os.path.join(prof, "dom.html")
+    # --dump-dom writes to stdout, not into a profile directory, so an
+    # isolated profile (when one is needed at all) loses no output path.
+    profile_flags, cleanup_profile = B.isolated_profile(exe)
+    try:
         p = subprocess.run(
-            [exe, "--headless=new", "--disable-gpu", "--hide-scrollbars",
-             "--user-data-dir=%s" % prof, "--virtual-time-budget=12000",
+            [exe, "--headless=new", "--disable-gpu", "--hide-scrollbars"] +
+            profile_flags +
+            ["--virtual-time-budget=12000",
              "--dump-dom", *extra,
              "http://127.0.0.1:%d/shop.html" % port],
             capture_output=True, text=True, timeout=180)
-        dom = p.stdout or ""
-        if os.path.exists(out):
-            dom = io.open(out, encoding="utf-8").read()
+    finally:
+        cleanup_profile()
+    dom = p.stdout or ""
     m = re.search(r'<div[^>]*id="grid"[^>]*>(.*?)</div>\s*</section>', dom, re.S)
     if not m:
         m = re.search(r'id="grid"[^>]*>(.*)', dom, re.S)

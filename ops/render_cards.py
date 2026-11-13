@@ -43,7 +43,6 @@ import os
 import re
 import subprocess
 import sys
-import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
@@ -67,15 +66,19 @@ def browser() -> tuple:
 
 
 def _run(exe: str, extra: list, args: list, url: str, capture: bool):
-    with tempfile.TemporaryDirectory() as profile:
+    import browser as B
+    profile_flags, cleanup_profile = B.isolated_profile(exe)
+    try:
         return subprocess.run(
             [exe, "--headless=new", "--disable-gpu", "--hide-scrollbars",
-             "--force-device-scale-factor=1", f"--user-data-dir={profile}",
-             # Fonts are self-hosted now, but layout and the measuring script
+             "--force-device-scale-factor=1"] + profile_flags +
+            [# Fonts are self-hosted now, but layout and the measuring script
              # still need a moment. Without a time budget the shot can land
              # before either finishes, which is a silent failure.
              "--virtual-time-budget=8000", *extra, *args, url],
             capture_output=True, timeout=120)
+    finally:
+        cleanup_profile()
 
 
 def shoot(exe, extra, html_path, png_path, w, h) -> None:

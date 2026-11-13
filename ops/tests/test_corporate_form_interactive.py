@@ -40,10 +40,8 @@ import io
 import json
 import os
 import re
-import shutil
 import subprocess
 import sys
-import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SITE = os.path.join(ROOT, "site")
@@ -143,22 +141,22 @@ def main():
         return 0
     edge, extra = found
 
-    profile = tempfile.mkdtemp(prefix="6s-corpform-profile-")
+    profile_flags, cleanup_profile = B.isolated_profile(edge)
     wrap = os.path.join(SITE, "_corporate_form_interactive_probe.html")
     io.open(wrap, "w", encoding="utf-8", newline="").write(WRAPPER)
     try:
         r = subprocess.run(
             [edge] + extra +
             ["--headless=new", "--disable-gpu", "--hide-scrollbars",
-             "--force-device-scale-factor=1", "--allow-file-access-from-files",
-             "--user-data-dir=" + profile,
-             "--window-size=1140,4300", "--virtual-time-budget=25000",
+             "--force-device-scale-factor=1", "--allow-file-access-from-files"]
+            + profile_flags +
+            ["--window-size=1140,4300", "--virtual-time-budget=25000",
              "--dump-dom", "file:///" + wrap.replace("\\", "/")],
             capture_output=True, timeout=180)
     finally:
         if os.path.exists(wrap):
             os.remove(wrap)
-        shutil.rmtree(profile, ignore_errors=True)
+        cleanup_profile()
 
     dom = r.stdout.decode("utf-8", "replace")
     m = re.search(r"S(?:&gt;&gt;|>>)(.*?)(?:&lt;&lt;|<<)E", dom, re.S)

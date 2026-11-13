@@ -44,11 +44,9 @@ import io
 import json
 import os
 import re
-import shutil
 import socket
 import subprocess
 import sys
-import tempfile
 import threading
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -214,12 +212,21 @@ def serve(directory):
     return srv, port
 
 
-def run(edge, extra, url, profile):
+def run(edge, extra, url, profile=None):
+    # profile is only passed (as an explicit --user-data-dir) for the E:set/
+    # E:persists/E:cleared sequence below, which genuinely needs one browser
+    # profile shared across three separate launches so a localStorage write
+    # in the first survives into the second and third. Every other probe
+    # here is a one-shot, independent page load and gets no explicit
+    # --user-data-dir: this sandbox's Chromium hangs the moment that flag
+    # is passed at all (ops/browser.py's browser_renders docstring, measured
+    # 2026-11-13), fresh directory or reused, so it is only worth the risk
+    # where shared state actually requires it.
+    flags = ["--user-data-dir=" + profile] if profile else []
     r = subprocess.run(
         [edge] + extra +
-        ["--headless=new", "--disable-gpu", "--hide-scrollbars",
-         "--user-data-dir=" + profile,
-         "--window-size=520,800", "--virtual-time-budget=8000",
+        ["--headless=new", "--disable-gpu", "--hide-scrollbars"] + flags +
+        ["--window-size=520,800", "--virtual-time-budget=8000",
          "--dump-dom", url],
         capture_output=True, timeout=120)
     dom = r.stdout.decode("utf-8", "replace")
@@ -234,6 +241,112 @@ def run(edge, extra, url, profile):
         return None
 
 
+E_WRAPPER = """<!doctype html><html><head><meta charset="utf-8"></head>
+<body><iframe id="f"></iframe><script>
+var urls = %(urls)s;
+var keys = ["set", "persists", "cleared"];
+var results = {};
+var idx = 0;
+var frame = document.getElementById("f");
+
+function waitForTitle(tries, cb) {
+  var d = null;
+  try { d = frame.contentDocument; } catch (e) {}
+  var t = (d && d.title) || "";
+  if (t.indexOf("M>>") === 0 || tries > 80) { return cb(t); }
+  setTimeout(function () { waitForTitle(tries + 1, cb); }, 50);
+}
+
+function step() {
+  if (idx >= urls.length) {
+    document.title = "W>>" + JSON.stringify(results) + "<<E";
+    return;
+  }
+  var key = keys[idx];
+  frame.onload = function () {
+    waitForTitle(0, function (title) {
+      results[key] = title;
+      idx++;
+      step();
+    });
+  };
+  frame.src = urls[idx];
+}
+step();
+</script></body></html>"""
+
+
+def run_e_sequence(edge, extra, port) -> dict:
+    """{"set": [...], "persists": [...], "cleared": [...]} (a value is None
+    when that step never reported), driving all three loads of the shared
+    internal-traffic-marker probe through ONE iframe in a SINGLE browser
+    process rather than three separate process launches.
+
+    The marker lives in localStorage, so a write on the first load has to
+    survive into the second and third; localStorage is scoped to the origin,
+    not the process, so three navigations of one iframe in one browser tab
+    already share it, with no explicit --user-data-dir needed at all. The
+    original design launched three separate processes against one shared
+    profile directory instead, which is exactly the flag this sandbox's own
+    Chromium cannot tolerate (ops/browser.py's isolated_profile() docstring).
+    This avoids the flag entirely rather than working around its hang.
+
+    Served over http, from the same server the probe pages already use, not
+    file://: the wrapper and the iframe it drives must be same-origin for
+    frame.contentDocument to be readable at all, and measure.js's own page()
+    reads location.pathname regardless.
+    """
+    e_url = "http://127.0.0.1:%d/zones/_measure_probe_e.html" % port
+    urls = [e_url + "?6s-internal=1", e_url, e_url + "?6s-internal=0"]
+    wrap = os.path.join(SITE, "_measure_probe_e_wrapper.html")
+    io.open(wrap, "w", encoding="utf-8", newline="").write(
+        E_WRAPPER % {"urls": json.dumps(urls)})
+    try:
+        r = subprocess.run(
+            [edge] + extra +
+            ["--headless=new", "--disable-gpu", "--hide-scrollbars",
+             "--window-size=520,800", "--virtual-time-budget=10000",
+             "--dump-dom",
+             "http://127.0.0.1:%d/_measure_probe_e_wrapper.html" % port],
+            capture_output=True, timeout=60)
+    finally:
+        if os.path.exists(wrap):
+            os.remove(wrap)
+    dom = r.stdout.decode("utf-8", "replace")
+    # Confined to <title> first: the script source below it in the dumped
+    # DOM contains the literal text "<<E" too (its own source code builds
+    # that marker), so searching the whole document for a greedy match can
+    # run past the title into the script and capture junk. Once scoped to
+    # the title text alone, greedy IS correct and necessary: the payload
+    # nests three "M>>...<<E" markers inside this one "W>>...<<E" wrapper,
+    # so a lazy match would stop at the first inner "<<E" and hand back
+    # truncated, unparseable JSON.
+    title_m = re.search(r"<title[^>]*>(.*?)</title>", dom, re.S)
+    title_text = title_m.group(1) if title_m else ""
+    m = re.search(r"W(?:&gt;&gt;|>>)(.*)(?:&lt;&lt;|<<)E", title_text, re.S)
+    out = {"set": None, "persists": None, "cleared": None}
+    if not m:
+        return out
+    raw = (m.group(1).replace("&quot;", '"').replace("&amp;", "&")
+           .replace("&lt;", "<").replace("&gt;", ">"))
+    try:
+        titles = json.loads(raw)
+    except ValueError:
+        return out
+    for key, title in titles.items():
+        em = re.search(r"M(?:&gt;&gt;|>>)(.*?)(?:&lt;&lt;|<<)E", title or "",
+                        re.S)
+        if not em:
+            continue
+        eraw = (em.group(1).replace("&quot;", '"').replace("&amp;", "&")
+                .replace("&lt;", "<").replace("&gt;", ">"))
+        try:
+            out[key] = json.loads(eraw)
+        except ValueError:
+            pass
+    return out
+
+
 def main() -> int:
     found = B.find_browser()
     if not found:
@@ -244,7 +357,6 @@ def main() -> int:
 
     written = []
     srv = None
-    profile = tempfile.mkdtemp(prefix="6s-measure-profile-")
     try:
         for rel, html in PROBES.items():
             p = os.path.join(SITE, rel.replace("/", os.sep))
@@ -254,25 +366,24 @@ def main() -> int:
 
         got = {}
         for rel in PROBES:
-            got[rel] = run(edge, extra, "http://127.0.0.1:%d/%s" % (port, rel),
-                           profile)
-        # The marker lives in localStorage, so these three loads must share one
-        # browser profile and must run in this order.
-        e_url = "http://127.0.0.1:%d/zones/_measure_probe_e.html" % port
-        marker = tempfile.mkdtemp(prefix="6s-measure-marker-")
-        try:
-            got["E:set"] = run(edge, extra, e_url + "?6s-internal=1", marker)
-            got["E:persists"] = run(edge, extra, e_url, marker)
-            got["E:cleared"] = run(edge, extra, e_url + "?6s-internal=0", marker)
-        finally:
-            shutil.rmtree(marker, ignore_errors=True)
+            got[rel] = run(edge, extra, "http://127.0.0.1:%d/%s" % (port, rel))
+        # The marker lives in localStorage, so these three loads must share
+        # one browser profile and must run in this order. run_e_sequence()
+        # gets that by driving all three through one iframe in a single
+        # browser process (localStorage is origin-scoped, not profile-
+        # scoped), rather than three process launches sharing an explicit
+        # --user-data-dir, the one thing this sandbox's own Chromium cannot
+        # tolerate (ops/browser.py's isolated_profile() docstring).
+        e_seq = run_e_sequence(edge, extra, port)
+        got["E:set"] = e_seq["set"]
+        got["E:persists"] = e_seq["persists"]
+        got["E:cleared"] = e_seq["cleared"]
     finally:
         if srv:
             srv.shutdown()
         for p in written:
             if os.path.exists(p):
                 os.remove(p)
-        shutil.rmtree(profile, ignore_errors=True)
 
     bad = []
     for rel, evs in got.items():

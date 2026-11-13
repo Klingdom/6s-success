@@ -2,6 +2,45 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## found A126's browser finding was half right, root-caused the --user-data-dir hang across 7 generator files and 16 of 18 test files, found and fixed a second real FAIL in the same cycle, 2026-11-13, scheduled operator cycle
+
+A126's finding ("this sandbox's Chromium cannot render") was half right.
+It hangs only on an explicit `--user-data-dir`; omit it and it renders
+fine. That flag was hand-built in `ops/browser.py`'s probe plus six
+generator files and eighteen test files, the real cause behind three
+prior entries (A87, A122, A125) each misdiagnosing the same symptom as
+one test file's hang.
+
+Fixed at the root: `ops/browser.py` gained `isolated_profile(exe)`, a
+throwaway profile for Edge and none for the sandbox binary. Seven
+generator files and sixteen of eighteen test files now route through it.
+`build/listings/build_etsy_assets.py` left untouched: its flag fixes a
+different, real CI lock-contention bug.
+
+The first full `preflight.py` run found one real FAIL:
+`test_measure_events.py`'s shared-localStorage sequence still needed the
+flag. Root-caused: localStorage is origin-scoped, so `run_e_sequence()`
+now drives all three loads through one iframe in one process, no flag.
+Reverified clean three times standalone.
+
+Verified by running: `test_contact_form_interactive.py`, a permanent
+hang in three prior entries, now PASSES in under a minute, as do fifteen
+other interactive tests; `prerender_shop.py` re-rendered the shop's grid
+for real.
+
+Gate built (STEP 10b): `gate_user_data_dir_through_helper`,
+fail-then-pass proved against a planted fake file.
+
+Full run: 481/482 clean, the one FAIL fixed and reverified.
+
+Did not go well: a nested-marker regex bug cost two extra iterations.
+Changing next cycle: scope regexes to the narrowest tag when a marker
+can nest.
+
+No price or site page touched; infrastructure fix, IndexNow n/a.
+
+HANDOFF-FILES: none
+
 ## 2026-11-13, PM check-in (19:1x slot): previous work finished, independently reconfirmed, no new work
 
 Previous work (18:4x slot) finished: diffed HEAD against the last green-CI commit (7a8284e), only log/dashboard files differ, so that CI run still covers HEAD. Attached clean (fetch, unshallow, ff-only, no reset/force). Re-verified directly, not cited: 31 open issues unchanged since 2026-11-08, all decision/P0/blocked-on-art, none from Phil (checked, not assumed). 0 open PRs. check_urls.py 236/236, fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0, all six rotators CLEAN. preflight.py --fast run locally; 0 FAIL through every gate reached, hit the documented gate_tests sandbox hang at test 125/482, killed after 300s, reported unchecked for that gate per 0.4, not a FAIL; GitHub's own green Checks run is the real verdict for this code.

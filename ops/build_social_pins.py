@@ -75,7 +75,6 @@ import os
 import re
 import subprocess
 import sys
-import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
@@ -219,17 +218,21 @@ def card_html(room: str, z: dict, w: int, h: int, art: str = None,
 
 
 def shot(exe: str, extra_args: list, html: str, png: str, w: int, h: int) -> None:
-    with tempfile.TemporaryDirectory() as prof:
-        f = png.replace(".png", ".html")
-        io.open(f, "w", encoding="utf-8", newline="").write(html)
+    import browser as B
+    profile_flags, cleanup_profile = B.isolated_profile(exe)
+    f = png.replace(".png", ".html")
+    io.open(f, "w", encoding="utf-8", newline="").write(html)
+    try:
         subprocess.run([exe, "--headless=new", "--disable-gpu",
                         "--hide-scrollbars", "--force-device-scale-factor=1",
-                        f"--user-data-dir={prof}", f"--window-size={w},{h}",
-                        "--virtual-time-budget=8000", "--allow-file-access-from-files",
+                        f"--window-size={w},{h}"] + profile_flags +
+                       ["--virtual-time-budget=8000", "--allow-file-access-from-files",
                         f"--screenshot={png}",
                         *extra_args,
                         "file:///" + os.path.abspath(f).replace(os.sep, "/")],
                        capture_output=True, timeout=90)
+    finally:
+        cleanup_profile()
         os.remove(f)
 
 
@@ -240,17 +243,21 @@ def measure(exe: str, extra_args: list, html: str, png: str, w: int, h: int) -> 
     the screenshot only because every size is in pixels (see the docstring).
     No verdict attribute means nothing was measured, and is reported as such.
     """
-    with tempfile.TemporaryDirectory() as prof:
-        f = png.replace(".png", ".measure.html")
-        io.open(f, "w", encoding="utf-8", newline="").write(html)
+    import browser as B
+    profile_flags, cleanup_profile = B.isolated_profile(exe)
+    f = png.replace(".png", ".measure.html")
+    io.open(f, "w", encoding="utf-8", newline="").write(html)
+    try:
         dom = subprocess.run([exe, "--headless=new", "--disable-gpu",
                               "--hide-scrollbars", "--force-device-scale-factor=1",
-                              f"--user-data-dir={prof}", f"--window-size={w},{h}",
-                              "--virtual-time-budget=8000", "--allow-file-access-from-files",
+                              f"--window-size={w},{h}"] + profile_flags +
+                             ["--virtual-time-budget=8000", "--allow-file-access-from-files",
                               "--dump-dom", *extra_args,
                               "file:///" + os.path.abspath(f).replace(os.sep, "/")],
                              capture_output=True, timeout=90, text=True,
                              encoding="utf-8", errors="replace").stdout
+    finally:
+        cleanup_profile()
         os.remove(f)
     fit = re.search(r'data-fit="([^"]+)"', dom or "")
     steps = re.search(r'data-steps="([^"]*)"', dom or "")

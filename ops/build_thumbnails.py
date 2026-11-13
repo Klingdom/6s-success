@@ -34,7 +34,6 @@ import io
 import os
 import subprocess
 import sys
-import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
@@ -54,17 +53,20 @@ def shot(exe: str, extra: list, html: str, png: str) -> None:
     that module's globals, which would silently change the next video render,
     this keeps its own copy of a nine-line function.
     """
-    with tempfile.TemporaryDirectory() as prof:
-        f = png.replace(".png", ".html")
-        io.open(f, "w", encoding="utf-8", newline="").write(html)
+    import browser as B
+    profile_flags, cleanup_profile = B.isolated_profile(exe)
+    f = png.replace(".png", ".html")
+    io.open(f, "w", encoding="utf-8", newline="").write(html)
+    try:
         subprocess.run([exe, "--headless=new", "--disable-gpu",
                         "--hide-scrollbars", "--force-device-scale-factor=1",
-                        "--user-data-dir=%s" % prof,
-                        "--window-size=%d,%d" % (TW, TH),
-                        "--virtual-time-budget=6000", "--screenshot=%s" % png,
+                        "--window-size=%d,%d" % (TW, TH)] + profile_flags +
+                       ["--virtual-time-budget=6000", "--screenshot=%s" % png,
                         *extra,
                         "file:///" + os.path.abspath(f).replace(os.sep, "/")],
                        capture_output=True, timeout=90)
+    finally:
+        cleanup_profile()
         os.remove(f)
 
 

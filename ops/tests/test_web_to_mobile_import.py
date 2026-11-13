@@ -82,7 +82,7 @@ def main() -> int:
         print("  no node here, so the mobile parser could not be run. NOT VERIFIED.")
         return 0
 
-    profile = tempfile.mkdtemp(prefix="6s-import-")
+    profile_flags, cleanup_profile = B.isolated_profile(edge)
     wrap = os.path.join(SITE, "_import_probe.html")
     io.open(wrap, "w", encoding="utf-8", newline="").write(WRAPPER)
     try:
@@ -90,7 +90,7 @@ def main() -> int:
             [edge] + extra +
             ["--headless=new", "--disable-gpu", "--hide-scrollbars",
              "--force-device-scale-factor=1", "--allow-file-access-from-files",
-             "--user-data-dir=" + profile,
+             ] + profile_flags + [
              "--window-size=520,1440", "--virtual-time-budget=20000",
              "--dump-dom", "file:///" + wrap.replace("\\", "/")],
             capture_output=True, timeout=300)
@@ -98,7 +98,7 @@ def main() -> int:
     finally:
         if os.path.exists(wrap):
             os.remove(wrap)
-        shutil.rmtree(profile, ignore_errors=True)
+        cleanup_profile()
 
     m = re.search(r"B(?:&gt;&gt;|>>)(.*?)(?:&lt;&lt;|<<)E", dom, re.S)
     if not m:

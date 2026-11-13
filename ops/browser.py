@@ -29,6 +29,42 @@ CHROMIUM_CANDIDATES = (
 )
 
 
+def isolated_profile(exe):
+    """A throwaway --user-data-dir for EXE, or (``[]``, no-op) when none is
+    needed or safe.
+
+    Edge runs on Phil's own Windows machine against his REAL default
+    profile (his own signed-in accounts, history, cookies) unless told
+    otherwise, so every Edge-driven probe here has always launched against
+    an explicit, disposable profile instead, and still does.
+
+    The sandbox's own /opt/pw-browsers/chromium has no such profile to
+    protect (this container is ephemeral and holds none of Phil's data),
+    and passing it an explicit --user-data-dir hangs it outright: measured
+    2026-11-13, five clean runs with the flag omitted against three
+    straight hangs with it present, file:// and http://, a brand new
+    directory or one reused from a prior run, no-first-run and other
+    first-run-suppression flags added or not. So for this one binary the
+    flag is both unnecessary (it has no real profile to isolate from) and
+    actively broken, and omitting it is the fix, not finding a safer value
+    for it.
+
+    Returns (flags, cleanup): FLAGS is a list to splice into the command
+    line (either ["--user-data-dir=<tmp>"] or []), CLEANUP is a zero-arg
+    callable to run afterward regardless of outcome (removes the throwaway
+    directory, or does nothing when there is none).
+    """
+    if exe in CHROMIUM_CANDIDATES:
+        return [], (lambda: None)
+    profile = tempfile.mkdtemp(prefix="6s-browserprofile-")
+
+    def _cleanup():
+        import shutil
+        shutil.rmtree(profile, ignore_errors=True)
+
+    return ["--user-data-dir=" + profile], _cleanup
+
+
 # The smallest page that proves a browser can actually render and exit: it
 # has to parse HTML, run one line of script and hand the result back through
 # the DOM, which is the same round trip every real probe in ops/tests makes.
@@ -51,50 +87,54 @@ def browser_renders(exe, extra, timeout=PROBE_TIMEOUT):
 
     EXISTS IS NOT WORKS, AND THAT DISTINCTION COST WEEKS.
 
-    Measured 2026-11-13, scheduled operator cycle, by running it rather than
-    inferring it: in this cloud sandbox /opt/pw-browsers/chromium starts,
-    forks its zygote and gpu children, and then produces ZERO bytes of
-    --dump-dom output and never exits, for a four line local file with a
-    five second --virtual-time-budget. Not slow: nothing, ever.
+    First measured 2026-11-13, scheduled operator cycle: in that sandbox run,
+    this probe (as it stood then) started the browser, forked its zygote and
+    gpu children, and produced ZERO bytes of --dump-dom output, never
+    exiting. find_browser() used to answer purely from os.path.exists, so it
+    reported that browser as available, and every browser driven test then
+    committed to its own 600s render that could not succeed, which is why
+    three consecutive nightly log entries (A87, A122, A125) each recorded
+    that as "a sandbox hang in test_contact_form_interactive.py."
 
-    find_browser() used to answer purely from os.path.exists, so it reported
-    that browser as available, and every browser driven test then committed
-    to its own 600s render that could not succeed. ops/preflight.py's
-    gate_tests runs those files one after another, so a full preflight run
-    could not reach its own end inside any practical cycle budget. Three
-    consecutive nightly log entries (A87, A122, A125) each recorded that as
-    "a sandbox hang in test_contact_form_interactive.py" and each handed
-    forward the same proposed fix, a per test timeout in gate_tests. That
-    fix was already there the whole time (_run_bounded, 700s, process group
-    kill); it was never the defect. The defect is that the check could not
-    tell "I looked and the browser works" from "a file of that name exists",
-    which is CLAUDE.md 0.4 exactly: unknown reported as known.
+    Root-caused the same day, a later cycle: it was never "this browser does
+    not render here." Bisected the exact flag by hand, on the real binary,
+    five clean runs in a row with the probe below and three straight hangs
+    (file:// and http://, with or without --no-first-run or other first-run
+    suppression flags) the moment an explicit --user-data-dir was added
+    back. This sandbox's Chromium hangs on an EXPLICIT --user-data-dir,
+    full stop; it renders and exits correctly on its own default, ephemeral
+    profile. So the earlier finding and this one do not disagree: the probe
+    itself used to pass --user-data-dir unconditionally, which is exactly
+    what made it hang and report the browser as unusable. isolated_profile()
+    (above) now carries that flag only for a binary that actually has a
+    real default profile worth isolating from (Edge, on Phil's own Windows
+    machine); the sandbox binary gets none, by design, not by omission.
+    Every one of the other seven generator/test call sites that built their
+    own explicit --user-data-dir the same way had the identical bug; this
+    file's fix is the template the others were brought into line with the
+    same cycle.
 
     Every caller already handles "no usable browser" correctly, by printing
     NOT VERIFIED and returning 0, and gate_tests already warns by name about
     every file that did so. So proving the browser here rather than assuming
     it turns an hour of silent waiting into an honest, named, seconds long
-    "could not look".
+    "could not look" -- or, now, into an honest, fast "yes, it works."
 
     Returns (True, note) or (False, reason). Never raises.
     """
     tmp = None
+    profile_flags, cleanup_profile = isolated_profile(exe)
     try:
         fd, tmp = tempfile.mkstemp(suffix=".html", prefix="6s-browserprobe-")
         with os.fdopen(fd, "w", encoding="utf-8") as fh:
             fh.write(PROBE_HTML)
-        profile = tempfile.mkdtemp(prefix="6s-browserprobe-profile-")
-        try:
-            r = subprocess.run(
-                [exe] + list(extra) +
-                ["--headless=new", "--disable-gpu", "--hide-scrollbars",
-                 "--allow-file-access-from-files",
-                 "--user-data-dir=" + profile,
-                 "--virtual-time-budget=2000", "--dump-dom",
-                 "file:///" + tmp.replace("\\", "/")],
-                capture_output=True, timeout=timeout)
-        finally:
-            _rmtree_quietly(profile)
+        r = subprocess.run(
+            [exe] + list(extra) +
+            ["--headless=new", "--disable-gpu", "--hide-scrollbars",
+             "--allow-file-access-from-files"] + profile_flags +
+            ["--virtual-time-budget=2000", "--dump-dom",
+             "file:///" + tmp.replace("\\", "/")],
+            capture_output=True, timeout=timeout)
         dom = r.stdout.decode("utf-8", "replace")
         if PROBE_MARKER in dom:
             return True, "rendered a probe page in under %ds" % timeout
@@ -110,16 +150,12 @@ def browser_renders(exe, extra, timeout=PROBE_TIMEOUT):
     except OSError as exc:
         return False, "could not be started: %s" % exc
     finally:
+        cleanup_profile()
         if tmp and os.path.exists(tmp):
             try:
                 os.remove(tmp)
             except OSError:
                 pass
-
-
-def _rmtree_quietly(path):
-    import shutil
-    shutil.rmtree(path, ignore_errors=True)
 
 
 def browser_probe(exe=None, extra=None):
