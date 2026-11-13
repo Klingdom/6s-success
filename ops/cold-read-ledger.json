@@ -503,8 +503,8 @@
     },
     "build_social_pins.py": {
       "status": "clean",
-      "date": "2026-10-12",
-      "note": "second-pass cold read, 2026-10-12 scheduled operator: regenerate-and-diff clean (build_social_pins.py checked for correct fit/dims rather than byte-identity, since its Chromium screenshot output is sandbox-font-rendering dependent), no defect"
+      "date": "2026-11-13",
+      "note": "Re-read 2026-11-13 21:1x PM check-in: A126's isolated_profile(exe) refactor (07f9c04f4) replaces the hand-built tempfile.TemporaryDirectory/--user-data-dir pattern with try/finally cleanup via browser.isolated_profile(); diffed against the prior version, logic sound, no behavior change beyond the fix itself."
     },
     "build_spec.py": {
       "status": "clean",
@@ -533,8 +533,8 @@
     },
     "build_thumbnails.py": {
       "status": "clean",
-      "date": "2026-10-12",
-      "note": "Third-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (165 lines). shot(), fit() and html_for() all logically sound; zone_slug() delegated to video_zone.py rather than hand-copied (the exact defect class this file's own comment documents being fixed for). --check confirms 114/114 thumbnails present. No render environment here to exercise the actual screenshot path, so that branch is read-verified, not executed; the --check branch (the one the pipeline actually calls) was run directly. No defect found."
+      "date": "2026-11-13",
+      "note": "Re-read 2026-11-13 21:1x PM check-in: A126's isolated_profile(exe) refactor (07f9c04f4) replaces the hand-built tempfile.TemporaryDirectory/--user-data-dir pattern with try/finally cleanup via browser.isolated_profile(); diffed against the prior version, logic sound, no behavior change beyond the fix itself."
     },
     "build_video.py": {
       "status": "fixed",
@@ -1033,13 +1033,13 @@
     },
     "prerender_shop.py": {
       "status": "clean",
-      "date": "2026-10-14",
-      "note": "cold-read 2026-10-14 16:1x-17:0x slot: ran full regenerate via headless chromium, 130 cards written matching data.js's 130 catalogue entries exactly, byte-identical rerun (idempotent), no defect found"
+      "date": "2026-11-13",
+      "note": "Re-read 2026-11-13 21:1x PM check-in: A126's isolated_profile(exe) refactor (07f9c04f4) replaces the hand-built tempfile.TemporaryDirectory/--user-data-dir pattern with try/finally cleanup via browser.isolated_profile(); diffed against the prior version, logic sound, no behavior change beyond the fix itself."
     },
     "product_links.py": {
       "status": "clean",
-      "date": "2026-10-11",
-      "note": "Second-pass 2026-10-11: prior note cited commits 8aa7a6589 and 11b32d124 jointly, but only 11b32d124 actually touched this file (the 'labelled containers' fix on unused MPL-00010); 8aa7a6589 never did. Also corrected a wrong row count carried in the same note (claimed 124, the CSV actually has 123 rows, verified directly with csv.DictReader). Ran python ops/product_links.py --status live: 123 products in affiliate-catalogue.csv, 120 verified/3 too-weak-to-publish, 120 published on site, matching ops/product-links-evidence.json. No defect found."
+      "date": "2026-11-13",
+      "note": "Re-read 2026-11-13 21:1x PM check-in: A126's isolated_profile(exe) refactor (07f9c04f4) replaces the hand-built tempfile.TemporaryDirectory/--user-data-dir pattern with try/finally cleanup via browser.isolated_profile(); diffed against the prior version, logic sound, no behavior change beyond the fix itself."
     },
     "prune_catalog_js.py": {
       "status": "fixed",
@@ -1078,8 +1078,8 @@
     },
     "render_cards.py": {
       "status": "clean",
-      "date": "2026-10-14",
-      "note": "cold-read 2026-10-14 17:0x slot: 6/6 own tests pass (verify_png distinguishes missing file/missing dep/good/wrong size/blank/corrupt correctly); ran live against this sandbox's real Chromium, correctly refuses with a clear message when build/card-fronts has no HTML (upstream heroes/images not present here, expected sandbox limit). No defect found."
+      "date": "2026-11-13",
+      "note": "Re-read 2026-11-13 21:1x PM check-in: A126's isolated_profile(exe) refactor (07f9c04f4) replaces the hand-built tempfile.TemporaryDirectory/--user-data-dir pattern with try/finally cleanup via browser.isolated_profile(); diffed against the prior version, logic sound, no behavior change beyond the fix itself."
     },
     "render_stale_narrated.py": {
       "status": "clean",
@@ -1468,8 +1468,8 @@
     },
     "video_zone.py": {
       "status": "clean",
-      "date": "2026-10-11",
-      "note": "Second-pass cold read 2026-10-11, scheduled operator cycle: git log --since=2026-10-02 shows zero commits to this file. Re-verified the 2026-10-02 SIX-colour fix directly against site.css's own --s1..--s6 (line 249): CB4B36/BC4B2A/D98A2B/DDA63A/6E8B5B/4E7A57, byte-identical to SIX, and site.css has not changed those values since. Also confirmed the module's own zone_slug() single-source-of-truth claim is now actually true: grepped ops/video_narrated.py and ops/render_all_narrated.py, both call vz.zone_slug()/video_zone.zone_slug() rather than a second hand-copied slug function. Ran ops/tests/test_gate_video_zone_six_colours_current.py: 3/3 pass. Read done_items()/_done_list_sentence()'s comma-list/dependent-clause/count-standalone handling and beats()'s all-six-passes sentence-chunking again line by line; both still match their own extensively documented fix history (2026-09-07 through 2026-09-18) with no new edge case found. No defect found."
+      "date": "2026-11-13",
+      "note": "Re-read 2026-11-13 21:1x PM check-in: A126's isolated_profile(exe) refactor (07f9c04f4) replaces the hand-built tempfile.TemporaryDirectory/--user-data-dir pattern with try/finally cleanup via browser.isolated_profile(); diffed against the prior version, logic sound, no behavior change beyond the fix itself."
     },
     "video_zone_photo.py": {
       "status": "clean",

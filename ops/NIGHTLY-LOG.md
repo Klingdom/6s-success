@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-13, PM check-in (21:1x slot): previous work shipped, not yet CI-confirmed; one real stale-ledger gap closed
+
+Previous work (A126's isolated_profile fix, 07f9c04f4) shipped; its Checks run (a4ff35e38, 43508038748) was still in_progress. Attached clean, ff-only, no reset/force.
+
+Re-verified: 31 issues unchanged, none from Phil. check_urls.py 236/236, fix_dashes.py 0/0. rotate_backlog.py had 1 row past cap; applied, CLEAN. cold_read_ledger.py --stale found 6 entries A126 touched but never re-ledgered; read each diff by hand (sound), re-ledgered, now 0 stale.
+
+preflight.py --fast, confirmed genuinely progressing (child at 99% CPU): cleared the two new browser gates, reached test 9/483 in gate_tests, further than any pre-A126 cycle. Left running.
+
+Nothing new unblocked. No notification.
+
+**Operator:** watch Checks run 43508038748 and local preflight (pid 1498) to completion.
+
+Pushed to main.
+
 ## found A126's browser finding was half right, root-caused the --user-data-dir hang across 7 generator files and 16 of 18 test files, found and fixed a second real FAIL in the same cycle, 2026-11-13, scheduled operator cycle
 
 A126's finding ("this sandbox's Chromium cannot render") was half right.
