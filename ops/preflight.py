@@ -20288,17 +20288,25 @@ def user_data_dir_bypasses_helper(ops_dir) -> list:
     tests/ subdirectory. Returns the sorted list of files (relative to
     OPS_DIR's parent) that contain the literal flag text built by hand,
     outside a short, named allowlist: ops/browser.py (the helper itself);
-    build/listings/build_etsy_assets.py and its own mirroring test (a
-    real, heavily documented, CI-proven retry/cleanup path this cycle
-    deliberately chose not to touch); and the two test files that already
-    route the decision of whether to pass the flag at all through an
-    explicit CHROMIUM_CANDIDATES check or isolated_profile() itself, for
-    a shared-profile-across-launches case the shared helper does not
-    support (ops/tests/test_thanks_schedule.py,
-    ops/tests/test_measure_events.py). Growing this allowlist to silence a
-    real new hit defeats the point of the gate; a genuine new exception
-    needs the same measurement and the same documentation the existing
-    ones carry.
+    ops/tests/test_gate_user_data_dir_through_helper.py (plants the literal
+    text on purpose, to prove this gate fires); and the files that route
+    the decision of whether to pass the flag at all through an explicit
+    CHROMIUM_CANDIDATES check or isolated_profile() itself, for a
+    shared-profile-across-launches case the shared helper does not support,
+    or because their own isolated test repo has no ops/ directory beside it
+    to import the real helper from (ops/tests/test_thanks_schedule.py,
+    ops/tests/test_measure_events.py,
+    ops/tests/test_gate_etsy_pdfs_current.py, which inlines
+    isolated_profile() for exactly that reason, fixed 2026-11-13 alongside
+    build/listings/build_etsy_assets.py itself: that generator used to carry
+    this bug directly, unfixed, "deliberately chose not to touch" by an
+    earlier cycle that mistook its own hang for a network-bound stall on
+    6s-success.com rather than the identical --user-data-dir hang every
+    other caller already had; it now calls the real isolated_profile()
+    through ops/browser.py and no longer needs an exemption at all).
+    Growing this allowlist to silence a real new hit defeats the point of
+    the gate; a genuine new exception needs the same measurement and the
+    same documentation the existing ones carry.
     """
     repo_root = os.path.dirname(ops_dir)
     # preflight.py is exempt for the same reason gate_browser_detection_
@@ -20312,7 +20320,6 @@ def user_data_dir_bypasses_helper(ops_dir) -> list:
         os.path.join("ops", "tests", "test_measure_events.py"),
         os.path.join("ops", "tests", "test_gate_etsy_pdfs_current.py"),
         os.path.join("ops", "tests", "test_gate_user_data_dir_through_helper.py"),
-        os.path.join("build", "listings", "build_etsy_assets.py"),
     }
     candidates = (glob.glob(os.path.join(ops_dir, "*.py")) +
                   glob.glob(os.path.join(ops_dir, "tests", "*.py")) +

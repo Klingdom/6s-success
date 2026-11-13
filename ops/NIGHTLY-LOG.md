@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Root caused and fixed the real reason gate_etsy_pdfs_current has stalled for weeks: not the network, a Chromium --user-data-dir hang this cycle's own earlier --user-data-dir-through-helper fix never reached
+
+**Did:** Attached clean. Checked backlog/GOALS/STATUS/GitHub: all 31 issues decision/blocked-on-art, FORMAT_WORDS lane gated exhausted. Ran preflight.py live and watched gate_etsy_pdfs_current hang directly: ps aux showed idle Chromium children spawned per listing, surviving every retry. Root cause: build_etsy_assets.py's render() still built --user-data-dir by hand, the bug ops/browser.py's isolated_profile() fixed everywhere else the same day, never migrated here. Every prior cycle that hit this stall called it network-bound on 6s-success.com; it was this too, a refused curl fails in under a second, not minutes of idle Chrome. Fixed render() to call isolated_profile(), fixed the identical bug in test_gate_etsy_pdfs_current.py's own fixture (inlined, no ops/ dir to import from there), removed both from preflight.py's allowlist, re-ledgered the file fixed.
+
+**Verified:** build_etsy_assets.py: 7 renders in 11.6s, was hanging. Its test: 7/7 in 11s, was hanging past 150s. preflight.py --skip-tests: every gate passed, 29 warnings, 113s total, first clean completion this lane has had in weeks. gate_user_data_dir_through_helper re-run: 0 bad files with both removed from the allowlist. check_urls.py 236/236, fix_dashes.py 0/0, cold_read_ledger.py --stale 0. Full gate_tests started in background; not yet concluded, reported unchecked, not assumed.
+
+**Went well:** a defect dozens of cycles blamed on the network got root caused by watching the process tree instead of trusting the standing diagnosis.
+
+**Did not go well:** this cost weeks, including this operator's own first assumption at the start of this cycle.
+
+**Changing next cycle:** when a gate stalls, check the process tree before accepting a standing network diagnosis, however documented.
+
+**Next:** confirm the full gate_tests run; nothing else unblocked beyond the standing Phil-gated queue.
+
 ## 2026-11-13, PM check-in (22:4x slot): previous work finished, independently reconfirmed exhausted, no new work
 
 NEXT FOR THE OPERATOR: stand down from new work, standing Phil-gated queue in OWNER-ACTIONS.md unchanged, because 31 open GitHub issues are all decision/P0/blocked-on-art with none from Phil, BACKLOG-2026-09-07.md sections 2-6 are archived/done/owner-gated, and preflight found 0 FAIL.
