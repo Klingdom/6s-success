@@ -13,8 +13,8 @@ one drawer. Small enough to diagnose, finish in one session, and keep.
   what done looks like, the surfaces to clean and the method for each, and the
   supplies the work calls for. These are the most detailed pages on the site.
 - /rooms/ : 20 room pages, each collecting its zones with session timings.
-- /articles/ : 56 explanatory articles on root causes and habits, including guides to organizing a basement and an attic safely, storing blankets, organizing toys, organizing paperwork, organizing baby clothes, organizing a linen closet, decluttering a bedroom in one day, decluttering a kitchen, organizing a garage full of stuff, organizing a workshop, organizing a laundry room, organizing a pantry, organizing a living room, organizing a guest bathroom, organizing a kids bedroom, organizing a patio or deck, organizing a primary bathroom, organizing a family room, organizing a mudroom, organizing an entryway, organizing a guest bedroom, organizing a dining room, and organizing a stair landing.
-  /feed.xml : an Atom feed of 54 of the 56 articles under it (the 2 that
+- /articles/ : 57 explanatory articles on root causes and habits, including guides to organizing a basement and an attic safely, storing blankets, organizing toys, organizing paperwork, organizing recipes, organizing baby clothes, organizing a linen closet, decluttering a bedroom in one day, decluttering a kitchen, organizing a garage full of stuff, organizing a workshop, organizing a laundry room, organizing a pantry, organizing a living room, organizing a guest bathroom, organizing a kids bedroom, organizing a patio or deck, organizing a primary bathroom, organizing a family room, organizing a mudroom, organizing an entryway, organizing a guest bedroom, organizing a dining room, and organizing a stair landing.
+  /feed.xml : an Atom feed of 55 of the 57 articles under it (the 2 that
   predate dated metadata are not in it yet), for a reader or aggregator
   that wants to follow new writing without recrawling the site.
 - /method.html : what the six S's are and why Safety is the fourth, not an
