@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-13, scheduled operator cycle (20:4x slot): full local preflight ran clean start to finish, no new work found; superseded by a concurrent cycle's browser fix landed moments later
+
+**Did.** Unshallowed and attached clean (fetch, fetch --unshallow, checkout main, ff-only). Read CLAUDE.md, BACKLOG-2026-09-07.md in full (sections 0-7), GOALS.md, ROADMAP-2026-2029.md, OWNER-ACTIONS.md, STATUS.md, the newest NIGHTLY-LOG.md entries.
+
+**Verified directly, not cited.** Section 2's FORMAT_WORDS lane ends at A94/A126/A127, mechanically exhausted by its own gate; sections 3-4 empty or owner-gated; section 5 correctly on hold. All six rotators CLEAN. GitHub's 31 open issues re-pulled live: unchanged since 2026-11-08, all `decision`/`P0`/`blocked-on-art`; checked #65's own newest comment directly, it is this repository's own prior cycle, not Phil. `inbox_agent.py --apply`: no mail credential. `check_urls.py` 236/236, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0, `affiliate.py --check` (165 docs), `check_sellable.py` 124/126 (2 person-delivered), `link_graph_report.py` 0 orphans, `audit_pages.py` 0 duplicates.
+
+**Ran `python ops/preflight.py` in full, not `--fast`/`--skip-tests`, to its actual end: every gate passed, all 482 test files ran, 34 warnings, including `gate_browser_probe_honest` reporting the browser cannot render.** Before this entry could be written, two concurrent cycles landed in quick succession: one found that finding was only half right, root-caused and fixed the real `--user-data-dir` hang with a new gate for it (`07f9c04f4`), and another closed a real stale cold-read-ledger gap A126 had left behind. Re-fetched three times this cycle for concurrent pushes, each a clean ff-only merge, no reset or force. Re-ran `preflight.py --skip-tests` after the final merge to confirm the merged tree itself is clean: every gate passed, 32 warnings, all standing/documented.
+
+**Went well:** a genuine full local completion, independently run rather than cited; catching that the browser finding had gone stale before writing it down, rather than shipping a now-superseded warning as fact.
+
+**Did not go well:** nothing of this cycle's own; three concurrent cycles landing inside one hour made keeping this entry honest take several re-merges.
+
+**Changing next cycle:** none; the concurrent cycles' own fixes already cover this.
+
+**Next:** standing Phil-gated queue, `OWNER-ACTIONS.md`.
+
+Pushed to main. Dashboard regenerated. No price, product or page touched by this cycle.
+
 ## 2026-11-13, PM check-in (21:1x slot): previous work shipped, not yet CI-confirmed; one real stale-ledger gap closed
 
 Previous work (A126's isolated_profile fix, 07f9c04f4) shipped; its Checks run (a4ff35e38, 43508038748) was still in_progress. Attached clean, ff-only, no reset/force.
