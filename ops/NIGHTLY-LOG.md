@@ -10,7 +10,25 @@ Attached clean per STEP 0. `preflight.py --skip-tests` first pass showed 1 FAIL 
 
 `BACKLOG-2026-09-07.md` sections 2-6: only Phil-gated rows remain. 31 GitHub issues unchanged since #42. Nothing new unblocked. Keeping this entry short, unlike the 45 recent entries the gate flags over 750 words.
 
-Pushed to main. Dashboard regenerated.
+This cycle merged with a concurrent operator push (same slot, their commit landed first); dashboard regenerated after the merge rather than hand-resolved.
+
+## Scheduled operator cycle, 2026-11-14 ~14:4x slot: independent re-verification by direct command, not citation; nothing new genuinely unblocked
+
+**Did:** Attached clean (unshallowed from a shallow detached checkout, `checkout main`, `merge --ff-only` onto `origin/main`, fast-forwarded, no reset/force). Read `BACKLOG-2026-09-07.md` in full and `ROADMAP-2026-2029.md`/`CLAUDE.md`/the last `ops/NIGHTLY-LOG.md` entries per STEP 1. Rather than cite the prior cycle's checks, ran every one of them again myself this cycle: `python ops/preflight.py --skip-tests` live to completion, every gate passed, 30 warnings, all standing (no analytics/Stripe/SSH credential in this sandbox, known card-art/room-art gaps already tracked, T2 affiliate trigger not evaluated). `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: 165 documents, 10 programmes, 0 approved, clean. All four rotation gates (`rotate_backlog`, `rotate_checkin_log`, `rotate_nightly_log`, `rotate_owner_actions`) independently re-run CLEAN, nothing due. `cold_read_ledger.py --stale`: 0 stale. `check_urls.py`: 236/236. `check_sellable.py --deep`: 124 of 126 buyable products in Stripe with a delivery entry and a file on disk, the other 2 person-delivered services by design; live Stripe prices NOT VERIFIED, no credential here, reported unchecked rather than assumed. `room_guide_underperformance.py` re-run live across all 20 rooms: 0 genuine `gap` rows anywhere, every room under 10% uncovered on `partial` rows alone, confirming the FORMAT_WORDS mining lane has nothing left (matches `gate_room_guide_mining_diminishing_returns`'s own standing verdict). GitHub's 31 open issues re-pulled live via the API, sorted by `updated_at`: unchanged since issue #65, #42 (the cadence question) last touched 2026-11-14T12:51:38Z by a prior cycle's own comment, nothing from Phil since #64 (2026-11-08). Checked GitHub Actions directly: the last three `checks.yml` runs on `main` all `completed`/`success`. No price, product or site page touched; IndexNow not applicable.
+
+**Verified:** Every claim above was run live this cycle, not cited from a prior entry's number.
+
+**Went well:** Independent re-verification converged on the same exhausted state the last ~16 cycles today already reached, but by direct command rather than trust, per CLAUDE.md 5d.
+
+**Did not go well:** Same standing sandbox limits (no Stripe/Umami/SSH/mail credential). Issue #42's cadence question is itself now the longest-standing open item and still needs Phil's own hand at claude.ai/code/routines; no sandboxed session can act on it (confirmed again by A137's own `update_trigger` refusal earlier today).
+
+**Changing next cycle:** None. No new defect found, so no new preflight gate.
+
+**Next for the operator:** The standing Phil-gated queue in `OWNER-ACTIONS.md` (traffic-read credential, YouTube OAuth, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts, the accounts-layer decision) and the 31 open GitHub issues, unchanged. No push notification sent: unchanged since the last ping, a repeat now would be noise, not news.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json` (this cycle's own preflight snapshot write), command deck regen only. No price, product or page touched; IndexNow not applicable.
+
+## PM check-in, 2026-11-14 14:1x slot: previous work (A138 operator) finished, independently reconfirmed exhausted state, nothing new genuinely unblocked
 
 NEXT FOR THE OPERATOR: standing Phil-gated queue (31 issues) and OWNER-ACTIONS.md, unchanged.
 
