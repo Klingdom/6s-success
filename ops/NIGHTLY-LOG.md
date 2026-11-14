@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-14 ~22:4x slot: previous work finished, found and discarded a self-inflicted preflight dirty-tree gate failure, no real defect
+
+NEXT FOR THE OPERATOR: standing Phil-gated list in `OWNER-ACTIONS.md` and the 31 open GitHub issues, unchanged, because every row in `BACKLOG-2026-09-07.md` sections 1b-7 is Done, Hold or Phil-gated, and nothing has landed from Phil since #64 (2026-11-08).
+
+Previous work (21:4x/21:1x cycles) was finished; reconfirmed myself: attached clean, unshallowed, ff-only onto `origin/main`. GitHub's 31 open issues re-pulled live, unchanged.
+
+Ran `preflight.py --skip-tests` twice. First pass: 1 gate failed, `etsy-pdfs-current`, because an earlier gate in the same run had regenerated 3 Etsy PDFs with non-deterministic bytes (text/page counts verified identical to HEAD via pymupdf; not a real defect). Discarded the noise rather than commit it; second clean pass: 0 FAIL, 27 standing warnings.
+
+Nothing new unblocked. No push notification: not news.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-14 ~22:1x slot: previous work finished, independently reconfirmed exhausted state, nothing new to start
 
 Previous work (21:4x PM, 21:1x operator) was finished: tree clean, pushed. Reconfirmed myself: attach was shallow/detached (issue #27), unshallowed and ff-only merged onto origin/main (430 commits), clean. `preflight.py --skip-tests` live: 0 FAIL, 28 standing warnings. All five rotation checks and `cold_read_ledger.py --stale` CLEAN. GitHub's 31 open issues re-pulled live: all `decision`/`P0`/`blocked-on-art`, nothing from Phil since #64 (2026-11-08). `BACKLOG-2026-09-07.md` sections 2-4 scanned programmatically: no un-struck row.
