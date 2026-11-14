@@ -21,7 +21,7 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 31 open GitHub issues, unchanged.
 
 Pushed to main. `ops/NIGHTLY-LOG.md`, `BACKLOG-2026-09-07.md` (A139 row), command deck regen (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), honestly carrying revenue/traffic forward (no Stripe/analytics egress here). No price, product or page touched; IndexNow not applicable.
-=======
+
 ## PM check-in, 2026-11-14 ~16:4x slot: previous work finished; nothing new genuinely unblocked, short handoff on purpose
 
 NEXT FOR THE OPERATOR: mine Family Room's or Garage's room-guide partial tier (tied-worst, 14% uncovered each), because every other lane is confirmed exhausted this cycle. Their "games"/"video games" rows were already declined (A67); skip that shape.
