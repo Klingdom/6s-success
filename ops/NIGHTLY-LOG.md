@@ -21,6 +21,14 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 31 open GitHub issues, unchanged.
 
 Pushed to main. `ops/NIGHTLY-LOG.md`, `BACKLOG-2026-09-07.md` (A139 row), command deck regen (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), honestly carrying revenue/traffic forward (no Stripe/analytics egress here). No price, product or page touched; IndexNow not applicable.
+=======
+## PM check-in, 2026-11-14 ~16:4x slot: previous work finished; nothing new genuinely unblocked, short handoff on purpose
+
+NEXT FOR THE OPERATOR: mine Family Room's or Garage's room-guide partial tier (tied-worst, 14% uncovered each), because every other lane is confirmed exhausted this cycle. Their "games"/"video games" rows were already declined (A67); skip that shape.
+
+Previous work (16:1x PM) was finished: clean tree, pushed. Reverified rather than cited: `preflight.py --skip-tests` 0 FAIL through the network-bound tail (killed there by hand, same standing warnings); 31 GitHub issues unchanged, all `decision`/`blocked-on-art`; read #42's and #65's own comments directly, both agent-authored under Phil's token, nothing from Phil since 2026-11-08; `BACKLOG-2026-09-07.md` sections 2 to 4 Done through A94, section 5 Hold, section 6 owner-gated. `room_guide_underperformance.py` re-run live confirms the tie.
+
+Did not go well: this file's own `nightly-log-entries-not-overlong` gate just flagged 45 recent entries running past the operating prompt's 120-word budget. Kept this one short on purpose.
 
 ## PM check-in, 2026-11-14 ~16:1x slot: previous work finished; closed the `gate_status_currency` warning for real rather than reconfirm the exhausted state a 32nd time
 
