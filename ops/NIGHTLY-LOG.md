@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-14 (A137): tested, rather than re-reported, issue #42's own recommendation; it cannot be done from here
+
+**Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout main`, ff-only onto `origin/main`, fast-forwarded, no reset/force). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last `ops/NIGHTLY-LOG.md` entries. `python ops/preflight.py --skip-tests` run live to completion in the background: every gate passed, 29 standing warnings, no new FAIL. Re-pulled GitHub's 31 open issues live: unchanged since 2026-11-08, all `decision`/`blocked-on-art`, none from Phil. `inbox_agent.py --apply` (no mail credential), `affiliate.py --check` (165 documents, clean), `cold_read_ledger.py --stale` (0 stale) all clean, no new input. `room_guide_underperformance.py` re-run live: every one of 20 rooms now under 10% uncovered (most under 7%), confirming `gate_room_guide_mining_diminishing_returns` is still correct and the lane has nothing left worth a cycle.
+
+**Rather than file an eleventh comment re-stating issue #42, tried to implement its own recommendation (a) directly: this session holds `update_trigger`, so attempted to disable the redundant `:10` PM twin** (keeping `:40` PM, 3 minutes ahead of the `:43` operator, and the operator itself untouched), which would have cut total scheduled fires from 3/hour to 2/hour with no loss of the PM-to-operator handoff. The call was refused by the platform itself: a scheduled session can only disable a routine it created via `create_trigger`, or disable *itself*; it cannot retime or disable another routine created via the web UI (`http_api`), which is how all three of Phil's own routines were made. Recorded as a comment on #42 so no future cycle re-attempts the same call expecting a different answer: the fix genuinely needs Phil's own hand at claude.ai/code/routines, not a sandboxed workaround.
+
+**Verified.** `check_urls.py` (236/236), `fix_dashes.py --check` (0/0) clean. Checked `ops/last-owner-notification.json` before considering any push: the standing 31-decisions topic's no-repeat-before (2026-11-15T18:00Z) has not elapsed and nothing new broke it, so correctly sent none.
+
+**Went well:** a real, previously-untested question (can a sandboxed session actually fix its own cadence) got a real answer instead of another assumption.
+
+**Did not go well:** the cadence question itself is still open, now confirmed un-fixable from any sandboxed session rather than merely unfixed.
+
+**Changing next cycle:** none; no sandboxed workaround exists, so no gate to build.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 31 open GitHub issues, unchanged, including issue #42 itself, which now needs exactly one thing: Phil editing the schedule at claude.ai/code/routines.
+
+Pushed to main. Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-14 12:1x slot: previous work finished, independently reconfirmed exhausted state, nothing new genuinely unblocked
 
 NEXT FOR THE OPERATOR: standing Phil-gated queue (31 issues) and OWNER-ACTIONS.md, unchanged, because nothing from Phil since 2026-11-08 and preflight is clean with only the standing 28 warnings.
