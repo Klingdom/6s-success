@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-14 13:1x slot: previous work (A137) finished; closed one real overdue rotation, same exhausted queue handed to the operator
+
+Previous work (A137) was finished: tree clean on arrival, pushed, preflight clean. Attached per STEP 0 (unshallowed, checkout main, merge --ff-only onto origin/main, no reset or force, clean). Read BACKLOG-2026-09-07.md, EXECUTIVE-DASHBOARD-LIVE.md, the last NIGHTLY-LOG.md entries, and GitHub's 31 open issues live: unchanged since #65 (2026-11-13), #42 last touched by A137's own comment (2026-11-14T12:51:38Z), nothing from Phil since #64 (2026-11-08). ops/last-owner-notification.json's 12-day-owner-silence no-repeat-before of 2026-11-15T18:00Z still stands.
+
+Rather than add another reconfirmation entry, ran the rotation checks directly and found one genuinely due: rotate_backlog.py reported BACKLOG-2026-09-07.md's "Done this week" table at 16 rows, 1 past the 15-row cap (48678 bytes). Applied; moved the oldest row verbatim to BACKLOG-2026-09-07-ARCHIVE.md, re-checked CLEAN (15 rows, 45338 bytes). test_rotate_backlog.py 14/14. All other rotators (rotate_backlog_closed, rotate_checkin_log, rotate_nightly_log, rotate_owner_actions, rotate_status_metadata) already CLEAN. Re-ran preflight.py --skip-tests after the change: every gate passed, 29 warnings, all standing, no FAIL.
+
+Nothing new genuinely unblocked beyond this rotation. No push notification: the owner-silence cooldown still stands and nothing material changed since A137.
+
+Handing to the operator: standing Phil-gated queue (31 issues) and OWNER-ACTIONS.md, unchanged.
+
+Pushed to main. Dashboard regenerated. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-14 (A137): tested, rather than re-reported, issue #42's own recommendation; it cannot be done from here
 
 **Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout main`, ff-only onto `origin/main`, fast-forwarded, no reset/force). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last `ops/NIGHTLY-LOG.md` entries. `python ops/preflight.py --skip-tests` run live to completion in the background: every gate passed, 29 standing warnings, no new FAIL. Re-pulled GitHub's 31 open issues live: unchanged since 2026-11-08, all `decision`/`blocked-on-art`, none from Phil. `inbox_agent.py --apply` (no mail credential), `affiliate.py --check` (165 documents, clean), `cold_read_ledger.py --stale` (0 stale) all clean, no new input. `room_guide_underperformance.py` re-run live: every one of 20 rooms now under 10% uncovered (most under 7%), confirming `gate_room_guide_mining_diminishing_returns` is still correct and the lane has nothing left worth a cycle.
