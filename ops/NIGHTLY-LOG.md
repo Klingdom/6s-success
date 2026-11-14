@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-14 04:0x slot: ran the full preflight (gate_tests included) end to end, closing A130's own unfinished re-confirmation
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (273 commits), clean. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `GOALS.md`, `STATUS.md`, the last several `NIGHTLY-LOG.md` entries. GitHub re-pulled live: 31 open issues, all `decision`/`P0`/`blocked-on-art`, all authored by this repository's own account, none from Phil. `inbox_agent.py --apply`: no mail credential.
+
+**Checked by epic first, not assumed.** `room_guide_underperformance.py` re-run live: 0 genuine `gap` rows in any of 20 rooms, worst partial tier 12% (Primary Bedroom); `gate_room_guide_mining_diminishing_returns` confirms the lane itself. Epics 1-2's own top items (traffic-read credential, Listmonk identity) and epic 3's retail-channel items (KDP, Etsy) are all owner-gated, matching `STATUS.md`/`BACKLOG` exactly. So this cycle's work was verification, run live rather than cited: `python ops/preflight.py` (not `--skip-tests`) run to completion in the background, all 483 test files plus every gate, 0 FAIL, 28 warnings (all standing). A130 had reached this same point once, then killed a second confirming run partway through "to avoid an unbounded third wait"; this run finished that confirmation for real. `check_urls.py` (236/236), `affiliate.py --check` (165 docs), `check_sellable.py --deep` (124/126, 2 person-delivered) all clean. A stale local `cycle-signal.json` checkpoint from a concurrent cycle's own run collided on push; resolved by rebase, keeping the newer checkpoint, not forcing mine.
+
+**Went well:** confirmed rather than assumed that the full suite still runs clean post A126/128/129/130.
+
+**Did not go well:** nothing new to ship; the exhausted, Phil-gated state (issue #42) continues.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated queue in `OWNER-ACTIONS.md` and the 31 open issues, unchanged.
+
+Pushed to main. Dashboard regenerated. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-14 03:4x slot: previous work finished, same exhausted Phil-gated queue, nothing new unblocked
 
 NEXT FOR THE OPERATOR: standing Phil-gated queue in OWNER-ACTIONS.md and the 31 open GitHub issues, unchanged, because the 03:1x PM slot and the 03:0x operator cycle already confirmed the keyword-gap lane is in genuine diminishing returns (gate_also_called_no_digital_collision correctly declined the one new candidate found), and every other backlog row outside section 6's owner table is Done or Archived.
@@ -16964,4 +16980,3 @@ Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json` (the backgrounded 
 **Next for the operator:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open GitHub issues, unchanged.
 
 Pushed to main. Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), honestly carrying revenue/traffic forward (no Stripe/analytics egress here). No price, product or page touched; IndexNow not applicable.
-
