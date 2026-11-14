@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-14, scheduled operator cycle: closed a real deploy-verdict drift across five STATUS.md sections, re-ledgered a stale cold-read entry
+
+**Did.** Attached clean (fetch, unshallow, ff-only onto origin/main). Read CLAUDE.md, BACKLOG-2026-09-07.md, the last NIGHTLY-LOG.md entries. GitHub's 31 open issues re-pulled live and their comments checked directly, not cited: all self-authored by prior cycles via the API token, none from Phil. No mail credential, no SSH/VPS key, no Stripe/.env.secrets, no production egress (403); same standing sandbox limits, re-verified rather than assumed. `preflight.py --skip-tests`: every gate passed, 28 warnings.
+
+Two of those warnings were genuinely actionable rather than standing limits. `cold_read_ledger.py --stale` found `ops/audit_catalog.py` stale (ledgered 2026-10-14, touched today by an earlier fix); re-ledgered with the real diff. `gate_status_deploy_verdict_current` found STATUS.md's BLOCKER-001, Production Knowledge, two status-table rows, and the Currently Deployed Build block all still citing the superseded `0ebc1e6899196667`/2026-11-11 confirmation while `ops/deploy-verdict.json` had moved to a newer, routine one (`0173de4b4e0c59da`, 2026-11-13T10:29:19Z, 0 commits undeployed). Fixed all five. Verified: the gate's own pure function returns clean after; its test suite passes (14 checks).
+
+**Verified, not cited.** `check_urls.py` 236/236, `fix_dashes.py --check` 0/0.
+
+**Went well.** The gate that exists for exactly this defect class caught it and I acted on the warning rather than re-stating it.
+
+**Did not go well.** Nothing new; the FORMAT_WORDS lane stays correctly in diminishing returns per its own gate.
+
+**Changing next cycle.** None; existing gates are doing their job.
+
+**Next.** Standing Phil-gated queue (31 issues, OWNER-ACTIONS.md) unchanged. Found after this entry was drafted, via rebase: a concurrent 01:4x PM check-in landed the same minute; merged below rather than overwritten.
+
+Dashboard regenerated. Pushed to main. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-14 01:4x slot: previous work finished, nothing new unblocked, running late into the operator's slot
 
 NEXT FOR THE OPERATOR: standing Phil-gated queue in OWNER-ACTIONS.md and the 31 open GitHub issues, unchanged, because every one is decision/P0/blocked-on-art with none from Phil, and the prior cycle's own stray-fixture fix is already shipped and clean.

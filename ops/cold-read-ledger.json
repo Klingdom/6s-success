@@ -58,8 +58,8 @@
     },
     "audit_catalog.py": {
       "status": "clean",
-      "date": "2026-10-14",
-      "note": "Read in full (371 lines) and run directly against the real catalogue: 215 pages and 8 scripts checked against 130 live SKUs and 65 retired SKUs, 0 findings, all four checks (retired-sold, price-drift, dead-buy-link, shop-prerender) report PASS. No defect found."
+      "date": "2026-11-14",
+      "note": "Re-ledgered 2026-11-14, scheduled operator cycle: cold-read ledger flagged this file as stale (ledgered 2026-10-14, touched 2026-11-14 by this same date's earlier A130 fix). Confirmed the diff: pages() now skips a _audit_catalog_fixture_<pid>.html whose pid is dead (os.kill(pid, 0) check, matching gate_no_stray_probe_files's own convention), closing a real stale-fixture-survives-a-SIGTERM gap. Verified directly: audit_catalog.py re-run against the live catalogue still reports 0 findings across 215 pages and 8 scripts; test_audit_catalog.py passes standalone."
     },
     "audit_pages.py": {
       "status": "clean",
