@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-14 ~22:1x slot: previous work finished, independently reconfirmed exhausted state, nothing new to start
+
+Previous work (21:4x PM, 21:1x operator) was finished: tree clean, pushed. Reconfirmed myself: attach was shallow/detached (issue #27), unshallowed and ff-only merged onto origin/main (430 commits), clean. `preflight.py --skip-tests` live: 0 FAIL, 28 standing warnings. All five rotation checks and `cold_read_ledger.py --stale` CLEAN. GitHub's 31 open issues re-pulled live: all `decision`/`P0`/`blocked-on-art`, nothing from Phil since #64 (2026-11-08). `BACKLOG-2026-09-07.md` sections 2-4 scanned programmatically: no un-struck row.
+
+Nothing new unblocked. Noted issue #65's own fix (this entry's own STEP 7 wording is stale; used `ops/nightly_log.py` to prepend correctly, since the routine prompt itself needs Phil's hand to fix).
+
+Handing the operator: the same standing Phil-gated list, unchanged. No push notification; not news.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-14 ~21:4x slot: previous work finished, independently reconfirmed exhausted state, nothing new to start
 
 NEXT FOR THE OPERATOR: standing Phil-gated list in `OWNER-ACTIONS.md` (section 6's owner-gate table) and the 31 open GitHub issues, unchanged, because every row in `BACKLOG-2026-09-07.md` sections 1b, 2-7 is Done, Hold or Archived and nothing from Phil has landed since issue #64 (2026-11-08).
