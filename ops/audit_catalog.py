@@ -87,6 +87,37 @@ SKIP = ("downloads/",)
 PROBE_PREFIX = "_audit_catalog_fixture"
 INCLUDE_FIXTURES = "--include-fixtures" in sys.argv
 
+# Found 2026-11-14: a preflight run killed mid-gate_tests left
+# site/_audit_catalog_fixture_<pid>.html behind, naming a deliberately wrong
+# price its own "a wrong price must be caught" case had planted. The lock in
+# ops/tests/test_audit_catalog.py only serializes two LIVE copies of that
+# test against each other; it does nothing for a fixture a dead run already
+# left on disk, and preflight.py's own gate_no_stray_probe_files sweep runs
+# before gate_tests, so it cannot clean up a mess gate_tests makes later in
+# that same pass. The next bare invocation of this file (this script run
+# directly, or the test run standalone, outside preflight.py entirely) then
+# globbed both the stale fixture and its own fresh one and reported the
+# correct price as drift. Fixed at the root, not just in the external sweep:
+# a fixture is only trusted here if the pid in its own name is still alive,
+# the same liveness check gate_no_stray_probe_files already makes, so this
+# script can never again be fooled by a leftover from a run that is gone.
+_FIXTURE_PID_RE = re.compile(r"^%s_(\d+)\.html$" % re.escape(PROBE_PREFIX))
+
+
+def _fixture_writer_alive(basename: str) -> bool:
+    m = _FIXTURE_PID_RE.match(basename)
+    if not m:
+        return False
+    try:
+        os.kill(int(m.group(1)), 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    except OSError:
+        return False
+    return True
+
 WINDOW = 200  # chars either side of a name match, wide enough for a sentence
 
 BUY_INTENT = re.compile(
@@ -121,8 +152,12 @@ def pages() -> list[str]:
     for p in sorted(glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True)):
         rel = os.path.relpath(p, SITE).replace("\\", "/")
         if not any(rel.startswith(s) for s in SKIP):
-            if not INCLUDE_FIXTURES and os.path.basename(p).startswith(PROBE_PREFIX):
-                continue
+            base = os.path.basename(p)
+            if base.startswith(PROBE_PREFIX):
+                if not INCLUDE_FIXTURES:
+                    continue
+                if not _fixture_writer_alive(base):
+                    continue
             out.append(p)
     return out
 
