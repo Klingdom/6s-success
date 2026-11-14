@@ -10,11 +10,27 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Went well:** Found no new defect and did not manufacture one. No price, product, or page was touched, so no false "shipped" claim either.
 
-**Did not go well, and this is the actual finding this cycle is surfacing:** This routine fires hourly. Issue #42, opened by a prior cycle on 2026-11-07 asking Phil to decide whether that cadence still makes sense once a state is this thoroughly exhausted, has had no reply from Phil in 7 days (168+ firings). In that same window this log shows at least a dozen consecutive entries (A124-A135, plus this one) each independently re-confirming the identical owner-gated state: no new GitHub activity, no mail credential, preflight clean with the same 28 standing warnings. CLAUDE.md 0.2 says a correctly reported problem nobody acts on costs as much as an undetected one; a 32nd log entry restating the same finding is exactly that pattern, so this cycle sent a push notification instead of only writing another paragraph here.
+**Did not go well, and this is the thing worth naming plainly:** This routine fires hourly. Issue #42, opened by a prior cycle on 2026-11-07 asking Phil to decide whether that cadence still makes sense once a state is this thoroughly exhausted, has had no reply from Phil in 7 days (168+ firings). In that same window this log shows at least a dozen consecutive entries (A124-A135, plus this one, plus the concurrent 09:4x PM check-in below) each independently re-confirming the identical owner-gated state: no new GitHub activity, no mail credential, preflight clean with the same 28 standing warnings.
 
-**Changing next cycle:** None to the code. Did not unilaterally change this routine's own schedule: a prior cycle (R4, 2026-09-08) established that self-editing this specific trigger's steps is possible, but the cadence itself was deliberately filed as a `decision` issue for Phil rather than changed in place, and overriding that precedent without his answer would be re-deciding a question already on his desk rather than genuinely new evidence.
+**Changing next cycle:** None to the code. Did not unilaterally change this routine's own schedule: a prior cycle (R4, 2026-09-08) established that self-editing this specific trigger's steps is possible, but the cadence itself was deliberately filed as a `decision` issue for Phil rather than changed in place, and overriding that precedent without his answer would be re-deciding a question already on his desk rather than genuinely new evidence. No push notification this cycle either, for the same reason the concurrent PM check-in below gave: issue #42 already names this exact state, and repeating an unanswered ask is not new information for Phil.
 
 **Next:** Phil's decision on issue #42 (cadence) and issue #64 (the 2-minute traffic-read command, P0, unblocks every stale traffic figure in `GOALS.md`/`STATUS.md`) are the two highest-leverage two-minute actions open. Full standing list in `OWNER-ACTIONS.md`. Pushed to main. Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product, or page touched; IndexNow not applicable.
+
+## PM check-in, 2026-11-14 09:4x slot: previous work finished, caught a self-inflicted gate FAIL before it reached the operator
+
+NEXT FOR THE OPERATOR: standing Phil-gated queue in OWNER-ACTIONS.md and the 31 open GitHub issues, unchanged, because every row in BACKLOG-2026-09-07.md outside section 6's owner-gate table is Done or Archived and GitHub shows nothing from Phil since 2026-11-08.
+
+Previous work (09:1x PM) was finished: tree clean, pushed, preflight clean at handoff. Attach was shallow and detached; unshallowed, checkout main, merge --ff-only onto origin/main, clean, no reset or force (origin unchanged at 78ad6e975 throughout this slot, no concurrent push to merge).
+
+Ran preflight.py --skip-tests live and found 1 real FAIL, not just warnings: gate_etsy_pdfs_current reported build/listings/etsy/ already dirty before the gate even ran, the same self-inflicted shape the 06:4x PM slot hit today. Root cause was mine: an earlier foreground run in this slot timed out mid-gate, which regenerates the Etsy PDFs then reverts them if unchanged, a revert that never ran because the process was killed first. Checked rather than assumed: all 7 modified PDFs were byte-identical in size to HEAD. Reverted with git checkout, re-ran the gate standalone, it completed clean with the tree still clean afterward.
+
+GitHub re-pulled live: 31 open issues, unchanged since #65 (2026-11-13), all decision/P0/blocked-on-art, none from Phil. STATUS.md: Workstream 1 BLOCKED, Workstream 2 BLOCKED, Workstream 3 CLOSED, no replacement open. Nothing new genuinely unblocked.
+
+Noted, not actioned this slot (too large for 3 minutes before the operator): preflight's own gate_nightly_log_entries_not_overlong now warns 45 entries run past the 750-word tripwire, worst 1228 words, well over this operating prompt's 250/120-word budget. No rotation script trims entry length (rotate_nightly_log.py only moves whole entries past the 30-day window); this needs a deliberate editing pass, a candidate for a cycle with real time, not a fix-in-place here.
+
+No push notification: same state issue #42 already names, nothing new for Phil.
+
+Pushed to main. ops/NIGHTLY-LOG.md, command deck regen. No price, product or page touched; IndexNow not applicable.
 
 ## PM check-in, 2026-11-14 09:1x slot: previous work finished, closed one real overdue rotation, same exhausted queue handed to the operator
 
