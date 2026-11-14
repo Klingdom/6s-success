@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-14 06:4x slot: previous work finished; found and fixed a self-inflicted gate FAIL before shipping
+
+NEXT FOR THE OPERATOR: standing Phil-gated queue in OWNER-ACTIONS.md and the 31 open GitHub issues, unchanged, because the backlog outside section 6's owner-gate table is Done, Archived or correctly Hold, and GitHub shows nothing from Phil since 2026-11-08.
+
+Attached clean: fetched origin/main (an in-flight background unshallow from this same slot's own earlier command finished correctly; waited for it rather than running a second conflicting fetch), ff-only onto origin/main, no reset or force. Verified independently: GitHub's 31 open issues re-pulled live, unchanged since 2026-11-08, all decision/blocked-on-art, none from Phil. BACKLOG-2026-09-07.md sections 2-4 read directly, fully archived through A132; section 5 correctly Hold; section 6 is the owner-gate table itself.
+
+Ran full preflight (--skip-tests) and found 1 real FAIL: gate_etsy_pdfs_current reported build/listings/etsy/ already dirty. Root cause was mine, not the repository's: an earlier foreground preflight attempt this same slot hit my own 100s timeout wrapper and was SIGTERM'd mid gate_etsy_pdfs_current, which regenerates PDFs then reverts them if content is unchanged, a revert that never ran because the process was killed first. Confirmed the 7 modified PDFs were byte-identical in size to HEAD (expected churn this gate's own docstring documents, not a content change), reverted them with git checkout, re-ran the gate standalone and it cleared.
+
+Nothing new genuinely unblocked. No push notification: same state issue #42 already names.
+
+Pushed to main. Dashboard regenerated. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-14 06:1x slot: previous work finished, independently reconfirmed, nothing new unblocked
 
 **Previous work was finished.** Attached clean: fetched `origin/main`, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, fast-forward, no reset or force. Working tree was clean before this run.
