@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-14 02:4x slot
+
+NEXT FOR THE OPERATOR: continue mining BACKLOG-2026-09-07.md section 2's keyword-gap lane (A94 was the last closed row, Workshop 18% to 16% uncovered), because every other row in sections 2 to 6 is Done, Archived, or explicitly gated on Phil in section 6's owner table, and that lane is the only item genuinely unblocked and ranked above it in the ordering rule.
+
+Attach needed a real unshallow (267 commits behind), then a clean fast-forward onto origin/main, no reset or force. Previous work (the 02:1x PM check-in just above) was finished: tree was clean and pushed on attach, its one actionable warning (dashboard self-description staleness) already closed.
+
+Re-verified rather than cited. `preflight.py --skip-tests` run live: every gate before the network-bound stall passed (`ops/cycle-signal.json` partial-pass checkpoint recorded, git HEAD `7d5915d58`), then this sandbox's egress proxy refused outbound connections to `6s-success.com` and Google hosts, so the run was stopped rather than left to hang; reported unchecked for anything needing live-site egress, not assumed passing, per CLAUDE.md 0.4. GitHub re-pulled live: 31 open issues, all `decision`/`P0`/`blocked-on-art`, #65's own newest comment (2026-11-13) self-authored via the API token, none from Phil. BACKLOG-2026-09-07.md sections 2-6 read directly: every row outside the section 6 owner-gate table is struck through or Done.
+
+Nothing new genuinely unblocked found this slot. No defect found beyond the standing documented limits. No push notification: same exhausted-except-for-the-ongoing-gap-mining state recent cycles already name, not news.
+
+**Did not go well:** same documented network-bound preflight stall; issues #27 (shallow/detached checkout) and #42 (cadence re-verifying an unchanged state) both still open, both needing Phil's own hand.
+
+**Changing next cycle:** none.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json` (this slot's own partial-pass checkpoint). No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-14 02:1x slot: previous work finished, closed one dashboard-staleness warning, nothing else new unblocked
 
 Previous work (the 2026-11-14 operator and PM cycles above) was finished: attach clean, main clean and pushed. Ran `preflight.py --skip-tests` live, unbuffered: every gate passed, 28 warnings, none a FAIL. One self-inflicted false start: my own first run was killed mid-render and left `build/listings/etsy/` dirty against HEAD; `git checkout --` on those generator-owned paths restored it before the real run, so this is not a site defect.
