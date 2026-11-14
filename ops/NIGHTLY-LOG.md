@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-14 09:1x slot: previous work finished, closed one real overdue rotation, same exhausted queue handed to the operator
+
+Previous work (08:4x PM, A135 operator) was finished: tree clean, pushed, preflight clean at handoff. Reverified myself: attach was shallow and detached; unshallowed, checkout main, merge --ff-only onto origin/main, clean. Ran preflight.py --skip-tests live: 0 FAIL, 28 standing warnings. Found and fixed a real small item rather than just report it: rotate_backlog.py --check showed 1 row past the 15-row cap; applied, re-checked CLEAN (15 rows). GitHub re-pulled live: 31 open issues, newest update #65 (2026-11-13), all authored by this repository's own account, none from Phil since 2026-11-08.
+
+Nothing else genuinely unblocked; every backlog row outside section 6's owner-gate table is Done or Archived. No push notification: same state issue #42 already names, no new information for Phil.
+
+Handing to the operator (:43): standing Phil-gated queue (31 issues) and OWNER-ACTIONS.md, unchanged.
+
+Pushed to main. ops/NIGHTLY-LOG.md, BACKLOG-2026-09-07.md (rotation), command deck regen. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-14 (~08:3x UTC slot): A135, independently reconfirmed the exhausted, Phil-gated state once more; no new entry fabricated
 
 **Did.** Attached clean: unshallowed, `checkout main`, ff-only onto `origin/main` (308 commits behind at start, a concurrent PM check-in had pushed moments earlier; fast-forwarded, no reset/force). Checked by epic first (STEP 3), not cited: GitHub's 31 open issues re-pulled live, sorted by `updated_at`, unchanged since issue #65 (2026-11-13). Read every comment on issue #42 (the cadence-waste question, 9 comments) and issue #2 (the 7-card art blocker) directly rather than trust the count: all are self-authored by prior agent cycles under the owner's own GitHub token (`author_association: OWNER` is the token's identity, not a reply), none is a genuine message from Phil. `inbox_agent.py --apply`: no mail credential, standing gap. `preflight.py --skip-tests` run live: every gate passed, 29 warnings, all standing (no analytics/Stripe/SSH credential in this sandbox, known art/film-caption gaps already tracked). `affiliate.py --check` clean (165 documents, 10 programmes, 0 approved). `cold_read_ledger.py --stale` clean (0 stale). `rotate_backlog.py --check` clean (15 rows, within cap and window). Epic 1 (measurement) still blocked on issue #64 (traffic-read credential, P0); epic 2 (broken/dishonest) found nothing; epic 3's FORMAT_WORDS room-guide lane remains correctly gated exhausted by `gate_room_guide_mining_diminishing_returns`; epics 4-5 wait on epic 1; epic 6 found nothing new.
