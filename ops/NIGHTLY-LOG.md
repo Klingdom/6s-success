@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-14 01:1x slot: previous work finished; chased down a real-looking preflight FAIL to a self-inflicted stale fixture, not a site defect
+
+Previous work (00:4x PM) was finished: tree clean and pushed on attach, fast-forward merge onto origin/main, no drift. Re-read git log, NIGHTLY-LOG.md, BACKLOG-2026-09-07.md sections 0-7, EXECUTIVE-DASHBOARD-LIVE.md, 31 open GitHub issues live (re-pulled, sorted by updated_at). Unchanged in substance: all decision/P0/blocked-on-art, newest update still #65 at 2026-11-13T00:48:56Z from this repository's own account (its comment text confirms it is this repository's own session reporting a hard tool restriction, not Phil). All six rotators' own --check CLEAN. check_urls.py 236/236. fix_dashes.py --check 0/0. cold_read_ledger.py --stale 0 stale. Re-derived BLOCKER-001 directly rather than cite STATUS.md: deploy_gap_material_commits(resolve_verdict_commit('0173de4b4e0c59da')) returns 0 commits undeployed, matching the file's own "current" verdict.
+
+**Ran full preflight.py --fast live rather than --skip-tests, and let it actually finish this time (about 20 minutes real wall clock, test 1/483 through 483/483).** It concluded 1 gate failed: test_audit_catalog.py reported two correct prices ($9.99 and $19) as drift. Did not report this as a new site defect without checking, per CLAUDE.md 0.4. Found the real cause: my own earlier `timeout 90 python ops/tests/test_audit_catalog.py` command was SIGTERM-killed by its own timeout mid-run, which bypassed the test's `finally: os.remove(FIXTURE)` cleanup (SIGTERM does not trigger Python finally blocks) and left an orphaned `site/_audit_catalog_fixture_<pid>.html` behind. Because the test invokes `audit_catalog.py --include-fixtures`, which includes every file matching that prefix in site/, not just the current run's own, that orphan polluted every subsequent scan with a fake wrong price near a real product name. This is the exact, previously-documented class of bug (test file's own comments: found 2026-09-05, 2026-09-08, 2026-09-16, 2026-09-25), caused this time by my own interrupted command rather than a genuine concurrent cycle. Deleted the stale fixture, re-ran the test to a real, uninterrupted completion (not killed early a second time): clean pass, "drift compares money not leading digits, correct prices pass, wrong ones are caught, unknown buy links are caught." Confirmed no fixture or lockdir left in site/ afterward; git status clean.
+
+**Nothing new genuinely unblocked.** Every row in BACKLOG-2026-09-07.md sections 2-7 remains Done, Hold, or explicitly Phil-gated; STATUS.md's three workstreams are BLOCKED/BLOCKED/CLOSED with no replacement open, within the WIP cap. No push notification: this is the same state issue #42 already names, and the preflight FAIL this cycle chased down turned out to be self-inflicted, not news about the site.
+
+**Went well:** did not stop at "preflight failed" or re-run the whole suite again hoping it would go away; traced the actual mechanism (SIGTERM bypassing a Python finally block) rather than guessing.
+
+**Did not go well:** cost real time this slot chasing a defect that turned out to be my own tooling habit (killing a test with an external timeout instead of letting it run to completion or backgrounding it properly from the start). Noted for next cycle: never `timeout <n> python ops/tests/test_audit_catalog.py` with n shorter than the file's own real runtime; background it properly instead.
+
+**Changing next cycle:** none to the repository; a personal-process note only, not a new gate (the existing lock/PROBE_PREFIX design already handles concurrent *other* processes correctly, it just cannot save a run killed by an external SIGTERM from its own cleanup).
+
+Pushed to main. Dashboard regenerated (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json). No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-14 00:4x slot: previous work finished, independently reconfirmed exhausted, nothing new unblocked
 
 NEXT FOR THE OPERATOR: standing Phil-gated queue in OWNER-ACTIONS.md and the 31 open GitHub issues, unchanged, because every rotator and health check run live this slot came back clean and none of the 31 issues has moved since Phil's last comment.
