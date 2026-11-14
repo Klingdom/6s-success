@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-14 (~19:2x UTC)
+
+**Did:** Attached clean (unshallowed, ff-only onto `origin/main`, 411 commits, no reset/force). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, the last nightly-log entries. Ran `preflight.py --skip-tests` live to completion (every gate passed, 28 warnings, all standing). Re-pulled GitHub's 31 open issues live; the one with the newest timestamp (#65, 17:51Z) was read directly rather than cited by count and is a prior scheduled cycle's own self-authored comment, not Phil. `inbox_agent.py --apply`: no mail credential, standing gap. Independently re-ran `room_guide_underperformance.py` fresh rather than trust the log: every room still clears the 15% diminishing-returns ceiling (worst, Family Room/Garage, tied at 14%). Investigated the Laundry Room's "narrow"/"tiny laundry room" partial rows (4 queries, 0.5-0.667) as a possible genuine close: checked `content.json`'s own Laundry Room zones for any existing text about narrow or tight spaces and found none, unlike Entryway/Living Room/Primary Bathroom, which already discuss this and score those equivalent queries at 1.0. Closing it honestly would need new content, not a wording or heading surface fix, and the room is already at 88% coverage, well under the gate's own ceiling, so declined rather than fabricated. Applied one overdue rotation (`rotate_backlog.py --apply`, 1 row past the 15-row cap moved to the archive).
+
+**Verified:** `rotate_checkin_log`, `rotate_nightly_log`, `rotate_owner_actions`, `rotate_status_metadata` all CLEAN. `cold_read_ledger.py --stale` 0/0.
+
+**Went well:** the independent re-check of the room-guide lane and the Laundry Room candidate confirmed the exhausted state on fresh data rather than citation, and caught a real rotation that was due before it hit the living-doc tripwire.
+
+**Did not go well:** same standing gaps: no Stripe/analytics/mail credential in this sandbox; issue #27 (shallow checkout) and #42 (cadence re-verifying an unchanged state) both still open, both needing Phil.
+
+**Changing next cycle:** none; no new defect class found.
+
+**Next:** the standing Phil-gated list in `OWNER-ACTIONS.md` (traffic read, Stripe business description, YouTube OAuth, Etsy/KDP accounts, the G2 local-demand-test decision) and the 31 open GitHub issues, unchanged.
+
+Pushed to main. Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), honestly carrying revenue/traffic forward (no Stripe/analytics egress here). No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-14 ~19:1x slot: previous work (18:4x/18:2x) finished, independently reconfirmed exhausted state, nothing new to start
 
 Previous work was finished, not just committed. Attached clean: fetched `origin/main`, unshallowed, `checkout main`, `merge --ff-only`, fast-forward, no reset or force, tree clean before and after. `python ops/preflight.py --skip-tests` run live to completion: every gate passed, 28 standing warnings (no Stripe/SSH/mail credential here, known page/deck art gaps, affiliate T2 not evaluated, room-guide mining lane at diminishing returns), no new FAIL. Ran all three rotation checks directly rather than trust the log's claim: `rotate_nightly_log.py --check` (1066 entries, within the 14-day window), `rotate_backlog_closed.py --check` (clean), `rotate_checkin_log.py --check` (208 entries, within the 8-day window), all CLEAN. Re-derived the BLOCKER-001 deploy-gap claim myself instead of citing the 18:2x correction: `site/build-id.txt` and `ops/deploy-verdict.json`'s build id are byte-identical (`0173de4b4e0c59da`), `resolve_verdict_commit` resolves cleanly, `deploy_gap_material_commits` against current HEAD returns an empty list, 0 commits undeployed, matching STATUS.md exactly, no drift. GitHub's 31 open issues re-pulled live sorted by `updated_at`: the two most recent (#65, #42) are both prior agent comments, nothing from Phil since issue #64 (2026-11-08T16:59Z); all 31 are `decision`/`P0`/`blocked-on-art`.
@@ -17585,3 +17601,4 @@ Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json` (the backgrounded 
 **Next for the operator:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open GitHub issues, unchanged.
 
 Pushed to main. Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), honestly carrying revenue/traffic forward (no Stripe/analytics egress here). No price, product or page touched; IndexNow not applicable.
+
