@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-14 ~16:5x slot (A139): closed a real preflight FAIL this cycle's own first attempt caused, otherwise independently reconfirmed the exhausted, Phil-gated state
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force, landing 378 commits including the concurrent A138 cycle and the 16:1x PM check-in's `gate_status_currency` fix. Read `CLAUDE.md`, `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `STATUS.md` sections 0-9, and the last `ops/NIGHTLY-LOG.md` entries directly, confirming A122-A138 had already reached today's exhausted state. GitHub's 31 open issues re-pulled live via the API: unchanged since issue #42 (2026-11-14T12:51Z, a prior cycle's own comment), nothing from Phil since issue #64 (2026-11-08). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, standing gap.
+
+**Verified rather than cited, and found a real problem of my own making.** A first `python ops/preflight.py --skip-tests` run was killed at a 100-second wrapper timeout mid-`gate_etsy_pdfs_current`. That gate's own `render()` call had already rewritten the five committed Etsy PDFs for its before/after text comparison when the SIGTERM landed, pre-empting its own restore step and leaving `build/listings/etsy/` genuinely dirty. The next full run correctly refused to trust a diff against dirty state: a real FAIL (`"...already differs from HEAD..."`), not a flake, and not this gate's fault. Checked before acting (CLAUDE.md 5d): `git diff --stat` on the seven affected files showed identical byte counts either side (the exact "two renders of the same input differ byte-for-byte" shape the gate's own docstring already names), so no real content was at risk. `git checkout -- build/listings/etsy/` restored the committed state. Re-ran `python ops/preflight.py --skip-tests` live to completion: **every gate passed, 28 warnings**, all standing (no Stripe/SSH/mail credential here, known page/deck art gaps, affiliate T2 not evaluated, the room-guide mining lane still in diminishing returns, 45 nightly-log entries over the 750-word guideline, none new). `affiliate.py --check` (165 documents), `cold_read_ledger.py --stale` (0 stale), `check_urls.py` (236/236), `fix_dashes.py --check` (0/0) all independently re-run clean.
+
+**No new preflight gate filed (STEP 10b).** The existing gate caught this correctly and safely on its own merit; the defect was this cycle's own abrupt kill of a gate mid-render, not a gap in what the gate checks. A gate here would duplicate one that already worked as designed.
+
+**Nothing else new genuinely unblocked.** Every row in `BACKLOG-2026-09-07.md` sections 2-7 is Done, Hold or explicitly Phil-gated; the 31 open GitHub issues are the same set dozens of consecutive cycles have already independently reconfirmed; no mail credential, no Stripe/SSH/analytics egress, same standing sandbox limits. No push notification sent: not news, same state issue #42 already names, and the one real finding this cycle (the preflight FAIL) was self-caused and self-resolved, not a customer-facing or repository defect worth surfacing.
+
+**Went well:** verified a FAIL rather than assuming the dirty state was harmless or re-running blind; confirmed the fix with a full clean re-run rather than citing the diagnosis alone.
+
+**Did not go well:** my own 100-second timeout wrapper on the first preflight attempt is what created the dirty state in the first place; a longer or absent wrapper around `gate_etsy_pdfs_current` specifically would avoid this self-inflicted class entirely, since the gate already bounds its own render internally (`ETSY_PDFS_TIMEOUT_SECONDS`).
+
+**Changing next cycle:** let `preflight.py`'s own internal timeouts govern a run instead of wrapping the whole command in a short external `timeout`; if a run must be killed early, check `git status` for dirty `build/listings/etsy/` or `build/listings/kdp` paths before trusting the next run's `etsy-pdfs-current`/`kdp-cover-current` result.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 31 open GitHub issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `BACKLOG-2026-09-07.md` (A139 row), command deck regen (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), honestly carrying revenue/traffic forward (no Stripe/analytics egress here). No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-14 ~16:1x slot: previous work finished; closed the `gate_status_currency` warning for real rather than reconfirm the exhausted state a 32nd time
 
 **Previous work (A138 operator, 15:5x PM) was finished.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (368 commits), no reset or force, tree clean before this slot's own edits.
