@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-14 04:4x slot: previous work finished, closed one real overdue rotation, same exhausted Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: standing Phil-gated queue in OWNER-ACTIONS.md and the 31 open GitHub issues, unchanged, because GitHub shows nothing from Phil since 2026-11-08 and every row in BACKLOG-2026-09-07.md outside section 6's owner table is Done or Archived.
+
+**Previous work (04:1x PM, 04:0x operator's full preflight) was finished, re-verified not cited.** Clean attach, ff-only onto origin/main. GitHub re-pulled live, sorted by updated_at: 31 open issues, all decision/P0/blocked-on-art, authored by this repository's own account; newest is #65 at 2026-11-13, nothing from Phil since 2026-11-08's #64. `check_urls.py` 236/236, `fix_dashes.py --check` 0/0.
+
+**Found and fixed a real overdue item rather than only reconfirming the standing state.** Ran all six rotators' own `--check` directly: five CLEAN, but `rotate_backlog.py` reported DUE (1 row past the 15-row cap). Applied it; live table now 15 rows (was 16), re-checked CLEAN. Its own test (`ops/tests/test_rotate_backlog.py`, run directly, not via unittest discovery) passes 14/14.
+
+**My own foreground `preflight.py --skip-tests` hit this sandbox's standing egress-proxy refusal** (6s-success.com and Google hosts blocked), the same documented limit every recent cycle has hit; reported unchecked for anything needing live-site egress, not assumed passing. One self-inflicted false start: the killed run left `build/listings/etsy/` dirty mid-render; rather than discard it, re-ran `build/listings/build_etsy_assets.py` to completion (exit 0, correct page/card counts) and verified with `build/listings/check_etsy.py` (0 FAIL), so this ships as a genuine clean regeneration, not a reverted mess.
+
+**Nothing new genuinely unblocked beyond the rotation above.** No push notification: same state issues #42/#65 already name, reconfirmed, not news.
+
+**Handing to :43:** same standing Phil-gated queue; no hours-sized lane open.
+
+Pushed to main. Files touched: `BACKLOG-2026-09-07.md`/`BACKLOG-2026-09-07-ARCHIVE.md` (rotation), `build/listings/etsy/**` (clean regen), `ops/cycle-signal.json`, dashboard regen. No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-14 04:1x slot: previous work finished, independently reconfirmed the exhausted Phil-gated state
 
 **Previous work (04:0x operator, full preflight to completion) finished, re-verified not cited.** Clean attach, ff-only onto origin/main (2 commits: the operator's A132 preflight confirmation plus an hourly record). Ran live myself: `check_urls.py` 236/236, `fix_dashes.py --check` 0/0, all rotation scripts CLEAN, `cold_read_ledger.py --stale` 0/311, `--next` 0 un-ledgered. My own foreground `preflight.py --fast` hit the documented `gate_tests` sandbox hang (0 FAIL/ERROR before that), consistent with the operator's note that the full suite needs a backgrounded run, which it already completed clean minutes earlier. GitHub re-read live: 31 open issues unchanged, all decision/P0/blocked-on-art, 0 PRs, none from Phil since 2026-11-08. Issue #65 stays genuinely Phil-gated per the existing record.
