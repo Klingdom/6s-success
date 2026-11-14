@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-14 ~16:1x slot: previous work finished; closed the `gate_status_currency` warning for real rather than reconfirm the exhausted state a 32nd time
+
+**Previous work (A138 operator, 15:5x PM) was finished.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (368 commits), no reset or force, tree clean before this slot's own edits.
+
+**Read state directly, not cited.** `git log -12`, `ops/NIGHTLY-LOG.md`'s newest entries (file is newest-first; read the head, not the tail, this time), `BACKLOG-2026-09-07.md` sections 2-7 end to end, GitHub's 31 open issues re-pulled live via the MCP tool: unchanged since issue #42 (2026-11-14T12:51Z), nothing from Phil since #64 (2026-11-08). Section 2 ends at A94 (2026-11-12, Done); section 5 is Hold on genuine blockers (traffic, a stranger buying, A/B significance); section 6 is the owner-gate table. Nothing un-struck, nothing genuinely unblocked that is not Phil-gated.
+
+**Did real work instead of a 32nd reconfirmation.** Ran `preflight.py --skip-tests` live to completion (not backgrounded-and-guessed, watched the `prerender_shop.py` child genuinely render via `/proc`, not hung): 0 FAIL, every gate passed, 30 warnings. One of them, `gate_status_currency`, named 9 real material commits unmentioned in `STATUS.md` since its last edit, all of them PM/operator reconfirmation or rotation cycles, no new fact owed. Rather than let it compound (the exact shape this gate exists to catch), added a dated Section 1 entry naming all 9 hashes and what each one actually was, then re-ran `status_currency_gap()` directly against the edited file: 0 unmentioned. That edit made Section 1 carry two dates again, so `rotate_status_metadata.py --check` correctly went DUE; ran `--apply` (1 entry, 1175 bytes, moved to `STATUS-ARCHIVE.md`), re-checked CLEAN. `test_gate_status_currency.py` (17 checks) and `test_rotate_status_metadata.py` (fail-then-pass, 10/10) both pass. Re-derived `BLOCKER-001`'s own deploy-gap citation directly rather than trust it: `deploy_gap_material_commits(resolve_verdict_commit('0173de4b4e0c59da'))` returns 0, matching `ops/deploy-verdict.json`'s `2026-11-13T10:29:19Z` check exactly, no drift to fix. Full `preflight.py --skip-tests` re-run after both edits: 0 FAIL, every gate passed, 27 warnings (3 fewer: status-currency, the rotation, and the already-applied `core.hooksPath` fix all closed), all the remainder standing and documented (no Stripe/SSH/mail credential in this sandbox, known page/deck art gaps, affiliate T2 not evaluated, room-guide mining in diminishing returns).
+
+**Nothing new genuinely unblocked beyond that.** No push notification: not news, same state issue #42 already names, and this cycle's own change is housekeeping, not something Phil needs to act on.
+
+**Did not go well:** same standing sandbox limits (no Stripe/SSH/mail credential); issue #42's cadence question is still the longest-standing open item and needs Phil's own hand.
+
+**Changing next cycle:** none; no new defect class, so no new preflight gate (STEP 10b).
+
+**Next for the operator:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 31 open GitHub issues, unchanged.
+
+Pushed to main. `STATUS.md`, `STATUS-ARCHIVE.md`, `ops/cycle-signal.json`, dashboard regen. No price, product or site page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-14 ~15:5x slot (A138): independently reconfirmed the exhausted, Phil-gated state again, nothing new to start
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape). Unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean fast-forward (368 commits), no reset or force. Read `BACKLOG-2026-09-07.md` (current queue) end to end, `STATUS.md` sections 0-9, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries directly, not a summary.
