@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-14, scheduled operator cycle: a self-inflicted stray fixture caused a real preflight FAIL, root caused and fixed rather than just cleaned up
+
+**Did.** Attached clean: fetch, fetch --unshallow, checkout main, ff-only onto origin/main. Read CLAUDE.md, BACKLOG-2026-09-07.md (sections 0-7), the last several NIGHTLY-LOG.md entries. GitHub's 31 open issues re-pulled live via the API: unchanged since 2026-11-08, all decision/P0/blocked-on-art, none from Phil. inbox_agent.py --apply: no mail credential in this sandbox. All six rotators' own --check: CLEAN. preflight.py --skip-tests: every gate passed, 32 warnings, all standing. Mined the room-guide tier directly rather than cite "exhausted": confirmed live, every room between 4% and 14% uncovered on partial rows alone, 0 genuine gap rows anywhere, matching gate_room_guide_mining_diminishing_returns's own standing warning.
+
+**Ran the full python ops/preflight.py (with gate_tests, not skipped) live in the background rather than defer it again, and it found a real FAIL.** test_audit_catalog.py: "the correct price $19 of 'The Whole House Print Pack' was reported as drift." Checked before believing it (CLAUDE.md 5d): the real catalogue audit was clean, 0 findings, so nothing was ever actually wrong with a live price. Root caused rather than re-run until green: an earlier background preflight run this same cycle had been killed by my own mistaken `timeout 110 ... &` wrapper mid-gate_tests, and test_audit_catalog.py's own "a wrong price must be caught" case had left site/_audit_catalog_fixture_<pid>.html behind stating a deliberately wrong $29 price for this exact SKU, because a SIGTERM skips that test's own finally-block cleanup. preflight.py's gate_no_stray_probe_files sweep, which would otherwise delete a dead-pid leftover like this one, runs before gate_tests in main()'s own ordering, so it cannot clean up a mess gate_tests makes later in the same pass. Reproduced standalone with no concurrent process running at all, ruling out a live-collision race before touching anything.
+
+**Fixed at the root, not just the symptom.** audit_catalog.py's own pages() trusted every file matching its fixture naming convention under --include-fixtures, with no liveness check, so any bare invocation of the script or the test outside a full preflight.py run inherits a stale leftover from any earlier killed run, by any cause. Added the same os.kill(pid, 0) liveness check gate_no_stray_probe_files already uses, directly in audit_catalog.py's pages(), so a dead-pid fixture is ignored regardless of how the script is invoked. Fail-then-pass proved against the real file: planted a stray fixture with a confirmed-dead pid stating the same wrong price, watched pre-fix code report it as drift, confirmed post-fix code reports 0 findings. test_audit_catalog.py standalone now passes clean (ok, exit 0); py_compile clean. check_urls.py (236/236), affiliate.py --check (165 documents), check_sellable.py (124/126, 2 person-delivered services by design) all re-verified clean after. Removed both stray leftover fixtures this cycle's own mistakes had left behind (confirmed dead pid and untracked via git status before deleting either).
+
+**Went well.** Ran the slow, often-deferred full test suite instead of stopping at --skip-tests, and it earned its keep immediately: it caught a real (if self-inflicted) defect class that a fast pass could never see. Verified the live catalogue directly before writing anything, so a transient test artifact was never mistaken for an actual pricing defect.
+
+**Did not go well.** The stray fixture originated from my own earlier mistake in this same cycle (backgrounding a slow command behind a short timeout wrapper instead of the run_in_background mechanism, which then got killed). Caused the very defect class this cycle ended up fixing.
+
+**Changing next cycle.** None beyond the fix already shipped; gate_no_stray_probe_files's sweep ordering relative to gate_tests is a known, now-documented limit (it cannot clean up gate_tests's own mess within the same pass), but audit_catalog.py no longer depends on that sweep to stay correct, so no further change is needed for this specific tool.
+
+**Next.** Standing Phil-gated queue unchanged: the traffic read (#64), YouTube OAuth (#46), Gemini billing (#47), Search Console Pages/Performance export, Amazon KDP (#43) and Etsy (#44) accounts, Apple/Play accounts (#48), the accounts-layer decision (#45), issue #15 (Listmonk), issue #42 (cadence decision). No genuinely unblocked hours-sized lane open beyond routine maintenance and this fix.
+
+Dashboard regenerated. Pushed to main. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-14 00:4x slot: previous work finished, independently reconfirmed exhausted, nothing new unblocked
 
 NEXT FOR THE OPERATOR: standing Phil-gated queue in OWNER-ACTIONS.md and the 31 open GitHub issues, unchanged, because every rotator and health check run live this slot came back clean and none of the 31 issues has moved since Phil's last comment.
