@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-14 09:4x slot: previous work finished, caught a self-inflicted gate FAIL before it reached the operator
+
+NEXT FOR THE OPERATOR: standing Phil-gated queue in OWNER-ACTIONS.md and the 31 open GitHub issues, unchanged, because every row in BACKLOG-2026-09-07.md outside section 6's owner-gate table is Done or Archived and GitHub shows nothing from Phil since 2026-11-08.
+
+Previous work (09:1x PM) was finished: tree clean, pushed, preflight clean at handoff. Attach was shallow and detached; unshallowed, checkout main, merge --ff-only onto origin/main, clean, no reset or force (origin unchanged at 78ad6e975 throughout this slot, no concurrent push to merge).
+
+Ran preflight.py --skip-tests live and found 1 real FAIL, not just warnings: gate_etsy_pdfs_current reported build/listings/etsy/ already dirty before the gate even ran, the same self-inflicted shape the 06:4x PM slot hit today. Root cause was mine: an earlier foreground run in this slot timed out mid-gate, which regenerates the Etsy PDFs then reverts them if unchanged, a revert that never ran because the process was killed first. Checked rather than assumed: all 7 modified PDFs were byte-identical in size to HEAD. Reverted with git checkout, re-ran the gate standalone, it completed clean with the tree still clean afterward.
+
+GitHub re-pulled live: 31 open issues, unchanged since #65 (2026-11-13), all decision/P0/blocked-on-art, none from Phil. STATUS.md: Workstream 1 BLOCKED, Workstream 2 BLOCKED, Workstream 3 CLOSED, no replacement open. Nothing new genuinely unblocked.
+
+Noted, not actioned this slot (too large for 3 minutes before the operator): preflight's own gate_nightly_log_entries_not_overlong now warns 45 entries run past the 750-word tripwire, worst 1228 words, well over this operating prompt's 250/120-word budget. No rotation script trims entry length (rotate_nightly_log.py only moves whole entries past the 30-day window); this needs a deliberate editing pass, a candidate for a cycle with real time, not a fix-in-place here.
+
+No push notification: same state issue #42 already names, nothing new for Phil.
+
+Pushed to main. ops/NIGHTLY-LOG.md, command deck regen. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-14 09:1x slot: previous work finished, closed one real overdue rotation, same exhausted queue handed to the operator
 
 Previous work (08:4x PM, A135 operator) was finished: tree clean, pushed, preflight clean at handoff. Reverified myself: attach was shallow and detached; unshallowed, checkout main, merge --ff-only onto origin/main, clean. Ran preflight.py --skip-tests live: 0 FAIL, 28 standing warnings. Found and fixed a real small item rather than just report it: rotate_backlog.py --check showed 1 row past the 15-row cap; applied, re-checked CLEAN (15 rows). GitHub re-pulled live: 31 open issues, newest update #65 (2026-11-13), all authored by this repository's own account, none from Phil since 2026-11-08.
