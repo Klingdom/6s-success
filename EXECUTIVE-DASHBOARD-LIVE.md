@@ -8,7 +8,7 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 10 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-11-14 23:23 because this run could not reach Stripe** |
+| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-11-14 23:55 because this run could not reach Stripe** |
 | | `............................` |
 | **Paying customers** | 0 |
 | **Email list** | 0 |
@@ -28,9 +28,9 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 31 (10 P0, 2 blocked on art, 29 need your call) |
 | Closed to date | 35 |
-| Commits (7 days) | 1413 of 12854 total |
+| Commits (7 days) | 1415 of 12856 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `38f2d96cb` PM check-in 23:4x: closed a self-inflicted etsy-pdfs-current |
+| Last commit | `7e1435e60` Merge concurrent cycle, regenerate dashboard on merged state |
 
 ## Product readiness
 
