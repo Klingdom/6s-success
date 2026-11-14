@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-14 15:1x slot: previous work finished, independently reconfirmed the exhausted, Phil-gated state, no new push
+
+**Previous work was finished when this slot started.** Working tree clean, main pushed, last commits (hourly check-in, merge, dashboard regen) all landed with no open thread.
+
+**Reverified rather than cited.** Attach arrived shallow and detached (issue #27's usual shape); unshallowed, `checkout main`, ff-only onto `origin/main`, clean, no reset or force. GitHub's 31 open issues re-pulled live: unchanged since issue #42 (12:51Z today), all `decision`/`blocked-on-art`, none from Phil. `python ops/preflight.py --skip-tests` run live to completion (not cited): every gate passed, 29 warnings, all standing (no analytics/Stripe/VPS credential in this sandbox, known art/caption gaps already tracked). `check_urls.py` 236/236. `fix_dashes.py --check` 0 em/en dashes. `cold_read_ledger.py --stale` 0 stale. `affiliate.py --check` and `check_sellable.py --deep` both clean (124/126 buyable, 2 person-delivered by design). All four rotation gates (`rotate_backlog`, `rotate_checkin_log`, `rotate_nightly_log`, `rotate_owner_actions`) independently re-run CLEAN.
+
+**Nothing new genuinely unblocked.** Every open issue is `decision` (waiting on Phil) or `blocked-on-art`; the FORMAT_WORDS room-guide mining lane stays correctly exhausted by its own gate. No defect found this slot.
+
+**Did not go well:** same standing sandbox limits (no SSH/Stripe/mail credential here); issue #42 (cadence re-verifying an unchanged state) still open, needing Phil's own hand at claude.ai/code/routines.
+
+**Changing next cycle:** none.
+
+**Next for the operator:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 31 open GitHub issues, unchanged.
+
+Pushed to main. `ops/cycle-signal.json` (this slot's own clean preflight snapshot), dashboard regen. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-14 14:4x slot: previous work finished; found and fixed a self-caused false preflight FAIL; standing queue unchanged
 
 NEXT FOR THE OPERATOR: standing Phil-gated queue (31 issues) and OWNER-ACTIONS.md, unchanged.
@@ -17409,19 +17425,3 @@ Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json` (the backgrounded 
 **Next for the operator:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open GitHub issues, unchanged.
 
 Pushed to main. Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), honestly carrying revenue/traffic forward (no Stripe/analytics egress here). No price, product or page touched; IndexNow not applicable.
-
-## PM check-in, 2026-11-14 15:1x slot: previous work finished, independently reconfirmed the exhausted, Phil-gated state, no new push
-
-**Previous work was finished when this slot started.** Working tree clean, main pushed, last commits (hourly check-in, merge, dashboard regen) all landed with no open thread.
-
-**Reverified rather than cited.** Attach arrived shallow and detached (issue #27's usual shape); unshallowed, `checkout main`, ff-only onto `origin/main`, clean, no reset or force. GitHub's 31 open issues re-pulled live: unchanged since issue #42 (12:51Z today), all `decision`/`blocked-on-art`, none from Phil. `python ops/preflight.py --skip-tests` run live to completion (not cited): every gate passed, 29 warnings, all standing (no analytics/Stripe/VPS credential in this sandbox, known art/caption gaps already tracked). `check_urls.py` 236/236. `fix_dashes.py --check` 0 em/en dashes. `cold_read_ledger.py --stale` 0 stale. `affiliate.py --check` and `check_sellable.py --deep` both clean (124/126 buyable, 2 person-delivered by design). All four rotation gates (`rotate_backlog`, `rotate_checkin_log`, `rotate_nightly_log`, `rotate_owner_actions`) independently re-run CLEAN.
-
-**Nothing new genuinely unblocked.** Every open issue is `decision` (waiting on Phil) or `blocked-on-art`; the FORMAT_WORDS room-guide mining lane stays correctly exhausted by its own gate. No defect found this slot.
-
-**Did not go well:** same standing sandbox limits (no SSH/Stripe/mail credential here); issue #42 (cadence re-verifying an unchanged state) still open, needing Phil's own hand at claude.ai/code/routines.
-
-**Changing next cycle:** none.
-
-**Next for the operator:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 31 open GitHub issues, unchanged.
-
-Pushed to main. `ops/cycle-signal.json` (this slot's own clean preflight snapshot), dashboard regen. No price, product or page touched; IndexNow not applicable.
