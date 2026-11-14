@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-14 05:4x slot: previous work finished, independently reconfirmed, nothing new unblocked
+
+NEXT FOR THE OPERATOR: standing Phil-gated queue in OWNER-ACTIONS.md and the 31 open GitHub issues, unchanged, because every row in BACKLOG-2026-09-07.md outside section 6's owner-gate table is Done or Archived and GitHub shows nothing from Phil since 2026-11-08.
+
+Clean attach, ff-only onto origin/main, tree already clean on arrival. Ran `preflight.py --skip-tests` myself to completion (backgrounded, not killed at a slot timeout): every gate passed, 27 known warnings, `cycle_signal` snapshot recorded. Re-pulled GitHub live: 31 open issues unchanged, all `decision`/`P0`/`blocked-on-art`; newest is #65 (2026-11-13), which is this repository's own account, not Phil. No un-struck backlog row outside section 6. No push: the owner-silence topic's no-repeat-before (2026-11-15T18:00Z) has not elapsed and nothing here is new.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` and dashboard regen only; nothing customer-facing, IndexNow not applicable.
+
 ## PM check-in, 2026-11-14 05:1x slot: previous work finished, independently reconfirmed, nothing new unblocked
 
 Previous work (04:4x PM, 05:0x operator, same HEAD) was finished, re-verified rather than cited. Clean attach: fetch, unshallow, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. Working tree already clean and pushed on arrival. My own foreground `preflight.py --skip-tests` was killed at this slot's own timeout with its buffered output empty, so I report that attempt as unchecked, not passing; but a `ops/cycle-signal.json` checkpoint recorded minutes earlier on this exact `git HEAD` (`9cdb85dd5`) already shows every gate before `gate_tests` passed, and `gate_tests` is the documented sandbox hang every recent cycle hits. Ran the cheap checks myself directly instead: all three large rotators (`rotate_backlog.py`, `rotate_checkin_log.py`, `rotate_nightly_log.py`) CLEAN, nothing due. `fix_dashes.py --check`: 0 em/en dashes. GitHub re-pulled live: 31 open issues unchanged, all `decision`/`P0`/`blocked-on-art`, newest Phil update is #64 on 2026-11-08; #65's 2026-11-13 update is this repository's own account, not Phil.
