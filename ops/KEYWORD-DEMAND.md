@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-11T17:34:53Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-15T04:58:09Z against 244 page(s) at commit 622372055. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-15T08:54:21Z against 244 page(s) at commit 6cb809525. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2810. Checked against 244 published page titles: 1767 covered, 952 partial, 91 gap.
+**Queries found:** 2810. Checked against 244 published page titles: 1771 covered, 946 partial, 93 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 91, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 93, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -32,12 +32,13 @@ Showing the top 80 of 91, ordered by the best rank the phrase reached in any one
 | 3 | den office design ideas | - | How to organize a family room, zone by zone (0.33) | design, office |
 | 3 | how to arrange logs in solo stove | - | How to organize the kitchen stove area (0.33) | logs, solo |
 | 3 | how to organize cricut vinyl | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cricut, vinyl |
-| 3 | organized nurse designs | - | What is a micro zone? The unit that actually gets organized (0.33) | designs, nurse |
+| 3 | organized nurse designs | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | designs, nurse |
 | 4 | how to build a nightstand for beginners | - | How to organize the guest bedroom nightstand (0.33) | beginners, build |
 | 4 | how to make a disposable diaper | - | How we make money: what we sell, and what we do not earn on (0.33) | diaper, disposable |
 | 4 | how to organize a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, tournament |
 | 4 | how to organize hard drive files | - | How to organize paperwork at home with a simple filing system (0.00) | drive, hard |
 | 4 | ideas for decks and patios | - | How to organize the patio or deck garden area (0.00) | decks, patios |
+| 4 | organized nurse | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | nurse |
 | 4 | why am i frequently using the bathroom | - | How to organize the guest bathroom towels (0.33) | frequently, using |
 | 5 | decks and patios design ideas | - | How to organize an entryway, zone by zone (0.00) | decks, patios |
 | 5 | dental organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | dental |
@@ -100,11 +101,10 @@ Showing the top 80 of 91, ordered by the best rank the phrase reached in any one
 | 16 | how to organize dropbox | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | dropbox |
 | 17 | examples of decks and patios | - | How to organize the patio or deck garden area (0.00) | decks, examples, patios |
 | 17 | organizing hard drive files | - | How to organize paperwork at home with a simple filing system (0.00) | drive, hard |
-| 17 | snap on stationary storage | - | More storage will not fix a messy room (0.33) | snap, stationary |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 952.
+Showing the top 60 of 946.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|

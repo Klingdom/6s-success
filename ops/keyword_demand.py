@@ -207,7 +207,35 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "teen", "labels", "dividers", "canvas", "pouch",
                           "church", "insert", "durable", "lightweight",
                           "properly", "apartments", "large", "homes",
-                          "cheap", "list", "everyday", "tidying", "next"))
+                          "cheap", "list", "everyday", "tidying", "next",
+                          "organized", "organised"))
+
+# "organized" and "organised" joined 2026-11-15, scheduled operator cycle,
+# found mining Guest Bathroom's own partial tier ("organized bathroom
+# cupboard", global, 0.333). The organize-family already carried every
+# other inflection ("organize", "organizing", "organization", "organiser",
+# "organizer", "organizers", "organise", "organising") but had never
+# carried the one past-tense/adjectival form itself, so "how to keep X
+# organized" queries were penalised for using a different tense of the
+# exact word this product's own vocabulary already treats as
+# format-agnostic, the same gap class as "arrange"/"arranged" already
+# closed for the arrange family. Self-flattery checked first using the
+# same title_words/head_words fields the scorer itself reads: 1 of 244
+# titles, 13 of 244 headings for "organized", 0 titles, 0 headings for
+# "organised", both well under the bar words like "home" (15 titles, 50
+# headings) failed on. Full before/after score_rows() diff across both
+# corpora before shipping (CLAUDE.md 5d): US 6 status changes, global 3;
+# every improving row is a genuine partial-or-gap-to-covered move onto the
+# correct page ("how to keep nightstand organized", "organized desk
+# drawer", "organized bathroom cupboard", "how to keep your backpack
+# organized", among others); the handful that moved DOWN ("organized
+# nurse", "organized nurse designs", "what is an organised walk", "easy
+# packing + organized storage") are off-topic noise (a nursing
+# designation, a walking-group query) or a row whose only real match was
+# "organized" itself on an unrelated article, so the honest answer for
+# each is a lower score, not the inflated one "organized" was giving it,
+# the same demote-to-honest shape A125's "recipes" removal from this same
+# list already established in the other direction.
 
 # "list", "everyday" and "tidying" joined 2026-11-12, this scheduled
 # operator cycle, mining Primary Bedroom's partial tier (19 rows, tied with

@@ -15497,16 +15497,14 @@
         "how to organize nightstand"
       ],
       "room": "",
-      "best_page": "/articles/family-wont-put-things-back.html",
-      "best_page_title": "Why your family won't put things back where they belong",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/family-wont-put-things-back.html",
+      "best_page": "/articles/how-to-organize-a-guest-bedroom.html",
+      "best_page_title": "How to organize a guest bedroom, step by step",
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "nightstand"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -41709,14 +41707,12 @@
       "room": "",
       "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "best_page_title": "How to organize the guest bathroom towels",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "organized"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -41729,15 +41725,14 @@
         "how to organize drop zone"
       ],
       "room": "",
-      "best_page": "/articles/what-is-a-micro-zone.html",
-      "best_page_title": "What is a micro zone? The unit that actually gets organized",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/family-wont-put-things-back.html",
+      "best_page": "/zones/entryway-the-landing-spot.html",
+      "best_page_title": "How to organize the entryway drop zone",
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
+      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
       "matched_on": "title",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
-        "drop",
         "option"
       ],
       "markets": [
@@ -48225,6 +48220,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "fbb50ee47",
-  "scored_at": "2026-11-15T07:14:17Z"
+  "scored_against_commit": "6cb809525",
+  "scored_at": "2026-11-15T08:54:23Z"
 }

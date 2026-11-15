@@ -9720,16 +9720,16 @@
         "how to organize bulk storage"
       ],
       "room": "",
-      "best_page": "/articles/family-wont-put-things-back.html",
-      "best_page_title": "Why your family won't put things back where they belong",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/family-wont-put-things-back.html",
-      "matched_on": "heading",
-      "status": "partial",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
+      "coverage": 0.333,
+      "heading_coverage": 0.333,
+      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "matched_on": "title",
+      "status": "gap",
       "unmatched_words": [
-        "packing",
-        "storage"
+        "easy",
+        "packing"
       ]
     },
     {
@@ -19575,11 +19575,11 @@
         "how to organize cleaning supplies"
       ],
       "room": "",
-      "best_page": "/articles/why-your-house-gets-messy-again.html",
-      "best_page_title": "Why your house gets messy again a week after you clean it",
-      "coverage": 0.25,
+      "best_page": "/articles/why-is-my-house-always-messy.html",
+      "best_page_title": "Why is my house always messy?",
+      "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/why-your-house-gets-messy-again.html",
+      "heading_page": "/articles/why-is-my-house-always-messy.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -19595,11 +19595,11 @@
         "how to organize a family room"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-laundry-room.html",
-      "best_page_title": "How to organize a laundry room, step by step",
-      "coverage": 0.333,
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-laundry-room.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -19614,16 +19614,14 @@
         "how to organize nightstand"
       ],
       "room": "",
-      "best_page": "/articles/family-wont-put-things-back.html",
-      "best_page_title": "Why your family won't put things back where they belong",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/family-wont-put-things-back.html",
+      "best_page": "/articles/how-to-organize-a-guest-bedroom.html",
+      "best_page_title": "How to organize a guest bedroom, step by step",
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-guest-bedroom.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "nightstand"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to keep your backpack organized",
@@ -19635,16 +19633,14 @@
         "how to organize backpack station"
       ],
       "room": "",
-      "best_page": "/articles/family-wont-put-things-back.html",
-      "best_page_title": "Why your family won't put things back where they belong",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/family-wont-put-things-back.html",
+      "best_page": "/kids-bedroom-deck.html",
+      "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/kids-bedroom-deck.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "backpack"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to lay decking over a patio",
@@ -43976,16 +43972,14 @@
         "how to organize desk drawers"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-junk-drawer.html",
-      "best_page_title": "How to organize a junk drawer (and keep it that way)",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-junk-drawer.html",
+      "best_page": "/zones/home-office-the-desk-drawers-and-pedestal.html",
+      "best_page_title": "How to organize the home office desk drawers",
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/home-office-the-desk-drawers-and-pedestal.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "desk"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "organized entryway",
@@ -43997,12 +43991,12 @@
         "how to organize a entryway"
       ],
       "room": "Entryway",
-      "best_page": "/articles/family-wont-put-things-back.html",
-      "best_page_title": "Why your family won't put things back where they belong",
-      "coverage": 0.5,
+      "best_page": "/zones/entryway-the-bench-or-console.html",
+      "best_page_title": "How to organize the entryway bench or console",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/family-wont-put-things-back.html",
-      "matched_on": "heading",
+      "heading_page": "/zones/entryway-the-bench-or-console.html",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -44016,13 +44010,13 @@
         "how to organize a nursery"
       ],
       "room": "",
-      "best_page": "/articles/what-is-a-micro-zone.html",
-      "best_page_title": "What is a micro zone? The unit that actually gets organized",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/family-wont-put-things-back.html",
+      "best_page": "/about.html",
+      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "coverage": 0.0,
+      "heading_coverage": 0.0,
+      "heading_page": "/about.html",
       "matched_on": "title",
-      "status": "partial",
+      "status": "gap",
       "unmatched_words": [
         "nurse"
       ]
@@ -44037,11 +44031,11 @@
         "how to organize a nursery"
       ],
       "room": "",
-      "best_page": "/articles/what-is-a-micro-zone.html",
-      "best_page_title": "What is a micro zone? The unit that actually gets organized",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/family-wont-put-things-back.html",
+      "best_page": "/about.html",
+      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "coverage": 0.0,
+      "heading_coverage": 0.0,
+      "heading_page": "/zones/entryway-the-bench-or-console.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -54447,16 +54441,14 @@
         "how to organize walkway"
       ],
       "room": "",
-      "best_page": "/articles/what-is-a-micro-zone.html",
-      "best_page_title": "What is a micro zone? The unit that actually gets organized",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/family-wont-put-things-back.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "walk"
-      ]
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
+      "coverage": 0.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "what is bulk storage",
@@ -56500,6 +56492,6 @@
       ]
     }
   ],
-  "scored_against_commit": "622372055",
-  "scored_at": "2026-11-15T04:58:09Z"
+  "scored_against_commit": "6cb809525",
+  "scored_at": "2026-11-15T08:54:21Z"
 }
