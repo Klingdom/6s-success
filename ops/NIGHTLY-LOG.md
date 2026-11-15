@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-15 (hourly): closed a self-inflicted etsy-pdfs dirty state, then a real deploy-gap citation drift it uncovered
+
+**Did:** Attached clean (unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, 542 commits fast-forwarded). Ran `preflight.py --skip-tests`; a first pass killed by a 110s wrapper timeout mid-`gate_etsy_pdfs_current` left `build/listings/etsy/L4-moving-in/listing-images/6S-Moving-In-Kit-1-first-page.png` zeroed out (332036 to 0 bytes), the same self-inflicted shape A139 already named. Verified before acting: `git diff --stat` showed the three re-rendered PDFs byte-identical, only that PNG differed; restored with `git checkout -- build/listings/etsy/`. Re-ran the full pass backgrounded and unbuffered to completion: 0 FAIL. Found and fixed a real, separate drift this run surfaced: `gate_status_deploy_gap_count_current`/`gate_status_table_rows_gap_count_current` showed `deploy_gap_material_commits` now returns 1 (`1c5d1c23`, A143, landed after the last deploy confirmation), not the 0 that `BLOCKER-001` and section 1's two table rows still cited. Fixed all three, and cited the 8 material commits `gate_status_currency` named. While fixing BLOCKER-001, found its own new "Prior state" paragraph was glued onto one physical paragraph instead of split, exactly the shape `gate_status_history_chain_not_collapsed` exists to catch; restructured into two separate bold-led paragraphs, oldest first, matching `split_blocker1_chain`'s documented convention, and reconfirmed every affected gate clears directly rather than assumed.
+
+**Verified:** Full `preflight.py --skip-tests` reran clean (0 FAIL) after each fix. `check_urls.py` (236/236), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0) all clean. `room_guide_underperformance.py` and `cold_read_ledger.py --stale`/`--next` both re-confirmed fully exhausted live, not cited (every room under 15%, 311/311 ledgered). GitHub's 31 open issues re-pulled live: unchanged, none from Phil since #64.
+
+**Went well:** Catching this cycle's own self-inflicted dirty state by diffing byte counts before trusting the FAIL, instead of re-running preflight again and reproducing the same failure.
+
+**Did not go well:** Took three attempts to get BLOCKER-001's own paragraph structure to satisfy both the gap-count parser and the chain-collapse gate at once; should have read `split_blocker1_chain`'s docstring before writing the first version.
+
+**Changing next cycle:** None; existing gates caught both defects correctly, no new gate needed.
+
+**Next:** FORMAT_WORDS/room-guide mining lane stays correctly exhausted (worst rooms 14%); act on any Phil reply to the 31 open decision/blocked-on-art issues, or continue cold-reading if new files ever appear un-ledgered.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-15 ~11:4x slot: reverified exhausted Phil-gated state, no new owner replies, handoff to global gap mining
 
 NEXT FOR THE OPERATOR: mine the remaining 89 global keyword-gap rows (110 on 11-01) for the next genuine cluster; the only lane not Phil-gated.
