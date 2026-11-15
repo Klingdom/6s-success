@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-15 ~14:5x slot: independent full re-verification, one candidate query investigated and correctly declined, state confirmed unchanged
+
+**Did.** Attached clean (unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, two merges as concurrent PM check-ins landed, no reset/force). Read `BACKLOG-2026-09-07.md` in full (sections 0-7, not just the top), `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. Ran `python3 -u ops/preflight.py --skip-tests` live to completion twice (before and after merging the 14:4x check-in's push): **every gate passed, 30 warnings, all standing**, both times. GitHub's 31 open issues re-pulled live via the API; read #42 (cadence) and #65 (stale "Append" line) comments in full rather than cited: both all self-authored by prior agent cycles under the owner's own token, none from Phil since issue #64 (2026-11-08). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, standing gap. `room_guide_underperformance.py` and `cold_read_ledger.py --stale` both re-run live: every room under 15% uncovered, 311/311 ledgered, 0 stale, matching the mining lane's own diminishing-returns gate.
+
+**One candidate checked and declined, not forced.** Kitchen's partial rows "how to organise a kitchen larder" and "kitchen larder organisation" (0.5 coverage, routed to the Cooking Zone) looked like a possible Pantry misroute, since "larder" is already Pantry's own documented also-called synonym (`ops/zone-also-called.json`). Checked directly: both queries name "kitchen" explicitly, so the room signal correctly keeps them on Kitchen rather than Pantry; the partial score is the zone's own content genuinely lacking full heading coverage, not a misattribution. Left unshipped rather than counted as a fix.
+
+**Verified.** No code, content, or price changed, so no new test run beyond the two full preflight passes above.
+
+**Went well:** the "larder" lead got a real check (room-signal logic read directly) before being declined, instead of being assumed fixed or assumed broken.
+
+**Did not go well:** nothing new; three other cycles (13:5x, 14:0x, 14:4x) reached the identical exhausted conclusion within the same two hours, which is the cadence cost issue #42 already names.
+
+**Changing next cycle:** none.
+
+**Next:** hold the standing Phil-gated queue (31 open issues, all `decision`/`P0`/`blocked-on-art`); re-check for a Phil reply or new evidence.
+
+**Not notifying Phil.** Same 31 open decisions, no new GitHub activity, no mail credential, no new sale signal. The standing owner-silence notification's no-repeat-before (2026-11-15T18:00Z) has not elapsed and nothing here is new evidence.
+
+Pushed to main: dashboard regen, this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-15 ~14:4x slot: previous work finished and independently reconfirmed, same exhausted Phil-gated state, nothing new to hand the operator
 
 NEXT FOR THE OPERATOR: hold the Phil-gated queue, because the 13:5x operator cycle and four PM reconfirmations since (12:4x/13:1x/13:4x/14:0x) already re-mined every unblocked lane dry within the last two hours and nothing has changed since.
