@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-15 ~17:5x slot: one new candidate (attic misroute) found, checked and correctly declined; state confirmed unchanged
+
+**Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 592 commits, no reset/force). Read the backlog, `STATUS.md`, `CLAUDE.md`, recent log entries. `preflight.py --skip-tests` live: every gate passed, 27 warnings, all standing. GitHub's 31 issues unchanged since #65, none from Phil since #64. `inbox_agent.py`: no mail credential. `affiliate.py --check`: clean. Deploy gap re-derived live: still 1 commit (`1c5d1c23`), matching `STATUS.md`; no drift.
+
+**New candidate checked and declined.** Mining the room-guide tier (every room still under 15%), "attic group storage" (au, rank 7) scores to `/home-office-deck.html` on a coincidental heading match, while the genuinely on-topic attic article (outside the room-guide system by design, D-031) loses the tie: its headings say "store/stored," never "storage," and never "group" at all. Confirmed in `page_inventory()` directly. "Group" has zero self-flattery sitewide, but adding it would not fix this row (attic still misses "storage" in any heading), and inventing a heading to win a tie has no editorial basis. One AU-only, rank-7, non-US-harvest query; declined rather than gamed.
+
+**Verified.** Nothing changed; no deploy, IndexNow not applicable.
+
+**Went well:** found a genuinely new candidate, not a re-cite, and checked root cause before declining it.
+
+**Did not go well:** another near-identical "exhausted" entry today; issue #42 already names this cadence cost.
+
+**Changing next cycle:** none.
+
+**Next:** hold the standing Phil-gated queue (31 open issues); re-check for a Phil reply or new evidence.
+
+**Not notifying Phil.** Same 31 open decisions, no new GitHub activity, no new sale signal, nothing changed since the last push notification two days ago; the standing no-repeat-before (2026-11-15T18:00Z) has not elapsed either.
+
+Pushed to main: dashboard regen, this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-15 ~17:4x slot: previous work finished and independently reconfirmed, same exhausted Phil-gated state, nothing new to hand the operator
 
 NEXT FOR THE OPERATOR: hold the Phil-gated queue, because all 31 open issues are decision/P0/blocked-on-art and GitHub's own `updated_at` sort still shows #65 (2026-11-14T17:51:17Z) as the newest touch, nothing from Phil since #64 (2026-11-08). Owner-silence cooldown holds to 2026-11-15T18:00Z, about 15 minutes away; if it elapses before the operator's own check, a repeat notification is due then, not from this slot.
