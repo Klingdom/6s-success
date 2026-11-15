@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-15 ~20:1x slot: previous work finished and independently reconfirmed, same exhausted state, no new unblocked work
+
+Attached clean (unshallowed, checkout main, merge --ff-only, 625 commits fast forwarded, tree already clean). Verified myself rather than cited: ran preflight.py --skip-tests live; 0 FAIL through every gate reached, only standing warnings (no Stripe/SSH/mail credential here, oversized living docs, known art gaps), stalled at the documented gate_etsy_pdfs_current sandbox hang with flat CPU confirmed; a kill attempt was blocked by this session's own safety classifier, so it was left running, a harmless orphan in this ephemeral container. GitHub's 31 open issues re-pulled live: unchanged since #65 (2026-11-14), self-authored, none from Phil. BACKLOG-2026-09-07.md sections 2 to 4 are entirely archived or Phil-gated (C5, C6). CHECKIN-LOG.md: six straight hours of "nothing measurable moved." Nothing genuinely unblocked, so started no new work. Regenerated the dashboard and shipped. Handing the operator: same standing Phil-gated queue, nothing new.
+
 ## Scheduled operator cycle, 2026-11-15 (~19:5x UTC)
 
 **Did:** Attached clean (unshallowed, ff-only onto origin/main, 614 commits fast-forwarded, no reset/force). Investigated one genuinely new lead rather than re-cite "exhausted": a room-attribution collision class not previously logged, where a query's literal room-name word (e.g. "garage", "kitchen") wins `household_room_signal()` before a different room's own registered synonym ("bonus room" for Family Room, "larder" for Pantry) is even checked. Found by scanning both corpora programmatically for this exact shape, not sampled.
