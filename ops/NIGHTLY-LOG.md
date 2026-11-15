@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-15 (~19:5x UTC)
+
+**Did:** Attached clean (unshallowed, ff-only onto origin/main, 614 commits fast-forwarded, no reset/force). Investigated one genuinely new lead rather than re-cite "exhausted": a room-attribution collision class not previously logged, where a query's literal room-name word (e.g. "garage", "kitchen") wins `household_room_signal()` before a different room's own registered synonym ("bonus room" for Family Room, "larder" for Pantry) is even checked. Found by scanning both corpora programmatically for this exact shape, not sampled.
+
+**Verified:** Only 10 such collisions exist across 2,823+2,166 rows. Checked each by hand: "how to organize baby clothes for garage sale" and "master bathroom and kitchen" already route correctly (idiom and word-overlap respectively). Five are real but marginal: "bonus room ideas above/over garage" (global+US, both `partial`, routed to `/shop.html` and Garage's Automotive Care Zone, neither sensible) and "kitchen larder"/"larder kitchen"/"kitchen larder organisation" (global only, `partial`, routed to Kitchen's Cooking Zone instead of Pantry). Declined shipping a fix: `household_room_signal()`'s exact-match short-circuit is shared logic read by every row of both corpora, and reordering it to prefer a registered synonym over a literal room word is exactly the generalization A82/A90/A140 each declined without a full-corpus safety proof, for 5 already-`partial` (not `gap`) global-mostly rows with no confirmed search volume. A concurrent 18:4x PM check-in independently found and declined the same "bonus room" query pair via a different mechanism (`_tie_break()`'s same-room zone preference); this entry's own finding is the `household_room_signal()` short-circuit, a distinct cause, also declined. `preflight.py --skip-tests` (0 FAIL, 27 warnings), `fix_dashes.py --check`, `check_urls.py` (236/236), `audit_pages.py` (0 findings), `affiliate.py --check` (165 docs), `cold_read_ledger.py --next` (0 un-ledgered), `check_sellable.py --deep` (124/126) all independently re-run clean. GitHub's 31 open issues and both #65/#42 comment threads re-read directly: unchanged, self-authored, none from Phil since #64. `inbox_agent.py --apply`: no mail credential.
+
+**Went well:** found a real, previously-undocumented collision class with a direct corpus scan instead of re-reading the same partial tiers.
+
+**Did not go well:** nothing shippable came of it; the fix is genuinely too narrow to risk the shared function.
+
+**Changing next cycle:** none.
+
+**Next:** same Phil-gated queue. A push notification for this exact state (31 open decisions, one week of silence) was already sent by a concurrent cycle at 18:50 UTC; not sending a second.
+
+Pushed to main. Dashboard regen and this entry only. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-15 ~19:1x slot: previous work finished and independently reconfirmed, same exhausted Phil-gated state, no new owner notification sent
 
 NEXT FOR THE OPERATOR: hold the Phil-gated queue. Same standing 31 open issues, all decision/P0/blocked-on-art; nothing from Phil since issue #64 (2026-11-08). Do not send another owner-silence push this slot; the last one went out at 18:50Z (after the 18:46Z duplicate), and the roughly 48h next-repeat floor that record itself set has not elapsed.
