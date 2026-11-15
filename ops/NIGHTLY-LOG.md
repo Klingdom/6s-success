@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-15 (23:0x slot): A150, closed a real "narrow/tiny laundry room" content gap, caught a self-inflicted mcp/content.json drift before shipping
+
+**Did.** Attached clean, unshallowed, ff-only onto origin/main, 658 commits fast-forwarded, tree clean. `preflight.py --skip-tests`: 0 FAIL, 28 warnings. GitHub 31 open issues unchanged since #65, none from Phil since #64. No mail credential. Rotated the overdue backlog table first (5 rows past cap, `rotate_backlog.py --apply`). Hand-read Laundry Room's own worst partial rows (not the aggregate) and found 4 genuine queries ("narrow"/"tiny laundry room") with no page on the site saying either word.
+
+**Fixed.** The room's own "Room layout" tip already describes real space-saving zone-sharing but the scorer only reads titles/headings, not body text, confirmed by testing the addition first and watching it not move. Added one honest sentence naming the narrow/tiny case (stack the washer-dryer, a fold-down counter) and extended `build_zone_pages.py`'s existing per-room layout-heading-suffix mechanism (same one Primary Bedroom/Primary Bathroom already use) so the heading itself carries the words. Checked collision against every other room already using "narrow"/"tiny" in its own heading before shipping.
+
+**Caught before shipping, not after.** The full `preflight.py` run FAILed once on `gate_mcp_corpus_current`: the content.json edit was never mirrored into `mcp/content.json`, a committed byte-for-byte copy. Re-copied, re-ran: 0 FAIL, 29 warnings.
+
+**Verified.** Rescored both corpora live: all 4 target queries moved partial to covered, correctly pointing at `/rooms/laundry-room.html`, 0 regressions on the other rooms sharing either word. Laundry Room's guide tally moved 12% to 7% uncovered. `test_keyword_demand.py`, `check_urls.py`, `audit_pages.py`, `fix_dashes.py`/`fix_dialect.py --check`, `affiliate.py --check`, `link_graph_report.py`, `check_sellable.py` all independently clean.
+
+**Went well.** Reading the actual content before reaching for a scorer-level fix (FORMAT_WORDS), which would have masked a real content gap rather than closed it.
+
+**Did not go well.** Spent real time mid-cycle mistaking `gate_preflight_lock_blocks_concurrent_runs`'s own self-test output ("waiting on a concurrent preflight.py") for a hung process and killing two healthy runs before checking a clean prior log and confirming it is expected, benign test output.
+
+**Changing next cycle:** none; this cost real time once and should not recur now it is understood.
+
+**Next:** mine another room's partial tier by hand, or act on any Phil reply.
+
+Pushed to main (merged with a concurrent PM check-in's dashboard/log regen, no content lost). `content/manual/source/content.json`, `mcp/content.json`, `ops/build_zone_pages.py`, one rebuilt room page, rescore files, `BACKLOG-2026-09-07.md`, dashboard regen, this entry. No price or product touched; `IndexNow` to submit on push.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-15 (22:1x slot): previous work finished; independently confirmed Garage's partial tier is exhausted; closed a real stale deploy-citation gap, merged with a concurrent twin fix
 
 Finished A147/A148: tree clean, main matched origin, live `preflight.py --skip-tests` 0 FAIL, every gate passed. GitHub's 31 issues unchanged since #65, none from Phil since #64.

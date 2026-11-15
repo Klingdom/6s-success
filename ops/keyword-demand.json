@@ -23365,16 +23365,14 @@
         "how to declutter a laundry room"
       ],
       "room": "Laundry Room",
-      "best_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
-      "best_page_title": "How to organize the laundry room detergent and supplies",
+      "best_page": "/rooms/laundry-room.html",
+      "best_page_title": "How to organize a laundry room, zone by zone",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "narrow"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/laundry-room.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a narrow living room",
@@ -24615,16 +24613,14 @@
         "how to declutter a laundry room"
       ],
       "room": "Laundry Room",
-      "best_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
-      "best_page_title": "How to organize the laundry room detergent and supplies",
+      "best_page": "/rooms/laundry-room.html",
+      "best_page_title": "How to organize a laundry room, zone by zone",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "tiny"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/laundry-room.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a tool crib",
@@ -41870,16 +41866,14 @@
         "laundry room organization ideas"
       ],
       "room": "Laundry Room",
-      "best_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
-      "best_page_title": "How to organize the laundry room detergent and supplies",
+      "best_page": "/rooms/laundry-room.html",
+      "best_page_title": "How to organize a laundry room, zone by zone",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "narrow"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/laundry-room.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "necessities for bathroom guests",
@@ -51749,16 +51743,14 @@
         "laundry room organization ideas"
       ],
       "room": "Laundry Room",
-      "best_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
-      "best_page_title": "How to organize the laundry room detergent and supplies",
+      "best_page": "/rooms/laundry-room.html",
+      "best_page_title": "How to organize a laundry room, zone by zone",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "tiny"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/laundry-room.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "tips for creating a gallery wall",
@@ -56484,6 +56476,6 @@
       ]
     }
   ],
-  "scored_against_commit": "3426dc846",
-  "scored_at": "2026-11-15T21:17:59Z"
+  "scored_against_commit": "f801f49fa",
+  "scored_at": "2026-11-15T22:57:19Z"
 }

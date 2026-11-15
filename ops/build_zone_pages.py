@@ -4099,7 +4099,15 @@ def room_page(room, header, footer, all_rooms=()):
         # room-signal tie-break (same mechanism that comment describes)
         # still resolves every one of those to the correct room. Scoped to
         # this one room; every other room's suffix is empty.
-        _layout_suffix = {"Primary Bedroom": ", furniture and storage"}.get(room["room"], "")
+        _layout_suffix = {
+            "Primary Bedroom": ", furniture and storage",
+            # "how to organize a narrow/tiny laundry room" (both keyword
+            # harvests) scored one word short because neither "narrow" nor
+            # "tiny" appeared in any heading on the site, even though this
+            # same tip (edited the same day) now spells out the stack-
+            # rather-than-spread answer for exactly that room.
+            "Laundry Room": ", narrow or tiny",
+        }.get(room["room"], "")
         out.append(f'<h2>{esc(rm.capitalize())} layout{_layout_suffix}</h2>'
                    f'<p>{esc(_clean(_layout_text))}</p>')
 
