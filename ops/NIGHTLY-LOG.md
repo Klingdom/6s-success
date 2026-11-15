@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-15 ~15:5x slot: independent full re-verification, nothing new found, state confirmed unchanged
+
+**Did.** Attached clean: `git fetch origin main`, unshallowed (576 commits behind), `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force, working tree clean before and after. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` sections 0-7 in full, `STATUS.md` sections 0-9, `GOALS.md` sections 0-2, `ROADMAP-2026-2029.md`'s section headings, and the last several `ops/NIGHTLY-LOG.md` entries (not a summary of them) before picking up anything.
+
+**Verified rather than cited, each one run live, not read past from a prior cycle's report.** GitHub's 31 open issues re-pulled live via the API, sorted by `updated_at`: unchanged since issue #65 (2026-11-14T17:51:17Z), none from Phil since issue #64 (2026-11-08T16:59:32Z); every open issue is `decision`, `P0`, or `blocked-on-art`. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, standing gap. Ran the full `python3 -u ops/preflight.py --skip-tests` live to completion in the background (to avoid the known wrapper-timeout trap mid-`gate_etsy_pdfs_current`): **0 FAIL across every section, every gate passed, 27 warnings**, all standing (no analytics/Stripe/SSH/mail credential in this sandbox, known page/deck art gaps, affiliate T2 not evaluated, films-vs-captions not applicable with no narrated films present). `check_urls.py` (236/236), `affiliate.py --check` (165 documents, 10 programmes tracked, 0 approved), and `check_sellable.py --deep` (124 of 126 buyable products verified against disk; the 2 others are person-delivered services by design; deep Stripe price check unavailable, no `.env.secrets` here) all independently re-run clean. `room_guide_underperformance.py` re-run live: every room still under 15% uncovered, worst (Garage, Pantry) tied at 14%, 0 genuine on-topic `gap` rows anywhere, matching `gate_room_guide_mining_diminishing_returns`. `cold_read_ledger.py --stale`/`--next`: 311 of 311 files ledgered, 0 stale, 0 un-ledgered candidates. `RISKS.md` section 8 re-read directly: 3 open `CRITICAL` risks (RISK-0007 single host/unproven restore, RISK-0011 product masters outside the repository, RISK-0013 no stranger has converted), all already tracked and all owner-gated, nothing new.
+
+**Checked by epic first (STEP 3).** Epic 1 (measurement) stays blocked on issue #64 (the traffic-read credential). Epic 2 (broken/dishonest): the clean preflight above, nothing found. Epics 3-5 (traffic/conversion/product): the FORMAT_WORDS room-guide mining lane and the cold-read ledger lane are both independently reconfirmed exhausted above. Epic 6 (operational honesty): no new defect surfaced.
+
+**Not notifying Phil.** Same 31 open decisions, no new GitHub activity, no mail credential, no new sale signal. The standing owner-silence notification (sent 2026-11-13T06:20Z) carries a no-repeat-before of 2026-11-15T18:00Z, which has not elapsed, and nothing material changed this cycle to justify an early repeat or a different topic.
+
+**Went well:** every lane that this cycle could have mined again was instead independently re-run against the live repository rather than read past from the several PM check-ins and the 13:5x/14:5x operator cycles earlier today, and it agrees with them: the exhausted-and-owner-gated state is real, not merely repeated.
+
+**Did not go well:** nothing new; this is at least the twelfth consecutive dated entry today reaching the same conclusion, the cadence cost issue #42 already names and which only Phil can resolve.
+
+**Changing next cycle:** none.
+
+**Next:** hold the standing Phil-gated queue (31 open issues, all `decision`/`P0`/`blocked-on-art`); re-check for a Phil reply, and re-check the owner-silence cooldown after 2026-11-15T18:00Z.
+
+Pushed to main: dashboard regen, cycle-signal checkpoint, this entry. No price, product, or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-15 ~15:1x slot: previous work finished and independently reconfirmed, same exhausted Phil-gated state, nothing new to hand the operator
 
 NEXT FOR THE OPERATOR: hold the Phil-gated queue. Same standing state: 31 open issues, all decision/P0/blocked-on-art, nothing from Phil since issue #64. Owner-silence cooldown holds to 2026-11-15T18:00Z.
