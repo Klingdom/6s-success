@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-15 (~12:4x slot): A145, fixed a real checks.yml FAIL from A144's own table-row fix, gated it
+
+**Did.** Attached clean (unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset/force). GitHub's 31 issues unchanged since #65, none from Phil since #64. No mail credential. `preflight.py --skip-tests` found **1 gate FAIL**: `checks.yml` run 43712928494 failed on commit 67877259f. Read the job log directly: `test_rotate_status_history.py` failed because `split_table_row_chain` refused STATUS.md's "Production traceability" row, "cell does not open on a bold entry." Root caused against the real file: A144's own fix to the Public website/Production traceability rows put the chain delimiter at the START of the cell and glued the new entry onto the old one with no delimiter between, instead of newest-first-unmarked-then-delimiter. Fixed both cells by hand.
+
+**Turned the lesson into a gate.** `gate_status_production_table_rows_not_oversized` swallows `split_table_row_chain`'s `ValueError` silently, and `gate_status_history_chain_not_collapsed` never covered the table rows at all, so this shape produced zero warning before the push that broke CI. Extended the latter gate to call `split_table_row_chain` for both `TABLE_ROW_LABELS` and warn by name on any `ValueError` other than "row not found." Fail-then-pass proved in `test_gate_status_history_chain_not_collapsed.py` (added cases 6-8, planted today's exact broken shape, 8/8 pass).
+
+**Verified.** `test_rotate_status_history.py` passes. Full `preflight.py --skip-tests` rerun: 0 FAIL, 29 warnings. `check_urls.py` (236/236), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 documents) all clean. `rotate_backlog.py --apply` run first (table was 1 row over cap).
+
+**Went well:** the test suite caught a real regression the --skip-tests local run could not see, exactly why checks.yml runs the full suite.
+
+**Did not go well:** A144's own fix, landed the same day, introduced this; a second gate now exists so the next glued table-row cell is not invisible again.
+
+**Changing next cycle:** none.
+
+**Next:** hold the standing Phil-gated queue; owner-silence cooldown holds to 2026-11-15T18:00Z.
+
+Pushed to main. `STATUS.md`, `ops/preflight.py`, `ops/tests/test_gate_status_history_chain_not_collapsed.py`, `BACKLOG-2026-09-07.md`, dashboard regen, this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-15 ~12:1x slot: reverified exhausted Phil-gated state
 
 NEXT FOR THE OPERATOR: hold the Phil-gated queue. Same standing state: 31 open issues, all decision/P0/blocked-on-art, nothing from Phil since issue #64.

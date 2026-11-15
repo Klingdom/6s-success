@@ -53,6 +53,29 @@ B1_GLUED = ("**CONFIRMED CURRENT 2026-11-02.** Newest entry. " + DELIM +
             "**STRUCTURALLY FIXED 2026-11-01.** Older entry.")
 B1_SINGLE = "**CONFIRMED CURRENT 2026-11-02.** Newest entry."
 
+# The real shape found live 2026-11-15: the delimiter put at the very
+# START of a table row's Evidence/Notes cell (ahead of the live entry)
+# with a second bold entry glued straight onto the first, no delimiter
+# between them. split_table_row_chain() refuses this outright (it is
+# not merely a glued-but-parseable chain like PK/BLOCKER-001 above), so
+# this is the real regression case for the table-row half of the gate.
+TABLE_CELL_BROKEN = (DELIM + "**CORRECTED 2026-11-14.** Older entry text. "
+                     "**CORRECTED AGAIN 2026-11-15.** Newest entry text.")
+TABLE_CELL_FIXED = ("**CORRECTED AGAIN 2026-11-15.** Newest entry text. "
+                    + DELIM + "**CORRECTED 2026-11-14.** Older entry text.")
+
+
+def _table_doc(pk_line: str, blocker1_span: str, public_cell: str) -> str:
+    base = _doc(pk_line, blocker1_span)
+    table = (
+        "\n\n| Area | Status | Evidence / Notes |\n"
+        "|---|---|---|\n"
+        "| Public website | LIVE | " + public_cell + " |\n"
+        "| Production traceability | Tracked | " + TABLE_CELL_FIXED
+        + " |\n"
+    )
+    return base + table
+
 
 def _run_gate(tmp, text):
     io.open(os.path.join(tmp, "STATUS.md"), "w",
@@ -128,12 +151,51 @@ def main() -> int:
         finally:
             preflight.ROOT = old_root
 
+    # 6. A malformed Production Status table-row cell (the real 2026-
+    #    11-15 shape: delimiter opening the cell, second entry glued on
+    #    with no delimiter before it) must warn by row name, not fail,
+    #    and not be silently swallowed the way gate_status_production_
+    #    table_rows_not_oversized's own try/except ValueError: continue
+    #    would swallow it.
+    with tempfile.TemporaryDirectory() as tmp:
+        f6, w6 = _run_gate(tmp, _table_doc(PK_SINGLE, B1_SINGLE,
+                                            TABLE_CELL_BROKEN))
+    if f6:
+        fails.append("gate should WARN, not FAIL, on a malformed table "
+                      "row: %r" % f6)
+    joined6 = " ".join(msg for _, msg in w6)
+    if "Public website" not in joined6:
+        fails.append("gate did not name the malformed table row: %r" % w6)
+
+    # 7. Both table rows properly shaped (newest entry unmarked, older
+    #    entries after the delimiter): silent.
+    with tempfile.TemporaryDirectory() as tmp:
+        f7, w7 = _run_gate(tmp, _table_doc(PK_SINGLE, B1_SINGLE,
+                                            TABLE_CELL_FIXED))
+    if f7 or w7:
+        fails.append("gate fired on properly shaped table rows: fail=%r "
+                      "warn=%r" % (f7, w7))
+
+    # 8. No Production Status table present at all (row not found) is a
+    #    silent skip, not a crash, matching split_table_row_chain's own
+    #    "row not found" ValueError contract.
+    with tempfile.TemporaryDirectory() as tmp:
+        try:
+            f8, w8 = _run_gate(tmp, _doc(PK_SINGLE, B1_SINGLE))
+        except Exception as e:                                # noqa: BLE001
+            fails.append("gate crashed with no Production Status table "
+                          "present instead of skipping: %r" % e)
+        else:
+            if f8 or w8:
+                fails.append("gate fired with no Production Status table "
+                              "present: fail=%r warn=%r" % (f8, w8))
+
     if fails:
         print("FAIL (%d):" % len(fails))
         for f in fails:
             print(" -", f)
         return 1
-    print("PASS: 5/5 cases ok.")
+    print("PASS: 8/8 cases ok.")
     return 0
 
 

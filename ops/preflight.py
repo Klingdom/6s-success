@@ -23879,6 +23879,24 @@ def gate_status_history_chain_not_collapsed() -> None:
     onto the live line/paragraph via the handoff phrase and asserts this
     gate warns for each field by name, then confirms a properly rotated
     (single, unglued entry) copy of each stays silent.
+
+    Extended 2026-11-15, scheduled operator cycle: the Production Status
+    table rows ("Public website", "Production traceability") have the
+    identical delimiter and the identical risk, but their own oversized-
+    chain gate (gate_status_production_table_rows_not_oversized) catches
+    split_table_row_chain()'s ValueError and silently `continue`s past
+    it, so a malformed table-row cell produced no warning at all. That
+    is exactly what happened the same day: a cycle fixing a stale deploy-
+    gap citation put the delimiter at the very START of the cell (ahead
+    of the live, newest entry) instead of between entries, then appended
+    a second bold entry straight onto the first with no delimiter
+    between them. ops/rotate_status_history.py's own
+    test_rotate_status_history.py caught it (the full test suite, not
+    `--skip-tests`) because split_table_row_chain() correctly refused to
+    guess rather than silently misparse, but nothing in this file would
+    have surfaced that refusal before a push. A row genuinely not found
+    (e.g. after a future rename) is not this defect and stays silent, the
+    same exemption split_chain()/split_blocker1_chain() already get above.
     """
     path = os.path.join(ROOT, "STATUS.md")
     if not os.path.exists(path):
@@ -23907,6 +23925,22 @@ def gate_status_history_chain_not_collapsed() -> None:
                  "entries onto their own %ss and re-run --check/--apply, "
                  "or rotate to STATUS-ARCHIVE.md by hand."
                  % (label, n, unit, delim, unit, unit))
+    for label in rsh.TABLE_ROW_LABELS:
+        try:
+            rsh.split_table_row_chain(text, label)
+        except ValueError as exc:
+            msg = str(exc)
+            if msg.startswith("row not found"):
+                continue
+            warn("status-history-chain-not-collapsed",
+                 "STATUS.md's %r table row's Evidence/Notes cell is "
+                 "malformed, which is what a glued-entry chain looks "
+                 "like for a table row (the delimiter %r must separate "
+                 "entries, newest first unmarked, never open the cell or "
+                 "sit between two bold entries with nothing between "
+                 "them): %s. ops/rotate_status_history.py's own --check-"
+                 "table-rows cannot see past this; fix the cell by hand."
+                 % (label, delim, msg))
 
 
 def gate_nightly_log_ordering() -> None:
