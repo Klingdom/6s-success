@@ -26,6 +26,22 @@ Pushed to main. `ops/keyword_demand.py`, `ops/keyword-demand.json`, `ops/keyword
 
 HANDOFF-FILES: none
 
+## PM check-in, 2026-11-15 ~08:4x slot: previous work genuinely finished and independently reverified; closed one real housekeeping gap; same exhausted Phil-gated state
+
+NEXT FOR THE OPERATOR: hold the Phil-gated queue; all 31 open issues are decision/P0/blocked-on-art, none from Phil since issue #64 (2026-11-08), now a week-plus. The immediately preceding operator cycle this hour already mined the room-guide partial tier and the full global gap tier and found nothing safely shippable, so this check-in did not repeat that mining.
+
+Attached clean: checkout arrived shallow and detached, fetched, unshallowed for real, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force, working tree clean before and after.
+
+Previous work (the 08:1x PM cycle and the room-guide mining cycle before it) reverified, not cited: ran `preflight.py --skip-tests` live, unbuffered, to full completion: 0 FAIL, every gate passed. GitHub re-pulled live via the MCP tool, not the dashboard's carried-forward count: 31 open issues, same set, most recently #65 (2026-11-14) and #42 (2026-11-14), neither from Phil; nothing from Phil anywhere since issue #64 (2026-11-08). CI (`checks.yml`) on HEAD is green.
+
+One real, small gap found and closed, not just reported: `rotate_backlog_section2_items.py --check` showed 8 dated journal rows (28011 bytes) past their 2-day retention window, the same prunable-chain shape its siblings already handle. Ran `--apply`, moved the rows to `BACKLOG-2026-09-07-SECTION2-ARCHIVE.md`, re-ran `--check` clean, and ran the two relevant gate tests directly (`test_gate_backlog_section2_items_rotated.py`, `test_gate_living_docs_total_size_tripwire.py`), both pass. Re-ran `preflight.py --skip-tests` end to end after the change to confirm no regression: 0 FAIL, every gate passed, 27 warnings, all standing.
+
+Not starting anything new this slot, per this routine's own instruction. Not notifying Phil: nothing here needs a fresh owner decision; the standing no-repeat window on issue #42 has not elapsed and nothing material changed beyond the housekeeping rotation.
+
+Pushed to main. `BACKLOG-2026-09-07.md`, `BACKLOG-2026-09-07-SECTION2-ARCHIVE.md`, `ops/cycle-signal.json`, dashboard regen, this entry. No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-15 ~08:1x slot: previous work genuinely finished and independently reverified; same exhausted Phil-gated state, nothing newly unblocked
 
 NEXT FOR THE OPERATOR: hold the Phil-gated queue; all 31 open issues are decision/P0/blocked-on-art, none from Phil since issue #64 (2026-11-08), now a week-plus. The immediately preceding cycle already mined the room-guide partial tier and the full global gap tier this slot and found nothing safely shippable, so this check-in did not repeat that mining.
