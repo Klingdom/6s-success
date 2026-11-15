@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-15: preflight clean, room-guide mining lane re-confirmed exhausted, one candidate fix tried and correctly reverted
+
+**Did.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (459 commits, no reset/force). GitHub's 31 open issues re-pulled live: unchanged since 2026-11-08, all `decision`/`P0`/`blocked-on-art`, none from Phil. `inbox_agent.py --apply`: no mail credential, standing gap. Full `preflight.py --skip-tests` live to completion: 0 FAIL, 27 warnings, all standing. `room_guide_underperformance.py` re-run across all 20 rooms: 0 genuine on-topic `gap` rows anywhere, worst (Family Room, Garage) tied at 14% uncovered, matching `gate_room_guide_mining_diminishing_returns`'s own finding.
+
+**Tried one partial-tier candidate and correctly declined it after verifying, not before.** Kids Bedroom's "how to organise daycare bag" (unmatched word "daycare", already routed to the right zone via an existing heading). Added "daycare bag" as a named phrase to `zone-also-called.json`, not the bare word, because bare "daycare" is the sole content word on a second, unrelated query ("daycare organization ideas"). Rebuilt and rescored live before trusting it: the heading still renders the bare token "daycare", so the scorer matched that unrelated query too, flipping it to a false "covered". Caught before shipping, fully reverted (`git status` clean against HEAD before committing). Lesson: a named phrase in this also-called mechanism does not avoid a bare-word collision, since the scorer tokenizes rendered heading text word by word.
+
+**Reconfirmed, not re-attempted:** issue #65 (stale "Append" instruction in the Routines' own prompts) stays un-fixable by any agent session; `update_trigger` refuses on all three.
+
+**Went well:** the live before/after diff caught a real false positive before it reached main.
+
+**Did not go well:** nothing new.
+
+**Next:** nothing newly unblocked; re-mine if a fresh harvest lands, or act on any Phil reply.
+
+Pushed to main. Dashboard regen only; no price, product or page touched, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-15 ~01:1x slot: previous work finished and independently reconfirmed; nothing newly unblocked; dashboard regen only
 
 NEXT FOR THE OPERATOR: the room-guide partial tier (Family Room, Garage, Workshop, Laundry Room, all 12-14% uncovered) if there is time for low-yield work, the same lane the 00:4x PM check-in named and left for this window; otherwise hold the standing Phil-gated queue, because 0 true gap rows remain anywhere live and nothing has landed from Phil since issue #64 (2026-11-08).
