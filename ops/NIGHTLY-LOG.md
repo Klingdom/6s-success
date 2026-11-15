@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-15 (21:5x slot): hand checked six rooms worst partial tier rows for a new fix, found none, three were already declined elsewhere
+
+**Did.** Attached clean, unshallowed, ff only onto origin/main, 637 commits fast forwarded, tree clean. `preflight.py --skip-tests`: 0 FAIL, 30 warnings, all standing. GitHub 31 open issues re pulled live, unchanged since #65, none from Phil since #64. No mail credential. Epics 1 to 2 blocked or clean, so hand read the worst partial rows in Family Room, Pantry, Garage, Kitchen, Home Office and Hall Closet (all near 12 to 13% uncovered) against the real content and rendered pages, not the aggregate percentage.
+
+**Found and declined, each checked rather than assumed.** "video game storage ideas" (Family Room) is the already documented games or PC collision from 2026-11-06/07, reconfirmed, not reopened. "declutter pasta pantry" ties Pantry's Dry Goods Shelves and Canned and Jarred Goods zones on a coincidental heading mention ("pasta sauce" as a duplicate jars example), the same one off breadth wins shape A142 already diagnosed and declined to patch generically; no honest word closes it. "attic closet organization ideas" and "attic group storage" tie an unrelated page on generic words with "attic" itself unmatched; the real Attic article's own text argues against ever calling anything in it a closet, so adding one would misstate the page. "kitchen larder" queries are a genuine content gap, no Kitchen larder zone exists, and inventing one would be fabrication. `cold_read_ledger.py --stale`: 0 of 311.
+
+**Verified.** Reproduced `room_guide_underperformance.py` and the real scorer (`best_page`, heading coverage) by hand for every candidate above rather than trusting a stored status. No file changed, so nothing new to rerun.
+
+**Went well.** Catching three already declined duplicates before reopening them as new findings.
+
+**Did not go well.** None of six rooms worst rows yielded a safe fix; the lane is thinner than it last measured.
+
+**Changing next cycle.** None.
+
+**Next.** Re mine once a fresh harvest lands, or act on any reply from Phil.
+
+Pushed to main: this entry, dashboard regen. No price, product, page or code touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-15 (21:4x slot): previous work (A147) finished and verified with a full live preflight; room-guide tier now tied three-way, handed Garage to the operator
 
 NEXT FOR THE OPERATOR: mine Garage's own partial tier (26 rows, the richest vein) first, because the room-guide lane is now tied three-way at 13% uncovered (Family Room 12 rows, Pantry 10, Garage 26), correcting A147's own handoff that named Pantry alone as worst.
