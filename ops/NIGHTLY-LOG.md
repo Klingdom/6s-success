@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-15 ~18:4x slot: full independent re-verification, one new tie-break pointer bug found and correctly declined (no status change), the overdue owner reminder sent
+
+**Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 603 commits fast-forwarded, no reset/force). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries.
+
+**Verified rather than cited.** Ran `python3 -u ops/preflight.py --skip-tests` live to completion: 0 FAIL, every gate passed, 27 warnings, all standing (no Stripe/SSH/mail credential in this sandbox, known art/caption gaps, affiliate T2 not evaluated, room-guide mining lane still diminishing returns). `inbox_agent.py --apply`: no mail credential, standing gap. `affiliate.py --check`: clean, 165 documents. GitHub's 31 open issues re-pulled live via the API, sorted by `updated_at`: unchanged since issue #65 (2026-11-14T17:51:17Z), nothing from Phil since issue #64 (2026-11-08T16:59:32Z), now one full week of silence on 31 decision/P0/blocked-on-art items.
+
+**Checked by epic first (STEP 3), not cited.** Epic 1 (measurement) blocked on #64. Epic 2 (broken/dishonest): preflight clean, nothing found. Epic 3-5 (traffic/conversion/product): ran `room_guide_underperformance.py` myself; every room still under 15% uncovered, worst (Garage, Pantry) tied at 14%, all rows `partial`, 0 `gap`, confirming `gate_room_guide_mining_diminishing_returns` on fresh evidence rather than the label.
+
+**Found one genuine mechanism, declined to fix.** "Bonus room storage" and "bonus room storage cabinets" (Family Room, 0.667/0.5 partial) tie between the room hub page (`/rooms/family-room.html`, which literally carries "Also called the den or the bonus room" as a real `<h2>`, matching "bonus"+"room") and several zone pages (matching "storage"+"room" on generic words). Traced directly in `keyword_demand.py`: `_tie_break()`'s 2026-11-12 same-room zone-preference rule (added to stop deck/hub pages winning ties by breadth) now also makes a zone page beat the room hub even when the hub is the one carrying the query's actual identifying word. Confirmed this is pointer-only: both candidates already score 0.667/0.5, so the query's `partial` status and the room's own uncovered percentage do not move either way, the same "cosmetic, not a coverage fix" shape the 2026-11-12 Kids Bedroom case already declined to touch. Not fixed, for the same reason: re-tuning a tie-break function with hundreds of query dependents on a change that cannot move any status is not worth the risk this cycle, and it is recorded here rather than silently re-found by a future cycle.
+
+**Sent the overdue owner reminder.** The 2026-11-13T06:20Z notification's own no-repeat-before (2026-11-15T18:00Z) elapsed at 18:00 and the 17:4x/18:1x PM check-ins both explicitly earmarked this slot for it. One week of silence on 31 decisions, several of them 2-5 minutes each and directly unblocking measurement (traffic read) and distribution (YouTube OAuth, Gemini billing) is a real, actionable cost, not routine noise, so it was sent (see `ops/last-owner-notification.json`).
+
+**Went well:** traced the "bonus room" tie-break to its real mechanism rather than reporting "exhausted" a second time without looking.
+
+**Did not go well:** another cycle in a long run finding nothing genuinely new to ship; issue #42 already names this cadence cost and remains Phil's to decide.
+
+**Changing next cycle:** none; no new gate needed, since no new defect was found, only a confirmed non-defect.
+
+**Next:** act on any Phil reply to the 31 open decisions, or any new keyword harvest surfacing a fresh cluster.
+
+Pushed to main. Dashboard regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`), `ops/last-owner-notification.json`, this entry. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-15 ~18:1x slot: previous work finished and independently reconfirmed, same exhausted Phil-gated state, notification handoff explicitly left to the operator
 
 NEXT FOR THE OPERATOR: send the overdue owner reminder. Cooldown on the last push notification was 2026-11-15T18:00Z; it is now 18:17Z, nothing material changed (same 31 open issues, nothing from Phil since #64). The 17:4x PM cycle earmarked this for the operator's 18:43 check, not this slot; respecting that handoff.
