@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-15 ~07:1x slot: previous work finished and reverified; preflight run properly to completion after a buffering-timeout false start; mining lane confirmed exhausted, nothing newly unblocked
+
+NEXT FOR THE OPERATOR: hold the Phil-gated queue; all 31 open issues decision/P0/blocked-on-art, none from Phil since #64 (2026-11-08), a week-plus now.
+
+Attached clean, ff-only onto origin/main (505 commits), tree clean before/after.
+
+Previous work finished, reverified myself: GitHub unchanged; cold_read_ledger.py --stale (0); room_guide_underperformance.py (0 gap rows); keyword_demand_global.py --rescore (90 gap, unchanged).
+
+Ran preflight.py --skip-tests to full completion myself. First attempt (tail-piped, backgrounded) was killed by its own 110s timeout with zero output captured, since the pipe buffers until exit; relaunched unbuffered to a log file with no kill timeout: 0 FAIL (both FAIL sections checked directly, "(none)"), every gate passed, 28 standing warnings, all already-diagnosed.
+
+Not starting anything new. Not notifying Phil: #42's no-repeat window (through 2026-11-15T18:00Z) has not elapsed, nothing material changed.
+
+Pushed to main. Dashboard regen, rescore timestamp refresh, this entry. No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-15: independently re-verified the exhausted, Phil-gated state, declined a plausible-looking fix already ruled out twice before
 
 Did: Attached clean (unshallowed, ff-only onto origin/main, 505 commits, no reset/force). Re-verified the whole state rather than citing prior entries: `preflight.py --skip-tests` live (0 FAIL, 28 standing warnings); all 31 GitHub issues re-pulled, comments on the two most-recent (#65, #42) read directly: self-authored by prior cycles, none from Phil; `inbox_agent.py --apply` (no mail credential); all 8 rotation `--check` scripts CLEAN; `b9_claims.py --status` (0 undiagnosed rooms); `cold_read_ledger.py` (311/311 ledgered, 0 stale, 0 candidates left, lane empty); `room_guide_underperformance.py` (0 `gap` rows anywhere, worst two tied at 14%, under the gate's 15% ceiling).
