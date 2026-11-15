@@ -903,8 +903,8 @@
     },
     "keyword_demand.py": {
       "status": "clean",
-      "date": "2026-11-13",
-      "note": "Re-ledgered 2026-11-13, PM check-in: flagged stale after the same-day recipes/FORMAT_WORDS fix (ecd5b801a). Read the real diff directly: 'recipes' removed from FORMAT_WORDS with its reasoning recorded in place, new gate_keyword_demand_no_content_words wired into preflight.py. Independently reran test_keyword_demand.py (70/70 numbered cases) and test_gate_keyword_demand_no_content_words.py (fail-then-pass against the real corpus confirmed live, not cited) rather than trust the shipping cycle's own report. No defect found."
+      "date": "2026-11-15",
+      "note": "Re-read after the A87 signal_names addition (3552fe55d): room_synonyms() now unions names/signal_names for scoring, the only change since the last cold read; no other defect found."
     },
     "keyword_demand_global.py": {
       "status": "fixed",
@@ -1028,8 +1028,8 @@
     },
     "preflight.py": {
       "status": "clean",
-      "date": "2026-11-13",
-      "note": "Re-ledgered after today's own owner-actions size-tripwire gate addition (commit de4f4a46e, item15/1h rotation wiring). Spot-checked main() wires both new gates; no defect found."
+      "date": "2026-11-15",
+      "note": "Re-read after the same commit (3552fe55d): gate_also_called_no_digital_collision widened to scan signal_names too; no other defect found."
     },
     "prerender_shop.py": {
       "status": "clean",
