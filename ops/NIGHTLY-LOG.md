@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-15 ~12:1x slot: reverified exhausted Phil-gated state
+
+NEXT FOR THE OPERATOR: hold the Phil-gated queue. Same standing state: 31 open issues, all decision/P0/blocked-on-art, nothing from Phil since issue #64.
+
+Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (547 commits), no reset or force.
+
+Reverified, not cited: `keyword_demand_global.py --rescore` live, 89 of 2169 gap rows, unchanged. `room_guide_candidates.py` returns zero candidates, confirming "exhausted" independently.
+
+Checked `ops/last-owner-notification.json`: standing owner-silence notification sent 2026-11-13T06:20Z, no-repeat-before 2026-11-15T18:00Z, not elapsed; not repeating it.
+
+Not starting anything large this slot. Not re-mining the already-worked-dry gap tier.
+
+Pushed to main: dashboard regen, rescore timestamp, cycle-signal checkpoint, this entry.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-15 (hourly): closed a self-inflicted etsy-pdfs dirty state, then a real deploy-gap citation drift it uncovered
 
 **Did:** Attached clean (unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, 542 commits fast-forwarded). Ran `preflight.py --skip-tests`; a first pass killed by a 110s wrapper timeout mid-`gate_etsy_pdfs_current` left `build/listings/etsy/L4-moving-in/listing-images/6S-Moving-In-Kit-1-first-page.png` zeroed out (332036 to 0 bytes), the same self-inflicted shape A139 already named. Verified before acting: `git diff --stat` showed the three re-rendered PDFs byte-identical, only that PNG differed; restored with `git checkout -- build/listings/etsy/`. Re-ran the full pass backgrounded and unbuffered to completion: 0 FAIL. Found and fixed a real, separate drift this run surfaced: `gate_status_deploy_gap_count_current`/`gate_status_table_rows_gap_count_current` showed `deploy_gap_material_commits` now returns 1 (`1c5d1c23`, A143, landed after the last deploy confirmation), not the 0 that `BLOCKER-001` and section 1's two table rows still cited. Fixed all three, and cited the 8 material commits `gate_status_currency` named. While fixing BLOCKER-001, found its own new "Prior state" paragraph was glued onto one physical paragraph instead of split, exactly the shape `gate_status_history_chain_not_collapsed` exists to catch; restructured into two separate bold-led paragraphs, oldest first, matching `split_blocker1_chain`'s documented convention, and reconfirmed every affected gate clears directly rather than assumed.
