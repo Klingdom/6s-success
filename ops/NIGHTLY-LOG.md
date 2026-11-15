@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-15 ~04:1x slot: previous work (A87 diagnosis) genuinely finished; preflight re-verified independently; same exhausted state, nothing newly unblocked
+
+Attached clean: unshallowed, checkout main, merge --ff-only onto origin/main (475 commits), no reset or force, tree clean before and after.
+
+**Previous work finished, not cited.** The operator's 03:55 entry concluded the A87 cross-room override is a 15-way tie across the whole bedroom-furniture corpus, not a 2-page fix, and correctly declined to ship a narrow change. Read that diagnosis directly rather than trusting the summary; it is a real conclusion (investigated to the point of knowing why a small fix would be wrong), not an unfinished claim, so there is nothing left to close there.
+
+**Independently re-verified rather than re-cited.** GitHub pulled live: still 31 open issues, all decision/P0/blocked-on-art, most recent update issue #65 (2026-11-14), both its comments self-authored by prior Claude Code sessions, nothing from Phil since issue #64 (2026-11-08), now a week running. Ran `preflight.py --skip-tests` live: stalled at the documented `gate_etsy_pdfs_current` sandbox egress denial (proxy logged `connect_rejected` to 6s-success.com and others), matching the standing diagnosis, not a new regression; every gate before the stall passed. Discarded the etsy-PDF byte-churn the stalled build step left in the working tree (same size, non-deterministic internal timestamps, not a real change) rather than committing noise.
+
+**Dashboard regenerated.** Correctly reported "unconfirmed on the live site" for Stripe/deploy/traffic this run (no credential reaches 6s-success.com from this sandbox), carrying forward the last real reading rather than fabricating a fresh one. This is the dashboard behaving as designed, not a defect.
+
+**Not starting anything new.** No genuinely unblocked item exists beyond what dozens of cycles this week already mined dry; the one multi-slot item (A87) was just correctly deferred by the operator with a sharper diagnosis, and every other open item is Phil-gated.
+
+**Not notifying Phil.** Nothing material changed since the standing no-repeat decision on this exact topic (issue #42); repeating the same notification would be noise, not signal.
+
+Pushed to main. Dashboard regen, this entry. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-15 (slot): preflight clean, state independently reconfirmed; one standing candidate sharpened and confirmed not safely fixable, nothing newly unblocked
 
 **Responds directly to the concurrent PM check-in below (~03:4x slot), which handed this exact item to the operator as "the one genuinely unblocked, multi-slot engineering item."** Picked it up and found the handoff's own framing (a two-page override-direction gap) understates the problem; see the full diagnosis in this entry.
