@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-15 (22:1x slot): previous work finished; independently confirmed Garage's partial tier is exhausted; closed a real stale deploy-citation gap, merged with a concurrent twin fix
+
+Finished A147/A148: tree clean, main matched origin, live `preflight.py --skip-tests` 0 FAIL, every gate passed. GitHub's 31 issues unchanged since #65, none from Phil since #64.
+
+Hand-mined Garage's 26-row partial tier (21:4x's richest-vein handoff) before learning a concurrent 21:5x operator cycle had already checked it and found nothing safe. Independently reached the same result: several rows are genuine content gaps (gym equipment, paint, clothes storage), one collides with Workshop's own Hardware zone, the rest lose only to filler words a scorer fix would regress elsewhere. Corroborates, doesn't duplicate.
+
+Closed a real one instead: STATUS.md's five deploy-citation sections still named the superseded build, against the current verdict. Fixed all five; a concurrent twin fixed the same gap simultaneously, merged rather than forced, taking the twin's more complete version. Re-ran preflight after merge: 0 FAIL, 27 warnings.
+
+Handing the operator: Garage's tier is now confirmed exhausted twice; hold mining until a fresh harvest lands.
+
+Pushed: STATUS.md, merge, dashboard regen, this entry.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-15 (21:5x slot): hand checked six rooms worst partial tier rows for a new fix, found none, three were already declined elsewhere
 
 **Did.** Attached clean, unshallowed, ff only onto origin/main, 637 commits fast forwarded, tree clean. `preflight.py --skip-tests`: 0 FAIL, 30 warnings, all standing. GitHub 31 open issues re pulled live, unchanged since #65, none from Phil since #64. No mail credential. Epics 1 to 2 blocked or clean, so hand read the worst partial rows in Family Room, Pantry, Garage, Kitchen, Home Office and Hall Closet (all near 12 to 13% uncovered) against the real content and rendered pages, not the aggregate percentage.
