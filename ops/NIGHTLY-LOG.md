@@ -2,7 +2,7 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## Scheduled operator cycle, 2026-11-15 ~18:4x slot: full independent re-verification, one new tie-break pointer bug found and correctly declined (no status change), the overdue owner reminder sent
+## Scheduled operator cycle, 2026-11-15 ~18:4x slot: full independent re-verification, one new tie-break pointer bug found and correctly declined (no status change); collided with a concurrent PM check-in sending the identical owner reminder four minutes apart
 
 **Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 603 commits fast-forwarded, no reset/force). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries.
 
@@ -12,17 +12,31 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Found one genuine mechanism, declined to fix.** "Bonus room storage" and "bonus room storage cabinets" (Family Room, 0.667/0.5 partial) tie between the room hub page (`/rooms/family-room.html`, which literally carries "Also called the den or the bonus room" as a real `<h2>`, matching "bonus"+"room") and several zone pages (matching "storage"+"room" on generic words). Traced directly in `keyword_demand.py`: `_tie_break()`'s 2026-11-12 same-room zone-preference rule (added to stop deck/hub pages winning ties by breadth) now also makes a zone page beat the room hub even when the hub is the one carrying the query's actual identifying word. Confirmed this is pointer-only: both candidates already score 0.667/0.5, so the query's `partial` status and the room's own uncovered percentage do not move either way, the same "cosmetic, not a coverage fix" shape the 2026-11-12 Kids Bedroom case already declined to touch. Not fixed, for the same reason: re-tuning a tie-break function with hundreds of query dependents on a change that cannot move any status is not worth the risk this cycle, and it is recorded here rather than silently re-found by a future cycle.
 
-**Sent the overdue owner reminder.** The 2026-11-13T06:20Z notification's own no-repeat-before (2026-11-15T18:00Z) elapsed at 18:00 and the 17:4x/18:1x PM check-ins both explicitly earmarked this slot for it. One week of silence on 31 decisions, several of them 2-5 minutes each and directly unblocking measurement (traffic read) and distribution (YouTube OAuth, Gemini billing) is a real, actionable cost, not routine noise, so it was sent (see `ops/last-owner-notification.json`).
+**Sent the overdue owner reminder, then found on push that a concurrent PM check-in had sent the same reminder four minutes earlier.** The 2026-11-13T06:20Z notification's own no-repeat-before (2026-11-15T18:00Z) elapsed at 18:00 and the 17:4x/18:1x PM check-ins both explicitly earmarked this slot for it, so this cycle sent it (18:50Z) without first re-reading `ops/last-owner-notification.json` after the attach, the same stale-read race this file's own STATUS.md section 0 warns about for shared generators and gates. A concurrent PM check-in had independently reached the identical conclusion and sent its own push at 18:46Z, four minutes earlier, discovered only when this cycle's push to `main` was rejected and the merge showed both sessions had written different `sent_at`/topic/note values to the same file. **Real, two real phone notifications went to Phil about the same thing within four minutes.** The cost here is low (an annoying duplicate buzz, not a wrong fact), but it is the same race class as every other "claim before you start" collision this file's own convention exists to prevent, just never applied to a notification send before. Resolved honestly rather than papered over: kept the later, 18:50Z record and folded both into one entry; did not pretend only one push happened. **Changing next cycle:** `STATUS.md` section 0's shared-resource convention is extended, in this same push, to name "sending an owner push notification" as a thing to check `ops/last-owner-notification.json` for immediately before sending, not only before starting the cycle, since the two-session race here happened entirely inside a single ~15-minute window neither cycle's own opening attach would have caught.
 
-**Went well:** traced the "bonus room" tie-break to its real mechanism rather than reporting "exhausted" a second time without looking.
+**Went well:** traced the "bonus room" tie-break to its real mechanism rather than reporting "exhausted" a second time without looking; caught and recorded the notification race honestly on merge rather than silently keeping only one side's record.
 
-**Did not go well:** another cycle in a long run finding nothing genuinely new to ship; issue #42 already names this cadence cost and remains Phil's to decide.
+**Did not go well:** two duplicate push notifications reached Phil's phone for the same 7-day-silence topic, four minutes apart, from two sessions that each independently decided the cooldown had elapsed and neither re-checked immediately before sending.
 
-**Changing next cycle:** none; no new gate needed, since no new defect was found, only a confirmed non-defect.
+**Next:** act on any Phil reply to the 31 open decisions, or any new keyword harvest surfacing a fresh cluster. Do not send a third owner-silence push this slot or next.
 
-**Next:** act on any Phil reply to the 31 open decisions, or any new keyword harvest surfacing a fresh cluster.
+Pushed to main. Dashboard regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`), `ops/last-owner-notification.json`, this entry (merged with the concurrent PM check-in's own entry below). No price, product or site page touched; IndexNow not applicable.
 
-Pushed to main. Dashboard regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`), `ops/last-owner-notification.json`, this entry. No price, product or site page touched; IndexNow not applicable.
+## PM check-in, 2026-11-15 ~18:4x slot: sent the overdue owner reminder myself rather than defer it a further cycle; previous work independently reverified first
+
+NEXT FOR THE OPERATOR: hold the Phil-gated queue; the owner reminder this slot's own handoff was waiting on has now been sent, so there is nothing left to action at 18:43 beyond the standing 31-issue queue. Do not send a second owner-silence push this slot or next; `ops/last-owner-notification.json` now carries `sent_at: 2026-11-15T18:46:00Z`, check it before any further push on this topic.
+
+**Attach:** clean, unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 603 commits fast-forwarded, no reset or force, working tree clean before and after.
+
+**Previous work independently reverified, not cited.** Fresh `python3 -u ops/preflight.py --skip-tests` run to completion live (not backgrounded and trusted blind): every gate passed, 27 warnings, all standing (no Stripe/SSH/mail credential in this sandbox, known art/caption gaps, affiliate T2 not evaluated). GitHub's 31 open issues re-pulled live via the MCP tool, sorted by `updated_at`: identical set to every PM cycle today, newest touch #65 (2026-11-14T17:51:17Z), nothing from Phil since #64 (2026-11-08T16:59:32Z, now 7 days). 10 P0, 2 blocked-on-art, 29 awaiting a decision; counted directly from the live label list, not carried from the dashboard.
+
+**Sent the push notification this slot instead of deferring again.** The 17:4x and 18:1x PM cycles both correctly held because the owner-silence cooldown (`no-repeat-before: 2026-11-15T18:00Z`, set 2026-11-13) had not yet elapsed; the 18:1x cycle then explicitly earmarked the send for "the operator's 18:43 check" rather than its own slot. It is now 18:4x, the cooldown elapsed 46+ minutes ago, nothing material changed in that window, and this is at least the fourth consecutive cycle to reconfirm the same exhausted state without acting on the one thing that was actually due. CLAUDE.md 0.2 names this exact failure mode: a correctly identified problem nobody acts on costs the same as one nobody found. Sent via `PushNotification`, leading with the 7-day silence and the five cheapest (2-5 minute) open decisions (#58 Stripe business description, #64 traffic read, #59 Rakuten OAuth, #57 device labelling, #63 print the Kitchen deck), then the larger P0 calls (#45 accounts layer, #44/#43 Etsy/KDP publish, #50/#49 VPS ports and backup, #53 demand-test budget) and the unchanged $0-of-$20,000 revenue line. Updated `ops/last-owner-notification.json` with the new `sent_at`/topic/note immediately after sending, specifically so the operator's 18:43 run (which checks the same file) does not read this as still-due and send a duplicate three minutes later.
+
+**Not starting anything large this slot**, per this routine's own instruction; no lane is genuinely unblocked beyond the standing queue.
+
+Pushed to main: `ops/last-owner-notification.json`, dashboard regen, this entry. No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
 
 ## PM check-in, 2026-11-15 ~18:1x slot: previous work finished and independently reconfirmed, same exhausted Phil-gated state, notification handoff explicitly left to the operator
 
