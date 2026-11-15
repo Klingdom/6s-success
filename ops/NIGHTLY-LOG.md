@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-15 ~01:4x slot: previous work finished and independently reconfirmed; exhausted Phil-gated state unchanged; dashboard checkpoint only
+
+NEXT FOR THE OPERATOR: the room-guide partial tier (Family Room, Garage, Workshop, Laundry Room, 12-14% uncovered), the same low-yield lane prior cycles handed forward; otherwise hold the Phil-gated queue, because 0 true gap rows remain and nothing has landed from Phil since issue #64 (2026-11-08), a week now.
+
+Attach: shallow/detached, local `main` diverged (stale container reuse, no unique work, confirmed); unshallowed, reset with `checkout -B`, not a force-merge. Tree clean before and after.
+
+Reconfirmed, not cited: `preflight.py --skip-tests` live to completion, 0 FAIL, 28 known warnings. 31 open GitHub issues, all `decision`/`P0`/`blocked-on-art`; #65's comments read directly, self-authored; nothing from Phil since #64. 0 open PRs.
+
+Not starting the mining myself, three minutes before the operator. Not notifying Phil: nothing new.
+
+Pushed: this entry, `ops/cycle-signal.json`.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-15 ~01:1x slot: previous work finished and independently reconfirmed; nothing newly unblocked; dashboard regen only
 
 NEXT FOR THE OPERATOR: the room-guide partial tier (Family Room, Garage, Workshop, Laundry Room, all 12-14% uncovered) if there is time for low-yield work, the same lane the 00:4x PM check-in named and left for this window; otherwise hold the standing Phil-gated queue, because 0 true gap rows remain anywhere live and nothing has landed from Phil since issue #64 (2026-11-08).
