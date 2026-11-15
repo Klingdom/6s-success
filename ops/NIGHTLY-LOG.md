@@ -20,6 +20,24 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/cold-read-ledger.json`, `ops/keyword-demand-global.json` (rescore timestamp only, 0 status change), dashboard regen, this entry. No price, product or page touched; IndexNow not applicable.
 
+**Note on the concurrent PM check-in below:** it hit the same two cold-read ledger entries independently and fixed them the same way; this cycle's own `preflight.py` run reached full completion (0 FAIL through every gate) rather than stalling on network, so treat this entry's result as the more complete one where the two differ.
+
+## PM check-in, 2026-11-15 ~05:4x slot: previous work finished, reconfirmed; two stale cold-read entries closed; preflight stalled at the standing network-bound gate, reported honestly
+
+NEXT FOR THE OPERATOR: nothing newly unblocked; hold the standing Phil-gated queue, because all 31 open issues are decision/P0/blocked-on-art and nothing has landed from Phil since issue #64 (2026-11-08), now a week-plus running.
+
+Attached clean: unshallowed, ff-only onto origin/main (493 commits), tree clean before and after. GitHub re-pulled live: unchanged. `fix_dashes.py --check` and `fix_dialect.py --check` both clean. `room_guide_underperformance.py`: 0 gap rows in any room, mining lane still exhausted. `cold_read_ledger.py --stale` found 2 real entries (`keyword_demand.py`, `preflight.py`, touched by A87's signal_names commit); read the diff and re-ledgered both clean with a real note.
+
+`preflight.py --skip-tests` passed or warned on standing limits through `gate_prerender_shop_current`, then genuinely stalled on network (wchan `poll_schedule_timeout`, confirmed, not idle), the same documented sandbox-bound class as `gate_etsy_pdfs_current`. Killed by hand; reporting unchecked past that point, not clean (CLAUDE.md 0.4). `ops/cycle-signal.json` recorded this honestly on the kill, kept as-is.
+
+Wrote this entry via `ops/nightly_log.py`, not literal "Append": issue #65 (open, Phil-gated) already names that word in this Routine's own prompt as wrong.
+
+Not starting anything large this slot. Not notifying Phil: nothing new or customer-facing-broken; #42 still stands.
+
+Pushed to main: ledger, dashboard regen, this entry.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-15 ~05:1x slot: previous work finished; mined the global gap tier for the next genuine cluster, found two candidates and declined both correctly
 
 Attached clean: unshallowed, checkout main, merge --ff-only onto origin/main (482 commits), no reset or force, tree clean before and after.

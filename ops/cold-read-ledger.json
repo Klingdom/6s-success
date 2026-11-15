@@ -904,7 +904,7 @@
     "keyword_demand.py": {
       "status": "clean",
       "date": "2026-11-15",
-      "note": "Re-ledgered 2026-11-15, scheduled operator cycle: the only drift since 2026-11-13 is A140's signal_names change (room_synonyms unions names+signal_names), already read in full, matches its own NIGHTLY-LOG entry, test_keyword_demand.py 71/71."
+      "note": "Re-ledgered 2026-11-15, scheduled operator cycle (independently reconfirmed by a concurrent PM check-in the same slot): the only drift since 2026-11-13 is A140's signal_names change (room_synonyms unions names+signal_names), already read in full, matches its own NIGHTLY-LOG entry, test_keyword_demand.py 71/71."
     },
     "keyword_demand_global.py": {
       "status": "fixed",
@@ -1029,7 +1029,7 @@
     "preflight.py": {
       "status": "clean",
       "date": "2026-11-15",
-      "note": "Re-ledgered 2026-11-15, scheduled operator cycle: the only drift since 2026-11-13 is A140's gate_also_called_no_digital_collision widening to scan signal_names too, plus a docstring/allowlist update after the etsy-pdfs user-data-dir fix landed; already read in full, matches its own NIGHTLY-LOG entry, test_gate_also_called_no_digital_collision.py 5/5."
+      "note": "Re-ledgered 2026-11-15, scheduled operator cycle (independently reconfirmed by a concurrent PM check-in the same slot): the only drift since 2026-11-13 is A140's gate_also_called_no_digital_collision widening to scan signal_names too, plus a docstring/allowlist update after the etsy-pdfs user-data-dir fix landed; already read in full, matches its own NIGHTLY-LOG entry, test_gate_also_called_no_digital_collision.py 5/5."
     },
     "prerender_shop.py": {
       "status": "clean",
