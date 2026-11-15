@@ -4,11 +4,11 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## PM check-in, 2026-11-15 ~00:1x slot: previous work finished, rotated three overdue logs, nothing else new to start
 
-Previous work was finished: attached clean (fetched and fast-forwarded onto `origin/main`, 447 commits, tree clean, pushed). `preflight.py --skip-tests` run live to completion: every gate passed, 28 standing warnings, 0 FAIL. GitHub's 31 open issues re-pulled live sorted by updated_at: #65's two comments read directly, both prior agent cycles' own, nothing from Phil since #64 (2026-11-08). Dashboard's P0/need-you counts (10/29) independently recounted from the live issue labels, not cited: correct.
+Previous work finished: attached clean (447 commits, tree clean, pushed). `preflight.py --skip-tests` live: 0 FAIL, 28 warnings. GitHub's 31 issues re-pulled, #65's comments read directly, both self-authored, nothing from Phil since #64. Dashboard's P0/need-you counts (10/29) recounted live: correct.
 
-Found real, non-cosmetic work instead of only reconfirming: the four rotation checks were not all CLEAN as recent cycles reported. `rotate_backlog.py --check` was DUE (2 of 15 rows over retention), `rotate_checkin_log.py --check` was DUE (23 of 213 entries), `rotate_nightly_log.py --check` was DUE (73 of 1081 entries, 194KB). Applied all three, reran each `--check`: all CLEAN. Reran `preflight.py --skip-tests` after: still 0 FAIL, warning count dropped 28 to 27 (one stale-content warning rotated away). Regenerated the dashboard.
+Found real work past the usual reconfirm: three rotation checks were DUE, not CLEAN (`rotate_backlog`, `rotate_checkin_log`, `rotate_nightly_log` 194KB over retention). Applied all three, rechecked clean, reran preflight (0 FAIL, warnings 28 to 27), regenerated dashboard.
 
-Nothing else new unblocked; every other backlog row and all 31 issues unchanged, Phil-gated.
+Nothing else new unblocked; rest unchanged, Phil-gated.
 
 HANDOFF-FILES: none
 
