@@ -24417,16 +24417,14 @@
         "how to declutter a laundry room"
       ],
       "room": "Laundry Room",
-      "best_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
-      "best_page_title": "How to organize the laundry room detergent and supplies",
+      "best_page": "/rooms/laundry-room.html",
+      "best_page_title": "How to organize a laundry room, zone by zone",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "narrow"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/laundry-room.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -25590,16 +25588,14 @@
         "how to declutter a laundry room"
       ],
       "room": "Laundry Room",
-      "best_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
-      "best_page_title": "How to organize the laundry room detergent and supplies",
+      "best_page": "/rooms/laundry-room.html",
+      "best_page_title": "How to organize a laundry room, zone by zone",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "tiny"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/laundry-room.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -48216,6 +48212,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "3426dc846",
-  "scored_at": "2026-11-15T21:18:03Z"
+  "scored_against_commit": "f801f49fa",
+  "scored_at": "2026-11-15T22:57:20Z"
 }

@@ -2,17 +2,43 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-15 (23:1x slot): previous work finished and reverified fresh; nothing newly unblocked, holding the same standing state
+## PM check-in, 2026-11-15 (23:1x slot): previous work finished and reverified fresh; a concurrent operator cycle found one more genuine gap mid-merge, correcting this entry's own "exhausted" claim before it shipped
 
-NEXT FOR THE OPERATOR: hold the standing Phil-gated queue and the room-guide mining lane, because nothing changed since the 22:4x handoff: the lane is confirmed exhausted (A146-A149), the next keyword-demand-global harvest does not fire until Thursday 2026-11-19 11:30 UTC, and all 3 workstreams in STATUS.md section 14 remain BLOCKED or CLOSED.
+NEXT FOR THE OPERATOR: hold the standing Phil-gated queue, but do not treat the room-guide mining lane as fully exhausted: A150 (23:0x slot, below) found and closed a genuine Laundry Room gap after this cycle's own state read, so re-mine the remaining partial tiers room by room rather than citing A146-A149's "exhausted" finding as still current. All 3 workstreams in STATUS.md section 14 remain BLOCKED or CLOSED; the next keyword-demand-global harvest does not fire until Thursday 2026-11-19 11:30 UTC.
 
 Attached clean: fetch, unshallow, checkout main, ff-only merge onto origin/main, no reset or force, tree clean on arrival.
 
 Previous work (22:4x) finished, verified fresh rather than cited: ran a full live preflight.py --skip-tests myself, every gate passed, 28 standing warnings only (no Stripe/SSH/mail credential here, deploy freshness and T2 unmeasurable, known art/caption gaps). GitHub's 31 open issues re-pulled live: unchanged since #65 (2026-11-14), none from Phil since #64 (2026-11-08). CHECKIN-LOG.md's last four hourly entries (19:51 through 22:41) all read "nothing measurable moved," consistent with this.
 
+**Caught at push, not hidden.** This entry originally said the mining lane was confirmed exhausted; while pushing, a concurrent A150 push (23:08:26Z) landed first with a real find (below). Merged rather than forced, correcting this claim here instead of shipping stale information.
+
+**Post-merge preflight.py --skip-tests FAILed once, checked rather than pushed past.** `gate_checks_yml_real_gap` reported a non-bot commit (the merge, 4d82f19965) landed with no completed CI run since. Checked live via the Actions API rather than assumed: `checks.yml` run 3724 on that exact commit was `in_progress`, started 23:12:16Z, consistent with this workflow's own 10-20 minute real duration on recent runs, not a stalled trigger. Not a regression; this push adds a further qualifying commit for the same or a following run to cover. Unresolved at the time of this entry, named rather than assumed green.
+
 Owner notification checked, not resent: ops/last-owner-notification.json shows this exact topic sent 2026-11-15T18:50:00Z, inside its own ~48h next-repeat floor, nothing material changed since.
 
-Not starting anything large this slot. Pushed to main: dashboard regen, cycle-signal snapshot, this entry.
+Not starting anything large this slot. Pushed to main: dashboard regen, cycle-signal snapshot, merge with A150, this entry.
+
+HANDOFF-FILES: none
+
+## Scheduled operator cycle, 2026-11-15 (23:0x slot): A150, closed a real "narrow/tiny laundry room" content gap, caught a self-inflicted mcp/content.json drift before shipping
+
+**Did.** Attached clean, unshallowed, ff-only onto origin/main, 658 commits fast-forwarded, tree clean. `preflight.py --skip-tests`: 0 FAIL, 28 warnings. GitHub 31 open issues unchanged since #65, none from Phil since #64. No mail credential. Rotated the overdue backlog table first (5 rows past cap, `rotate_backlog.py --apply`). Hand-read Laundry Room's own worst partial rows (not the aggregate) and found 4 genuine queries ("narrow"/"tiny laundry room") with no page on the site saying either word.
+
+**Fixed.** The room's own "Room layout" tip already describes real space-saving zone-sharing but the scorer only reads titles/headings, not body text, confirmed by testing the addition first and watching it not move. Added one honest sentence naming the narrow/tiny case (stack the washer-dryer, a fold-down counter) and extended `build_zone_pages.py`'s existing per-room layout-heading-suffix mechanism (same one Primary Bedroom/Primary Bathroom already use) so the heading itself carries the words. Checked collision against every other room already using "narrow"/"tiny" in its own heading before shipping.
+
+**Caught before shipping, not after.** The full `preflight.py` run FAILed once on `gate_mcp_corpus_current`: the content.json edit was never mirrored into `mcp/content.json`, a committed byte-for-byte copy. Re-copied, re-ran: 0 FAIL, 29 warnings.
+
+**Verified.** Rescored both corpora live: all 4 target queries moved partial to covered, correctly pointing at `/rooms/laundry-room.html`, 0 regressions on the other rooms sharing either word. Laundry Room's guide tally moved 12% to 7% uncovered. `test_keyword_demand.py`, `check_urls.py`, `audit_pages.py`, `fix_dashes.py`/`fix_dialect.py --check`, `affiliate.py --check`, `link_graph_report.py`, `check_sellable.py` all independently clean.
+
+**Went well.** Reading the actual content before reaching for a scorer-level fix (FORMAT_WORDS), which would have masked a real content gap rather than closed it.
+
+**Did not go well.** Spent real time mid-cycle mistaking `gate_preflight_lock_blocks_concurrent_runs`'s own self-test output ("waiting on a concurrent preflight.py") for a hung process and killing two healthy runs before checking a clean prior log and confirming it is expected, benign test output.
+
+**Changing next cycle:** none; this cost real time once and should not recur now it is understood.
+
+**Next:** mine another room's partial tier by hand, or act on any Phil reply.
+
+Pushed to main (merged with a concurrent PM check-in's dashboard/log regen, no content lost). `content/manual/source/content.json`, `mcp/content.json`, `ops/build_zone_pages.py`, one rebuilt room page, rescore files, `BACKLOG-2026-09-07.md`, dashboard regen, this entry. No price or product touched; `IndexNow` to submit on push.
 
 HANDOFF-FILES: none
 
