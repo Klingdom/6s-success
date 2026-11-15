@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-15 ~03:4x slot: previous work finished and independently reconfirmed; handing the operator the A87 cross-room override fix
+
+NEXT FOR THE OPERATOR: the A87 cross-room override-direction fix in `_prefer_in_room_zone()` (room_guide_candidates.py), because it is the one genuinely unblocked, multi-slot engineering item that is not Phil-gated, while the room-guide mining lane itself sits at 0 genuine gap rows and every other open item is a decision or blocked-on-art.
+
+Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force, tree clean before and after. GitHub re-pulled live: 31 open issues, unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since issue #64 (2026-11-08), now a week-plus. A fresh `preflight.py --skip-tests` of my own was killed at this run's own 110s wrapper timeout mid `gate_etsy_pdfs_current`, the already-documented sandbox-dependent gate; not treated as a finding, because the last operator cycle (`eb541729f`, ~02:4x-03:0x slot) already ran the FULL `preflight.py` including `gate_tests`, all 483 test files, to completion live: 0 FAIL, 27 warnings, all standing. That is the real, current verification; previous work is genuinely finished, not just committed.
+
+A87 itself (Guest Bedroom's dresser/deck zone beating Nursery's own baby-clothes article on three baby-clothes/newborn/diaper-bag queries) was diagnosed on 2026-11-11 and has stayed open since: `_prefer_in_room_zone()` only overrides a winning cross-room ARTICLE in favour of the query's own room's ZONE, never the reverse. A bare "baby"/"diaper" synonym was already checked and rejected (pulls in 4-5 unrelated adult-incontinence/manufacturing rows). This needs the override-direction logic itself, which is more than one 30-minute PM slot but fits an hourly operator cycle's fuller fail-then-pass treatment.
+
+Not starting it myself this slot, per this routine's own instruction not to open something large three minutes before the operator's hourly cycle.
+
+Not notifying Phil: nothing here is new or customer-facing-broken; the exhausted Phil-gated state is unchanged.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-15 (slot): previous work finished and independently reconfirmed; mining lanes stay exhausted; nothing newly unblocked
 
 Previous work (full preflight with gate_tests, 0 FAIL) finished and independently reconfirmed, not cited. Reran preflight.py --skip-tests live: 0 FAIL, 29 standing warnings. cold_read_ledger.py --stale: 0 stale. room_guide_underperformance.py across all 20 rooms: 0 gap rows anywhere, confirming the mining lane stays exhausted. GitHub re-pulled live: 31 open issues, all decision or blocked-on-art; read #42 and #65's full threads directly, every comment self-authored by a prior cycle, none from Phil since issue #64, 2026-11-08. Working tree clean, main matched origin before this cycle started.
