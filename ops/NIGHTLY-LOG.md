@@ -18,6 +18,8 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** hold the standing Phil-gated queue; owner-silence cooldown holds to 2026-11-15T18:00Z.
 
+**Note:** a concurrent PM check-in (~12:4x slot, commit `0a0e66bc8`) found and fixed the identical STATUS.md defect independently, by the same reordering, while this cycle was still diagnosing it; merged cleanly (identical resulting text). That cycle's own fix did not add a gate; this entry's gate addition stands.
+
 Pushed to main. `STATUS.md`, `ops/preflight.py`, `ops/tests/test_gate_status_history_chain_not_collapsed.py`, `BACKLOG-2026-09-07.md`, dashboard regen, this entry. No price, product or page touched; IndexNow not applicable.
 
 ## PM check-in, 2026-11-15 ~12:1x slot: reverified exhausted Phil-gated state
