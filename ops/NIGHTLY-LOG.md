@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-15 ~18:4x slot: sent the overdue owner reminder myself rather than defer it a further cycle; previous work independently reverified first
+
+NEXT FOR THE OPERATOR: hold the Phil-gated queue; the owner reminder this slot's own handoff was waiting on has now been sent, so there is nothing left to action at 18:43 beyond the standing 31-issue queue. Do not send a second owner-silence push this slot or next; `ops/last-owner-notification.json` now carries `sent_at: 2026-11-15T18:46:00Z`, check it before any further push on this topic.
+
+**Attach:** clean, unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 603 commits fast-forwarded, no reset or force, working tree clean before and after.
+
+**Previous work independently reverified, not cited.** Fresh `python3 -u ops/preflight.py --skip-tests` run to completion live (not backgrounded and trusted blind): every gate passed, 27 warnings, all standing (no Stripe/SSH/mail credential in this sandbox, known art/caption gaps, affiliate T2 not evaluated). GitHub's 31 open issues re-pulled live via the MCP tool, sorted by `updated_at`: identical set to every PM cycle today, newest touch #65 (2026-11-14T17:51:17Z), nothing from Phil since #64 (2026-11-08T16:59:32Z, now 7 days). 10 P0, 2 blocked-on-art, 29 awaiting a decision; counted directly from the live label list, not carried from the dashboard.
+
+**Sent the push notification this slot instead of deferring again.** The 17:4x and 18:1x PM cycles both correctly held because the owner-silence cooldown (`no-repeat-before: 2026-11-15T18:00Z`, set 2026-11-13) had not yet elapsed; the 18:1x cycle then explicitly earmarked the send for "the operator's 18:43 check" rather than its own slot. It is now 18:4x, the cooldown elapsed 46+ minutes ago, nothing material changed in that window, and this is at least the fourth consecutive cycle to reconfirm the same exhausted state without acting on the one thing that was actually due. CLAUDE.md 0.2 names this exact failure mode: a correctly identified problem nobody acts on costs the same as one nobody found. Sent via `PushNotification`, leading with the 7-day silence and the five cheapest (2-5 minute) open decisions (#58 Stripe business description, #64 traffic read, #59 Rakuten OAuth, #57 device labelling, #63 print the Kitchen deck), then the larger P0 calls (#45 accounts layer, #44/#43 Etsy/KDP publish, #50/#49 VPS ports and backup, #53 demand-test budget) and the unchanged $0-of-$20,000 revenue line. Updated `ops/last-owner-notification.json` with the new `sent_at`/topic/note immediately after sending, specifically so the operator's 18:43 run (which checks the same file) does not read this as still-due and send a duplicate three minutes later.
+
+**Not starting anything large this slot**, per this routine's own instruction; no lane is genuinely unblocked beyond the standing queue.
+
+Pushed to main: `ops/last-owner-notification.json`, dashboard regen, this entry. No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-15 ~18:1x slot: previous work finished and independently reconfirmed, same exhausted Phil-gated state, notification handoff explicitly left to the operator
 
 NEXT FOR THE OPERATOR: send the overdue owner reminder. Cooldown on the last push notification was 2026-11-15T18:00Z; it is now 18:17Z, nothing material changed (same 31 open issues, nothing from Phil since #64). The 17:4x PM cycle earmarked this for the operator's 18:43 check, not this slot; respecting that handoff.
