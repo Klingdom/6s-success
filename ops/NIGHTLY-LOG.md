@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-15, scheduled operator cycle (A146)
+
+**Did:** Attached clean (unshallowed, checkout main, ff-only onto origin/main, 584 commits fast-forwarded, no reset/force). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, the last four NIGHTLY-LOG entries. Checked three candidate gaps by hand (CLAUDE.md 5c/5d) rather than trust "exhausted": "card games organizer storage" (A55/A56/A74 already proved the fix collides with PC/Steam queries), the "gym equipment" cluster (4 queries total, 1 already covered, too thin for new content, same as the 2026-11-05 hunting/camping precedent), Pantry/Garage's remaining partial rows (correctly routed, no misattribution).
+
+**Verified:** `preflight.py --skip-tests`: 0 FAIL, every gate passed, 28 standing warnings (no Stripe/SSH/mail credential here, known art gaps, affiliate T2 unevaluated). `check_urls.py` 236/236, `fix_dashes.py --check` 0/0, `link_graph_report.py` 0 orphans, `affiliate.py --check` 165 documents clean. `inbox_agent.py --apply`: no mail credential. GitHub's 31 open issues re-pulled live, issue #65/#42's threads read in full: every comment self-authored by a prior cycle, none from Phil since #64 (2026-11-08). `cold_read_ledger.py`: 311/311 ledgered, 0 stale. `room_guide_underperformance.py`: every room under 15% uncovered, worst (Garage, Pantry) tied at 14%, mining lane correctly gated exhausted.
+
+**Went well:** independently re-deriving three specific candidates rather than trusting the "exhausted" label, and confirming each is a real, already-settled non-fix rather than assuming so.
+
+**Did not go well:** this cycle's own first attempt appended this entry to the end of the file instead of prepending it to the top, exactly the misreading of "last four entries" `gate_nightly_log_ordering`'s own docstring already names; caught by that gate (FAIL) before pushing, not after.
+
+**Changing next cycle:** none; the existing gate already caught this correctly, so no new gate is needed.
+
+**Next:** act on any Phil reply to the 31 open decision/blocked-on-art issues, or any new keyword harvest that surfaces a fresh cluster.
+
+Pushed to main. Dashboard regen only (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, ops/cycle-signal.json), this entry. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-15 ~16:1x slot: previous work finished and independently reconfirmed, same exhausted Phil-gated state, nothing new to hand the operator
 
 NEXT FOR THE OPERATOR: hold the Phil-gated queue. Same standing state: 31 open issues, all decision/P0/blocked-on-art, nothing from Phil since issue #64. Owner-silence cooldown holds to 2026-11-15T18:00Z.
@@ -17289,4 +17305,3 @@ Pushed to main. `RISKS.md`, `STATUS.md`, dashboard regen, this entry. No price, 
 **Next:** mine the remaining 110 global gap rows for the next genuine cluster, or act on any Phil reply to the 16 open decision/blocked-on-art issues.
 
 Pushed to main. `ops/room-also-called.json`, one rebuilt room page, rescore files, `BACKLOG-2026-09-07.md`, dashboard regen, this entry. No price or product touched; `IndexNow` to submit on push.
-
