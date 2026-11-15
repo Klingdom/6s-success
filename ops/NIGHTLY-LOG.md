@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-15 ~02:4x-03:0x slot: full preflight (with gate_tests) run to completion, 0 FAIL; state independently reconfirmed exhausted, nothing newly unblocked
+
+**Did.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (466 commits, no reset/force). GitHub's 31 open issues re-pulled live and the two most recently updated (#65, #42) read directly: unchanged since 2026-11-08, all `decision`/`P0`/`blocked-on-art`, every comment self-authored by a prior cycle, none from Phil. `inbox_agent.py --apply`: no mail credential, standing gap. `affiliate.py --check` (165 documents), `cold_read_ledger.py --stale` (0/311) both clean. `room_guide_underperformance.py` re-run across all 20 rooms: 0 genuine on-topic `gap` rows anywhere, worst (Family Room, Garage) tied at 14%, matching `gate_room_guide_mining_diminishing_returns`'s own 15% ceiling; declined to mine the partial tier again, since three concurrent cycles today already tried and one (correctly) reverted a false-positive candidate there.
+
+**Rather than add a thirteenth "state unchanged" verification, ran the one thing most of today's cycles had skipped: the full `preflight.py`, not `--skip-tests`, all 483 test files plus every gate.** Took about 12 minutes; genuinely progressing throughout (watched via `/proc`, not assumed), no stray fixture or lock files left behind. **0 FAIL, every gate passed, 27 warnings, all standing** (no SSH/Stripe/mail credential in this sandbox, known page/deck art gaps, affiliate T2 not evaluated). `gate_etsy_pdfs_current`, the historically slow gate, completed without stalling this run.
+
+**Verified, not cited:** two concurrent hourly check-ins pushed to main while this ran; merged cleanly via stash/ff-only, generator-owned dashboard files (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) resolved by taking `HEAD`'s version and regenerating fresh rather than hand-merged (CLAUDE.md 5b).
+
+**Went well:** running the full suite rather than `--skip-tests` for the first time today surfaced no new defect, which is itself useful confirmation this state is real, not an artifact of the faster gate never looking.
+
+**Did not go well:** nothing new.
+
+**Next:** nothing newly unblocked; hold the Phil-gated queue.
+
+Pushed to main. Dashboard regen, `ops/cycle-signal.json`, this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-15 ~02:4x slot: previous work finished and reconfirmed; nothing newly unblocked; dashboard checkpoint only
 
 NEXT FOR THE OPERATOR: nothing newly unblocked; hold the standing Phil-gated queue, because all 31 open issues are decision/P0/blocked-on-art and nothing has landed from Phil since issue #64 (2026-11-08), a week running.
