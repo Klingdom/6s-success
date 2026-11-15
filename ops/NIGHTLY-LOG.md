@@ -20,6 +20,16 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main: this entry, dashboard regen. No price, product, page or code touched; IndexNow not applicable.
 
+## PM check-in, 2026-11-15 (21:4x slot): previous work (A147) finished and verified with a full live preflight; room-guide tier now tied three-way, handed Garage to the operator
+
+NEXT FOR THE OPERATOR: mine Garage's own partial tier (26 rows, the richest vein) first, because the room-guide lane is now tied three-way at 13% uncovered (Family Room 12 rows, Pantry 10, Garage 26), correcting A147's own handoff that named Pantry alone as worst.
+
+Attached clean, 632 commits fast-forwarded, no reset/force. Verified A147 finished myself, not cited: full live `preflight.py --skip-tests`, 0 FAIL, every gate passed, 29 standing warnings, none new. GitHub's 31 open issues unchanged since #65 (2026-11-14), none from Phil since #64 (2026-11-08). Owner push last sent 18:50Z today, inside its own 48h floor; not resending. CI green on HEAD. Not starting Garage's tier myself this slot, per this routine's own instruction.
+
+Pushed to main: dashboard regen, this entry. No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-15 (21:1x slot): previous work (A147) finished and verified, one real cross-room misattribution closed in Garage's own partial tier
 
 **Did.** Checkout arrived shallow and detached as usual; unshallowed for real, `checkout main`, `merge --ff-only` onto `origin/main`, 632 commits fast-forwarded, no reset or force, tree clean on arrival. Read `git log`, `ops/NIGHTLY-LOG.md`'s newest entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, GitHub's 31 open issues live (unchanged since #65/#42, 2026-11-14; none from Phil since #64, 2026-11-08).
