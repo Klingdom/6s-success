@@ -4,6 +4,8 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## Scheduled operator cycle, 2026-11-15 (slot): preflight clean, state independently reconfirmed; one standing candidate sharpened and confirmed not safely fixable, nothing newly unblocked
 
+**Responds directly to the concurrent PM check-in below (~03:4x slot), which handed this exact item to the operator as "the one genuinely unblocked, multi-slot engineering item."** Picked it up and found the handoff's own framing (a two-page override-direction gap) understates the problem; see the full diagnosis in this entry.
+
 **Did.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (475 commits, no reset/force), working tree clean before and after. Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. GitHub's 31 open issues re-pulled live via the API (not cited), sorted by `updated_at`: unchanged since issue #65 (2026-11-14), nothing from Phil since issue #64 (2026-11-08), a week running. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, standing gap. Ran `python ops/preflight.py --skip-tests` live to completion: every gate passed, 28 warnings, all standing (no SSH/Stripe/mail credential in this sandbox, known page/deck art gaps, affiliate T2 not evaluated, films-vs-captions not applicable).
 
 **Went past re-citing A87's standing handoff (the "dresser for newborn" cross-room misattribution), and found it is a worse case than recorded, not a better one.** Reproduced live rather than trusted: `best_page()` (title-only surface) ties Guest Bedroom's dresser zone at 1.0 because "newborn" is correctly in `FORMAT_WORDS` (2026-11-11, zero collision, re-confirmed: still only 2 rows in either corpus carry it, both nursery-context) and the query's one surviving content word, "dresser", appears in that zone's own `<title>`. But the `head_words` surface (title + headings), the one `score_rows()` actually credits when it wins, ties not between two pages but **fifteen**: every bedroom-adjacent zone, deck, article, the Standards Pack download and `/shop.html` itself all carry the bare word "dresser" somewhere in a heading. This is not the two-page override-direction gap A87/A89/A90 described (one cross-room zone beating one correct-room zone); it is a single generic noun collapsing the whole bedroom-furniture corpus into one tie, resolved today by plain alphabetical URL order. No safe narrow fix exists for a 15-way tie the way one might for a 2-way one: `_prefer_in_room_zone`'s existing override, and every tie-break refinement shipped this month, are each scoped to a specific pairwise shape and would need to adjudicate all fifteen pages correctly to touch this one, which is the "multi-slot work" these handoffs were already right to defer, now confirmed by evidence rather than estimate. Not shipping a change; recording the sharper diagnosis so a future cycle does not reopen this expecting a small fix. The query's own classification (`covered`, 1.0) is unaffected either way; this is page-attribution only, as it has been every time this shape was checked before.
@@ -19,6 +21,20 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** nothing newly unblocked; hold the Phil-gated queue (issues #42, #64, and the rest of `OWNER-ACTIONS.md`).
 
 Pushed to main. Dashboard regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`), this entry. No price, product or page touched; IndexNow not applicable.
+
+## PM check-in, 2026-11-15 ~03:4x slot: previous work finished and independently reconfirmed; handing the operator the A87 cross-room override fix
+
+NEXT FOR THE OPERATOR: the A87 cross-room override-direction fix in `_prefer_in_room_zone()` (room_guide_candidates.py), because it is the one genuinely unblocked, multi-slot engineering item that is not Phil-gated, while the room-guide mining lane itself sits at 0 genuine gap rows and every other open item is a decision or blocked-on-art.
+
+Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force, tree clean before and after. GitHub re-pulled live: 31 open issues, unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since issue #64 (2026-11-08), now a week-plus. A fresh `preflight.py --skip-tests` of my own was killed at this run's own 110s wrapper timeout mid `gate_etsy_pdfs_current`, the already-documented sandbox-dependent gate; not treated as a finding, because the last operator cycle (`eb541729f`, ~02:4x-03:0x slot) already ran the FULL `preflight.py` including `gate_tests`, all 483 test files, to completion live: 0 FAIL, 27 warnings, all standing. That is the real, current verification; previous work is genuinely finished, not just committed.
+
+A87 itself (Guest Bedroom's dresser/deck zone beating Nursery's own baby-clothes article on three baby-clothes/newborn/diaper-bag queries) was diagnosed on 2026-11-11 and has stayed open since: `_prefer_in_room_zone()` only overrides a winning cross-room ARTICLE in favour of the query's own room's ZONE, never the reverse. A bare "baby"/"diaper" synonym was already checked and rejected (pulls in 4-5 unrelated adult-incontinence/manufacturing rows). This needs the override-direction logic itself, which is more than one 30-minute PM slot but fits an hourly operator cycle's fuller fail-then-pass treatment.
+
+Not starting it myself this slot, per this routine's own instruction not to open something large three minutes before the operator's hourly cycle.
+
+Not notifying Phil: nothing here is new or customer-facing-broken; the exhausted Phil-gated state is unchanged.
+
+HANDOFF-FILES: none
 
 ## PM check-in, 2026-11-15 (slot): previous work finished and independently reconfirmed; mining lanes stay exhausted; nothing newly unblocked
 
