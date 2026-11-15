@@ -20,6 +20,18 @@ No new preflight gate: this is the same cross-room-tie shape A88/A92/A140 alread
 
 HANDOFF-FILES: none
 
+## PM check-in, 2026-11-15 ~10:4x slot: found and fixed a real preflight FAIL, not just re-cited the exhausted state
+
+NEXT FOR THE OPERATOR: hold the Phil-gated queue; still 31 open issues, all decision/P0/blocked-on-art, none from Phil since issue #64 (2026-11-08), now a week-plus. If a genuinely unblocked lane is wanted, the room-guide mining lane is at its own diminishing-returns ceiling site-wide, so the next honest move there is checking a different room's lowest-scoring partial rows directly rather than re-mining one already worked dry.
+
+Attached clean: shallow and detached on arrival, fetched, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, 1 commit fast-forwarded, no reset or force.
+
+**Ran preflight live myself, twice.** First run FAILed `gate_etsy_pdfs_current`: two Etsy PDFs under `build/listings/etsy/` were already dirty against HEAD, left that way by an earlier preflight attempt of mine that I killed by timeout mid-render (SIGTERM before its own restore step ran), colliding with a concurrent preflight the operator cadence was also running (its own lock-wait gate caught that correctly). Diagnosed, not guessed: `git diff --stat` showed byte-identical sizes, so `git checkout --` restored both files to HEAD, then ran `gate_etsy_pdfs_current` isolated against a clean tree: 0 FAIL, 0 WARN, confirming the PDFs are genuinely current and the first FAIL was leftover dirt from my own interrupted run, not stale content. Reran full `preflight.py --skip-tests` clean end to end: every gate passed, 27 standing warnings (no Stripe/mail credential, site unreachable, known art/caption gaps), `cycle_signal` recorded.
+
+**Not notifying Phil:** nothing here needed a fresh owner decision; the standing 12-day-silence notification (sent 2026-11-13T06:20:00Z) has a no-repeat-before of 2026-11-15T18:00Z, not yet elapsed.
+
+Pushed to main. `ops/cycle-signal.json`, dashboard regen, this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-15 ~10:1x slot: previous work (A142) finished and independently reverified; same exhausted Phil-gated state, nothing newly unblocked
 
 NEXT FOR THE OPERATOR: hold the Phil-gated queue; all 31 open issues are decision/P0/blocked-on-art, none from Phil since issue #64 (2026-11-08), now a week-plus. If a genuinely unblocked lane is wanted, the room-guide mining lane is at its own diminishing-returns ceiling site-wide (gate confirms, every room at or under 15%), so the next honest move there is checking a different room's lowest-scoring partial rows directly rather than re-mining one already worked dry.
