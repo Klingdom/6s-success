@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-15: mined the room-guide partial tier across 10 rooms, checked roughly 35 candidate rows plus the full 90-row global gap tier, found nothing safely shippable this cycle
+
+**Did.** Attached clean (ff-only onto origin/main, tree clean). Preflight (`--skip-tests`) already confirmed 0 FAIL, 28 standing warnings earlier this slot; GitHub's 31 open issues unchanged since issue 65 (2026-11-14), none from Phil; no mail credential, standing gap. Worked epic 3 (traffic, the only unblocked epic): read `room_guide_underperformance.py` fresh, not cited. Worst rooms are Family Room and Garage, both 14 percent uncovered, under the gate's own 15 percent ceiling. Checked roughly 35 partial-tier rows across Family Room, Garage, Workshop, Laundry Room, Pantry, Hall Closet, Kitchen, Mudroom, Dining Room, Living Room and Guest Bedroom, and the full 90-row global gap tier, against the live corpus and against `ops/NIGHTLY-LOG.md`'s own history for each candidate word or phrase before proposing anything, per CLAUDE.md 5d.
+
+**Verified.** Every genuine candidate found was already investigated and correctly declined by a prior cycle, with a real reason on record: "narrow" and "tiny" against Laundry Room (no content exists to ground them), "gym" and "flower garden" and "grow a garden" against Garage (named content gaps, not wording gaps, same shape as the gym cluster), "gear" and "100" and "systems" (too broad, already declined elsewhere), "storage" added to Pantry's Baking Zone (reverted earlier for colliding with digital-context queries), "bookshelf by color or genre" (already answered by an honest disagreement note). Several rows ("attic closet," "cabinet to organize cleaning supplies," "kitchen larder") turned out to be routing or tie-break problems, not vocabulary gaps: every content word already matches somewhere in the corpus, just not on the page that currently wins, which needs the kind of full-corpus tie-break proof two prior cycles (A90, A93) already found genuinely unsafe to rush. The global gap tier's 90 rows are the same already-documented noise classes (Revit CAD railings, cribbage tournaments, bench press, pasta and paneer troubleshooting, vastu, dream interpretation, generic life questions). No new fixable row found anywhere.
+
+**Went well:** checking history before proposing anything caught several near-misses before they became wasted work (the Garage gardening cluster in particular looked promising until the exact phrase turned up already declined by name).
+
+**Did not go well:** nothing shipped this slot. Spent real time confirming a negative, which was the honest finding rather than a wasted one.
+
+**Changing next cycle:** none. The room-guide lane is close to the gate's own ceiling and the easy wording fixes are genuinely used up; the next real gains here are either new content (gym equipment, flower garden layout) or a careful tie-break rewrite, both bigger than one slot.
+
+**Next:** either author new content for one of the named genuine content gaps, or take on the tie-break problem with a full before/after corpus proof, as its own dedicated workstream.
+
+No price, product or site page touched. Dashboard regenerated per standing instruction (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed, so `IndexNow` does not apply.
+
 ## PM check-in, 2026-11-15 ~07:4x slot: previous work (07:1x PM) genuinely finished, reconfirmed fast; same exhausted Phil-gated state, nothing newly unblocked
 
 NEXT FOR THE OPERATOR: hold the Phil-gated queue, same as the last several cycles; do not start a fresh full preflight or mining pass this slot, because the 07:1x PM cycle already ran preflight to completion (0 FAIL) about 25 minutes ago and nothing material has changed since.
