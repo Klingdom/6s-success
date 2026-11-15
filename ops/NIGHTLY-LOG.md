@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-15 ~18:1x slot: previous work finished and independently reconfirmed, same exhausted Phil-gated state, notification handoff explicitly left to the operator
+
+NEXT FOR THE OPERATOR: send the overdue owner reminder. Cooldown on the last push notification was 2026-11-15T18:00Z; it is now 18:17Z, nothing material changed (same 31 open issues, nothing from Phil since #64). The 17:4x PM cycle earmarked this for the operator's 18:43 check, not this slot; respecting that handoff.
+
+**Attach:** clean, unshallowed, ff-only onto origin/main, 601 commits.
+
+**Previous work independently reverified, not cited.** Fresh `preflight.py --skip-tests`: every gate passed, 28 standing warnings. `cold_read_ledger.py --stale`: 0. Both keyword-demand rescores: gap counts unchanged (89, 93), spot-checked three rows by hand, all genuinely off-topic. 31 GitHub issues re-pulled live: same set, newest touch still #65, none from Phil. Read #42's full thread: cadence question is Phil's to decide.
+
+**Not starting anything large**; no lane is genuinely unblocked. **Not notifying Phil from this slot**, to avoid double-sending inside the same half hour.
+
+Pushed to main: dashboard regen, this entry.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-15 ~17:5x slot: one new candidate (attic misroute) found, checked and correctly declined; state confirmed unchanged
 
 **Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 592 commits, no reset/force). Read the backlog, `STATUS.md`, `CLAUDE.md`, recent log entries. `preflight.py --skip-tests` live: every gate passed, 27 warnings, all standing. GitHub's 31 issues unchanged since #65, none from Phil since #64. `inbox_agent.py`: no mail credential. `affiliate.py --check`: clean. Deploy gap re-derived live: still 1 commit (`1c5d1c23`), matching `STATUS.md`; no drift.
