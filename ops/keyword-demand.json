@@ -38782,15 +38782,15 @@
         "how to organize bulk storage"
       ],
       "room": "",
-      "best_page": "/zones/family-room-the-board-game-and-puzzle-zone.html",
-      "best_page_title": "How to organize the family room game storage",
+      "best_page": "/zones/pantry-the-backstock-and-bulk.html",
+      "best_page_title": "How to organize the pantry bulk storage",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/zones/family-room-the-board-game-and-puzzle-zone.html",
+      "heading_page": "/zones/pantry-the-backstock-and-bulk.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "groceries"
+        "boxes"
       ]
     },
     {
@@ -56492,6 +56492,6 @@
       ]
     }
   ],
-  "scored_against_commit": "6cb809525",
-  "scored_at": "2026-11-15T08:54:21Z"
+  "scored_against_commit": "969aff589",
+  "scored_at": "2026-11-15T10:53:26Z"
 }

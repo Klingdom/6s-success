@@ -1,7 +1,7 @@
 {
  "_why": "The household words for a micro zone this site names differently, the same idea as ops/room-also-called.json but at zone scope. Every entry is measured, not guessed: the 'queries' and 'covered' figures are from ops/keyword-demand.json's own harvest. A word earns a place here only if people type it AND this site does not already answer for it.",
  "_rule": "Do not add a word with no measured queries, and do not add a word the site already covers. Keyed 'Room|Zone' using the same exact room/zone names as content.json, matching the convention ops/zone-search-terms.json already uses for its own lookup key.",
- "_measured_at": "2026-10-10T19:51:00Z",
+ "_measured_at": "2026-11-15T00:00:00Z",
  "zones": {
   "Dining Room|China or Display Cabinet": {
    "names": [
@@ -376,11 +376,12 @@
   },
   "Pantry|Backstock and Bulk Zone": {
    "names": [
-    "shopping zone"
+    "shopping zone",
+    "groceries zone"
    ],
-   "queries": 1,
+   "queries": 2,
    "covered": 0,
-   "source": "ops/keyword-demand.json 2026-11-05 (bing): 'organizing pantry for bulk shopping', US rank 16, partial (0.667 title coverage), already scored to this exact zone page (title 'How to organize the pantry bulk storage'), only the single word 'shopping' unmatched. Grep-confirmed before adding: the zone's own text never uses the gerund 'shopping' but does use the stem twice, 'When you get home from a big shop' (sustain pass) and 'You shop a warehouse club every few months' (variants), the same exact-word-not-stem shape already fixed elsewhere in this file for 'paint'/'painting', 'nappy'/'nappies' and 'craft'/'crafts'. Named '<word> zone', the A-series precedent."
+   "source": "ops/keyword-demand.json 2026-11-05 (bing): 'organizing pantry for bulk shopping', US rank 16, partial (0.667 title coverage), already scored to this exact zone page (title 'How to organize the pantry bulk storage'), only the single word 'shopping' unmatched. Grep-confirmed before adding: the zone's own text never uses the gerund 'shopping' but does use the stem twice, 'When you get home from a big shop' (sustain pass) and 'You shop a warehouse club every few months' (variants), the same exact-word-not-stem shape already fixed elsewhere in this file for 'paint'/'painting', 'nappy'/'nappies' and 'craft'/'crafts'. Named '<word> zone', the A-series precedent. 'groceries zone' added 2026-11-15, scheduled operator cycle, mining Family Room's remaining 14%-uncovered partial tier (ops/room_guide_underperformance.py): 'large storage boxes for organizing groceries' (ops/keyword-demand.json, partial, 0.333 coverage, content words storage/boxes/groceries) was scoring to /zones/family-room-the-board-game-and-puzzle-zone.html on a coincidental match of the generic words 'storage'/'boxes' alone, with 'groceries' itself unmatched anywhere on that page. Grep-confirmed before adding: this zone's own text never uses the word 'groceries' but its purpose and done_looks_like are exactly bulk grocery storage ('Sacks of rice, cases of canned tomatoes and packs of paper towels'), the honest match, not a stretch. Checked site-wide for a collision first: zero existing page headings anywhere contain 'groceries' or 'grocery' before this fix, so adding it creates no ambiguity."
   },
   "Home Office|Supply Cabinet": {
    "names": [

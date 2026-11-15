@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## A143, closed a real cross-room misattribution: 'large storage boxes for organizing groceries' was scoring to Family Room instead of Pantry's own Backstock and Bulk Zone, scheduled operator cycle, 2026-11-15
+
+**Did.** Attached clean (unshallowed, ff-only onto origin/main, 534 commits). 31 open GitHub issues re-pulled live, #65/#64 comments read directly: nothing from Phil since #64. `inbox_agent.py`: no mail credential. `preflight.py --skip-tests`: 0 FAIL, 28 warnings, all standing. By epic: 1 blocked on #64; 2 clean; 3-5 the FORMAT_WORDS lane, gated diminishing-returns (worst room 14% uncovered, all partial, 0 gap). Rather than re-assert "exhausted" again, read Family Room's worst row directly: "large storage boxes for organizing groceries" scored to its Board Game zone on coincidental "storage"+"boxes" overlap, while the honest match is Pantry's Backstock and Bulk Zone ("sacks of rice, cases of canned tomatoes"), which never said "groceries" and had no room signal to win the cross-room tie. Added "groceries zone" to `zone-also-called.json` and "groceries" as a `signal_names` entry (not `names`, the A140/Nursery precedent) in `room-also-called.json`. Checked the one real collision first: "grocery organizer for car" (singular, correctly routed to Garage) cannot match the plural-only regex, confirmed directly.
+
+**Verified.** Full before/after diff across both corpora: exactly 1 row changed, US only, status unchanged, best_page corrected. Family Room's tally moved honestly, 14% to 13% uncovered. `test_keyword_demand.py` (71/71), `test_room_also_called.py`, both also-called gate tests, `test_gate_also_called_no_digital_collision.py`, `test_room_guide_candidates.py` (146/146) pass. `check_urls.py` (236/236), `fix_dashes.py --check`, `affiliate.py --check` (165 docs), `link_graph_report.py` (0 orphans), `audit_pages.py` (0 findings) clean. Full `preflight.py --skip-tests` re-run: 0 FAIL, 29 warnings (one transient CI-query miss, unrelated).
+
+**Went well:** checking the one real collision before shipping.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** mine the remaining 12-14%-uncovered partial tiers for the next genuine fix, or act on any Phil reply.
+
+No new preflight gate: this is the same cross-room-tie shape A88/A92/A140 already have no generic gate for. No price/product/new page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-15 ~10:1x slot: previous work (A142) finished and independently reverified; same exhausted Phil-gated state, nothing newly unblocked
 
 NEXT FOR THE OPERATOR: hold the Phil-gated queue; all 31 open issues are decision/P0/blocked-on-art, none from Phil since issue #64 (2026-11-08), now a week-plus. If a genuinely unblocked lane is wanted, the room-guide mining lane is at its own diminishing-returns ceiling site-wide (gate confirms, every room at or under 15%), so the next honest move there is checking a different room's lowest-scoring partial rows directly rather than re-mining one already worked dry.

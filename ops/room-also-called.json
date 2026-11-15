@@ -50,8 +50,12 @@
    "names": [
     "larder"
    ],
-   "queries": 11,
-   "covered": 0
+   "signal_names": [
+    "groceries"
+   ],
+   "queries": 12,
+   "covered": 0,
+   "source": "'groceries' added 2026-11-15, scheduled operator cycle, mining Family Room's remaining 14%-uncovered partial tier (ops/room_guide_underperformance.py). 'large storage boxes for organizing groceries' (ops/keyword-demand.json, partial, 0.333 coverage) was tied 2-of-3 content words between the Pantry Backstock and Bulk Zone (storage+groceries, after this same cycle added 'groceries zone' to ops/zone-also-called.json) and Family Room's Board Game and Puzzle Zone (storage+boxes), with no room signal to break the cross-room tie, so it kept routing to the wrong room. Not added as a plain 'names' entry: Pantry is not 'also called the Groceries', it is where groceries are stored, so this is a signal_names entry (the A140/Nursery precedent), read by room_synonyms() for scoring only, never rendered as an 'Also called' heading (also_called_html() and gate_also_called_is_heading read only 'names'). Checked for the exact collision this precedent warns about before adding: the only other grocery-related row in either corpus is 'grocery organizer for car' (singular 'grocery', already correctly scored to the Garage's Automotive Care Zone). household_room_signal()'s own word-boundary regex (\\bgroceries s?\\b-shaped, an exact word plus an optional trailing s) matches the plural 'groceries' in the target query but cannot match the singular 'grocery' in the car-organizer row, confirmed directly rather than assumed, so adding the plural form alone creates no collision with that row or any other."
   },
   "Family Room": {
    "names": [
