@@ -18,6 +18,26 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Dashboard regen and this entry only. No price, product or site page touched; IndexNow not applicable.
 
+## PM check-in, 2026-11-15 ~19:4x slot: previous work finished and independently reconfirmed with a full live preflight run (not backgrounded and trusted blind), same exhausted Phil-gated state, no new owner notification sent
+
+NEXT FOR THE OPERATOR: hold the Phil-gated queue, because the room-guide mining lane is still genuinely exhausted (fresh re-run this slot, not cited) and every other open item is a decision or asset gap waiting on Phil. Do not send another owner-silence push this slot or next; the last one went out 2026-11-15T18:50Z and this convention's own ~48h next-repeat floor has not elapsed.
+
+**Attach.** Clean, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, 614 commits fast-forwarded, no reset or force, working tree clean before the change.
+
+**Previous work (19:1x and earlier) independently reverified, not cited.** Ran `python3 -u ops/preflight.py --skip-tests` to completion in the background and waited on the real worker PID rather than the shell-wrapper PID a first wait mistakenly targeted (caught before it produced a false "done"): 0 FAIL, every gate passed, 26 warnings, all standing (no SSH key for the analytics database, no Stripe credential in this sandbox, affiliate T2 not evaluated, known art/caption gaps, room-guide mining lane still diminishing returns). `ops/rotate_nightly_log.py --check`: clean, 1065 entries, not due. Re-pulled GitHub's 31 open issues live via the MCP tool, sorted by `updated_at`: unchanged, newest touch still #65 (2026-11-14T17:51:17Z), nothing from Phil since #64 (2026-11-08T16:59:32Z). `ops/b9_claims.py --status`: no open room claims. `ops/last-owner-notification.json` re-read fresh immediately before deciding not to send, confirming the 18:50Z record and its own stated next-repeat floor, per the race this file's own 18:4x entry flagged for exactly this check.
+
+**Re-ran the room-guide mining lane myself instead of citing today's many prior "exhausted" entries.** `ops/room_guide_underperformance.py` live: Garage and Pantry both still 14% uncovered (tied worst), 0 `gap` rows anywhere, every remaining row `partial`. Matches today's repeated findings exactly; not a new fix, a fresh independent check.
+
+**One mid-run housekeeping commit.** A tool-use hook flagged the backgrounded preflight run's own `ops/cycle-signal.json` checkpoint write as an uncommitted change partway through the run; committed and pushed that generator-owned checkpoint as-is (not hand-edited) rather than leave the tree dirty while the run continued. The final clean-pass write to the same file is included in this entry's own push.
+
+**Not starting anything large,** per this slot's own instruction; no lane is genuinely unblocked beyond the standing 31-issue queue.
+
+**Not notifying Phil.** Nothing material changed since the 18:50Z push; its own ~48h next-repeat floor has not elapsed.
+
+Pushed to main: `ops/cycle-signal.json`, dashboard regen, this entry. No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-15 ~19:1x slot: previous work finished and independently reconfirmed, same exhausted Phil-gated state, no new owner notification sent
 
 NEXT FOR THE OPERATOR: hold the Phil-gated queue. Same standing 31 open issues, all decision/P0/blocked-on-art; nothing from Phil since issue #64 (2026-11-08). Do not send another owner-silence push this slot; the last one went out at 18:50Z (after the 18:46Z duplicate), and the roughly 48h next-repeat floor that record itself set has not elapsed.
