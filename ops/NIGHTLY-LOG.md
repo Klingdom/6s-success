@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-15 ~05:1x slot: previous work finished; mined the global gap tier for the next genuine cluster, found two candidates and declined both correctly
+
+Attached clean: unshallowed, checkout main, merge --ff-only onto origin/main (482 commits), no reset or force, tree clean before and after.
+
+**Previous work (04:4x PM) finished, not cited.** GitHub re-pulled live: still 31 open issues, same set, all decision/P0/blocked-on-art; issue #65's two comments re-read directly, both self-authored by prior Claude Code sessions, nothing from Phil since issue #64 (2026-11-08), now a week-plus. `fix_dashes.py --check` (0) and `fix_dialect.py --check` (0) both clean. `cold_read_ledger.py --stale`: 0 stale. `room_guide_underperformance.py` across all 20 rooms: 0 gap rows anywhere, mining lane still exhausted.
+
+**Mined the 90 remaining global gap rows for the next genuine cluster rather than re-citing "exhausted."** Checked five borderline rows against `content.json` directly rather than the easy off-topic ones. "daycare organization ideas" (ca) declined: a daycare is a commercial childcare facility, a different domain from a home nursery, correctly off-topic. "desktop organisation ideas" (au) declined: genuinely ambiguous between a physical desk surface (Home Office's own Primary Desk zone, title "How to organize the home office desk," which never uses the word "desktop") and a computer desktop, which this product does not address; forcing a match would overclaim. "decoration organisation" (in) is a real, uncovered subject (no zone in any of the 20 rooms is about decorations), but it needs new content, not a synonym fix, the same basement/attic/trunk shape prior cycles already named as too large for this slot; left unadded, recorded here.
+
+**Tried, caught, and reverted a real mistake before it shipped.** "decent organisation" and "designed organizing" looked like the same generic-modifier shape "original"/"simple"/"quickly" already cover in `FORMAT_WORDS` (self-flattery checked first: 0 of 244 titles/headings carry "decent," "designed" occurs once, in unrelated Laundry Room guidance text, neither in a title or heading). Added both, re-ran `keyword_demand.py --rescore` and `keyword_demand_global.py --rescore`: gap counts did not move (91/90, unchanged) because "organisation"/"organizing" were the only other words on those two queries, so removing "decent"/"designed" left both rows with an empty `content_words()` list, the exact sole-content-word trap `ops/keyword_demand.py`'s own comments (the "recipes" removal, A114, A120) already document and `gate_keyword_demand_no_content_words` exists to catch. Reverted cleanly with `git checkout` before committing anything; both queries stay correctly `gap`.
+
+**Not starting anything large this slot.** The one real finding ("decoration organisation" needs a new zone or article) is content work, not sized for 30 minutes; leaving it for a future content/product cycle rather than the operator at :43, since it is not multi-slot engineering like A87.
+
+**Not notifying Phil.** Nothing here is new or customer-facing-broken; the standing no-repeat decision on the exhausted-cadence topic (#42) still applies.
+
+Pushed to main. Dashboard regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this entry. No code, price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-15 ~04:4x slot: previous work (A87 diagnosis) finished and reconfirmed; same exhausted Phil-gated state; nothing newly unblocked
 
 NEXT FOR THE OPERATOR: nothing newly unblocked; hold the standing Phil-gated queue, because all 31 open issues are decision/P0/blocked-on-art and nothing has landed from Phil since issue #64 (2026-11-08), now a week-plus running.
