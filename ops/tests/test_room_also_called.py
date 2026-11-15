@@ -103,7 +103,15 @@ def main():
               "checks below still ran.")
     else:
         for room, entry in sorted(rooms.items()):
-            for name in entry.get("names", []):
+            # "signal_names" (added 2026-11-15) are held to the identical
+            # demand rule as "names": a phrase with zero measured queries,
+            # or one where every non-own hit is already covered, is noise
+            # either way. The difference is only what happens to it below
+            # (section 4): a "name" must render on the room's own page, a
+            # "signal_name" must not, because it is not another word for
+            # the room itself (see ops/room-also-called.json's Nursery
+            # entry and ops/keyword_demand.py's room_synonyms() docstring).
+            for name in entry.get("names", []) + entry.get("signal_names", []):
                 pat = re.compile(r"\b" + re.escape(name) + r"\b")
                 hits = [r for r in rows if pat.search(r["query"])]
                 if not hits:
@@ -137,8 +145,14 @@ def main():
     if len(pages) < 20:
         fails.append("only %d room page(s) found, so the rendering was not "
                      "really checked" % len(pages))
+    # Only a room with real "names" (an alternate name for the room itself)
+    # is expected to render the line. A room with only "signal_names" (a
+    # topic phrase that sets the scorer's room signal without claiming to
+    # be another word for the room, 2026-11-15) must NOT render anything,
+    # or it would be exactly the false "Also called the diaper bag" claim
+    # that field exists to avoid.
     slug = lambda s: re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
-    want = {slug(r): r for r in rooms}
+    want = {slug(r): r for r, entry in rooms.items() if entry.get("names")}
     for f in pages:
         name = os.path.basename(f)[:-len(".html")]
         html = io.open(f, encoding="utf-8", errors="replace").read()

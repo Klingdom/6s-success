@@ -29349,7 +29349,13 @@ def gate_also_called_no_digital_collision() -> None:
     if os.path.exists(room_path):
         data = json.load(io.open(room_path, encoding="utf-8"))
         for room, entry in (data.get("rooms") or {}).items():
-            names_by_key[room] = entry.get("names") or []
+            # "signal_names" (2026-11-15) feed keyword_demand.py's
+            # room_synonyms() exactly like "names" does, so a word in
+            # either field can flip a digital-context query's score the
+            # same way; only the rendering side (gate_also_called_is_heading)
+            # treats them differently.
+            names_by_key[room] = list(entry.get("names") or []) + list(
+                entry.get("signal_names") or [])
     zone_path = os.path.join(ROOT, "ops", "zone-also-called.json")
     if os.path.exists(zone_path):
         data = json.load(io.open(zone_path, encoding="utf-8"))

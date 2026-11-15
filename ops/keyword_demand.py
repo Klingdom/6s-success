@@ -1148,6 +1148,23 @@ def room_synonyms():
     gate_also_called_is_heading already holds current. Missing or malformed
     is read as "no synonyms", never an error: this file must still harvest
     and score without it.
+
+    Two different kinds of word share this file, found 2026-11-15 mining
+    the A87 "dresser for newborn" handoff. "names" is an alternate NAME for
+    the room itself ("master bedroom" for Primary Bedroom, "foyer" for
+    Entryway); also_called_html() renders every one of those as "Also
+    called the X" on the room's own page, which is only honest when X
+    really is another word for the room. "baby clothes" and "diaper bag"
+    are not other words for "Nursery": a room page claiming to be "also
+    called the diaper bag" would be the kind of false claim CLAUDE.md
+    section 8 forbids. They are still a genuine signal of which room a
+    query is ABOUT (verified: 55 of 2,810+2,166 corpus rows where adding
+    them changes household_room_signal() are all honestly Nursery-topic
+    queries, 0 collisions), so "signal_names" carries them instead: read
+    here for room-signal detection, deliberately never read by
+    also_called_html() or its own gate (gate_also_called_is_heading reads
+    only "names"), so adding one can never force a false claim onto a
+    page.
     """
     try:
         with open(ROOM_ALSO_CALLED, encoding="utf-8") as fh:
@@ -1156,7 +1173,9 @@ def room_synonyms():
         return {}
     out = {}
     for room, entry in data.get("rooms", {}).items():
-        names = entry.get("names") if isinstance(entry, dict) else None
+        if not isinstance(entry, dict):
+            continue
+        names = list(entry.get("names") or []) + list(entry.get("signal_names") or [])
         if names:
             out[room] = [str(n).lower() for n in names]
     return out

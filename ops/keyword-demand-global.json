@@ -26063,7 +26063,7 @@
       "best_page_title": "How to organize the nursery baby clothes",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/zones/nursery-the-baby-clothing-zone.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -26134,7 +26134,7 @@
       "best_page_title": "How to organize the nursery baby clothes",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/zones/nursery-the-baby-clothing-zone.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -48225,6 +48225,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "9e6395264",
-  "scored_at": "2026-11-13T12:51:19Z"
+  "scored_against_commit": "622372055",
+  "scored_at": "2026-11-15T04:58:16Z"
 }

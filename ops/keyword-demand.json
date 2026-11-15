@@ -557,7 +557,7 @@
       "best_page_title": "How to organize the nursery baby clothes",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/zones/nursery-the-baby-clothing-zone.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -25254,7 +25254,7 @@
       "best_page_title": "How to organize the nursery baby clothes",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/zones/nursery-the-baby-clothing-zone.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -25313,7 +25313,7 @@
       "best_page_title": "How to organize the nursery baby clothes",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/zones/nursery-the-baby-clothing-zone.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -50966,7 +50966,7 @@
       "best_page_title": "How to organize the nursery baby clothes",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/zones/nursery-the-baby-clothing-zone.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -54131,15 +54131,15 @@
         "how to organize diaper storage"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/nursery-deck.html",
+      "best_page_title": "The Nursery Deck: 66 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/guest-bedroom-deck.html",
+      "heading_page": "/nursery-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "diaper"
+        "weekend"
       ]
     },
     {
@@ -54680,15 +54680,15 @@
         "how to organize diaper storage"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-kids-bedroom.html",
-      "best_page_title": "How to organize a kids bedroom, step by step",
+      "best_page": "/nursery-deck.html",
+      "best_page_title": "The Nursery Deck: 66 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "heading_page": "/nursery-deck.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "diaper"
+        "keep"
       ]
     },
     {
@@ -56500,6 +56500,6 @@
       ]
     }
   ],
-  "scored_against_commit": "9e6395264",
-  "scored_at": "2026-11-13T12:51:14Z"
+  "scored_against_commit": "622372055",
+  "scored_at": "2026-11-15T04:58:09Z"
 }
