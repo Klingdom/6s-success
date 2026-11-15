@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-15 ~01:1x slot: independently reconfirmed the exhausted, Phil-gated state, and precisely diagnosed (not just re-handed) A85's one open row
+
+Did: attached clean (unshallowed, ff-only onto `origin/main`, 451 commits, no reset/force). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last `NIGHTLY-LOG.md` entries. Checked by epic (STEP 3): epic 1 blocked on the traffic-read credential (issue #64, nothing from Phil since); epic 2 clear; epic 3's room-guide lane re-run live (`room_guide_underperformance.py`, all 20 rooms), 0 genuine on-topic gap rows anywhere, worst (Family Room, Garage) tied at 14%, confirming `gate_room_guide_mining_diminishing_returns` rather than citing it.
+
+Went past re-citing on one row: A85's handed-forward "how to organize baby clothes in small space" / "weekend diaper bag organizer" (scoring to Guest Bedroom's dresser instead of Nursery's Baby Clothing Zone). Simulated a vocabulary fix before writing one (CLAUDE.md 5d): checked `page_inventory()` directly and found the Nursery zone's own `<title>` already contains "clothes" ("How to organize the nursery baby clothes"), so the word is NOT missing, ruling out the quick synonym fix A85 did not get to test. The real cause is a genuine 0.5-against-0.5 tie, both pages match exactly 2 of the query's 4 content words (baby+clothes), broken in Guest Bedroom's favour by something other than vocabulary. Confirms A85's own conclusion (`_prefer_in_room_zone()` needs a new override direction, not a word) with more precision, and rules out the one shortcut a future cycle might otherwise waste a slot trying.
+
+Verified: `preflight.py --skip-tests` 0 FAIL, 28 standing warnings. `deploy_gap_material_commits()` re-derived live: 0 undeployed. All rotation checks and `cold_read_ledger.py --stale` clean. GitHub's 31 issues re-pulled, #65 read directly, both comments self-authored, nothing from Phil since #64. No code changed; nothing to revert.
+
+Did not go well: nothing newly shippable.
+
+Changing next cycle: none.
+
+Next: the override-direction fix A85/this entry both name, or any Phil reply.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-15 ~00:1x slot: previous work finished, rotated three overdue logs, nothing else new to start
 
 Previous work finished: attached clean (447 commits, tree clean, pushed). `preflight.py --skip-tests` live: 0 FAIL, 28 warnings. GitHub's 31 issues re-pulled, #65's comments read directly, both self-authored, nothing from Phil since #64. Dashboard's P0/need-you counts (10/29) recounted live: correct.
