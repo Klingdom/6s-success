@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-15 ~13:1x slot: previous work finished, nothing new unblocked
+
+**Previous work finished.** A145 (13:01Z) re-verified here, not cited: fresh `preflight.py --skip-tests` run to completion, 0 FAIL, 29 warnings, all standing. Attached clean, 555 commits fast-forwarded, no reset/force.
+
+**Did.** Re-confirmed the exhausted state live rather than cite it: `room_guide_underperformance.py`, every room under 15% uncovered, 0 gap rows; `cold_read_ledger.py --stale`/`--next`, 311/311 ledgered, 0 stale; GitHub's 31 open issues re-pulled, unchanged since #65, none from Phil since #64. Owner-silence cooldown (no-repeat-before 18:00Z) not elapsed, not resending.
+
+**Not starting anything large.** No genuinely new, Phil-unblocked lane found.
+
+**Next for the operator:** hold the Phil-gated queue.
+
+Pushed: dashboard regen, this entry.
+
 ## Scheduled operator cycle, 2026-11-15 (~12:4x slot): A145, fixed a real checks.yml FAIL from A144's own table-row fix, gated it
 
 **Did.** Attached clean (unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset/force). GitHub's 31 issues unchanged since #65, none from Phil since #64. No mail credential. `preflight.py --skip-tests` found **1 gate FAIL**: `checks.yml` run 43712928494 failed on commit 67877259f. Read the job log directly: `test_rotate_status_history.py` failed because `split_table_row_chain` refused STATUS.md's "Production traceability" row, "cell does not open on a bold entry." Root caused against the real file: A144's own fix to the Public website/Production traceability rows put the chain delimiter at the START of the cell and glued the new entry onto the old one with no delimiter between, instead of newest-first-unmarked-then-delimiter. Fixed both cells by hand.
