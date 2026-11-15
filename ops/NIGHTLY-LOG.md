@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-15 ~02:1x slot: previous work finished and independently reconfirmed; nothing newly unblocked; dashboard checkpoint only
+
+Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force, tree clean before and after (464 commits fast-forwarded).
+
+Previous work (the top-of-log 2026-11-15 operator cycle, room-guide mining declared exhausted) reconfirmed, not cited: ran `preflight.py --skip-tests` fresh to completion, every gate passed, 28 standing warnings (ssh key, Stripe credential, page-art, deck-art, films-vs-captions, all already-diagnosed). `cold_read_ledger.py --stale` 0 stale. `inbox_agent.py --apply` no mail credential, standing gap. GitHub re-pulled live: 31 open issues, all `decision`/`P0`/`blocked-on-art`; read #65 and #42's comment threads directly, every one self-authored, nothing from Phil since issue #64, 2026-11-08.
+
+Not starting the room-guide partial tier or the `_prefer_in_room_zone` override-direction fix this slot: both are already correctly sized as multi-slot work by prior cycles, not "small and closing."
+
+Not notifying Phil: nothing changed from the state several consecutive cycles have already reconfirmed today.
+
+Pushed to main: dashboard regen, `ops/cycle-signal.json` snapshot, this entry. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-15: preflight clean, room-guide mining lane re-confirmed exhausted, one candidate fix tried and correctly reverted
 
 **Did.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (459 commits, no reset/force). GitHub's 31 open issues re-pulled live: unchanged since 2026-11-08, all `decision`/`P0`/`blocked-on-art`, none from Phil. `inbox_agent.py --apply`: no mail credential, standing gap. Full `preflight.py --skip-tests` live to completion: 0 FAIL, 27 warnings, all standing. `room_guide_underperformance.py` re-run across all 20 rooms: 0 genuine on-topic `gap` rows anywhere, worst (Family Room, Garage) tied at 14% uncovered, matching `gate_room_guide_mining_diminishing_returns`'s own finding.
