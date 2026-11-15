@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-15 ~12:4x slot: found and fixed a real CI-failing STATUS.md chain defect
+
+NEXT FOR THE OPERATOR: hold the Phil-gated queue, because 31 open issues are still all decision/P0/blocked-on-art, nothing new from Phil.
+
+Attached clean: unshallowed for real, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force.
+
+Checked rather than re-cited: the 12:1x PM commit's own `checks.yml` run (43712928494) had FAILED, uncaught until now. Root cause: the `Public website` and `Production traceability` STATUS.md rows had a malformed evidence chain, a correction glued on as plain prose after the `Prior state, kept because the shape recurs:` marker instead of leading as a new bold entry, so `split_table_row_chain` refused it. Fixed by reordering the same two sentences, no content invented, matching the shape every other chain row already uses. `test_rotate_status_history.py` now passes. `git stash` confirmed the two pre-existing related warnings are unchanged. `preflight.py --skip-tests`: 1 FAIL (the now-stale CI citation, clears on push), 28 warnings, all standing.
+
+Pushed to main: `STATUS.md`, dashboard regen, this entry.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-15 ~12:1x slot: reverified exhausted Phil-gated state
 
 NEXT FOR THE OPERATOR: hold the Phil-gated queue. Same standing state: 31 open issues, all decision/P0/blocked-on-art, nothing from Phil since issue #64.
