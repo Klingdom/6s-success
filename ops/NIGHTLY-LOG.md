@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-15 (~09:3x slot): A142, closed the "long/last" tie-break lead A141 handed forward as a confirmed one-off, not a systemic scorer defect
+
+**Did.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, 527 commits fast-forwarded, no reset/force. GitHub's 31 open issues re-pulled live; issue #65's comments read directly, both self-authored by prior cycles, none from Phil since issue #64 (2026-11-08). `inbox_agent.py`: no mail credential. `preflight.py --skip-tests`: 0 FAIL, every gate passed, 27 warnings, all standing.
+
+Checked by epic first (STEP 3): epic 1 blocked on #64; epic 2 clean; epics 3-5 the FORMAT_WORDS lane, gated diminishing-returns. Rather than mine it a 35th time, ran down A141's own "Next": is the "breadth wins" scoring shape on "how long do diapers last in storage" (0.75 heading-coverage on an unrelated primary-bathroom article's "long"/"last"/"storage") systemic or a one-off? Traced live: that single page's own "Step 7: ...wall storage, last" heading plus its "how long does it take" FAQ heading happen to supply all three words. Grepped every article/room page for the same step-ending shape: 1 of 244 pages. Re-derived both full corpora for any `partial`/`gap` row where `heading_page != best_page` (the shape a real systemic defect would leave): 0 rows in either corpus. One isolated coincidence, not a pattern; declining a scorer rewrite is now confirmed, not merely re-asserted, and the thread is closed.
+
+**Verified.** `check_urls.py` (236/236), `affiliate.py --check` (165 documents), `cold_read_ledger.py --stale` (0 stale), all four rotation `--check` scripts CLEAN. No code changed, so `test_keyword_demand.py` was not re-run.
+
+**Went well:** closing a dangling "next" lead with direct evidence instead of leaving it for a future cycle to re-investigate from scratch.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; no defect found, so no new gate (STEP 10b).
+
+**Next:** hold the Phil-gated queue; all 31 open issues are decision/P0/blocked-on-art, none from Phil since 2026-11-08.
+
+Pushed to main. `BACKLOG-2026-09-07.md`, dashboard regen, this entry. No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-15 ~09:1x slot: previous work (A141) genuinely finished and independently reverified; same exhausted Phil-gated state, nothing newly unblocked
 
 NEXT FOR THE OPERATOR: hold the Phil-gated queue; all 31 open issues are decision/P0/blocked-on-art, none from Phil since issue #64 (2026-11-08), now a week-plus. The immediately preceding operator cycle (A141, this same hour) already mined Guest Bathroom's lowest-scoring partial rows and closed the one genuine FORMAT_WORDS gap it found, declining "long"/"last" as unsafe; this check-in did not repeat that mining.
