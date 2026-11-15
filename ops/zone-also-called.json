@@ -73,11 +73,12 @@
   },
   "Primary Bathroom|Vanity Drawers": {
    "names": [
-    "makeup vanity"
+    "makeup vanity",
+    "master bathroom drawer"
    ],
-   "queries": 1,
+   "queries": 2,
    "covered": 0,
-   "source": "ops/keyword-demand-global.json 2026-10-31 (in): 'how to organize makeup vanity box', rank 12, gap, 0.333 coverage, scored to /zones/guest-bathroom-the-guest-vanity-counter.html via the word 'vanity', the wrong room (a guest's visit, not daily makeup). This zone's own purpose ('hold the grooming tools and products you actually reach for, arranged by when in the day you use them') is the real match for a makeup-organizing box; the Guest Bathroom's vanity has no makeup storage of its own."
+   "source": "ops/keyword-demand-global.json 2026-10-31 (in): 'how to organize makeup vanity box', rank 12, gap, 0.333 coverage, scored to /zones/guest-bathroom-the-guest-vanity-counter.html via the word 'vanity', the wrong room (a guest's visit, not daily makeup). This zone's own purpose ('hold the grooming tools and products you actually reach for, arranged by when in the day you use them') is the real match for a makeup-organizing box; the Guest Bathroom's vanity has no makeup storage of its own. 'master bathroom drawer' added 2026-11-15, scheduled operator cycle: ops/keyword-demand.json + ops/keyword-demand-global.json, 'master bathroom drawer organization ideas', rank varies, partial (0.333 coverage), room signal already correctly Primary Bathroom (household_room_signal matches 'master bathroom'), but tied at 0.333 against this room's own linen-and-towel-storage zone on the generic word 'bathroom' alone, because the page's own title says 'vanity drawers' (plural) and the query's content word is the singular 'drawer', which the scorer's exact-word matching does not stem. Checked site-wide for collision first (CLAUDE.md 5d): the bare singular word 'drawer' appears in 21 other queries across both corpora, every one already 'covered' against a different room's own desk/kitchen/nightstand/dresser drawer zone with no bathroom context, so naming it here, qualified 'master bathroom', cannot misroute any of them."
   },
   "Nursery|Diaper and Care Backstock": {
    "names": [
@@ -152,10 +153,12 @@
   },
   "Primary Bathroom|Vanity Counter": {
    "names": [
-    "master bathroom vanity"
+    "master bathroom vanity",
+    "master bathroom countertop"
    ],
-   "queries": 5,
-   "covered": 0
+   "queries": 6,
+   "covered": 0,
+   "source": "'master bathroom countertop' added 2026-11-15, scheduled operator cycle: ops/keyword-demand.json + ops/keyword-demand-global.json, 'master bathroom countertop organization', partial (0.333 coverage), room signal already correctly Primary Bathroom, unmatched word 'countertop', the same vocabulary gap Kitchen's own Primary Prep Counter zone ('kitchen countertops') and Guest Bathroom's own Guest Vanity Counter zone ('bathroom countertop') already closed for their rooms, never closed for this room's own counter zone. Checked for collision first: the exact singular word 'countertop' appears on no other page and in no other query in either corpus, so this cannot misroute anything."
   },
   "Hall Closet|Linen Shelf Zone": {
    "names": [
