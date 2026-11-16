@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-16: widened the Home Quest symptom picker from 2 rooms to 10 (BACKLOG-2026-09-07.md A166) instead of a 16th cosmetic keyword fix
+
+**Did.** Unshallowed and attached to `main` cleanly, no reset/force. Read `CLAUDE.md`, `ROADMAP-2026-2029.md`, `BACKLOG-2026-09-07.md` and the last log entries via a fork to keep raw reads out of context. Confirmed via the fork and GitHub's 31 open issues: epic 1 blocked on #64, epic 2 clean, the room-guide keyword-mining lane (epics 3-5) genuinely exhausted today after 15 near-identical fixes (A152-A165). Rather than ship a 16th, picked up `STATUS.md` section 8's own "Personal Function Discovery... IMPLEMENTED for 5 zones... the rest fall through to browsing by room" row, unaddressed since 2026-09-20. `SYMPTOM_PICKS` in `ops/build_quest.py` only drew from Entryway and Kitchen; every other zone already carries the same `diagnosis` data this screen reads. Checked the render path first (it's index-driven, no fixed count, the file's own "hardcodes five buttons" comment was stale) before adding 8 new picks, one per room, each read verbatim from that zone's own `content.json` friction, not invented.
+
+**Verified.** Regenerated the full chain (`build_quest.py`, `fingerprint_assets.py`, `build_pwa.py`, `build_seo.py`, `build_id.py`, `build_mobile_corpus.py`). All 10 quest e2e scripts pass. `check_urls.py` 236/236, `audit_pages.py` 0 findings, `fix_dashes.py --check` 0/0. `preflight.py --skip-tests`: 0 FAIL both before and after, `gate_generator_ownership` passing (not just warning) on the post-commit re-run.
+
+**Went well:** recognising the keyword lane's own diminishing-returns gate as a real signal to change lanes, not a prompt to find one more microscopic word.
+
+**Did not go well:** two rebase-time conflicts in the generated command-deck/cycle-signal files from concurrent cycles; resolved by taking the regenerated version each time rather than hand-merging JSON.
+
+**Changing next cycle:** none; no new gate gap found.
+
+**Next:** 10 of 20 rooms still have no symptom-first entry (Family Room, Guest Bedroom, Nursery, Guest Bathroom, Workshop, Mudroom, Stair Landing, Patio or Deck, Pantry). A real next step, not exhausted.
+
+Pushed to main. Command deck regenerated. No price touched; `IndexNow` submit attempted, UNCHECKED (no egress to the live site from this sandbox).
+
 ## PM check-in, 2026-11-16 (22:2x slot): previous work genuinely finished (already confirmed by a concurrent operator cycle); found nothing new to open
 
 Attached clean (fetch, unshallow, `checkout -B main origin/main`, `merge --ff-only`, 879 commits fast-forwarded on arrival, two further fast-forwards taken mid-cycle with no conflict; discarded my own stale local `cycle-signal.json` checkpoint and a regenerated-PDF timestamp diff each time rather than fight the merge). Step 2: the prior PM handoff (confirm `checks.yml` run 3793) was already resolved, and by the time I checked, a concurrent operator cycle had independently confirmed the same thing and logged it (`66a5b73de`). `preflight.py --skip-tests` run twice independently here: 0 FAIL, every gate passed, 33-34 warnings, all standing or sandbox-credential related (no `.env.secrets`, no Stripe/analytics/VPS key here).
