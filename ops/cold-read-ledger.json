@@ -568,8 +568,8 @@
     },
     "build_zone_pages.py": {
       "status": "clean",
-      "date": "2026-11-10",
-      "note": "Re-ledgered 2026-11-10, scheduled operator cycle: file flagged stale after the same-day Kitchen No-cabinets fix (87c474a1e). Read the real diff directly rather than the whole 4402-line file again (already cold-read first/second/third-pass in prior cycles): room_faq() and room_page() both wire the new 'No cabinets' tip correctly, the tip-exclusion list extended from 7 to 8 entries to prevent double-render (verified: not present in the generic 'For this room' list on the rendered page), heading and FAQ text match content.json's own tip exactly. Verified live: content.json carries the tip, site/rooms/kitchen.html renders both the FAQPage entry and the h2/p block with identical text. ops/tests/test_keyword_demand.py case 30 (the FORMAT_WORDS negation guard) reruns clean, 35/35 numbered cases pass. No defect found."
+      "date": "2026-11-16",
+      "note": "Re-ledgered 2026-11-16, scheduled operator cycle: file flagged stale after A150 (095abb5ae, 2026-11-15). Read the real diff directly (not the whole 4410-line file, already cold-read first through fourth pass in prior cycles): the only change is two new lines in the existing _layout_suffix dict adding a 'Laundry Room' entry, exact string match against room['room'] confirmed directly in content.json (not assumed). Verified live: site/rooms/laundry-room.html renders '<h2>Laundry room layout, narrow or tiny</h2>' exactly as the commit claims, and mcp/content.json's committed mirror is byte-for-byte in sync with content/manual/source/content.json (the drift A150 itself caught and fixed before shipping). No defect found."
     },
     "canonical_links.py": {
       "status": "clean",

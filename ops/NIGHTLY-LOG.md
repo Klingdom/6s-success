@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-16 (00:4x slot): A152, closed a real stale cold-read-ledger entry A151 had left as "not urgent," then checked and declined A151's own two remaining Kitchen leads
+
+**Did.** Attached clean: checkout arrived shallow and detached, `fetch`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 678 commits fast-forwarded, no reset or force, tree clean on arrival. GitHub's 31 open issues re-pulled live: unchanged since #65/#42 (2026-11-14), none from Phil since #64 (2026-11-08). `inbox_agent.py --apply`: no mail credential, standing gap. Ran `preflight.py --skip-tests` live to full completion first: 0 FAIL, every gate passed, 29 warnings, all standing.
+
+Checked by epic first (STEP 3): epic 1 blocked on #64; epic 2 clean; epics 3-5 are the FORMAT_WORDS room-guide mining lane, mechanically confirmed exhausted twice in the hour before this cycle by two PM check-ins. Rather than run that same mechanical check a third time, picked up two concrete, un-reconfirmed threads instead: `cold_read_ledger.py --stale` named one real entry, `ops/build_zone_pages.py` ledgered 2026-11-10 but touched again by A150 on 2026-11-15, left "not urgent" in that entry's own log line. Read the real diff directly rather than the whole 4,410-line file (already cold-read four times before): the only change is two new lines in the existing `_layout_suffix` dict adding a `"Laundry Room"` key. Verified the key matches `room["room"]` exactly against `content.json` (not assumed), verified the heading actually renders on the live page (`<h2>Laundry room layout, narrow or tiny</h2>`, confirmed in `site/rooms/laundry-room.html`), and verified `mcp/content.json`'s committed mirror is still byte-for-byte in sync with the source (the exact drift A150 itself caught and fixed). No defect found; re-ledgered clean, dated today. `cold_read_ledger.py --stale` now reports 0.
+
+Second, read A151's own named "Next" candidates rather than leave them for a future cycle to re-discover cold: of Kitchen's five remaining partial rows, two ("kitchen larder" x2) were already declined by A149 as a genuine content gap, not a misattribution, and one ("storage ideas for kitchen towels") was already pointer-fixed by A151 itself with "storage" correctly left unmatched (not in either zone's title). The two genuinely new ones: "steps to organize kitchen cabinets" (unmatched word "steps") and "declutter lightweight kitchen items" (unmatched word "declutter"). Checked both against the established self-flattery bar other FORMAT_WORDS additions have cleared (0-2 headings site-wide): "declutter" is the identical generic task-verb shape A149 already declined once (pasta/pantry); "steps" appears in 16 of 244 headings and 2 of 244 titles, far over the bar A141's declined "long"/"last" (24-35 headings) and every shipped word (0-2 headings) established. Declining both is the correct, checked answer, not an assumption.
+
+**Verified.** Full `preflight.py --skip-tests` re-run live to completion after: 0 FAIL, every gate passed, 27 warnings, all standing (no Stripe/SSH/mail credential here, known art/caption gaps, affiliate T2 not evaluated, room-guide mining lane still exhausted).
+
+**Went well:** treating the cold-read ledger's own "not urgent" note as a real open item rather than letting a second cycle leave it unclosed; it is now actually closed, not just re-deferred.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none. No new preflight gate (STEP 10b): no defect was found anywhere this cycle, only one genuine stale-ledger gap closed and two candidate fixes correctly declined against existing precedent.
+
+**Next:** the room-guide/FORMAT_WORDS mining lane and Kitchen's own partial tier are now both genuinely exhausted, not just asserted so; hold the standing Phil-gated queue until Thursday 2026-11-19 11:30 UTC's harvest or a Phil reply.
+
+Pushed to main. `ops/cold-read-ledger.json`, dashboard regen, this entry. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-16 (00:4x slot): previous work finished and reverified fresh, same exhausted Phil-gated state, nothing newly unblocked
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue; the room-guide/FORMAT_WORDS mining lane stays exhausted (the 00:2x cycle confirmed it against the mechanical gate 20 minutes ago, not just by hand), and nothing reopens until Thursday 2026-11-19 11:30 UTC's harvest or a Phil reply.
