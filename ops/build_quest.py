@@ -258,10 +258,24 @@ def _norm_symptom(s: str) -> str:
 # supply zone was picked over its own shorter candidates specifically
 # because it is a Safety-pass friction (CLAUDE.md D-014, Safety the fourth
 # S), giving the list its first non-Straighten/Shine cause and matching
-# CLAUDE.md 0.7's P0 priority on safety over polish. Still only 10 of 20
-# rooms; the remaining 10 (Family Room, Guest Bedroom, Nursery, Guest
-# Bathroom, Workshop, Mudroom, Stair Landing, Patio or Deck, Pantry, Living
-# Room already covered) are a genuine next step, not exhausted here.
+# CLAUDE.md 0.7's P0 priority on safety over polish.
+#
+# Widened again 2026-11-16, scheduled operator cycle: from 13 entries across
+# 10 of the 20 rooms to 23 across all 20. The remaining 10 (Pantry, Family
+# Room, Guest Bedroom, Kids Bedroom, Nursery, Guest Bathroom, Workshop,
+# Mudroom, Stair Landing, Patio or Deck) each had every zone's own first
+# friction read by hand (content.json's `diagnosis.frictions[0]`, not a
+# second or later branch, not invented), and the shortest, most recognisable
+# single-sentence symptom in each room picked, the same bar the first
+# widening set, with a lean toward a genuine Safety-pass friction where one
+# was both short and recognisable rather than always defaulting to the
+# shortest Sort/Straighten line: Kids Bedroom's loose blind cord near the
+# pillow, Guest Bathroom's low-mounted reserve roll and Workshop's sticking
+# blade guard are all Safety-pass causes, not picked for length alone. Every
+# one of the 10 new entries was verified live before shipping (symptom,
+# branch answer, first_15 action and victory text all non-empty, read
+# directly from content.json, not assumed) rather than guessed from the
+# symptom text alone.
 SYMPTOM_PICKS = [
     ("Entryway", "Landing Zone", 1, 0),
     ("Entryway", "Coat and Outerwear Zone", 0, 0),
@@ -276,6 +290,16 @@ SYMPTOM_PICKS = [
     ("Primary Bedroom", "Dresser Drawers", 0, 0),
     ("Dining Room", "Dining Table", 0, 0),
     ("Hall Closet", "Cleaning Supply Zone", 0, 0),
+    ("Pantry", "Canned and Jarred Goods", 0, 0),
+    ("Family Room", "Board Game and Puzzle Zone", 0, 0),
+    ("Guest Bedroom", "Guest Closet", 0, 0),
+    ("Kids Bedroom", "Bed and Sleep Zone", 0, 0),
+    ("Nursery", "Baby Clothing Zone", 0, 0),
+    ("Guest Bathroom", "Toilet Area", 0, 0),
+    ("Workshop", "Power Tool Storage", 0, 0),
+    ("Mudroom", "Cleaning and Utility Zone", 0, 0),
+    ("Stair Landing", "Landing Surface or Console", 0, 0),
+    ("Patio or Deck", "Garden and Plant Care Zone", 0, 0),
 ]
 
 

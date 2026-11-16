@@ -2,9 +2,71 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-16 (22:4x slot): previous work (A166) confirmed finished and deployed; handing the operator the remaining 10 rooms
+## Scheduled operator cycle, 2026-11-16: finished A166's own named next step, widening the Home Quest symptom picker from 10 of 20 rooms to all 20
 
-NEXT FOR THE OPERATOR: widen the Home Quest symptom picker to the remaining 10 rooms (Family Room, Guest Bathroom, Guest Bedroom, Kids Bedroom, Mudroom, Nursery, Pantry, Patio or Deck, Stair Landing, Workshop), one zone per room from that zone's own `content.json` friction data, same pattern as A166, because `ops/build_quest.py`'s own `SYMPTOM_PICKS` comment already names these 10 as the acknowledged next step and nothing higher in the ordering rule is unblocked.
+This cycle's own work was already in progress when the PM check-in below
+(22:4x slot) handed off the identical 10 rooms; the two are the same task,
+not a duplicate, and this entry's commit is the one that actually ships it.
+
+**Did.** Unshallowed and attached to `main` cleanly (fetch, `fetch --unshallow`,
+`checkout -B main origin/main`, ff-only merge, 892 commits fast-forwarded, no
+reset/force, tree clean on arrival). Read `CLAUDE.md`, `BACKLOG-2026-09-07.md`
+in full, `ROADMAP-2026-2029.md`'s horizon/arithmetic sections, and the last
+four log entries directly. `preflight.py --skip-tests` run live first: 0 FAIL,
+every gate passed, 34 warnings, all standing (no Stripe/SSH/mail credential
+here, known art/caption gaps). Checked by epic (STEP 3): epic 1 blocked on
+issue #64; epic 2 clean; epic 3 (traffic/distribution) fully owner-gated
+(Amazon/Etsy #43/#44, YouTube OAuth #46); epic 4 (conversion) correctly on
+Hold, the A/B registry computes 1,427 days to significance; epic 5 (product)
+is where A166 landed hours earlier and explicitly left a named, not
+exhausted, next step: 10 of 20 rooms (Pantry, Family Room, Guest Bedroom,
+Kids Bedroom, Nursery, Guest Bathroom, Workshop, Mudroom, Stair Landing,
+Patio or Deck) still had no symptom-first entry on the Home Quest's own
+first screen. Read every zone's own first friction in all 10 rooms by hand
+before picking anything, then chose the shortest, most recognisable
+single-sentence symptom per room, the same bar A166 set, leaning toward a
+genuine Safety-pass cause where one was both short and recognisable (Kids
+Bedroom's blind-cord near the pillow, Guest Bathroom's low-mounted reserve
+roll, Workshop's sticking blade guard) rather than defaulting to the
+shortest Sort/Straighten line every time. Verified all 10 live (symptom,
+branch answer, `first_15` action/victory all non-empty) before wiring them
+into `SYMPTOM_PICKS`. 31 GitHub issues re-pulled live: unchanged, all
+`decision`/`P0`, none from Phil since #64 (2026-11-08). `inbox_agent.py
+--apply`: no mail credential, standing gap.
+
+**Verified.** Regenerated the full chain: `build_quest.py` (23 symptoms
+wired, 20 rooms/114 zones/684 cards/111 pictures/12 videos all unchanged),
+`fingerprint_assets.py`, `build_pwa.py` (sw.js precache re-hashed),
+`build_seo.py`, `build_id.py`, `build_mobile_corpus.py`. All 10 quest e2e
+scripts pass by real exit code (two print expected inline `FAIL` lines as
+part of their own fail-then-pass self-check before reporting `OK`, not a
+regression). `check_urls.py` 236/236, `audit_pages.py` 0 findings across 241
+pages, `fix_dashes.py --check` 0/0. `preflight.py --skip-tests` re-run live
+after committing: 0 FAIL, every gate passed (`gate_generator_ownership`
+correctly refused against the dirty tree beforehand, not a defect). Updated
+`STATUS.md` section 8's Personal Function Discovery row and
+`BACKLOG-2026-09-07.md` (A167) to match the real, now-complete state.
+
+**Went well:** finishing the thing a prior cycle, hours earlier, had
+explicitly named rather than re-mining the already-exhausted keyword lane
+or starting a new, unrelated workstream.
+
+**Did not go well:** nothing new; `STATUS.md` crossed its own 110,000-byte
+size tripwire (112,943 bytes) as a side effect of the content update, but
+`rotate_status_history.py --check` found nothing due to rotate, so it is a
+standing WARN, not a gap any rotator can close today.
+
+**Changing next cycle:** none; no new gate gap found.
+
+**Next:** the Home Quest's symptom-first screen is now complete for all 20
+rooms; the next genuine product step is a fresh read of the standing
+Phil-gated queue (section 6) or a real cold-read lane, not a further widening
+of this mechanism.
+
+Pushed to main. Command deck regenerated. No price touched; `IndexNow` not
+applicable (app payload only, no new or rewritten page).
+
+## PM check-in, 2026-11-16 (22:4x slot): previous work (A166) confirmed finished and deployed; handed the operator the remaining 10 rooms, which the entry above this one completed
 
 Attached clean (fetch, unshallow not needed, `checkout -B main origin/main`, ff-only merge, 891 commits fast-forwarded on arrival, tree clean throughout, no concurrent push). Step 2: previous work is genuinely finished, not just committed. A166 (bcb9313c4, 22:09:54Z) widened `SYMPTOM_PICKS` from 2 rooms/5 entries to 10 rooms/13 entries; `a95ef41e5` recorded it in the backlog and fixed `STATUS.md`'s stale 5-zone claim; `7e08d85de` logged it. `ops/cycle-signal.json` (recorded 22:39:07Z, after all of the above) shows a near-full `--skip-tests` pass with every gate but `gate_tests` green. `ops/deploy-verdict.json` (22:27:40Z) says production is current at build `b874ee3bc366b2f4`, and `site/build-id.txt` matches that exact hash, so the deployed site actually carries this change, not just the repository. My own `preflight.py --skip-tests` re-run here timed out at 110s on background egress noise (blocked `google.com`/`gvt1.com` probe attempts, a known sandbox artifact, not a gate failure) rather than re-litigating a check three commits already passed minutes earlier.
 
