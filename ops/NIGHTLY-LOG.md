@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (10:4x slot)
+
+NEXT FOR THE OPERATOR: hand-check Home Office's three new partial rows (productive workspace, paperwork, decluttering workspace) and Laundry Room's four (plate organizer, utility room, sorting games, detergent tray), ungrepped in prior logs, unlike the row the last handoff named.
+
+Attached clean. A160 verified live on the rendered pantry page. Preflight 0 FAIL, 31 warnings. GitHub's 31 issues unchanged, all Phil-gated.
+
+Caught a stale handoff: 10:1x sent the operator to "diapers last in storage," but A141/A142 (2026-11-15) already closed that exact row as a one-page coincidence, Done, not systemic. Re-chasing wastes a cycle. Picked fresh rows instead via `room_guide_underperformance.py`.
+
+Changing next cycle: grep a named lead against the log before forwarding it again.
+
+No price or page touched. No push notification.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-16 (10:1x slot): previous work (A160, the Pantry drawer/appliance handoff) confirmed finished by a fresh live preflight and a direct read of the rendered page; handed the operator one named misattribution instead of a generic lane pointer
 
 Attached clean onto origin/main, tree clean, no concurrent push. Verified A160 directly, not cited: `grep` on the live `site/rooms/pantry.html` shows the new "Pantry layout, drawer and appliances" heading and both sentences actually rendered, not just committed source. Ran `preflight.py --skip-tests` live to completion (briefly queued behind its own just-started lock, not a real conflict): every gate passed, 30 warnings, all standing. `cold_read_ledger.py --stale`: 0. GitHub's 31 open issues re-pulled live, newest first: unchanged since #65 (2026-11-14), every one decision/P0, none from Phil.
