@@ -1383,8 +1383,8 @@
     },
     "sync_push.py": {
       "status": "clean",
-      "date": "2026-10-14",
-      "note": "Read in full (169 lines); the rebase/regenerate/push safety logic (never picking a side on a real conflict, always regenerating dashboard outputs, verifying the push against the remote rather than trusting its exit code) reads correct. Ran only --check (read-only: reported 0 conflict markers, 0 ahead, 5 behind); did not exercise the real rebase-and-push path, since invoking it for real against a live, concurrently-active repository is exactly the kind of action this operator should not take speculatively mid-cold-read."
+      "date": "2026-11-16",
+      "note": "Re-cold-read after the 10:1x PM cycle's GENERATED-list fix (adding ops/cycle-signal.json): correct, matches its own log entry; test_ship_conflict_safety.py 3/3."
     },
     "tracker.py": {
       "status": "clean",

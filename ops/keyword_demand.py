@@ -209,7 +209,41 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "properly", "apartments", "large", "homes",
                           "cheap", "list", "everyday", "tidying", "next",
                           "organized", "organised", "liquid", "grow",
-                          "option", "100", "genre"))
+                          "option", "100", "genre", "long", "last"))
+
+# "long" and "last" joined 2026-11-16, scheduled operator cycle, closing a
+# genuine cross-room misattribution a PM check-in handed off by name:
+# "how long do diapers last in storage" (US, 0.75 heading match) was
+# routing to the Primary Bathroom guide article, which never once mentions
+# diapers, while only the Nursery's own pages (Changing Station, Baby
+# Clothing, Feeding Station, and specifically the Diaper and Care
+# Backstock zone) discuss them at all. Root-caused, not patched at the
+# query: "long" is contributed to literally every one of the 114 zone
+# pages and all 17 room-guide articles by the identical "How long does it
+# take to organize/reset [room/zone]?" FAQ heading, the same
+# zero-discriminating-power shape BOILERPLATE_HEADINGS already excludes
+# for "Cleaning it properly, surface by surface", just varied per page so
+# it cannot be caught by that exact-string set. "last" turned out to be
+# the same shape from the other direction: present in many unrelated
+# zones' own Sustain-habit headings ("whoever uses the last X..."), it
+# happened to also sit, coincidentally as the adverb "lastly", in the
+# Primary Bathroom guide's own "Step 7: ... wall storage, last" heading,
+# which combined with the free "long" to outscore the real answer
+# (0.75 vs 0.5) before either word was stripped. Fixed the page too: that
+# trailing ", last" was the only step heading on the page carrying a
+# qualifier (Steps 1-6 are plain "Step N: [zone]"), so removing it is a
+# genuine copy consistency fix, not only a scoring one. Checked the full
+# corpus before adding either word: "last" is a content word in exactly
+# one query anywhere in either corpus (this one); "long" appears in two
+# others ("how to arrange a living room that is long and narrow", "how to
+# organize a long living room"), both already fully "covered" by every
+# other word on their own page, so removing "long" from the denominator
+# cannot drop either below covered. Full before/after score_rows() diff:
+# US 2 rows changed (the target query partial->covered, same-room
+# pointer now the Diaper and Care Backstock zone; the long-living-room
+# query stays covered, pointer moves to a second, equally legitimate
+# living-room zone), global 1 row changed (the same long-living-room
+# pointer move, status unchanged). 0 regressions, 0 other collisions.
 
 # "genre" joined 2026-11-16, PM check-in, found mining Home Office's own
 # partial tier ("how to organize bookshelf by genre", US and global, 0.5

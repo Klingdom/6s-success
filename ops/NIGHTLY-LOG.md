@@ -2,6 +2,71 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-16 (A161): closed the diaper-storage misattribution a PM check-in handed off by name, root-caused at the scorer rather than patched at the query
+
+**Did.** Unshallowed and attached to `main` cleanly (766 commits fast-forwarded,
+no reset/force). Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` (sections 0-7,
+all archived/Hold/Phil-gated except the 10:1x PM check-in's live handoff),
+`ROADMAP-2026-2029.md`, and the last several log entries. `preflight.py
+--skip-tests` run live first: 0 FAIL, 31 warnings, all standing.
+
+The 10:1x PM check-in's own triage (logged just below) found, by direct
+inspection rather than a generic lane pointer, that "how long do diapers
+last in storage" scored to the Primary Bathroom guide article, which never
+mentions diapers, while only the Nursery's pages do. Traced the mechanism
+rather than guessing: the article's own "Step 7: ... wall storage, last"
+heading (the only one of its seven step headings carrying a trailing
+qualifier) plus the universal "How long does it take to organize a
+[room]?" FAQ heading on all 17 guide articles gave a false 3-of-4 word
+match, beating the real answer's genuine 2-of-4 ("diaper storage",
+verbatim in the Nursery zone's own title and heading). Root-caused both
+words: "long" is boilerplate noise on all 114 zone pages and 17 articles
+(the same zero-discriminating shape `BOILERPLATE_HEADINGS` already
+excludes for "Cleaning it properly..."), "last" the same shape from
+unrelated zones' Sustain-habit headings. Added both to `FORMAT_WORDS`,
+and fixed the one genuine copy defect underneath: removed the orphan
+", last" from Step 7's heading.
+
+**Verified.** Self-flattery and collision checked before shipping: "last"
+is a content word in exactly one query in either corpus; "long" in two
+others, both already fully `covered` on other words, so removing it from
+the denominator cannot drop them below covered. Full before/after
+`score_rows()` diff, simulated then reproduced exactly by the real
+rescore: US 2 rows changed (target query partial->covered, correctly
+re-pointed to the Nursery's Diaper and Care Backstock zone; one
+living-room pointer move, status unchanged), global 1 row changed (same
+living-room move), 0 regressions. `test_keyword_demand.py` (74/74),
+`test_room_guide_underperformance.py` (19/19), `test_room_guide_
+candidates.py` (148/148), `check_urls.py` (236/236), `audit_pages.py`
+(0 findings), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165
+docs), `check_sellable.py` (124/126, 2 person-delivered). Editing the
+article's heading went stale against the sitemap `lastmod`:
+`preflight.py` caught it (1 real FAIL), fixed by running `build_seo.py`,
+re-ran clean. Also closed a standing one-line gap found in passing:
+`cold_read_ledger.py --stale` flagged `ops/sync_push.py` against a prior
+cycle's own commit; re-cold-read it, confirmed correct, re-ledgered.
+Full `preflight.py --skip-tests` re-run after: 0 FAIL, 31 warnings, all
+standing. GitHub's 31 open issues re-pulled live: unchanged since #65
+(2026-11-14), none from Phil since #64. `inbox_agent.py --apply`: no mail
+credential, standing gap.
+
+**Went well:** took a specific, verified handoff instead of a generic
+lane re-mine, and root-caused the collision (BOILERPLATE_HEADINGS-shaped)
+rather than special-casing the one query.
+
+**Did not go well:** nothing.
+
+**Changing next cycle:** none.
+
+**Next:** the standing Phil-gated queue (31 open issues, none answered).
+
+No push notification: routine content/measurement work within the
+standing exhausted/Phil-gated state; nothing the owner needs to act on
+beyond what the 31 open issues already carry.
+
+Pushed to main. No price touched; one article heading and the scorer's
+vocabulary changed, `IndexNow` to submit on push.
+
 ## PM check-in, 2026-11-16 (10:1x slot): previous work (A160, the Pantry drawer/appliance handoff) confirmed finished by a fresh live preflight and a direct read of the rendered page; handed the operator one named misattribution instead of a generic lane pointer
 
 Attached clean onto origin/main, tree clean, no concurrent push. Verified A160 directly, not cited: `grep` on the live `site/rooms/pantry.html` shows the new "Pantry layout, drawer and appliances" heading and both sentences actually rendered, not just committed source. Ran `preflight.py --skip-tests` live to completion (briefly queued behind its own just-started lock, not a real conflict): every gate passed, 30 warnings, all standing. `cold_read_ledger.py --stale`: 0. GitHub's 31 open issues re-pulled live, newest first: unchanged since #65 (2026-11-14), every one decision/P0, none from Phil.
