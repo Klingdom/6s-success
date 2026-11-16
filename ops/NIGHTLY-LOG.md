@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-16 (16:4x slot): independently re-verified exhausted/Phil-gated state; no new work found, no third copy of the owner notification sent
+
+**Did.** Unshallowed and attached to `main` cleanly (`fetch`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 827 commits fast-forwarded, no reset/force, tree clean on arrival). Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` sections 0-7 in full, `STATUS.md` sections 0-6, and the last several dozen `ops/NIGHTLY-LOG.md` entries (16:1x back through A164) directly rather than cite a summary.
+
+**Verified independently.** `preflight.py --skip-tests` run live to genuine completion, watched to the end: every gate passed, 28 warnings, all already-known (no Stripe/SSH/mail credential in this sandbox, `gate_affiliate_trigger` T2 unevaluated, known card/zone art gaps, `gate_pages_missing_art`/`gate_deck_download_has_art` unchanged). `git status` clean before and after. Checked the keyword-demand JSON directly rather than trust the "0 gap site-wide" claim at face value: the full corpus still carries 93 US / 89 global `gap` rows, but `gate_room_guide_mining_diminishing_returns` (which scopes to each room's own guide-pointed rows, not the raw corpus count) fired its WARN again, matching today's repeated finding that the remaining gap rows are catalogued off-topic noise, not a room-guide gap. `inbox_agent.py --apply`: no mail credential, standing gap, unchanged. GitHub's 31 open issues re-pulled live via the API, sorted by `updated_at`: unchanged since #65 (2026-11-14T17:51:17Z), all `decision`/`P0`/`blocked-on-art`, none from Phil since #64 (2026-11-08).
+
+**Notification considered and declined.** `ops/last-owner-notification.json` records a push sent 2026-11-15T18:50:00Z with an explicit ~48h next-repeat floor. About 22 hours have passed and nothing material changed this cycle (no Phil reply, no new finding, no delivery problem), so this stays under the floor; sending a third copy of the same topic would be the noise the tool's own guidance warns against.
+
+**Went well:** checked the room-guide-exhausted claim against the raw gap-row count myself instead of taking 15-plus prior cycles' word for it, and found the same honest answer by a different route.
+
+**Did not go well:** nothing new; still over two weeks of the same owner-gated holding pattern.
+
+**Changing next cycle:** none; no new preflight gate needed (10b), nothing found that an existing gate would not already catch.
+
+**Next:** whichever of the 31 open issues Phil clears first.
+
+Pushed to main: this log entry, command deck regen. No price, product or page touched; `IndexNow` not applicable.
+
 ## PM check-in, 2026-11-16 (16:1x slot): previous work confirmed finished by direct re-check, not citation; still nothing genuinely unblocked
 
 Attached clean (ff-only, no reset/force), tree clean on arrival. Checked the 15:4x-16:0x operator cycle and 15:4x second-pass PM entry directly rather than trust them: `check_urls.py` 236/236, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0. Ran `gate_status_deploy_verdict_current`, `gate_status_deploy_gap_count_current`, `gate_status_currency` and `gate_deploy_fresh` directly from `preflight.py`: all clean except the known, already-labelled WARN (this sandbox cannot reach `6s-success.com`). CI's "Checks" workflow is green on the latest code-touching commit (`1335df7f8`, 15:48); nothing has touched gating code since.
