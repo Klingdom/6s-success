@@ -3,6 +3,14 @@
  "_rule": "Do not add a word with no measured queries, and do not add a word the site already covers. Keyed 'Room|Zone' using the same exact room/zone names as content.json, matching the convention ops/zone-search-terms.json already uses for its own lookup key.",
  "_measured_at": "2026-11-15T00:00:00Z",
  "zones": {
+  "Workshop|Fastener and Hardware Zone": {
+   "names": [
+    "declutter zone"
+   ],
+   "queries": 2,
+   "covered": 0,
+   "source": "ops/keyword-demand.json and ops/keyword-demand-global.json, read live 2026-11-16, mining Workshop's own 13%-uncovered partial tier (room_guide_underperformance.py, tied worst with Family Room): 'declutter workshop ideas' (US) and 'how to declutter your workshop' (global), both partial (0.5 title coverage), already correctly pointed at this zone on 'workshop' alone, the sole unmatched word 'declutter'. Grounded in the zone's own content: its 'the_call' story is literally about decluttering an inherited jar of mixed hardware ('give it one sitting... whatever is left in the jar goes to metal recycling that same day'). Checked and declined two riskier candidates from the same tier rather than ship them: 'messy' (how to organize a messy workshop) has no literal grounding in this zone's own text, only a loose connotation, and already appears in 4 page titles for the unrelated always-messy complaint cluster; 'woodworking' (how to organize a woodworking workshop) is a room-level concept, not specific to the fastener/hardware zone, and the room has no single zone that honestly owns it. Also declined 'how to organize/organise a workshop event' (both corpora): 'event' reads as a training/seminar workshop, not this room, and no honest word closes it. Self-flattery checked first: 'declutter' in 5 of 244 titles, 0 of 244 headings, none on this zone's own page, not a digital-collision term. Full before/after ops.keyword_demand.score_rows() diff across both corpora confirmed exactly 2 rows changed, the two target queries, partial to covered, same page, 0 regressions elsewhere."
+  },
   "Dining Room|Dining Table": {
    "names": [
     "declutter zone"

@@ -14066,13 +14066,11 @@
       "best_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
       "best_page_title": "How to organize the workshop hardware storage",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "declutter"
-      ],
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb"
       ],
@@ -48188,6 +48186,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "b20f2cc75",
-  "scored_at": "2026-11-16T14:08:19Z"
+  "scored_against_commit": "ab1e6312c",
+  "scored_at": "2026-11-16T20:29:39Z"
 }

@@ -18,8 +18,8 @@
     },
     "affiliate_report.py": {
       "status": "clean",
-      "date": "2026-10-12",
-      "note": "Second-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (331 lines). Regenerated AFFILIATE_COMPLIANCE_MATRIX.md, AFFILIATE_INPUT_EXCEPTIONS.md and affiliate-link-input-needed.csv directly and diffed against the committed versions: byte-identical, confirming the generator still matches its own shipped output. No defect found."
+      "date": "2026-11-16",
+      "note": "Re-verified 2026-11-16: the only change since the last ledgering was a hardcoded '123'->'129' docstring citation from the six-cleaning-product-types catalog fix, confirmed via git log -p. No new defect."
     },
     "ai-proxy-example.js": {
       "status": "clean",
@@ -298,8 +298,8 @@
     },
     "build_kit_page.py": {
       "status": "clean",
-      "date": "2026-10-14",
-      "note": "Read in full (360 lines) and run directly: regenerates byte-identical including the full wiring chain, disclosure-ordering and Sort-before-Straighten assertions pass. First run (piped through `head -30`) looked like it had stripped the PWA block and mis-marked aria-current on a nav link; traced to this operator's own shell `| head` SIGPIPE-killing the subprocess mid-chain (pipestatus confirmed exit 1), not a real defect. Re-ran without truncation: clean, 0 drift."
+      "date": "2026-11-16",
+      "note": "Re-verified 2026-11-16: the only change since the last ledgering was a hardcoded '123'->'129' docstring citation from the six-cleaning-product-types catalog fix, confirmed via git log -p. No new defect."
     },
     "build_kitchen_deck.py": {
       "status": "clean",
@@ -338,8 +338,8 @@
     },
     "build_manual_print.py": {
       "status": "clean",
-      "date": "2026-10-14",
-      "note": "Read roughly 700 of 1365 lines in full (all data/appendix/gate logic; the remainder is print CSS) and run directly: all gates pass (0 em/en dashes, 0 brand names, 114 zone cards, 21 room sections, 123 product types, 10 @page rules) across the manual, print edition and both appendices; 0 drift on rerun."
+      "date": "2026-11-16",
+      "note": "Re-verified 2026-11-16 after the six-cleaning-product-types catalog fix touched this file the same day; no new defect found, cold-read currency only."
     },
     "build_messy_article.py": {
       "status": "clean",
@@ -808,8 +808,8 @@
     },
     "fix_dialect.py": {
       "status": "clean",
-      "date": "2026-10-26",
-      "note": "Read the 2026-10-26 VOCAB addition (24 word-choice pairs): replacement order correctly handles overlapping phrases (longest/most-specific first), capitalisation helper correct, deliberate ambiguous-word exclusions documented. fix_dialect.py --check clean."
+      "date": "2026-11-16",
+      "note": "Re-verified 2026-11-16 after the six-cleaning-product-types catalog fix touched this file the same day; no new defect found, cold-read currency only."
     },
     "format.js": {
       "status": "clean",
@@ -1028,8 +1028,8 @@
     },
     "preflight.py": {
       "status": "clean",
-      "date": "2026-11-15",
-      "note": "Re-ledgered 2026-11-15, scheduled operator cycle (independently reconfirmed by a concurrent PM check-in the same slot): the only drift since 2026-11-13 is A140's gate_also_called_no_digital_collision widening to scan signal_names too, plus a docstring/allowlist update after the etsy-pdfs user-data-dir fix landed; already read in full, matches its own NIGHTLY-LOG entry, test_gate_also_called_no_digital_collision.py 5/5."
+      "date": "2026-11-16",
+      "note": "Re-verified 2026-11-16 after the six-cleaning-product-types catalog fix touched this file the same day; no new defect found, cold-read currency only."
     },
     "prerender_shop.py": {
       "status": "clean",
@@ -1038,8 +1038,8 @@
     },
     "product_links.py": {
       "status": "clean",
-      "date": "2026-11-13",
-      "note": "Re-read 2026-11-13 21:1x PM check-in: A126's isolated_profile(exe) refactor (07f9c04f4) replaces the hand-built tempfile.TemporaryDirectory/--user-data-dir pattern with try/finally cleanup via browser.isolated_profile(); diffed against the prior version, logic sound, no behavior change beyond the fix itself."
+      "date": "2026-11-16",
+      "note": "Re-verified 2026-11-16 after the six-cleaning-product-types catalog fix touched this file the same day; no new defect found, cold-read currency only."
     },
     "prune_catalog_js.py": {
       "status": "fixed",
@@ -1553,8 +1553,8 @@
     },
     "zone_supplies.py": {
       "status": "clean",
-      "date": "2026-10-14",
-      "note": "cold-read 2026-10-14 17:0x slot: full 750-line read plus live run of _report(): 114 zones with kits, 117 distinct product ids all found in catalogue, 120/120 verified URLs render, hosts named on privacy.html include homedepot.com/target.com confirming the promise-gate logic; test_zone_supplies_grammar.py passes; storage-before-Sort split (render/render_storage) matches CLAUDE.md's affiliate rule and the live gate_no_storage_before_sort already confirmed clean in this cycle's full preflight run. No defect found."
+      "date": "2026-11-16",
+      "note": "Re-verified 2026-11-16 after the six-cleaning-product-types catalog fix touched this file the same day; no new defect found, cold-read currency only."
     }
   }
 }
