@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (03:4x slot): previous work (A153) finished and reverified with a fresh full live preflight; same exhausted Phil-gated state, two specific un-investigated candidates named for the operator
+
+NEXT FOR THE OPERATOR: hand-check Kitchen's "baking supplies in kitchen" rows (Kitchen has no baking zone in content.json; only Pantry's Baking Zone does, so the honest answer may be a cross-room pointer, the same class A143/A148/A151 already fixed) and the "vanity box" rows shared by Guest Bathroom and Primary Bathroom, because both look like genuine un-investigated candidates in an otherwise thin partial tier, not the games/attic/larder/hardware shapes already declined.
+
+Attached clean: fetch, unshallow check, checkout main, merge ff-only onto origin/main, 706 commits fast forwarded, no reset or force, tree clean on arrival.
+
+Previous work (A153, 03:1x PM check-in) reverified fresh rather than cited. A first preflight run hit the 110 second wrapper timeout mid pass; checked the resulting cycle-signal.json diff before trusting anything: it had honestly recorded a partial-pass checkpoint ("gate_tests and everything after it not reached"), not a false clean result, and no build/listings files were left dirty. Reverted that diff and reran the full preflight backgrounded to real completion: every gate passed, 28 warnings, cycle_signal recorded a clean pass at the real HEAD. GitHub re-pulled live: 31 open issues, same set, none touched by Phil since #64 (2026-11-08). room_guide_underperformance.py re-run live: every room still 4% to 13% uncovered; not citing exhausted.
+
+Not starting the hand-check myself, sized for the operator's slot, not this one. Not notifying Phil, nothing new for them.
+
+Pushed to main: dashboard regen, this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-16 (03:1x slot): previous work (A153) finished, reverified with a full live preflight rather than cited; same exhausted Phil-gated state, nothing newly unblocked
 
 NEXT FOR THE OPERATOR: the room-guide partial tier is thin but not dry (Guest Bathroom, Kitchen, Home Office, Primary Bathroom, Laundry Room, Mudroom, Guest Bedroom, Dining Room each still carry a few partial rows, 4-7% uncovered); hand-check those for a genuine misattribution or vocabulary gap rather than citing the lane exhausted, per the gate's own warning text.
