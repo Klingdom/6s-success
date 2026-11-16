@@ -464,7 +464,7 @@
     "build_quest.py": {
       "status": "clean",
       "date": "2026-11-16",
-      "note": "Re-ledgered after A166/A167 widened SYMPTOM_PICKS from 5 to 23 entries across all 20 rooms; diff reviewed directly against the commit messages' own claims (verbatim content.json frictions, render-path unchanged), both already verified by their own cycles (10 quest e2e scripts, check_urls, audit_pages, fix_dashes, preflight all clean before/after). No further check needed."
+      "note": "A166/A167 widened SYMPTOM_PICKS from 5 to 23 entries (2 rooms to all 20); verified data-only additions (room, zone, friction index, branch index) sourced directly from content.json, render path confirmed to scale with no fixed-count limit, all 10 e2e quest scripts pass. No logic change, no defect found."
     },
     "build_resources.py": {
       "status": "clean",
