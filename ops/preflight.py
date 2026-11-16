@@ -33529,7 +33529,33 @@ def main() -> int:
     run_gate(gate_head_scripts_non_blocking)
     run_gate(gate_quest_symptom_picker_lazy_rooms)
     run_gate(gate_draft_rotation_persisted)
-    if "--own" in sys.argv:
+    # Found 2026-11-16: a real commit (the six-cleaning-product-types catalog
+    # fix) regenerated six zone pages and their product counts but never
+    # re-ran ops/build_resources.py, leaving site/resources.html's room kit
+    # lists and product-type counts stale. gate_generator_ownership exists
+    # exactly to catch this and did, correctly, three times in a row in CI
+    # (checks.yml's gate_ci_conclusion_current and gate_publish_image_current,
+    # and publish-image.yml's own --own-gated run, which blocked the image
+    # from shipping at all). What it did NOT do is catch it locally, before
+    # the commit landed, because it only runs under an explicit --own flag
+    # that no local pre-commit habit in this repository actually passes:
+    # every recent cycle's own log entries say "preflight.py --skip-tests",
+    # which runs neither --own nor gate_tests (the one other path that
+    # reaches this gate, via test_generator_ownership.py's own isolated-
+    # worktree invocation of `preflight.py --own`). So the one local check
+    # operators actually run before every push skipped the one gate that
+    # would have caught this, every single time, which is why CI had to.
+    # Fixed at the root rather than renaming a habit: --skip-tests now also
+    # runs gate_generator_ownership directly. It is cheap on its own (the
+    # generator chain itself takes well under a minute; the 90-minute cost
+    # operators are avoiding with --skip-tests is gate_tests, a different
+    # gate), so there is no real reason it was only reachable through the
+    # slow path. Proof this can fail: ops/tests/test_generator_ownership_
+    # skip_tests.py plants the same marker test_generator_ownership.py uses,
+    # in a throwaway worktree, and asserts `preflight.py --skip-tests` alone
+    # (no --own) now reports it, then asserts an untouched checkout stays
+    # silent.
+    if "--own" in sys.argv or skip_tests:
         run_gate(gate_generator_ownership)
 
     # fail()/warn() themselves print this exact line the moment each is
