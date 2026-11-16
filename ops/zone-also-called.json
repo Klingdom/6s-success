@@ -13,11 +13,12 @@
   },
   "Stair Landing|Wall and Display Zone": {
    "names": [
-    "photos zone"
+    "photos zone",
+    "pics zone"
    ],
    "queries": 1,
    "covered": 0,
-   "source": "ops/keyword-demand.json 2026-11-05 (bing): 'how to organize photos in gallery', rank 8, partial (0.5 title coverage), already scoring correctly to this exact zone page (/zones/stair-landing-the-wall-and-display-zone.html, title 'How to organize the stair landing gallery wall') via 'organize'+'gallery', only the single word 'photos' unmatched. The zone's own common_items list names 'Framed photos or art' first, and its purpose covers the frames and mirror hung on the stairway wall, so 'photos' is exactly what this zone holds, not a coincidental match. Named 'photos zone', the '<word> zone' precedent from the A-series (A21/A23/A24/A32/A33/A34/A36)."
+   "source": "ops/keyword-demand.json 2026-11-05 (bing): 'how to organize photos in gallery', rank 8, partial (0.5 title coverage), already scoring correctly to this exact zone page (/zones/stair-landing-the-wall-and-display-zone.html, title 'How to organize the stair landing gallery wall') via 'organize'+'gallery', only the single word 'photos' unmatched. The zone's own common_items list names 'Framed photos or art' first, and its purpose covers the frames and mirror hung on the stairway wall, so 'photos' is exactly what this zone holds, not a coincidental match. Named 'photos zone', the '<word> zone' precedent from the A-series (A21/A23/A24/A32/A33/A34/A36). 'pics zone' added 2026-11-16, scheduled operator cycle: 'how to organize pics on wall' and 'how to arrange pics on wall' (bare word 'pics', informal plural for pictures) both scored a tied 0.5 against this zone (matching only 'wall') and against Garage's Hand Tool Wall and Cabinets zone (also matching only 'wall', title 'How to organize the garage tool wall'), with no room signal on either query to break the tie, so url order alone ('garage' sorts before 'stair') sent all three rows (US + 2 global) to the wrong room, a garage tool-storage page, for a query about hanging picture frames. Checked the real content before naming this a misroute, not assumed: this zone's own safety pass already discusses frame-hanging hardware rated for the item's weight, sawtooth hangers, wall anchors and studs, the honest answer to 'pics on wall'; Garage's tool-wall zone never mentions pictures, frames or anything decorative. Self-flattery checked first: 'pics' appears in 0 of 244 titles and 0 of 244 headings before this entry, zero collision risk. Checked every query containing 'pics' in both corpora before shipping: exactly these 3 rows, no others, so no other row can regress."
   },
   "Workshop|Finishing and Chemical Zone": {
    "names": [

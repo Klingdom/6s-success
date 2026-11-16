@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-16 (04:0x slot): A153, closed a real cross-room misattribution: "pics on wall" was scoring to Garage's tool-wall zone instead of Stair Landing's own gallery-wall zone
+
+NEXT FOR THE OPERATOR: epics 1/2 stay blocked/clean; the mining lane is thin but not dry, check Family Room/Pantry/Garage/Workshop/Entryway/Kids Bedroom's remaining partial tiers (all 12-13% uncovered) by hand before citing exhausted.
+
+**Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 693 commits fast-forwarded, no reset/force, tree clean on arrival). `preflight.py --skip-tests` run live to full completion first: every gate passed, 30 warnings, all standing. GitHub's 31 open issues re-pulled live: unchanged since #65, none from Phil since #64 (2026-11-08); read both comments on #65 directly, both self-authored. `inbox_agent.py --apply`: no mail credential, standing gap. Checked by epic first: epic 1 blocked on #64; epic 2 clean; epics 3-5 the mining lane. Rather than re-mine the same tied-worst rooms a hundred-and-fifty-third time, read Garage's partial tier for anything genuinely off-topic rather than just a wording gap, and found "how to organize/arrange pics on wall" (3 rows, both corpora) scoring 0.5 against Garage's Hand Tool Wall and Cabinets zone on the bare shared word "wall" alone, with "pics" unmatched. That zone never mentions pictures; it is tool storage. Checked the real content first: Stair Landing's own Wall and Display Zone (already carrying a "photos zone" synonym from 2026-11-05) discusses frames, a mirror, sawtooth hangers and wall anchors in its own safety pass, the honest answer, and also tied at 0.5 on "wall" alone, losing to Garage purely on url order (no room signal either way). Self-flattery checked first: "pics" in 0 of 244 titles, 0 of 244 headings. Added "pics zone" alongside the existing "photos zone" to that same `ops/zone-also-called.json` entry.
+
+**Verified.** Rebuilt through the real chain (`build_zone_pages.py`, `build_seo.py`, `fingerprint_assets.py`, `build_pwa.py`), confirmed the rendered heading reads "Also called the photos zone or the pics zone." Full before/after `score_rows()` diff across both corpora: exactly 3 rows changed, all partial to covered, all re-pointed from Garage to Stair Landing, 0 regressions anywhere else (US gap 93->93, partial 936->935, covered 1781->1782; global gap 89->89, partial 758->756, covered 1322->1324). `test_keyword_demand.py` (71/71), `test_gate_also_called_no_digital_collision.py` (5/5), `test_gate_zone_also_called_is_heading.py` (6/6), `check_urls.py` (236/236), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 documents), `link_graph_report.py` (0 orphans), `check_sellable.py` (124/126, 2 person-delivered services by design) all independently re-run clean. Full `preflight.py --skip-tests` re-run live to completion after: every gate passed, 30 warnings, all standing.
+
+**Went well.** Looked for a genuinely off-topic misattribution rather than another single-word FORMAT_WORDS tie-break; the tied-worst rooms (Family Room, Pantry, Garage, Workshop, Entryway, Kids Bedroom, all 12-13%) still have real, not-yet-declined rows once read by hand.
+
+**Did not go well.** Checked several other Pantry/Garage candidates first ("pantry drawer," "appliances in pantry," "hardware in garage," "100 pantry organization ideas") and found each either an honest content gap (no drawer/appliance zone exists) or a collision risk ("hardware" ties Workshop's own dedicated zone on a bare single-word query with no room signal, checked directly and declined rather than shipped).
+
+**Changing next cycle.** Nothing; diff-before-ship caught the "hardware" collision before it shipped.
+
+**Next.** Mine Family Room's "bonus room"/"den"/"basement family room" partial rows (room signal already set, zone-level wording still weak) and Entryway's "coat closet"/"foyer" rows next; no new fact from Phil to act on.
+
+Pushed to main. `ops/zone-also-called.json`, one rebuilt zone page, rescore files, `BACKLOG-2026-09-07.md`, dashboard regen, this entry. No price or product touched; `IndexNow` to submit on push.
+
 ## PM check-in, 2026-11-16 (02:1x slot): previous work finished, confirmed by a full live preflight run rather than cited, same exhausted Phil-gated state
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue; nothing reopens until Thursday 2026-11-19 11:30 UTC's harvest or a Phil reply.

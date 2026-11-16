@@ -31691,16 +31691,14 @@
         "how to organize gallery wall"
       ],
       "room": "",
-      "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
-      "best_page_title": "How to organize the garage tool wall",
+      "best_page": "/zones/stair-landing-the-wall-and-display-zone.html",
+      "best_page_title": "How to organize the stair landing gallery wall",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/zones/primary-bathroom-the-shower-or-tub.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pics"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/stair-landing-the-wall-and-display-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize picture frames on wall",
@@ -56472,6 +56470,6 @@
       ]
     }
   ],
-  "scored_against_commit": "361ac1a41",
-  "scored_at": "2026-11-16T01:49:12Z"
+  "scored_against_commit": "94353aa45",
+  "scored_at": "2026-11-16T02:57:15Z"
 }
