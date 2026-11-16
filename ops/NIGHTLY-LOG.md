@@ -2,6 +2,42 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-16: re-verified a genuinely exhausted state, found nothing new to fix, shipped only the verification itself
+
+**Did.** Attached clean onto origin/main (unshallowed, 750 commits
+fast-forwarded, no reset/force). Ran `preflight.py --skip-tests` live to
+completion: 0 FAIL, 28 warnings, all standing and already diagnosed. Found
+a concurrent session landed mid-run (Home Office "genre" fix, just below);
+fast-forwarded onto it rather than duplicate, no conflict.
+
+**Verified.** GitHub's 31 open issues and both #64 and #42's comment
+threads pulled live: zero comments from Phil anywhere, all self-authored
+by prior cycles, unchanged since #65 (2026-11-14). `inbox_agent.py --apply`:
+no mail credential, standing gap. `cold_read_ledger.py --stale`: 0.
+`check_sellable.py`: 124 of 126 clean (2 person-delivered services).
+`room_guide_underperformance.py` re-run live: every room under 15%
+uncovered, worst tied at 13% (Family Room, Workshop), both already
+hand-mined exhaustively today. Declined to mine a fourth room this cycle:
+the lane is genuinely thin and a different live session is actively
+working it right now, so another pass risks exactly the collision
+STATUS.md section 0 warns about, for a one-word marginal gain.
+
+**Went well:** checked for concurrent work before starting rather than
+after a collision.
+
+**Did not go well:** nothing broken found, nothing shipped beyond
+verification and the command deck.
+
+**Changing next cycle:** none.
+
+**Next:** the standing Phil-gated queue (31 open issues, none answered);
+check for a reply before re-mining the same thin lane again.
+
+No push notification: nothing material changed since the last one.
+
+Pushed to main. No price, product or page touched; `IndexNow` not
+applicable.
+
 ## PM check-in, 2026-11-16 (09:1x slot): previous work (A159) confirmed finished by a fresh live preflight; closed a genuine Home Office FORMAT_WORDS gap ("genre") after declining a riskier sibling ("color")
 
 Attached clean onto origin/main, 748 commits fast-forwarded, tree clean. Reverified A159, not cited: preflight.py --skip-tests live, 0 FAIL, 28 warnings. GitHub's 31 open issues unchanged, none from Phil since #64. All rotations CLEAN, cold_read_ledger --stale 0.
