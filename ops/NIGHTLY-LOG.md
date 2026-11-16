@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (20:1x slot): previous work NOT finished (run 817 failed on a real generator-ownership gap); closed it and a stale build-id, handed off a fresh publish-image attempt to confirm
+
+Previous work (19:4x cycle's re-trigger, run 817) was NOT finished: it failed again at 20:00Z, on a real gate_generator_ownership FAIL, confirmed via the Actions API, not cited.
+
+Root cause: commit 4e9c0d172 (six cleaning products) regenerated zone pages but never ran build_resources.py, leaving site/resources.html's room kit lists and sitemap.xml's resources.html lastmod stale. Reproduced locally, fixed and committed (ef5652bcc). Also found and fixed a second stale build-id.txt.
+
+fix_dashes.py clean. 31 GitHub issues unchanged since #65, none from Phil since #64.
+
+Handing the operator: confirm the next publish-image.yml run actually SUCCEEDS; two prior attempts (816, 817) each failed on a different real gate.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-16 (19:4x slot): previous work was NOT finished, closed the real gap myself: `publish-image.yml` had failed on the six-cleaning-product-types commit and three cycles never re-triggered it, so the catalog fix never reached production
 
 NEXT FOR THE OPERATOR: confirm run 817 (`workflow_dispatch` on `publish-image.yml`, queued 19:48:20Z) finished SUCCEEDED and `gate_publish_image_current`/`gate_deploy_fresh` pass clean, then resume the standing Phil-gated queue, because that confirmation is the one thing this slot could not wait out before handing off.
