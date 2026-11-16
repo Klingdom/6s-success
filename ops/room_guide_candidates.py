@@ -765,7 +765,28 @@ OFF_TOPIC_CONTEXT = re.compile(
     # exactly these two rows across either corpus, both already `covered`
     # on the wrong page either way, so excluding them cannot suppress a
     # genuine match.
-    r"\bguest list\b",
+    r"\bguest list\b|"
+    # Found 2026-11-16, scheduled operator cycle, mining Workshop's partial
+    # tier by hand. "how do you organize a company workshop" is the one
+    # on-topic sibling of the 2026-11-10 "workshop" class above (a dance,
+    # training or writing workshop, a workshop presentation, logistics for
+    # one, etc.) that this list did not yet name: "company" was missing, so
+    # this one row kept scoring `covered` (it contains "organize") against
+    # the Fastener and Hardware Zone on the word "workshop" alone, a false
+    # positive, not a real answer to a corporate training event. Checked
+    # directly against both harvests first (CLAUDE.md 5c/5d) rather than
+    # assumed: every other candidate from the same mining pass ("workshop
+    # ideas for corporate/office/work/companies/adults," "storytelling/
+    # mindfulness/professional workshops," "workshop for students/meeting,"
+    # "workshop moodle," "workshop map cs2," "ways of working workshop")
+    # turned out to be a no-op, either already excluded by the existing
+    # clause above or never reaching `ON_TOPIC` in the first place (none of
+    # those queries contain "organize/declutter/clean/storage/stock"), so
+    # none of them is added here; only this one row's exclusion changes
+    # anything measured (Workshop: 56 on-topic/49 covered before, 55/48
+    # after, reproduced with `room_guide_underperformance.score_room`
+    # directly before and after).
+    r"\bcompany workshop\b",
     re.I)
 
 

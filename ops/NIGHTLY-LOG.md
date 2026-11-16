@@ -3,6 +3,53 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 
 
+## Scheduled operator cycle, 2026-11-16 (A157): closed one genuine false-covered row in Workshop's measurement, caught and discarded ten duplicate/no-op candidates from the same pass before shipping
+
+**Did.** Unshallowed and attached to `main` cleanly (fetch --unshallow,
+checkout, merge --ff-only, 729 commits fast-forwarded, no reset/force).
+Read `CLAUDE.md`, `BACKLOG-2026-09-07.md`, `STATUS.md`, `ROADMAP-2026-2029.md`,
+GitHub's 31 open issues (unchanged since #65, none from Phil since #64).
+`preflight.py --skip-tests` clean first (0 FAIL, 30 warnings). Epics 1-2
+blocked on Phil; epic 3's mining lane gated diminishing-returns, so read
+Workshop's own partial tier by hand. Found "workshop" collides with its
+training/seminar sense in several rows. Drafted a broad fix, then checked
+`room_guide_candidates.py` itself before shipping and found a 2026-11-10
+cycle had already excluded most of this exact cluster. Reproduced
+`score_room()` for every remaining candidate: several point at `/shop.html`
+or a download, not any room page (no effect either way), the rest lack
+`organize/declutter/clean/storage/stock` so `ON_TOPIC` never counted them.
+Only "how do you organize a company workshop" was genuinely new and
+effective, a false `covered` match on the word "workshop" alone. Shipped
+that one line.
+
+**Verified.** Fail-then-pass on 2 new test cases, full file 148/148. Real
+`score_room("Workshop")` before/after: 56 on-topic/49 covered to 55/48,
+0 gap/7 partial unchanged, exactly as predicted. `check_urls.py` (236/236),
+`audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0),
+`test_room_guide_underperformance.py` (19/19). Full `preflight.py
+--skip-tests` re-run live to completion after: 0 FAIL, every gate passed,
+30 warnings, all standing.
+
+**Went well:** checked the file before shipping a broad fix and found most
+of it already done, instead of landing ten duplicate/dead regex branches.
+
+**Did not go well:** the first-pass mining read ("ten genuine gaps") was
+wrong about nine of them; cheaper to catch with `score_room()` before
+shipping than after.
+
+**Changing next cycle:** when a mining pass turns up a cluster, check the
+existing exclusion list and `ON_TOPIC`'s own trigger words first, before
+drafting new regex for any of it.
+
+**Next:** the standing Phil-gated queue; room-guide mining lane thinner
+still, now down to single-row finds.
+
+No push notification: `ops/last-owner-notification.json`'s 48h floor
+(2026-11-17T18:50Z) has not elapsed, nothing material changed.
+
+Pushed to main. Command deck regenerated. No price, product or page
+touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-16 (06:1x slot): previous work (A156) confirmed finished and verified fresh; nothing newly unblocked, same handoff carried forward
 
 NEXT FOR THE OPERATOR: epics 1-2 still blocked on Phil (#64, #15); the FORMAT_WORDS/mining lane A156 worked is thinner but not exhausted, worth one more look at :43.

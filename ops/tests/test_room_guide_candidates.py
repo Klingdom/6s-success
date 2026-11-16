@@ -909,6 +909,19 @@ _result_guest_genuine = rgc.score_room([_guest_genuine], [], _room)
 check("a genuine 'guest bedroom closet' row is NOT excluded by the guest-list pattern",
       _result_guest_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-16, scheduled operator cycle, mining Workshop's partial
+# tier. "company workshop" is the one genuine false-`covered` sibling of
+# the existing dance/training/writing/presentation/meditation/negotiation
+# workshop exclusion that list did not yet name.
+_company_workshop = {"query": "how do you organize a company workshop", "best_page": "/test-room-deck.html", "status": "covered"}
+_result_company_workshop = rgc.score_room([_company_workshop], [], _room)
+check("a 'company workshop' off-topic-context row is excluded",
+      _result_company_workshop["on_topic_rows"] == 0)
+_workshop_genuine = {"query": "diy garage workshop organization ideas", "best_page": "/test-room-deck.html", "status": "covered"}
+_result_workshop_genuine = rgc.score_room([_workshop_genuine], [], _room)
+check("a genuine 'garage workshop organization' row is NOT excluded by the company-workshop pattern",
+      _result_workshop_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)
