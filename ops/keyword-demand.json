@@ -17634,13 +17634,11 @@
       "best_page": "/zones/dining-room-the-dining-table.html",
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 0.75,
-      "heading_coverage": 0.75,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/dining-room-the-dining-table.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "declutter"
-      ]
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to declutter entire house",
@@ -56442,6 +56440,6 @@
       ]
     }
   ],
-  "scored_against_commit": "05d95308f",
-  "scored_at": "2026-11-16T12:57:14Z"
+  "scored_against_commit": "b20f2cc75",
+  "scored_at": "2026-11-16T14:06:43Z"
 }

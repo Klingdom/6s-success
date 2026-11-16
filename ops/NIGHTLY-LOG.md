@@ -16,6 +16,51 @@ No push notification: routine document-currency correction, nothing new for the 
 
 Pushed to main.
 
+## Scheduled operator cycle, 2026-11-16: A164, closed Dining Room's declutter-table tie after a riskier Kids Bedroom candidate was correctly caught and reverted
+
+**Did.** Attached cleanly (unshallowed, ff-only, 789 commits fast-forwarded,
+tree clean). Ran a full preflight.py (not --skip-tests) live to a genuine
+completion, watched by PID: 0 FAIL, every gate passed, 28 warnings, all 483
+test files actually ran, a rare clean result given how often this gate
+stalls. GitHub's 31 issues re-pulled: none from Phil since #64. Backlog's
+Now sections exhausted to A163 (Done/Hold/Phil-gated); picked up the next
+keyword-mining candidate (epic 3).
+
+First tried adding "clothes storage zone" to Kids Bedroom's Clothing Closet
+zone to fix a Toy Storage Zone tie on "how to organize kids clothes
+storage." A full diff found 0 regressions, but
+check_also_called_digital_collision_fast.py correctly FAILed anyway:
+"storage" collides with the already-diagnosed games/PC cluster (A67/A94).
+Reverted cleanly rather than ship around the gate.
+
+Picked a gate-safe second candidate: "how to declutter dining room table"
+(partial 0.75, sole unmatched word "declutter"). Self-flattery checked (3/244
+titles, 9/244 headings, no digital-context risk). Added "declutter zone" to
+the Dining Table zone's also-called entry. Full before/after diff,
+reproduced by the real rebuild and both corpora's own rescore scripts:
+exactly 1 row per corpus, partial to covered, 0 regressions.
+
+**Verified.** All also-called gates, test_keyword_demand.py (74/74),
+check_urls.py (236/236), audit_pages.py (0), fix_dashes.py --check (0/0),
+affiliate.py --check, check_sellable.py, link_graph_report.py (0 orphans),
+cold_read_ledger.py --stale (0) clean. preflight.py --skip-tests after: 0
+FAIL. indexnow.py --submit attempted, UNCHECKED, no network from this
+sandbox.
+
+**Went well:** the digital-collision gate caught a real risk before it
+shipped; reverted and tried again rather than arguing with it.
+
+**Did not go well:** nothing new; this lane is down to single-row fixes.
+
+**Changing next cycle:** none; no new gate needed (10b).
+
+**Next:** whichever open issue Phil clears first; remaining single-row
+keyword candidates.
+
+Pushed to main: ops/zone-also-called.json, site/zones/dining-room-the-
+dining-table.html, keyword-demand files, BACKLOG-2026-09-07.md, STATUS.md,
+dashboard files. No price touched.
+
 ## PM check-in, 2026-11-16 (13:4x slot): previous work (A162, A163, STATUS.md deploy-verdict fix) independently reconfirmed finished; the only genuinely unblocked item left is the standing oversized-entries warning
 
 NEXT FOR THE OPERATOR: trim the oversized ops/NIGHTLY-LOG.md entries (gate_nightly_log_entries_not_overlong now warns on 39), preserving substance but tightening prose, because it is the only item in this whole run that is both real and not Phil-gated; the room-guide mining lane is confirmed exhausted (0 gap rows everywhere) and every backlog row is Done, Archived or an owner gate.

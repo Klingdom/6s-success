@@ -3,6 +3,14 @@
  "_rule": "Do not add a word with no measured queries, and do not add a word the site already covers. Keyed 'Room|Zone' using the same exact room/zone names as content.json, matching the convention ops/zone-search-terms.json already uses for its own lookup key.",
  "_measured_at": "2026-11-15T00:00:00Z",
  "zones": {
+  "Dining Room|Dining Table": {
+   "names": [
+    "declutter zone"
+   ],
+   "queries": 2,
+   "covered": 0,
+   "source": "ops/keyword-demand.json and ops/keyword-demand-global.json, read live 2026-11-16: 'how to declutter dining room table', partial (0.75 title coverage) in both corpora, already correctly pointed at this zone on 'dining'+'room'+'table' (3 of 4), the sole unmatched word 'declutter'. Checked a riskier candidate first and declined it: 'clothes storage zone' on Kids Bedroom's Clothing Closet zone (same shape, 'how to organize kids clothes storage' tied against the Toy Storage Zone on the bare word 'storage'), reverted after gate_also_called_no_digital_collision correctly failed it: 'storage' is live in the already-diagnosed games/PC digital-context cluster (A67/A94), so the fix was reverted rather than shipped, same discipline the gate's own docstring describes for 'games'. 'declutter' carries no such collision (not a PC/Steam/computer/desktop/software term); self-flattery checked first, 3 of 244 titles and 9 of 244 head_words already carry it, none on this page, and a full before/after ops.keyword_demand.score_rows() diff across both corpora confirmed exactly 2 rows changed (the target query, partial to covered, same page, both corpora), 0 regressions anywhere else."
+  },
   "Dining Room|China or Display Cabinet": {
    "names": [
     "hutch zone"
