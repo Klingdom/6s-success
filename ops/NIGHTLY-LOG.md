@@ -2,6 +2,69 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-16 (20:5x-21:5x slot): confirmed `checks.yml` run 3793 SUCCEEDED, closing the CI chain this cycle's own earlier handoff opened
+
+**Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout -B main
+origin/main`, `merge --ff-only`, 766 commits fast-forwarded on arrival, three
+further fast-forwards taken mid-cycle with no conflict). `preflight.py`
+surfaced `gate_ci_conclusion_current` FAILed before any work was picked:
+`checks.yml` runs 3787/3788 had both FAILed `gate_tests` on
+`test_generator_ownership_skip_tests.py`, a `subprocess.TimeoutExpired`, not
+a real defect in the gate it tests. Diagnosed and fixed the inner
+`preflight()` helper's own `timeout=680`, too tight for the whole
+`--skip-tests` pass under real CI load (raised to 1800s, matching the
+sibling test's own precedent); verified standalone before pushing (280s
+wall time, both assertions passed), committed and pushed (`085259723`).
+
+That fix was necessary but not sufficient, and I found the gap myself before
+re-checking CI: `gate_tests()`'s own outer per-test-file bound
+(`_run_bounded`, 700s) applies regardless of any timeout used inside the
+test, so the real two-call worktree check could still collide with it under
+contention. Diagnosed the correct root cause (this test was missing the
+`SIXS_UNDER_PREFLIGHT` skip guard its sibling `test_generator_ownership.py`
+already carries) and wrote the identical fix, but a concurrent session
+(`b514fed8b`) landed the same fix first; discarded my duplicate rather than
+ship a second copy, confirmed theirs was correct by reading its diff, and
+verified both code paths directly rather than trusting the description: with
+`SIXS_UNDER_PREFLIGHT=1` it skips in 0.027s; without it, the real worktree
+check still ran and passed (`ok`, both assertions). Independently confirmed
+via the Actions API, not cited, that `checks.yml` run 3791 (the landed fix)
+no longer FAILed on this test file at all; its only remaining FAIL was the
+separately-tracked `gate_publish_image_current` gap.
+
+Followed the chain the rest of the way rather than handing it off again:
+confirmed `publish-image.yml` run 820 (already dispatched by a concurrent
+PM check-in) completed `success`, then watched `checks.yml` run 3793
+(`workflow_dispatch`, head `9ec59113`, the exact confirmation the 21:4x
+slot's own handoff asked for) to completion: **`success`**. The whole chain
+this cycle touched is now genuinely green end to end, not merely pushed.
+
+**Verified.** Full `preflight.py --skip-tests` run live to completion after
+pulling every concurrent push: **every gate passed, 34 warnings**, all
+standing (no Stripe/SSH/mail credential here, known art/caption gaps,
+affiliate T2 not evaluated). All 31 open GitHub issues re-pulled live:
+unchanged, `decision`/`P0`/`blocked-on-art`, none from Phil since #64
+(2026-11-08). `inbox_agent.py --apply`: no mail credential, standing gap.
+
+**Went well:** treating "pushed" as a hypothesis to re-check against the
+live Actions API rather than the goal, which is how the real outer-bound
+defect was found instead of being handed off a third time, and catching my
+own duplicate fix before shipping it by reading the concurrent diff first.
+
+**Did not go well:** the first fix (the inner timeout) was real but
+incomplete; a tighter first read of `gate_tests()`'s own `_run_bounded` call
+site would have found the outer bound in one pass instead of two.
+
+**Changing next cycle:** none; both guard mechanisms (inner timeout, outer
+`SIXS_UNDER_PREFLIGHT` skip) are now in place and independently verified.
+
+**Next:** a concurrent session has already moved to new product work
+(widening the Home Quest symptom picker, `bcb9313c4`); nothing new unblocked
+beyond the standing Phil-gated queue was found this slot.
+
+Pushed to main: this log entry, command deck regen. No price, product or
+page touched by this cycle directly; `IndexNow` not applicable.
+
 ## PM check-in, 2026-11-16 (21:4x slot): confirmed the prior handoff's fix landed, re-dispatched checks.yml to clear the stale gate, handed off the final confirmation
 
 NEXT FOR THE OPERATOR: confirm `checks.yml` run 3793 (`workflow_dispatch`, queued 21:44:46Z, head `9ec59113`) finished SUCCEEDED and that `gate_ci_conclusion_current` clears on the next `preflight.py` run, because this slot dispatched the re-run but could not wait out its full completion before the operator's own slot.
