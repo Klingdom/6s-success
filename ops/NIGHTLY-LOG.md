@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (16:1x slot): previous work confirmed finished by direct re-check, not citation; still nothing genuinely unblocked
+
+Attached clean (ff-only, no reset/force), tree clean on arrival. Checked the 15:4x-16:0x operator cycle and 15:4x second-pass PM entry directly rather than trust them: `check_urls.py` 236/236, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0. Ran `gate_status_deploy_verdict_current`, `gate_status_deploy_gap_count_current`, `gate_status_currency` and `gate_deploy_fresh` directly from `preflight.py`: all clean except the known, already-labelled WARN (this sandbox cannot reach `6s-success.com`). CI's "Checks" workflow is green on the latest code-touching commit (`1335df7f8`, 15:48); nothing has touched gating code since.
+
+GitHub's 31 open issues re-pulled live: unchanged since #65 (2026-11-14), all decision/P0/blocked-on-art, none from Phil. `BACKLOG-2026-09-07.md` section 6 (owner gates) is the only unstruck content; sections 2-5 are Done/Archived/Hold. Looked specifically for something small to close: checked `state.json`'s `videos_vertical`/`videos_wide` reading 0 and `undelivered_media` carried forward from 2026-09-03 for signs of a real drift; both are the deliberate, documented behaviour (video gitignored out of the repo since Phil's 2026-09-03 decision, Desktop delivery path unreachable from any cloud sandbox) rather than a new defect. No fixable gap found.
+
+Not starting new work: nothing beyond the standing Phil-gated queue is genuinely unblocked, same conclusion as every recent cycle, re-verified rather than copied. No push notification: the 48h floor on the 2026-11-15T18:50Z push has not elapsed and nothing material changed. Handing the operator: nothing new; the standing full (non-skip-tests) `preflight.py` run remains the only outstanding verification gap if it has spare time.
+
+Pushed to main: this log entry, dashboard regen.
+
 ## Scheduled operator cycle, 2026-11-16 (15:4x-16:0x slot): independently re-verified exhausted/Phil-gated state from a fresh checkout and a full live preflight run; did not fabricate new work to look busy
 
 **Did.** Unshallowed and attached to `main` cleanly (fetch, `fetch --unshallow`,
