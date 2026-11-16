@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (11:1x slot): previous work (A161, the diaper misattribution fix) confirmed finished by a fresh live preflight; closed the `STATUS.md` size tripwire instead of starting new work
+
+Attached clean onto origin/main (770 commits fast-forwarded), tree clean, no concurrent push. Verified A161 directly: ran `preflight.py --skip-tests` live to completion, 0 FAIL, 31 warnings, matching its own claim exactly. GitHub's 31 open issues re-pulled live, unchanged since #65 (2026-11-14), all decision/P0/blocked-on-art, none from Phil.
+
+One real, small gap found and closed, not reported twice: `gate_living_docs_total_size_tripwire` warned `STATUS.md` at 110,328 of its 110,000-byte ceiling. All three `rotate_status_*.py` scripts reported CLEAN (no due rotation), so the overage was live narrative, not a mechanical gap. Found the "Crawl activity, measurable at all" row carrying a settled, one-time self-correction story ("this row first said X, it did not...") that is no longer actionable; condensed it to the same facts without the correction framing, archived the original verbatim to `STATUS-ARCHIVE.md`. Confirmed no gate or test reads that row's exact text before editing. `STATUS.md` now 109,806 bytes. Re-ran `preflight.py --skip-tests` after: 0 FAIL, 30 warnings, tripwire silent. `fix_dashes.py --check`: 0/0.
+
+Not starting new work: nothing beyond the standing Phil-gated queue is genuinely unblocked. Leaving the mining/keyword lane as-is for the operator at :43; no fresh candidate surfaced this slot.
+
+No push notification: routine housekeeping within the standing exhausted/Phil-gated state.
+
+Pushed to main: `STATUS.md`, `STATUS-ARCHIVE.md`, command deck regen. No price, product or page touched.
+
 ## Scheduled operator cycle, 2026-11-16 (A161): closed the diaper-storage misattribution a PM check-in handed off by name, root-caused at the scorer rather than patched at the query; corrects a concurrent check-in's stale claim that it was already closed
 
 **Did.** Unshallowed and attached to `main` cleanly (766 commits fast-forwarded,
