@@ -2,6 +2,80 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-16 (20:xx-21:xx slot): closed a real 3-cycle CI blocker (gate_generator_ownership never reachable from the one local check operators actually run), then A165
+
+**Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout -B main
+origin/main`, `merge --ff-only`, 852 commits fast-forwarded). `python
+ops/preflight.py` surfaced a real FAIL immediately, before any new work was
+picked: `gate_ci_conclusion_current` named `checks.yml`'s most recent
+completed run FAILED. Traced it rather than re-running and hoping: three
+pushes in a row (`4e9c0d172`, `4aa9ae7c2`, `7ba53dc4c`) had failed, and
+`publish-image.yml` (which runs `preflight.py --own`) had failed twice (runs
+816, 817), blocking the Docker image from publishing at all. Root cause:
+the six-cleaning-product-types commit regenerated six zone pages but never
+re-ran `ops/build_resources.py`, leaving `site/resources.html`'s room kit
+lists and product-type counts stale for four rooms.
+
+Reproduced the real diff myself (not cited) by running
+`GENERATOR_OWNERSHIP_CHAIN` against a clean tree. A concurrent PM check-in
+independently found and fixed the identical content staleness
+(`ef5652bcc`); merged cleanly onto it, no duplicate content shipped, their
+copy kept.
+
+**The gate that exists to catch exactly this class (`gate_generator_ownership`,
+issue #26, 15+ prior data points) only ever ran under an explicit `--own`
+flag, and no local pre-commit habit in this repository passes it:** every
+recent cycle's own log entries run `preflight.py --skip-tests`, which
+reaches this gate only through `gate_tests` (which `--skip-tests` explicitly
+skips). So the one check operators actually run before a push was
+structurally incapable of catching this, every time, which is why CI had to
+catch it instead. Per CLAUDE.md 10b, fixed the mechanism rather than the
+instance: `--skip-tests` now also runs `gate_generator_ownership` directly
+(confirmed cheap on its own, well under its slow sibling `gate_tests`). New
+`ops/tests/test_generator_ownership_skip_tests.py`, fail-then-pass proved in
+a throwaway worktree. That test then broke CI's own `gate_tests` twice on a
+timing issue I introduced (its nested `preflight.py --skip-tests` calls did
+not fit the outer 700s per-file bound under real sandbox contention); a
+concurrent session raised the inner timeout, and I added the structurally
+correct fix on top, skipping under `SIXS_UNDER_PREFLIGHT` the same way the
+sibling `test_generator_ownership.py` already does for its own expensive
+nested call, rather than re-tuning a number against contention that is not
+fixed. Both fixes merged cleanly, combined, and re-verified directly.
+
+Mined Workshop's own 13%-uncovered partial tier (A165): added "declutter
+zone" to the Fastener and Hardware Zone's `ops/zone-also-called.json`
+entry, grounded in that zone's own decluttering story. Declined "messy"
+(no grounding, claimed elsewhere), "woodworking" (room-level, no single
+zone owns it) and the "workshop event" queries (off-topic noise). Full
+before/after `score_rows()` diff across both corpora: exactly 1 row each,
+partial to covered, 0 regressions.
+
+**Verified.** `publish-image.yml` run 818 confirmed **success** after the
+fix landed, the first successful image publish since the three-push outage
+began. `check_urls.py` (236/236), `audit_pages.py` (0 findings),
+`fix_dashes.py --check` (0/0), `check_also_called_digital_collision_fast.py`
+clean, `cold_read_ledger.py --stale` (0, after re-ledgering 7 files the
+catalog commit touched but never re-ledgered). `inbox_agent.py --apply`: no
+mail credential, unchecked.
+
+**Went well:** treated a FAIL preflight surfaced on its own as the run's
+actual job (CLAUDE.md step 2), rather than reading past it to a
+self-selected backlog item.
+
+**Did not go well:** introduced a real, if quickly caught, CI break of my
+own while fixing the first one; the lesson is in the gate comment, not just
+this entry, so it does not need relearning.
+
+**Changing next cycle:** none for this gap; watch whether
+`test_generator_ownership_skip_tests.py` behaves correctly the next time a
+real generator-ownership drift needs catching.
+
+**Next:** whichever of the 30-odd open, Phil-gated issues clears first, or
+the next genuine partial-tier wording gap.
+
+Pushed to main (`fb8165079`, `7393d7f78`, `606cb0e5e`, `b514fed8b`, merges).
+No price touched; `IndexNow` to submit the one changed zone page on push.
+
 ## PM check-in, 2026-11-16 (20:4x slot): previous work WAS finished (run 818 succeeded, confirmed via the Actions API); found and fixed a real, live deploy-pipeline bug mid-cycle, handed the operator a specific thing to re-check
 
 NEXT FOR THE OPERATOR: watch `deploy.yml`'s next run against current `main` and confirm it reaches a real VERDICT line (current, or a named `building`/`ready`/`failed`/`none` state) instead of `unknown`, because that is the one thing this slot's fix could not watch to completion before handing off.
@@ -17145,3 +17219,4 @@ directive it is, rather than a fourth deferral.
 
 Pushed to main. Command deck regenerated. No price, product or page
 touched; `IndexNow` not applicable (measurement files only).
+
