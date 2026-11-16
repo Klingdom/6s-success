@@ -219,20 +219,63 @@ def _norm_symptom(s: str) -> str:
 # THE SYMPTOM ENTRY SCREEN (PLAN-MICROZONES-DECKS-APP.md 4.3, item A3;
 # BACKLOG-2026-09-07.md A5, "the app's first thirty seconds").
 #
-# A stranger recognises a symptom before they choose a room. Five real
-# frictions, picked by hand for spread across rooms rather than generated,
-# each (room, zone, friction index, branch index) into that zone's own
-# content.json diagnosis block. Nothing here is paraphrased: the symptom, the
-# cause and the two-minute action are all direct fields, resolved the same
-# way diagnosis_html() resolves them on the zone page itself. The sixth
-# option, "show me the house instead", is the app's original first-run
-# screen; see quest.js.
+# A stranger recognises a symptom before they choose a room. Real frictions,
+# picked by hand for spread across rooms rather than generated, each (room,
+# zone, friction index, branch index) into that zone's own content.json
+# diagnosis block. Nothing here is paraphrased: the symptom, the cause and
+# the two-minute action are all direct fields, resolved the same way
+# diagnosis_html() resolves them on the zone page itself. The last option,
+# "show me the house instead", is the app's original first-run screen; see
+# quest.js.
+#
+# Widened 2026-11-16, scheduled operator cycle: from 5 entries across 2 of
+# the 20 rooms (Entryway, Kitchen) to 13 across 10. `STATUS.md` section 8's
+# own "Personal Function Discovery" row had read "IMPLEMENTED for 5 zones...
+# the rest fall through to browsing by room" since 2026-09-20, correctly
+# labelled, never picked up as the gap it names: a stranger whose friction
+# lives in any of the other 18 rooms got no symptom-first match at all,
+# even though every one of the other 114 zones already carries the same
+# `diagnosis` block this screen reads from (confirmed live before picking
+# candidates: 0 of 114 zones lack a `passes` entry for all six S's, and
+# every zone below has a non-empty `frictions`/`first_15`). The render path
+# needed no change to take more: `#sym-list` (quest.html) is an empty list
+# populated by `renderSymptomList()` (quest.js) from `Q.symptoms`, one
+# `<button data-sym="i">` per entry with no fixed count anywhere in the
+# markup or the click handler (`[data-sym]`, parsed by index); the
+# "hardcodes five option buttons" comment this file's own `main()` carried
+# was already stale before this change; the only real constraint was `#sym-
+# list`'s `flex-direction:column` layout, which scales to 13 short rows on
+# a phone screen without redesign (checked against the CSS directly, not
+# assumed). The 8 new picks were read from each room's own first-listed
+# friction (content.json's `diagnosis.frictions[0]`), not invented, choosing
+# the single zone per room whose symptom text was shortest and most
+# recognisable on first read, same bar the original 5 set (Kitchen's "THE
+# SINK IS FULL AGAIN BY EVENING" shape): Primary Bathroom's vanity counter,
+# Home Office's desk, Garage's workbench and Laundry Room's washer mirror
+# that same "it is covered/full again" shape; Living Room's sofa, Primary
+# Bedroom's dresser drawer and Dining Room's table are the next clearest
+# single-sentence frictions in their own rooms; Hall Closet's cleaning-
+# supply zone was picked over its own shorter candidates specifically
+# because it is a Safety-pass friction (CLAUDE.md D-014, Safety the fourth
+# S), giving the list its first non-Straighten/Shine cause and matching
+# CLAUDE.md 0.7's P0 priority on safety over polish. Still only 10 of 20
+# rooms; the remaining 10 (Family Room, Guest Bedroom, Nursery, Guest
+# Bathroom, Workshop, Mudroom, Stair Landing, Patio or Deck, Pantry, Living
+# Room already covered) are a genuine next step, not exhausted here.
 SYMPTOM_PICKS = [
     ("Entryway", "Landing Zone", 1, 0),
     ("Entryway", "Coat and Outerwear Zone", 0, 0),
     ("Kitchen", "Primary Prep Counter", 0, 0),
     ("Kitchen", "Utensil and Utility Drawers", 0, 0),
     ("Kitchen", "Sink and Dishwashing Zone", 0, 0),
+    ("Primary Bathroom", "Vanity Counter", 0, 0),
+    ("Home Office", "Primary Desk", 0, 0),
+    ("Garage", "Primary Workbench", 0, 0),
+    ("Laundry Room", "Washer and Dryer", 0, 0),
+    ("Living Room", "Sofa and Seating Zone", 0, 0),
+    ("Primary Bedroom", "Dresser Drawers", 0, 0),
+    ("Dining Room", "Dining Table", 0, 0),
+    ("Hall Closet", "Cleaning Supply Zone", 0, 0),
 ]
 
 
