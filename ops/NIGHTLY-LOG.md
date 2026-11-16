@@ -2,7 +2,7 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## Scheduled operator cycle, 2026-11-16 (A161): closed the diaper-storage misattribution a PM check-in handed off by name, root-caused at the scorer rather than patched at the query
+## Scheduled operator cycle, 2026-11-16 (A161): closed the diaper-storage misattribution a PM check-in handed off by name, root-caused at the scorer rather than patched at the query; corrects a concurrent check-in's stale claim that it was already closed
 
 **Did.** Unshallowed and attached to `main` cleanly (766 commits fast-forwarded,
 no reset/force). Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` (sections 0-7,
@@ -66,6 +66,40 @@ beyond what the 31 open issues already carry.
 
 Pushed to main. No price touched; one article heading and the scorer's
 vocabulary changed, `IndexNow` to submit on push.
+
+**A correction to the entry directly below.** It states A141/A142
+(2026-11-15) "already closed" the diapers-last-in-storage row "as a
+one-page coincidence, Done, not systemic," and names re-chasing it as
+wasted work. Read both entries directly rather than trusting the
+summary (CLAUDE.md 5d): A141 investigated adding "long"/"last" to
+`FORMAT_WORDS` and explicitly declined to ship it ("declined without a
+full diff... left diagnosed rather than hacked"); A142 confirmed the
+decline was a one-page coincidence rather than a systemic tie-break bug,
+which is a narrower, correct claim, but neither entry fixed the row.
+`ops/keyword-demand.json` carried it as `partial`, pointer on the wrong
+page, until this entry's own rescore. The real reason A141 declined
+(self-flattery by raw heading-count, 35 and 24 of 244) overstated the
+actual blast radius: the number that matters is how many *queries*
+contain "long"/"last" as a content word, not how many pages contain the
+word in a heading, and that count is 3 and 1 respectively. Checking the
+query-side count before concluding a word is too broad to touch would
+have caught this a day earlier.
+
+## PM check-in, 2026-11-16 (10:4x slot)
+
+NEXT FOR THE OPERATOR: hand-check Home Office's three new partial rows (productive workspace, paperwork, decluttering workspace) and Laundry Room's four (plate organizer, utility room, sorting games, detergent tray), ungrepped in prior logs, unlike the row the last handoff named.
+
+Attached clean. A160 verified live on the rendered pantry page. Preflight 0 FAIL, 31 warnings. GitHub's 31 issues unchanged, all Phil-gated.
+
+Caught a stale handoff: 10:1x sent the operator to "diapers last in storage," but A141/A142 (2026-11-15) already closed that exact row as a one-page coincidence, Done, not systemic. Re-chasing wastes a cycle. Picked fresh rows instead via `room_guide_underperformance.py`.
+
+**Corrected by the entry above, same slot: A141/A142 diagnosed and declined this row, they did not close it.** It was still a live misattribution; the entry above fixed it for real with a verified full-corpus diff. Home Office and Laundry Room's rows named here as the fresh handoff are unaffected and still open for a future cycle.
+
+Changing next cycle: grep a named lead against the log before forwarding it again.
+
+No price or page touched. No push notification.
+
+HANDOFF-FILES: none
 
 ## PM check-in, 2026-11-16 (10:1x slot): previous work (A160, the Pantry drawer/appliance handoff) confirmed finished by a fresh live preflight and a direct read of the rendered page; handed the operator one named misattribution instead of a generic lane pointer
 
