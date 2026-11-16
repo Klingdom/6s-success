@@ -28,8 +28,21 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Outputs of ops/dashboard.py. Regenerate; never merge.
-GENERATED = ["EXECUTIVE-DASHBOARD-LIVE.md", "ops/dashboard.html", "ops/state.json"]
+# The three true outputs of ops/dashboard.py, regenerated on conflict, never
+# merged; plus ops/cycle-signal.json, a single overwritten snapshot (never
+# append-only, unlike CHECKIN-LOG.md/ops/state-checkin.json, which is exactly
+# why those two were deliberately removed from this list, see
+# ops/tests/test_ship_conflict_safety.py). Found live 2026-11-16: every PM/
+# operator cycle that hit a concurrent-push conflict confined to this file
+# alone had to resolve it by hand every time, because it was missing here
+# despite being generator-owned (ops/cycle_signal.py). regenerate() below
+# does not call cycle_signal.py, so on conflict this just keeps origin's own
+# already-valid committed snapshot (checked out before regenerate() runs,
+# same as the three dashboard outputs) rather than attempting to merge it;
+# losing this run's own freshest snapshot in favour of origin's only costs a
+# later cycle one redundant re-verification, never a false "nothing changed".
+GENERATED = ["EXECUTIVE-DASHBOARD-LIVE.md", "ops/dashboard.html", "ops/state.json",
+             "ops/cycle-signal.json"]
 
 MARKER = re.compile(r"^(<{7} |={7}$|>{7} )", re.M)
 
