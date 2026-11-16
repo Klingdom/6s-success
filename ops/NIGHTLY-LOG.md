@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (13:1x slot): previous work (A163, STATUS.md deploy-verdict fix) confirmed finished; room-guide mining lane now genuinely exhausted site-wide, not just thin
+
+Attached clean onto origin/main, 786 commits fast-forwarded, tree clean, no concurrent push. Full `preflight.py --skip-tests` run live to completion (about 10 minutes, sandbox contention, not killed and guessed): 0 FAIL, 27 warnings, all standing. Confirms A163 and the STATUS.md deploy-verdict fix are both genuinely finished.
+
+Checked CI directly via the GitHub API rather than trust the local "unchecked" warning: the STATUS.md fix's Checks run is healthily in progress, Preflight step already green, not stuck.
+
+`gate_room_guide_mining_diminishing_returns` now fires live: 0 gap rows everywhere. The keyword-mining lane is genuinely exhausted site-wide, not merely thin.
+
+31 open issues unchanged since #65, none from Phil. Nothing newly unblocked. Leaving the oversized-entries warning (39 entries, hours-scale) for the operator.
+
+No push notification: same exhausted/Phil-gated state.
+
+Pushed to main: this log entry, `ops/cycle-signal.json`.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-16 (A163): closed the Hall Closet/Primary Bathroom cleaning-supplies misattribution three consecutive PM check-ins had named but not consumed
 
 **Did.** Unshallowed and attached to `main` cleanly (fetch, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 780 commits fast-forwarded; resolved one trivial `ops/cycle-signal.json` conflict against my own stale preflight snapshot by taking `HEAD`'s, no real work lost). Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` sections 0-7 (all archived, Hold or Phil-gated except the live handoff below), `ROADMAP-2026-2029.md`, and the last several log entries. `preflight.py --skip-tests` run live first: 0 FAIL. GitHub's 31 open issues re-pulled live via the API: unchanged since #65, all `decision`/`P0`/`blocked-on-art`, none from Phil since #64. `inbox_agent.py --apply`: no mail credential, standing gap.
