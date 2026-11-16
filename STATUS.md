@@ -782,13 +782,18 @@ past.
 
 ## BLOCKER-002: Live Business Data Established, Not Yet a Live Feed
 
-**Status: PARTIALLY RESOLVED.** Real business data exists and is current:
-`GOALS.md` and section 9 above carry a measured revenue, session and
-organic-search baseline (last direct database pull 2026-09-17). What
-remains missing is a wired, credential-free live feed: no Stripe, Umami
-API, or Search Console credential exists in any operator sandbox, so every
-number here is a manual pull re-run periodically, not a continuously
-refreshing one.
+**Corrected 2026-11-16, PM check-in: this line read 2026-09-17, an older
+date than section 9's own sessions/organic-search rows two sections below
+in this same file, which already correctly show the real last pull.**
+**Status: PARTIALLY RESOLVED.** Real business data exists but is not
+current: `GOALS.md` and section 9 above carry a measured revenue, session
+and organic-search baseline, last direct database pull 2026-10-02, now
+about six weeks stale and the subject of open issue #64 (`OWNER-ACTIONS.md`
+item 0b, a 2-minute traffic re-read Phil has not yet done). What remains
+missing is a wired, credential-free live feed: no Stripe, Umami API, or
+Search Console credential exists in any operator sandbox, so every number
+here is a manual pull re-run periodically, not a continuously refreshing
+one.
 
 Impact:
 

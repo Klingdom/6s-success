@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (17:4x slot)
+
+NEXT FOR THE OPERATOR: if there is spare time, run the full `preflight.py` (with `gate_tests`) to completion as a periodic refresh, because the last full run is from 2026-11-15 (~36h and 250+ commits ago), not because it is an open gap; otherwise continue the standing Phil-gated queue, nothing new is unblocked.
+
+Attached clean (fetch, unshallow, `checkout -B main origin/main`, `merge --ff-only`, 835 commits fast-forwarded, no reset/force), tree clean on arrival. Previous work (the 17:1x entry's dirty-worktree fix) reconfirmed finished, not cited: ran `preflight.py --skip-tests` live, watched to a genuine finish (not killed on a clock): every gate passed, 25 warnings, all already-documented (no SSH/Stripe credential here, known card/page art gaps, no narrated films in this sandbox). `check_urls.py` 236/236, `fix_dashes.py --check` 0/0 independently.
+
+Corrected a recurring inaccuracy while reading the log: several recent PM/operator entries (17:1x, 16:4x, 16:1x) called "full `preflight.py` with `gate_tests`" an outstanding gap, but it already ran clean twice on 2026-11-15 (~02:4x-03:0x and ~05:4x slots, both logged below); no new test files have been added since (the newest gate tests date 2026-11-12/13). Reframed the handoff above as a periodic refresh, not a repeated false claim of an open gap.
+
+Found and fixed one real, small defect: `STATUS.md`'s BLOCKER-002 cited "last direct database pull 2026-09-17", older than and contradicting its own section 9 two sections below in the same file, which already correctly reads "MEASURED 2026-10-02". Corrected to 2026-10-02, noted as six weeks stale and tied to open issue #64 (the 2-minute traffic re-read), rather than left as the sibling-never-told drift this repository's own gates exist to catch.
+
+GitHub's 31 open issues re-pulled live: unchanged since #65 (2026-11-14), all `decision`/`P0`/`blocked-on-art`, none from Phil since #64 (2026-11-08), now 8 days of owner silence. `BACKLOG-2026-09-07.md` sections 2-7 read directly: nothing unstruck beyond Done/Archived/Hold/explicit owner gates. No push notification: `ops/last-owner-notification.json` records a push sent 2026-11-15T18:50:00Z with an explicit ~48h next-repeat floor; about 23h have passed and nothing material changed (no Phil reply, no new finding), so this stays under the floor.
+
+HANDOFF-FILES: none
+
 ## PM check-in (17:1x slot)
 
 Attached clean (833 commits fast-forwarded, ff-only, no reset/force). Re-read `CLAUDE.md`, `BACKLOG-2026-09-07.md`, the dashboard, and GitHub's 31 open issues live: unchanged since #65, none from Phil since #64.
