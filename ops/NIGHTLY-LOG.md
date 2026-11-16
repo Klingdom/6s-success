@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-16 (19:1x slot): closed the six-cleaning-product-types gap BACKLOG-2026-09-07.md section 5 had held since 2026-10-26, found a second parallel master the item's own wording never named
+
+**Did.** Unshallowed, attached onto `main` cleanly. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the recent log. `preflight.py --skip-tests` to completion first: 0 FAIL, 29 warnings. Owner items and the room-guide mining lane were exhausted (31 open issues, all decision/P0), so picked the one Hold item blocked by effort, not Phil: six cleaning products the method text already named (traced to their zones in `content.json`) with no master row. Added MPL-00125 to MPL-00130 to `ops/affiliate-catalogue.csv` AND, once found, to `content/manual/source/products.json`, a second parallel master feeding `site/invest.html`'s investor numbers and the Manual's appendices that the backlog item never named. Added matching `zone_products.json` entries so the 6 real zone pages render the items. Regenerated the Manual, both appendices, the 6 zone pages, 4 room hubs, `site/invest.html`'s five catalogue numbers (123 to 129, 72% to 68%, 33 to 39 core), and the affiliate reports.
+
+**Verified.** `target.com` fails DNS resolution here (same allowlist boundary as `6s-success.com`), so all six are honestly `Unverified`, not fabricated; added `product_links.py` SPEC entries for them, closing a real `test_product_links.py` FAIL. Hardened `gate_zone_supplies_docstring_current`'s hardcoded "123", fail-then-pass proven. `preflight.py --skip-tests` clean after.
+
+**Went well:** caught the second master before shipping.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** the Phil-gated owner queue.
+
+Pushed to main. No price touched. `IndexNow` to submit the 6 changed zone pages.
+
 ## PM check-in, 2026-11-16 (19:1x slot): previous work reconfirmed finished by a fresh live preflight run; still nothing genuinely unblocked
 
 Previous work (18:4x PM cycle) confirmed finished, not cited: attached clean (unshallow, `checkout -B main origin/main`, ff-only merge), tree clean, main matched origin. Ran `preflight.py --skip-tests` live to full completion: 0 FAIL, 28 warnings, all standing (no Stripe/SSH credential here, known card/page art gaps, affiliate trigger unevaluated, room-guide mining lane in diminishing returns). GitHub's 31 open issues re-pulled live: unchanged since #65, none from Phil since #64 (2026-11-08). `BACKLOG-2026-09-07.md` sections 2-6 read directly: nothing unstruck beyond Done/Hold and C5/C6, both explicit "YES, Phil". No notification: last push was 24.5h ago against a 48h floor, nothing material changed. Not starting new work: nothing genuinely unblocked. Handing the operator: the standing Phil-gated queue only.

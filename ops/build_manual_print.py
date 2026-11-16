@@ -7,7 +7,7 @@ What this does, in order:
   1. House style       normalises dashes to zero em dashes and zero en dashes,
                        in the manual HTML and in its source content.json.
   2. Appendices        rebuilds Appendix A and Appendix B (HTML + CSV) from the
-                       current 123-type master product library, recomputing
+                       current 129-type master product library, recomputing
                        per-zone usage from the zone map rather than trusting the
                        stale _zone_count baked into products.json.
   3. Front matter      injects a half title, a copyright and imprint page, and a
@@ -1182,8 +1182,8 @@ def gates(paths, master, zone_products):
     print("    product types    %d" % len(master))
     print("    zones in map     %d" % len(zone_products))
     print("    zone-type links  %d" % sum(len(v) for v in zone_products.values()))
-    if len(master) != 123:
-        fails.append("library is %d types, expected 123" % len(master))
+    if len(master) != 129:
+        fails.append("library is %d types, expected 129" % len(master))
     if len(zone_products) != 114:
         fails.append("zone map has %d zones, expected 114" % len(zone_products))
 

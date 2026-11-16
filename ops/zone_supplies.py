@@ -8,10 +8,10 @@ Two files in this repository already know, per zone, exactly which product
 types the method calls for, and neither of them reaches a single page of the
 website.
 
-  content/manual/source/zone_products.json   114 zones, 1,867 product rows,
+  content/manual/source/zone_products.json   114 zones, 1,891 product rows,
                                              each with the phase it serves,
                                              what it is for, and its safety note
-  ops/affiliate-catalogue.csv                123 product types, with the
+  ops/affiliate-catalogue.csv                129 product types, with the
                                              merchant, URL and link status
 
 So a reader who has just been told to wipe the shelf with a neutral pH cleaner
@@ -23,9 +23,9 @@ WHAT IT DOES NOT DO
 -------------------
 It does not invent a link, a price, a rating or a retailer. The catalogue is
 owned by another agent and is only ever READ here. As of 2026-09-04, 120 of
-its 123 rows carry a verified retailer search URL (`ops/product_links.py`),
+its 129 rows carry a verified retailer search URL (`ops/product_links.py`),
 so most products on most zone pages already render as a link, not plain
-text; the 3 still unverified fall back to plain text: the type of thing, the
+text; the 9 still unverified fall back to plain text: the type of thing, the
 reason it is needed, and the safety note. That plain-text fallback stays the
 useful floor for whatever has not gained a link yet.
 
@@ -44,7 +44,7 @@ THREE LINK STATES, ON PURPOSE
              verified                                       anchor, no excuse
 
 The third state has to stay graceful regardless, because it is the state
-3 of 123 rows are still in and the one every row was in before 2026-09-04.
+9 of 129 rows are still in and the one every row was in before 2026-09-04.
 It renders the product name in bold and says nothing about links at all,
 because there is nothing to say: a product with no outbound retailer link
 has no material connection to disclose, and printing "no retailer link yet"

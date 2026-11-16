@@ -220,7 +220,7 @@ def main() -> int:
           "could all approve tomorrow and **not one product would become "
           "linkable**, because no row points at any of them. Verified by "
           "simulating an approval: with amazon set to approved and a store tag "
-          "pasted in, `affiliate.py --status` still reads 0 of 123 linkable.",
+          "pasted in, `affiliate.py --status` still reads 0 of 129 linkable.",
           "",
           "That leaves two routes, and they are the whole affiliate strategy:",
           "",
@@ -282,7 +282,7 @@ def main() -> int:
         for r in rows:
             url = (r.get("Affiliate URL") or "").strip()
             # A URL in this column is NOT automatically a usable link. 120 of
-            # the 123 are retailer SEARCH pages (target.com/s?searchTerm=...),
+            # the 129 are retailer SEARCH pages (target.com/s?searchTerm=...),
             # recorded honestly as "Verified search", and a search result is
             # not a product page: it can return a different item tomorrow, or
             # none. None of them carries tracking either, because no

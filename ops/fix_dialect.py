@@ -64,7 +64,7 @@ TARGETS = [
     # book's own figure captions at import time, so it carries the same
     # drift independently of content.json.
     os.path.join(ROOT, "ops", "room-images.json"),
-    # The 123-product master catalogue: every "why" sentence shown in a
+    # The 129-product master catalogue: every "why" sentence shown in a
     # zone's kit list (ops/zone_supplies.py) and every product page
     # (ops/build_kit_page.py) traces back to this one hand-maintained CSV.
     os.path.join(ROOT, "ops", "affiliate-catalogue.csv"),

@@ -30812,6 +30812,14 @@ def gate_zone_supplies_docstring_current() -> None:
     from the CSV on every run and fails if the docstring's own cited count
     drifts from it, so the fix cannot silently go stale again the way the
     claim it replaced did.
+
+    Widened 2026-11-16: the regex used to hardcode "123 rows" as the total,
+    which is itself exactly the drift this gate exists to catch, just one
+    level up (the catalogue grew to 129 rows the same cycle, six cleaning
+    types the methods already named but the master never carried). Both the
+    verified count AND the total row count are now captured from the
+    docstring and compared against the live CSV, so neither can go stale
+    silently again.
     """
     f = os.path.join(ROOT, "ops", "zone_supplies.py")
     if not os.path.exists(f):
@@ -30826,7 +30834,7 @@ def gate_zone_supplies_docstring_current() -> None:
              "ops/affiliate-catalogue.csv shows otherwise; re-read and "
              "correct the docstring rather than trusting its own account.")
         return
-    m = re.search(r"As of 2026-09-04, (\d+) of\s*\n?its 123 rows carry a "
+    m = re.search(r"As of 2026-09-04, (\d+) of\s*\n?its (\d+) rows carry a "
                   r"verified", src)
     if not m:
         warn("zone-supplies-docstring",
@@ -30835,7 +30843,7 @@ def gate_zone_supplies_docstring_current() -> None:
              "checked against the real catalogue. Not a failure, but "
              "re-verify by hand.")
         return
-    claimed = int(m.group(1))
+    claimed, claimed_total = int(m.group(1)), int(m.group(2))
     sys.path.insert(0, os.path.join(ROOT, "ops"))
     try:
         import zone_supplies as zs
@@ -30848,11 +30856,13 @@ def gate_zone_supplies_docstring_current() -> None:
     real = sum(1 for r in cat.values()
                if (r.get("Link Status") or "").strip().lower()
                .startswith("verified"))
-    if claimed != real:
+    real_total = len(cat)
+    if claimed != real or claimed_total != real_total:
         fail("zone-supplies-docstring",
-             "ops/zone_supplies.py's docstring says %d of 123 rows are "
-             "verified; ops/affiliate-catalogue.csv actually has %d. "
-             "Update the docstring to the real count." % (claimed, real))
+             "ops/zone_supplies.py's docstring says %d of %d rows are "
+             "verified; ops/affiliate-catalogue.csv actually has %d of "
+             "%d. Update the docstring to the real counts." %
+             (claimed, claimed_total, real, real_total))
 
 
 def gate_no_storage_before_sort() -> None:

@@ -15,7 +15,7 @@ reader's situation is defensible. CLAUDE.md section 6 says never prescribe
 before diagnosing, and section 48 rules out dressing a commission up as
 personalisation. These eight are called for by 109 to 114 of the 114 zones, so
 the diagnosis was done at the level of the method rather than the person. No
-other product in the catalogue of 123 has that property, which is exactly why
+other product in the catalogue of 129 has that property, which is exactly why
 no other product is on this page.
 
 SORT BEFORE STRAIGHTEN, ENFORCED BY THE PAGE

@@ -4091,6 +4091,17 @@
       "qty": 1,
       "unit": "pack",
       "safety": "Avoid irreplaceable surfaces"
+    },
+    {
+      "id": "MPL-00130",
+      "name": "Upholstery spot cleaner for a set-in stain",
+      "family": "Cleaning Supplies",
+      "level": "Core",
+      "use": "Treat a set-in stain on fabric upholstery",
+      "phase": "Shine",
+      "qty": 1,
+      "unit": "bottle",
+      "safety": "Never mix with any other cleaner; test on a hidden seam first"
     }
   ],
   "Living Room||Coffee Table": [
@@ -5392,6 +5403,17 @@
       "qty": 4,
       "unit": "each",
       "safety": "Do not overload; anchor wall-mounted or tall systems where required"
+    },
+    {
+      "id": "MPL-00128",
+      "name": "Mesh wash bag",
+      "family": "Cleaning Tools",
+      "level": "Core",
+      "use": "Machine-wash soft toys and fabric dolls without losing a part",
+      "phase": "Shine",
+      "qty": 1,
+      "unit": "each",
+      "safety": "Check the toy's own care label before machine washing"
     }
   ],
   "Family Room||Board Game and Puzzle Zone": [
@@ -5926,6 +5948,17 @@
       "qty": 2,
       "unit": "each",
       "safety": "Do not overload; anchor wall-mounted or tall systems where required"
+    },
+    {
+      "id": "MPL-00129",
+      "name": "Compressed air duster",
+      "family": "Cleaning Tools",
+      "level": "Core",
+      "use": "Clear packed lint out of a charging port",
+      "phase": "Shine",
+      "qty": 1,
+      "unit": "can",
+      "safety": "Never invert the can; keep away from flame, the propellant is flammable"
     }
   ],
   "Family Room||Craft and Activity Zone": [
@@ -12044,6 +12077,17 @@
       "qty": 1,
       "unit": "each",
       "safety": "Work outdoors where the run-off goes to ground rather than into a household drain"
+    },
+    {
+      "id": "MPL-00125",
+      "name": "Dedicated mildew remover",
+      "family": "Cleaning Supplies",
+      "level": "Core",
+      "use": "Shift mildew in grout and silicone a soap-film cleaner will not move",
+      "phase": "Shine",
+      "qty": 1,
+      "unit": "bottle",
+      "safety": "Never mix with bleach or another cleaner; ventilate the room while it works"
     }
   ],
   "Guest Bathroom||Toilet Area": [
@@ -12222,6 +12266,17 @@
       "qty": 1,
       "unit": "set",
       "safety": "Do not overload; anchor wall-mounted or tall systems where required"
+    },
+    {
+      "id": "MPL-00126",
+      "name": "Toilet bowl cleaner and a dedicated bowl brush",
+      "family": "Cleaning Supplies",
+      "level": "Core",
+      "use": "Clean under the rim and at the water line",
+      "phase": "Shine",
+      "qty": 1,
+      "unit": "set",
+      "safety": "Never add bleach or another cleaner to the bowl while this is working"
     }
   ],
   "Guest Bathroom||Guest Linen Zone": [
@@ -17914,6 +17969,17 @@
       "qty": 1,
       "unit": "each",
       "safety": "Do not overload; anchor wall-mounted or tall systems where required"
+    },
+    {
+      "id": "MPL-00127",
+      "name": "Dish soap for pet bowls and the feeding scoop",
+      "family": "Cleaning Supplies",
+      "level": "Core",
+      "use": "Wash food and water bowls and the feeding scoop daily",
+      "phase": "Shine",
+      "qty": 1,
+      "unit": "bottle",
+      "safety": "Rinse thoroughly before refilling; keep separate from household dishware"
     }
   ],
   "Mudroom||Seasonal Outdoor Gear": [

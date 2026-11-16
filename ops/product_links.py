@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Retailer links for all 123 catalogue products, and the checker that keeps them
+Retailer links for all 129 catalogue products, and the checker that keeps them
 honest.
 
 WHAT THIS SOLVES
 ----------------
-ops/affiliate-catalogue.csv holds 123 product TYPES, not products. A row reads
+ops/affiliate-catalogue.csv holds 129 product TYPES, not products. A row reads
 "Compact vacuum with attachments", never a brand and a model. Every consumer of
 that file (ops/zone_supplies.py on 114 zone pages, ops/build_kit_page.py on
 site/kit.html) renders a product as plain text until the row carries both a URL
@@ -327,6 +327,31 @@ SPEC = {
         "Outdoor fabric is water resistant until the wrong cleaner strips it, "
         "and then the cushion is finished. The compatibility is the whole "
         "recommendation."),
+    "MPL-00125": S("target", "mildew stain remover spray", ["mildew", "mold"],
+        "A soap-film cleaner alone will not shift mold already established "
+        "in grout, and leaving it is a hygiene problem, not a cosmetic one."),
+    "MPL-00126": S("target", "toilet bowl cleaner and brush set",
+                   ["toilet", "bowl-brush", "toiletbowl"],
+        "The bowl needs to dwell before it is brushed, and a brush used "
+        "nowhere else is what keeps the room's smell problem from "
+        "starting."),
+    "MPL-00127": S("target", "dish soap", ["dish-soap", "dishsoap", "dish"],
+        "A damp bowl or scoop left unwashed is what turns the next fill "
+        "greasy and starts the slime ring at the waterline."),
+    "MPL-00128": S("target", "mesh laundry wash bag",
+                   ["mesh", "wash-bag", "washbag", "laundry-bag"],
+        "A soft toy washed loose can lose stuffing or a seam in the drum; "
+        "the bag protects the toy and the machine's filter in the same "
+        "step."),
+    "MPL-00129": S("target", "compressed air duster can",
+                   ["compressed-air", "air-duster", "duster"],
+        "Lint packed into a port is why a plug stops seating long before "
+        "the cable is actually worn out, and no liquid may go near it."),
+    "MPL-00130": S("target", "upholstery stain remover spot cleaner",
+                   ["upholstery", "fabric-cleaner", "stain-remover"],
+        "A multi-surface cleaner is made for hard surfaces; a set-in stain "
+        "on fabric needs a product made to lift into fabric fibers without "
+        "leaving a ring."),
 
     # ------------------------------------------------------- 3 Room (88)
     "MPL-00093": S("target", "shelf labels adhesive", ["label"],
