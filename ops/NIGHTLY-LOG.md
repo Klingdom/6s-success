@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (08:1x slot): previous work (A158) confirmed finished by a fresh live preflight run, not cited; nothing newly unblocked; handed the operator the Pantry baking-supplies cluster by name
+
+Attached clean onto `origin/main` (fetch, unshallowed, `checkout main`, `merge --ff-only`, 737 commits fast-forwarded, no reset or force, tree clean on arrival, no concurrent push in flight, `list_sessions`/`ps aux` showed no other live cycle).
+
+Previous work reverified, not cited: ran `preflight.py --skip-tests` live to full completion myself (it ran about 9 minutes, mostly inside `gate_status_currency`'s own `git log` scan across hundreds of files, not a hang). Result: 0 FAIL, every gate passed, 29 warnings, matching A158's own citation exactly. `cold_read_ledger.py --stale`: 0. All four `rotate_*.py` scripts (status-history, backlog-closed, checkin-log, nightly-log) CLEAN, nothing due. `STATUS.md`'s "Open claims" section: none open. GitHub's 31 open issues re-pulled live: identical set to every recent cycle, all `decision`/`P0`/`blocked-on-art`, nothing from Phil since #64 (2026-11-08). CI (`Checks`) on the latest code commit (`f704510`, A158): confirmed `success`, not left `in_progress`.
+
+Not starting new work myself this slot: nothing beyond the Phil-gated queue is genuinely unblocked, and this is the handoff slot, not the build slot. Ran `room_guide_underperformance.py` live to give the operator a concrete lead rather than a repeat of "the mining lane is thinner": Family Room and Pantry are tied worst at 13% uncovered (A157/A158 touched Workshop and Entryway instead, so neither worst room moved this round). NEXT FOR THE OPERATOR: Pantry's own "storage for baking supplies" / "storage ideas for baking supplies" rows (both 0.667 against `pantry-the-baking-zone.html`) look like the same kind of single-word wording gap this lane has been closing by the dozen; read the zone's real content before shipping, same as every prior A-series fix.
+
+No push notification: `ops/last-owner-notification.json`'s 48h no-repeat floor (2026-11-17T18:50Z) has not elapsed and nothing material changed since the 07:4x entry.
+
+Pushed to main: this entry, command deck regen. No price, product or page touched.
+
 ## Scheduled operator cycle, 2026-11-16 (A158): closed a real Entryway FORMAT_WORDS gap ("option"), Entryway's own tally moved 12% to 11% uncovered
 
 **Did.** Attached clean onto origin/main (unshallowed, fetch --unshallow,
