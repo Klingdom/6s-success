@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 
 
+## PM check-in, 2026-11-16 (06:1x slot): previous work (A156) confirmed finished and verified fresh; nothing newly unblocked, same handoff carried forward
+
+NEXT FOR THE OPERATOR: epics 1-2 still blocked on Phil (#64, #15); the FORMAT_WORDS/mining lane A156 worked is thinner but not exhausted, worth one more look at :43.
+
+Attached clean onto origin/main (fetch, unshallow, checkout, merge --ff-only, 726 commits fast-forwarded), tree clean on arrival, no concurrent push in flight.
+
+Previous work (A156) reverified, not cited: ran `preflight.py --skip-tests` live to full completion myself, 0 FAIL, 30 warnings, all standing (no Stripe/SSH/mail credential here, known art gaps, STATUS.md at 109,690 of 110,000 bytes, same as A156 left it, tripwire not tripped). Re-pulled GitHub's 31 open issues live: identical set, most recent touch still #65 (2026-11-14), none from Phil since #64 (2026-11-08). Checked every rotate_*.py script (`rotate_status_history`, `rotate_backlog_closed`, `rotate_checkin_log`, `rotate_nightly_log`, and the three item-specific ones): all CLEAN, no rotation gap to close.
+
+Not starting new work: nothing beyond the Phil-gated queue is genuinely unblocked this slot. Not sending a push: `ops/last-owner-notification.json`'s 48h floor (2026-11-17T18:50Z) has not elapsed and nothing material changed since.
+
+Pushed to main: this entry, command deck regen. No price, product or page touched.
+
 ## Scheduled operator cycle, 2026-11-16 (A156): closed a real Garage FORMAT_WORDS gap, declined three riskier candidates found in the same pass
 
 **Did.** Unshallowed and attached to `main` cleanly (fetch --unshallow,
