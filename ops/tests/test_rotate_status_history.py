@@ -3,11 +3,14 @@
 Prove ops/rotate_status_history.py keeps only the newest STATUS.md
 "Production Knowledge" entry live (cases 1-9), the base statement of the
 "Immediate Focus" line (cases 10-12), the newest BLOCKER-001 entry
-(cases 13-18), and the newest entry in each Production Status table row
-("Public website" / "Production traceability", cases 19-26), moving the
-rest into the archive correctly in every case: every entry ends up on
-exactly one side, nothing is edited, and a file that does not match the
-expected shape is refused rather than guessed past.
+(cases 13-18), the newest entry in each Production Status table row
+("Public website" / "Production traceability", cases 19-26), and the
+same mechanism applied to the GitHub Status table's "Repository
+hygiene" row, added 2026-11-16 once it was found carrying the identical
+chain shape unrotated (case 27), moving the rest into the archive
+correctly in every case: every entry ends up on exactly one side,
+nothing is edited, and a file that does not match the expected shape is
+refused rather than guessed past.
 
 Run:  python ops/tests/test_rotate_status_history.py
 """
@@ -395,7 +398,10 @@ def main() -> int:
 
     # 24. plan_rotation_table_rows() rotates both named rows in one pass,
     #     and a row already at one entry contributes nothing to archive.
-    new_tr_both, archived_both = rsh.plan_rotation_table_rows(tr_text)
+    #     tr_text only ever carries these two rows, so this case passes
+    #     them explicitly rather than the full (now three-row) default.
+    new_tr_both, archived_both = rsh.plan_rotation_table_rows(
+        tr_text, row_labels=("Public website", "Production traceability"))
     if len(archived_both) != 2:
         fails.append("plan_rotation_table_rows archived the wrong count "
                       "across both rows: %r" % archived_both)
@@ -416,7 +422,8 @@ def main() -> int:
         "| Public website | LIVE | **ONLY ONE.** |\n"
         "| Production traceability | Tracked | **ONLY ONE TOO.** |\n"
     )
-    new_tr_clean, archived_clean = rsh.plan_rotation_table_rows(tr_clean)
+    new_tr_clean, archived_clean = rsh.plan_rotation_table_rows(
+        tr_clean, row_labels=("Public website", "Production traceability"))
     if new_tr_clean != tr_clean or archived_clean:
         fails.append("a table already at one entry per row was rotated "
                       "when it should have been left alone")
@@ -433,6 +440,28 @@ def main() -> int:
                 fails.append("split_table_row_chain refused the real, "
                               "committed STATUS.md row %r: %s"
                               % (label, exc))
+
+    # 27. "Repository hygiene" (the GitHub Status table's own row,
+    #     added to TABLE_ROW_LABELS 2026-11-16) must rotate through the
+    #     same generic machinery, independent of either Production
+    #     Status row above: a 3-entry chain collapses to 1, archiving 2.
+    gh_text = (
+        "| Area | Status | Notes |\n"
+        "|---|---|---|\n"
+        "| Repository hygiene | 9 open issues | **Newest.** "
+        + rsh.TABLE_CHAIN_MARKER + "**Middle.** "
+        + rsh.TABLE_CHAIN_MARKER + "**Oldest.** |\n"
+    )
+    new_gh_text, gh_archived = rsh.plan_rotation_table_row(
+        gh_text, "Repository hygiene")
+    _, gh_entries_after, _ = rsh.split_table_row_chain(
+        new_gh_text, "Repository hygiene")
+    if len(gh_entries_after) != 1 or gh_entries_after[0].strip() != "**Newest.**":
+        fails.append("Repository hygiene row did not collapse to its "
+                      "newest entry alone: %r" % gh_entries_after)
+    if len(gh_archived) != 2:
+        fails.append("Repository hygiene row archived %d entries, "
+                      "expected 2: %r" % (len(gh_archived), gh_archived))
 
     if fails:
         print("FAILED (%d):" % len(fails))

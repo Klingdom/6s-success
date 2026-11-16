@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-16: closed a rotation gap, not a mining gap
+
+NEXT FOR THE OPERATOR: epics 1-2 are still blocked on Phil (#64, #15); the room-guide mining lane is still in diminishing returns. Mine a fresh keyword-demand harvest if one lands, or act on any Phil reply to the 31 open decision issues.
+
+**Did.** Attached clean (715 commits fast-forwarded). `preflight.py --skip-tests` clean before (0 FAIL, 30 warnings). Checked epics 1-5 by hand first, not cited: 1 and 2 blocked on Phil, the mining lane's 93 US and 89 global gap rows sampled by hand are the same catalogued off-topic noise prior cycles already declined. Picked up the `living-docs-total-size-tripwire` warning instead: STATUS.md was 64 bytes over its 110,000-byte tripwire. Found the real cause: `ops/rotate_status_history.py` already rotates two Production Status table rows with the stacked-correction chain shape, but a third row with the identical shape, GitHub Status's "Repository hygiene" (3,578 bytes), was never added to `TABLE_ROW_LABELS`, so nothing ever rotated it.
+
+**Verified.** Added the label; the mechanism already generalises over `row_label`, so no new gate/rotate pair was needed. `--apply-table-rows` moved 9 entries (4,078 bytes) to `STATUS-ARCHIVE.md`, confirmed prepended intact. Added test case 27 (fail-then-pass: a synthetic 3-entry chain collapses to 1) and fixed two existing cases whose synthetic tables only ever carried the original two rows; full test file passes. STATUS.md now 105,986 bytes. Full `preflight.py --skip-tests` re-run after: 0 FAIL, 28 warnings (2 fewer). `fix_dashes.py --check` clean.
+
+**Went well:** reading the gate's own docstring literally ("give it the same treatment this file's siblings already got") instead of treating the warning as cosmetic.
+
+**Did not go well:** nothing new this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** re-check whether any other STATUS.md table row or section carries this same unrotated chain shape; the gate only watches total size, not which row is the cause.
+
+Pushed to main. `ops/rotate_status_history.py`, `ops/tests/test_rotate_status_history.py`, `STATUS.md`, `STATUS-ARCHIVE.md`, dashboard regen, this entry. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-16 (04:4x slot): previous work (A154) still finished and unchanged; light reverification only, running into the operator's own slot; same handoff carried forward
 
 NEXT FOR THE OPERATOR: the "pictures on a/the wall" pair stays misrouted to Garage, per A154's own handoff; mine the remaining partial tiers, or act on any Phil reply to issue #64 (P0, the traffic-read credential).

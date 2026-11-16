@@ -248,7 +248,17 @@ def plan_rotation_blocker1(text: str):
 # before every entry after the first. Found 2026-10-24, the exact gap
 # named by name in the 13:4x PM check-in's own handoff: 20 superseded
 # entries each, 17551 and 8978 bytes, no gate watching either row's size.
-TABLE_ROW_LABELS = ("Public website", "Production traceability")
+#
+# Found 2026-11-16: section 6's GitHub Status table has a fifth row,
+# "Repository hygiene", carrying the identical shape (4 pipes, the same
+# TABLE_CHAIN_MARKER, newest entry first) and the identical defect: it
+# had grown to 3578 bytes of stacked "N issues" corrections with nothing
+# rotating it, one direct contributor to gate_living_docs_total_size_
+# tripwire's STATUS.md warning. Added here rather than built as a sixth,
+# near-duplicate gate/rotate pair, since the existing mechanism already
+# generalises over row_label and needed no change to handle it.
+TABLE_ROW_LABELS = ("Public website", "Production traceability",
+                     "Repository hygiene")
 TABLE_CHAIN_MARKER = "Prior state, kept because the shape recurs: "
 
 
