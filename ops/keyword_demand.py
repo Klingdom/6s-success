@@ -208,7 +208,22 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "church", "insert", "durable", "lightweight",
                           "properly", "apartments", "large", "homes",
                           "cheap", "list", "everyday", "tidying", "next",
-                          "organized", "organised", "liquid", "grow"))
+                          "organized", "organised", "liquid", "grow",
+                          "option"))
+
+# "option" joined 2026-11-16, scheduled operator cycle, found mining
+# Entryway's own partial tier ("organized drop option", global, 0.5).
+# That query scores against the Entryway's own drop zone page (title
+# "How to organize the entryway drop zone"), matching "drop" and leaving
+# "option" as the sole unmatched word. "Option" names the form of the
+# answer, the same role "ideas"/"essentials"/"haves" already play in this
+# list, not a different physical object. Self-flattery checked first:
+# 0 of 244 titles, 0 of 244 headings. Checked for collision before
+# shipping: across both corpora, exactly one row contains "option" as a
+# content word, the target query itself, so this cannot misroute
+# anything else. Full before/after score_rows() diff confirmed: 0 US
+# rows changed, 1 global row changed (the target query, partial to
+# covered, same best_page).
 
 # "organized" and "organised" joined 2026-11-15, scheduled operator cycle,
 # found mining Guest Bathroom's own partial tier ("organized bathroom

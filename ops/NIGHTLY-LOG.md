@@ -2,6 +2,61 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-16 (A158): closed a real Entryway FORMAT_WORDS gap ("option"), Entryway's own tally moved 12% to 11% uncovered
+
+**Did.** Attached clean onto origin/main (unshallowed, fetch --unshallow,
+checkout, merge --ff-only, 737 commits fast-forwarded, no reset/force, tree
+clean on arrival). Ran preflight.py --skip-tests live first: 0 FAIL, every
+gate passed, 29 warnings. GitHub's 31 open issues re-pulled live: unchanged
+since issue 65, none from Phil since issue 64 (2026-11-08). inbox_agent.py
+--apply: no mail credential, standing gap. Epics 1-2 blocked on Phil;
+epic 3's mining lane gated diminishing returns, so read the current
+worst-uncovered rooms by hand rather than cite that. Family Room, Pantry
+and Workshop were already exhaustively hand-checked today (A149, A156,
+A157); Entryway (12% uncovered) had not. Of its partial tier, "organized
+drop option" scored 0.5 against the entryway's own drop zone page
+(title "How to organize the entryway drop zone"), matching "drop" and
+leaving "option" as the sole unmatched word, a filler noun naming the
+form of the answer, the same role "ideas"/"essentials" already play.
+Self-flattery checked first: 0 of 244 titles, 0 of 244 headings. Checked
+"coat closet organization systems" and "hallway cabinet organization
+ideas" too and declined both: the zone's own content explicitly sends
+off-season coats to a bedroom closet rather than storing them in the
+rail/hook zone itself, so claiming a closet exists here would misstate
+real content, the same genuine-gap shape A156 already found for
+Entryway's cabinet query.
+
+**Verified.** Checked collision across both corpora before shipping:
+exactly one row in either contains "option" as a content word, the
+target query. Full before/after score_rows() diff matched the real
+rescore exactly: 0 US rows changed (930/1787 stable), 1 global row
+changed, partial to covered, same best_page (751/1329 to 750/1330).
+Entryway's own guide tally moved honestly, 12% to 11% uncovered.
+Fail-then-pass proved directly in test_keyword_demand.py (case 66; full
+file 72/72). check_urls.py (236/236), audit_pages.py (0 findings),
+fix_dashes.py --check (0/0) all independently re-run clean. Full
+preflight.py --skip-tests re-run live to completion after: 0 FAIL, every
+gate passed, 30 warnings (one new, a transient build-id staged-changes
+warning that clears on commit, one unrelated CI-query read miss).
+
+**Went well:** picking a room nobody had hand-checked today instead of
+re-mining an already-exhausted one found a clean one-row fix fast.
+
+**Did not go well:** nothing notable this cycle.
+
+**Changing next cycle:** none; the same discipline (self-flattery and
+full-corpus collision check before shipping) keeps working.
+
+**Next:** the standing Phil-gated queue; Entryway's own tier is thinner
+but not exhausted (coat-closet and cabinet gaps are genuine content gaps,
+left undone).
+
+No push notification: nothing material beyond the standing exhausted
+state; the cycle shipped one row, within the pattern already reported.
+
+Pushed to main. Command deck regenerated. No price, product or page
+touched; existing data files only, IndexNow not applicable.
+
 ## PM check-in (07:4x slot): previous work confirmed finished; nothing new unblocked; handed the operator a named cluster instead of a generic lane pointer
 
 NEXT FOR THE OPERATOR: mine Family Room's "bonus room storage"/"den storage ideas" cluster or Pantry's "baking supplies storage" cluster (both tied at 13% uncovered, `room_guide_underperformance.py`), because `room_guide_candidates.py` confirms no room is guide-less and every other named lane (epics 1-2, the Phil-gated queue) is blocked on a decision only Phil can make.

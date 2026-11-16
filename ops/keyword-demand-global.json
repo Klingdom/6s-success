@@ -41707,14 +41707,12 @@
       "room": "",
       "best_page": "/zones/entryway-the-landing-spot.html",
       "best_page_title": "How to organize the entryway drop zone",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "option"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -48198,6 +48196,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "3e29d5bd1",
-  "scored_at": "2026-11-16T05:54:55Z"
+  "scored_against_commit": "bedcb7d93",
+  "scored_at": "2026-11-16T07:52:20Z"
 }

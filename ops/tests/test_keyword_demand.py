@@ -2310,6 +2310,33 @@ def main():
     finally:
         kd.FORMAT_WORDS = old_format34
 
+    # 66. "option" joined FORMAT_WORDS 2026-11-16, scheduled operator
+    #     cycle, found mining Entryway's own partial tier ("organized drop
+    #     option", global, 0.5 against the Entryway's own drop zone page,
+    #     "drop" matched, "option" the sole unmatched word). Self-flattery
+    #     checked first: 0 of 244 titles, 0 of 244 headings. Checked for
+    #     collision across both corpora before shipping: exactly one row
+    #     in either corpus contains "option" as a content word, the target
+    #     query itself, so nothing else could regress. Full before/after
+    #     score_rows() diff: 0 US rows changed, 1 global row changed (the
+    #     target query, partial to covered, same best_page).
+    new_format_words35 = ("option",)
+    samples35 = {"option": "organized drop option"}
+    for word in new_format_words35:
+        if word in kd.content_words(samples35[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format35 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format35 - set(new_format_words35)
+    try:
+        for word in new_format_words35:
+            if word not in kd.content_words(samples35[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format35
+
     if fails:
         print("FAIL")
         for f in fails:
