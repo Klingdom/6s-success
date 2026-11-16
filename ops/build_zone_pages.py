@@ -4107,6 +4107,16 @@ def room_page(room, header, footer, all_rooms=()):
             # same tip (edited the same day) now spells out the stack-
             # rather-than-spread answer for exactly that room.
             "Laundry Room": ", narrow or tiny",
+            # "how to organize a pantry drawer" and "how to organize
+            # appliances in pantry" (both the US harvest, the first also
+            # global) scored partial against the Backstock and Bulk Zone
+            # on a coincidental "pantry" title match, "drawer"/"appliances"
+            # unmatched; neither has an honest zone of its own (A153/A159
+            # both declined this as a genuine content gap, never shipped
+            # as content). This same tip, extended the same day, now
+            # answers both honestly as pantry-wide, not single-zone,
+            # considerations.
+            "Pantry": ", drawer and appliances",
         }.get(room["room"], "")
         out.append(f'<h2>{esc(rm.capitalize())} layout{_layout_suffix}</h2>'
                    f'<p>{esc(_clean(_layout_text))}</p>')

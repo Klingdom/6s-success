@@ -24667,16 +24667,14 @@
         "how to declutter a pantry"
       ],
       "room": "Pantry",
-      "best_page": "/zones/pantry-the-backstock-and-bulk.html",
-      "best_page_title": "How to organize the pantry bulk storage",
+      "best_page": "/rooms/pantry.html",
+      "best_page_title": "How to organize a pantry, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/zones/pantry-the-backstock-and-bulk.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "drawer"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/pantry.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -48194,6 +48192,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "9655c77ee",
-  "scored_at": "2026-11-16T09:22:55Z"
+  "scored_against_commit": "7cd705973",
+  "scored_at": "2026-11-16T10:00:26Z"
 }
