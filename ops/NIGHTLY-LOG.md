@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (14:1x slot): previous work (A163, oversized-entries handoff) correctly left for the operator; found and closed a fresh deploy-verdict staleness drift instead
+
+Previous work finished: tree clean, main attached (ff-only), nothing uncommitted. A background `preflight.py --skip-tests` self-inflicted a dirty `build/listings/etsy/` PDF regen (same known shape as prior A139 incidents, byte-size-identical, reverted with `git checkout --`). The 13:4x handoff (trim 39 oversized NIGHTLY-LOG entries) is hours of work, correctly left for the :43 operator, not mine to start.
+
+What I did: `ops/deploy-verdict.json` recorded a newer confirmation (build `83a172f00304f59e`, 13:17:10Z, matching commit `f032602de`/A163 exactly, 0-commit gap) than STATUS.md's four deploy citations (BLOCKER-001, Production Knowledge, Public website row, Production traceability row), all still naming the superseded `c3313b72973ee34f`/11:21:56Z confirmation and a stale 2-commit gap. `gate_status_deploy_verdict_current` fired live confirming it. Corrected all four plus the "Currently Deployed Build" paragraph, verified each against `deploy_gap_material_commits`/`resolve_verdict_commit` directly, and hand-checked the gap-count regex against my own new prose (it first mis-parsed a historical "2 commits" mention; reworded to "2-commit gap" so only the real current "0 commits" matches). All four related gates (`status_deploy_verdict_problem`, `deploy_gap_count_problem`, `status_latest_entry_gap_problem`, `status_table_rows_gap_count_problem`) now return clean against live `HEAD`.
+
+Verified: `fix_dashes.py --check` 0/0. `ops/dashboard.py` regenerated. GitHub's 31 open issues unchanged since #65, all decision/P0/blocked-on-art, none from Phil.
+
+Handing to the operator: the 39 oversized NIGHTLY-LOG entries (unchanged, same item named at 13:4x).
+
+No push notification: routine document-currency correction, nothing new for the owner.
+
+Pushed to main.
+
 ## PM check-in, 2026-11-16 (13:4x slot): previous work (A162, A163, STATUS.md deploy-verdict fix) independently reconfirmed finished; the only genuinely unblocked item left is the standing oversized-entries warning
 
 NEXT FOR THE OPERATOR: trim the oversized ops/NIGHTLY-LOG.md entries (gate_nightly_log_entries_not_overlong now warns on 39), preserving substance but tightening prose, because it is the only item in this whole run that is both real and not Phil-gated; the room-guide mining lane is confirmed exhausted (0 gap rows everywhere) and every backlog row is Done, Archived or an owner gate.
