@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (20:4x slot): previous work WAS finished (run 818 succeeded, confirmed via the Actions API); found and fixed a real, live deploy-pipeline bug mid-cycle, handed the operator a specific thing to re-check
+
+NEXT FOR THE OPERATOR: watch `deploy.yml`'s next run against current `main` and confirm it reaches a real VERDICT line (current, or a named `building`/`ready`/`failed`/`none` state) instead of `unknown`, because that is the one thing this slot's fix could not watch to completion before handing off.
+
+Attached clean (fetch, unshallow, `checkout -B main origin/main`, `merge --ff-only`, 865 commits fast-forwarded, no reset/force), tree clean on arrival, matched `origin/main` at `a09eb7464`. Checked Step 2 directly: the prior cycle's handoff ("confirm run 817's re-trigger actually succeeds") was genuinely finished, re-verified against the Actions API, not cited: `publish-image.yml` run 818 (commit `59867f5f9`) completed `success` at 20:41:39Z.
+
+While checking production freshness I watched `deploy.yml` run 427 fire live (triggered off that same success, for `main`'s tip by then, `a09eb7464`) and FAIL at 20:43:48Z, a real, current, customer-facing-adjacent signal, not a stale one: `VERDICT production is serving a DIFFERENT build ... image build for this commit: unknown ... could not ask GitHub what the image build is doing (no gh, no auth, or no network), so why production differs is UNCHECKED.` Pulled the job log directly rather than trusting the gate's summary. Root cause: `ops/deploy.py`'s `classify_publish()`/`_gh_runs()` shells out to `gh run list` to tell a benign registry-pull lag apart from a real stuck/failed image build, but `deploy.yml`'s job `permissions:` block granted only `contents: write` (no `actions: read`) and its `Deploy` step never exported `GITHUB_TOKEN`, so `gh` always had no auth and the classifier always fell into the uninformative `unknown` branch, on every mismatch, since this workflow was written. `checks.yml` already carries the exact working pattern for this repo's own `gh` usage (`permissions: actions: read` plus `GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}` on the step that calls it); mirrored both onto `deploy.yml`.
+
+This does not make the current mismatch disappear (build-id lag between the image GHCR has and the commit `main` is now at is real, and `classify_publish` is correctly designed to still fail the job rather than guess), but it fixes the diagnosis so the next run says `building`/`ready`/`failed`/`none` with real advice instead of `unknown`, closing a gap that has silently made every past deploy-mismatch unresolvable from the log alone. `ops/tests/test_deploy_publish_state.py` (16/16, logic untouched, confirms this was pure wiring) and a YAML parse check both run directly. Full `preflight.py --skip-tests` would not finish inside this slot (same sandbox contention prior cycles logged); reported unchecked, not assumed passing.
+
+`BACKLOG-2026-09-07.md` sections 2-6: nothing unstruck beyond Done/Hold/Phil-gated (A165 is the latest, Done). GitHub's 31 open issues re-pulled live: unchanged since #65, none from Phil since #64. No push notification: this is a mechanical CI diagnostic fix, not a new finding needing Phil's action, and the standing notification floor has not passed regardless.
+
+HANDOFF-FILES: `.github/workflows/deploy.yml`
+
 ## PM check-in, 2026-11-16 (20:1x slot): previous work NOT finished (run 817 failed on a real generator-ownership gap); closed it and a stale build-id, handed off a fresh publish-image attempt to confirm
 
 Previous work (19:4x cycle's re-trigger, run 817) was NOT finished: it failed again at 20:00Z, on a real gate_generator_ownership FAIL, confirmed via the Actions API, not cited.

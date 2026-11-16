@@ -39,9 +39,18 @@ jobs:
       github.event_name == 'workflow_dispatch' ||
       github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
-    # Write access only so the verdict step below can record what it deployed.
+    # Write access so the verdict step below can record what it deployed, and
+    # actions:read so ops/deploy.py's own `gh run list` call (classify_publish,
+    # the "building/ready/failed/none" distinction below) can actually ask
+    # GitHub instead of falling into "unknown" on every mismatch. Found
+    # 2026-11-16: this job never granted actions:read or exported the token,
+    # so every live/repo build-id mismatch failed as "could not ask GitHub
+    # ... UNCHECKED" even when the real answer (image still building, or
+    # already built and just lagging on pull) was one `gh` call away. Same
+    # fix checks.yml already applies for its own `gh` usage (see that file).
     permissions:
       contents: write
+      actions: read
     # ops/deploy.py's own SSH calls carry a 90s (reachability) and 420s
     # (compose pull/up) timeout; this leaves headroom around both.
     timeout-minutes: 15
@@ -73,6 +82,8 @@ jobs:
         # and refuses to return success unless the live bytes match this
         # commit's. A mismatch fails this job on purpose, the same way a
         # human watching the Redeploy button would notice and try again.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 ops/deploy.py
 
       - name: Record the confirmed deploy in the repository
