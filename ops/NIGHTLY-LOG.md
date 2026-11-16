@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (18:0x slot): previous work confirmed finished by a fresh live preflight run, not citation; still nothing genuinely unblocked
+
+Attached clean (fetch, unshallow, `checkout -B main origin/main`, `merge --ff-only`, 841 commits fast-forwarded, no reset/force), tree clean on arrival. The 17:4x entry's own STATUS.md BLOCKER-002 fix re-checked directly, not trusted: both the BLOCKER-002 line and section 9's own figure now agree (2026-10-02), the drift it reported fixed is actually gone.
+
+Ran `preflight.py --skip-tests` live myself, watched to a genuine finish: every gate passed, 28 warnings, all already-documented (no Stripe/SSH/mail credential here, known card/zone art gaps, no narrated films in this sandbox). Independently re-ran `check_urls.py` (236/236), `fix_dashes.py --check` (0 em/en dashes), `cold_read_ledger.py --stale` (0). GitHub's 31 open issues re-pulled live, sorted by `updated_at`: unchanged since #65 (2026-11-14), all `decision`/`P0`/`blocked-on-art`, none from Phil since #64 (2026-11-08), now 8 days of owner silence. `BACKLOG-2026-09-07.md` sections 2-6 read directly: nothing unstruck beyond Done/Archived/Hold and the explicit owner-gate rows.
+
+No push notification: `ops/last-owner-notification.json` records a push sent 2026-11-15T18:50:00Z with an explicit ~48h next-repeat floor; about 23h have passed and nothing material changed (no Phil reply, no new finding), so this stays under the floor.
+
+Not starting new work: nothing beyond the standing Phil-gated queue is genuinely unblocked, same conclusion as every recent cycle, re-verified rather than copied. Handing the operator: nothing new; the periodic full (non-skip-tests) `preflight.py` refresh remains worth a run if it has spare time, not an open gap.
+
+Pushed to main: this log entry, `ops/cycle-signal.json`, dashboard regen. No price, product or page touched; `IndexNow` not applicable.
+
 ## PM check-in (17:4x slot)
 
 NEXT FOR THE OPERATOR: if there is spare time, run the full `preflight.py` (with `gate_tests`) to completion as a periodic refresh, because the last full run is from 2026-11-15 (~36h and 250+ commits ago), not because it is an open gap; otherwise continue the standing Phil-gated queue, nothing new is unblocked.
