@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-16 (A162): closed Home Office's "storage ideas for paperwork" tie with an honest heading rename, not a new word
+
+**Did.** Attached clean onto `main` (fast-forwarded, no reset/force). Preflight clean first: 0 FAIL, 28 warnings. GitHub's 31 issues unchanged, none from Phil. No mail credential. The 10:4x handoff named two thin rooms (Home Office, Laundry Room, 6% uncovered each). "storage ideas for paperwork" tied 0.5 between Home Office's file-storage zone ("storage") and the already-shipped `how-to-organize-paperwork.html` article ("paperwork"), which lost the tie though its "Setting up the system" section is entirely about storage. Renamed that heading to "Paperwork storage, one session at a time", true to content already there.
+
+**Verified.** Checked first: no gate reads the old heading; no row depends on "system"/"setting" here. `--rescore`: 1 row partial to covered, 0 regressions. `test_keyword_demand.py` 74/74, `check_urls.py` 236/236, `audit_pages.py` clean, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 docs, `check_sellable.py` 124/126, `cold_read_ledger.py --stale` 0. `build_seo.py` rerun, lastmod bumped for the one page. `preflight.py --skip-tests` after: 0 FAIL, 29 warnings, all standing. Home Office 6% to 4% uncovered.
+
+**Went well:** found a tie-break artifact, not a missing fact, and fixed it with wording already true.
+
+**Did not go well:** nothing.
+
+**Changing next cycle:** none.
+
+**Next:** Home Office's remaining 4 partial rows ("productive workspace", "bookshelf by color", "decluttering workspace", "attic group storage", the last likely noise); Laundry Room's 4.
+
+No price touched; `IndexNow` to submit via `hourly-brief.yml` (no egress here).
+
+Pushed to main.
+
 ## PM check-in, 2026-11-16 (11:4x slot): previous work (A161 and the 11:1x STATUS.md fix) confirmed finished by a fresh live preflight; one self inflicted dirty tree FAIL caught and cleared before it could reach the operator
 
 NEXT FOR THE OPERATOR: mine Hall Closet's partial tier, 12% uncovered, 18 rows, starting with "how to organize cleaning supplies in bathroom" (0.667, routed to the Hall Closet's own Cleaning Supply Zone) and "how to organize a small front hall closet"/"how to organize a small hallway closet" (two different zones, same room, worth a direct read), because Family Room, Workshop, Garage and Pantry were all hand checked today already and Hall Closet has not.
