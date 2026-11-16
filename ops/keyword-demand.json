@@ -4021,16 +4021,14 @@
         "how to organize cleaning supplies"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-cleaning-supply-zone.html",
-      "best_page_title": "How to organize the hall closet cleaning supplies",
+      "best_page": "/zones/primary-bathroom-the-under-sink-cabinet.html",
+      "best_page_title": "How to organize the primary bathroom under-sink cabinet",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/garage-the-automotive-care-zone.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "cabinet"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bathroom-the-under-sink-cabinet.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "canvas diaper tote organizer",
@@ -25973,16 +25971,14 @@
         "how to organize bench"
       ],
       "room": "",
-      "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
-      "best_page_title": "How to organize the guest bathroom towels",
+      "best_page": "/zones/primary-bathroom-the-under-sink-cabinet.html",
+      "best_page_title": "How to organize the primary bathroom under-sink cabinet",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "supplies"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bathroom-the-under-sink-cabinet.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize bathroom towels",
@@ -27659,16 +27655,14 @@
         "how to organize cleaning supplies"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-cleaning-supply-zone.html",
-      "best_page_title": "How to organize the hall closet cleaning supplies",
+      "best_page": "/zones/primary-bathroom-the-under-sink-cabinet.html",
+      "best_page_title": "How to organize the primary bathroom under-sink cabinet",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/garage-the-automotive-care-zone.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "bathroom"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bathroom-the-under-sink-cabinet.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize cleaning supplies in car",
@@ -56448,6 +56442,6 @@
       ]
     }
   ],
-  "scored_against_commit": "f85112c9a",
-  "scored_at": "2026-11-16T11:53:49Z"
+  "scored_against_commit": "05d95308f",
+  "scored_at": "2026-11-16T12:57:14Z"
 }

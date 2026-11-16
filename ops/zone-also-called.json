@@ -343,11 +343,12 @@
   },
   "Primary Bathroom|Under-Sink Cabinet": {
    "names": [
-    "under sink cupboard"
+    "under sink cupboard",
+    "bathroom cleaning supplies zone"
    ],
-   "queries": 1,
+   "queries": 2,
    "covered": 0,
-   "source": "ops/keyword-demand-global.json 2026-11-05 (gb, au, in): 'how to organise under sink cupboard', partial (0.667 title coverage), already scored correctly to this exact zone page (/zones/primary-bathroom-the-under-sink-cabinet.html) via 'under'+'sink' in the title, only the single word 'cupboard' unmatched. The zone's own purpose ('To store cleaning supplies and backstock around the plumbing without ever hiding a leak') and done_looks_like text ('both shut-off valves in plain sight when the doors swing open') describe exactly the cabinet-with-doors a household calls a cupboard. Named 'under sink cupboard', the plain phrase searched."
+   "source": "ops/keyword-demand-global.json 2026-11-05 (gb, au, in): 'how to organise under sink cupboard', partial (0.667 title coverage), already scored correctly to this exact zone page (/zones/primary-bathroom-the-under-sink-cabinet.html) via 'under'+'sink' in the title, only the single word 'cupboard' unmatched. The zone's own purpose ('To store cleaning supplies and backstock around the plumbing without ever hiding a leak') and done_looks_like text ('both shut-off valves in plain sight when the doors swing open') describe exactly the cabinet-with-doors a household calls a cupboard. Named 'under sink cupboard', the plain phrase searched. Second name added 2026-11-16, scheduled operator cycle, picking up a specific handoff named by name in three consecutive PM check-ins (11:4x, 12:0x, 12:4x slots): 'how to organize cleaning supplies in bathroom' (both corpora, partial, 0.667) was routed to Hall Closet's Cleaning Supply Zone on the bare words 'cleaning'+'supplies' alone, with 'bathroom' unmatched, even though this zone's own purpose line already names cleaning-supply storage in a bathroom honestly and the handoff's own diagnosis was correct. Self-flattery checked first (CLAUDE.md 5c): 'bathroom' already in 18 of 244 titles/25 headings, 'cleaning' in 6/29, 'supplies' in 6/11, all expected (common household words), so checked the actual before/after score_rows() diff rather than trust the raw counts. Full simulation across both corpora before shipping: exactly 1 US row and 1 global row moved partial to covered (the target query, re-pointed here), plus 2 further US rows ('cabinet to organize cleaning supplies', 'how to organize bathroom supplies') independently moved partial to covered too, each a genuine match (the zone is literally a cabinet that stores cleaning supplies in a bathroom), not a false claim; 0 regressions anywhere in either corpus."
   },
   "Garage|Hand Tool Wall and Cabinets": {
    "names": [

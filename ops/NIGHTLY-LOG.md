@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-16 (A163): closed the Hall Closet/Primary Bathroom cleaning-supplies misattribution three consecutive PM check-ins had named but not consumed
+
+**Did.** Unshallowed and attached to `main` cleanly (fetch, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 780 commits fast-forwarded; resolved one trivial `ops/cycle-signal.json` conflict against my own stale preflight snapshot by taking `HEAD`'s, no real work lost). Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` sections 0-7 (all archived, Hold or Phil-gated except the live handoff below), `ROADMAP-2026-2029.md`, and the last several log entries. `preflight.py --skip-tests` run live first: 0 FAIL. GitHub's 31 open issues re-pulled live via the API: unchanged since #65, all `decision`/`P0`/`blocked-on-art`, none from Phil since #64. `inbox_agent.py --apply`: no mail credential, standing gap.
+
+Three consecutive PM check-ins (11:4x, 12:0x, 12:4x slots) had each named the same specific gap, unconsumed: "how to organize cleaning supplies in bathroom" (both corpora, partial, 0.667) routed to Hall Closet's Cleaning Supply Zone on "cleaning"+"supplies" alone, "bathroom" unmatched, while Primary Bathroom's own Under-Sink Cabinet zone's `purpose` field already reads "To store cleaning supplies and backstock around the plumbing without ever hiding a leak." Verified the handoff directly rather than trusted it (CLAUDE.md 5d): confirmed in `content.json` and the rendered page. Checked the room-guide keyword-mining lane more broadly first (Family Room/Workshop both tied worst at 13% uncovered): every one of their own partial rows is a previously-diagnosed digital-context collision, generic business-workshop noise, or a scorer-side-effect regression (tried "garages" in `FORMAT_WORDS` for a Workshop row, simulated, and found it silently moved the winning page to an unrelated Garage zone on an arbitrary tie; reverted, not shipped), confirming the lane is genuinely thin today and the named handoff was the real highest-value item.
+
+Added "bathroom cleaning supplies zone" as a second name on the zone's existing `ops/zone-also-called.json` entry (already carrying "under sink cupboard" from 2026-11-05), the established mechanism, not a new one. Self-flattery checked first: "bathroom" in 18 of 244 titles/25 headings, "cleaning" 6/29, "supplies" 6/11, ordinary household words, so simulated the real `score_rows()` diff before shipping rather than trust the raw counts.
+
+**Verified.** Full before/after diff across both corpora, simulated then reproduced exactly by the real rebuild (`build_zone_pages.py`, self-chains sitemap/fingerprint) and `--rescore`: the target query moved partial to covered in both corpora, plus 2 further US rows ("cabinet to organize cleaning supplies", "how to organize bathroom supplies") independently moved partial to covered too, each a genuine match, 0 regressions (US partial 924->921, covered 1793->1796, gap unchanged at 93; global partial 748->747, covered 1332->1333, gap unchanged at 89). `check_also_called_digital_collision_fast.py` clean. `test_keyword_demand.py` (74/74), `check_urls.py` (236/236), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 docs), `check_sellable.py` (124/126, 2 person-delivered services), `link_graph_report.py` (0 orphans), `cold_read_ledger.py --stale` (0) all independently clean. `build_seo.py` rerun, sitemap current. Full `preflight.py --skip-tests` re-run live to completion after: **0 FAIL, every gate passed, 32 warnings**, all standing (no Stripe/SSH/mail credential here, known art/video gaps, the `deploy.yml` staleness note below).
+
+**Went well:** consumed a named, already-diagnosed handoff instead of re-deriving the exhausted lane from scratch a 164th time, and caught a scorer-side-effect regression (the "garages" FORMAT_WORDS attempt) before shipping it rather than after.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none. No new preflight gate (10b): this fix follows the already-established zone-also-called mechanism and gate set (`check_also_called_digital_collision_fast.py`, `gate_also_called_is_heading`); no new defect class found.
+
+**Next:** `STATUS.md`'s `gate_status_deploy_verdict_current`/`gate_status_table_rows_gap_count_current` warnings are stale again (this commit is now a second material undeployed commit alongside A162's); worth a follow-up correction pass. Otherwise the standing Phil-gated queue (31 open issues, none answered).
+
+No push notification: routine content/measurement work within the standing exhausted/Phil-gated state; nothing the owner needs to act on beyond what the 31 open issues already carry.
+
+Pushed to main. No price touched; one zone's also-called heading gained a name, `IndexNow` to submit on push.
+
 ## PM check-in, 2026-11-16 (12:4x slot): previous work (A162, re-confirmed) finished; the 12:0x handoff is still unconsumed, so it stands rather than being replaced
 
 NEXT FOR THE OPERATOR: fix "how to organize cleaning supplies in bathroom" (Hall Closet partial tier, 0.667), currently routed to Hall Closet's Cleaning Supply Zone instead of Primary Bathroom's Under-Sink Cabinet zone, whose own `purpose` line already names cleaning-supply storage honestly. Same item the 12:0x PM check-in named; no operator cycle has run since to pick it up, so restating it rather than mining a second lane in the same slot.

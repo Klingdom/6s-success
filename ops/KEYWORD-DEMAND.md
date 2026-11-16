@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-11T17:34:53Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-16T11:53:49Z against 244 page(s) at commit f85112c9a. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-16T12:57:14Z against 244 page(s) at commit 05d95308f. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2810. Checked against 244 published page titles: 1793 covered, 924 partial, 93 gap.
+**Queries found:** 2810. Checked against 244 published page titles: 1796 covered, 921 partial, 93 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -104,7 +104,7 @@ Showing the top 80 of 93, ordered by the best rank the phrase reached in any one
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 924.
+Showing the top 60 of 921.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -153,7 +153,6 @@ Showing the top 60 of 924.
 | 2 | wireless organize charging station | How to organize the family room charging station | 0.67 |
 | 3 | acrylic paint storage organizer | How to organize the workshop paint and chemical storage | 0.67 |
 | 3 | building a patio deck | How to organize the patio or deck garden area | 0.67 |
-| 3 | cabinet to organize cleaning supplies | How to organize the hall closet cleaning supplies | 0.67 |
 | 3 | design ideas for dining room | How to organize the dining room beverage or coffee station | 0.67 |
 | 3 | family room design ideas | How to organize the family room blanket storage | 0.67 |
 | 3 | guest bathroom design ideas | How to organize the guest bathroom towels | 0.67 |
@@ -168,6 +167,7 @@ Showing the top 60 of 924.
 | 3 | how to organize kids clothes storage | How to organize the kids bedroom toy storage | 0.67 |
 | 3 | how to plan a kids bedroom | How to organize the kids bedroom bed | 0.67 |
 | 3 | how to prepare a guest bedroom | How to organize the guest bedroom bed and linens | 0.67 |
+| 3 | how to use a charging station | How to organize the family room charging station | 0.67 |
 
 ## By room
 
