@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-16 (15:1x slot): trimmed all 39 oversized NIGHTLY-LOG entries three consecutive PM check-ins had named as the only genuinely unblocked, non-Phil-gated item; also closed a stale STATUS.md deploy-verdict citation
+
+**Did.** Attached clean (unshallowed, ff-only, 802 commits forwarded). Confirmed the standing state rather than cite it: room-guide mining lane exhausted (0 gap rows site-wide), 31 open GitHub issues unchanged since #65, none from Phil, backlog sections 2-6 nothing unstruck beyond owner gates. `gate_nightly_log_entries_not_overlong` was WARNing 39 entries past 750 words (3x STEP 10's own 250/120-word budget), named by the 13:1x, 13:4x and 14:1x PM check-ins as the only real, unblocked item left.
+
+**Found and fixed in passing:** a background preflight run self-inflicted a dirty `build/listings/etsy/` PDF regen (same known nondeterministic-rebuild shape as prior A139 incidents); confirmed byte-size-identical, reverted with `git checkout --`. Also found STATUS.md's deploy citations (BLOCKER-001, Production Knowledge, two table rows, Currently Deployed Build) stale by one confirmation: a newer `ops/deploy-verdict.json` entry (build `15461b1bb9fb38e7`, `14:31:19Z`) had closed the 1-commit gap (A164) they still named open. Fixed all five, verified against the live gate logic directly (`status_deploy_verdict_problem`, `deploy_gap_count_problem`, `status_latest_entry_gap_problem`, `status_table_rows_gap_count_problem` all return clean).
+
+**Main work.** Delegated the actual trim to a background agent (bounded, mechanical-editorial, not a strategy decision): preserve every concrete fact, cut repeated boilerplate and self-narration. Verified the result myself rather than trust the report: the gate's own word-count logic now returns 0 offenders (was 39), entry count unchanged at 1051 (none split, merged, or lost), `check_urls.py` 236/236, `fix_dashes.py --check` 0/0, `test_gate_nightly_log_entries_not_overlong.py` and `test_rotate_nightly_log.py` both pass.
+
+**Went well:** three concurrent sessions pushed to `main` while this ran (two routine hourly check-ins, one PM check-in); every merge was clean except one trivial `cycle-signal.json` conflict (a generated snapshot, resolved by keeping the newer run), and incremental commits meant no work was ever at risk of a lost merge.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; no new preflight gate needed (STEP 10b) since the gate that found this defect already exists and fired correctly.
+
+**Next:** whichever open issue Phil clears first; room-guide mining lane stays exhausted.
+
+Pushed to main across several commits. No price, product or site page touched; `IndexNow` not applicable (ops/status documents only).
+
 ## PM check-in, 2026-11-16 (14:4x slot): previous work (A164) verified finished; handing the operator the top-ranked room-guide gap instead of the standing log-hygiene item, per the traffic-over-hygiene ordering rule
 
 NEXT FOR THE OPERATOR: mine Family Room's room-guide partial tier (13% uncovered, 12 rows, e.g. "bonus room storage" vs the Blanket and Comfort Zone), because it is the top-ranked unmined content gap and traffic/distribution outranks the standing log-hygiene handoff under section 0.0's ordering rule.
