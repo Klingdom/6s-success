@@ -1113,8 +1113,8 @@
     },
     "room_guide_candidates.py": {
       "status": "clean",
-      "date": "2026-11-12",
-      "note": "Re-read A108's OFF_TOPIC_CONTEXT addition (outlook exclusion for ribbon-in-outlook collision): regex-anchored, rationale checked against both corpora before shipping per the commit message, 0 covered rows affected. Sound."
+      "date": "2026-11-16",
+      "note": "Re-verified 2026-11-16, PM check-in: re-read A157's company-workshop OFF_TOPIC_CONTEXT addition and re-ran tests/test_room_guide_candidates.py fresh (148/148, including the new company-workshop exclusion cases), independently of A157's own commit-time claim. Sound."
     },
     "room_guide_underperformance.py": {
       "status": "clean",
@@ -1237,9 +1237,9 @@
       "note": "Cold-read 2026-11-03 PM check-in: region_between anchor-uniqueness and ordering checks are sound, plan_rotation is idempotent in practice (--check CLEAN against the real file after its own 10:5x apply), apply_archive's header/divider guard refuses to guess on a malformed archive, and the real OWNER-ACTIONS.md/OWNER-ACTIONS-ARCHIVE.md output reads correctly (no broken markdown table row, archived block verbatim). gate_owner_actions_item_history_not_oversized's own test passes 3/3 fail-then-pass. No defect found."
     },
     "rotate_status_history.py": {
-      "status": "fixed",
-      "date": "2026-10-24",
-      "note": "Re-touched 2026-10-24: added split_table_row_chain/plan_rotation_table_row/plan_rotation_table_rows plus --check-table-rows/--apply-table-rows, a fourth chain shape (one table-cell line, newest-first, entries separated by the literal 'Prior state, kept because the shape recurs: ' instead of a line/paragraph break) for STATUS.md's 'Public website'/'Production traceability' table rows. Applied for real, both rows rotated to their current entry only; new gate_status_production_table_rows_not_oversized added to preflight.py. Dry-run round-trip proved byte-identical before the real apply; new test file 6/6, 8 new cases in test_rotate_status_history.py, fail-then-pass proved on the new gate."
+      "status": "clean",
+      "date": "2026-11-16",
+      "note": "Re-verified 2026-11-16, PM check-in: re-read A155's TABLE_ROW_LABELS addition for the GitHub Status table chain and re-ran tests/test_rotate_status_history.py fresh (OK, all checks passed), independently of A155's own commit-time claim. Sound."
     },
     "rotate_status_metadata.py": {
       "status": "clean",

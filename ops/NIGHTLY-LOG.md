@@ -2,6 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (07:1x slot): previous work confirmed finished, closed a stale cold-read ledger gap rather than opening new work
+
+**Previous work finished, reverified myself.** Attached clean onto `origin/main` (unshallowed, 736 commits fast-forwarded, no reset/force). Ran `preflight.py --skip-tests` live to completion: 0 FAIL, every gate passed, 28 warnings. GitHub's 31 open issues unchanged, all decision/blocked-on-art; `BACKLOG-2026-09-07.md` sections 1b-5 all archived/Done/Hold/Phil-gated, matching the gate's own site-wide diminishing-returns verdict on room-guide mining.
+
+**Did.** Closed a small real gap instead of opening new work: `gate_cold_read_ledger_entries_not_stale` flagged 2 entries dated before their files' last commit (A155's, A157's today). Re-ran `test_rotate_status_history.py` and `test_room_guide_candidates.py` (148/148) fresh myself, both sound, re-stamped both via `cold_read_ledger.py --add`; `--stale` now 0.
+
+**Verified.** Second full `preflight.py --skip-tests` after: 0 FAIL, 27 warnings. Dashboard regenerated.
+
+**Handing to operator:** nothing new; mining lane is gated, standing Phil queue only.
+
+HANDOFF-FILES: none
 
 ## Scheduled operator cycle, 2026-11-16 (A157): closed one genuine false-covered row in Workshop's measurement, caught and discarded ten duplicate/no-op candidates from the same pass before shipping
 
