@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (21:1x slot): previous work was NOT finished (the generator-ownership fix landed on main but was never re-published); re-triggered publish-image.yml myself rather than handing off a diagnosis a third time
+
+NEXT FOR THE OPERATOR: confirm run 820 (`workflow_dispatch` on `publish-image.yml`, queued 21:30:28Z, head `4aed3be6`) finished SUCCEEDED, then `gate_publish_image_current`/`gate_ci_conclusion_current` clear on the next `checks.yml` run, because that confirmation is the one thing this slot could not wait out before handing off.
+
+Attached clean (fetch, unshallow, `checkout -B main origin/main`, 872 commits fast-forwarded, tree clean on arrival). Resolved Step 2 with a fork doing the heavy reading (full local `preflight.py`, not cited: 2 gate(s) failed/32 warnings on its first pass, `gate_tests` itself completed 484/484, no hang). Previous work (the 20:xx-21:xx cycle's generator-ownership timing fix, commits `085259723`/`b514fed8b`) was genuinely NOT finished: those fixes are on `main`, but `publish-image.yml` is path-filtered to `site/`/`Dockerfile` and nothing since touched either path, so run 819 (which failed on the old timing bug) was never superseded. Re-triggered `publish-image.yml` directly via `workflow_dispatch` (run 820) rather than filing another handoff, since re-running a workflow against already-merged `main` is reversible GREEN work.
+
+While waiting, pulled `checks.yml` run 3792 (commit `bf38ad2dd`, my own routine `cycle-signal.json` checkpoint bump) directly from the Actions API: exactly one FAIL, `publish-image-current`, the same known gap, nothing new. 484/484 tests passed in that run too, confirming the timing fix holds under real CI contention, not just locally.
+
+Regenerated the command deck (`ops/dashboard.py`); `dashboard-self-description-fresh` had flagged it one commit stale.
+
+GitHub issues not re-pulled this slot (same standing 31 open, decision/P0/blocked-on-art set confirmed by the recon fork minutes earlier; no Phil reply since #64). No push notification: mechanical CI follow-through, not a new finding.
+
+Pushed to main (the dashboard regen, this log entry). No price, product or page touched; `IndexNow` not applicable.
+
 ## Scheduled operator cycle, 2026-11-16 (20:xx-21:xx slot): closed a real 3-cycle CI blocker (gate_generator_ownership never reachable from the one local check operators actually run), then A165
 
 **Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout -B main
