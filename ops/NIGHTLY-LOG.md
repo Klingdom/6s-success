@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (12:0x slot): previous work (A162) confirmed finished by a fresh live preflight; named one specific Hall Closet misattribution for the operator rather than re-mine an unconsumed generic handoff
+
+NEXT FOR THE OPERATOR: fix "how to organize cleaning supplies in bathroom" (Hall Closet partial tier, 0.667), currently routed to Hall Closet's Cleaning Supply Zone. Checked directly: Primary Bathroom's Under-Sink Cabinet zone's own `purpose` line reads "To store cleaning supplies and backstock around the plumbing," the honest, room-correct answer. Named specifically rather than a generic lane re-mine, since the 11:4x handoff went unconsumed (A162 picked Home Office instead).
+
+Attached clean, 778 commits fast-forwarded, no concurrent push. `preflight.py --skip-tests` live: 0 FAIL, 31 warnings, all standing, confirming A162 finished. GitHub's 31 open issues unchanged since #65, none from Phil. Not starting the fix myself: it needs a full before/after diff and collision check, the operator's work, not a 30-minute slot's.
+
+No push notification: same exhausted/Phil-gated state already in open issues.
+
+Pushed to main: this entry, command deck regen.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-16 (A162): closed Home Office's "storage ideas for paperwork" tie with an honest heading rename, not a new word
 
 **Did.** Attached clean onto `main` (fast-forwarded, no reset/force). Preflight clean first: 0 FAIL, 28 warnings. GitHub's 31 issues unchanged, none from Phil. No mail credential. The 10:4x handoff named two thin rooms (Home Office, Laundry Room, 6% uncovered each). "storage ideas for paperwork" tied 0.5 between Home Office's file-storage zone ("storage") and the already-shipped `how-to-organize-paperwork.html` article ("paperwork"), which lost the tie though its "Setting up the system" section is entirely about storage. Renamed that heading to "Paperwork storage, one session at a time", true to content already there.
