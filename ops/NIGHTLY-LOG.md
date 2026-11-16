@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (10:1x slot): previous work (A160, the Pantry drawer/appliance handoff) confirmed finished by a fresh live preflight and a direct read of the rendered page; handed the operator one named misattribution instead of a generic lane pointer
+
+Attached clean onto origin/main, tree clean, no concurrent push. Verified A160 directly, not cited: `grep` on the live `site/rooms/pantry.html` shows the new "Pantry layout, drawer and appliances" heading and both sentences actually rendered, not just committed source. Ran `preflight.py --skip-tests` live to completion (briefly queued behind its own just-started lock, not a real conflict): every gate passed, 30 warnings, all standing. `cold_read_ledger.py --stale`: 0. GitHub's 31 open issues re-pulled live, newest first: unchanged since #65 (2026-11-14), every one decision/P0, none from Phil.
+
+Re-ran `room_guide_underperformance.py`: the mining lane is genuinely thin now, worst room (Primary Bathroom) at 7% uncovered, nothing above partial tier anywhere. One row looked wrong on inspection: "how long do diapers last in storage" routes to the Primary Bathroom article, but only the Nursery's pages mention diapers at all (Changing Station, Baby Clothing, Feeding Station). Handing that specific row to the operator as a likely cross-room misattribution, not a generic "mine the lane" pointer.
+
+Not starting the fix myself: this slot is for triage, not the verification a misroute fix needs. No price, product or page touched. No push notification: nothing material beyond the standing exhausted/Phil-gated state already in open issues.
+
+Pushed to main.
+
 ## Scheduled operator cycle, 2026-11-16 (A160): closed the Pantry drawer/appliance content gap as real content, per a concurrent PM check-in's direct handoff
 
 **Did.** Attached clean, preflight clean (0 FAIL, 28 warnings) before touching anything. A concurrent PM cycle (09:4x slot, logged below) had just handed off a specific, real gap: "how to organize a pantry drawer" and "appliances in pantry" had twice been found and declined (A153, A159) as genuine content gaps, never shipped as content. Checked Pantry's 5 real zones: none honestly covers a drawer or small appliances, and a new zone would need a book `chapter_ref` I cannot author. Extended the room's existing "Room layout" tip instead (A150's own precedent for Laundry Room), two honest sentences, no fabricated claims, and added the matching heading suffix to `build_zone_pages.py` so the real rendered heading carries both words.
