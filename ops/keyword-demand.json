@@ -12504,14 +12504,12 @@
       "room": "",
       "best_page": "/zones/garage-the-lawn-and-garden-tool-zone.html",
       "best_page_title": "How to organize the garage garden tool storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/garage-the-lawn-and-garden-tool-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "grow"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "guest bathroom decorating ideas",
@@ -56462,6 +56460,6 @@
       ]
     }
   ],
-  "scored_against_commit": "82fb6c32a",
-  "scored_at": "2026-11-16T03:56:04Z"
+  "scored_against_commit": "3e29d5bd1",
+  "scored_at": "2026-11-16T05:54:47Z"
 }

@@ -3,6 +3,48 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 
 
+## Scheduled operator cycle, 2026-11-16 (A156): closed a real Garage FORMAT_WORDS gap, declined three riskier candidates found in the same pass
+
+**Did.** Unshallowed and attached to `main` cleanly (fetch --unshallow,
+checkout, merge --ff-only, 722 commits fast-forwarded, no reset/force).
+Read `CLAUDE.md`, `BACKLOG-2026-09-07.md`, `STATUS.md`, GitHub's 31 open
+issues (unchanged since #65, none from Phil since #64), no mail credential.
+`preflight.py --skip-tests` clean first (0 FAIL, 28 warnings). Epics 1-2
+blocked on Phil; epic 3's FORMAT_WORDS lane gated diminishing-returns, so
+read Garage's own worst partial rows by hand rather than cite that.
+Added "grow" to `ops/keyword_demand.py`'s FORMAT_WORDS ("grow a garden
+organize" scored 0.5 on "grow" alone, already the correct zone): self-
+flattery 0/244 titles, 1/244 headings; before/after `score_rows()` diff,
+then the real rescore, both showed exactly 1 US row moving partial to
+covered, 0 regressions. Checked and declined "systems" (clean self-
+flattery, but one of 9 improving rows, "game systems," is the already-
+diagnosed games/PC-console collision the Primary Media Zone's own
+zone-also-called entry names; shipping would upgrade a known-bad match to
+a false "covered"), and "without"/"cabinet" (too broad, 29-30 headings
+each). The two queries behind the latter are genuine content gaps (no
+cabinet zone in Entryway, no baking zone in Kitchen), not fabricated.
+
+**Verified.** `test_keyword_demand.py` 71/71, `check_urls.py` 236/236,
+`audit_pages.py` 0 findings, `fix_dashes.py --check` 0/0. Full
+`preflight.py --skip-tests` re-run live to completion after: 0 FAIL, 29
+warnings (one new, a transient CI-query read miss, unrelated).
+
+**Went well:** found a one-row fix with zero collision instead of forcing
+the three broader candidates the same mining pass turned up.
+
+**Did not go well:** STATUS.md is now 109,690 of its 110,000-byte tripwire
+again, days after A155 closed the same warning; the entry convention
+itself grows this file every cycle that uses it.
+
+**Changing next cycle:** if STATUS.md trips the tripwire again, rotate
+before adding, not after.
+
+**Next:** the standing Phil-gated queue; room-guide mining lane thinner
+still.
+
+Pushed to main. Command deck regenerated. No price, product or
+page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-16 (05:4x slot): previous work finished and verified; nothing new to hand off, carrying the same instruction forward
 
 NEXT FOR THE OPERATOR: epics 1-2 are still blocked on Phil (#64, #15); the room-guide mining lane is still in diminishing returns. Mine a fresh keyword-demand harvest if one lands, or act on any Phil reply to the 31 open decision issues.

@@ -208,7 +208,7 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "church", "insert", "durable", "lightweight",
                           "properly", "apartments", "large", "homes",
                           "cheap", "list", "everyday", "tidying", "next",
-                          "organized", "organised", "liquid"))
+                          "organized", "organised", "liquid", "grow"))
 
 # "organized" and "organised" joined 2026-11-15, scheduled operator cycle,
 # found mining Guest Bathroom's own partial tier ("organized bathroom
@@ -250,6 +250,43 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
 # target query, partial to covered, same best_page; global corpus 0 rows
 # changed (no "liquid" query in that corpus). Laundry Room's own guide
 # tally moved 7% to 6% uncovered.
+
+# "grow" joined 2026-11-16, scheduled operator cycle, found mining Garage's
+# remaining partial tier: "grow a garden organize" scored 0.5 against the
+# Lawn and Garden Tool Zone's own page (already the correct zone, matched
+# on "garden"), with "grow" its sole unmatched word. A task-verb synonym of
+# "organize" in this phrasing ("grow a garden" = "have/keep a garden"), not
+# a different physical object, the same role "tidying" already plays.
+# Self-flattery checked first: 0 of 244 titles, 1 of 244 headings (an
+# unrelated article, "zone too small for what it holds," not this zone),
+# well under the bar every prior addition cleared. Full before/after
+# score_rows() diff across both corpora before shipping (CLAUDE.md 5d): US
+# exactly 1 row changed, the target query, partial to covered, same
+# best_page; global corpus 0 rows changed (no "grow" query in that corpus).
+#
+# Investigated and NOT shipped in the same pass: "systems" as a FORMAT_WORDS
+# candidate. Self-flattery is clean (0 of 244 titles, 0 of 244 headings) and
+# a full before/after diff moves 6 US + 3 global rows partial to covered,
+# but one of them, "how to organize game systems" (Family Room), is the
+# exact already-diagnosed games/PC-console collision this file's own
+# `Family Room|Primary Media Zone` zone-also-called entry names (2026-11-07):
+# routed to the Board Game and Puzzle Zone on the bare word "game" alone,
+# while the honest answer is the Primary Media Zone (which explicitly names
+# consoles and controllers) and no safe alias exists without colliding with
+# live "game storage for pc" queries. Adding "systems" would upgrade that
+# already-uncertain match from partial to a false "covered," the dishonest-
+# labelling risk the 2026-11-07 entry already declined for the same reason.
+# Declined whole, not word-by-word, since FORMAT_WORDS has no per-query
+# exception mechanism and should not grow one for a single collision.
+# Also checked and declined as too broad: "without" (4 of 244 titles, 30
+# headings) and "cabinet" (5 titles, 29 headings), both far over every bar
+# a word shipped on this list has cleared. "hallway cabinet organization
+# ideas" (Entryway) and "how to organize baking supplies in kitchen"
+# (Kitchen) were read against their rooms' real zones in content.json and
+# are genuine content gaps (no cabinet zone in Entryway, no baking zone in
+# Kitchen, that content lives in Pantry's own separate room), not
+# misattributions a synonym can honestly close; left undone rather than
+# fabricated.
 
 # "list", "everyday" and "tidying" joined 2026-11-12, this scheduled
 # operator cycle, mining Primary Bedroom's partial tier (19 rows, tied with
