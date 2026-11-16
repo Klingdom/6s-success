@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (00:2x slot): previous work finished and verified fresh, same exhausted Phil-gated state, no new unblocked work
+
+NEXT FOR THE OPERATOR: hold the standing Phil-gated queue. The room-guide/FORMAT_WORDS mining lane is still mechanically confirmed in diminishing returns site-wide (0 genuine on-topic gap rows), and does not reopen until Thursday 2026-11-19 11:30 UTC's harvest or a Phil reply.
+
+Attach: checkout arrived shallow and detached; `fetch`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. A concurrent deploy-verdict bot push landed mid-cycle; merged ff-only, no collision.
+
+**Previous work: finished, verified fresh, not cited.** Ran a full live `preflight.py --skip-tests` to completion: 0 FAIL, every gate passed, 32 warnings, all standing (analytics unreachable, no Stripe credential here, known art/caption gaps, room-guide mining exhausted). Working tree was clean before the run. GitHub: 31 open issues re-pulled live via the REST API, all `decision`/`blocked-on-art`; checked issues #65 and #42 (most recently updated) comment-by-comment rather than trust the updated_at timestamp alone, both are this routine's own status updates, none from Phil since #64 (2026-11-08). `checks.yml` on the prior HEAD completed success; the newest push was still in_progress at a normal elapsed time, not stalled.
+
+**Did not start anything new.** Independently re-checked for a genuinely unblocked small item (BACKLOG section 7, STATUS.md's three workstreams, the room-guide mining gate) rather than assume the standing "exhausted" claim; all three agree: nothing unblocked and workstream-sized exists right now.
+
+**Not notifying Phil:** nothing here changes the picture the dashboard already carries; no new P0, no new CI failure, no Phil reply to act on.
+
+Pushed to main. `ops/cycle-signal.json`, dashboard regen, this entry. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-15 (23:5x slot): A151, Kitchen towels misrouted to the wrong zone
 
 **Did.** Attached clean: `git fetch origin main`, repo arrived shallow so `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 669 commits fast-forwarded, no reset or force. GitHub's 31 open issues re-pulled live: unchanged since #65/#42 (2026-11-14), none from Phil since #64 (2026-11-08). `inbox_agent.py --apply`: no mail credential, standing gap. Ran `preflight.py --skip-tests` live to full completion before touching anything, this time without an internal wrapper timeout after an earlier attempt this slot got truncated at 100s mid-run with no final summary: 0 FAIL, every gate passed, 29 warnings, all standing. Checked by epic (STEP 3): epic 1 blocked on #64; epic 2 clean; epics 3-5 are the FORMAT_WORDS room-guide mining lane, gated exhausted at the aggregate level. Read Kitchen's own worst partial rows by hand rather than cite that aggregate: "how to organize kitchen towels" and "storage ideas for kitchen towels" both tie on the bare word "kitchen" against every Kitchen zone page (all titled "How to organize the kitchen \<area\>"), "towels" unmatched. Reproduced `keyword_demand.content_words()` directly, then read both candidate zones' real text: the Cooking Zone mentions a dish towel once, as a fire-safety instruction; the Sink and Dishwashing Zone's own straighten pass gives the towel an assigned home ("the towel gets a bar within reach of somebody already standing at the basin") and its standardize pass closes with "towel hung," the honest organizing answer. Checked for collision first: bare "towel"/"towels" already carries a real, heavily-used heading claim on several bathroom/linen pages, so added the two-word "kitchen towels zone" (zero collision in either corpus) to the Sink and Dishwashing Zone's existing `ops/zone-also-called.json` entry instead.
