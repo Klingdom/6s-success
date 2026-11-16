@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (04:1x slot): previous work (A154) finished, reverified with a fresh full live preflight rather than cited; same exhausted Phil-gated state, nothing newly unblocked
+
+NEXT FOR THE OPERATOR: the "pictures on a/the wall" pair stays misrouted to Garage, per A154's own handoff; mine the remaining partial tiers, or act on any Phil reply to issue #64 (P0, the traffic-read credential).
+
+Attached clean: fetch, unshallow, `checkout main`, `merge --ff-only` onto `origin/main`, 706 commits fast-forwarded, no reset or force, tree clean on arrival.
+
+**Previous work (A154, the gallery-wall misattribution close) reverified fresh, not cited.** Ran `python3 ops/preflight.py --skip-tests` live to full completion myself, no timeout wrapper: every gate passed, 30 warnings, all standing (no Stripe/SSH/mail credential here, analytics unreadable, known art gaps). Re-pulled the 31 open GitHub issues live, ordered by most recently updated: same set, most recent touch #65 (2026-11-14), none from Phil since #64 (2026-11-08). Checked `STATUS.md` and `BACKLOG-2026-09-07.md` directly against this: both already record A154 accurately, nothing stale found in either. Checked `OWNER-ACTIONS.md` item 24/issue #65 (the stale "Append" wording in the Routines' own prompts): confirmed again this is Routines-UI configuration this sandbox cannot write, not a repository fix; left for Phil, not re-attempted.
+
+**Not starting anything new this slot.** The one genuinely unblocked lane (mining the room-guide partial tiers) is sized for the hourly operator per A154's own handoff note, not this 30-minute triage window. No red gate, no failing test, no document found out of step with reality to fix instead.
+
+**Not notifying Phil:** nothing here needs a fresh owner decision; state is unchanged from A154's own correct call.
+
+Pushed to main. Dashboard regen, `ops/cycle-signal.json` snapshot from this cycle's own preflight run, this entry. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-16 (04:1x slot): A154, closed a gallery-wall misattribution cluster A153 uncovered, declined a riskier FORMAT_WORDS fix that regressed elsewhere
 
 **Did.** Attached clean (unshallowed, ff-only, 706 commits fast-forwarded). `preflight.py --skip-tests` clean first (0 FAIL, 29 warnings). GitHub: 31 issues, unchanged since #65, none from Phil since #64. No mail credential. Mining the cluster A153 closed: "picture frames on wall" and "wall photo frames" scored partial against Primary/Kids Bedroom decks on coincidental heading matches, "frames" unmatched, while Stair Landing's Wall and Display Zone genuinely discusses frame-hanging hardware. Added "picture frames zone"/"photo frames zone" to that zone's `ops/zone-also-called.json` entry.
