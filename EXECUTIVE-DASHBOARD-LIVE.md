@@ -8,7 +8,7 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 10 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-11-16 13:24 because this run could not reach Stripe** |
+| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-11-16 14:18 because this run could not reach Stripe** |
 | | `............................` |
 | **Paying customers** | 0 |
 | **Email list** | 0 |
@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 31 (10 P0, 2 blocked on art, 29 need your call) |
 | Closed to date | 35 |
-| Commits (7 days) | 1447 of 13209 total |
+| Commits (7 days) | 1448 of 13210 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `749ca9ba7` Merge remote-tracking branch 'origin/main' |
+| Last commit | `02a81d7e6` PM check-in 14:1x: re-derive deploy-verdict gap to 1 commit  |
 
 ## Product readiness
 
