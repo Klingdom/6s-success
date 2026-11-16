@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (04:4x slot): previous work (A154) still finished and unchanged; light reverification only, running into the operator's own slot; same handoff carried forward
+
+NEXT FOR THE OPERATOR: the "pictures on a/the wall" pair stays misrouted to Garage, per A154's own handoff; mine the remaining partial tiers, or act on any Phil reply to issue #64 (P0, the traffic-read credential).
+
+Attached clean: fetch, unshallow, `checkout main`, `merge --ff-only` onto `origin/main`, 714 commits fast-forwarded, no reset or force, tree clean on arrival and still clean now.
+
+**Previous work (A154, then reverified by the 04:1x PM twin with a full live preflight) not re-verified with a second full preflight run this slot.** The 04:1x PM check-in nine minutes before this one already ran `preflight.py` live to completion (every gate passed, 30 warnings) and confirmed the same state this entry would otherwise re-derive. Only two trivial commits landed between that check and this one (an hourly check-in record, a deploy-verdict snapshot); neither touches content, code, or anything a preflight gate watches. Given this routine's own instruction to prioritise a clear handoff over starting large work in this slot, and that the operator's own :43 slot was already reached while writing this entry, re-ran only the fast live checks rather than the full suite: `git status` clean both before and after attach; GitHub's 31 open issues re-pulled live via the MCP tool, same set, most recent touch still #65 (2026-11-14), none from Phil since #64 (2026-11-08T16:59:32Z). Saying this plainly rather than citing a preflight pass this cycle did not itself run (CLAUDE.md 0.4): a full live `preflight.py` was NOT re-run in this slot. Nothing found here needed it.
+
+**Not starting anything new this slot**, per this routine's own instruction, and because there was no time left to do so honestly before the operator's own window opened.
+
+**Not notifying Phil:** nothing here needs a fresh owner decision; state is unchanged from A154's and the 04:1x PM's own correct calls.
+
+Pushed to main. Dashboard regen, this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-16 (04:1x slot): previous work (A154) finished, reverified with a fresh full live preflight rather than cited; same exhausted Phil-gated state, nothing newly unblocked
 
 NEXT FOR THE OPERATOR: the "pictures on a/the wall" pair stays misrouted to Garage, per A154's own handoff; mine the remaining partial tiers, or act on any Phil reply to issue #64 (P0, the traffic-read credential).
