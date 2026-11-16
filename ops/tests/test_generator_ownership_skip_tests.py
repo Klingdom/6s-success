@@ -51,9 +51,21 @@ def git(*args, cwd=ROOT, check=True):
 
 
 def preflight(cwd: str) -> str:
+    # 2026-11-16: this ran at timeout=680 and timed out in CI's checks.yml
+    # run 3787, failing gate_tests on the whole repository over a single
+    # test's own budget, not a real defect. --skip-tests still runs dozens
+    # of other gates beyond gate_generator_ownership (affiliate reports,
+    # network-dependent checks with their own multi-minute budgets, and
+    # more), so "the generator chain itself is cheap" does not bound the
+    # whole call the way the comment at its call site implies. This test
+    # calls it twice, so a slow CI runner can exceed 680s on legitimate
+    # work with no hang involved. Matched to test_generator_ownership.py's
+    # own precedent (timeout=1800 for its single --own call) rather than
+    # re-guessing a tighter number this repository has already proven wrong
+    # once.
     r = subprocess.run(
         [sys.executable, os.path.join("ops", "preflight.py"), "--skip-tests"],
-        cwd=cwd, capture_output=True, text=True, timeout=680,
+        cwd=cwd, capture_output=True, text=True, timeout=1800,
         env={**os.environ, "PYTHONIOENCODING": "utf-8"})
     return (r.stdout or "") + (r.stderr or "")
 
