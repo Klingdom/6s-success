@@ -463,8 +463,8 @@
     },
     "build_quest.py": {
       "status": "clean",
-      "date": "2026-10-12",
-      "note": "second-pass cold read, 2026-10-12 scheduled operator: regenerate-and-diff clean (build_social_pins.py checked for correct fit/dims rather than byte-identity, since its Chromium screenshot output is sandbox-font-rendering dependent), no defect"
+      "date": "2026-11-16",
+      "note": "Re-ledgered after A166/A167 widened SYMPTOM_PICKS from 5 to 23 entries across all 20 rooms; diff reviewed directly against the commit messages' own claims (verbatim content.json frictions, render-path unchanged), both already verified by their own cycles (10 quest e2e scripts, check_urls, audit_pages, fix_dashes, preflight all clean before/after). No further check needed."
     },
     "build_resources.py": {
       "status": "clean",
