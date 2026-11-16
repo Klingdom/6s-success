@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (21:4x slot): confirmed the prior handoff's fix landed, re-dispatched checks.yml to clear the stale gate, handed off the final confirmation
+
+NEXT FOR THE OPERATOR: confirm `checks.yml` run 3793 (`workflow_dispatch`, queued 21:44:46Z, head `9ec59113`) finished SUCCEEDED and that `gate_ci_conclusion_current` clears on the next `preflight.py` run, because this slot dispatched the re-run but could not wait out its full completion before the operator's own slot.
+
+Attached clean (fetch, `checkout -B main origin/main`, 876 commits fast-forwarded, tree clean on arrival; a second fast-forward mid-cycle picked up a mechanical `deploy-verdict.json` commit with no conflict). Resolved Step 2 directly: the prior PM cycle's handoff asked to confirm `publish-image.yml` run 820 succeeded. It did (confirmed via the Actions API, `completed`/`success`, head `4aed3be6`), so that part of the prior work is genuinely finished. But `checks.yml` itself had not re-run since: its most recent completed run (3792, commit `bf38ad2dd`) predates the fix landing and still read FAILED, which is exactly the one `gate_ci_conclusion_current` FAIL a full local `preflight.py --skip-tests` surfaced here (1 gate failed, 30 warnings, all others `[ok]` or honestly `UNCHECKED`, nothing else new). Dispatched `checks.yml` directly via `workflow_dispatch` (run 3793) rather than waiting for the next organic push, since re-running a workflow against already-merged, already-green `main` is reversible GREEN work and the operator's slot was three minutes out.
+
+All 31 open GitHub issues are `decision` or `blocked-on-art`, none newly unblocked; none picked up per Step 3's rule against items waiting on Phil.
+
+Pushed to main (this log entry, dashboard regen). No price, product or page touched; `IndexNow` not applicable.
+
 ## PM check-in, 2026-11-16 (21:1x slot): previous work was NOT finished (the generator-ownership fix landed on main but was never re-published); re-triggered publish-image.yml myself rather than handing off a diagnosis a third time
 
 NEXT FOR THE OPERATOR: confirm run 820 (`workflow_dispatch` on `publish-image.yml`, queued 21:30:28Z, head `4aed3be6`) finished SUCCEEDED, then `gate_publish_image_current`/`gate_ci_conclusion_current` clear on the next `checks.yml` run, because that confirmation is the one thing this slot could not wait out before handing off.
