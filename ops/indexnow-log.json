@@ -240,13 +240,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-05T23:03:54Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-06T02:00:45Z",
    "mode": "changed",
    "offered": 1,
@@ -658,6 +651,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-16T20:33:29Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -842,7 +842,7 @@
   "https://6s-success.com/zones/stair-landing-the-landing-surface-or-console": "3a4e716aa58dca1e",
   "https://6s-success.com/zones/stair-landing-the-stair-and-floor-path": "ee4fadbf5fb5c152",
   "https://6s-success.com/zones/stair-landing-the-wall-and-display-zone": "05cb38441ed85959",
-  "https://6s-success.com/zones/workshop-the-fastener-and-hardware-zone": "227e056aecbabb13",
+  "https://6s-success.com/zones/workshop-the-fastener-and-hardware-zone": "d72f579f9a429f99",
   "https://6s-success.com/zones/workshop-the-finishing-and-chemical-zone": "8f4b4cd025c7bb12",
   "https://6s-success.com/zones/workshop-the-main-workbench": "b4799534802a2912",
   "https://6s-success.com/zones/workshop-the-material-rack": "4b5e143bd4a06cb8",
