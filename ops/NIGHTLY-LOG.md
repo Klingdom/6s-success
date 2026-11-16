@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (15:4x slot): previous work confirmed finished by direct gate checks; closed the STATUS.md size tripwire; found the 14:4x Family Room handoff was already stale when written
+
+Attached clean. Confirmed the 15:1x log-trim and deploy-verdict fix finished by calling their own gates directly, not citing. 31 issues unchanged since #65, none from Phil.
+
+Found `gate_living_docs_total_size_tripwire` warning STATUS.md at 110,936 of 110,000 bytes (logged once before at 109,690, never acted on). `rotate_status_history.py --check`/`--check-focus` both clean, so the cause was broad. Trimmed two long-closed P-items to one line each and tightened five more plus two boilerplate sections, losing no fact (one stale figure, P6a's "158/159", corrected in passing). Gate clean now at 109,986 bytes.
+
+Checked the 14:4x handoff before restating it: `git log` shows A149/A156/A157/A158 hand-checked Family Room exhaustively that same morning (07:59Z), hours before 14:4x called it the top unmined gap. Nothing shippable was found then; not re-mining it or restating the handoff.
+
+Not starting new work beyond the standing Phil-gated queue. `check_urls.py` 236/236, `fix_dashes.py --check` 0/0. No push notification: document hygiene only. Pushed to main.
+
 ## Scheduled operator cycle, 2026-11-16 (15:1x slot): trimmed all 39 oversized NIGHTLY-LOG entries three consecutive PM check-ins had named as the only genuinely unblocked, non-Phil-gated item; also closed a stale STATUS.md deploy-verdict citation
 
 **Did.** Attached clean (unshallowed, ff-only, 802 commits forwarded). Confirmed the standing state rather than cite it: room-guide mining lane exhausted (0 gap rows site-wide), 31 open GitHub issues unchanged since #65, none from Phil, backlog sections 2-6 nothing unstruck beyond owner gates. `gate_nightly_log_entries_not_overlong` was WARNing 39 entries past 750 words (3x STEP 10's own 250/120-word budget), named by the 13:1x, 13:4x and 14:1x PM check-ins as the only real, unblocked item left.

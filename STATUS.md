@@ -4,13 +4,9 @@
 
 ## Document Role
 
-`STATUS.md` is the fastest authoritative summary of **what is happening now**.
+`STATUS.md` is the fastest authoritative summary of **what is happening now**. It is not a strategy document, backlog, changelog, incident archive, or analytics database.
 
-It is not a strategy document, backlog, changelog, incident archive, or analytics database.
-
-Every agent performing meaningful autonomous work should read this file after `CLAUDE.md` and `AUTONOMY.md`.
-
-Update this file whenever the material operating state changes.
+Every agent performing meaningful autonomous work should read this file after `CLAUDE.md` and `AUTONOMY.md`. Update this file whenever the material operating state changes.
 
 ---
 
@@ -903,21 +899,7 @@ names this as the standard to hold every baseline to.
 
 # 19. Pending RED Decisions
 
-None currently recorded.
-
-If a RED action requires owner approval, record it here:
-
-## RED-XXX
-
-**Requested Action:**  
-**Reason:**  
-**Evidence:**  
-**Risk:**  
-**Recovery:**  
-**Alternatives:**  
-**Approval Status:** PENDING
-
-Do not clutter this section with routine YELLOW coordination.
+None currently recorded. If a RED action needs owner approval, record it here as `## RED-XXX` with Requested Action, Reason, Evidence, Risk, Recovery, Alternatives, and Approval Status. Do not clutter this section with routine YELLOW coordination.
 
 ---
 
@@ -961,25 +943,15 @@ The consolidated list of Phil-gated items:
 
 ## P1: Umami read access (backlog 1.1) -- corrected 2026-09-02
 
-Not fully blocked any more. Phil read the analytics database directly on
-2026-09-02 (the API token is expired) and got a real one-time baseline, now
-recorded in `GOALS.md` and above in section 9. What is still open is items
-1.2 through 1.4: wiring a share URL or API key into `ops/dashboard.py` so a
-credential-less operator session can pull fresh numbers itself, instead of
-depending on Phil re-reading the database by hand each time the baseline
-goes stale.
+Not fully blocked any more. Phil read the analytics database directly on 2026-09-02 (the API token is expired) and got a real one-time baseline, recorded in `GOALS.md` and section 9. Still open: items 1.2-1.4, wiring a share URL or API key into `ops/dashboard.py` so a credential-less operator can pull fresh numbers instead of Phil re-reading the database by hand each time the baseline goes stale.
 
-Owner: **Phil** for the credential/share-URL; **operator** for the wiring
-once it exists.
+Owner: **Phil** for the credential/share-URL; **operator** for the wiring.
 
 ---
 
 ## P2: Decide the Listmonk sending identity (issue #15, P0)
 
-Separate Listmonk instance for 6S Success, or change the shared instance's
-global from-address and accept the cost to the other brand it currently
-serves (Compassion Benchmark). Blocks email capture entirely; six prospects
-already lost with no way to reach them.
+Separate Listmonk instance for 6S Success, or change the shared instance's global from-address and accept the cost to the other brand it serves (Compassion Benchmark). Blocks email capture; six prospects already lost with no way to reach them.
 
 Owner: **Phil decides, operator builds**
 
@@ -987,8 +959,7 @@ Owner: **Phil decides, operator builds**
 
 ## P3: Publish the ten LinkedIn posts and generate the six tier-0 images (backlog 3.1, 3.3)
 
-Both already drafted/prompted and waiting in Phil's queue. The only traffic
-lever available that does not require search compounding time.
+Both already drafted/prompted and waiting in Phil's queue; the only traffic lever that does not require search compounding time.
 
 Owner: **Phil**
 
@@ -996,22 +967,13 @@ Owner: **Phil**
 
 ## P4: Resolve the routine self-update gap (issue #17), CLOSED 2026-08-25
 
-Phil's own session rewrote the trigger's stored prompt to read
-`BACKLOG-2026-H2.md` and the other operating documents directly each cycle,
-rather than embedding a status snapshot that only the trigger's creator could
-refresh. The self-update limitation still exists as a platform fact, but the
-prompt no longer depends on being edited to stay current, so the practical
-defect is resolved.
-
-Owner: closed, no further action
+Phil's own session rewrote the trigger's stored prompt to read the operating documents directly each cycle instead of an embedded snapshot. Closed, no further action.
 
 ---
 
 ## P5: Approve a capped local demand test for the service SKUs (backlog 3B.1)
 
-A financial commitment, correctly RED per `CLAUDE.md`. This is the only tested
-route to $20,000 that does not require a quarter-million monthly visitors; the
-recommendation on file is a few hundred dollars and a hard 90-day stop.
+A financial commitment, correctly RED per `CLAUDE.md`. The only tested route to $20,000 that does not require a quarter-million monthly visitors; recommendation on file is a few hundred dollars and a hard 90-day stop.
 
 Owner: **Phil**
 
@@ -1019,27 +981,13 @@ Owner: **Phil**
 
 ## P6a: Sync the 155-SKU product spine to Stripe (backlog 5.7), CLOSED 2026-08-27
 
-Phil did both halves himself: commit `b10a278` extended `SELLABLE`, ran the
-live Stripe sync, and wired the resulting payment links into
-`window.CATALOG`. 158 of 159 catalog items are now buyable (only Corporate
-Lean 6S is not). A same-day follow-up commit `3e5248c` also fixed
-`ops/build_epub.py` reading a hardcoded author placeholder, which had
-blocked Amazon KDP submission. `ops/audit_catalog.py` re-verified clean
-this cycle against the live 159-SKU set.
-
-Owner: closed, no further action
+Phil synced the catalogue to Stripe and wired the payment links (commit `b10a278`); a same-day follow-up (`3e5248c`) fixed the KDP-blocking author placeholder. Closed, no further action.
 
 ---
 
 ## P6: Stripe business website field still reads Ledgerium (backlog 2.8, issue #21)
 
-Everything else on the account's public identity is already fixed per account
-(name, statement descriptor, support email/URL, legal pages, checkout
-branding). Only the business website field remains, and Stripe's own safety
-check blocked the operator from changing it because it can silently change
-the shared legal entity's other account (Ledgerium) too. This has been open
-since 2026-08-21 and was on the auto-generated dashboard but missing from
-this file and from `BACKLOG-2026-H2.md` until this cycle added it.
+Everything else on the account's public identity is fixed (name, statement descriptor, support email/URL, legal pages, checkout branding). Only the business website field remains; Stripe's own safety check blocks the operator from changing it because the two brands share one legal entity.
 
 Owner: **Phil**
 
