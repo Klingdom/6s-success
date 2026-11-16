@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (17:1x slot)
+
+Attached clean (833 commits fast-forwarded, ff-only, no reset/force). Re-read `CLAUDE.md`, `BACKLOG-2026-09-07.md`, the dashboard, and GitHub's 31 open issues live: unchanged since #65, none from Phil since #64.
+
+Previous work was not actually finished when checked: my own first `preflight.py --skip-tests` run was killed by a 110s shell timeout mid-render, leaving 7 Etsy PDF render artifacts dirty (byte-different, same text, the gate's own documented browser-metadata variance, not real content). A second, unhurried run correctly FAILed `gate_etsy_pdfs_current` on that leftover dirt rather than reporting a false pass. Restored the 7 files from HEAD, confirmed tree clean, re-ran preflight to a genuine finish: 0 FAIL, 26 warnings, all standing.
+
+Lesson: a hard shell timeout on preflight is the same hazard as the piped-tail hang this log already warned about; run it backgrounded and watched, never killed on a clock.
+
+Handing the operator: nothing newly unblocked; standing Phil-gated queue plus room-guide mining if time allows.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-16 (16:4x slot): independently re-verified exhausted/Phil-gated state; no new work found, no third copy of the owner notification sent
 
 **Did.** Unshallowed and attached to `main` cleanly (`fetch`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 827 commits fast-forwarded, no reset/force, tree clean on arrival). Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` sections 0-7 in full, `STATUS.md` sections 0-6, and the last several dozen `ops/NIGHTLY-LOG.md` entries (16:1x back through A164) directly rather than cite a summary.
