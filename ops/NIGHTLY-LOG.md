@@ -2,7 +2,7 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## Scheduled operator cycle, 2026-11-16 (04:0x slot): A153, closed a real cross-room misattribution: "pics on wall" was scoring to Garage's tool-wall zone instead of Stair Landing's own gallery-wall zone
+## Scheduled operator cycle, 2026-11-16 (03:0x slot): A153, closed a real cross-room misattribution: "pics on wall" was scoring to Garage's tool-wall zone instead of Stair Landing's own gallery-wall zone
 
 NEXT FOR THE OPERATOR: epics 1/2 stay blocked/clean; the mining lane is thin but not dry, check Family Room/Pantry/Garage/Workshop/Entryway/Kids Bedroom's remaining partial tiers (all 12-13% uncovered) by hand before citing exhausted.
 
@@ -19,6 +19,22 @@ NEXT FOR THE OPERATOR: epics 1/2 stay blocked/clean; the mining lane is thin but
 **Next.** Mine Family Room's "bonus room"/"den"/"basement family room" partial rows (room signal already set, zone-level wording still weak) and Entryway's "coat closet"/"foyer" rows next; no new fact from Phil to act on.
 
 Pushed to main. `ops/zone-also-called.json`, one rebuilt zone page, rescore files, `BACKLOG-2026-09-07.md`, dashboard regen, this entry. No price or product touched; `IndexNow` to submit on push.
+
+## PM check-in, 2026-11-16 (02:4x slot): previous work finished, reverified; closed one real stale-ledger gap; same exhausted Phil-gated state, nothing newly unblocked
+
+NEXT FOR THE OPERATOR: hold the standing Phil-gated queue; the room-guide mining lane is mechanically in diminishing returns (0 gap rows in all 20 rooms, worst shortfall 13%, under the 15% line), so check the 31 open issues for a Phil reply before mining it further.
+
+Attached clean onto `origin/main`, no reset or force, tree clean on arrival; origin had not moved since.
+
+**Previous work (02:1x PM) reverified fresh, not cited.** Ran `preflight.py --skip-tests` foreground to full completion myself: every gate passed, 29 warnings, all standing except one real find below. Re-pulled all 31 open GitHub issues live, ordered by most recently updated: most recent touch is #65 (2026-11-14), none from Phil since #64 (2026-11-08). Read `STATUS.md`'s three workstreams and `BACKLOG-2026-09-07.md` sections 2-7 directly: Workstreams 1/2 BLOCKED on Phil, Workstream 3 CLOSED with nothing workstream-sized to replace it. Ran `ops/room_guide_underperformance.py` directly rather than trust the gate's own warning text: confirmed 0 gap rows and worst shortfall 13% (Family Room/Pantry/Garage) across all 20 rooms, so the mining lane A152 used an hour ago is now genuinely thin site-wide, not just in this one room.
+
+**One real gap found and fixed, not just reported.** The preflight run surfaced `gate_cold_read_ledger_entries_not_stale`: `ops/keyword_demand.py` was ledgered clean 2026-11-15 but touched again 2026-11-16. Read the actual diff rather than trust the commit message: one commit since (A152, `390c1934a`), one line changed (`liquid` added to `FORMAT_WORDS`) plus one comment block, matching its own commit message exactly. `test_keyword_demand.py` 71/71. Re-ledgered clean with a note naming exactly what was checked.
+
+**Not starting anything new this slot**, per this routine's own instruction. The genuinely unblocked lane (room-guide mining) is now mechanically exhausted per its own gate; nothing else is unblocked for the operator to pick up at :43 beyond holding the same queue.
+
+**Not notifying Phil:** nothing here needs a fresh owner decision; state is unchanged from the 02:1x cycle's own correct call.
+
+Pushed to main. `ops/cold-read-ledger.json`, dashboard regen, this entry. No price, product or page touched; IndexNow not applicable.
 
 ## PM check-in, 2026-11-16 (02:1x slot): previous work finished, confirmed by a full live preflight run rather than cited, same exhausted Phil-gated state
 
