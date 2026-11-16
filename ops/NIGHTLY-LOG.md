@@ -2,7 +2,15 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-16 (16:1x slot): previous work confirmed finished by direct re-check, not citation; still nothing genuinely unblocked
+## PM check-in, 2026-11-16 (16:4x slot): previous work confirmed finished via a full live preflight run, not citation; still nothing genuinely unblocked
+
+NEXT FOR THE OPERATOR: if there is spare time, run the full `preflight.py` (with `gate_tests`) to completion, because that remains the only outstanding verification gap; otherwise continue the standing Phil-gated queue, nothing new is unblocked.
+
+Attached clean (fetch, unshallow, ff-only merge, 827 commits, no reset/force), tree clean on arrival. Re-read `CLAUDE.md`, recent commits, `BACKLOG-2026-09-07.md` sections 2-7 in full, the dashboard, and live-pulled all 31 open GitHub issues: unchanged, every one decision/P0/blocked-on-art, none from Phil since #64.
+
+Ran `preflight.py --skip-tests` live myself rather than trust the prior entry: 0 FAIL, 27 warnings, all five types already documented (no SSH/Stripe credential here, known art gaps). No new regressions. No red gate, no size tripwire, no small closing job found. Did not start anything large at this slot.
+
+Pushed to main: this entry, the `cycle-signal.json` checkpoint, dashboard regen.
 
 Attached clean (ff-only, no reset/force), tree clean on arrival. Checked the 15:4x-16:0x operator cycle and 15:4x second-pass PM entry directly rather than trust them: `check_urls.py` 236/236, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0. Ran `gate_status_deploy_verdict_current`, `gate_status_deploy_gap_count_current`, `gate_status_currency` and `gate_deploy_fresh` directly from `preflight.py`: all clean except the known, already-labelled WARN (this sandbox cannot reach `6s-success.com`). CI's "Checks" workflow is green on the latest code-touching commit (`1335df7f8`, 15:48); nothing has touched gating code since.
 
