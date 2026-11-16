@@ -8,7 +8,7 @@ Attached clean onto origin/main, tree clean, no concurrent push. Verified A160 d
 
 Re-ran `room_guide_underperformance.py`: the mining lane is genuinely thin now, worst room (Primary Bathroom) at 7% uncovered, nothing above partial tier anywhere. One row looked wrong on inspection: "how long do diapers last in storage" routes to the Primary Bathroom article, but only the Nursery's pages mention diapers at all (Changing Station, Baby Clothing, Feeding Station). Handing that specific row to the operator as a likely cross-room misattribution, not a generic "mine the lane" pointer.
 
-Not starting the fix myself: this slot is for triage, not the verification a misroute fix needs. No price, product or page touched. No push notification: nothing material beyond the standing exhausted/Phil-gated state already in open issues.
+Not starting the misroute fix myself: this slot is for triage, not the verification it needs. Did fix one real tool defect found trying to ship this entry: the first push attempt failed twice on "conflict in real source: ops/cycle-signal.json" even though that file is purely generator-owned (ops/cycle_signal.py), because it was missing from ops/sync_push.py's GENERATED list. Added it there (a single overwritten snapshot, never append-only, so taking origin's committed copy on conflict is safe, unlike CHECKIN-LOG.md/state-checkin.json which were deliberately excluded for the opposite reason). `test_ship_conflict_safety.py` still 3/3 after the change. No price, product or page touched. No push notification: nothing material beyond the standing exhausted/Phil-gated state already in open issues.
 
 Pushed to main.
 
