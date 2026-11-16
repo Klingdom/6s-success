@@ -10785,13 +10785,11 @@
       "best_page": "/zones/stair-landing-the-wall-and-display-zone.html",
       "best_page_title": "How to organize the stair landing gallery wall",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/kids-bedroom-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "photo"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/stair-landing-the-wall-and-display-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -11731,13 +11729,11 @@
       "best_page": "/zones/stair-landing-the-wall-and-display-zone.html",
       "best_page_title": "How to organize the stair landing gallery wall",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/stair-landing-the-wall-and-display-zone.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "frames"
-      ],
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -12372,16 +12368,14 @@
         "how to organize gallery wall"
       ],
       "room": "",
-      "best_page": "/kids-bedroom-deck.html",
-      "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
+      "best_page": "/zones/stair-landing-the-wall-and-display-zone.html",
+      "best_page_title": "How to organize the stair landing gallery wall",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/kids-bedroom-deck.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/stair-landing-the-wall-and-display-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "frames"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -31683,16 +31677,14 @@
         "how to organize gallery wall"
       ],
       "room": "",
-      "best_page": "/primary-bedroom-deck.html",
-      "best_page_title": "The Primary Bedroom Deck: 66 cards, free to read",
+      "best_page": "/zones/stair-landing-the-wall-and-display-zone.html",
+      "best_page_title": "How to organize the stair landing gallery wall",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/primary-bedroom-deck.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/stair-landing-the-wall-and-display-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "frames"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -43784,16 +43776,14 @@
         "stair landing organization ideas"
       ],
       "room": "Stair Landing",
-      "best_page": "/zones/stair-landing-the-landing-surface-or-console.html",
-      "best_page_title": "How to organize the stair landing landing surface or console",
+      "best_page": "/zones/stair-landing-the-wall-and-display-zone.html",
+      "best_page_title": "How to organize the stair landing gallery wall",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/stair-landing-the-landing-surface-or-console.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "picture"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/stair-landing-the-wall-and-display-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -48208,6 +48198,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "94353aa45",
-  "scored_at": "2026-11-16T02:57:17Z"
+  "scored_against_commit": "82fb6c32a",
+  "scored_at": "2026-11-16T03:56:09Z"
 }

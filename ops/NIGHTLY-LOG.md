@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-16 (04:1x slot): A154, closed a gallery-wall misattribution cluster A153 uncovered, declined a riskier FORMAT_WORDS fix that regressed elsewhere
+
+**Did.** Attached clean (unshallowed, ff-only, 706 commits fast-forwarded). `preflight.py --skip-tests` clean first (0 FAIL, 29 warnings). GitHub: 31 issues, unchanged since #65, none from Phil since #64. No mail credential. Mining the cluster A153 closed: "picture frames on wall" and "wall photo frames" scored partial against Primary/Kids Bedroom decks on coincidental heading matches, "frames" unmatched, while Stair Landing's Wall and Display Zone genuinely discusses frame-hanging hardware. Added "picture frames zone"/"photo frames zone" to that zone's `ops/zone-also-called.json` entry.
+
+**Verified.** Simulated first: 4 US + 5 global rows move partial-to-covered onto the right zone, 0 regressions. Shipped, rebuilt via `build_zone_pages.py`, rescored live, matched the simulation exactly. Tested and declined a broader fix: dropping "pictures" (plural) from `FORMAT_WORDS` fixes two more rows but regresses 9 of 10 US and 3 of 4 global rows elsewhere. `test_keyword_demand.py` (71/71), both also-called gate tests, `check_urls.py` (236/236), `audit_pages.py` (0), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165), `check_sellable.py` (124/126) clean. A `preflight.py` run after staging genuinely FAILed once, on `gate_build_id_current`: `ops/build_id.py` had not been re-run after the content edit, so `site/build-id.txt` was stale against the real hash. Ran it, re-ran preflight: every gate passed, 29 warnings.
+
+**Went well:** simulating the vocabulary change against the live scorer before touching any file, catching the exact row count ahead of the rebuild.
+
+**Did not go well:** forgot `ops/build_id.py` after the content rebuild; the gate caught it correctly before commit.
+
+**Changing next cycle:** none.
+
+**Next:** the "pictures on a/the wall" pair stays misrouted to Garage; mine the remaining partial tiers, or act on any Phil reply to issue #64 (P0, the traffic-read credential).
+
+Pushed to main. `ops/zone-also-called.json`, one rebuilt zone page, both rescore files, `BACKLOG-2026-09-07.md`, `STATUS.md`, dashboard regen, this entry. No price or product touched; IndexNow to submit on push.
+
 ## PM check-in, 2026-11-16 (03:4x slot): previous work (A153) finished and reverified with a fresh full live preflight; same exhausted Phil-gated state, two specific un-investigated candidates named for the operator
 
 NEXT FOR THE OPERATOR: hand-check Kitchen's "baking supplies in kitchen" rows (Kitchen has no baking zone in content.json; only Pantry's Baking Zone does, so the honest answer may be a cross-room pointer, the same class A143/A148/A151 already fixed) and the "vanity box" rows shared by Guest Bathroom and Primary Bathroom, because both look like genuine un-investigated candidates in an otherwise thin partial tier, not the games/attic/larder/hardware shapes already declined.
