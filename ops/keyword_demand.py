@@ -209,7 +209,29 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "properly", "apartments", "large", "homes",
                           "cheap", "list", "everyday", "tidying", "next",
                           "organized", "organised", "liquid", "grow",
-                          "option", "100"))
+                          "option", "100", "genre"))
+
+# "genre" joined 2026-11-16, PM check-in, found mining Home Office's own
+# partial tier ("how to organize bookshelf by genre", US and global, 0.5
+# against the Home Office's own Bookshelf and Reference zone page, title
+# "How to organize the home office bookshelf"; "organize" and "bookshelf"
+# matched, "genre" the sole unmatched word). Read the zone's own content
+# before treating this as a filler word: its "variants" section names
+# sorting "by color or by genre" directly, and gives a real answer, just
+# not the naive one, the same root-cause-before-solution shape CLAUDE.md
+# section 6 asks for ("A shelf arranged by color or by genre reads well
+# in a photo and works against you every other day... sorted by how
+# often you reach for it" instead). "color" was investigated the same
+# cycle on the same sentence and declined: its own full-corpus diff
+# silently turned an already-wrong partial match ("how to organize books
+# by colour" -> /contact.html) into a false "covered", a correctness
+# regression the status-order check alone would not have caught; "genre"
+# has no such row anywhere in either corpus. Self-flattery checked first:
+# 0 of 244 titles, 0 of 244 headings. Checked for collision across both
+# corpora before shipping: exactly one row in either corpus contains
+# "genre" as a content word, the target query itself. Full before/after
+# score_rows() diff: 1 US row changed (partial to covered, same
+# best_page), 1 global row changed (partial to covered, same best_page).
 
 # "100" joined 2026-11-16, scheduled operator cycle, found mining Pantry's
 # own partial tier ("100 pantry organization ideas", US, 0.5 against the

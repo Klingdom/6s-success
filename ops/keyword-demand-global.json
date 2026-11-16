@@ -27725,14 +27725,12 @@
       "room": "",
       "best_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
       "best_page_title": "How to organize the home office bookshelf",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "genre"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -48196,6 +48194,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "84b17545f",
-  "scored_at": "2026-11-16T08:50:34Z"
+  "scored_against_commit": "9655c77ee",
+  "scored_at": "2026-11-16T09:22:55Z"
 }

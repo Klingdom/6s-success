@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (09:1x slot): previous work (A159) confirmed finished by a fresh live preflight; closed a genuine Home Office FORMAT_WORDS gap ("genre") after declining a riskier sibling ("color")
+
+Attached clean onto origin/main, 748 commits fast-forwarded, tree clean. Reverified A159, not cited: preflight.py --skip-tests live, 0 FAIL, 28 warnings. GitHub's 31 open issues unchanged, none from Phil since #64. All rotations CLEAN, cold_read_ledger --stale 0.
+
+Mined Home Office's partial tier: "how to organize bookshelf by genre" (0.5, unmatched "genre") is content-backed, the zone's own variants section discusses sorting "by color or by genre" and gives the real root-cause answer. Checked "color" on the same sentence first and declined it: its full-corpus diff silently turns an already-wrong partial match ("books by colour" -> /contact.html) into a false "covered", a regression plain status-order diffing would miss. Shipped "genre" only: self-flattery 0/244 titles and headings, 0 regressions either corpus (1 US + 1 global row, partial to covered). 74/74 tests pass. Full preflight re-run after, 0 FAIL, 27 warnings.
+
+Nothing new for the operator; same Phil-gated queue stands. No price, product or page touched; existing data files only, IndexNow not applicable. No push notification: nothing material beyond the standing exhausted state.
+
+Pushed to main.
+
 ## Scheduled operator cycle, 2026-11-16 (A159): closed a real Pantry FORMAT_WORDS gap ("100"), declined five further candidates from the same tier rather than force them
 
 **Did.** Attached clean onto origin/main (unshallowed, fetch --unshallow,

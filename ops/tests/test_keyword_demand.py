@@ -2364,6 +2364,40 @@ def main():
     finally:
         kd.FORMAT_WORDS = old_format36
 
+    # 68. "genre" joined FORMAT_WORDS 2026-11-16, PM check-in, found mining
+    #     Home Office's own partial tier ("how to organize bookshelf by
+    #     genre", US and global, 0.5 against the Home Office's own
+    #     Bookshelf and Reference zone page, "organize"/"bookshelf"
+    #     matched, "genre" the sole unmatched word). The zone's own
+    #     "variants" section names sorting "by color or by genre" directly
+    #     and gives a real root-cause answer, not the naive one. "color"
+    #     was investigated on the same sentence and declined: its own
+    #     full-corpus diff silently turned an already-wrong partial match
+    #     ("how to organize books by colour" -> /contact.html) into a
+    #     false "covered"; "genre" has no such row. Self-flattery checked
+    #     first: 0 of 244 titles, 0 of 244 headings. Checked for collision
+    #     across both corpora before shipping: exactly one row in either
+    #     corpus contains "genre" as a content word, the target query
+    #     itself. Full before/after score_rows() diff: 1 US row changed
+    #     (partial to covered, same best_page), 1 global row changed
+    #     (partial to covered, same best_page).
+    new_format_words37 = ("genre",)
+    samples37 = {"genre": "how to organize bookshelf by genre"}
+    for word in new_format_words37:
+        if word in kd.content_words(samples37[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format37 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format37 - set(new_format_words37)
+    try:
+        for word in new_format_words37:
+            if word not in kd.content_words(samples37[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format37
+
     if fails:
         print("FAIL")
         for f in fails:
