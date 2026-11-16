@@ -209,7 +209,20 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "properly", "apartments", "large", "homes",
                           "cheap", "list", "everyday", "tidying", "next",
                           "organized", "organised", "liquid", "grow",
-                          "option"))
+                          "option", "100"))
+
+# "100" joined 2026-11-16, scheduled operator cycle, found mining Pantry's
+# own partial tier ("100 pantry organization ideas", US, 0.5 against the
+# Pantry's own Backstock and Bulk zone page, title "How to organize the
+# pantry bulk storage"; "pantry" and "organization" matched, "100" the sole
+# unmatched word). "100" names a listicle count, the format of the answer,
+# not a different physical object, the same role "deals"/"original"/"must"
+# already play in this list. Self-flattery checked first: 0 of 244 titles,
+# 0 of 244 headings. Checked for collision across both corpora before
+# shipping: exactly one row in either corpus contains "100" as a content
+# word, the target query itself, so nothing else could regress. Full
+# before/after score_rows() diff: 1 US row changed, partial to covered,
+# same best_page; 0 global rows changed (no "100" query there).
 
 # "option" joined 2026-11-16, scheduled operator cycle, found mining
 # Entryway's own partial tier ("organized drop option", global, 0.5).

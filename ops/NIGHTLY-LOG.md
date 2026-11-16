@@ -2,9 +2,71 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-16 (A159): closed a real Pantry FORMAT_WORDS gap ("100"), declined five further candidates from the same tier rather than force them
+
+**Did.** Attached clean onto origin/main (unshallowed, fetch --unshallow,
+checkout, merge --ff-only, 743 commits fast-forwarded, no reset/force, tree
+clean on arrival). Ran preflight.py --skip-tests live first: 0 FAIL, every
+gate passed, 30 warnings. GitHub's 31 open issues re-pulled live: unchanged
+since issue 65, none from Phil since issue 64 (2026-11-08); read both
+issues' own comment threads directly, confirmed self-authored by prior
+cycles. inbox_agent.py --apply: no mail credential, standing gap. Epics 1-2
+blocked/clean on Phil; epic 3's mining lane gated diminishing-returns. The
+08:1x PM check-in handed off Pantry's "storage for baking supplies"/
+"storage ideas for baking supplies" rows by name, but "storage" was already
+investigated and declined as too broad in A52's own correction, so read the
+rest of Pantry's partial tier by hand instead. "100 pantry organization
+ideas" scored 0.5 against the Pantry's own Backstock and Bulk zone page
+(title "How to organize the pantry bulk storage"), matching "pantry" and
+"organization," with "100" the sole unmatched word, a listicle count
+naming the form of the answer, the same role "deals"/"original"/"must"
+already play in FORMAT_WORDS. Self-flattery checked first: 0 of 244
+titles, 0 of 244 headings. Read five more rows from the same tier and left
+all five undone: "how to organize a pantry drawer" and "how to organize
+appliances in pantry" are genuine content gaps already named in A153's
+decline list; "declutter pasta pantry" and "large storage boxes for
+organizing groceries" read as container/task words broad enough to need
+the same scrutiny "cabinet"/"systems" failed on in A156 rather than a
+quick win; "how to organize baking supplies in.cabinet" repeats the
+already-declined "cabinet" word whole.
+
+**Verified.** Checked collision across both corpora before shipping:
+exactly one row in either corpus contains "100" as a content word, the
+target query. Full before/after score_rows() diff matched the real
+rescore exactly: 1 US row changed, partial to covered, same best_page
+(930/1787 to 929/1788, gap unchanged at 93); 0 global rows changed.
+Pantry's own guide tally moved honestly, 13% to 12% uncovered.
+Fail-then-pass proved directly in test_keyword_demand.py (case 67; full
+file 73/73). check_urls.py (236/236), audit_pages.py (0 findings),
+fix_dashes.py --check (0/0), affiliate.py --check (165 documents),
+cold_read_ledger.py --stale (0) all independently re-run clean. Full
+preflight.py --skip-tests re-run live to completion after: 0 FAIL, every
+gate passed, 29 warnings, identical set to the pre-change run minus one,
+no new warning introduced.
+
+**Went well:** declining the handed-off word ("storage") on sight because
+it was already ruled out, rather than re-deriving the same no a third
+time, and finding a different, clean word in the same tier instead.
+
+**Did not go well:** nothing notable this cycle.
+
+**Changing next cycle:** none; the same discipline (self-flattery and
+full-corpus collision check before shipping, checking a word against the
+decline list before re-investigating it) keeps working.
+
+**Next:** the standing Phil-gated queue (issues #42/#64/#65 and the rest,
+all unchanged); Pantry's own tier is thinner but not exhausted (the drawer
+and appliance queries are genuine content gaps, left undone).
+
+No push notification: nothing material beyond the standing exhausted
+state; the cycle shipped one row, within the pattern already reported.
+
+Pushed to main. Command deck regenerated. No price, product or page
+touched; existing data files only, IndexNow not applicable.
+
 ## PM check-in, 2026-11-16 (08:4x slot): previous work (A158) still finished, reverified fresh; nothing newly unblocked; same Pantry handoff carried forward unconsumed
 
-NEXT FOR THE OPERATOR: Pantry's "storage for baking supplies" / "storage ideas for baking supplies" rows (both 0.667 against `pantry-the-baking-zone.html`), because the 08:1x handoff named this exact cluster 24 minutes ago and no operator cycle has touched it yet, so there is nothing new to hand off in its place.
+NEXT FOR THE OPERATOR: Pantry's "storage for baking supplies" / "storage ideas for baking supplies" rows (both 0.667 against `pantry-the-baking-zone.html`), because the 08:1x handoff named this exact cluster 24 minutes ago and no operator cycle has touched it yet, so there is nothing new to hand off in its place. **Superseded by the A159 entry above, which landed moments later and consumed the handoff via a different row in the same tier ("100 pantry organization ideas") after finding "storage" itself already declined (A52).**
 
 Attached clean onto `origin/main` (fetch, unshallow, `checkout main`, `merge --ff-only`, 743 commits fast-forwarded, no reset or force, tree clean on arrival, no concurrent process in `ps aux`).
 
@@ -15,6 +77,8 @@ Not starting new work myself this slot: the 08:1x handoff is still unconsumed (n
 No push notification: nothing material changed since the 08:1x entry, and the standing no-repeat floor has not elapsed.
 
 Pushed to main: this entry, command deck regen. No price, product or page touched.
+
+## PM check-in, 2026-11-16 (08:1x slot): previous work (A158) confirmed finished by a fresh live preflight run, not cited; nothing newly unblocked; handed the operator the Pantry baking-supplies cluster by name
 
 Attached clean onto `origin/main` (fetch, unshallowed, `checkout main`, `merge --ff-only`, 737 commits fast-forwarded, no reset or force, tree clean on arrival, no concurrent push in flight, `list_sessions`/`ps aux` showed no other live cycle).
 

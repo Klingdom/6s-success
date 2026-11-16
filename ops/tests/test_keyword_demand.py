@@ -2337,6 +2337,33 @@ def main():
     finally:
         kd.FORMAT_WORDS = old_format35
 
+    # 67. "100" joined FORMAT_WORDS 2026-11-16, scheduled operator cycle,
+    #     found mining Pantry's own partial tier ("100 pantry organization
+    #     ideas", US, 0.5 against the Pantry's own Backstock and Bulk zone
+    #     page, "pantry"/"organization" matched, "100" the sole unmatched
+    #     word). Self-flattery checked first: 0 of 244 titles, 0 of 244
+    #     headings. Checked for collision across both corpora before
+    #     shipping: exactly one row in either corpus contains "100" as a
+    #     content word, the target query itself. Full before/after
+    #     score_rows() diff: 1 US row changed (partial to covered, same
+    #     best_page), 0 global rows changed.
+    new_format_words36 = ("100",)
+    samples36 = {"100": "100 pantry organization ideas"}
+    for word in new_format_words36:
+        if word in kd.content_words(samples36[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format36 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format36 - set(new_format_words36)
+    try:
+        for word in new_format_words36:
+            if word not in kd.content_words(samples36[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format36
+
     if fails:
         print("FAIL")
         for f in fails:

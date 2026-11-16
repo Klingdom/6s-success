@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-11T17:34:53Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-16T07:52:18Z against 244 page(s) at commit bedcb7d93. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-16T08:50:28Z against 244 page(s) at commit 84b17545f. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2810. Checked against 244 published page titles: 1787 covered, 930 partial, 93 gap.
+**Queries found:** 2810. Checked against 244 published page titles: 1788 covered, 929 partial, 93 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -104,7 +104,7 @@ Showing the top 80 of 93, ordered by the best rank the phrase reached in any one
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 930.
+Showing the top 60 of 929.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -187,7 +187,7 @@ Showing the top 60 of 930.
 | Living Room | 92 | 2 | 31 | 59 |
 | Mudroom | 43 | 0 | 18 | 25 |
 | Nursery | 61 | 1 | 18 | 42 |
-| Pantry | 58 | 1 | 17 | 40 |
+| Pantry | 58 | 1 | 16 | 41 |
 | Primary Bathroom | 13 | 0 | 6 | 7 |
 | Primary Bedroom | 16 | 0 | 12 | 4 |
 | Stair Landing | 24 | 0 | 13 | 11 |

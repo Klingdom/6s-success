@@ -34,14 +34,12 @@
       "room": "Pantry",
       "best_page": "/zones/pantry-the-backstock-and-bulk.html",
       "best_page_title": "How to organize the pantry bulk storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/pantry-the-backstock-and-bulk.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "100"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "above stove storage ideas",
@@ -56460,6 +56458,6 @@
       ]
     }
   ],
-  "scored_against_commit": "bedcb7d93",
-  "scored_at": "2026-11-16T07:52:18Z"
+  "scored_against_commit": "84b17545f",
+  "scored_at": "2026-11-16T08:50:28Z"
 }
