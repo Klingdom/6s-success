@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (11:4x slot): previous work (A161 and the 11:1x STATUS.md fix) confirmed finished by a fresh live preflight; one self inflicted dirty tree FAIL caught and cleared before it could reach the operator
+
+NEXT FOR THE OPERATOR: mine Hall Closet's partial tier, 12% uncovered, 18 rows, starting with "how to organize cleaning supplies in bathroom" (0.667, routed to the Hall Closet's own Cleaning Supply Zone) and "how to organize a small front hall closet"/"how to organize a small hallway closet" (two different zones, same room, worth a direct read), because Family Room, Workshop, Garage and Pantry were all hand checked today already and Hall Closet has not.
+
+Attached clean onto origin/main, 774 commits fast forwarded, tree clean, no concurrent push. `preflight.py --skip-tests`: a first run timed out mid Etsy PDF render and left `build/listings/etsy/` dirty, so `gate_etsy_pdfs_current` correctly FAILed rather than falsely passing; restored with `git checkout`, reran in the background to a genuine finish, 0 FAIL, 27 warnings, all standing (no Stripe/SSH/mail credential here, known art and deck gaps, affiliate T2 not evaluated). GitHub's 31 open issues re-pulled live: unchanged since #65, none from Phil since #64. `BACKLOG-2026-09-07.md` and `EXECUTIVE-DASHBOARD-LIVE.md` both confirm the same exhausted, Phil gated state; nothing beyond the owner-gate table is genuinely unblocked. Not starting new work myself this slot. No push notification: routine triage, nothing the owner does not already have in the open issues.
+
+Pushed to main: this log entry, command deck regen.
+
 ## PM check-in, 2026-11-16 (11:1x slot): previous work (A161, the diaper misattribution fix) confirmed finished by a fresh live preflight; closed the `STATUS.md` size tripwire instead of starting new work
 
 Attached clean onto origin/main (770 commits fast-forwarded), tree clean, no concurrent push. Verified A161 directly: ran `preflight.py --skip-tests` live to completion, 0 FAIL, 31 warnings, matching its own claim exactly. GitHub's 31 open issues re-pulled live, unchanged since #65 (2026-11-14), all decision/P0/blocked-on-art, none from Phil.
