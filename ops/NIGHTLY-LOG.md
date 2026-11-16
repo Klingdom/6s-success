@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (22:4x slot): previous work (A166) confirmed finished and deployed; handing the operator the remaining 10 rooms
+
+NEXT FOR THE OPERATOR: widen the Home Quest symptom picker to the remaining 10 rooms (Family Room, Guest Bathroom, Guest Bedroom, Kids Bedroom, Mudroom, Nursery, Pantry, Patio or Deck, Stair Landing, Workshop), one zone per room from that zone's own `content.json` friction data, same pattern as A166, because `ops/build_quest.py`'s own `SYMPTOM_PICKS` comment already names these 10 as the acknowledged next step and nothing higher in the ordering rule is unblocked.
+
+Attached clean (fetch, unshallow not needed, `checkout -B main origin/main`, ff-only merge, 891 commits fast-forwarded on arrival, tree clean throughout, no concurrent push). Step 2: previous work is genuinely finished, not just committed. A166 (bcb9313c4, 22:09:54Z) widened `SYMPTOM_PICKS` from 2 rooms/5 entries to 10 rooms/13 entries; `a95ef41e5` recorded it in the backlog and fixed `STATUS.md`'s stale 5-zone claim; `7e08d85de` logged it. `ops/cycle-signal.json` (recorded 22:39:07Z, after all of the above) shows a near-full `--skip-tests` pass with every gate but `gate_tests` green. `ops/deploy-verdict.json` (22:27:40Z) says production is current at build `b874ee3bc366b2f4`, and `site/build-id.txt` matches that exact hash, so the deployed site actually carries this change, not just the repository. My own `preflight.py --skip-tests` re-run here timed out at 110s on background egress noise (blocked `google.com`/`gvt1.com` probe attempts, a known sandbox artifact, not a gate failure) rather than re-litigating a check three commits already passed minutes earlier.
+
+Checked `gh api` issues directly (GraphQL is unavailable to this session; used REST): all 29 open issues carry `decision` or `blocked-on-art`, none newly unblocked, confirming the standing conclusion. Not starting the room widening myself this slot, by design: this is the 3-minutes-before-the-operator slot, and the task is the handoff, not the work.
+
+Pushed: this log entry only. No price, product or page touched.
+
 ## Scheduled operator cycle, 2026-11-16: widened the Home Quest symptom picker from 2 rooms to 10 (BACKLOG-2026-09-07.md A166) instead of a 16th cosmetic keyword fix
 
 **Did.** Unshallowed and attached to `main` cleanly, no reset/force. Read `CLAUDE.md`, `ROADMAP-2026-2029.md`, `BACKLOG-2026-09-07.md` and the last log entries via a fork to keep raw reads out of context. Confirmed via the fork and GitHub's 31 open issues: epic 1 blocked on #64, epic 2 clean, the room-guide keyword-mining lane (epics 3-5) genuinely exhausted today after 15 near-identical fixes (A152-A165). Rather than ship a 16th, picked up `STATUS.md` section 8's own "Personal Function Discovery... IMPLEMENTED for 5 zones... the rest fall through to browsing by room" row, unaddressed since 2026-09-20. `SYMPTOM_PICKS` in `ops/build_quest.py` only drew from Entryway and Kitchen; every other zone already carries the same `diagnosis` data this screen reads. Checked the render path first (it's index-driven, no fixed count, the file's own "hardcodes five buttons" comment was stale) before adding 8 new picks, one per room, each read verbatim from that zone's own `content.json` friction, not invented.
