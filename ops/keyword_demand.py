@@ -208,7 +208,7 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "church", "insert", "durable", "lightweight",
                           "properly", "apartments", "large", "homes",
                           "cheap", "list", "everyday", "tidying", "next",
-                          "organized", "organised"))
+                          "organized", "organised", "liquid"))
 
 # "organized" and "organised" joined 2026-11-15, scheduled operator cycle,
 # found mining Guest Bathroom's own partial tier ("organized bathroom
@@ -236,6 +236,20 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
 # each is a lower score, not the inflated one "organized" was giving it,
 # the same demote-to-honest shape A125's "recipes" removal from this same
 # list already established in the other direction.
+
+# "liquid" joined 2026-11-16, scheduled operator cycle, found mining
+# Laundry Room's remaining partial tier (then tied worst room at 7%
+# uncovered): "how to organize liquid laundry detergent" scored 0.667
+# against the Detergent and Treatment Zone's own page (title already
+# carries "detergent"), with "liquid" its sole unmatched word. A style/form
+# qualifier on the same subject, the same role "cheap"/"modern"/"rustic"
+# already play, not a different physical object. Self-flattery checked
+# first: 0 of 244 titles, 0 of 244 headings, well under every bar a word
+# has cleared on this list. Full before/after score_rows() diff across both
+# corpora before shipping (CLAUDE.md 5d): US exactly 1 row changed, the
+# target query, partial to covered, same best_page; global corpus 0 rows
+# changed (no "liquid" query in that corpus). Laundry Room's own guide
+# tally moved 7% to 6% uncovered.
 
 # "list", "everyday" and "tidying" joined 2026-11-12, this scheduled
 # operator cycle, mining Primary Bedroom's partial tier (19 rows, tied with

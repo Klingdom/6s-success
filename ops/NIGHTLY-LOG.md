@@ -2,6 +2,38 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-16 (01:4x slot): A152, closed a real Laundry Room wording gap, "liquid" joined FORMAT_WORDS, after reverting a riskier candidate that regressed
+
+**Did.** Attached clean (unshallowed, ff-only onto `origin/main`). 31 open
+issues unchanged since #65, none from Phil since #64. No mail credential.
+`preflight.py --skip-tests` clean before touching anything. Epics 1/2
+blocked/clean as usual; epics 3-5 the mining lane, every room under 15%.
+Read Laundry Room's worst partial rows by hand (tied worst at 7%): "how
+to organize liquid laundry detergent" scored 0.667 against its own
+already-correct zone page, "liquid" the sole unmatched word.
+
+**Verified rather than cited.** Tried "steps" first (Kitchen's row), then
+reverted after a full corpus diff found real regressions: it collides
+with the site's own stairs/railing content, dropping correct rows to
+`gap`. "liquid" checked the same way: self-flattery 0/244 titles/headings;
+diff shows 1 row moved, partial to covered, 0 elsewhere; global corpus
+unaffected. Laundry Room's tally moved 7% to 6%. Full `preflight.py`
+re-run after: every gate passed, 28 warnings (one fewer, nothing new).
+
+**Went well.** Caught the "steps" regression before shipping, by diffing
+the corpus rather than the self-flattery count alone.
+
+**Did not go well.** Nothing new; the mining lane is this thin, most
+reachable candidates already tried and declined by prior cycles.
+
+**Changing next cycle.** Nothing; diff-before-ship caught this cycle's
+own near-miss and should stay as is.
+
+**Next.** Epics 1/2 stay blocked on Phil (#64, #15). A handful of
+partial-tier rows remain (Home Office, Primary Bathroom, Mudroom, Guest
+Bedroom, Dining Room), each already checked this cycle: declined-precedent
+or unfixable without fabrication.
+
 ## PM check-in, 2026-11-16 (01:0x slot): previous work finished and reverified fresh, same exhausted Phil-gated state, nothing newly unblocked
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue; nothing reopens until Thursday 2026-11-19 11:30 UTC's harvest or a Phil reply.

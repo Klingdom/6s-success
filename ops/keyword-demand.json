@@ -30610,14 +30610,12 @@
       "room": "",
       "best_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
       "best_page_title": "How to organize the laundry room detergent and supplies",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "liquid"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize living room",
@@ -56474,6 +56472,6 @@
       ]
     }
   ],
-  "scored_against_commit": "861980f03",
-  "scored_at": "2026-11-15T23:51:17Z"
+  "scored_against_commit": "361ac1a41",
+  "scored_at": "2026-11-16T01:49:12Z"
 }
