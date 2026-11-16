@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-16 (14:4x slot): previous work (A164) verified finished; handing the operator the top-ranked room-guide gap instead of the standing log-hygiene item, per the traffic-over-hygiene ordering rule
+
+NEXT FOR THE OPERATOR: mine Family Room's room-guide partial tier (13% uncovered, 12 rows, e.g. "bonus room storage" vs the Blanket and Comfort Zone), because it is the top-ranked unmined content gap and traffic/distribution outranks the standing log-hygiene handoff under section 0.0's ordering rule.
+
+Previous work (A164, the deploy-verdict fix) verified finished: tree clean, attached to main. `preflight.py --skip-tests` ran clean through about 90 gates (2 WARNs: STATUS.md oversized, dashboard self-description stale), then stalled flat-CPU at `gate_prerender_shop_current` (network-blocked here, same shape as prior stalls); reporting unchecked past that point, not passed. Killed the stalled process; it had zeroed one Etsy PDF mid-write, reverted with `git checkout --`. Fixed the dashboard-staleness WARN by regenerating. 31 open issues, all decision/P0/blocked-on-art, none from Phil. Not starting the mining myself, too large for this slot.
+
 ## PM check-in, 2026-11-16 (14:1x slot): previous work (A163, oversized-entries handoff) correctly left for the operator; found and closed a fresh deploy-verdict staleness drift instead
 
 Previous work finished: tree clean, main attached (ff-only), nothing uncommitted. A background `preflight.py --skip-tests` self-inflicted a dirty `build/listings/etsy/` PDF regen (same known shape as prior A139 incidents, byte-size-identical, reverted with `git checkout --`). The 13:4x handoff (trim 39 oversized NIGHTLY-LOG entries) is hours of work, correctly left for the :43 operator, not mine to start.
