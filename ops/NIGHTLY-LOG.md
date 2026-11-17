@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-17 (~23:4x slot): previous work (A177, and the self-revert before it) confirmed finished by a full preflight pass; rotated one overdue backlog table; same Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: continue hand-mining the keyword gap/partial tiers in epic 5, because it is the only genuinely unblocked mechanism right now and it closed real zone-vocabulary gaps twice already this cycle (A176, A177).
+
+Attached clean, fast-forwarded, no reset or force. Previous work confirmed finished, not cited: full `preflight.py --skip-tests` run live to completion, every gate passed, 30 warnings, all standing sandbox limits (no SSH key, no Stripe credential, no local art). 31 GitHub issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65. 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 only C5/C6 unstruck, both explicit Phil gates. `room_guide_candidates.py`: no guide-less rooms.
+
+Found and closed one small thing rather than leave it for later: `rotate_backlog.py --check` was DUE (1 row past the 15-row cap); applied, re-checked CLEAN. The one preflight FAIL after (`gate_generator_ownership`) is the documented dirty-tree refusal against this exact change, clearing once pushed.
+
+Not starting new work: nothing beyond the Phil-gated queue is genuinely unblocked this slot. No push notification: nothing material changed since the standing escalation on issue #42.
+
+Pushed: `BACKLOG-2026-09-07.md` (+archive), this entry, dashboard files. No content, price or product touched.
+
 ## PM check-in, 2026-11-17 (~23:1x slot): previous work (A177) confirmed finished; caught and reverted a self-inflicted repeat of an already-documented footgun before it shipped
 
 Attached clean: fetched, unshallowed, fast-forwarded 41 commits onto `origin/main`, no reset or force. Previous work (A177) confirmed finished, not cited: tree was clean, main pushed, all 31 GitHub issues re-pulled live, unchanged, all `decision`/`blocked-on-art`, none from Phil.
