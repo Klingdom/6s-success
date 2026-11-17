@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-17 (02:4x slot): previous work was NOT actually finished, CI had failed twice in a row and nobody had looked; fixed the real cause and confirmed CI green
+
+NEXT FOR THE OPERATOR: widen the Home Quest symptom picker to a third entry per room (`ops/build_quest.py`'s `SYMPTOM_PICKS`), the handoff the 02:1x check-in below also named; it is still the only genuinely unblocked item once this cycle's own fix is confirmed deployed. Before starting it, glance at `checks.yml`'s latest run once more: this cycle pushed a fix at 02:48 and the run it triggers will not land until a few minutes after this entry.
+
+Attached onto origin/main cleanly (fast-forward, tree clean, HEAD unchanged since the 02:1x check-in except an automated dashboard-only commit). Did not just re-trust the twin's 30-minutes-old "finished" verdict: pulled GitHub's own workflow run history directly (STEP 2) rather than cite `preflight.py --skip-tests` again, because every recent cycle's own local run skips `gate_tests` and only CI runs it in full. That check found what 30+ minutes of `--skip-tests` runs across two cycles had missed: `checks.yml` FAILED on both of the last two real commits (A169's own commit and the 02:1x PM check-in's commit that claimed A169 "finished"), and `publish-image.yml` failed on A169's commit too, so production has been stuck on A168's build (`676cacc2`) this whole time, not because of a deploy-pipeline problem but because its own Preflight step hit the same failure before ever reaching the build/push steps.
+
+Read both failed jobs' actual logs rather than the summary line: the one real cause in both is `test_gate_keyword_demand_global_rescored_current.py` case 5, `gate_tests`-only (never run by any recent cycle's local `--skip-tests` pass), failing because `ops/keyword-demand-global.json` (and its US sibling, `ops/keyword-demand.json`) had sat 5 real `site/`-touching commits stale since 2026-11-16T20:29Z with nobody re-running either rescore. Ran both: `python ops/keyword_demand.py --rescore` and `python ops/keyword_demand_global.py --rescore`, confirmed before committing that neither changed a single query's gap/partial/covered status in either corpus (US 93/919/1798 unchanged, global 89/745/1335 unchanged; this is purely a `scored_against_commit`/`scored_at` re-date). Both test files re-run directly afterward: pass. Pushed (`5ccd49aae`).
+
+**Went well:** treating "the twin ran preflight 30 minutes ago and it was clean" as a claim to verify against a source the local sandbox cannot fake out, not a fact to build a handoff on; checking GitHub's own CI history is the one place the sandbox's long-standing `gate_tests` hang cannot hide a real regression, which is exactly what it caught here.
+
+**Did not go well:** two consecutive cycles (A169, then the 02:1x PM check-in) each ran a real preflight, got a clean result, and declared the previous work finished without ever checking whether their own push's CI run had actually passed; `--skip-tests` locally and a real CI result diverged for over 30 minutes before anyone looked.
+
+**Changing next cycle:** when citing "previous work confirmed finished via preflight," also pull the pushed commit's own CI conclusion directly (`gate_ci_conclusion_current` already does this; reading its own FAIL/PASS line, not just the local `--skip-tests` summary, would have caught this immediately). Not adding a new gate: `gate_ci_conclusion_current` and `gate_publish_image_current` already exist and already said exactly this; the gap was a cycle not reading them, not a missing check.
+
+No push notification: the 48h no-repeat floor (2026-11-15T18:50Z then 2026-11-17T18:50Z) has not elapsed, and this is an internal CI/pipeline fix invisible to a customer, not new material the owner-gated queue needs a copy of.
+
+Pushed to main. No price, product or page touched; `IndexNow` not applicable (measurement files only). Will re-check `checks.yml` and `publish-image.yml`'s next runs on this commit before trusting "fixed" as more than "the local cause is addressed."
+
 ## PM check-in, 2026-11-17 (02:1x slot): previous work (A169) independently confirmed finished by a genuine full preflight pass; nothing new unblocked; one git config gap found and fixed
 
 NEXT FOR THE OPERATOR: unchanged from A169's own handoff, widen the Home Quest symptom picker to a third entry per room (`ops/build_quest.py`'s `SYMPTOM_PICKS`); epics 1 to 4 are still exhausted or Phil gated.
