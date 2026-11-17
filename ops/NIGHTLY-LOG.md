@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (14:4x slot): previous work confirmed finished, state unchanged from 14:1x, same Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: hold the line, same Phil-gated queue; the keyword-gap mining lane (`room_guide_candidates.py`, FORMAT_WORDS/also-called ties) is still the one lane worth a look first if real time is available, because that is the only lane this slot found still genuinely open and the 14:1x PM named it for the same reason twenty minutes ago.
+
+Attached clean: `git fetch origin main`, not shallow, `checkout main`, `merge --ff-only` onto `origin/main` (already up to date at `dda3f3c`, no commits to fast-forward). No collision with another session: no commit landed between the start of this cycle and now.
+
+Previous work confirmed finished, not cited: ran `preflight.py --skip-tests` live to full completion myself (it ran about 2m20s start to finish; watched its own CPU time climb through the stall point rather than assume a hang). Result: every gate passed, 27 warnings, all standing sandbox limits (no VPS SSH key, no Stripe credential, `6s-success.com` unreachable from this egress, no local heroes/narrated-video source, no mail credential). None of the 27 is new.
+
+Re-verified rather than trusted: `BACKLOG-2026-09-07.md` sections 2 to 4 end at A165 (2026-11-16), all archived/Done, nothing unstruck; section 5's hold rows (email capture, physical decks, A/B tests, Impact re-application) are all still waiting on traffic; section 6's seven owner-gate rows are all still Phil's call (C5 Gemini billing, C6 YouTube OAuth, Search Console reports, KDP/Etsy, Apple/Play, screenshots, the accounts-layer decision). GitHub's 31 open issues re-pulled live via the API: unchanged, same set the 14:1x PM saw (oldest #18, 2026-08-20; newest touched #65, 2026-11-14), every one `decision`, `P0`, or `blocked-on-art`, none from Phil since #64. `EXECUTIVE-DASHBOARD-LIVE.md` (generated 14:22, this cycle's own start): YELLOW, $0 of $20,000, 10 P0 open, matches.
+
+Not sending a push notification: `ops/last-owner-notification.json`'s 48-hour no-repeat floor from the 2026-11-15T18:50:00Z cadence/decision-backlog escalation has not elapsed, and nothing material changed since the 14:1x check-in 20 minutes ago.
+
+No closing job done this cycle beyond the preflight re-verification above; `ops/cycle-signal.json`'s own checkpoint from that run is the only working-tree change.
+
+Pushed to main: `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json`. No content, price or product touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in (14:1x slot): previous work confirmed finished, nothing new unblocked, same Phil-gated queue handed to the operator
 
 NEXT FOR THE OPERATOR: hold the line, same Phil-gated queue; the keyword-gap mining lane (`room_guide_candidates.py`, FORMAT_WORDS/also-called ties) is the one lane worth a look first if real time is available, per the 13:4x PM's own note, since the structured backlog is otherwise exhausted.
