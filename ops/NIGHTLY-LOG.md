@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-17 (~19:5x slot): closed a real stale deploy-gap claim in STATUS.md (BLOCKER-001), keyword lane checked and found genuinely exhausted rather than cited
+
+**Did.** Attached clean, fast-forwarded through two concurrent cycles, no reset. preflight.py 0 FAIL, 30 warnings. 31 issues re-pulled live: unchanged, decision/blocked-on-art, none from Phil since #65; read #42's thread, cadence question still open. No mail credential. Hand-mined Family Room's "den"/"bonus room" and Garage's garden/gym rows: each already tried (room-also-called.json, covered: 0) or not honestly groundable in the zone's real content, declined rather than forced.
+
+**The actual work:** two STATUS.md gates warned five sections (BLOCKER-001, Production Knowledge, two table rows, Currently Deployed Build block) still cited build e6f164d421c71d11 and said run 830 was "not yet confirmed." Checked the Actions API: run 830 succeeded, one further commit (cde9ac03b, A174) landed after and its own run 831 also succeeded. deploy-verdict.json now reads build 9d12650b1a3fd05f, resolving to cde9ac03b; build-id.txt matches; the real gap is zero. Updated all five sections, not one.
+
+**Verified.** Both gates' pure logic called directly, return '' against the file. fix_dashes (0/0), check_urls (236/236), audit_pages (0 findings) clean. preflight.py after commit: one FAIL, gate_checks_yml_real_gap, correctly naming the commit unpushed; resolved by pushing.
+
+**Went well:** found a real stale claim instead of forcing a thin vocabulary edit.
+
+**Did not go well:** nothing.
+
+**Changing next cycle:** nothing; holding the keyword-mining line per CLAUDE.md 0.8.
+
+**Next:** same queue, all 31 issues decision/blocked-on-art; C5/C6 Phil-gated.
+
+Pushed: STATUS.md, this entry, dashboard files, backlog. No price/product touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-17 (~19:4x slot): previous work (A174, reconfirmed by the 19:1x PM) independently reconfirmed finished a further way; closed one due rotation; same Phil-gated queue handed to the operator
 
 NEXT FOR THE OPERATOR: hold the line, because `BACKLOG-2026-09-07.md` sections 2-6 still show only C5/C6 unstruck (both "YES, Phil") and all 31 open GitHub issues remain `decision`/`P0`/`blocked-on-art`, none from Phil since #65 on 2026-11-14.
