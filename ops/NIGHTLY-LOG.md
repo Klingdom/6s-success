@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-17 (~19:0x slot): A174, closed a real misattribution the exhausted-lane verdict was correct about in aggregate but had not actually checked row by row
+
+**Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 1099+ commits fast-forwarded, no reset/force). Full `preflight.py` (with `gate_tests`) run live first to real completion, in the background while reading other files: 0 FAIL, 29 warnings, all previously-documented standing limits. GitHub's 31 open issues re-pulled live: unchanged, none from Phil since #65. No mail credential.
+
+**Verified rather than cited.** `room_guide_candidates.guide_less_rooms()` is `[]`. Ran both corpora's own `--rescore` directly: US 90/868/1852, global 84/670/1415, exactly matching the last committed counts, so no drift since A173. `gate_room_guide_mining_diminishing_returns` fired as expected, confirming the gap tier itself is exhausted site-wide. That verdict is about the *gap* tier; it does not say the *partial* tier has no genuine misattribution left in it, so read a slice of it by hand anyway rather than hold the line a further cycle on the strength of an aggregate.
+
+**Found one.** All "bed sheets" queries in the US corpus route correctly to the hand-authored linen-closet article except one: "how to organize bed sheets by size" was matching a coincidental heading on `/kids-bedroom-deck.html` at 0.333 coverage, while the linen-closet article's own body already discusses labeling shelves by bed size and simply never said so in a heading. Renamed one heading ("How to set up the shelves" to "How to set up the shelves by bed size"), true to the paragraph beneath it; the page is Phil's own hand-written article, not generator-owned, confirmed before editing it directly. Self-flattery checked first: "size" already in 13 of 244 headings, so simulated the real score diff before shipping. Reproduced exactly: US partial 868->867, covered 1852->1853, gap unchanged at 90, 1 row changed; global unchanged.
+
+**Verified.** `test_keyword_demand.py` (74/74), `check_urls.py` (236/236), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `cold_read_ledger.py --stale` (0) all independently clean. `build_seo.py` rerun for the one page's sitemap lastmod; `build_id.py` rerun after `git add`. `preflight.py --skip-tests` re-run live to completion after commit: 0 FAIL, 33 warnings, all standing. `IndexNow` submit attempted, UNCHECKED (no network to the live site from this sandbox).
+
+**Went well:** did not take "the lane is exhausted" as license to stop looking at the partial tier itself; the aggregate gate and the hand check were both right, about different things.
+
+**Did not go well:** collided once on push with a concurrent PM check-in's metadata-only commit; rebased a one-line timestamp conflict in `ops/cycle-signal.json` cleanly rather than force.
+
+**Changing next cycle:** none; no new defect class found, this is the same heading-rename mechanism several prior entries already used.
+
+**Next:** queue exhausted beyond Phil-gated items once more; the partial tier is thin but evidently not completely empty, so a future cycle checking it by hand, not just citing the gate, is still worth the ten minutes before declaring it so.
+
+Pushed to main: `BACKLOG-2026-09-07.md`, `ops/keyword-demand.json`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND.md`, `site/articles/how-to-organize-a-linen-closet.html`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, this entry, dashboard files. One existing page's heading changed; `IndexNow` attempted, unchecked.
+
 ## PM check-in, 2026-11-17 (~18:4x slot): previous work confirmed finished a further way, backed off a genuine concurrent preflight rather than collide, nothing new unblocked
 
 NEXT FOR THE OPERATOR: hold the line, because `BACKLOG-2026-09-07.md` sections 2-6 still show only C5/C6 unstruck (both "YES, Phil") and all 31 open GitHub issues remain `decision`/`P0`/`blocked-on-art`, none from Phil since #65 on 2026-11-14.
