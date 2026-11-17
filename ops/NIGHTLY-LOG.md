@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-17 (~19:4x slot): previous work (A174, reconfirmed by the 19:1x PM) independently reconfirmed finished a further way; closed one due rotation; same Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: hold the line, because `BACKLOG-2026-09-07.md` sections 2-6 still show only C5/C6 unstruck (both "YES, Phil") and all 31 open GitHub issues remain `decision`/`P0`/`blocked-on-art`, none from Phil since #65 on 2026-11-14.
+
+Attached clean (shallow + detached on arrival as STEP 0 warns; `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, no reset/force, tree clean on arrival, 1101 commits). Previous work (19:1x PM's A174 reconfirmation and keyword-tie check) confirmed finished, not cited: re-pulled all 31 open GitHub issues live by `updated_at`, unchanged, newest still #65 from Phil on 2026-11-14; re-grepped `BACKLOG-2026-09-07.md` sections 2-6 directly, only C5/C6 unstruck, both Phil-gated; re-read issue #42 directly, unchanged since 2026-11-14, not re-raised without new evidence; confirmed 0 open PRs and the last 7 workflow runs (Checks, Deliver paid orders, Hourly brief, Social drafts, Bluesky drafts, LinkedIn drafts, Deploy to production) all green via the GitHub tools directly.
+
+**The actual work:** ran every `ops/rotate_*.py --check` script (20 of them) rather than trust the standing "nothing due" pattern. 19 were CLEAN; `rotate_backlog.py` reported DUE (2 of 17 rows past the 15-row cap in `BACKLOG-2026-09-07.md`'s "Done this week" table). Applied it (`--apply`): moved both rows to `BACKLOG-2026-09-07-ARCHIVE.md`, live table 17 rows/57917 bytes down to 15 rows/53918 bytes. Re-ran `--check` after: CLEAN. Not hand-edited; the rotation script itself owns this move. Also checked both living-doc size tripwires directly: `BACKLOG-2026-09-07.md` 116KB, `OWNER-ACTIONS.md` 110KB, neither over its own cap right now.
+
+Started a full `preflight.py --skip-tests` live in the background while doing the above; it reached `gate_etsy_pdfs_current` (the one gate documented to run long) with 0 FAIL and only standing UNCHECKED/warn items (no live egress to the production site, Etsy's own fee/taxonomy/comparables pages not fetchable from here) by the time this entry shipped. Not claiming the render-heavy tail gate passed; it had not finished. The next cycle should treat this slot's run as a currently-clean-so-far pass, not a completed one, and either pick up its final result or start its own.
+
+Not starting other new work: nothing on either backlog or among the 31 issues is genuinely unblocked beyond Phil-gated items, independently re-derived this slot rather than cited. No push notification: nothing changed that the owner does not already have sitting in the open GitHub issues or `EXECUTIVE-DASHBOARD-LIVE.md`'s own "What needs you" table.
+
+Pushed to main: `BACKLOG-2026-09-07.md`, `BACKLOG-2026-09-07-ARCHIVE.md`, `ops/cycle-signal.json`, this entry, dashboard files. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-11-17 (~19:1x slot): previous work (A174) independently reconfirmed finished; checked the partial-tier keyword lane by hand a second time and found the same already-diagnosed tie shape, not a new bug
 
 Attached clean (unshallowed, `fetch --unshallow`, ff-only onto `origin/main`, no reset/force, tree clean on arrival). Previous work (A174, ~19:0x operator) confirmed finished, not cited: re-ran `preflight.py --skip-tests` live to completion, 0 FAIL, 30 warnings, all previously-documented sandbox limits; re-pulled all 31 open GitHub issues live by `updated_at`, unchanged, newest still #65 from Phil on 2026-11-14; re-grepped `BACKLOG-2026-09-07.md` sections 2-6 directly, only C5/C6 unstruck, both Phil-gated. No lock file or live concurrent `preflight.py` process found, so no collision risk this slot.
