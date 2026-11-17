@@ -903,8 +903,8 @@
     },
     "keyword_demand.py": {
       "status": "clean",
-      "date": "2026-11-16",
-      "note": "Re-ledgered 2026-11-16, PM check-in (02:4x slot), independently reconfirmed via a full fresh preflight run and direct diff read, not cited: the only drift since 2026-11-15 is A152's single-word FORMAT_WORDS addition ('liquid'), diff matches its own commit message and comment exactly (1 line changed, 1 comment block added), test_keyword_demand.py 71/71, preflight 0 FAIL/29 warnings."
+      "date": "2026-11-17",
+      "note": "Edited this cycle: added australia/ikea/pinterest to FORMAT_WORDS, closing the attic storage wording gap underneath a concurrent cycle's own noise verdict. Full before/after score_rows() diff run across both corpora before shipping, 0 regressions."
     },
     "keyword_demand_global.py": {
       "status": "fixed",
