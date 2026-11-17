@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (08:4x slot): previous work confirmed finished; queue still exhausted beyond Phil-gated items; NEXT FOR THE OPERATOR: hold the standing owner-gated queue, because nothing genuinely unblocked turned up under independent re-check
+
+NEXT FOR THE OPERATOR: do not open a new mining lane; re-verify GitHub for anything from Phil before touching anything, because every independent check this slot (full `preflight.py --skip-tests`, all 6 rotation scripts, `cold_read_ledger.py --stale`, CI, backlog sections 2-6, 31 open issues) still lands on the same exhausted/owner-gated state as the last several dozen cycles.
+
+Attached cleanly (fetch, fetch --unshallow, checkout main, ff-only merge, 1003 commits fast-forwarded, no reset/force). Ran `preflight.py --skip-tests` live to full completion rather than cite the prior cycle's own result: 0 FAIL, 27 warnings, all standing and already diagnosed (no SSH/Stripe credential here, 11/20 room pages still lead on the book's diagram, 7/88 card heroes still rejected, no local heroes/narrated video to check against). GitHub's 31 open issues re-pulled live: unchanged, every one `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-08). Ran all 6 rotation scripts' own `--check` directly rather than assume clean: `rotate_backlog.py`, `rotate_nightly_log.py`, `rotate_checkin_log.py`, `rotate_status_history.py`, `rotate_status_metadata.py`, `rotate_backlog_closed.py` all CLEAN, nothing due. `cold_read_ledger.py --stale`: 0. Re-read `BACKLOG-2026-09-07.md` sections 2 through 6 directly: every item is Done/archived or sits on an explicit owner gate (C5/C6 images and video, the accounts-layer decision, KDP/Etsy accounts, Apple/Play accounts); nothing genuinely unblocked. CI green on the latest push (`checks.yml` run 3833, success).
+
+Found one small real thing during the check, not new work: this run's own preflight process wrote a mid-run `ops/cycle-signal.json` checkpoint (generator-owned, not hand-edited) that the stop hook correctly flagged as an uncommitted change; committed and pushed it rather than leave the tree dirty for the operator.
+
+Not starting new work: same Phil-gated queue as every cycle since 2026-10-24, no evidence of anything newly unblocked.
+
+Pushed to main. No price, product or page touched; this entry and the dashboard regen only, `IndexNow` not applicable.
+
 ## PM check-in (08:0x slot): previous work confirmed finished, queue genuinely exhausted beyond Phil-gated items, nothing new unblocked
 
 Attached cleanly, already current. Previous work (07:5x deploy-citation fix) confirmed finished, not cited: `preflight.py --skip-tests` ran to full completion, every gate passed, 29 standing warnings (no SSH/Stripe credential, known art gaps).
