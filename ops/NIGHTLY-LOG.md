@@ -12,7 +12,7 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Went well:** reading the gap tier row by row, rather than trusting the aggregate "noise" verdict a prior cycle reached, found a real fix a pure-count read would have missed.
 
-**Did not go well:** this cycle's own commit went stale against `STATUS.md`'s "0 commits undeployed" citations within the same cycle that wrote them, the dominant defect class this file names throughout; found and fixed before pushing (BLOCKER-001, Production Knowledge and both section 1 table rows corrected to the real 1-commit gap, `ca424e191`), not left for a sibling to catch.
+**Did not go well:** this cycle's own commit went stale against `STATUS.md`'s "0 commits undeployed" citations within the same cycle that wrote them, the dominant defect class this file names throughout; found and fixed before pushing (BLOCKER-001, Production Knowledge and both section 1 table rows corrected to the real 1-commit gap, `88e7dcab5`), not left for a sibling to catch.
 
 **Changing next cycle:** nothing new; this is a normal instance of an already-established mechanism.
 
