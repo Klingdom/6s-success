@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-17: A173, closed a real attic storage wording gap underneath a concurrent cycle's own "noise" verdict on the keyword-gap tier
+
+**Did.** Attached clean (ff-only onto `origin/main`, 1079 commits). `preflight.py --skip-tests` clean first (0 FAIL, 28 warnings). 31 issues unchanged, none from Phil since #64. Epic 5 checked live: `guide_less_rooms()` is `[]`; the 16:1x PM's rescore (93 gaps) had sampled the first 20 and called the cluster noise. Verified that (5d) instead of citing it: half right. Three "noise" rows ("attic storage ideas australia/ikea/pinterest") already score against the correct page, with only a locale/retailer name unmatched; its headings say "store"/"stored" but never "storage". Reworded one heading honestly; added australia/ikea/pinterest to FORMAT_WORDS after a 0/244 self-flattery check.
+
+**Verified.** Before/after `score_rows()` diff both corpora before shipping, matched by the real rescore: US gap 93 to 90, global 89 to 84, 0 regressions. Two same-status best_page changes checked by hand, both neutral or improved. Tests, `check_urls.py`, `audit_pages.py`, `fix_dashes.py`, `cold_read_ledger.py --stale` all clean. `preflight.py` clean before (one dirty-tree FAIL, documented shape) and after both commits.
+
+**Went well:** did not take a concurrent cycle's "noise" sample at face value.
+
+**Did not go well:** nothing notable.
+
+**Changing next cycle:** none; existing mechanism, no new defect class.
+
+**Next:** queue exhausted beyond Phil-gated items; re-sample a lane called noise before retiring it.
+
+Pushed to main: `BACKLOG-2026-09-07.md`, `ops/keyword_demand.py`, `ops/keyword-demand*.json`, `ops/KEYWORD-DEMAND*.md`, `site/articles/how-to-organize-an-attic.html`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `ops/cold-read-ledger.json`, this entry, dashboard files. One existing page's heading changed; `IndexNow` to submit on push.
+
 ## PM check-in (16:4x slot): previous work confirmed finished, nothing new unblocked, same Phil-gated queue handed to the operator
 
 NEXT FOR THE OPERATOR: hold the line, same Phil-gated queue; nothing genuinely unblocked beyond C5/C6 and the 31 open GitHub issues. The keyword-gap lane the 16:1x PM closed as noise stays closed; a direct read of `ops/KEYWORD-DEMAND.md`'s own gap table this cycle (entries like "how to organize stash poe 2" and "soap making supplies") confirms that conclusion rather than citing it.
