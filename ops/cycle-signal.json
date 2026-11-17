@@ -1,8 +1,8 @@
 {
   "combined_hash": "6f23e01147f1d30cc1518924360b1c5ab60c6b87c62e18d5d9ef4c8c3af6b653",
-  "git_head": "67e6927c124621b337fc079275de32e37f3afb59",
-  "note": "near-full pass via --skip-tests: every gate except gate_tests passed, test suite itself not run this pass, git HEAD 67e6927c12",
-  "recorded_at": "2026-11-17T02:16:44Z",
+  "git_head": "c249ad09f0e6aa289f0fd9f8e9f9858391eb2d56",
+  "note": "partial pass: every gate before gate_tests passed, gate_tests and everything after it not reached this run (cycle_signal checkpoint, not a full preflight pass), git HEAD c249ad09f0",
+  "recorded_at": "2026-11-17T02:56:01Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "b71eb788c99f78fa0f1ce87480d25b13012b3e1edc60f58dbdd5a9d47d0925cd",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
