@@ -209,7 +209,19 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "properly", "apartments", "large", "homes",
                           "cheap", "list", "everyday", "tidying", "next",
                           "organized", "organised", "liquid", "grow",
-                          "option", "100", "genre", "long", "last"))
+                          "option", "100", "genre", "long", "last",
+                          "australia", "ikea", "pinterest"))
+
+# "australia"/"ikea"/"pinterest" joined 2026-11-17, scheduled operator cycle.
+# A concurrent PM check-in's own keyword-gap sample read ("attic storage
+# ideas australia/ikea/pinterest" among others) had just called the whole
+# cluster noise and moved on; re-opened it rather than cite that verdict
+# (CLAUDE.md 5d) and found it only half right. All three queries already
+# score against the correct page, `/articles/how-to-organize-an-attic.html`
+# (matched on "attic"), with the locale/retailer-name word the one thing
+# standing between `gap` and a real score; neither word names a storage
+# concept this corpus should match on. Self-flattery checked first (5c):
+# 0 of 244 titles, 0 of 244 headings for any of the three.
 
 # "long" and "last" joined 2026-11-16, scheduled operator cycle, closing a
 # genuine cross-room misattribution a PM check-in handed off by name:

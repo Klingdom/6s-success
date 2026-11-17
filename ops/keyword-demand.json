@@ -301,13 +301,11 @@
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "storage"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "attic storage ideas australia",
@@ -321,15 +319,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "gap",
-      "unmatched_words": [
-        "australia",
-        "storage"
-      ]
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "attic storage ideas diy",
@@ -344,13 +339,11 @@
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "storage"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "attic storage ideas for clothes",
@@ -362,16 +355,14 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-basement.html",
-      "best_page_title": "How to organize a basement, one zone at a time",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "attic"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "attic storage ideas ikea",
@@ -385,15 +376,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "gap",
-      "unmatched_words": [
-        "ikea",
-        "storage"
-      ]
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "attic storage ideas on a budget",
@@ -429,13 +417,11 @@
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "storage"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "attic storage ideas pinterest",
@@ -449,15 +435,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "gap",
-      "unmatched_words": [
-        "pinterest",
-        "storage"
-      ]
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "attic storage ideas uk",
@@ -472,13 +455,11 @@
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "storage"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "attic storage ideas with trusses",
@@ -493,13 +474,11 @@
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "storage"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "attic storage organization ideas",
@@ -514,13 +493,11 @@
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "storage"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "baby clothes organizer ideas",
@@ -989,14 +966,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-basement.html",
       "best_page_title": "How to organize a basement, one zone at a time",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "basement organization ideas reddit",
@@ -1130,14 +1105,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-basement.html",
       "best_page_title": "How to organize a basement, one zone at a time",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "basement storage ideas minecraft",
@@ -1191,14 +1164,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-basement.html",
       "best_page_title": "How to organize a basement, one zone at a time",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "basement storage ideas reddit",
@@ -3527,14 +3498,12 @@
       "room": "",
       "best_page": "/rooms/family-room.html",
       "best_page_title": "How to organize a family room, zone by zone",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/family-room.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "bonus room ideas reddit",
@@ -5058,14 +5027,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-an-entryway.html",
       "best_page_title": "How to organize an entryway, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "coat closet organization lowes",
@@ -7950,14 +7917,12 @@
       "room": "Dining Room",
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "dining room decorating ideas south africa",
@@ -8114,14 +8079,12 @@
       "room": "Dining Room",
       "best_page": "/zones/dining-room-the-beverage-or-coffee-station.html",
       "best_page_title": "How to organize the dining room beverage or coffee station",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/dining-room-the-beverage-or-coffee-station.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "dining room layout ideas",
@@ -8232,14 +8195,12 @@
       "room": "Dining Room",
       "best_page": "/zones/dining-room-the-sideboard-storage.html",
       "best_page_title": "How to organize the dining room sideboard storage",
-      "coverage": 0.75,
-      "heading_coverage": 0.75,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/dining-room-the-sideboard-storage.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "dining room style ideas",
@@ -10208,14 +10169,12 @@
       "room": "Entryway",
       "best_page": "/articles/how-to-organize-an-entryway.html",
       "best_page_title": "How to organize an entryway, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "entryway closet ideas pinterest",
@@ -10229,14 +10188,12 @@
       "room": "Entryway",
       "best_page": "/articles/how-to-organize-an-entryway.html",
       "best_page_title": "How to organize an entryway, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "entryway closet ideas small",
@@ -11249,13 +11206,11 @@
       "best_page": "/rooms/entryway.html",
       "best_page_title": "How to organize an entryway, zone by zone",
       "coverage": 0.0,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "foyer design ideas simple",
@@ -11918,14 +11873,12 @@
       "room": "Garage",
       "best_page": "/zones/garage-the-automotive-care-zone.html",
       "best_page_title": "How to organize the garage car care supplies",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/garage-the-automotive-care-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "garage organization ideas reddit",
@@ -12561,14 +12514,13 @@
       "room": "Guest Bathroom",
       "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "best_page_title": "How to organize the guest bathroom towels",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "decorating",
-        "pinterest"
+        "decorating"
       ]
     },
     {
@@ -12764,14 +12716,12 @@
       "room": "Guest Bedroom",
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "guest bedroom design ideas",
@@ -12849,14 +12799,12 @@
       "room": "Guest Bedroom",
       "best_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
       "best_page_title": "How to organize the guest bedroom bed and linens",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "guest bedroom office ideas",
@@ -13963,14 +13911,12 @@
       "room": "Home Office",
       "best_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
       "best_page_title": "How to organize the home office bookshelf",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "home office organization ideas images",
@@ -14023,14 +13969,12 @@
       "room": "Home Office",
       "best_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
       "best_page_title": "How to organize the home office bookshelf",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "home office organization ideas reddit",
@@ -14163,14 +14107,12 @@
       "room": "Home Office",
       "best_page": "/zones/home-office-the-file-storage.html",
       "best_page_title": "How to organize the home office file storage",
-      "coverage": 0.75,
-      "heading_coverage": 0.75,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/home-office-the-file-storage.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "home office storage ideas pinterest",
@@ -14184,14 +14126,12 @@
       "room": "Home Office",
       "best_page": "/zones/home-office-the-file-storage.html",
       "best_page_title": "How to organize the home office file storage",
-      "coverage": 0.75,
-      "heading_coverage": 0.75,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/home-office-the-file-storage.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "home office storage ideas uk",
@@ -30423,14 +30363,12 @@
       "room": "",
       "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
       "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize linen closet in bathroom",
@@ -37431,14 +37369,13 @@
       "room": "Kids Bedroom",
       "best_page": "/zones/kids-bedroom-the-bed-and-sleep-zone.html",
       "best_page_title": "How to organize the kids bedroom bed",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/kids-bedroom-the-bed-and-sleep-zone.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "pinterest"
+        "design"
       ]
     },
     {
@@ -37533,14 +37470,12 @@
       "room": "Kids Bedroom",
       "best_page": "/zones/kids-bedroom-the-toy-storage-zone.html",
       "best_page_title": "How to organize the kids bedroom toy storage",
-      "coverage": 0.75,
-      "heading_coverage": 0.75,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kids-bedroom-the-study-desk.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "kids clothes organization ideas",
@@ -37632,14 +37567,12 @@
       "room": "",
       "best_page": "/zones/kids-bedroom-the-bed-and-sleep-zone.html",
       "best_page_title": "How to organize the kids bedroom bed",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kids-bedroom-the-bed-and-sleep-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "kids sports gear storage",
@@ -38045,14 +37978,12 @@
       "room": "Kitchen",
       "best_page": "/zones/kitchen-the-cooking-zone.html",
       "best_page_title": "How to organize the kitchen stove area",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kitchen-the-cooking-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "kitchen organization ideas in tamil",
@@ -38127,14 +38058,12 @@
       "room": "Kitchen",
       "best_page": "/zones/kitchen-the-cooking-zone.html",
       "best_page_title": "How to organize the kitchen stove area",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kitchen-the-cooking-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "kitchen organization ideas simple",
@@ -39167,14 +39096,12 @@
       "room": "Laundry Room",
       "best_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
       "best_page_title": "How to organize the laundry room detergent and supplies",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "laundry room organization ideas on a budget",
@@ -39207,14 +39134,12 @@
       "room": "Laundry Room",
       "best_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
       "best_page_title": "How to organize the laundry room detergent and supplies",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "laundry room organization ideas small",
@@ -39266,14 +39191,12 @@
       "room": "Laundry Room",
       "best_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
       "best_page_title": "How to organize the laundry room detergent and supplies",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "laundry room organization products",
@@ -39641,14 +39564,12 @@
       "room": "",
       "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
       "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "linen closet organization ideas pinterest",
@@ -39663,14 +39584,12 @@
       "room": "",
       "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
       "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "linen closet organization ikea",
@@ -39684,14 +39603,12 @@
       "room": "",
       "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
       "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "linen closet organization images",
@@ -40084,14 +40001,13 @@
       "room": "Living Room",
       "best_page": "/zones/living-room-the-bookshelves-and-display.html",
       "best_page_title": "How to organize the living room bookshelves and display",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/living-room-the-bookshelves-and-display.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "decorating",
-        "pinterest"
+        "decorating"
       ]
     },
     {
@@ -40289,14 +40205,12 @@
       "room": "Living Room",
       "best_page": "/zones/living-room-the-bookshelves-and-display.html",
       "best_page_title": "How to organize the living room bookshelves and display",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/living-room-the-bookshelves-and-display.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "living room organization ideas with kids",
@@ -41099,14 +41013,13 @@
       "room": "",
       "best_page": "/zones/primary-bedroom-the-primary-closet.html",
       "best_page_title": "How to organize the primary bedroom closet",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/primary-bedroom-the-primary-closet.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "pinterest"
+        "design"
       ]
     },
     {
@@ -41551,14 +41464,12 @@
       "room": "Mudroom",
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "mudroom design layout ideas",
@@ -41693,14 +41604,12 @@
       "room": "Mudroom",
       "best_page": "/zones/mudroom-the-bench-and-transition-surface.html",
       "best_page_title": "How to organize the mudroom bench",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/mudroom-the-bench-and-transition-surface.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "mudroom shoe organization ideas",
@@ -42438,14 +42347,12 @@
       "room": "Nursery",
       "best_page": "/zones/nursery-the-books-and-quiet-play-zone.html",
       "best_page_title": "How to organize the nursery book storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/nursery-the-books-and-quiet-play-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "off season clothing storage ideas",
@@ -45034,14 +44941,12 @@
       "room": "",
       "best_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
       "best_page_title": "How to organize the primary bedroom bed and bedding",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "original coat hooks diy",
@@ -45131,15 +45036,15 @@
         "how to organize seasonal storage"
       ],
       "room": "",
-      "best_page": "/garage-deck.html",
-      "best_page_title": "The Garage Deck: 80 cards, free to read",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.25,
       "heading_coverage": 0.75,
-      "heading_page": "/garage-deck.html",
+      "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "clothes"
+        "season"
       ]
     },
     {
@@ -46638,14 +46543,12 @@
       "room": "Pantry",
       "best_page": "/zones/pantry-the-backstock-and-bulk.html",
       "best_page_title": "How to organize the pantry bulk storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/pantry-the-backstock-and-bulk.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "pantry organization ideas indian",
@@ -46720,14 +46623,12 @@
       "room": "Pantry",
       "best_page": "/zones/pantry-the-backstock-and-bulk.html",
       "best_page_title": "How to organize the pantry bulk storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/pantry-the-backstock-and-bulk.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "pantry organization ideas reddit",
@@ -47285,14 +47186,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-an-entryway.html",
       "best_page_title": "How to organize an entryway, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "pinterest guest bathroom ideas",
@@ -47306,14 +47205,12 @@
       "room": "Guest Bathroom",
       "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "best_page_title": "How to organize the guest bathroom towels",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "planning a gallery wall",
@@ -49924,14 +49821,12 @@
       "room": "",
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.25,
-      "heading_coverage": 0.75,
+      "coverage": 0.333,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "spare bedroom design ideas",
@@ -50727,16 +50622,14 @@
         "how to organize hardware storage"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "stores"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "storage baskets for organizing",
@@ -50849,11 +50742,11 @@
         "how to organize bulk storage"
       ],
       "room": "",
-      "best_page": "/zones/family-room-the-board-game-and-puzzle-zone.html",
-      "best_page_title": "How to organize the family room game storage",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/family-room-the-board-game-and-puzzle-zone.html",
+      "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -52702,14 +52595,12 @@
       "room": "",
       "best_page": "/zones/laundry-room-the-utility-and-cleaning-zone.html",
       "best_page_title": "How to organize the laundry room cleaning supplies",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/laundry-room-the-utility-and-cleaning-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "utility room ideas small",
@@ -52877,14 +52768,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-basement.html",
       "best_page_title": "How to organize a basement, one zone at a time",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "utility room storage shelves",
@@ -53253,14 +53142,12 @@
       "room": "",
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "walk in closet organization inspo",
@@ -56178,14 +56065,12 @@
       "room": "Workshop",
       "best_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
       "best_page_title": "How to organize the workshop hardware storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "workshop organization tips",
@@ -56438,6 +56323,6 @@
       ]
     }
   ],
-  "scored_against_commit": "2ae72bb84",
-  "scored_at": "2026-11-17T16:16:00Z"
+  "scored_against_commit": "5c40d90b4",
+  "scored_at": "2026-11-17T16:56:48Z"
 }

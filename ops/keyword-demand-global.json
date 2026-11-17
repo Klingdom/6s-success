@@ -80,15 +80,15 @@
         "attic organisation ideas"
       ],
       "room": "",
-      "best_page": "/home-office-deck.html",
-      "best_page_title": "The Home Office Deck: 66 cards, free to read",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/home-office-deck.html",
+      "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "attic"
+        "group"
       ],
       "markets": [
         "au"
@@ -104,14 +104,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "australia"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -256,13 +254,11 @@
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "storage"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -278,15 +274,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "gap",
-      "unmatched_words": [
-        "australia",
-        "storage"
-      ],
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au",
         "ca"
@@ -303,13 +296,11 @@
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "storage"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -322,16 +313,14 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-basement.html",
-      "best_page_title": "How to organize a basement, one zone at a time",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "attic"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -346,15 +335,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "gap",
-      "unmatched_words": [
-        "ikea",
-        "storage"
-      ],
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -392,13 +378,11 @@
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "storage"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -413,15 +397,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "gap",
-      "unmatched_words": [
-        "pinterest",
-        "storage"
-      ],
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -437,13 +418,11 @@
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "storage"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -459,13 +438,11 @@
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "storage"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -481,13 +458,11 @@
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "storage"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -500,15 +475,15 @@
         "attic organisation ideas"
       ],
       "room": "",
-      "best_page": "/rooms/hall-closet.html",
-      "best_page_title": "How to organize a hall closet, zone by zone",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/rooms/hall-closet.html",
+      "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "attic"
+        "rooms"
       ],
       "markets": [
         "au"
@@ -983,14 +958,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-basement.html",
       "best_page_title": "How to organize a basement, one zone at a time",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "australia"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -1140,14 +1113,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-basement.html",
       "best_page_title": "How to organize a basement, one zone at a time",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -1295,14 +1266,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-basement.html",
       "best_page_title": "How to organize a basement, one zone at a time",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -1359,14 +1328,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-basement.html",
       "best_page_title": "How to organize a basement, one zone at a time",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -1573,14 +1540,12 @@
       "room": "",
       "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "best_page_title": "How to organize the guest bathroom towels",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/decluttering-vs-organizing.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -1784,14 +1749,12 @@
       "room": "",
       "best_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
       "best_page_title": "How to organize the primary bedroom bed and bedding",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -3209,14 +3172,12 @@
       "room": "",
       "best_page": "/rooms/family-room.html",
       "best_page_title": "How to organize a family room, zone by zone",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/family-room.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -3975,14 +3936,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-an-entryway.html",
       "best_page_title": "How to organize an entryway, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -4642,14 +4601,12 @@
       "room": "",
       "best_page": "/zones/home-office-the-desk-drawers-and-pedestal.html",
       "best_page_title": "How to organize the home office desk drawers",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-dining-room.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb"
       ],
@@ -4704,14 +4661,12 @@
       "room": "",
       "best_page": "/zones/home-office-the-desk-drawers-and-pedestal.html",
       "best_page_title": "How to organize the home office desk drawers",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-dining-room.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -4954,14 +4909,12 @@
       "room": "Dining Room",
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -5160,14 +5113,13 @@
       "room": "Dining Room",
       "best_page": "/zones/dining-room-the-beverage-or-coffee-station.html",
       "best_page_title": "How to organize the dining room beverage or coffee station",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/dining-room-the-beverage-or-coffee-station.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "pinterest"
+        "design"
       ],
       "markets": [
         "gb",
@@ -5345,14 +5297,12 @@
       "room": "Dining Room",
       "best_page": "/zones/dining-room-the-sideboard-storage.html",
       "best_page_title": "How to organize the dining room sideboard storage",
-      "coverage": 0.75,
-      "heading_coverage": 0.75,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/dining-room-the-sideboard-storage.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -6121,14 +6071,12 @@
       "room": "Entryway",
       "best_page": "/articles/how-to-organize-an-entryway.html",
       "best_page_title": "How to organize an entryway, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -6143,14 +6091,12 @@
       "room": "Entryway",
       "best_page": "/articles/how-to-organize-an-entryway.html",
       "best_page_title": "How to organize an entryway, step by step",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -6350,14 +6296,12 @@
       "room": "Entryway",
       "best_page": "/zones/entryway-the-bench-or-console.html",
       "best_page_title": "How to organize the entryway bench or console",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/entryway-the-bench-or-console.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "australia"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -6424,14 +6368,12 @@
       "room": "Entryway",
       "best_page": "/zones/entryway-the-bench-or-console.html",
       "best_page_title": "How to organize the entryway bench or console",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/entryway-the-bench-or-console.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "in"
@@ -7039,13 +6981,11 @@
       "best_page": "/rooms/entryway.html",
       "best_page_title": "How to organize an entryway, zone by zone",
       "coverage": 0.0,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -7582,14 +7522,12 @@
       "room": "Garage",
       "best_page": "/zones/garage-the-automotive-care-zone.html",
       "best_page_title": "How to organize the garage car care supplies",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/garage-the-automotive-care-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "australia"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -7606,14 +7544,12 @@
       "room": "Garage",
       "best_page": "/zones/garage-the-automotive-care-zone.html",
       "best_page_title": "How to organize the garage car care supplies",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/garage-the-automotive-care-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -7911,14 +7847,12 @@
       "room": "Garage",
       "best_page": "/zones/garage-the-automotive-care-zone.html",
       "best_page_title": "How to organize the garage car care supplies",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/garage-the-automotive-care-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -8017,14 +7951,12 @@
       "room": "Garage",
       "best_page": "/zones/garage-the-bulk-and-overhead-storage.html",
       "best_page_title": "How to organize the garage bulk and overhead storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/garage-the-bulk-and-overhead-storage.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "australia"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -8129,14 +8061,12 @@
       "room": "Garage",
       "best_page": "/zones/garage-the-bulk-and-overhead-storage.html",
       "best_page_title": "How to organize the garage bulk and overhead storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/garage-the-bulk-and-overhead-storage.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -8369,14 +8299,13 @@
       "room": "Guest Bathroom",
       "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "best_page_title": "How to organize the guest bathroom towels",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "decorating",
-        "pinterest"
+        "decorating"
       ],
       "markets": [
         "ca"
@@ -8560,14 +8489,12 @@
       "room": "Guest Bedroom",
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -8626,14 +8553,12 @@
       "room": "Guest Bedroom",
       "best_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
       "best_page_title": "How to organize the guest bedroom bed and linens",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "australia"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -9768,14 +9693,12 @@
       "room": "Home Office",
       "best_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
       "best_page_title": "How to organize the home office bookshelf",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -9911,14 +9834,12 @@
       "room": "Home Office",
       "best_page": "/zones/home-office-the-file-storage.html",
       "best_page_title": "How to organize the home office file storage",
-      "coverage": 0.75,
-      "heading_coverage": 0.75,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/home-office-the-file-storage.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -9937,14 +9858,12 @@
       "room": "Home Office",
       "best_page": "/zones/home-office-the-file-storage.html",
       "best_page_title": "How to organize the home office file storage",
-      "coverage": 0.75,
-      "heading_coverage": 0.75,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/home-office-the-file-storage.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -12689,13 +12608,12 @@
       "room": "",
       "best_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
       "best_page_title": "How to organize the patio or deck outdoor seating",
-      "coverage": 0.2,
-      "heading_coverage": 0.4,
+      "coverage": 0.25,
+      "heading_coverage": 0.5,
       "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
       "matched_on": "heading",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
-        "australia",
         "build",
         "handrail"
       ],
@@ -13843,14 +13761,12 @@
       "room": "",
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "australia"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -16704,14 +16620,12 @@
       "room": "Garage",
       "best_page": "/rooms/garage.html",
       "best_page_title": "How to organize a garage, zone by zone",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/garage.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "australia"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -17400,14 +17314,12 @@
       "room": "Pantry",
       "best_page": "/zones/pantry-the-backstock-and-bulk.html",
       "best_page_title": "How to organize the pantry bulk storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/pantry-the-backstock-and-bulk.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "australia"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -30290,14 +30202,12 @@
       "room": "Kitchen",
       "best_page": "/zones/kitchen-the-utensil-and-utility-drawers.html",
       "best_page_title": "How to organize the kitchen utensil and utility drawers",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kitchen-the-utensil-and-utility-drawers.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -30554,14 +30464,12 @@
       "room": "",
       "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
       "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -35279,14 +35187,13 @@
       "room": "Kids Bedroom",
       "best_page": "/zones/kids-bedroom-the-bed-and-sleep-zone.html",
       "best_page_title": "How to organize the kids bedroom bed",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/kids-bedroom-the-bed-and-sleep-zone.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "pinterest"
+        "design"
       ],
       "markets": [
         "ca"
@@ -35466,14 +35373,12 @@
       "room": "Kids Bedroom",
       "best_page": "/zones/kids-bedroom-the-toy-storage-zone.html",
       "best_page_title": "How to organize the kids bedroom toy storage",
-      "coverage": 0.75,
-      "heading_coverage": 0.75,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kids-bedroom-the-study-desk.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -35597,14 +35502,12 @@
       "room": "",
       "best_page": "/zones/kids-bedroom-the-bed-and-sleep-zone.html",
       "best_page_title": "How to organize the kids bedroom bed",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kids-bedroom-the-bed-and-sleep-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -35646,14 +35549,12 @@
       "room": "",
       "best_page": "/zones/kids-bedroom-the-bed-and-sleep-zone.html",
       "best_page_title": "How to organize the kids bedroom bed",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kids-bedroom-the-bed-and-sleep-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -35759,14 +35660,12 @@
       "room": "Kitchen",
       "best_page": "/zones/kitchen-the-cooking-zone.html",
       "best_page_title": "How to organize the kitchen stove area",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kitchen-the-cooking-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "australia"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -35805,14 +35704,12 @@
       "room": "Kitchen",
       "best_page": "/zones/kitchen-the-cooking-zone.html",
       "best_page_title": "How to organize the kitchen stove area",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kitchen-the-cooking-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -36185,14 +36082,12 @@
       "room": "Kitchen",
       "best_page": "/zones/kitchen-the-cooking-zone.html",
       "best_page_title": "How to organize the kitchen stove area",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kitchen-the-cooking-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -36279,14 +36174,12 @@
       "room": "Kitchen",
       "best_page": "/zones/kitchen-the-cooking-zone.html",
       "best_page_title": "How to organize the kitchen stove area",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kitchen-the-cooking-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -36321,14 +36214,12 @@
       "room": "Kitchen",
       "best_page": "/zones/kitchen-the-cooking-zone.html",
       "best_page_title": "How to organize the kitchen stove area",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kitchen-the-cooking-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -36434,13 +36325,11 @@
       "best_page": "/zones/pantry-the-dry-goods-shelves.html",
       "best_page_title": "How to organize the pantry dry goods shelves",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/pantry-the-dry-goods-shelves.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "australia"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -37052,14 +36941,13 @@
       "room": "Laundry Room",
       "best_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
       "best_page_title": "How to organize the laundry room detergent and supplies",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "ikea"
+        "design"
       ],
       "markets": [
         "gb"
@@ -37075,14 +36963,13 @@
       "room": "Laundry Room",
       "best_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
       "best_page_title": "How to organize the laundry room detergent and supplies",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "pinterest"
+        "design"
       ],
       "markets": [
         "gb",
@@ -37434,14 +37321,12 @@
       "room": "Laundry Room",
       "best_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
       "best_page_title": "How to organize the laundry room detergent and supplies",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -37481,14 +37366,12 @@
       "room": "Laundry Room",
       "best_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
       "best_page_title": "How to organize the laundry room detergent and supplies",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -37526,14 +37409,12 @@
       "room": "Laundry Room",
       "best_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
       "best_page_title": "How to organize the laundry room detergent and supplies",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -37796,14 +37677,12 @@
       "room": "",
       "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
       "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -37818,14 +37697,12 @@
       "room": "",
       "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
       "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -37840,14 +37717,12 @@
       "room": "",
       "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
       "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -37992,14 +37867,12 @@
       "room": "",
       "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "best_page_title": "How to organize the guest bathroom towels",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "australia"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -38062,14 +37935,12 @@
       "room": "",
       "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "best_page_title": "How to organize the guest bathroom towels",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -38311,14 +38182,13 @@
       "room": "Living Room",
       "best_page": "/zones/living-room-the-bookshelves-and-display.html",
       "best_page_title": "How to organize the living room bookshelves and display",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/living-room-the-bookshelves-and-display.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "decorating",
-        "pinterest"
+        "decorating"
       ],
       "markets": [
         "ca"
@@ -38585,14 +38455,13 @@
       "room": "Living Room",
       "best_page": "/zones/living-room-the-bookshelves-and-display.html",
       "best_page_title": "How to organize the living room bookshelves and display",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/living-room-the-bookshelves-and-display.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "pinterest"
+        "design"
       ],
       "markets": [
         "gb",
@@ -38845,14 +38714,12 @@
       "room": "Living Room",
       "best_page": "/zones/living-room-the-bookshelves-and-display.html",
       "best_page_title": "How to organize the living room bookshelves and display",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/living-room-the-bookshelves-and-display.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -39511,13 +39378,12 @@
       "room": "",
       "best_page": "/zones/primary-bathroom-the-vanity-counter.html",
       "best_page_title": "How to organize the primary bathroom vanity counter",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/primary-bathroom-the-vanity-counter.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "australia",
         "size"
       ],
       "markets": [
@@ -39782,14 +39648,12 @@
       "room": "",
       "best_page": "/zones/primary-bedroom-the-primary-closet.html",
       "best_page_title": "How to organize the primary bedroom closet",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/primary-bedroom-the-primary-closet.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "australia"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -40006,14 +39870,13 @@
       "room": "",
       "best_page": "/zones/primary-bedroom-the-primary-closet.html",
       "best_page_title": "How to organize the primary bedroom closet",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/primary-bedroom-the-primary-closet.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "pinterest"
+        "design"
       ],
       "markets": [
         "ca"
@@ -40118,14 +39981,12 @@
       "room": "",
       "best_page": "/zones/primary-bedroom-the-primary-closet.html",
       "best_page_title": "How to organize the primary bedroom closet",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/primary-bedroom-the-primary-closet.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "australia"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -40656,14 +40517,12 @@
       "room": "Mudroom",
       "best_page": "/zones/mudroom-the-bench-and-transition-surface.html",
       "best_page_title": "How to organize the mudroom bench",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/mudroom-the-bench-and-transition-surface.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -40948,14 +40807,12 @@
       "room": "Nursery",
       "best_page": "/zones/nursery-the-baby-clothing-zone.html",
       "best_page_title": "How to organize the nursery baby clothes",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/nursery-the-baby-clothing-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "australia"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -41204,14 +41061,12 @@
       "room": "Nursery",
       "best_page": "/zones/nursery-the-books-and-quiet-play-zone.html",
       "best_page_title": "How to organize the nursery book storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/nursery-the-books-and-quiet-play-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -41991,14 +41846,12 @@
       "room": "Pantry",
       "best_page": "/zones/pantry-the-backstock-and-bulk.html",
       "best_page_title": "How to organize the pantry bulk storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/pantry-the-backstock-and-bulk.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "australia"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -42037,14 +41890,12 @@
       "room": "Pantry",
       "best_page": "/zones/pantry-the-backstock-and-bulk.html",
       "best_page_title": "How to organize the pantry bulk storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/pantry-the-backstock-and-bulk.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -42107,14 +41958,12 @@
       "room": "Pantry",
       "best_page": "/zones/pantry-the-backstock-and-bulk.html",
       "best_page_title": "How to organize the pantry bulk storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/pantry-the-backstock-and-bulk.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -42330,14 +42179,12 @@
       "room": "Pantry",
       "best_page": "/zones/pantry-the-backstock-and-bulk.html",
       "best_page_title": "How to organize the pantry bulk storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/pantry-the-backstock-and-bulk.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -42398,14 +42245,12 @@
       "room": "Pantry",
       "best_page": "/zones/pantry-the-backstock-and-bulk.html",
       "best_page_title": "How to organize the pantry bulk storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/pantry-the-backstock-and-bulk.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -43594,14 +43439,12 @@
       "room": "",
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.25,
-      "heading_coverage": 0.75,
+      "coverage": 0.333,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -44131,13 +43974,11 @@
       "best_page": "/patio-or-deck-deck.html",
       "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "australia"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -44525,14 +44366,13 @@
       "room": "",
       "best_page": "/zones/laundry-room-the-utility-and-cleaning-zone.html",
       "best_page_title": "How to organize the laundry room cleaning supplies",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/laundry-room-the-utility-and-cleaning-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "design",
-        "ikea"
+        "design"
       ],
       "markets": [
         "gb",
@@ -44669,14 +44509,12 @@
       "room": "",
       "best_page": "/zones/laundry-room-the-utility-and-cleaning-zone.html",
       "best_page_title": "How to organize the laundry room cleaning supplies",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/laundry-room-the-utility-and-cleaning-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -44835,14 +44673,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-a-basement.html",
       "best_page_title": "How to organize a basement, one zone at a time",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -44921,14 +44757,12 @@
       "room": "",
       "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
       "best_page_title": "How to organize the guest bathroom vanity counter",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/decluttering-vs-organizing.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "australia"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -45115,14 +44949,12 @@
       "room": "",
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -45139,14 +44971,12 @@
       "room": "",
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -45404,14 +45234,12 @@
       "room": "",
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "ikea"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -47408,13 +47236,12 @@
       "room": "",
       "best_page": "/zones/guest-bathroom-the-guest-vanity-storage.html",
       "best_page_title": "How to organize the guest bathroom vanity storage",
-      "coverage": 0.2,
-      "heading_coverage": 0.4,
+      "coverage": 0.25,
+      "heading_coverage": 0.5,
       "heading_page": "/zones/guest-bathroom-the-guest-vanity-storage.html",
       "matched_on": "heading",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
-        "australia",
         "bubbling",
         "shower"
       ],
@@ -47989,14 +47816,12 @@
       "room": "Workshop",
       "best_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
       "best_page_title": "How to organize the workshop hardware storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "pinterest"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -48186,6 +48011,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "c249ad09f",
-  "scored_at": "2026-11-17T02:48:52Z"
+  "scored_against_commit": "5c40d90b4",
+  "scored_at": "2026-11-17T16:57:48Z"
 }
