@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-17 (17:1x slot): previous work (A173) confirmed finished, but preflight's own gate_publish_image_current FAIL said the fix was sitting unpublished; re-triggered the build rather than just re-wording the citation
+
+Attached clean: shallow/detached checkout, unshallowed, `merge --ff-only` onto `origin/main` (1085 commits, no reset/force). A173 confirmed finished, not cited: tree clean, pushed, `preflight.py --skip-tests` re-run to real completion (not killed early), 0 FAIL first pass. Re-verified rather than trusted: 31 GitHub issues unchanged, none from Phil since #65; `room_guide_candidates.py` empty; `--rescore` unchanged (gap 90), reverted the resulting timestamp-only dirt.
+
+**Found on a second full preflight pass: `gate_status_deploy_gap_count_current` and `gate_publish_image_current` both fired for real reasons, not noise.** STATUS.md's deploy-gap citations said 0 commits undeployed; a fresh `deploy_gap_material_commits` returned 1 (`5616b65`, the attic fix, real `site/` content). The actual cause: `publish-image.yml` run 829 FAILed its own Preflight step on a stale `GOALS.md` citation, the same defect `checks.yml` had already caught; a concurrent cycle fixed the citation (`87240c89e`) but that commit touches no `site/` file, so the path-filtered trigger would never re-fire on its own. Corrected STATUS.md's citations and re-triggered `publish-image.yml` via `workflow_dispatch` (run 830), per the gate's own documented remedy, rather than just rewording the stale number. Collided once with a concurrent push mid-fix; stashed, merged, re-derived the count against the new HEAD, re-applied. Outcome reported unconfirmed: run 830 was still in progress at push time.
+
+**Handing the operator:** confirm run 830 (`publish-image.yml`) completed and `deploy.yml` fired after it; if still pending past 17:45x check it has not stalled. Same Phil-gated queue otherwise, nothing new unblocked.
+
+Pushed to main: `STATUS.md`, `ops/cycle-signal.json`, dashboard files. No price/product/content touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-17: A173, closed a real attic storage wording gap underneath a concurrent cycle's own "noise" verdict on the keyword-gap tier
 
 **Did.** Attached clean (ff-only onto `origin/main`, 1079 commits). `preflight.py --skip-tests` clean first (0 FAIL, 28 warnings). 31 issues unchanged, none from Phil since #64. Epic 5 checked live: `guide_less_rooms()` is `[]`; the 16:1x PM's rescore (93 gaps) had sampled the first 20 and called the cluster noise. Verified that (5d) instead of citing it: half right. Three "noise" rows ("attic storage ideas australia/ikea/pinterest") already score against the correct page, with only a locale/retailer name unmatched; its headings say "store"/"stored" but never "storage". Reworded one heading honestly; added australia/ikea/pinterest to FORMAT_WORDS after a 0/244 self-flattery check.
