@@ -1980,7 +1980,10 @@ ROOM_READING = [
 ROOM_GUIDES = {
     "Kitchen": [("../articles/how-to-declutter-a-kitchen.html",
                  "How to declutter a kitchen, step by step",
-                 "Counters first, then the sink and drawers, then cabinets and the fridge.")],
+                 "Counters first, then the sink and drawers, then cabinets and the fridge."),
+                ("../articles/how-to-organize-recipes.html",
+                 "How to organize recipes, on paper and on your phone",
+                 "The drawer, the fridge door and the cookbook stack are one collection, not three.")],
     "Garage": [("../articles/how-to-organize-a-garage.html",
                 "How to organize a garage full of stuff",
                 "Floor first, then one zone at a time, and what to do with old paint.")],
