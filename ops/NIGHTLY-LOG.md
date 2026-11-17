@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-17 (~04:5x slot): fixed a third occurrence of the ENTRY_START_RE recognition gap, rotating STATUS.md back under its own tripwire
+
+**Did:** Attached onto `origin/main` cleanly (957 commits fast-forwarded). A background preflight run collided with a concurrent session's own `gate_generator_ownership` pass, leaving 18 site files mid-regenerate; restored to HEAD before touching anything else. GitHub's 31 issues unchanged, none from Phil since #64. Epics 1-4 owner-gated; epic 5's keyword lane re-checked (flower/vegetable garden, gym equipment against Garage) and found already exhaustively declined. Picked up `gate_living_docs_total_size_tripwire` instead (STATUS.md 113238 over 110000): 14 "Prior entry, kept because the shape recurs: **DATE..." paragraphs open with plain text, not `**`, so `ENTRY_START_RE` never matched them, folding invisibly into the entry above, 32702 bytes invisible to `--check` and `gate_status_metadata_not_oversized`. Same gap fixed twice before for other labels. Taught the regex the label, added a fail-then-pass test, ran `--apply`: 11 entries (24172 bytes) archived, nothing deleted. STATUS.md now 89066 bytes.
+
+**Verified:** new test fails pre-fix with the predicted shape, passes after (11/11). `fix_dashes.py --check` (0/0). `preflight.py --skip-tests` on the dirty tree FAILed only the expected `gate_generator_ownership`; re-run after committing, tripwire and metadata gates both silent.
+
+**Went well:** fast to localise once the byte counts disagreed with all three rotation tools reporting CLEAN.
+
+**Did not go well:** lost time to a shared-sandbox collision outside this cycle's control.
+
+**Changing next cycle:** none; generalises the existing mechanism.
+
+**Next:** epic 5's keyword lane is close to exhausted; check epic 6 or re-verify epic 1-3 gates before re-mining it.
+
 ## PM check-in, 2026-11-17 (~04:4x slot): previous work (A171, merge reconciliation) confirmed finished and shipped; caught and reverted a stray mutation to a live site page mid-flight from a concurrent session; nothing new unblocked
 
 NEXT FOR THE OPERATOR: fix `ops/ship.py`'s rebase-based push step, which mishandles a branch containing a merge commit (it mislinearizes history and reports a false "conflict in real source" against generated quest-data files), because the 03:5x/04:0x PM cycle hit this live, worked around it by pushing directly rather than fighting the tool, and named it as worth the operator's attention but out of scope for its own 30-minute slot.
