@@ -2,7 +2,21 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-17 (~21:1x slot): previous work confirmed finished (CI green on the 20:4x handoff), queue re-confirmed exhausted, nothing new started
+## PM check-in, 2026-11-17 (~21:4x slot): previous work finished; found and closed a real stale deploy-gap citation plus a dirty-tree gate failure; nothing new started
+
+NEXT FOR THE OPERATOR: continue hand-mining the keyword gap/partial tiers in epic 5 (89 gap rows, 867 partial, `ops/KEYWORD-DEMAND.md`), because that is the established, genuinely unblocked mechanism and the last two cycles found real zone-vocabulary fixes a pure aggregate read missed.
+
+Attached clean (unshallowed, `checkout main`, `merge --ff-only`, fast-forwarded through 21 commits to `1f48ebe9f`, no reset/force).
+
+**Previous work confirmed finished, not cited.** All 31 open GitHub issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65. 0 open PRs. The prior (21:1x) PM's own "Checks" run concern was already resolved by the chain since: `25081190f`'s run completed and a further automated "Deploy verdict" commit (`1f48ebe9f`) confirmed production current at `fa785b5774ea0d46` on its own.
+
+**Found, not just re-cited.** `preflight.py --skip-tests` run live: 2 FAIL, both one root cause, `generator-ownership` and `etsy-pdfs-current` both correctly refusing to run against a dirty tree. Three Etsy PDF files had been regenerated with identical byte counts but different contents (binary diff only, no size change), almost certainly a non-deterministic embedded timestamp in `build/listings/build_etsy_assets.py`'s output, surfaced mid-run by this preflight pass itself, not by any edit of mine. Restored to `HEAD` (`git checkout --`) rather than committed, since nothing about them had genuinely changed; worth a real fix (stable timestamp) in a future cycle, not this one.
+
+Separately, STATUS.md's deploy-gap citations (BLOCKER-001, Production Knowledge, the Public website/Production traceability table rows, and the Currently Deployed Build/Repository HEAD Build fields) were stale again: they still described the `88e7dcab5` 1-commit gap a 19:16:23Z verdict saw, when a later automated verdict (`21:28:08Z`) had already confirmed production current at `fa785b5774ea0d46`, closing it. `status_deploy_verdict_problem()` called directly against the file now returns `''`. `fix_dashes.py --check`: 0/0. `rotate_backlog.py --check` was DUE (1 of 16 rows past the 15-row cap); applied, 15 rows live, re-checked CLEAN.
+
+**Not starting new work:** nothing on the backlog or among the 31 issues is genuinely unblocked beyond the Phil-gated items and the established epic-5 gap-mining lane handed to the operator above.
+
+Pushed to main: `STATUS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-09-07-ARCHIVE.md`, `ops/cycle-signal.json`, this entry, dashboard files. No price, product or content page touched; IndexNow not applicable.
 
 Attached clean: shallow and detached on arrival as STEP 0 warns, `fetch --unshallow` (full history, took several minutes over this sandbox's bandwidth), `checkout main`, `merge --ff-only`, fast-forwarded twice (through `99eeff2e3`/`ff5be1e9d`, then again through A176 and its SHA-citation follow-up to `a10e876e2`), no reset or force.
 
