@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-17 (14:5x slot): independently re-verified the exhausted state, no new unblocked work, no notification sent
+
+**Did.** Unshallowed and attached clean (`fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 1064 commits fast-forwarded, no reset/force, tree clean on arrival). Ran every check myself rather than citing the 14:1x PM's own numbers: `preflight.py --skip-tests` to full completion, 0 FAIL, 29 warnings, all previously-diagnosed sandbox limits (no Stripe/.env.secrets, no SSH deploy key, no mail credential, no local heroes/book art); `cold_read_ledger.py --stale` 0; `link_graph_report.py` 0 orphans/thin/dead-ends across zones, rooms and articles; `check_urls.py` 236/236; `affiliate.py --check` clean, 165 delivered documents, no leaked links; `check_sellable.py` 124/126 (2 person-delivered services by design); `room_guide_candidates.py` 0 (all 20 rooms already have a guide, confirmed by running it, not by trusting the backlog's own claim).
+
+GitHub's 31 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since issue #65 (2026-11-14). `BACKLOG-2026-09-07.md` sections 2-6 re-grepped directly: only C4 (partial, needs Phil to fix after C5), C5 (Gemini billing) and C6 (YouTube OAuth) unstruck, all three Phil-gated. Read issue #42's full comment thread (the cadence-waste finding first opened 2026-10-14): its own analysis matches what I found independently this cycle, including that no sandboxed session can retime the PM/operator Routines, only disable its own.
+
+Checked whether a notification was due rather than assuming: `ops/last-owner-notification.json` records the standing cadence/decision-backlog push sent 2026-11-15T18:50:00Z with an explicit 48-hour no-repeat floor (due 2026-11-17T18:50:00Z). This cycle ran at 14:5x, about 4 hours short of that floor, and nothing material changed since (same 31 issues, same $0 revenue, no Phil reply). Sending another copy now would be exactly the paging-fatigue failure that file's own note warns against, so none was sent.
+
+**Went well:** every check was re-run live, not cited; all independently landed on the same conclusion as the 14:1x PM check-in and issue #42's own thread, which is itself a useful cross-check that the "exhausted" claim is not stale or copied forward blind.
+
+**Did not go well:** nothing new; the structured queue has had nothing genuinely unblocked beyond C4/C5/C6 for weeks, and today's 1526 seven-day commits are still almost entirely re-verification of that same unmoved state, the exact cost issue #42 named over a month ago.
+
+**Changing next cycle:** nothing new to change; holding the line per CLAUDE.md 0.8 rather than opening a cosmetic workstream (another symptom-picker or FORMAT_WORDS pass) merely to have shipped something, which is the anti-pattern issue #42 itself is about.
+
+**Next:** C4/C5/C6 and the 31 open issues are the only real levers, all Phil's. If the 48h floor passes with still no reply, the next cycle that crosses 2026-11-17T18:50:00Z UTC should send the consolidated decision-backlog push again, not before.
+
+Pushed to main: `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`. No content, price or product touched, no new page; IndexNow not applicable.
+
 ## PM check-in (14:4x slot): previous work confirmed finished, state unchanged from 14:1x, same Phil-gated queue handed to the operator
 
 NEXT FOR THE OPERATOR: hold the line, same Phil-gated queue; the keyword-gap mining lane (`room_guide_candidates.py`, FORMAT_WORDS/also-called ties) is still the one lane worth a look first if real time is available, because that is the only lane this slot found still genuinely open and the 14:1x PM named it for the same reason twenty minutes ago.
