@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-17 (~06:0x slot): fixed the one genuinely thin article `link_graph_report.py` found, and closed a stale cold-read-ledger entry a concurrent cycle's own fix had left behind
+
+**Did.** Unshallowed and attached onto `origin/main` cleanly (968 commits fast-forwarded). Ran `preflight.py --skip-tests` live first: 0 FAIL, 30 warnings, all standing. GitHub's 31 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #64. Confirmed by epic: 1-4 owner-gated; epic 5's own two bounded mechanisms (the Home Quest symptom-picker widening, A171; the room-guide keyword lane) both self-report exhausted, matching the prior two cycles' own readings, so did not re-mine either. Ran `check_urls.py`/`audit_pages.py`/`fix_dashes.py --check`/`cold_read_ledger.py --stale`/`link_graph_report.py` by hand looking for a genuine defect rather than stop at "nothing unblocked": found `ops/rotate_status_metadata.py` ledgered 2026-11-12 against a 2026-11-17 touch, and `link_graph_report.py` naming exactly one thin article site-wide, `how-to-organize-recipes.html` (1 inbound link, versus a minimum of 2 everywhere else). Traced it to a Kitchen-topic page (a drawer, the fridge door, three cookbooks, a phone) matching Kitchen's own Cooking Zone content, so added it to `ROOM_GUIDES["Kitchen"]` in `build_zone_pages.py`, the generator that owns `site/rooms/*.html`, rather than hand-editing the page.
+
+**Verified.** Regenerated the full chain (`build_zone_pages.py`, `fingerprint_assets.py`, `build_pwa.py`, `build_seo.py`, `build_mobile_corpus.py`, `build_id.py` after `git add`). `link_graph_report.py` now 0 thin, 0 orphans. `check_urls.py` 236/236, `audit_pages.py` 0 findings, `fix_dashes.py --check` 0/0, `test_gate_general_reading.py`/`test_general_reading.py`/`test_reading_spread_and_uniqueness.py` all pass. `preflight.py --skip-tests` clean before and after. A concurrent PM check-in had independently closed the same ledger entry while this cycle was mid-flight; rebased rather than force-pushed, kept their wording, re-ledgered my own touch to `build_zone_pages.py` afterward. **A second, costlier collision followed:** after pushing, this cycle hand-edited this log and `BACKLOG-2026-09-07.md` to record the work, then ran `ops/dashboard.py`; by the next `git status`, both hand edits had vanished from the working tree with no git command of this cycle's own responsible, while a concurrent GitHub Actions "Hourly check-in record" commit landed on `main` in the same window. Caught before it could ship unrecorded, not assumed fine; redone immediately after re-attaching to the new `origin/main`, right before this commit, rather than a gap left open again.
+
+**Went well:** checking by hand (not just trusting "nothing unblocked") surfaced two small real gaps in one pass; the lost log entry was caught by re-checking rather than assumed written.
+
+**Did not go well:** two shared-sandbox collisions in one cycle, one a ledger rebase, one a vanished hand-edit; lost a little time, no real work lost.
+
+**Changing next cycle:** commit a hand-edited operating document immediately after writing it, before running any further generator or dashboard script, rather than batching several file edits before the next commit.
+
+**Next:** epics 1-5 remain exhausted/owner-gated; re-verify GitHub for anything from Phil before opening a new mining lane.
+
+Pushed to main. Command deck regenerated. No price touched; one existing room page's related-reading list gained one link, `IndexNow` attempted, UNCHECKED (no network to confirm the key file is served).
+
 ## PM check-in, 2026-11-17 (~05:4x slot): previous work (A171 and the ENTRY_START_RE fix) confirmed finished by a full live preflight pass and an unchanged GitHub read; closed one real stale cold-read-ledger entry; nothing new unblocked
 
 NEXT FOR THE OPERATOR: re-verify epics 1-4 against the live GitHub/OWNER-ACTIONS state before opening any new mining lane, because both bounded mechanisms this cycle checked (A170/A171's symptom-picker widening and the room-guide keyword lane) are confirmed exhausted with no further named step, and the standing queue is otherwise 31 decision/P0/blocked-on-art issues, none from Phil since #64 (2026-11-08).
