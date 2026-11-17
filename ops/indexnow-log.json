@@ -240,13 +240,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-06T12:06:54Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-06T13:22:13Z",
    "mode": "changed",
    "offered": 1,
@@ -658,6 +651,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-17T17:09:28Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -874,7 +874,7 @@
   "https://6s-success.com/patio-or-deck-deck.html": "18a64dbe2e309d69",
   "https://6s-success.com/articles/why-is-my-house-always-messy": "876da0c6fc6add95",
   "https://6s-success.com/articles/how-to-organize-a-basement": "b85177a96246ed6f",
-  "https://6s-success.com/articles/how-to-organize-an-attic": "8a2a0913f50afde9",
+  "https://6s-success.com/articles/how-to-organize-an-attic": "b66221fd08666af8",
   "https://6s-success.com/articles/how-to-declutter-a-bedroom": "a68ad0b7b1186ebe",
   "https://6s-success.com/articles/how-to-organize-a-linen-closet": "3387bbee4741a176",
   "https://6s-success.com/articles/how-to-organize-baby-clothes": "18bb5e44d8ced5e7",
