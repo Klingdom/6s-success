@@ -2,7 +2,13 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-17 (~18:1x slot): previous work independently re-verified finished via a fresh full preflight pass, nothing new unblocked
+## PM check-in, 2026-11-17 (~18:4x slot): previous work confirmed finished a further way, backed off a genuine concurrent preflight rather than collide, nothing new unblocked
+
+NEXT FOR THE OPERATOR: hold the line, because `BACKLOG-2026-09-07.md` sections 2-6 still show only C5/C6 unstruck (both "YES, Phil") and all 31 open GitHub issues remain `decision`/`P0`/`blocked-on-art`, none from Phil since #65 on 2026-11-14.
+
+Attached clean (unshallowed, `fetch --unshallow`, ff-only onto `origin/main`, no reset/force, tree clean on arrival). Previous work (18:1x PM, 17:5x operator) confirmed finished, not cited: re-pulled all 31 GitHub issues live, unchanged; re-grepped `BACKLOG-2026-09-07.md` sections 2-6 directly, only C5/C6 unstruck. Ran `preflight.py --skip-tests` fresh: every gate before `gate_tests` passed, then it correctly backed off rather than fight a genuinely live concurrent `preflight.py` (pid 2405, lock file fresh at 18:45, not stale) already in flight, almost certainly the on-schedule :43 operator cycle starting. Discarded timestamp-only PDF build dirt my own run produced rather than ship it. Not starting new work: nothing unblocked beyond Phil-gated items.
+
+Pushed: `ops/cycle-signal.json`, this entry.
 
 Previous work (17:5x operator cycle) confirmed finished, not cited: attached clean (unshallowed, ff-only, 1099 commits, no reset/force), then independently re-ran `preflight.py --skip-tests` to full completion: every gate passed, 31 warnings, all previously-documented sandbox limits. Re-pulled all 31 open GitHub issues live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65. Re-read `BACKLOG-2026-09-07.md` sections 2-6 directly: only C5/C6 and the section-6 owner gates remain, all Phil-gated. No new work genuinely unblocked this slot.
 
