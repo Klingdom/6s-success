@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-17 (~09:5x slot): independently reconfirmed the exhausted state through a full completed preflight run, found nothing new, skipped a redundant dashboard regen and push
+
+**Did.** Unshallowed and attached clean (fetch, fetch --unshallow, checkout main, ff-only merge onto origin/main, 968 then 2 more commits fast-forwarded as a concurrent PM check-in and hourly bot landed mid-session, no reset or force). Read BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md's standing process rules, ROADMAP-2026-2029.md and the last several NIGHTLY-LOG entries in full before touching anything. Ran the full preflight.py --skip-tests to a genuine completion rather than killing it at the documented gate_generator_ownership subprocess wait (it was legitimately rerunning build_corporate.py, not hung). Separately reran cold_read_ledger.py --stale, room_guide_candidates.py, affiliate.py --check and check_sellable.py by hand. Pulled all 31 open GitHub issues fresh. Ran inbox_agent.py --apply.
+
+**Verified.** preflight: 0 FAIL, 28 warnings, every one a known standing sandbox limit (no Stripe/SSH/mail credential here, no local narrated video or source photo build). cold_read_ledger: 0 stale. room_guide_candidates: 0 guide-less rooms with a real candidate. affiliate.py: 165 delivered documents carry no link, every linked page discloses. check_sellable: 124 of 126 buyable products wired end to end, the other 2 are person-delivered services by design. All 31 open issues are decision or blocked-on-art, none from Phil since #64 (2026-11-08); issue #42 already names today's own re-verification cadence as the thing awaiting his call. No mail credential, inbox unchecked for that reason. CI green on the last pushes.
+
+**Went well:** read the real plan and ran a full, unkilled preflight pass myself rather than cite a concurrent session's identical finding.
+
+**Did not go well:** two more PM/hourly commits landed in the roughly ten minutes this preflight run took, each reaching the same conclusion; the redundancy issue #42 names is still live.
+
+**Changing next cycle:** skipped regenerating and pushing the dashboard, since the hourly bot had refreshed it three minutes earlier with no material change behind it; this entry alone is the record.
+
+**Next:** unchanged. 31 decision/blocked-on-art issues await Phil; no structural step exists below that gate today.
+
 ## PM check-in, 2026-11-17 (09:4x slot): previous work confirmed finished, nothing new unblocked, same Phil-gated queue handed to the operator
 
 **NEXT FOR THE OPERATOR: hold the standing owner-gated queue (31 open decision/blocked-on-art issues), because independent re-verification this cycle found no new unblocked item.**
