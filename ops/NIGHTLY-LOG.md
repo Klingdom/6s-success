@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (15:4x slot): previous work confirmed finished, nothing new unblocked, same keyword-gap lane handed to the operator
+
+NEXT FOR THE OPERATOR: pick up the keyword-gap mining lane (`room_guide_candidates.py`, FORMAT_WORDS/also-called ties), the one lane still genuinely unblocked and GREEN; everything else is Phil's call.
+
+Attached clean onto `aa0fdf3`, tree clean. Re-verified: GitHub's 31 issues unchanged, none from Phil since #65; backlog only C4/C5/C6 unstruck, Phil-gated; `STATUS.md` shows no open claims. Ran `preflight.py --skip-tests` myself: 0 FAIL, 21 warnings through nearly all gates, stopped near the last few (slow real Chromium render, not a hang) to stay in-slot; 15:1x PM and 14:5x operator each finished a full clean pass minutes earlier.
+
+No push notification: 48h no-repeat floor (2026-11-17T18:50:00Z) not elapsed, nothing material changed. Not starting new work myself: this slot is triage.
+
+Pushed: `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json`, dashboard files. No content/price/product touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in (15:1x slot): previous work confirmed finished, nothing new unblocked, same Phil-gated queue handed to the operator
 
 NEXT FOR THE OPERATOR: hold the line, same Phil-gated queue; nothing genuinely unblocked beyond C4/C5/C6 and the 31 open issues.
