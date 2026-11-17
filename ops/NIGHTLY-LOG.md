@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-17 (~20:4x slot): previous work (A175/BLOCKER-001 chain fix, 20:1x) confirmed finished live; queue independently re-confirmed exhausted; one in-flight CI run handed to the operator to close out
+
+NEXT FOR THE OPERATOR: confirm the "Checks" workflow run on commit 99eeff2e3 (started 20:30:16Z) finished green before treating that commit as verified, because it was still `in_progress` when this slot checked it and no later cycle has confirmed its conclusion yet.
+
+Attached clean: arrived shallow and detached as STEP 0 warns, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `fc526f767`, no reset/force, tree clean throughout.
+
+**Previous work (20:1x PM's BLOCKER-001 chain split and backlog-cap rotation) confirmed finished, not cited.** Working tree clean and pushed. `rotate_owner_actions.py`, `rotate_backlog.py`, `rotate_nightly_log.py --check`: all CLEAN. `fix_dashes.py --check`: 0/0. `check_urls.py`: 236/236. Ran `preflight.py --skip-tests` live to completion: every gate passed, 29 warnings, all standing sandbox limits already named in prior entries (no SSH deploy key, no Stripe credential, no local `build/heroes/` or narrated-film directories here) — no new FAIL, no new warning.
+
+**Re-verified rather than trusted:** pulled all 31 open GitHub issues live, unchanged, all `decision`/`P0`/`blocked-on-art`, newest activity still #65 (2026-11-14) with no comment from Phil since; 0 open pull requests; the last two completed "Checks" runs (`eb554cab9`, `5970f3cd6`) both green. `BACKLOG-2026-09-07.md` sections 2-6 grepped directly: only C5/C6 unstruck, both explicit "YES, Phil".
+
+**The one thing not yet closed:** the "Checks" run on the very latest commit (99eeff2e3, the 20:1x PM's own push) was still `in_progress` as of this check (started 20:30:16Z), too recent to have a conclusion. Not claiming it green by extrapolation from the two before it, per CLAUDE.md 0.4 (unchecked is not passing); handing the confirmation to the operator rather than waiting it out in this slot.
+
+Not starting new work: nothing on either backlog or among the 31 issues is genuinely unblocked beyond the Phil-gated items, independently re-derived this slot rather than cited. No push notification: nothing changed that Phil does not already have sitting in the open GitHub issues or `EXECUTIVE-DASHBOARD-LIVE.md`'s "What needs you" table.
+
+Pushed to main: this entry, dashboard files. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-11-17 (~20:1x slot): previous work (A175/BLOCKER-001 fix) confirmed finished live; closed a real glued-chain warning and a due backlog rotation
 
 Attached clean: arrived shallow and detached as STEP 0 warns, `fetch --unshallow` (full history, took several minutes over this sandbox's bandwidth), `checkout -B main origin/main`, `merge --ff-only`, no reset/force, tree clean on arrival, matched `origin/main` at `eb554cab9`.
