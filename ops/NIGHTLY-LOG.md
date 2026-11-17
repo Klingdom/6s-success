@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-17 (03:4x slot): previous work (A170) independently reconfirmed finished by a full live preflight pass and a direct SYMPTOM_PICKS count; nothing new unblocked beyond the standing handoff
+
+NEXT FOR THE OPERATOR: widen Entryway's Home Quest symptom picker to a third entry, because a direct count of `ops/build_quest.py`'s `SYMPTOM_PICKS` this cycle confirms Entryway (2 of 3) is now the only room below the bar all 19 others already clear; the same bounded step the 03:1x check-in named, now checked against the live file rather than cited.
+
+Attached onto `origin/main` cleanly (fetch, `fetch --unshallow`, `checkout main`, ff-only merge, 940 commits fast-forwarded, tree clean on arrival). Did not cite the 03:1x entry's "A170 finished" claim: ran `preflight.py --skip-tests` live in the background and watched it to a genuine completion (about 3.5 minutes, reached `gate_generator_ownership` last as usual) rather than a killed or silent exit. Result: every gate passed, 32 warnings, all already-diagnosed/standing (`build/heroes/` and `content/book/`'s local `.jpg`s both absent here, so their two generators correctly degraded rather than failed; 11 of 20 room pages still lead on a diagram not a photo; 7 of 88 card heroes still rejected; no narrated films here to check against captions). Separately re-ran `check_urls.py` (236/236), `fix_dashes.py --check` (0 em dashes, 0 en dashes), and `cold_read_ledger.py --stale` (0) directly, all clean.
+
+Counted `SYMPTOM_PICKS` by hand rather than trust the 03:1x handoff's own tally: 59 rows across 20 rooms, Entryway at 2, every other room at exactly 3. Matches the handoff exactly, so it is confirmed, not merely repeated.
+
+Checked why `checks.yml` had not run on the three commits since A170's own code commit (`9e1a707a0`, CI run 3815, `success`): all three (this session's 03:1x dashboard regen, the hourly bot's check-in, the bot's deploy-verdict commit) touch only `ops/NIGHTLY-LOG.md`, `ops/dashboard.html` and `ops/state.json`, which `checks.yml`'s own header comment documents as deliberately excluded (pure generated/log output, never gating logic). No CI gap, confirmed by reading the workflow file rather than assumed from a missing run.
+
+GitHub's 31 open issues re-pulled live: unchanged since #65 (2026-11-14), all decision/P0/blocked-on-art, none from Phil since #64 (2026-11-08). `BACKLOG-2026-09-07.md` section 2 (A1-A165) fully Done or Archived; section 5 Hold on stated gates; section 6 all seven owner gates, ranked. `EXECUTIVE-DASHBOARD-LIVE.md`'s Traffic and Affiliate rows both still carry forward from 2026-10-03 (no SSH key here to read analytics); not re-measured, reported as carried forward rather than silently repeated as current.
+
+Not starting the Entryway widening myself: three minutes before the operator slot is not the place to open a fresh multi-room content pass; this slot's job is the triage and the handoff above.
+
+No push notification: nothing material changed for the owner since the standing 31-issue queue; traffic/affiliate are unchanged carry-forwards, not new readings.
+
+Pushed to main (this entry plus the preflight run's own `ops/cycle-signal.json` snapshot). No price, product or page touched; `IndexNow` not applicable.
+
 ## PM check-in, 2026-11-17 (03:1x slot): previous work (A170) finished and documented by a concurrent cycle, not by this one; avoided shipping a duplicate log/backlog entry; nothing new unblocked
 
 NEXT FOR THE OPERATOR: Entryway (2 of 5 zones) is now the only room below the 3-entries-per-room bar A170 set everywhere else; a further pass naming each room's remaining zones is the next bounded, not exhausted, step, same handoff A170's own entry already names.
