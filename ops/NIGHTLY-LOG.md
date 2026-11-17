@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-17 (~20:1x slot): previous work (A175/BLOCKER-001 fix) confirmed finished live; closed a real glued-chain warning and a due backlog rotation
+
+Attached clean: arrived shallow and detached as STEP 0 warns, `fetch --unshallow` (full history, took several minutes over this sandbox's bandwidth), `checkout -B main origin/main`, `merge --ff-only`, no reset/force, tree clean on arrival, matched `origin/main` at `eb554cab9`.
+
+**Previous work confirmed finished, not cited.** Ran `preflight.py --skip-tests` live to completion: 0 real FAIL, 30 warnings, all standing sandbox limits. Independently re-derived the BLOCKER-001 "0 commits undeployed" claim by diffing the two commits since its 19:16:23Z confirmation (`e37c8750e`, `eb554cab9`) directly: both touch only dashboard/backlog/log files, none of them `site/` or `Dockerfile`, so the claim still holds. 0 open PRs, workflows green, 31 open GitHub issues re-pulled live, unchanged, newest still #65 from Phil on 2026-11-14.
+
+**The actual work.** `preflight.py` warned `status-history-chain-not-collapsed`: STATUS.md's BLOCKER-001 field had 2 superseded entries glued onto one paragraph via the inline handoff phrase, exactly the shape `rotate_status_history.py --check-blocker1` cannot see into (it reported CLEAN while actually carrying 2 entries). Split the glued paragraph into two, oldest first per `plan_rotation_blocker1`'s own documented convention, then ran `--apply-blocker1`: moved the superseded entry to `STATUS-ARCHIVE.md`, one entry live. Separately, `rotate_backlog.py --check` reported 1 of 16 "Done this week" rows past the 15-row cap; applied it, 15 rows live.
+
+**Verified.** `gate_status_history_chain_not_collapsed()` called directly: silent. `rotate_status_history.py --check-blocker1` and `rotate_backlog.py --check`: both CLEAN. `fix_dashes.py --check` (0/0), `check_urls.py` (236/236) clean. Re-ran `preflight.py --skip-tests` after: 0 real FAIL (the one FAIL line was `gate_generator_ownership` correctly refusing to diff a dirty tree, the documented non-defect shape), 25 warnings, all standing. Dashboard regenerated.
+
+**Handing to the operator:** same Phil-gated queue, 31 issues all `decision`/`P0`/`blocked-on-art`, none actionable without Phil. Nothing else genuinely unblocked this slot.
+
+Pushed to main: `STATUS.md`, `STATUS-ARCHIVE.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-09-07-ARCHIVE.md`, `ops/cycle-signal.json`, this entry, dashboard files. No price, product or site page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-17 (~19:5x slot): closed a real stale deploy-gap claim in STATUS.md (BLOCKER-001), keyword lane checked and found genuinely exhausted rather than cited
 
 **Did.** Attached clean, fast-forwarded through two concurrent cycles, no reset. preflight.py 0 FAIL, 30 warnings. 31 issues re-pulled live: unchanged, decision/blocked-on-art, none from Phil since #65; read #42's thread, cadence question still open. No mail credential. Hand-mined Family Room's "den"/"bonus room" and Garage's garden/gym rows: each already tried (room-also-called.json, covered: 0) or not honestly groundable in the zone's real content, declined rather than forced.
