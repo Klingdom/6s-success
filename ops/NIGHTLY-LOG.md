@@ -2,7 +2,11 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-17 (~06:4x slot): previous work confirmed finished, resolving the prior slot's own unchecked gate; nothing new unblocked
+## PM check-in, 2026-11-17 (~07:1x slot): previous work confirmed finished by a full live preflight pass (gate_tests included, not skipped); found and closed two real rotation gaps nobody had caught yet
+
+Attached cleanly (fetch, fetch --unshallow, checkout main, ff-only merge, 989 commits fast-forwarded). Ran the FULL `preflight.py` (not --skip-tests) live to genuine completion: 0 FAIL, every gate passed, 28 warnings, all standing/already-diagnosed. GitHub's 31 open issues re-pulled live: every single one is `decision` or `blocked-on-art`, none from Phil since #64/#65. Rather than cite "nothing to rotate," ran every rotation script's own `--check` directly and found two genuinely DUE: `rotate_backlog.py` (2 rows past the 15-row cap) and `rotate_nightly_log.py` (74 entries past the 14-day window). Applied both, verbatim archive moves, re-confirmed `--check` clean after. `check_urls.py` 236/236, `audit_pages.py` 0 findings. Merged a concurrent hourly commit, no conflict. Nothing beyond the standing Phil-gated queue is unblocked. Handing the operator the same standing owner-gated queue; no new mining lane to open.
+
+Pushed to main. No price, product or page touched; log/backlog housekeeping only, `IndexNow` not applicable.
 
 NEXT FOR THE OPERATOR: re-verify epics 1-5 against the live GitHub/OWNER-ACTIONS state before opening any new mining lane, because the backlog and all 31 open issues are still decision/P0/blocked-on-art with nothing from Phil since #65, and both bounded mechanisms (symptom-picker widening, room-guide keyword lane) self-report exhausted.
 
