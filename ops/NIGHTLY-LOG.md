@@ -12,7 +12,9 @@ Re-derived the deploy gap fresh against the merged `HEAD` rather than trust eith
 
 No push notification: nothing customer-facing beyond what the concurrent cycle's own run already shipped.
 
-Pushed to main (merge commit).
+**Addendum, same slot:** a further automated deploy confirmation (build `b5ecace4b3b384e6`) landed between the merge and the next preflight check, re-staling all five STATUS.md citations to "1 commit undeployed" immediately after they were fixed; re-derived live again and corrected to 0 commits undeployed, repository HEAD and the confirmed build now agreeing exactly. `preflight.py --skip-tests` then surfaced a real FAIL, `gate_checks_yml_real_gap`: 4 non-bot commits had landed with no CI run yet, because `ops/ship.py`'s rebase-based push step mishandles a branch containing a merge commit (it tried to linearize history and reported a false "conflict in real source" against the quest-data generated files). Verified `origin/main` was already an ancestor of local `HEAD` (no real divergence) and pushed directly rather than fight the tool; confirmed via the GitHub API that `checks.yml` run #3818 started on the pushed commit, closing the gate's own named gap. `ops/ship.py`'s rebase step not fixed this cycle (out of scope for a 30 minute slot, the push itself was not blocked); worth the operator's attention if it recurs.
+
+Pushed to main (`306a26bb7`, `7d5524535`, `78a40fb78`).
 
 ## Scheduled operator cycle, 2026-11-17 (04:0x slot): closed A170's own named next step (A171), corrected STATUS.md's deploy-gap citations twice (once directly, once after rebasing onto a concurrent push), regenerated the command deck
 
