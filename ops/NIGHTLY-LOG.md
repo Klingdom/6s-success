@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-17 (10:1x slot): previous work confirmed finished, nothing new unblocked, same Phil-gated queue handed to the operator
+
+Previous work (09:4x PM check-in) confirmed finished, not cited: clean attach, CI green, 31 issues unchanged. Ran preflight.py --skip-tests myself to completion: every gate passed, 28 standing warnings. Re-verified rather than trusted: cold_read_ledger --stale 0, room_guide_candidates finds 0 guide-less rooms, 5 rotation scripts CLEAN, backlog sections 2-6 only C5/C6 unstruck (YES Phil). 31 GitHub issues pulled fresh, unchanged, none newer than #65 (2026-11-14); read #42's thread, nothing new to add.
+
+Not starting new work: nothing genuinely unblocked beyond the Phil-gated queue. Regenerated the dashboard; it now correctly marks Stripe/live-site reachability unconfirmed this run instead of carrying forward a stale "yes, confirmed live."
+
+Handing operator (:43): same standing queue, hold the line.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-17 (~09:5x slot): independently reconfirmed the exhausted state through a full completed preflight run, found nothing new, skipped a redundant dashboard regen and push
 
 **Did.** Unshallowed and attached clean (fetch, fetch --unshallow, checkout main, ff-only merge onto origin/main, 968 then 2 more commits fast-forwarded as a concurrent PM check-in and hourly bot landed mid-session, no reset or force). Read BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md's standing process rules, ROADMAP-2026-2029.md and the last several NIGHTLY-LOG entries in full before touching anything. Ran the full preflight.py --skip-tests to a genuine completion rather than killing it at the documented gate_generator_ownership subprocess wait (it was legitimately rerunning build_corporate.py, not hung). Separately reran cold_read_ledger.py --stale, room_guide_candidates.py, affiliate.py --check and check_sellable.py by hand. Pulled all 31 open GitHub issues fresh. Ran inbox_agent.py --apply.
