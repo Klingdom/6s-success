@@ -299,6 +299,28 @@ def _norm_symptom(s: str) -> str:
 # same way as every prior widening (symptom, branch answer, first_15 action
 # and victory text and a real cause ID, all non-empty, read directly from
 # content.json).
+#
+# Found and fixed 2026-11-17, same cycle: that widening's own commit and
+# log entry both claimed "a second entry for all 18 single-entry rooms
+# (every room but Entryway and Kitchen)" and counted 40 total, but
+# Primary Bathroom was left at one entry (Vanity Counter only), the exact
+# "source corrected, sibling never told" shape BACKLOG-2026-09-07.md
+# section 7 names as this repository's dominant defect class. Counted the
+# list directly rather than trust the claim: 40 rows, 19 rooms at 2 (or
+# more), Primary Bathroom alone at 1. Added a second entry the same way as
+# every other room: of Primary Bathroom's six still-unused zones, only one
+# friction's own first branch (bi=0) carries a genuine Safety root cause
+# (KC-006, POOR ACCESSIBILITY) rather than Sort/Straighten/Shine/Standardize/
+# Sustain, checked directly against ops/root_causes.py rather than assumed
+# from wording: Linen and Towel Storage's third friction, "Pulling one
+# towel out brings the stack down, or I need a stool to reach it," a real
+# fall risk, not merely longer than that zone's own shortest (Sort) friction.
+# Picked it over the next-shortest alternative (Medicine Cabinet or Wall
+# Storage's "we cannot find something in an emergency," whose own first
+# branch scores Straighten, not Safety) for the same reason A168 leaned
+# Safety elsewhere: a real hazard outranks a merely shorter convenience
+# symptom. Verified live before shipping: symptom, branch answer, and
+# first_15 action/victory all non-empty, read directly from content.json.
 SYMPTOM_PICKS = [
     ("Entryway", "Landing Zone", 1, 0),
     ("Entryway", "Coat and Outerwear Zone", 0, 0),
@@ -306,6 +328,7 @@ SYMPTOM_PICKS = [
     ("Kitchen", "Utensil and Utility Drawers", 0, 0),
     ("Kitchen", "Sink and Dishwashing Zone", 0, 0),
     ("Primary Bathroom", "Vanity Counter", 0, 0),
+    ("Primary Bathroom", "Linen and Towel Storage", 2, 0),
     ("Home Office", "Primary Desk", 0, 0),
     ("Home Office", "Printer and Scanning Station", 0, 0),
     ("Garage", "Primary Workbench", 0, 0),
