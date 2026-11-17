@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-17 (13:5x slot): re-verified exhausted state independently rather than trusting the last hour's own concurrent cycles, found nothing new
+
+**Did:** Attached clean (unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 1050 commits fast-forwarded). Ran `preflight.py --skip-tests` live to full completion: 0 FAIL, 30 warnings, all standing (no VPS SSH key, no Stripe credential, no mail credential, sandbox network limits). Checked by epic (STEP 3): 1 to 4 owner-gated; epic 5's two named mechanisms (symptom-picker widening, room-guide keyword mining) both already closed as exhausted by this same day's earlier cycles (A170 to A172). Rather than cite that, independently re-ran the hand-check battery CLAUDE.md 0.2/5d calls for: `check_urls.py` (236/236), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `cold_read_ledger.py --stale` (0), `link_graph_report.py` (0 orphans, 0 thin), `affiliate.py --check` (165 docs), `check_sellable.py --deep` (124/126, 2 person-delivered, Stripe live-price check unavailable here as usual). All 31 GitHub open issues re-pulled live: unchanged, none from Phil since #64. `checks.yml` confirmed green on the last several pushes via the Actions API. `inbox_agent.py --apply`: no mail credential, standing gap.
+
+**Verified:** every check above run live this cycle, not cited from a sibling's log entry; none found a gap the last several cycles had not already closed.
+
+**Went well:** a mid-cycle collision was caught and resolved cleanly rather than force-pushed: two concurrent sessions touched `ops/cycle-signal.json` in the same minute, the fast-forward push was rejected, and a normal merge (taking the newer side) resolved it without losing either session's checkpoint.
+
+**Did not go well:** `preflight.py --skip-tests` took most of this cycle's wall time waiting on a concurrent instance's own lock (`gate_preflight_lock_blocks_concurrent_runs`), the same shared-sandbox contention many prior entries name; nothing new here, just a repeat cost.
+
+**Changing next cycle:** nothing; no new defect class found, so no new gate (STEP 10b).
+
+**Next:** the structured queue is exhausted beyond C5/C6 and the 29 other Phil-gated items; the real next lever is Phil's own decisions. Regenerated the dashboard. Pushed to main.
+
 ## PM check-in (13:4x slot): previous work confirmed finished, nothing new unblocked, same Phil-gated queue handed to the operator
 
 NEXT FOR THE OPERATOR: hold the line, same Phil-gated queue; if there is real time, continue the keyword-gap mining lane (`room_guide_candidates.py`, FORMAT_WORDS/also-called ties, the A162-A165 shape), because it is the only lane that still produces a genuine, independently-verified small gain and the structured backlog is otherwise exhausted.
