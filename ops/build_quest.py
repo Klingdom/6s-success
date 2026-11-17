@@ -276,6 +276,29 @@ def _norm_symptom(s: str) -> str:
 # branch answer, first_15 action and victory text all non-empty, read
 # directly from content.json, not assumed) rather than guessed from the
 # symptom text alone.
+#
+# Widened a third time 2026-11-17, scheduled operator cycle: from 23 entries
+# (one per room, three rooms with more) to 40, a second entry for every room
+# that still had only one (all but Entryway and Kitchen). A166/A167 defined
+# "done" as at least one entry per room so a stranger's own words match
+# somewhere in every room; this is the next genuine increment, not a redo of
+# that lane, since each pick names a different zone the first entry could
+# not reach. Same picking bar: the second zone's own `frictions[0]` symptom,
+# shortest and most recognisable among that room's remaining zones, with a
+# lean toward a real Safety-pass cause when one was close in length rather
+# than always the shortest Sort/Straighten line. Four of the seventeen new
+# picks are genuinely Safety-pass (CLAUDE.md D-014): Family Room's throw
+# left drying on a hot radiator, Primary Bedroom's loose medication in the
+# nightstand, Kids Bedroom's overstuffed drawer that yanks a child off
+# balance, and Workshop's unchecked extinguisher gauge. Garage's leaning
+# long-handled tools and Patio or Deck's own "Safety Zone" name both read
+# as Safety on the zone name alone but their actual root-cause tag in
+# content.json is Sort, confirmed before shipping rather than assumed from
+# the zone's name; recorded here so a future cycle does not miscite them.
+# Every one of the 17 new entries was verified live before shipping the
+# same way as every prior widening (symptom, branch answer, first_15 action
+# and victory text and a real cause ID, all non-empty, read directly from
+# content.json).
 SYMPTOM_PICKS = [
     ("Entryway", "Landing Zone", 1, 0),
     ("Entryway", "Coat and Outerwear Zone", 0, 0),
@@ -284,22 +307,39 @@ SYMPTOM_PICKS = [
     ("Kitchen", "Sink and Dishwashing Zone", 0, 0),
     ("Primary Bathroom", "Vanity Counter", 0, 0),
     ("Home Office", "Primary Desk", 0, 0),
+    ("Home Office", "Printer and Scanning Station", 0, 0),
     ("Garage", "Primary Workbench", 0, 0),
+    ("Garage", "Lawn and Garden Tool Zone", 0, 0),
     ("Laundry Room", "Washer and Dryer", 0, 0),
+    ("Laundry Room", "Hanging and Air-Dry Zone", 0, 0),
     ("Living Room", "Sofa and Seating Zone", 0, 0),
+    ("Living Room", "Floor and Circulation Path", 0, 0),
     ("Primary Bedroom", "Dresser Drawers", 0, 0),
+    ("Primary Bedroom", "Nightstand Right", 0, 0),
     ("Dining Room", "Dining Table", 0, 0),
+    ("Dining Room", "Beverage or Coffee Station", 0, 0),
     ("Hall Closet", "Cleaning Supply Zone", 0, 0),
+    ("Hall Closet", "Paper and Household Backstock", 0, 0),
     ("Pantry", "Canned and Jarred Goods", 0, 0),
+    ("Pantry", "Snack and Lunch Zone", 0, 0),
     ("Family Room", "Board Game and Puzzle Zone", 0, 0),
+    ("Family Room", "Blanket and Comfort Zone", 0, 0),
     ("Guest Bedroom", "Guest Closet", 0, 0),
+    ("Guest Bedroom", "Guest Dresser", 0, 0),
     ("Kids Bedroom", "Bed and Sleep Zone", 0, 0),
+    ("Kids Bedroom", "Dresser Drawers", 0, 0),
     ("Nursery", "Baby Clothing Zone", 0, 0),
+    ("Nursery", "Books and Quiet Play Zone", 0, 0),
     ("Guest Bathroom", "Toilet Area", 0, 0),
+    ("Guest Bathroom", "Guest Vanity Counter", 0, 0),
     ("Workshop", "Power Tool Storage", 0, 0),
+    ("Workshop", "Safety and PPE Station", 0, 0),
     ("Mudroom", "Cleaning and Utility Zone", 0, 0),
+    ("Mudroom", "Seasonal Outdoor Gear", 0, 0),
     ("Stair Landing", "Landing Surface or Console", 0, 0),
+    ("Stair Landing", "Stair and Floor Path", 0, 0),
     ("Patio or Deck", "Garden and Plant Care Zone", 0, 0),
+    ("Patio or Deck", "Surface, Rail, and Safety Zone", 0, 0),
 ]
 
 
