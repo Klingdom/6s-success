@@ -353,9 +353,22 @@ def _norm_symptom(s: str) -> str:
 # 18 new entries verified live before shipping, the same way as every
 # prior widening: symptom, branch answer, and first_15 action/victory
 # text all non-empty, read directly from content.json.
+#
+# A171, 2026-11-17, PM check-in: Entryway's third entry, the last room
+# left below the 3-per-room bar every other room already cleared. Of its
+# three remaining zones, the Entry Console or Bench drawer's one genuine
+# Safety-pass friction ("batteries, coins, and small things end up loose
+# in the back corners of the drawer," KC-010) was 82 chars against the
+# room's shortest non-Safety option at 57, 44 percent longer, inside the
+# same 30 to 80 percent band already declined for Dining Room, Hall
+# Closet and Guest Bedroom above, so it was declined here too and the
+# shortest, most recognisable friction was picked instead: the same zone's
+# own first friction, "the drawer fills back up within a month of being
+# emptied" (KC-002, Straighten).
 SYMPTOM_PICKS = [
     ("Entryway", "Landing Zone", 1, 0),
     ("Entryway", "Coat and Outerwear Zone", 0, 0),
+    ("Entryway", "Entry Console or Bench", 0, 0),
     ("Kitchen", "Primary Prep Counter", 0, 0),
     ("Kitchen", "Utensil and Utility Drawers", 0, 0),
     ("Kitchen", "Sink and Dishwashing Zone", 0, 0),
