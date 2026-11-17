@@ -395,6 +395,8 @@ SYMPTOM_PICKS = [
     ("Stair Landing", "Stair and Floor Path", 0, 0),
     ("Patio or Deck", "Garden and Plant Care Zone", 0, 0),
     ("Patio or Deck", "Surface, Rail, and Safety Zone", 0, 0),
+    ("Entryway", "Entry Console or Bench", 0, 0),
+    ("Kitchen", "Refrigerator and Freezer", 1, 0),
     ("Primary Bathroom", "Toilet Area", 1, 0),
     ("Home Office", "Bookshelf and Reference Zone", 2, 0),
     ("Garage", "Automotive Care Zone", 3, 0),
