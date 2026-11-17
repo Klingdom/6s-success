@@ -8,6 +8,8 @@ Attached clean (unshallowed, merge --ff-only, 25 commits fast-forwarded, no rese
 
 Not starting new work: nothing beyond the Phil-gated queue is unblocked. A concurrent operator cycle (below) independently reached the same conclusion from its own hand-checked sample, so the epic-5 keyword gap/partial tier stands as genuinely sampled-and-declined this slot, not merely cited.
 
+The first push attempt collided with the concurrent operator cycle's own push on this same file; merged rather than forced (`git merge origin/main`, resolved `ops/NIGHTLY-LOG.md` by keeping both entries in timestamp order, resolved the three generated dashboard files and `ops/cycle-signal.json` by taking `origin/main`'s copy and regenerating fresh via `ops/dashboard.py` rather than hand-merging generator output), then pushed clean. One item handed to the operator rather than guessed at: the operator cycle's own CI run (`25f123c473`, run 3880) was still `in_progress` on "The ops test suite" step when checked, not stalled, a normal-length `gate_tests` run; not claimed green by extrapolation.
+
 Pushed: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry.
 
 HANDOFF-FILES: none
