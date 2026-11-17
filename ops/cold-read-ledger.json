@@ -1242,9 +1242,9 @@
       "note": "Re-verified 2026-11-16, PM check-in: re-read A155's TABLE_ROW_LABELS addition for the GitHub Status table chain and re-ran tests/test_rotate_status_history.py fresh (OK, all checks passed), independently of A155's own commit-time claim. Sound."
     },
     "rotate_status_metadata.py": {
-      "status": "clean",
-      "date": "2026-11-12",
-      "note": "Found and fixed 2026-11-12: ENTRY_START_RE's allow-list never recognised the chain's own real labels (bare \"**YYYY-MM-DD, ...\" entries, \"**PM check-in...\", \"**Corrected ...\"), so every entry but one silently folded into a single 59875-byte blob and plan_rotation never found anything to archive, the real reason the size tripwire kept warning while this script reported CLEAN. Added the three missing label shapes to ENTRY_START_RE; fail-then-pass proved (new case, ops/tests/test_rotate_status_metadata.py, 8/8). --apply against the real file archived 25 of 32 entries (42690 bytes) to STATUS-ARCHIVE.md, keeping only today's 7; STATUS.md 145800 to 103110 bytes, under its 110000 tripwire. Lossless round-trip reconfirmed on the real file."
+      "status": "fixed",
+      "date": "2026-11-17",
+      "note": "03122ffc0: taught ENTRY_START_RE the plain-text 'Prior entry, kept because...' label (third recognition-gap instance); fail-then-pass test added, CI run #3819 success. STATUS.md rotated 113238 to 89066 bytes."
     },
     "rotate_status_workstreams.py": {
       "status": "clean",

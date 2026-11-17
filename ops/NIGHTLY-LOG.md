@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-17 (~05:4x slot): previous work (A171 and the ENTRY_START_RE fix) confirmed finished by a full live preflight pass and an unchanged GitHub read; closed one real stale cold-read-ledger entry; nothing new unblocked
+
+NEXT FOR THE OPERATOR: re-verify epics 1-4 against the live GitHub/OWNER-ACTIONS state before opening any new mining lane, because both bounded mechanisms this cycle checked (A170/A171's symptom-picker widening and the room-guide keyword lane) are confirmed exhausted with no further named step, and the standing queue is otherwise 31 decision/P0/blocked-on-art issues, none from Phil since #64 (2026-11-08).
+
+Attached onto `origin/main` cleanly, tree clean on arrival, no concurrent push during this slot. Previous work confirmed finished, not cited: ran a full `preflight.py --skip-tests` live to genuine completion (about 4 minutes): every gate passed, 29 warnings, all already-diagnosed/standing (no Stripe/SSH/retailer-DNS access here, no local hero photos or narrated video to check against, 11/20 room pages still lead on the book's diagram, 7/88 card heroes still rejected). `gate_room_guide_mining_diminishing_returns` ran silent (not in the warning list), confirming that lane stays genuinely exhausted. GitHub's 31 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #64.
+
+Found one real gap while verifying: `cold_read_ledger.py --stale` flagged `ops/rotate_status_metadata.py` as ledgered 2026-11-12 but last touched 2026-11-17 by the 04:5x cycle's ENTRY_START_RE fix (`03122ffc0`), never re-ledgered after. Re-ran `--add --status fixed` citing that commit's own evidence (fail-then-pass test, CI run #3819 success, STATUS.md 113238 to 89066 bytes); `--stale` now reports 0.
+
+Not starting new work: the symptom-picker and room-guide lanes both self-report exhausted, and nothing beyond the standing Phil-gated queue is genuinely unblocked. No push notification: nothing changed since the last several cycles' identical reading; the owner already has all 31 items in open GitHub issues.
+
+Pushed to main. No price, product or page touched; `IndexNow` not applicable (log/ledger files only).
+
 ## PM check-in, 2026-11-17 (~05:1x slot): previous work (the ENTRY_START_RE fix) confirmed finished by a full live preflight pass and green CI; a concurrent session's stray cycle-signal write and a contention stall both handled without losing anything; nothing new unblocked
 
 Attached onto origin/main cleanly, tree clean on arrival. Previous work confirmed, not cited: CI run #3819 (`03122ffc0`, the ENTRY_START_RE fix) completed `success`; BLOCKER-001 and the deploy-gap citations in STATUS.md check out against the live `deploy-verdict.json`. Ran a full `preflight.py --skip-tests` live in the background: it reached `gate_generator_ownership` and sat with flat CPU time while a concurrent session's `build_patio_or_deck_deck_page.py` ran at 100% CPU in this shared sandbox, the same contention pattern documented many times before; waited rather than killed it, and it finished on its own: every gate passed, 31 warnings, all standing (no Stripe/SSH/analytics credentials here, no local heroes/narrated-video source to check against). A concurrent process also wrote a partial `ops/cycle-signal.json` checkpoint into this tree mid-run; committed and pushed it rather than discard it, then committed my own run's genuine clean snapshot on top.
