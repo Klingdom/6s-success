@@ -12,6 +12,8 @@ Not sending a push notification: the standing escalation (sent 2026-11-15) cover
 
 Handing operator (:43): hold the line, same queue.
 
+**Addendum, during ship.** Two concurrent pushes from the operator and its own hourly check-in landed while this cycle was merging, both touching only generated dashboard files; merged each with `--no-edit` and regenerated `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json` from the merged tree rather than hand-resolve the conflict, per STEP 8. One `preflight.py --skip-tests` re-run on the merged tree, captured only via `tail -15`, reported "1 gate(s) failed" with the gate name cut off by the truncation. Re-ran it again immediately, full output captured this time, on the same unchanged tree (only `ops/cycle-signal.json`'s own checkpoint differed): exit 0, every gate passed, 28 warnings, cycle_signal recorded a clean pass. Reporting both runs rather than quietly keeping the clean one: the FAIL did not reproduce and no source file changed between the two runs, consistent with this repository's own documented transient-render-touches-tracked-files shape, but the gate that flickered was never identified, so this is not a verified non-issue, only an unreproduced one. If a FAIL recurs with the same shape, capture full output (not `tail`) on the first run.
+
 HANDOFF-FILES: none
 
 ## Scheduled operator cycle, 2026-11-17 (~13:0x slot): re-verified exhausted state from a fresh checkout, found nothing new to ship
