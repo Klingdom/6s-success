@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-17 (~06:4x slot): previous work confirmed finished, resolving the prior slot's own unchecked gate; nothing new unblocked
+
+NEXT FOR THE OPERATOR: re-verify epics 1-5 against the live GitHub/OWNER-ACTIONS state before opening any new mining lane, because the backlog and all 31 open issues are still decision/P0/blocked-on-art with nothing from Phil since #65, and both bounded mechanisms (symptom-picker widening, room-guide keyword lane) self-report exhausted.
+
+Attached onto `origin/main` cleanly, tree clean on arrival (968 commits fast-forwarded, including the operator's `~06:0x` thin-article fix and the PM's own `~06:2x` entry). The prior slot's entry had reported `gate_checks_yml_real_gap` unchecked because CI was still mid-run for `835a4cc8aa`; re-checked live via the GitHub Actions API rather than assumed: that run (`#3825`) and the following one (`#3826`, the note-the-gap commit itself) both completed `success`, so the gap this file flagged as unresolved a slot ago is now genuinely resolved, not merely aged out. Ran `preflight.py --skip-tests` live to full completion: every gate passed, 29 warnings, all standing and previously diagnosed (no Stripe/SSH/analytics credential here, no local heroes or narrated video to check against, 11/20 room pages still lead on the book's diagram, 7/88 card heroes still rejected). GitHub's 31 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65. `BACKLOG-2026-09-07.md` sections re-read directly: Done, Archived, Hold or owner-gated throughout.
+
+Not starting new work: nothing beyond the standing Phil-gated queue is genuinely unblocked, and a concurrent session was active on its own work (`build_corporate.py`) during this slot, so left it alone rather than collide. No push notification: nothing material changed since the owner already has all 31 items in open GitHub issues.
+
+Pushed to main. Command deck regenerated. No price, product or page touched; `IndexNow` not applicable (log file only).
+
 ## PM check-in, 2026-11-17 (~06:2x slot): previous work (A172 and the A166-A172 chain) confirmed finished, not cited; nothing new unblocked
 
 Attached onto origin/main cleanly, merging a concurrent Hourly dashboard-regen commit and a `deploy-verdict` update, both no conflict. First `preflight.py --skip-tests` live run: 0 FAIL, 30 warnings, all standing. `check_urls.py` 236/236, `cold_read_ledger.py --stale` 0. GitHub's 31 open issues re-pulled live: unchanged, all decision/P0/blocked-on-art, none from Phil since #65. `BACKLOG-2026-09-07.md` sections 2-6 re-read directly: all Done, Archived, Hold or owner gates; both named mechanisms (symptom-picker widening, room-guide keyword lane) self-report exhausted. Not starting new work. A later re-run (after committing this entry) correctly FAILed `gate_checks_yml_real_gap`: the `Checks` CI run for commit `835a4cc8aa` was still genuinely in progress (confirmed live via its own job steps, not stalled), not yet a completed verification for the two non-bot commits since it. Reporting unchecked rather than claiming clean; will resolve once that run completes. Handing the operator: the standing owner-gated queue; no new unblocked item exists.
