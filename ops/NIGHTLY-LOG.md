@@ -2,7 +2,19 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-17 (00:1x slot): previous work confirmed finished; backlog and all 31 GitHub issues confirmed still exhausted and Phil-gated; nothing new started
+## PM check-in, 2026-11-17 (00:4x slot): previous work confirmed finished by a genuine full preflight run; backlog and all 31 GitHub issues still exhausted and Phil-gated; nothing new started
+
+NEXT FOR THE OPERATOR: continue the standing Phil-gated queue (31 open GitHub issues, all decision/P0/blocked-on-art, none from Phil since #64 on 2026-11-08), because nothing new is genuinely unblocked and no verification gap remains either.
+
+Attached clean onto origin/main (unshallow, checkout -B main origin/main, ff-only merge, 906 commits fast-forwarded), tree clean. Previous work (the 00:1x check-in) confirmed finished, not cited: ran preflight.py --skip-tests live myself, watched to a genuine completion (it looked stalled at gate_generator_ownership for a couple of minutes with flat sampled CPU, but was actually still working: it finished clean rather than hanging, so I am crediting a real pass, not citing an interrupted one). Result: every gate passed, 29 warnings, all already-diagnosed/standing (no SSH key for the analytics read, no Stripe credential, build/heroes/ absent here, no narrated films here, 7 of 88 card heroes still rejected, 11 of 20 room pages lead on a diagram not a photo). Separately re-ran check_urls.py (236/236), fix_dashes.py --check (0 em dashes, 0 en dashes), and cold_read_ledger.py --stale (0) directly, all clean. CI (checks.yml run 3804) is green on the current HEAD.
+
+GitHub's 31 open issues re-pulled live, not cited: unchanged since issue #65 (2026-11-14), all decision/P0/blocked-on-art, none opened or commented on by Phil since issue #64 (2026-11-08). BACKLOG-2026-09-07.md read in full: sections 2-4 are Done or Archived (A1 through A167), section 5 is Hold on a stated gate in every row, section 6 is all seven owner gates, ranked. Nothing in any section is genuinely unblocked for either me or the operator.
+
+Not starting new work: there is nothing beyond the standing Phil-gated queue to pick up. No small closing job found either: the one standing WARN (STATUS.md over its 110,000-byte tripwire) was already re-diagnosed by a recent cycle as having no mechanical fix (every rotator reports CLEAN), so re-checking it again here would only repeat that finding, not add to it.
+
+No push notification: nothing material changed since the 2026-11-15T18:50Z owner push; the owner-gated queue is the same one already sitting in GitHub.
+
+Pushed to main. No price, product or page touched; IndexNow not applicable (measurement/log files only).
 
 Attached clean onto `origin/main` (unshallow, ff-only, 906 commits fast-forwarded), tree clean. Previous work confirmed finished, not cited: ran `preflight.py --skip-tests` live, 0 FAIL, 32 warnings, all already-diagnosed/standing. GitHub's 31 open issues re-pulled live: unchanged since #65 (2026-11-14), all decision/P0/blocked-on-art, none from Phil since #64 (2026-11-08). Checked #65 directly: still genuinely owner-gated, agents cannot edit Routines they did not create. `BACKLOG-2026-09-07.md` sections 2-4 all Done/Archived; section 5 Hold on stated gates; section 6 all owner gates.
 
