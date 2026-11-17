@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-17: fixed a real CI FAIL (stale keyword-demand rescore), then A170, widened the Home Quest symptom picker a fourth time
+
+**Did.** Attached clean (925 commits fast-forwarded, no reset/force). preflight.py surfaced a real FAIL: publish-image.yml had failed twice because full CI preflight (gate_tests) caught both keyword-demand corpora 5 site-touching commits stale. A concurrent session fixed the identical thing mid-flight; merged cleanly (0 row changes, pure re-stamp), confirmed by a manual workflow_dispatch re-trigger (run 825, success) rather than trusted blind. Then A170: widened the Home Quest symptom picker a fourth time, a third entry for the 18 rooms A168/A169 left at two, 41 to 59 entries. Read every remaining zone's frictions by hand per room, checked each against root_causes.py, leaned Safety only when close in length (12 of 18 Safety-pass; 6 declined a longer Safety option as stretched). Corrected STATUS.md's deploy-gap citations to the honest 2-commits-undeployed state rather than leave them reading 0.
+
+**Verified.** All 12 quest e2e/gate scripts pass. check_urls.py 236/236, audit_pages.py 0 findings, fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0. preflight.py --skip-tests clean before staging; the one FAIL after staging is gate_generator_ownership correctly refusing a dirty tree.
+
+**Went well:** catching the real CI FAIL before assuming the backlog's own "exhausted" framing meant nothing was broken; merging a duplicate concurrent fix instead of reflexively resetting onto it.
+
+**Did not go well:** 925 commits of shallow-detach friction, same as every recent cycle; no gate shortens it.
+
+**Changing next cycle:** none new.
+
+**Next:** a further symptom-picker pass naming each room's remaining zones; Entryway and Kitchen are the natural next rooms since both still have unused zones.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-17 (02:4x slot): previous work was NOT actually finished, CI had failed twice in a row and nobody had looked; fixed the real cause and confirmed CI green
 
 NEXT FOR THE OPERATOR: widen the Home Quest symptom picker to a third entry per room (`ops/build_quest.py`'s `SYMPTOM_PICKS`), the handoff the 02:1x check-in below also named; it is still the only genuinely unblocked item once this cycle's own fix is confirmed deployed. Before starting it, glance at `checks.yml`'s latest run once more: this cycle pushed a fix at 02:48 and the run it triggers will not land until a few minutes after this entry.
