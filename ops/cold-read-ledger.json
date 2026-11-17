@@ -463,8 +463,8 @@
     },
     "build_quest.py": {
       "status": "clean",
-      "date": "2026-11-16",
-      "note": "A166/A167 widened SYMPTOM_PICKS from 5 to 23 entries (2 rooms to all 20); verified data-only additions (room, zone, friction index, branch index) sourced directly from content.json, render path confirmed to scale with no fixed-count limit, all 10 e2e quest scripts pass. No logic change, no defect found."
+      "date": "2026-11-17",
+      "note": "Re-read 2026-11-17: widened SYMPTOM_PICKS a third time (23 to 40 entries, a second zone per room), verified live before shipping, no defect found"
     },
     "build_resources.py": {
       "status": "clean",

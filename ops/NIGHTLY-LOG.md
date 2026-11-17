@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-17: widened the Home Quest symptom picker a third time, a second zone per room, 23 to 40 entries
+
+**Did.** Attached clean (unshallowed, ff-only onto `origin/main`, 906 commits fast-forwarded). `preflight.py --skip-tests` clean first (0 FAIL, 31 warnings, standing/Phil-gated). Checked by epic: 1 blocked on #64; 2 clean; 3 owner-gated; 4 on Hold; 5 (product) is where A166/A167 left the symptom picker at "one entry per room," a bar met, not exhausted. Widened it again: a second entry for all 18 single-entry rooms (23 to 40 total), each naming a different zone, same picking bar (shortest, most recognisable `frictions[0]`, leaning Safety when close in length). Four new picks are real Safety-pass causes; two zones named "Safety" turned out Sort by their actual cause tag, checked not assumed.
+
+**Verified.** Regenerated the full chain (build_quest, fingerprint, pwa, build_id, seo, mobile corpus). All 10 quest e2e scripts pass. `check_urls.py` 236/236, `audit_pages.py` 0 findings, `fix_dashes.py --check` 0/0. Pre-commit hook caught a genuinely stale build-id, fixed and recommitted. Full re-run after: 0 FAIL, 33 warnings; 3 real and fixed (cold-read ledger re-entry, STATUS.md's two deploy-gap rows corrected to 1-commit-undeployed, dashboard regenerated). Rebased cleanly onto a concurrent PM check-in's push (00:4x slot, immediately below) before pushing; its own changes and this entry's are independent (a confirmation pass vs. a real product change), no conflict in substance, only in generated-file mechanics.
+
+**Went well.** Treating "done" as the stated bar, not as exhausted.
+
+**Did not go well.** Nothing new.
+
+**Changing next cycle.** None.
+
+**Next.** All 20 rooms carry 2+ entries except Entryway (2) and Kitchen (3); a third pass is the next bounded increment if product stays the right epic.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-17 (00:4x slot): previous work confirmed finished by a genuine full preflight run; backlog and all 31 GitHub issues still exhausted and Phil-gated; nothing new started
 
 NEXT FOR THE OPERATOR: continue the standing Phil-gated queue (31 open GitHub issues, all decision/P0/blocked-on-art, none from Phil since #64 on 2026-11-08), because nothing new is genuinely unblocked and no verification gap remains either.
@@ -15,6 +31,8 @@ Not starting new work: there is nothing beyond the standing Phil-gated queue to 
 No push notification: nothing material changed since the 2026-11-15T18:50Z owner push; the owner-gated queue is the same one already sitting in GitHub.
 
 Pushed to main. No price, product or page touched; IndexNow not applicable (measurement/log files only).
+
+## PM check-in, 2026-11-17 (00:1x slot): previous work confirmed finished; backlog and all 31 GitHub issues confirmed still exhausted and Phil-gated; nothing new started
 
 Attached clean onto `origin/main` (unshallow, ff-only, 906 commits fast-forwarded), tree clean. Previous work confirmed finished, not cited: ran `preflight.py --skip-tests` live, 0 FAIL, 32 warnings, all already-diagnosed/standing. GitHub's 31 open issues re-pulled live: unchanged since #65 (2026-11-14), all decision/P0/blocked-on-art, none from Phil since #64 (2026-11-08). Checked #65 directly: still genuinely owner-gated, agents cannot edit Routines they did not create. `BACKLOG-2026-09-07.md` sections 2-4 all Done/Archived; section 5 Hold on stated gates; section 6 all owner gates.
 
