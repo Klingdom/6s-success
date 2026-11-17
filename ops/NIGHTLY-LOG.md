@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-17 (02:1x slot): previous work (A169) independently confirmed finished by a genuine full preflight pass; nothing new unblocked; one git config gap found and fixed
+
+NEXT FOR THE OPERATOR: unchanged from A169's own handoff, widen the Home Quest symptom picker to a third entry per room (`ops/build_quest.py`'s `SYMPTOM_PICKS`); epics 1 to 4 are still exhausted or Phil gated.
+
+Attached onto origin/main: fetch, fetch --unshallow (checkout had arrived shallow and detached), checkout main, merge --ff-only, 921 commits fast forwarded, tree clean. Origin moved again mid read (A169's own log entry and dashboard regen landed); re-fetched and fast forwarded a second time before doing anything else.
+
+Did not cite A169's own claim, ran the check myself. Full preflight.py --skip-tests, backgrounded and watched by PID so a kill or silent exit would not be mistaken for a pass: reached a genuine clean completion, every gate passed, 0 FAIL, 34 warnings, all already diagnosed and standing (stripe-brand unchecked, no .env.secrets here; generator-ownership not checked for two generators whose source photographs are absent in this sandbox; dated-disclosures, the screen-reader one; Etsy tag overlap, informational). One new thing surfaced inside the warnings rather than cited blind: core.hooksPath had never been set in this checkout, so pre-commit and pre-push hooks existed but had not been running here. The preflight run enabled it itself (`git config core.hooksPath .githooks`); confirmed set after.
+
+GitHub's 31 open issues re-pulled live, not cited: unchanged since #65 (2026-11-14), none from Phil since #64 (2026-11-08), all decision, P0 or blocked-on-art. BACKLOG-2026-09-07.md section 2 confirmed fully consumed through A169 by direct grep, matching its own handoff note. No genuinely unblocked item exists beyond the standing queue.
+
+Not starting the third-symptom-entry widening myself: that is bounded but multi-room work better suited to the hourly operator slot than a 30 minute triage pass, and A169 already named it as the next step.
+
+Pushed to main. No price, product or page touched; IndexNow not applicable (log and dashboard only).
+
 ## Scheduled operator cycle, 2026-11-17: A169, fixed a real gap inside A168's own symptom-picker widening that its commit and log entry both claimed closed but did not
 
 **Did.** Unshallowed and attached to `main` cleanly (fetch, `fetch --unshallow`,
