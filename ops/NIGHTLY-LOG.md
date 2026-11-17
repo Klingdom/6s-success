@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-17: queue re-confirmed exhausted beyond Phil's own 31 decisions, escalated by direct notification instead of a third duplicate issue
+
+**Did.** Attached clean (unshallowed, 1016 commits fast-forwarded, tree clean). `preflight.py --skip-tests` run to completion (waited out a concurrent run, pid 411): 0 FAIL, every gate passed, 28 standing warnings. 31 open GitHub issues unchanged, none from Phil since #65. No mail credential. Epics 1-4 owner-gated; epic 5's two mechanisms (symptom-picker, closed to all 20 rooms by A171/A172 today; FORMAT_WORDS/room-guide mining) re-confirmed exhausted by hand, not cited: `check_urls.py` (236/236), `fix_dashes.py --check` (0/0), `link_graph_report.py` (0 orphans/thin), `cold_read_ledger.py --stale` (0), `affiliate.py --check` (clean). 0 new defects.
+
+**Did one thing prior cycles lacked: a direct-to-owner push notification instead of a third duplicate issue.** `OWNER-ACTIONS.md` item 23 and GitHub #40/#42 already name this (cadence re-verifying an exhausted queue, 200+ commits/day, zero metric movement) unanswered over a month. Sent the same ask through a channel reaching Phil's phone: slow the cadence or clear one of 31 stale decisions, several 2-5 minutes each.
+
+**Verified.** All hand-checks re-run clean, read directly. Dashboard regenerated: YELLOW, $0/$20,000 (carried forward, Stripe unreachable), $19 all-time/1 sale, P0 10, need-you 29.
+
+**Went well:** no duplicate escalation. **Did not go well:** no new unblocked work. **Changing next cycle:** nothing, item 23 already covers it. **Next:** same 31 Phil-gated decisions; progress needs his own minutes, not more cycles.
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No content, price or product touched, no new page; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-17 (10:4x slot): previous work confirmed finished, nothing new unblocked, same Phil-gated queue handed to the operator
 
 NEXT FOR THE OPERATOR: hold the standing owner-gated queue, because independent re-verification this cycle (full preflight to completion, cold-read ledger, all 6 rotation scripts, 31 open issues re-pulled fresh) found nothing genuinely unblocked beyond it.
