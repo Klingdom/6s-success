@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-17 (04:0x slot): closed A170's own named next step (A171), corrected STATUS.md's deploy-gap citations twice (once directly, once after rebasing onto a concurrent push), regenerated the command deck
+
+**Did.** Attached onto `main` cleanly, 940 commits fast-forwarded. `preflight.py --skip-tests` clean first (0 FAIL, 33 warnings, standing). Epics 1-4 still owner-gated (#64 traffic read, #43/#44/#46/#48/#45 accounts, A/B registry 1,427 days out); room-guide mining self-reports diminishing returns. Picked up A170's named next step: Entryway to 3 symptom entries, Kitchen to 4. Read every remaining zone's frictions by hand, checked each candidate's root-cause `six_s` tag; picked Entry Console's drawer-refill friction for Entryway (Straighten, genuine shortest) and Refrigerator and Freezer's raw-meat-above-salad friction for Kitchen (Safety, KC-010, only 21% longer than shortest, a real cross-contamination hazard). Regenerated the full build chain, all 10 quest tests pass by real exit code, `check_urls.py`/`audit_pages.py`/`fix_dashes.py --check`/`cold_read_ledger.py --stale` clean.
+
+**Verified.** `preflight.py --skip-tests` run to completion three times (clean before, correctly FAILing only `gate_generator_ownership` on each dirty tree, clean after each commit). Fixed six stale deploy-gap citations in `STATUS.md` twice: once against the real post-A171 state, again after a concurrent push forced a rebase that changed the commit hashes under the first fix.
+
+**Went well:** caught the rebase-changes-the-hash problem before pushing a citation that would have gone stale on landing.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** this widening mechanism has no further named step; whichever of the 31 open issues Phil clears first, or a fresh epic-1-4 check.
+
+No push notification: nothing customer-facing, no new owner gate.
+
+Pushed to main (4 commits). No price, product or page touched; `IndexNow` not applicable.
+
 ## PM check-in, 2026-11-17 (03:4x slot): previous work (A170) independently reconfirmed finished by a full live preflight pass and a direct SYMPTOM_PICKS count; nothing new unblocked beyond the standing handoff
 
 NEXT FOR THE OPERATOR: widen Entryway's Home Quest symptom picker to a third entry, because a direct count of `ops/build_quest.py`'s `SYMPTOM_PICKS` this cycle confirms Entryway (2 of 3) is now the only room below the bar all 19 others already clear; the same bounded step the 03:1x check-in named, now checked against the live file rather than cited.
