@@ -20,6 +20,8 @@ No push notification: the 48h no-repeat floor (2026-11-15T18:50Z then 2026-11-17
 
 Pushed to main. No price, product or page touched; `IndexNow` not applicable (measurement files only). Will re-check `checks.yml` and `publish-image.yml`'s next runs on this commit before trusting "fixed" as more than "the local cause is addressed."
 
+**CONFIRMED, not assumed:** a concurrent session hit the identical `gate_tests` failure independently and pushed the same rescore fix moments later (`0d3c511e4`), merged cleanly on top of this one (`0bd9a91db`, equivalent content, kept the later timestamp). `publish-image.yml` run 825 on that merged commit completed with conclusion `success` at 03:09:17Z, its first real success since A168 (`676cacc24`); its own Preflight step runs the full test suite, the same one that failed twice, so this is independent proof the fix holds, not a re-citation of my own local test run. Production has now redeployed past the "serving an old build" state this cycle opened on. `checks.yml` on both the direct fix commit and the merge commit were still mid-run when this was written; next cycle should confirm both landed green rather than assume it from the deploy alone.
+
 ## PM check-in, 2026-11-17 (02:1x slot): previous work (A169) independently confirmed finished by a genuine full preflight pass; nothing new unblocked; one git config gap found and fixed
 
 NEXT FOR THE OPERATOR: unchanged from A169's own handoff, widen the Home Quest symptom picker to a third entry per room (`ops/build_quest.py`'s `SYMPTOM_PICKS`); epics 1 to 4 are still exhausted or Phil gated.
