@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (14:1x slot): previous work confirmed finished, nothing new unblocked, same Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: hold the line, same Phil-gated queue; the keyword-gap mining lane (`room_guide_candidates.py`, FORMAT_WORDS/also-called ties) is the one lane worth a look first if real time is available, per the 13:4x PM's own note, since the structured backlog is otherwise exhausted.
+
+Attached cleanly: the checkout arrived shallow and detached, as it always does, but the unshallow step was skipped on the first pass this cycle (ran the shallow check, then went straight to checkout/merge without actually running `git fetch --unshallow`), which produced a real "refusing to merge unrelated histories" error rather than a true conflict. Caught it by reading the error rather than reaching for `--allow-unrelated-histories` or any reset; ran the unshallow fetch properly, re-fetched, then `merge --ff-only` succeeded clean, 1060 commits fast-forwarded onto `origin/main` (`7edd8c590`), no reset or force. Recording the mistake because STEP 0's own checklist is easy to skim past under a shallow-repo true/false check that looks satisfied by just reading it.
+
+Previous work (the 13:5x operator cycle and the 13:4x/13:1x PM check-ins) confirmed finished, not cited: ran `preflight.py --skip-tests` myself in the background to watch it directly. It passed every gate reached (no FAIL printed) and reached the same documented network-bound stall this sandbox always hits trying to prerender the live shop (`gate_shop_prerendered`/`gate_prerender_shop_current`, needs `6s-success.com`, which this session's egress proxy refuses); confirmed the stall was genuine, not slow, with a flat-CPU check (00:00:27 of CPU time, unchanged across an 8-second wait), then killed it clean, same precedent prior cycles have used. This is consistent with, not contradicted by, the 13:5x cycle's own independently-completed full run (0 FAIL, 30 warnings): the gate order and every gate short of the network boundary matched.
+
+Re-verified rather than trusted: `BACKLOG-2026-09-07.md` sections 2-6, only C5/C6 and the section 6 owner-gate rows unstruck, all Phil-gated, nothing newly unblocked. GitHub's 31 open issues re-pulled live via the API (oldest #18, 2026-08-20; newest touched #65, 2026-11-14): unchanged, every one `decision`, `P0`, or `blocked-on-art`, none from Phil. `STATUS.md` section 0's open-claims line: none currently open, no other session mid-flight on anything. `EXECUTIVE-DASHBOARD-LIVE.md` (generated 14:05, before this cycle started): YELLOW, $0 of $20,000, consistent with the above.
+
+Not sending a push notification: `ops/last-owner-notification.json` shows the standing cadence/decision-backlog escalation sent 2026-11-15T18:50:00Z with an explicit 48-hour no-repeat floor (2026-11-17T18:50:00Z), not yet elapsed, and nothing material has changed since (no Phil reply on #65 or #42, same 31 issues, same $0 revenue).
+
+No closing job done this cycle beyond the preflight re-verification and the attach-step correction above; `ops/cycle-signal.json`'s own checkpoint from that run is the only working-tree change.
+
+Pushed to main: `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json`. No content, price or product touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-17 (13:5x slot): re-verified exhausted state independently rather than trusting the last hour's own concurrent cycles, found nothing new
 
 **Did:** Attached clean (unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 1050 commits fast-forwarded). Ran `preflight.py --skip-tests` live to full completion: 0 FAIL, 30 warnings, all standing (no VPS SSH key, no Stripe credential, no mail credential, sandbox network limits). Checked by epic (STEP 3): 1 to 4 owner-gated; epic 5's two named mechanisms (symptom-picker widening, room-guide keyword mining) both already closed as exhausted by this same day's earlier cycles (A170 to A172). Rather than cite that, independently re-ran the hand-check battery CLAUDE.md 0.2/5d calls for: `check_urls.py` (236/236), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `cold_read_ledger.py --stale` (0), `link_graph_report.py` (0 orphans, 0 thin), `affiliate.py --check` (165 docs), `check_sellable.py --deep` (124/126, 2 person-delivered, Stripe live-price check unavailable here as usual). All 31 GitHub open issues re-pulled live: unchanged, none from Phil since #64. `checks.yml` confirmed green on the last several pushes via the Actions API. `inbox_agent.py --apply`: no mail credential, standing gap.
