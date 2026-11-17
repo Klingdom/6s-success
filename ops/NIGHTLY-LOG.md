@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (12:4x slot): previous work confirmed finished, a genuine FAIL found and fixed, same Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: hold the line, because every genuinely unblocked item has been mined to exhaustion and all 31 open issues are decision or blocked-on-art, none from Phil.
+
+Attached clean (fetch, fetch --unshallow, checkout main, ff-only merge onto origin/main, 1034 commits fast-forwarded, no reset or force, tree clean on arrival). Previous work (12:1x PM) confirmed finished, not cited: 31 GitHub issues re-pulled fresh via the API, unchanged, none from Phil since #64. Backlog sections 2-6 only C5/C6 unstruck, both YES Phil.
+
+Ran `preflight.py --skip-tests` myself rather than trust the last clean citation: it genuinely FAILed, 2 gates (`etsy-pdfs-current`, `generator-ownership`), both the same root cause, not two defects. A gate mid-run re-renders the Etsy PDF/PNG set to diff it, and that render's own Skia/PDF writer stamps a fresh CreationDate/ModDate on every pass; the content is identical (same byte count, 8 bytes differ, all inside the date string, confirmed by direct byte comparison against HEAD) but the working tree was left dirty when the run reached `generator-ownership`, which correctly refuses to diff a dirty tree. This is not new source drift, it is the render's own non-determinism leaking into git status. Discarded the six timestamp-only PDF diffs (`git checkout --`, verified identical to HEAD afterward) rather than commit noise, kept `ops/cycle-signal.json`'s own legitimate checkpoint update, and reran `preflight.py --skip-tests` to a genuine clean completion: 0 FAIL, every gate passed, 27 warnings, same standing sandbox limits as every prior cycle (no Stripe/SSH/mail credential here, no local heroes photos or narrated video to check against). `cold_read_ledger.py --stale`: 0.
+
+Not filing a new gate for this: the render's timestamp non-determinism is cosmetic and already self-heals (a second preflight run, or committing the fresh bytes, both leave the tree clean), and it has shown up before as "render briefly touched tracked files mid-run" in this log without ever blocking a real ship. Worth a line here only because this is the first time it was caught actually failing a gate rather than resolving itself before the next check.
+
+Not starting new work: nothing beyond the Phil-gated queue is genuinely unblocked this slot. No push notification: `ops/last-owner-notification.json`'s standing escalation (2026-11-15) covers the same unchanged state; nothing material has moved since.
+
+Pushed: `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json`, dashboard files.
+
+HANDOFF-FILES: none
+
 ## PM check-in (12:1x slot): previous work confirmed finished, nothing new unblocked, same Phil-gated queue handed to the operator
 
 Attached clean (ff-only, 1032 commits). Previous work confirmed finished, not cited: ran `preflight.py --skip-tests` to full completion myself, 0 FAIL, 28 standing warnings. A render briefly touched three tracked Etsy PDF/PNG files mid-run; waited for completion, confirmed bytes matched, nothing committed there.
