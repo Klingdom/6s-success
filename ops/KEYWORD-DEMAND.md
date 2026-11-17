@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-11T17:34:53Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-17T20:53:29Z against 244 page(s) at commit fc526f767. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-17T22:52:16Z against 244 page(s) at commit 818ac0daf. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2810. Checked against 244 published page titles: 1854 covered, 867 partial, 89 gap.
+**Queries found:** 2810. Checked against 244 published page titles: 1855 covered, 867 partial, 88 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 89, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 88, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -92,7 +92,6 @@ Showing the top 80 of 89, ordered by the best rank the phrase reached in any one
 | 15 | decorating ideas for patios and decks | - | More storage will not fix a messy room (0.00) | decks, patios |
 | 15 | master bedroom design floor plan | - | How to organize the primary bedroom bed and bedding (0.20) | design, master, plan |
 | 16 | amazon shopping car organizer | - | How to organize the garage car care supplies (0.33) | amazon, shopping |
-| 16 | declutter gardening series lessons | - | How to declutter a bedroom in one day, step by step (0.25) | gardening, lessons, series |
 | 16 | how to give yourself custom entryway design | Entryway | How to organize an entryway, zone by zone (0.20) | custom, give, yourself |
 | 16 | how to organize dropbox | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | dropbox |
 | 17 | examples of decks and patios | - | How to organize the patio or deck garden area (0.00) | decks, examples, patios |
@@ -101,6 +100,7 @@ Showing the top 80 of 89, ordered by the best rank the phrase reached in any one
 | 17 | updated decluttering course tutorial | - | Decluttering vs. organizing: what's actually different (0.33) | course, updated |
 | 18 | safety gears for construction | - | How to organize the workshop safety gear (0.33) | construction, gears |
 | 19 | online storage for games | - | How to organize the family room game storage (0.33) | games, online |
+| 19 | railings in floor plan | - | Venture plan (0.33) | floor, railings |
 
 ## Partial: we are close, and the title does not use their words
 
