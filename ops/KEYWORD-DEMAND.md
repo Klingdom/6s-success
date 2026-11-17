@@ -4,7 +4,7 @@
 
 **Harvested:** 2026-11-11T17:34:53Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-16T20:29:37Z against 244 page(s) at commit ab1e6312c. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-17T02:48:48Z against 244 page(s) at commit c249ad09f. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
 **Queries found:** 2810. Checked against 244 published page titles: 1798 covered, 919 partial, 93 gap.
 
