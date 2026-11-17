@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-17 (~17:5x slot): independently re-verified the exhausted state a second time this hour, declined to re-mine the diminishing-returns keyword lane, no new unblocked work
+
+**Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 1096 commits fast-forwarded, no reset/force). Read `BACKLOG-2026-09-07.md` in full, `GOALS.md` section 0-3, and the last several dated `ops/NIGHTLY-LOG.md` entries before touching anything. Ran `preflight.py --skip-tests` live to real completion in the background (not killed early): **0 FAIL, 31 warnings, all previously-diagnosed sandbox limits** (no Stripe/SSH/mail credential, no local art/film sources).
+
+**Verified rather than cited.** The 17:1x and 17:4x PM check-ins' own handoffs were already closed by the time I checked: `publish-image.yml` run 830 and `deploy.yml` run 439 both `success` (confirmed directly against the Actions API), `checks.yml` green on the two follow-on commits. `inbox_agent.py --apply`: no mail credential, standing gap. GitHub's 31 open issues re-pulled live: unchanged, none from Phil since #65 (2026-11-14); read issue #42 in full (Phil's own "is this cadence worth its cost" question) rather than cite it secondhand, since it bears directly on what this cycle should do. Independently re-ran `room_guide_candidates.py` (empty, all 20 rooms have a guide) and `room_guide_underperformance.py` (worst room, Family Room, 13% uncovered, mostly the already-declined games/PC-console collision and thin single-word misses): confirms, not just cites, the standing diminishing-returns verdict `gate_room_guide_mining_diminishing_returns` already names. Declined to pick up another one-row FORMAT_WORDS fix in that lane: with 30+ prior cycles already mining it today and this hour alone producing three other sessions' worth of near-identical work, another marginal fix duplicates effort already in flight elsewhere and is the exact busywork issue #42 describes, not genuine new value.
+
+**A real near-miss, caught before it mattered.** Ran the first full `preflight.py` in the background while reading other files; it finished and, per its own documented exit behaviour (named explicitly in the 17:4x PM's own log entry above), restored an uncommitted artifact (`ops/cycle-signal.json`) against a HEAD that a concurrent PM check-in had since moved past. Caught by re-fetching and diffing before committing anything, discarded rather than shipped stale.
+
+**Went well:** did not re-run a 20-minute-old PM check-in's own verification from scratch once its log entry was pulled in; did not duplicate the keyword-mining lane a session or two ahead of me was almost certainly also touching.
+
+**Did not go well:** this is the Nth consecutive "nothing new, hold the line" entry today; issue #42 names the cost of that cadence directly and it remains Phil's call, not mine, to change it.
+
+**Changing next cycle:** none; no new defect class found.
+
+**Next:** same as every recent entry — the 31 open GitHub issues, all `decision`/`P0`/`blocked-on-art`, none actionable without Phil.
+
+Pushed to main: `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No content, price or product touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-17 (17:4x slot): previous work's own handoff (confirm run 830) verified complete; queue still genuinely exhausted beyond Phil-gated items
 
 NEXT FOR THE OPERATOR: hold the line, same Phil-gated queue (C5/C6 in BACKLOG-2026-09-07.md section 4, the 31 open decision/P0/blocked-on-art GitHub issues, none from Phil since #65 on 2026-11-14); nothing genuinely unblocked this slot either.
