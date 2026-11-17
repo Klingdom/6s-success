@@ -2,14 +2,35 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-17 (03:5x slot): previous work (A170) confirmed finished by live preflight and GitHub re-pull; closed its own named handoff (A171, Entryway's third symptom entry) rather than re-cite it, then fixed a real STATUS.md drift the fix itself exposed
+## PM check-in, 2026-11-17 (03:5x/04:0x slots): found and reconciled a real collision rather than push a duplicate, then carried forward the one piece of unique work neither side had done
 
-Previous work finished: `preflight.py --skip-tests` clean (0 FAIL, 35 warnings, all standing) before touching anything; GitHub's 31 open issues unchanged, all decision/P0/blocked-on-art, none from Phil since #64. Entryway was the one room still at 2 of 3 symptom entries (confirmed by direct `SYMPTOM_PICKS` count, matching the 03:4x handoff exactly). Picked it as this slot's work: of Entryway's 3 remaining zones, the one Safety-pass candidate (Entry Console drawer, KC-010, 82 chars) was 44% longer than the room's shortest non-Safety option, inside the 30-80% band A170 already declined elsewhere, so declined here too; shipped the shortest friction instead (Entry Console's own first friction, KC-002, Straighten). Full chain rebuilt, all 10 quest e2e scripts, `check_urls.py`, `audit_pages.py`, `fix_dashes.py --check`, `cold_read_ledger.py --stale` all clean. A170's own STATUS.md correction had already gone stale by the time this cycle checked: a newer deploy-verdict confirmation (`fd2eef4fcbc1e35b`) had landed after A170 wrote `780c0473ff0509c7`, and a separate "Production traceability" row had drifted to 0 commits undeployed while "Public website" said 2. Re-derived live and fixed all four citing spots to agree (1 commit undeployed, this cycle's own A171 commit). Also ran `rotate_backlog.py --apply`, 11 rows over the Done-table cap.
+This cycle picked up A170's own named handoff (Entryway's third symptom entry) and committed it locally, then discovered on push that a concurrent operator cycle had independently done the identical widening (same Entry Console or Bench pick, same KC-010/44% Safety-decline reasoning) plus Kitchen's own fourth entry, and had already pushed, rebased, and corrected `STATUS.md`'s deploy-gap citations the same way this cycle had. Verified the collision directly (`git diff` against the merge base) rather than assume it from the push failure alone: origin's A171 is a strict superset of this cycle's own Entryway work. Did not force-push or duplicate it. Merged `origin/main` instead; resolved the real conflicts by keeping origin's side for `BACKLOG-2026-09-07.md`'s A171 row, `STATUS.md`'s five deploy-gap citations, and every generated file (`ops/build_quest.py`'s `SYMPTOM_PICKS` duplicate tuple removed, the rest regenerated fresh rather than hand-resolved, per CLAUDE.md step 8). Kept this cycle's own unique contribution: `ops/rotate_backlog.py --apply` had archived 11 Done-table rows neither concurrent cycle had run, preserved cleanly through the merge (no conflict, only this cycle touched that file).
 
-**Handing to the operator:** nothing bounded and sized for 30 minutes remains; all 20 rooms now carry exactly 3 symptom entries, a natural pause point, not a named next step. The standing Phil-gated queue (31 issues) is the only real backlog. No push notification: nothing customer-facing changed beyond this app-payload addition, and the owner queue is unchanged.
+Re-derived the deploy gap fresh against the merged `HEAD` rather than trust either side's now-stale commit list, regenerated the full quest build chain and the dashboard, and re-ran `preflight.py --skip-tests` to confirm the merge itself introduced no defect.
 
-Pushed to main. No price touched; `IndexNow` not applicable (app payload only).
+**Changing next cycle:** when `ops/build_quest.py`'s own named handoff is this specific and this cheap (one zone, one room), expect the hourly operator to have already picked it up; check GitHub/push state before investing a full verification pass on work that may already be in flight elsewhere.
 
+No push notification: nothing customer-facing beyond what the concurrent cycle's own run already shipped.
+
+Pushed to main (merge commit).
+
+## Scheduled operator cycle, 2026-11-17 (04:0x slot): closed A170's own named next step (A171), corrected STATUS.md's deploy-gap citations twice (once directly, once after rebasing onto a concurrent push), regenerated the command deck
+
+**Did.** Attached onto `main` cleanly, 940 commits fast-forwarded. `preflight.py --skip-tests` clean first (0 FAIL, 33 warnings, standing). Epics 1-4 still owner-gated (#64 traffic read, #43/#44/#46/#48/#45 accounts, A/B registry 1,427 days out); room-guide mining self-reports diminishing returns. Picked up A170's named next step: Entryway to 3 symptom entries, Kitchen to 4. Read every remaining zone's frictions by hand, checked each candidate's root-cause `six_s` tag; picked Entry Console's drawer-refill friction for Entryway (Straighten, genuine shortest) and Refrigerator and Freezer's raw-meat-above-salad friction for Kitchen (Safety, KC-010, only 21% longer than shortest, a real cross-contamination hazard). Regenerated the full build chain, all 10 quest tests pass by real exit code, `check_urls.py`/`audit_pages.py`/`fix_dashes.py --check`/`cold_read_ledger.py --stale` clean.
+
+**Verified.** `preflight.py --skip-tests` run to completion three times (clean before, correctly FAILing only `gate_generator_ownership` on each dirty tree, clean after each commit). Fixed six stale deploy-gap citations in `STATUS.md` twice: once against the real post-A171 state, again after a concurrent push forced a rebase that changed the commit hashes under the first fix.
+
+**Went well:** caught the rebase-changes-the-hash problem before pushing a citation that would have gone stale on landing.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** this widening mechanism has no further named step; whichever of the 31 open issues Phil clears first, or a fresh epic-1-4 check.
+
+No push notification: nothing customer-facing, no new owner gate.
+
+Pushed to main (4 commits). No price, product or page touched; `IndexNow` not applicable.
 ## PM check-in, 2026-11-17 (03:4x slot): previous work (A170) independently reconfirmed finished by a full live preflight pass and a direct SYMPTOM_PICKS count; nothing new unblocked beyond the standing handoff
 
 NEXT FOR THE OPERATOR: widen Entryway's Home Quest symptom picker to a third entry, because a direct count of `ops/build_quest.py`'s `SYMPTOM_PICKS` this cycle confirms Entryway (2 of 3) is now the only room below the bar all 19 others already clear; the same bounded step the 03:1x check-in named, now checked against the live file rather than cited.
