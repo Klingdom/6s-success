@@ -568,8 +568,8 @@
     },
     "build_zone_pages.py": {
       "status": "clean",
-      "date": "2026-11-16",
-      "note": "Re-ledgered 2026-11-16, scheduled operator cycle: file flagged stale after A150 (095abb5ae, 2026-11-15). Read the real diff directly (not the whole 4410-line file, already cold-read first through fourth pass in prior cycles): the only change is two new lines in the existing _layout_suffix dict adding a 'Laundry Room' entry, exact string match against room['room'] confirmed directly in content.json (not assumed). Verified live: site/rooms/laundry-room.html renders '<h2>Laundry room layout, narrow or tiny</h2>' exactly as the commit claims, and mcp/content.json's committed mirror is byte-for-byte in sync with content/manual/source/content.json (the drift A150 itself caught and fixed before shipping). No defect found."
+      "date": "2026-11-17",
+      "note": "2026-11-17: added a second ROOM_GUIDES entry for Kitchen (the new how-to-organize-recipes.html article, previously thin with 1 inbound link). Regenerated the full chain and re-ran test_gate_general_reading.py, test_general_reading.py, test_reading_spread_and_uniqueness.py (all pass); link_graph_report.py confirms 0 thin articles, 0 orphans."
     },
     "canonical_links.py": {
       "status": "clean",
