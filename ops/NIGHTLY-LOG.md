@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (15:1x slot): previous work confirmed finished, nothing new unblocked, same Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: hold the line, same Phil-gated queue; nothing genuinely unblocked beyond C4/C5/C6 and the 31 open issues.
+
+Attached clean: shallow/detached checkout as STEP 0 warns, unshallowed for real, fast-forwarded onto `origin/main` (`c494b9e`), no reset or force, tree clean on arrival.
+
+Previous work (the 14:5x operator cycle) confirmed finished, not cited: ran `preflight.py --skip-tests` myself to full completion (exit 0): every gate passed, 29 warnings, all previously-diagnosed sandbox limits (no SSH deploy key, no Stripe credential, known art/film gaps). Re-verified rather than trusted: GitHub's 31 open issues re-pulled live, unchanged, newest touched #65 (2026-11-14), all `decision`/`P0`/`blocked-on-art`, none from Phil; `BACKLOG-2026-09-07.md` sections 2-6 re-grepped directly, only C4/C5/C6 unstruck, all Phil-gated; working tree clean, main pushed.
+
+Not sending a push notification: `ops/last-owner-notification.json`'s 48-hour no-repeat floor (due 2026-11-17T18:50:00Z) has not elapsed and nothing material changed.
+
+Not starting new work: queue genuinely exhausted beyond Phil-gated items, holding per CLAUDE.md 0.8 rather than manufacturing busywork.
+
+Pushed to main: `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json`, dashboard files. No content, price or product touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-17 (14:5x slot): independently re-verified the exhausted state, no new unblocked work, no notification sent
 
 **Did.** Unshallowed and attached clean (`fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 1064 commits fast-forwarded, no reset/force, tree clean on arrival). Ran every check myself rather than citing the 14:1x PM's own numbers: `preflight.py --skip-tests` to full completion, 0 FAIL, 29 warnings, all previously-diagnosed sandbox limits (no Stripe/.env.secrets, no SSH deploy key, no mail credential, no local heroes/book art); `cold_read_ledger.py --stale` 0; `link_graph_report.py` 0 orphans/thin/dead-ends across zones, rooms and articles; `check_urls.py` 236/236; `affiliate.py --check` clean, 165 delivered documents, no leaked links; `check_sellable.py` 124/126 (2 person-delivered services by design); `room_guide_candidates.py` 0 (all 20 rooms already have a guide, confirmed by running it, not by trusting the backlog's own claim).
