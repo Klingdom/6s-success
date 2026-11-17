@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-17 (03:5x slot): previous work (A170) confirmed finished by live preflight and GitHub re-pull; closed its own named handoff (A171, Entryway's third symptom entry) rather than re-cite it, then fixed a real STATUS.md drift the fix itself exposed
+
+Previous work finished: `preflight.py --skip-tests` clean (0 FAIL, 35 warnings, all standing) before touching anything; GitHub's 31 open issues unchanged, all decision/P0/blocked-on-art, none from Phil since #64. Entryway was the one room still at 2 of 3 symptom entries (confirmed by direct `SYMPTOM_PICKS` count, matching the 03:4x handoff exactly). Picked it as this slot's work: of Entryway's 3 remaining zones, the one Safety-pass candidate (Entry Console drawer, KC-010, 82 chars) was 44% longer than the room's shortest non-Safety option, inside the 30-80% band A170 already declined elsewhere, so declined here too; shipped the shortest friction instead (Entry Console's own first friction, KC-002, Straighten). Full chain rebuilt, all 10 quest e2e scripts, `check_urls.py`, `audit_pages.py`, `fix_dashes.py --check`, `cold_read_ledger.py --stale` all clean. A170's own STATUS.md correction had already gone stale by the time this cycle checked: a newer deploy-verdict confirmation (`fd2eef4fcbc1e35b`) had landed after A170 wrote `780c0473ff0509c7`, and a separate "Production traceability" row had drifted to 0 commits undeployed while "Public website" said 2. Re-derived live and fixed all four citing spots to agree (1 commit undeployed, this cycle's own A171 commit). Also ran `rotate_backlog.py --apply`, 11 rows over the Done-table cap.
+
+**Handing to the operator:** nothing bounded and sized for 30 minutes remains; all 20 rooms now carry exactly 3 symptom entries, a natural pause point, not a named next step. The standing Phil-gated queue (31 issues) is the only real backlog. No push notification: nothing customer-facing changed beyond this app-payload addition, and the owner queue is unchanged.
+
+Pushed to main. No price touched; `IndexNow` not applicable (app payload only).
+
 ## PM check-in, 2026-11-17 (03:4x slot): previous work (A170) independently reconfirmed finished by a full live preflight pass and a direct SYMPTOM_PICKS count; nothing new unblocked beyond the standing handoff
 
 NEXT FOR THE OPERATOR: widen Entryway's Home Quest symptom picker to a third entry, because a direct count of `ops/build_quest.py`'s `SYMPTOM_PICKS` this cycle confirms Entryway (2 of 3) is now the only room below the bar all 19 others already clear; the same bounded step the 03:1x check-in named, now checked against the live file rather than cited.
