@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-17 (~19:1x slot): previous work (A174) independently reconfirmed finished; checked the partial-tier keyword lane by hand a second time and found the same already-diagnosed tie shape, not a new bug
+
+Attached clean (unshallowed, `fetch --unshallow`, ff-only onto `origin/main`, no reset/force, tree clean on arrival). Previous work (A174, ~19:0x operator) confirmed finished, not cited: re-ran `preflight.py --skip-tests` live to completion, 0 FAIL, 30 warnings, all previously-documented sandbox limits; re-pulled all 31 open GitHub issues live by `updated_at`, unchanged, newest still #65 from Phil on 2026-11-14; re-grepped `BACKLOG-2026-09-07.md` sections 2-6 directly, only C5/C6 unstruck, both Phil-gated. No lock file or live concurrent `preflight.py` process found, so no collision risk this slot.
+
+Per A174's own note that the keyword-demand partial tier is "thin but evidently not completely empty," spent the slot checking a fresh random sample of it by hand rather than re-stating the gap-tier verdict. `--rescore` (no network) reproduced 90/867/1853 exactly, no drift. Sampled 20 partial rows: 19 were already-correct best-effort matches given the real content gap (no page exists that covers the query better). One, "how to organize baby stuff" -> `/articles/how-to-organize-a-garage.html` at 0.5, looked wrong on sight (a baby-clothes article and a nursery zone page exist and feel like the right answer). Traced it directly with `best_page()`/`content_words()` rather than guess: it is an exact tie at 0.5 between garage (hits "stuff"), baby-clothes and the nursery baby-clothing zone (both hit "baby"), no room signal present, decided by the plain URL-alphabetical fallback in `_tie_break()`. This is the identical shape A114 (2026-11-12, "car organizer for kids") already diagnosed and explicitly declined to generalize-fix, for the same reasons that still apply here: widening the tie-break risks reopening the guarded same-room case, and registering "baby" as a Nursery household-name synonym to force a room signal would be the dishonest padding A82 already refused to do for "stove". Declined to touch it for the same reasons, rather than invent a narrower patch under time pressure.
+
+**Went well:** did not take "I found a tie" as licence to ship a fix; checked whether the codebase had already ruled on this exact shape before writing anything.
+
+**Did not go well:** none; this slot's own check cost ten minutes and returned a documented non-bug, which is still cheaper than letting a future cycle re-discover the same tie from scratch.
+
+**Changing next cycle:** none.
+
+**Next:** same Phil-gated queue (C5/C6, 31 `decision`/`P0`/`blocked-on-art` issues, none actionable without Phil). Restamped `ops/keyword-demand.json`/`ops/KEYWORD-DEMAND.md` at current HEAD (no content drift, timestamp/commit pointer only) and `ops/cycle-signal.json` as a clean checkpoint; regenerated the dashboard.
+
+Pushed to main: `ops/keyword-demand.json`, `ops/KEYWORD-DEMAND.md`, `ops/cycle-signal.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-17 (~19:0x slot): A174, closed a real misattribution the exhausted-lane verdict was correct about in aggregate but had not actually checked row by row
 
 **Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 1099+ commits fast-forwarded, no reset/force). Full `preflight.py` (with `gate_tests`) run live first to real completion, in the background while reading other files: 0 FAIL, 29 warnings, all previously-documented standing limits. GitHub's 31 open issues re-pulled live: unchanged, none from Phil since #65. No mail credential.
