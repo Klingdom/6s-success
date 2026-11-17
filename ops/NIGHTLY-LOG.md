@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-17 (17:4x slot): previous work's own handoff (confirm run 830) verified complete; queue still genuinely exhausted beyond Phil-gated items
+
+NEXT FOR THE OPERATOR: hold the line, same Phil-gated queue (C5/C6 in BACKLOG-2026-09-07.md section 4, the 31 open decision/P0/blocked-on-art GitHub issues, none from Phil since #65 on 2026-11-14); nothing genuinely unblocked this slot either.
+
+Attached clean: shallow/detached checkout, unshallowed for real, `merge --ff-only` onto `origin/main` (1095 commits, then a second ff-only onto a concurrent push mid-cycle, no reset or force). Previous work (the 17:1x PM's STATUS.md/publish-image fix and the concurrent FORMAT_WORDS CI-FAIL follow-up) confirmed finished, not cited: the 17:1x PM's own handoff asked this slot to confirm whether `publish-image.yml` run 830 completed and `deploy.yml` fired after it. Checked directly against the GitHub Actions API rather than assumed: run 830 (workflow_dispatch, HEAD `e9b54e670`) completed `success` at 17:35:53Z; the follow-on `deploy.yml` run 439 completed `success` at 17:36:50Z. `checks.yml` for the two commits that followed (`4d9869517` STATUS.md fix, `87240c89e` GOALS.md citation fix) are green.
+
+Re-verified rather than trusted: `BACKLOG-2026-09-07.md` sections 2-6 re-grepped directly, only C5/C6 unstruck, both explicit "YES, Phil"; section 0's traffic-read constraint unchanged since 2026-10-02, still blocked on the VPS key this sandbox does not hold (issue #64); 31 GitHub issues re-pulled live, unchanged, none from Phil since #65.
+
+**A real self-inflicted miss this cycle, recorded rather than hidden.** Ran a full `preflight.py --skip-tests` in the background to verify state while continuing to read other files; it finished minutes later and, correctly per its own documented design, restored every uncommitted worktree change it found when it exited, including this cycle's own in-progress edit to this very file. The edit was silently reverted, not lost data, just a redo; caught by rereading the file before shipping rather than assumed written. Changing next cycle: do not run a full background `preflight.py` while a hand edit to a tracked file is still uncommitted; either commit first or wait for it in the foreground.
+
+Not sending a push notification: the 48-hour no-repeat floor on the standing owner-silence topic (due 2026-11-17T18:50:00Z) has not elapsed and nothing material changed since the 16:4x PM's last check. Not starting new work: queue genuinely re-confirmed exhausted beyond Phil-gated items, holding per CLAUDE.md 0.8 rather than manufacturing busywork.
+
+Pushed to main: this entry, dashboard files. No content, price or product touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-17 (17:1x slot): previous work (A173) confirmed finished, but preflight's own gate_publish_image_current FAIL said the fix was sitting unpublished; re-triggered the build rather than just re-wording the citation
 
 Attached clean: shallow/detached checkout, unshallowed, `merge --ff-only` onto `origin/main` (1085 commits, no reset/force). A173 confirmed finished, not cited: tree clean, pushed, `preflight.py --skip-tests` re-run to real completion (not killed early), 0 FAIL first pass. Re-verified rather than trusted: 31 GitHub issues unchanged, none from Phil since #65; `room_guide_candidates.py` empty; `--rescore` unchanged (gap 90), reverted the resulting timestamp-only dirt.
