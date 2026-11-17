@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-17 (~22:1x slot): previous work reconfirmed finished via a full preflight pass; dashboard regenerated; nothing new unblocked beyond the Phil-gated queue
+
+Attached clean (unshallowed, merge --ff-only, 25 commits fast-forwarded, no reset/force). Previous work (21:4x PM cycle) reconfirmed finished: full `preflight.py --skip-tests` run live to completion, 0 FAIL, every gate passed, 28 warnings, all standing sandbox limits (no SSH key, no Stripe credential, no local films or photos). All 31 GitHub issues: unchanged, all `decision`/`blocked-on-art`/`P0`, nothing from Phil since #65. All rotation scripts re-run: CLEAN. Restored two non-deterministic Etsy PDF regen artifacts and a mid-run `cycle-signal.json` checkpoint rather than commit noise. Dashboard regenerated.
+
+Not starting new work: nothing beyond the Phil-gated queue is unblocked. Handing the operator the same lane the 21:4x PM named: hand-mine the epic-5 keyword gap/partial tiers, hours-scale, not a 30-minute item.
+
+Pushed: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-17 (~21:4x slot): previous work finished; found and closed a real stale deploy-gap citation plus a dirty-tree gate failure; nothing new started
 
 NEXT FOR THE OPERATOR: continue hand-mining the keyword gap/partial tiers in epic 5 (89 gap rows, 867 partial, `ops/KEYWORD-DEMAND.md`), because that is the established, genuinely unblocked mechanism and the last two cycles found real zone-vocabulary fixes a pure aggregate read missed.
