@@ -174,6 +174,39 @@ def test_real_world_entry_labels_are_recognised():
     return fails
 
 
+def test_prior_entry_kept_because_shape_recurs_label_is_recognised():
+    """Found 2026-11-17, the same recognition gap a third time: a label
+    that opens with plain text ("Prior entry, kept because the shape
+    recurs: ") before its own bold date, not with "**" at position 0.
+    Before this was taught to ENTRY_START_RE, every one of these
+    entries folded invisibly into whichever entry above it did carry a
+    recognised label, letting section 1 grow past its own size
+    tripwire while this script kept reporting CLEAN.
+    """
+    body = (
+        "**2026-11-16, scheduled operator cycle: the live anchor.**\n\n"
+        "Prior entry, kept because the shape recurs: **2026-11-16, "
+        "scheduled operator cycle: A160, a retained historical "
+        "entry.** Some trailing prose.\n\n"
+        "Prior entry, kept because the shape recurs: **2026-11-15, "
+        "scheduled operator cycle: A151, a second retained entry.**"
+    )
+    text = _status_text(body)
+    _, entries, _, _ = rsm.split_metadata_chain(text)
+    fails = []
+    if len(entries) != 3:
+        fails.append("expected 3 separate entries (anchor + 2 "
+                      "'Prior entry, kept because the shape recurs' "
+                      "entries), got %d: %r"
+                      % (len(entries), [e[:50] for e in entries]))
+    else:
+        if not entries[1].startswith("Prior entry, kept because the "
+                                      "shape recurs:"):
+            fails.append("entry 1 should keep its own label verbatim, "
+                          "got %r" % entries[1][:60])
+    return fails
+
+
 def test_row_count_cap_archives_same_day_overflow():
     """Found 2026-11-12: once the label-recognition fix let plan_rotation
     actually see the real chain, every one of its 11 entries carried
@@ -238,6 +271,7 @@ CASES = [
     test_lossless_roundtrip_on_real_file,
     test_no_change_when_already_rotated,
     test_real_world_entry_labels_are_recognised,
+    test_prior_entry_kept_because_shape_recurs_label_is_recognised,
     test_row_count_cap_archives_same_day_overflow,
     test_row_count_cap_is_noop_under_the_cap,
     test_refuses_unrecognised_first_paragraph,

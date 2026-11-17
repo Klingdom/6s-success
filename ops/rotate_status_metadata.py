@@ -50,6 +50,22 @@ below needed no change, since its whole design (discussed next) already
 handles entries that are not in strict file order, which is exactly what
 unblocking this recognition gap exposes at scale.
 
+Found again 2026-11-17, the same recognition gap a third time: a cycle
+had started prefacing a retained historical entry with the plain-text
+label "Prior entry, kept because the shape recurs: " before its own
+bold date, so the whole label line starts with that plain text, not
+with "**". ENTRY_START_RE's own anchor (`^\*\*...`) never matches a
+line that does not open with "**", so every one of these 14 entries
+(32702 bytes, most of section 1's own size) folded invisibly into
+whichever entry above it did carry a recognised label, the identical
+"this script reports CLEAN while the gate it feeds keeps warning" shape
+as the first occurrence. Taught the regex this one label too, as its
+own top-level alternative (it cannot sit inside the existing "starts
+with **" branch, since the "**" here is not at position 0). No change
+to plan_rotation's policy: once the label is recognised, each one of
+these entries carries its own real date, same as any other, and ages
+out through the same max-date-then-cap rule as every other label.
+
 A second, genuine defect surfaced while building this: the chain is NOT
 reliably newest-first by file position. Two entries dated 2026-10-26 (the
 most recent work in the chain when this was built) sit well below entries
@@ -97,8 +113,9 @@ SECTION_END_BEFORE = "# 2. Executive Snapshot"
 POINTER_MARKER = "**Older entries ("
 
 ENTRY_START_RE = re.compile(
-    r"^\*\*(?:Last Updated:\*\*|Earlier, |Latest, |CLOSED |"
-    r"OPEN LOOP AS AT |Prior \(|Corrected |PM check-in|\d{4}-\d{2}-\d{2})"
+    r"^(?:\*\*(?:Last Updated:\*\*|Earlier, |Latest, |CLOSED |"
+    r"OPEN LOOP AS AT |Prior \(|Corrected |PM check-in|\d{4}-\d{2}-\d{2})|"
+    r"Prior entry, kept because the shape recurs:\s*\*\*)"
 )
 DATE_RE = re.compile(r"\d{4}-\d{2}-\d{2}")
 
