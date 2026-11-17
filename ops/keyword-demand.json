@@ -26463,16 +26463,14 @@
         "how to organize bench"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/zones/primary-bedroom-the-primary-closet.html",
+      "best_page_title": "How to organize the primary bedroom closet",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap",
-      "unmatched_words": [
-        "belts"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bedroom-the-primary-closet.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize bench storage",
@@ -56321,6 +56319,6 @@
       ]
     }
   ],
-  "scored_against_commit": "40d64bcde",
-  "scored_at": "2026-11-17T19:23:26Z"
+  "scored_against_commit": "fc526f767",
+  "scored_at": "2026-11-17T20:53:29Z"
 }

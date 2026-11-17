@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-11T17:34:53Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-17T19:23:26Z against 244 page(s) at commit 40d64bcde. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-17T20:53:29Z against 244 page(s) at commit fc526f767. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2810. Checked against 244 published page titles: 1853 covered, 867 partial, 90 gap.
+**Queries found:** 2810. Checked against 244 published page titles: 1854 covered, 867 partial, 89 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 90, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 89, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -41,7 +41,6 @@ Showing the top 80 of 90, ordered by the best rank the phrase reached in any one
 | 4 | why am i frequently using the bathroom | - | How to organize the guest bathroom towels (0.33) | frequently, using |
 | 5 | decks and patios design ideas | - | How to organize an entryway, zone by zone (0.00) | decks, patios |
 | 5 | dental organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | dental |
-| 5 | how to organize belts | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | belts |
 | 5 | kindergarten organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | kindergarten |
 | 5 | why are garages left unfinished | Garage | How to organize the garage power tool storage (0.33) | garages, unfinished |
 | 6 | how to hold bench press bar correctly | - | How to organize the patio or deck outdoor seating (0.20) | bar, bench, correctly |
@@ -101,6 +100,7 @@ Showing the top 80 of 90, ordered by the best rank the phrase reached in any one
 | 17 | snap on stationary storage | - | More storage will not fix a messy room (0.33) | snap, stationary |
 | 17 | updated decluttering course tutorial | - | Decluttering vs. organizing: what's actually different (0.33) | course, updated |
 | 18 | safety gears for construction | - | How to organize the workshop safety gear (0.33) | construction, gears |
+| 19 | online storage for games | - | How to organize the family room game storage (0.33) | games, online |
 
 ## Partial: we are close, and the title does not use their words
 

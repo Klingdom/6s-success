@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-17 (~21:1x slot): A176, closed a genuine zone-level vocabulary gap ("belts") the standing gap tier had carried unmined
+
+**Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 12 commits fast-forwarded, no reset/force, tree clean on arrival). `preflight.py --skip-tests` run live first: 0 FAIL, 29 warnings, all standing. GitHub's 31 open issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil since #65. `inbox_agent.py --apply`: no mail credential, standing gap. Checked by epic first (STEP 3): epics 1-4 owner-gated or on Hold, unchanged from the prior four entries; epic 5's two bounded mechanisms re-verified live rather than cited (`room_guide_candidates.guide_less_rooms()` is `[]`; both corpora's `--rescore` matched the last committed counts exactly before touching anything). Rather than cite the gap tier "exhausted" a further time, read all 90 rows by hand. Most is the already-documented noise class (digital storage, cribbage tournaments, construction/DIY, bakery equipment, medical symptoms, vastu design). One row was real: "how to organize belts" (US, bing, rank 5, gap, scoring to `/about.html` on a bare tie-break). `content.json`'s Primary Bedroom/Primary Closet zone already lists "Belts, on one hook" in `common_items`, `sort_scope.belongs` and `done_looks_like`, and the live page already rendered all three, just inside list items, never a heading, the same pegboard/bakeware shape earlier cycles already established a fix for. Self-flattery and collision checked first: "belt"/"belts" in 0 of 244 titles/headings; exactly one row in either corpus carries it as a content word.
+
+**Fixed.** Added "belts zone" (the exact plural, since the scorer does not stem) to the zone's existing `ops/zone-also-called.json` entry, the established mechanism, not a new one. Regenerated through the real owning generator, `ops/build_zone_pages.py` (self-chains fingerprint/pwa/seo).
+
+**Verified.** Full before/after `score_rows()` diff reproduced by the real rescore: US gap 90->89, covered 1853->1854, partial unchanged, 0 regressions; global unchanged (no equivalent query). `check_also_called_digital_collision_fast.py`, `test_gate_also_called_is_heading.py` (6/6), `test_gate_also_called_no_digital_collision.py` (5/5), `test_gate_zone_also_called_is_heading.py` (6/6), `check_urls.py` (236/236), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 docs), `check_sellable.py` (124/126, 2 person-delivered services), `link_graph_report.py` (0 orphans), `cold_read_ledger.py --stale` (0) all independently clean. `preflight.py --skip-tests` re-run live twice: once dirty (the one FAIL was `gate_generator_ownership` correctly refusing an uncommitted tree, the documented shape), once after commit: 0 FAIL.
+
+**Went well:** reading the gap tier row by row, rather than trusting the aggregate "noise" verdict a prior cycle reached, found a real fix a pure-count read would have missed.
+
+**Did not go well:** this cycle's own commit went stale against `STATUS.md`'s "0 commits undeployed" citations within the same cycle that wrote them, the dominant defect class this file names throughout; found and fixed before pushing (BLOCKER-001, Production Knowledge and both section 1 table rows corrected to the real 1-commit gap, `ca424e191`), not left for a sibling to catch.
+
+**Changing next cycle:** nothing new; this is a normal instance of an already-established mechanism.
+
+**Next:** epics 1-4 remain owner-gated or on Hold; the next structured step in epic 5 is mining whatever remains of the gap/partial tiers by hand, a few rows at a time, since the aggregate counts alone keep under-reporting what a real read finds. 31 GitHub issues await Phil's own decisions.
+
+No new preflight gate (STEP 10b): this is a normal instance of the already-established zone-also-called mechanism and gate set; no new defect class found. No price, product or payment touched; one existing zone page's heading changed, `IndexNow` to submit on push.
+
+Pushed to main. `ops/zone-also-called.json`, `site/zones/primary-bedroom-the-primary-closet.html` and its generated chain, `ops/keyword-demand.json`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND.md`, `BACKLOG-2026-09-07.md`, `STATUS.md`, dashboard files, this entry.
+
 ## PM check-in, 2026-11-17 (~20:4x slot): previous work (A175/BLOCKER-001 chain fix, 20:1x) confirmed finished live; queue independently re-confirmed exhausted; one in-flight CI run handed to the operator to close out
 
 NEXT FOR THE OPERATOR: confirm the "Checks" workflow run on commit 99eeff2e3 (started 20:30:16Z) finished green before treating that commit as verified, because it was still `in_progress` when this slot checked it and no later cycle has confirmed its conclusion yet.
