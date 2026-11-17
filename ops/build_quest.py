@@ -321,6 +321,38 @@ def _norm_symptom(s: str) -> str:
 # Safety elsewhere: a real hazard outranks a merely shorter convenience
 # symptom. Verified live before shipping: symptom, branch answer, and
 # first_15 action/victory all non-empty, read directly from content.json.
+#
+# Widened a fourth time 2026-11-17, scheduled operator cycle: a third
+# entry for every one of the 18 rooms the prior widening left at exactly
+# two (all but Entryway, already at 2 of 5 zones, and Kitchen, already at
+# 3 of 4), 41 entries to 59. For each room, read every remaining zone's
+# own frictions[*] by hand, checked each candidate's first branch (bi=0)
+# against ops/root_causes.py rather than assumed from wording, and picked
+# the shortest, most recognisable symptom, leaning Safety only when a
+# Safety-pass candidate was close in length (judged case by case, not a
+# fixed percentage) to the shortest non-Safety one in that same room; a
+# Safety candidate that was merely available but far longer than the
+# room's shortest option was declined rather than forced (Dining Room,
+# Hall Closet, Guest Bedroom all had a genuine Safety-pass friction in
+# their remaining zones that was 30 to 80 percent longer than the room's
+# actual shortest; none was picked). 12 of the 18 new picks are genuine
+# Safety-pass causes (D-014): Home Office's leaning bookshelf, Garage's
+# fire-or-poisoning-risk shelf, Laundry Room's child-reachable chemical,
+# Living Room's loose tablets in a child's reach, Primary Bedroom's water
+# glass beside a power strip, Family Room's overheating tablet under a
+# blanket, Kids Bedroom's overloaded extension strip with a water bottle
+# at the same end, Nursery's heavy carton over the crib, Guest Bathroom's
+# missing bath mat and grab bar, Workshop's unseparated solvent and
+# water-based paint cans, Mudroom's child-height flea treatment, and
+# Patio or Deck's wet-board extension lead. The other six (Primary
+# Bathroom, Dining Room, Hall Closet, Pantry, Guest Bedroom, Stair
+# Landing) had no comparably short Safety-pass candidate in their
+# remaining zones, so each took its room's genuinely shortest, most
+# recognisable remaining friction instead, honestly tagged Standardize,
+# Shine, Sort or Sort rather than stretched to Safety. Every one of the
+# 18 new entries verified live before shipping, the same way as every
+# prior widening: symptom, branch answer, and first_15 action/victory
+# text all non-empty, read directly from content.json.
 SYMPTOM_PICKS = [
     ("Entryway", "Landing Zone", 1, 0),
     ("Entryway", "Coat and Outerwear Zone", 0, 0),
@@ -363,6 +395,24 @@ SYMPTOM_PICKS = [
     ("Stair Landing", "Stair and Floor Path", 0, 0),
     ("Patio or Deck", "Garden and Plant Care Zone", 0, 0),
     ("Patio or Deck", "Surface, Rail, and Safety Zone", 0, 0),
+    ("Primary Bathroom", "Toilet Area", 1, 0),
+    ("Home Office", "Bookshelf and Reference Zone", 2, 0),
+    ("Garage", "Automotive Care Zone", 3, 0),
+    ("Laundry Room", "Detergent and Treatment Zone", 2, 0),
+    ("Living Room", "Side Tables and Lighting", 1, 0),
+    ("Primary Bedroom", "Nightstand Left", 1, 0),
+    ("Dining Room", "China or Display Cabinet", 2, 0),
+    ("Hall Closet", "Cleaning Equipment Zone", 1, 0),
+    ("Pantry", "Baking Zone", 1, 0),
+    ("Family Room", "Charging and Device Zone", 2, 0),
+    ("Guest Bedroom", "Guest Bed and Linens", 1, 0),
+    ("Kids Bedroom", "Study Desk", 1, 0),
+    ("Nursery", "Diaper and Care Backstock", 1, 0),
+    ("Guest Bathroom", "Shower or Tub", 2, 0),
+    ("Workshop", "Finishing and Chemical Zone", 2, 0),
+    ("Mudroom", "Pet Station", 1, 0),
+    ("Stair Landing", "Wall and Display Zone", 1, 0),
+    ("Patio or Deck", "Outdoor Dining Zone", 1, 0),
 ]
 
 
