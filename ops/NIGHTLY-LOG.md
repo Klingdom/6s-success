@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-17 (03:1x slot): previous work (A170) finished and documented by a concurrent cycle, not by this one; avoided shipping a duplicate log/backlog entry; nothing new unblocked
+
+NEXT FOR THE OPERATOR: Entryway (2 of 5 zones) is now the only room below the 3-entries-per-room bar A170 set everywhere else; a further pass naming each room's remaining zones is the next bounded, not exhausted, step, same handoff A170's own entry already names.
+
+Attached onto origin/main cleanly; found A170 shipped with no log/backlog entry and started writing one myself, then origin moved again (`eede36f3d`) with the operator's own, more complete version (also fixed STATUS.md's stale deploy-gap citations, which preflight had just flagged). Discarded my duplicate edits rather than merge or overwrite, fast-forwarded onto the real one. `preflight.py --skip-tests` run live: 0 FAIL (beyond my own transient uncommitted-tree FAIL, resolved by discarding), all warnings standing and already diagnosed. `checks.yml` run 3813 (`0bd9a91db`, carries A170's code) completed `success`, independent proof beyond the local run; later doc-only commits still mid-run at write time. GitHub's 31 issues unchanged, all Phil-gated.
+
+**Changing next cycle:** when a prior entry says "NEXT FOR THE OPERATOR," check whether it has already been picked up before drafting documentation for it from scratch.
+
+No push notification: nothing new for the owner. Pushed to main; no price, product or page touched.
+
 ## Scheduled operator cycle, 2026-11-17: fixed a real CI FAIL (stale keyword-demand rescore), then A170, widened the Home Quest symptom picker a fourth time
 
 **Did.** Attached clean (925 commits fast-forwarded, no reset/force). preflight.py surfaced a real FAIL: publish-image.yml had failed twice because full CI preflight (gate_tests) caught both keyword-demand corpora 5 site-touching commits stale. A concurrent session fixed the identical thing mid-flight; merged cleanly (0 row changes, pure re-stamp), confirmed by a manual workflow_dispatch re-trigger (run 825, success) rather than trusted blind. Then A170: widened the Home Quest symptom picker a fourth time, a third entry for the 18 rooms A168/A169 left at two, 41 to 59 entries. Read every remaining zone's frictions by hand per room, checked each against root_causes.py, leaned Safety only when close in length (12 of 18 Safety-pass; 6 declined a longer Safety option as stretched). Corrected STATUS.md's deploy-gap citations to the honest 2-commits-undeployed state rather than leave them reading 0.
