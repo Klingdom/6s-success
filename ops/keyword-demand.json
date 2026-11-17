@@ -26187,16 +26187,14 @@
         "how to organize bed and bedding"
       ],
       "room": "",
-      "best_page": "/kids-bedroom-deck.html",
-      "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/kids-bedroom-deck.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "sheets"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize bed sheets in closet",
@@ -56323,6 +56321,6 @@
       ]
     }
   ],
-  "scored_against_commit": "dd81b0466",
-  "scored_at": "2026-11-17T18:49:11Z"
+  "scored_against_commit": "b0a1ec1b6",
+  "scored_at": "2026-11-17T18:59:35Z"
 }
