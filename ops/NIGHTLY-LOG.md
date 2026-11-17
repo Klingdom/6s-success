@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (16:1x slot): previous work confirmed finished, keyword-gap lane re-checked and found to be noise, same Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: the keyword-gap lane is not actually open work. `--rescore` shows the same 93 gaps as the last live harvest (2026-11-11), and a direct read of the first 20 shows them out of scope for the room/zone model (attic, patio and deck design, daycare, dental organization, retailer-name suffixes) rather than genuine content gaps. Hold the line on C5/C6 and the 31 open issues; nothing new is unblocked.
+
+Attached clean: shallow/detached checkout, unshallowed for real, `merge --ff-only` onto `origin/main` (`2ae72bb84`), no reset or force, tree clean on arrival. Previous work (the 15:4x PM and the operator cycle above it) confirmed finished, not cited: `BACKLOG-2026-09-07.md` sections 2-6 re-grepped directly, only C5/C6 unstruck, both explicit YES Phil; GitHub's 31 open issues re-pulled live, unchanged, newest touched #65 (2026-11-14), all decision/P0/blocked-on-art, none from Phil; `room_guide_candidates.py` 0 (all 20 rooms already have a guide).
+
+Ran `python ops/keyword_demand.py --rescore` (no network) to check the lane the 15:4x PM named as the one open lane: 93 gaps, unchanged from the last live harvest. Read the first 20 gap queries directly rather than trust the count: mostly off-topic autocomplete noise (attic, patio/deck design, daycare, dental organization, course/tutorial phrasing, retailer-name suffixes like "amazon"/"ikea"), not genuine room/zone content gaps. Closing this finding rather than re-handing it forward unexamined.
+
+That rescore left `ops/KEYWORD-DEMAND.md` and `ops/keyword-demand.json` dirty with only a timestamp/commit-pointer diff (same gap/partial/covered counts), which then correctly failed `gate_generator_ownership` on my own full `preflight.py --skip-tests` run. Self-inflicted, not a real defect: committing it now. Re-ran preflight after my first full pass found that one FAIL; everything else was 27 warnings, all standing sandbox limits.
+
+No push notification: nothing material changed since the standing cadence escalation. Not starting new work: queue genuinely exhausted beyond Phil-gated items.
+
+Pushed: `ops/NIGHTLY-LOG.md`, `ops/KEYWORD-DEMAND.md`, `ops/keyword-demand.json`, `ops/cycle-signal.json`, dashboard files. No content, price or product touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle: independently reconfirmed fully-exhausted backlog state, no new unblocked work
 
 **Did.** Attached clean (unshallowed, ff-only onto `origin/main`, 1,071 commits fast-forwarded). Killed my own first `preflight.py` run at a 110s wrapper timeout by mistake, reproducing the exact "killed early" error prior cycles document; re-ran it in the background with no wrapper timeout and let it finish for real. Before picking work, independently re-derived whether anything is unblocked rather than trusting the last commit's word (CLAUDE.md 5d): grepped `BACKLOG-2026-09-07.md` section 2 for any row not `Archived`/`Done` (0 found); ran `ops/cold_read_ledger.py --stale` fresh (0 stale); pulled all 31 open GitHub issues live (every one `decision` or `blocked-on-art`, none from Phil since #64); read issue #42 in full, which already names this exact pattern. A 14:53Z cycle, under an hour earlier, had independently reached the same conclusion.
