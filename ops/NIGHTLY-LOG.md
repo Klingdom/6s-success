@@ -2,6 +2,85 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-17: A169, fixed a real gap inside A168's own symptom-picker widening that its commit and log entry both claimed closed but did not
+
+**Did.** Unshallowed and attached to `main` cleanly (fetch, `fetch --unshallow`,
+`checkout main`, `merge --ff-only`, 917 commits fast-forwarded, no reset or
+force). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and
+the real head of this log directly. `preflight.py --skip-tests` run live
+first to full completion: 0 FAIL, 32 warnings, all standing. GitHub's 31
+open issues re-pulled live: unchanged since #65, none from Phil since #64
+(2026-11-08). No mail credential, `inbox_agent.py --apply` unchecked for
+that reason.
+
+Checked by epic (STEP 3): 1-4 all Phil-gated or correctly on Hold. Epic 5
+(product) is where A166-A168 left the Home Quest symptom picker, widened to
+"a second entry for all 18 single-entry rooms... 40 total" a few hours
+earlier the same day. Counted `SYMPTOM_PICKS` directly rather than trust
+that tally (CLAUDE.md 5c/5d): 40 rows, but Primary Bathroom was still at
+one entry, not two, exactly the "source corrected, sibling never told"
+shape this repository's own gates exist to catch, found here inside the
+very mechanism recently built to close instances of it.
+
+Fixed it the same way as every other room: read all six of Primary
+Bathroom's still-unused zones' own first frictions from `content.json` by
+hand, then checked each candidate's first branch against
+`ops/root_causes.py`'s real `six_s` field rather than assume Safety from
+wording alone. Only one scores Safety: Linen and Towel Storage's third
+friction, "Pulling one towel out brings the stack down, or I need a stool
+to reach it" (KC-006, POOR ACCESSIBILITY), a genuine fall hazard, picked
+over both shorter Straighten-tagged candidates in the same room and a
+third room's Medicine Cabinet convenience symptom, the same Safety-lean
+A168 itself used elsewhere.
+
+**Verified.** Symptom, branch answer, `sixS`, `first_15` action/victory,
+image and URL all confirmed non-empty in the real built payload before
+shipping, not assumed from the source JSON. Regenerated the full chain
+(`build_quest.py`, now 41 symptoms; `fingerprint_assets.py`; `build_pwa.py`;
+`build_id.py`, re-run after `git add` since it hashes the staged index;
+`build_seo.py`; `build_mobile_corpus.py`). All 10 quest e2e scripts pass
+(two print expected intermediate FAIL lines as part of their own
+fail-then-pass self-check, same shape A167 documented). `check_urls.py`
+(236/236), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0)
+clean. `preflight.py --skip-tests` re-run clean against the committed tree
+(0 FAIL once compared against the right HEAD; a transient FAIL appeared
+mid-sequence when a concurrent session's own commits landed and
+`gate_checks_yml_real_gap` correctly flagged the just-pushed commit as not
+yet CI-verified, which resolves once CI completes a run on it, not a
+defect to fix before pushing).
+
+A concurrent PM check-in (01:4x slot, logged below) and an hourly check-in
+pushed to `origin/main` while this cycle was running; rebased cleanly onto
+both (one trivial conflict in `ops/cycle-signal.json`, a self-written
+snapshot artifact on both sides, resolved by keeping the newer one and
+letting a fresh run regenerate it rather than hand-merge two stale
+numbers).
+
+**Went well:** treating A168's own "all 18 rooms" claim as a count to
+verify rather than a fact to build on, which is exactly how the gap was
+found; a cheap script (counting tuples, checking `root_causes.BY_ID`)
+caught a real, shipped-looking defect no gate currently watches for.
+
+**Did not go well:** no gate exists yet that would have caught this
+automatically; it was found by hand-auditing a prior cycle's own claim.
+
+**Changing next cycle:** considered adding a preflight gate asserting
+every room in `SYMPTOM_PICKS` appears at least twice now that two rooms
+(Entryway, Kitchen) already exceed that bar and 19 others sit at exactly
+two; did not add one this cycle; the lane is still being widened by hand
+room-by-room, not yet at a fixed target count that a gate could assert
+without immediately needing editing again next widening. Revisit once the
+widening itself is declared done.
+
+**Next:** the standing Phil-gated queue (31 open issues); whoever
+continues widening the symptom picker (room number 4, more zones per
+room) should count `SYMPTOM_PICKS` directly before claiming a room is
+done, the way this cycle did.
+
+Pushed to main (`67eadbbc7`, rebased onto two concurrent pushes). No
+price, product or page touched beyond the app's own symptom data; app
+payload only, `IndexNow` not applicable (no new or rewritten site page).
+
 ## PM check-in, 2026-11-17 (01:4x slot): previous work (A168) confirmed finished by an independent full preflight pass; fixed a real stale-citation gap in STATUS.md's own deploy-gap rows; backlog and all 31 GitHub issues still exhausted and Phil-gated
 
 NEXT FOR THE OPERATOR: widen the Home Quest symptom picker to a third entry per room (`ops/build_quest.py`'s `SYMPTOM_PICKS`), because epics 1-4 (measurement, broken/dishonest, traffic/distribution, conversion) are all still exhausted or Phil-gated and A168 explicitly named this as the next bounded, not-exhausted, product step: 18 of 20 rooms carry exactly 2 symptom entries, Entryway 2, Kitchen 3, and a third zone per room follows the same established mechanism (shortest/most recognisable `diagnosis.frictions[0]` per zone, leaning Safety when close).
