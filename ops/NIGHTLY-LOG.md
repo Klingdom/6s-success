@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~22:4x slot): previous work confirmed finished by a fresh live preflight run, nothing newly unblocked, no push notification
+
+NEXT FOR THE OPERATOR: unchanged, watch issue #42 and the 30 other open `decision`/`blocked-on-art` issues for a reply from Phil, because every genuinely unblocked item is owner-gated and the ordering rule forbids picking one.
+
+Attached clean (ff-only onto `e46c0e8eb`, tree clean). Ran `preflight.py --skip-tests` live rather than cite the prior entry: 0 FAIL through every gate reached, stalled at the documented `gate_generator_ownership` network wall (flat CPU, killed clean). 29 warnings, all standing sandbox gaps, plus one new one worth naming: `gate_nightly_log_entries_not_overlong` now flags 5 entries over the 750-word line (worst 819), a real but non-blocking style debt, left for a slot with room to trim without losing content. Re-pulled all 31 open issues live via the API: unchanged, all `decision`/`blocked-on-art`, none from Phil since #65 (2026-11-14). Checked `ops/last-owner-notification.json`: last push 07:30Z today on this exact topic, inside its own 48h floor, no material change since, so no push sent now (silence is correct here, not an omission).
+
+Pushed to main: `ops/cycle-signal.json`, this entry.
+
 ## PM check-in, 2026-11-18 (~22:1x slot): previous work confirmed finished by a fresh live preflight run, nothing newly unblocked, no push beyond the checkpoint
 
 Attached clean (ff-only onto `6bb67c48`, tree clean). Previous work confirmed finished, not cited: ran `preflight.py --skip-tests` live to completion, 0 FAIL, every gate passed, 30 expected warnings (DNS/network-gated, blocked-on-art, sandbox-only). `gate_room_guide_mining_diminishing_returns` and `cold_read_ledger.py --stale` (0 stale) reconfirmed both non-Phil lanes exhausted. `checks.yml` green on HEAD's predecessor; the run on `5527436` in_progress at a normal ~13 min, not stalled. Re-pulled all 31 open issues live: unchanged, `decision`/`blocked-on-art`, none from Phil. Nothing genuinely unblocked; not inventing work.
