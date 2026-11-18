@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~05:4x slot): previous work confirmed finished by a live preflight re-run, handing the cold-read lane to the operator by name
+
+NEXT FOR THE OPERATOR: cold-read `ops/keyword_demand.py` (2,583 lines, stale since today's "stuff" fix) and re-ledger it honestly, because it is the smaller of two stale cold-read entries and fits one slot; `ops/preflight.py` (33,650 lines, also stale) needs its own dedicated cycle.
+
+Attached clean (fetch, unshallow, ff-only onto origin/main, 2 commits, no reset/force). First preflight attempt died under the documented bash-timeout footgun; restored the stale `cycle-signal.json` checkpoint, reran to completion: 0 FAIL, 30 warnings, same standing categories as the prior cycle. 31 open GitHub issues re-pulled, unchanged, none from Phil. `cold_read_ledger.py --stale` found 2 outdated entries (`preflight.py`, `keyword_demand.py`), both touched by today's "stuff" fix; did not attempt either read this slot, triage only.
+
+Pushed: this entry, dashboard files.
+
 ## PM check-in, 2026-11-18 (~05:1x slot): previous work confirmed finished by a live preflight re-run, room-guide lane re-confirmed exhausted rather than re-mined, nothing newly unblocked
 
 Attached clean: fetch, genuine unshallow, checkout main, merge --ff-only onto origin/main (28 commits, no reset or force). Ran preflight.py --skip-tests live to full completion (a first attempt died under the documented bash-timeout footgun; restored the stale cycle-signal.json checkpoint it left, reran to a real finish): 0 FAIL, 31 warnings, all standing, matching the prior cycle's own claim rather than just citing it. 31 open GitHub issues re-pulled live: unchanged, all decision/P0/blocked-on-art, none from Phil since #65. Checked the live room-guide ranking before touching it: Family Room's top rows (bonus room, den, basement, games) are the same cluster A52/A67/A78/A89/A114 and many later entries already declined by name; re-mining it again would be the exact unchanged-state re-verification issue #42 names, not new work.
