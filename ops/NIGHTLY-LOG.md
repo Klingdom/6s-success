@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~11:1x slot): previous work confirmed finished, closed the recurring Etsy PDF non-determinism gate failure at the source
+
+Previous work (10:4x PM check-in's STATUS.md fix) confirmed finished: live preflight.py --skip-tests clean before editing (0 FAIL, 28 warnings), checks.yml green, 31 open issues unchanged, none from Phil.
+
+Found and fixed a real recurring defect instead of re-diagnosing it again: gate_generator_ownership and gate_etsy_pdfs_current have FAILed on dirty Etsy PDFs across many prior cycles (NIGHTLY-LOG), always traced to Chrome's --print-to-pdf stamping a fresh CreationDate/ModDate on every render, then discarded with git checkout --. Added a byte-length-preserving patch in build_etsy_assets.py that zeros both date fields after render. Verified directly: two full regenerations now produce byte-identical PDFs (confirmed by cmp), the real gate's own test suite 7/7, fix_dashes.py clean. This closes the recurring false-FAIL at the source rather than discarding it again.
+
+Preflight re-run: both gates now pass silently.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-18 (~11:0x UTC): re-verified the room-guide mining lane is genuinely exhausted and every open issue is owner-gated, fixed STATUS.md's own 8-commit currency gap
 
 **Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only`, no reset/force). Live `preflight.py --skip-tests`: 0 FAIL, 31 warnings. `gate_room_guide_mining_diminishing_returns` fired by name: 0 genuine on-topic `gap` rows anywhere, worst room (Family Room) at 13% uncovered, under its own 15% threshold, so BACKLOG-2026-09-07.md section 2's A-series lane is exhausted, not merely asserted. Pulled all 31 open GitHub issues live: every one is `decision` or `blocked-on-art`; none from Phil since #65; issue #42 already asks Phil whether to slow this cadence. `inbox_agent.py --apply`: no mail credential, correctly refused rather than guessed. Fixed the one real, unblocked defect found: `gate_status_currency` was warning STATUS.md had not mentioned 8 material commits since its last edit. Wrote a dated STATUS.md entry citing all 8 by short hash, then rotated with `ops/rotate_status_metadata.py --apply`. Regenerated the dashboard.

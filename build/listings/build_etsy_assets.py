@@ -45,6 +45,7 @@ import signal
 import subprocess
 import sys
 import time
+from pathlib import Path
 
 import pymupdf
 
@@ -320,8 +321,45 @@ def render(browser, src_rel, dest):
         # write, so existence alone proves nothing; a real render is never
         # a handful of bytes.
         if os.path.exists(dest) and os.path.getsize(dest) > 1024:
+            _stabilize_pdf_dates(dest)
             return
         time.sleep(attempt + 1)
+
+
+_PDF_DATE = re.compile(
+    rb"(/(?:Creation|Mod)Date \(D:)(\d{14})([+-]\d{2}'\d{2}'\))")
+
+
+def _stabilize_pdf_dates(dest) -> None:
+    """Zero out the wall-clock CreationDate/ModDate Chrome's PDF writer
+    stamps on every render.
+
+    Found 2026-11-18: gate_generator_ownership and gate_etsy_pdfs_current
+    both diff this script's output byte-for-byte against what is committed,
+    and Chrome's headless --print-to-pdf stamps a fresh CreationDate and
+    ModDate on every single render even when every rendered page is
+    pixel-identical to the last run. That turned an unchanged source into a
+    same-byte-count, different-content "defect" on every preflight pass that
+    happened to re-render these PDFs, confirmed directly: opening the
+    working-tree copy and the committed HEAD copy showed every metadata
+    field identical except these two. Many prior cycles (ops/NIGHTLY-LOG.md)
+    correctly diagnosed this as non-determinism, not real drift, and
+    discarded the diff with `git checkout --`; this closes it at the source
+    instead, so there is nothing left to discard.
+
+    Patches the raw bytes rather than re-saving through pymupdf: a first
+    attempt did that and traded one non-determinism for another, pymupdf's
+    own saveIncr()/save() each stamp a fresh random /ID on every write
+    (confirmed by diffing two renders of the identical source), and this
+    file never carried an /ID before either tool touched it. The date
+    string's digit run is always exactly 14 characters
+    ("D:YYYYMMDDHHMMSS"), so zeroing the digits in place changes nothing
+    about file length or any byte offset elsewhere in the PDF.
+    """
+    data = Path(dest).read_bytes()
+    patched = _PDF_DATE.sub(rb"\g<1>00000000000000\g<3>", data)
+    if patched != data:
+        Path(dest).write_bytes(patched)
 
 
 def audit(pdf_path):
