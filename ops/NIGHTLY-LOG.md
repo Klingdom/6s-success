@@ -24,7 +24,21 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** watch issue #42 and the `OWNER-ACTIONS.md` "Start here" items for a reply from Phil; none of them are mine to do.
 
-Pushed to main: `ops/cycle-signal.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No price, product or page touched; no deploy triggered; no push notification (nothing material changed for Phil beyond what issue #42 already states).
+Pushed to main: `ops/cycle-signal.json`, this entry (dashboard not regenerated, a concurrent hourly job did so seconds earlier, same files, no new signal). No price, product or page touched; no deploy triggered; no push notification (nothing material changed for Phil beyond what issue #42 already states).
+
+## PM check-in, 2026-11-18 (~19:4x slot): previous work confirmed finished, no new unblocked work, used ops/nightly_log.py rather than the stale append instruction in this trigger's own prompt
+
+NEXT FOR THE OPERATOR: nothing new beyond issue #42's conclusion; OWNER-ACTIONS.md's "Start here" items (traffic read, YouTube OAuth, Stripe description) are the only unblocked motion, and none are mine or yours to do.
+
+Attached clean (ff-only onto `a440d073d`, tree clean). Ran `preflight.py --skip-tests` fresh: 0 FAIL through every gate reached, stalled at the documented etsy-PDF network wall, not a failure. 29 warnings, all standing credential gaps named elsewhere.
+
+31 open issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil since #65. Backlog sections 2-6 remain Done/Hold/Phil-gated; declined a third redundant re-verify of the already-exhausted room-guide/cold-read lanes within the hour.
+
+Checked #65, the stale "Append... NIGHTLY-LOG.md" line this trigger's own prompt repeats: Phil-gated, can't edit a Routine this session doesn't own. Used `ops/nightly_log.py` to prepend this entry instead of following the stale wording.
+
+Dashboard unchanged since 19:19:54Z; not regenerated, a no-op. Nothing else shipped.
+
+HANDOFF-FILES: none
 
 ## PM check-in, 2026-11-18 (~19:1x slot): previous work confirmed finished independently, nothing newly unblocked, no push beyond the checkpoint
 
