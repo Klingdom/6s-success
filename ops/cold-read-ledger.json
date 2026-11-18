@@ -492,9 +492,9 @@
       "note": "second-pass cold read, 2026-10-12 scheduled operator: regenerate-and-diff clean (build_social_pins.py checked for correct fit/dims rather than byte-identity, since its Chromium screenshot output is sandbox-font-rendering dependent), no defect"
     },
     "build_seo.py": {
-      "status": "clean",
-      "date": "2026-11-08",
-      "note": "Re-ledgered 2026-11-08: the only touch since the prior ledger date is commit 0593530bc, the affiliate programme-to-program spelling fix (British to American spelling in disclosure/meta-description/body strings), diff read directly, confirmed a pure spelling substitution with no other change."
+      "status": "fixed",
+      "date": "2026-11-18",
+      "note": "Re-ledgered 2026-11-18, PM check-in: the only touch since the 2026-11-08 ledger date is this cycle's own fix. _committed_date() called git log -1 --format=%cs -- path with no guard against the shallow-clone boundary commit, the same false-positive shape just fixed in ops/cold_read_ledger.py: on a shallow checkout the boundary commit has no visible parent, so git credits it with every path in its own tree, and this function feeds the live, deployed sitemap.xml lastmod directly. Fixed by capturing the commit hash alongside the date (now %H %cs) and refusing to report one that lands on a new _shallow_boundary_commits() helper's set, mirroring cold_read_ledger.py and preflight.py's own copies. Added ops/tests/test_date_guard_shallow_boundary.py, which fakes the boundary via monkeypatching and proves the function returns None rather than the faked boundary commit's date; 4/4 cases pass. Read the rest of the file's other git-dependent paths (build_sitemap, _existing_lastmods) during the same pass: neither reads a commit date without going through _committed_date(), so no further instance of this defect shape exists in this file."
     },
     "build_social_captions.py": {
       "status": "clean",
@@ -598,8 +598,8 @@
     },
     "check_cron_cadence.py": {
       "status": "fixed",
-      "date": "2026-10-23",
-      "note": "cold-read 2026-10-14 17:2x slot: ran live against the real GitHub Actions API (gh auth token available in this sandbox). Found a real defect: check_one() computes delivery_mean/delivery_max/delivery_n/delivery_on_time for a script-throttled workflow (hourly-brief.yml) and returns them in --json, but main()'s plain-text print loop, the path this file's own docstring says a person reads, had a print branch for the sibling cron_late_but_covered case but none for delivery_on_time, so the human-readable report showed '[ok] hourly-brief.yml: ... actual mean 341.4 min' (5.7x its configured interval) with zero explanation of why that is not DEGRADED. Fixed by adding the missing print branch, modeled on the existing cron_late_but_covered one. Added Case 12 to ops/tests/test_check_cron_cadence.py (synthetic result, no network) and proved fail-then-pass directly: 11/12 before the fix, 12/12 after. Re-verified 2026-10-23, scheduled operator cycle: this entry's own date had gone stale, the exact shape it exists to catch, because commit d3d824c4c (same date) added keyword-demand-global.yml to the WORKFLOWS registry without bumping the ledger. Checked directly rather than trusted: WORKFLOWS now lists 11 entries and `grep -l '^  schedule:' .github/workflows/*.yml` also returns exactly 11 real cron-scheduled files, byte-for-byte the same set. test_gate_cron_cadence_workflows_registry_current.py still passes. No banned dashes, syntax verified."
+      "date": "2026-11-18",
+      "note": "Re-ledgered 2026-11-18, PM check-in: the only touch since the 2026-10-23 ledger date is this cycle's own fix. last_changed() called git log -1 --format=%cI -- workflow_path with no guard against the shallow-clone boundary commit, the same false-positive shape just fixed in ops/cold_read_ledger.py and ops/build_seo.py this cycle: on a shallow checkout the boundary commit has no visible parent, so git credits it with every workflow file in its own tree, making a schedule look like it just changed when it did not, which would suppress gate_cron_cadence_workflows_registry_current's legitimate warn window after a real cron edit. Fixed by capturing the commit hash alongside the timestamp (now %H %cI) and refusing to report one that lands on a new _shallow_boundary_commits() helper's set, mirroring cold_read_ledger.py and preflight.py's own copies; also dropped the function's redundant local 'import subprocess' (already imported at module level, line 78). Added ops/tests/test_date_guard_shallow_boundary.py, which fakes the boundary via monkeypatching and proves the function returns None rather than the faked boundary commit's timestamp; 4/4 cases pass. Read the rest of the file during the same pass for a further instance: runs_since() and the rest of the module take an already-resolved ISO string or GitHub API data, never call git directly, so no further instance of this defect shape exists in this file."
     },
     "check_etsy.py": {
       "status": "fixed",
@@ -677,9 +677,9 @@
       "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found."
     },
     "cold_read_ledger.py": {
-      "status": "fixed",
-      "date": "2026-11-09",
-      "note": "stale_entries() called last_touched() once per ledger entry (308 git subprocess spawns); on this repo's 11822-commit history each call costs ~150-200ms regardless of actual work, so --stale/--next took 64s and test_cold_read_ledger_stale.py timed out past 60s. Added _batch_last_touched(), one git log --name-only call for all paths at once (11.5s measured, 82% cut), wired into stale_entries(). Verified: 0 mismatches vs old per-path results on a 25-path random sample; sabotaged the new function and confirmed the test fails (7/7 pass after restore); --stale and --next return identical output, just faster."
+      "status": "clean",
+      "date": "2026-11-18",
+      "note": "Re-ledgered 2026-11-18, PM check-in: the only touch since the 2026-11-09 ledger date is commit bfaaf732b, the shallow-clone boundary guard for last_touched()/_batch_last_touched() (also this cycle's own fix). Diff read directly: adds _shallow_boundary_commits() and threads the commit hash through both lookup functions, refusing to report a path against the boundary commit; matches the already-reviewed shape in ops/preflight.py's own _shallow_boundary_commits()/_last_commit_epoch(). test_cold_read_ledger_stale.py 8/8 pass, including the new case 8 that fakes the boundary via monkeypatching."
     },
     "collect.py": {
       "status": "clean",
