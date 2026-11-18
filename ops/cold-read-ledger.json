@@ -903,8 +903,8 @@
     },
     "keyword_demand.py": {
       "status": "clean",
-      "date": "2026-11-17",
-      "note": "Edited this cycle: added australia/ikea/pinterest to FORMAT_WORDS, closing the attic storage wording gap underneath a concurrent cycle's own noise verdict. Full before/after score_rows() diff run across both corpora before shipping, 0 regressions."
+      "date": "2026-11-18",
+      "note": "Re-ledgered 2026-11-18, scheduled operator cycle: the only touch since the 2026-11-17 ledger date is commit fe9bdce28, adding \"stuff\" to FORMAT_WORDS (the same A161 long/last zero-discriminating-power shape, the Garage article's own title the sole carrier of the word). Diff read directly against the commit message's own full before/after score_rows() account (gap unchanged, 3 rows per corpus moved partial to covered onto genuinely correct pages, 0 regressions); matches the live nightly-log entry byte for byte. No defect found."
     },
     "keyword_demand_global.py": {
       "status": "fixed",
