@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-18 (~11:0x UTC): re-verified the room-guide mining lane is genuinely exhausted and every open issue is owner-gated, fixed STATUS.md's own 8-commit currency gap
+
+**Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only`, no reset/force). Live `preflight.py --skip-tests`: 0 FAIL, 31 warnings. `gate_room_guide_mining_diminishing_returns` fired by name: 0 genuine on-topic `gap` rows anywhere, worst room (Family Room) at 13% uncovered, under its own 15% threshold, so BACKLOG-2026-09-07.md section 2's A-series lane is exhausted, not merely asserted. Pulled all 31 open GitHub issues live: every one is `decision` or `blocked-on-art`; none from Phil since #65; issue #42 already asks Phil whether to slow this cadence. `inbox_agent.py --apply`: no mail credential, correctly refused rather than guessed. Fixed the one real, unblocked defect found: `gate_status_currency` was warning STATUS.md had not mentioned 8 material commits since its last edit. Wrote a dated STATUS.md entry citing all 8 by short hash, then rotated with `ops/rotate_status_metadata.py --apply`. Regenerated the dashboard.
+
+**Verified.** Re-ran `preflight.py --skip-tests` after the fix: `status-currency` no longer appears in the warning list. Confirmed `generator-ownership` FAILs only when the tree is dirty (expected, resolves on commit).
+
+**Went well:** verified the diminishing-returns gate's own claim against the live corpora rather than trusting it, and found a real, cheap, unblocked fix instead of manufacturing a 101st wording tweak on an exhausted lane.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** nothing; no new gate needed, `gate_status_currency` already existed and did its job.
+
+**Next:** no non-Phil-gated epic-1-through-4 work exists right now at the lane level; the concurrent 10:4x PM check-in (kept below) names Living Room, Entryway and Nursery's partial tiers (11% each) as not yet individually declared exhausted, which is compatible with this entry's own verdict (the lane as a whole is past the gate's priority threshold; a specific row in one of those three rooms could still be a genuine, worthwhile fix for whoever checks it directly).
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-18 (~10:4x slot): previous work confirmed finished, found and fixed a real deploy-verdict staleness in STATUS.md
 
 NEXT FOR THE OPERATOR: mine Living Room's, Entryway's or Nursery's partial tier (each 11% uncovered), not yet declared exhausted; Family Room (13%) and Kids Bedroom have each already been tried and declined as unsafe/dishonest fixes.
