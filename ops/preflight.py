@@ -18783,6 +18783,21 @@ def gate_status_currency() -> None:
     ).stdout.strip()
     if not last:
         return
+    if last in _shallow_boundary_commits():
+        # Found 2026-11-18: on a shallow clone, this reads back the
+        # boundary commit's own hash for any file not really touched since
+        # before the boundary (same shape as _last_commit_epoch(), just a
+        # commit-range miscount here instead of a wrong date). Treating
+        # that hash as "the last real edit" would make `last..HEAD` cover
+        # the entire visible shallow history, and if STATUS.md's real last
+        # edit sits further back than the boundary (invisible here), this
+        # gate would either wildly overcount the gap or, on a depth-1
+        # clone where the boundary commit IS HEAD, silently report zero
+        # commits unmentioned, a false "current" with nothing actually
+        # measured. Skip rather than guess, the same rule every other
+        # caller of a shallow-affected git date in this file already
+        # follows.
+        return
     rng = subprocess.run(
         ["git", "log", "%s..HEAD" % last, "--format=%H%x01%s"],
         cwd=ROOT, capture_output=True, text=True, timeout=60,
