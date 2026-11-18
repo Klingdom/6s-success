@@ -24670,11 +24670,11 @@
         "how to declutter a pantry"
       ],
       "room": "Pantry",
-      "best_page": "/pantry-deck.html",
-      "best_page_title": "The Pantry Deck: 57 cards, free to read",
+      "best_page": "/zones/pantry-the-dry-goods-shelves.html",
+      "best_page_title": "How to organize the pantry dry goods shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/pantry-deck.html",
+      "heading_page": "/zones/pantry-the-dry-goods-shelves.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -24767,11 +24767,11 @@
         "how to declutter a pantry"
       ],
       "room": "Pantry",
-      "best_page": "/pantry-deck.html",
-      "best_page_title": "The Pantry Deck: 57 cards, free to read",
+      "best_page": "/zones/pantry-the-dry-goods-shelves.html",
+      "best_page_title": "How to organize the pantry dry goods shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/pantry-deck.html",
+      "heading_page": "/zones/pantry-the-dry-goods-shelves.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -42646,16 +42646,14 @@
         "larder organisation"
       ],
       "room": "",
-      "best_page": "/pantry-deck.html",
-      "best_page_title": "The Pantry Deck: 57 cards, free to read",
+      "best_page": "/zones/pantry-the-dry-goods-shelves.html",
+      "best_page_title": "How to organize the pantry dry goods shelves",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/pantry-deck.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/pantry-the-dry-goods-shelves.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "larder"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -47986,6 +47984,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "236488f14",
-  "scored_at": "2026-11-18T15:54:29Z"
+  "scored_against_commit": "243aa3657",
+  "scored_at": "2026-11-18T17:57:48Z"
 }
