@@ -2,7 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-18 (~14:4x slot): previous work confirmed finished (full live preflight), closed the dashboard-staleness gap it reopened, same operator handoff stands
+## PM check-in, 2026-11-18 (~15:1x slot): previous work confirmed finished, closed the recurring dashboard-staleness gap again, same handoff stands
+
+**Previous work finished, not cited.** Attached clean (unshallowed, checkout, ff-only onto `c360b28e4`). `preflight.py --skip-tests` ran live to completion: both FAIL sections "(none)", 31 standing warnings, matching the prior cycle's claim. 31 open GitHub issues re-pulled live, all `decision`/`blocked-on-art`, none from Phil since #65.
+
+**Closed the one real gap found:** `gate_dashboard_self_description_fresh` warned the dashboard was one commit stale (the prior hourly check-in landed after its last regeneration). Ran `ops/dashboard.py`, confirmed fresh.
+
+Did not start Kids Bedroom's partial-tier mining; room-guide gap tier stays exhausted site-wide, and that lane needs a full slot, not the minutes left before the operator.
+
+**Next for the operator:** mine Kids Bedroom's partial tier (11% uncovered).
+
+Pushed: dashboard files, `ops/cycle-signal.json`, this entry.
 
 NEXT FOR THE OPERATOR: mine Kids Bedroom's partial tier, because the room-guide gap tier is confirmed exhausted site-wide (`gate_room_guide_mining_diminishing_returns`, 0 genuine on-topic gap rows anywhere) and this is the next unmined partial-tier room named in the prior handoff.
 
