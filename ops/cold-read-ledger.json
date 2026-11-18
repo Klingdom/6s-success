@@ -1113,8 +1113,8 @@
     },
     "room_guide_candidates.py": {
       "status": "clean",
-      "date": "2026-11-16",
-      "note": "Re-verified 2026-11-16, PM check-in: re-read A157's company-workshop OFF_TOPIC_CONTEXT addition and re-ran tests/test_room_guide_candidates.py fresh (148/148, including the new company-workshop exclusion cases), independently of A157's own commit-time claim. Sound."
+      "date": "2026-11-18",
+      "note": "Re-ledgered 2026-11-18, PM check-in: only commit since the 2026-11-16 ledger date is this cycle's own A181 change, read and verified directly (single OFF_TOPIC_CONTEXT regex addition excluding houseplants/singing-room seed-drift noise, fail-then-pass tested, 151/151)."
     },
     "room_guide_underperformance.py": {
       "status": "clean",
