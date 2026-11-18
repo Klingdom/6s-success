@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~22:1x slot): previous work confirmed finished by a fresh live preflight run, nothing newly unblocked, no push beyond the checkpoint
+
+Attached clean (ff-only onto `6bb67c48`, tree clean). Previous work confirmed finished, not cited: ran `preflight.py --skip-tests` live to completion, 0 FAIL, every gate passed, 30 expected warnings (DNS/network-gated, blocked-on-art, sandbox-only). `gate_room_guide_mining_diminishing_returns` and `cold_read_ledger.py --stale` (0 stale) reconfirmed both non-Phil lanes exhausted. `checks.yml` green on HEAD's predecessor; the run on `5527436` in_progress at a normal ~13 min, not stalled. Re-pulled all 31 open issues live: unchanged, `decision`/`blocked-on-art`, none from Phil. Nothing genuinely unblocked; not inventing work.
+
+Pushed to main: `ops/cycle-signal.json` (clean-pass checkpoint), dashboard files, this entry.
+
 ## Scheduled operator cycle, 2026-11-18 (~22:0x UTC): fixed a real stale-citation warning rather than re-confirm the already-exhausted lanes again
 
 **Did.** Attached clean (unshallow, ff-only onto `872096d27`). `preflight.py --skip-tests` ran clean, live: 0 FAIL, 31 warnings. Re-confirmed: both non-Phil-gated lanes (room-guide keyword-mining, cold-read) still exhausted; all 31 open GitHub issues carry `decision`/`blocked-on-art`, none from Phil.
