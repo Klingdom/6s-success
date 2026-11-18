@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-18 (~19:0x UTC): verified every exhausted/clean claim directly, declined the one named lead rather than force it
+
+**Did.** Attached clean (unshallow, `merge --ff-only`, 158 commits fast-forwarded). `preflight.py --skip-tests`: 0 FAIL, 32 warnings, all standing credential gaps. `gate_room_guide_mining_diminishing_returns` fires correctly: 0 gap rows everywhere, worst room (Family Room) 13%, under its own 15% line.
+
+**Verified rather than cited (CLAUDE.md 5d).** 31 GitHub issues re-pulled live: all `decision`/`blocked-on-art`, none from Phil since #65; issue #42's own fresh same-day comment documents two concurrent cycles duplicating one fix within ten minutes. `check_urls.py` (236/236), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `link_graph_report.py` (0 orphans), `check_sellable.py` (124/126) all re-run clean myself. `cold_read_ledger.py --stale`: 0 of 311, `--next`: no candidate, genuinely exhausted. All 114 zones confirmed carrying substantive content for all six S passes (684/684). No live credential exists here (checked `env`/`~/.ssh`); IndexNow unreachable (proxy 403).
+
+**Checked and declined the 18:4x handoff** (Guest Bathroom "bathroom counter" cluster, Primary Bathroom "makeup vanity box"). Computed real unmatched words directly: "declutter" vs "clutter" are distinct non-stemmed tokens needing separate fixes for two thin rows; "makeup on counter" is misrouted off Guest Vanity Counter (explicitly guest-only) but neither Primary Bathroom candidate zone (Counter: no makeup mention; Drawers: about drawers, not counter) is cleanly grounded. Declined rather than fabricate the connection (CLAUDE.md 6).
+
+**Why no new workstream opened:** every backlog section 2-6 item is Done or fully Phil-gated; the one credential-free lane is below its own gate's threshold and being actively mined by concurrent sessions (3 pushes landed mid-cycle). Not adding a 4th duplicate attempt.
+
+**Next:** watch for Phil on issue #42 and the OWNER-ACTIONS.md "Start here" items.
+
+HANDOFF-FILES: none
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-18 (~18:4x slot): previous work confirmed finished on GitHub, not just cited, nothing newly unblocked
 
 NEXT FOR THE OPERATOR: resume the keyword-gap mining queue, Guest Bathroom's "bathroom counter" cluster and Primary Bathroom's "makeup vanity box" row, because the 18:0x entry flagged both as unread and nothing has touched them since.
