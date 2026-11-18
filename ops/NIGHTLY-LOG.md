@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~15:4x slot): previous work confirmed finished, handoff unchanged
+
+NEXT FOR THE OPERATOR: mine Kids Bedroom's partial tier (11% uncovered), because the room-guide gap tier is confirmed exhausted site-wide (0 gap rows anywhere, re-measured live this slot) and Family Room's higher-percentage partial tier plus most of Garage's cluster are already mined or declined by prior cycles, leaving Kids Bedroom's unchecked rows as the next genuine candidates.
+
+Attached clean (unshallowed, checkout, ff-only onto `236488f14`). `preflight.py --skip-tests` ran live in the background to full completion (a concurrent run held the lock briefly, waited it out rather than killing it): 0 FAIL, 29 standing warnings, matching every prior cycle's claim. 31 open GitHub issues re-pulled live, all `decision`/`blocked-on-art`, none from Phil since #65. No new gap found worth a standalone fix this slot; three minutes before the operator is not enough to start the mining itself.
+
+Pushed: `ops/cycle-signal.json`, dashboard files, this entry.
+
 ## PM check-in, 2026-11-18 (~15:1x slot): previous work confirmed finished, closed the recurring dashboard-staleness gap again, same handoff stands
 
 **Previous work finished, not cited.** Attached clean (unshallowed, checkout, ff-only onto `c360b28e4`). `preflight.py --skip-tests` ran live to completion: both FAIL sections "(none)", 31 standing warnings, matching the prior cycle's claim. 31 open GitHub issues re-pulled live, all `decision`/`blocked-on-art`, none from Phil since #65.
