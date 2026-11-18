@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~03:4x slot): closed both shallow-clone date instances the prior PM check-in handed off instead of re-handing them off unactioned
+
+NEXT FOR THE OPERATOR: read `gate_status_currency()` in `ops/preflight.py` (near line 18781), because it resolves STATUS.md's last-touch commit by hash only, no boundary guard, then diffs hash..HEAD to count unmentioned commits, a shallow-clone risk shaped differently (a commit-range miscount, not a wrong date) than the three instances already fixed today.
+
+Nobody had picked up the prior handoff; only an automated dashboard commit landed since. Attached clean, full unshallow, 31 issues unchanged, none from Phil since #65. Fixed `build_seo.py`'s `_committed_date()` (feeds the live sitemap lastmod) and `check_cron_cadence.py`'s `last_changed()`: same guard as today's `cold_read_ledger.py` fix, new test (4/4). Grepped all `git log -1` callers for further instances; found the one above, left for next cycle. Re-ledgered all three touched files, `--stale` now 0. `preflight.py --skip-tests` clean except `gate_checks_yml_real_gap` (unpushed-commit shape, resolves on CI). Dashboard regenerated, pushed. No price/payment touched.
+
 ## PM check-in, 2026-11-18 (~03:0x slot): found and fixed a real measurement-integrity defect in cold_read_ledger.py, a fourth instance of a recurring shallow-clone false-positive; two more instances found and handed to the operator
 
 NEXT FOR THE OPERATOR: harden `ops/build_seo.py`'s `_git_commit_date()` (feeds `sitemap.xml`'s `<lastmod>`) and `ops/check_cron_cadence.py`'s `last_changed()` against the same shallow-clone boundary false positive this cycle just fixed in `cold_read_ledger.py`, because both still call raw `git log -1 --format=%c... -- path` with no guard, and this is the fourth time this exact defect shape has been found in this repository (`ops/affiliate_report.py`, 2026-09-30, refuses to run while shallow; `ops/preflight.py`'s `gate_epub_edition_date_current`/`_last_commit_epoch`, 2026-11-03, excludes the boundary commit; `ops/build_feed.py`, undated, removed the git fallback entirely; `ops/cold_read_ledger.py`, this cycle) with no mechanism yet stopping a fifth.
