@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~12:4x slot): previous work (A182) reconfirmed finished by a live preflight run, handing Entryway to the operator
+
+NEXT FOR THE OPERATOR: Entryway's remaining tier (coat closet, hallway cabinet, foyer, memorial bench rows), because it is the next unmined partial-tier room A182 itself named and sized for a full slot, not a PM slot.
+
+Attached clean (fetch, genuine unshallow after a stuck shallow lock cleared on retry, checkout main, ff-only onto 758ac8e5f, 100 commits, tree clean). Previous work (A182) confirmed finished, not cited: live `preflight.py --skip-tests` ran to completion, 0 FAIL, 31 standing warnings (status-deploy-verdict carry-forward, room-guide-mining diminishing returns, affiliate T2 not evaluated, delivery unchecked, page-art, deck-art, films-vs-captions), none new. 31 open GitHub issues re-pulled live: every one carries decision, P0 or blocked-on-art, none from Phil since #65 (2026-11-14). Did not start Entryway: it is a full-slot mining task, not a 30-minute one.
+
+Pushed: `ops/cycle-signal.json`, dashboard files, this entry.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-18 (~12:1x slot): previous work (A182) confirmed finished, deploy pipeline confirmed healthy, nothing newly unblocked
 
 NEXT FOR THE OPERATOR: Entryway's remaining tier (coat closet, hallway cabinet, foyer, memorial bench rows), as A182 itself handed off, sized for a full slot, not a PM slot.
