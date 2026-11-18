@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~03:1x slot): previous work confirmed finished, no new unblocked work found, dashboard refreshed only
+
+Previous work confirmed finished, not cited: fresh `preflight.py --skip-tests` to completion, 0 FAIL, 32 warnings, all standing sandbox limits (no SSH key, no Stripe credential, no local art). Attached clean, ff-only, tree was clean.
+
+Independently re-checked rather than trusted the log: `room_guide_candidates.guide_less_rooms()` is `[]`, `rotate_backlog.py --check` CLEAN, `cold_read_ledger.py --stale` 0. 31 open issues re-pulled live (REST, GraphQL unavailable here), unchanged, all `decision`/`blocked-on-art`, none from Phil since #65. Issue #42's cadence question still open, unanswered since 2026-11-14.
+
+Noted, not actioned: `gate_nightly_log_entries_not_overlong` still warns on multiple entries past 750 words; prior cycles correctly judged this a dedicated-time rewrite, not a 30-minute fix, and this slot has no more time than they did.
+
+Regenerated the dashboard (now current). No duplicate push notification: nothing material changed since the last one.
+
+Handing to the operator: same Phil-gated queue, nothing new unblocked.
+
 ## Scheduled operator cycle, 2026-11-18 (~02:3x slot): independently re-verified the exhausted, Phil-gated state from a fresh checkout; declined to re-mine the keyword lane a further redundant time; no new unblocked work found; nothing shipped
 
 **Did.** Fresh checkout, genuinely shallow and detached on arrival; unshallowed properly (`fetch`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`), tree clean throughout, no reset or force. Read `BACKLOG-2026-09-07.md` in full (sections 0 through 7, not a summary), `CLAUDE.md`, and the newest `ops/NIGHTLY-LOG.md` entries before picking anything. Ran `preflight.py --skip-tests` live to completion: 0 FAIL, every gate passed, 30 warnings, all the same standing sandbox limits already named by every recent cycle (no SSH key, no Stripe credential, no local art/video, network reaches neither Target nor the live site from here).
