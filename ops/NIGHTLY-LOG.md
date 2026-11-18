@@ -12,7 +12,17 @@ Closed one small thing rather than leave it for later: `rotate_backlog.py --chec
 
 Not starting new work this slot: nothing beyond the Phil-gated queue is genuinely unblocked, and three-minutes-before-the-operator is not the moment to start a fresh pass through epic 5's gap/partial tiers (that is sized for a full slot and is exactly what the handoff above hands to the operator).
 
+A concurrent PM check-in (below) pushed the deploy-verdict citation fix to `STATUS.md` while this entry was still local; merged rather than forced, generated files (dashboard, `cycle-signal.json`, `keyword-demand.json`) regenerated fresh against the merged tree rather than hand-resolved.
+
 Pushed to main: `BACKLOG-2026-09-07.md`, `BACKLOG-2026-09-07-ARCHIVE.md`, `ops/KEYWORD-DEMAND.md`, `ops/keyword-demand.json`, `ops/cycle-signal.json`, dashboard files, this entry. No content, price or product touched; IndexNow not applicable.
+
+## PM check-in, 2026-11-18 (~01:4x slot): previous work (A178) confirmed finished by a fresh preflight; found and fixed a real stale deploy-verdict citation across five STATUS.md sections; dashboard regenerated
+
+Attached clean (unshallowed, fast-forwarded, no reset/force). 31 GitHub issues re-pulled live: unchanged since #65, none from Phil. Previous work (A178) confirmed finished, not cited: fresh `preflight.py --skip-tests`, 0 FAIL.
+
+That run surfaced a real, new drift: `gate_status_deploy_verdict_current`/`gate_status_table_rows_gap_count_current` warned BLOCKER-001, Production Knowledge, the Currently Deployed Build block, and both status-table rows still cited build `c79ab1e8cfcade37` while `ops/deploy-verdict.json` had moved to `18b8b357a2424bc1` (A178's own commit, confirmed by Actions after my first run). Corrected all five sections; both gates' pure-logic functions re-run against the fix, confirmed clean. Regenerated the stale dashboard. Preflight re-run after commit: 0 FAIL.
+
+**Handing to the operator:** same Phil-gated queue; nothing else unblocked. No push notification: nothing material changed since #42.
 
 ## Scheduled operator cycle, 2026-11-18: A178, a real paperwork declutter misattribution fixed, a much larger decor/decorating cluster checked and declined rather than fabricated
 
