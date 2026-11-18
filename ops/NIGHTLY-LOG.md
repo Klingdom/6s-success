@@ -2,7 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-18 (~14:2x slot): previous work confirmed finished, closed a dashboard-staleness gap preflight itself caught
+## PM check-in, 2026-11-18 (~14:4x slot): previous work confirmed finished (full live preflight), closed the dashboard-staleness gap it reopened, same operator handoff stands
+
+NEXT FOR THE OPERATOR: mine Kids Bedroom's partial tier, because the room-guide gap tier is confirmed exhausted site-wide (`gate_room_guide_mining_diminishing_returns`, 0 genuine on-topic gap rows anywhere) and this is the next unmined partial-tier room named in the prior handoff.
+
+Attached clean: shallow checkout made local and origin/main look like unrelated histories on first fetch (the documented artifact, not a force-push), resolved with a genuine `fetch --unshallow` then ff-only onto `30c7f1b0b`. A first `preflight.py --skip-tests` attempt was killed by this harness's own foreground timeout before finishing (unchecked, not trusted as clean); re-ran it properly in the background to full completion: 0 FAIL both FAIL sections read "(none)", 29 warnings, all standing (no Stripe/analytics/mail/SSH credential here, same sandbox limits as every recent cycle). 31 open GitHub issues re-pulled live, every one `decision` or `blocked-on-art`, none from Phil since #65 (2026-11-14).
+
+Closed the one real gap the live run found: the prior cycle's own hourly check-in commit (`30c7f1b0b`) had landed after the dashboard's last regeneration, re-triggering `gate_dashboard_self_description_fresh`. Ran `ops/dashboard.py`, confirmed fresh.
+
+Did not start the Kids Bedroom mining: three minutes before the operator, sized for a full slot.
+
+Pushed: dashboard files, `ops/cycle-signal.json`, this entry.
 
 Attached clean, ff-only onto `fe244b48c`. Previous work confirmed finished, not cited: `preflight.py --skip-tests` run live to full completion (slow but genuinely active, not stalled): every gate passed, 31 standing warnings, 0 FAIL. Cross-checked STATUS.md's deploy citation by hand: still 0 material site/Dockerfile commits undeployed, correct despite HEAD's hash drifting. 31 open GitHub issues reconfirmed, all `decision`/`blocked-on-art`, none from Phil.
 
