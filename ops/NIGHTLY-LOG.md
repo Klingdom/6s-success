@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~10:4x slot): previous work confirmed finished, found and fixed a real deploy-verdict staleness in STATUS.md
+
+NEXT FOR THE OPERATOR: mine Living Room's, Entryway's or Nursery's partial tier (each 11% uncovered), not yet declared exhausted; Family Room (13%) and Kids Bedroom have each already been tried and declined as unsafe/dishonest fixes.
+
+Previous work (A181) confirmed finished: live preflight.py --skip-tests clean (0 FAIL), checks.yml green on pushed HEAD. 31 open issues reconfirmed, all decision/P0/blocked-on-art, none from Phil.
+
+Found and fixed a real gap rather than report it twice: STATUS.md's BLOCKER-001, Production Knowledge, two table rows and Currently Deployed Build all still cited build 18b8b357a2424bc1 (01:21Z), two confirmations behind ops/deploy-verdict.json's own 557cd4102aa692df (09:24Z, A180's commit). deploy_gap_material_commits re-derived live: still []. Corrected all five; preflight re-run clean, both staleness warnings cleared.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-18 (~10:1x slot): closed A181, Primary Bedroom's named houseplants/singing-room noise rows
 
 Previous work finished: live `preflight.py --skip-tests` clean before editing (0 FAIL, 28 standing warnings), plus another session's own clean checkpoint on the pushed A166 HEAD.
