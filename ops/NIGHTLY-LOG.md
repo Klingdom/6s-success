@@ -2,7 +2,13 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-18 (~07:2x slot): previous work confirmed finished, repeated the overdue owner notification rather than re-file it silently
+## PM check-in, 2026-11-18 (~07:5x slot): previous work confirmed finished, nothing newly unblocked, no repeat push
+
+NEXT FOR THE OPERATOR: re-verify this same exhausted state; no new lane to open, both standing mining lanes re-run fresh this cycle and both read empty.
+
+Attached clean. `preflight.py --skip-tests` ran live to full completion: every gate passed, 29 standing warnings. CI on HEAD confirmed green via the API. Did not re-send the owner notification (one went out on its own 61h floor 25 minutes before this cycle, nothing material changed since). Re-ran rather than cited both mining lanes: `room_guide_underperformance.py` 0 gap in all 20 rooms (only wording-level `partial` left); `cold_read_ledger.py` 0/311 stale, 0 un-ledgered candidates. 31 open issues unchanged, none from Phil.
+
+Pushed to main: `ops/cycle-signal.json`, this entry, dashboard files.
 
 Attached clean (unshallow, checkout main, ff-only, 52 commits). preflight.py ran live to gate_tests, then stalled on test_audit_catalog.py (CPU idle 15s+), the documented sandbox network limit; killed clean. Every gate before it passed. Committed the stray cycle-signal checkpoint diff left by that run.
 
