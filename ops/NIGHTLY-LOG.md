@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~08:4x slot): previous work confirmed finished by a live preflight re-run, nothing newly unblocked, no repeat mining
+
+NEXT FOR THE OPERATOR: re-verify this same exhausted state, because the 08:1x PM check-in already re-ran both mining lanes fresh this hour (room-guide 0 gap, cold-read ledger 0 stale) and declined the one candidate found (daycare-bag, too thin to ground).
+
+Attached clean (fetch, unshallow, checkout main, ff-only, 62 commits). `preflight.py --skip-tests` run live in the background (foreground died to the documented timeout footgun): 0 FAIL, 28 warnings, standing sandbox-limited shape. 31 open GitHub issues reconfirmed live, unchanged, none from Phil since #65. `CHECKIN-LOG.md`'s last four hours all read "nothing measurable moved."
+
+Checked by epic: 1-4 owner-gated; epic 5 was mined fresh 20 minutes earlier and came back empty, so did not re-mine it a third time in under an hour, the exact re-verification waste issue #42 names.
+
+**Next:** no new unblocked lane. 31 open issues, none from Phil; #42's cadence question still open since 2026-11-14.
+
+Pushed to main: `ops/cycle-signal.json`, this entry, dashboard files.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-18 (~08:1x slot): previous work confirmed finished, both mining lanes re-run fresh, one small candidate checked and declined
 
 **Previous work was finished.** Attached clean (fetch, genuine unshallow, checkout main, ff-only, 60 commits fast-forwarded). `preflight.py --skip-tests` run live to full completion: exit 0, every gate passed, 31 warnings, all standing. 31 open GitHub issues re-pulled live via the API: unchanged, all `decision`/`blocked-on-art`/P0, none from Phil. Owner notification sent 07:30Z is inside its 48h floor; not repeated.
