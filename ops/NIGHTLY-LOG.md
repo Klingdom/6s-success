@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~04:1x slot): previous work confirmed finished, independently verified, no new unblocked work found
+
+**Previous work was finished.** Attached clean: fetch, unshallow, `checkout main`, `merge --ff-only` onto `f8ba310` (10 commits, no conflict). The ~03:4x PM check-in's handoff (`gate_status_currency()`'s unguarded shallow-clone commit-range miscount, left open for next cycle) was already fixed and shipped in the intervening commit `bdea9e7`, with its own new test case, before this cycle started. Confirmed by reading the gate's current code directly (the guard and its comment are there, line 18786) and by `git log -1 -S` locating the exact commit, not by trusting the commit message alone.
+
+**Verified rather than cited.** Ran `preflight.py --skip-tests` fresh, full run to completion (no `--skip-tests` test-suite gate skipped matters here; every other gate reached): every gate passed, 31 warnings, all the standing sandbox-limited shape (no SSH/Stripe credential, no local art/video assets, T2 unevaluated). Zero FAIL.
+
+**One small real gap found, correctly left rather than faked.** `cold-read-ledger-entries-not-stale` warns `ops/preflight.py` was ledgered 2026-11-16 but last touched 2026-11-18 (today's own gate_status_currency fix). Closing it honestly needs an actual full cold read of an 18,000+ line file, not something this slot's few minutes covers; re-ledgering it without reading it would be exactly the "unchecked written over as passing" failure CLAUDE.md section 0.4 names. Left for the cold-read lane or a dedicated cycle with room for it.
+
+31 open GitHub issues reconfirmed live, unchanged, all `decision`/`blocked-on-art`, none from Phil since #65.
+
+**Handing to the operator (:43):** nothing urgent; the repository is in the same fully-mined, owner-gated state recent cycles have independently reconfirmed. If it wants a lane, the `ops/preflight.py` cold-read staleness above is real and genuinely unclaimed.
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No content, price or product touched.
+
 ## PM check-in, 2026-11-18 (~03:4x slot): closed both shallow-clone date instances the prior PM check-in handed off instead of re-handing them off unactioned
 
 NEXT FOR THE OPERATOR: read `gate_status_currency()` in `ops/preflight.py` (near line 18781), because it resolves STATUS.md's last-touch commit by hash only, no boundary guard, then diffs hash..HEAD to count unmentioned commits, a shallow-clone risk shaped differently (a commit-range miscount, not a wrong date) than the three instances already fixed today.
