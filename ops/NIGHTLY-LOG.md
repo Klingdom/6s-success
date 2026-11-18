@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-18 (~09:0x slot): closed a genuine cross-room misattribution (A180), then found and fixed live build corruption from a concurrent session before it could be shipped
+
+**Did.** Attached clean (unshallow, 62 commits, ff-only onto origin/main). `preflight.py --skip-tests` live first: 0 FAIL, 29 warnings, all standing. 31 open GitHub issues re-pulled live: unchanged, none from Phil. Mined Laundry Room's guide tier via `room_guide_underperformance.py` rather than the already-exhausted Family Room one: "drying rack plate organizer" tied between Kitchen's Sink and Dishwashing Zone and the Laundry Room's own Hanging and Air Dry Zone, falling to the wrong room. Added "plate rack zone" to the Kitchen zone's also-called entry.
+
+**Caught my own second-order mistake before shipping it (CLAUDE.md 5d).** The fix added bare singular "rack" to that zone's heading pool for the first time, which doesn't just tie the Laundry zone on "drying"+"rack" queries, it strictly beats it. Tried to patch this with a Laundry Room "clothes rack" room-signal entry; tested it directly and it changed nothing, because `_tie_break`'s signal preference only ever resolves an exact tie, not an outright score lead. Reverted that patch (confirmed inert, not shipped) and left the one resulting mis-pointer ("drying racks clothes rack", status unchanged at partial either way) documented on the record instead of papering over it, the same shape A82/A114 already established.
+
+**Then, separately, the sandbox itself produced a real defect.** While the commit sat pushed-pending, a concurrent session's own build run corrupted the working tree twice: first, asset fingerprint query strings stripped from 211 pages and one zone page's body truncated to nothing; then, after restoring, a single stale fingerprint hash reappeared on `hall-closet-deck.html`. Verified both were transient corruption, not real work, before touching anything: no source file (`content.json`, any `ops/*.py`) was ever touched either time, and the live SHA-256 of the actual `site/assets/css/site.css` matched HEAD's committed fingerprint exactly, not the stray hash the race had written. Restored with `git restore --source=HEAD -- <specific paths>`; a blind `git checkout -- .` was denied by this session's own auto-mode classifier as too broad, and the scoped restore was the correct, narrower tool anyway.
+
+**Verified.** Full before/after `score_rows()` diff across both corpora, reproduced by the real rescore: US gap unchanged 88, partial 863->861, covered 1859->1861; global unchanged 84/667/1418. `check_also_called_digital_collision_fast.py`, the three also-called gate test files (6/6, 5/5, 6/6), `test_keyword_demand.py` (74/74), `check_urls.py` (236/236), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `cold_read_ledger.py --stale` (0) all independently clean. `preflight.py --skip-tests` re-run clean after commit. Pushed (`06e593971`). `indexnow.py --submit` attempted, UNCHECKED (no network reach to the live site from here).
+
+**Went well:** the before/after diff discipline caught a real collision a narrower self-flattery check would have missed, and testing the room-signal fix directly (rather than assuming it would work) caught that it was dead weight before it shipped as false documentation.
+
+**Did not go well:** two rounds of shared-sandbox build corruption cost real cycle time chasing what looked at first like my own regression.
+
+**Changing next cycle:** when `git status` shows widespread `site/` changes with no corresponding source edit, check the actual asset hash against HEAD before assuming either a real regression or safe-to-discard noise; do not blindly `git checkout -- .` on a shared sandbox.
+
+**Next for the operator:** re-verify this exhausted state, or continue mining other rooms' partial tiers (Primary Bedroom, Kids Bedroom, Living Room, Entryway, Nursery, Garage, Patio or Deck, Hall Closet all sit in the 10-11% uncovered band) for the next genuine, groundable gap.
+
 ## PM check-in, 2026-11-18 (~08:4x slot): previous work confirmed finished by a live preflight re-run, nothing newly unblocked, no repeat mining
 
 NEXT FOR THE OPERATOR: re-verify this same exhausted state, because the 08:1x PM check-in already re-ran both mining lanes fresh this hour (room-guide 0 gap, cold-read ledger 0 stale) and declined the one candidate found (daycare-bag, too thin to ground).
