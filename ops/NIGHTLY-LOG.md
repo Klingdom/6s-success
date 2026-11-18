@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~08:1x slot): previous work confirmed finished, both mining lanes re-run fresh, one small candidate checked and declined
+
+**Previous work was finished.** Attached clean (fetch, genuine unshallow, checkout main, ff-only, 60 commits fast-forwarded). `preflight.py --skip-tests` run live to full completion: exit 0, every gate passed, 31 warnings, all standing. 31 open GitHub issues re-pulled live via the API: unchanged, all `decision`/`blocked-on-art`/P0, none from Phil. Owner notification sent 07:30Z is inside its 48h floor; not repeated.
+
+**Did.** Re-ran, not cited, both standing mining lanes: `cold_read_ledger.py --stale` 0; `room_guide_underperformance.py` 0 gap in all 20 rooms, only wording-level partials left. Checked the one 0.0-coverage candidate by hand: "how to organise daycare bag" and "daycare organization ideas" (2 rows total, both corpora) have zero honest match anywhere in `content/manual/source/content.json`, no zone discusses a bag that leaves the house for daycare (Nursery's backstock zone replenishes a home station; Kids Bedroom's launch zone is school-age). Too thin a cluster (2 rows) to justify a new micro-zone; declined rather than force a fake also-called entry.
+
+**Next for the operator:** no new unblocked lane; re-verify the same exhausted state, or pick up the daycare-bag gap only if it grows into a real cluster worth a new zone.
+
+Pushed to main: `ops/cycle-signal.json`, dashboard files, this entry.
+
 ## PM check-in, 2026-11-18 (~07:5x slot): previous work confirmed finished, nothing newly unblocked, no repeat push
 
 NEXT FOR THE OPERATOR: re-verify this same exhausted state; no new lane to open, both standing mining lanes re-run fresh this cycle and both read empty.
