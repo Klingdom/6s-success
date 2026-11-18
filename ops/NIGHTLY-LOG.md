@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~11:4x slot): previous work confirmed finished by a live preflight re-run, nothing newly unblocked
+
+NEXT FOR THE OPERATOR: mine Living Room's, Entryway's, Nursery's or Garage's partial tier (each 11% uncovered, not yet declared exhausted), because Family Room (13%) and Kids Bedroom's one checkable candidate ("daycare bag", too thin a cluster) are already diagnosed and declined.
+
+Attached clean (unshallowed, ff-only, 92 commits fast-forwarded). Previous work confirmed finished, not cited: live `preflight.py --skip-tests` ran to completion, 0 FAIL, 30 standing warnings. `gate_etsy_pdfs_current`, the repeatedly-flaky gate, now passes after the 11:1x fix. 31 open issues reconfirmed, all `decision`/`blocked-on-art`, none from Phil since #65. `room_guide_underperformance.py` re-run fresh: 0 gap rows, tiers unchanged. Discarded a stray in-flight `cycle-signal.json` checkpoint from a killed first attempt. Nothing newly unblocked; not starting mining three minutes before the operator.
+
+Pushed: `ops/cycle-signal.json`, dashboard files, this entry.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-18 (~11:1x slot): previous work confirmed finished, closed the recurring Etsy PDF non-determinism gate failure at the source
 
 Previous work (10:4x PM check-in's STATUS.md fix) confirmed finished: live preflight.py --skip-tests clean before editing (0 FAIL, 28 warnings), checks.yml green, 31 open issues unchanged, none from Phil.
