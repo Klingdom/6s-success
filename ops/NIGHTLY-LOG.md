@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-18 (~19:5x UTC): independently reconfirmed the fully-exhausted state, declined to open a new workstream, fixed a transient sandbox file corruption
+
+**Did.** Fresh checkout, unshallowed (`fetch --unshallow`, arrived shallow and detached as documented), attached (`checkout -B main origin/main`, `merge --ff-only`, 166 commits fast-forwarded, no reset/force). Read `BACKLOG-2026-09-07.md` sections 0-7, `GOALS.md`, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries before touching anything, rather than act on a summary.
+
+**Verified rather than cited (CLAUDE.md 5d).** `preflight.py --skip-tests` run live: 0 FAIL in every gate reached before the documented sandbox stall at `gate_generator_ownership` (no SSH deploy key, no live egress for the git-log scan it needs). 31 open GitHub issues pulled live via the GitHub API, not the dashboard's cached copy: all labelled `decision` or `blocked-on-art`, all authored by the owner account on Phil's own behalf, none actually from Phil since #65 (2026-11-14). Issue #42 (filed today, 14:55 UTC) already names this exact problem: the scheduled cadence re-verifying an unchanged, fully-exhausted state, repeatedly, which is what this cycle also found. `inbox_agent.py --apply`: no mail credential in this sandbox, standing gap, confirmed again rather than assumed. `OWNER-ACTIONS.md`'s own "Start here" section: all four items are Phil-only actions (traffic read, YouTube OAuth, Gemini billing, Stripe business description), none newly actionable.
+
+**Epic-by-epic (STEP 3):** epics 1-4 (measurement, broken/dishonest, traffic/distribution, conversion) are owner-gated: no VPS key for the traffic/Stripe reads this sandbox needs, no mail credential, every remaining owner-gate issue needs a decision or a credential only Phil holds. Epic 5 (product, the keyword-gap mining lane) has itself moved from "has rows" to a declared stop: `gate_room_guide_mining_diminishing_returns` fires correctly today, 0 gap rows in either corpus, worst room (Family Room) at 13% uncovered, under the gate's own 15% line, after roughly twenty independent cycles closed one to three rows each today alone (A166 through A185). Epic 6 (operational honesty): `check_urls.py`, `audit_pages.py`, `fix_dashes.py --check`, `link_graph_report.py`, `affiliate.py --check`, `check_sellable.py` all independently re-run clean, matching the last several cycles' own readings.
+
+**Declined to open a new workstream.** Nothing above clears the bar CLAUDE.md section 0 sets (serves an objective, downstream of the constraint, measurable); manufacturing a fourth or fifth keyword-row fix today past the lane's own diminishing-returns gate would be exactly the "busy and useless" work `GOALS.md` section 0 names, and risks colliding with whichever concurrent session is also reading this same exhausted state right now, the cost issue #42 was filed to stop.
+
+**Found and fixed one real thing instead of just logging around it.** `git status` on arrival showed `site/entryway-deck.html` modified before this cycle had written anything: its `site.css` fingerprint read `326a1059ac` against HEAD's real, live-matching `54ccf0a602` (confirmed by hashing the actual file on disk), the same transient concurrent-sandbox build race A180/A184/the 16:1x PM check-in already documented, not real work. Restored with `git restore --source=HEAD -- site/entryway-deck.html` rather than a blind `checkout -- .`; confirmed clean after.
+
+**Verified.** `ops/dashboard.py` regenerated fresh (STEP 11b, every run): revenue $0 of $20,000 (carried forward, this sandbox cannot reach Stripe), $19 all time from 1 sale. No new preflight gate (STEP 10b): the transient-corruption shape and the redundant-cycle cost are both already named classes (the first by prior log entries, the second by issue #42 itself, which is a scheduling/platform decision, not something a preflight gate can catch).
+
+**Went well:** catching the stray file corruption before committing it, rather than shipping a stale fingerprint to production.
+
+**Did not go well:** nothing new; this is at least the twentieth cycle today to independently reach the same "fully exhausted, Phil-gated" conclusion.
+
+**Changing next cycle:** nothing; the only lever that would reduce this cost is retiming the scheduled routines, already confirmed platform-refused to any session but self-disable.
+
+**Next:** watch issue #42 and the `OWNER-ACTIONS.md` "Start here" items for a reply from Phil; none of them are mine to do.
+
+Pushed to main: `ops/cycle-signal.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No price, product or page touched; no deploy triggered; no push notification (nothing material changed for Phil beyond what issue #42 already states).
+
 ## PM check-in, 2026-11-18 (~19:1x slot): previous work confirmed finished independently, nothing newly unblocked, no push beyond the checkpoint
 
 Attached clean (fetch, ff-only onto `0f952171d`, 164 commits forwarded, tree otherwise clean). The operator's own 19:0x cycle finished seconds before this one started (log entry at 19:05, "Hourly check-in record" pushed at 19:09), so rather than re-run its full verification, checked its specific claims: `preflight.py --skip-tests` run fresh here too, 0 FAIL through every gate reached (2 FAIL sections both read `(none)`), 30 warnings, all standing credential/network gaps already named (no SSH deploy key, no Stripe secret, no mail credential, IndexNow proxy 403); it stalled past `gate_generator_ownership` at the documented sandbox network wall, not a failure. `ops/deploy-verdict.json` reads `current` at `3f2ebdca4bf57b9f`, checked 18:45:18Z, matching HEAD. Dashboard (`EXECUTIVE-DASHBOARD-LIVE.md`) was regenerated 19:08, seven minutes before this check, still current; re-running `dashboard.py` again now would only duplicate the operator's own work for no new signal, so declined to (CLAUDE.md 0.8/section 8 "do not collide").
