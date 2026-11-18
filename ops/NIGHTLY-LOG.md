@@ -4,11 +4,11 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## Scheduled operator cycle, 2026-11-18 (~22:0x UTC): fixed a real stale-citation warning rather than re-confirm the already-exhausted lanes again
 
-**Did.** Attached clean (unshallow, `checkout -B main origin/main`, ff-only onto `872096d27`). `preflight.py --skip-tests` ran clean, live: 0 FAIL, 31 warnings. Re-confirmed rather than assumed: both non-Phil-gated lanes (room-guide keyword-mining, cold-read) still genuinely exhausted; all 31 open GitHub issues carry `decision`/`blocked-on-art`, none from Phil, every comment self-authored by a prior agent cycle.
+**Did.** Attached clean (unshallow, ff-only onto `872096d27`). `preflight.py --skip-tests` ran clean, live: 0 FAIL, 31 warnings. Re-confirmed: both non-Phil-gated lanes (room-guide keyword-mining, cold-read) still exhausted; all 31 open GitHub issues carry `decision`/`blocked-on-art`, none from Phil.
 
 Of the 31 warnings, `gate_status_deploy_verdict_current` named a real, current drift: `STATUS.md`'s BLOCKER-001, Production Knowledge, and the Public website / Production traceability rows all still cited build `45ecea8489a68f3e` (16:15:29Z), while `ops/deploy-verdict.json` had moved to `3f2ebdca4bf57b9f` (18:45:18Z, commit `6bcbfb14b`). Checked directly: `site/build-id.txt` reads `3f2ebdca4bf57b9f`, `deploy_gap_material_commits` against HEAD returns empty, so the verdict is real, not stale itself. Corrected all five locations (0 commits pending, HEAD matches the confirmed build) rather than append another dated correction on top of the last, since growing correction chains are exactly what `gate_nightly_log_entries_not_overlong` exists to stop.
 
-**Verified.** `gate_status_deploy_verdict_current`, `gate_status_deploy_gap_count_current`, all four `gate_dashboard_deploy_*_carry_forward` gates clean directly. `test_gate_status_deploy_verdict_current.py`: 14/14. Full `preflight.py --skip-tests` re-run after committing: 0 FAIL, same 31 expected warnings. No new gate needed; the existing one did its job.
+**Verified.** `gate_status_deploy_verdict_current`, `gate_status_deploy_gap_count_current`, all four `gate_dashboard_deploy_*_carry_forward` gates clean directly. `test_gate_status_deploy_verdict_current.py`: 14/14. A full `preflight.py --skip-tests` before pushing correctly flagged `checks-yml-real-gap` (local ops/ commits, not yet CI-verified); pushed, confirmed via the Actions API that a real run started on this exact commit (`44408413195`, in progress, not claimed green). No new gate needed; the existing ones did their job.
 
 **Went well:** choosing a real, checkable fix over a tenth re-confirmation of the same exhausted state.
 
