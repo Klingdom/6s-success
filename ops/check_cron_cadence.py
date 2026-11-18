@@ -409,6 +409,24 @@ def most_recent_due(times: list, now: 'datetime.datetime | None' = None) -> 'dat
     return best
 
 
+def _shallow_boundary_commits() -> set:
+    '''Hashes this checkout's shallow clone stops at, or empty if not shallow.
+
+    Mirrors ops/preflight.py's own `_shallow_boundary_commits()` and
+    ops/cold_read_ledger.py's copy of it: on a shallow clone, `git log -1 --
+    path` does not error at the boundary, it treats the boundary commit
+    (which has no visible parent) as having touched every path in its own
+    tree, not just the ones it really changed. Without this guard, a
+    workflow file untouched since well before the boundary would read back
+    with the boundary commit's own timestamp, making last_changed() below
+    think the cron schedule just changed when it did not.
+    '''
+    shallow_file = os.path.join(ROOT, '.git', 'shallow')
+    if not os.path.isfile(shallow_file):
+        return set()
+    return set(open(shallow_file, encoding='utf-8').read().split())
+
+
 def last_changed(workflow_file: str) -> str | None:
     '''ISO timestamp of the last commit touching this workflow, or None.
 
@@ -419,14 +437,19 @@ def last_changed(workflow_file: str) -> str | None:
     cries wolf after every legitimate change is a gate people learn to skip.
     '''
     try:
-        import subprocess
         out = subprocess.run(
-            ['git', 'log', '-1', '--format=%cI', '--',
+            ['git', 'log', '-1', '--format=%H %cI', '--',
              os.path.join('.github', 'workflows', workflow_file)],
             cwd=ROOT, capture_output=True, text=True, timeout=30)
-        return (out.stdout or '').strip() or None
     except Exception:                                         # noqa: BLE001
         return None
+    line = (out.stdout or '').strip()
+    if not line:
+        return None
+    commit_hash, _, iso = line.partition(' ')
+    if commit_hash in _shallow_boundary_commits():
+        return None
+    return iso or None
 
 
 def runs_since(runs: list, iso: str | None) -> list:

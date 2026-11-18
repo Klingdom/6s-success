@@ -730,6 +730,24 @@ def scan_extra_pages():
     return out
 
 
+def _shallow_boundary_commits() -> set:
+    """Hashes this checkout's shallow clone stops at, or empty if not shallow.
+
+    Mirrors ops/preflight.py's own `_shallow_boundary_commits()` and
+    ops/cold_read_ledger.py's copy of it: on a shallow clone, `git log -1 --
+    path` does not error at the boundary, it treats the boundary commit
+    (which has no visible parent) as having touched every path in its own
+    tree, not just the ones it really changed. Without this guard, a page
+    untouched since well before the boundary would read back with the
+    boundary commit's own date, which this function's only caller then
+    stamps straight into the live, deployed sitemap's <lastmod>.
+    """
+    shallow_file = os.path.join(ROOT, ".git", "shallow")
+    if not os.path.isfile(shallow_file):
+        return set()
+    return set(open(shallow_file, encoding="utf-8").read().split())
+
+
 def _committed_date(fp):
     """The date this file was last committed, which is the same in every
     checkout of the same commit.
@@ -748,12 +766,17 @@ def _committed_date(fp):
     """
     rel = os.path.relpath(fp, ROOT).replace(os.sep, "/")
     try:
-        r = subprocess.run(["git", "log", "-1", "--format=%cs", "--", rel],
+        r = subprocess.run(["git", "log", "-1", "--format=%H %cs", "--", rel],
                            cwd=ROOT, capture_output=True, text=True, timeout=30)
     except Exception:                                           # noqa: BLE001
         return None
-    d = (r.stdout or "").strip()
-    return d if r.returncode == 0 and len(d) == 10 else None
+    line = (r.stdout or "").strip()
+    if r.returncode != 0 or not line:
+        return None
+    commit_hash, _, d = line.partition(" ")
+    if commit_hash in _shallow_boundary_commits():
+        return None
+    return d if len(d) == 10 else None
 
 
 def _existing_lastmods():
