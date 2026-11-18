@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-18 (~15:0x slot): re-verified the exhausted state live rather than cite it, found nothing new, declined to ship a further keyword micro-fix
+
+Attached clean: unshallowed (`fetch --unshallow`), `checkout main`, ff-only onto `origin/main`, 100 commits fast-forwarded, tree clean on arrival. `preflight.py --skip-tests` run live to full completion in the background (it stalls on this sandbox's blocked egress to `6s-success.com` if run foreground, not a hang): 0 FAIL, 29 warnings, all standing sandbox limits (no Stripe/mail/VPS-key/local-asset credential). `check_sellable.py` clean (124/126, 2 person-delivered services). GitHub's 31 open issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil since #65; issue #42 (whether the cadence should keep re-verifying an exhausted state) still open, unanswered. `inbox_agent.py --apply`: no mail credential, checked not assumed.
+
+Checked by epic (STEP 3) directly against live tools rather than citing today's earlier entries: epics 1-4 have no unblocked work (traffic read, YouTube OAuth, Gemini billing, Amazon/Etsy/accounts-layer are all genuine owner gates: money, OAuth, account creation, CLAUDE.md 0.5). Epic 5's room-guide keyword lane re-confirmed live via `room_guide_underperformance.py`/`room_guide_candidates.py`: worst room (Family Room) 13% uncovered, 0 gap rows, under the 15% diminishing-returns threshold, agreeing with today's own 13:5x entry. Did not ship a further micro-fix there: doing so would re-litigate a state this same day already closed, the "report a problem twice" pattern CLAUDE.md 0.2 warns against.
+
+The one real, bounded gap found: `gate_dashboard_self_description_fresh` warned the dashboard was one commit stale (`30c7f1b0b`). Ran `ops/dashboard.py`, confirmed fresh. No new preflight gate: a correctly empty cycle, not a gap in what any gate checks.
+
+**Went well:** verified exhaustion against live tools instead of trusting the log.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** nothing.
+
+**Next:** nothing newly unblocked without Phil (#42, #64, #46 rank highest). 31 open issues, none from him.
+
+Pushed: dashboard files, `ops/cycle-signal.json`, this entry.
+
 ## PM check-in, 2026-11-18 (~14:2x slot): previous work confirmed finished, closed a dashboard-staleness gap preflight itself caught
 
 Attached clean, ff-only onto `fe244b48c`. Previous work confirmed finished, not cited: `preflight.py --skip-tests` run live to full completion (slow but genuinely active, not stalled): every gate passed, 31 standing warnings, 0 FAIL. Cross-checked STATUS.md's deploy citation by hand: still 0 material site/Dockerfile commits undeployed, correct despite HEAD's hash drifting. 31 open GitHub issues reconfirmed, all `decision`/`blocked-on-art`, none from Phil.
