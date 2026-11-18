@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~06:1x slot): previous work confirmed finished by a live full preflight re-run, nothing newly unblocked
+
+**Previous work was finished.** Attached clean (fetch, genuine unshallow, checkout main, ff-only merge onto origin/main, 0 conflicts). The prior cycle's claimed fix (closing the ops/preflight.py cold-read handoff) was verified, not cited: ran preflight.py (not --skip-tests this time, full gate_tests included) live in the background to avoid the documented bash-timeout footgun, to completion: every gate passed, 30 warnings, all the standing sandbox-limited shape (no SSH/Stripe credential, no local art/video/photo assets, deploy freshness and T2 unevaluated). cold_read_ledger.py --stale: 0, confirming the prior cycle's close held.
+
+**Caught and discarded two stray in-flight ops/cycle-signal.json diffs** left by the backgrounded preflight run mid-flight and by a killed first attempt, neither committed. **Did not collide:** origin/main advanced 3 commits (two cycle-signal snapshots from a concurrent session, one automated hourly dashboard record) while this ran; fast-forwarded cleanly, no shared file touched.
+
+31 open GitHub issues reconfirmed live via the API, unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (#42's cadence question still open since 2026-11-14). Checked BACKLOG-2026-09-07.md section 1b for anything resolved but still listed open: all six rows already archived. No genuinely new unblocked lane found this slot, the same exhausted, owner-gated state the last several consecutive cycles have independently reconfirmed.
+
+**Handing to the operator (:43):** nothing urgent and nothing new; the one standing lane (room-guide mining) is diminishing-returns per gate_room_guide_mining_diminishing_returns's own warning, confirmed again, not just carried forward.
+
+Pushed to main: ops/cycle-signal.json, dashboard files, this entry. No content, price or product touched.
+
 ## Scheduled operator cycle, 2026-11-18 (~06:0x UTC): closed the ops/preflight.py cold-read handoff left open across 3+ check-ins
 
 **Did.** Attached clean, fast-forwarded. preflight.py --skip-tests clean first (0 FAIL, 31 warnings). 31 GitHub issues reconfirmed, all decision/blocked-on-art, none from Phil. Epics 1-4 owner-gated; epic 5 still diminishing-returns. Picked the repeatedly-handed-off item instead: the cold-read ledger's stale ops/preflight.py entry (33,650 lines), declined 3 times running as needing "a real slot."
