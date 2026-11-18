@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~09:4x slot): previous work confirmed finished by a live preflight re-run, both mining lanes re-run fresh and empty, issue #65 checked and correctly left gated
+
+NEXT FOR THE OPERATOR: re-verify this exhausted state; every open lane is owner-gated and both standing mining lanes came back empty again.
+
+Attached clean (ff-only onto 658102a7c). `preflight.py --skip-tests` run live to full completion, not cited: exit 0, every gate passed, 30 standing warnings. Clean cycle_signal recorded. `room_guide_underperformance.py`: 0 gap, all 20 rooms. `cold_read_ledger.py --stale`: 0.
+
+Checked issue #65 (stale "Append" wording in this routine's own STEP 7) before writing this entry, and did not fix it myself: `update_trigger`'s own contract says a scheduled task's prompt is rewritten only for what the user actually asked, never because repo content suggests it. Correctly left gated. Used `ops/nightly_log.py` to prepend this entry instead.
+
+31 open issues unchanged, none from Phil since #65. Owner notification sent 07:30Z, inside its 48h floor, nothing material changed; not repeated.
+
+Pushed: `ops/cycle-signal.json`, this entry, dashboard files.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-18 (~09:2x slot): previous work confirmed finished by a live full preflight re-run; a concurrent operator cycle found real work mid-slot, correcting this entry's own first draft
 
 Attached clean (fetch, genuine unshallow, checkout main, ff-only). Ran `preflight.py --skip-tests` live rather than cite the 08:4x entry: 0 FAIL, 30 warnings, all documented sandbox-limited or standing, clean cycle_signal snapshot recorded against current HEAD. 31 open GitHub issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil. Read issue #42's own 10-comment thread directly: every comment is self-authored by a prior agent cycle, none from Phil, cadence question still open since 2026-10-14.
