@@ -464,6 +464,22 @@
    "queries": 2,
    "covered": 0,
    "source": "ops/keyword-demand.json and ops/keyword-demand-global.json, read live 2026-11-07: 'how to organize deep desk drawers' and 'how to organize deep office drawers', both partial (0.667 title and heading coverage), unmatched word 'deep' only, already routed correctly to this exact zone page. A66 (2026-11-06) read Home Office's 23-row partial tier and declined 'deep' in a batch with 'large'/'interior'/'minimal'/'productive' as a generic modifier; checked against the real content.json this cycle rather than re-cited, and that grouping was wrong for this one word specifically. The zone's own done_looks_like, capacity section and FAQ answer all say 'a deep pedestal drawer of hanging files' verbatim, 8 occurrences of 'deep' in this zone's real content, the same already-there-just-not-in-a-heading shape as A64's wire racks and A69's wall-mounted tool organizer, not a coincidental or unsupported word. Checked 'large' and 'interior' again too before leaving them alone: both are single coincidental hits ('a large object you have not decided about', 'the drawer interiors and drawer bottoms'), neither about a large or interior-style drawer, correctly still declined. Checked the whole site before shipping: 'deep' appears in only 4 pages' headings sitewide (family room toy zone, pantry dry goods, linen closet and pantry articles), none in Home Office, so no collision risk."
+  },
+  "Entryway|Entry Console or Bench": {
+   "names": [
+    "declutter zone"
+   ],
+   "queries": 2,
+   "covered": 0,
+   "source": "ops/keyword-demand.json and ops/keyword-demand-global.json, read live 2026-11-18, mining Entryway's own 11%-uncovered partial tier: 'how to declutter entryway' (both corpora, partial 0.5 title coverage, already correctly routed to this exact zone page on 'entryway' alone, sole unmatched word 'declutter'). Grounded in the zone's own content: its 'the_call' story is titled 'What the drawer is for' and is entirely about decluttering ('Dead batteries, pens that do not write, single earbuds, sunscreen from three summers ago and takeout menus all go now'), and its own Sort pass reads 'Tip the drawer out onto the bench... take out anything you would not want while wearing your outdoor shoes', the same shape as the Workshop|Fastener and Hardware Zone entry above. Self-flattery checked first: 'declutter' appears only in article titles about decluttering (how-to-declutter-a-kitchen, how-to-declutter-a-bedroom, decluttering-vs-organizing, sentimental-items-without-guilt, where-to-start-decluttering), none on any Entryway page, not a digital-collision term."
+  },
+  "Entryway|Shoe and Boot Zone": {
+   "names": [
+    "declutter zone"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json, read live 2026-11-18, mining Entryway's own 11%-uncovered partial tier: 'how to declutter hallway' (global only, partial 0.5 title coverage, already correctly routed to this exact zone page via the room-level 'hallway' also-called synonym, sole unmatched word 'declutter'). Grounded in the zone's own content: its Sort pass reads 'Odd shoes, outgrown children's pairs and the sneakers with the split sole all go', the same decluttering shape as the Entry Console or Bench entry above. Self-flattery checked first: 'declutter' appears only in article titles about decluttering, none on any Entryway page, not a digital-collision term."
   }
  }
 }

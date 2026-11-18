@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-18 (~13:0x UTC): closed Entryway's two "declutter" gaps, 11% to 8% uncovered
+
+**Did.** Attached clean (unshallowed, fetch, checkout main, ff-only onto origin/main). preflight.py --skip-tests live: 0 FAIL, 31 warnings, all standing (no Stripe/Umami/VPS/mail credential here). 31 open GitHub issues reconfirmed, all decision/blocked-on-art, none from Phil since #65. inbox_agent.py --apply: no mail credential. BACKLOG-2026-09-07.md sections 2-4 are Done or Archived except C6 (publish 102 videos, needs Phil); the room-guide keyword-mining lane is the only unblocked epic-3 work here. room_guide_underperformance.py reconfirmed live: Family Room 13% (already exhausted), Kids Bedroom and Entryway both 11%. Picked up the exact Entryway tier the concurrent 12:4x PM check-in's own handoff named. Of its four named leads (coat closet, hallway cabinet, foyer, memorial bench), two were already correctly settled by existing evidence before this cycle started: "hallway cabinet organization ideas" was already checked and declined in room-also-called.json's own source note (a genuine word-sense ambiguity); "how to organise a memorial bench" (unmatched word "memorial") reads as an outdoor dedication bench, not this room's household bench, so declined as noise rather than forced. The two real, checkable gaps: "how to declutter entryway" (both corpora) and "how to declutter hallway" (global), unmatched word "declutter" only, already routed to the Entry Console or Bench and Shoe and Boot zones respectively. Checked both zones' own content.json before shipping: the Bench zone's own the_call is literally about decluttering a drawer ("Dead batteries, pens that do not write... all go now"), the Shoe zone's Sort pass says the same about shoes. Added "declutter zone" (the existing Workshop|Fastener and Hardware Zone precedent, 2026-11-16) to ops/zone-also-called.json for both, grounded, not reused blind. Self-flattery checked: "declutter" only in article titles already about decluttering, none on Entryway pages.
+
+**Verified.** Headings render live (`<h2>Also called the declutter zone</h2>` on both zone pages). Full before/after diff both corpora: US partial 851 to 850, covered 1872 to 1873; global partial 663 to 660, covered 1423 to 1426 (the 2 target queries plus "how to declutter things," a collateral match on a pre-existing unrelated FAQ heading containing "things," checked genuine rather than taken blind, since the Bench zone's own content directly teaches general decluttering principles). 0 regressions elsewhere. test_gate_also_called_is_heading (6/6), test_gate_also_called_no_digital_collision (5/5), test_gate_zone_also_called_is_heading (6/6), test_room_also_called, test_check_also_called_digital_collision_fast (2/2), test_keyword_demand (74/74), check_also_called_digital_collision_fast, check_urls (236/236), audit_pages (0 findings), fix_dashes --check (0/0), affiliate --check (165 docs), check_sellable (124/126, 2 person-delivered services), link_graph_report (0 orphans), cold_read_ledger --stale (0) all clean. build_seo.py rerun. preflight --skip-tests re-run live to completion: 0 FAIL. Entryway's own tally moved 11% to 8% uncovered. A concurrent push (the 12:4x PM check-in and an hourly check-in) landed mid-cycle; merged cleanly via fetch/ff-only/stash-pop, only dashboard-generated files conflicted and were simply regenerated fresh, no content work collided.
+
+**Went well:** checking each of the PM check-in's four named leads individually rather than mining them all found two were already correctly settled, saving the two genuine fixes from being diluted with forced ones.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** nothing.
+
+**Next:** Kids Bedroom (11%) and Garage (11%) are the next-worst rooms with genuinely unmined partial tiers. 31 open decision/blocked-on-art issues, none from Phil.
+
+Pushed to main: ops/zone-also-called.json, build_zone_pages.py-regenerated site files, both keyword-demand corpora and their .md summaries, BACKLOG-2026-09-07.md, dashboard files, this entry.
+
 ## PM check-in, 2026-11-18 (~12:4x slot): previous work (A182) reconfirmed finished by a live preflight run, handing Entryway to the operator
 
 NEXT FOR THE OPERATOR: Entryway's remaining tier (coat closet, hallway cabinet, foyer, memorial bench rows), because it is the next unmined partial-tier room A182 itself named and sized for a full slot, not a PM slot.

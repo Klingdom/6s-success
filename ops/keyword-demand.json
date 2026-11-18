@@ -17600,13 +17600,11 @@
       "best_page": "/zones/entryway-the-bench-or-console.html",
       "best_page_title": "How to organize the entryway bench or console",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/entryway-the-bench-or-console.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "declutter"
-      ]
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to declutter everything",
@@ -56279,6 +56277,6 @@
       ]
     }
   ],
-  "scored_against_commit": "b3039ebae",
-  "scored_at": "2026-11-18T12:00:36Z"
+  "scored_against_commit": "758ac8e5f",
+  "scored_at": "2026-11-18T12:59:43Z"
 }
