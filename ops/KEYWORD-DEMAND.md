@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-11T17:34:53Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-18T09:01:26Z against 244 page(s) at commit 26345f1fe. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-18T09:53:38Z against 244 page(s) at commit 435b3db06. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2810. Checked against 244 published page titles: 1861 covered, 861 partial, 88 gap.
+**Queries found:** 2810. Checked against 244 published page titles: 1867 covered, 856 partial, 87 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 88, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 87, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -69,7 +69,6 @@ Showing the top 80 of 88, ordered by the best rank the phrase reached in any one
 | 10 | how to organize pc | - | - (0.00) | - |
 | 10 | how to organize script mods sims 4 | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | mods, script, sims |
 | 10 | laundry problems and solutions | - | How to organize the laundry room detergent and supplies (0.33) | problems, solutions |
-| 11 | foyer design ideas for flat indian style | - | How to organize an entryway, zone by zone (0.20) | flat, indian, style |
 | 11 | how to decorate a living room with high ceilings | Living Room | How to organize the living room bookshelves and display (0.40) | ceilings, decorate, high |
 | 11 | how to host a cribbage tournament template | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, host, tournament |
 | 11 | how to operate a gas stove | - | How to organize the kitchen stove area (0.33) | gas, operate |
@@ -101,10 +100,11 @@ Showing the top 80 of 88, ordered by the best rank the phrase reached in any one
 | 18 | safety gears for construction | - | How to organize the workshop safety gear (0.33) | construction, gears |
 | 19 | online storage for games | - | How to organize the family room game storage (0.33) | games, online |
 | 19 | railings in floor plan | - | Venture plan (0.33) | floor, railings |
+| 20 | decluttering starter home guide | - | Decluttering vs. organizing: what's actually different (0.33) | home, starter |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 861.
+Showing the top 60 of 856.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -173,8 +173,8 @@ Showing the top 60 of 861.
 
 | Room | Queries | Gap | Partial | Covered |
 |---|---|---|---|---|
-| Dining Room | 38 | 0 | 11 | 27 |
-| Entryway | 50 | 1 | 6 | 43 |
+| Dining Room | 38 | 0 | 10 | 28 |
+| Entryway | 50 | 1 | 5 | 44 |
 | Family Room | 27 | 0 | 16 | 11 |
 | Garage | 76 | 1 | 18 | 57 |
 | Guest Bathroom | 22 | 0 | 14 | 8 |
@@ -184,7 +184,7 @@ Showing the top 60 of 861.
 | Kids Bedroom | 21 | 0 | 7 | 14 |
 | Kitchen | 97 | 2 | 21 | 74 |
 | Laundry Room | 71 | 0 | 8 | 63 |
-| Living Room | 92 | 2 | 30 | 60 |
+| Living Room | 92 | 2 | 29 | 61 |
 | Mudroom | 43 | 0 | 16 | 27 |
 | Nursery | 61 | 1 | 17 | 43 |
 | Pantry | 58 | 1 | 12 | 45 |

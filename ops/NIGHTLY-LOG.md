@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-18 (~09:5x slot): A166, closed 10 wording gaps mined from Primary Bedroom's partial tier, recovered from a concurrent-session working-tree clobber mid-cycle
+
+**Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only`, 71 commits fast-forwarded, no reset/force). A concurrent session pushed mid-cycle (`435b3db06`); re-fetched and ff-merged, then re-derived rather than trust a stale reading. Mined Primary Bedroom's partial tier (11% uncovered, worst after Family Room's 13%, which is a declined same-room tie plus a declined digital-collision word, both already on record). Found "apartment" (singular) unmatched against `how-to-declutter-a-bedroom.html` and "style" unmatched against two zone pages; "apartments" (plural) was already excluded, so "apartment" is the A34/A36 stemming-gap shape. Added both to `FORMAT_WORDS`.
+
+**Verified.** Self-flattery first (CLAUDE.md 5c): neither word appears in any of 244 titles or headings, so no page unfairly benefits and nothing to collide with. Full before/after `score_rows()` diff on both corpora before shipping, then reproduced exactly: US gap 88->87, partial 861->856, covered 1861->1867 (7 rows); global gap 84->83, partial 667->666, covered 1418->1420 (3 rows). Every moved row kept its same `best_page`, confirmed by diffing the committed JSON for `best_page` lines (none changed). `test_keyword_demand.py` (74/74), `check_urls.py` (236/236), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `cold_read_ledger.py --stale` (0) clean. Live `preflight.py --skip-tests`: 0 FAIL. No GOALS.md cluster citation affected (neither cluster pattern matches the moved rows, confirmed by re-deriving both live).
+
+**Went well:** caught a concurrent-session working-tree clobber (A180's shape) before it shipped a no-op.
+
+**Did not go well:** lost one edit cycle to the collision; nothing lasting.
+
+**Changing next cycle:** nothing new.
+
+**Next:** Primary Bedroom's remaining rows ("houseplants", "singing room", generic-filler checks); Family Room's declined-but-worst tier if a fresh angle appears.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-18 (~09:4x slot): previous work confirmed finished by a live preflight re-run, both mining lanes re-run fresh and empty, issue #65 checked and correctly left gated
 
 NEXT FOR THE OPERATOR: re-verify this exhausted state; every open lane is owner-gated and both standing mining lanes came back empty again.

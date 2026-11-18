@@ -6890,15 +6890,14 @@
       "room": "",
       "best_page": "/rooms/entryway.html",
       "best_page_title": "How to organize an entryway, zone by zone",
-      "coverage": 0.2,
-      "heading_coverage": 0.4,
+      "coverage": 0.25,
+      "heading_coverage": 0.5,
       "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
         "flat",
-        "indian",
-        "style"
+        "indian"
       ],
       "markets": [
         "ca"
@@ -7132,13 +7131,11 @@
       "best_page": "/articles/how-to-organize-an-entryway.html",
       "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "apartment"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "in"
       ],
@@ -34875,14 +34872,12 @@
       "room": "",
       "best_page": "/zones/patio-or-deck-the-outdoor-dining-zone.html",
       "best_page_title": "How to organize the patio or deck outdoor dining",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/patio-or-deck-the-outdoor-dining-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "style"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -48005,6 +48000,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "26345f1fe",
-  "scored_at": "2026-11-18T09:01:28Z"
+  "scored_against_commit": "435b3db06",
+  "scored_at": "2026-11-18T09:53:39Z"
 }

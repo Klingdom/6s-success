@@ -210,7 +210,20 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "cheap", "list", "everyday", "tidying", "next",
                           "organized", "organised", "liquid", "grow",
                           "option", "100", "genre", "long", "last",
-                          "australia", "ikea", "pinterest", "stuff"))
+                          "australia", "ikea", "pinterest", "stuff",
+                          "apartment", "style"))
+
+# "apartment" and "style" joined 2026-11-18, scheduled operator cycle, found
+# mining Primary Bedroom's own partial tier: "how to declutter my apartment"
+# (unmatched "apartment") and "organizing your bedroom tips for style"
+# (unmatched "style") were each one word short of covered. "apartments"
+# (plural) was already excluded; "apartment" (singular) is the same
+# A34/A36 stemming-gap shape, never previously caught. Neither word appears
+# on any of the 244 pages' own title or heading (grep-confirmed), so there is
+# no self-flattery risk and nothing to collide with. Full before/after
+# score_rows() diff across both corpora before shipping: 7 US rows and 3
+# global rows moved, every one to the SAME best_page as before (gap to
+# partial, or partial to covered), 0 regressions, 0 misroutes.
 
 # "stuff" joined 2026-11-18, scheduled operator cycle, found mining Garage's
 # own partial tier: "how to organize baby stuff" (US, bing, 0.5) was scoring

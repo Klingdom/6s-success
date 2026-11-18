@@ -8211,14 +8211,12 @@
       "room": "Dining Room",
       "best_page": "/zones/dining-room-the-beverage-or-coffee-station.html",
       "best_page_title": "How to organize the dining room beverage or coffee station",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/dining-room-the-beverage-or-coffee-station.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "style"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "dining table organization ideas",
@@ -11110,15 +11108,14 @@
       "room": "",
       "best_page": "/rooms/entryway.html",
       "best_page_title": "How to organize an entryway, zone by zone",
-      "coverage": 0.2,
-      "heading_coverage": 0.4,
+      "coverage": 0.25,
+      "heading_coverage": 0.5,
       "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
         "flat",
-        "indian",
-        "style"
+        "indian"
       ]
     },
     {
@@ -17869,14 +17866,12 @@
       "room": "",
       "best_page": "/articles/how-to-declutter-a-bedroom.html",
       "best_page_title": "How to declutter a bedroom in one day, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/decluttering-vs-organizing.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "apartment"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to declutter my garage",
@@ -35823,14 +35818,12 @@
       "room": "",
       "best_page": "/zones/guest-bedroom-the-guest-nightstand.html",
       "best_page_title": "How to organize the guest bedroom nightstand",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bedroom-the-guest-nightstand.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "style"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to style an entryway",
@@ -35844,14 +35837,12 @@
       "room": "Entryway",
       "best_page": "/zones/entryway-the-bench-or-console.html",
       "best_page_title": "How to organize the entryway bench or console",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/entryway-the-bench-or-console.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "style"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to tidy a very messy room",
@@ -41157,14 +41148,12 @@
       "room": "Living Room",
       "best_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
       "best_page_title": "6S Success: Home Edition &#183; Chapters 1 to 30",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "apartment"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "messy living room pictures",
@@ -44897,14 +44886,12 @@
       "room": "",
       "best_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
       "best_page_title": "How to organize the primary bedroom bed and bedding",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "style"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "organizing your bedroom tips pinterest",
@@ -56302,6 +56289,6 @@
       ]
     }
   ],
-  "scored_against_commit": "26345f1fe",
-  "scored_at": "2026-11-18T09:01:26Z"
+  "scored_against_commit": "435b3db06",
+  "scored_at": "2026-11-18T09:53:38Z"
 }
