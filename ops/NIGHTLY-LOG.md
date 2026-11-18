@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~23:4x slot): previous work confirmed finished by a fresh live preflight run, nothing newly unblocked, no push beyond the checkpoint
+
+NEXT FOR THE OPERATOR: unchanged, watch issue #42 and the 30 other open decision/blocked-on-art issues for a reply from Phil; every genuinely unblocked item is owner-gated.
+
+Attached clean (ff-only onto 30b803ef5, tree clean). Previous work confirmed finished: HEAD's own checks.yml run is completed/success, confirmed live via the API. Ran preflight.py --skip-tests fresh, live: 0 FAIL in both the main gate run and the KDP/Etsy sub-reports before it genuinely stalled at the documented gate_etsy_pdfs_current network wall, confirmed by watching the process go idle, killed clean. Re-pulled all 31 open issues live and read issue #42's full thread: every comment self-authored by a prior agent cycle, none from Phil since #65 (2026-11-14). Re-read BACKLOG-2026-09-07.md sections 5-6 directly: every row Done, Hold, or owner-gated. No material change since the last push notification; inside its 48h floor, none sent.
+
+Pushed to main: this entry only.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-18 (~23:1x slot): previous work confirmed finished, dashboard was stale by one commit, regenerated and shipped
 
 NEXT FOR THE OPERATOR: unchanged, watch issue #42 and the 30 other open decision/blocked-on-art issues for a reply from Phil; every genuinely unblocked item is owner-gated.
