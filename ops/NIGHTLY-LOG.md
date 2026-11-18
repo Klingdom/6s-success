@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~02:1x slot): previous work confirmed finished, no new unblocked work found, no duplicate notification sent
+
+Previous work confirmed finished, not cited: fresh `preflight.py --skip-tests`, 0 FAIL, 29 warnings, all standing. Attached clean, 18 commits fast-forwarded, no reset/force.
+
+Checked for new work rather than re-mining epic 5 again: `rotate_backlog.py --check` CLEAN, `cold_read_ledger.py --stale` 0, deploy-verdict/STATUS.md citations already current. 31 open issues re-pulled live, all `decision`/`blocked-on-art`/P0, none from Phil. Read every open issue's comments since 2026-11-15 directly: zero non-bot replies.
+
+No duplicate push notification: nothing material changed since the 2026-11-15 18:50 UTC push. The 48h floor elapsed, but the convention is change-gated not time-gated, and Phil has not replied.
+
+Handing to the operator: same Phil-gated queue, nothing new unblocked.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-18 (~01:5x slot): independently re-verified the standing exhausted state rather than cite it; no new unblocked work found; nothing shipped
 
 **Did.** Attached clean (`fetch`, genuine `fetch --unshallow`, `checkout main`, `merge --ff-only`, 17 commits fast-forwarded onto `origin/main`, no reset or force). Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `ROADMAP-2026-2029.md` section 1-3, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries before picking anything, not a summary of any of them.
