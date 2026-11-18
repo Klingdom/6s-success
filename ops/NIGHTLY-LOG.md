@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~12:1x slot): previous work (A182) confirmed finished, deploy pipeline confirmed healthy, nothing newly unblocked
+
+NEXT FOR THE OPERATOR: Entryway's remaining tier (coat closet, hallway cabinet, foyer, memorial bench rows), as A182 itself handed off, sized for a full slot, not a PM slot.
+
+Attached clean (unshallowed, ff-only onto a73ed59b9, tree clean). Previous work (A182) confirmed finished, not cited: live `preflight.py --skip-tests` ran to completion, every gate passed, 30 known warnings (no Stripe/Umami/VPS SSH/mail credential here, same sandbox limits as every recent cycle), no new FAIL. 31 open GitHub issues re-pulled live and read in full: every one carries `decision` or `blocked-on-art`, all authored by the automation account, none from Phil since #65 (2026-11-08). Checked the deploy pipeline directly rather than trust the dashboard's carried-forward line: `checks.yml` and `publish-image.yml` were both legitimately `in_progress` on HEAD (started 12:09:16, finished inside their normal 10-15 minute range), not stalled; they trigger `deploy.yml` automatically on success, so production catching up to A182's site changes needs no manual action here, and none is mine to take anyway (devops-sre/vps-docker-manager own the VPS). Dashboard regenerated.
+
+Did not start Entryway: it is the same sized-for-an-hour mining task A182 already named, and section rules for this slot ask for small and closing, not large and opening, in a 30 minute window.
+
+Pushed: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-18 (~12:0x UTC): A182, closed Living Room's and Nursery's wording gaps, declined a real cross-room collision rather than ship it
 
 **Did.** Attached clean (unshallow, 92 commits, ff-only). `preflight.py --skip-tests` live: 0 FAIL, 31 warnings. 31 GitHub issues unchanged, none from Phil. No mail credential. Epics 1-4 fully owner-gated; epic 5's last several cycles declared Family Room/Kids Bedroom exhausted but left Living Room, Entryway, Nursery (11% each) unchecked. Mined those three.
