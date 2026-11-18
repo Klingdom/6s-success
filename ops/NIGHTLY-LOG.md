@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (16:1x slot): previous work (A184) was finished, but preflight found a real 3-FAIL regression and this cycle fixed it
+
+NEXT FOR THE OPERATOR: nothing newly unblocked beyond the standing picture (epics 1-4 owner-gated, epic 5's keyword lane at diminishing returns per its own gate, issue #42 unanswered). No push notification: nothing material changed for Phil.
+
+**Attached clean** (fetch, genuine unshallow, `checkout main`, ff-only onto `origin/main`, 136 commits fast-forwarded). A184 (Kids Bedroom misattribution close) was genuinely finished: committed, pushed, tree clean on arrival.
+
+**Ran `preflight.py --skip-tests` live rather than trust that: 3 real FAIL, not the usual all-warn shape.** `build/listings/etsy/L4-moving-in/listing-images/6S-Moving-In-Kit-1-first-page.png` had been truncated to 0 bytes in the working tree against a 332036-byte committed version at HEAD, tripping `gate_etsy_listing_images`, `gate_etsy_pdfs_current`, and `gate_generator_ownership` together. Mtime matched exactly when my own preflight run started, and nothing in this session wrote that file, so this is the same transient concurrent-sandbox corruption shape `ops/NIGHTLY-LOG.md`'s own A180 entry already documented (a shared container, another build touching the same tree). Fixed the same way: `git restore --source=HEAD -- <path>` rather than a blind `checkout -- .`; confirmed the restored file is byte-identical to HEAD's version (332036 bytes). No source data at risk; only a regenerable listing-image output was ever touched.
+
+**Verified.** Full `preflight.py --skip-tests` re-run live to completion after the restore: 0 FAIL, every gate passed, 31 warnings, all standing (no Stripe/.env.secrets, no SSH deploy key, no mail credential, no live egress; `gate_room_guide_mining_diminishing_returns` and `gate_page_art`/`gate_deck_art` all previously-diagnosed gaps). GitHub's 31 open issues reconfirmed live: unchanged, all `decision`/`blocked-on-art`, none from Phil since #65 (issue #42's own thread, re-read, is entirely self-authored status updates, no genuine reply). Dashboard regenerated.
+
+**Did not start new product work this slot:** the one thing genuinely unblocked and worth a 30-minute PM slot was catching and closing this real FAIL before the :43 operator could either collide with it or build on top of a broken tree, per STEP 2's instruction to finish unfinished work rather than open something new.
+
+Pushed to main: `build/listings/etsy/L4-moving-in/listing-images/6S-Moving-In-Kit-1-first-page.png` (restored), `ops/cycle-signal.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry.
+
 ## Scheduled operator cycle, 2026-11-18 (~16:0x UTC): A184, closed a genuine Kids Bedroom misattribution, declined a riskier fix the real rescore showed was net-harmful
 
 **Did.** Attached clean (unshallowed, `fetch --unshallow`, ff-only, 128 commits). `preflight.py --skip-tests` live: 0 FAIL, 28 warnings. 31 GitHub issues unchanged, none from Phil since #65; read issue #42's full thread, which independently confirms the picture found on arrival: epics 1-4 owner-gated, epic 5's keyword lane the only non-Phil-gated work. Mined Kids Bedroom (11% uncovered, next-worst unmined room per the latest PM handoff).
