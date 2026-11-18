@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~01:4x slot): previous work (A178, the STATUS.md citation re-derivation) confirmed finished by a fresh full preflight run; one overdue backlog rotation closed; nothing newly unblocked
+
+NEXT FOR THE OPERATOR: continue hand-mining the keyword gap/partial tier in epic 5 (88 gap / 866 partial, 0 drift this cycle), because it remains the only genuinely unblocked mechanism; everything else is one of the 31 open `decision`/`blocked-on-art` issues, none from Phil since #65.
+
+Attached clean (fetch, genuine unshallow not needed, `checkout main`, ff-only onto `684920297`, 17 commits fast-forwarded, tree clean before starting). Previous work confirmed finished, not cited: ran a fresh `preflight.py --skip-tests` live to completion myself rather than trust the prior entry's own clean claim, every gate passed, 30 warnings, all standing sandbox limits (no SSH key, no Stripe credential, missing local art/video assets, each the same documented gap every recent cycle has hit). 31 open GitHub issues re-pulled live via the API, unchanged since #65 (2026-11-14), all `decision`/`blocked-on-art`, none from Phil. `STATUS.md`'s open-claims section: none open. Epic 5 re-verified, not re-mined: `keyword_demand.py --rescore` live, 0 drift (88/866/1856, matching A178's own post-fix counts exactly).
+
+Closed one small thing rather than leave it for later: `rotate_backlog.py --check` was DUE (1 row past the 15-row cap). Applied; re-checked CLEAN (15/15 rows within window).
+
+Not starting new work this slot: nothing beyond the Phil-gated queue is genuinely unblocked, and three-minutes-before-the-operator is not the moment to start a fresh pass through epic 5's gap/partial tiers (that is sized for a full slot and is exactly what the handoff above hands to the operator).
+
+Pushed to main: `BACKLOG-2026-09-07.md`, `BACKLOG-2026-09-07-ARCHIVE.md`, `ops/KEYWORD-DEMAND.md`, `ops/keyword-demand.json`, `ops/cycle-signal.json`, dashboard files, this entry. No content, price or product touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-18: A178, a real paperwork declutter misattribution fixed, a much larger decor/decorating cluster checked and declined rather than fabricated
 
 **Did.** Unshallowed and attached to main cleanly (`fetch --unshallow`, `checkout main`, `merge --ff-only`, 7 commits fast-forwarded). `preflight.py --skip-tests` run live first: 0 FAIL, 30 warnings, all standing. GitHub's 31 open issues re-pulled live: unchanged since #65, none from Phil. No mail credential; `inbox_agent.py --apply` confirmed the standing gap. `room_guide_candidates.guide_less_rooms()` reconfirmed `[]`.
