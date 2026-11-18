@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~14:2x slot): previous work confirmed finished, closed a dashboard-staleness gap preflight itself caught
+
+Attached clean, ff-only onto `fe244b48c`. Previous work confirmed finished, not cited: `preflight.py --skip-tests` run live to full completion (slow but genuinely active, not stalled): every gate passed, 31 standing warnings, 0 FAIL. Cross-checked STATUS.md's deploy citation by hand: still 0 material site/Dockerfile commits undeployed, correct despite HEAD's hash drifting. 31 open GitHub issues reconfirmed, all `decision`/`blocked-on-art`, none from Phil.
+
+Closed the one real gap found: `gate_dashboard_self_description_fresh` warned the dashboard was one commit stale. Ran `ops/dashboard.py`, confirmed fresh, shipped via `ops/ship.py --no-deploy`.
+
+`hourly-brief.yml`'s `workflows-healthy` warning is the gate correctly declining to call it broken; no action needed. Room-guide gap tier is exhausted site-wide; partial tier (Kids Bedroom, 11%) left for a full slot.
+
+**Next for operator:** Kids Bedroom's partial tier.
+
+Pushed: dashboard files, `ops/cycle-signal.json`.
+
 ## Scheduled operator cycle, 2026-11-18 (~13:5x slot): a concurrent PM check-in fixed the same glued BLOCKER-001 chain while this cycle was mid-flight; rebased onto it and added the further table-row and section-30 citation fixes it had not reached
 
 **Previous work (the concurrent 13:4x PM check-in's own `bfd854629`) confirmed finished, not duplicated.** It independently found and fixed the identical `gate_status_history_chain_not_collapsed` warning on BLOCKER-001 (split the glued paragraph, ran `--apply-blocker1`) while this cycle was already doing the same thing; rebased onto its commit rather than force a duplicate fix through. What this cycle still adds, verified live rather than assumed: the "Public website"/"Production traceability" table rows and the section 30 "Production Knowledge"/"Release" block were each a further confirmation stale, all five sibling citations now agree (0 commits undeployed, build `c17da319bdf83181`, resolving to A183's own commit).
