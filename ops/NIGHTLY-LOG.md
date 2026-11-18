@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-18 (~06:4x slot): checked a live room-guide candidate and correctly declined it, nothing newly unblocked
+
+**Did.** Attached clean: fetch, genuine unshallow (the background fetch was still mid-download when first checked, waited for it to finish rather than run a second concurrent fetch), checkout main, merge --ff-only onto origin/main, fast-forwarded cleanly. preflight.py --skip-tests run live to full completion: 0 FAIL, 30 warnings, all standing. No mail credential, inbox_agent.py --apply confirmed the standing gap. 31 open GitHub issues re-pulled live via the API: unchanged, all decision/P0/blocked-on-art, none from Phil since #65.
+
+Checked by epic first (STEP 3): epics 1-4 owner-gated, matching every one of the last six consecutive check-ins; epic 5 (room-guide mining) reconfirmed diminishing-returns, not cited. Rather than accept that verdict secondhand, read the live Living Room/Primary Bedroom/Kids Bedroom/Family Room partial tiers by hand and picked the one concrete-looking candidate: "how to organize cords behind entertainment center" (google, rank 2), routed to /living-room-deck.html (0.75 heading coverage, unmatched "entertainment") instead of the room's own /zones/living-room-the-media-center.html zone page.
+
+**Checked rather than shipped.** Traced it fully before touching anything: the deck page's match is not coincidental, its own "Media Center" card carries real h3/h4 headings ("THE CONTROLLER BEHIND THE UNIT AGAIN", "LID THE TABLETS AND CLIP THE CORDS DOWN") about the same zone, so the query is already answered correctly, just by the deck summary rather than the full zone page. The zone page itself uses "cables" and "television unit" in its own content, not "cords" or "entertainment center" verbatim, so closing the gap would mean adding "entertainment center" to this zone's ops/zone-also-called.json entry. Checked that for collision first (CLAUDE.md 5c) rather than assume it was free: Family Room's own "Primary Media Zone" already carries "entertainment center" verbatim in its page title and is the page every other "entertainment center" query in the corpus (20+ rows) already scores "covered" against. Adding the same phrase to a second room's zone would put two rooms' pages into a live tie for that whole cluster, the same shape the Guest/Primary Bathroom tie-break (A25/A26) and the Kids Bedroom "storage" collision (A164, reverted) already named as unsafe to force. One already-partial, already-answered row was not worth risking a live regression across an already-covered cluster. Declined and recorded here so it is not rediscovered as a fresh lead.
+
+**Verified.** preflight.py --skip-tests re-run live after the dashboard regen (the only file class touched this cycle): 0 FAIL, 30 warnings, standing. No price, product or page touched; IndexNow not applicable.
+
+**Went well:** actually ran the collision check instead of trusting the surface-level "partial, unmatched word" read, which is exactly the kind of candidate that has produced regressions in prior cycles when shipped without it.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** nothing.
+
+**Next:** no new unfixed gap found this pass; room-guide mining stays diminishing-returns, reconfirmed by inspection this time, not just by citation. 31 open decision/blocked-on-art GitHub issues, none from Phil.
+
+Pushed to main: dashboard files, this entry. No push notification: nothing material changed since the last one on this topic.
+
 ## PM check-in, 2026-11-18 (~06:1x slot): previous work confirmed finished by a live full preflight re-run, nothing newly unblocked
 
 **Previous work was finished.** Attached clean (fetch, genuine unshallow, checkout main, ff-only merge onto origin/main, 0 conflicts). The prior cycle's claimed fix (closing the ops/preflight.py cold-read handoff) was verified, not cited: ran preflight.py (not --skip-tests this time, full gate_tests included) live in the background to avoid the documented bash-timeout footgun, to completion: every gate passed, 30 warnings, all the standing sandbox-limited shape (no SSH/Stripe credential, no local art/video/photo assets, deploy freshness and T2 unevaluated). cold_read_ledger.py --stale: 0, confirming the prior cycle's close held.
