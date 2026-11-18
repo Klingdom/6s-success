@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~10:1x slot): closed A181, Primary Bedroom's named houseplants/singing-room noise rows
+
+Previous work finished: live `preflight.py --skip-tests` clean before editing (0 FAIL, 28 standing warnings), plus another session's own clean checkpoint on the pushed A166 HEAD.
+
+Did (A181): checked the 09:5x entry's unverified "Next" rows. Both "houseplants" and "singing room" are seed-drift autosuggest noise (nursery seed to houseplant care; dining-room seed to an unrelated room), the shape `OFF_TOPIC_CONTEXT` already excludes elsewhere. Verified against both harvests, excluded, added 2 fail-then-pass tests (151/151); only Primary Bedroom moved (11% to 8%).
+
+Handing the operator: both rooms' remaining partial rows are now checked, fixed or declined. No unchecked lead left.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-18 (~09:5x slot): A166, closed 10 wording gaps mined from Primary Bedroom's partial tier, recovered from a concurrent-session working-tree clobber mid-cycle
 
 **Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only`, 71 commits fast-forwarded, no reset/force). A concurrent session pushed mid-cycle (`435b3db06`); re-fetched and ff-merged, then re-derived rather than trust a stale reading. Mined Primary Bedroom's partial tier (11% uncovered, worst after Family Room's 13%, which is a declined same-room tie plus a declined digital-collision word, both already on record). Found "apartment" (singular) unmatched against `how-to-declutter-a-bedroom.html` and "style" unmatched against two zone pages; "apartments" (plural) was already excluded, so "apartment" is the A34/A36 stemming-gap shape. Added both to `FORMAT_WORDS`.

@@ -786,7 +786,22 @@ OFF_TOPIC_CONTEXT = re.compile(
     # anything measured (Workshop: 56 on-topic/49 covered before, 55/48
     # after, reproduced with `room_guide_underperformance.score_room`
     # directly before and after).
-    r"\bcompany workshop\b",
+    r"\bcompany workshop\b|"
+    # Found 2026-11-18, PM check-in, mining Primary Bedroom's remaining
+    # partial tier (the "houseplants"/"singing room" rows the prior
+    # operator cycle named but left unbuilt). "complete declutter
+    # houseplants checklist" is seeded from "how to declutter a nursery"
+    # and drifted to a generic houseplant-care checklist, nothing to do
+    # with a bedroom or a nursery; "declutter singing room" is seeded from
+    # "how to declutter a dining room" and drifted to a different,
+    # unrelated room concept ("singing room" is not a room this product
+    # names anywhere), the same autosuggest seed-drift shape "gardening
+    # series"/"dental"/"declutter my life" already exclude above. Checked
+    # against both harvests first: "houseplant" and "singing" each appear
+    # in exactly the one row named here, both already `partial` on the
+    # wrong page either way, so excluding them cannot suppress a genuine
+    # match.
+    r"\bhouseplants?\b|\bsinging room\b",
     re.I)
 
 

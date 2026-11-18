@@ -922,6 +922,21 @@ _result_workshop_genuine = rgc.score_room([_workshop_genuine], [], _room)
 check("a genuine 'garage workshop organization' row is NOT excluded by the company-workshop pattern",
       _result_workshop_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-18, PM check-in, mining Primary Bedroom's remaining partial
+# tier. Both are seed-drift autosuggest noise, not genuine bedroom content.
+_houseplants = {"query": "complete declutter houseplants checklist", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_houseplants = rgc.score_room([_houseplants], [], _room)
+check("a 'houseplants' off-topic-context row is excluded",
+      _result_houseplants["on_topic_rows"] == 0)
+_singing_room = {"query": "declutter singing room", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_singing_room = rgc.score_room([_singing_room], [], _room)
+check("a 'singing room' off-topic-context row is excluded",
+      _result_singing_room["on_topic_rows"] == 0)
+_bedroom_genuine = {"query": "small primary bedroom storage ideas", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_bedroom_genuine = rgc.score_room([_bedroom_genuine], [], _room)
+check("a genuine 'bedroom storage ideas' row is NOT excluded by the houseplants/singing-room pattern",
+      _result_bedroom_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)
