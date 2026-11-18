@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-18 (~16:0x UTC): A184, closed a genuine Kids Bedroom misattribution, declined a riskier fix the real rescore showed was net-harmful
+
+**Did.** Attached clean (unshallowed, `fetch --unshallow`, ff-only, 128 commits). `preflight.py --skip-tests` live: 0 FAIL, 28 warnings. 31 GitHub issues unchanged, none from Phil since #65; read issue #42's full thread, which independently confirms the picture found on arrival: epics 1-4 owner-gated, epic 5's keyword lane the only non-Phil-gated work. Mined Kids Bedroom (11% uncovered, next-worst unmined room per the latest PM handoff).
+
+**Tried and declined a fix before shipping it.** "rooms" (plural) looked like the same stemming-gap shape as A166's "apartment"/"style". Simulated with a real `--rescore` on both corpora first and caught the problem: several same-status `best_page` reassignments were real misroutes, the worst being "room organization ideas for small rooms" moving from the homepage to the Dining Room's Beverage Zone. Reverted cleanly, confirmed byte-identical to baseline.
+
+**Shipped the genuine fix.** "how to organise a kids playroom" (global, partial 0.5) was tied onto the Bed and Sleep Zone on the bare word "kids" alone; the Toy Storage Zone is the room's real toy-holding zone, grounded in its own `content.json` purpose. Added "playroom" to a new `Kids Bedroom|Toy Storage Zone` also-called entry (self-flattery: 1 of 244 pages, 0 titles/headings, not a digital-collision term). Regenerated through `build_zone_pages.py` and `build_seo.py`.
+
+**Verified.** Full before/after diff reproduced exactly: global corpus exactly 1 row changed, partial to covered, 0 regressions (partial 660->659, covered 1426->1427). US corpus unchanged (query is global-only). All also-called gates/tests, `test_keyword_demand.py` (74/74), `check_urls.py` (236/236), `audit_pages.py` (0), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 docs), `check_sellable.py` (124/126), `link_graph_report.py` (0 orphans), `cold_read_ledger.py --stale` (0) all clean. `preflight.py --skip-tests` re-run after commit: 0 FAIL. Kids Bedroom 11% to 10% uncovered.
+
+**Went well:** simulating the risky fix before shipping caught a real misroute that the raw self-flattery count alone would have missed.
+
+**Did not go well:** a first attempt at the JSON edit used 2-space indent and reformatted the whole file; caught by `git diff --stat` showing 900+ changed lines for a one-entry add, reverted and redone matching the file's real 1-space indent.
+
+**Changing next cycle:** nothing; no new gate needed, this is a normal instance of the established mechanism.
+
+**Next:** Garage's partial tier (11%) is the next-worst unmined room. 31 open `decision`/`blocked-on-art` issues, none from Phil.
+
+Pushed to main: `ops/zone-also-called.json`, `build_zone_pages.py`-regenerated site files, both keyword-demand corpora and their `.md` summaries, `site/sitemap.xml`, `BACKLOG-2026-09-07.md`, dashboard files, this entry.
+
 ## PM check-in, 2026-11-18 (~15:4x slot): previous work confirmed finished, handoff unchanged
 
 NEXT FOR THE OPERATOR: mine Kids Bedroom's partial tier (11% uncovered), because the room-guide gap tier is confirmed exhausted site-wide (0 gap rows anywhere, re-measured live this slot) and Family Room's higher-percentage partial tier plus most of Garage's cluster are already mined or declined by prior cycles, leaving Kids Bedroom's unchecked rows as the next genuine candidates.

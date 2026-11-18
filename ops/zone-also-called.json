@@ -480,6 +480,14 @@
    "queries": 1,
    "covered": 0,
    "source": "ops/keyword-demand-global.json, read live 2026-11-18, mining Entryway's own 11%-uncovered partial tier: 'how to declutter hallway' (global only, partial 0.5 title coverage, already correctly routed to this exact zone page via the room-level 'hallway' also-called synonym, sole unmatched word 'declutter'). Grounded in the zone's own content: its Sort pass reads 'Odd shoes, outgrown children's pairs and the sneakers with the split sole all go', the same decluttering shape as the Entry Console or Bench entry above. Self-flattery checked first: 'declutter' appears only in article titles about decluttering, none on any Entryway page, not a digital-collision term."
+  },
+  "Kids Bedroom|Toy Storage Zone": {
+   "names": [
+    "playroom"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json, read live 2026-11-18, mining Kids Bedroom's own 11%-uncovered partial tier (room_guide_underperformance.py): 'how to organise a kids playroom' (global, partial 0.5), a genuine misattribution, not a vocabulary gap: it was tied onto the Bed and Sleep Zone page on the bare word 'kids' alone (that page's own title is 'How to organize the kids bedroom bed'), while this zone, the room's real toy-holding zone, is the honest answer (purpose: 'Holds the bedroom toys so a small child can put them away without asking anyone'). Self-flattery checked first: 'playroom' appears on exactly 1 of 244 pages site-wide (an unrelated basement article mentioning a basement playroom as one of several possible uses), 0 titles or headings on any Kids Bedroom page, not a digital-collision term (checked against check_also_called_digital_collision_fast.py's own word list)."
   }
  }
 }
