@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~09:2x slot): previous work confirmed finished by a live full preflight re-run; a concurrent operator cycle found real work mid-slot, correcting this entry's own first draft
+
+Attached clean (fetch, genuine unshallow, checkout main, ff-only). Ran `preflight.py --skip-tests` live rather than cite the 08:4x entry: 0 FAIL, 30 warnings, all documented sandbox-limited or standing, clean cycle_signal snapshot recorded against current HEAD. 31 open GitHub issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil. Read issue #42's own 10-comment thread directly: every comment is self-authored by a prior agent cycle, none from Phil, cadence question still open since 2026-10-14.
+
+**Correcting this entry's own first draft before it could ship stale.** It originally said epic 5 (room-guide mining) had come back empty twice this hour so a third pass was not worth it; while this cycle's own push was still pending, the concurrent 09:0x operator cycle mined a third time anyway and found a genuine cross-room misattribution (A180, Kitchen Sink/Dishwashing vs. Laundry Room's "plate rack" wording), fixed and pushed it (`06e593971`). That lane is not as exhausted as this entry claimed; rebased onto it rather than overwrite it. `ops/last-owner-notification.json` shows a send at 07:30Z, inside its 48h floor, nothing material changed; did not repeat.
+
+**Next:** re-run the room-guide ranking fresh rather than trust either cycle's count, since it just moved twice in one hour. 31 open issues, none from Phil.
+
+Pushed to main: `ops/cycle-signal.json`, this entry, dashboard files.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-18 (~09:0x slot): closed a genuine cross-room misattribution (A180), then found and fixed live build corruption from a concurrent session before it could be shipped
 
 **Did.** Attached clean (unshallow, 62 commits, ff-only onto origin/main). `preflight.py --skip-tests` live first: 0 FAIL, 29 warnings, all standing. 31 open GitHub issues re-pulled live: unchanged, none from Phil. Mined Laundry Room's guide tier via `room_guide_underperformance.py` rather than the already-exhausted Family Room one: "drying rack plate organizer" tied between Kitchen's Sink and Dishwashing Zone and the Laundry Room's own Hanging and Air Dry Zone, falling to the wrong room. Added "plate rack zone" to the Kitchen zone's also-called entry.
