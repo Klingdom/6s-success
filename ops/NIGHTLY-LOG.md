@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~23:1x slot): previous work confirmed finished, dashboard was stale by one commit, regenerated and shipped
+
+NEXT FOR THE OPERATOR: unchanged, watch issue #42 and the 30 other open decision/blocked-on-art issues for a reply from Phil; every genuinely unblocked item is owner-gated.
+
+Attached clean (fetch, genuine unshallow since the checkout arrived shallow and detached, ff-only onto 81e199bfe, tree clean). Ran preflight.py --skip-tests fresh, live: 0 FAIL through every gate reached, stalled only at the documented network-gated checks (Stripe, DNS, live site), same stall shape as every recent cycle. Previous work was finished, not just cited. One real, closeable item surfaced: gate_dashboard_self_description_fresh flagged the dashboard as 1 commit stale (81e199bfe had landed with no regeneration since). Regenerated it (ops/dashboard.py) and shipped. Re-pulled all 31 open issues live: unchanged, all decision/blocked-on-art, none from Phil since #65 (2026-11-14). No push notification: no material change since the last one (07:30Z today), inside its 48h floor.
+
+Pushed to main: EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, ops/cycle-signal.json, this entry.
+
 ## PM check-in, 2026-11-18 (~22:4x slot): previous work confirmed finished by a fresh live preflight run, nothing newly unblocked, no push notification
 
 NEXT FOR THE OPERATOR: unchanged, watch issue #42 and the 30 other open `decision`/`blocked-on-art` issues for a reply from Phil, because every genuinely unblocked item is owner-gated and the ordering rule forbids picking one.
