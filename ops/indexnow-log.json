@@ -240,13 +240,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-06T21:12:16Z",
-   "mode": "changed",
-   "offered": 2,
-   "accepted": 2,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-06T22:00:23Z",
    "mode": "changed",
    "offered": 1,
@@ -658,6 +651,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-18T13:11:28Z",
+   "mode": "changed",
+   "offered": 2,
+   "accepted": 2,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -738,11 +738,11 @@
   "https://6s-success.com/zones/dining-room-the-dining-table": "5afcdae2570f9e1f",
   "https://6s-success.com/zones/dining-room-the-sideboard-storage": "174bb1259542dd95",
   "https://6s-success.com/zones/dining-room-the-sideboard-surface": "9d0a53db10454d2d",
-  "https://6s-success.com/zones/entryway-the-bench-or-console": "cd6dadb07188f497",
+  "https://6s-success.com/zones/entryway-the-bench-or-console": "8618dcf74a9b73d4",
   "https://6s-success.com/zones/entryway-the-coats-and-outerwear": "f1ddf7e1ef8d8081",
   "https://6s-success.com/zones/entryway-the-door-mat-and-immediate-floor": "eda39ebca9390db5",
   "https://6s-success.com/zones/entryway-the-landing-spot": "fc63974472e385f6",
-  "https://6s-success.com/zones/entryway-the-shoes-and-boots": "450ad0cf33c3cc10",
+  "https://6s-success.com/zones/entryway-the-shoes-and-boots": "743f51d615e9c724",
   "https://6s-success.com/zones/family-room-the-blanket-and-comfort-zone": "93a92f3c73ad40df",
   "https://6s-success.com/zones/family-room-the-board-game-and-puzzle-zone": "03f7815b6fe5aa78",
   "https://6s-success.com/zones/family-room-the-charging-and-device-zone": "ca7508be013c2dc8",
