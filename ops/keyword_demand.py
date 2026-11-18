@@ -210,7 +210,24 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "cheap", "list", "everyday", "tidying", "next",
                           "organized", "organised", "liquid", "grow",
                           "option", "100", "genre", "long", "last",
-                          "australia", "ikea", "pinterest"))
+                          "australia", "ikea", "pinterest", "stuff"))
+
+# "stuff" joined 2026-11-18, scheduled operator cycle, found mining Garage's
+# own partial tier: "how to organize baby stuff" (US, bing, 0.5) was scoring
+# to the Garage article on the bare word "stuff" alone, "baby" its sole
+# unmatched word, the Garage page's own title ("a garage full of stuff")
+# the one page in the whole corpus carrying that word. Checked the full
+# corpus for the shape before touching the list (CLAUDE.md 5d): "stuff" is
+# a magnet for the same reason "long"/"last" were (A161), not a different
+# physical object, acting as a generic filler noun that happens to appear
+# verbatim in one page's own title, pulling genuinely unrelated queries onto
+# it ("how to organise baking stuff", "how to organise craft stuff", "how to
+# organize a bedroom with too much stuff", none of them about a garage).
+# Self-flattery checked first (5c): 1 of 244 titles (the Garage article
+# itself, the page unfairly benefiting), 0 of 244 headings, the same
+# shape as "long" being contributed by the FAQ heading that outscored the
+# real answer. Full before/after score_rows() diff run across both corpora
+# before shipping.
 
 # "australia"/"ikea"/"pinterest" joined 2026-11-17, scheduled operator cycle.
 # A concurrent PM check-in's own keyword-gap sample read ("attic storage
