@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~13:1x slot): previous work (A183) finished, closed the two STATUS.md deploy-citation gates it opened
+
+Attached clean, fast-forwarded onto `eaf077a17` (A183). Previous work confirmed finished, not cited: live `preflight.py --skip-tests`, 0 FAIL, 33 standing warnings. 31 issues re-pulled; checked #65's two comments directly, both are this automation's own posts through the owner's GitHub App, not a Phil reply.
+
+A183's own commit moved HEAD past the build `ops/deploy-verdict.json` cited, leaving `status-deploy-verdict-current` and `status-table-rows-gap-count-current` warning across five STATUS.md sections. Re-derived live (`resolve_verdict_commit`, `deploy_gap_material_commits` against `b3c67a1a84ae29da`): exactly 1 undeployed commit, `eaf077a17` itself. Corrected BLOCKER-001, Currently Deployed Build, Production Knowledge, and the Public website/Production traceability rows. Regenerated the dashboard, clearing `dashboard-self-description-fresh` too.
+
+Verified: preflight re-run after the edit showed both gates clear, down to 27 warnings; the one FAIL seen (`generator-ownership`, dirty tree) was the gate correctly refusing to diff my own uncommitted edit, confirmed cleared post-commit. Final run: 0 FAIL, 33 warnings, nothing new.
+
+Not started: Kids Bedroom/Garage mining, A183's own handoff, sized for a full slot.
+
+Pushed: `STATUS.md`, dashboard files, this entry.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-18 (~13:0x UTC): closed Entryway's two "declutter" gaps, 11% to 8% uncovered
 
 **Did.** Attached clean (unshallowed, fetch, checkout main, ff-only onto origin/main). preflight.py --skip-tests live: 0 FAIL, 31 warnings, all standing (no Stripe/Umami/VPS/mail credential here). 31 open GitHub issues reconfirmed, all decision/blocked-on-art, none from Phil since #65. inbox_agent.py --apply: no mail credential. BACKLOG-2026-09-07.md sections 2-4 are Done or Archived except C6 (publish 102 videos, needs Phil); the room-guide keyword-mining lane is the only unblocked epic-3 work here. room_guide_underperformance.py reconfirmed live: Family Room 13% (already exhausted), Kids Bedroom and Entryway both 11%. Picked up the exact Entryway tier the concurrent 12:4x PM check-in's own handoff named. Of its four named leads (coat closet, hallway cabinet, foyer, memorial bench), two were already correctly settled by existing evidence before this cycle started: "hallway cabinet organization ideas" was already checked and declined in room-also-called.json's own source note (a genuine word-sense ambiguity); "how to organise a memorial bench" (unmatched word "memorial") reads as an outdoor dedication bench, not this room's household bench, so declined as noise rather than forced. The two real, checkable gaps: "how to declutter entryway" (both corpora) and "how to declutter hallway" (global), unmatched word "declutter" only, already routed to the Entry Console or Bench and Shoe and Boot zones respectively. Checked both zones' own content.json before shipping: the Bench zone's own the_call is literally about decluttering a drawer ("Dead batteries, pens that do not write... all go now"), the Shoe zone's Sort pass says the same about shoes. Added "declutter zone" (the existing Workshop|Fastener and Hardware Zone precedent, 2026-11-16) to ops/zone-also-called.json for both, grounded, not reused blind. Self-flattery checked: "declutter" only in article titles already about decluttering, none on Entryway pages.
