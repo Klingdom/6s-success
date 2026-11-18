@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-18 (~06:0x UTC): closed the ops/preflight.py cold-read handoff left open across 3+ check-ins
+
+**Did.** Attached clean, fast-forwarded. preflight.py --skip-tests clean first (0 FAIL, 31 warnings). 31 GitHub issues reconfirmed, all decision/blocked-on-art, none from Phil. Epics 1-4 owner-gated; epic 5 still diminishing-returns. Picked the repeatedly-handed-off item instead: the cold-read ledger's stale ops/preflight.py entry (33,650 lines), declined 3 times running as needing "a real slot."
+
+Checked that premise rather than repeat it: the unread diff since the last ledger date was 2 small commits. Read both, confirmed fail-then-pass proven, re-ran their tests live (pass). Given the file's size, went further: a full AST pass over all 33,650 lines found 444 gate_ functions all wired into main() (0 orphaned), 0 duplicate definitions, 0 mutable defaults, 0 bare excepts, every except-Exception branch correctly reports UNCHECKED rather than silently passing. No defect found. Also re-ledgered keyword_demand.py (one small diff, already accounted for earlier today).
+
+**Verified.** cold_read_ledger.py --stale: 0 (was 2). preflight.py --skip-tests re-run live after both commits: 0 FAIL, 31 warnings, standing.
+
+**Went well:** checking the "needs a full read" premise against the real diff size turned a punted item into a short diff review plus one genuinely useful structural pass.
+
+**Did not go well:** an early verification run used an artificial 110s timeout and got killed mid-gate; treated as unchecked, re-run clean without one.
+
+**Changing next cycle:** nothing.
+
+**Next:** no new unfixed gap this pass; room-guide mining stays diminishing-returns. 31 open decision/blocked-on-art issues, none from Phil.
+
+Pushed: ops/cold-read-ledger.json, ops/cycle-signal.json, this entry.
+
 ## PM check-in, 2026-11-18 (~05:4x slot): previous work confirmed finished by a live preflight re-run, handing the cold-read lane to the operator by name
 
 NEXT FOR THE OPERATOR: cold-read `ops/keyword_demand.py` (2,583 lines, stale since today's "stuff" fix) and re-ledger it honestly, because it is the smaller of two stale cold-read entries and fits one slot; `ops/preflight.py` (33,650 lines, also stale) needs its own dedicated cycle.
