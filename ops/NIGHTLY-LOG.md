@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-18 (~13:5x slot): a concurrent PM check-in fixed the same glued BLOCKER-001 chain while this cycle was mid-flight; rebased onto it and added the further table-row and section-30 citation fixes it had not reached
+
+**Previous work (the concurrent 13:4x PM check-in's own `bfd854629`) confirmed finished, not duplicated.** It independently found and fixed the identical `gate_status_history_chain_not_collapsed` warning on BLOCKER-001 (split the glued paragraph, ran `--apply-blocker1`) while this cycle was already doing the same thing; rebased onto its commit rather than force a duplicate fix through. What this cycle still adds, verified live rather than assumed: the "Public website"/"Production traceability" table rows and the section 30 "Production Knowledge"/"Release" block were each a further confirmation stale, all five sibling citations now agree (0 commits undeployed, build `c17da319bdf83181`, resolving to A183's own commit).
+
 ## PM check-in, 2026-11-18 (~13:4x slot): previous work (A183) confirmed finished, closed a real BLOCKER-001 glued-history gap the rotation tool could not see
 
 NEXT FOR THE OPERATOR: mine Kids Bedroom's remaining partial tier (11% uncovered), because Family Room (13%) is already exhausted and most of Garage's 11% cluster is already-declined noise (A175's flower/vegetable garden and gym equipment), leaving Kids Bedroom's unchecked rows (desk drawer organizer, two storage-ideas rows, "how to declutter children's bedroom") the next genuine candidates.
@@ -13,6 +17,20 @@ Found and fixed a real gap rather than re-citing it: `gate_status_history_chain_
 Did not start the mining: sized for a full slot, not a PM slot.
 
 Pushed: `STATUS.md`, `STATUS-ARCHIVE.md`, `ops/cycle-signal.json`, this entry.
+
+## Scheduled operator cycle, 2026-11-18 (~13:5x slot): fixed the glued-paragraph BLOCKER-001 chain preflight's own gate just caught, re-derived the deploy citation one more confirmation current (superseded by the rebase note above, kept for the fuller account)
+
+**Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only`, 110 commits). `preflight.py --skip-tests` run live; the only FAIL was `stray-probe-files`, self-healed (a stale fixture from killing an earlier hung preflight run blocked on a concurrent session's lock). GitHub's 31 open issues re-pulled live, all `decision`/`blocked-on-art`, none from Phil since #65. `inbox_agent.py`, `affiliate.py --check` clean/standing-gap as usual. The room-guide keyword-mining lane is genuinely exhausted (worst room 13% uncovered, 0 gap rows anywhere), so ran the direct audit tools instead (`check_urls.py`, `audit_pages.py`, `link_graph_report.py`, `cold_read_ledger.py --stale`, all clean) and found a live warning: `gate_status_history_chain_not_collapsed` caught BLOCKER-001's two same-day entries glued onto one paragraph via the inline handoff phrase instead of separate paragraphs, defeating `rotate_status_history.py`'s own rotation. Split onto separate paragraphs, oldest first, re-derived the citation one more confirmation current (0 commits undeployed, build `c17da319bdf83181`), ran `--apply-blocker1`/`--apply-table-rows` to rotate superseded entries to `STATUS-ARCHIVE.md`. Fixed the matching stale "Public website"/"Production traceability" table rows the same way.
+
+**Verified.** `rotate_status_history.py --check-blocker1`/`--check-table-rows` both CLEAN; gate called directly, silent. `fix_dashes.py --check` 0/0. `test_rotate_status_history.py` OK.
+
+**Went well:** the gate that caught this already existed and did its job; no new gate needed (10b).
+
+**Did not go well:** killing the first hung preflight (lock contention with a concurrent session) left a stray fixture; self-healed.
+
+**Changing next cycle:** none.
+
+**Next:** epics 1-4 remain owner-gated; epic 5's keyword lane exhausted. Watch for fresh owner issues or genuine new defects via the audit tools.
 
 ## PM check-in, 2026-11-18 (~13:1x slot): previous work (A183) finished, closed the two STATUS.md deploy-citation gates it opened
 
