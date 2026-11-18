@@ -161,12 +161,55 @@ def main() -> int:
     finally:
         sys.argv = old_argv
 
+    # 8. A shallow-clone boundary commit must never be read as a real touch.
+    #    Found 2026-11-18, PM check-in: on this sandbox's usual shallow
+    #    checkout, last_touched()/_batch_last_touched() returned the
+    #    boundary commit's own date for 307 of the real ledger's entries in
+    #    one run (all landing on the exact date that commit was made), none
+    #    a real re-touch, because the boundary commit has no visible parent
+    #    and git credits it with every path in its own tree. This cannot be
+    #    reproduced by actually shrinking this checkout mid-test, so it
+    #    fakes the boundary by monkeypatching _shallow_boundary_commits() to
+    #    report a real commit this repository's own history already has,
+    #    the same technique ops/preflight.py's equivalent fix verified with.
+    boundary_line = subprocess.run(
+        ["git", "log", "-1", "--format=%H %cd", "--date=short", "--",
+         "ops/cold_read_ledger.py"],
+        cwd=ROOT, capture_output=True, text=True).stdout.strip()
+    if not boundary_line:
+        fails.append("could not get a real commit for "
+                      "ops/cold_read_ledger.py to fake a shallow boundary")
+    else:
+        real_hash, _, boundary_date = boundary_line.partition(" ")
+        orig = crl._shallow_boundary_commits
+        crl._shallow_boundary_commits = lambda: {real_hash}
+        try:
+            if crl.last_touched("ops/cold_read_ledger.py") is not None:
+                fails.append("last_touched() returned a date for a path "
+                              "whose only answer (git log -1) is the faked "
+                              "shallow boundary commit, instead of None")
+            # On this real, fully-fetched checkout there is further real
+            # history behind the faked boundary, so _batch_last_touched()
+            # correctly falls through to it (a genuinely shallow clone has
+            # no such history to fall through to, so it would read None
+            # there, exactly as last_touched() does above). What this
+            # proves here is narrower but still real: the boundary commit's
+            # OWN date must never be the one reported, even when it is
+            # excluded from an otherwise-successful batch lookup.
+            batch = crl._batch_last_touched(["ops/cold_read_ledger.py"])
+            if batch.get("ops/cold_read_ledger.py") == boundary_date:
+                fails.append("_batch_last_touched() reported the faked "
+                              "shallow boundary commit's own date instead "
+                              "of excluding it: %r" % batch)
+        finally:
+            crl._shallow_boundary_commits = orig
+
     if fails:
         print("FAIL")
         for f in fails:
             print("  -", f)
         return 1
-    print("OK  cold_read_ledger stale_entries: 7/7 cases pass")
+    print("OK  cold_read_ledger stale_entries: 8/8 cases pass")
     return 0
 
 

@@ -197,19 +197,52 @@ def load_ledger() -> dict:
     return entries if isinstance(entries, dict) else {}
 
 
+def _shallow_boundary_commits() -> set[str]:
+    """Hashes this checkout's shallow clone stops at, or empty if not shallow.
+
+    Mirrors ops/preflight.py's own `_shallow_boundary_commits()` /
+    `_last_commit_epoch()` (added 2026-11-03 for gate_epub_edition_date_current):
+    on a shallow clone, `git log -1 -- path` does not error at the boundary,
+    it treats the boundary commit (which has no visible parent, so git
+    cannot tell what it added versus what it merely carried forward from
+    truncated history) as having touched every path in its own tree. A path
+    untouched since well before the boundary reads back with the boundary
+    commit's own date, not the real last-touch date.
+    """
+    shallow_file = os.path.join(ROOT, ".git", "shallow")
+    if not os.path.isfile(shallow_file):
+        return set()
+    return set(io.open(shallow_file, encoding="utf-8").read().split())
+
+
 def last_touched(path: str) -> str | None:
     """The date (YYYY-MM-DD) of the most recent commit that changed path,
     relative to ROOT, or None if git has nothing to say (untracked, no
-    history, or git itself unavailable). Never raises: a git failure must
-    read as "unknown", not as "never touched" or "touched today".
+    history, git itself unavailable, or the only answer available is the
+    shallow-clone boundary commit, which is not a real answer). Never
+    raises: a git failure must read as "unknown", not as "never touched"
+    or "touched today".
+
+    Found 2026-11-18, PM check-in: on this sandbox's usual shallow checkout,
+    this returned the boundary commit's own date for 307 of the real
+    ledger's entries in one run, all landing on the exact date the `.git/
+    shallow` boundary commit was made, none a real re-touch. Fixed the same
+    way gate_epub_edition_date_current was fixed for the identical failure
+    shape: refuse a result that lands on the boundary commit rather than
+    report a plausible wrong date.
     """
     try:
         out = subprocess.run(
-            ["git", "log", "-1", "--format=%cd", "--date=short", "--", path],
+            ["git", "log", "-1", "--format=%H %cd", "--date=short", "--", path],
             cwd=ROOT, capture_output=True, text=True, timeout=10)
     except Exception:                                            # noqa: BLE001
         return None
-    date = out.stdout.strip()
+    line = out.stdout.strip()
+    if not line:
+        return None
+    commit_hash, _, date = line.partition(" ")
+    if commit_hash in _shallow_boundary_commits():
+        return None
     return date or None
 
 
@@ -242,22 +275,32 @@ def _batch_last_touched(paths: list[str]) -> dict[str, str]:
     appears in no commit here (untracked, or git could not resolve it) is
     simply absent from the returned dict, the same "unknown, not touched
     today" rule last_touched() already follows (CLAUDE.md 0.4).
+
+    Found 2026-11-18, PM check-in: the shallow-clone boundary commit (see
+    `_shallow_boundary_commits()`) has no visible parent, so git credits it
+    with every path in its own tree, not just the ones it really changed.
+    Against the real ledger that showed up as 307 entries all "touched" on
+    the exact date the boundary commit landed. Fixed by reading the commit
+    hash alongside each date and refusing to record a path against the
+    boundary commit, the same guard last_touched() now applies per-file.
     """
     if not paths:
         return {}
     try:
         out = subprocess.run(
-            ["git", "log", "--name-only", "--format=@@%cd", "--date=short",
+            ["git", "log", "--name-only", "--format=@@%H %cd", "--date=short",
              "--"] + list(paths),
             cwd=ROOT, capture_output=True, text=True, timeout=120)
     except Exception:                                            # noqa: BLE001
         return {}
+    boundary = _shallow_boundary_commits()
     wanted = set(paths)
     found: dict[str, str] = {}
     current_date = None
     for line in out.stdout.splitlines():
         if line.startswith("@@"):
-            current_date = line[2:]
+            commit_hash, _, date = line[2:].partition(" ")
+            current_date = None if commit_hash in boundary else date
             continue
         if line and current_date and line in wanted and line not in found:
             found[line] = current_date
