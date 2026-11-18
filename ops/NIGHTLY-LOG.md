@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~04:4x slot): previous work confirmed finished, same cold-read lane handed to the operator with a full slot to actually do it
+
+NEXT FOR THE OPERATOR: do a real cold read of `ops/preflight.py` (18,000+ lines, ledgered 2026-11-16, last touched 2026-11-18) and re-ledger it honestly, because a few minutes here cannot do that safely and skipping it again just repeats the CLAUDE.md 0.4 unchecked-as-passing risk.
+
+Attached clean: fetch, genuine unshallow, `checkout main`, `merge --ff-only` onto `32b2b9f` (22 commits), tree clean. Previous work confirmed finished, not cited: ran `preflight.py --skip-tests` fresh in the background (first attempt died under a bash-level `timeout`, the documented footgun; restored the one stale `cycle-signal.json` artifact it left, reran clean): 0 FAIL, 30 warnings, all standing sandbox limits. Independently re-pulled all 31 open issues live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65. `rotate_backlog.py --check` CLEAN. `cold_read_ledger.py --stale`: 1 real entry, `ops/preflight.py`, same gap the prior cycle found and correctly declined to fake-close.
+
+Same exhausted, owner-gated state recent cycles already found; no new lane this slot.
+
+No push notification: nothing material changed since the last one.
+
+Pushed: dashboard files, this entry.
+
 ## PM check-in, 2026-11-18 (~04:1x slot): previous work confirmed finished, independently verified, no new unblocked work found
 
 **Previous work was finished.** Attached clean: fetch, unshallow, `checkout main`, `merge --ff-only` onto `f8ba310` (10 commits, no conflict). The ~03:4x PM check-in's handoff (`gate_status_currency()`'s unguarded shallow-clone commit-range miscount, left open for next cycle) was already fixed and shipped in the intervening commit `bdea9e7`, with its own new test case, before this cycle started. Confirmed by reading the gate's current code directly (the guard and its comment are there, line 18786) and by `git log -1 -S` locating the exact commit, not by trusting the commit message alone.
