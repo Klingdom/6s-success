@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-18 (~12:0x UTC): A182, closed Living Room's and Nursery's wording gaps, declined a real cross-room collision rather than ship it
+
+**Did.** Attached clean (unshallow, 92 commits, ff-only). `preflight.py --skip-tests` live: 0 FAIL, 31 warnings. 31 GitHub issues unchanged, none from Phil. No mail credential. Epics 1-4 fully owner-gated; epic 5's last several cycles declared Family Room/Kids Bedroom exhausted but left Living Room, Entryway, Nursery (11% each) unchecked. Mined those three.
+
+**Declined a real collision before shipping it.** Living Room's "cords behind entertainment center" looked like an easy also-called fix, but "entertainment center" is already heavily claimed by Family Room's Primary Media Zone (40 queries route there). Adding it risked the A67/A94 "games" collision shape; left it unfixed rather than force it.
+
+**Shipped two genuine fixes.** (1) "rectangular"/"square"/"attractively"/"big" joined `FORMAT_WORDS` (style/shape qualifiers, same role as "modern"/"large"); self-flattery 0/0/0/5 headings, all unrelated. (2) "declutter zone" added to Nursery's Baby Clothing Zone's new `zone-also-called.json` entry, grounded in its Sort pass. Full before/after diff, reproduced by the real rescore: 5 rows partial to covered, same `best_page` each, 0 regressions. Living Room 11% to 2% uncovered.
+
+**Verified.** All also-called gates/tests, `test_keyword_demand.py` (74/74), `check_urls.py` (236/236), `audit_pages.py` (0), `fix_dashes.py --check` (0/0), `check_sellable.py` (124/126), `cold_read_ledger.py --stale` (0, after cold-reading the 11:1x check-in's PDF-date patch) all clean. `preflight.py --skip-tests` re-run after commit: 0 FAIL.
+
+**Went well:** checking the collision directly instead of trusting the "one word short" pattern, which would have shipped a misroute.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** nothing; no new gate needed, both mechanisms already exist and did their job.
+
+**Next:** Entryway's remaining tier (coat closet/hallway cabinet/foyer/memorial bench rows) is still unchecked; the Nursery's remaining "storage" rows were checked and correctly declined (58 of 244 headings already carry "storage", the riskiest word on this whole list, well over any bar previously cleared). 31 open issues, none from Phil.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-18 (~11:4x slot): previous work confirmed finished by a live preflight re-run, nothing newly unblocked
 
 NEXT FOR THE OPERATOR: mine Living Room's, Entryway's, Nursery's or Garage's partial tier (each 11% uncovered, not yet declared exhausted), because Family Room (13%) and Kids Bedroom's one checkable candidate ("daycare bag", too thin a cluster) are already diagnosed and declined.

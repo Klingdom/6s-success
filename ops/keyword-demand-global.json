@@ -22011,14 +22011,12 @@
       "room": "Living Room",
       "best_page": "/zones/living-room-the-bookshelves-and-display.html",
       "best_page_title": "How to organize the living room bookshelves and display",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/living-room-the-bookshelves-and-display.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "big"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "in"
       ],
@@ -24922,14 +24920,12 @@
       "room": "Living Room",
       "best_page": "/zones/living-room-the-bookshelves-and-display.html",
       "best_page_title": "How to organize the living room bookshelves and display",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/living-room-the-bookshelves-and-display.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "rectangular"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -25384,14 +25380,12 @@
       "room": "Living Room",
       "best_page": "/zones/living-room-the-bookshelves-and-display.html",
       "best_page_title": "How to organize the living room bookshelves and display",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/living-room-the-bookshelves-and-display.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "square"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -48000,6 +47994,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "435b3db06",
-  "scored_at": "2026-11-18T09:53:39Z"
+  "scored_against_commit": "b3039ebae",
+  "scored_at": "2026-11-18T12:00:37Z"
 }

@@ -6550,13 +6550,11 @@
       "best_page": "/zones/nursery-the-baby-clothing-zone.html",
       "best_page_title": "How to organize the nursery baby clothes",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "declutter"
-      ]
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "declutter nursery room",
@@ -6571,13 +6569,11 @@
       "best_page": "/zones/nursery-the-baby-clothing-zone.html",
       "best_page_title": "How to organize the nursery baby clothes",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/nursery-the-baby-clothing-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "declutter"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "declutter pasta pantry",
@@ -23793,14 +23789,12 @@
       "room": "Living Room",
       "best_page": "/zones/living-room-the-bookshelves-and-display.html",
       "best_page_title": "How to organize the living room bookshelves and display",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/living-room-the-bookshelves-and-display.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "rectangular"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a reloading bench",
@@ -24388,14 +24382,12 @@
       "room": "Living Room",
       "best_page": "/zones/living-room-the-bookshelves-and-display.html",
       "best_page_title": "How to organize the living room bookshelves and display",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/living-room-the-bookshelves-and-display.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "square"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a step challenge",
@@ -26978,14 +26970,12 @@
       "room": "",
       "best_page": "/zones/living-room-the-bookshelves-and-display.html",
       "best_page_title": "How to organize the living room bookshelves and display",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/living-room-the-bookshelves-and-display.html",
       "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "attractively"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize bulk",
@@ -56289,6 +56279,6 @@
       ]
     }
   ],
-  "scored_against_commit": "435b3db06",
-  "scored_at": "2026-11-18T09:53:38Z"
+  "scored_against_commit": "b3039ebae",
+  "scored_at": "2026-11-18T12:00:36Z"
 }

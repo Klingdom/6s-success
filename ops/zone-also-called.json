@@ -81,6 +81,14 @@
    "covered": 0,
    "source": "ops/keyword-demand-global.json 2026-10-31 (au): 'how to organise nappy change table', rank 12, gap, 0.333 coverage, scored to /zones/dining-room-the-dining-table.html via a coincidental word match on 'table', not a real one. The zone's own purpose ('A pad you can work at with one hand staying on your baby the entire time') and the AU/UK term 'nappy change table' for a baby-changing station confirm the semantic match; distinct from the already-covered 'Diaper and Care Backstock' zone below, which is the reserve/backstock, not the station itself. Named 'nappy change table', the exact phrase searched, since nobody else calls this zone that and the also-called heading reads as an honest zone-name synonym."
   },
+  "Nursery|Baby Clothing Zone": {
+   "names": [
+    "declutter zone"
+   ],
+   "queries": 2,
+   "covered": 0,
+   "source": "ops/keyword-demand.json 2026-11-18, scheduled operator cycle, mining Nursery's own 11%-uncovered partial tier: 'declutter nursery' and 'declutter nursery room' (both US, partial 0.5), already correctly routed to this zone on 'nursery' alone, sole unmatched word 'declutter'. Grounded in the zone's own content: its sort pass is literally decluttering outgrown clothes ('Anything smaller leaves the drawer now, and there are exactly two destinations: the outgoing bag, or the keepsake box'). Checked for collision first (CLAUDE.md 5d): across both corpora, exactly these 2 rows contain both 'declutter' and 'nursery' as content words, so nothing else could regress."
+  },
   "Nursery|Crib and Sleep Zone": {
    "names": [
     "cribs zone",

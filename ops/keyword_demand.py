@@ -211,7 +211,8 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "organized", "organised", "liquid", "grow",
                           "option", "100", "genre", "long", "last",
                           "australia", "ikea", "pinterest", "stuff",
-                          "apartment", "style"))
+                          "apartment", "style", "rectangular", "square",
+                          "attractively", "big"))
 
 # "apartment" and "style" joined 2026-11-18, scheduled operator cycle, found
 # mining Primary Bedroom's own partial tier: "how to declutter my apartment"
