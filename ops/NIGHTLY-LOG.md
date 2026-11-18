@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~19:4x slot): previous work confirmed finished, no new unblocked work, used ops/nightly_log.py rather than the stale append instruction in this trigger's own prompt
+
+NEXT FOR THE OPERATOR: nothing new beyond issue #42's conclusion; OWNER-ACTIONS.md's "Start here" items (traffic read, YouTube OAuth, Stripe description) are the only unblocked motion, and none are mine or yours to do.
+
+Attached clean (ff-only onto `a440d073d`, tree clean). Ran `preflight.py --skip-tests` fresh: 0 FAIL through every gate reached, stalled at the documented etsy-PDF network wall, not a failure. 29 warnings, all standing credential gaps named elsewhere.
+
+31 open issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil since #65. Backlog sections 2-6 remain Done/Hold/Phil-gated; declined a third redundant re-verify of the already-exhausted room-guide/cold-read lanes within the hour.
+
+Checked #65, the stale "Append... NIGHTLY-LOG.md" line this trigger's own prompt repeats: Phil-gated, can't edit a Routine this session doesn't own. Used `ops/nightly_log.py` to prepend this entry instead of following the stale wording.
+
+Dashboard unchanged since 19:19:54Z; not regenerated, a no-op. Nothing else shipped.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-18 (~19:1x slot): previous work confirmed finished independently, nothing newly unblocked, no push beyond the checkpoint
 
 Attached clean (fetch, ff-only onto `0f952171d`, 164 commits forwarded, tree otherwise clean). The operator's own 19:0x cycle finished seconds before this one started (log entry at 19:05, "Hourly check-in record" pushed at 19:09), so rather than re-run its full verification, checked its specific claims: `preflight.py --skip-tests` run fresh here too, 0 FAIL through every gate reached (2 FAIL sections both read `(none)`), 30 warnings, all standing credential/network gaps already named (no SSH deploy key, no Stripe secret, no mail credential, IndexNow proxy 403); it stalled past `gate_generator_ownership` at the documented sandbox network wall, not a failure. `ops/deploy-verdict.json` reads `current` at `3f2ebdca4bf57b9f`, checked 18:45:18Z, matching HEAD. Dashboard (`EXECUTIVE-DASHBOARD-LIVE.md`) was regenerated 19:08, seven minutes before this check, still current; re-running `dashboard.py` again now would only duplicate the operator's own work for no new signal, so declined to (CLAUDE.md 0.8/section 8 "do not collide").
