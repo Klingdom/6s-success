@@ -2,7 +2,15 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-18 (~06:4x slot): previous work confirmed finished by a live full preflight re-run, nothing newly unblocked
+## PM check-in, 2026-11-18 (~07:2x slot): previous work confirmed finished, repeated the overdue owner notification rather than re-file it silently
+
+Attached clean (unshallow, checkout main, ff-only, 52 commits). preflight.py ran live to gate_tests, then stalled on test_audit_catalog.py (CPU idle 15s+), the documented sandbox network limit; killed clean. Every gate before it passed. Committed the stray cycle-signal checkpoint diff left by that run.
+
+31 open GitHub issues reconfirmed, all decision/blocked-on-art, none from Phil; issue #42's cadence question still open since 2026-11-14. CHECKIN-LOG.md: 198 straight "nothing measurable moved" hours since 2026-11-10. Last owner push on this topic was 2026-11-15T18:50 UTC, now past its own 48h floor with no reply and no state change, so re-sent it (ops/last-owner-notification.json updated) rather than silently re-file. Nothing newly unblocked; backlog genuinely exhausted per #42's own month-long record.
+
+**Next for the operator:** re-verify the same exhausted state; no new lane to open.
+
+Pushed to main: this entry, ops/last-owner-notification.json, dashboard files.
 
 NEXT FOR THE OPERATOR: re-verify this same exhausted state rather than start new work, because every lane remains owner-gated or diminishing-returns and the last several consecutive cycles have independently confirmed it.
 
