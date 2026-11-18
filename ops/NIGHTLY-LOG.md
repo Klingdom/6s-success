@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~13:4x slot): previous work (A183) confirmed finished, closed a real BLOCKER-001 glued-history gap the rotation tool could not see
+
+NEXT FOR THE OPERATOR: mine Kids Bedroom's remaining partial tier (11% uncovered), because Family Room (13%) is already exhausted and most of Garage's 11% cluster is already-declined noise (A175's flower/vegetable garden and gym equipment), leaving Kids Bedroom's unchecked rows (desk drawer organizer, two storage-ideas rows, "how to declutter children's bedroom") the next genuine candidates.
+
+Attached clean (the checkout's shallow history briefly made local and origin main look diverged on first fetch, the documented shallow-clone artifact, not a force-push; resolved once `fetch --unshallow` finished, then ff-only). Previous work (A183, the 13:1x STATUS.md fix) confirmed finished, not cited: live `preflight.py --skip-tests` ran clean apart from the one self-caused dirty-tree `gate_generator_ownership` FAIL while editing. 31 open GitHub issues re-pulled live, all `decision`/`blocked-on-art`, re-checked #65's comments directly, none from Phil.
+
+Found and fixed a real gap rather than re-citing it: `gate_status_history_chain_not_collapsed` warned BLOCKER-001 had 2 superseded entries glued onto one paragraph via the inline handoff phrase, the exact shape `rotate_status_history.py`'s own `split_blocker1_chain()` cannot parse (`--check-blocker1` reported "CLEAN: 1 entry live" while actually holding 2). Split into two paragraphs, oldest first, ran `--apply-blocker1`: archived the superseded entry to `STATUS-ARCHIVE.md`. Verified: `--check-blocker1` clean, gate silent on re-run.
+
+Did not start the mining: sized for a full slot, not a PM slot.
+
+Pushed: `STATUS.md`, `STATUS-ARCHIVE.md`, `ops/cycle-signal.json`, this entry.
+
 ## PM check-in, 2026-11-18 (~13:1x slot): previous work (A183) finished, closed the two STATUS.md deploy-citation gates it opened
 
 Attached clean, fast-forwarded onto `eaf077a17` (A183). Previous work confirmed finished, not cited: live `preflight.py --skip-tests`, 0 FAIL, 33 standing warnings. 31 issues re-pulled; checked #65's two comments directly, both are this automation's own posts through the owner's GitHub App, not a Phil reply.
