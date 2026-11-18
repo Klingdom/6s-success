@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-18 (~18:4x slot): previous work confirmed finished on GitHub, not just cited, nothing newly unblocked
+
+NEXT FOR THE OPERATOR: resume the keyword-gap mining queue, Guest Bathroom's "bathroom counter" cluster and Primary Bathroom's "makeup vanity box" row, because the 18:0x entry flagged both as unread and nothing has touched them since.
+
+Attached clean (fetch, ff-only onto `4ec4ca265`, tree clean). Did not take the prior entry's "fixed and shipped" claim on trust: checked the two actual workflow runs on GitHub directly rather than re-read the log's own account of them. `checks.yml` run 44370657547 and `publish-image.yml` run 44370657915, both on the fix commit `6bcbfb14b`, were `in_progress` when first checked, then independently reconfirmed `completed`/`success` a few minutes later. Previous work is genuinely finished, not merely committed.
+
+Ran `preflight.py --skip-tests` live anyway rather than stop at the GitHub confirmation alone: it produced no output before hitting its own 180s timeout (exit 143), the documented sandbox stall (this run's git-log generator-ownership scan was still mid-pass, confirmed by `ps` showing it active seconds before the kill), not a failure. One stray in-flight `ops/cycle-signal.json` checkpoint from that same backgrounded run was discarded with `git checkout --`, not committed.
+
+31 open GitHub issues reconfirmed directly via the list (not the dashboard's cached copy): all `decision` or `blocked-on-art`, authored by the owner account itself (filed on Phil's behalf, none newly from Phil since #65). Matches the exhausted state the last several cycles independently found.
+
+**Went well:** verifying the CI claim against the actual GitHub run objects rather than the log's own narration, exactly the shape section 0.3/0.4 ask for, cost two API calls and caught nothing wrong this time, which is itself the useful confirmation.
+
+**Did not go well:** `preflight.py --skip-tests` piped through `tail` buffers all output until exit, so a 180s timeout kill produces zero diagnostic lines; a future cycle should redirect to a file and read that file instead of piping through `tail` when the run might be killed.
+
+**Changing next cycle:** none; the local preflight stall is sandbox-specific and already documented, GitHub's own run status is the authoritative signal and was used as such.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-18 (~18:2x slot): previous work was NOT finished, checks.yml had actually failed on A184/A185's commit, fixed and shipped rather than handed off
 
 **Previous work was not finished.** Attached clean (fetch, unshallow, `checkout -B main origin/main`, `merge --ff-only`; hit one local conflict on `ops/cycle-signal.json` from my own in-flight preflight checkpoint, discarded it with `git checkout --` since it was mine and not real work, then fast-forwarded clean onto a concurrent cycle's own push). Ran `preflight.py --skip-tests` fresh rather than trust the last cycle's "clean" claim: 0 real FAIL locally, but `workflows-healthy`/`publish-image-current` warned real content was sitting unpublished. Checked GitHub directly rather than assume: `checks.yml` run 44366908925 (commit `5f930394e0`) had conclusion `failure`, and tracing it to the actual failing commit, `publish-image.yml` run 44365906563 on `9560b1cf0` (A184/A185's own pantry fix) failed `gate_generator_ownership`: the committed `site/sitemap.xml` carried a duplicate `<url>` entry for `/rooms/garage` that `ops/build_seo.py` does not produce.
