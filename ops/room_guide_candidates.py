@@ -819,7 +819,19 @@ OFF_TOPIC_CONTEXT = re.compile(
     # about an outdoor garden bed, correctly routed to the Lawn and Garden
     # Tool Zone) contains neither phrase, so excluding them cannot
     # suppress a genuine match.
-    r"\bhouse plants?\b|\bindoor plants?\b",
+    r"\bhouse plants?\b|\bindoor plants?\b|"
+    # Found 2026-11-19, scheduled operator cycle, mining Entryway's
+    # remaining partial tier (the worst-ranked room at 8% uncovered).
+    # "how to organise a memorial bench" is seeded from "how to organise
+    # bench" and drifted to a tribute bench (a park or garden seat
+    # dedicated to someone's memory), nothing to do with a household
+    # entryway bench; this product names no memorial content anywhere
+    # (checked `content.json` directly: 0 hits for "memorial"), the same
+    # autosuggest seed-drift shape "singing room"/"houseplants" above
+    # already exclude. Checked against both harvests first: "memorial"
+    # appears in exactly the one row named here (0 in the US corpus, 1 in
+    # the global corpus), so excluding it cannot suppress a genuine match.
+    r"\bmemorial\b",
     re.I)
 
 

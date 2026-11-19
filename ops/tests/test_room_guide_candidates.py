@@ -953,6 +953,18 @@ _result_garden_genuine = rgc.score_room([_garden_genuine], [], _room)
 check("a genuine 'organize garden plants' row is NOT excluded by the house/indoor-plants pattern",
       _result_garden_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-19, scheduled operator cycle, mining Entryway's remaining
+# partial tier. "memorial bench" is autosuggest seed-drift from "how to
+# organise bench", a tribute bench, not a household entryway bench.
+_memorial_bench = {"query": "how to organise a memorial bench", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_memorial_bench = rgc.score_room([_memorial_bench], [], _room)
+check("a 'memorial bench' off-topic-context row is excluded",
+      _result_memorial_bench["on_topic_rows"] == 0)
+_bench_genuine = {"query": "how to organise entryway bench storage", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_bench_genuine = rgc.score_room([_bench_genuine], [], _room)
+check("a genuine 'entryway bench storage' row is NOT excluded by the memorial pattern",
+      _result_bench_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

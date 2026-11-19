@@ -1114,7 +1114,7 @@
     "room_guide_candidates.py": {
       "status": "clean",
       "date": "2026-11-19",
-      "note": "Re-ledgered 2026-11-19, PM check-in: only commit since the 2026-11-18 ledger date is A188, read directly (single OFF_TOPIC_CONTEXT regex addition excluding house-plants/indoor-plants noise for Patio or Deck, fail-then-pass tested per its own commit message, comment explains the exact rows checked). No defect found."
+      "note": "Re-ledgered 2026-11-19, scheduled operator cycle: only commit since the prior 2026-11-19 ledger date is this cycle's own scoped diff, read directly (single OFF_TOPIC_CONTEXT regex addition excluding memorial-bench autosuggest noise for Entryway, checked for collision against both corpora (0 US rows, 1 global row, the one targeted), fail-then-pass tested, comment explains the exact row checked and that content.json has 0 hits for 'memorial'). No defect found."
     },
     "room_guide_underperformance.py": {
       "status": "clean",
