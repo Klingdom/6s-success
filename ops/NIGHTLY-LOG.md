@@ -20,13 +20,13 @@ Pushed to main: `ops/NIGHTLY-LOG.md`, `ops/NIGHTLY-LOG-ARCHIVE.md`, `ops/cycle-s
 
 **Found and fixed a real gate regression instead of re-mining an exhausted lane.** The two newest NIGHTLY-LOG.md entries at the time of arrival both carried no HANDOFF-FILES line, a lapse back to the exact hand-edited free text ops/nightly_log.py was built (2026-10-10) to retire after nine incremental regex patches to the stale-handoff heuristic. With the marker absent, that older heuristic ran again and promptly misfired exactly as designed to be retired against: the 05:0x entry's own "re-check room_guide_underperformance.py for the next genuinely fresh row" line reads as a cold-read handoff even though it meant "run this tool for data," not "read its source," and the file is already ledgered clean. Nothing had ever checked whether cycles kept using the marker generator at all, so the whole mechanism could silently lapse one hand edit at a time with no gate catching it.
 
-Added newest_nightly_log_entry_missing_handoff_marker() and gate_nightly_log_handoff_marker_present() to ops/preflight.py, wired into main() beside the other cold-read-lane gates. Fail-then-pass proven directly: ops/tests/test_gate_nightly_log_handoff_marker_present.py (6 cases) fails on the real committed log before this fix (case 6, "the real NIGHTLY-LOG.md newest entry is still missing its own HANDOFF-FILES line") and passes once this entry, written through ops/nightly_log.py --handoff itself, becomes the newest block.
+Added newest_nightly_log_entry_missing_handoff_marker() and gate_nightly_log_handoff_marker_present() to ops/preflight.py, wired into main() beside the other cold-read-lane gates. Fail-then-pass proven directly with 5 synthetic cases in ops/tests/test_gate_nightly_log_handoff_marker_present.py. A 6th case asserting the real committed log's newest entry was compliant was tried and dropped: three more concurrent sessions each prepended their own entry while this fix was landing, two of them also missing the marker, so that assertion would be flaky by the sandbox's own concurrency, not a real test of the logic; the gate is a WARNING for exactly this reason.
 
 **Verified.** fix_dashes.py --check clean (0 em/en dashes in the new code and docstrings). preflight.py --skip-tests re-run live to completion after this change: 0 FAIL.
 
 **Went well:** catching a silent regression in the exact mechanism built to stop regex whack-a-mole, instead of patching the symptom (the one stale handoff line) a tenth time.
 
-**Did not go well:** two consecutive cycles stopped using a tool that exists for exactly this, with nothing to notice until now.
+**Did not go well:** several consecutive cycles today stopped using a tool that exists for exactly this, with nothing to notice until now; the marker is still being skipped live, by other concurrent sessions, as this entry is written.
 
 **Changing next cycle:** nothing further; the new gate is the fix.
 
