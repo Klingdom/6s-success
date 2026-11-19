@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-19 (~14:1x slot): previous work confirmed finished, merged a concurrent weekly harvest and mined it live rather than cite it, fixed a real generator-ownership FAIL, standing queue handed to operator
+
+Attached clean, ff-only onto 10ca9947c. Previous work confirmed finished, tree matched origin.
+
+preflight.py --skip-tests found a real FAIL: my own keyword_demand rescore runs left 4 generator-owned files dirty with timestamp-only diffs. Committed that, then a concurrent push landed (weekly harvest, 1183 US queries, plus an hourly check-in). Merged rather than forced; two generator-owned files conflicted, resolved by taking the fresh harvest wholesale and regenerating through the real rescore tool, not hand-merging JSON.
+
+Mined the fresh harvest live: all 29 gap rows are off-topic noise (cribbage tournaments, CS2 maps, bench press, vastu, dollar-tree), none a genuine content gap. Global corpus unchanged at 83/654/1432. Traced "baking supplies in kitchen" (Kitchen partial tier, false match on "supplies"): already investigated and reverted by a prior cycle, not re-attempted.
+
+Second FAIL found: checks-yml-real-gap, non-bot commits touching ops/** with no completed CI run after. Expected given this cycle's own unpushed work; confirming CI fires on this push before trusting past it.
+
+GitHub's 31 issues unchanged, none from Phil since #65.
+
+Handing to the operator: nothing beyond the standing queue; the harvest is now fully mined.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-19 (~13:4x slot): previous work confirmed finished, fixed a real gate FAIL, standing 31-issue queue handed to the operator again
 
 NEXT FOR THE OPERATOR: nothing beyond the standing 31-issue owner-gated queue, because every structured lane (room-guide mining, keyword-demand clusters, cold-read ledger) was re-confirmed exhausted again at ~13:1x and nothing has changed since.
