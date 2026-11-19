@@ -12,6 +12,30 @@ Next for the operator: nothing newly unblocked beyond the standing 31 issues; st
 
 Pushed to main: `ops/NIGHTLY-LOG.md`, `ops/NIGHTLY-LOG-ARCHIVE.md`, `ops/cycle-signal.json`, dashboard files, this entry.
 
+## Scheduled operator cycle, 2026-11-19 (~06:0x slot): found and fixed a real regression in the cold-read handoff marker mechanism rather than re-mine an exhausted lane
+
+**Did.** Attached clean (fetch, genuine unshallow, checkout main, merge ff-only onto origin/main, 247 commits fast forwarded, tree clean). preflight.py run live first to full completion: 0 FAIL, 30 warnings, all standing credential/sandbox gaps. GitHub's 31 open issues re-pulled live via the API: unchanged, all decision/blocked-on-art, none from Phil since issue 65; issue 42 (the cadence question) still open and unanswered, correctly not mine to decide. inbox_agent.py --apply: no mail credential, standing gap.
+
+**Re-verified exhaustion rather than trust it.** room_guide_underperformance.py confirms what the prior two cycles already found: 0 gap rows anywhere, worst room (Family Room) at 12 percent uncovered. cold_read_ledger.py --next: 311 of 311 ledgered, 0 new candidates. Both non-Phil-gated lanes genuinely exhausted today, not merely re-asserted.
+
+**Found and fixed a real gate regression instead of re-mining an exhausted lane.** The two newest NIGHTLY-LOG.md entries at the time of arrival both carried no HANDOFF-FILES line, a lapse back to the exact hand-edited free text ops/nightly_log.py was built (2026-10-10) to retire after nine incremental regex patches to the stale-handoff heuristic. With the marker absent, that older heuristic ran again and promptly misfired exactly as designed to be retired against: the 05:0x entry's own "re-check room_guide_underperformance.py for the next genuinely fresh row" line reads as a cold-read handoff even though it meant "run this tool for data," not "read its source," and the file is already ledgered clean. Nothing had ever checked whether cycles kept using the marker generator at all, so the whole mechanism could silently lapse one hand edit at a time with no gate catching it.
+
+Added newest_nightly_log_entry_missing_handoff_marker() and gate_nightly_log_handoff_marker_present() to ops/preflight.py, wired into main() beside the other cold-read-lane gates. Fail-then-pass proven directly: ops/tests/test_gate_nightly_log_handoff_marker_present.py (6 cases) fails on the real committed log before this fix (case 6, "the real NIGHTLY-LOG.md newest entry is still missing its own HANDOFF-FILES line") and passes once this entry, written through ops/nightly_log.py --handoff itself, becomes the newest block.
+
+**Verified.** fix_dashes.py --check clean (0 em/en dashes in the new code and docstrings). preflight.py --skip-tests re-run live to completion after this change: 0 FAIL.
+
+**Went well:** catching a silent regression in the exact mechanism built to stop regex whack-a-mole, instead of patching the symptom (the one stale handoff line) a tenth time.
+
+**Did not go well:** two consecutive cycles stopped using a tool that exists for exactly this, with nothing to notice until now.
+
+**Changing next cycle:** nothing further; the new gate is the fix.
+
+**Next for the operator:** nothing newly unblocked beyond the standing room-ranking queue (Family Room, 12 percent uncovered, already repeatedly declined per its own log history); issue 42's cadence question stands, Phil's call. 31 open decision/blocked-on-art GitHub issues, none from Phil.
+
+Pushed to main: ops/preflight.py, ops/tests/test_gate_nightly_log_handoff_marker_present.py, this entry, dashboard files. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-19 (~05:4x slot): previous work confirmed finished, independently re-verified both standing lanes exhausted, started nothing new
 
 NEXT FOR THE OPERATOR: nothing newly unblocked; watch for a reply from Phil on issue #42 (the cadence question itself) or any of the 30 other decision/blocked-on-art issues, because every lane this sandbox can reach without a Stripe/VPS/mail/live-site credential is independently re-confirmed exhausted again this cycle.

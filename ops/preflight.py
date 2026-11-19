@@ -19502,6 +19502,76 @@ def gate_b9_claims_current() -> None:
         warn("b9-claims-current", problem)
 
 
+def newest_nightly_log_entry_missing_handoff_marker(log_text: str) -> bool:
+    """True if the newest ops/NIGHTLY-LOG.md entry has no HANDOFF-FILES:
+    line at all, meaning it was hand-edited straight into the file
+    rather than written by `python ops/nightly_log.py --handoff ...`.
+
+    Found live 2026-11-19: the two newest entries at the time (the
+    ~05:0x and ~05:1x cycles) both carried no HANDOFF-FILES line, a
+    regression back to the exact hand-edited free text the marker was
+    built to retire (ops/nightly_log.py's own docstring: nine
+    incremental regex patches to cold_read_handoff_stale_files() between
+    2026-09-25 and 2026-10-10 before the marker ended the pattern for
+    good). With the marker absent on both, the free-text fallback had to
+    run again and promptly misfired on exactly the ambiguity the marker
+    exists to remove: the older of the two entries' own "re-check
+    `room_guide_underperformance.py` for the next genuinely fresh row"
+    line meant "run this tool for fresh data", not "read this source
+    for bugs", but the regex cannot tell the two apart, and the file was
+    already ledgered clean as a cold-read, so it flagged as stale.
+    gate_cold_read_handoff_not_stale only checks correctness once a
+    marker is present; nothing checked whether cycles kept using the
+    marker at all, so the whole mechanism can silently lapse back to
+    hand-editing one cycle at a time with nothing to catch it.
+
+    A WARNING: a missing marker makes the older free-text heuristic do
+    the work again, which can misfire (as it did here); it does not by
+    itself ship anything broken to a customer.
+
+    Proof this can fail:
+    ops/tests/test_gate_nightly_log_handoff_marker_present.py calls this
+    function directly with a synthetic newest entry lacking a
+    HANDOFF-FILES line and asserts True, then confirms the same entry
+    with the line added returns False.
+    """
+    blocks = [b for b in re.split(r"(?m)^(?=## )", log_text)
+              if b.startswith("## ")]
+    if not blocks:
+        return False
+    newest = blocks[0]
+    return re.search(r"(?m)^HANDOFF-FILES:\s*.*$", newest) is None
+
+
+def gate_nightly_log_handoff_marker_present() -> None:
+    """The newest ops/NIGHTLY-LOG.md entry should carry a HANDOFF-FILES:
+    line (written by `python ops/nightly_log.py --handoff ...`), not be
+    hand-edited straight into the file.
+
+    See newest_nightly_log_entry_missing_handoff_marker()'s own
+    docstring for the live 2026-11-19 case this exists to catch: two
+    consecutive cycles stopped using the generator, and the free-text
+    handoff heuristic it exists to retire immediately misfired again on
+    the very next entry it had to fall back to.
+
+    A WARNING, matching every other cold-read-lane gate above: a missing
+    marker risks a future cycle's time, not a live customer-facing
+    defect.
+    """
+    log_path = os.path.join(ROOT, "ops", "NIGHTLY-LOG.md")
+    if not os.path.exists(log_path):
+        return
+    log_text = io.open(log_path, encoding="utf-8").read()
+    if newest_nightly_log_entry_missing_handoff_marker(log_text):
+        warn("nightly-log-handoff-marker-present",
+             "ops/NIGHTLY-LOG.md's newest entry has no HANDOFF-FILES: "
+             "line, meaning it was hand-edited rather than written by "
+             "`python ops/nightly_log.py --handoff ...`. The free-text "
+             "fallback this bypasses has already misfired once (found "
+             "2026-11-19); use the generator so this entry's handoff "
+             "stays unambiguous.")
+
+
 def cold_read_handoff_stale_files(log_text: str, ledger: dict,
                                    max_entries: int = 4) -> list[str]:
     """Pure logic: returns the basenames of any ops/*.py, site/assets/js/*.js
@@ -33451,6 +33521,7 @@ def main() -> int:
     run_gate(gate_status_latest_entry_gap_current)
     run_gate(gate_status_table_rows_gap_count_current)
     run_gate(gate_b9_claims_current)
+    run_gate(gate_nightly_log_handoff_marker_present)
     run_gate(gate_cold_read_handoff_not_stale)
     run_gate(gate_cold_read_ledger_entries_not_stale)
     run_gate(gate_cold_read_lanes_complete)
