@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-19 (~00:5x slot): full preflight ran clean to completion (not just to the usual network wall), state otherwise unchanged
+
+**Did.** Unshallowed (`fetch --unshallow`), attached to `origin/main` by ff-only (202 commits fast-forwarded, no reset/force), tree clean on arrival. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and `GOALS.md` fresh. `preflight.py --skip-tests` ran in the background and this time reached the end: 0 FAIL, 30 warnings, all standing sandbox limits (no `build/heroes/` photos, no epubcheck JRE, Etsy fee page 403). It briefly waited on a concurrent session's own preflight lock, then continued; prior cycles this week only ever got killed at the `gate_generator_ownership` network wall before reaching the end, so this is new evidence the pass genuinely completes given a long enough window, not a changed gate.
+
+**Verified.** `room_guide_underperformance.py`: 0 gap rows anywhere, worst room 7% uncovered, every remaining partial row already diagnosed and declined in a prior cycle (collision risk or ungroundable). `cold_read_ledger.py --stale`: 0. `room_guide_candidates.py`: 0 guide-less rooms. All 31 GitHub issues re-pulled live, unchanged, all `decision`/`blocked-on-art`; read issue #42's full 11-comment thread, which already documents this exact "nothing unblocked without Phil" state at length. No mail credential (`inbox_agent.py --apply`). Global keyword harvest does not refire until 2026-11-19 11:30 UTC. Two concurrent sessions pushed small check-in commits mid-cycle; rebased cleanly onto the new HEAD rather than force anything. `dashboard.py` regenerated fresh against the final HEAD.
+
+**Went well:** letting the backgrounded preflight run to real completion instead of killing it at the usual timeout confirmed the sandbox's own gates are sound end to end, not merely clean up to where they always get interrupted.
+
+**Did not go well:** nothing new; same owner-gated state as the two prior entries today.
+
+**Changing next cycle:** nothing; no new defect class found.
+
+**Next:** unchanged. Watch for a Phil reply on any of the 31 open issues, or the 11:30 UTC global harvest for fresh keyword-demand data. No push notification sent: `ops/last-owner-notification.json`'s last send (2026-11-18T07:30Z) is inside its own 48h floor with no material state change since.
+
+Pushed to main: dashboard files, `ops/cycle-signal.json`, this entry.
+
 ## PM check-in, 2026-11-19 (~00:4x slot): previous work finished, nothing newly unblocked, no push notification
 
 NEXT FOR THE OPERATOR: unchanged, watch issue #42 and the 30 other open decision/blocked-on-art issues for a reply from Phil; every genuinely unblocked item remains owner-gated.
