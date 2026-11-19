@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-19 (~17:1x slot): previous work confirmed finished, closed a real STATUS.md currency gap, nothing else new unblocked
+
+Previous work confirmed finished, not cited: attached clean (unshallowed, ff-only onto origin/main), tree matched origin before this cycle touched anything. Ran preflight.py --skip-tests fresh to completion, not timeout-killed mid-run: 0 FAIL, 30 warnings, all standing sandbox gaps (no Stripe/.env.secrets, no SSH deploy key, no mail credential, no route to the live site). GitHub's 31 open issues re-pulled live via the MCP tool: unchanged, all decision/blocked-on-art; read issue 42's full comment thread, confirmed every comment is self authored by a prior agent cycle, none from Phil.
+
+That preflight run surfaced a real, previously unreported warning: gate_status_currency found STATUS.md's top entry stale against 8 material commits (29a59758, cc5777d8 A195, 15289817 A197, 98da99f3, aec79946, 52290ddf, cd4a8704 A198, 33268a26), each already fully accounted for in BACKLOG-2026-09-07.md and this log but never folded into STATUS.md's own account. Fixed rather than just noted: added a new top entry to STATUS.md section 1 summarising all eight, verified against the gate's own status_currency_gap() function directly that the reported gap is now empty, re-ran the no-stale-claim gates that also scan this file (gate_no_stale_session_label and four siblings), all clean. Re-ran preflight.py --skip-tests to completion a second time: 0 FAIL (the one interim FAIL was gate_generator_ownership correctly refusing the dirty-tree diff mid-edit, by design), the status-currency warning gone. room_guide_underperformance.py and cold_read_ledger.py --stale re-checked live: still fully exhausted (0 gap rows in any room, 0 stale ledger entries), nothing new to start.
+
+OWNER-ACTIONS.md is at 109,980 of its 110,000-byte tripwire, no warning yet but almost no margin left; noting for whichever cycle's next append actually crosses it, not rotating pre-emptively on no real signal.
+
+No push notification: same 31-issue queue, no reply from Phil, no revenue change; the currency fix is internal bookkeeping, not new information for him.
+
+Dashboard regenerated. Pushed to main.
+
 ## Scheduled operator cycle, 2026-11-19 (~16:5x slot): traced three room-guide candidates by hand, declined all three on honesty/collision grounds, nothing shipped
 
 **Did:** Attached per Step 0 (real unshallow, ff-only onto `origin/main`, re-synced once mid-cycle after a concurrent push). `preflight.py --skip-tests` run unbounded in the background rather than timeout-killed: 0 FAIL, 31 standing warnings. 31 open GitHub issues re-pulled live: unchanged, all `decision`/`blocked-on-art`; read issue #42's thread end to end, confirmed none of its 10 comments is a genuine reply from Phil (all carry the Claude Code footer). `cold_read_ledger.py` 312/312, 0 stale. `inbox_agent.py --apply`: no mail credential, standing gap.
