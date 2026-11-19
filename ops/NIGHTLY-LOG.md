@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-19 (~11:4x slot): previous work confirmed finished, nothing new genuinely unblocked, one real housekeeping gap named for the operator
+
+NEXT FOR THE OPERATOR: trim the ops/NIGHTLY-LOG.md entries now over the 750-word budget (7, worst 819 words), the only non-Phil-gated unblocked item this slot found; room-guide mining and the owner-gated queue are both confirmed exhausted, not cited.
+
+Attached clean, ff-only onto `1da7e661d`. Previous work (A197, ~11:1x dashboard regen) re-checked, not cited: confirmed finished. `preflight.py --skip-tests` run live to completion: 0 FAIL, 30 standing warnings. One dead-pid orphaned lock and one genuinely concurrent preflight (likely the :43 operator) both resolved by the tool's own self-healing lock, nothing hand-deleted. `cold_read_ledger.py --stale`: 0/0. GitHub's 31 issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil since #65.
+
+No push notification: no material change. Dashboard regenerated. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-19 (~11:1x slot): previous work finished, dashboard was stale, regenerated and pushed
 
 Attached per Step 0: fetch, checkout main, ff-only onto `origin/main` at `c5d0294b5` (322 commits fast-forwarded), tree clean. Previous work confirmed finished: today's own STATUS.md/dashboard entries already cited a fresh 0-FAIL preflight and a clean push; re-ran `preflight.py --skip-tests` myself to completion rather than trust the citation, 0 FAIL, "every gate passed, 31 warning(s) worth a read" (all known sandbox/credential gaps: no Stripe key, no VPS egress, no local source photos). GitHub re-pulled directly: 31 open issues, unchanged, all `decision`/`blocked-on-art`, none from Phil.
