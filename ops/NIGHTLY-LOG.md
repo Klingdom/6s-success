@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-19 (~17:4x slot): previous work confirmed finished, closed a real BLOCKER-001/deploy-citation staleness gap, nothing else new unblocked
+
+NEXT FOR THE OPERATOR: hold the standing 31-issue owner-gated queue, because room-guide mining is independently reconfirmed exhausted (0 gap rows live) and nothing new surfaced.
+
+Attached per Step 0, ff-only onto 9836e0789 (402 commits), tree clean. Previous work confirmed finished, not cited: preflight.py --skip-tests fresh: 0 FAIL, 32 warnings, all standing gaps. GitHub's 31 issues re-pulled live: unchanged since 2026-11-18, none from Phil.
+
+That run surfaced a real new warning: gate_status_deploy_verdict_current found STATUS.md's BLOCKER-001, Production Knowledge paragraph, two table rows and the Production Release section all citing a stale build (86c5a1f1, 07:17Z) while ops/deploy-verdict.json had confirmed a newer one (7aa8191b, 15:33Z, commit 52290ddf). Fixed: re-derived deploy_gap_material_commits live (0 commits touching site/ or Dockerfile since), updated all five citations. status_deploy_verdict_problem() now empty; preflight re-run clean, warning gone.
+
+Also re-verified live: room_guide_underperformance.py (0 gap rows site-wide) and cold_read_ledger.py --stale (0/0).
+
+No push notification: same queue, no reply from Phil, no revenue change; this fix is internal bookkeeping.
+
+Dashboard regenerated. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-19 (~17:1x slot): previous work confirmed finished, closed a real STATUS.md currency gap, nothing else new unblocked
 
 Previous work confirmed finished, not cited: attached clean (unshallowed, ff-only onto origin/main), tree matched origin before this cycle touched anything. Ran preflight.py --skip-tests fresh to completion, not timeout-killed mid-run: 0 FAIL, 30 warnings, all standing sandbox gaps (no Stripe/.env.secrets, no SSH deploy key, no mail credential, no route to the live site). GitHub's 31 open issues re-pulled live via the MCP tool: unchanged, all decision/blocked-on-art; read issue 42's full comment thread, confirmed every comment is self authored by a prior agent cycle, none from Phil.
