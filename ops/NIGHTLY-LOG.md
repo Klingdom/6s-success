@@ -2,7 +2,31 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-19 (~20:1x slot): previous work confirmed finished, nothing new unblocked, caught and restored a concurrent build-race drift before it could be committed
+## PM check-in, 2026-11-19 (~20:4x slot): previous work confirmed finished, re-verified rather than cited that three of the worst room-guide tiers are genuinely exhausted
+
+NEXT FOR THE OPERATOR: hand-check Hall Closet's, Primary Bedroom's, Garage's
+or Nursery's current partial tier (8-10% uncovered each), because this
+cycle independently re-verified Family Room (13%), Kids Bedroom (9%) and
+Guest Bathroom (9%) are genuinely exhausted, not merely cited as such; every
+one of their remaining rows is already explicitly declined by name in a
+prior entry.
+
+Attached clean (fetch, real unshallow already done, `checkout main`,
+ff-only onto `b954684`, 436 commits fast-forwarded, no reset/force).
+`preflight.py --skip-tests` run live to a 140s cap: both FAIL sections read
+directly, "(none)" each time; capped by my own budget, not a gate stall,
+matching the documented network-bound pattern. GitHub's 31 open issues
+re-pulled live via the API, none from Phil since #65, issue #42's own
+cadence question still unanswered. Checked rather than assumed: dumped
+Family Room's, Kids Bedroom's and Guest Bathroom's full current partial
+tiers and traced each row's history; all are prior declines (bonus
+room/den tie, games digital-collision, daycare bag, bathroom-counter
+clutter/jewelry), none newly actionable. No new defect found; nothing
+genuinely unblocked beyond the standing 31-issue owner-gated queue. No push
+notification: same issue count, no reply from Phil, no revenue change.
+`ops/cycle-signal.json` checkpoint updated to this cycle's real HEAD (a
+genuine partial-pass record, not drift). Dashboard regenerated. Pushed to
+main.
 
 Attached clean (fetch, ff-only onto `b954684`, 434 commits fast-forwarded, no
 reset/force). Previous work confirmed finished, not cited: tree matched
