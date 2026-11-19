@@ -154,4 +154,38 @@ if [ -f "ops/check_also_called_digital_collision_fast.py" ]; then
   fi
 fi
 
+# Refuse to push a room-also-called name that has lost its demand evidence.
+#
+# Found 2026-11-19: "childrens bedroom", "groceries" and "stairway landing"
+# all had real evidence when added, then lost it the same day
+# keyword-demand.yml was narrowed to --source google (each one's grounding
+# query turned out to be Bing-only). ops/tests/test_room_also_called.py
+# already held this rule but only inside the slow gate_tests suite, which
+# this sandbox's documented Chromium hang forces every local preflight run
+# to skip with --skip-tests, so nothing reachable before a push caught it;
+# only the full, slower CI run did (checks.yml run 44547908641), after the
+# push had already landed. Same shape as the digital-collision check above,
+# same fix.
+if [ -f "ops/check_room_also_called_evidence_fast.py" ]; then
+  PY=""
+  for cand in python python3 py; do
+    if command -v "$cand" >/dev/null 2>&1 &&
+       "$cand" -c "import sys; sys.exit(0)" >/dev/null 2>&1; then
+      PY="$cand"
+      break
+    fi
+  done
+  if [ -z "$PY" ]; then
+    echo "pre-push: no working python found, so the room-also-called" >&2
+    echo "evidence check could not run. Refusing rather than pushing it" >&2
+    echo "unexamined." >&2
+    exit 1
+  fi
+  if ! "$PY" ops/check_room_also_called_evidence_fast.py; then
+    echo "" >&2
+    echo "Fix the ungrounded room-also-called name, then push. To bypass: git push --no-verify" >&2
+    exit 1
+  fi
+fi
+
 exit 0

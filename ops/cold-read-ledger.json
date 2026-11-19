@@ -641,6 +641,11 @@
       "date": "2026-11-03",
       "note": "cold read, 2026-11-03: wrapper mirrors check_nightly_log_fast.py's own pattern, calls gate_risks_evidence_current directly skipping gate_tests, correctly wired into .githooks/pre-push (lines 101-116), its own fail-then-pass test (test_check_risks_evidence_fast.py) passes clean, 0 defects found"
     },
+    "check_room_also_called_evidence_fast.py": {
+      "status": "clean",
+      "date": "2026-11-19",
+      "note": "New file, written this cycle as the fast-path twin of check_also_called_digital_collision_fast.py (same pattern: calls gate_room_also_called_evidence() directly, skipping gate_tests, so it is reachable from .githooks/pre-push). Read end to end while writing it."
+    },
     "check_sellable.py": {
       "status": "fixed",
       "date": "2026-11-01",

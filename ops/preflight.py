@@ -29514,6 +29514,89 @@ def gate_also_called_no_digital_collision() -> None:
         fail("also-called-no-digital-collision", "; ".join(problems[:6]))
 
 
+def check_room_also_called_evidence(names_by_room, rows) -> list:
+    """Pure check: every room-also-called name must be a phrase someone
+    actually typed in the demand harvest, not a name added on intuition.
+
+    Found live 2026-11-19: checks.yml's own gate_tests run (ops/tests/
+    test_room_also_called.py) genuinely FAILed on three names ("childrens
+    bedroom", "groceries", "stairway landing") that had real evidence when
+    added but lost it the same day, when keyword-demand.yml was narrowed to
+    --source google (Bing's osjson.aspx returning HTTP 204 to its own
+    canary) and each name's grounding query turned out to be Bing-only.
+    test_room_also_called.py had always carried this rule, but only inside
+    the slow, full ops/tests/*.py suite, which this sandbox's documented
+    Chromium hang forces every local preflight run to skip with
+    --skip-tests; nothing in the fast path this sandbox can actually finish
+    locally ever re-checked it before a push, so the defect shipped and was
+    only caught by the slower, complete CI run, after the push had already
+    landed. This promotes the same rule into a real gate with its own fast
+    standalone entry point (ops/check_room_also_called_evidence_fast.py),
+    the same shape ops/check_also_called_digital_collision_fast.py already
+    uses for the identical problem on a different rule.
+
+    `names_by_room` is {room: [name, ...]} merged from room-also-called.
+    json's "names" and "signal_names" (both are read by
+    household_room_signal()/room_synonyms() for scoring, so both can carry
+    a word nobody searches). `rows` is the combined `rows` list from both
+    ops/keyword-demand.json and ops/keyword-demand-global.json. Returns
+    problem strings, empty when every name matches at least one harvested
+    query by a real word-boundary match.
+    """
+    problems = []
+    for room, names in sorted(names_by_room.items()):
+        for name in names:
+            pat = re.compile(r"\b" + re.escape(name) + r"\b")
+            if not any(pat.search(r.get("query", "")) for r in rows):
+                problems.append(
+                    "%s claims the name %r, and that phrase appears in "
+                    "zero of the %d harvested queries" % (room, name,
+                                                           len(rows)))
+    return problems
+
+
+def gate_room_also_called_evidence() -> None:
+    """The live check for `check_room_also_called_evidence()`'s own defect:
+    see its docstring. Reads the real, committed ops/room-also-called.json
+    and both keyword-demand files, so a name that loses its grounding (a
+    harvest-source change, a corpus rescore, anything) cannot silently
+    stay live claiming demand that no longer measures as real.
+
+    Deliberately narrower than ops/tests/test_room_also_called.py, which
+    also checks room validity and that the shipped HTML matches the file;
+    this gate exists to be reachable from the fast path this sandbox can
+    actually finish before a push, not to replace that test.
+
+    Proved to fail on a planted regression: see
+    ops/tests/test_gate_room_also_called_evidence.py.
+    """
+    room_path = os.path.join(ROOT, "ops", "room-also-called.json")
+    if not os.path.exists(room_path):
+        return
+    data = json.load(io.open(room_path, encoding="utf-8"))
+    names_by_room = {}
+    for room, entry in (data.get("rooms") or {}).items():
+        names = list(entry.get("names") or []) + list(
+            entry.get("signal_names") or [])
+        if names:
+            names_by_room[room] = names
+    if not names_by_room:
+        return
+
+    rows = []
+    for fname in ("keyword-demand.json", "keyword-demand-global.json"):
+        path = os.path.join(ROOT, "ops", fname)
+        if os.path.exists(path):
+            rows += json.loads(
+                io.open(path, encoding="utf-8").read()).get("rows") or []
+    if not rows:
+        return
+
+    problems = check_room_also_called_evidence(names_by_room, rows)
+    if problems:
+        fail("room-also-called-evidence", "; ".join(problems[:6]))
+
+
 def check_general_reading_picks(picks, diagnosed_usage, pool,
                                 floor=3, cap_ceiling=None,
                                 zones_linking=None) -> list:
@@ -33409,6 +33492,7 @@ def main() -> int:
     run_gate(gate_also_called_is_heading)
     run_gate(gate_zone_also_called_is_heading)
     run_gate(gate_also_called_no_digital_collision)
+    run_gate(gate_room_also_called_evidence)
     run_gate(gate_general_reading_differentiated)
     run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_no_duplicate_hazard_labels)
