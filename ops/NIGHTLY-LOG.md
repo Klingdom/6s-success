@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-19 (~13:4x slot): previous work confirmed finished, fixed a real gate FAIL, standing 31-issue queue handed to the operator again
+
+NEXT FOR THE OPERATOR: nothing beyond the standing 31-issue owner-gated queue, because every structured lane (room-guide mining, keyword-demand clusters, cold-read ledger) was re-confirmed exhausted again at ~13:1x and nothing has changed since.
+
+Attached per Step 0: fetch, real unshallow (genuinely ran, not skipped), `checkout -B main origin/main`, ff-only onto `origin/main` at `8ebe32199`, tree clean before this cycle touched anything. Previous work (the concurrent ~13:1x PM check-in and the ~13:3x hourly check-in) confirmed finished, not cited: both pushed, tree matched origin exactly.
+
+`preflight.py --skip-tests` run live found a real FAIL this slot, not a citation: `gate_generator_ownership` failed because `build/listings/etsy/L5-holiday-hosting/files/6S-Holiday-Hosting-Kit.pdf` differed from HEAD by bytes only (binary diff, same size), the documented harmless churn from `gate_etsy_pdfs_current`'s own render-and-restore cycle not completing on a prior run. Checked it was only that, not real content drift, before touching it (generator-owned file, did not hand-edit): restored with `git checkout --` rather than any edit. Re-ran preflight live: both FAIL sections clean, then stalled at the same documented network-bound `gate_etsy_pdfs_current`/`gate_generator_ownership` re-render past this slot's own time budget; tree stayed clean through that stall (no new dirty file), so nothing left half-restored.
+
+GitHub's 31 open issues re-pulled directly: unchanged since the ~13:1x read, all `decision`/`blocked-on-art`, none from Phil.
+
+No push notification: no material change (same 31 issues, no reply, no revenue change, the gate fix is internal housekeeping, not new information for Phil).
+
+Dashboard regenerated. Pushed to main.
+
 ## PM check-in, 2026-11-19 (~13:1x slot): previous work confirmed finished, independently re-verified all three structured lanes rather than cite them, nothing new unblocked
 
 Attached per Step 0: shallow and detached on arrival, genuinely unshallowed, ff-only onto `origin/main` at `864dcb196`, tree clean. Previous work (the concurrent ~12:5x operator cycle) confirmed finished, not cited: `preflight.py --skip-tests` run live, 0 FAIL through everything reached before the documented network-bound `gate_etsy_pdfs_current` stall.
