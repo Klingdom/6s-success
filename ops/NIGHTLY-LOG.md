@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-19 (16:1x slot): previous work confirmed finished, nothing new unblocked, dashboard regen only
+
+Attached per Step 0: fetched, unshallowed for real, `checkout main`, `merge --ff-only` onto `origin/main` (7d1fac6, 388 commits fast-forwarded in this container's own git history), tree clean.
+
+Previous work (the immediately prior PM check-in at 16:02 confirming A198 CI-green, plus its hourly check-in at 16:05) confirmed finished, not cited: tree matched origin exactly before this cycle touched anything, `ops/cycle-signal.json`'s own checkpoint already showed `git_head` matching HEAD. `preflight.py --skip-tests` run fresh to completion this time (not capped): every gate passed, 0 FAIL, 31 warnings, all the standing documented sandbox limits (no Stripe/.env.secrets, no SSH deploy key, no mail credential, no route to 6s-success.com or Etsy, no local source photos in `build/heroes/`). GitHub's 31 open issues re-pulled live: unchanged since 2026-11-18, every one `decision`/`blocked-on-art`, none from Phil; re-checked issue #42 and #65 comment threads directly rather than trust the count, confirmed no new reply.
+
+Read the backlog's own most recent entries (A196 through A198) rather than re-derive from zero: today's cycles already closed a Kids Bedroom noise row, a Kitchen "larder" misattribution, and a resulting CI gate FAIL, and declined two cross-surface title/heading tie cases (kids-clothes-storage, gear-toolbox) after checking for a real collision risk, correctly short of CLAUDE.md 10b's three-strikes bar for that specific shape. Room-guide mining confirmed in diminishing returns (worst room 7-9% uncovered), cold-read ledger exhausted (311/311). Nothing in that state has changed in the twenty minutes since. No new defect found to close myself this slot.
+
+Regenerated the dashboard (it was one commit stale, pointing at `adea92b` instead of HEAD `7d1fac63d`): revenue carry-forward, traffic/affiliate carry-forward and the Stripe-reachability line all rendered correctly as unconfirmed rather than assumed clean, matching this sandbox's standing network limits. Committed via `ops/ship.py --no-deploy`, pushed, verified on origin.
+
+No push notification: same 31-issue decision/blocked-on-art queue, no reply from Phil, no revenue change, nothing new for him to see beyond what prior notifications already cover.
+
+Dashboard regenerated. Pushed to main.
+
 ## PM check-in, 2026-11-19 (~15:5x slot): previous work confirmed finished and CI-verified, found and fixed a self-inflicted FAIL from my own interrupted preflight run, standing queue held
 
 NEXT FOR THE OPERATOR: hold the standing 31-issue owner-gated queue, because epic-5 keyword mining is confirmed in diminishing returns (independently re-confirmed by the concurrent ~15:4x operator cycle below) and the one live non-Phil-gated thread is the cross-surface title-vs-heading tie limitation in score_rows(), now at 5-6 declined instances (A74/A82/A114/A197, and the concurrent cycle's "bags of spices" below); the next time that exact shape recurs, build the gate instead of declining again.
