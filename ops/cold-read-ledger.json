@@ -1027,9 +1027,9 @@
       "note": "cold-read 2026-10-14 16:1x-17:0x slot: read in full, 8/8 own tests pass, fallback logic verified correct, no defect found"
     },
     "preflight.py": {
-      "status": "clean",
+      "status": "fixed",
       "date": "2026-11-19",
-      "note": "Re-ledgered, PM check-in 2026-11-19 ~07:4x: only touch since the 2026-11-18 ledger date is e8d21d5ea (gate_nightly_log_handoff_marker_present), a new warning-level gate catching cycles that hand-edit NIGHTLY-LOG.md instead of using the --handoff generator. Read the diff directly: self-contained addition, own docstring, proven fail-then-pass by its own new test (ops/tests/test_gate_nightly_log_handoff_marker_present.py). No defect found."
+      "note": "Scoped review of gate_verify_deploy_pages_current (2026-11-19): added a leading-underscore skip for the stray _audit_catalog_fixture_<pid>.html probe, matching audit_pages.py's PROBE_PREFIXES and this file's own footer-consistent gate. Not a full-file cold read."
     },
     "prerender_shop.py": {
       "status": "clean",
