@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-19 (~03:1x slot): previous work confirmed finished, closed a stale cold-read-ledger entry, discarded a corruption of my own making first
+
+Attached clean, ff-only onto `049c9cdd1`. Previous work (A188's indoor-plants fix, hourly check-ins) confirmed finished: a fresh unbuffered `preflight.py --skip-tests` passed every gate, 32 warnings, cycle_signal recorded clean.
+
+My own first preflight attempt had a 110s foreground timeout and got killed mid-run, truncating `site/articles/what-a-5s-engagement-costs.html` to 0 bytes and leaving 43 asset-fingerprint-only diffs across `site/`, the same transient build-race shape as A180. Git HEAD held the real 21KB file throughout; restored everything from HEAD rather than ship or investigate a defect that was never real.
+
+Closed the one genuinely actionable warning: `room_guide_candidates.py`'s cold-read-ledger entry was stale (ledgered 2026-11-18, touched 2026-11-19 by A188). Read that diff myself, confirmed clean, re-ledgered.
+
+31 open issues reconfirmed, all `decision`/`blocked-on-art`, none from Phil. Handing the operator: Kids Bedroom's declutter gap, unchanged from the 02:4x handoff, still unclaimed.
+
+Pushed to main: `ops/cold-read-ledger.json`, dashboard files, this entry.
+
 ## PM check-in, 2026-11-19 (~02:4x slot): previous work confirmed finished, handing the operator the Kids Bedroom declutter gap the prior cycle diagnosed but could not fix with the zone-also-called mechanism
 
 NEXT FOR THE OPERATOR: Kids Bedroom's "how to declutter children's bedroom", because it is a real, already-diagnosed gap (room correct, only "declutter" unmatched, present on the page as "decluttering" in a body link, not a heading) that needs a room-level fix since it is a whole-room query with no single zone to honestly ground it in, which the existing zone-also-called mechanism does not cover.

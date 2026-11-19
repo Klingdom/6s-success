@@ -1113,8 +1113,8 @@
     },
     "room_guide_candidates.py": {
       "status": "clean",
-      "date": "2026-11-18",
-      "note": "Re-ledgered 2026-11-18, PM check-in: only commit since the 2026-11-16 ledger date is this cycle's own A181 change, read and verified directly (single OFF_TOPIC_CONTEXT regex addition excluding houseplants/singing-room seed-drift noise, fail-then-pass tested, 151/151)."
+      "date": "2026-11-19",
+      "note": "Re-ledgered 2026-11-19, PM check-in: only commit since the 2026-11-18 ledger date is A188, read directly (single OFF_TOPIC_CONTEXT regex addition excluding house-plants/indoor-plants noise for Patio or Deck, fail-then-pass tested per its own commit message, comment explains the exact rows checked). No defect found."
     },
     "room_guide_underperformance.py": {
       "status": "clean",
