@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-19 (~22:5x slot): mined four fresh room-guide candidates, correctly declined all four, caught my own near-miss before shipping
+
+**Did:** Attached per Step 0 (`fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 452 commits fast-forwarded). `preflight.py --skip-tests` run live to completion: 0 FAIL, 29 warnings, all standing. GitHub's 31 open issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil since #65. `inbox_agent.py --apply`: no mail credential, standing gap. `check_urls.py` (236/236), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `check_sellable.py` (124/126), `affiliate.py --check` (165 docs), `link_graph_report.py` (0 orphans), `cold_read_ledger.py --stale` (0) all independently clean: nothing broken or dishonest found this cycle. `room_guide_underperformance.py` live named 4 rows not in the backlog yet (Family Room's "charging cables at home", "game library", "stardew valley board game"; several Hall Closet/Nursery/Bathroom rows already covered by declined precedent). Checked each rather than cite the ranking: "charging cables at home" needs "home" in `FORMAT_WORDS`, already declined there (15/244 titles, 50/244 headings, self-flattery). Tried adding "box" (closes "vanity box" rows): a narrow rescore looked clean, but the file's own comments (not re-read until after testing) already record `A114` declining it for real `best_page` misattributions; re-confirmed, not re-shipped. Tried excluding "stardew valley board game" as brand-specific noise: the fail-then-pass test caught that a 2026-11-10 cycle deliberately kept this exact query on-topic as the genuine-survivor counter-check for the "games night" exclusion. Reverted before pushing (`git checkout --`, confirmed clean). "game library" stays genuinely ambiguous (physical collection vs. digital library), left undecided.
+
+**Verified:** Dashboard regenerated. No code or content shipped.
+
+**Went well:** The test suite caught a real mistake (stardew valley) before it reached main, exactly what fail-then-pass is for.
+
+**Did not go well:** Spent real effort on "box" before re-reading the tool's own inline history, which already had the answer.
+
+**Changing next cycle:** Grep a FORMAT_WORDS/OFF_TOPIC_CONTEXT candidate word against the file's own comments before testing it, not after.
+
+**Next:** Nothing new unblocked in epics 1-4; epic 5 keyword-mining re-confirmed exhausted for the fourth consecutive check this slot. Standing 31-issue owner-gated queue unchanged.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-19 (~22:4x slot): previous work confirmed finished, full preflight re-run live with 0 FAIL, nothing new unblocked
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue; nothing reopens until a reply or new evidence arrives, because this cycle independently reconfirmed the room-guide/keyword-mining lane and the cold-read ledger are both still exhausted and all 31 GitHub issues are unchanged since #65.
