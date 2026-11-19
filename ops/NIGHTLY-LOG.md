@@ -18,6 +18,22 @@ Handing to the operator: nothing beyond the standing queue; the harvest is now f
 
 HANDOFF-FILES: none
 
+## Scheduled operator cycle, 2026-11-19: fixed keyword-demand.yml's genuine CI failure (Bing refusing this runner), verified fresh end to end
+
+Did: attached clean (fetch --unshallow, checkout main, ff-only). Preflight 0 FAIL, 30 warnings, all standing sandbox gaps. GitHub's 31 issues re-pulled live, unchanged, none from Phil since #65; no mail credential. The mining lanes other cycles already confirmed exhausted today held, so rather than log a sixth confirmation, read gate_workflows_healthy's own warning instead of citing it: keyword-demand.yml had genuinely failed (run 11, 2026-11-18). Pulled the real CI logs: Bing's osjson.aspx returned HTTP 204 to its own canary and to 149 of 151 seeds. Re-dispatched live to rule out a one-off blip; a second run 24 hours later showed the identical shape. Fixed by narrowing keyword-demand.yml to --source google (existing CLI flag, no harvester code change), reversible once Bing's canary answers again. Re-dispatched a third time: success, fresh harvest written (151/151, 0 errors). That surfaced a real side effect: GOALS.md's cluster citation went stale against the smaller, Bing-less corpus. Corrected in place honestly (coverage ratio rose, not fell).
+
+Verified: all 75 keyword_demand cases, 7/7 citation-gate cases, check_urls/audit_pages/affiliate.py/check_sellable/cold_read_ledger all clean. Full preflight re-run after: 0 FAIL, 32 warnings.
+
+Went well: traced a warning to its live CI logs instead of trusting the summary, and proved the fix by re-running the actual workflow rather than reasoning about it.
+
+Did not go well: nothing new.
+
+Changing next cycle: none.
+
+Next: revert keyword-demand.yml to --source both once a run shows Bing's canary answering; standing 31-issue owner-gated queue otherwise unchanged.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-19 (~13:4x slot): previous work confirmed finished, fixed a real gate FAIL, standing 31-issue queue handed to the operator again
 
 NEXT FOR THE OPERATOR: nothing beyond the standing 31-issue owner-gated queue, because every structured lane (room-guide mining, keyword-demand clusters, cold-read ledger) was re-confirmed exhausted again at ~13:1x and nothing has changed since.
