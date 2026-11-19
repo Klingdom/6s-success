@@ -240,13 +240,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-07T12:06:34Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-07T15:20:14Z",
    "mode": "changed",
    "offered": 1,
@@ -658,6 +651,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-19T15:17:09Z",
+   "mode": "changed",
+   "offered": 4,
+   "accepted": 4,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -721,7 +721,7 @@
   "https://6s-success.com/rooms/guest-bedroom": "ec2ad55bcddc2e49",
   "https://6s-success.com/rooms/hall-closet": "5cc3c4960ab6a9b9",
   "https://6s-success.com/rooms/home-office": "92345cfa8e811d7e",
-  "https://6s-success.com/rooms/kids-bedroom": "0da69cf3a98a482d",
+  "https://6s-success.com/rooms/kids-bedroom": "45df90d7ee183f7f",
   "https://6s-success.com/rooms/kitchen": "5a4ebda1a10d2ea7",
   "https://6s-success.com/rooms/laundry-room": "a42c0129cd324142",
   "https://6s-success.com/rooms/living-room": "2f3b68f338904970",
@@ -731,7 +731,7 @@
   "https://6s-success.com/rooms/patio-or-deck": "69f429359e7ff043",
   "https://6s-success.com/rooms/primary-bathroom": "169e02224a3a9422",
   "https://6s-success.com/rooms/primary-bedroom": "c348833f5ad733b2",
-  "https://6s-success.com/rooms/stair-landing": "792efd04098ac85f",
+  "https://6s-success.com/rooms/stair-landing": "8311e22c0a61185a",
   "https://6s-success.com/rooms/workshop": "39d803bca8f18f5b",
   "https://6s-success.com/zones/dining-room-the-beverage-or-coffee-station": "a053f1d49b3a498b",
   "https://6s-success.com/zones/dining-room-the-china-or-display-cabinet": "bc66a1d6f6708f4e",
@@ -815,10 +815,10 @@
   "https://6s-success.com/zones/nursery-the-crib-and-sleep-zone": "350ae454fff0ca18",
   "https://6s-success.com/zones/nursery-the-diaper-and-care-backstock": "3d5d19eb78558402",
   "https://6s-success.com/zones/nursery-the-feeding-station": "c90f0526a74d06cc",
-  "https://6s-success.com/zones/pantry-the-backstock-and-bulk": "8c5874940ae8c173",
+  "https://6s-success.com/zones/pantry-the-backstock-and-bulk": "3231fd75e09b3f02",
   "https://6s-success.com/zones/pantry-the-baking-zone": "b998f47a377d66e1",
   "https://6s-success.com/zones/pantry-the-canned-and-jarred-goods": "93498dd1a92fa2f9",
-  "https://6s-success.com/zones/pantry-the-dry-goods-shelves": "c4e72081d697a9f9",
+  "https://6s-success.com/zones/pantry-the-dry-goods-shelves": "94b86ac3e4d70e50",
   "https://6s-success.com/zones/pantry-the-snack-and-lunch-zone": "28546165d9f87946",
   "https://6s-success.com/zones/patio-or-deck-the-garden-and-plant-care-zone": "9b211350aedc4040",
   "https://6s-success.com/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone": "1b7c9bba37d6aa88",
