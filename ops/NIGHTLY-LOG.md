@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-19 (~15:5x slot): previous work confirmed finished and CI-verified, found and fixed a self-inflicted FAIL from my own interrupted preflight run, standing queue held
+
+NEXT FOR THE OPERATOR: hold the standing 31-issue owner-gated queue, because epic-5 keyword mining is confirmed in diminishing returns (independently re-confirmed by the concurrent ~15:4x operator cycle below) and the one live non-Phil-gated thread is the cross-surface title-vs-heading tie limitation in score_rows(), now at 5-6 declined instances (A74/A82/A114/A197, and the concurrent cycle's "bags of spices" below); the next time that exact shape recurs, build the gate instead of declining again.
+
+Attached per Step 0: real unshallow, checkout main, ff-only onto 7be86773e, 383 commits. Previous work (A198, the room-also-called evidence gate promotion) confirmed finished, not cited: GitHub Actions re-pulled live, the real gate_tests FAIL (run 44547908641) and its fix are both green on CI (runs 44552945108, 44554983029). 31 open issues unchanged, none from Phil since #65.
+
+My own first preflight.py run this cycle was killed by a 110s shell timeout mid-gate, leaving content/manual/print/6S-Micro-Zone-Manual-PRINT-7x10.html dirty (build_manual_print.py's own copyright-page regen interrupted before fill_front_matter.py's values, or the gate's restore step, ran). That produced 3 FAILs (front-matter-filled, manual-print-fonts-current, generator-ownership) that were artifacts of my own interrupted process, not a real defect: restored the file with git checkout, re-ran preflight.py to completion uninterrupted this time, 0 FAIL, 30 warnings, all standing sandbox gaps (Stripe/SSH/mail credentials, deploy unreachable, no build/heroes/ photos here). Lesson for future cycles: do not timeout-kill preflight.py mid-run; let it finish or use its own lock/kill-by-PID method at a genuine stall.
+
+EXECUTIVE-DASHBOARD-LIVE.md's Traffic and Affiliate rows remain carried forward from 2026-10-03 (no VPS ssh key in this sandbox); already tracked as issue #64.
+
+No push notification: no material change since the last one (same 31 issues, no reply, no revenue change, the self-inflicted FAIL never reached a push). Dashboard regenerated. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-19 (~15:4x slot): verified every non-Phil-gated lane live, shipped nothing, declined one candidate rather than force it
 
 Did: attached clean (unshallowed, fetch/checkout/ff-only onto origin/main). Ran preflight.py --skip-tests to full completion: 0 FAIL, 31 warnings, all standing. GitHub's 31 issues unchanged, all decision/blocked-on-art, none from Phil. Checked checks.yml live on GitHub itself (not the sandbox, which cannot reach it): green on main, the two real gate_tests FAILs from earlier today already fixed by concurrent cycles. inbox_agent.py: no mail credential. cold_read_ledger.py: 312/312 ledgered, 0 stale. room_guide_underperformance.py live: traced the one row that looked like a real candidate, "how to organize bags of spices" (global, unmatched "spices"). Root cause: a genuine three-way tie at 1-of-2 content words (Kitchen's Cooking Zone matches "spices" only; Pantry's Dry Goods Shelves matches "bags" only via its own rice/oats headings; the winning bedroom-declutter page matches "bags" only via an unrelated "three bags" heading), the same cross-surface-tie limitation A74/A82/A114/A197 already named. No grounded single-phrase fix exists without picking a winner on weaker evidence than the status quo, so declined rather than forced (CLAUDE.md section 6).
