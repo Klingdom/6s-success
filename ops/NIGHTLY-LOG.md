@@ -2,13 +2,27 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-19 (~08:1x slot): previous work confirmed finished, closed a self-contradicting cold-read handoff and a STATUS.md currency gap
+## Scheduled operator cycle, 2026-11-19: brought STATUS.md current against 10 unmentioned material commits and a stale deploy citation, declined a cluster of ambiguous room-guide ties rather than force them
 
-NEXT FOR THE OPERATOR: hold the standing Phil-gated queue; keyword-mining and cold-read lanes both reconfirmed exhausted this cycle, nothing reopens until the next global harvest or a Phil reply on #42.
+**Did:** Attached clean (unshallowed, merge --ff-only, 273 then 2 more commits fast-forwarded mid-cycle). Ran preflight.py live: 0 FAIL, 34 warnings, all standing. Read a sample of the remaining room-guide partial-tier rows by hand (Kitchen's "kitchen larder" rows, Guest Bathroom's "jewelry"/"box" rows) rather than count them; each is a genuine cross-room ambiguity (title-match outscoring the true heading match) not safely fixable without a disproportionate scorer change, so none shipped, per section 6's bar against forcing a connection. Fixed the real, actionable finding instead: gate_status_currency and gate_status_deploy_verdict_current both fired, STATUS.md hadn't mentioned 10 material commits (A191, A192, two backlog/log rotations) and three sections cited a stale deploy build. Updated BLOCKER-001, the Public website/Production traceability rows, and the Production Knowledge paragraph to the current build (86c5a1f1eb4f618d, confirmed 2026-11-19T07:17:45Z, 0 commits pending), then rotated both chains.
 
-Attached clean, ff-only onto origin/main, 275 commits. Previous work confirmed finished, not cited: tree matched origin, `preflight.py --skip-tests` ran live, 0 FAIL, 34 warnings, standing sandbox gaps. 31 GitHub issues unchanged, #42 read in full, none from Phil since 2026-11-18.
+**Verified:** check_urls.py (236/236), audit_pages.py (0 findings), fix_dashes.py --check (0/0), affiliate.py --check (165 docs), link_graph_report.py (0 orphans), check_sellable.py (124/126), cold_read_ledger.py --next (311/311) all clean. preflight.py --skip-tests re-run twice after the fix: 0 FAIL (the one FAIL seen mid-cycle was gate_generator_ownership's documented dirty-tree refusal).
 
-Fixed a real defect preflight flagged: the newest entry's `HANDOFF-FILES:` line still named `ops/preflight.py` as unread, though that entry's own body already re-ledgered it clean. Corrected to `none`. Also brought STATUS.md current against 10 material commits it had never mentioned (`gate_status_currency`). Dashboard regenerated. Pushed to main.
+**Went well:** caught my own mistake before shipping it: rotate_status_history.py --apply-blocker1 archived my new entry and kept the stale one live, because BLOCKER-001's own chain is oldest-first, the opposite of the rest of the file. Fixed by editing the live entry directly.
+
+**Did not go well:** lost time to a network-bound preflight stall on the first run (no --skip-tests), killed by PID once flat, the documented pattern.
+
+**Changing next cycle:** none; no new defect class.
+
+**Next:** standing 31-issue owner-gated queue; room-guide mining lane at genuine diminishing returns (worst room 7% uncovered).
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-19 (~08:1x slot): previous work confirmed finished, closed a self-contradicting cold-read handoff this same slot's own concurrent operator cycle did not touch
+
+NEXT FOR THE OPERATOR: hold the standing Phil-gated queue; this slot's concurrent operator cycle (above) already brought STATUS.md current and declined the room-guide ties it sampled, so nothing further reopens until the next global harvest or a Phil reply on #42.
+
+Attached clean, ff-only onto origin/main. A concurrent operator cycle pushed `22654ac1b` (above) while this slot worked: merged rather than forced, keeping both entries. Its STATUS.md currency fix supersedes the equivalent fix this slot drafted independently; dropped mine as fully redundant rather than ship a duplicate. The one finding it did not cover: the ~07:4x entry's own `HANDOFF-FILES:` line still named `ops/preflight.py` as an unread cold-read candidate, though that same entry's body already says it was re-ledgered clean earlier in the same cycle. Corrected to `none`. Dashboard regenerated. Pushed to main.
 
 HANDOFF-FILES: none
 
