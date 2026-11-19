@@ -567,9 +567,9 @@
       "note": "Read in full (135 lines) and run directly: regenerates both build/ and site/ copies, 20 rooms / 114 zones asserted, 0 drift."
     },
     "build_zone_pages.py": {
-      "status": "clean",
-      "date": "2026-11-17",
-      "note": "2026-11-17: added a second ROOM_GUIDES entry for Kitchen (the new how-to-organize-recipes.html article, previously thin with 1 inbound link). Regenerated the full chain and re-ran test_gate_general_reading.py, test_general_reading.py, test_reading_spread_and_uniqueness.py (all pass); link_graph_report.py confirms 0 thin articles, 0 orphans."
+      "status": "fixed",
+      "date": "2026-11-19",
+      "note": "2026-11-19: own scoped diff, reviewed directly before committing, not a blind re-ledger of the full file. Added one new room-tips lookup/render block (the 'Declutter' label, Kids Bedroom only) matching the existing Room layout/Garage sale/Design/Kitchen island/No cabinets pattern exactly, and added the new label to the generic-tips exclusion tuple so it is not rendered twice. Verified live: heading renders on the one room it targets, no other room's output changed (room.get('tips') lookup returns None everywhere else), full preflight/test suite and both keyword-demand corpora rescored with 0 regressions."
     },
     "canonical_links.py": {
       "status": "clean",
