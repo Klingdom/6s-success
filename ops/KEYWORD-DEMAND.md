@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-11T17:34:53Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 41 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-19T06:52:58Z against 244 page(s) at commit 4a5601477. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-19T10:09:27Z against 244 page(s) at commit ed61b1778. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2810. Checked against 244 published page titles: 1876 covered, 847 partial, 87 gap.
+**Queries found:** 2810. Checked against 244 published page titles: 1877 covered, 847 partial, 86 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 87, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 86, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -32,7 +32,6 @@ Showing the top 80 of 87, ordered by the best rank the phrase reached in any one
 | 3 | how to arrange logs in solo stove | - | How to organize the kitchen stove area (0.33) | logs, solo |
 | 3 | how to organize cricut vinyl | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cricut, vinyl |
 | 3 | organized nurse designs | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | designs, nurse |
-| 4 | how to build a nightstand for beginners | - | How to organize the guest bedroom nightstand (0.33) | beginners, build |
 | 4 | how to make a disposable diaper | - | How we make money: what we sell, and what we do not earn on (0.33) | diaper, disposable |
 | 4 | how to organize a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, tournament |
 | 4 | how to organize hard drive files | - | How to organize paperwork at home with a simple filing system (0.00) | drive, hard |
@@ -101,6 +100,7 @@ Showing the top 80 of 87, ordered by the best rank the phrase reached in any one
 | 19 | online storage for games | - | How to organize the family room game storage (0.33) | games, online |
 | 19 | railings in floor plan | - | Venture plan (0.33) | floor, railings |
 | 20 | decluttering starter home guide | - | Decluttering vs. organizing: what's actually different (0.33) | home, starter |
+| 20 | vanities with makeup counter | - | How to organize the guest bathroom vanity counter (0.33) | makeup, vanities |
 
 ## Partial: we are close, and the title does not use their words
 
@@ -176,7 +176,7 @@ Showing the top 60 of 847.
 | Dining Room | 38 | 0 | 10 | 28 |
 | Entryway | 50 | 1 | 4 | 45 |
 | Family Room | 27 | 0 | 16 | 11 |
-| Garage | 76 | 1 | 18 | 57 |
+| Garage | 76 | 1 | 17 | 58 |
 | Guest Bathroom | 22 | 0 | 14 | 8 |
 | Guest Bedroom | 24 | 0 | 10 | 14 |
 | Hall Closet | 28 | 0 | 8 | 20 |

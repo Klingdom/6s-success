@@ -2398,6 +2398,49 @@ def main():
     finally:
         kd.FORMAT_WORDS = old_format37
 
+    # 69. "beginners"/"beginner" joined FORMAT_WORDS 2026-11-19, scheduled
+    #     operator cycle, found mining the Garage room-guide cluster handed
+    #     off this slot. "simple way to declutter garage for beginners"
+    #     (US, bing, 0.333 coverage) was missing only "beginners" against
+    #     the Lawn and Garden Tool Zone, already matched on "declutter"/
+    #     "garage" via its heading. "for beginners" marks who the guide is
+    #     written for, the same qualifier role "diy"/"tutorial"/"guide"
+    #     already play, not a different physical object. Self-flattery
+    #     checked first: 0 of 244 titles, 1 of 244 headings (an unrelated
+    #     decluttering article, no shared query). Full before/after
+    #     score_rows() diff across both corpora before shipping: 4 US rows
+    #     changed, 0 global; the target row moved partial to covered; two
+    #     same-status pointer reshuffles onto a different already-covered
+    #     decluttering article (A51/A82 precedent, not a regression); one
+    #     gap-to-partial move ("how to build a nightstand for beginners", a
+    #     furniture-building query, "build" stays unmatched so it never
+    #     reaches covered), the normal denominator effect any FORMAT_WORDS
+    #     addition has on a sparse query, not a new content claim.
+    new_format_words38 = ("beginners", "beginner")
+    samples38 = {"beginners": "simple way to declutter garage for beginners",
+                 "beginner": "declutter garage for beginner"}
+    for word in new_format_words38:
+        if word in kd.content_words(samples38[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format38 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format38 - set(new_format_words38)
+    try:
+        for word in new_format_words38:
+            if word not in kd.content_words(samples38[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format38
+    # "small" must NOT be a FORMAT_WORD: 40 of 244 headings carry it
+    # (the site's own "small space" also-called synonym cluster, GOALS.md's
+    # own tracked cluster), far too broad to be a safe qualifier.
+    if "small" in kd.FORMAT_WORDS:
+        fails.append("'small' must not join FORMAT_WORDS: 40/244 headings "
+                     "carry it (the small-space also-called cluster), too "
+                     "broad to ever be a safe qualifier")
+
     if fails:
         print("FAIL")
         for f in fails:
