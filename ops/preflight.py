@@ -10397,7 +10397,20 @@ def gate_verify_deploy_pages_current() -> None:
         return
     unchecked_buy_paths = []
     for fp in sorted(glob.glob(os.path.join(SITE, "*.html"))):
-        slug = os.path.splitext(os.path.basename(fp))[0]
+        basename = os.path.basename(fp)
+        # A `_`-prefixed scratch probe (ops/audit_catalog.py's own
+        # site/_audit_catalog_fixture_<pid>.html, left behind mid-flight by a
+        # concurrent or killed test run) is gitignored and self-cleaning,
+        # never a shipped page; it sometimes plants a deliberately fake
+        # buy.stripe.com link to test other gates. Found 2026-11-19: this
+        # gate had no such exclusion, unlike audit_pages.py's own
+        # PROBE_PREFIXES and the footer-consistency gate above, so a
+        # foreground-killed preflight run left exactly this file behind and
+        # the next run FAILed on it, the same false positive those other
+        # gates were already built to avoid.
+        if basename.startswith("_"):
+            continue
+        slug = os.path.splitext(basename)[0]
         page = slug if slug != "index" else ""
         if page in VD.PAGES:
             continue

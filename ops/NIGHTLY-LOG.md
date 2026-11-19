@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-19: fixed a real false-FAIL in `gate_verify_deploy_pages_current`, a defect class five prior archived entries hit and worked around but never gated
+
+**Did:** Attached clean (`fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`). Read `BACKLOG-2026-09-07.md` (section 2 is exhausted down to A193, sections 3-6 are Done or owner-gated per issues #42-#65, all authored by the Klingdom bot, none from Phil since #65), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last entries of this log. Epic 3 keyword-mining is down to single digits uncovered per room; Etsy/Amazon distribution (section 6 item 4) is filed as issues #43/#44, both waiting on Phil to create the accounts, nothing left to prepare. `preflight.py --skip-tests` run live first: a genuine FAIL, `gate_verify_deploy_pages_current`, on a leftover `site/_audit_catalog_fixture_820.html` (pid 820 confirmed dead) from a test run this same cycle's own first foreground preflight attempt had killed. This exact shape (a killed test leaving the gitignored, self-cleaning probe file behind) is in `ops/NIGHTLY-LOG-ARCHIVE.md` at least six times, always cleared by deleting the file, never gated. Read `ops/preflight.py`'s `gate_verify_deploy_pages_current`: unlike `audit_pages.py`'s `PROBE_PREFIXES` and this same file's own `footer-consistent` gate, it globs `site/*.html` directly with no exclusion for a leading underscore, so any stray probe carrying a fake `buy.stripe.com` link false-FAILs it. Fixed by skipping any basename starting with `_`, matching the established convention exactly. Also found and restored two files a concurrent session's build run had raced mid-cycle (`site/guest-bathroom-deck.html`'s asset fingerprints, `ops/cycle-signal.json`), the documented A180/A185 shape, confirmed stale against the real `sha256sum` of the committed CSS before restoring.
+
+**Verified:** Fail-then-pass proven directly: stashed the fix, reran the new test case, watched it fail with the exact false-FAIL message, restored, confirmed 6/6. `check_urls.py` (236/236), `fix_dashes.py --check` (0/0), `audit_pages.py` (0 findings), `check_sellable.py` (124/126, 2 person-delivered services) all clean. `preflight.py --skip-tests` rerun live to full completion after the fix: 0 FAIL.
+
+**Went well:** the fix matches an existing convention exactly, no new mechanism invented.
+
+**Did not go well:** this gap existed since the gate was written and cost five-plus prior cycles a few minutes each rediscovering the same workaround.
+
+**Changing next cycle:** nothing structural.
+
+**Next:** epic-3 mining or the owner-gated queue, whichever moves first.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-19 (~09:4x slot): previous work confirmed finished, scoped the operator onto the Garage room-guide cluster, nothing started myself
 
 NEXT FOR THE OPERATOR: work the Garage room-guide underperformance cluster (21 partial rows, 11% uncovered, the largest live cluster of any room), starting with the flower/vegetable garden and bulk snacks/bulk t-shirts rows, because it is the only genuinely unblocked lane left and nobody has touched it yet.

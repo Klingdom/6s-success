@@ -96,12 +96,31 @@ def main() -> int:
                       "page: %r" % (r[0][1],))
     VD.CRITICAL_PAGES = orig_crit
 
+    # 6. Found 2026-11-19: a leftover site/_audit_catalog_fixture_<pid>.html
+    #    (ops/audit_catalog.py's own gitignored, self-cleaning test probe,
+    #    left behind only when a test run is killed mid-flight) plants a
+    #    deliberately fake buy.stripe.com link. Confirm it is excluded by
+    #    name prefix, not merely absent from PAGES, the same way
+    #    audit_pages.py's PROBE_PREFIXES already protects the other gates.
+    SITE_DIR = os.path.join(ROOT, "site")
+    stray = os.path.join(SITE_DIR, "_audit_catalog_fixture_999999999.html")
+    with open(stray, "w", encoding="utf-8") as f:
+        f.write('<html><body><a href="https://buy.stripe.com/notARealSlug0000">'
+                "Buy</a></body></html>")
+    try:
+        r, w = _run()
+        if r:
+            fails.append("a stray _audit_catalog_fixture file false-FAILed "
+                         "this gate: %r" % (r,))
+    finally:
+        os.remove(stray)
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: gate_verify_deploy_pages_current, 5/5 checks pass")
+    print("OK: gate_verify_deploy_pages_current, 6/6 checks pass")
     return 0
 
 
