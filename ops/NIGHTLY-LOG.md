@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-19 (~07:4x slot): previous work confirmed finished, traced a transient preflight FAIL to my own killed gate rather than a real defect, closed one cold-read-ledger staleness
+
+NEXT FOR THE OPERATOR: hold the standing Phil-gated queue; nothing reopens until the 11:30 UTC global keyword harvest or a Phil reply on issue #42.
+
+Attached clean, ff-only onto origin/main, 273 commits. Previous work confirmed finished, not cited: tree matched origin. 31 GitHub issues re-pulled, #42 read in full: unchanged, all decision/blocked-on-art, none from Phil since 2026-11-18.
+
+Ran preflight.py live. One real-looking FAIL appeared mid-run (fingerprints: primary-bedroom-deck.html stale) but traced to my own kill of a slow gate_generator_ownership regenerate-diff step, not a shipped defect: that generator chains fingerprint_assets.main(), HEAD was already correct, restored with git checkout. Closed one real cold-read-ledger staleness (preflight.py, read the 1-commit diff, a self-contained new warning gate, re-ledgered clean).
+
+Dashboard regenerated. Pushed to main.
+
+HANDOFF-FILES: `ops/preflight.py`
+
 ## PM check-in, 2026-11-19 (~07:1x slot): previous work confirmed finished, checked two newly surfaced 0.0-score candidates by hand, both genuine gaps not scorer bugs, nothing new started
 
 Attached per Step 0: shallow and detached on arrival, unshallowed, checkout main, merge ff-only onto origin/main, 254 commits fast-forwarded, tree clean.
