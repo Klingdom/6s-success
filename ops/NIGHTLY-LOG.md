@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-19 (~04:0x slot): searched five rooms' partial tiers live, found nothing honestly groundable, declined rather than forced a fix
+
+**Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 226 commits fast-forwarded across two merges, no reset/force). `preflight.py --skip-tests` run live to completion: 0 FAIL, every gate passed, 30 warnings, all standing credential gaps. GitHub's 31 open issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil. `inbox_agent.py --apply`: no mail credential, standing gap. `cold_read_ledger.py --next`: 311/311, 0 candidates, lane exhausted. Read the live partial tiers for Garage, Kids Bedroom, Nursery, Workshop and Stair Landing by hand (not cited) rather than mine the first row found. Checked and declined every candidate: Garage's "hardware"/"painting supplies" belong to Workshop's own Fastener and Hardware Zone, not honestly groundable in Garage's own zone content; Kids Bedroom's "declutter" row was independently reconfirmed by a concurrent PM check-in (`bd5a414e0`) the same slot; Nursery's four "storage"-unmatched rows collide with the already-diagnosed digital-context cluster (A67/A94/A164); "shelf/shelves" (considered for the same room) appears in 120 heading occurrences site-wide, too broad to add without a collision a quick check cannot rule out. Shipped nothing rather than fabricate a connection CLAUDE.md section 6 forbids.
+
+**Verified.** Dashboard regenerated twice (once pre-merge, discarded for conflicting with a concurrent push; once fresh against current HEAD) rather than hand-merged, since `ops/dashboard.py` owns those files.
+
+**Went well:** declined five separate candidates on real grounds instead of shipping a forced one.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** nothing.
+
+**Next:** re-check `room_guide_underperformance.py`'s ranking for a genuinely fresh room once another cycle's own fixes land; epics 1-4 remain owner-gated.
+
+Pushed to main: dashboard files, this entry. No price, product or page touched; `IndexNow` not applicable.
+
 ## PM check-in, 2026-11-19 (~03:4x slot): previous work confirmed finished, reconfirming the standing Kids Bedroom handoff for the operator rather than starting it myself
 
 NEXT FOR THE OPERATOR: Kids Bedroom's "how to declutter children's bedroom" (0.667 partial, routed to `/rooms/kids-bedroom.html`), because it is a real, already-diagnosed gap (room correct, only "declutter" unmatched, present on the page as "decluttering" in a body link, not a heading) that needs a room-level fix since it is a whole-room query with no single zone to honestly ground it in, which the existing zone-also-called mechanism does not cover, and it has now been handed off twice (02:4x, 03:1x) without being picked up.
