@@ -12,6 +12,29 @@ Patio or Deck's 3 partial rows were correctly left alone by the prior cycle (a c
 
 Pushed to main: this entry.
 
+## Scheduled operator cycle, 2026-11-19: closed the "indoor plants" gap the 02:1x PM check-in handed off as "no honest page here", by excluding it as off-topic noise rather than forcing a fix
+
+**Correcting this entry's own framing after a concurrent 02:4x PM check-in landed first, above:** that entry re-confirmed the same "no honest page here" reading on arrival, before this fix existed. Nothing in it conflicts with what follows; it is evidence the diagnosis below was shared independently, not duplicated work.
+
+**Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 214 commits fast-forwarded, no reset/force). Full `preflight.py` run live first: 0 FAIL, 27 warnings, all standing. `cold_read_ledger.py --next`: 311/311 ledgered, 0 candidates, that lane confirmed exhausted. GitHub's 31 open issues re-pulled live, unchanged, all `decision`/`blocked-on-art`; read issue #42's own comment thread in full, which independently confirms epics 1-4 are owner-gated and epic 5's keyword lane is under the diminishing-returns threshold. `inbox_agent.py --apply`: no mail credential, standing gap. Also checked `build/listings/check_etsy.py` (PASS, 0 FAIL) since the roadmap's own guidance this cycle points toward Etsy/Amazon as the real distribution lane; all 3 listings (L1, L4, L5) remain fully built and ready, waiting only on Phil opening the shop (issue #44, already filed with everything up to that gate done).
+
+The 02:1x PM check-in above had just read Patio or Deck's partial tier and named "how to organize indoor plants" a "genuine gap with no honest page here", correctly diagnosing that the room's Garden and Plant Care Zone (outdoor potted-plant watering, pots, fertilizer safety, per its own `content.json`) has nothing to do with houseplant care, and declined to force a match. Read it the same way, but reached for a mechanism that entry didn't use: this is the exact "genuinely off-topic, not a wording gap" shape the existing `houseplants` exclusion (A181, Primary Bedroom) already covers, just unmatched by that regex because the query says "plants" without the compound word. Checked both harvests before touching anything (CLAUDE.md 5d): "house plants" and "indoor plants" each appear in exactly the rows this fixes (one more, "how to organize house plants", already off-task elsewhere and not currently counted in any room's tally); "how to arrange plants in a garden" (genuinely about an outdoor garden bed) contains neither phrase. Drive-by finding, not shipped: "starting a nursery for plants" is separately misrouted to the baby Nursery room on the word "nursery" alone, but it carries no `ON_TOPIC` word so no room tally currently reports it; nothing to fix there today.
+
+Added `\bhouse plants?\b|\bindoor plants?\b` to `OFF_TOPIC_CONTEXT` in `ops/room_guide_candidates.py`.
+
+**Turned into a test, per CLAUDE.md 10b.** 3 new cases in `ops/tests/test_room_guide_candidates.py` (2 exclusions, 1 genuine-survivor counter-check). Fail-then-pass proved directly: `git stash` the regex change alone, reran, watched exactly the 2 new exclusion cases fail while the counter-check still passed, restored, reconfirmed 154/154. First draft of the counter-check query ("how to arrange plants in a garden") was itself wrong, caught before shipping: it never reaches `ON_TOPIC` at all (no organize/declutter/clean/storage/stock word), so it would have "passed" for the wrong reason regardless of the fix. Replaced with "how to organize garden plants", confirmed it does trigger `ON_TOPIC` and is unaffected by the new pattern.
+
+**Verified.** Patio or Deck's own guide tally: 10% to 7% uncovered (3 partial rows to 2). Full 20-room rerun: no other room's counts moved. `test_room_guide_underperformance.py` (19/19), `test_keyword_demand.py` (74/74), `fix_dashes.py --check` (0/0), `cold_read_ledger.py --stale` (0) all clean. `preflight.py --skip-tests` re-run after commit: 0 FAIL, `gate_generator_ownership`'s only pre-commit FAIL was against the dirty tree, the documented shape, not a defect.
+
+**Went well:** reading a concurrent session's own "declined, no honest page" conclusion as a real handoff rather than a closed door found a genuine fix one mechanism-switch away.
+
+**Did not go well:** the first draft of the negative-control test case was invalid (tested a query that never reaches the code path being proven), caught only by running it, not by inspection; worth remembering that a "survivor" test needs its own `ON_TOPIC` match confirmed, not just absence from `OFF_TOPIC_CONTEXT`.
+
+**Changing next cycle:** nothing; same standing discipline.
+
+**Next:** no new preflight gate needed (10b): this is a normal instance of the already-established `OFF_TOPIC_CONTEXT`/self-flattery/before-after-diff mechanism. The room-guide lane remains in diminishing returns site-wide (worst room 13% uncovered); the only genuinely unblocked non-Phil-gated work left in that lane is reading a handed-off row by hand, the same way this cycle's own fix was found. Etsy listings are fully built and ready; issue #44 (open the shop) is the single highest-leverage owner gate for the distribution lane the roadmap names. 31 open `decision`/`blocked-on-art` issues, none from Phil.
+
+Pushed to main: `ops/room_guide_candidates.py`, `ops/tests/test_room_guide_candidates.py`, `BACKLOG-2026-09-07.md`, this entry, dashboard files. No price, product or page touched; `IndexNow` not applicable.
 
 ## PM check-in, 2026-11-19 (~02:1x slot): previous work confirmed finished, mined two more rooms rather than re-cite the same owner-gated state
 

@@ -937,6 +937,22 @@ _result_bedroom_genuine = rgc.score_room([_bedroom_genuine], [], _room)
 check("a genuine 'bedroom storage ideas' row is NOT excluded by the houseplants/singing-room pattern",
       _result_bedroom_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-19, scheduled operator cycle, mining Patio or Deck's
+# remaining partial tier. Houseplant-care queries are genuinely off-topic
+# for the Garden and Plant Care Zone, which is about outdoor potted plants.
+_indoor_plants = {"query": "how to organize indoor plants", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_indoor_plants = rgc.score_room([_indoor_plants], [], _room)
+check("an 'indoor plants' off-topic-context row is excluded",
+      _result_indoor_plants["on_topic_rows"] == 0)
+_house_plants = {"query": "how to organize house plants", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_house_plants = rgc.score_room([_house_plants], [], _room)
+check("a 'house plants' off-topic-context row is excluded",
+      _result_house_plants["on_topic_rows"] == 0)
+_garden_genuine = {"query": "how to organize garden plants", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_garden_genuine = rgc.score_room([_garden_genuine], [], _room)
+check("a genuine 'organize garden plants' row is NOT excluded by the house/indoor-plants pattern",
+      _result_garden_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

@@ -801,7 +801,25 @@ OFF_TOPIC_CONTEXT = re.compile(
     # in exactly the one row named here, both already `partial` on the
     # wrong page either way, so excluding them cannot suppress a genuine
     # match.
-    r"\bhouseplants?\b|\bsinging room\b",
+    r"\bhouseplants?\b|\bsinging room\b|"
+    # Found 2026-11-19, scheduled operator cycle, mining Patio or Deck's
+    # remaining partial tier. "how to organize indoor plants" (0.0 title
+    # coverage) was scoring to the generic deck page purely on a
+    # coincidental heading-word overlap; the room's own Garden and Plant
+    # Care Zone is entirely about outdoor potted plants on a patio
+    # (watering, pots, fertilizer and chemical safety, per its own
+    # content.json purpose), nothing about houseplant care, so there is no
+    # honest page to route this to either, the same "genuinely off-topic,
+    # not a wording gap" shape "houseplants" above already covers for a
+    # different room. "how to organize house plants" is the same query
+    # phrased without the compound word, already routing to an unrelated
+    # article elsewhere in the US corpus. Checked against both harvests
+    # first: "house plants" and "indoor plants" each appear only in the
+    # rows named here; "how to arrange plants in a garden" (genuinely
+    # about an outdoor garden bed, correctly routed to the Lawn and Garden
+    # Tool Zone) contains neither phrase, so excluding them cannot
+    # suppress a genuine match.
+    r"\bhouse plants?\b|\bindoor plants?\b",
     re.I)
 
 
