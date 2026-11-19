@@ -212,7 +212,24 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "option", "100", "genre", "long", "last",
                           "australia", "ikea", "pinterest", "stuff",
                           "apartment", "style", "rectangular", "square",
-                          "attractively", "big"))
+                          "attractively", "big", "beginners", "beginner"))
+
+# "beginners" and "beginner" joined 2026-11-19, scheduled operator cycle,
+# found mining the Garage room-guide cluster handed off this slot. "simple
+# way to declutter garage for beginners" (US, bing, 0.333 coverage) was
+# missing only "beginners" against the Lawn and Garden Tool Zone, already
+# matched on "declutter"/"garage" via its heading. "for beginners" marks who
+# the guide is written for, the same qualifier role "diy"/"tutorial"/"guide"
+# already play, not a different physical object. Self-flattery checked
+# first (5c): 0 of 244 titles, 1 of 244 headings (an unrelated decluttering
+# article, no shared query). Full before/after score_rows() diff across
+# both corpora before shipping: 4 US rows changed, 0 global; the target row
+# moved partial to covered; two same-status pointer reshuffles onto a
+# different already-covered decluttering article (A51/A82 precedent, not a
+# regression); one gap-to-partial move ("how to build a nightstand for
+# beginners", a furniture-building query, "build" stays unmatched so it
+# never reaches covered), the normal denominator effect any FORMAT_WORDS
+# addition has on a sparse query, not a new content claim. 0 regressions.
 
 # "apartment" and "style" joined 2026-11-18, scheduled operator cycle, found
 # mining Primary Bedroom's own partial tier: "how to declutter my apartment"

@@ -903,8 +903,8 @@
     },
     "keyword_demand.py": {
       "status": "clean",
-      "date": "2026-11-18",
-      "note": "Re-ledgered 2026-11-18, scheduled operator cycle: the only touch since the 2026-11-17 ledger date is commit fe9bdce28, adding \"stuff\" to FORMAT_WORDS (the same A161 long/last zero-discriminating-power shape, the Garage article's own title the sole carrier of the word). Diff read directly against the commit message's own full before/after score_rows() account (gap unchanged, 3 rows per corpus moved partial to covered onto genuinely correct pages, 0 regressions); matches the live nightly-log entry byte for byte. No defect found."
+      "date": "2026-11-19",
+      "note": "Re-ledgered 2026-11-19, scheduled operator cycle: the only touch since the 2026-11-18 ledger date adds beginners/beginner to FORMAT_WORDS, found mining the Garage room-guide cluster handed off this slot (simple way to declutter garage for beginners, the sole unmatched word). Self-flattery checked first (0/244 titles, 1/244 headings on an unrelated article). Full before/after score_rows() diff read directly, not cited: US gap 87 to 86, partial unchanged at 847, covered 1876 to 1877; global unchanged. Diff matches the commit's own documented account exactly. No defect found."
     },
     "keyword_demand_global.py": {
       "status": "fixed",

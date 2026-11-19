@@ -12443,13 +12443,12 @@
       "room": "",
       "best_page": "/contact.html",
       "best_page_title": "Contact 6S Success: books, quotes, workshops, and press",
-      "coverage": 0.25,
-      "heading_coverage": 0.25,
+      "coverage": 0.333,
+      "heading_coverage": 0.333,
       "heading_page": "/articles/family-wont-put-things-back.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
-        "beginner",
         "bench",
         "correctly"
       ],
@@ -14152,13 +14151,12 @@
       "room": "Living Room",
       "best_page": "/zones/living-room-the-bookshelves-and-display.html",
       "best_page_title": "How to organize the living room bookshelves and display",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/living-room-the-bookshelves-and-display.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "beginners",
         "decorate"
       ],
       "markets": [
@@ -47976,6 +47974,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "4a5601477",
-  "scored_at": "2026-11-19T06:52:59Z"
+  "scored_against_commit": "ed61b1778",
+  "scored_at": "2026-11-19T10:09:33Z"
 }
