@@ -20316,6 +20316,93 @@ def gate_room_guide_mining_diminishing_returns() -> None:
         warn("room-guide-mining-diminishing-returns", problem)
 
 
+def cross_surface_tie_count(rows):
+    """Pure logic for gate_cross_surface_ties_tracked, testable without the
+    real keyword-demand files.
+
+    rows: a list of dicts shaped like keyword-demand.json's own 'rows'
+    (needs only 'coverage', 'heading_coverage', 'best_page', 'heading_page').
+    Returns the count of partial-tier rows (score in [0.5, 1.0)) where the
+    title surface and the heading surface score an EXACT tie but credit two
+    DIFFERENT pages, so score_rows()'s title-wins-on-tie convention (see its
+    own comment in ops/keyword_demand.py) is picking `best_page` arbitrarily
+    rather than on any decisive signal.
+
+    Found 2026-11-19, reading one day's own BACKLOG-2026-09-07.md and
+    ops/NIGHTLY-LOG.md entries: at least five same-day cycles (A74, A82,
+    A114, A197's own two further instances, "bags of spices", "gear toolbox
+    organization ideas") each independently traced this exact shape by hand
+    and correctly declined to force a fix, each spending a real tracing
+    session re-deriving "this row is genuinely ambiguous, not a wording
+    gap" from scratch. None of those finds was wrong: CLAUDE.md section 6
+    forbids forcing a connection the content does not support, and these
+    rows genuinely have no decisive signal. The cost this gate removes is
+    not the judgement call, it is re-deriving "a row with this shape exists
+    and needs that judgement call" from a fresh 20-room mining pass every
+    time, when a count already sitting in the committed corpus would have
+    told the next cycle the same thing for free. It does not try to tell a
+    genuine ambiguity apart from a tie the title default already resolves
+    correctly (most of the 37 in the US corpus alone, checked live the day
+    this gate was written, are the latter); that triage is still a human
+    judgement, the same one `_tie_break`'s own long docstring already
+    narrates case by case. This is advisory, like
+    room_guide_mining_diminishing_returns above, not a ledger of individual
+    rows: it exists so a cycle can check one number before opening a
+    tracing session on a shape this file's own history has already named
+    five separate times in one day.
+    """
+    n = 0
+    for r in rows:
+        score = r.get("coverage", 0.0)
+        hscore = r.get("heading_coverage", 0.0)
+        if score != hscore or not (0.5 <= score < 0.999):
+            continue
+        best_page = r.get("best_page")
+        heading_page = r.get("heading_page")
+        if best_page and heading_page and best_page != heading_page:
+            n += 1
+    return n
+
+
+def gate_cross_surface_ties_tracked() -> None:
+    """Warn with the live count of unresolved title-vs-heading scoring ties
+    in both keyword-demand corpora, so a cycle does not have to re-derive
+    that a row is this already-named shape (A74/A82/A114/A197 and
+    siblings) from a fresh trace. See cross_surface_tie_count's own
+    docstring for the full account.
+
+    Proof this can fail: ops/tests/test_gate_cross_surface_ties_tracked.py
+    constructs a synthetic row set with 0 ties (must stay silent) and one
+    with a real tie (must warn, naming the count), then runs the real gate
+    against the real committed files and confirms it warns with a positive
+    count today.
+    """
+    us_path = os.path.join(ROOT, "ops", "keyword-demand.json")
+    global_path = os.path.join(ROOT, "ops", "keyword-demand-global.json")
+    total = 0
+    found_any_file = False
+    for path in (us_path, global_path):
+        if not os.path.exists(path):
+            continue
+        found_any_file = True
+        try:
+            rows = json.loads(io.open(path, encoding="utf-8").read())["rows"]
+            total += cross_surface_tie_count(rows)
+        except Exception:                                      # noqa: BLE001
+            return
+    if not found_any_file:
+        return
+    if total:
+        warn("cross-surface-ties",
+             f"{total} partial-tier row(s) across both keyword-demand "
+             "corpora are exact title-vs-heading scoring ties crediting two "
+             "different pages (score_rows()'s title-wins-on-tie default, "
+             "ops/keyword_demand.py). Most are already correctly resolved "
+             "by that default; before tracing a fresh one by hand, check "
+             "whether it matches the already-declined shape named in "
+             "BACKLOG-2026-09-07.md (A74/A82/A114/A197) first.")
+
+
 def browser_claimed_but_unusable(binary_present, renders, reason):
     """Pure logic for gate_browser_probe_honest, testable without a browser.
 
@@ -33627,6 +33714,7 @@ def main() -> int:
     run_gate(gate_keyword_demand_rescored_current)
     run_gate(gate_keyword_demand_global_rescored_current)
     run_gate(gate_room_guide_mining_diminishing_returns)
+    run_gate(gate_cross_surface_ties_tracked)
     run_gate(gate_keyword_demand_no_content_words)
     run_gate(gate_owner_questions_not_stale)
     run_gate(gate_roadmap_gate_in_owner_email)
