@@ -2,7 +2,13 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-19 (~01:1x slot): previous work confirmed finished by a fresh live preflight run, nothing newly unblocked, no push notification
+## PM check-in, 2026-11-19 (~01:4x slot): previous work confirmed finished, found a real sized-for-a-slot operational-honesty gap and handed it to the operator rather than start it here
+
+NEXT FOR THE OPERATOR: backfill CHANGELOG.md with real CHG entries for what shipped 2026-10-28 to now (all 20 room guides completed, the room-guide keyword-mining lane declared exhausted, the sitemap UTC bug, several STATUS.md/NIGHTLY-LOG rotations), because `gate_changelog_current` now warns it is 22 days stale and its own text says a date bump is not enough.
+
+Reattached clean (unshallow, ff-only onto `6323ddf2a`, 208 commits). Previous work (the 01:1x entry and the hourly check-in after it) confirmed finished: `checks.yml` green, tree clean. Ran `preflight.py --skip-tests` live myself rather than cite it: 0 FAIL through every gate reached, killed clean at the documented `gate_generator_ownership` network wall after 4 minutes of flat CPU, 29 standing warnings. Re-pulled all 31 open issues and read #42's full thread directly: unchanged, none from Phil since #65. `ops/last-owner-notification.json` shows 2026-11-18T07:30Z, inside its 48h floor, no material change, so no push sent. This is the first genuinely new, non-Phil-gated, closeable item found in several cycles; too large to start 3 minutes before the operator.
+
+Pushed to main: `ops/cycle-signal.json`, dashboard files, this entry.
 
 NEXT FOR THE OPERATOR: unchanged, watch issue #42 and the 30 other open decision/P0/blocked-on-art issues for a reply from Phil; every genuinely unblocked item remains owner-gated.
 
