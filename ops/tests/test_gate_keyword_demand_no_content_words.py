@@ -18,8 +18,18 @@ recipes" was ALREADY gap, so emptying its content words changed no status at
 all. That blind spot is the whole point of this gate, and case 4 below
 reproduces it against the real committed corpus rather than a fixture.
 
+Case 4 no longer hardcodes "recipes"/"how to organize recipes": that one row
+fell out of the harvest on 2026-11-19 (keyword-demand.yml narrowed to
+--source google, and the row turned out to be Bing-only), which let the
+self-test pass for the wrong reason and shipped a real CI failure. It now
+finds any current on-topic query with exactly one content word and plants
+that word instead, so a future source change cannot silently defang it
+again.
+
 Run:  python ops/tests/test_gate_keyword_demand_no_content_words.py
 """
+import io
+import json
 import os
 import sys
 
@@ -28,6 +38,7 @@ sys.path.insert(0, os.path.join(ROOT, "ops"))
 
 import preflight                                               # noqa: E402
 import keyword_demand as kd                                    # noqa: E402
+import room_guide_candidates as rgc                            # noqa: E402
 
 
 def main() -> int:
@@ -66,24 +77,70 @@ def main() -> int:
     if bad:
         fails.append("an off-topic empty row wrongly reported: %r" % bad)
 
-    # 4. FAIL-THEN-PASS against the REAL corpus, not a fixture. Put
-    #    "recipes" back into the real FORMAT_WORDS exactly as A116 shipped
-    #    it and confirm the real gate fails on the real committed file.
-    real_format_words = kd.FORMAT_WORDS
-    try:
-        kd.FORMAT_WORDS = frozenset(set(real_format_words) | {"recipes"})
-        preflight.FAIL, preflight.WARN = [], []
-        preflight.gate_keyword_demand_no_content_words()
-        if not preflight.FAIL:
-            fails.append("re-adding 'recipes' to FORMAT_WORDS did not fail "
-                         "the real gate, so the gate cannot catch the exact "
-                         "defect it was built for")
-        elif not any("how to organize recipes" in m
-                     for _, m in preflight.FAIL):
-            fails.append("the gate failed but did not name the real "
-                         "offending query: %r" % (preflight.FAIL,))
-    finally:
-        kd.FORMAT_WORDS = real_format_words
+    # 4. FAIL-THEN-PASS against the REAL corpus, not a fixture. The original
+    #    version of this case hardcoded "recipes" and "how to organize
+    #    recipes" (A116's own shipped defect), and silently stopped testing
+    #    anything on 2026-11-19 when that one row fell out of the harvest:
+    #    keyword-demand.yml was narrowed to --source google the same day
+    #    (Bing's osjson.aspx returning HTTP 204 to its own canary), "how to
+    #    organize recipes" turned out to be Bing-only, and the gate then had
+    #    no real row left to find, so it reported clean for the wrong
+    #    reason. Caught live by checks.yml (run 44547908641), not by this
+    #    test, which is exactly the blind spot CLAUDE.md 0.4 names. Fixed to
+    #    stop depending on one named row: scan the REAL committed corpus for
+    #    any on-topic query that currently has exactly one content word
+    #    (using the same on_topic rule the real gate applies), plant THAT
+    #    word into FORMAT_WORDS, and confirm the real gate fails and names
+    #    that exact query. Whatever the harvest looks like on the day this
+    #    runs, some on-topic query having exactly one content word is a
+    #    structural near-certainty across thousands of short queries, so
+    #    this no longer depends on any one phrase surviving a source change.
+    def on_topic(query):
+        if rgc.OFF_TOPIC_CONTEXT.search(query):
+            return False
+        if rgc.DIGITAL.search(query):
+            return False
+        return bool(rgc.ON_TOPIC.search(query))
+
+    rows = []
+    for name in ("keyword-demand.json", "keyword-demand-global.json"):
+        path = os.path.join(ROOT, "ops", name)
+        rows += json.loads(io.open(path, encoding="utf-8").read())["rows"]
+
+    target_query, target_word = None, None
+    for row in rows:
+        query = row.get("query", "")
+        if not query or not on_topic(query):
+            continue
+        cw = kd.content_words(query)
+        if len(cw) == 1:
+            target_query, target_word = query, cw[0]
+            break
+
+    if target_query is None:
+        fails.append("no on-topic query in the real committed corpus has "
+                     "exactly one content word today, so case 4 has "
+                     "nothing real to plant a defect against; widen the "
+                     "search or accept this as a real, reportable gap "
+                     "rather than skip the check silently")
+    else:
+        real_format_words = kd.FORMAT_WORDS
+        try:
+            kd.FORMAT_WORDS = frozenset(set(real_format_words)
+                                        | {target_word})
+            preflight.FAIL, preflight.WARN = [], []
+            preflight.gate_keyword_demand_no_content_words()
+            if not preflight.FAIL:
+                fails.append(
+                    "re-adding %r to FORMAT_WORDS (the sole content word "
+                    "of the real query %r) did not fail the real gate, so "
+                    "the gate cannot catch the exact defect it was built "
+                    "for" % (target_word, target_query))
+            elif not any(target_query in m for _, m in preflight.FAIL):
+                fails.append("the gate failed but did not name the real "
+                             "offending query: %r" % (preflight.FAIL,))
+        finally:
+            kd.FORMAT_WORDS = real_format_words
 
     # 5. Restored: today's real shipped state must be clean.
     preflight.FAIL, preflight.WARN = [], []
