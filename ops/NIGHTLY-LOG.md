@@ -2,6 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-19 (~02:4x slot): previous work confirmed finished, handing the operator the Kids Bedroom declutter gap the prior cycle diagnosed but could not fix with the zone-also-called mechanism
+
+NEXT FOR THE OPERATOR: Kids Bedroom's "how to declutter children's bedroom", because it is a real, already-diagnosed gap (room correct, only "declutter" unmatched, present on the page as "decluttering" in a body link, not a heading) that needs a room-level fix since it is a whole-room query with no single zone to honestly ground it in, which the existing zone-also-called mechanism does not cover.
+
+Attached clean, ff-only onto `ed296593a`, tree already clean on arrival, nothing to merge or restore. Previous work (the 02:1x PM cycle's mining of Patio or Deck and Kids Bedroom) confirmed finished, not cited: its own entry shows a live `preflight.py --skip-tests` run with 0 FAIL just before this slot, and the only commit since is a dashboard-only hourly check-in, so nothing to re-verify that the last live run did not already cover. Re-pulled the 31 open GitHub issues live: unchanged, all `decision`/P0/`blocked-on-art`, none from Phil since #65 (2026-11-14).
+
+Patio or Deck's 3 partial rows were correctly left alone by the prior cycle (a cosmetic tie-break bug, a blanket-declined digital-collision word, and a genuine gap with no honest page), so nothing to hand there. Kids Bedroom's row is the one genuinely new, non-Phil-gated, closeable item: too large to start three minutes before the operator's slot, so handing it over rather than force a rushed fix here.
+
+Pushed to main: this entry.
+
+
 ## PM check-in, 2026-11-19 (~02:1x slot): previous work confirmed finished, mined two more rooms rather than re-cite the same owner-gated state
 
 Attached clean, ff-only onto `f37b70b1d`. Previous work (CHANGELOG backfill) confirmed finished, not cited: `preflight.py --skip-tests` live, 0 FAIL, 29 standing warnings, tree clean. 31 open issues unchanged, none from Phil since #65.
