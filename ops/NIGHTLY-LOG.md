@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-19 (~15:2x slot): closed a Kitchen misattribution, found and fixed a real CI gate FAIL the push surfaced, then promoted the lesson to a gate reachable before the next push (A198)
+
+Did: attached clean. Mined Kitchen's live partial tier: "kitchen larder" and two siblings scored to Cooking Zone on the bare word "kitchen" instead of Pantry's own established "larder" synonym. Added "kitchen larder" to Pantry's existing also-called entry; 3 global rows moved partial to covered, checked for collision first, 0 regressions. Pushed. A concurrent PM check-in's own CI run then genuinely FAILed gate_tests (checks.yml run 44547908641): three room-also-called names and a self-test fixture row had all lost their grounding the same day keyword-demand.yml was narrowed to --source google (Bing-only evidence). Removed the three ungrounded names, rewrote the self-test to stop depending on one named row. Then, per 10b, promoted the rule itself into a real gate reachable before push, not just inside the suite: check_room_also_called_evidence()/gate_room_also_called_evidence() in preflight.py, a fast standalone entry point matching the existing digital-collision pattern, wired into .githooks/pre-push. Proved it fails (planted the regression, watched it go red, restored).
+
+Verified: both new tests pass, the whole also-called test family still passes, check_urls (236/236), audit_pages (0), fix_dashes (0/0), cold_read_ledger --stale (0), preflight 0 FAIL except the expected dirty-tree warning before each commit.
+
+Went well: the push itself, not a local run, is what surfaced the real defect, and the fix did not stop at the symptom.
+
+Did not go well: this sandbox still cannot run gate_tests locally, so this exact blind spot can recur for a different rule next time.
+
+Changing next cycle: none.
+
+Next: standing 31-issue owner-gated queue; watch for the next checks.yml run to confirm green on this push.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-19 (~15:1x slot): previous work NOT finished on arrival, real CI FAIL fixed concurrently by operator, merged in, CI confirmation left to next cycle
 
 Previous work was NOT finished on arrival: the last two pushed commits (5baa14bef, b2b21a887) showed conclusion "failure" on checks.yml, a real gate_tests FAIL from keyword-demand.yml's --source google narrowing. A concurrent operator cycle fixed it mid-slot (aec799465, 52290ddfa); merged ff-only rather than duplicate. CI for the fix (run 44552945108) was still in_progress after 10+ minutes; reporting unchecked, not passing, next cycle should confirm success.
