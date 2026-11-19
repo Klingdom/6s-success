@@ -240,13 +240,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-07T02:00:39Z",
-   "mode": "changed",
-   "offered": 2,
-   "accepted": 2,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-07T12:06:34Z",
    "mode": "changed",
    "offered": 1,
@@ -658,6 +651,13 @@
    "offered": 2,
    "accepted": 2,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-19T07:04:07Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -763,7 +763,7 @@
   "https://6s-success.com/zones/guest-bathroom-the-toilet-area": "111513e1a7ef26d5",
   "https://6s-success.com/zones/guest-bedroom-the-guest-bed-and-linens": "0794e510fbe61129",
   "https://6s-success.com/zones/guest-bedroom-the-guest-closet": "ef4dc8ae8ec01295",
-  "https://6s-success.com/zones/guest-bedroom-the-guest-dresser": "8d177c2530908977",
+  "https://6s-success.com/zones/guest-bedroom-the-guest-dresser": "099890a5efc37b50",
   "https://6s-success.com/zones/guest-bedroom-the-guest-nightstand": "56e292d31f27731c",
   "https://6s-success.com/zones/guest-bedroom-the-guest-welcome-and-work-surface": "4b5c94d49a738446",
   "https://6s-success.com/zones/hall-closet-the-cleaning-equipment-zone": "b2a2c0e49f03fdc3",
