@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-19 (~02:0x UTC): backfilled CHANGELOG.md's 22-day gap with 4 real CHG entries, the item the 01:4x PM check-in handed off rather than started itself
+
+**Did.** Attached clean (checkout arrived shallow and detached, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` onto `6323ddf2a`, 208 commits fast-forwarded, no reset/force). Read `CLAUDE.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md` and `STATUS.md` fresh. Ran `preflight.py --skip-tests` live: 0 real FAIL in every block reached, stalled briefly on a concurrent session's own preflight lock (pid 6834), then on the documented `gate_ci_conclusion_current`/network wall; killed clean. While that was running, fetched and fast-forwarded 2 further commits a concurrent PM check-in had just pushed, whose own entry named the real, sized-for-a-slot gap: `gate_changelog_current` warning `CHANGELOG.md` 22 days stale (last real entry 2026-10-28), with its own docstring saying a date bump alone is not enough.
+
+**Found and discarded a stray diff rather than commit it.** On arrival, `git status` showed `site/patio-or-deck-deck.html` and `ops/cycle-signal.json` modified: the asset fingerprint query strings on the page had changed (`site.css?v=54ccf0a602` to a different hash) with no corresponding source change, the same transient concurrent-build-race shape A180 already documented. Confirmed by diff (only the fingerprinted query strings moved, nothing else) and restored both from `HEAD` (`git restore --source=HEAD`) rather than risk committing another session's in-flight, not-yet-real output.
+
+**Wrote 4 genuine CHG entries (CHG-2026-0025 through 0028)**, each grounded in real commits/evidence already in `ops/NIGHTLY-LOG.md` and `STATUS.md`, not invented to satisfy the date field: (25) the Home Quest symptom picker widened from 23 zones/13 rooms to 40+ zones across all 20 rooms (A166-A170, Personal Function Discovery row in `STATUS.md` section 8); (26) the room-guide keyword-mining lane's roughly 20 genuine misattribution/wording-gap fixes this window plus the new `gate_room_guide_mining_diminishing_returns` that turned "exhausted" from an assertion into a measured stop; (27) the sitemap UTC-date rollover bug recurring in a sibling function the first fix never reached (2026-11-04 and 2026-11-07 instances); (28) `STATUS.md`'s deploy-build citation and this project's own living documents caught drifting stale repeatedly and rotated, per `CLAUDE.md` 0.4. Updated the file's own "Last updated" line to 2026-11-19 last, after the real entries existed, not instead of them.
+
+**Verified.** `ops/preflight.changelog_staleness()` called directly against the real file: gap 0 days (was 22). `ops/tests/test_gate_changelog_current.py` run directly (no pytest in this sandbox): PASS, 6 checks. `fix_dashes.py --check`: 0/0. `check_urls.py`: 236/236. `cold_read_ledger.py --stale`: 0. Grepped for the 4 new CHG IDs elsewhere in the repo: no collisions. Re-fetched `origin/main` immediately before committing: 0 commits behind, no concurrent push to race against.
+
+**Went well:** the concurrent session's own handoff was specific and correctly sized for one slot, and it held up: a real 22-day gap, not a stale-but-harmless one, since the document's own text explicitly forbids closing it with a date bump alone.
+
+**Did not go well:** nothing new; the stray fingerprint-diff race is the same already-documented class A180 found, just not yet worth a dedicated gate on its own (it self-heals and has never once been committed by any cycle that checked first).
+
+**Changing next cycle:** nothing; no new defect class found. `gate_changelog_current`'s 21-day threshold means this will warn again in three weeks if nothing material is added before then; worth a glance, not a new mechanism.
+
+**Next:** unchanged from the last several entries. All 31 open GitHub issues remain `decision`/P0/`blocked-on-art`, none from Phil since #65 (2026-11-14); both non-Phil-gated lanes (room-guide mining, cold-read) remain exhausted. No push notification: `ops/last-owner-notification.json` shows the last send at 2026-11-18T07:30Z, inside its 48h floor, and nothing customer-facing or financial changed this cycle (an operating-document backfill, not a product, price or page change).
+
+Pushed to main: `CHANGELOG.md`, dashboard files (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this entry. No price, product or page touched; `IndexNow` not applicable.
+
 ## PM check-in, 2026-11-19 (~01:4x slot): previous work confirmed finished, found a real sized-for-a-slot operational-honesty gap and handed it to the operator rather than start it here
 
 NEXT FOR THE OPERATOR: backfill CHANGELOG.md with real CHG entries for what shipped 2026-10-28 to now (all 20 room guides completed, the room-guide keyword-mining lane declared exhausted, the sitemap UTC bug, several STATUS.md/NIGHTLY-LOG rotations), because `gate_changelog_current` now warns it is 22 days stale and its own text says a date bump is not enough.
