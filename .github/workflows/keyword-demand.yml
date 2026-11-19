@@ -1,10 +1,22 @@
 name: Keyword demand
 
 # ops/keyword_demand.py reads what people actually type, straight from
-# Google's and Bing's own public autocomplete endpoints: no account, no key,
-# no Search Console. It is the one instrument this business has for "what do
-# people search before they decide organising is the answer", and it needs
-# real internet access to a non-local destination to work at all.
+# Google's and (normally) Bing's own public autocomplete endpoints: no
+# account, no key, no Search Console. It is the one instrument this business
+# has for "what do people search before they decide organising is the
+# answer", and it needs real internet access to a non-local destination to
+# work at all.
+#
+# Source temporarily narrowed to Google alone, 2026-11-19. Confirmed live in
+# two independent runs 24 hours apart (run 11, 2026-11-18, and a same-day
+# re-dispatch on 2026-11-19): Bing's osjson.aspx returned HTTP 204 to its own
+# canary query and to 149 of 151 real seeds, both before and after the
+# harvest, while Google answered normally throughout. That is not a single
+# flaky request; it is the endpoint refusing this runner's traffic. The tool
+# itself correctly refused to write anything either time, rather than credit
+# a partial, Bing-less harvest as complete (see the note below). Revert this
+# to `--source both` once a future run shows Bing answering its canary
+# again; do not just re-add it on a schedule guess.
 #
 # Every operator cycle that tried this from the cloud sandbox this repository
 # is usually run from got the exact same answer: the egress proxy there
@@ -19,11 +31,11 @@ name: Keyword demand
 # same fact hourly-brief.yml already relies on for IndexNow.
 #
 # Weekly, not hourly or daily: the tool's own harvest takes several minutes
-# (137 seeds across two engines, a deliberate 0.9 to 1.8 second delay between
+# (one engine's worth of seeds, a deliberate 0.9 to 1.8 second delay between
 # requests so this looks like one slow reader, not a scraper) and a search
 # engine's autocomplete suggestions for a fixed corpus of room/zone phrases do
 # not meaningfully change day to day. A tighter cadence would spend the
-# engines' patience for no additional signal.
+# engine's patience for no additional signal.
 #
 # No push fallback. Unlike fulfil-orders.yml or the social-draft workflows,
 # a late or skipped week here costs nothing a customer can feel: it is a
@@ -33,9 +45,10 @@ name: Keyword demand
 # scheduler the way those customer-facing workflows have to.
 #
 # The tool itself refuses to write a partial or blocked harvest over a good
-# one (both canaries must answer, and the error/empty rate must stay under
-# its own ceilings), so a run that could not reach the engines fails this
-# job loudly instead of silently committing nothing or committing garbage.
+# one (every source in use must answer its own canary, and the error/empty
+# rate must stay under its own ceilings), so a run that could not reach the
+# engine fails this job loudly instead of silently committing nothing or
+# committing garbage.
 
 on:
   schedule:
@@ -59,8 +72,8 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Harvest autocomplete demand from Google and Bing
-        run: python ops/keyword_demand.py --source both
+      - name: Harvest autocomplete demand from Google
+        run: python ops/keyword_demand.py --source google
 
       - name: Commit the new reading
         run: |
