@@ -2,13 +2,31 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-19: root-caused a real scorer misattribution ("ribbon" falsely matching a nursery safety heading) instead of forcing a fabricated content gap
+
+NEXT FOR THE OPERATOR: no new unblocked epic-1-4 work exists in this sandbox; watch for a reply from Phil on issue #42 or the other owner-gated issues, or mine the room-guide tier fresh if it has moved.
+
+Did: Attached clean (unshallowed, fetch --unshallow, checkout main, merge --ff-only onto origin/main, 253 commits fast-forwarded). preflight.py --skip-tests ran live first: 0 FAIL, 33 warnings, all standing credential gaps. GitHub's 31 open issues re-pulled live, all decision/blocked-on-art, none from Phil. inbox_agent.py --apply: no mail credential. Mined Family Room (worst room, 12% uncovered) and Garage (11%): every remaining row was either already-declined (same-room ties, digital-collision words) or a genuine content gap this site's zones do not cover (flower/vegetable gardens, gym equipment, wireless charging), correctly left alone rather than forced the way the "decor" cluster was declined before. Moved to Nursery/Primary Bathroom's tiers and found a real bug: "how to organize ribbon" was falsely reading covered against the Nursery Baby Clothing Zone purely because that page's h3 safety heading about choking hazards on hand-me-down clothes happens to contain the word "ribbon ties", nothing to do with organizing ribbon. The real content (Guest Bedroom's Guest Dresser zone genuinely lists "wrapping paper and ribbon") was never credited. Added "ribbon zone" to a new Guest Bedroom|Guest Dresser also-called entry.
+
+Verified: check_also_called_digital_collision_fast.py clean before shipping. Regenerated through build_zone_pages.py. Full before/after score_rows() diff across both corpora: exactly 3 US rows moved best_page to the correct zone, 0 status regressions, 0 global changes; the 4th ("ribbon rolls") stays a genuine, undeterminable tie, left diagnosed rather than forced. test_keyword_demand.py (74/74), both also-called gate tests, check_urls.py (236/236), audit_pages.py (0), fix_dashes.py --check (0/0), affiliate.py --check, check_sellable.py, link_graph_report.py, cold_read_ledger.py --stale (0) all clean. preflight.py --skip-tests re-run live after staging: 0 FAIL (the one interim FAIL, mid-cycle, was gate_generator_ownership correctly refusing on a dirty tree, the documented, by-design shape, not a real defect).
+
+Went well: checking each candidate's actual content.json before touching the scorer caught three genuine-looking "easy" fixes (gym equipment, garden beds, wireless charging) that would have been fabricated connections, and caught the real root cause (a coincidental safety heading) instead of papering over it with another exclusion.
+
+Did not go well: the Family Room and Garage tiers are now both down to rows that genuinely cannot be closed honestly; the keyword-mining lane is narrowing toward the same "exhausted" state many prior cycles already reached and GitHub issue #42 already asks Phil to decide about.
+
+Changing next cycle: nothing; this is a normal instance of the established mechanism.
+
+Next: no new unblocked epic-1-4 work exists in this sandbox (no Stripe/Umami/VPS/mail credential, no egress to the live site). The next genuinely new work is whichever of the 31 owner-gated issues Phil clears, or a fresh read of the room-guide tier if it has moved since this cycle.
+
+HANDOFF-FILES: `ops/zone-also-called.json`, `site/zones/guest-bedroom-the-guest-dresser.html`
+
 ## PM check-in, 2026-11-19 (~06:4x slot): previous work confirmed finished, independently re-verified both standing lanes exhausted, started nothing new
 
 NEXT FOR THE OPERATOR: nothing newly unblocked; watch for a reply from Phil on issue #42 or the 31 other decision/blocked-on-art issues, because every reachable lane is re-confirmed exhausted this cycle.
 
 Attached clean, ff-only onto origin/main, 253 commits. Previous work (06:1x rotation) confirmed finished, not cited: tree matched origin, preflight.py --skip-tests fresh live, 0 FAIL, 32 standing warnings. room_guide_underperformance.py fresh: 0 gap rows in 20 rooms, worst room 12% uncovered, every partial row already-documented. cold_read_ledger.py --next: 311/311, 0 un-ledgered. 31 GitHub issues re-pulled live; every comment on #42 re-read end to end, all self-authored by prior cycles, none from Phil.
 
-Nothing new, broken or stale found. Forcing a fix would be fabrication.
+Nothing new, broken or stale found. Forcing a fix would be fabrication. **Corrected by the very next cycle above: a genuine fix (the ribbon misattribution) existed in a tier this entry had already marked "every partial row already-documented" without checking the Nursery/Primary Bathroom rows by hand.**
 
 Pushed to main: dashboard files, this entry.
 

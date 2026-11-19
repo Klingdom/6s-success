@@ -3,6 +3,14 @@
  "_rule": "Do not add a word with no measured queries, and do not add a word the site already covers. Keyed 'Room|Zone' using the same exact room/zone names as content.json, matching the convention ops/zone-search-terms.json already uses for its own lookup key.",
  "_measured_at": "2026-11-15T00:00:00Z",
  "zones": {
+  "Guest Bedroom|Guest Dresser": {
+   "names": [
+    "ribbon zone"
+   ],
+   "queries": 2,
+   "covered": 0,
+   "source": "ops/keyword-demand.json, read live 2026-11-19, mining Nursery and Primary Bathroom's own partial tiers: 'how to organize ribbon rolls' (US, partial, 0.0 title / scored against /primary-bathroom-deck.html on an unrelated word) and 'how to organize ribbon spools' (US, partial 0.0, scored against /zones/nursery-the-baby-clothing-zone.html). Traced the second one and found a real scorer-level misattribution, not a wording gap: 'how to organize ribbon' itself already reads 'covered' (1.0 heading coverage) against that same Nursery zone page, entirely on a coincidental h3 safety heading, 'A hand-me-down cardigan or sleeper still has its decorative buttons, ribbon ties, or drawstring attached', about a choking hazard on hand-me-down baby clothes, nothing to do with organizing a ribbon supply. The genuine match is this zone: content.json's own Guest Dresser common_items list names 'Wrapping paper and ribbon' directly, the one place on the whole site that actually holds a household's spare ribbon. Checked collision first (CLAUDE.md 5c/5d): 'ribbon' is a content word in exactly 4 US rows and 0 global rows; one is 'ribbon in outlook' (Microsoft Outlook's UI ribbon, correctly excluded by its own unmatched 'outlook', left untouched), the other three ('ribbon', 'ribbon rolls', 'ribbon spools') are the ones this entry targets. No other room or zone names ribbon anywhere, so this cannot intercept a query that belongs elsewhere."
+  },
   "Hall Closet|Seasonal and Guest Zone": {
    "names": [
     "small closet"
