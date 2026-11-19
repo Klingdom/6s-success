@@ -965,6 +965,23 @@ _result_bench_genuine = rgc.score_room([_bench_genuine], [], _room)
 check("a genuine 'entryway bench storage' row is NOT excluded by the memorial pattern",
       _result_bench_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-19, PM check-in, re-mining Kids Bedroom. "car organizer for
+# kids" and "how to organise your car with kids" both ask about organizing
+# a vehicle's interior, not a child's bedroom; neither Kids Bedroom nor
+# Garage's Automotive Care Zone covers that, a genuine content gap.
+_car_for_kids = {"query": "car organizer for kids", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_car_for_kids = rgc.score_room([_car_for_kids], [], _room)
+check("a 'car organizer for kids' off-topic-context row is excluded",
+      _result_car_for_kids["on_topic_rows"] == 0)
+_car_with_kids = {"query": "how to organise your car with kids", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_car_with_kids = rgc.score_room([_car_with_kids], [], _room)
+check("a 'your car with kids' off-topic-context row is excluded",
+      _result_car_with_kids["on_topic_rows"] == 0)
+_kids_clothes_genuine = {"query": "how to organize kids clothes storage", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_kids_clothes_genuine = rgc.score_room([_kids_clothes_genuine], [], _room)
+check("a genuine 'kids clothes storage' row is NOT excluded by the car-with-kids pattern",
+      _result_kids_clothes_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

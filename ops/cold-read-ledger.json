@@ -1114,7 +1114,7 @@
     "room_guide_candidates.py": {
       "status": "clean",
       "date": "2026-11-19",
-      "note": "Re-ledgered 2026-11-19, scheduled operator cycle: only commit since the prior 2026-11-19 ledger date is this cycle's own scoped diff, read directly (single OFF_TOPIC_CONTEXT regex addition excluding memorial-bench autosuggest noise for Entryway, checked for collision against both corpora (0 US rows, 1 global row, the one targeted), fail-then-pass tested, comment explains the exact row checked and that content.json has 0 hits for 'memorial'). No defect found."
+      "note": "Re-ledgered 2026-11-19, PM check-in: this cycle's own scoped diff read directly (one OFF_TOPIC_CONTEXT regex addition excluding 'car organizer for kids'/'your car with kids' from Kids Bedroom's Bed and Sleep Zone, checked for collision against both corpora (exactly the 2 targeted rows contain both 'car' and 'kids'), fail-then-pass tested, comment explains neither Kids Bedroom nor Garage's Automotive Care Zone covers a car's interior). No defect found."
     },
     "room_guide_underperformance.py": {
       "status": "clean",

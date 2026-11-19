@@ -831,7 +831,26 @@ OFF_TOPIC_CONTEXT = re.compile(
     # already exclude. Checked against both harvests first: "memorial"
     # appears in exactly the one row named here (0 in the US corpus, 1 in
     # the global corpus), so excluding it cannot suppress a genuine match.
-    r"\bmemorial\b",
+    r"\bmemorial\b|"
+    # Found 2026-11-19, PM check-in, re-mining Kids Bedroom's remaining
+    # partial tier after the 09:4x handoff's Garage lane turned out to be
+    # already exhausted (every one of its named rows was already checked
+    # and declined by the scheduled operator cycle that landed the
+    # "ribbon" fix earlier the same day). "car organizer for kids" and
+    # "how to organise your car with kids" both ask about organizing a
+    # vehicle's interior for a family with children (a backseat caddy, a
+    # trunk organizer for car-seat gear), the same mismatched-physical-
+    # space shape the 2026-11-03 Garage pass already excludes for "car
+    # organizer"/"car trunk" against the Automotive Care Zone, just
+    # landing on Kids Bedroom's Bed and Sleep Zone instead on the word
+    # "kids" alone. Neither Kids Bedroom nor Garage's Automotive Care Zone
+    # (fluids, cables, a cleaning kit, per its own content.json purpose)
+    # covers the inside of a car, so this is a genuine content gap this
+    # product does not answer, not a page it is simply failing to credit.
+    # Checked against both harvests first: exactly these two rows contain
+    # both "car" and "kids" anywhere in the query, so excluding them here
+    # cannot suppress a genuine match.
+    r"\bcar organi[sz]ers? for kids\b|\byour car with kids\b",
     re.I)
 
 
