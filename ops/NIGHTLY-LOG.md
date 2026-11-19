@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-19 (~16:5x slot): traced three room-guide candidates by hand, declined all three on honesty/collision grounds, nothing shipped
+
+**Did:** Attached per Step 0 (real unshallow, ff-only onto `origin/main`, re-synced once mid-cycle after a concurrent push). `preflight.py --skip-tests` run unbounded in the background rather than timeout-killed: 0 FAIL, 31 standing warnings. 31 open GitHub issues re-pulled live: unchanged, all `decision`/`blocked-on-art`; read issue #42's thread end to end, confirmed none of its 10 comments is a genuine reply from Phil (all carry the Claude Code footer). `cold_read_ledger.py` 312/312, 0 stale. `inbox_agent.py --apply`: no mail credential, standing gap.
+
+Opened three `room_guide_underperformance.py` candidates by hand (CLAUDE.md 5c/5d) rather than count them. "Den storage ideas"/"bonus room storage" (Family Room): both words already live as shipped room-level also-called names on `/rooms/family-room.html`; the generic "storage" query just has no single honest zone, and forcing either word onto the Blanket and Comfort Zone's own heading would overclaim (0.2/6). "How to organize game library": `zone-also-called.json` already records three declined attempts on this exact query family (PC/Steam "game" collisions); checked whether bare "library" alone could close it without reusing "game": no collision in today's corpus, but "game library" is standard digital-Steam/Xbox terminology, the same false-positive class already hit three times, so declined on honesty grounds rather than shipped on a narrow corpus pass.
+
+**Verified:** nothing shipped, so no rebuild needed. `affiliate.py --check` (165 docs clean), `check_sellable.py` (124/126 Stripe-matched) both clean.
+
+**Went well/not well:** traced each candidate to the real scoring code, not the summary; nothing new found, same exhaustion a tested gate (`gate_room_guide_mining_diminishing_returns`) already asserts.
+
+**Changing next cycle:** none.
+
+**Next:** standing 31-issue owner-gated queue is the only lever. No push notification: no change for Phil to see.
+
+Dashboard regenerated. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-19 (16:4x slot): previous work confirmed finished, epic-5 mining confirmed exhausted, nothing new unblocked
 
 NEXT FOR THE OPERATOR: hold the standing 31-issue owner-gated queue, because epic-5 keyword mining is confirmed exhausted site-wide (gate_room_guide_mining_diminishing_returns: 0 genuine on-topic rows in every room) and no new non-Phil-gated candidate surfaced this slot.
