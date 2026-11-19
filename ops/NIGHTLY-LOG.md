@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-19: A193, excluded a genuine Entryway autosuggest-noise row, "how to organise a memorial bench"
+
+**Did:** Attached clean: unshallowed (`fetch --unshallow`), `checkout main`, `merge --ff-only` onto `origin/main`, 2 commits fast-forwarded before my own work, then merged 2 more concurrent commits cleanly (stash/ff-merge/pop, no conflicts) before pushing. Ran `preflight.py --skip-tests` live first: 0 FAIL, 31 standing warnings. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four log entries. GitHub's 31 open issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil since #65; read issue #42's own thread, which independently names the same diminishing-returns picture this cycle found. `inbox_agent.py --apply`: no mail credential, standing gap. Mined the live `room_guide_underperformance.py` ranking (Entryway worst at 8% uncovered at read time). "how to organise a memorial bench" (global, partial, unmatched "memorial") is autosuggest seed-drift from "how to organise bench", a tribute bench, nothing to do with a household entryway bench; `content.json` has 0 hits for "memorial" anywhere. Added `\bmemorial\b` to `OFF_TOPIC_CONTEXT` in `ops/room_guide_candidates.py`, the same shape as the existing houseplants/singing-room/indoor-plants exclusions. Checked and declined a riskier second candidate in the same tier: adding "systems" to `FORMAT_WORDS` would close "coat closet organization systems" but a full corpus check found it collides with "how to organize game systems" (video-game consoles, not organizing systems), wrongly promoting that query to `covered`; left diagnosed, not shipped, matching the A67/A94/A114 digital-collision precedent.
+
+**Verified:** Collision checked first: "memorial" appears in exactly 1 row across both corpora (0 US, 1 global), the one excluded. Fail-then-pass proved directly (`git stash` the regex change, watched the new test fail, restored, confirmed 156/156). Real rescore: Entryway's own guide tally moved 8% to 6% uncovered, 0 regressions elsewhere (`test_room_guide_underperformance.py` 19/19). `test_keyword_demand.py`, `check_urls.py` (236/236), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 docs), `cold_read_ledger.py --stale` (0) all independently clean. Re-ledgered `ops/room_guide_candidates.py` with a note describing the actual scoped diff, not a blind pass. `preflight.py --skip-tests` re-run live to completion after commit: 0 FAIL (the one interim FAIL, mid-cycle, was `gate_generator_ownership` correctly refusing a dirty-tree diff, by design).
+
+**Went well:** The collision check on "systems" caught a real false-promotion risk before it shipped, the exact discipline CLAUDE.md 5d asks for; declining it and recording why took less time than the fix itself would have, and stops a future cycle from re-discovering the same tempting-looking row.
+
+**Did not go well:** This epic (keyword-mining, epic 3) is now down to single-digit uncovered percentages in nearly every room; genuinely fresh, safely groundable rows are getting harder to find per cycle, consistent with issue #42's own observation. This cycle found exactly one.
+
+**Changing next cycle:** Nothing structural; this is ordinary continued mining per the backlog's own ordering rule, since epics 1, 2 and 4 remain owner-gated and epic 5 (product) is explicitly blocked on epic 1.
+
+**Next:** Updated `BACKLOG-2026-09-07.md` (A193 entry) and `STATUS.md`. Dashboard regenerated. Pushed to main. The next cycle should re-check `room_guide_underperformance.py` live (rankings shift between concurrent sessions) before mining, and keep declining FORMAT_WORDS additions that collide with the digital/game-systems cluster.
+
 ## PM check-in, 2026-11-19 (~08:4x slot): previous work confirmed finished, nothing newly unblocked beyond the standing Phil-gated queue
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue; nothing reopens until the 11:30 UTC global keyword harvest or a Phil reply on issue #42.
