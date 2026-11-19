@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-19 (~06:1x slot): previous work confirmed finished, rotated the overdue nightly log instead of re-mining an exhausted queue
+
+Attached clean (fetch, unshallow, ff-only onto origin/main). Previous work (05:4x) was genuinely finished: ran `preflight.py --skip-tests` fresh live, 0 FAIL, 32 warnings, all standing. Re-confirmed 31 open GitHub issues unchanged, all decision/blocked-on-art, none from Phil since #65; room-guide and cold-read lanes stay exhausted per the prior three cycles, nothing new there to force.
+
+Did real, different work instead: `ops/rotate_nightly_log.py --check` found 70 of 1081 entries (210KB) overdue past the 14-day retention window, never run since an earlier cycle. Applied it: 70 entries moved to `ops/NIGHTLY-LOG-ARCHIVE.md`, live log now 1011 entries. Verified entry counts match (1011 + the archive's new total), `fix_dashes.py --check` clean, re-ran `preflight.py --skip-tests` on the committed tree: 0 FAIL, 33 warnings.
+
+Next for the operator: nothing newly unblocked beyond the standing 31 issues; still watching for Phil on #42.
+
+Pushed to main: `ops/NIGHTLY-LOG.md`, `ops/NIGHTLY-LOG-ARCHIVE.md`, `ops/cycle-signal.json`, dashboard files, this entry.
+
 ## PM check-in, 2026-11-19 (~05:4x slot): previous work confirmed finished, independently re-verified both standing lanes exhausted, started nothing new
 
 NEXT FOR THE OPERATOR: nothing newly unblocked; watch for a reply from Phil on issue #42 (the cadence question itself) or any of the 30 other decision/blocked-on-art issues, because every lane this sandbox can reach without a Stripe/VPS/mail/live-site credential is independently re-confirmed exhausted again this cycle.
