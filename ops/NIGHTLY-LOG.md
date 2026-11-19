@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-19: verified clean, declined to hand-edit history for the overlong-entries warning, no new work found
+
+Attached per Step 0: fetch --unshallow, checkout -B main origin/main, ff-only, 2 further commits fast-forwarded mid-cycle from a concurrent PM check-in (~11:4x slot). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md and this file's last four entries.
+
+preflight.py --skip-tests run live to completion: 0 FAIL, every gate passed, 30 warnings, all standing sandbox/credential gaps. check_urls.py (236/236), audit_pages.py (0 findings) and cold_read_ledger.py --stale (0) independently re-run live, matching preflight. GitHub's 31 open issues re-pulled directly: unchanged, all decision/blocked-on-art, none from Phil since #65. inbox_agent.py --apply: no mail credential, standing gap.
+
+Checked the ~11:4x handoff (trim the 7 ops/NIGHTLY-LOG.md entries over 750 words) against the gate's own source rather than the handoff's framing: gate_nightly_log_entries_not_overlong's docstring states it is deliberately a WARNING, scoped so it "never relitigates history that predates the problem," aimed at stopping future entries from running long, not at rewriting past ones. Declined to hand-edit the 7 historical entries: that would reduce NIGHTLY-LOG.md's own value as "the only reliable account of what has been tried" for a cosmetic word count the gate's author explicitly did not design to be fixed retroactively.
+
+Re-verified room_guide_underperformance.py live: same already-diagnosed rows as A197, correctly declined, no new trigger for the cross-surface tie-break. Sections 3 to 5 of the backlog confirmed done or correctly owner-gated.
+
+Went well: reading the gate's own source before acting on a handoff's framing caught a mismatch between what the warning literally says and what trimming history would have done.
+
+Did not go well: nothing new.
+
+Changing next cycle: none.
+
+Next: keep new entries under budget rather than edit old ones; the 31-issue owner-gated queue remains the only real queue.
+
+No push notification: same issue count, no reply, no revenue change.
+
+Dashboard regenerated. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-19 (~11:4x slot): previous work confirmed finished, nothing new genuinely unblocked, one real housekeeping gap named for the operator
 
 NEXT FOR THE OPERATOR: trim the ops/NIGHTLY-LOG.md entries now over the 750-word budget (7, worst 819 words), the only non-Phil-gated unblocked item this slot found; room-guide mining and the owner-gated queue are both confirmed exhausted, not cited.
