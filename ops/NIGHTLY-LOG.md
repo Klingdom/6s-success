@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-19 (~11:1x slot): previous work finished, dashboard was stale, regenerated and pushed
+
+Attached per Step 0: fetch, checkout main, ff-only onto `origin/main` at `c5d0294b5` (322 commits fast-forwarded), tree clean. Previous work confirmed finished: today's own STATUS.md/dashboard entries already cited a fresh 0-FAIL preflight and a clean push; re-ran `preflight.py --skip-tests` myself to completion rather than trust the citation, 0 FAIL, "every gate passed, 31 warning(s) worth a read" (all known sandbox/credential gaps: no Stripe key, no VPS egress, no local source photos). GitHub re-pulled directly: 31 open issues, unchanged, all `decision`/`blocked-on-art`, none from Phil.
+
+One warning was a real, small, closeable gap: `dashboard-self-description-fresh` flagged 2 commits landed after the dashboard's last regeneration (393d35ed7, 77d2f9c3d). Ran `ops/dashboard.py`; it rewrote `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` with current figures (timestamp, commit counts, last-commit citation only; revenue/traffic/issue counts unchanged). No other gap in this slot was both genuinely unblocked and small enough for 30 minutes; the 31 open issues are all `decision`/`blocked-on-art`, none mine to start.
+
+One stray note, not a defect: an accidental `preflight.py --help` invocation (the script has no such flag) briefly ran a second preflight pass and reported a concurrent run (pid 6511) already holding the lock; both the stray run and the lock were gone by the next check, tree still clean, nothing else touched.
+
+Handing to the operator (:43): nothing new beyond the standing 31-issue queue. No push notification: no material change since last report.
+
 ## Scheduled operator cycle, 2026-11-19: A197, traced the ~10:1x handoff to its real cause and declined to force a fix, found and declined four more cross-surface ties in the same shape
 
 **Did:** Attached per Step 0 (fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `origin/main` at `ed584e25e`, 317 commits fast-forwarded, tree clean). `preflight.py --skip-tests` run live first: 0 FAIL, 30 standing warnings, all sandbox/credential gaps or already-decided content gaps. GitHub's 31 open issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil since #65; read issue #42's full thread, confirming the same picture every recent cycle has found. `cold_read_ledger.py --next`: 311 of 311 files ledgered, 0 new candidates. `inbox_agent.py --apply`: no mail credential, standing gap.
