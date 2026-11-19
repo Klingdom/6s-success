@@ -2,6 +2,36 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-19: A197, traced the ~10:1x handoff to its real cause and declined to force a fix, found and declined four more cross-surface ties in the same shape
+
+**Did:** Attached per Step 0 (fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `origin/main` at `ed584e25e`, 317 commits fast-forwarded, tree clean). `preflight.py --skip-tests` run live first: 0 FAIL, 30 standing warnings, all sandbox/credential gaps or already-decided content gaps. GitHub's 31 open issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil since #65; read issue #42's full thread, confirming the same picture every recent cycle has found. `cold_read_ledger.py --next`: 311 of 311 files ledgered, 0 new candidates. `inbox_agent.py --apply`: no mail credential, standing gap.
+
+Picked up the ~10:1x PM check-in's own handoff: "how to organize kids clothes storage" (US+global, partial 0.667, sole unmatched word "clothes"), left open as a genuine tie needing scorer-level judgment rather than a simple wording fix. Traced it directly with `ops/keyword_demand.py`'s own `best_page()`/`best_by()` rather than guess: Toy Storage Zone wins on title (0.667) purely because its title contains the bare word "storage," the same bare-word-outscores-the-real-answer shape as A25/A26/A46/A55/A68/A70/A74; Kids Bedroom's two real clothes zones (Clothing Closet, Dresser Drawers) score only 0.333 on title, and Clothing Closet already ties at 0.667 on the heading surface (organically, via its own existing "next-size-up clothes"/"hanging clothes" text), but `score_rows()` only switches from title to heading on a strict improvement or a room-signal match, not a bare tie, so the heading match never gets credited.
+
+Tried the usual fix (adding "clothes" or "clothes storage" to `ops/zone-also-called.json`) and found it genuinely blocked, not just awkward: `check_also_called_digital_collision_fast.py` correctly refused "storage" (collides with four PC/Steam digital-context queries, the A67/A94 shape), and "clothes" alone is already organically present, so adding it would violate the file's own "don't add a word the site already covers" rule (self-flattery). Reverted the attempted edit (`git checkout`, confirmed byte-identical).
+
+Checked whether widening `household_room_signal` to treat bare "kids" as a Kids Bedroom signal would help: live-checked all 38 other "kids"-containing rows in both corpora first (CLAUDE.md 5d) and found several belong to Entryway, Living Room, Family Room or no room at all, so this would be the same overbroad, ungrounded signal A114 already declined for "car." Not done.
+
+Found a structurally identical row while mining ("how to organize diapers in closet," misattributed to Hall Closet's Cleaning Equipment Zone on bare "closet," when Nursery's Diaper and Care Backstock already carries "diapers" organically in its own heading) and simulated the obvious fix (a Nursery room-signal entry) before shipping it. Caught a real regression: the same bare "diapers" signal would also pull "how to dispose of adult diapers" and "how to properly dispose of adult diapers," two already-partial rows about adult incontinence with nothing to do with a nursery, onto Nursery's Changing Station, a confidently wrong credit worse than the status quo's merely-coincidental one. Declined.
+
+Checked two Garage candidates from the same partial tier: "gym equipment storage ideas" and "gym gear storage box," both tied to the Sports and Recreation Zone on bare "gear." Read the zone's own `content.json` content directly: bikes, balls, helmets, cleats, skis, nothing about gym equipment; adding "gym" would be the fabricated connection CLAUDE.md section 6 forbids. Declined. Checked "gear toolbox organization ideas": an identical cross-surface tie (Power Tool and Battery Zone's heading already has "toolbox," Sports and Recreation Zone's title already has "gear," 0.5/0.5, no room signal). Same decline, same reason.
+
+**Verified:** No file left changed by this cycle (`git status` clean except the preflight run's own `ops/cycle-signal.json` bookkeeping). `preflight.py --skip-tests` re-run after reverting both simulated edits: 0 FAIL. `check_urls.py` (236/236), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 docs), `check_sellable.py` (124/126, 2 person-delivered services), `link_graph_report.py` (0 orphans) all independently clean, unaffected.
+
+**Went well:** simulating each candidate fix against the live corpus before shipping (CLAUDE.md 5d) caught a real regression (the adult-diaper collision) that would otherwise have shipped a confidently wrong page credit.
+
+**Did not go well:** a full cycle's effort found five genuinely diagnosed, correctly declined rows and shipped no code or content change. That is the diminishing-returns gate (`gate_room_guide_mining_diminishing_returns`) working as designed, not a wasted cycle, but it is worth naming plainly per CLAUDE.md 0.2.
+
+**Changing next cycle:** nothing structural yet. This is the fourth/fifth instance of the cross-surface title-vs-heading tie limitation in `score_rows()` (after A74's same-surface room-tie cases), still short of CLAUDE.md 10b's three-strikes bar for this specific shape (cross-surface, not same-surface), but close. The next cycle that hits it should build the gate (or fix the tie-break) rather than decline a third time.
+
+**Next:** All five findings (kids-clothes-storage, diapers-in-closet, adult-diaper collision risk, gym-gear, gear-toolbox) are now recorded in `BACKLOG-2026-09-07.md` A197 so a future cycle does not re-derive them from scratch. The standing 31-issue owner-gated queue is otherwise unchanged, none from Phil.
+
+No push notification: no material change for Phil (same issue count, no reply, no revenue change); a declined-investigation cycle is internal housekeeping.
+
+Dashboard regenerated. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-19 (~10:1x slot): corrected a stale Garage handoff, closed one genuine Kids Bedroom off-topic-noise row (A196)
 
 Previous work (A194, the gate_verify_deploy_pages_current fix) confirmed finished: tree matched origin, `preflight.py --skip-tests` ran live to 453+ lines with 0 FAIL, both `FAIL` sections empty, stalled only at the documented network-bound `gate_etsy_pdfs_current`. GitHub's 31 issues re-pulled live, unchanged since 2026-11-18, none from Phil since #65.
