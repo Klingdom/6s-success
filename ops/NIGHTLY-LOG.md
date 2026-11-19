@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-19: brought STATUS.md current against 10 unmentioned material commits and a stale deploy citation, declined a cluster of ambiguous room-guide ties rather than force them
+
+**Did:** Attached clean (unshallowed, merge --ff-only, 273 then 2 more commits fast-forwarded mid-cycle). Ran preflight.py live: 0 FAIL, 34 warnings, all standing. Read a sample of the remaining room-guide partial-tier rows by hand (Kitchen's "kitchen larder" rows, Guest Bathroom's "jewelry"/"box" rows) rather than count them; each is a genuine cross-room ambiguity (title-match outscoring the true heading match) not safely fixable without a disproportionate scorer change, so none shipped, per section 6's bar against forcing a connection. Fixed the real, actionable finding instead: gate_status_currency and gate_status_deploy_verdict_current both fired, STATUS.md hadn't mentioned 10 material commits (A191, A192, two backlog/log rotations) and three sections cited a stale deploy build. Updated BLOCKER-001, the Public website/Production traceability rows, and the Production Knowledge paragraph to the current build (86c5a1f1eb4f618d, confirmed 2026-11-19T07:17:45Z, 0 commits pending), then rotated both chains.
+
+**Verified:** check_urls.py (236/236), audit_pages.py (0 findings), fix_dashes.py --check (0/0), affiliate.py --check (165 docs), link_graph_report.py (0 orphans), check_sellable.py (124/126), cold_read_ledger.py --next (311/311) all clean. preflight.py --skip-tests re-run twice after the fix: 0 FAIL (the one FAIL seen mid-cycle was gate_generator_ownership's documented dirty-tree refusal).
+
+**Went well:** caught my own mistake before shipping it: rotate_status_history.py --apply-blocker1 archived my new entry and kept the stale one live, because BLOCKER-001's own chain is oldest-first, the opposite of the rest of the file. Fixed by editing the live entry directly.
+
+**Did not go well:** lost time to a network-bound preflight stall on the first run (no --skip-tests), killed by PID once flat, the documented pattern.
+
+**Changing next cycle:** none; no new defect class.
+
+**Next:** standing 31-issue owner-gated queue; room-guide mining lane at genuine diminishing returns (worst room 7% uncovered).
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-19 (~07:4x slot): previous work confirmed finished, traced a transient preflight FAIL to my own killed gate rather than a real defect, closed one cold-read-ledger staleness
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue; nothing reopens until the 11:30 UTC global keyword harvest or a Phil reply on issue #42.
