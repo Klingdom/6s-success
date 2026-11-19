@@ -995,6 +995,24 @@ _result_declutter_genuine = rgc.score_room([_declutter_genuine], [], _room)
 check("a genuine 'declutter your home office' row is NOT excluded by the perth pattern",
       _result_declutter_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-19, scheduled operator cycle, mining Workshop's remaining
+# partial tier. "workshop event" means a seminar/class, not the physical
+# room; the existing 2026-11-10 workshop-collision block already says in
+# prose that this site has no event-planning content to answer these, but
+# none of its branches actually matched the bare phrase until now.
+_workshop_event = {"query": "how to organize a workshop event", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_workshop_event = rgc.score_room([_workshop_event], [], _room)
+check("a 'workshop event' off-topic-context row is excluded",
+      _result_workshop_event["on_topic_rows"] == 0)
+_workshop_event_au = {"query": "how to organise a workshop event", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_workshop_event_au = rgc.score_room([_workshop_event_au], [], _room)
+check("a British-spelling 'organise a workshop event' row is also excluded",
+      _result_workshop_event_au["on_topic_rows"] == 0)
+_workshop_genuine = {"query": "how to organize a messy workshop", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_workshop_genuine = rgc.score_room([_workshop_genuine], [], _room)
+check("a genuine 'messy workshop' row is NOT excluded by the workshop-event pattern",
+      _result_workshop_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

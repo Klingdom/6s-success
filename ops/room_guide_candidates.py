@@ -427,6 +427,22 @@ OFF_TOPIC_CONTEXT = re.compile(
     r"\borganize\s+(?:logistics\s+for\s+a|meditation|negotiation)\s+workshop\b|"
     r"\bpower\s+tools?\s+in\s+(?:a\s+)?truck\b|"
     r"\bstore\s+paintings?\s+in\s+storage\b|"
+    # Found 2026-11-19 (scheduled operator cycle, mining Workshop's own
+    # 11%-uncovered partial tier): the "Found 2026-11-10" block just above
+    # already states in prose that this site "has no event-planning content
+    # to answer" workshop-as-seminar queries, but none of its own branches
+    # actually match the bare phrase "workshop event," so "how to organize a
+    # workshop event," "how to organise a workshop event" and "how to plan a
+    # workshop event" (US and global) kept scoring as a wording gap against
+    # the Fastener and Hardware Zone on "workshop" alone. These ask how to
+    # run a seminar/class called "a workshop," not how to organize the
+    # physical room, the same event/seminar sense this file already
+    # declined to answer for "dance workshop"/"workshop presentation."
+    # Checked against both harvests (CLAUDE.md 5c/5d): "workshop event(s)"
+    # matches exactly these 3 rows and no other; the genuine on-topic rows
+    # ("how to organize a messy workshop," "how to organize a woodworking
+    # workshop," "workshop storage ideas") contain no form of "event."
+    r"\bworkshop\s+events?\b|"
     # Found 2026-11-10 (scheduled operator cycle, mining Garage's remaining
     # 54-row partial tier, the one the 17:1x PM check-in handed forward as
     # the single highest-ranked room, 27% uncovered). Two more word-overlap
