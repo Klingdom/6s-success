@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-19 (~20:0x slot): closed Workshop's "workshop event" seminar noise, declined a riskier "front" candidate after it manufactured a false match
+
+**Did:** Attached per Step 0 (`fetch origin main`, real unshallow via `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 426 commits fast-forwarded, no reset/force). Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `CLAUDE.md` and this file's own last entries. GitHub's 31 open issues re-pulled live via the API: unchanged, all `decision`/`blocked-on-art`, latest update 2026-11-18T14:55:58Z, none from Phil since #65. `inbox_agent.py --apply`: no mail credential, standing gap.
+
+Mined `room_guide_underperformance.py` live across every room (6-12% uncovered site-wide). First tried adding "front" to `FORMAT_WORDS` (5 candidate rows: front hallway closet, messy front entrance, back porch and front porch, two front-hall-closet variants). Ran the real `--rescore` before shipping and caught a genuine problem: "how to organize a small front hall closet" jumped from an honest `partial` (unmatched "small") to a false `covered`, matched only because an unrelated Hall Closet zone's h3 heading about a child-safety hazard happens to contain the word "small." Same coincidental-heading shape as A192's "ribbon" bug. Reverted cleanly (`git checkout --`, confirmed byte-identical), rather than ship 4 genuine wins while manufacturing a 5th false claim.
+
+Shipped the clean candidate instead: Workshop's "how to organize/organise a workshop event" was scoring as a wording gap on the bare word "workshop," even though the existing 2026-11-10 `OFF_TOPIC_CONTEXT` block already says in its own comment that this site has no event-planning content to answer the seminar sense of "workshop" — its regex just never actually matched the phrase "workshop event." Added `\bworkshop\s+events?\b`. Checked against both corpora first: matches exactly 2 rows (a 3rd, "how to plan a workshop event," is already excluded from the on-topic tally regardless, since it contains no organize/declutter/clean/storage/stock verb), no genuine on-topic row touched.
+
+**Verified:** 2 new fail-then-pass test cases plus 1 genuine-survivor counter-check added to `test_room_guide_candidates.py`; stashed the regex change alone, watched exactly the 2 new cases fail, restored, reconfirmed 164/164. Workshop's own guide tally moved 11% to 6% uncovered (4 to 2 partial of 38 to 36 on-topic). `test_keyword_demand.py` (75/75), `check_urls.py` (236/236), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 docs), `cold_read_ledger.py --stale` (0) all independently clean. `preflight.py --skip-tests` run live twice (before touching anything, and after commit): 0 FAIL both times (one interim FAIL was `gate_generator_ownership` correctly refusing a dirty-tree diff mid-cycle, by design). A separate preflight run also flagged `checks-yml-real-gap` against a concurrent commit (`c0e0e77ad`); checked live via the GitHub Actions API rather than assumed broken: that commit's own CI run was genuinely `in_progress`, not missing, a timing artifact of checking before the run completed, not a real gap. Rebased cleanly onto 1 concurrent commit (an automated hourly check-in, no conflict) before pushing.
+
+**Went well:** running the real rescore before shipping the "front" candidate, rather than trusting the clean-looking collision check alone, caught a false match a pure word-frequency check could not see.
+
+**Did not go well:** nothing new; the "front" revert and the "workshop event" gap are both the same already-established FORMAT_WORDS/OFF_TOPIC_CONTEXT/self-flattery/before-after-diff discipline working as intended.
+
+**Changing next cycle:** nothing; no new defect class found, no new gate needed (10b).
+
+**Next:** the keyword-mining lane remains in deep diminishing returns (every room 6-12% uncovered, most remaining rows already diagnosed and declined by name in prior entries). The 31 open GitHub issues remain the only standing queue; no reply from Phil since #65.
+
+No push notification: nothing here changes the owner-facing picture (same 31 issues, no reply, no revenue change); one more small, honest SEO fix does not meet the bar past what prior notifications on this exact topic already covered.
+
+Dashboard regenerated. Pushed to main.
+
 ## PM check-in, 2026-11-19 (~19:4x slot): previous work confirmed finished, state re-verified SAME, nothing new unblocked
 
 NEXT FOR THE OPERATOR: re-verify GitHub and the room-guide/cold-read lanes fresh at your own slot rather than citing this one, because this snapshot (19:45Z) is only minutes old by the time you run.
