@@ -4179,16 +4179,35 @@ def room_page(room, header, footer, all_rooms=()):
         out.append('<h2>Kitchens without cabinets, or with only drawers</h2>'
                    f'<p>{esc(_clean(_no_cabinets_text))}</p>')
 
+    # Same shape again: "how to declutter children's bedroom" and "how to
+    # declutter a kids bedroom"/"how to declutter kids rooms" (the US
+    # keyword harvest) scored partial because "declutter" appeared in no
+    # heading anywhere on this page, only in body prose ("decluttering" in
+    # a link). PM check-in, 2026-11-19: first hand-edited this heading and
+    # paragraph straight into site/rooms/kids-bedroom.html; the very next
+    # routine build_zone_pages.py run silently deleted it, because that
+    # file is generator-owned and the generator knew nothing about it
+    # (CLAUDE.md 5b, caught live this cycle rather than shipped). Moved the
+    # same, unedited text into content.json's own Kids Bedroom tips so the
+    # generator renders it every run. Only Kids Bedroom carries this tip
+    # today; every other room's lookup is simply None.
+    _declutter_text = _room_tips.get("Declutter")
+    if _declutter_text:
+        _declutter_h = esc("How to declutter a children's bedroom")
+        out.append(f'<h2>{_declutter_h}</h2>'
+                   f'<p>{esc(_clean(_declutter_text))}</p>')
+
     # "Where to start" now renders above the zone list (D10); "Room
     # layout", "Garage sale", "Design", "After a makeover", "Small
-    # bathroom", "Kitchen island" and "No cabinets" now have their own
-    # headings just above; keep all eight out of this list too, so no tip
-    # is said twice on one page.
+    # bathroom", "Kitchen island", "No cabinets" and "Declutter" now have
+    # their own headings just above; keep all nine out of this list too,
+    # so no tip is said twice on one page.
     tips = [t for t in (room.get("tips") or [])
             if t.get("label") not in ("Where to start", "Room layout",
                                        "Garage sale", "Design",
                                        "After a makeover", "Small bathroom",
-                                       "Kitchen island", "No cabinets")]
+                                       "Kitchen island", "No cabinets",
+                                       "Declutter")]
     if tips:
         out.append('<h2>For this room</h2><ul>')
         out += [f'<li><b>{esc(t.get("label", ""))}.</b> {esc(t.get("text", ""))}</li>'

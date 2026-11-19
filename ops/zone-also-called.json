@@ -3,6 +3,14 @@
  "_rule": "Do not add a word with no measured queries, and do not add a word the site already covers. Keyed 'Room|Zone' using the same exact room/zone names as content.json, matching the convention ops/zone-search-terms.json already uses for its own lookup key.",
  "_measured_at": "2026-11-15T00:00:00Z",
  "zones": {
+  "Hall Closet|Seasonal and Guest Zone": {
+   "names": [
+    "small closet"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand.json, read live 2026-11-19, mining Family Room's own 13%-uncovered partial tier (room_guide_underperformance.py, worst-ranked room): 'small closet storage ideas for seasonal items' (US, partial, title coverage 0.6 / heading coverage 0.8) was tied at 0.8 heading coverage between this zone (matched closet+storage+seasonal+items, missing only 'small') and Family Room's own Toy and Play Zone (matched small+closet+storage+items, missing only 'seasonal', via a coincidental H3 hazard heading about toy bins stored 'in the closet' and 'small figure accessories', nothing to do with seasonal storage). With no room signal in the query, the tie fell to plain alphabetical URL order ('family-room...' sorts before 'hall-closet...'), the exact generic-tiebreak shape this function's own docstring already names. This zone's title is already 'How to organize the hall closet seasonal storage' and its own content.json purpose is 'Parks the things you use a few weekends a year: guest bedding, decorations, and travel gear', a small closet by any household's ordinary meaning of the word, the same grounding basis as every other also-called entry in this file. Checked collision first: 'small'+'closet' together appear in 23 rows across both corpora, every one already covered or partial via Hall Closet's sibling zones on the words 'hall'/'front'/'hallway'/'linen'/'entryway'/'nursery', none sharing 'seasonal', so this addition cannot intercept a query that belongs elsewhere. Full before/after ops.keyword_demand.score_rows() diff across both corpora: 1 row changes status (the target query, partial 0.8 to covered 1.0, pointer corrected to this zone); 2 further rows ('how to organize a small front hall closet', 'how to organize a small hallway closet', both already-partial Hall Closet rows in both corpora) get a same-status pointer reshuffle onto this zone on a now-stronger same-room tie, not a regression (both remain partial at the same score, same room, just crediting a different sibling zone page); 0 cross-room changes, 0 status regressions anywhere."
+  },
   "Workshop|Fastener and Hardware Zone": {
    "names": [
     "declutter zone"
