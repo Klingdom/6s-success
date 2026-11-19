@@ -14,6 +14,28 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main: dashboard files, this entry.
 
+## Scheduled operator cycle, 2026-11-19 (~05:0x slot): A190, caught a real generator-ownership drift destroying the prior cycle's own fix, then closed a genuine Family Room misattribution
+
+**Did.** Attached clean (unshallow, ff-only, 230 commits). `preflight.py --skip-tests` live: 0 FAIL, 33 warnings, all standing. GitHub's 31 issues unchanged, none from Phil.
+
+**Caught live, not reported twice.** Mining Family Room's worst-ranked (13%) partial tier, the normal `build_zone_pages.py` regeneration step silently deleted A189's own hand-added declutter heading on `site/rooms/kids-bedroom.html`, CLAUDE.md 5b's named failure mode, a third time. That file is generator-owned; the hand edit had no way to survive a rebuild. Fixed at the root: moved the same text into `content.json` as a new room tip, taught `build_zone_pages.py` to render it durably, the same mechanism as Room layout/Kitchen island/etc. Verified it survives a fresh rebuild and rescore.
+
+**Then mined the real tier.** "small closet storage ideas for seasonal items" tied 0.8 between Hall Closet's Seasonal and Guest Zone (the honest answer, title already says "seasonal storage") and Family Room's Toy and Play Zone, on a coincidental hazard heading mentioning "closet" and "small". Added "small closet" to the Seasonal zone's also-called entry. Checked collision first: 23 small+closet rows, none sharing "seasonal". Full before/after diff: 4 rows partial to covered, 0 regressions. Family Room 13% to 12% uncovered.
+
+**Also fixed:** `gate_mcp_corpus_current` caught `mcp/content.json` drifted from the edited source; re-copied. Re-ledgered `build_zone_pages.py` with an honest scoped note.
+
+**Verified.** All relevant tests, `check_urls.py`, `audit_pages.py`, `fix_dashes.py`, `affiliate.py --check`, `check_sellable.py`, `link_graph_report.py`, `cold_read_ledger.py --stale` clean. `preflight.py --skip-tests` re-run after commit: 0 FAIL.
+
+**Went well:** catching the destruction before it shipped a second time, and fixing the root (move content into the generator) rather than re-adding the same fragile hand edit.
+
+**Did not go well:** the hand edit should never have gone in outside the generator in the first place.
+
+**Changing next cycle:** nothing new; CLAUDE.md 5b already says this, it just needs following.
+
+**Next:** re-check `room_guide_underperformance.py` for the next genuinely fresh row. 31 open issues, none from Phil.
+
+Pushed to main: `content/manual/source/content.json`, `mcp/content.json`, `ops/build_zone_pages.py`, `ops/zone-also-called.json`, `ops/cold-read-ledger.json`, both keyword-demand corpora, `site/rooms/kids-bedroom.html`, `site/zones/hall-closet-the-seasonal-and-guest-zone.html`, `BACKLOG-2026-09-07.md`, this entry, dashboard files. No price or product touched; `IndexNow` to submit on push.
+
 ## PM check-in, 2026-11-19 (~04:4x slot): previous work confirmed finished, closed a real living-docs tripwire instead of re-mining an exhausted room queue
 
 NEXT FOR THE OPERATOR: spot-check Garage's, Hall Closet's and Nursery's partial tiers against the log before mining anything new, because this cycle re-confirmed by hand that every row currently showing is an already-declined finding (gym/garden/diapers clusters, "systems", "decluttering" as FORMAT_WORDS, all settled weeks ago), so the room-ranking queue is at genuine, not assumed, diminishing returns right now; issue #42's cadence question is still the standing, correct frame and nothing here overrides it.
