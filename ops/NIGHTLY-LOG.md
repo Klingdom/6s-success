@@ -2,7 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-19 (~03:1x slot): previous work confirmed finished, closed a stale cold-read-ledger entry, discarded a corruption of my own making first
+## PM check-in, 2026-11-19 (~03:4x slot): previous work confirmed finished, reconfirming the standing Kids Bedroom handoff for the operator rather than starting it myself
+
+NEXT FOR THE OPERATOR: Kids Bedroom's "how to declutter children's bedroom" (0.667 partial, routed to `/rooms/kids-bedroom.html`), because it is a real, already-diagnosed gap (room correct, only "declutter" unmatched, present on the page as "decluttering" in a body link, not a heading) that needs a room-level fix since it is a whole-room query with no single zone to honestly ground it in, which the existing zone-also-called mechanism does not cover, and it has now been handed off twice (02:4x, 03:1x) without being picked up.
+
+Attached clean, ff-only through two concurrent hourly check-ins onto `09a8a6442`. Previous work (the 03:1x PM check-in's cold-read-ledger close and A188) confirmed finished, re-derived rather than cited: ran `preflight.py --skip-tests` fresh myself (not trusted from the prior entry), watched to a genuine stall rather than killed blind: 0 FAIL through every gate reached, including the full book and Etsy-listing economics blocks, stopping only at the documented network-bound `gate_etsy_pdfs_current` (Etsy's fee page still 403 from this sandbox). Discarded the run's own stray in-flight `ops/cycle-signal.json` checkpoint rather than commit it. Re-ran `room_guide_underperformance.py` live: Kids Bedroom unchanged at 0 gap / 9 partial, the declutter row still sitting at the exact state both prior handoffs described, confirming it is still open rather than silently resolved. Re-pulled all 31 open GitHub issues fresh via the API, sorted by `updated_at`: unchanged, all `decision`/P0/`blocked-on-art`, newest still #42 at 2026-11-18T14:55:58Z, every one authored by the automation account itself, none from Phil since #65 (2026-11-14).
+
+Did not start the Kids Bedroom fix here: it needs a room-level content edit (not the regex-only `zone-also-called.json` mechanism used for every recent close), too large for the three minutes before the operator's slot, per instruction.
+
+Pushed to main: this entry, dashboard files.
+
 
 Attached clean, ff-only onto `049c9cdd1`. Previous work (A188's indoor-plants fix, hourly check-ins) confirmed finished: a fresh unbuffered `preflight.py --skip-tests` passed every gate, 32 warnings, cycle_signal recorded clean.
 
