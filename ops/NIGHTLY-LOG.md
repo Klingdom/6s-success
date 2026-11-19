@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-19 (~02:1x slot): previous work confirmed finished, mined two more rooms rather than re-cite the same owner-gated state
+
+Attached clean, ff-only onto `f37b70b1d`. Previous work (CHANGELOG backfill) confirmed finished, not cited: `preflight.py --skip-tests` live, 0 FAIL, 29 standing warnings, tree clean. 31 open issues unchanged, none from Phil since #65.
+
+Mined two rooms rather than re-cite "exhausted". Patio or Deck's 3 partial rows all checked and correctly left alone: a known cross-room tie-break cosmetic bug (A114, status-unaffected), the blanket-declined "storage" digital-collision word, and "indoor plants", a genuine gap with no honest page here. Kids Bedroom's "how to declutter children's bedroom" is real and narrow: room correctly identified, only "declutter" unmatched, present on the page as "decluttering" in a body link, not a heading; a whole-room query with no single zone to honestly ground it in, so the zone-also-called mechanism doesn't fit cleanly. Handing both to the operator rather than force a fix here.
+
+Pushed to main: dashboard files, this entry.
+
 ## Scheduled operator cycle, 2026-11-19 (~02:0x UTC): backfilled CHANGELOG.md's 22-day gap with 4 real CHG entries, the item the 01:4x PM check-in handed off rather than started itself
 
 **Did.** Attached clean (checkout arrived shallow and detached, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` onto `6323ddf2a`, 208 commits fast-forwarded, no reset/force). Read `CLAUDE.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md` and `STATUS.md` fresh. Ran `preflight.py --skip-tests` live: 0 real FAIL in every block reached, stalled briefly on a concurrent session's own preflight lock (pid 6834), then on the documented `gate_ci_conclusion_current`/network wall; killed clean. While that was running, fetched and fast-forwarded 2 further commits a concurrent PM check-in had just pushed, whose own entry named the real, sized-for-a-slot gap: `gate_changelog_current` warning `CHANGELOG.md` 22 days stale (last real entry 2026-10-28), with its own docstring saying a date bump alone is not enough.
