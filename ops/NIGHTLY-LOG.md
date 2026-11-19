@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-19 (~15:4x slot): verified every non-Phil-gated lane live, shipped nothing, declined one candidate rather than force it
+
+Did: attached clean (unshallowed, fetch/checkout/ff-only onto origin/main). Ran preflight.py --skip-tests to full completion: 0 FAIL, 31 warnings, all standing. GitHub's 31 issues unchanged, all decision/blocked-on-art, none from Phil. Checked checks.yml live on GitHub itself (not the sandbox, which cannot reach it): green on main, the two real gate_tests FAILs from earlier today already fixed by concurrent cycles. inbox_agent.py: no mail credential. cold_read_ledger.py: 312/312 ledgered, 0 stale. room_guide_underperformance.py live: traced the one row that looked like a real candidate, "how to organize bags of spices" (global, unmatched "spices"). Root cause: a genuine three-way tie at 1-of-2 content words (Kitchen's Cooking Zone matches "spices" only; Pantry's Dry Goods Shelves matches "bags" only via its own rice/oats headings; the winning bedroom-declutter page matches "bags" only via an unrelated "three bags" heading), the same cross-surface-tie limitation A74/A82/A114/A197 already named. No grounded single-phrase fix exists without picking a winner on weaker evidence than the status quo, so declined rather than forced (CLAUDE.md section 6).
+
+Verified: both --rescore runs confirm the committed scores already match the live corpus.
+
+Went well: checked GitHub's own CI status directly instead of citing the sandbox's "could not be queried" warning as the last word.
+
+Did not go well: nothing new; this is the Nth consecutive cycle confirming the same exhaustion, now across roughly 1,586 commits in 7 days per the dashboard.
+
+Changing next cycle: none this slot.
+
+Next: standing 31-issue owner-gated queue is the only remaining lever (O1 distribution needs Amazon/Etsy/YouTube/accounts decisions). Whoever next hits the cross-surface-tie shape a further time should build the gate rather than decline again.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-19 (~15:2x slot): closed a Kitchen misattribution, found and fixed a real CI gate FAIL the push surfaced, then promoted the lesson to a gate reachable before the next push (A198)
 
 Did: attached clean. Mined Kitchen's live partial tier: "kitchen larder" and two siblings scored to Cooking Zone on the bare word "kitchen" instead of Pantry's own established "larder" synonym. Added "kitchen larder" to Pantry's existing also-called entry; 3 global rows moved partial to covered, checked for collision first, 0 regressions. Pushed. A concurrent PM check-in's own CI run then genuinely FAILed gate_tests (checks.yml run 44547908641): three room-also-called names and a self-test fixture row had all lost their grounding the same day keyword-demand.yml was narrowed to --source google (Bing-only evidence). Removed the three ungrounded names, rewrote the self-test to stop depending on one named row. Then, per 10b, promoted the rule itself into a real gate reachable before push, not just inside the suite: check_room_also_called_evidence()/gate_room_also_called_evidence() in preflight.py, a fast standalone entry point matching the existing digital-collision pattern, wired into .githooks/pre-push. Proved it fails (planted the regression, watched it go red, restored).
