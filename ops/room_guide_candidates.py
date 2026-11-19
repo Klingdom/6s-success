@@ -850,7 +850,19 @@ OFF_TOPIC_CONTEXT = re.compile(
     # Checked against both harvests first: exactly these two rows contain
     # both "car" and "kids" anywhere in the query, so excluding them here
     # cannot suppress a genuine match.
-    r"\bcar organi[sz]ers? for kids\b|\byour car with kids\b",
+    r"\bcar organi[sz]ers? for kids\b|\byour car with kids\b|"
+    # Found 2026-11-19, scheduled operator cycle, mining Home Office's
+    # remaining partial tier. "how to declutter your home perth" is seeded
+    # from "how to declutter a guest bathroom" and drifted to a city name
+    # (Perth, Western Australia), nothing to do with a guest bathroom or
+    # any household zone this product names; its own `seeds` field is the
+    # unrelated bathroom query, confirming autosuggest drift rather than a
+    # genuine Perth-specific household query. The same autosuggest
+    # seed-drift shape "memorial"/"singing room"/"houseplants" above
+    # already exclude. Checked against both harvests first: "perth"
+    # appears in exactly the one row named here, so excluding it cannot
+    # suppress a genuine match.
+    r"\bdeclutter your home perth\b",
     re.I)
 
 

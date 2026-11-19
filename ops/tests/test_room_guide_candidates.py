@@ -982,6 +982,19 @@ _result_kids_clothes_genuine = rgc.score_room([_kids_clothes_genuine], [], _room
 check("a genuine 'kids clothes storage' row is NOT excluded by the car-with-kids pattern",
       _result_kids_clothes_genuine["on_topic_rows"] == 1)
 
+# Found 2026-11-19, scheduled operator cycle, mining Home Office's remaining
+# partial tier. "declutter your home perth" is autosuggest seed-drift from
+# "how to declutter a guest bathroom" to a city name (Perth, Western
+# Australia), nothing to do with a guest bathroom or any household zone.
+_perth = {"query": "how to declutter your home perth", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_perth = rgc.score_room([_perth], [], _room)
+check("a 'declutter your home perth' off-topic-context row is excluded",
+      _result_perth["on_topic_rows"] == 0)
+_declutter_genuine = {"query": "how to declutter your home office", "best_page": "/test-room-deck.html", "status": "partial"}
+_result_declutter_genuine = rgc.score_room([_declutter_genuine], [], _room)
+check("a genuine 'declutter your home office' row is NOT excluded by the perth pattern",
+      _result_declutter_genuine["on_topic_rows"] == 1)
+
 if failures:
     print("\n%d FAILED: %s" % (len(failures), ", ".join(failures)))
     sys.exit(1)

@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-19 (~17:5x slot): closed a genuine Home Office autosuggest-noise row, reverted a verified no-op Kitchen addition rather than keep it
+
+**Did:** Attached per Step 0 (real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 402 commits fast-forwarded, no reset/force). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and this file's last four entries per Step 1. GitHub's 31 open issues re-pulled live via the API: unchanged, all `decision`/`blocked-on-art`; read issue #42's full comment thread end to end, confirmed every comment carries the Claude Code footer, none a genuine reply from Phil since issue #65. `inbox_agent.py --apply`: no mail credential, standing gap. `ops/last-owner-notification.json` shows the last push sent 2026-11-18T07:30:00Z with a ~48h repeat floor and no material change since; did not repeat it.
+
+Mined `room_guide_underperformance.py` live across all 20 rooms (worst: Family Room and Stair Landing at 12%) rather than cite a stale reading. Tried "how to organize bags of spices" (Kitchen) first: traced the honest answer to the Cooking Zone's own real heading, "The spice rack you are not honest about," added "spices zone" to `zone-also-called.json`, rebuilt, then rescored and found it changed nothing: the query's two content words split one each across the Cooking Zone and the wrongly-credited bedroom article, an exact tie with no room signal to break it, the same limitation A74/A82/A197 already named. Reverted rather than keep a verified no-op. Shipped "how to declutter your home perth" instead: autosuggest seed-drift (seed: "how to declutter a guest bathroom") to a city name, the same shape "memorial"/"singing room" already exclude. Added to `OFF_TOPIC_CONTEXT` in `ops/room_guide_candidates.py`.
+
+**Verified:** Fail-then-pass proved directly (`git stash` the regex alone, watched the new case fail, restored, 161/161). Home Office's guide tally moved 6% to 4% uncovered; full 20-room rerun confirmed no other room moved. `test_room_guide_underperformance.py` (19/19), `check_urls.py` (236/236), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 docs), `check_sellable.py` (124/126), `cold_read_ledger.py --stale` (0) all clean. `preflight.py --skip-tests` run to completion before and after.
+
+**Went well:** catching the spice-zone tie before shipping it, by actually rescoring rather than trusting that a grounded, collision-free addition must also be a winning one.
+
+**Did not go well:** nothing new; standing sandbox gaps (no Stripe/SSH/mail credential, no egress to the live site) unchanged.
+
+**Changing next cycle:** none; no new defect class, no new gate needed.
+
+**Next:** the keyword-mining lane remains in deep diminishing returns (every room at 12% or under); the only genuinely unblocked lever left is the standing 31-issue owner-gated queue (`OWNER-ACTIONS.md` "Start here" list: traffic read, YouTube OAuth, Gemini billing, Etsy/KDP accounts).
+
+No push notification: same 31-issue queue, no reply from Phil, no revenue change; this cycle's fix is internal SEO-corpus maintenance, not new information for him.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-19 (~17:4x slot): previous work confirmed finished, closed a real BLOCKER-001/deploy-citation staleness gap, nothing else new unblocked
 
 NEXT FOR THE OPERATOR: hold the standing 31-issue owner-gated queue, because room-guide mining is independently reconfirmed exhausted (0 gap rows live) and nothing new surfaced.
@@ -15,8 +35,6 @@ Also re-verified live: room_guide_underperformance.py (0 gap rows site-wide) and
 No push notification: same queue, no reply from Phil, no revenue change; this fix is internal bookkeeping.
 
 Dashboard regenerated. Pushed to main.
-
-HANDOFF-FILES: none
 
 ## PM check-in, 2026-11-19 (~17:1x slot): previous work confirmed finished, closed a real STATUS.md currency gap, nothing else new unblocked
 
