@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-19 (~19:1x slot): previous work confirmed finished, independently re-verified three new-looking partial rows, confirmed they are already-declined ties, nothing new unblocked
+
+Attached per Step 0 (real fetch --unshallow already done, ff-only onto origin/main, 424 commits, tree clean). Previous work (~18:5x dashboard regen, two hourly check-ins, a cycle-signal checkpoint) confirmed finished, not cited: tree matched origin exactly before this cycle touched anything. preflight.py --skip-tests ran live to completion: 0 FAIL across every gate, 29 standing-sandbox warnings, same class as every recent cycle. rotate_nightly_log.py: CLEAN, 1052 entries within the 14-day window, nothing to rotate. GitHub's 31 open issues re-pulled live by a subagent: unchanged, every one decision/blocked-on-art, none from Phil since #65.
+
+Did not trust A200's "every room 0-9% uncovered" at face value: ran room_guide_underperformance.py live and got 10-12% on four rooms, more partial rows than A200 named. Traced three of the new-looking ones to their raw unmatched_words: "basement" (Stair Landing/Family Room), "attic" (Hall Closet/Primary Bedroom tie), "systems" (Hall Closet/Guest Bathroom tie). All three are generic cross-room qualifier or filler words, the same bare-word-collision and filler-word shapes A74/A82/A90/A94/A114/A197 and today's Garage/spice-bag checks already declined. No safe fix existed; shipped nothing.
+
+No push notification: same 31-issue queue, no reply from Phil, no revenue change.
+
+Dashboard regenerated. Pushed to main.
+
 ## A200, verified the room-guide keyword-mining lane's remaining 5 partial rows one more time and correctly shipped nothing, scheduled operator cycle, 2026-11-19
 
 **Did:** Attached clean (fetch --unshallow, checkout main, merge --ff-only onto origin/main, 414 commits fast-forwarded). Ran preflight.py --skip-tests live: 0 FAIL, 30 standing warnings, all credential/network gaps already named elsewhere. Checked inbox (no mail credential, standing gap). Re-pulled GitHub's 31 open issues live: unchanged, all decision/P0/blocked-on-art, none from Phil since #65. Re-verified the room-guide keyword-mining lane live: every room now 0-9% uncovered. Read the real unmatched_words for all 5 remaining partial rows directly: "bookshelf by color"/color, "baking supplies in kitchen"/baking, "backpack for work"/backpack, "small space(s)" singular/plural on two rows. Checked each against its zone's real content; none is a safe wording-gap fix (the backpack and kitchen-baking rows both route on a bare room/surface word with no zone actually answering an adult work-backpack or kitchen-as-pantry framing; forcing either repeats the bare-word collision A67/A94/A114 already declined). Shipped nothing: no safe, honest fix existed this cycle.
