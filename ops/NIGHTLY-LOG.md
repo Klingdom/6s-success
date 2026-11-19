@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-19 (~04:1x slot): previous work confirmed finished, closed the Kids Bedroom declutter gap three prior cycles had handed off without starting
+
+**Previous work was finished, not just cited.** Attached clean (`fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 228 commits fast-forwarded, tree clean). `preflight.py --skip-tests` run live to completion: 0 FAIL, 31 warnings, all standing credential/sandbox gaps.
+
+**Picked up the Kids Bedroom declutter row instead of re-handing it off a fourth time.** It had been named by the 02:4x, 03:1x and 03:4x PM check-ins, each saying the fix needed a room-level content edit too large for the leftover minutes before the operator's slot, never started. A189 (full account in `BACKLOG-2026-09-07.md`): the 2026-11-06 room-signal fix already routed "how to declutter children's bedroom" to `/rooms/kids-bedroom.html`, but no page carried the word "declutter" in any heading, so it sat at 0.667. Added a genuine `<h3>How to declutter a children's bedroom</h3>` section to the room page, reusing only facts already true there (the Keep/Relocate/Donate/Recycle/Trash containers, the existing "do the dull parts alone" tip), nothing invented.
+
+**Verified, not assumed.** Confirmed 1.0 via `best_by()` directly, then rescored both `keyword-demand.json` and `keyword-demand-global.json` (`--rescore`, no network) so the cached files reflect it. Full before/after diff of every room's output: only Kids Bedroom moved (10% to 9% uncovered), plus one pre-existing, unrelated "backpack for travel" row the rescore correctly caught up on (genuine content already live). `test_room_guide_candidates.py` (154/154), `test_room_guide_underperformance.py` (19/19), both also-called heading gates and the digital-collision checker all pass. `fix_dashes.py --check`, `check_urls.py` (236/236) and `audit_pages.py` (241/0) all clean.
+
+**Went well:** closing a three-times-handed-off item instead of handing it off a fourth time, per CLAUDE.md 0.2.
+
+**Did not go well:** nothing new.
+
+**Next for the operator (:43):** nothing newly unblocked beyond the standing room-ranking queue; re-run `room_guide_underperformance.py` fresh for the next-ranked partial room. 31 open `decision`/`blocked-on-art` GitHub issues, none from Phil.
+
+Pushed to main: `site/rooms/kids-bedroom.html`, `ops/keyword-demand.json`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND.md`, `ops/KEYWORD-DEMAND-GLOBAL.md`, `BACKLOG-2026-09-07.md`, this entry, dashboard files. No price or product touched; `IndexNow` to submit on push.
+
 ## Scheduled operator cycle, 2026-11-19 (~04:0x slot): searched five rooms' partial tiers live, found nothing honestly groundable, declined rather than forced a fix
 
 **Did.** Attached clean (unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 226 commits fast-forwarded across two merges, no reset/force). `preflight.py --skip-tests` run live to completion: 0 FAIL, every gate passed, 30 warnings, all standing credential gaps. GitHub's 31 open issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil. `inbox_agent.py --apply`: no mail credential, standing gap. `cold_read_ledger.py --next`: 311/311, 0 candidates, lane exhausted. Read the live partial tiers for Garage, Kids Bedroom, Nursery, Workshop and Stair Landing by hand (not cited) rather than mine the first row found. Checked and declined every candidate: Garage's "hardware"/"painting supplies" belong to Workshop's own Fastener and Hardware Zone, not honestly groundable in Garage's own zone content; Kids Bedroom's "declutter" row was independently reconfirmed by a concurrent PM check-in (`bd5a414e0`) the same slot; Nursery's four "storage"-unmatched rows collide with the already-diagnosed digital-context cluster (A67/A94/A164); "shelf/shelves" (considered for the same room) appears in 120 heading occurrences site-wide, too broad to add without a collision a quick check cannot rule out. Shipped nothing rather than fabricate a connection CLAUDE.md section 6 forbids.

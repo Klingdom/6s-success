@@ -13297,13 +13297,11 @@
       "best_page": "/rooms/kids-bedroom.html",
       "best_page_title": "How to organize a kids bedroom, zone by zone",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/kids-bedroom.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "declutter"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb"
       ],
@@ -13467,16 +13465,14 @@
         "how to declutter a kids bedroom"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-toys.html",
-      "best_page_title": "How to organize toys so a child can put them away",
+      "best_page": "/rooms/kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, zone by zone",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/kids-bedroom.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "rooms"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -47984,6 +47980,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "243aa3657",
-  "scored_at": "2026-11-18T17:57:48Z"
+  "scored_against_commit": "48bcd0c17",
+  "scored_at": "2026-11-19T04:20:46Z"
 }
