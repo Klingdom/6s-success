@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-19 (~04:4x slot): previous work confirmed finished, closed a real living-docs tripwire instead of re-mining an exhausted room queue
+
+NEXT FOR THE OPERATOR: spot-check Garage's, Hall Closet's and Nursery's partial tiers against the log before mining anything new, because this cycle re-confirmed by hand that every row currently showing is an already-declined finding (gym/garden/diapers clusters, "systems", "decluttering" as FORMAT_WORDS, all settled weeks ago), so the room-ranking queue is at genuine, not assumed, diminishing returns right now; issue #42's cadence question is still the standing, correct frame and nothing here overrides it.
+
+**Attached clean.** `fetch`, genuine `--unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, tree clean. `preflight.py --skip-tests` run live to completion: 0 FAIL, 33 warnings, all standing credential/sandbox gaps.
+
+**Previous work (the 04:1x Kids Bedroom close and the 04:0x decline-all cycle) confirmed finished, not cited:** both already pushed, tree clean on arrival, preflight clean.
+
+**Did not re-mine the room queue a nth time.** Read Family Room (13%), Garage (11%), Hall Closet (10%) and Nursery (9%)'s live partial tiers by hand and checked each row against this log before touching anything: Garage's gym/garden/bulk-snacks rows (A175 and at least six later cycles), Hall Closet's "attic"/"systems"/"diapers in closet" rows (already-declined content gaps or tie shapes), Nursery's "diapers in diaper bag" row (closed 2026-11-05, left honestly tied, not fixable) — every one a real prior finding, not assumed stale. Shipped nothing in that lane rather than force a row already ruled out.
+
+**Found and fixed a real, different gap instead: `BACKLOG-2026-09-07.md` was over its own 150,000-byte tripwire (150,822 bytes), flagged by `preflight.py`'s `gate_living_docs_total_size_tripwire` and left unactioned.** A dedicated tool already exists for exactly this (`ops/rotate_backlog_section2_items.py`, never run this cycle until now). `--check` found 4 rows (A162-A165, 9,689 bytes) past the 2-day retention; `--apply` moved them to `BACKLOG-2026-09-07-SECTION2-ARCHIVE.md` with full detail preserved, shrinking the live file to 142,305 bytes.
+
+**Verified.** `preflight.py --skip-tests` re-run live after commit: 0 FAIL, 30 warnings (no change in defect count, same standing gaps). No site, price or product file touched; a documentation-rotation-only change, `IndexNow` not applicable. Regenerated the dashboard (`ops/dashboard.py`): YELLOW, $0/$20,000 this month ($19 all-time), P0 10, need-you 29, commits7d 1526.
+
+**Went well:** checking the handed-off "exhausted" claim against the actual log instead of either re-mining blind or just re-asserting exhaustion, and finding a real, different, genuinely useful fix (section 18/0.8's "finish more than you start") instead.
+
+**Did not go well:** nothing new.
+
+**Next:** 31 open `decision`/`blocked-on-art` GitHub issues, none from Phil, unchanged since #65. `gate_nightly_log_entries_not_overlong` still warns on 5 old entries past 750 words; a rotation/trim pass on this file itself is the next small operational-honesty job if the room queue stays this exhausted.
+
+Pushed to main: `BACKLOG-2026-09-07.md`, `BACKLOG-2026-09-07-SECTION2-ARCHIVE.md`, dashboard files, this entry. No price, product or site page touched; `IndexNow` not applicable.
+
 ## PM check-in, 2026-11-19 (~04:1x slot): previous work confirmed finished, closed the Kids Bedroom declutter gap three prior cycles had handed off without starting
 
 **Previous work was finished, not just cited.** Attached clean (`fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 228 commits fast-forwarded, tree clean). `preflight.py --skip-tests` run live to completion: 0 FAIL, 31 warnings, all standing credential/sandbox gaps.
