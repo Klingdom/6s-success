@@ -2,7 +2,15 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-20 (~10:4x slot): previous work independently reconfirmed finished a further way, nothing new unblocked
+## PM check-in, 2026-11-20 (~11:1x slot): A208 confirmed finished, one promising lead traced to an already-declined dead end, nothing new unblocked
+
+Attached per Step 0: real unshallow, ff-only onto origin/main at 6dcad74a7, tree clean.
+
+A208 confirmed finished: preflight.py --skip-tests fresh, 0 FAIL, 32 standing warnings. 31 issues unchanged, none from Phil since #65. Backlog sections 2-6: zero unstruck rows. 0 open PRs, 0 stale ledger entries.
+
+Mined room_guide_underperformance.py: Kitchen's "baking supplies in kitchen" scores to the Sink Zone on a coincidental "supplies" match, not the bakeware-holding Lower Cabinet Zone. Traced first: zone-also-called.json's Cooking Zone entry shows this exact fix already tried and reverted, since it would hijack no-room-signal "baking supplies" queries from Pantry. gate_room_guide_mining_diminishing_returns independently confirms the lane is exhausted. Not repeating a declined fix without new leverage.
+
+No notification: last sent 07:46Z, inside the 48h floor, state unchanged. Dashboard refreshed. Nothing new for the operator.
 
 NEXT FOR THE OPERATOR: continue the standing re-verification practice or pick one small closing job, because 31 issues and backlog sections 2-6 remain exactly as the 10:1x twin and A207 found them, all Done, Archived, Hold or Phil-gated.
 
