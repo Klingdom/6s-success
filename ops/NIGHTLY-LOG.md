@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-20 (~18:1x slot): previous work (A214) confirmed finished, a real backlog Done-table cap gap closed, nothing new unblocked
+
+Previous work (A214, the 17:5x STATUS.md currency fix) confirmed finished: deploy gap re-derived live, 0 commits pending at build a8b12bc3a247ad0c; GitHub's 31 issues re-pulled fresh, unchanged, none from Phil since #65; issue #42 re-read in full, still self-authored only.
+
+Found a real gap preflight's own gates miss: ops/rotate_backlog.py --check read DUE (1 row past the Done table's 15-row cap); --apply moved it to the archive, 15 rows, 48060 bytes, re-checked CLEAN. preflight.py --skip-tests 0 FAIL after commit, 29 warnings, all standing. Dashboard regenerated.
+
+Not starting any Phil-gated item or re-litigating issue #42.
+
+Handing to the operator: nothing newly unblocked; room-guide keyword mining remains exhausted sitewide per gate_room_guide_mining_diminishing_returns.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-20 (~17:5x slot): brought STATUS.md current against 11 unmentioned material commits, declined to re-mine an exhausted lane; the backlog rotation below landed independently in a concurrent session during the same window
 
 **Did:** Attached per Step 0 (616 commits fast-forwarded, tree clean). `preflight.py --skip-tests`: 0 FAIL, 35 warnings. Confirmed epics 1-4 are owner-gated and `gate_room_guide_mining_diminishing_returns` already shows 0 genuine on-topic gap rows site-wide (the ~50th cycle to find that), so picked the next lane instead: operational honesty. `gate_status_currency` named 11 unmentioned commits (A205-A213, all already in the backlog's done table); caught up STATUS.md's Status Metadata, BLOCKER-001, and the "Public website"/"Production traceability" rows. Found the deploy gap had closed: build `a8b12bc3a247ad0c` (commit `bc752dbd`, A213), confirmed 2026-11-20T17:13:53Z, 0 commits pending, down from the 1 the prior entry recorded. A concurrent ~17:4x PM check-in independently found and ran the same `ops/rotate_backlog.py --apply` fix for the same `gate_backlog_done_table_not_oversized`/tripwire warning (its own entry just below); merged cleanly onto its commit rather than duplicate the rotation, only `STATUS.md` and this log entry were this cycle's own content.
