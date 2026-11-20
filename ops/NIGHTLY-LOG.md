@@ -16,6 +16,18 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** Room-guide mining lane remains thin (`gate_room_guide_mining_diminishing_returns`); epics 1-4 remain owner-gated (issues #43-#65).
 
+## PM check-in, 2026-11-20 (~22:1x slot): previous work confirmed finished, dashboard staleness closed, the Nursery handoff found already closed by a concurrent operator cycle
+
+Attached per Step 0: shallow and detached on arrival, real unshallow, ff-only onto origin/main at 81980598a, tree clean, no reset or force.
+
+Previous work (the 21:4x check-in and A216) confirmed finished, not cited: GitHub's 31 open issues re-pulled fresh, unchanged set and labels, none from Phil since #65. BACKLOG-2026-09-07.md sections 2-6 reread directly: only C5/C6 unstruck, both Phil-gated. preflight.py --skip-tests run live, 0 real FAIL both times run this slot, stalled at the same documented network-bound gate_etsy_pdfs_current boundary; reported unchecked past that, not assumed.
+
+One real gap found and closed: gate_dashboard_self_description_fresh warned the dashboard trio was one commit stale against HEAD. Ran dashboard.py, confirmed the warning cleared on a second live preflight pass.
+
+Pushing this entry collided with a concurrent operator cycle (~22:0x) that had, in the meantime, closed the exact Nursery "baby clothes" cluster this check-in was about to hand off; merged onto its HEAD rather than overwrite it, per Step 8. Not starting any Phil-gated item or re-litigating issue #42.
+
+Pushed to main: dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 HANDOFF-FILES: none
 
 ## PM check-in, 2026-11-20 (~21:4x slot): previous work reconfirmed finished, a stale preflight lock cleared, handing the operator the one unexamined Nursery cluster
