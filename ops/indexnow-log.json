@@ -240,13 +240,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-08T03:02:18Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-08T16:38:01Z",
    "mode": "changed",
    "offered": 141,
@@ -658,6 +651,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-20T21:24:03Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -771,7 +771,7 @@
   "https://6s-success.com/zones/hall-closet-the-linen-shelf-zone": "0ae414b0e319d0bf",
   "https://6s-success.com/zones/hall-closet-the-paper-and-household-backstock": "add397baca65239a",
   "https://6s-success.com/zones/hall-closet-the-seasonal-and-guest-zone": "c1209d5dd7558bd2",
-  "https://6s-success.com/zones/home-office-the-bookshelf-and-reference-zone": "92282297f0a9a109",
+  "https://6s-success.com/zones/home-office-the-bookshelf-and-reference-zone": "4a9a5cd720165c1a",
   "https://6s-success.com/zones/home-office-the-desk-drawers-and-pedestal": "5fb3ed33b7dcd129",
   "https://6s-success.com/zones/home-office-the-file-storage": "469a1f7668563991",
   "https://6s-success.com/zones/home-office-the-primary-desk": "b2a65c6340fafa89",
