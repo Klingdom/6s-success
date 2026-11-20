@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-20 (~07:1x slot): previous work (06:5x operator cycle) reconfirmed finished a further independent way, owner-notification floor correctly still withheld, nothing new unblocked
+
+Attached per Step 0: `fetch origin main`, repo was shallow on arrival, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `f8537536f` (525 commits fast-forwarded), tree clean, no reset or force.
+
+Previous work (the 06:5x operator cycle's exhaustion re-verify) confirmed finished, not cited: 31 open GitHub issues re-pulled live via the MCP server, same set, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65. `BACKLOG-2026-09-07.md` sections 2-6 reread directly: zero unstruck A-numbered rows, section 6's 8 owner gates unchanged. `OWNER-ACTIONS.md`'s open section has nothing new since the last review marker. `STATUS.md`'s `BLOCKER-001` deploy-gap citation (1 commit pending, `078e33c4`) re-checked against this entry's own `BACKLOG-2026-09-07.md` line 67 citation, consistent. `cold_read_ledger.py --stale`: 0.
+
+Ran `preflight.py --skip-tests` myself rather than trust the prior pass: it did not reach `gate_tests` inside this slot's budget (the standing sandbox-timeout shape every recent cycle reports; raw log buffered empty on kill, not trusted on its own). `ops/cycle-signal.json` recorded a fresh checkpoint at `2026-11-20T07:14:59Z` against this run's own HEAD `f8537536f`, which only writes on a clean pass of every gate up to `gate_tests`, so that much is real signal: every gate before `gate_tests` passed. `gate_tests` itself not reached; reported unchecked past that point, not assumed passing.
+
+**Owner notification floor, checked live rather than assumed:** `ops/last-owner-notification.json` last sent `2026-11-18T07:30:00Z`; the 06:5x operator cycle correctly worked out the 48h floor clears at `2026-11-20T07:30:00Z`. Current time at this check was `07:16:55Z`, still inside the floor by 13 minutes, and nothing material has changed since the last send (still $0 revenue, still the same 31 owner-gated issues). Not sending. The next cycle actually past `07:30Z` with no material change is the one that should send it, per the 06:5x entry's own handoff.
+
+Regenerated the dashboard trio for currency: YELLOW, P0 10, need-you 29, commits7d 1615, revenue $0 carried forward (no Stripe egress this sandbox).
+
+Not starting any Phil-gated item or re-litigating issue #42. No notification sent this slot (floor not yet passed).
+
+Pushed to main: dashboard trio, `ops/cycle-signal.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-20 (~06:5x slot): independently re-verified full exhaustion a further way, correctly withheld the owner notification
 
 **Did:** Attached per Step 0: fetch, confirmed real unshallow (was shallow on arrival), checkout main, ff-only onto origin/main, 521 then 2 further commits fast-forwarded (a concurrent 06:4x PM check-in landed mid-cycle; rebased cleanly onto it, no reset or force). Read GOALS.md, BACKLOG-2026-09-07.md in full (sections 0-7, including 3-6, which this slot had not read verbatim before), CLAUDE.md, OWNER-ACTIONS.md's "Start here" and "Open" sections, and the last several NIGHTLY-LOG entries before picking work.
