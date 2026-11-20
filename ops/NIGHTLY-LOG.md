@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-20 (00:4x slot): closed a nightly-log handoff-marker gap, nothing new unblocked
+
+NEXT FOR THE OPERATOR: re-verify the exhausted state a further way or pick one small closing job; every epic's top item is still Phil-gated and issue #42 already tracks the pattern.
+
+Attached per Step 0, ff-only onto origin/main, tree clean; merged one concurrent hourly check-in by stash/ff/pop, no conflicts.
+
+Previous work (00:2x PM check-in's rotations) confirmed finished, not cited: backlog sections 2-6 reread, only Phil-gated items unstruck; GitHub's 31 issues re-pulled, unchanged, none from Phil since #65.
+
+One real gap found and closed: that entry's heading lacked the HANDOFF-FILES line, tripping a gate warning. Added it, committed, pushed, re-ran preflight.py --skip-tests fresh: 0 FAIL, 32 standing warnings, clean cycle_signal.
+
+No notification: no material change. Dashboard regenerated, pushed.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (00:2x slot): previous work confirmed finished, four overdue operating-document rotations closed, nothing new unblocked
 
 Attached clean per Step 0. Previous work confirmed finished, not cited: `preflight.py --skip-tests` run live, 0 FAIL, 32 standing warnings. GitHub's 31 issues re-pulled: unchanged since #65, none from Phil.
