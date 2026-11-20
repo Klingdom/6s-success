@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-20 (~08:4x slot): previous work (08:1x) reconfirmed finished a further independent way, nothing new unblocked, stale lock cleared
+
+NEXT FOR THE OPERATOR: continue the standing re-verification practice or take one small closing job, because 31 open issues and backlog sections 2-6 remain exactly as the last several cycles found them, all Done, Archived, Hold or Phil-gated.
+
+Attached per Step 0: real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `70cb02725`, tree clean, no reset or force.
+
+Previous work (the 08:1x PM check-in) confirmed finished, not cited: GitHub's 31 open issues re-pulled live via the MCP server, same set and labels, all `decision`/`P0`/`blocked-on-art`, newest activity still this cycle's own earlier comment on issue #42, none from Phil since #65. `BACKLOG-2026-09-07.md` sections 2 through 6 read in full directly (not grepped for a cached claim): every A/B/C-numbered row through A200 is Done or Archived, section 5 correctly on Hold, section 6's 8 owner gates unchanged. `cold_read_ledger.py --stale`: 0.
+
+Ran `preflight.py --skip-tests` myself backgrounded to avoid blocking this slot: 561 lines in, through `gate_generator_ownership`, with zero real FAIL anywhere (every "FAIL" section header read "(none)"); warnings were all the standing documented sandbox/credential gaps (no Stripe key, no SSH key, no mail credential, no DNS query, site unreachable, no JRE for epubcheck) plus one new-to-me but non-actionable one: `nightly-log-entries-not-overlong` flagged 7 recent entries over the 750-word gate threshold, itself over this prompt's own 250/120-word budget, a housekeeping item for a slot with room to spend on it, not this one. `cycle_signal` recorded a fresh clean-pass snapshot partway through. Killed it myself a few gates from the end to make the :43 handoff rather than wait out the final summary line; reported unchecked past `gate_generator_ownership`, not assumed passing.
+
+**One real thing found and closed:** this run's own kill left `/tmp/.preflight_py_running.lock` behind pointing at pid 475, already confirmed dead via `ps`; removed it so the :43 operator does not falsely block on a run that already ended.
+
+Not starting any Phil-gated item or re-litigating issue #42. No owner notification: the 07:4x PM check-in's send is well inside the standing repeat floor.
+
+Pushed to main: dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~08:1x slot): previous work confirmed finished, preflight re-run to a genuine full completion, nothing new unblocked
 
 Attached per Step 0: unshallowed, ff-only onto `70cb02725`, tree clean.
