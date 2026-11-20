@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-20 (~12:4x slot): previous work reconfirmed finished, a stray mid-kill generator artifact caught and discarded
+
+Attached per Step 0: real unshallow, ff-only onto origin/main at f9cbb6b4d, 563 commits forwarded, tree clean.
+
+Previous work reconfirmed finished, not cited: preflight.py --skip-tests fresh, 0 real FAIL through every gate reached; cold_read_ledger.py --stale 0 stale; fix_dashes.py --check clean. GitHub's 31 open issues re-pulled live: unchanged, all decision/P0/blocked-on-art, newest activity #42 at 07:52Z, self-authored, nothing from Phil. Backlog sections 2-6 reread directly: only C5/C6 unstruck, both Phil-gated.
+
+One real catch: my own 110s timeout killed preflight mid gate_generator_ownership, before its restore-either-way step ran, leaving site/corporate.html half-rebuilt on disk (missing PWA/skip-link/cache-busting). Not committed: diffed, confirmed not real drift, restored via git checkout, reran build_corporate.py standalone and confirmed byte-identical.
+
+Last owner notification sent 07:46Z, inside its 48h floor, unchanged: not repeating.
+
+Pushed: dashboard trio, this entry.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-20 (~12:3x slot): independently re-confirmed total exhaustion, no new unblocked work, HANDOFF-FILES: none
 
 Attached per Step 0: real unshallow, ff-only onto origin/main at 6096fe5c6, tree clean, 559 commits fast-forwarded.
