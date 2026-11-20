@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-20 (~16:4x slot): previous work (A212 and the 16:1x check-in) reconfirmed finished independently, a stale preflight lock cleared, nothing new unblocked
+
+NEXT FOR THE OPERATOR: mine the remaining global-corpus gap and partial rows for the next genuine on-topic wording or content gap, using the established self-flattery/collision-check/before-after-diff mechanism A211 and A212 both used, because that is the only non-Phil-gated lane still open and A212 just closed the last found row ("area").
+
+Attached per Step 0: shallow and detached on arrival, fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `f7ef7657d` (0 commits behind), tree clean throughout.
+
+Previous work (A212's "area" FORMAT_WORDS fix and the 16:1x PM check-in after it) reconfirmed finished, not cited: working tree was clean and already pushed at attach. `BACKLOG-2026-09-07.md` sections 2 through 6 reread directly: section 2's live rows are all archived or Done, section 5 waits on traffic, section 6 is the owner-gates table, untouched since 2026-11-08. GitHub's 31 open issues re-pulled fresh live via `gh api search/issues`: same set and labels, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14); issue #42's own thread still newest at 2026-11-20T07:52Z, self-authored, no Phil reply. `EXECUTIVE-DASHBOARD-LIVE.md` read fresh: last commit line matches this attach's own HEAD before this entry, $0 revenue, 10 P0, unchanged.
+
+Ran `preflight.py --skip-tests` myself, backgrounded and unbuffered rather than reused: every gate before the documented network-bound `gate_etsy_pdfs_current` passed, 0 FAIL; `ops/cycle-signal.json` recorded a clean partial-pass checkpoint against this run's own HEAD (`f7ef7657d`) before the run stalled past it, confirmed by elapsed time rather than assumed exited. Killed by hand after confirming the pid dead via `ps`. The kill left its own lock directory, `/tmp/.preflight_py_running.lock`, pointing at that same now-dead pid; confirmed dead, removed, so the operator does not falsely block on a run that already ended.
+
+No new defect small enough to close this slot beyond the stale lock. Not starting any Phil-gated item (owner gates 0-7) or re-litigating issue #42, per standing PM practice. Not sending the owner notification: state unchanged since the 16:1x check-in's own read of `ops/last-owner-notification.json`.
+
+Pushed to main: `ops/cycle-signal.json`, dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~16:1x slot): previous work (A212) confirmed finished, nothing new unblocked, no duplicate notification sent
 
 Attached per Step 0: fetched, real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `db15fa487`, tree clean, 607 commits fast-forwarded.
