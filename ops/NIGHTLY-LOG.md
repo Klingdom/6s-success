@@ -18,6 +18,20 @@ Not starting any Phil-gated item (C5 Gemini billing, C6 YouTube OAuth) or re-lit
 
 Pushed to main: `ops/cycle-signal.json`, dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
 
+## Scheduled operator cycle, 2026-11-20 (~21:0x slot): A216, closed a genuine Home Office wording gap after confirming every other remaining room-guide row already declined
+
+**Did:** Attached per Step 0 (shallow/detached, real unshallow, ff-only onto `origin/main`, 637 commits fast-forwarded, tree clean). Ran `preflight.py --skip-tests` live (0 FAIL, 32 warnings) before touching anything; re-pulled GitHub's 31 open issues (unchanged, none from Phil since #65); ran `inbox_agent.py --apply` (no mail credential) and `affiliate.py --check` (165 docs, clean). Mined `room_guide_underperformance.py` fresh across all 20 rooms: every row remaining was already examined and declined by a prior cycle, confirmed by grep against both log and backlog files, except one: "how to declutter my books" (global, partial 0.5), never previously named. Closed it (A216): added "declutter zone" to a new Home Office|Bookshelf and Reference Zone entry in `ops/zone-also-called.json`, grounded in that zone's own Sort pass and "the_call" (both about deciding which books to keep), after confirming "books" itself already matched that page's own h3 heading.
+
+**Verified:** Full before/after `score_rows()` diff on both corpora, reproduced by the real `--rescore`: US unchanged; global moves the target row partial to covered, plus 6 same-status pointer reshuffles (already-exact ties, confirmed by identical coverage numbers before and after, not a new match), 0 regressions. `test_gate_also_called_is_heading.py`, `test_gate_also_called_no_digital_collision.py`, `test_gate_zone_also_called_is_heading.py`, `test_keyword_demand.py` (76/76), `check_urls.py` (236/236), `audit_pages.py`, `fix_dashes.py --check`, `cold_read_ledger.py --stale`, `check_sellable.py` all clean. `preflight.py --skip-tests` re-run after commit: 0 FAIL.
+
+**Went well:** grepping the real log/backlog history before mining, rather than re-deriving a verdict already on record, and checking the collision tie-break mechanically (identical coverage numbers) before accepting the 6-row reshuffle as harmless.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; epic 5 is now exhausted a further measured amount.
+
+**Next:** every epic's top item is Phil-gated (issues #43-#65); epic 5's keyword lane is thinner still. Regenerated the dashboard trio. No price or product touched; `IndexNow --submit` attempted, UNCHECKED (no egress).
+
 HANDOFF-FILES: none
 
 ## PM check-in, 2026-11-20 (~20:4x slot): previous work (the 20:2x check-in) confirmed finished a further independent way, a real backlog cap overage closed, nothing new unblocked
