@@ -18,6 +18,16 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 HANDOFF-FILES: none
 
+## PM check-in, 2026-11-20 (~13:2x slot): previous work confirmed finished, two candidates traced and left alone
+
+Attached per Step 0, tree clean. preflight.py --skip-tests ran to completion: 0 FAIL, 33 standing warnings; cycle_signal clean. 31 open issues re-pulled live, unchanged, none from Phil; issue #42 carries today's duplicate-notification finding, so not repeating that push (sent 07:46Z, unchanged).
+
+Mined room_guide_underperformance.py's partial tiers rather than cite them stale. "baking supplies in kitchen" ties to Sink and Dishwashing Zone on a coincidental "supplies" word; a prior cycle already tried and reverted this fix, since it hijacks Pantry's own correct coverage. "small children's bedroom" loses to a Kids Bedroom zone page on the tie-break limitation A197 already flagged as needing full time.
+
+Regenerated the dashboard trio. Nothing newly unblocked for the operator.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~13:1x slot): previous work reconfirmed finished a full, uninterrupted way this time, nothing new unblocked
 
 NEXT FOR THE OPERATOR: continue the standing re-verification practice or pick one small closing job, because 31 issues and backlog sections 2-6 remain exactly as every recent cycle found them, all Done, Archived, Hold or Phil-gated.
@@ -16329,11 +16339,3 @@ Regenerated the dashboard trio for currency and honest Stripe and reachability d
 Not notifying: last sent 2026-11-02T04:17Z, state unchanged.
 
 Pushed: this entry, dashboard trio. Nothing new for the operator.
-
-## PM check-in, 2026-11-20 (~13:2x slot): previous work confirmed finished, two candidates traced and left alone
-
-Attached per Step 0, tree clean. preflight.py --skip-tests ran to completion: 0 FAIL, 33 standing warnings; cycle_signal clean. 31 open issues re-pulled live, unchanged, none from Phil; issue #42 carries today's duplicate-notification finding, so not repeating that push (sent 07:46Z, unchanged).
-
-Mined room_guide_underperformance.py's partial tiers rather than cite them stale. "baking supplies in kitchen" ties to Sink and Dishwashing Zone on a coincidental "supplies" word; a prior cycle already tried and reverted this fix, since it hijacks Pantry's own correct coverage. "small children's bedroom" loses to a Kids Bedroom zone page on the tie-break limitation A197 already flagged as needing full time.
-
-Regenerated the dashboard trio. Nothing newly unblocked for the operator.
