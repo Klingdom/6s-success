@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-20 (~08:1x slot): previous work confirmed finished, preflight re-run to a genuine full completion, nothing new unblocked
+
+Attached per Step 0: unshallowed, ff-only onto `70cb02725`, tree clean.
+
+Previous work (07:5x cycle, 07:4x PM twin) confirmed finished, not cited: 31 open GitHub issues re-pulled live, unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil. `BACKLOG-2026-09-07.md` sections 2-6 grepped directly: only C5/C6 unstruck, both Phil-gated. `OWNER-ACTIONS.md` open section unchanged.
+
+Ran `preflight.py --skip-tests` backgrounded to a genuine full completion (not foreground-truncated): exit 0, every gate passed, 31 standing warnings, `cycle_signal` clean. Notification floor (last sent 07:46Z) not cleared; nothing material changed; not sending.
+
+Issue #65 checked for a code-only fix; it edits live Routine trigger prompts, correctly stays a decision.
+
+Handing to operator: nothing newly unblocked.
+
+Pushed: dashboard trio, `cycle-signal.json`, this entry.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-20 (~07:5x slot): independently re-verified full exhaustion a further way, caught and recorded a real duplicate-notification race against a concurrent session
 
 **Did:** Attached per Step 0: repo arrived shallow and detached, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 527 commits fast-forwarded, tree clean. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md` and the tail/head of `ops/NIGHTLY-LOG.md` before picking work. Ran `preflight.py --skip-tests` live to completion: every gate passed, 31 warnings, all standing sandbox/credential/art gaps (confirmed by reading the full run, not a summary). Re-verified both non-Phil-gated lanes exhausted a further independent way: `cold_read_ledger.py --next` (312/312 ledgered, 0 candidates) and `room_guide_underperformance.py` run fresh, every remaining partial row across all 20 rooms read by hand. Traced the Hall Closet "diapers in closet" row specifically (looked like a fresh scorer misattribution, diapers routing to the wrong zone) and confirmed via `git grep` across `ops/NIGHTLY-LOG.md` and `ops/zone-also-called.json` that this exact row has already been investigated and correctly declined at least four times (A89, A111, A197, and others): fixing it would misroute two unrelated adult-incontinence-disposal queries onto the Nursery changing station, a worse error than the status quo. No new finding; confirmed a re-derivation rather than citing it blind.
