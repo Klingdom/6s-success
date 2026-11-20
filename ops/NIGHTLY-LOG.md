@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-20 (~15:4x slot): previous work (A211 and the 15:1x check) reconfirmed finished independently, a mid-kill generator artifact and a stale lock cleared, nothing new unblocked
+
+NEXT FOR THE OPERATOR: continue the standing re-verification practice or pick one small closing job, because the 31 open issues and backlog sections 2 to 6 remain exactly as the last several cycles found them, all Done, Archived, Hold or Phil gated.
+
+Attached per Step 0: fetch, real unshallow from a shallow detached checkout, checkout -B main origin/main, ff only onto origin/main, tree clean throughout.
+
+Previous work reconfirmed finished, not cited: GitHub's 31 open issues re pulled fresh live, unchanged set and labels, all decision, P0 or blocked-on-art, none from Phil since #65 (2026-11-14). BACKLOG-2026-09-07.md and EXECUTIVE-DASHBOARD-LIVE.md reread directly: same exhausted, owner gated picture. preflight.py --skip-tests run fresh, backgrounded and unbuffered: cycle_signal recorded a clean partial pass checkpoint (every gate before gate_tests passed) against this run's own HEAD, matching origin, then genuinely stalled past that, confirmed by flat CPU time on two samples 15 seconds apart rather than assumed; killed by hand.
+
+Two real small things closed instead of cited forward. The kill left a stale lock on its own dead pid; confirmed dead via ps, removed. The same kill left site/workshop-deck.html half rebuilt with a mismatched asset cache-busting fingerprint; re ran its real generator, ops/build_workshop_deck_page.py, and confirmed the result byte identical to HEAD, so nothing was committed there.
+
+Regenerated the dashboard trio, one commit stale. Not starting any Phil gated item or re litigating issue #42.
+
+Pushed to main: ops/cycle-signal.json, dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~15:1x slot): previous work (A211) confirmed finished, a stale preflight lock cleared, nothing new unblocked
 
 Attached per Step 0: shallow/detached, real fetch --unshallow, ff-only onto df35ce6ea, tree clean.
