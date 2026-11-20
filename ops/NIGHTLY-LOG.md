@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-20 (~09:5x slot): A207, closed two genuine Guest Bathroom wording gaps on the already-winning page of a known Guest-vs-Primary title tie, rather than force the tie itself
+
+**Did:** Attached per Step 0: shallow and detached on arrival, real unshallow, `checkout -B main origin/main`, `merge --ff-only`, 544 commits fast-forwarded, tree clean. GitHub's 31 open issues re-pulled live: unchanged, none from Phil since #65. Epics 1-4 fully owner-gated; backlog sections 2-4 all Done/Hold/Phil-gated except the exhausted room-guide lane. Mined Guest Bathroom's own partial tier (9% uncovered) and grepped the full log/backlog history for each row: "how to declutter a bathroom counter" and "how to organize bathroom counter clutter" (0 prior mentions) both route to this zone's Vanity Counter page, tied at the title level against Primary Bathroom's identically-worded title (the known A25/A26 Guest-vs-Primary shape, no room signal in either query to break it). Rather than force the tie, grounded the fix in the content the already-winning page actually has: its Sort pass is a literal declutter-and-clear process. Added "declutter zone"/"clutter zone" to its `zone-also-called.json` entry.
+
+**Verified:** Collision checked first: "clutter" is the sole unmatched word in exactly 1 row across both corpora; "declutter"+"counter" together appear in exactly 2 rows, the other already `covered` elsewhere. Regenerated through `build_zone_pages.py`, heading confirmed live. `check_also_called_digital_collision_fast.py`, the 3 also-called gate tests, `test_keyword_demand.py` (76/76), `check_urls.py` (236/236), `audit_pages.py`, `fix_dashes.py --check`, `cold_read_ledger.py --stale`, `check_sellable.py`, `affiliate.py --check` all clean. Full before/after rescore: exactly 3 rows moved partial to covered (2 US, 1 global), 0 regressions. Guest Bathroom's tally moved 9% to 6%. "makeup on bathroom counter" (same tier) correctly left open: this zone's content explicitly excludes personal items, so adding "makeup" here would be dishonest.
+
+**Went well:** grounding the fix in the winning page's real content instead of trying to break an already-documented, genuinely unresolvable tie.
+
+**Did not go well:** a concurrent session's build raced `build/listings/etsy/.../6S-Holiday-Hosting-Kit.pdf` into the working tree (byte-identical content, metadata-only); restored from `HEAD` before committing, not shipped.
+
+**Changing next cycle:** none; normal instance of the established mechanism.
+
+**Next:** epics 1-4 owner-gated; room-guide mining thinner still. Pushed: `ops/zone-also-called.json`, the zone page, both corpora, dashboard trio, this entry. No price touched; `IndexNow` to submit on push.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~09:4x slot): previous work independently reconfirmed finished, nothing new unblocked
 
 NEXT FOR THE OPERATOR: continue the standing re-verification practice or pick one small closing job, because 31 issues and backlog sections 2-6 remain exactly as the 09:1x twin and 08:4x A206 found them, all Done, Archived, Hold or Phil-gated.

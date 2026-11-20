@@ -258,11 +258,13 @@
   },
   "Guest Bathroom|Guest Vanity Counter": {
    "names": [
-    "bathroom countertop"
+    "bathroom countertop",
+    "declutter zone",
+    "clutter zone"
    ],
-   "queries": 6,
+   "queries": 8,
    "covered": 0,
-   "source": "ops/keyword-demand.json + ops/keyword-demand-global.json, scored 2026-10-26"
+   "source": "ops/keyword-demand.json + ops/keyword-demand-global.json, scored 2026-10-26. 'declutter zone'/'clutter zone' added 2026-11-20, scheduled operator cycle, mined from the room-guide tier: 'how to declutter a bathroom counter' (US, partial, sole unmatched word 'declutter') and 'how to organize bathroom counter clutter' (both corpora, partial, sole unmatched word 'clutter') both already route here on the bare words 'bathroom'+'counter', tied at the title level against Primary Bathroom's own Vanity Counter zone (both pages' titles read '...the <room> bathroom vanity counter', an identical tie, no room signal in either query to break it, the same A25/A26 Guest-vs-Primary shape). Grounded directly in this zone's own content.json before adding, not merely in the tie's existing winner: its Sort pass is literally a declutter-and-clear process ('Pull everything off the counter onto a towel and put back only what your hands touched today and yesterday... go into a drawer or out of the room entirely' for Primary; this zone's own Sort pass reads 'Take everything off the counter and put back only what a visitor would use... all go back where they belong or into the trash'), so the fix does not force the tie, it only stops the page that already wins it from being partial. Checked collision first (CLAUDE.md 5c/5d): 'clutter' (bare, not 'declutter') is the sole unmatched word in exactly 1 row across both corpora combined; 'declutter'+'counter' together appear in exactly 2 rows, this target and 'how to declutter a kitchen counter', already fully `covered` elsewhere with 0 unmatched words, no shared word gap to collide on. Did not touch Primary Bathroom's own Vanity Counter entry: it already loses this specific tie today, and duplicating the same two words there would not change which page wins, only which page the duplicate sits on."
   },
   "Guest Bathroom|Guest Vanity Storage": {
    "names": [

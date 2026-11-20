@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-19T14:13:52Z from google, 151 seeds, 151 attempts: 115 returned completions, 36 had none, 0 errored. Canary: google ok.
 
-**Scored:** 2026-11-20T08:55:33Z against 244 page(s) at commit a0736ba9e. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-20T09:53:43Z against 244 page(s) at commit 70afd594a. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 1183. Checked against 244 published page titles: 858 covered, 296 partial, 29 gap.
+**Queries found:** 1183. Checked against 244 published page titles: 860 covered, 294 partial, 29 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -53,7 +53,7 @@ Showing the top 29 of 29, ordered by the best rank the phrase reached in any one
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 296.
+Showing the top 60 of 294.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -70,7 +70,6 @@ Showing the top 60 of 296.
 | 2 | bonus room storage | How to organize the family room blanket storage | 0.67 |
 | 2 | guest bathroom decorating ideas | How to organize the guest bathroom towels | 0.67 |
 | 2 | guest bedroom design ideas | How to organize the guest bedroom bed and linens | 0.67 |
-| 2 | how to declutter a bathroom counter | How to organize the guest bathroom vanity counter | 0.67 |
 | 2 | how to decorate a guest bedroom | How to organize the guest bedroom bed and linens | 0.67 |
 | 2 | how to organize baking supplies in kitchen | How to organize the kitchen sink area | 0.67 |
 | 2 | primary bedroom decorating ideas | How to organize the primary bedroom bed and bedding | 0.67 |
@@ -78,7 +77,6 @@ Showing the top 60 of 296.
 | 3 | how to create a drop zone | How to organize the entryway drop zone | 0.67 |
 | 3 | how to decorate a guest bathroom | How to organize the guest bathroom towels | 0.67 |
 | 3 | how to organize baking supplies in.cabinet | How to organize the pantry baking supplies | 0.67 |
-| 3 | how to organize bathroom counter clutter | How to organize the guest bathroom vanity counter | 0.67 |
 | 3 | how to organize kids clothes storage | How to organize the kids bedroom toy storage | 0.67 |
 | 3 | how to plan a kids bedroom | How to organize the kids bedroom bed | 0.67 |
 | 3 | how to prepare a guest bedroom | How to organize the guest bedroom bed and linens | 0.67 |
@@ -117,6 +115,8 @@ Showing the top 60 of 296.
 | 9 | primary bedroom interior design ideas | How to organize the primary bedroom bed and bedding | 0.67 |
 | 10 | family room decorating ideas 2026 | How to organize the family room blanket storage | 0.67 |
 | 10 | how to arrange a living room with 2 walls | How to organize the living room bookshelves and display | 0.67 |
+| 10 | how to plan a home office | How to organize the home office bookshelf | 0.67 |
+| 10 | large primary bedroom design ideas | How to organize the primary bedroom bed and bedding | 0.67 |
 
 ## By room
 
