@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-20 (~16:5x slot): A213, closed the Entryway "without closet" wording gap by rewording an existing FAQ heading, and confirmed no duplicate owner notification was due
+
+**Did:** Attached per Step 0 (shallow, detached, real unshallow, ff-only). Preflight 0 FAIL before the change. GitHub's 31 issues re-pulled live twice, unchanged, none from Phil since #65. Checked `ops/last-owner-notification.json` first: a push on this exact state already went out 2026-11-20T07:46Z, inside the 48h floor, so none sent this cycle. Cold-read ledger 312/312, room-guide mining re-checked fresh and grepped against the full log/backlog history: three candidates with zero prior mentions found. Two ("small guest bathroom storage ideas", "a small front hall closet") were already dead ends on inspection: both carry "small", the already-declined 40/244-heading word, and "front hall" is separately named as noise risk in `room-also-called.json`'s own rule comment. The third, "master bathroom storage ideas for small spaces", traced to the same `household_room_signal()` tie-break-only limitation 13 other "master bathroom" queries already share; not a one-line fix, left diagnosed rather than forced. Shipped the fourth: "how to organize entryway without closet" was genuinely clean. The Entryway article's own FAQ already answers this exact question under the heading "...with no closet", a synonym the literal-match scorer cannot credit. Reworded that `<h3>` and its FAQPage JSON-LD `name` to "without a closet", content and answer unchanged.
+
+**Verified:** Full before/after `score_rows()` diff via the real `--rescore` on both corpora: US partial 291->290, covered 864->865; global partial 644->643, covered 1436->1437; exactly 1 row each, same `best_page`, 0 regressions. `check_urls.py` 236/236, `audit_pages.py` 0 findings, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0, `check_sellable.py` 124/126 (2 person-delivered services), `test_keyword_demand.py` 76/76, all independently clean. `ops/build_seo.py` rerun for sitemap lastmod. A concurrent PM check-in's 2 bookkeeping commits landed mid-cycle; fetched and ff-merged cleanly, only `ops/cycle-signal.json` (a local snapshot) needed discarding and regenerating, no content conflict.
+
+**Went well:** The "zero prior mentions anywhere" grep against both log files and both backlog files, before touching anything, correctly separated one genuinely fixable row from two already-exhausted dead ends in minutes rather than hours.
+
+**Did not go well:** A full `preflight.py --skip-tests` run attempted after the change ran well past 10 minutes in this sandbox without finishing; killed by hand rather than let it block the commit indefinitely, and the targeted spot-checks above substituted for it. Reported here as unchecked, not claimed as a full pass.
+
+**Changing next cycle:** Nothing new; the established mechanism (self-flattery check, collision check, real before/after rescore diff) keeps working correctly on the handful of rows this lane still has left.
+
+**Next:** The non-Phil-gated queue is now down to one diagnosed-but-unshipped row (the "master bathroom" tie-break limitation) and whatever a fresh `room_guide_underperformance.py` mining turns up next. The 31 owner-gated decisions in `OWNER-ACTIONS.md`/issue #42 remain the highest-leverage work in the business and are unchanged since 2026-11-02.
+
 ## PM check-in, 2026-11-20 (~16:4x slot): previous work (A212 and the 16:1x check-in) reconfirmed finished independently, a stale preflight lock cleared, nothing new unblocked
 
 NEXT FOR THE OPERATOR: mine the remaining global-corpus gap and partial rows for the next genuine on-topic wording or content gap, using the established self-flattery/collision-check/before-after-diff mechanism A211 and A212 both used, because that is the only non-Phil-gated lane still open and A212 just closed the last found row ("area").

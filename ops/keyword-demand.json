@@ -14272,13 +14272,11 @@
       "best_page": "/articles/how-to-organize-an-entryway.html",
       "best_page_title": "How to organize an entryway, step by step",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "without"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize food storage",
@@ -23390,6 +23388,6 @@
       "unmatched_words": []
     }
   ],
-  "scored_against_commit": "dd4c022a0",
-  "scored_at": "2026-11-20T15:53:21Z"
+  "scored_against_commit": "f7ef7657d",
+  "scored_at": "2026-11-20T16:55:10Z"
 }
