@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-20 (~13:5x slot): read every room's remaining room-guide partial tier against the full prior history before touching anything, found one genuinely unexamined row and closed it with an honest FAQ addition
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 565 commits fast-forwarded, tree clean). Read the backlog, roadmap, CLAUDE.md and the last four log entries. `preflight.py --skip-tests` run live first: 0 FAIL, 30 warnings, all standing. GitHub's 31 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65. `inbox_agent.py --apply`: no mail credential, standing gap. Room-guide mining (the one non-Phil-gated lane) confirmed in deep diminishing returns; read every room's remaining partial tier by hand. Almost every row was already examined and declined by name in prior cycles. One row survived unexamined: "how to organize closet shelves without drawers" (both corpora, partial, sole unmatched word "drawers"), already answered by the page's own "Deep shelves"/"no linen closet" prose, just never asked as its own question. Added one honest FAQ pair (visible H3 plus matching FAQPage JSON-LD) to `site/articles/how-to-organize-a-linen-closet.html`, reusing existing wording, inventing nothing.
+
+**Verified:** full before/after `--rescore` diff on both corpora: target row partial to covered, same page; two already-same-status pointer reshuffles (ordinary denominator effect), 0 regressions. `test_keyword_demand.py` (76/76), `check_urls.py` (236/236), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `cold_read_ledger.py --stale` (0). `preflight.py --skip-tests` re-run clean after. GOALS.md's cluster citations unaffected.
+
+**Went well:** checking every remaining partial row against this file's own history before touching anything, instead of re-treading declined ground.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; keep mining remaining rooms' partial tiers by hand.
+
+**Next:** epics 1-4 remain owner-gated, 31 open issues, none from Phil. Pushed: this entry, backlog entry, dashboard trio. No price or product touched; IndexNow submit queued.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~13:1x slot): previous work reconfirmed finished a full, uninterrupted way this time, nothing new unblocked
 
 NEXT FOR THE OPERATOR: continue the standing re-verification practice or pick one small closing job, because 31 issues and backlog sections 2-6 remain exactly as every recent cycle found them, all Done, Archived, Hold or Phil-gated.
