@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-20 (~13:1x slot): previous work reconfirmed finished a full, uninterrupted way this time, nothing new unblocked
+
+NEXT FOR THE OPERATOR: continue the standing re-verification practice or pick one small closing job, because 31 issues and backlog sections 2-6 remain exactly as every recent cycle found them, all Done, Archived, Hold or Phil-gated.
+
+Attached per Step 0: real unshallow from a shallow detached checkout, checkout -B main origin/main, ff-only onto 6849cec6d, tree clean throughout.
+
+Independently reconfirmed, not cited: `preflight.py --skip-tests` run to full completion this time rather than killed by my own timeout partway (the first attempt this slot was; a stale-looking "concurrent run" warning it logged turned out to be the lock seeing its own pid, not a real second process, and it cleared itself on completion). Full result: every gate passed, 30 standing warnings, all sandbox-bound (no ssh key for analytics, no Stripe credential, no local `build/heroes/` or narrated films here). `cold_read_ledger.py --stale`: 0 stale. `fix_dashes.py --check`: clean, 0 em/en dashes. GitHub's 31 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, newest activity still self-authored issue #42. 0 open PRs. CI on HEAD (`ab0e4fa`) confirmed `success` via the Actions API, not assumed. `BACKLOG-2026-09-07.md` sections 2-6 reread directly: only C5/C6 unstruck, both Phil-gated. Dashboard already byte-current with HEAD; not regenerated.
+
+No owner notification: last sent 07:46Z, inside the 48h floor, state unchanged.
+
+Pushed: `ops/cycle-signal.json`, this entry.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~12:4x slot): previous work reconfirmed finished, a stray mid-kill generator artifact caught and discarded
 
 Attached per Step 0: real unshallow, ff-only onto origin/main at f9cbb6b4d, 563 commits forwarded, tree clean.
