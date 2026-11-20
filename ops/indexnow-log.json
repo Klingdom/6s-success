@@ -240,13 +240,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-09T07:37:59Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-09T19:17:25Z",
    "mode": "changed",
    "offered": 2,
@@ -658,6 +651,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-20T23:04:27Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -796,7 +796,7 @@
   "https://6s-success.com/zones/laundry-room-the-hanging-and-air-dry-zone": "c44478ad29574142",
   "https://6s-success.com/zones/laundry-room-the-sorting-and-hamper-zone": "b47c678bf3e7750b",
   "https://6s-success.com/zones/laundry-room-the-utility-and-cleaning-zone": "e34468f37db2fab9",
-  "https://6s-success.com/zones/laundry-room-the-washer-and-dryer": "1d73929b53abe1ad",
+  "https://6s-success.com/zones/laundry-room-the-washer-and-dryer": "f4648a711961aedf",
   "https://6s-success.com/zones/living-room-the-bookshelves-and-display": "97332c8d9fa0c67c",
   "https://6s-success.com/zones/living-room-the-coffee-table": "59656be1113470e7",
   "https://6s-success.com/zones/living-room-the-floor-and-circulation-path": "16446e7903b49638",
