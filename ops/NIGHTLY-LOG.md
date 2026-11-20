@@ -2,7 +2,21 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-20 (~13:4x slot): previous work (the 13:5x room-guide close and the 13:2x twin) reconfirmed finished independently, nothing new unblocked
+## PM check-in, 2026-11-20 (~14:1x slot): previous work (the 13:5x room-guide close) reconfirmed finished a further way, one more partial-tier row traced and correctly left alone, nothing new unblocked
+
+Attached per Step 0: shallow and detached on arrival, real fetch --unshallow, checkout -B main origin/main, ff-only onto origin/main at 58a3d6613, 578 commits fast-forwarded, tree clean throughout.
+
+Previous work confirmed finished, not cited: 31 open GitHub issues re-pulled live via `gh api`, unchanged set and labels, none from Phil since #65 (2026-11-14). BACKLOG-2026-09-07.md sections 2-4 reread directly: all archived/done. `preflight.py --skip-tests` run fresh (110s foreground timeout, the documented sandbox limit): 0 FAIL through every gate reached, `cycle_signal` recorded a clean partial-pass snapshot against this run's own HEAD. That run's own bootstrap step left two article pages (how-long-does-it-take-to-organise-a-room.html, what-is-6s.html) missing their PWA/progressive/aria-current wiring and cache-bust query string, the same shape as the stray-PNG artifact prior cycles have reported: confirmed spurious by re-running the real `ops/build_articles.py` (its full main() chains wire_progressive/wire_measure/wire_pwa/wire_aria_current/build_avif/fingerprint_assets), which reproduced the committed files byte for byte; discarded, not committed.
+
+Traced one more room-guide partial-tier row before citing the lane exhausted: "walk in closet organizer with drawers and shelves" (0.5, Hall Closet, routed to the linen-closet article). The article already answers the exact query the 13:5x operator closed this slot ("closet shelves without drawers"); this row's overlap is coincidental ("drawers"/"shelves" shared words, different intent, a walk-in closet organizer system the page does not cover), so left alone rather than forced.
+
+Regenerated the dashboard trio: $0 revenue this month (no Stripe egress this sandbox, $19 all-time carried forward), P0 10, need-you 29, commits7d 1611.
+
+No new defect small enough to close beyond the discarded bootstrap artifact. Not starting any Phil-gated item or re-litigating issue #42. No owner notification: unchanged state.
+
+Pushed to main: dashboard trio, cycle-signal.json, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
 
 NEXT FOR THE OPERATOR: continue the room-guide partial-tier mining lane one row at a time, or pick a small closing job, because the 31 open issues and backlog sections 2-6 remain exactly as the last several cycles found them, all Done, Archived, Hold or Phil-gated; nothing else is safe to start without Phil's own input.
 
