@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-20 (~21:4x slot): previous work reconfirmed finished, a stale preflight lock cleared, handing the operator the one unexamined Nursery cluster
+
+NEXT FOR THE OPERATOR: hand-check the Nursery "baby clothes" partial-tier cluster (5 rows: "how to organize baby clothes for storage," "...in cube storage," "...that no longer fit," "...in cupboard/cabinet," "...on shelves"), because none of the five appear in any prior log or backlog entry by name, unlike the Nursery closet/furniture rows A204 already examined and declined.
+
+Attached per Step 0: fetch, real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `origin/main` at `b04de0c5b` (0 commits behind), tree clean throughout, no reset or force.
+
+Previous work (the 21:1x check-in and the A216/21:0x operator cycle before it) confirmed finished, not cited: working tree was clean and pushed at attach. `BACKLOG-2026-09-07.md` sections 2 through 6 reread directly: only C5/C6 unstruck, both Phil-gated. GitHub's 31 open issues re-pulled fresh via the search API: unchanged set and labels, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65; 0 open PRs. `preflight.py --skip-tests` run live, foreground, 110s window: 0 real FAIL (both "FAIL" section headers read "(none)" underneath, grepped and read directly, not assumed), stalled at the same documented network-bound `gate_etsy_pdfs_current` boundary every recent cycle reports; reported unchecked past that point, not assumed passing. `cold_read_ledger.py --stale`: 0 stale.
+
+**One real gap found and closed:** this run's own preflight timeout left `/tmp/.preflight_py_running.lock` behind (pid 468, confirmed dead via `ps -p`), so removed it rather than leave it for the :43 operator to falsely block on.
+
+Ran `room_guide_underperformance.py` fresh rather than cite it stale, read every room's partial tier by hand. Family Room (12%), Stair Landing (12%), Hall Closet (10%) are all the same already-named-and-declined clusters prior cycles (A166/A184/A198/A201, the A98/A204 stair-landing content gap) already closed the door on. The Nursery's 8 partial rows split two ways: three were already individually checked and declined by A204 ("small nursery closet," "nursery furniture") or sit in the same already-declined diaper-bag/cube shape; the five named above never appear by exact phrase in `ops/NIGHTLY-LOG.md`, `BACKLOG-2026-09-07.md` or its archives (grepped directly, not assumed). Not mining them myself this slot: a real per-row collision and self-flattery check (CLAUDE.md 5c/5d) across five rows against the Baby Clothing Zone's actual `content.json` text is a full STEP 0-13 job, not a 30-minute triage one.
+
+No new defect small enough to close beyond the lock. Not starting any Phil-gated item (C5 Gemini billing, C6 YouTube OAuth) or re-litigating issue #42. No push notification: `ops/last-owner-notification.json` sent today 07:46:00Z on this same unchanged state, inside its own 48h floor, and nothing this slot found changes what Phil is being asked to decide.
+
+Pushed to main: dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~21:1x slot): previous work (the 20:4x check-in) reconfirmed finished a further independent way, one stale lock from my own check cleared, nothing new unblocked
 
 Attached per Step 0: fetch, checkout main, ff-only onto `origin/main` at `71b726826` (the 20:4x PM check-in plus the hourly record after it), tree clean throughout, no reset or force.
