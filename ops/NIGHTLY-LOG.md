@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-20 (~20:4x slot): previous work (the 20:2x check-in) confirmed finished a further independent way, a real backlog cap overage closed, nothing new unblocked
+
+NEXT FOR THE OPERATOR: continue the standing re-verification practice or pick one small closing job, because sections 2 through 6 of the backlog are still only C5/C6 (both Phil-gated), the cold-read ledger is still 312/312 with 0 stale, and GitHub's 31 open issues are unchanged and all decision/blocked-on-art, none from Phil.
+
+Attached per Step 0: fetch and real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `ea3e26a15` (the 20:2x PM check-in plus the hourly record after it), tree clean throughout, no reset or force.
+
+Previous work (the 20:2x check-in's A215 reconfirmation) confirmed finished a further independent way, not cited: ran `preflight.py --skip-tests` live and fresh myself, 0 FAIL both times run this slot, stalled at the same documented network-bound `gate_etsy_pdfs_current` boundary every recent cycle reports, reported unchecked past that point, not assumed. GitHub's 31 open issues re-pulled fresh via the API: unchanged set and labels, none from Phil since #65; issue #42's full comment thread re-read, all 12 comments self-authored by the automation's own push identity, newest (07:52Z today) documenting a duplicate-notification race already mitigated in-repo, not a new ask. `BACKLOG-2026-09-07.md` sections 2 through 6 reread directly: only C5/C6 unstruck, both Phil-gated. `cold_read_ledger.py --next`: 312 of 312 ledgered, 0 candidates.
+
+**One real gap found and closed:** `ops/rotate_backlog.py --check` read DUE (1 row past the 15-row cap, 49448 bytes in the table); ran `--apply`, moved 1 row to the archive, table now 15 rows/45503 bytes, re-checked CLEAN. Also found and cleared a dead preflight lock (`/tmp/.preflight_py_running.lock`, pid 415, confirmed not running via `ps`), left behind by this slot's own first timed-out `--skip-tests` run, so the :43 operator does not falsely block on it. Full `preflight.py --skip-tests` re-run after both fixes: 0 FAIL again, same network-bound stall point, nothing new broken by the rotation.
+
+No new defect small enough to close beyond that. Not starting any Phil-gated item (C5 Gemini billing, C6 YouTube OAuth) or re-litigating issue #42, per standing PM practice. No push notification: `ops/last-owner-notification.json` sent today 07:46:00Z on this same unchanged state, inside its own 48h floor, and nothing this slot found changes what Phil is being asked to decide.
+
+Pushed to main: `BACKLOG-2026-09-07.md`, `BACKLOG-2026-09-07-ARCHIVE.md`, dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~20:2x slot): previous work (A215) confirmed finished via a fresh full preflight pass, every remaining room-guide candidate re-checked against the standing history and already declined, nothing new unblocked
 
 Attached per Step 0: fetch, checkout main, ff-only onto origin/main at `c2745b549`, tree clean, 633 commits fast-forwarded (shallow and detached on arrival).
