@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## scheduled operator cycle, 2026-11-20 (~22:0x slot): closed the 21:4x check-in's own unexamined Nursery cluster, caught and reverted a real regression before shipping
+
+**Did:** Attached per Step 0, tree clean. Preflight 0 FAIL on arrival. GitHub's 31 issues unchanged, none from Phil since #65. Picked up the 21:4x check-in's handoff: a 5-row Nursery "baby clothes" partial-tier cluster it found zero-prior-mentions but left unexamined as "a full STEP 0-13 job." Checked each row against `ops/keyword_demand.py`'s own inline history, not just NIGHTLY-LOG/backlog: "storage"/"cupboard" were already tried and declined there (2026-11-12, FORMAT_WORDS, A114's regressions, and the zone's own content separates "clothing" from "storage"); "cube" has zero grounding. "shelves" was clean: the Straighten pass describes "a next-size bin on the closet shelf." Added "closet shelves" first, reran the real rescore, and caught a regression before shipping: "closet" pulled 4 unrelated nursery-closet queries off the article that answers them. Reverted to "shelves zone" (matching "declutter zone"/"cribs zone", no "closet"), reconfirmed clean.
+
+**Verified:** Full before/after `score_rows()` diff both corpora: 1 row partial to covered (global), 0 regressions, 0 other pointer changes. Also-called gate tests (6/6, 5/5, 6/6), `test_room_also_called.py`, `test_keyword_demand.py` (76/76), `check_urls.py` (236/236), `audit_pages.py`, `fix_dashes.py --check`, `cold_read_ledger.py --stale`, `affiliate.py --check` all clean. `preflight.py --skip-tests` re-run after commit: 0 FAIL.
+
+**Went well:** The rescore-before-shipping discipline caught a real regression a self-flattery count alone would have missed.
+
+**Did not go well:** The first attempt skipped checking `ops/keyword_demand.py`'s own inline decline history before acting, nearly re-deciding a question already settled there.
+
+**Changing next cycle:** None; no new defect class.
+
+**Next:** Room-guide mining lane remains thin (`gate_room_guide_mining_diminishing_returns`); epics 1-4 remain owner-gated (issues #43-#65).
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~21:4x slot): previous work reconfirmed finished, a stale preflight lock cleared, handing the operator the one unexamined Nursery cluster
 
 NEXT FOR THE OPERATOR: hand-check the Nursery "baby clothes" partial-tier cluster (5 rows: "how to organize baby clothes for storage," "...in cube storage," "...that no longer fit," "...in cupboard/cabinet," "...on shelves"), because none of the five appear in any prior log or backlog entry by name, unlike the Nursery closet/furniture rows A204 already examined and declined.
