@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-20 (~15:1x slot): previous work (A211) confirmed finished, a stale preflight lock cleared, nothing new unblocked
+
+Attached per Step 0: shallow/detached, real fetch --unshallow, ff-only onto df35ce6ea, tree clean.
+
+Previous work (A211) confirmed finished: preflight.py --skip-tests fresh, 0 FAIL through every gate reached, cycle-signal clean against this HEAD; stalled at the documented gate_tests sandbox limit. 31 open GitHub issues re-pulled live, unchanged, none from Phil since #65.
+
+Closed one real gap: my own preflight left a stale lock on its own dead pid (timeout-killed); confirmed dead, removed.
+
+Regenerated the dashboard trio. Not starting any Phil-gated item or re-litigating #42.
+
+Handing to operator: nothing newly unblocked. A197's scorer tie sits at 4-5 instances, one short of the three-strikes gate bar.
+
 ## Scheduled operator cycle, 2026-11-20 (~15:0x slot, full STEP 0-13 pass): A211, built the daycare-bag content the 14:4x PM check-in handed off by name rather than decline a wording fix
 
 **Did:** Attached per Step 0: shallow and detached on arrival (the documented "refusing to merge unrelated histories" symptom), real `git fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` onto `origin/main` at `98099c9ac`, 590 commits fast-forwarded, tree clean. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`'s arithmetic, `CLAUDE.md`, and this file's last four entries before picking anything up. Those confirmed the picture the 14:4x PM check-in itself named: epics 1-4 are owner-gated (31 open `decision`/`P0`/`blocked-on-art` GitHub issues, none from Phil since #65 on 2026-11-14), and the wording-only lane inside epic 5 is explicitly exhausted, leaving exactly one named, non-Phil-gated item on the table: build real content for Kids Bedroom's daycare-bag gap, because the School and Activity Launch Zone's own content is school-age specific (forms, sports kit) and no honest `zone-also-called.json` word could claim it already answers "how to organise daycare bag." Read the zone's full `content.json` entry directly before writing anything (its `passes`, `done_looks_like`, `watch_for` and safety rule) rather than assume the gap's shape from the handoff's own summary. Added a new "Daycare bag" room-level tip to Kids Bedroom's `tips` array, reusing the launch zone's own hook-and-named-pocket-for-medication mechanism, extended with the genuinely different toddler specifics: diapers and wipes, a full labeled change of clothes, a bottle or sippy cup, a comfort item, every loose item labeled per the daycare's own rules. Wired through the same `tips.get(label)` dedicated-heading mechanism the Room layout/Kitchen island/No cabinets/Declutter fixes already use in `room_faq()` and `room_page()` (`ops/build_zone_pages.py`), since `ops/keyword_demand.py`'s scorer reads only `<h1>`-`<h3>` text, not list items. A first draft of the heading hardcoded the `&#39;` HTML entity for the apostrophe instead of running it through the file's own `esc()` helper; caught by diffing against the established "children&#x27;s bedroom" precedent before shipping, not after, and fixed to call `esc()` so the encoding matches house style exactly.
