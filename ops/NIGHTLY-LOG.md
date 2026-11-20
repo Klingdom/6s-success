@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-20 (~17:5x slot): brought STATUS.md current against 11 unmentioned material commits, declined to re-mine an exhausted lane; the backlog rotation below landed independently in a concurrent session during the same window
+
+**Did:** Attached per Step 0 (616 commits fast-forwarded, tree clean). `preflight.py --skip-tests`: 0 FAIL, 35 warnings. Confirmed epics 1-4 are owner-gated and `gate_room_guide_mining_diminishing_returns` already shows 0 genuine on-topic gap rows site-wide (the ~50th cycle to find that), so picked the next lane instead: operational honesty. `gate_status_currency` named 11 unmentioned commits (A205-A213, all already in the backlog's done table); caught up STATUS.md's Status Metadata, BLOCKER-001, and the "Public website"/"Production traceability" rows. Found the deploy gap had closed: build `a8b12bc3a247ad0c` (commit `bc752dbd`, A213), confirmed 2026-11-20T17:13:53Z, 0 commits pending, down from the 1 the prior entry recorded. A concurrent ~17:4x PM check-in independently found and ran the same `ops/rotate_backlog.py --apply` fix for the same `gate_backlog_done_table_not_oversized`/tripwire warning (its own entry just below); merged cleanly onto its commit rather than duplicate the rotation, only `STATUS.md` and this log entry were this cycle's own content.
+
+**Verified:** `status_deploy_verdict_problem()`/`status_currency_gap()` re-run directly against the edited file: both empty. `preflight.py --skip-tests` re-run live after the merge: 0 FAIL, 28 warnings (the 4 fixed between both cycles gone); the only interim FAIL was the expected dirty-tree `gate_generator_ownership` refusal. GitHub's 31 issues unchanged, none from Phil since #65.
+
+**Went well:** the merge surfaced the collision before push, not after; `git status`/`git diff` caught it rather than assuming a clean fast-forward.
+
+**Did not go well:** this repo's own hourly/PM cadence outpaces document currency and duplicates fixes across concurrent sessions within the same half hour; this will go stale again within hours.
+
+**Changing next cycle:** nothing new; ordinary maintenance, no new gate.
+
+**Next:** the 31 owner-gated decisions remain the highest-leverage work. Nothing freshly mined in the non-Phil-gated queue.
+
 ## PM check-in, 2026-11-20 (~17:4x slot): previous work (A213) reconfirmed finished, a real size-tripwire gap closed, nothing new unblocked
 
 NEXT FOR THE OPERATOR: mine `room_guide_underperformance.py` fresh for a genuinely unmined room, because epic-5 keyword wording is the only non-Phil-gated lane and this slot found nothing new in it beyond rows already declined ("bags of spices"/"disposable bags", confirmed again as the same cross-surface tie A202 already gated).
