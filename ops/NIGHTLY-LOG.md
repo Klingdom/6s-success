@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-20 (~04:2x slot): previous work confirmed finished live, closed a stale-citation chain preflight's own gates found
+
+Attached per Step 0: fetch, real unshallow, ff-only onto origin/main at `8e1a500f7`, 497 commits fast-forwarded, tree clean. Previous work (A204, the 03:4x check-in) confirmed finished, not cited: `preflight.py --skip-tests` run live, 0 FAIL. GitHub's 31 issues re-pulled live: unchanged, none from Phil since #65.
+
+Real gaps closed, not just reported: `STATUS.md`'s own `gate_status_currency` named 8 unmentioned material commits, brought current. `BLOCKER-001` and its three sibling citations (Public website, Production traceability, Production Knowledge rows) still said "0 commits pending" after `078e33c4` landed; a fresh recount says 1, all four fixed. `ops/keyword_demand.py`'s cold-read ledger entry had gone outdated against A204's own edit; cold-read, re-ledgered clean. Dashboard trio regenerated.
+
+Nothing new unblocked beyond that; leaving the standing 31-issue queue for the operator.
+
+HANDOFF-FILES: STATUS.md, ops/cold-read-ledger.json, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json
+
 ## PM check-in, 2026-11-20 (~03:4x slot): previous work (A204, the 03:2x check-in) confirmed finished live a further way, nothing new unblocked
 
 NEXT FOR THE OPERATOR: re-verify this exhausted state another way or take one small closing job, because all 31 open issues (10 P0) remain decision/blocked-on-art with none from Phil since #65, and epic 5's keyword-mining lane is confirmed in deep diminishing returns.

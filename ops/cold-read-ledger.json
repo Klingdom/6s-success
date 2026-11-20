@@ -908,8 +908,8 @@
     },
     "keyword_demand.py": {
       "status": "clean",
-      "date": "2026-11-19",
-      "note": "Re-ledgered 2026-11-19, scheduled operator cycle: the only touch since the 2026-11-18 ledger date adds beginners/beginner to FORMAT_WORDS, found mining the Garage room-guide cluster handed off this slot (simple way to declutter garage for beginners, the sole unmatched word). Self-flattery checked first (0/244 titles, 1/244 headings on an unrelated article). Full before/after score_rows() diff read directly, not cited: US gap 87 to 86, partial unchanged at 847, covered 1876 to 1877; global unchanged. Diff matches the commit's own documented account exactly. No defect found."
+      "date": "2026-11-20",
+      "note": "PM check-in 2026-11-20 (~04:1x slot): cold-read the one change since the 2026-11-19 ledger date, A204's addition of \"olds\" to FORMAT_WORDS (commit 1b7576ff). Reviewed directly: a 12-line frozenset addition plus its own dated comment, already covered by test_keyword_demand.py case 70 (fail-then-pass proven by its own cycle) and by that cycle's own self-flattery (0/244) and collision (1 row) checks. No latent defect found."
     },
     "keyword_demand_global.py": {
       "status": "fixed",
