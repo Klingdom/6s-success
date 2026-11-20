@@ -2441,6 +2441,34 @@ def main():
                      "carry it (the small-space also-called cluster), too "
                      "broad to ever be a safe qualifier")
 
+    # 70. "olds" joined FORMAT_WORDS 2026-11-20, scheduled operator cycle,
+    #     found mining the global corpus's remaining partial tier. "how to
+    #     organize a 5 year olds room" (global, gb/in) was missing only
+    #     "olds" (from "5 year olds"), already matched on "organize"/"room"
+    #     against the Kids Bedroom Deck's own heading. "5 year olds" names
+    #     who the room is for, the same age-qualifier role "newborn"/"teen"
+    #     already play, not a different physical object. Self-flattery
+    #     checked first: 0 of 244 titles or headings carry "olds" anywhere.
+    #     Full before/after score_rows() diff across both corpora: exactly
+    #     1 row changed (the target, partial to covered, same page), 0
+    #     regressions.
+    new_format_words39 = ("olds",)
+    samples39 = {"olds": "how to organize a 5 year olds room"}
+    for word in new_format_words39:
+        if word in kd.content_words(samples39[word]):
+            fails.append("%r is still a content word; the FORMAT_WORDS "
+                         "addition did not take" % word)
+    old_format39 = kd.FORMAT_WORDS
+    kd.FORMAT_WORDS = old_format39 - set(new_format_words39)
+    try:
+        for word in new_format_words39:
+            if word not in kd.content_words(samples39[word]):
+                fails.append("test fixture no longer reproduces the "
+                             "pre-fix behaviour: %r was dropped even with "
+                             "the word removed from FORMAT_WORDS" % word)
+    finally:
+        kd.FORMAT_WORDS = old_format39
+
     if fails:
         print("FAIL")
         for f in fails:

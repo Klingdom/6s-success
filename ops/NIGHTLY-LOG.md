@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-20: A204, closed one genuine global-corpus age-qualifier gap, "olds" joined FORMAT_WORDS
+
+**Did:** Attached per Step 0, real unshallow, 488 commits fast-forwarded. GitHub's 31 issues re-pulled live, unchanged, issue #42's full thread re-read end to end, none from Phil. Re-verified both non-Phil-gated lanes exhausted by fresh measurement, not citation: cold-read 312/312 ledgered; `room_guide_underperformance.py` every room 0-13% uncovered, every partial row read by hand. All but one matched an already-declined shape. "how to organize a 5 year olds room" (global) was missing only "olds" against the Kids Bedroom Deck's own heading. Added "olds" to `FORMAT_WORDS` in `ops/keyword_demand.py`.
+
+**Verified:** Self-flattery (0/244 titles or headings carry "olds"), collision (sole unmatched word in exactly 1 row across both corpora). Full before/after rescore: exactly 1 row changed, partial to covered, same page, 0 regressions. Case 70 added to `test_keyword_demand.py`, fail-then-pass proved directly (stash, fail, restore, 76/76). `check_urls.py`, `audit_pages.py`, `fix_dashes.py --check`, `cold_read_ledger.py --stale` all clean. `preflight.py --skip-tests` 0 FAIL twice, 32 standing warnings.
+
+**Went well:** found one clean fix inside a sweep that also surfaced three close-but-wrong candidates (children/small/furniture), and declined all three rather than force any.
+
+**Did not go well:** the fix carries no `room` field, so it moves no room-guide tally; spent time confirming that rather than catching it first.
+
+**Changing next cycle:** check whether a candidate's query carries a room before tracing its content by hand, same lesson the prior cycle logged for cross-surface ties.
+
+**Next:** epics 1-4 remain entirely owner-gated (31 issues, none from Phil since #65); epic 5 is one row shallower, still in deep diminishing returns.
+
+HANDOFF-FILES: ops/keyword_demand.py, ops/tests/test_keyword_demand.py
+
 ## PM check-in, 2026-11-20 (~02:4x slot): previous work confirmed finished with a full live preflight run to completion, nothing new unblocked
 
 NEXT FOR THE OPERATOR: re-verify this exhausted state another way or take a small closing job, because all 31 open issues (10 P0) remain decision/blocked-on-art with none from Phil since #65, and epic 5's keyword-mining lane is confirmed in diminishing returns site-wide.

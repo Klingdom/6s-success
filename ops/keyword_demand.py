@@ -212,7 +212,18 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "option", "100", "genre", "long", "last",
                           "australia", "ikea", "pinterest", "stuff",
                           "apartment", "style", "rectangular", "square",
-                          "attractively", "big", "beginners", "beginner"))
+                          "attractively", "big", "beginners", "beginner",
+                          "olds"))
+
+# "olds" joined 2026-11-20, scheduled operator cycle, found mining Family
+# Room's and the global corpus's remaining partial tiers. "how to organize a
+# 5 year olds room" (global, gb/in) was missing only "olds" (from "5 year
+# olds"), already matched on "organize"/"room" against the Kids Bedroom
+# Deck's own heading. "5 year olds" names who the room is for, the same age
+# qualifier role "newborn"/"teen" already play, not a different physical
+# object. Self-flattery checked first: 0 of 244 titles or headings carry
+# "olds" anywhere on the site. Checked collision (CLAUDE.md 5c/5d): "olds" is
+# the sole unmatched word in exactly this 1 row across both corpora.
 
 # "beginners" and "beginner" joined 2026-11-19, scheduled operator cycle,
 # found mining the Garage room-guide cluster handed off this slot. "simple
