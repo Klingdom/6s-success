@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-20 (~07:5x slot): independently re-verified full exhaustion a further way, caught and recorded a real duplicate-notification race against a concurrent session
+
+**Did:** Attached per Step 0: repo arrived shallow and detached, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 527 commits fast-forwarded, tree clean. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md` and the tail/head of `ops/NIGHTLY-LOG.md` before picking work. Ran `preflight.py --skip-tests` live to completion: every gate passed, 31 warnings, all standing sandbox/credential/art gaps (confirmed by reading the full run, not a summary). Re-verified both non-Phil-gated lanes exhausted a further independent way: `cold_read_ledger.py --next` (312/312 ledgered, 0 candidates) and `room_guide_underperformance.py` run fresh, every remaining partial row across all 20 rooms read by hand. Traced the Hall Closet "diapers in closet" row specifically (looked like a fresh scorer misattribution, diapers routing to the wrong zone) and confirmed via `git grep` across `ops/NIGHTLY-LOG.md` and `ops/zone-also-called.json` that this exact row has already been investigated and correctly declined at least four times (A89, A111, A197, and others): fixing it would misroute two unrelated adult-incontinence-disposal queries onto the Nursery changing station, a worse error than the status quo. No new finding; confirmed a re-derivation rather than citing it blind.
+
+GitHub's 31 open issues re-pulled live via the MCP server (not cited): unchanged, numbered 2 through 65, every issue and every comment on #65/#42/#31/#15/#2 authored by the `Klingdom` push identity, none from a distinct human login since #65. `inbox_agent.py --apply`: no mail credential, standing gap.
+
+**Verified, and a real finding:** while checking `ops/last-owner-notification.json` to decide whether the 48h repeat floor had cleared (it had, by about 20 minutes), fetched origin and found a concurrent 07:4x PM check-in had already independently reached the identical conclusion and sent the same repeat notification 4 minutes before this cycle's own send landed. Both cycles read the file, both saw "floor clear, not yet sent," and both sent, a genuine check-then-act race between concurrent sessions rather than a single mistaken send. Discarded this cycle's own conflicting local edit to that file and fast-forwarded onto the already-pushed commit rather than overwrite it with a second, confusing record of the same event. Added a comment to GitHub issue #42 (the standing cadence-decision issue) recording this as concrete, dated evidence of a real cost the current cadence produces, with the mitigation named (re-fetch origin immediately before trusting a local read of the notification-floor file, since another session may have sent in the minutes since the last fetch) rather than built as a preflight gate, since this is a runtime race between concurrent agent decisions, not a static content check preflight can run.
+
+**Went well:** caught the collision before compounding it (did not push a second conflicting copy of the notification record), and turned a minor operational miss into dated evidence on the one open issue that exists specifically to weigh this exact cost.
+
+**Did not go well:** sent a push notification that, in substance, duplicated one sent 4 minutes earlier by a concurrent session. Low cost this time (same content, a few minutes apart) but the near-miss is recorded rather than hidden, per CLAUDE.md section 54.
+
+**Changing next cycle:** before sending to the owner-notification channel, re-fetch origin and re-read `ops/last-owner-notification.json` fresh immediately before sending, not from an earlier-in-the-cycle read, to shrink (not eliminate) this race.
+
+**Next:** sections 2 through 6 of the backlog are Done, Hold or Phil-gated; 31 open issues unchanged, none from Phil since #65, issue #42 now carries this cycle's own evidence toward its own cadence question. Pushed to main: this entry, `ops/cycle-signal.json`, dashboard trio. No content, price or product touched, no new page, `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~07:4x slot): NEXT FOR THE OPERATOR: continue the standing re-verification practice; nothing newly unblocked. Owner notification floor passed with no material change, sent the repeat.
 
 Attached per Step 0: `fetch origin main`, repo was shallow and detached on arrival, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `283cd9d8b` (527 commits fast-forwarded), tree clean, no reset or force.
