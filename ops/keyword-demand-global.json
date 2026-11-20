@@ -13557,16 +13557,14 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/how-to-declutter-a-bedroom.html",
-      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "best_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
+      "best_page_title": "How to organize the home office bookshelf",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "books"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -13752,11 +13750,11 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-paperwork.html",
-      "best_page_title": "How to organize paperwork at home with a simple filing system",
+      "best_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
+      "best_page_title": "How to organize the home office bookshelf",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "heading_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -13798,11 +13796,11 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-paperwork.html",
-      "best_page_title": "How to organize paperwork at home with a simple filing system",
+      "best_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
+      "best_page_title": "How to organize the home office bookshelf",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "heading_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -13820,11 +13818,11 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-paperwork.html",
-      "best_page_title": "How to organize paperwork at home with a simple filing system",
+      "best_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
+      "best_page_title": "How to organize the home office bookshelf",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "heading_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -13842,11 +13840,11 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-paperwork.html",
-      "best_page_title": "How to organize paperwork at home with a simple filing system",
+      "best_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
+      "best_page_title": "How to organize the home office bookshelf",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "heading_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -13865,11 +13863,11 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-paperwork.html",
-      "best_page_title": "How to organize paperwork at home with a simple filing system",
+      "best_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
+      "best_page_title": "How to organize the home office bookshelf",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "heading_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -13887,11 +13885,11 @@
         "how to declutter a guest bathroom"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-paperwork.html",
-      "best_page_title": "How to organize paperwork at home with a simple filing system",
+      "best_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
+      "best_page_title": "How to organize the home office bookshelf",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "heading_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -47788,6 +47786,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "f7ef7657d",
-  "scored_at": "2026-11-20T16:55:27Z"
+  "scored_against_commit": "ea3e26a15",
+  "scored_at": "2026-11-20T21:00:58Z"
 }
