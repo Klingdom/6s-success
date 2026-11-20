@@ -240,13 +240,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-08T16:38:01Z",
-   "mode": "changed",
-   "offered": 141,
-   "accepted": 141,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-09T07:37:59Z",
    "mode": "changed",
    "offered": 1,
@@ -658,6 +651,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-20T22:05:55Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -809,7 +809,7 @@
   "https://6s-success.com/zones/mudroom-the-pet-station": "35d99c4da80973b4",
   "https://6s-success.com/zones/mudroom-the-seasonal-outdoor-gear": "bd7ab694e53b4f71",
   "https://6s-success.com/zones/mudroom-the-shoe-and-boot-storage": "84ae8ed12e511b8a",
-  "https://6s-success.com/zones/nursery-the-baby-clothing-zone": "a90d5e76508cc6f3",
+  "https://6s-success.com/zones/nursery-the-baby-clothing-zone": "e989a3747c505da1",
   "https://6s-success.com/zones/nursery-the-books-and-quiet-play-zone": "aa31de9f53e2b896",
   "https://6s-success.com/zones/nursery-the-changing-station": "a851bcb07dfb3d79",
   "https://6s-success.com/zones/nursery-the-crib-and-sleep-zone": "350ae454fff0ca18",
