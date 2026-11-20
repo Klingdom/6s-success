@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-20 (~21:1x slot): previous work (the 20:4x check-in) reconfirmed finished a further independent way, one stale lock from my own check cleared, nothing new unblocked
+
+Attached per Step 0: fetch, checkout main, ff-only onto `origin/main` at `71b726826` (the 20:4x PM check-in plus the hourly record after it), tree clean throughout, no reset or force.
+
+Previous work (the 20:4x check-in's backlog-cap rotation) reconfirmed finished a further independent way, not cited: `rotate_backlog.py --check` read CLEAN myself (15 rows, 45503 bytes, same as the 20:4x entry left it). Ran `preflight.py --skip-tests` live and fresh, 110s foreground window: 0 real FAIL in everything reached (grepped for the literal string, both hits were empty "FAIL / (none)" section headers, not failures), stalled at the same documented network-bound boundary every recent cycle reports; reported unchecked past that point, not assumed. GitHub's 31 open issues re-pulled fresh via the search API: unchanged set and labels, all `decision`/`blocked-on-art`/`P0`, none from Phil since #65. `BACKLOG-2026-09-07.md` sections 2 through 6 reread directly: only C5/C6 unstruck, both Phil-gated. `cold_read_ledger.py --next`: 312 of 312 ledgered, 0 candidates.
+
+**One small thing found and fixed:** my own live preflight run above left `/tmp/.preflight_py_running.lock` behind (pid 447, confirmed dead via `ps`) when it hit the foreground timeout; removed it so the :43 operator does not falsely block on a lock from a run that already ended.
+
+Checked `room_guide_underperformance.py` fresh rather than cite it stale: the same partial-tier rows the last several cycles have already individually examined and declined (front hallway closet, diapers-in-closet, bonus room/den ties) are still the worst rows; nothing new and small enough to close inside this triage slot without the hours-scale per-row collision check A197/A184/A198 each required. Not starting that mining myself: sizing it for the operator's slot, not this one, per standing PM practice.
+
+Not starting any Phil-gated item (C5 Gemini billing, C6 YouTube OAuth) or re-litigating issue #42. No push notification: state unchanged from the last one sent, nothing this slot found changes what Phil is being asked to decide.
+
+**Handing to the operator (:43):** the room-guide partial tier above (Family Room 12%, Hall Closet 10%, Primary Bedroom 9%, Nursery 8%, Garage 7%) is the only non-Phil-gated lane left; most rows already have a prior decline on record, so the next genuinely new row needs a fresh per-row collision check, not a re-scan.
+
+Pushed to main: `ops/cycle-signal.json`, dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~20:4x slot): previous work (the 20:2x check-in) confirmed finished a further independent way, a real backlog cap overage closed, nothing new unblocked
 
 NEXT FOR THE OPERATOR: continue the standing re-verification practice or pick one small closing job, because sections 2 through 6 of the backlog are still only C5/C6 (both Phil-gated), the cold-read ledger is still 312/312 with 0 stale, and GitHub's 31 open issues are unchanged and all decision/blocked-on-art, none from Phil.
