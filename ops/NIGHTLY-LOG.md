@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## scheduled operator cycle, 2026-11-20 (~23:0x slot): closed a genuine Laundry Room misattribution, "detergent tray"; re-verified epics 1-4 are owner-gated and epic 5 is in deep diminishing returns
+
+**Did.** Attached per Step 0 (unshallowed, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 658 commits fast-forwarded, a concurrent PM check-in's push merged cleanly mid-cycle). Re-verified rather than trusted today's own prior claims: GitHub's 31 issues all authored by the bot account, none from Phil since #65; inbox has no mail credential; KDP/Etsy packages both 0 FAIL, genuinely ready, blocked only on Phil's own account steps; live site and the open web both unreachable from this sandbox (confirmed by a fresh curl, not assumed); cold-read ledger 312/312, 0 new candidates; room-guide mining 0 gap rows site-wide, 2-12% partial. Mined the remaining partial tier by hand and found one zero-prior-mention row: "how to clean detergent tray in washing machine" was scoring to the Detergent and Treatment Zone on the shared word "detergent" alone, not the Washer and Dryer zone whose own shine pass genuinely describes washing the detergent drawer in the sink. Added "detergent tray" to that zone's `zone-also-called.json` entry, regenerated through `build_zone_pages.py`.
+
+**Verified.** Full before/after `score_rows()` diff on both corpora before and after: global corpus exactly 1 row changed, `best_page` corrected (heading coverage 0.6 to 0.8, "clean" the only word left unmatched), 0 regressions; US unchanged. `check_also_called_digital_collision_fast.py`, the 3 also-called gate tests, `test_keyword_demand.py` (76/76), `check_urls.py` (236/236), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `check_sellable.py`, `affiliate.py --check` all clean. `preflight.py --skip-tests` 0 FAIL both before and after, 31 warnings, all standing.
+
+**Went well.** Caught a real collision risk before shipping: adding the bare word "detergent" anywhere could have retied several already-covered sibling-zone queries; checked every one by hand, none shares "tray" or "machine", confirmed by the real rescore.
+
+**Did not go well.** Nothing broken; the fix moves one row to the honest page without flipping it to "covered" ("clean" stays unmatched, left alone as too generic to add safely).
+
+**Changing next cycle.** Nothing new; this is ordinary instance of the established mechanism.
+
+**Next.** Epics 1-4 remain owner-gated; epic 5 is down to single-digit-percent partial tiers in every room. The highest-value next action is Phil's own: any one of the ranked owner gates in `BACKLOG-2026-09-07.md` section 6, starting with the 2-minute traffic read (issue #64).
+
 ## PM check-in, 2026-11-20 (~22:4x slot): previous work confirmed finished a further independent way, nothing new unblocked, dashboard regenerated after a concurrent preflight run
 
 NEXT FOR THE OPERATOR: continue the standing re-verification practice or pick one small closing job, because the backlog, the cold-read ledger and GitHub's 31 open issues remain in the same fully exhausted, Phil-gated state issue #42 already tracks; nothing here is safe to start without Phil's own input.

@@ -12935,16 +12935,15 @@
         "how to organise detergent and supplies"
       ],
       "room": "",
-      "best_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
-      "best_page_title": "How to organize the laundry room detergent and supplies",
+      "best_page": "/zones/laundry-room-the-washer-and-dryer.html",
+      "best_page_title": "How to organize the laundry room washer and dryer",
       "coverage": 0.2,
-      "heading_coverage": 0.6,
-      "heading_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
+      "heading_coverage": 0.8,
+      "heading_page": "/zones/laundry-room-the-washer-and-dryer.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "machine",
-        "tray"
+        "clean"
       ],
       "markets": [
         "au"
@@ -47784,6 +47783,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "b04de0c5b",
-  "scored_at": "2026-11-20T21:57:32Z"
+  "scored_against_commit": "8db141f04",
+  "scored_at": "2026-11-20T22:58:24Z"
 }
