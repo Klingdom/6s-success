@@ -16,6 +16,22 @@ Pushed to main: dashboard trio, `ops/cycle-signal.json`, this entry. No content,
 
 HANDOFF-FILES: none
 
+## Scheduled operator cycle, 2026-11-20 (~10:3x slot): A208, closed a genuine Primary Bedroom wording tie, "how to declutter cupboard"
+
+**Did:** Attached per Step 0: shallow and detached on arrival, real `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 552 commits fast-forwarded, tree clean. `preflight.py --skip-tests` run live: 0 FAIL, 32 standing warnings. GitHub's 31 open issues re-pulled live and independently verified: unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (2026-11-14). Checked the two biggest revenue levers directly rather than take the backlog's word for it: `build/listings/check_kdp.py` and `check_etsy.py` both 0 FAIL, confirming Amazon KDP (#43) and the Etsy shop (#44) are genuinely fully built and genuinely blocked only on Phil's own tax/bank/identity steps, nothing left to prepare. Mined the live room-guide ranking for an unexamined row: "how to declutter cupboard" (global) was an exact 0.5/0.5 tie between a generic article and Primary Bedroom's own Primary Closet zone (already matches "cupboard"), with no room signal to break it. Grounded a "declutter zone" heading in the zone's own literal Sort-pass decluttering text, the same precedent already used for 8 other zones.
+
+**Verified:** Collision checked first: "declutter"+"cupboard" together appear in exactly 1 row across both corpora. Heading confirmed live after `build_zone_pages.py`. Full before/after rescore: global corpus exactly 1 row partial to covered, 0 regressions; US corpus status counts unchanged but one already-covered row's pointer corrected onto the real zone. Primary Bedroom's tally moved 10% to 9% uncovered. `test_gate_also_called_is_heading.py` (6/6), `test_gate_also_called_no_digital_collision.py` (5/5), `test_gate_zone_also_called_is_heading.py` (6/6), `test_keyword_demand.py` (76/76), `check_urls.py` (236/236), `audit_pages.py`, `fix_dashes.py --check`, `cold_read_ledger.py --stale`, `check_sellable.py` (124/126), `affiliate.py --check` (165 docs) all clean. `preflight.py --skip-tests` re-run: only the expected dirty-tree `gate_generator_ownership` refusal before commit, by design.
+
+**Went well:** checking the KDP/Etsy "ready" claim against the real check scripts instead of citing it, and finding two previously-unexamined candidate rows ("declutter cupboard," genuinely fixable; "fast" in "declutter your home fast," a false lead whose real unmatched word was already-declined "home") before shipping anything.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; normal instance of the established zone-also-called/self-flattery/before-after-diff mechanism. No new preflight gate: no new defect class found.
+
+**Next:** epics 1-4 remain entirely owner-gated (31 issues, none from Phil since #65), both fully built and verified ready. Epic 5 thinner still; "how to declutter my books" and "how to declutter a lot of stuff" are genuine, unexamined candidates left for a future cycle. No owner notification sent: the system's own `send_brief.py` already sent the same content at 2026-11-20T07:46Z, inside its 48h floor, no material change since. Pushed: `ops/zone-also-called.json`, the zone page, both corpora, dashboard trio, backlog, this entry. No price touched; `IndexNow` to submit on push.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~10:1x slot): previous work independently reconfirmed finished, nothing new unblocked
 
 Attached per Step 0: real unshallow, ff-only onto `fc7f87acb`, then `6b9f683cb` (concurrent deploy-verdict push, merged not raced), tree clean.
