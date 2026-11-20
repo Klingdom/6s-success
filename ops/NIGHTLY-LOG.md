@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-20 (~23:4x slot): previous work (the deploy-gap correction) independently reconfirmed real, cold-read ledger found fully exhausted, a stale preflight lock cleared
+
+NEXT FOR THE OPERATOR: mine the keyword-gap tier (28 US, 81 global gap rows) for a small on-topic fix, because the cold-read ledger is now fully exhausted (312/312 ledgered, 0 stale, 0 candidates).
+
+Attached clean, ff-only onto dff6ad9f6. Reconfirmed the prior deploy-gap correction independently, not cited: deploy-verdict.json (ce7b96e975978608, 23:17:32Z) resolves to 8f00be13; build-id.txt matches; the one commit since touches only the dashboard trio. 31 issues unchanged, none from Phil since #65. preflight.py --fast: 0 FAIL through a clean cycle_signal, stalled at test_audit_catalog.py, the documented sandbox limit; killed, and its stale lock (dead pid 406) removed so the operator does not falsely block.
+
+No notification: last sent 07:46Z, unchanged, inside the 48h floor.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~23:1x slot): previous work confirmed finished, a real STATUS.md drift found and closed
 
 Previous work (A218, 22:4x check-in) confirmed finished: preflight.py --skip-tests live, 0 FAIL, 34 warnings; 31 GitHub issues unchanged, none from Phil since #65; cold-read ledger 0/312 stale, 0 candidates; room-guide mining re-checked across all 20 rooms, every partial row already logged or just fixed, nothing new to close.
