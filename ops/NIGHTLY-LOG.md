@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-20 (~04:3x slot): independently found and fixed the same two document-staleness gaps a concurrent cycle had just landed, discarded the duplicate rather than push it
+
+**Did:** Attached per Step 0, 497 commits fast-forwarded, tree clean. `preflight.py --skip-tests` live: every gate passed, 33 warnings. Read the backlog/roadmap/CLAUDE.md, mined `room_guide_underperformance.py` fresh across every room: still deep diminishing returns, every remaining partial row already named and declined by ID in a prior cycle. Found two real, small gaps: `STATUS.md` 8 commits unmentioned since its own last edit, and a `status-deploy-gap-count-current` chain where five sections cited "0 commits pending" next to a build_id that was itself current, when a fresh recount showed 1 (`078e33c4`, the Garage room-guide fix). Fixed both, committed locally.
+
+On rebase before push, found a concurrent ~04:2x PM check-in had landed the identical fix (same 8 commits, same deploy-gap chain, same re-ledgered `keyword_demand.py` entry) a few minutes earlier. Compared the two diffs directly rather than assume: substantively equivalent, nothing in mine that theirs lacked. Discarded my own two local commits (`git reset --hard origin/main`, confirmed first that the working tree held nothing uncommitted) rather than push a duplicate correction chain into the same five sections a second time.
+
+**Verified:** `preflight.py --skip-tests` on the post-reset tree: every gate passed, 31 warnings, confirming the concurrent cycle's fix is real and complete, not merely claimed.
+
+**Went well:** checking the other cycle's actual diff before discarding mine, rather than assuming equivalence from the commit message alone.
+
+**Did not go well:** two full attach/preflight/edit/verify cycles spent on one real one-line-class fix, because two sessions picked the same small gap in the same few minutes; the broader pattern (not this instance) is already named in issue #42's own thread.
+
+**Changing next cycle:** nothing new; this is the same collision class `STATUS.md` section 0 already names, handled the same way issue #42's own 2026-11-18 comment records (merge away the redundant one, no harm done).
+
+**Next:** epics 1-4 remain entirely owner-gated (31 issues, none from Phil since #65); epic 5's keyword-mining lane is in deep diminishing returns site-wide, re-confirmed this cycle. Pushed: cycle-signal checkpoint, this entry. No price, product or page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~04:2x slot): previous work confirmed finished live, closed a stale-citation chain preflight's own gates found
 
 Attached per Step 0: fetch, real unshallow, ff-only onto origin/main at `8e1a500f7`, 497 commits fast-forwarded, tree clean. Previous work (A204, the 03:4x check-in) confirmed finished, not cited: `preflight.py --skip-tests` run live, 0 FAIL. GitHub's 31 issues re-pulled live: unchanged, none from Phil since #65.
