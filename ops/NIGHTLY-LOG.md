@@ -2,6 +2,41 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-20: re-verified both non-Phil-gated lanes exhausted, caught and reverted a duplicate fix before push
+
+Did: Re-verified both non-Phil-gated lanes (cold-read, room-guide mining)
+exhausted by fresh measurement. Investigated 40 live cross-surface scoring
+ties from the new cross_surface_tie_count gate. Attempted an
+OFF_TOPIC_CONTEXT fix for three (crib tournament, potting bench, reloading
+bench); found all three already shipped in HEAD by an earlier cycle and
+reverted the duplicate before pushing. No code shipped.
+
+Verified: preflight.py --skip-tests 0 FAIL twice. GitHub's 31 issues
+re-pulled live twice, unchanged, none from Phil since issue 65.
+cold_read_ledger.py --next: 312 of 312, 0 stale. room_guide_underperformance.py:
+every room 0-13% uncovered. Checked each of the 40 ties against
+zone-also-called.json's own decline text, BACKLOG's prior declines, and
+real zone content: attic closet, bathroom clutter/declutter, vanity box,
+bulk snacks/shirts already declined elsewhere; backpack-for-work and
+safety-pins are genuine content gaps or seed-drift noise on pages no room
+owns, so fixing them moves no room's tally; study was checked and declined,
+risking an already-correct Kids Bedroom routing for one uncertain row.
+
+Went well: caught the duplicate fix before a second wasted commit, by
+re-running the real test against HEAD rather than trusting my own diff.
+
+Did not go well: spent effort on ties with zero measurable room-tally
+effect, since room_rows() only counts a query under a room's own pages;
+should have checked that first.
+
+Changing next cycle: check a tie's best_page reaches room_rows() before
+tracing its content by hand.
+
+Next: both lanes exhausted again; the 31 open issues are the only
+unblocked path, all owner-gated.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (00:4x slot): closed a nightly-log handoff-marker gap, nothing new unblocked
 
 NEXT FOR THE OPERATOR: re-verify the exhausted state a further way or pick one small closing job; every epic's top item is still Phil-gated and issue #42 already tracks the pattern.
