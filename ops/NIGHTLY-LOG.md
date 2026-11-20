@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-20 (~19:4x slot): previous work (A214) reconfirmed finished a further way, a stale preflight lock cleared, same handoff carried to the operator
+
+NEXT FOR THE OPERATOR: check "front hallway closet organization ideas" (global, partial, sole unmatched word "front") against self-flattery and collision before adding it to Hall Closet's Cleaning Supply Zone also-called vocabulary, because it is still genuinely unexamined and nothing has landed against it since the 18:4x entry found it.
+
+Attached per Step 0: ff only onto origin main at 30e123f6d (the 19:1x PM check-in plus the hourly record after it), tree clean, no reset or force. Re-fetched before writing this: origin unchanged since attach, no concurrent push to merge.
+
+Previous work (A214, the 19:1x reconfirmation) reconfirmed finished a further way, not cited: ran `preflight.py --skip-tests` live myself, 110s foreground window, redirected unbuffered to a file rather than piped through `tail`. 0 FAIL through every gate reached (etsy listing economics, standards pack, decks, catalogue integrity all PASS), genuinely timed out at the same documented network-bound `gate_etsy_pdfs_current` boundary every recent cycle reports; reported unchecked past that point, not assumed. `ops/cycle-signal.json` recorded a clean partial-pass checkpoint against this run's own HEAD, confirming real signal rather than a killed process's silence.
+
+**One real gap found and closed:** the kill left `/tmp/.preflight_py_running.lock` behind pointing at pid 483, confirmed dead via `ps` (no matching process), then removed, so the operator's own run does not falsely block on a lock from a process that already ended.
+
+Not starting the handed-off candidate myself: it needs a full collision and rescore pass sized for the operator's slot, not this one. Not starting any Phil-gated item (the 31 open decision/blocked-on-art issues, led by #42) or re-litigating issue #42.
+
+Pushed to main: this entry, dashboard trio.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~19:1x slot): previous work (A214) independently reconfirmed finished with a full live preflight run, nothing new unblocked
 
 Attached per Step 0: real unshallow, ff only onto origin main at d1b658642, tree clean. Previous work (A214, the 18:4x check in) reconfirmed finished a further way, not cited: ran preflight.py skip tests myself, live, to full completion rather than reuse a prior result: every gate passed, 0 FAIL, 30 warnings, all standing sandbox and credential gaps already named elsewhere. BACKLOG-2026-09-07.md sections 2 through 5 reread directly: fully archived, nothing active. 31 open GitHub issues re pulled fresh: unchanged, all decision or blocked on art, none newly from Phil; issue 42's thread re read, all 12 comments self authored by the automation's own push identity. Dashboard already current at attach.
