@@ -4218,16 +4218,14 @@
         "nursery organization ideas"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
+      "best_page": "/rooms/kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, zone by zone",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap",
-      "unmatched_words": [
-        "daycare"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/kids-bedroom.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -19642,16 +19640,14 @@
         "how to organise diaper storage"
       ],
       "room": "",
-      "best_page": "/zones/kids-bedroom-the-school-and-activity-launch-zone.html",
-      "best_page_title": "How to organize the kids bedroom backpack station",
+      "best_page": "/rooms/kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, zone by zone",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
-      "heading_page": "/zones/kids-bedroom-the-school-and-activity-launch-zone.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/kids-bedroom.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "daycare"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -47801,6 +47797,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "fef93121a",
-  "scored_at": "2026-11-20T13:56:32Z"
+  "scored_against_commit": "98099c9ac",
+  "scored_at": "2026-11-20T14:56:47Z"
 }

@@ -3686,6 +3686,9 @@ def room_faq(room, rm, rt):
     if tips.get("No cabinets"):
         qa.append(("How do you organize a kitchen without cabinets, or with only drawers?",
                    _clean(tips["No cabinets"])))
+    if tips.get("Daycare bag"):
+        qa.append(("How do you organize a toddler's daycare bag?",
+                   _clean(tips["Daycare bag"])))
     names = [display(room["room"], z["zone"]) for z in room["zones"]]
     if names:
         qa.append((f"What parts of the {rm} should be organized separately?",
@@ -4197,17 +4200,32 @@ def room_page(room, header, footer, all_rooms=()):
         out.append(f'<h2>{_declutter_h}</h2>'
                    f'<p>{esc(_clean(_declutter_text))}</p>')
 
+    # Same shape again: "how to organise daycare bag" (the global keyword
+    # harvest, 2026-11-20) scored partial because "daycare" appeared in no
+    # heading anywhere on the site. The School and Activity Launch Zone's
+    # own content is school-age specific (forms, sports kit), a genuine
+    # content gap rather than a wording one, per the 14:4x PM check-in's
+    # own handoff: no honest also-called entry could close it, because the
+    # zone's own body does not describe a toddler's daycare bag at all.
+    # Only Kids Bedroom carries this tip today; every other room's lookup
+    # is simply None.
+    _daycare_text = _room_tips.get("Daycare bag")
+    if _daycare_text:
+        _daycare_h = esc("A toddler's daycare bag")
+        out.append(f'<h2>{_daycare_h}</h2>'
+                   f'<p>{esc(_clean(_daycare_text))}</p>')
+
     # "Where to start" now renders above the zone list (D10); "Room
     # layout", "Garage sale", "Design", "After a makeover", "Small
-    # bathroom", "Kitchen island", "No cabinets" and "Declutter" now have
-    # their own headings just above; keep all nine out of this list too,
-    # so no tip is said twice on one page.
+    # bathroom", "Kitchen island", "No cabinets", "Declutter" and
+    # "Daycare bag" now have their own headings just above; keep all ten
+    # out of this list too, so no tip is said twice on one page.
     tips = [t for t in (room.get("tips") or [])
             if t.get("label") not in ("Where to start", "Room layout",
                                        "Garage sale", "Design",
                                        "After a makeover", "Small bathroom",
                                        "Kitchen island", "No cabinets",
-                                       "Declutter")]
+                                       "Declutter", "Daycare bag")]
     if tips:
         out.append('<h2>For this room</h2><ul>')
         out += [f'<li><b>{esc(t.get("label", ""))}.</b> {esc(t.get("text", ""))}</li>'
