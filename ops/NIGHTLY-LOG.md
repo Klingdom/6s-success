@@ -18,6 +18,22 @@ Pushed to main: dashboard trio, cycle-signal.json, this entry. No content, price
 
 HANDOFF-FILES: none
 
+## Scheduled operator cycle, 2026-11-20 (~14:0x slot): A210, closed Primary Bathroom's "master bathroom closet" wording gap, a query a prior cycle had already named and left open
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` onto `origin/main`, 576 commits fast-forwarded, tree clean). `preflight.py --skip-tests` ran clean, GitHub's 31 issues re-pulled live and unchanged, none from Phil since #65, no mail credential. Mined `room_guide_underperformance.py` across all rooms; most remaining rows already declined by name earlier the same day. "master bathroom closet organization" (both corpora, partial, unmatched "closet") routed to the Vanity Counter zone on the bare room match alone. A 2026-11-06 fix on Primary Bedroom's Primary Closet had already found this exact query while checking a collision and left it open ("different room, different unmatched word, no overlap"). Grounded it in Primary Bathroom's own Linen and Towel Storage zone, which already names itself a linen closet and links to the Hall Closet's Linen Shelf Zone. Added "master bathroom closet" to `ops/zone-also-called.json`, matching the room's own established "master bathroom vanity"/"master bathroom countertop" naming on the sibling zone. Checked and declined two further candidates from the same sweep: "how to organize bookshelf by color" (Home Office's bookshelf zone explicitly argues against color-sorting as a cause of its own friction, so claiming it would be dishonest) and "how to organise daycare bag" (Kids Bedroom's backpack-station content is school-age specific, forms and sports kit, not toddler daycare items; a genuine content gap, not shipped).
+
+**Verified:** First tried the bare "closet zone" precedent and caught a real limitation with the actual rescore before shipping: it moved `best_page` correctly but left "master" unmatched, 0 net status change, because a room-level synonym does not propagate into a zone's own word-matching. Fixed with the full phrase instead. `check_also_called_digital_collision_fast.py`, `test_gate_also_called_is_heading.py` (6/6), `test_gate_also_called_no_digital_collision.py` (5/5), `test_gate_zone_also_called_is_heading.py` (6/6), `test_keyword_demand.py` (76/76), `check_urls.py` (236/236), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `cold_read_ledger.py --stale` (0) all clean. Full before/after rescore: 1 US row and 1 global row move partial to covered, 0 regressions. Primary Bathroom's own tally moved 7% to 5% uncovered. `preflight.py --skip-tests` re-run after commit: 0 FAIL.
+
+**Went well:** checking the actual rescore before trusting the obvious "<word> zone" precedent caught a real no-op before it shipped, the same discipline A199/A184 already established, applied again correctly.
+
+**Did not go well:** nothing new; the room-guide lane is visibly down to a handful of genuine content gaps (not wording gaps) per room, consistent with the standing diminishing-returns gate.
+
+**Changing next cycle:** none; a normal instance of the established mechanism.
+
+**Next:** the remaining partial-tier rows across rooms are now almost entirely genuine content gaps ("daycare bag," Family Room's "bonus room/den" tie, "gym equipment" with no matching zone content) or cross-surface ties already tracked by `gate_cross_surface_ties_tracked`, not wording gaps a also-called addition can honestly close. The standing 31-issue owner-gated queue (epics 1-4) remains the larger unlock. No price, product or affiliate link touched; one zone page's heading changed, `IndexNow --submit` attempted, UNCHECKED (sandbox cannot reach the live site).
+
+## PM check-in, 2026-11-20 (~13:4x slot): previous work (the 13:5x room-guide close and the 13:2x twin) reconfirmed finished independently, nothing new unblocked
+
 NEXT FOR THE OPERATOR: continue the room-guide partial-tier mining lane one row at a time, or pick a small closing job, because the 31 open issues and backlog sections 2-6 remain exactly as the last several cycles found them, all Done, Archived, Hold or Phil-gated; nothing else is safe to start without Phil's own input.
 
 Attached per Step 0: tree clean, up to date with origin/main at `fef93121a`, no reset or force.
