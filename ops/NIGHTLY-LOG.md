@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-20 (~22:4x slot): previous work confirmed finished a further independent way, nothing new unblocked, dashboard regenerated after a concurrent preflight run
+
+NEXT FOR THE OPERATOR: continue the standing re-verification practice or pick one small closing job, because the backlog, the cold-read ledger and GitHub's 31 open issues remain in the same fully exhausted, Phil-gated state issue #42 already tracks; nothing here is safe to start without Phil's own input.
+
+Attached per Step 0: shallow and detached on arrival, real `fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `origin/main` at `1e373eafa`, tree clean throughout, no reset or force.
+
+Previous work (the 22:0x Nursery-cluster fix and the 22:1x PM check-in) confirmed finished, not cited: GitHub's 31 open issues re-pulled fresh, unchanged set and labels, all `decision`/`P0`/`blocked-on-art`; issue #42's own thread re-read in full (both pages of comments), every entry self-authored by a prior agent cycle, none from Phil since #65. `BACKLOG-2026-09-07.md` sections 2 through 6 reread directly: only C5/C6 unstruck, both Phil-gated. `cold_read_ledger.py --stale`: 0/312. `cold_read_ledger.py --next`: 312 of 312 files ledgered, zero un-ledgered candidates, confirming the cold-read lane this issue's own history names as the main recent source of non-Phil-gated work is genuinely empty, not merely thin. `preflight.py --skip-tests` run live in full (backgrounded with `-u` to a file rather than through a `tail` pipe, per the documented buffering trap): every gate passed, 0 FAIL, 31 standing warnings, all previously-diagnosed sandbox/credential gaps; `cycle_signal` recorded a clean pass.
+
+One thing initially looked like a new concurrency defect and was not: a manual `dashboard.py` run made while preflight was still in flight came back reverted once preflight finished. Read `gate_generator_ownership`'s own code before reporting it as a bug: preflight regenerates the same dashboard trio plus `cycle-signal.json` early in its own run, deliberately excludes exactly those four files from its drift check, then restores the whole worktree at the gate's end, which is by design, not a race, and exactly why Step 6 already says to regenerate the dashboard again right before shipping. Did that: re-ran `dashboard.py` after preflight exited, confirmed its "Can the site take money" line correctly degrades to "unconfirmed on the live site" (this sandbox has no Stripe credential this run, so a prior "confirmed live" claim is not carried forward as if still checked, the script's own documented honesty behavior). `fix_dashes.py --check`: 0 em/en dashes.
+
+No new defect found, no notification sent (`ops/last-owner-notification.json` last sent 2026-11-20T07:46Z on an unchanged 31-issue state, well inside its own 48h floor; two cycles already duplicated this exact push once this morning and issue #42 records the near-miss). Not starting any Phil-gated item or re-litigating issue #42.
+
+Pushed to main: dashboard trio, `ops/cycle-signal.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## scheduled operator cycle, 2026-11-20 (~22:0x slot): closed the 21:4x check-in's own unexamined Nursery cluster, caught and reverted a real regression before shipping
 
 **Did:** Attached per Step 0, tree clean. Preflight 0 FAIL on arrival. GitHub's 31 issues unchanged, none from Phil since #65. Picked up the 21:4x check-in's handoff: a 5-row Nursery "baby clothes" partial-tier cluster it found zero-prior-mentions but left unexamined as "a full STEP 0-13 job." Checked each row against `ops/keyword_demand.py`'s own inline history, not just NIGHTLY-LOG/backlog: "storage"/"cupboard" were already tried and declined there (2026-11-12, FORMAT_WORDS, A114's regressions, and the zone's own content separates "clothing" from "storage"); "cube" has zero grounding. "shelves" was clean: the Straighten pass describes "a next-size bin on the closet shelf." Added "closet shelves" first, reran the real rescore, and caught a regression before shipping: "closet" pulled 4 unrelated nursery-closet queries off the article that answers them. Reverted to "shelves zone" (matching "declutter zone"/"cribs zone", no "closet"), reconfirmed clean.
