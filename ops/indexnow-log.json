@@ -240,13 +240,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-07T23:32:03Z",
-   "mode": "changed",
-   "offered": 2,
-   "accepted": 2,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-08T01:05:08Z",
    "mode": "changed",
    "offered": 1,
@@ -658,6 +651,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-20T14:21:23Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -826,7 +826,7 @@
   "https://6s-success.com/zones/patio-or-deck-the-outdoor-seating-zone": "743204db286d2bfe",
   "https://6s-success.com/zones/patio-or-deck-the-outdoor-storage-zone": "23da447ab2e7b8fe",
   "https://6s-success.com/zones/patio-or-deck-the-surface-rail-and-safety-zone": "6c208664cfec8b02",
-  "https://6s-success.com/zones/primary-bathroom-the-linen-and-towel-storage": "1fccb05da0bbbb7c",
+  "https://6s-success.com/zones/primary-bathroom-the-linen-and-towel-storage": "93f23d12b820e556",
   "https://6s-success.com/zones/primary-bathroom-the-medicine-cabinet": "e37ae1eb3a84b636",
   "https://6s-success.com/zones/primary-bathroom-the-shower-or-tub": "c3a254cd609d1770",
   "https://6s-success.com/zones/primary-bathroom-the-toilet-area": "230a0911fd6e6e95",
