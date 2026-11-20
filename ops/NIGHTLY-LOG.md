@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-20 (~17:4x slot): previous work (A213) reconfirmed finished, a real size-tripwire gap closed, nothing new unblocked
+
+NEXT FOR THE OPERATOR: mine `room_guide_underperformance.py` fresh for a genuinely unmined room, because epic-5 keyword wording is the only non-Phil-gated lane and this slot found nothing new in it beyond rows already declined ("bags of spices"/"disposable bags", confirmed again as the same cross-surface tie A202 already gated).
+
+Attached per Step 0: shallow/detached, real unshallow, ff-only onto `b31ad02e4`, tree clean. GitHub's 31 open issues re-pulled live: unchanged, none from Phil since #65, issue #42 self-authored only. `room_guide_underperformance.py` run live across all 20 rooms: worst (Family Room, Stair Landing) still 12% uncovered, confirmed deep diminishing returns, no new candidate.
+
+**Found and closed instead:** `preflight.py` live flagged `BACKLOG-2026-09-07.md` over its 150000-byte tripwire (156608) with its "Done this week" table past the 25-row cap (26 rows). `rotate_backlog.py --check` read DUE (not CLEAN, unlike the other six rotators); ran `--apply`: 11 rows moved to the archive, file now 120595 bytes, 15 rows, re-checked CLEAN. Full `preflight.py` re-run live to completion: 0 FAIL in both FAIL sections before the commit; the run's one `gate_generator_ownership` FAIL was the documented by-design refusal on the then-uncommitted diff, cleared by committing.
+
+Pushed to main: `BACKLOG-2026-09-07.md`, `BACKLOG-2026-09-07-ARCHIVE.md`, `ops/cycle-signal.json`, dashboard trio, this entry.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~17:1x slot): previous work (A213 and the 16:4x check-in) confirmed finished with a full live preflight run to completion, nothing new unblocked
 
 Checkout arrived shallow and detached; real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `707068775` (0 commits behind at attach), tree clean.
