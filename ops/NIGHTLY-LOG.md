@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-20 (~17:1x slot): previous work (A213 and the 16:4x check-in) confirmed finished with a full live preflight run to completion, nothing new unblocked
+
+Checkout arrived shallow and detached; real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `707068775` (0 commits behind at attach), tree clean.
+
+Previous work (A213's Entryway FAQ reword and the 16:4x PM check-in's stale-lock clear) confirmed finished, not cited: `BACKLOG-2026-09-07.md`'s own A213 entry reread directly, matches the commit. Independently re-ran, rather than reused, four of A213's own spot checks: `cold_read_ledger.py --stale` (0), `fix_dashes.py --check` (0 em/en dashes), `check_urls.py` (236/236), `check_sellable.py` (124/126, 2 person-delivered services), all clean. GitHub's 31 open issues re-pulled fresh live via `gh api` (the GraphQL-based `gh issue list` is blocked in this session, used the REST endpoint instead): unchanged set and labels, all `decision`/`P0`/`blocked-on-art`. Issue #42's 12-comment thread re-read in full: every comment self-authored by the agent push identity, none from Phil. `ops/last-owner-notification.json`: sent 2026-11-20T07:46:00Z, well inside its own 48h repeat floor and state unchanged; no notification sent. `STATUS.md` section 6 and `EXECUTIVE-DASHBOARD-LIVE.md` both already matched the live 31-issue count before this cycle touched anything.
+
+Ran `preflight.py --skip-tests` myself live, to a genuine full completion rather than a killed partial: every gate passed, 0 FAIL, 38 warnings, all standing sandbox/credential/art gaps (no `build/heroes/` source photos, no local book JPEGs, no Stripe/SSH credential, the usual set). `cycle_signal` recorded a clean full pass. One self-inflicted collision along the way: this run's own `ops/cycle-signal.json` checkpoint write raced a concurrent cycle's push (a deploy-verdict confirmation, `ops/deploy-verdict.json` only); fetched and ff-merged onto it rather than force, discarding and regenerating only the local snapshot file, no content conflict.
+
+No new defect small enough to close this slot beyond the routine checkpoint/dashboard regen. Not starting any Phil-gated item (owner gates 0-7, the 31 open issues) or re-litigating issue #42, per standing PM practice.
+
+Pushed to main: `ops/cycle-signal.json`, dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-20 (~16:5x slot): A213, closed the Entryway "without closet" wording gap by rewording an existing FAQ heading, and confirmed no duplicate owner notification was due
 
 **Did:** Attached per Step 0 (shallow, detached, real unshallow, ff-only). Preflight 0 FAIL before the change. GitHub's 31 issues re-pulled live twice, unchanged, none from Phil since #65. Checked `ops/last-owner-notification.json` first: a push on this exact state already went out 2026-11-20T07:46Z, inside the 48h floor, so none sent this cycle. Cold-read ledger 312/312, room-guide mining re-checked fresh and grepped against the full log/backlog history: three candidates with zero prior mentions found. Two ("small guest bathroom storage ideas", "a small front hall closet") were already dead ends on inspection: both carry "small", the already-declined 40/244-heading word, and "front hall" is separately named as noise risk in `room-also-called.json`'s own rule comment. The third, "master bathroom storage ideas for small spaces", traced to the same `household_room_signal()` tie-break-only limitation 13 other "master bathroom" queries already share; not a one-line fix, left diagnosed rather than forced. Shipped the fourth: "how to organize entryway without closet" was genuinely clean. The Entryway article's own FAQ already answers this exact question under the heading "...with no closet", a synonym the literal-match scorer cannot credit. Reworded that `<h3>` and its FAQPage JSON-LD `name` to "without a closet", content and answer unchanged.
