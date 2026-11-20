@@ -1,9 +1,9 @@
 {
- "generated": "2026-11-20 14:19",
- "commit": "fabf78934",
- "commit_msg": "Add HANDOFF-FILES marker to A210's nightly-log entry",
- "commits_7d": 1617,
- "commits_total": 14187,
+ "generated": "2026-11-20 14:20",
+ "commit": "d8839e8f3",
+ "commit_msg": "Dashboard trio regen for currency after second rebase",
+ "commits_7d": 1619,
+ "commits_total": 14189,
  "traffic_line": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-10-03 21:13",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-10-03 21:13",
  "affiliate_trigger_carried_from": "2026-10-03 21:13",
  "clean": true,
- "ahead": "4",
+ "ahead": "5",
  "deploy": {
   "reachable": true,
   "assets": [],
