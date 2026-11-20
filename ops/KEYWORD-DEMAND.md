@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-19T14:13:52Z from google, 151 seeds, 151 attempts: 115 returned completions, 36 had none, 0 errored. Canary: google ok.
 
-**Scored:** 2026-11-20T14:56:41Z against 244 page(s) at commit 98099c9ac. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-20T15:53:21Z against 244 page(s) at commit dd4c022a0. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 1183. Checked against 244 published page titles: 863 covered, 292 partial, 28 gap.
+**Queries found:** 1183. Checked against 244 published page titles: 864 covered, 291 partial, 28 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -52,7 +52,7 @@ Showing the top 28 of 28, ordered by the best rank the phrase reached in any one
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 292.
+Showing the top 60 of 291.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|

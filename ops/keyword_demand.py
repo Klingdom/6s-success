@@ -213,7 +213,22 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "australia", "ikea", "pinterest", "stuff",
                           "apartment", "style", "rectangular", "square",
                           "attractively", "big", "beginners", "beginner",
-                          "olds"))
+                          "olds", "area"))
+
+# "area" joined 2026-11-20, scheduled operator cycle, found mining the
+# global gap/partial tier: "foyer area organization" (global, partial,
+# sole unmatched word "area") was already matched on "foyer"/"organization"
+# against the Entryway article's own heading ("the entryway, foyer, or
+# hallway"). "area" names the kind of space, the same qualifier role
+# "zone"/"space" already play informally; it is not a different physical
+# object. Self-flattery checked first: 44 of 7983 headings site-wide carry
+# "area" (about 0.55%), the same order of magnitude as "workplace"/
+# "essentials", already declined only when the ratio runs far higher
+# ("small" at 40/244 whole-page headings, a different, much smaller
+# denominator). Checked collision first (CLAUDE.md 5c/5d): "area" is the
+# sole unmatched word in exactly 2 rows across both corpora (this query and
+# "staircase landing area decor", which stays partial regardless because
+# "decor" is still unmatched there).
 
 # "set" tried and declined 2026-11-20, scheduled operator cycle. "how to set
 # up outdoor storage shed" (global, partial) was missing only "set" against

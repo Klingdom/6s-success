@@ -11570,12 +11570,12 @@
         "how to organize sink area"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-primary-bathroom.html",
-      "best_page_title": "How to organize a primary bathroom, step by step",
-      "coverage": 0.667,
+      "best_page": "/zones/primary-bathroom-the-under-sink-cabinet.html",
+      "best_page_title": "How to organize the primary bathroom under-sink cabinet",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
-      "matched_on": "heading",
+      "heading_page": "/zones/primary-bathroom-the-under-sink-cabinet.html",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -12660,12 +12660,12 @@
         "how to organize charging station"
       ],
       "room": "",
-      "best_page": "/downloads/6S-Standards-Pack.html",
-      "best_page_title": "The 6S Success Standards Pack",
-      "coverage": 0.5,
+      "best_page": "/zones/family-room-the-charging-and-device-zone.html",
+      "best_page_title": "How to organize the family room charging station",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "heading",
+      "heading_page": "/zones/family-room-the-charging-and-device-zone.html",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -13782,12 +13782,12 @@
         "how to organize outdoor dining"
       ],
       "room": "",
-      "best_page": "/downloads/6S-Standards-Pack.html",
-      "best_page_title": "The 6S Success Standards Pack",
-      "coverage": 0.5,
+      "best_page": "/zones/dining-room-the-beverage-or-coffee-station.html",
+      "best_page_title": "How to organize the dining room beverage or coffee station",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "heading",
+      "heading_page": "/zones/dining-room-the-beverage-or-coffee-station.html",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -14624,11 +14624,11 @@
         "how to organize craft area"
       ],
       "room": "",
-      "best_page": "/downloads/6S-Standards-Pack.html",
-      "best_page_title": "The 6S Success Standards Pack",
-      "coverage": 0.667,
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
+      "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -16215,16 +16215,14 @@
         "how to organize bulk storage"
       ],
       "room": "",
-      "best_page": "/downloads/6S-Standards-Pack.html",
-      "best_page_title": "The 6S Success Standards Pack",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "best_page": "/zones/garage-the-bulk-and-overhead-storage.html",
+      "best_page_title": "How to organize the garage bulk and overhead storage",
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/garage-the-bulk-and-overhead-storage.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "items"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize storage in garage",
@@ -23392,6 +23390,6 @@
       "unmatched_words": []
     }
   ],
-  "scored_against_commit": "98099c9ac",
-  "scored_at": "2026-11-20T14:56:41Z"
+  "scored_against_commit": "dd4c022a0",
+  "scored_at": "2026-11-20T15:53:21Z"
 }

@@ -567,9 +567,9 @@
       "note": "Read in full (135 lines) and run directly: regenerates both build/ and site/ copies, 20 rooms / 114 zones asserted, 0 drift."
     },
     "build_zone_pages.py": {
-      "status": "fixed",
-      "date": "2026-11-19",
-      "note": "2026-11-19: own scoped diff, reviewed directly before committing, not a blind re-ledger of the full file. Added one new room-tips lookup/render block (the 'Declutter' label, Kids Bedroom only) matching the existing Room layout/Garage sale/Design/Kitchen island/No cabinets pattern exactly, and added the new label to the generic-tips exclusion tuple so it is not rendered twice. Verified live: heading renders on the one room it targets, no other room's output changed (room.get('tips') lookup returns None everywhere else), full preflight/test suite and both keyword-demand corpora rescored with 0 regressions."
+      "status": "clean",
+      "date": "2026-11-20",
+      "note": "A211's own 2-line tips.get(label)/room_faq() addition for Kids Bedroom's daycare-bag tip, the already-established dedicated-heading mechanism (Room layout/Kitchen island/No cabinets/Declutter precedent); no new pattern, re-ledgered after the commit timestamp moved past the prior ledger date."
     },
     "canonical_links.py": {
       "status": "clean",

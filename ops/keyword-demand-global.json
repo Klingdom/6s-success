@@ -38,11 +38,11 @@
         "how to organise craft area"
       ],
       "room": "",
-      "best_page": "/downloads/6S-Standards-Pack.html",
-      "best_page_title": "The 6S Success Standards Pack",
-      "coverage": 0.667,
+      "best_page": "/zones/family-room-the-craft-and-activity-zone.html",
+      "best_page_title": "How to organize the family room craft area",
+      "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/zones/family-room-the-craft-and-activity-zone.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -6798,15 +6798,15 @@
         "foyer organisation ideas"
       ],
       "room": "",
-      "best_page": "/downloads/6S-Standards-Pack.html",
-      "best_page_title": "The 6S Success Standards Pack",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "best_page": "/articles/how-to-organize-an-entryway.html",
+      "best_page_title": "How to organize an entryway, step by step",
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "foyer"
+        "office"
       ],
       "markets": [
         "gb"
@@ -6822,14 +6822,12 @@
       "room": "",
       "best_page": "/articles/how-to-organize-an-entryway.html",
       "best_page_title": "How to organize an entryway, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-entryway.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "area"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "in"
       ],
@@ -10021,16 +10019,14 @@
         "how to organize bulk storage"
       ],
       "room": "",
-      "best_page": "/downloads/6S-Standards-Pack.html",
-      "best_page_title": "The 6S Success Standards Pack",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "best_page": "/zones/garage-the-bulk-and-overhead-storage.html",
+      "best_page_title": "How to organize the garage bulk and overhead storage",
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/garage-the-bulk-and-overhead-storage.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "items"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -12824,12 +12820,12 @@
         "how to organise outdoor seating"
       ],
       "room": "",
-      "best_page": "/downloads/6S-Standards-Pack.html",
-      "best_page_title": "The 6S Success Standards Pack",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "heading",
+      "best_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
+      "best_page_title": "How to organize the patio or deck outdoor seating",
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
+      "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
+      "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
         "build"
@@ -15333,11 +15329,11 @@
         "how to organise sink area"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-primary-bathroom.html",
-      "best_page_title": "How to organize a primary bathroom, step by step",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
+      "best_page": "/articles/how-to-declutter-a-kitchen.html",
+      "best_page_title": "How to declutter a kitchen: counters, cabinets and drawers",
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/how-to-declutter-a-kitchen.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -26529,12 +26525,12 @@
         "how to organize sink area"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-primary-bathroom.html",
-      "best_page_title": "How to organize a primary bathroom, step by step",
-      "coverage": 0.667,
+      "best_page": "/zones/primary-bathroom-the-under-sink-cabinet.html",
+      "best_page_title": "How to organize the primary bathroom under-sink cabinet",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
-      "matched_on": "heading",
+      "heading_page": "/zones/primary-bathroom-the-under-sink-cabinet.html",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
       "markets": [
@@ -28584,7 +28580,7 @@
       "best_page_title": "How to organize the family room craft area",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/zones/family-room-the-craft-and-activity-zone.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -29949,11 +29945,11 @@
         "how to organize craft area"
       ],
       "room": "",
-      "best_page": "/downloads/6S-Standards-Pack.html",
-      "best_page_title": "The 6S Success Standards Pack",
-      "coverage": 0.667,
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
+      "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -31605,7 +31601,7 @@
       "best_page_title": "How to organize the kitchen sink area",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
+      "heading_page": "/zones/kitchen-the-sink-and-dishwashing-zone.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -31842,16 +31838,14 @@
         "how to organize bulk storage"
       ],
       "room": "",
-      "best_page": "/downloads/6S-Standards-Pack.html",
-      "best_page_title": "The 6S Success Standards Pack",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "best_page": "/zones/garage-the-bulk-and-overhead-storage.html",
+      "best_page_title": "How to organize the garage bulk and overhead storage",
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/garage-the-bulk-and-overhead-storage.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "items"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -42638,7 +42632,7 @@
       "best_page_title": "How to organize the kitchen sink area",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
+      "heading_page": "/zones/kitchen-the-sink-and-dishwashing-zone.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": [],
@@ -43457,13 +43451,12 @@
       "room": "",
       "best_page": "/rooms/stair-landing.html",
       "best_page_title": "How to organize a stair landing, zone by zone",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/stair-landing.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "area",
         "decor"
       ],
       "markets": [
@@ -43677,7 +43670,7 @@
       "room": "",
       "best_page": "/zones/kitchen-the-cooking-zone.html",
       "best_page_title": "How to organize the kitchen stove area",
-      "coverage": 0.5,
+      "coverage": 0.0,
       "heading_coverage": 1.0,
       "heading_page": "/zones/kitchen-the-cooking-zone.html",
       "matched_on": "heading",
@@ -47797,6 +47790,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "98099c9ac",
-  "scored_at": "2026-11-20T14:56:47Z"
+  "scored_against_commit": "dd4c022a0",
+  "scored_at": "2026-11-20T15:53:23Z"
 }
