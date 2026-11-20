@@ -215,6 +215,22 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "attractively", "big", "beginners", "beginner",
                           "olds"))
 
+# "set" tried and declined 2026-11-20, scheduled operator cycle. "how to set
+# up outdoor storage shed" (global, partial) was missing only "set" against
+# Garage's Lawn and Garden Tool Zone, whose own heading already reads "the
+# outdoor shed zone" and whose FAQ already carries "garden tool storage", and
+# "setup" is already a FORMAT_WORDS task-qualifier, so "set" (the verb form
+# in "set up") looked like its natural counterpart. Self-flattery checked
+# first: 31 of 245 pages carry "set" in some heading, the same order of
+# magnitude as "small" (40/244), already declined above for the identical
+# reason. A real before/after rescore of both corpora (not just the
+# self-flattery count) found a genuine regression: "how to organize and set
+# goals" fell from partial to gap (it loses its only match entirely), and
+# seven unrelated "set up a home office"/"a living room"/"an entertainment
+# company"/"outdoor furniture" queries had their best_page pointer reshuffled
+# onto a different zone, because "set" was doing real discriminating work in
+# several places, not padding. Declined; not added.
+
 # "olds" joined 2026-11-20, scheduled operator cycle, found mining Family
 # Room's and the global corpus's remaining partial tiers. "how to organize a
 # 5 year olds room" (global, gb/in) was missing only "olds" (from "5 year

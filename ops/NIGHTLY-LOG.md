@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-20 (~04:5x slot): tried and declined "set" as a FORMAT_WORDS candidate after a full corpus diff found a real regression, re-confirmed both non-Phil-gated lanes exhausted
+
+**Did:** Attached per Step 0, real unshallow, fast-forwarded cleanly. `preflight.py --skip-tests` run live to completion: 0 FAIL, 32 warnings, all standing sandbox/credential gaps. GitHub's 31 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65. `inbox_agent.py --apply`: no mail credential, standing gap. Mined `room_guide_underperformance.py` fresh across all 20 rooms (0-13% uncovered, same shape every recent cycle reports) and found one candidate that had not appeared by name in the four most recent log entries: "how to set up outdoor storage shed" (global, partial, sole unmatched word "set") against Garage's Lawn and Garden Tool Zone, whose own `zone-also-called.json`-free heading already reads "the outdoor shed zone" and whose FAQ already carries "garden tool storage", so "outdoor"/"storage"/"shed" all already matched; "setup" is already a `FORMAT_WORDS` task-qualifier, and "set" (the verb form in "set up") looked like its natural counterpart.
+
+**Verified, and declined rather than shipped:** checked self-flattery first (CLAUDE.md 5c): 31 of 245 pages carry "set" in some heading, the same order of magnitude as "small" (40/244), which CLAUDE.md's own `FORMAT_WORDS` guard test already declines for exactly this reason. Ran the real simulation rather than trust the proxy count: added "set" to `FORMAT_WORDS`, ran both `--rescore` commands (free, no network), and diffed every row before/after across both corpora. The global corpus's own gap count moved the wrong way (82 to 83, not an improvement), and the full diff showed why: "how to organize and set goals" lost its only match entirely and fell from `partial` to `gap`, and six unrelated "how to set up a home office..." queries, plus "set up a living room", "an entertainment company" and "outdoor furniture", all had their `best_page` pointer reshuffled onto a different zone than before, because "set" had been doing real, if coincidental, discriminating work in several places, not padding. This is a genuine regression, not a tie-break reshuffle A51/A82 already accepts; reverted cleanly (`git checkout --` on all five touched files, confirmed byte-identical to `HEAD`).
+
+**Went well:** running the actual before/after diff instead of reasoning from the self-flattery count alone caught a real regression (`how to organize and set goals` falling to `gap`) that the heading-count proxy alone would not have shown.
+
+**Did not go well:** none; this is the correct outcome for a candidate that looked clean on the narrow collision check but failed the full-corpus diff.
+
+**Changing next cycle:** none; this is a normal instance of the established FORMAT_WORDS/self-flattery/before-after-diff discipline, not a new defect class, so no new preflight gate.
+
+**Next:** epics 1-4 remain entirely owner-gated (31 issues, none from Phil since #65); epic 5's keyword-mining lane remains in deep diminishing returns, now including "set" as a checked-and-declined candidate so it is not retried blind.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~04:4x slot): previous work confirmed finished live, closed a 2-commit dashboard staleness gap, nothing new unblocked
 
 NEXT FOR THE OPERATOR: re-verify this exhausted state another way or take one small closing job, because all 31 open issues (10 P0) remain decision/blocked-on-art with none from Phil since #65, and epic 5's keyword-mining lane is confirmed in deep diminishing returns.
