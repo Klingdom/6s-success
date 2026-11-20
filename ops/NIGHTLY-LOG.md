@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-20 (~08:4x slot): A206, closed a genuine, zero-prior-mention Laundry Room wording gap, "how to declutter utility room"
+
+**Did:** Attached per Step 0: shallow and detached on arrival, real `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 537 commits fast-forwarded, tree clean. `preflight.py --skip-tests` run live to completion (backgrounded past the sandbox foreground timeout, same shape every recent cycle reports): 0 FAIL, 30 warnings, all standing. GitHub's 31 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65. `inbox_agent.py --apply`: no mail credential, standing gap. `cold_read_ledger.py --next`: 312/312, 0 candidates. Mined `room_guide_underperformance.py` fresh across all 20 rooms and grepped the full log/backlog history for each remaining partial row's own query text before touching anything, rather than duplicate the dozens of concurrent re-verification cycles already run today. Every row matched an already-declined shape except one: "how to declutter utility room" (global, 0.667 heading coverage, sole unmatched word "declutter") returned zero hits anywhere in the history. Grounded in the Utility and Cleaning Zone's own content.json before shipping: its Sort pass ("Two brooms become one broom... goes out today") and its rag-pile `the_call` are both decluttering-an-excess stories, the same precedent already used for six other zones' "declutter zone" also-called entries. Checked collision first: every other "utility room" row is already covered or partial on an untouched word.
+
+**Verified:** Added "declutter zone" to a new `Laundry Room|Utility and Cleaning Zone` entry in `ops/zone-also-called.json`, regenerated through `build_zone_pages.py`, confirmed the heading rendered. `check_also_called_digital_collision_fast.py` clean. Full before/after rescore: US unchanged, global exactly 1 row moved partial to covered, same page, 0 regressions (diffed every row). `test_gate_also_called_is_heading.py` (6/6), `test_gate_also_called_no_digital_collision.py` (5/5), `test_gate_zone_also_called_is_heading.py` (6/6), `test_keyword_demand.py` (76/76), `check_urls.py` (236/236), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `cold_read_ledger.py --stale` (0) all clean. `preflight.py --skip-tests` re-run after commit: 0 FAIL. Laundry Room's own guide tally moved 4% to 2% uncovered.
+
+**Went well:** grepping the full history by exact query text before mining, rather than trusting the "fully exhausted" framing dozens of concurrent cycles reached today, surfaced one genuinely unexamined row instead of adding to the pile of redundant re-verifications.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; normal instance of the established zone-also-called/self-flattery/before-after-diff mechanism, no new defect class, no new gate.
+
+**Next:** epics 1-4 remain entirely owner-gated (31 issues, none from Phil since #65); epic 5's keyword-mining lane remains in deep diminishing returns, now one row thinner. Owner-notification floor not reached (last sent 07:30Z, no additional material change beyond this one small fix). Pushed to main: `ops/zone-also-called.json`, `site/zones/laundry-room-the-utility-and-cleaning-zone.html`, `ops/keyword-demand.json`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND.md`, `ops/KEYWORD-DEMAND-GLOBAL.md`, `ops/sitemap-content-hashes.json`, `BACKLOG-2026-09-07.md`, dashboard trio, this entry. No price touched; `IndexNow` to submit on push.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~08:4x slot): previous work (08:1x) reconfirmed finished a further independent way, nothing new unblocked, stale lock cleared
 
 NEXT FOR THE OPERATOR: continue the standing re-verification practice or take one small closing job, because 31 open issues and backlog sections 2-6 remain exactly as the last several cycles found them, all Done, Archived, Hold or Phil-gated.

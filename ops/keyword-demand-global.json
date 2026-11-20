@@ -13695,13 +13695,11 @@
       "best_page": "/zones/laundry-room-the-utility-and-cleaning-zone.html",
       "best_page_title": "How to organize the laundry room cleaning supplies",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/laundry-room-the-utility-and-cleaning-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "declutter"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "gb",
         "au",
@@ -47811,6 +47809,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "75d5b17c5",
-  "scored_at": "2026-11-20T02:50:05Z"
+  "scored_against_commit": "a0736ba9e",
+  "scored_at": "2026-11-20T08:55:34Z"
 }
