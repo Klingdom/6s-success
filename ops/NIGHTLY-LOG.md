@@ -20,6 +20,24 @@ Mined `room_guide_underperformance.py` live rather than cite a prior figure. "ho
 
 HANDOFF-FILES: ops/zone-also-called.json, site/zones/garage-the-automotive-care-zone.html
 
+## PM check-in, 2026-11-20 (~01:4x slot): previous work confirmed finished, a stale preflight lock cleared, nothing new unblocked
+
+NEXT FOR THE OPERATOR: re-verify this exhausted state another way or take a small closing job, because all 31 open issues (10 P0) remain decision/blocked-on-art with nothing from Phil since #65, and `BACKLOG-2026-09-07.md` sections 2-6 have only C5/C6 left, both Phil-gated.
+
+Attached per Step 0: shallow and detached on arrival, real `git fetch --unshallow`, `checkout main`, ff-only onto `origin/main` at `fd4fcd9ce`, tree clean throughout, no reset or force.
+
+Previous work confirmed finished, not cited: all 31 open GitHub issues re-pulled fresh via the API, unchanged set and labels; the two newest comments on #65 (2026-11-13, 2026-11-14) are prior agent cycles' own test results, not a Phil reply. `BACKLOG-2026-09-07.md` sections 2 through 6 reread directly: only C5 and C6 unstruck, both Phil-gated. Ran `preflight.py --fast` live, backgrounded past its own timeout: 0 FAIL through every gate reached, `cycle_signal` recorded a clean snapshot, then genuinely stalled at `test_audit_catalog.py` (9/489), the same documented headless-Chromium/no-egress sandbox limit every recent cycle reports; reported unchecked past that point, not assumed passing.
+
+Closing job this slot: that backgrounded run's own `/tmp/.preflight_py_running.lock` was still on disk after the process was stopped; confirmed its pid (827) was dead, then removed it so the operator's own run at :43 does not wait on a ghost.
+
+Noted, not chased (rank-6, not a blocker): several recent `ops/NIGHTLY-LOG.md` entry headers say 2026-11-06 while their own commits land as late as today; worth a look in a fuller slot.
+
+Not starting any Phil-gated item or re-litigating issue #42, per standing PM practice.
+
+Pushed to main: dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~01:1x slot): previous work (the operator's exhaustion re-verify) confirmed finished, nothing new unblocked
 
 NEXT FOR THE OPERATOR: unchanged; hold the standing Phil-gated queue.
@@ -15817,22 +15835,3 @@ Regenerated the dashboard trio for currency and honest Stripe and reachability d
 Not notifying: last sent 2026-11-02T04:17Z, state unchanged.
 
 Pushed: this entry, dashboard trio. Nothing new for the operator.
-
-## PM check-in, 2026-11-20 (~01:4x slot): previous work confirmed finished, a stale preflight lock cleared, nothing new unblocked
-
-NEXT FOR THE OPERATOR: re-verify this exhausted state another way or take a small closing job, because all 31 open issues (10 P0) remain decision/blocked-on-art with nothing from Phil since #65, and `BACKLOG-2026-09-07.md` sections 2-6 have only C5/C6 left, both Phil-gated.
-
-Attached per Step 0: shallow and detached on arrival, real `git fetch --unshallow`, `checkout main`, ff-only onto `origin/main` at `fd4fcd9ce`, tree clean throughout, no reset or force.
-
-Previous work confirmed finished, not cited: all 31 open GitHub issues re-pulled fresh via the API, unchanged set and labels; the two newest comments on #65 (2026-11-13, 2026-11-14) are prior agent cycles' own test results, not a Phil reply. `BACKLOG-2026-09-07.md` sections 2 through 6 reread directly: only C5 and C6 unstruck, both Phil-gated. Ran `preflight.py --fast` live, backgrounded past its own timeout: 0 FAIL through every gate reached, `cycle_signal` recorded a clean snapshot, then genuinely stalled at `test_audit_catalog.py` (9/489), the same documented headless-Chromium/no-egress sandbox limit every recent cycle reports; reported unchecked past that point, not assumed passing.
-
-Closing job this slot: that backgrounded run's own `/tmp/.preflight_py_running.lock` was still on disk after the process was stopped; confirmed its pid (827) was dead, then removed it so the operator's own run at :43 does not wait on a ghost.
-
-Noted, not chased (rank-6, not a blocker): several recent `ops/NIGHTLY-LOG.md` entry headers say 2026-11-06 while their own commits land as late as today; worth a look in a fuller slot.
-
-Not starting any Phil-gated item or re-litigating issue #42, per standing PM practice.
-
-Pushed to main: dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
-
-HANDOFF-FILES: none
-
