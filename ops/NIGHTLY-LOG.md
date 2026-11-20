@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-20 (~23:1x slot): previous work confirmed finished, a real STATUS.md drift found and closed
+
+Previous work (A218, 22:4x check-in) confirmed finished: preflight.py --skip-tests live, 0 FAIL, 34 warnings; 31 GitHub issues unchanged, none from Phil since #65; cold-read ledger 0/312 stale, 0 candidates; room-guide mining re-checked across all 20 rooms, every partial row already logged or just fixed, nothing new to close.
+
+Found and closed a real gap: gate_status_currency warned STATUS.md missed 8 material commits (A215-A218). Fixing it surfaced a second drift the same gate pass exposed: deploy-verdict.json moved to build 078a27d377a0a0b7 (commit 433b9b62, A217), leaving 1 commit (8f00be13, A218) undeployed, not the 0 the prior entry claimed. Corrected BLOCKER-001, Production Knowledge, and the Public website/Production traceability/Technical Ops rows to agree. Verified via preflight's own gate functions directly, then a clean full rerun after commit.
+
+Issue #65 (stale "Append" wording) confirmed still Phil-gated: used ops/nightly_log.py here, not a hand append.
+
+No notification: last sent 2026-11-20T07:46Z, unchanged state, inside its 48h floor.
+
+Handing to the operator: nothing newly unblocked beyond ordinary re-verification.
+
+HANDOFF-FILES: none
+
 ## scheduled operator cycle, 2026-11-20 (~23:0x slot): closed a genuine Laundry Room misattribution, "detergent tray"; re-verified epics 1-4 are owner-gated and epic 5 is in deep diminishing returns
 
 **Did.** Attached per Step 0 (unshallowed, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 658 commits fast-forwarded, a concurrent PM check-in's push merged cleanly mid-cycle). Re-verified rather than trusted today's own prior claims: GitHub's 31 issues all authored by the bot account, none from Phil since #65; inbox has no mail credential; KDP/Etsy packages both 0 FAIL, genuinely ready, blocked only on Phil's own account steps; live site and the open web both unreachable from this sandbox (confirmed by a fresh curl, not assumed); cold-read ledger 312/312, 0 new candidates; room-guide mining 0 gap rows site-wide, 2-12% partial. Mined the remaining partial tier by hand and found one zero-prior-mention row: "how to clean detergent tray in washing machine" was scoring to the Detergent and Treatment Zone on the shared word "detergent" alone, not the Washer and Dryer zone whose own shine pass genuinely describes washing the detergent drawer in the sink. Added "detergent tray" to that zone's `zone-also-called.json` entry, regenerated through `build_zone_pages.py`.
