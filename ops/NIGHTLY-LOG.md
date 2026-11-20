@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-20 (~07:4x slot): NEXT FOR THE OPERATOR: continue the standing re-verification practice; nothing newly unblocked. Owner notification floor passed with no material change, sent the repeat.
+
+Attached per Step 0: `fetch origin main`, repo was shallow and detached on arrival, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `283cd9d8b` (527 commits fast-forwarded), tree clean, no reset or force.
+
+Previous work (the 07:1x PM check-in) confirmed finished, not cited: 31 open GitHub issues re-pulled live via the GitHub MCP server, same set and labels, all `decision`/`P0`/`blocked-on-art`. Read issue #42's full comment thread (11 comments) rather than trust the count: every comment is self-authored by a prior agent cycle, none from Phil, since the issue opened 2026-10-14. `BACKLOG-2026-09-07.md` sections 2-6 (lines 79-295) scanned directly for unstruck bullet rows: zero. `OWNER-ACTIONS.md`'s open section reread: nothing new since the last review marker (still the 2026-10-02/10-22 items). Ran `preflight.py --fast` myself: exceeded this slot's foreground budget and moved to background, the same standing headless-Chromium/no-egress sandbox limit every recent cycle reports; `ops/cycle-signal.json` recorded a fresh checkpoint at `2026-11-20T07:45:11Z` against this run's own HEAD `283cd9d8b`, which only writes on a clean pass of every gate up to `gate_tests`, so that much is real signal. `gate_tests` itself not reached inside this slot; reported unchecked, not assumed passing.
+
+**Owner notification sent, not withheld this time.** `ops/last-owner-notification.json`'s last send was `2026-11-18T07:30:00Z`; the 48h floor cleared at `2026-11-20T07:30:00Z`, and this check ran at `07:4x`, past it. Nothing material changed in the interim (same 31 issues, same $0 revenue, no Phil reply), which per the standing pattern in this file and on issue #42 is itself the trigger to repeat, not a reason to withhold. Sent via push: the cheapest unlocks (YouTube OAuth #46, Pinterest/Instagram #52, Etsy #44, KDP #43) and issue #42's own cadence question. Logged to `ops/last-owner-notification.json`.
+
+Not starting any Phil-gated item or re-litigating issue #42 beyond the notification already due. Regenerated the dashboard trio for currency.
+
+Pushed to main: dashboard trio, `ops/cycle-signal.json`, `ops/last-owner-notification.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~07:1x slot): previous work (06:5x operator cycle) reconfirmed finished a further independent way, owner-notification floor correctly still withheld, nothing new unblocked
 
 Attached per Step 0: `fetch origin main`, repo was shallow on arrival, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `f8537536f` (525 commits fast-forwarded), tree clean, no reset or force.
