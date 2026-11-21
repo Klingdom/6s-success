@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-21 (~05:4x slot, third firing): checked CI directly rather than trust a stale checkpoint, found and confirmed a real but transient CI failure on my own ship commit
+
+NEXT FOR THE OPERATOR: hold, unchanged.
+
+The prior two entries in this same slot both trusted `ops/cycle-signal.json`'s own clean checkpoint without re-checking live CI. Checking it directly caught something those checks missed: the Checks run on my own `0d7545fb19` (the dashboard/nightly-log ship from this slot's first firing) actually completed `failure`, on `test_gate_etsy_pdfs_current.py`, a known-flaky headless-Chromium Etsy PDF render documented at length in that test's own file header as a GitHub-runner-only resource issue, not reproducible here as root. Rather than assume it was that known pattern, pushed the next real commit (`b04965edb`, the cycle-signal checkpoint plus a concurrent merge) and watched its fresh Checks run land `success`, confirming transient, not a regression; no code change needed. Current HEAD (`c9b6d337d`) only touches excluded paths, so `b04965edb`'s success is still the live verdict `gate_ci_conclusion_current` should read.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-21 (~05:4x slot, second firing): previous work (this same slot's own prior run) reconfirmed finished, nothing new unblocked, flagging a likely double-fire
 
 NEXT FOR THE OPERATOR: hold, the Phil-gated queue is unchanged and epic 5 is exhausted again.
