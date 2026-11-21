@@ -2,6 +2,41 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-21 (~08:2x slot): previous work was NOT finished, a real misordered nightly log entry found and fixed, one stale GitHub issue closed with evidence
+
+Attached clean per Step 0: fetched, real unshallow, `checkout -B main origin/main`, ff only onto `origin/main` at `a43e2cb`, tree clean throughout.
+
+Step 2 answered NO this slot, not assumed yes: ran `preflight.py --skip-tests` live and it genuinely failed, `gate_nightly_log_ordering` FAIL, entry #928 (the 07:53 operator cycle's own "re-verified the exhausted state" entry) was appended to the end of the file instead of prepended to the top, landing it after the 2026-11-07 legacy section, 12000+ lines from where a newest-first reader looks. Finishing that was this slot's work, not starting something new.
+
+Fixed by moving the entry to the top of the file, above the "~07:4x slot" entry it is chronologically newer than (commit timestamps: the misplaced entry's commit is 07:53:22, the "07:4x" entry's commit is 07:48:53). Verified both `gate_nightly_log_ordering` and `gate_nightly_log_no_duplicate_entries` pass by calling them directly against the fixed file.
+
+Caught a real self-inflicted collision: the first fix landed on disk while a background `preflight.py` run (started before the fix, to check Step 2) was still executing `gate_generator_ownership`, which restores the whole working tree after running its generator chain. That restore reverted the uncommitted fix back to the stale committed state, so a second, apparently clean preflight run still showed the same FAIL. Re-applied the fix with no concurrent process touching the tree, re-verified, and am committing it immediately this time rather than leaving it uncommitted before the next full preflight run.
+
+Also closed GitHub issue #29 (`blocked-on-art`) with evidence rather than left it stale: its own "What I did" section described a mitigation (withholding 16 defective entryway card codes from the live gallery) that is still in place and still correct today, confirmed by reading `ops/split_deck_cards.py`'s `CANON_EXCLUDE`, `site/assets/cards/entryway/index.json` (72 live entries, none of the 16 withheld codes present), `site/deck.html`'s copy, and `gate_deck_art_withheld` passing directly. The dashboard's own "Canon defects: 0 live uses of the rejected term" line independently confirms the same thing. The remaining, genuinely unfinished part (regenerate real art for those 16 codes) is not lost: it is the same root cause issue #2 (P0, blocked-on-art) already tracks, so closing #29 removes duplicate open-issue noise rather than dropping real work.
+
+GitHub's other 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil.
+
+**Handing to the operator at :43:** nothing new unblocked beyond the standing 30-issue Phil-gated queue (31 minus #29). Epic 5 room-guide mining remains the only non-Phil-gated lane prior cycles have used, and it is already reported exhausted; re-verify that claim directly rather than citing it again if there is time.
+
+Pushed to main via `ops/ship.py --no-deploy`: `ops/NIGHTLY-LOG.md`, dashboard trio, this entry.
+
+HANDOFF-FILES: none
+
+## Scheduled operator cycle, 2026-11-21: re-verified the exhausted state directly, no new unblocked work found
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real unshallow, `checkout -B main origin/main`, ff-only onto `origin/main`, tree clean). Read the rest of `BACKLOG-2026-09-07.md` (sections 3 to 7, not previously in context this cycle) and `BACKLOG-2026-H2.md`'s epic headers. Ran `preflight.py` live to completion rather than `--skip-tests`.
+
+**Verified:** 0 FAIL through every gate, including the full `gate_tests` suite attempt; stalled at `test_audit_catalog.py` (9/489), the same documented headless-Chromium sandbox limit; killed there (pid confirmed dead), stale lock directory cleared after checking its pid matched. 3 standing warnings (image-coverage, dated-disclosures, nightly-log-entries-not-overlong), none new. `cold_read_ledger.py`: 312/312 ledgered, 0 stale, 0 new candidates. GitHub's 31 open issues re-pulled live and issue #42/#65's full threads re-read: every comment self-authored by a prior agent cycle, none from Phil. `inbox_agent.py --apply`: no mail credential. Backlog sections 3-7 read directly: decks (section 3) fully archived/done; images and video (section 4) blocked on Phil's own Gemini billing and YouTube OAuth clicks; section 5 (Hold) and section 6 (owner gates) are the only open rows, all explicitly Phil-gated. A concurrent PM check-in rotated this file mid-cycle (`792d3785f`); rebase conflicted on the stale anchor text, aborted cleanly, reset to the new HEAD and reapplied this entry fresh rather than force an outdated patch.
+
+**Went well:** read the full backlog instead of trusting a summary, and independently found nothing beyond what prior cycles already named.
+
+**Did not go well:** the rebase conflict above cost a few minutes; worth noting for the next cycle that a mid-run rotation moves the append point.
+
+**Changing next cycle:** none.
+
+**Next:** unchanged. The only genuinely open lane is the 31 Phil-gated decisions; no non-Phil-gated item exists anywhere in the structured queue. Regenerated dashboard trio. No price, product or page touched; `IndexNow` not applicable.
+
+
 ## PM check-in, 2026-11-21 (~07:4x slot): previous work (07:1x) confirmed finished; rotated the nightly log itself instead of starting new work
 
 NEXT FOR THE OPERATOR: hold, unchanged, because the standing 31-issue Phil-gated queue and exhausted epic 5 keyword mining are the same state the 07:1x check-in already confirmed; nothing new turned up this slot either.
@@ -15898,17 +15933,3 @@ Re-ran `room_guide_underperformance.py --room Pantry` fresh on a handoff: confir
 **Next:** Hall Closet (34%, 58 partial of 173) is the next candidate, not yet read row-by-row. The same-room zone-tie limitation is not yet a pattern worth a general fix (one clear instance so far); worth building on a third case.
 
 Pushed to main.
-
-## Scheduled operator cycle, 2026-11-21: re-verified the exhausted state directly, no new unblocked work found
-
-**Did:** Attached per Step 0 (shallow and detached on arrival, real unshallow, `checkout -B main origin/main`, ff-only onto `origin/main`, tree clean). Read the rest of `BACKLOG-2026-09-07.md` (sections 3 to 7, not previously in context this cycle) and `BACKLOG-2026-H2.md`'s epic headers. Ran `preflight.py` live to completion rather than `--skip-tests`.
-
-**Verified:** 0 FAIL through every gate, including the full `gate_tests` suite attempt; stalled at `test_audit_catalog.py` (9/489), the same documented headless-Chromium sandbox limit; killed there (pid confirmed dead), stale lock directory cleared after checking its pid matched. 3 standing warnings (image-coverage, dated-disclosures, nightly-log-entries-not-overlong), none new. `cold_read_ledger.py`: 312/312 ledgered, 0 stale, 0 new candidates. GitHub's 31 open issues re-pulled live and issue #42/#65's full threads re-read: every comment self-authored by a prior agent cycle, none from Phil. `inbox_agent.py --apply`: no mail credential. Backlog sections 3-7 read directly: decks (section 3) fully archived/done; images and video (section 4) blocked on Phil's own Gemini billing and YouTube OAuth clicks; section 5 (Hold) and section 6 (owner gates) are the only open rows, all explicitly Phil-gated. A concurrent PM check-in rotated this file mid-cycle (`792d3785f`); rebase conflicted on the stale anchor text, aborted cleanly, reset to the new HEAD and reapplied this entry fresh rather than force an outdated patch.
-
-**Went well:** read the full backlog instead of trusting a summary, and independently found nothing beyond what prior cycles already named.
-
-**Did not go well:** the rebase conflict above cost a few minutes; worth noting for the next cycle that a mid-run rotation moves the append point.
-
-**Changing next cycle:** none.
-
-**Next:** unchanged. The only genuinely open lane is the 31 Phil-gated decisions; no non-Phil-gated item exists anywhere in the structured queue. Regenerated dashboard trio. No price, product or page touched; `IndexNow` not applicable.
