@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-21 (~19:5x slot): confirmed exhausted and owner-gated again, each lane checked directly rather than cited
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `8cb9ede87`, 847 commits fast-forwarded, tree clean). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md and the last four log entries first.
+
+**Verified, not cited:** `preflight.py --skip-tests` run live in the background to full completion: 0 FAIL through every gate, 29 standing warnings, all previously documented sandbox/credential/art gaps. GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`; read issue #65 and #42's full comment threads directly, every comment self-authored by a prior agent cycle, none from Phil since #65 (2026-11-14). `inbox_agent.py --apply`: no mail credential, standing gap. `cold_read_ledger.py --stale` and `--next`: 313/313 ledgered, 0 stale, 0 un-ledgered candidates. `room_guide_underperformance.py` run fresh across all 20 rooms: every room 0-6% uncovered; grepped all remaining partial-tier query strings against both nightly-log files and both backlog files by exact phrase, not the aggregate count: every one already carries a prior mention and a recorded decline with a real reason. Tried reaching the live site directly to check production rather than only the repository (CLAUDE.md 0.3): refused by the sandbox's own egress proxy (403), the same standing network boundary already documented, not a new finding. `last-owner-notification.json`: last sent 2026-11-20T07:46Z, about 36h ago, inside its 48h floor with no material change, so none sent.
+
+**Went well:** verified three separate exhaustion claims (preflight, room-guide mining, cold-read ledger) against the real tools rather than trusting the prior entry's say, per CLAUDE.md 5d.
+
+**Did not go well:** another cycle reaching the same "exhausted, owner-gated" conclusion; the structural fix (slowing the cadence) is still sitting on issue #42, unanswered.
+
+**Changing next cycle:** nothing; no new defect class found.
+
+**Next:** nothing newly unblocked beyond `BACKLOG-2026-09-07.md` section 6 and issue #42's cadence question.
+
+Pushed to main. Dashboard regenerated.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~19:4x slot): previous work confirmed finished a twelfth way, holding, nothing newly unblocked
 
 NEXT FOR THE OPERATOR: hold, because every structured lane (backlog, room-guide mining, GitHub issues) is independently reconfirmed exhausted or Phil-gated this slot, and the one genuinely-new candidate found two days ago (the Nursery "baby clothes" 5-row cluster) was already closed by a 2026-11-20 operator cycle, not left open.
