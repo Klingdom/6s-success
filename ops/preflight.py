@@ -23377,6 +23377,58 @@ def gate_owner_actions_item1_not_oversized() -> None:
              % (total, len(archived_blocks)))
 
 
+def gate_owner_actions_item23_not_oversized() -> None:
+    """OWNER-ACTIONS.md's item 23 ("Reduce the autonomous cadence...")
+    must not be carrying its 2026-10-17 point-in-time cadence-cost
+    narrative, once it has been rotated to a short pointer at the live,
+    continuously-updated GitHub issue #42 thread that superseded it.
+
+    Found 2026-11-21, scheduled operator cycle: the 08:4x PM check-in
+    handed off OWNER-ACTIONS.md (109,980 of its 110,000-byte tripwire)
+    as the next cold read, since all seven existing rotate_owner_
+    actions*.py scripts read CLEAN and none of them touches item 23.
+    Its opening paragraph quoted a 2026-10-17 snapshot ("ten open
+    GitHub issues", "206 commits in the 28 hours before this cycle
+    started") that had gone stale on its own terms (30 open issues on
+    this date, not ten) while GitHub issue #42's own comment thread had
+    kept the same question current with at least ten independent
+    re-measurements since. ops/rotate_owner_actions_item23_cadence.py
+    now archives that one paragraph; this gate is what stops it
+    regrowing unnoticed, the same role its siblings above already play
+    for their own spans.
+
+    A WARNING, not a FAIL: closed narrative wastes a later cycle's
+    reading time, it does not ship anything broken to a customer.
+
+    Proof this can fail: ops/tests/test_gate_owner_actions_item23_not_
+    oversized.py builds a synthetic OWNER-ACTIONS.md with the span
+    unrotated and asserts this gate warns, then confirms a freshly
+    rotated copy, and the real committed file, both stay silent.
+    """
+    path = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if not os.path.exists(path):
+        return
+    import rotate_owner_actions_item23_cadence as roa23
+    text = io.open(path, encoding="utf-8").read()
+    try:
+        _, archived_blocks = roa23.plan_rotation(text)
+    except ValueError as e:
+        warn("owner-actions-item23-not-oversized",
+             "could not check OWNER-ACTIONS.md's item 23 for closed "
+             "narrative: %s. Unchecked is not passing (CLAUDE.md 0.4): "
+             "this means an anchor rotate_owner_actions_item23_"
+             "cadence.py searches for has gone stale, most likely "
+             "because another edit changed the text it is tied to." % e)
+        return
+    if archived_blocks:
+        total = sum(len(c.encode("utf-8")) for _, c in archived_blocks)
+        warn("owner-actions-item23-not-oversized",
+             "OWNER-ACTIONS.md's item 23 has %d bytes across %d "
+             "block(s) of closed narrative still sitting live. Run "
+             "`python ops/rotate_owner_actions_item23_cadence.py "
+             "--apply`." % (total, len(archived_blocks)))
+
+
 def gate_backlog_done_table_not_oversized() -> None:
     """BACKLOG-2026-09-07.md's "Done this week, for the record" table
     must not be carrying more than a generous buffer past ops/rotate_
@@ -33345,6 +33397,7 @@ def main() -> int:
     run_gate(gate_owner_actions_item_1h_not_oversized)
     run_gate(gate_owner_actions_item15_not_oversized)
     run_gate(gate_owner_actions_item1_not_oversized)
+    run_gate(gate_owner_actions_item23_not_oversized)
     run_gate(gate_backlog_done_table_not_oversized)
     run_gate(gate_status_blocker001_not_oversized)
     run_gate(gate_status_metadata_not_oversized)

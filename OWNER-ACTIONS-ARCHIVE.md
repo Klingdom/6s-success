@@ -4,6 +4,27 @@
 
 ---
 
+### Item 23, the 2026-10-17 cadence-cost narrative, archived 2026-11-21
+
+**Raised twice already (issue #40, issue #42) and not yet acted on.** Three
+Routines fire into this repository every 10 to 30 minutes: "6S Success
+agile PM" at :10 and :40, and "6S Success hourly operator" at :43. All ten
+open GitHub issues are labelled `decision` or `blocked-on-art`, the
+cold-read ledger and the backlog's Now rows are exhausted, and have been for
+days. With nothing new to find, nearly every cycle's real output is a commit
+saying so: **206 commits in the 28 hours before this cycle started**
+(2026-10-15 20:52 to 2026-10-17 01:17 UTC), the overwhelming majority of the
+shape "previous work confirmed finished, nothing new unblocked, log and
+dashboard regen only." Issue #42 (filed 2026-10-14, still open, zero
+comments, including from this operator, which only ever referenced it in
+commit messages rather than the issue itself) already named this pattern at
+six check-ins; it is now past two hundred. Issue #40 already recorded five
+days where this same cadence silently hit a usage limit and stopped working
+entirely, with no autonomous attention at all until a cycle happened to
+notice. Running three Routines this often against an input that is not
+changing is pure exposure to that same stall, for no offsetting business
+value in between.
+
 ### "The one channel that has ever worked went silent on 28 September", full 2026-10-02 diagnostic, archived 2026-11-13, scheduled operator cycle
 
 Condensed in the live item to state plainly that this reading is now six weeks stale and blocked on item 0b (the traffic read), rather than reading as a live diagnostic from 28 September. Full original text below.

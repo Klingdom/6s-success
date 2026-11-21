@@ -9,7 +9,7 @@ Nothing on this list stops other work.
 **Last measured:** 2026-10-02 UTC, traffic re-measured by a direct database read:
 49 visitors/121 visits/30 days. Earlier corrections accumulated here between rotations archived to `OWNER-ACTIONS-ARCHIVE.md` by `ops/rotate_owner_actions.py --apply-preamble`; each numbered item's own current status lives in its own entry below, not in this paragraph.
 
-**List reviewed:** 2026-11-13, every item below has been read as of this date. A separate marker, "Last measured" above (issue #38), is the exact sentence the dashboard parses for the real traffic-measurement date; bumping this marker must never imply a fresh database read. Earlier review history accumulated here between rotations archived to `OWNER-ACTIONS-ARCHIVE.md` by `ops/rotate_owner_actions.py --apply-preamble`.
+**List reviewed:** 2026-11-21, every item below has been read as of this date. A separate marker, "Last measured" above (issue #38), is the exact sentence the dashboard parses for the real traffic-measurement date; bumping this marker must never imply a fresh database read. Earlier review history accumulated here between rotations archived to `OWNER-ACTIONS-ARCHIVE.md` by `ops/rotate_owner_actions.py --apply-preamble`.
 
 **Deploy-gap and per-item history, 2026-09-04 through 2026-09-25, archived 2026-10-23 by `ops/rotate_owner_actions.py`:** none of it is a standing owner action any more. Current deploy status lives in `STATUS.md`'s `BLOCKER-001`; the one still-open ask this chain ever raised is item 0 below (`VPS_DEPLOY_KEY`). Moved verbatim to `OWNER-ACTIONS-ARCHIVE.md`.
 
@@ -1460,24 +1460,7 @@ work. Full account in `PHOTOS-API.md`.
 
 ### 23. Reduce the autonomous cadence, or clear a decision, so it stops burning usage on an unchanged state. About two minutes.
 
-**Raised twice already (issue #40, issue #42) and not yet acted on.** Three
-Routines fire into this repository every 10 to 30 minutes: "6S Success
-agile PM" at :10 and :40, and "6S Success hourly operator" at :43. All ten
-open GitHub issues are labelled `decision` or `blocked-on-art`, the
-cold-read ledger and the backlog's Now rows are exhausted, and have been for
-days. With nothing new to find, nearly every cycle's real output is a commit
-saying so: **206 commits in the 28 hours before this cycle started**
-(2026-10-15 20:52 to 2026-10-17 01:17 UTC), the overwhelming majority of the
-shape "previous work confirmed finished, nothing new unblocked, log and
-dashboard regen only." Issue #42 (filed 2026-10-14, still open, zero
-comments, including from this operator, which only ever referenced it in
-commit messages rather than the issue itself) already named this pattern at
-six check-ins; it is now past two hundred. Issue #40 already recorded five
-days where this same cadence silently hit a usage limit and stopped working
-entirely, with no autonomous attention at all until a cycle happened to
-notice. Running three Routines this often against an input that is not
-changing is pure exposure to that same stall, for no offsetting business
-value in between.
+**Raised in issue #42 (and originally #40); not yet acted on.** This paragraph used to carry a 2026-10-17 snapshot (ten open issues, 206 commits in 28 hours); that count is stale on its face today (30 open issues, not ten) and the live, continuously-updated account lives in GitHub issue #42's own comment thread instead, kept current every cycle since. Archived 2026-11-21 by `ops/rotate_owner_actions_item23_cadence.py`.
 
 **I cannot change this myself.** `update_trigger` and the Routines page both
 belong to whoever created each Routine, and all three show
