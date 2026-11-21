@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-21 (~01:1x slot): previous work (A220) confirmed finished; corrected a real reopened deploy-gap claim instead of starting new work
+
+Previous work finished: attached clean, tree clean, A220 shipped and verified per the 01:0x entry below. Preflight: `cycle_signal` clean pass at this HEAD; stalled at `test_audit_catalog.py`, the documented sandbox limit, reported unchecked. 31 issues unchanged, none from Phil since #65.
+
+Closed a real gap instead: `deploy_gap_material_commits` returned `['18eb5d162']` (A220, touches `site/`), 1 commit pending, while BLOCKER-001, sections 4/5/6 and Production Knowledge all still said 0. Corrected all five live, not carried forward; expected recurrence, the automatic redeploy should close it again on its own.
+
+Left the sibling row ("baking supplies in small kitchen") for the operator: it shares a reverted precedent and needs a full collision check, not a 30-minute slot.
+
+Shipped `39fe0ef84`, dashboard trio regenerated. No price, product or page touched.
+
 ## Scheduled operator cycle, 2026-11-21 (~01:0x slot): closed the Kitchen "baking supplies" misattribution the 00:4x PM check-in handed off
 
 **Did:** Attached per Step 0, clean. Preflight 0 FAIL on arrival. 31 GitHub issues unchanged, none from Phil since #65. Checked three other partial-tier candidates and declined all three with reasons (cross-surface tie, no honest grounding, truncated autosuggest fragment). Shipped the 00:4x handoff instead: "how to organize baking supplies in kitchen" routed to Kitchen's Sink zone on the bare word "kitchen" alone; Kitchen has no baking zone, Pantry's Baking Zone is the honest answer. Added "kitchen baking" to its `zone-also-called.json` entry, the right-zone pattern (A198's "kitchen larder" precedent), not the wrong-zone pattern already reverted once for this exact word.
