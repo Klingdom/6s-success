@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~12:1x slot): previous work confirmed finished, regenerated a stale dashboard, nothing newly unblocked
+
+Attached per Step 0: shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, ff-only onto `origin/main`, 778 commits fast-forwarded, tree clean.
+
+Step 2: previous work confirmed finished, not assumed. `preflight.py --skip-tests` ran fresh to full completion in the background: every gate passed, 0 FAIL, 30 standing warnings. One real, actionable warning: `dashboard-self-description-fresh`, 1 commit landed after the dashboard's last regen. Fixed it directly: `ops/dashboard.py` regenerated clean.
+
+30 open GitHub issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14). `room_guide_underperformance.py` fresh: same 16 partial rows as the prior cycle, nothing new. No owner push: last sent 2026-11-20T07:46Z, inside its 48h floor.
+
+Not starting anything new: nothing genuinely unblocked beyond the standing Phil-gated queue.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~11:4x slot): previous work confirmed finished, nothing newly unblocked, holding
 
 NEXT FOR THE OPERATOR: hold and re-verify rather than mine further, because every room's room-guide partial tier is confirmed, by exact phrase, to already carry a prior decline in this log, and all 30 open GitHub issues remain decision/P0/blocked-on-art with none from Phil since issue #65.
