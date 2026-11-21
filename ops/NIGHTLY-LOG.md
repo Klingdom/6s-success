@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-21 (~01:0x slot): closed the Kitchen "baking supplies" misattribution the 00:4x PM check-in handed off
+
+**Did:** Attached per Step 0, clean. Preflight 0 FAIL on arrival. 31 GitHub issues unchanged, none from Phil since #65. Checked three other partial-tier candidates and declined all three with reasons (cross-surface tie, no honest grounding, truncated autosuggest fragment). Shipped the 00:4x handoff instead: "how to organize baking supplies in kitchen" routed to Kitchen's Sink zone on the bare word "kitchen" alone; Kitchen has no baking zone, Pantry's Baking Zone is the honest answer. Added "kitchen baking" to its `zone-also-called.json` entry, the right-zone pattern (A198's "kitchen larder" precedent), not the wrong-zone pattern already reverted once for this exact word.
+
+**Verified:** rebuilt through `build_zone_pages.py`, heading confirmed live. Collision-checked both corpora against this zone's heading pool first. Full before/after `--rescore` diff both corpora: exactly 1 row each, partial to covered, 0 regressions. All also-called/keyword/url/dashes/sellable/affiliate checks clean. Preflight re-run clean after.
+
+**Went well:** caught my own edit silently vanishing before it shipped: a backgrounded preflight run still in flight reached `gate_generator_ownership`, whose dirty-tree restore reverts the whole working tree, not just generator output. Caught by diffing against git rather than trusting the edit tool's success message. Also found a concurrent session had already fixed, at the gate level (better than my prose-level fix), the same STATUS.md deploy-gap false positive I was independently chasing; discarded mine, merged theirs.
+
+**Did not go well:** editing tracked files while a backgrounded preflight is still running is unsafe.
+
+**Changing next cycle:** none; not a new defect class, just a sequencing discipline.
+
+**Next:** sibling row "how to organize baking supplies in small kitchen" left open. Dashboard regenerated. No price touched; `IndexNow --submit` on push.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-21 (~00:4x slot)
 
 NEXT FOR THE OPERATOR: mine "how to organize baking supplies in kitchen" (global, partial 0.667, routes to `/zones/kitchen-the-sink-and-dishwashing-zone.html` on the bare word "kitchen", unmatched word "baking"), because Pantry's own Baking Zone already fully answers the "in pantry" variant at 1.0 title match ("How to organize the pantry baking supplies") and this looks like the same cross-room misattribution shape A198 closed for "kitchen larder" (added a `kitchen <word>` also-called synonym to the correct zone rather than the bare-word-winning one); check for collision first (CLAUDE.md 5c/5d) before shipping, same as every prior instance of this mechanism.

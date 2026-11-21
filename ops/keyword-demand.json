@@ -11393,16 +11393,14 @@
         "how to organize baking supplies"
       ],
       "room": "Kitchen",
-      "best_page": "/zones/kitchen-the-sink-and-dishwashing-zone.html",
-      "best_page_title": "How to organize the kitchen sink area",
+      "best_page": "/zones/pantry-the-baking-zone.html",
+      "best_page_title": "How to organize the pantry baking supplies",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/kitchen-the-sink-and-dishwashing-zone.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/pantry-the-baking-zone.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "baking"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize baking supplies in pantry",
@@ -23388,6 +23386,6 @@
       "unmatched_words": []
     }
   ],
-  "scored_against_commit": "8db141f04",
-  "scored_at": "2026-11-20T22:58:03Z"
+  "scored_against_commit": "b6827ed68",
+  "scored_at": "2026-11-21T01:00:07Z"
 }

@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-19T14:13:52Z from google, 151 seeds, 151 attempts: 115 returned completions, 36 had none, 0 errored. Canary: google ok.
 
-**Scored:** 2026-11-20T22:58:03Z against 244 page(s) at commit 8db141f04. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-21T01:00:07Z against 244 page(s) at commit b6827ed68. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 1183. Checked against 244 published page titles: 865 covered, 290 partial, 28 gap.
+**Queries found:** 1183. Checked against 244 published page titles: 866 covered, 289 partial, 28 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -52,7 +52,7 @@ Showing the top 28 of 28, ordered by the best rank the phrase reached in any one
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 290.
+Showing the top 60 of 289.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -70,7 +70,6 @@ Showing the top 60 of 290.
 | 2 | guest bathroom decorating ideas | How to organize the guest bathroom towels | 0.67 |
 | 2 | guest bedroom design ideas | How to organize the guest bedroom bed and linens | 0.67 |
 | 2 | how to decorate a guest bedroom | How to organize the guest bedroom bed and linens | 0.67 |
-| 2 | how to organize baking supplies in kitchen | How to organize the kitchen sink area | 0.67 |
 | 2 | primary bedroom decorating ideas | How to organize the primary bedroom bed and bedding | 0.67 |
 | 3 | how to arrange gallery wall art | How to organize the stair landing gallery wall | 0.67 |
 | 3 | how to create a drop zone | How to organize the entryway drop zone | 0.67 |
@@ -116,6 +115,7 @@ Showing the top 60 of 290.
 | 10 | how to arrange a living room with 2 walls | How to organize the living room bookshelves and display | 0.67 |
 | 10 | how to plan a home office | How to organize the home office bookshelf | 0.67 |
 | 10 | large primary bedroom design ideas | How to organize the primary bedroom bed and bedding | 0.67 |
+| 11 | how to plan a living room | How to organize the living room bookshelves and display | 0.67 |
 
 ## By room
 
@@ -130,7 +130,7 @@ Showing the top 60 of 290.
 | Hall Closet | 12 | 0 | 2 | 10 |
 | Home Office | 36 | 0 | 7 | 29 |
 | Kids Bedroom | 20 | 0 | 6 | 14 |
-| Kitchen | 49 | 1 | 9 | 39 |
+| Kitchen | 49 | 1 | 8 | 40 |
 | Laundry Room | 40 | 0 | 4 | 36 |
 | Living Room | 50 | 2 | 21 | 27 |
 | Mudroom | 18 | 0 | 1 | 17 |
