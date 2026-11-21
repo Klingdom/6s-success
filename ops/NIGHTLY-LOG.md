@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-21 (~02:1x slot): previous work confirmed finished independently; closed two stale cold-read ledger entries
+
+Previous work (the 02:0x operator cycle, declined sibling-row handoff) confirmed finished independently: tree clean and pushed, deploy gap re-derived live at 0 pending, 31 GitHub issues unchanged, none from Phil since #65.
+
+Found a real gap instead: cold_read_ledger.py --stale flagged rotate_status_history.py and preflight.py outdated. Cold-read both real diffs (the BLOCKER-001 chain-order assertion; the second deploy-gap-count truncation marker), both already fail-then-pass proven by the cycles that shipped them; re-ledgered clean, 0 stale.
+
+preflight.py --skip-tests then ran to a near-full clean pass on the resulting clean tree: 0 FAIL, 32 standing warnings.
+
+Shipped `9246fbd57`. Handing the operator: nothing newly unblocked; epics 1-4 stay Phil-gated, epic 5 exhausted per the prior cycle.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-21 (~02:0x slot): re-verified the owner-gated state a further independent way, declined the handed-off sibling row after reading its own content, found epic 5 genuinely exhausted
 
 **Did:** Attached per Step 0, tree clean. preflight.py --skip-tests ran to completion: every gate passed, 33 standing warnings. Confirmed live, not cited: this sandbox's egress proxy refuses 6s-success.com, api.stripe.com and bing.com (403), so no traffic read, Stripe egress or IndexNow submission is possible here. No mail credential. Read every comment on GitHub issue #42 by hand: all self-authored by prior agent cycles, none from Phil. BACKLOG sections 2-6: Done, Hold or Phil-gated.
