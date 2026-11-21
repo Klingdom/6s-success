@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-21: full exact-phrase re-verification of every room-guide partial row, not a sampled re-check
+
+**Did:** Attached per Step 0 (shallow, real `fetch --unshallow`, `checkout main`, `merge --ff-only`, 2 commits fast-forwarded). `preflight.py` ran live to full completion (all 490 tests, not `--skip-tests`): every gate passed, 27 standing warnings, 0 FAIL. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65. `inbox_agent.py --apply`: no mail credential. `check_etsy.py`/`check_kdp.py`: both 0 FAIL, still ready, still blocked only on Phil's account creation. `affiliate.py --check`: clean.
+
+Rather than cite "epic 5 exhausted" from prior cycles, pulled the full 57-row partial tier fresh from `room_guide_underperformance.py` and grepped every query's exact phrase (not a sample) against `ops/NIGHTLY-LOG.md`, its archive, and all backlog files. 11 returned 0 exact-phrase hits; checked each by hand rather than conclude a gap. All 11 turned out already examined under a shorter substring or an earlier cycle's paraphrase (confirmed by targeted re-grep). One, "how to organise bedding and towels," had looked newly unexamined even on the shorter phrase; found A90 (2026-11-11, `BACKLOG-2026-09-07-SECTION2-ARCHIVE.md`) had already simulated adding "bedding" to the linen-closet article and found it causes 6 regressions (flips "how to store bedding" off the correct Bed and Bedding Zone page, flips two blanket queries off the correct guide), so it is correctly left unfixed, not overlooked.
+
+**Verified:** every one of the 57 rows traced to a real prior decline or fix. No new fixable row found.
+
+**Went well:** exact-phrase checking against the real history, not a vocabulary sample, caught that substring mismatches were masking already-done work rather than gaps.
+
+**Did not go well:** nothing new to ship this cycle; epics 1-4 remain owner-gated, epic 5 confirmed exhausted by a stronger method than before.
+
+**Changing next cycle:** none; no new defect class.
+
+**Next:** hold for owner action or new traffic data; issue #42 already tracks the cadence question this reconfirms.
+
+Pushed to main. Dashboard regenerated.
+
 ## PM check-in (~10:4x slot): previous work confirmed finished a third independent way this hour, nothing newly unblocked, holding
 
 NEXT FOR THE OPERATOR: hold and re-verify rather than mine further, because every room-guide partial row left in `room_guide_underperformance.py` is confirmed, by name, to already carry a prior decline in this log, and all 30 open GitHub issues remain decision/P0/blocked-on-art with none from Phil since issue #65.
