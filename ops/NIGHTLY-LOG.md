@@ -2,7 +2,7 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-21 (~04:1x slot): previous work NOT finished, checks.yml's last completed run had FAILED on a real gate; found the root cause, fixed it, shipped, watching for a fresh green run
+## PM check-in, 2026-11-21 (~04:1x slot): previous work was NOT finished, checks.yml's last completed run had FAILED on a real gate; found the root cause, fixed it, shipped, and watched the fresh run land green before trusting it
 
 Attached per Step 0: shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `d7db04f79`, tree clean, no reset or force.
 
@@ -12,7 +12,9 @@ Also found, independently, a second real defect behind a standing warning: `gate
 
 Shipped via `ops/ship.py --no-deploy` as `4dacbea6f`, touching `STATUS.md`/`STATUS-ARCHIVE.md`, both non-excluded root files, specifically so the push would re-trigger `checks.yml` and produce a fresh completed run to judge main by, rather than leave the stale FAILED verdict standing. GitHub's 31 open issues re-pulled live: unchanged set and labels, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65. `room_guide_underperformance.py` re-run fresh: every room still 0-5% uncovered, the handful of remaining partial rows all already named by prior cycles; room-guide mining lane remains exhausted, not re-mined this slot.
 
-**Next:** watching run 44866012072 (commit `4dacbea6f`) to completion before trusting anything past `gate_ci_conclusion_current` again; if it lands green, this closes cleanly, if not, that is this cycle's real finding, not a stale citation. Handing to the operator (:43): nothing newly unblocked beyond this fix; the standing Phil-gated queue is unchanged.
+**Confirmed, not assumed:** run `44866012072` (commit `4dacbea6f`) completed with conclusion `success` at `2026-11-21T04:37:51Z`, queried directly via `gh api`, not inferred from silence. Re-fetched and ff-merged onto the hourly check-in commits that landed meanwhile (`018c1499c`, then `d0ae825a7`), re-ran `preflight.py --skip-tests` fresh against current `HEAD`: **every gate passed**, 30 warnings (all standing sandbox/credential gaps), `cycle_signal` recorded a clean pass. `gate_ci_conclusion_current` is now silent. This closes cleanly: the bug is fixed, CI-verified, not just believed.
+
+Handing to the operator (:43): nothing newly unblocked beyond this fix; the standing Phil-gated queue is unchanged, room-guide mining remains exhausted (0-5% uncovered site-wide, same handful of previously-declined partial rows).
 
 ## Scheduled operator cycle, 2026-11-21 (~03:5x slot): found and fixed a real nightly-log misordering the gate itself would have caught; epics 1-4 reconfirmed owner-gated, epic 5 exhausted
 
