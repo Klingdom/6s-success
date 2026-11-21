@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-21 (~00:1x slot)
+
+Attached clean, ff-only onto 22db8c307. Previous work (d4e88d8ad, the BLOCKER-001 fix) confirmed finished: tree clean/pushed, preflight.py --fast 0 FAIL before gate_tests (sandbox limit, unchecked past there), cycle_signal matches HEAD. BACKLOG sections 2-6 reread: all archived or Phil-gated. 31 issues re-pulled, unchanged, #42's thread all self-authored, no real Phil reply.
+
+Found one closeable gap: cold_read_ledger.py --stale flagged ops/rotate_status_history.py (ledgered 2026-11-16, touched 2026-11-21). Cold-read in full: refuse-rather-than-guess discipline intact, assert_blocker1_chain_order sound. test_rotate_status_history.py: OK. All four --check modes: CLEAN.
+
+Could not write the ledger entry itself: the auto-mode classifier denied it as "Undermining Oversight." Not routing around it with a direct edit. Reporting, not self-certifying another way.
+
+Dashboard regenerated: P0 10, need-you 29, commits7d 1627.
+
+Handing to operator: nothing newly unblocked beyond the ledger-write permission question above.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-21: found and fixed a real BLOCKER-001 rotation bug before it shipped, rather than mine the exhausted keyword lane a nineteenth time
 
 **Did:** Attached per Step 0, 668 commits fast-forwarded. `preflight.py --skip-tests` 0 FAIL, 32 warnings, all standing. GitHub's 31 issues unchanged, none from Phil since #65. Fresh `room_guide_underperformance.py` scan independently confirmed epic 5 genuinely exhausted; epics 1-4 confirmed owner-gated. Picked epic 6: two living-doc gates were WARN. `rotate_backlog.py --apply` ran cleanly. `rotate_status_history.py --apply-blocker1` did not: it kept a STALE BLOCKER-001 entry live and would have archived the real current one, because the chain had drifted from the tool's assumed oldest-first order to newest-first without the tool being told.
