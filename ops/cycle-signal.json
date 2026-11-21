@@ -1,8 +1,8 @@
 {
   "combined_hash": "ea78be7b1c3bea4335dd5437cb819a7fb3dfa5c0ef977f5dfc690bc78ede4ea7",
-  "git_head": "7905f5a140f6ec6afaa00122889e5a3c5a8cb48c",
-  "note": "near-full pass via --skip-tests: every gate except gate_tests passed, test suite itself not run this pass, git HEAD 7905f5a140",
-  "recorded_at": "2026-11-21T13:48:36Z",
+  "git_head": "d0a54e2ad9d759b760d2ad6a764a817939d70917",
+  "note": "preflight.py --fast ran to genuine full completion (all 490 tests reached, not stalled at test_audit_catalog.py as most recent cycles report), 0 FAIL, 30 warnings, all standing sandbox/credential/art gaps. Independently reconfirmed by the hourly operator cycle, not cited from the concurrent PM check-in.",
+  "recorded_at": "2026-11-21T14:00:02Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "74ca8082d1a7df8d466b2545c89586ea9a496a8807a52bb5a9259aad4024a8b7",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",

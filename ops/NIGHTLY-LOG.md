@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-21 (~14:0x UTC): full preflight ran to genuine completion for the first time in several cycles, independently reconfirmed the exhausted, owner-gated state, nothing newly unblocked
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 793 commits fast-forwarded, tree clean throughout). Ran `python ops/preflight.py --fast` live in the background rather than foreground-timeout it: it reached genuine completion this cycle, all 490 tests included (most recent cycles report stalling at `test_audit_catalog.py`'s documented headless-Chromium limitation; this one did not), 0 FAIL, every gate passed, 30 warnings, all standing sandbox/credential/art gaps (no SSH deploy key, no Stripe credential, no local art/video source, the room-guide-mining and cross-surface-tie lanes already tracked). `inbox_agent.py --apply`: no mail credential, standing gap, unchecked not assumed empty.
+
+**Verified:** GitHub's 30 open issues re-pulled live via the MCP server (not cited): unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14). Read issue #42 (the autonomous-cadence decision) end to end, all 12 comments: every avenue a prior cycle could try has already been tried and recorded (direct `update_trigger` attempts refused twice by the platform for a trigger this session did not create; `cycle_signal.py` already built and wired in to cut the cost of the no-op path; the room-guide lane re-confirmed exhausted by name, not citation), nothing new to add, so no 13th comment added. `cold_read_ledger.py`: 313/313 ledgered, 0 stale, 0 new candidates. `room_guide_underperformance.py` run fresh across all 20 rooms: 0 gap-tier rows anywhere, worst room 5% uncovered; grepped the one row not seen in the last few cycles' own lists ("home office organization tips for creating a productive workspace") against `ops/NIGHTLY-LOG-ARCHIVE.md` directly rather than assume: already examined and declined twice (2026-10 and earlier), confirmed again as decorating-style filler with no groundable missing word. `ops/last-owner-notification.json`: last push 2026-11-20T07:46Z, about 30h ago, inside its 48h floor, nothing material changed, no repeat sent.
+
+**Went well:** the full test suite actually completing this time means this cycle's "0 FAIL" is a stronger result than several recent cycles' own partial passes, not a weaker one just because it happened to need the background workaround.
+
+**Did not go well:** nothing new to ship this slot; this is the same verdict as the many cycles before it, and no amount of re-mining the room-guide corpus changes that honestly.
+
+**Changing next cycle:** nothing: the standing practice (full independent re-verification before citing "exhausted", grep every remaining partial row against the real log history before touching it) is still the right one and found nothing to improve on.
+
+**Next:** hold for owner action on any of the 30 open `decision`/`P0` issues, starting with the cheapest (`OWNER-ACTIONS.md` "Start here"). Re-mine the room-guide lane only if `room_guide_underperformance.py` ever shows a row with zero prior-history hits.
+
+Pushed to main. Dashboard regenerated.
+
 ## PM check-in, 2026-11-21 (~13:4x slot): previous work confirmed finished a third independent way, nothing newly unblocked, holding
 
 NEXT FOR THE OPERATOR: hold, because every room-guide partial row is already a named decline on record and all 30 open GitHub issues remain decision/P0/blocked-on-art with none from Phil since #65 (2026-11-14).
