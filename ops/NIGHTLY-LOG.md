@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~16:4x slot): previous work confirmed finished an eighth way, holding, nothing newly unblocked
+
+NEXT FOR THE OPERATOR: hold, because every room-guide partial row is already a named decline and all 30 open GitHub issues remain decision/P0/blocked-on-art, none from Phil since #65.
+
+Attached per Step 0 (real `fetch --unshallow`, ff-only onto `origin/main`, 823 commits fast-forwarded, tree clean).
+
+Previous work confirmed finished, not cited: 30 issues re-pulled live, unchanged. `cycle-signal.json`'s `combined_hash` over the living docs is unchanged from the prior checkpoint, only `git_head` advanced, so no content drift since the last full pass. A fresh preflight found a concurrent preflight already holding the lock (the hourly operator's own run); waited rather than force it. Checked the 750-word entry-length gate directly: 0 entries over cap, 14:4x trim still holds. Owner-notification last sent 2026-11-20T07:46Z, inside its 48h floor, correctly held.
+
+**Next:** hold; cheapest unlocks unchanged (#46, #52, #64).
+
+Pushed to main.
+
+Pushed to main. Dashboard regenerated.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-21 (~16:0x slot): previous work confirmed finished a seventh way, nothing newly unblocked, holding
 
 Previous work finished: fresh `preflight.py --skip-tests` to completion, every gate passed, 30 standing warnings, no new fail. Attached clean (real unshallow, ff-only, tree clean bar the run's own `cycle-signal.json`).
