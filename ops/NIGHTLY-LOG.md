@@ -2,6 +2,25 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-21 (~05:0x slot): caught a real preflight FAIL, confirmed it was transient before touching anything, reconfirmed both non-Phil-gated lanes exhausted
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `bb7c2f78c`, 708 commits fast-forwarded, tree clean). First full `preflight.py --skip-tests` run reported a real FAIL: `fingerprints` STALE on `site/home-office-deck.html` -> `assets/js/measure.js`. Did not fix blind: checked `measure.js`'s live hash and every one of 241 script-tag references site-wide by hand first, all already consistent. Re-ran the full gate twice more (once after re-fetching, once clean): both passed, `every gate passed`, `cycle_signal` recorded. Concluded the first FAIL was a read racing a concurrent session's in-flight write, the same shared-sandbox-collision shape A180/A185/A197 already name, confirmed rather than assumed.
+
+**Also this cycle, self-inflicted and caught before it shipped:** an earlier pass wrapped `preflight.py` in a bash-level `timeout`, the exact mistake a 2026-11-19 entry in this same log already named and warned against (the wrapper's own `ops/run_preflight.sh`/`setsid` exists precisely so a caller shell does not need to do this by hand). The `timeout` SIGTERM'd the process mid-run and left `site/home-office-deck.html` with a half-rewritten fingerprint plus a stale `ops/cycle-signal.json` checkpoint; both restored to HEAD with `git checkout --` before anything else ran, confirmed byte-identical after. The FAIL this entry's first paragraph describes is most likely this same file caught mid-repair by a concurrent read rather than a second, unrelated race; recorded as uncertain rather than asserted either way. No new gate: the existing wrapper and `gate_preflight_wrapper_survives_kill` already cover this class, the lapse was not using the documented tool, not a missing check.
+
+**Verified:** `preflight.py --skip-tests` 0 FAIL (two independent clean runs), 29 standing warnings. `ops/room_guide_underperformance.py` fresh: every room 0-6% uncovered; grepped all 9 remaining partial rows against NIGHTLY-LOG/archive/both backlogs, each with 2-3 prior mentions, no new epic-5 candidate. GitHub's 31 open issues re-pulled live via MCP: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65. `inbox_agent.py --apply`: no mail credential, standing gap. `OWNER-ACTIONS.md` 109,980 bytes, back under its 110,000-byte tripwire. Also checked, read-only: the 10/30/60-minute cadence (hourly operator plus two PM check-ins at :10/:40) is not a runaway default, it is Phil's own 2026-09-10 instruction, already tracked as issue #42's own open question; left alone rather than touched without a decision.
+
+**Went well:** did not fix the FAIL by guessing; verified the file itself was already correct before re-running the gate, so the fix was "confirm clean," not a blind edit. Caught my own near-miss from its content, not its exit code, before it could reach a commit.
+
+**Did not go well:** repeated a documented mistake (bash-level `timeout` around `preflight.py`) this log had already named once; the fix is not new, it just was not followed this time.
+
+**Changing next cycle:** none; both the race and the self-inflicted near-miss are already-established patterns with existing tools/gates, not a new defect class (10b not applicable).
+
+**Next:** epics 1-4 stay owner-gated (31 issues); epic 5 confirmed exhausted again. No owner notification: last sent 2026-11-20T07:46Z, inside its 48h floor, state unchanged. No price, product or page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
+
 ## PM check-in, 2026-11-21 (~04:4x slot): previous work already confirmed finished by a concurrent twin; discarded my own stray re-verification noise, nothing new unblocked
 
 NEXT FOR THE OPERATOR: hold, nothing new unblocked; the 31-issue Phil-gated queue is unchanged and room-guide/keyword mining is already exhausted per the twin cycle's fresh re-check.
