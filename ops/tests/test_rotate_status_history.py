@@ -463,6 +463,65 @@ def main() -> int:
         fails.append("Repository hygiene row archived %d entries, "
                       "expected 2: %r" % (len(gh_archived), gh_archived))
 
+    # 28. assert_blocker1_chain_order() refuses a chain whose own
+    #     embedded timestamps run newest-first (today's real shape,
+    #     found 2026-11-20): --apply-blocker1 must not silently keep
+    #     the stale last paragraph and archive the real newest one.
+    newest_first_b1 = (
+        "# 17. Current Blockers\n\n"
+        "## BLOCKER-001: Production State Verifiable Only From a Session "
+        "With Real Access\n"
+        "\n**RESOLVED again 2026-11-20, PM check-in (~23:2x slot): closed "
+        "for real.** Confirmed current at `2026-11-20T23:17:32Z`.\n\n"
+        "**Prior entry, Corrected 2026-11-20, PM check-in (~23:1x slot): "
+        "gone stale again.** Confirmed `2026-11-20T22:19:41Z`.\n\n"
+        "**Prior entry, RESOLVED again 2026-11-20, scheduled operator "
+        "cycle (~17:5x slot): the gap has closed.** Confirmed "
+        "`2026-11-20T17:13:53Z`.\n"
+        "\n## BLOCKER-002: Live Business Data Established, Not Yet a Live "
+        "Feed\n\nUnrelated content.\n"
+    )
+    try:
+        rsh.plan_rotation_blocker1(newest_first_b1)
+        fails.append("plan_rotation_blocker1 did not refuse a "
+                      "newest-first chain; it would have archived the "
+                      "real newest entry")
+    except ValueError as exc:
+        if "not oldest-first" not in str(exc):
+            fails.append("plan_rotation_blocker1 raised for the wrong "
+                          "reason on a newest-first chain: %s" % exc)
+
+    # 29. The same check passes silently on a genuinely oldest-first
+    #     chain whose timestamps are non-decreasing, so a correctly
+    #     ordered chain is not blocked by this new safeguard.
+    oldest_first_b1 = (
+        "# 17. Current Blockers\n\n"
+        "## BLOCKER-001: Production State Verifiable Only From a Session "
+        "With Real Access\n"
+        "\n**RESOLVED 2026-11-18, scheduled operator cycle: closed.** "
+        "Confirmed `2026-11-18T09:00:00Z`.\n\n"
+        "**Reopened 2026-11-19, PM check-in: one commit undeployed.** "
+        "Confirmed `2026-11-19T10:00:00Z`.\n\n"
+        "**CLOSED 2026-11-20, scheduled operator cycle: redeployed.** "
+        "Confirmed `2026-11-20T11:00:00Z`.\n"
+        "\n## BLOCKER-002: Live Business Data Established, Not Yet a Live "
+        "Feed\n\nUnrelated content.\n"
+    )
+    try:
+        new_ok_text, ok_archived = rsh.plan_rotation_blocker1(oldest_first_b1)
+        _, ok_kept, _ = rsh.split_blocker1_chain(new_ok_text)
+        if len(ok_kept) != 1 or not ok_kept[0].startswith("**CLOSED 2026-11-20"):
+            fails.append("a genuinely oldest-first BLOCKER-001 chain did "
+                         "not keep its real newest entry: %r" % ok_kept)
+        if len(ok_archived) != 2:
+            fails.append("a genuinely oldest-first BLOCKER-001 chain "
+                         "archived %d entries, expected 2: %r"
+                         % (len(ok_archived), ok_archived))
+    except ValueError as exc:
+        fails.append("a genuinely oldest-first BLOCKER-001 chain was "
+                      "refused when it should have rotated cleanly: %s"
+                      % exc)
+
     if fails:
         print("FAILED (%d):" % len(fails))
         for f in fails:

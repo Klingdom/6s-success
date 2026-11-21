@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-21: found and fixed a real BLOCKER-001 rotation bug before it shipped, rather than mine the exhausted keyword lane a nineteenth time
+
+**Did:** Attached per Step 0, 668 commits fast-forwarded. `preflight.py --skip-tests` 0 FAIL, 32 warnings, all standing. GitHub's 31 issues unchanged, none from Phil since #65. Fresh `room_guide_underperformance.py` scan independently confirmed epic 5 genuinely exhausted; epics 1-4 confirmed owner-gated. Picked epic 6: two living-doc gates were WARN. `rotate_backlog.py --apply` ran cleanly. `rotate_status_history.py --apply-blocker1` did not: it kept a STALE BLOCKER-001 entry live and would have archived the real current one, because the chain had drifted from the tool's assumed oldest-first order to newest-first without the tool being told.
+
+**Verified:** caught by comparing the kept entry's own embedded deploy-verdict timestamp against the other four before pushing (CLAUDE.md 5d), not by trusting "rotation applied" as proof. Reverted.
+
+**Went well:** verifying a tool's output against the data it operated on.
+
+**Did not go well:** the tool had no order-consistency check, so this mistake was previously unguarded.
+
+**Changing next cycle (10b):** added `assert_blocker1_chain_order()` to `ops/rotate_status_history.py`, wired into `--check-blocker1`/`--apply-blocker1`, refusing with `ValueError` when embedded timestamps contradict the assumed order rather than guessing. Fail-then-pass proved (`test_rotate_status_history.py` cases 28-29). Fixed `STATUS.md` by hand once the tool correctly refused: 1 true-current entry live, 4 archived to `STATUS-ARCHIVE.md` in real timestamp order.
+
+**Next:** preflight re-run clean. Dashboard regenerated. Nothing in epics 1-4 newly unblocked. No price, product or page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-20 (~23:4x slot): previous work (the deploy-gap correction) independently reconfirmed real, cold-read ledger found fully exhausted, a stale preflight lock cleared
 
 NEXT FOR THE OPERATOR: mine the keyword-gap tier (28 US, 81 global gap rows) for a small on-topic fix, because the cold-read ledger is now fully exhausted (312/312 ledgered, 0 stale, 0 candidates).

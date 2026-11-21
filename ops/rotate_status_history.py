@@ -149,6 +149,62 @@ BLOCKER1_HEADING = ("## BLOCKER-001: Production State Verifiable Only From "
                      "a Session With Real Access")
 BLOCKER1_END_BEFORE = "## BLOCKER-002:"
 _PARA_SPLIT_RE = re.compile(r"(\n[ \t]*\n)")
+_ISO_TIMESTAMP_RE = re.compile(r"\b\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z\b")
+
+
+def _entry_timestamps(entry: str):
+    """Every ISO-8601 UTC timestamp embedded in one BLOCKER-001 entry,
+    in the order they appear. Entries routinely cite a real
+    `ops/deploy-verdict.json` confirmation time this way, which is the
+    only machine-checkable signal of when an entry's claim was actually
+    measured; the entry's own prose date ("2026-11-20, PM check-in
+    (~23:1x slot)") is free text, not reliably sortable.
+    """
+    return _ISO_TIMESTAMP_RE.findall(entry)
+
+
+def assert_blocker1_chain_order(entries):
+    """Refuse rather than guess when this chain's own embedded
+    timestamps contradict the oldest-first file order plan_rotation_
+    blocker1 assumes.
+
+    Found 2026-11-20: a run of same-day corrections had started
+    prepending each new paragraph at the TOP of the chain instead of
+    appending at the bottom (each new one marked "Prior entry," on the
+    paragraph it pushed down), the opposite of this chain's documented
+    oldest-first convention. Run blind, --apply-blocker1 kept
+    entries[-1] (the file's last paragraph, a 17:13:53Z confirmation)
+    as "newest" and archived the real newest entry (23:17:32Z, the one
+    that actually matched HEAD), leaving STATUS.md citing a stale
+    build as current: a real regression caught before it was pushed by
+    comparing the kept entry's own timestamp against the other four,
+    not by trusting file position. This check makes that mistake
+    impossible to apply silently a second time: it walks the entries
+    in their assumed oldest-first order and raises the moment a later
+    entry's latest timestamp is earlier than an earlier entry's,
+    instead of archiving on a guess. Entries with no embedded timestamp
+    are skipped (nothing to check them against), so a hand-written
+    entry with no citation does not block rotation on its own.
+
+    Proof this can fail: ops/tests/test_rotate_status_history.py builds
+    a chain whose entries are newest-first (today's real shape) and
+    asserts this raises ValueError, then confirms a genuinely oldest-
+    first chain (every timestamp non-decreasing) passes silently.
+    """
+    prev_ts = prev_idx = None
+    for i, entry in enumerate(entries):
+        stamps = _entry_timestamps(entry)
+        if not stamps:
+            continue
+        ts = max(stamps)
+        if prev_ts is not None and ts < prev_ts:
+            raise ValueError(
+                "BLOCKER-001 chain is not oldest-first: entry %d's own "
+                "latest timestamp (%s) is earlier than entry %d's (%s). "
+                "Refusing to guess which entry is actually newest; fix "
+                "the chain's order by hand before retrying "
+                "--apply-blocker1." % (i, ts, prev_idx, prev_ts))
+        prev_ts, prev_idx = ts, i
 
 
 def split_blocker1_chain(text: str):
@@ -228,6 +284,7 @@ def plan_rotation_blocker1(text: str):
     before, entries, after = split_blocker1_chain(text)
     if len(entries) <= 1:
         return text, []
+    assert_blocker1_chain_order(entries)
     keep, archived_oldest_first = entries[-1], entries[:-1]
     new_text = before + "\n" + keep + "\n\n" + after
     # STATUS-ARCHIVE.md's own header promises newest-first throughout,
@@ -593,6 +650,11 @@ def main() -> int:
             return 2
         if args.check_blocker1:
             if len(entries) > 1:
+                try:
+                    assert_blocker1_chain_order(entries)
+                except ValueError as exc:
+                    print("REFUSING: %s" % exc)
+                    return 2
                 print("DUE: %d entries live, only the newest should stay; "
                       "%d would move to %s on --apply-blocker1."
                       % (len(entries), len(entries) - 1, ARCHIVE_PATH))
