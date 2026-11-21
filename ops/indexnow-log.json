@@ -240,13 +240,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-09T19:17:25Z",
-   "mode": "changed",
-   "offered": 2,
-   "accepted": 2,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-09T20:29:13Z",
    "mode": "changed",
    "offered": 1,
@@ -658,6 +651,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-21T01:05:11Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -816,7 +816,7 @@
   "https://6s-success.com/zones/nursery-the-diaper-and-care-backstock": "3d5d19eb78558402",
   "https://6s-success.com/zones/nursery-the-feeding-station": "c90f0526a74d06cc",
   "https://6s-success.com/zones/pantry-the-backstock-and-bulk": "3231fd75e09b3f02",
-  "https://6s-success.com/zones/pantry-the-baking-zone": "b998f47a377d66e1",
+  "https://6s-success.com/zones/pantry-the-baking-zone": "0ab69e8c80c3fca3",
   "https://6s-success.com/zones/pantry-the-canned-and-jarred-goods": "93498dd1a92fa2f9",
   "https://6s-success.com/zones/pantry-the-dry-goods-shelves": "94b86ac3e4d70e50",
   "https://6s-success.com/zones/pantry-the-snack-and-lunch-zone": "28546165d9f87946",
