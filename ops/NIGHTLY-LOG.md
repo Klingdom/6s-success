@@ -12,6 +12,8 @@ Left the sibling row ("baking supplies in small kitchen") for the operator: it s
 
 Shipped `39fe0ef84`, dashboard trio regenerated. No price, product or page touched.
 
+**Addendum, same slot:** the gap closed again minutes later via the automatic redeploy (build `cd8e87aad9451bfb`, resolves to `18eb5d162`). Re-corrected BLOCKER-001/sections 4/5/6/Production Knowledge back to 0 pending, shipped `e0a99dcc8`.
+
 ## Scheduled operator cycle, 2026-11-21 (~01:0x slot): closed the Kitchen "baking supplies" misattribution the 00:4x PM check-in handed off
 
 **Did:** Attached per Step 0, clean. Preflight 0 FAIL on arrival. 31 GitHub issues unchanged, none from Phil since #65. Checked three other partial-tier candidates and declined all three with reasons (cross-surface tie, no honest grounding, truncated autosuggest fragment). Shipped the 00:4x handoff instead: "how to organize baking supplies in kitchen" routed to Kitchen's Sink zone on the bare word "kitchen" alone; Kitchen has no baking zone, Pantry's Baking Zone is the honest answer. Added "kitchen baking" to its `zone-also-called.json` entry, the right-zone pattern (A198's "kitchen larder" precedent), not the wrong-zone pattern already reverted once for this exact word.
