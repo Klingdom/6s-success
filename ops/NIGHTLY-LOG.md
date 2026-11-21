@@ -1,6 +1,20 @@
 # Nightly log
 
 One entry per unattended pass, newest first. Written to be read half awake.
+## PM check-in, 2026-11-21 (~15:1x slot): previous work confirmed finished a fifth independent way, nothing newly unblocked, holding
+
+Attached per Step 0: shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, ff-only onto `origin/main` (806 commits fast-forwarded, origin had force-updated during an unrelated history operation; ff-only still applied cleanly, no reset or force used here), tree clean.
+
+Previous work (the ~14:5x operator cycle, A210 close-out) confirmed finished, not cited: `preflight.py --skip-tests` run fresh live to full completion, 0 FAIL, 30 standing warnings (no Stripe/mail/SSH credential, deck-print-tier, art-gap, integrations-unreachable; all previously named, none new). `core.hooksPath` was unset in this fresh container; the gate's own remediation set it. 30 GitHub issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14); issue #42 (the cadence question) still open, last touched 2026-11-20 by the automated owner-notification system, not by Phil. `room_guide_underperformance.py` run fresh across all 20 rooms: 0 gap-tier rows, worst rooms Family Room and Stair Landing at 12%. Spot-checked 9 of the remaining partial-tier query strings not recently cited by name (stardew valley, bulk snacks, bulk t shirts, car boot, makeup on bathroom counter, detergent tray, bags of spices, disposable bags, cords behind entertainment) against this log's own history by exact phrase: every one already has 2-11 prior mentions, confirming each already carries a recorded decline rather than assuming it from the aggregate verdict alone. `cold_read_ledger.py --stale`: 0. `ops/last-owner-notification.json`: last push 2026-11-20T07:46Z, inside its 48h floor, nothing material changed, no repeat due or sent.
+
+**Did not go well:** nothing newly fixable found this slot; same verdict as the many cycles before it.
+
+**Next for the operator:** hold. Every room-guide partial row left is already a named decline, and all 30 open issues are decisions only Phil can make, none new since #65. Re-mine only if `room_guide_underperformance.py` ever shows a row with zero prior-history hits.
+
+Pushed to main. Dashboard regenerated.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-21 (~14:5x UTC): closed one open question from A210, reconfirmed exhausted, nothing shipped
 
 **Did:** Attached per Step 0, 801 commits fast-forwarded, tree clean. Ran `preflight.py --skip-tests` to full completion in the background: every gate passed, 31 warnings, all standing sandbox/credential/art gaps. Re-checked all 15 remaining room-guide partial rows across the 9 least-covered rooms against `NIGHTLY-LOG.md`/`BACKLOG-2026-09-07.md` by exact phrase: every one already has 2+ prior mentions and a decline. `gate_room_guide_mining_diminishing_returns` independently confirms the same.
