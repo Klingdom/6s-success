@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-21 (~05:4x slot): previous work confirmed finished; self-corrected my own instance of the documented bash-timeout mistake; nothing new unblocked
+
+NEXT FOR THE OPERATOR: hold, the Phil-gated queue is unchanged and epic 5 is exhausted again.
+
+Attached per Step 0, fast-forwarding twice more mid-cycle through concurrent pushes, tree clean throughout. Previous work confirmed finished: tree clean/pushed, last completed Checks run before mine (`bb7c2f78c`) was success.
+
+Self-inflicted near-miss, caught before damage: first ran `preflight.py` under a raw bash `timeout`, the exact mistake this log already names twice; it SIGTERM'd mid-run. Checked for a half-written file, found only a stale `cycle-signal.json` checkpoint, no corruption, discarded it, reran clean via the real `ops/run_preflight.sh` wrapper: every gate passed, 30 standing warnings.
+
+Reconfirmed rather than cited: a fork read BACKLOG-2026-09-07.md lines 94 to 259 in full, every row Done or Archived. Fresh `room_guide_underperformance.py`; the two unfamiliar-looking rows ("in.cabinet", "detergent tray") already have multiple prior declines. Issues #42/#65 reread directly, no Phil reply; #65's fix already attempted, agent-blocked. No notification sent, last sent 2026-11-20T07:46Z, inside its 48h floor, state unchanged.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-21 (~05:0x slot): caught a real preflight FAIL, confirmed it was transient before touching anything, reconfirmed both non-Phil-gated lanes exhausted
 
 **Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `bb7c2f78c`, 708 commits fast-forwarded, tree clean). First full `preflight.py --skip-tests` run reported a real FAIL: `fingerprints` STALE on `site/home-office-deck.html` -> `assets/js/measure.js`. Did not fix blind: checked `measure.js`'s live hash and every one of 241 script-tag references site-wide by hand first, all already consistent. Re-ran the full gate twice more (once after re-fetching, once clean): both passed, `every gate passed`, `cycle_signal` recorded. Concluded the first FAIL was a read racing a concurrent session's in-flight write, the same shared-sandbox-collision shape A180/A185/A197 already name, confirmed rather than assumed.
