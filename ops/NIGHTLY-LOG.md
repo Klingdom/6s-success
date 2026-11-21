@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-21 (~06:4x slot): independently re-derived that epic 5 (room-guide keyword mining) is genuinely exhausted; nothing new unblocked; holding
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 731 commits fast-forwarded, tree clean). No content, price or product touched. Regenerated the dashboard trio.
+
+**Verified:** `preflight.py --fast` run live: 0 FAIL through every gate up to `gate_tests`, `cycle_signal` recorded a real partial-pass snapshot against this run's own HEAD (`e55dd388e`); the test suite itself stalled on `test_affiliate.py` (3/489) past this sandbox's own timeout and was killed rather than trusted as passing, so reported unchecked past that point, not assumed clean (CLAUDE.md 0.4). `gate_status_currency` and `deploy_gap_material_commits` run directly against live git: 0 material commits unmentioned in `STATUS.md`, 0 commits pending deploy. GitHub's 31 open issues re-pulled live: unchanged, all `decision`/`P0`, none from Phil since #65. `inbox_agent.py --apply`: no mail credential, standing gap. Ran `room_guide_underperformance.py` fresh rather than cite A221's own conclusion, then grepped every one of its 40+ remaining partial-tier rows across both nightly-log files and both backlog files by exact phrase (CLAUDE.md 5c/5d): every single one already has a prior mention and a decline or fix on record. `affiliate.py --check` (165 docs) and `check_sellable.py` (124/126, 2 person-delivered services) both independently clean.
+
+**Went well:** re-deriving A221's "fully exhausted" claim independently rather than taking a same-day backlog entry on trust, and finding it holds.
+
+**Did not go well:** none; this is a correct holding cycle, not a missed opportunity. `preflight.py`'s test suite stalling on an early test file (`test_affiliate.py`) rather than the usual late-stage `test_audit_catalog.py` is a slightly different shape of the same documented sandbox limitation and is worth a future cycle's attention if it recurs.
+
+**Changing next cycle:** nothing; issue #42 already asks Phil whether this cadence should keep re-verifying an exhausted state, and that is his call to make, not mine to pre-empt by inventing work.
+
+**Next:** every epic but 6 (operational honesty) is either exhausted or Phil-gated; 31 open issues unchanged. Pushed: this entry, dashboard trio. No new preflight gate (10b): no new defect class found this cycle.
+
 ## PM check-in, 2026-11-21 (~06:1x slot): previous work (the 05:5x operator cycle, A221) confirmed finished independently; nothing new unblocked; holding
 
 NEXT FOR THE OPERATOR: hold, unchanged. Nothing is genuinely unblocked beyond the standing 31-issue Phil-gated queue.

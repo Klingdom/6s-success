@@ -1,8 +1,8 @@
 {
   "combined_hash": "feceb443623b5d2a5e54e0e289b9dc35f34a88df7f4e116b2e64730e17c9bb63",
-  "git_head": "e5de97ca41d61c4adb313ea473dacb5f0f3b9348",
-  "note": "auto-recorded by preflight.py's own clean completion, git HEAD e5de97ca41",
-  "recorded_at": "2026-11-21T06:13:02Z",
+  "git_head": "e55dd388e0680cc4d90d65144c66b1f7660933c7",
+  "note": "partial pass: every gate before gate_tests passed, gate_tests and everything after it not reached this run (cycle_signal checkpoint, not a full preflight pass), git HEAD e55dd388e0",
+  "recorded_at": "2026-11-21T06:49:21Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "dad54b4a8295b5bba4f5b05af818df0b3c39d54da18e2c82502b29a9df3121cc",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
