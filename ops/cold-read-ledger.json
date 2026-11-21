@@ -1032,9 +1032,9 @@
       "note": "cold-read 2026-10-14 16:1x-17:0x slot: read in full, 8/8 own tests pass, fallback logic verified correct, no defect found"
     },
     "preflight.py": {
-      "status": "fixed",
-      "date": "2026-11-19",
-      "note": "Scoped review of gate_verify_deploy_pages_current (2026-11-19): added a leading-underscore skip for the stray _audit_catalog_fixture_<pid>.html probe, matching audit_pages.py's PROBE_PREFIXES and this file's own footer-consistent gate. Not a full-file cold read."
+      "status": "clean",
+      "date": "2026-11-21",
+      "note": "Cold-read 75157d716's second deploy_gap_count_problem() truncation marker: treats a prose aside naming an older entry's superseded count (\"The prior entry, ... correctly reported N commits pending\") the same as the existing marker, so the gate's last-match regex stops picking up a historical number as the standing claim. Fail-then-pass proved by test_gate_status_deploy_gap_count_current.py cases 18-19 (confirmed failing against the unfixed function, passing against the fix). Gate reads clean on current HEAD."
     },
     "prerender_shop.py": {
       "status": "clean",
@@ -1243,8 +1243,8 @@
     },
     "rotate_status_history.py": {
       "status": "clean",
-      "date": "2026-11-16",
-      "note": "Re-verified 2026-11-16, PM check-in: re-read A155's TABLE_ROW_LABELS addition for the GitHub Status table chain and re-ran tests/test_rotate_status_history.py fresh (OK, all checks passed), independently of A155's own commit-time claim. Sound."
+      "date": "2026-11-21",
+      "note": "Cold-read d4e88d8ad's assert_blocker1_chain_order() addition: refuses rather than guesses when the BLOCKER-001 chain's embedded timestamps contradict the assumed oldest-first order. Fail-then-pass proved by test_rotate_status_history.py cases 28-29 (confirmed failing against the unfixed function via git stash, passing against the fix). All four --check/--apply modes CLEAN on current HEAD."
     },
     "rotate_status_metadata.py": {
       "status": "fixed",
