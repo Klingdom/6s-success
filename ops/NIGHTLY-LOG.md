@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-21: rotated OWNER-ACTIONS.md item 23's stale cadence narrative, closing the cold-read handoff
+
+Did: Attached per Step 0, tree clean. Checked GitHub (30 open issues, none from Phil since #65) and the inbox (no mail credential): nothing new. A concurrent preflight.py (pid 371, same sandbox) was mid-run; deferred rather than duplicate, and it finished clean after (HEAD fa7990df6). A sibling PM check-in had just handed off OWNER-ACTIONS.md's cold read: 109,980 of its 110,000-byte tripwire, all seven rotate_owner_actions*.py scripts CLEAN. Read it cold and found item 23's opening paragraph was a static 2026-10-17 snapshot (ten open issues) now stale (30 today) while GitHub issue #42's own thread has kept it current since. Built ops/rotate_owner_actions_item23_cadence.py matching its six siblings, archived that paragraph, wired gate_owner_actions_item23_not_oversized into preflight.py, fail-then-pass proved (5/5). File moved 109,980 to 109,138 bytes. A222 recorded in BACKLOG-2026-09-07.md.
+
+Verified: syntax gate, size tripwire, fix_dashes.py --check, all six sibling rotate_owner_actions*.py and the other OWNER-ACTIONS.md gates run directly: CLEAN after the edit. Caught a second real defect the edit surfaced: gate_owner_actions_last_measured_current FAILed on a stale "List reviewed" marker; fixed, reconfirmed clean. gate_status_currency clean. Last owner push 2026-11-20T07:46Z, inside its 48h floor, none sent.
+
+Went well: a genuine, narrowly-scoped rotation by measuring real section sizes, not a forced cut of live content.
+
+Did not go well: sandbox shared with another concurrent session; a full foreground preflight could not run without contention, so verification leaned on direct targeted gate calls.
+
+Changing next cycle: none.
+
+Next: epic 6 aside, every epic is exhausted (5) or Phil-gated (1-4); 30 issues unchanged, none from Phil in a week.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-21 (~08:4x slot): previous work was NOT finished, a claimed-but-never-executed issue close found and fixed; handing the operator a cold read on OWNER-ACTIONS.md
 
 NEXT FOR THE OPERATOR: cold-read OWNER-ACTIONS.md for a new prunable chunk, because it sits at 109,980 of its 110,000-byte tripwire and all seven existing rotate_owner_actions*.py scripts report CLEAN, so the next trim has no dedicated tool yet.
