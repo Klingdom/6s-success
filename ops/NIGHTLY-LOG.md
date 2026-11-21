@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-21 (~18:5x slot): confirmed exhausted and owner-gated again; cycle_signal (built 2026-10-11 for this exact cost) now reports SAME
+
+**Did:** Attached per Step 0 (real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `c9003f645`, 839 commits fast-forwarded, tree clean). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md and recent NIGHTLY-LOG.md entries first.
+
+**Verified, not cited:** `preflight.py --skip-tests` 0 FAIL, 30 standing warnings. GitHub's 30 open issues re-pulled live: unchanged, none from Phil since #65; issue #29 (closed today) was a sibling cycle's fix, not Phil. `inbox_agent.py --apply`: no mail credential. `cold_read_ledger.py --next`: 313/313 ledgered. `room_guide_underperformance.py` fresh: every room 0-6% uncovered; grepped the remaining partial rows against both nightly-log files and both backlog files: every one already has a prior mention and decline. `last-owner-notification.json`: last sent 2026-11-20T07:46Z, inside its 48h floor, none sent. `ops/cycle_signal.py --check` after this pass's own snapshot: SAME.
+
+**Went well:** nearly proposed a new gate for the repeated-re-verification cost before checking; `ops/cycle_signal.py` already exists for exactly this, built 2026-10-11.
+
+**Did not go well:** at least the seventh cycle in ~3 hours reaching the same "exhausted, owner-gated" conclusion. `preflight.py` stays mandatory every cycle per this routine's own Step 2, so the repetition is a cadence cost already on issue #42, not a new defect.
+
+**Changing next cycle:** nothing; no new defect class.
+
+**Next:** nothing newly unblocked beyond `BACKLOG-2026-09-07.md` section 6 and issue #42.
+
+Pushed to main. Dashboard regenerated.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~18:1x slot): caught and fixed a self-inflicted generator-ownership failure, holding, nothing newly unblocked
 
 Previous work confirmed finished: 30 open issues re-pulled live, unchanged, all decision/P0/blocked-on-art; #42's thread re-read in full, every comment self-authored, none from Phil since #65. Owner-notification inside its 48h floor, correctly held.
