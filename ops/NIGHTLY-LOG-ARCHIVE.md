@@ -2,6 +2,1242 @@
 
 Entries older than ops/rotate_nightly_log.py's retention window, moved here verbatim and in their original order by that script. Never hand-edited. The live entries and the reasoning for this split are in ops/NIGHTLY-LOG.md.
 
+## PM check-in, 2026-11-06 (~23:4x slot): previous work confirmed finished a second way, handoff to Pantry/Hall Closet reconfirmed, nothing new unblocked
+
+NEXT FOR THE OPERATOR: mine Pantry (35% uncovered) or Hall Closet (34% uncovered) row by row, because `room_guide_underperformance.py` re-run fresh this slot still ranks them next after Kitchen (42%, already claimed/worked this cycle window) and Garage (36%, already mined to noise per the 22:4x entry), and nothing else is unblocked.
+
+Attached clean (fetch, real unshallow, `checkout main`, ff-only onto `origin/main` at `9cdf9d880`, tree clean throughout, 0 new commits ahead of the 23:1x PM check-in's own push).
+
+Previous work (the 23:1x PM check-in's Garage/Pantry/Hall Closet handoff, and A73 before it) confirmed finished a second way, not cited: re-ran `room_guide_underperformance.py` fresh rather than trust the prior entry's percentages, got the identical ranking (Kitchen 42%, Garage 36%, Pantry 35%, Hall Closet 34%, descending from there), confirming nothing drifted in the interval. `BACKLOG-2026-09-07.md` sections 2 through 6 read directly: every row struck through, Archived, Done, or explicitly Phil-gated (C5 Gemini billing, C6 YouTube OAuth); section 6's seven owner-gate rows unchanged, all filed as GitHub issues. GitHub re-pulled live via the REST API (GraphQL search is blocked in this session): 29 open issues, unchanged since 2026-11-02, all `decision`/`blocked-on-art`, none from Phil. `STATUS.md`'s open-claims section already reads "None currently open," correctly. `CHECKIN-LOG.md`'s last three hourly entries all read "nothing measurable moved," consistent with the exhausted-cadence pattern issue #42 tracks, not a new finding.
+
+`preflight.py --skip-tests` run fresh to a log file in the background rather than through a blocking pipe: 0 FAIL through every gate reached, including the KDP and Etsy listing-validity gates (all PASS), stopped by hand at the documented network-bound `gate_etsy_pdfs_current` stall (Etsy's fee page returns 403 from this sandbox), the same standing limitation every recent cycle reports; reported unchecked past that point, not assumed passing. Only warnings seen were the standing ones: three living-docs byte-tripwires (BACKLOG, OWNER-ACTIONS, STATUS all over their rotation threshold but within their own retention windows, not a new gap), the Stripe/mail/SSH credential gaps this sandbox has never had, and the cron-cadence throttling GitHub itself applies to scheduled workflows.
+
+No new defect small enough to close in this slot. Not mining Pantry or Hall Closet myself: a real row-by-row read against 86 and 173 on-topic rows is hours-scale work for the operator's hour, not this 30-minute triage window, same call the 23:1x entry made.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~23:1x slot): previous work confirmed finished, handoff reconfirmed independently, nothing new unblocked
+
+NEXT FOR THE OPERATOR: mine Pantry (35% uncovered) or Hall Closet (34% uncovered) row by row, because they are the next real room-guide candidates per the standing handoff and nothing else is unblocked.
+
+Attached clean (fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `14d46c8c6`, 1470 commits fast-forwarded, tree clean throughout before this cycle's own writes).
+
+Previous work (A73, the 22:4x operator's Garage "tool box"/"toolbox" synonym fix, and the 22:4x PM twin's reconfirmation) confirmed finished, not cited: working tree was already clean and `main` already matched `origin/main` byte for byte before I touched anything, so the fix is genuinely shipped, not merely committed locally. Re-ran the fast gates directly: `check_urls.py` (235/235), `fix_dashes.py --check` (0 em/en dashes), `cold_read_ledger.py --stale` (0 stale). `preflight.py --skip-tests` run fresh to completion in the background (not under an external kill): 0 FAIL through every gate reached, timed out at the documented network-bound `gate_etsy_pdfs_current` stall (`timeout 280`, exit 124), the same standing sandbox limitation every recent cycle reports, reported unchecked past that point, not assumed passing. GitHub re-pulled live: 29 open issues, unchanged since 2026-11-02T13:51:51Z, all `decision`/`blocked-on-art`, none from Phil; 0 open PRs. `STATUS.md`'s open-claims section already reads "None currently open," correctly.
+
+Independently re-ran `room_guide_underperformance.py` rather than trust the handoff's own percentages: Garage 36% uncovered (down from 37%, moved by A73's own fix, confirming it actually worked), Pantry 35%, Hall Closet 34%, matching the prior entry's handoff exactly. Also re-read `BACKLOG-2026-09-07.md` sections 2 through 7 directly: every row in sections 3-6 (decks, images/video, hold, owner gates) remains Done, Archived, or explicitly Phil-gated; nothing newly actionable.
+
+No new defect small enough to close in this slot. Not mining Pantry or Hall Closet myself: a real row-by-row read (CLAUDE.md 5c/5d) against 86 and 173 on-topic rows is hours-scale work for the operator's hour at :43, not this 30-minute triage window.
+
+Regenerated the dashboard. Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json` (this cycle's own preflight checkpoint), command deck. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## Scheduled operator cycle, 2026-11-06 (~22:4x UTC): mined Garage's remaining 85-row partial tier, one real zone synonym gap closed, most of the rest confirmed noise or honestly ungapped
+
+**Did:** Attached per Step 0 (fetch origin main, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `81c13ea1e`, 1465 commits fast-forwarded, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries. The 22:1x PM check-in handed off Garage's 37%-uncovered room-guide tier. Re-ran `room_guide_underperformance.py` fresh rather than trust the handoff's percentage: confirmed Garage still next-ranked (1 gap + 84 partial of 232 on-topic).
+
+Read every gap/partial row directly against `content.json` (CLAUDE.md 5c/5d), not the tool's 8-row sample. Most rows are the already-named locale/retailer-platform noise class (australia, pinterest, reddit, youtube, canada, rona, india, lowes, home depot). Checked several candidates against each zone's own real content before adding anything: "gym equipment"/"workout equipment" (storage for gym/workout equipment), "interior car storage," "car boot," and "hardware in garage" all had no honest zone to route to (none of Garage's zones mention fitness equipment, car-interior storage, or loose hardware in their own `content.json` purpose/common_items), so adding an alias for any of them would have been an overclaim; left `partial`, the same call A55 made for "dressing table drawers."
+
+**Fixed:** one real match. "power tool organizer for tool box" (US, 0.75 coverage, unmatched "box") and "power toolbox organizer" (global, 0.5, unmatched "toolbox") both already scored to the Power Tool and Battery Zone page. The zone's own `content.json` common_items reads "Drills and saws, in their cases or on hooks," the real container this zone already keeps power tools in. Added both "tool box" and "toolbox" (the scorer tokenizes them as different words, and both spellings appear live in the corpus) to `Garage|Power Tool and Battery Zone` in `zone-also-called.json`, alongside the existing "chargers zone." Checked the whole corpus for a collision first: neither form appears in any other page's title or heading, no tech/software-context query carries either.
+
+**Verified:** `build_zone_pages.py` re-run, the real committed page confirmed rendering "Also called the chargers zone, the tool box or the toolbox." `test_gate_zone_also_called_is_heading.py` (6/6), `test_check_also_called_digital_collision_fast.py` (2/2), `test_gate_also_called_no_digital_collision.py` (5/5), `test_keyword_demand.py` (32/32) pass. `check_also_called_digital_collision_fast.py` clean against the real file. `keyword_demand.py --rescore` and `keyword_demand_global.py --rescore`: 2 queries moved partial to covered (1 US, 1 global); re-derived both `GOALS.md`-tracked clusters ("small space" 25/12/0/37, "cheap/budget/DIY" 76/22/2/100) directly, confirmed unaffected, not assumed. `audit_visual.py` scoped to the one changed page, desktop and mobile: 0 findings. `check_urls.py` (235/235), `audit_pages.py` (0 duplicates), `fix_dashes.py --check` (0/0), `cold_read_ledger.py --stale` (0 stale), `check_sellable.py` (124/126, unchanged), `link_graph_report.py` (0 orphans) all clean. `preflight.py --skip-tests`: 0 FAIL through every gate reached, killed by hand at the documented network-bound `gate_etsy_pdfs_current` stall (403 from Etsy's fee page in this sandbox), reported unchecked past that point, not assumed passing. GitHub re-pulled live: 29 open issues, all `decision`/`blocked-on-art`, unchanged since 2026-11-02, none from Phil; 0 open PRs. `inbox_agent.py --apply`: no mail credential, unchecked.
+
+**Went well:** checking each candidate zone's own `content.json` before adding an alias caught three plausible-looking matches (gym/workout equipment, car interior, hardware) that would have been overclaims, and avoided shipping any of them.
+
+**Did not go well:** found but did not fix a pre-existing, unrelated tie-break gap: "how to organize tool box"/"how to organise tool box" both score `covered` against `/downloads/6S Success Home Edition - Sample (Chapters 1-30).html`, a coincidental match, not a real answer. Neither query names a room, so `_prefer_in_room_zone` cannot correct it; out of scope for a zone-synonym pass.
+
+**Changing next cycle:** the next operator mining Garage, Pantry, or Hall Closet should treat a query with no room signal that ties to a downloads/sample page as its own small defect class, not assume `_prefer_in_room_zone`'s existing fix already covers it.
+
+**Next:** Garage's partial tier is down to low-value noise and honestly-ungapped queries; Pantry (35%) and Hall Closet (34%) are the next real room-guide candidates, not yet read row-by-row against the current denominator.
+
+Regenerated the dashboard. Pushed to main.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~22:4x slot): previous work and handoff reconfirmed independently, nothing new unblocked
+
+NEXT FOR THE OPERATOR: mine Garage's room-guide tier (37% uncovered, 84 partial rows of 232 on-topic), because it is still the next real candidate in the ranking and nothing else is unblocked.
+
+Attached clean (fetch, unshallow, checkout main, ff-only onto origin/main, 1 commit fast-forwarded, tree clean). Read git log, NIGHTLY-LOG.md's top two entries, BACKLOG-2026-09-07.md and EXECUTIVE-DASHBOARD-LIVE.md. The only new commit since the 22:1x PM check-in was the automated hourly check-in record (state/dashboard files only, no substantive change).
+
+Previous work confirmed finished, not cited: `check_urls.py` 235/235, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0 stale. `preflight.py` started fresh, 0 FAIL/ERROR through every gate reached, killed by hand at the documented `gate_tests` sandbox hang (test collection stalls in this sandbox); unchecked past that point, not assumed passing. Re-ran `room_guide_underperformance.py` directly rather than trusting the prior handoff: Garage (37% uncovered) is still the top genuinely-unmined candidate, Kitchen (42%, raw score, unchanged by the mining already done) and Pantry (35%) already read and declined/exhausted in recent cycles. GitHub re-pulled live: 29 open issues, all `decision`/`blocked-on-art`, unchanged since 2026-11-02, none from Phil.
+
+No new defect small enough to close here; the fast gates that run in this slot are all clean. Not starting Garage myself: it needs a real row-by-row read against 232 rows, the operator's hour at :43, not this slot's triage window.
+
+Pushed to main. ops/NIGHTLY-LOG.md, command deck.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~22:1x slot): previous work confirmed finished, one live deploy-verdict gap caught and self-healed mid-cycle, nothing new unblocked
+
+Previous work (the 21:4x Kitchen re-mine and its PM twin) confirmed finished: attached clean (fetch, unshallow check, checkout main, ff-only, tree clean). `check_urls.py` 235/235, `fix_dashes.py --check` 0/0, `audit_pages.py` 0 duplicates, `affiliate.py --check` clean, `cold_read_ledger.py --stale` 0 stale. `preflight.py --skip-tests` run fresh in the background: 0 FAIL through every gate reached, killed by hand at the documented network-bound `gate_etsy_pdfs_current` stall (Etsy's fee page returns 403 in this sandbox), unchecked past that point, not assumed passing.
+
+Re-derived the deploy gap directly rather than trusted: `resolve_verdict_commit('aa425dd5e5315ded')` (the verdict `ops/deploy-verdict.json` held at the time) resolved to the Kitchen benchtop commit `5b8cc8ae5`, and `deploy_gap_material_commits()` against real HEAD returned that same commit as undeployed, a genuine 1-commit gap opened by `deploy.yml`'s verdict check having run at 21:27:23Z, three minutes before that commit landed at 21:57:46Z. Rather than report it stale, watched it: `deploy.yml` run #373 (triggered by the next push) completed successfully against the real current HEAD a few minutes later and committed its own fresh verdict (`124882bff08ff5de`); fetched, fast-forwarded, and re-ran the same two functions against the new verdict: material gap commits now `[]`. The automatic pipeline closed its own gap before this check-in needed to act on it.
+
+Checked the two remaining "gap" rows `room_guide_underperformance.py` shows for Kitchen and Pantry ("kitchen/pantry organization ideas dollar tree", "draw a larder organization chart") against `ops/NIGHTLY-LOG.md`'s own history: both already named and declined as retailer-name/format-mismatch noise in entries dated today before this slot (lines referencing A62 and the "dollar tree" brand-name class); not re-litigated or forced into a fix.
+
+GitHub re-pulled live: 29 open issues, all `decision`/`blocked-on-art`, unchanged since 2026-11-02, none from Phil; 0 open PRs.
+
+No new defect small enough to close here beyond the deploy-verdict watch above. Not starting Garage/Pantry/Hall Closet's row-by-row room-guide mining myself: that is real unblocked work (37%/35%/34% uncovered) but needs the hour the operator at :43 has, not this 30-minute slot's triage window.
+
+Handing to the operator (:43): Garage's 232-row partial tier (37% uncovered), the next-ranked real room-guide candidate after Kitchen's now-exhausted tier.
+
+Regenerated the dashboard. Pushed to main.
+
+HANDOFF-FILES: none
+
+## Scheduled operator cycle, 2026-11-06 (~21:4x UTC): Kitchen re-mined live, not cited; one genuine "benchtop" synonym gap closed, the rest of its partial tier confirmed noise
+
+Did: Attached per Step 0 (unshallow not needed, already a full clone; checkout main, ff-only onto origin/main at ee954bca7, 1449 commits fast-forwarded, tree clean). Read BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, STATUS.md, the last several NIGHTLY-LOG.md entries newest-first. The 21:1x PM check-in's handoff named Garage/Pantry/Hall Closet; re-ran room_guide_underperformance.py fresh instead of trusting that citation and found Kitchen still top-ranked at 43% uncovered, not yet exhausted.
+
+Read Kitchen's full partial/gap list directly against content.json and real rendered zone headings, not the tool's 8-row sample. Most rows are the already-named locale/retailer-modifier noise class (amazon, ikea, pinterest, tamil, indian, australia, kmart, canada), left alone. Checked "baking supplies in kitchen" (ties to Sink and Dishwashing Zone only via the generic word "supplies" in its also-called heading) against both corpora: "baking supplies" is already fully covered on Pantry's own Baking Zone, so forcing a weaker second match on Kitchen would overclaim; declined. "Dressing table drawers", "chef", "way" and "limited" were already-checked modifier/aspirational noise with no honest zone referent; left alone.
+
+Fixed: "how to organise kitchen benchtop" (gb/au/in) uses the Australian/NZ word for countertop. Kitchen's own Primary Prep Counter zone already reads "Also called the kitchen countertops"; checked the whole repo and both corpora for a collision first (bare word "benchtop" appears nowhere else), then added "kitchen benchtop" to Kitchen|Primary Prep Counter in ops/zone-also-called.json.
+
+Verified: build_zone_pages.py re-run, real committed page confirmed rendering the new heading. check_also_called_digital_collision_fast.py, test_gate_zone_also_called_is_heading.py (6/6), test_check_also_called_digital_collision_fast.py (2/2), test_gate_also_called_no_digital_collision.py (5/5), test_keyword_demand.py (32/32) all pass. keyword_demand_global.py --rescore moved the target query partial (0.5) to covered (1.0, heading surface), 843 to 842 partial / 1233 to 1234 covered; keyword_demand.py --rescore unaffected (query is global-only). check_urls.py (235/235), audit_pages.py (0 duplicates), fix_dashes.py/fix_dialect.py --check (0/0), affiliate.py --check, check_sellable.py (124/126, unchanged), link_graph_report.py (0 orphans), build_id.py --check (current), cold_read_ledger.py --stale (0 stale) all clean. audit_visual.py scoped to the one changed page, desktop and mobile: 0 findings. preflight.py --skip-tests: 0 FAIL through every gate reached, killed by hand at the documented network-bound gate_etsy_pdfs_current stall. GitHub re-pulled live: 29 open issues, unchanged since 2026-11-02, none from Phil. inbox_agent.py --apply: no mail credential, unchecked. indexnow.py --changed: 1 page changed, refused to submit (UNCHECKED, no network to confirm the key file is served); not claimed as done.
+
+Went well: re-deriving the live ranking before mining anything caught that the prior handoff's room order was already one cycle stale, and tracing the "baking supplies" misattribution to the generic word "supplies" in an unrelated also-called heading (rather than assuming it was a real gap) avoided a forced, dishonest fix.
+
+Did not go well: nothing; this cycle's own first audit_visual.py invocation (using --help, which this tool treats as an ordinary flag and falls through to a full --all run against all 240+ pages) hung for 2+ minutes before being killed by hand. The tool has no --help handling at all.
+
+Changing next cycle: never pass --help to ops/audit_visual.py; it has no such flag and silently runs the full site instead. Scope it to the changed page(s) by path from the start.
+
+Next: Kitchen's remaining partial tier is now genuinely exhausted (noise or declined-with-reason). Garage (37%), Pantry (35%) and Hall Closet (34%) are the next real room-guide candidates, still not read row-by-row against the current denominator. Everything larger remains Phil-gated (29 issues, none from Phil since 2026-11-02).
+
+Regenerated the dashboard. Pushed to main.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~21:4x slot): previous work confirmed finished a third and fourth way, Garage handoff reconfirmed independently by both PM twins
+
+NEXT FOR THE OPERATOR: mine Garage's room-guide tier (37% uncovered, next-ranked after Kitchen's post-fix 43%), because it is the next real candidate in the corrected post-A68 ranking and nothing else is unblocked. The concurrent 21:1x twin cycle below arrived at the same handoff (Garage/Pantry/Hall Closet) independently.
+
+Attached clean (fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `cae0887c8`, tree clean throughout). A concurrent twin push landed mid-cycle (`ee954bca7`/`665c2efe6`); merged rather than forced, generated-file conflicts (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`) resolved by regenerating via `ops/dashboard.py` rather than by hand, this log entry merged by hand to keep both accounts.
+
+Previous work (the 21:0x operator's Kitchen misattribution fix and the 21:2x operator's independent re-verification of it) confirmed finished a third way, not cited: fast gates rerun directly rather than trusted, `check_urls.py` (235/235), `fix_dashes.py --check` (0 em/en dashes), `cold_read_ledger.py --stale` (0 stale). Full `preflight.py` and `preflight.py --skip-tests` both started fresh and both hung at the same documented network-bound gate this sandbox cannot reach (`6s-success.com`/Google hosts refused by the proxy), killed by hand after confirming no FAIL appeared before the stall; consistent with every recent cycle, not a new finding. GitHub re-pulled live: 29 open issues, all authored by the repository bot account, all `decision`/`blocked-on-art`, unchanged since 2026-11-02T13:51:51Z, none from Phil. No open claims in `STATUS.md`. Working tree was already clean before I touched anything.
+
+No new defect small enough to close here; the fast gates that can run in this slot are all clean. Not starting Garage myself: this slot is triage, three minutes before the operator, and Garage's partial tier needs a real row-by-row read (CLAUDE.md 5c/5d), not a quick scan.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~21:1x slot)
+
+Previous work (A70, Kitchen bedside/dressing-table fix) confirmed finished, re-derived not cited: `covered` in the real corpus. Fresh preflight caught `STATUS.md` citing a superseded build in 5 places; real gap had opened to 1 commit. Fixed all five via `resolve_verdict_commit`/`deploy_gap_material_commits`. While verifying, found and fixed a real bug in `gate_status_deploy_gap_count_current`: it read the LAST commit-count in BLOCKER-001's entry, but this file appends old superseded text (own stale count) after the new one, so it read history, not the new claim, masked until now since every prior gap was also 0. Fail-then-pass proved, 17/17. Mid-fix the redeploy pipeline closed the gap again; re-confirmed 0. Three concurrent hourly pushes merged; generated-file conflicts resolved by regenerating, not by hand. Handing Garage/Pantry/Hall Closet mining to the operator.
+
+**Self-correction, same slot:** the fix above introduced its own defect. Writing each STATUS.md correction as "Prior state, kept because the shape recurs: **old entry**" is the table-row convention, not the rule for Production Knowledge/BLOCKER-001, which `gate_status_history_chain_not_collapsed` requires to stay current-only. It fired once 3 entries were glued there, never before. Collapsed both fields to one clean statement each; full history stays in git and this log, not lost. Also ran the standing `rotate_status_history.py --apply` it surfaced (1 unrelated entry archived). All status gates and `fix_dashes.py` reconfirmed clean.
+
+## Scheduled operator cycle, 2026-11-06 (~21:2x UTC): independent re-verification of the Kitchen cycle, two process gaps closed, no new defect found
+
+**Did:** Attached per Step 0 (unshallow, ff-only onto `origin/main`, tree clean). A delegated read-only recon fork, asked only to read the backlog/roadmap/log and run preflight, instead ran the whole Kitchen-mining cycle itself below (the same mandate-bleed the 2026-10-23 00:4x entry already names: forking inherits the full operator mandate). Rather than redo that work, independently re-verified it and closed what it skipped: `inbox_agent.py --apply` (no mail credential, unchecked, Step 8 was missing from its own Did section), GitHub issues re-pulled fresh (29 open, unchanged since 2026-11-02, all `decision`/`blocked-on-art`, none from Phil), and all 12 backlog/owner-actions/checkin-log rotation scripts run with `--check` (every one CLEAN; the size-tripwire warnings it flagged are already-rotated, just-not-yet-eligible content, same standing shape as entry 1).
+
+**Verified:** confirmed its backlog bookkeeping was already correct (A70 row exists in section 2's table; I nearly duplicated it as a numbered journal entry before checking and reverting). Confirmed CI green on the immediately prior push (`checks.yml` run 3127, success, ~19 min) and in progress (not yet assumed) on the latest merge push. Confirmed IndexNow submission for the two changed pages is pending, not missed: this sandbox cannot reach `6s-success.com` (proxy 403, standing limitation), and `hourly-brief.yml` already submits `--changed` on its own schedule with real network. Regenerated the dashboard per Step 11b.
+
+**Went well:** caught my own near-duplicate backlog entry before committing it, by checking the actual diff instead of trusting a line count.
+
+**Did not go well:** delegated a "read-only" task to a fork again, repeating a mistake this log already recorded once; a fork cannot be kept narrow because it inherits this whole prompt.
+
+**Changing next cycle:** when a narrow research task is needed, use a fresh general-purpose agent with a scoped prompt, not `subagent_type: fork`, exactly as the 2026-10-23 entry already concluded; this entry re-confirms why.
+
+**Next:** Garage (37%), Pantry (35%), Hall Closet (34%) are the next real room-guide candidates, not yet read row-by-row. Everything larger remains Phil-gated (29 issues, none since 2026-11-02).
+
+HANDOFF-FILES: none
+
+## Scheduled operator cycle, 2026-11-06 (~21:0x UTC): mined Kitchen, the real post-A68 top-ranked room, closed one genuine misattribution, declined a second rather than overclaim
+
+**Did:** Attached clean (1427 commits). The two most recent entries both hand off the same instruction: re-run `room_guide_underperformance.py` fresh, do not cite any pre-fix percentage. Did exactly that.
+
+Fresh run: Kitchen top-ranked, 44% uncovered (1 gap + 43 partial of 101). Read every row directly via `score_room()`, not the tool's 8-row sample. Nearly all 43 are already-named locale/platform/retailer noise. Two were not: "how to organise bedside drawers" and "how to organise dressing table drawers" (gb/au/in), neither about a kitchen, both landing on the kitchen declutter article by coincidental word overlap, the same misattribution shape as several prior fixes.
+
+**Traced the real cause before fixing (5d).** For "bedside drawers," the kitchen page's title surface and Primary Bedroom's own correct nightstand-zone heading surface tied at 0.5; with no room signal detected (the existing also-called entry covered "bedside table" but not "bedside drawers"), the tie defaulted to the kitchen title. Checked the corpus first: 8 queries contain "bedside"+"drawer," 6 already correctly routed, only this one global row broken.
+
+**Fixed:** added "bedside drawers" (matching the zone's own wording) to both Nightstand zone also-called entries, symmetric with the existing "bedside table." "Dressing table drawers" was checked and declined: no Primary Bedroom zone is actually a dressing table/vanity, so no honest addition exists; left partial rather than overclaim.
+
+**Verified:** rebuilt; grep-confirmed the new heading renders on both pages. Digital-collision gate clean, `test_gate_zone_also_called_is_heading.py` (6/6). Rescored both corpora: the target query moved partial to covered in each; global partial 846->843 covered 1230->1233, US partial 1117->1116 covered 1599->1600. Kitchen: 44%->43% uncovered. `check_urls.py` (235/235), `audit_pages.py` (0 duplicates), `fix_dashes.py`/`fix_dialect.py --check` (0/0), `affiliate.py --check` (165 docs), `check_sellable.py` (124/126), `link_graph_report.py` (0 orphans) clean. `audit_visual.py` on both pages: one pre-existing mobile touch-target warning confirmed unrelated via git diff (only the heading changed), left alone rather than widening scope. `cold_read_ledger.py --stale` found and fixed one unrelated stale entry from a concurrent cycle's edit. `preflight.py --skip-tests`: a first run started before the rebuild correctly FAILed on the not-yet-rendered heading (proof the gate works mid-change), discarded as stale once rebuilt, reran clean start to finish.
+
+**Went well:** reading the scorer's own tie-break code rather than guessing found the actual mechanism (no room signal to break a 0.5/0.5 tie); declining "dressing table drawers" rather than forcing a fit avoided repeating an earlier mistake.
+
+**Did not go well:** starting the full verification preflight before the generator had re-run wasted one complete background run.
+
+**Changing next cycle:** sequence generator-then-verify strictly; never start a long verification run against a tree mid-edit.
+
+**Next:** Kitchen is not exhausted at 43%, almost entirely named noise. Garage (37%), Pantry (35%), Hall Closet (34%) are the next real candidates, not yet read row-by-row. Both main backlog files are over their size-tripwire threshold; worth a rotation pass if nothing smaller surfaces first. Everything bigger remains Phil-gated.
+
+HANDOFF-FILES: none
+## PM check-in, 2026-11-06 (~20:4x slot): previous work confirmed finished, handing Kitchen off to the operator
+
+NEXT FOR THE OPERATOR: re-run `room_guide_underperformance.py` fresh and mine Kitchen (44% uncovered, top-ranked), because it is the highest-ranked room made newly visible by the ON_TOPIC spelling fix and no other non-Phil-gated work exists.
+
+Attached clean (fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `64eb6b583`, 1427 commits fast-forwarded, tree clean throughout).
+
+Previous work (the 20:1x operator's ON_TOPIC regex fix and Garage wording fix, and the 20:1x PM twin's re-verification) confirmed finished, not cited: `preflight.py --skip-tests` run fresh, 0 FAIL in both FAIL sections, standing warnings only (Etsy fee schedule 403, listing-tag overlap notes, deploy freshness unreachable from here), killed by hand at the documented network-bound `gate_etsy_pdfs_current` stall (11% CPU, flat) after the rest of the suite passed clean, same as every recent cycle. Working tree was already clean and main already matched `origin/main` before I touched anything. GitHub re-pulled live: 29 open issues, unchanged since 2026-11-02, all `decision`/`blocked-on-art`, none from Phil. Independently re-ran `room_guide_underperformance.py`: Kitchen is genuinely top at 44% uncovered (matching the 20:1x operator's own post-fix number exactly), Garage 37%, Pantry 35%, Hall Closet 34%, Home Office 31%, Mudroom 30% — confirming the handoff is still current, not stale.
+
+No small closing job found this slot beyond this re-verification; nothing claimed-but-unchecked, nothing red, no document contradicting reality. Not mining Kitchen myself: that is hours-scale work for the operator, not this 30-minute triage slot.
+
+HANDOFF-FILES: none
+
+## Scheduled operator cycle, 2026-11-06 (~20:1x UTC): the room-guide "fully exhausted" finding was wrong, a real measurement bug in the ranking tool hid 441 real queries
+
+**Did:** Attached clean, merged a concurrent PM check-in's commits mid-cycle, no conflicts. `preflight.py --skip-tests`: 0 FAIL, 33 standing warnings. 29 GitHub issues unchanged since 2026-11-02, none from Phil (confirmed by reading #42's comment thread directly: every comment self-authored by a prior agent cycle under the same shared login). No mail credential.
+
+Picked up the standing room-guide mining lane, Garage top-ranked at 36% uncovered. Read its full partial tier directly, not the tool's 8-row sample. Found a real gap: "wall mounted tool organizer" variants already routing correctly to the Hand Tool Wall and Cabinets zone. Fixing the British-spelled variant's wording and rescoring should have moved Garage's uncovered percentage; it did not move at all, which is not how a real fix behaves.
+
+**The real finding:** traced the non-movement to `room_guide_candidates.py`'s `ON_TOPIC` regex, which required the American "organiz" spelling literally and had never matched British/Australian/Canadian "organise"/"organiser." `keyword_demand.py` scores and routes these queries correctly already; only this ranking tool's on-topic tally, the exact number every "room X is exhausted" finding since 2026-11-03 has been read from, silently dropped all of them.
+
+**Verified before fixing.** Counted directly: 441 rows (28 US, 413 global) carry "organis" and no other `ON_TOPIC` word, all invisible the whole time. Checked for new false positives first (5d): sampled 61 newly-visible queries lacking an obvious room word; the handful genuinely off-topic are the exact shape `OFF_TOPIC_CONTEXT` already excludes for American spelling, so broadening `ON_TOPIC` surfaces them to that existing filter, not past it. Fixed the regex. Fail-then-pass proved directly. Re-ran the live ranking before and after: Kitchen 39%->44% uncovered, Garage 36%->37%, both RISING because real demand that was always there became visible, the opposite of what "exhausted" should show after a fix.
+
+Separately closed the original Garage finding: added "wall-mounted tool organizer" to the Hand Tool Wall and Cabinets zone (self-flattery checked, clean). Rebuilt. Rescored both corpora: 2 of 3 target queries moved to covered, the bare "mount" query correctly left partial (honest gap, not worth a second awkward name for one low-rank row).
+
+**Verified:** digital-collision/also-called gate tests clean, `check_urls.py` (235/235), `audit_pages.py` (0 duplicates), `fix_dashes.py`/`fix_dialect.py --check` (0/0), `affiliate.py --check` (165 docs), `check_sellable.py` (124/126), `link_graph_report.py` (0 orphans), `audit_visual.py` on the changed page (0 findings), `cold_read_ledger.py --stale` (0) all clean. `preflight.py --skip-tests` reran clean after both changes, confirming no regression from either edit. Logged this fix (A68) and the zone fix (A69) in the backlog and STATUS.md.
+
+**Went well:** not trusting a fix's own "should work" story; the non-moving percentage after a supposedly-landed fix was the tell that led to a bug quietly undercutting dozens of "exhausted" findings across many days.
+
+**Did not go well:** this bug has been live since the room-guide lane started on 2026-11-03, and at least six intervening cycles repeated "fully exhausted" as settled fact on an undercounted denominator, only ever re-running the tool that carried the bug rather than re-deriving the regex itself.
+
+**Changing next cycle:** when a fix is supposed to move a percentage and the before/after numbers disagree with that expectation, stop and check the measurement tool itself before concluding the content was already fine.
+
+**Next:** the room-guide lane is not exhausted; it has 441 newly-visible rows across all 20 rooms that no prior cycle has read. Reading all of them is several cycles' worth of work (CLAUDE.md 18's WIP limit), not attempted here. The next cycle should re-run `room_guide_underperformance.py` fresh, not cite this entry's numbers. Everything bigger remains Phil-gated.
+
+HANDOFF-FILES: none
+## PM check-in, 2026-11-06 (~20:1x slot): previous work confirmed finished three ways, own room-guide claim retracted mid-merge once a concurrent cycle proved the measurement tool itself was broken
+
+Attached clean (fetch, real unshallow from a shallow detached checkout, checkout -B main origin/main, ff-only onto origin/main at 272b6598b, 1419 commits fast-forwarded, tree clean).
+
+Previous work (the 19:4x PM check-in second pass and the hourly check-in dashboard regen) confirmed finished, not cited: ran preflight.py --skip-tests fresh to full completion in the background rather than under an external timeout (avoided the documented false-kill mistake). Result: every gate passed, 0 FAIL, 32 warnings, all previously-diagnosed sandbox limits (no Stripe/.env.secrets, no SSH deploy key, no mail credential, DNS unreachable, no narrated films in this container, gate_etsy_pdfs_current's documented 300s network stall, page-art/deck-art known content gaps, living-docs size tripwires). One new-looking warning checked rather than assumed: gate_prerender_shop_current's os.rmdir error. Ran ops/prerender_shop.py directly; it tried to reach Google hosts, the agent proxy refused them (android.clients.google.com, www.google.com, redirector.gvt1.com), confirmed no orphaned Chrome process afterward. Same documented headless-Chromium/network limitation as gate_etsy_pdfs_current, not a new defect. cold_read_ledger.py --stale: 0 of 308. --next: 308 of 308 ledgered, 0 un-ledgered candidates.
+
+Re-ran room_guide_underperformance.py for the four top-ranked rooms (Kitchen 39%, Garage 36%, Pantry 35%, Hall Closet 35% at the time) and wrote this entry's first draft calling every sampled row already-declined noise, the same conclusion six prior cycles reached. At push time, a concurrent scheduled operator cycle (above, same ~20:1x slot) had independently found that conclusion was never true: `room_guide_candidates.py`'s own `ON_TOPIC` regex required the American "organiz" spelling and had silently dropped 441 real British/Australian/Canadian-spelled queries from every room's denominator since 2026-11-03, now fixed. My own re-verification ran the same unfixed tool minutes before that fix landed, so the "no new candidate" line in this entry's first draft was wrong the moment it was written, not just stale. Retracting it here rather than shipping it: do not trust this entry's own room-guide numbers; the operator entry above is the current, correct account, and the room-guide lane is open work, not exhausted.
+
+GitHub re-pulled live: 29 open issues unchanged since 2026-11-02, all decision/blocked-on-art. Read issue #42's full comment thread directly rather than trust a prior summary: every comment is self-authored by a prior automated cycle (all under the Klingdom account, which is how this session posts, not a human reply); none is Phil answering the cadence question. 0 open PRs. This part of the check-in still holds.
+
+Merged the concurrent operator push rather than force (two Hourly check-in commits and the ON_TOPIC fix); for the generated dashboard trio and cycle-signal.json, took the operator's regenerated versions rather than hand-resolve, then regenerated the dashboard fresh once more on top of the merged state.
+
+**Next for the operator:** per the operator entry above, re-run room_guide_underperformance.py fresh and mine the top-ranked room from the real, now-corrected list; do not reuse any pre-fix percentage, including this entry's own first draft. Everything bigger remains Phil-gated per issue #42.
+
+HANDOFF-FILES: none
+## PM check-in, 2026-11-06 (~19:4x slot, second pass): previous work confirmed finished a further way, nothing new unblocked
+
+NEXT FOR THE OPERATOR: continue the standing full re-verification practice, not new work, because the room-guide keyword lane's own live re-run this slot (Kitchen 39%, Garage 36%, Pantry 35%, Hall Closet 35% uncovered) still looks unmined at a glance but every one of those four rooms was already individually read row by row and confirmed exhausted in entries 144-146 and the 19:2x cycle; nothing here contradicts that.
+
+Attached clean (fetch, real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `origin/main` at `ead9341ae`, 1418 commits fast-forwarded, tree clean throughout).
+
+Previous work (the 19:2x operator cycle's deploy-citation fix and the 19:4x PM check-in's dashboard-staleness fix) confirmed finished, not cited: `preflight.py --skip-tests` run fresh in the background: 0 FAIL through every gate reached, standing sandbox-only warnings (no Stripe/SSH/mail credential here, Etsy fee schedule 403, the documented network-bound `gate_etsy_pdfs_current` stall at the very end, killed by the 100s wrapper as expected and reported unchecked past that point, not assumed passing). `cold_read_ledger.py --stale`: 0 stale. GitHub re-pulled live: 29 open issues, unchanged since 2026-11-02, all `decision`/`blocked-on-art`, none from Phil; issue #42's cadence question still unanswered. Checked GitHub Actions directly rather than assume: `checks.yml` run `42279766258` for the last push had its own `Preflight` step complete green (19:28-19:41Z) before moving to the ops test suite, still in progress at log time, normal duration, not a hang.
+
+Independently re-ran `room_guide_underperformance.py` for the whole corpus rather than trust the prior "fully exhausted" prose: the four top-ranked rooms' uncovered percentages are unchanged from the figures already recorded against them in entries 144/145/146 and the 19:2x entry (noise rows: retailer names like "dollar tree", a bare "draw a larder organization chart" request, generic style adjectives like "compact/durable/modern/rustic kitchen", and the already-declined "cooking utensils" case from entry 140). No row sampled here is new since those reads.
+
+No new defect small enough to close in this slot. Not reopening issue #42: it already tracks this exact repeating cadence-exhaustion pattern for Phil, and restating it would be the same loop it asks him to rule on.
+
+Dashboard was already regenerated fresh this hour (19:29) by the prior PM check-in; not re-run, since nothing material changed since.
+
+HANDOFF-FILES: none
+
+Attached clean (fetch, real unshallow, checkout -B main origin/main, ff-only onto d37f42e25, 1414 commits fast-forwarded, tree clean).
+
+Previous work (the 19:2x operator cycle's deploy-citation fix) confirmed finished, not cited: `preflight.py --skip-tests` run fresh in the background rather than under a killable external timeout: 0 FAIL across every gate reached, 34 standing sandbox-only warnings. `ops/deploy-verdict.json` still matches STATUS.md's own citation. Independently re-ran `room_guide_underperformance.py`: Kitchen/Pantry's "gap" rows are the same named retailer ("dollar tree") and off-topic ("draw a larder organization chart") noise already declined by name in earlier entries today, confirmed, not forced. 29 open GitHub issues unchanged, all decision/blocked-on-art, none from Phil since 2026-11-02.
+
+Found and closed one small real gap: the dashboard was one commit stale (`gate_dashboard_self_description_fresh` warned). Regenerated and committed. CI (`checks.yml`) still in_progress on this push at log time, reported unchecked, not assumed green.
+
+**Next for the operator:** nothing newly unblocked; every lane remains Phil-gated per issue #42.
+
+## Scheduled operator cycle, 2026-11-06 (~19:2x UTC): `gate_status_deploy_verdict_current` caught the prior cycle's own stale-citation gap live, fixed in four places; room-guide mining re-checked and confirmed still exhausted
+
+**Did:** Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `origin/main` at `8b18d2f87`, 1407 commits fast-forwarded, tree clean throughout). Read `GOALS.md`, `CLAUDE.md`, `STATUS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, and the last several entries of this file (the 18:2x and 17:4x cycles, which closed a real deploy gap and confirmed the keyword-gap-mining lane exhausted across all 20 rooms). GitHub re-pulled live: 29 open issues, unchanged since 2026-11-02, all `decision`/`blocked-on-art`, none from Phil since issue #42; 0 open PRs. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, unchecked, not assumed empty.
+
+`preflight.py --skip-tests` run fresh before touching anything: 0 FAIL through every gate reached, 34 warnings. Read every warning rather than skim for "0 FAIL" and move on: `gate_status_deploy_verdict_current` was warning that `BLOCKER-001`, section 4's "Public website" row, section 5's build-citation block and section 6's "Production traceability" row all still cited build `dfc7253ae2164447`/2026-11-04T08:17:47Z, two days stale, even though the 18:2x cycle's own `ops/deploy-verdict.json` confirmation (build `dedcbbebccc28c7f`, `checked_at` 2026-11-06T18:22:55Z) had already landed and that cycle's own Production Knowledge paragraph already cited it correctly. Exactly the "source corrected, sibling never told" shape this repository's own gates exist to catch, and the gate caught it this time before it could sit uncorrected for days.
+
+**Verified before fixing:** `resolve_verdict_commit('dedcbbebccc28c7f')` resolves to `8ff203bdf`; `deploy_gap_material_commits('8ff203bdf')` against real current `HEAD` returns an empty list, matching `site/build-id.txt` exactly. Corrected all four citations in `STATUS.md` to the current build, commit and timestamp, keeping each prior correction in place underneath per the file's own convention. `gate_status_deploy_verdict_current()` called directly afterward returns `None` (clean); `ops/tests/test_gate_status_deploy_verdict_current.py` (14/14); `fix_dashes.py --check STATUS.md` (0/0). Added a dated status-metadata entry and a new backlog entry (146) recording the fix. `preflight.py --skip-tests` reran clean afterward: 0 FAIL, 34 warnings, same standing sandbox gaps (no Stripe/SSH/mail credential here, the documented `gate_etsy_pdfs_current`/`gate_prerender_shop_current` network/timing waits), confirming no regression.
+
+**Also checked, not acted on.** Independently re-derived the room-guide keyword-gap ranking rather than trust the 17:4x handoff's own "fully exhausted" claim: read both keyword corpora's remaining `gap` rows directly (107 US, 90 global), not a sample. Every row is documented noise (construction/DIY-build intent, word-sense collisions, retailer/platform mentions, off-topic autocomplete drift) already named in prior entries, or a genuine content gap outside the also-called mechanism's honest scope. Spot-checked one candidate directly against the real corpus before declining it: "building beds for kids organization" has no matching text anywhere in Kids Bedroom's `content.json` (every zone's text grepped for "bed", zero hits), and the query's own intent is building furniture, not organizing an existing room, the same out-of-scope reasoning already applied to the camping/hunting-gear and entertainment-center-building candidates earlier today. No actionable gap found; declined rather than forced.
+
+**Went well:** reading every preflight warning line rather than stopping at "0 FAIL"; the one that mattered was sitting in plain text the whole time.
+
+**Did not go well:** nothing this cycle; the prior cycle's own gap was real but small and caught quickly.
+
+**Changing next cycle:** nothing new; the existing practice (read every warning, not just the FAIL count) is what found this, and it already is the standing instruction.
+
+**Next:** the structured keyword-gap-mining lane remains exhausted across all 20 rooms, re-confirmed rather than re-mined this cycle. Everything bigger remains Phil-gated (29 issues, none from Phil since 2026-11-02). The next operator cycle should re-check `preflight.py`'s warning list in full before concluding there is nothing to fix, the same habit that closed this cycle's own finding.
+
+Regenerating the dashboard and pushing to main.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~18:4x slot): previous work confirmed finished a further way, nothing new unblocked, own external-timeout mistake caught before it could orphan anything
+
+NEXT FOR THE OPERATOR: nothing newly unblocked, because the room-guide keyword-mining lane read as fully exhausted across all 20 rooms as of entry 145, the 29 open GitHub issues are unchanged and all decision/blocked-on-art, and both live workstreams in STATUS.md remain Phil-gated; continue the standing full re-verification practice rather than start new work.
+
+Attached clean (fetch, real unshallow, checkout -B main origin/main, ff-only onto origin/main, 1407 commits fast-forwarded, tree clean throughout except two automated "Hourly check-in record" dashboard-only commits since the prior entry).
+
+Previous work (the 17:4x-18:2x operator cycle and PM check-in: Primary Bathroom's "master bath" fix, the deploy-gap-that-resolved-itself verification) confirmed finished a further way, not cited: `STATUS.md`'s Open claims section still reads "None currently open." 29 open GitHub issues re-pulled live: unchanged since 2026-11-02, all `decision`/`blocked-on-art`, none from Phil since issue #42. `room_guide_underperformance.py` re-run fresh: Kitchen/Garage/Pantry/Hall Closet still show 35-39% uncovered, but every row sampled is the same retailer/filler/word-sense noise prior cycles already declined by name, not a fresh candidate. All backlog rotation scripts (`rotate_backlog_closed`, `rotate_backlog_done_items`, `rotate_backlog_section1b/2/3/4_items`, `rotate_owner_actions_item_history`, `rotate_checkin_log`) report CLEAN; `BACKLOG-2026-09-07.md`'s 193318-byte size (over its 150000-byte tripwire) is confirmed un-rotatable current content, not a new defect.
+
+**Own mistake, caught before it could repeat the documented damage.** Ran `preflight.py --skip-tests` under an external `timeout 90`, the identical class of error several earlier entries today already named (an external wrapper shorter than `gate_etsy_pdfs_current`'s own internal budget can SIGTERM the gate mid-render). Checked immediately rather than assumed safe: no orphaned Chromium or `build_etsy_assets.py` process existed afterward (`ps aux` clean), so this kill landed before the gate spawned its subprocess, unlike the earlier documented cases. Reverted the run's own partial `cycle-signal.json` snapshot rather than commit it, then relaunched with no external wrapper, backgrounded, and let it run to completion. Result: every gate passed, 0 FAIL, 33 known sandbox-limited warnings (Stripe credential, DNS, Etsy fee schedule, deploy freshness from here, cron-cadence throttling, all previously diagnosed).
+
+No new defect small enough to close in this slot. Issue #42 already tracks the exhausted-cadence pattern; not re-raising it.
+
+Regenerated the dashboard. Pushing to main.
+
+HANDOFF-FILES: none
+## PM check-in, 2026-11-06 (~18:1x-18:2x slot): previous work confirmed finished, nothing new unblocked, own timeout mistake caught and recovered rather than repeated
+
+Attached clean (fetch, real unshallow from a shallow detached checkout, checkout -B main origin/main, ff-only onto origin/main, 1400 commits, tree clean throughout).
+
+The 17:4x-18:1x operator cycle (ten rooms read, one genuine Primary Bathroom "master bath" fix, Kids Bedroom confirmed exhausted) is finished: STATUS.md open claims empty, dashboard regenerated, pushed. BACKLOG-2026-09-07.md sections 2-6 still Done/Archived except C5/C6, both Phil-gated. 29 open GitHub issues re-pulled live: unchanged, all decision/blocked-on-art, none from Phil since #42. 0 open PRs. Rotation scripts (backlog, owner-actions, all variants) all report CLEAN, nothing to rotate, despite two living-doc tripwire warnings: genuinely un-rotatable current content, not a new defect.
+
+Made, then caught, the exact external-timeout mistake earlier cycles already documented: ran preflight.py under `timeout 280`, which killed the wrapper mid-Etsy-PDF-render and orphaned build_etsy_assets.py. Did not kill the orphan a second time; let it finish on its own, then reran preflight.py with no external wrapper. Result: every gate passed, 0 FAIL, 35 known sandbox-limited warnings.
+
+Nothing newly unblocked for the operator at :43. Issue #42 already tracks this exhausted cadence; not re-raising it.
+
+## Follow-up, 2026-11-06 (~18:2x UTC): a full (not `--skip-tests`) preflight run found a real, already-resolving production gap, watched to its actual resolution rather than assumed
+
+The prior entry's second `preflight.py --skip-tests` run reported 0 FAIL through every gate reached but stalled at the documented network-bound `gate_etsy_pdfs_current`, same as every other entry today. A third run, this time without `--skip-tests` and backgrounded rather than killed, finally ran past that gate to completion and found 2 real FAILs neither `--skip-tests` run had reached.
+
+**`stray-probe-files`:** a leftover `site/zones/_visual_probe.html`, this entry's own aborted `ops/audit_visual.py --help` mistake (see "Did not go well" above). The gate's own cleanup deleted it during this same run; confirmed gone afterward (`ls` fails) and never tracked by git (`git status`/`git log` both silent on it), no action needed.
+
+**`publish-image-current`:** HEAD's `site/`/Dockerfile differed from the last commit actually shipped. Checked rather than assumed broken: GitHub Actions showed `publish-image.yml` run `42260660190` (`display_title`: "Merge remote-tracking branch 'origin/main'", a concurrent session's merge commit `26be722ab`, not this entry's own push) had failed at 17:33 UTC, the last success before it being `9e171240` at 16:24 UTC, so real content had sat undeployed for about two hours. Read that run's actual job log, not just its summary line: both its FAIL entries (`dashes`, `tests`) were the same single root cause, one em dash the merge introduced into `BACKLOG-2026-09-07.md` during conflict resolution; the gate correctly refused to ship a commit that broke CLAUDE.md's house style, which is the gate working, not the gate being broken. This entry's own earlier push (a rebase, not a merge, onto the same base, `fix_dashes.py --check` verified 0/0 beforehand) triggered a fresh deploy attempt, `run 42267800291`; watched it to actual `completed`/`success` via the Actions API rather than trusting the queued response, then independently re-derived the result rather than citing the green checkmark: `ops/deploy-verdict.json` now reads `verdict: current`, build `dedcbbebccc28c7f`, `checked_at: 2026-11-06T18:22:55Z`, matching `site/build-id.txt` exactly; `resolve_verdict_commit`/`deploy_gap_material_commits` against real current `HEAD` returns an empty list. Zero commits undeployed. `26be722ab` never entered `main`'s ancestry and nothing broken was ever served to a visitor; the gap was a delay, not an outage.
+
+Updated `STATUS.md`'s Production Knowledge paragraph (was still citing 2026-11-04, two days stale) and `BACKLOG-2026-09-07.md` entry 145 with this same account. No new gate: the dash/test gates already did exactly their job here. No PushNotification sent: the finding resolved itself within the same cycle, confirmed by independent re-derivation rather than left as a green light taken on faith.
+
+Pushed to main: this log entry, the `STATUS.md` and `BACKLOG-2026-09-07.md` updates, and a fresh dashboard regeneration.
+
+HANDOFF-FILES: none
+
+## Scheduled operator cycle, 2026-11-06 (~17:4x-18:1x slot): ten un-mined rooms read in full, one genuine "master bath" vocabulary gap closed on Primary Bathroom's guide
+
+**Did:** Attached clean (1395 commits). 29 GitHub issues unchanged since 2026-11-02, all comments self-authored by prior cycles, none from Phil. No mail credential.
+
+`preflight.py --skip-tests` under an external `timeout 100` repeated an already-documented mistake: killed the top process inside the Etsy PDF gate, leaving the render orphaned. Let the orphan finish rather than kill mid-render a second time, then reran with no external wrapper. 0 FAIL through every gate reached both times.
+
+With no room handed off, re-ran `room_guide_underperformance.py` fresh for every room and read the full tier, not the 8-row sample, for the ten rooms no entry today had mined: Kitchen, Home Office, Living Room, Guest Bedroom, Entryway, Laundry Room, Dining Room, Kids Bedroom, Stair Landing, Primary Bathroom. Nine were genuinely exhausted: every remaining row is a generic modifier or retailer/locale word already declined elsewhere, on the correct page. Kitchen's one near-miss (a baking-supplies query misrouted via a "cleaning supplies" collision) was checked against its already-covered sibling rows and declined: the query's own room tag scopes it to Kitchen, which has no honest baking content to attach the word to.
+
+**The one real fix.** Primary Bathroom's guide article already answers an FAQ using "master bathroom" but never the shorter, equally common "master bath," so "master bath organization" scored partial at 0.0 coverage. Checked the whole corpus first: only this one row exists, no collision risk. Renamed one existing FAQ question (not added a new one) from "master bathroom" to "master bath" in both the visible heading and its JSON-LD, keeping the other FAQ's "master bathroom" wording so that term stays covered too.
+
+**Verified:** rescored both corpora: US partial 1120->1119 covered 1596->1597; global partial 847->846 covered 1229->1230; gap unchanged both. Direct row read confirms covered, correct page, no unmatched words. Primary Bathroom: 17%->15% uncovered. `build_seo.py`: sitemap lastmod advanced for the one changed page. `check_urls.py` (235/235), `audit_pages.py` (0 findings), `fix_dashes.py`/`fix_dialect.py --check` (0/0), `affiliate.py --check` (165 docs), `link_graph_report.py` (0 orphans), `check_sellable.py` (124/126), `cold_read_ledger.py --stale` (0) all clean. `audit_visual.py` on the one changed page: 0 findings. `preflight.py --skip-tests` reran fresh: 0 FAIL through every gate reached, same documented network stall.
+
+**Went well:** reading the full tier for ten rooms rather than stopping at the first "looks exhausted" impression; the one real fix only surfaced on the tenth.
+
+**Did not go well:** repeated the external-timeout mistake two earlier entries today already named. Also ran `audit_visual.py --help` with no page argument, which the tool reads as "scan everything"; caught and stopped within seconds.
+
+**Changing next cycle:** third same-day repeat of the timeout mistake; checked whether a gate was warranted and found the mechanism already exists (`preflight.py` tracks subprocess pgids, the Etsy gate self-heals an orphaned Chrome tree). The gap is operator practice, not a missing mechanism; no new gate, logged a third time for visibility. Never pass `--help` to a tool without reading its usage output first.
+
+**Next:** the structured keyword-gap-mining lane now reads as fully exhausted across every room checked today. Everything bigger remains Phil-gated.
+
+Pushed to main.
+
+HANDOFF-FILES: none
+## PM check-in, 2026-11-06 (~17:4x slot): previous work confirmed finished, Kids Bedroom named as the one room never yet given a dedicated row-by-row read
+
+NEXT FOR THE OPERATOR: mine Kids Bedroom (22% uncovered, 0 gap + 14 partial of 67 on-topic), because a full grep of this file's own history shows every other room has already had at least one dedicated row-by-row mining pass (Kitchen, Garage, Pantry, Hall Closet, Patio or Deck, Mudroom, Home Office, Workshop, Primary Bedroom, Family Room, Entryway, Living Room, Guest Bedroom, Dining Room, Laundry Room, Guest Bathroom, Nursery, Stair Landing), and Kids Bedroom is not among them. Primary Bathroom (17% uncovered, 11 partial of 66) is the other room missing a dedicated read; Kids Bedroom ranks higher so goes first. Both are genuinely unblocked and un-Phil-gated; full room mining is hours-scale row-by-row work, correctly sized for the operator's own sitting, not this slot's.
+
+Attached per Step 0 (fetch, real `git fetch --unshallow` from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `origin/main` at `11c313df3`, 1395 commits fast-forwarded, tree clean throughout).
+
+Previous work (the ~16:4x-17:1x operator cycle, which declined Nursery/Workshop as exhausted noise and mined Garage's long-unclaimed 67-row tier instead, closing three guide-article heading gaps) confirmed finished, re-derived rather than cited: `git status` clean, `STATUS.md`'s Open claims section reads "None currently open" (the Garage claim was released the same cycle it was opened). `room_guide_underperformance.py` re-run fresh: Garage now ranks below several other rooms, consistent with the fix landing and the remainder being declared noise; the overall ranking (Kitchen 39%, Garage 36%, Pantry 35%, Hall Closet 35%, Patio or Deck 32%, Mudroom 31%, Living Room 29%, Home Office 29%, Workshop 28%, Primary Bedroom 28%, Guest Bedroom 27%, Family Room 26%, Entryway 24%, Dining Room 23%, Laundry Room 23%, Nursery 22%, Kids Bedroom 22%, Stair Landing 22%, Guest Bathroom 20%, Primary Bathroom 17%) matches a room-by-room read of this file's own entries, not assumed. 29 open GitHub issues re-pulled live via the REST API: unchanged since 2026-11-02, all `decision`/`blocked-on-art`, none from Phil since issue #42.
+
+`preflight.py --skip-tests` started fresh but killed partway through this slot rather than let it run past the time this cycle had to ship; reported as **unchecked this cycle**, not passing, per CLAUDE.md 0.4. The prior cycle's own run (committed 16:58, `f883515`) was 0 FAIL through every gate reached, and nothing in the tree has changed since beyond this log entry, so no regression is expected, but that is an inference, not a measurement, and is named as such.
+
+No new defect small enough to close in this slot beyond the one named above (Kids Bedroom never mined). `BACKLOG-2026-09-07.md` sections 2-6 remain Done/Archived except C5 (Gemini billing, issue #47) and C6 (YouTube OAuth, issue #46), both explicitly Phil-gated.
+
+Regenerated the dashboard. Pushed to main: this log entry and the dashboard trio only; no content, price or product page changed.
+
+HANDOFF-FILES: none
+
+## Scheduled operator cycle, 2026-11-06 (~16:4x-17:1x slot): Nursery and Workshop checked and declined, Garage's long-unclaimed 67-row tier mined instead, three genuine heading gaps closed
+
+**Did:** Attached clean (1385 commits). 29 GitHub issues unchanged since 2026-11-02, none from Phil. No mail credential. `preflight.py --skip-tests` fresh: 0 FAIL through every gate reached, stalled only at the documented Etsy stall.
+
+Claimed the lane. Read Nursery's full 21-row tier and Workshop's 17-row tier directly against content, not the 8-row sample. Both genuinely exhausted: Nursery's remainder is off-topic noise or words absent from the corpus, or vocabulary already fixed on the zone page but routed to the deck page (no also-called mechanism there); Workshop is dominated by a word-sense collision ("workshop" meaning a training event). Declined both rather than force a fit.
+
+Re-ranked rather than stop: Garage is second overall at 39% uncovered with 67 unmined rows, named in an earlier handoff and never picked up since, across nine later handoffs that cycled through smaller rooms instead. Read all 67 directly. Found three genuine wording gaps: "equipment," "shed" and "cleaning"/"maintenance" each already match their correct zone's own content, but the queries route to the room's hand-written guide article instead, which has no heading to match against. Confirmed the article carries no generator, so retitled three of its own step headings, each grounded in that step's existing body text.
+
+**Verified:** rescored both corpora: US partial 1127->1120 covered 1589->1596; global partial 850->847 covered 1226->1229; gap unchanged. Garage: 39%->36%. `build_seo.py` re-run, sitemap advanced for the one changed page. `check_urls.py` 235/235, `audit_pages.py` 0 findings, `fix_dashes.py`/`fix_dialect.py --check` 0/0, `check_sellable.py` 124/126, `link_graph_report.py` 0 orphans, `cold_read_ledger.py --stale` 0 clean. `audit_visual.py` on the one changed page: 0 findings. First full `preflight.py --skip-tests` afterward found a real FAIL: a killed full-site `audit_visual.py` run (see below) had left a stray probe file in the tree; the gate's own cleanup attempt silently failed to remove it (not investigated further, left as a loose end). Removed by hand, confirmed never tracked. Reran: 0 FAIL, 36 standing warnings.
+
+**Went well:** re-ranking past the handed-off rooms once both checked out as noise, rather than stopping; the real highest-value item was one fresh ranking run away.
+
+**Did not go well:** ran `audit_visual.py --help`, not a real flag; with no positional page argument the tool falls back to scanning the entire site, costing several wasted minutes.
+
+**Changing next cycle:** when scoping `audit_visual.py` to one page, always pass the page path as a positional argument; a run with no positional argument scans every page.
+
+**Next:** Garage's remaining ~71 rows are confirmed noise or content gaps elsewhere; no further honest fix found. Kitchen, Hall Closet, Pantry and Patio or Deck were each already read in full earlier; a future cycle should re-run the ranking fresh rather than trust this one. Everything bigger remains Phil-gated.
+
+Pushed to main.
+
+**Merge note:** two concurrent PM check-ins landed while this was being pushed, both restating the same handoff this entry resolves by mining past it to Garage; merged rather than forced, all entries kept.
+## PM check-in, 2026-11-06 (~17:1x slot): previous work confirmed finished, re-derived rather than cited, Nursery/Workshop handoff still unclaimed
+
+NEXT FOR THE OPERATOR: mine Nursery (22% uncovered, 1 gap + 20 partial of 97 on-topic) or Workshop (28% uncovered, 0 gap + 17 partial of 60 on-topic), per the 16:0x/16:1x/16:4x handoff; either is genuinely unblocked, neither is claimed. Full room mining is hours-scale row-by-row work, correctly sized for the operator's own sitting, not this slot's.
+
+Attached per Step 0 (shallow detached checkout, `git fetch origin main`, real `git fetch --unshallow`, `checkout main`, ff-only onto `origin/main` at `80ee5fdac`, 1389 commits fast-forwarded, tree clean throughout).
+
+Previous work (the 16:4x PM check-in's self-inflicted preflight timeout, caught and fixed in the same slot, then relaunched) confirmed finished, re-derived rather than cited: the relaunched `preflight.py --skip-tests` run completed and was committed at 16:58 (`f883515`), 0 FAIL through every gate reached, recorded rather than assumed. `ops/room_guide_underperformance.py` re-run fresh against the real committed site: Nursery 22% uncovered, Workshop 28% uncovered, matching the handoff's own figures exactly, nothing drifted or mined since. `STATUS.md`'s Open claims section still reads "None currently open," so the handoff is unclaimed, not stale. 29 open GitHub issues re-pulled live via the REST API: unchanged since 2026-11-01/02, all `decision`/`blocked-on-art`, none from Phil since issue #42. `check_urls.py` 235/235. `fix_dashes.py --check` 0/0. `cold_read_ledger.py --stale` 0 stale. All backlog rotation scripts (`rotate_backlog_closed`, `rotate_backlog_section1b/2/3/4_items`, `rotate_owner_actions_item_history`, `rotate_checkin_log`, `rotate_owner_actions`, `rotate_owner_actions_closed_items`) report CLEAN; the two standing `living-docs-total-size-tripwire` warnings on `BACKLOG-2026-09-07.md` (179643 bytes) and `OWNER-ACTIONS.md` (115514 bytes) are unchanged, not new, and nothing is actually due to rotate.
+
+No new defect small enough to close in this slot. `BACKLOG-2026-09-07.md` sections 2-6 remain Done/Archived except C5 (Gemini billing, issue #47) and C6 (YouTube OAuth, issue #46), both explicitly Phil-gated with everything up to the gate already built.
+
+Not starting new work myself: nothing beyond the Nursery/Workshop mining already handed to the operator is genuinely unblocked and un-Phil-gated.
+
+Regenerated the dashboard. Pushed to main: this log entry and the dashboard trio only; no content, price or product page changed.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~16:4x slot): previous work still finished, Nursery/Workshop handoff restated for the operator, this cycle caused and fixed its own unsafe preflight timeout before it could misfire
+
+NEXT FOR THE OPERATOR: mine Nursery (22% uncovered, 1 gap + 20 partial of 97 on-topic) or Workshop (28% uncovered, 0 gap + 17 partial of 60 on-topic), per the 16:0x/16:1x handoff; either is genuinely unblocked, neither is claimed. Full room mining is hours-scale row-by-row work, correctly sized for the operator's own sitting, not this slot's.
+
+Attached per Step 0 (shallow detached checkout, `git fetch origin main`, real `git fetch --unshallow`, `checkout main`, ff-only onto `origin/main` at `ac2261543`, 1385 commits fast-forwarded, tree clean throughout).
+
+Previous work (the 16:1x PM check-in and the 16:0x Family Room mining below it) confirmed finished, re-derived rather than cited: `ops/room_guide_underperformance.py` re-run fresh against the real committed site, not trusted from the log: Nursery 22% uncovered, Workshop 28% uncovered, both exactly matching the handoff's own figures, nothing drifted. `ops/b9_claims.py --status` shows no undiagnosed/claimed room, confirming the handoff is unclaimed, not stale. `STATUS.md`'s Open claims section still reads "None currently open." `git status`/`git log origin/main` re-checked twice across this slot: no concurrent push landed. 29 open GitHub issues re-pulled live via the API: unchanged since 2026-11-01/02, all `decision`/`blocked-on-art`, none from Phil since issue #42; 0 open PRs. `fix_dashes.py --check` 0 em/en dashes. `check_urls.py` 235/235. `cold_read_ledger.py --stale` 0 stale.
+
+**This cycle's own real finding, caused and fixed in itself, not swept quietly (CLAUDE.md 0.4/54).** Ran `preflight.py --skip-tests` wrapped in an external `timeout 280`, the exact value two earlier cycles (entries for the 12:2x and 12:4x slots) already documented as unsafe: `gate_etsy_pdfs_current`'s own internal budget is `ETSY_PDFS_TIMEOUT_SECONDS = 300`, so a 280s external wrapper would have SIGTERM'd the whole process 20 seconds before the gate's own safe-resolution path could run, the identical false-FAIL-plus-orphan shape those entries describe. Caught it myself before the deadline hit (elapsed time checked against the gate's own constant, not assumed safe), terminated the run cleanly with `SIGTERM`, verified the in-flight PDF's mtime predated this run before touching anything, swept the resulting orphaned Chromium tree, reverted the run's own stray `cycle-signal.json` snapshot, and relaunched `preflight.py --skip-tests` with no external timeout at all, the documented correct practice for this sandbox. The second run reached the identical point as the first (0 FAIL through every gate up to `gate_etsy_pdfs_current`, including both standing `living-docs-total-size-tripwire` warnings below) and was left to resolve on its own internal budget rather than killed again.
+
+**Two known, unchanged warnings, not new:** `living-docs-total-size-tripwire` still flags `BACKLOG-2026-09-07.md` (179643 bytes, 150000-byte tripwire) and `OWNER-ACTIONS.md` (115514 bytes, 110000-byte tripwire); both are the same standing archive-lag this file has carried across several prior cycles, not a fresh regression, and not pursued this slot given the time already spent on the timeout correction above.
+
+No new defect small enough to close in this slot beyond the self-inflicted timeout mistake, caught and fixed. Nothing in `BACKLOG-2026-09-07.md` sections 2-6 is genuinely unblocked and un-Phil-gated beyond the Nursery/Workshop mining already handed to the operator.
+
+**Changing next cycle:** before wrapping `preflight.py` in any external timeout, check the value against every internal timeout constant the gates it runs declare (`ETSY_PDFS_TIMEOUT_SECONDS = 300`, `PRERENDER_SHOP_TIMEOUT_SECONDS = 210`), or use no external wrapper at all; a round number picked without checking is how this exact mistake has now recurred across three separate cycles today.
+
+Regenerated the dashboard. Pushed to main: this log entry and the dashboard trio only; no content, price or product page changed.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~16:1x slot): previous work (Family Room mining) confirmed finished, Nursery/Workshop handoff restated for the operator, nothing new unblocked
+
+NEXT FOR THE OPERATOR: mine Nursery (22% uncovered) or Workshop (28% uncovered), per the 16:0x operator cycle's own handoff; either is genuinely unblocked, neither is claimed. Full room mining is hours of row-by-row work, correctly sized for the :43 operator slot, not this one.
+
+Attached per Step 0 (shallow detached checkout, `git fetch origin main`, real unshallow, `checkout main`, ff-only onto `origin/main` at `3806789b1`, 1382 commits fast-forwarded, tree clean).
+
+Previous work (the 16:0x scheduled operator cycle's Family Room zone-vocabulary mining) confirmed finished, re-derived rather than cited: `preflight.py --skip-tests` run fresh, completed this time rather than stalling under its external timeout: both FAIL sections read "(none)" through every gate reached, unchecked only past the documented network-bound `gate_etsy_pdfs_current` (Etsy's fee page still 403s this sandbox). Working tree was clean and in sync with `origin/main` before this slot's own dashboard regeneration; no concurrent push landed mid-cycle. `ops/room_guide_underperformance.py` re-run fresh: Nursery 22% uncovered (1 gap, 20 partial of 97 on-topic), Workshop 28% uncovered (0 gap, 17 partial of 60 on-topic), matching the handoff's own figures closely enough to confirm nobody has mined either since. `ops/b9_claims.py --status` and `STATUS.md`'s Open claims section both show nothing active. 27 open GitHub issues (plus 2 `blocked-on-art`) re-pulled live via the REST API: unchanged since 2026-11-01/02, all `decision`, none from Phil since issue #42.
+
+No new defect small enough to close in this slot found beyond what the 16:0x cycle already closed. Nothing in `BACKLOG-2026-09-07.md` sections 2-6 is genuinely unblocked and un-Phil-gated beyond the Nursery/Workshop mining already handed to the operator.
+
+Regenerated the dashboard. Pushed to main: this log entry and the dashboard trio only; no content, price or product page changed.
+
+HANDOFF-FILES: none
+
+## Scheduled operator cycle, 2026-11-06 (~16:0x UTC): closed two genuine Family Room zone-vocabulary gaps, and found a third candidate was the exact digital-collision incident the gate already exists to block
+
+**Did:** Attached clean (1377 commits). An older handoff named Mudroom, Family Room and Workshop as next; a newer one (found only once this cycle was underway) instead names Nursery, see Next below. `preflight.py --skip-tests` fresh: 0 FAIL through every gate reached, stalled only at the documented Etsy stall. 29 GitHub issues unchanged since 2026-11-02, none from Phil. No mail credential.
+
+Mined Mudroom first (31% uncovered, 10 partial rows): read every row directly. All ten were generic filler or genuinely off-topic; closed with nothing actionable. Moved to Family Room (31% uncovered, 24 of 77). One gap row is a bedroom-furniture query misfiled by the on-topic filter, left alone. Checked five candidates against the real zone content before adding anything: "cord"/"electronics" match the Charging and Device Zone's own purpose and common_items; "cables"/"wires" match the Primary Media Zone's the same way.
+
+**The near miss.** The fifth candidate, "games" (from a card-games query routed to the Board Game and Puzzle Zone), is the exact incident the digital-collision gate's own docstring already records: both harvests carry real PC/Steam queries that already coincidentally route to this same page. Adding "games zone" would have flipped some to a false covered/partial, the same false claim that incident shipped and had to revert. Declined before writing anything, not caught after. Confirmed the other four carry no such risk by checking the gate's own narrower digital-context terms directly: no query combines any of them with a PC/Steam term.
+
+Added "cord zone"/"electronics zone" to the Charging Zone and "cables zone"/"wires zone" to the Primary Media Zone in `zone-also-called.json`. Rebuilt; grep-confirmed both headings render.
+
+**Verified:** digital-collision gate clean before and after. `test_gate_zone_also_called_is_heading.py` (6/6). Rescored both corpora, diffed every row's full before/after status, not just the five targets: exactly 5 moved, all partial to covered, 0 regressions, 0 unintended PC/Steam flips (US partial 1132->1127 covered 1584->1589; global partial 851->850 covered 1225->1226). Family Room: 31%->26% uncovered. `check_urls.py` (235/235), `audit_pages.py` (0 duplicates), `fix_dashes.py`/`fix_dialect.py --check` (0/0), `affiliate.py --check` (165 docs), `check_sellable.py` (124/126), `link_graph_report.py` (0 orphans), `cold_read_ledger.py --stale` (0) clean. `audit_visual.py` on both changed pages: 0 findings. `preflight.py --skip-tests` reran fresh: 0 FAIL through every gate reached, same documented stall.
+
+**Went well:** checking the fifth candidate against the gate's own documented incident before writing it, rather than relying on the gate to catch it after.
+
+**Did not go well:** started mining from an older handoff rather than re-checking the very top of the log first; a newer handoff pointed elsewhere (Nursery). No conflict or wasted work resulted (different room), but the right habit is reading the top fresh each time.
+
+**Changing next cycle:** read the first few real entries of the log before trusting any specific room name in a handoff; a prior cycle's reading can go stale within the same hour.
+
+**Next:** two un-mined rooms stand open: Nursery (22%) and Workshop (30%). Either is genuinely unblocked. Everything bigger remains Phil-gated.
+
+Pushed to main: `zone-also-called.json`, keyword-demand files, both edited zone pages, sitemap, backlog entry, dashboard trio, this entry. No price touched; IndexNow to submit on push.
+
+HANDOFF-FILES: none
+## PM check-in, 2026-11-06 (~15:4x slot): previous work (Guest Bathroom mining) still finished, Nursery handoff still unclaimed, restating it for the operator
+
+NEXT FOR THE OPERATOR: mine Nursery (22% uncovered), because the 15:1x PM check-in's handoff to mine it next still stands, nobody has picked it up yet, and it remains the highest-ranked genuinely unblocked item.
+
+Attached per Step 0 (shallow detached checkout, `git fetch --unshallow`, `checkout main`, ff-only onto `origin/main` at `7e6c2530d`, tree clean throughout except the preflight run's own `ops/cycle-signal.json` snapshot).
+
+Previous work (the 15:1x PM check-in's own independent confirmation of Guest Bathroom mining, below) re-checked rather than re-derived: only automated hourly check-in and LinkedIn-rotation commits have landed since (`da1cd2fc0`, `f9a38f143`, `e56556712`, `7e6c2530d`), none touching content, price or product, so that confirmation still holds. `preflight.py --skip-tests` run fresh under a 110s external timeout: both FAIL sections read "(none)" through every gate reached, stopped only at the documented network-bound `gate_etsy_pdfs_current` (Etsy's fee page still 403s this sandbox), reported unchecked past that point. Re-fetched `origin/main` immediately before writing this entry: unchanged at `7e6c2530d`, matching local HEAD exactly, so no concurrent operator cycle has mined Nursery (or anything else) since the 15:1x handoff; the handoff is unclaimed, not stale. 29 open GitHub issues re-pulled live: unchanged since 2026-11-01/02, all `decision`/`blocked-on-art`, none from Phil since issue #42.
+
+No new defect small enough to close in this slot found beyond what the last several cycles already surfaced. `ops/b9-claims.json` (the room-deck claim ledger, a different and older workstream) shows no bearing on the current keyword-mining handoff.
+
+Regenerated the dashboard. Pushed to main: this log entry and the dashboard trio only; no content, price or product page changed.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~15:1x slot): previous work (Guest Bathroom mining) confirmed finished independently, nothing new unblocked
+
+Attached per Step 0 (fetch, confirmed real unshallow from a shallow detached checkout, checkout main, ff-only onto origin/main at f9a38f143, tree clean throughout).
+
+Previous work (the 14:4x scheduled operator cycle's Guest Bathroom mining, plus the 14:4x PM check-in and the hourly bot commit above it) confirmed finished, not cited: spot-checked the claimed fix directly rather than trusting the log entry, grepping `ops/zone-also-called.json` for "travel toiletries" (present, with the full sourcing note intact) and re-running `check_also_called_digital_collision_fast.py` fresh (clean, no collision), confirming the entry's own "first name failed, renamed, re-ran clean" story holds against the committed file, not just the prose. `preflight.py --skip-tests` run fresh under a 100s external timeout: both FAIL sections read "(none)" through every gate reached; stopped only at the documented network-bound `gate_etsy_pdfs_current` (Etsy's fee page still 403s this sandbox), reported unchecked past that point rather than assumed clean. `cold_read_ledger.py --stale`: 0 stale. Working tree was clean and in sync with origin before this slot's own dashboard regeneration. 29 open GitHub issues re-pulled live: unchanged since 2026-11-01/02, all `decision`/`blocked-on-art`, all filed by the repo's own agent account, none from Phil since issue #42. `STATUS.md`'s Open claims section correctly reads "None currently open"; `ops/b9-claims.json` confirms no active claim on Nursery, so the operator's handoff (mine Nursery, 22% uncovered) is still genuinely open and unclaimed.
+
+No new defect small enough to close in this slot. Nothing in `BACKLOG-2026-09-07.md` sections 2-6 is genuinely unblocked and un-Phil-gated beyond the Nursery mining already handed to the operator.
+
+Regenerated the dashboard. Handing to the operator (:43): mine Nursery (22% uncovered), per the 14:4x PM check-in's handoff, unchanged.
+
+Pushed to main: this log entry and the dashboard trio only; no content, price or product page changed.
+
+HANDOFF-FILES: none
+
+## Scheduled operator cycle, 2026-11-06 (~14:4x UTC): mined Guest Bathroom row by row, one genuine synonym gap found and shipped, the collision gate caught and corrected the first name tried
+
+**Did:** Attached per Step 0 (fetch, confirmed real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `886b9d222`, 1367 commits fast-forwarded, tree clean). Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` sections 1b/2-6, `ROADMAP-2026-2029.md`, and the last several `NIGHTLY-LOG.md` entries, which correctly left Guest Bathroom (22% uncovered) as the top-ranked un-mined room after Laundry Room's close. Read all 14 of its real partial rows directly against `content.json` (CLAUDE.md 5c/5d), not the 8-row sample `room_guide_underperformance.py` prints.
+
+**One genuine fix:** "organizing toiletries in bathroom" (unmatched word `toiletries`) was scoring to the room's generic guide article. The Guest Vanity Storage zone's own `done_looks_like` text names "travel toiletries in a small dish" directly, not a coincidental match; Guest Vanity Counter was checked first and has no mention of toiletries at all. Added `travel toiletries` to `zone-also-called.json`. First attempt named it `toiletries storage`, which `check_also_called_digital_collision_fast.py` correctly FAILED: it collides with four digital-context queries sharing the word `storage` (computer/game storage). Renamed to `travel toiletries`, re-ran: clean.
+
+**Declined, with reasons:** `declutter`/`clutter`/`necessities`/`practical` are generic filler words, no zone-specific content; `supplies`/`small`/`box` each appear in three-plus zones, too overloaded to name honestly; `makeup` is a real content gap, grep-confirmed absent everywhere, not a vocabulary gap; `teen`/`jewelry`/`lots`/`wooden` are furniture-shopping queries (buying a vanity) with no matching content; `class` is an off-topic autocomplete collision.
+
+**Verified:** `keyword_demand.py --rescore` moves the query to covered (1133→1132 partial, 1583→1584 covered); global corpus correctly unchanged. `room_guide_underperformance.py --room "Guest Bathroom"` 22%→20%. `test_gate_zone_also_called_is_heading.py` 6/6. `check_urls.py` 235/235, `audit_pages.py` 0 findings, `fix_dashes.py --check` 0/0, `check_sellable.py` 124/126 unchanged, `link_graph_report.py` 0 orphans, `cold_read_ledger.py --stale` 0. `audit_visual.py` on the one changed page, desktop and mobile, 0 findings each. `preflight.py --skip-tests`: 0 FAIL through every gate, timed out only at the documented `gate_etsy_pdfs_current` (Etsy fee page 403s this sandbox), reported unchecked past that point. 29 GitHub issues re-pulled live: unchanged since 2026-11-01/02, all `decision`/`blocked-on-art`, none from Phil since #42. Inbox: no mail credential, unchecked.
+
+**Went well:** the collision gate caught a real naming mistake before it shipped, exactly as designed.
+
+**Did not go well:** picked a name (`toiletries storage`) without checking it against the digital-context collision list first; should check new names against that list before building, not after.
+
+**Changing next cycle:** when naming a new also-called entry, grep the digital-context queries for the candidate word before writing it to `zone-also-called.json`, not after the gate fails.
+
+**Next:** Guest Bathroom is now exhausted at 20% (remaining partial rows are declared noise). Next un-mined rooms by rank: Kids Bedroom (22%), Nursery (22%), Primary Bathroom (17%).
+
+**Merge note:** a concurrent PM check-in (below) landed on `origin/main` while this entry was being written and handed the operator Nursery rather than Kids Bedroom, on different grounds (most on-topic/routed rows among the three 22% rooms, more likely to surface genuine gaps); both are reasonable next picks among the same tied set, not a contradiction, and this entry's own "Next" line is left as written rather than edited after the fact.
+
+## PM check-in, 2026-11-06 (~14:4x slot): previous work (Laundry Room mining) confirmed finished independently, handing the operator the next un-mined room
+
+NEXT FOR THE OPERATOR: mine Nursery (22% uncovered, 1 gap + 20 partial of 97 on-topic rows, 164 routed rows total), because it is tied with Guest Bathroom and Kids Bedroom at 22% uncovered but carries the most on-topic and routed rows of the three, so it moves the most queries if genuine gaps exist; Guest Bathroom and Kids Bedroom remain the next candidates after it, Primary Bathroom (17%) last.
+
+Attached per Step 0 (fetch, confirmed the checkout started shallow and detached, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `886b9d222`, 1 commit fast-forwarded from local, tree clean throughout).
+
+Previous work (the 14:1x scheduled operator cycle immediately below, which mined Laundry Room row by row and declined every candidate) confirmed finished, not cited: re-ran `room_guide_underperformance.py` fresh myself rather than trust its own summary line, and it still reports Laundry Room absent from the open-candidates list, consistent with "genuinely exhausted at 23%." Grepped this file's own history for "Guest Bathroom"/"Kids Bedroom" dedicated mining entries (as the cycle below's own practice requires after its Living-Room near-duplicate lesson) and confirmed neither room, nor Nursery, nor Primary Bathroom has ever had a dedicated row-by-row read; Stair Landing, which also shows in the underperformance list at 22%, was separately confirmed already exhausted at entry-1653 in this same file, so it is not a live candidate.
+
+`preflight.py --skip-tests` run fresh to completion (not killed early, not cited from a prior cycle): every one of the ~160 non-test gates passed, 0 FAIL, 34 warnings, all previously-diagnosed standing gaps (no Stripe/SSH/mail/DNS credential here, the Etsy fee-schedule 403, the headless-Chromium waits, `STATUS.md`'s 13-material-commit currency lag already tracked by its own gate as a warning not a failure). `gate_tests` itself stays UNCHECKED this slot, per CLAUDE.md 0.4, not assumed passing; `--skip-tests` is the documented practice for this sandbox. Working tree was clean before this entry (only `ops/cycle-signal.json`'s own run snapshot touched by the preflight run itself). 29 open GitHub issues re-pulled live via the REST API (`gh issue list`'s GraphQL path is 403 in this session): unchanged since 2026-11-01, all `decision`/`blocked-on-art`, none from Phil since issue #42's 2026-11-02 comment; 0 open PRs. `origin/main` re-fetched immediately before writing this entry: unchanged at `886b9d222`, no concurrent push landed during this check.
+
+No new defect small enough to close in this slot found beyond what the preflight run already surfaces as standing warnings.
+
+Regenerating the dashboard and pushing to main. No content, price or product touched.
+
+HANDOFF-FILES: none
+
+## Scheduled operator cycle, 2026-11-06 (~14:1x UTC): mined the Laundry Room handoff row by row, found and declined every candidate, caught my own near-duplicate of a declined fix before shipping it
+
+**Did:** Attached clean (unshallow took ~6 min). This file's own handoff was self-correcting: two entries named Living Room/Guest Bedroom/Entryway as "next un-mined," then a later check-in caught that all three were already mined on 2026-11-05, and the real un-mined room by rank is Laundry Room (23% uncovered). `preflight.py --skip-tests`: 0 FAIL, 34 standing warnings. GitHub: 29 issues unchanged since 2026-11-01/02, none from Phil. No mail credential.
+
+**A near-miss caught before shipping, not after.** Picked up Living Room first (the stale handoff's own suggestion) and found a cords query scoring to the deck page via a coincidental heading overlap rather than the Media Center zone, whose content is exactly this query's subject. Added an also-called synonym, rebuilt and rescored before reading further back in this file: the target query didn't move, but a different query shifted from partial-at-Family-Room to covered-at-Living-Room. Only then found, reading deeper, that a 2026-11-05 cycle had already checked this exact fix and explicitly declined it as a false, collision-prone claim against Family Room's own already-covered content. My rescore found no regression there, more verification than that decline recorded, but the one query it moved was a genuine tie between two equally-valid zones, not a clear win, and reopening a reasoned recent decision on a tie isn't good enough evidence. Reverted cleanly: confirmed both corpora's counts matched the exact prior numbers, the rendered page byte-identical to HEAD, and reverted the resulting metadata-only diffs rather than ship a timestamp bump for an abandoned change.
+
+**Then mined Laundry Room for real:** read all 15 US and 37 global partial rows individually against real content. Found a genuine case for one word, "stacked" (the Washer and Dryer zone's own text literally reads "a stacked or all-in-one washer-dryer"), but declined to ship it: the query's other unmatched word, "design," is a different search intent (renovation, not organizing) shared by fifteen other rows already correctly left alone, so adding "stacked" alone would not flip this query's status, not worth a corpus edit for zero movement. Checked and declined the rest individually: one word is genuinely present but spread across too many zones to name honestly as one zone's identity (the same overload reasoning used elsewhere); two are passive-verb/adjective forms with no honest noun-phrase name; one is a plumbing/design question, not organizing; six "drying rack for X" rows are grep-confirmed absent from the zone's content entirely, the same autocomplete-seed-drift noise already named elsewhere; two are genuine content gaps, not vocabulary gaps; a few are off-topic autocomplete collisions confirmed by reading the actual matched text.
+
+**Verified:** digital-collision gate clean (run during the Living Room attempt, before reverting). `test_gate_zone_also_called_is_heading.py` 6/6. `check_urls.py` 235/235, `audit_pages.py` 0 findings, `fix_dashes.py`/`fix_dialect.py --check` 0/0, `check_sellable.py` 124/126, `link_graph_report.py` 0 orphans. `audit_visual.py` on the one page touched during the reverted attempt: 0 findings, moot once reverted. Final `git status` clean, matching origin/main exactly.
+
+**Went well:** catching the Living Room duplication by reading this log's own recent history before shipping, not after; the revert was numerically verified, not just visually plausible.
+
+**Did not go well:** picked up the stale handoff before reading far enough back to see it had already been corrected twice; cost one full edit-rebuild-rescore-revert cycle.
+
+**Changing next cycle:** when a handoff names specific rooms, grep this file for each room name before starting, not just the last few entries.
+
+**No new defect found small enough to close.** Laundry Room is now genuinely exhausted at 23% uncovered, same as Mudroom, Family Room and Workshop; remaining un-mined rooms by rank: Guest Bathroom (22%), Kids Bedroom (22%), Nursery (22%), Primary Bathroom (17%).
+
+Pushed to main: this entry and the dashboard trio only; no content, price or product page changed.
+## PM check-in, 2026-11-06 (~14:1x slot): previous work confirmed finished independently, nothing new unblocked
+
+Attached per Step 0 (fetch, confirmed real unshallow from a shallow detached checkout, checkout main, ff-only onto origin/main at 892a9ef4e, tree clean throughout except the preflight run's own ops/cycle-signal.json snapshot).
+
+Previous work (the 13:4x PM check-in's correction below, plus two routine bot commits, Bluesky rotation and the hourly dashboard record) confirmed finished, not cited: the 13:4x entry's own handoff (mine Laundry Room next, not the three rooms the two concurrent 13:0x/13:1x cycles had restated) is correctly logged and nothing since has mined it, so it stands unchanged for the operator, as that entry itself intended, not something this slot owes. preflight.py run fresh, no --skip-tests, under a 100 second external timeout: 0 FAIL and 0 ERROR through every one of the ~90 non-test gates reached, stopped by my own timeout mid gate_tests at test 9/473 (test_audit_catalog.py), the documented sandbox shape, reported unchecked past that point rather than assumed clean. 29 open GitHub issues re-pulled live via the REST API (gh issue list's GraphQL path is blocked in this session): unchanged, all decision/blocked-on-art, none from Phil since issue #42. BACKLOG-2026-09-07.md sections 1b and 6 read directly: unchanged, every row already Done/Archived or an explicit owner gate.
+
+No new defect small enough to close this slot. Nothing in sections 2-6 is genuinely unblocked and un-Phil-gated beyond the Laundry Room mining already handed to the operator.
+
+Regenerated the dashboard. Handing to the operator (:43): mine Laundry Room (23% uncovered), per the 13:4x entry's own corrected handoff, unchanged. **Resolved by the entry immediately above, which landed in the same window and did the actual row-by-row mine.**
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~13:4x slot): corrected a stale "next un-mined room" claim two concurrent cycles both shipped unchecked, nothing new unblocked
+
+NEXT FOR THE OPERATOR: mine Laundry Room (23% uncovered, 15 partial of 66 on-topic rows), because it is the highest-ranked room this log has no dedicated row-by-row read for. The 13:0x operator cycle and the 13:1x PM check-in below both name Living Room/Guest Bedroom/Entryway as "next un-mined," but both are restating the same old ranking: this log's own entries (the 14:0x/17:0x/15:0x slots on 2026-11-05) already mined all three individually, at these exact same uncovered percentages. Ignore that line in both entries below; it did not survive a check against this file's own history.
+
+Attached per Step 0 (fetch, confirmed real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `1f4c780b3`, 1340 commits fast-forwarded, tree clean throughout).
+
+Previous work (the 13:0x master-closet fix and the Hourly/Deploy-verdict bot commits above it) confirmed finished, not cited: `preflight.py --skip-tests` run fresh in the background without an external timeout wrapper (the exact trap the 12:2x entry warned about): 0 FAIL through every gate reached, including the zone-also-called and keyword-rescore gates the master-closet fix touches; genuinely stalled only at the documented network-bound `gate_etsy_pdfs_current` (Etsy's fee schedule still 403s this sandbox), reported unchecked past that point rather than assumed clean. `cold_read_ledger.py --stale` run to completion (not killed early this time): 0 stale. `check_urls.py`: 235/235. Working tree was already clean and pushed; no files to re-ship from this slot's own read. GitHub: 29 open issues re-pulled live, unchanged since 2026-11-01/02, all `decision`/`blocked-on-art`, none from Phil.
+
+The one real finding: the 13:0x entry's own "Next" line named Living Room (28%), Guest Bedroom (27%) and Entryway (24%) as the next un-mined rooms. That is the exact number each room was already left at after its own dedicated mine on 2026-11-05 (Living Room 14:0x, Entryway 15:0x, Guest Bedroom 17:0x slots, all logged above in this same file), so the 13:0x cycle restated an old ranking without checking this log's own record, the source-corrected-sibling-never-told shape section 7 of the backlog already names as the dominant defect class here. Re-derived the real candidate set instead: scanning this log for every room with a dedicated "mined" entry leaves five rooms never individually read row by row: Guest Bathroom (22%), Kids Bedroom (22%), Laundry Room (23%), Nursery (22%), Primary Bathroom (17%). Laundry Room ranks highest of those five by uncovered share, so it is the correct handoff, not the three named above.
+
+Did not mine Laundry Room myself: an hours-scale row-by-row read belongs to the operator's full :43 sitting, same precedent every PM check-in before this one has used.
+
+Pushed to main: this log entry only, no other files changed.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~13:1x slot): previous work confirmed finished; this cycle caused and fixed its own gate_tests hang on two interactive-form browser tests, nothing new unblocked
+
+Attached clean (1336 commits). Previous work (12:2x PM check-in) confirmed finished, re-derived: 29 GitHub issues unchanged since 2026-11-02, none from Phil. `room_guide_underperformance.py` re-run live matches that handoff exactly, nothing drifted. `cold_read_ledger.py --stale`: 0.
+
+The real finding is self-inflicted, same shape the prior entry named. Ran `preflight.py` without `--skip-tests` to get a genuine `gate_tests` read. It worked cleanly through 49 of 473 files, then genuinely hung on `test_contact_form_interactive.py`'s own headless-Chromium render (confirmed stalled, not slow, by watching CPU across two checks). Killed clean (child first, then test process, then parent, confirmed gone), swept the orphaned descendants a second test had meanwhile spawned, and the two gitignored probe files both tests left behind.
+
+Re-ran `preflight.py --skip-tests` (the documented practice here). First attempt found 1 self-inflicted FAIL: `gate_no_stray_probe_files` caught a leftover from the killed run's earlier test, deleted it as designed. Clean third run: every gate passed, 34 standing warnings. `gate_tests` stays unchecked this cycle, not passed, per CLAUDE.md 0.4: two specific interactive-form tests are now confirmed to hang in this sandbox outside their own gate's bounding, new detail beyond the general hang this log already carries.
+
+**Changing next cycle:** do not run the full test sweep via plain `preflight.py` in this sandbox; `--skip-tests` is the only way this environment reaches a real answer on the other ~160 gates. If `gate_tests` needs verifying, run it in isolation with a per-test timeout.
+
+No new defect found beyond the one this cycle caused and fixed in itself. Checked backlog "gap" rows across six rooms against content; none matched real content, all consistent with already-declined noise shapes. Not pursued.
+
+Nothing in the backlog is newly unblocked. **Correction made during this cycle's own merge:** this entry was drafted handing two rooms to the operator as next by rank, written before two concurrent cycles had already closed both out. Corrected the handoff: Living Room (28%), Guest Bedroom (27%), Entryway (24%) are the next un-mined rooms by rank; hours-scale work, not this slot's.
+
+**A second self-inflicted false FAIL, same root cause, caught before it could mislead anyone.** After merging, a preflight run reported a conflict-markers FAIL on two generated files. Checked before treating it as real: both files had 0 conflict markers in the already-pushed tree; the scan had caught them mid-resolution, a few seconds into a concurrent merge, not a standing problem. Reran with no concurrent git operation: every gate passed, 34 warnings, confirming the hypothesis rather than just asserting it.
+
+**Changing next cycle, second item:** never run a long preflight scan at the same time as a merge/conflict resolution on the same working tree; finish resolving first.
+
+Pushed to main across three commits (two merges plus a final clean dashboard regen).
+
+**Merge note:** three concurrent cycles landed while this was being written and resolved; all merged rather than forced, this entry's own handoff corrected above rather than left pointing at closed rooms.
+
+HANDOFF-FILES: none
+## PM check-in, 2026-11-06 (~12:4x slot): previous work confirmed finished independently; this cycle then reproduced the same self-inflicted orphan class the 12:2x cycle just fixed, twice, and fixed one real cause of it rather than just sweeping the symptom again
+
+NEXT FOR THE OPERATOR: continue room-guide mining down the rank order (Living Room 28%, Guest Bedroom 27%, Entryway 24%); a concurrent operator cycle below already closed Home Office and Primary Bedroom while this was being written.
+
+Attached clean (1336 commits). Previous work confirmed finished, re-derived: 29 GitHub issues unchanged since 2026-11-01, none from Phil since #42. `cold_read_ledger.py --stale`: 0. `room_guide_underperformance.py` re-run matches the prior handoff exactly.
+
+**The real finding is self-inflicted, twice, both reported rather than swept.** Ran `preflight.py --skip-tests` under an external `timeout 280` picked without checking it against the gate's own internal budget (300s). Mine killed the whole process 20 seconds before the gate's own safe-resolution path could run; the already-spawned Etsy render kept going as an orphan, itself spawning an orphaned Chrome tree. Caught both before any committed PDF was touched, swept both process trees. Reran with no external timeout: clean, 33 warnings. That run then orphaned a second, different Chrome tree unprompted, which led to the real fix below.
+
+**The real fix.** `gate_prerender_shop_current`'s own outer timeout (120s) was shorter than the inner timeout of the script it wraps (180s), backwards, so any real stall in that window guaranteed the outer wrapper would kill the inner script externally before its own cleanup could run, orphaning it with certainty. Raised the outer bound to 210s, the same margin the Etsy gate already keeps over its own inner budget. Does not fully close the gap: Chrome's crashpad can still escape a plain kill past 180 seconds, an accepted residual risk unchanged by this fix.
+
+**Verified:** the gate's own test (5/5) passes, no orphan left behind, though it doesn't exercise the exact timing window this fix targets; said plainly rather than claimed fully proven. `fix_dashes.py --check` 0/0.
+
+**Went well:** neither orphan reached a committed file; checked mtimes against git before killing anything both times.
+
+**Did not go well:** picking an external timeout shorter than a gate's own documented internal budget is now a mistake this log has recorded twice in one day, by two different cycles including this one.
+
+**Changing next cycle:** when wrapping a gate script in an external timeout, use a value comfortably above every internal timeout constant it declares; when in doubt, run with no external timeout and rely on the gate's own budgets.
+
+**Next:** room-guide mining continues down the rank order, hours-scale work for later. Everything else remains the same 29 Phil-gated issues.
+
+Pushed to main: `preflight.py` (the timeout fix), dashboard files, this entry.
+
+**Merge note:** a concurrent cycle landed while this was being written and independently hit, then worked around, the same first-preflight timeout mistake; merged rather than forced, handoff corrected above.
+## Scheduled operator cycle, 2026-11-06 (~13:0x slot): closed Primary Bedroom's "master closet" zone gap; Home Office checked and declined entirely
+
+**Did:** Attached per Step 0 (fetch, confirmed real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `6e0a73dbc`, 1336 commits fast-forwarded, tree clean). Read CLAUDE.md, STATUS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md and the head of this file. Ran `preflight.py --skip-tests`: every gate passed, 34 warnings (all standing), 0 FAIL. 29 GitHub issues re-pulled live, unchanged since 2026-11-01, all `decision`, none from Phil; `inbox_agent.py --apply` reports no mail credential, unchecked, not assumed empty.
+
+Mined Primary Bedroom and Home Office (handed off by an earlier cycle as the next un-mined rooms at 29% each). Read both rooms' full partial tiers directly (CLAUDE.md 5c/5d), not the 8-row sample `room_guide_underperformance.py` prints. Home Office's 23 rows were all noise (platform/audience mentions: ikea, pinterest, reddit, teachers; generic modifiers: deep, large, interior, minimal); declined entirely, no edit made there. Primary Bedroom had one genuine row: "master bedroom closet organization ideas" (partial, 0.667, `unmatched_words: ['master']`), already routed correctly to the Primary Closet zone page. Checked the zone's own content before naming it a gap: "master" appears nowhere in `content.json`, so this is a household-name synonym, not the already-published-but-missing-heading shape recent cycles found for bakeware/pegboard; "master bedroom" is already the room's own also-called name, and room-also-called.json's own rule (bare "master closet" returned zero at room scope) is a different question from this zone-scoped, demand-backed query. Checked both harvests for a collision: the only other master+closet query is a different room with a different unmatched word. Added "master closet" to the existing `Primary Bedroom|Primary Closet` entry in `zone-also-called.json`. Rebuilt via `build_zone_pages.py`.
+
+**Went well:** a stop-hook timeout mistake (external `timeout 280` on the first preflight run, which killed it 20 seconds before `gate_etsy_pdfs_current`'s own documented 300s internal timeout could resolve safely, producing exactly the false-FAIL pattern the 12:2x PM check-in's entry above warned about) was caught and not shipped: re-ran without an external wrapper and let that gate, and later `gate_prerender_shop_current` (120s), each resolve on their own, correctly, this time.
+
+**Did not go well:** losing real time to my own timeout mistake on the very first preflight invocation, right after reading the entry that named this exact trap.
+
+**Verified:** `test_gate_zone_also_called_is_heading.py` (6/6, real committed site); `keyword_demand.py --rescore` moves the target query to `covered` (`unmatched_words: []`), US partial 1134 to 1133, covered 1582 to 1583; `keyword_demand_global.py --rescore` correctly unchanged. `room_guide_underperformance.py --room "Primary Bedroom"` 29% to 28% uncovered. `check_urls.py` (235/235), `audit_pages.py` (240/0 findings), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 documents), `check_sellable.py` (124/126, unchanged), `link_graph_report.py` (0 orphans), `build_id.py --check` (current), `audit_visual.py` scoped to the changed page (desktop and mobile, 0 findings each) all clean. `cold_read_ledger.py --stale`: 0. No price or product touched; one existing zone page's heading changed, no new page. `IndexNow --submit` ran, 0 never-submitted, could not confirm the key file is served (no live egress here), standing limitation.
+
+**Changing next cycle:** none beyond the standing discipline the 12:2x entry already named (check the child's CPU/elapsed against the gate's own documented timeout before touching anything, never the parent alone).
+
+**Next:** Home Office is now fully exhausted (checked, declined). Next un-mined rooms by rank: Living Room (28%), Guest Bedroom (27%), Entryway (24%). Everything bigger remains Phil-gated (29 issues, none from Phil since 2026-11-01).
+
+Regenerated the dashboard. Pushed to main: `ops/zone-also-called.json`, `site/zones/primary-bedroom-the-primary-closet.html`, `ops/keyword-demand.json`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND.md`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `BACKLOG-2026-09-07.md` entry A66, dashboard trio, this entry.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~12:2x slot): previous work confirmed finished independently, a false FAIL this cycle caused itself (then fixed) is the real finding, nothing new unblocked
+
+Attached per Step 0 (fetch, confirmed already unshallowed, checkout main, ff-only onto origin/main at cd0cd1b05, tree clean).
+
+Previous work (the 12:0x PM check-in's pegboard fix, entry 143) confirmed finished, re-derived rather than cited: 29 open GitHub issues re-pulled live, unchanged since 2026-11-02T13:51:51Z, all decision/blocked-on-art, none from Phil; 0 open PRs. room_guide_underperformance.py re-run live: Kitchen 39%, Garage 39%, Hall Closet 36%, matching recent figures, nothing drifted. cold_read_ledger.py --stale: 0. Dashboard already fresh (generated 12:06 by entry 143).
+
+The real finding is self-inflicted, not external, and it is reported here rather than quietly fixed and forgotten (CLAUDE.md 0.4/54). Ran preflight.py --skip-tests fresh. It stalled on gate_etsy_pdfs_current with the parent process idle; checked only the PARENT's CPU (flat), wrongly concluded "genuinely stalled" the way past cycles describe a DIFFERENT, network-bound stall, and killed the child build_etsy_assets.py process. That was wrong: its own child (a local Chromium print-to-pdf, no network involved) was still actively rendering, only ~3 minutes into the gate's own 300-second internal timeout budget that is specifically designed (per the gate's own docstring) to resolve a slow render into a safe UNCHECKED warning, never a FAIL. Killing it externally with SIGKILL bypassed that design and produced a real "FAIL etsy-pdfs-current ... exit -9" in the log, a defect I caused, not one that existed before I touched it.
+
+**Fixed by re-running clean, not by hiding the first result.** Swept the resulting orphaned Chrome tree (same shape the gate's own docstring already documents: its killpg cannot reach Chrome's own session). Re-ran preflight.py --skip-tests a second time, this time letting gate_etsy_pdfs_current's own timeout run its course without any manual intervention. Result: every gate passed, 36 warnings, 0 FAIL, and the etsy-pdfs-current line itself correctly read "warn: could not check ... did not finish within 300 seconds (a real render measures 2.6s uncontended, locally)", exactly the safe outcome the gate was built to produce. Swept the second run's own orphaned Chrome tree (prerender_shop's dump-dom chrome, a different gate, same shape) the same way. Working tree clean except ops/cycle-signal.json (the run's own snapshot) throughout; no stray artifact ever reached git status.
+
+**Changing next cycle:** before killing anything a gate is waiting on, check the CHILD's CPU and compare elapsed time against that gate's own documented timeout constant, not just the parent's. A parent sitting idle on subprocess.run() is normal, not evidence of a stall; several of this repository's own gates (gate_etsy_pdfs_current, gate_prerender_shop_current) are deliberately bounded already and will resolve themselves into a warn, never a false FAIL, if left alone.
+
+A concurrent cycle pushed one commit (b58e406a1, a deploy-verdict refresh) while this one worked; merged ff-only, no conflict.
+
+No new defect found small enough to close beyond the one this cycle caused and fixed in itself. Nothing in BACKLOG-2026-09-07.md sections 2-6 is newly unblocked; every owner gate in section 6 and OWNER-ACTIONS.md remains Phil's own decision or money. Handing to the operator (:43): continue the room-guide mining handoff entry 143 left (Home Office 29%, Primary Bedroom 29% are next by rank); that is hours-scale work, not this slot's.
+
+Regenerated the dashboard. Pushed to main: ops/cycle-signal.json, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~12:0x slot): a real "pegboard" vocabulary gap found in Workshop's partial tier, fixed via the existing A60-style mechanism; Mudroom and Family Room checked and confirmed exhausted noise
+
+**Did:** Attached clean (1328 commits). Today's own earlier entries handed off Mudroom (31%), Family Room (31%) and Workshop (30%) as the next un-mined rooms. `preflight.py --skip-tests` backgrounded: 0 FAIL through every gate reached, stalled at the documented Etsy stall. 29 GitHub issues unchanged since 2026-11-02, none from Phil. No mail credential.
+
+**The stall, handled correctly this time.** Found the exact orphaned child a prior entry had flagged as a risk; killed the child first, then the parent, confirmed clean before continuing, rather than killing the parent alone and hoping.
+
+**Mudroom and Family Room checked, not assumed.** Read both rooms' full partial tiers directly. Mudroom's 8 rows are all generic unfixable modifiers (DIY/build intent, retail mentions); its one real synonym gap was already added 2026-11-05. Family Room's partials are already addressed by existing fixes or already-declined noise. Neither room had a genuine new fix.
+
+**The real finding.** Workshop's partial tier: "how to organize a workshop pegboard" was scoring to the generic room article via word overlap on "organize"/"workshop," not to the Main Workbench zone, which already names "the tool wall or pegboard behind the bench" as its own real content, never in a heading, so the article's generic title won the tie. Same shape as several prior fixes. Checked both harvests for a digital-context collision first: no gaming sense for this word exists, two other "pegboard" queries are already covered and genuinely physical. Added "pegboard zone" to the Main Workbench's existing also-called entry. Rebuilt.
+
+**Verified:** grep-confirmed the new heading renders. Rescored both corpora: the query moved to covered at the correct page in each; US partial 1135->1134 covered 1581->1582; global partial 852->851 covered 1224->1225. Workshop: 30%->28% uncovered. `test_gate_zone_also_called_is_heading.py` (6/6). `check_urls.py` (235/235), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `check_sellable.py` (124/126), `affiliate.py --check` (165 docs), `link_graph_report.py` (0 orphans), `audit_visual.py` on the changed page (0 findings) all clean. Also re-ledgered one unrelated stale cold-read entry, confirmed it matched an already-described fix, no new defect; `--stale` now 0.
+
+**Went well:** checking the two handed-off rooms honestly before reaching for Workshop, rather than assuming the rank order meant Workshop was next regardless; both really were exhausted, and Workshop really did have one genuine gap.
+
+**Did not go well:** nothing new; the orphaned-child handling worked exactly as intended.
+
+**Changing next cycle:** none; continuing the standing discipline.
+
+**Next:** Home Office (29%) and Primary Bedroom (29%) are the next rooms by rank. Everything bigger remains Phil-gated.
+
+Pushed to main: `zone-also-called.json`, the one edited zone page, keyword-demand files, sitemap, cold-read ledger, backlog entry, dashboard trio, this entry. No price touched; one existing page's heading changed. IndexNow: already submitted previously, confirmation unavailable from this sandbox.
+
+**Merge note:** a concurrent check-in landed mid-cycle and independently re-ledgered the same entry; merged into one rather than left duplicated.
+## PM check-in, 2026-11-06 (~11:4x slot): previous work confirmed finished independently, one real ledger gap closed, room-guide mining handoff restated unchanged
+
+NEXT FOR THE OPERATOR: mine Mudroom (31% uncovered), Family Room (31%) or Workshop (30%), because they are the next un-mined rooms in rank order per the 11:0x cycle's own handoff and traffic/distribution outranks every other currently-unblocked category under the ordering rule.
+
+Attached clean (fetch, real unshallow from a shallow detached checkout, checkout main, ff-only onto origin/main at aed5936f4, 1328 commits fast-forwarded, tree clean throughout).
+
+Previous work (the ~11:1x operator's 0-byte Etsy image fix and the ~11:1x PM check-in before it) confirmed finished, re-derived rather than cited: read the real diff of 5f03fbd36 directly, confirmed it is exactly the PIL-verify strengthening to check_etsy.py's listing-images check the commit message describes, fail-then-pass already proved by that cycle. preflight.py --skip-tests run fresh end to end: 0 FAIL through every gate reached, stalled at the documented network-bound gate_etsy_pdfs_current (exit 124), same standing sandbox limitation every recent cycle reports, reported unchecked past that point, not assumed clean. All 24 warnings matched known, already-documented standing gaps (no Stripe credential, no network reach, living-docs size tripwires); none new. fix_dashes.py --check 0/0. Working tree clean before this cycle's own edit, main in sync with origin (0 ahead, 0 behind).
+
+Found and fixed one real gap instead of citing it: cold_read_ledger.py --stale flagged build/listings/check_etsy.py (ledgered 2026-10-18, touched again 2026-11-06 by the Etsy-image fix). Not a new defect, just the ledger not yet told about its own file's latest touch; re-ledgered clean with today's date after independently reading the diff, not assuming it was fine. --stale now reads 0.
+
+Room-guide mining ranking re-run directly (room_guide_underperformance.py): Kitchen 39%, Garage 39%, Hall Closet 36%, Pantry 35%, unchanged from every recent entry, confirming the figures are not drifting between cycles and nobody has yet picked up Mudroom/Family Room/Workshop.
+
+GitHub: 29 open issues re-pulled live by most-recently-updated; unchanged, all decision-labelled, newest touch still issue #42 at 2026-11-02, nothing from Phil since. BACKLOG-2026-09-07.md sections 2-6 all Done, Archived, Hold or Phil-gated; nothing newly unblocked beyond the standing room-guide mining handoff.
+
+No other new defect small enough to close in this slot.
+
+Pushed to main: ops/cold-read-ledger.json, ops/cycle-signal.json, dashboard trio, this entry.
+
+HANDOFF-FILES: none
+
+## Scheduled operator cycle, 2026-11-06 (~11:1x UTC): a 0-byte Etsy listing image, committed and silently re-served as broken on every run since, found and fixed, plus the gate that could not have caught it
+
+**Did:** Continuation of the same cycle as the entry immediately below (room-also-called fix). After pushing that fix, the stop hook reported an uncommitted change: `build/listings/etsy/L4-moving-in/listing-images/6S-Moving-In-Kit-1-first-page.png` showing as a binary diff from nothing to 364613 bytes. Investigated rather than discarded it (CLAUDE.md step 0.4, a file existing is not evidence of what produced it): `git show HEAD:<path> | wc -c` read 0, and `git ls-tree -l HEAD` confirmed the committed blob is the literal git empty-blob hash, while its two sibling images (`...-2-four-sheets.png`, `...-3-last-page.png`) are committed at their real sizes (454418 and 113848 bytes) and already matched the working tree exactly. One of three Etsy listing preview images for a real, soon-to-be-published product (`OWNER-ACTIONS.md` item 4, issue #44) has been a 0-byte blank file since commit `847beec22`, ironically titled "Fix gate_etsy_pdfs_current leaving preview PNGs dirty."
+
+**Why nobody caught it.** `build/listings/check_etsy.py`'s listing-images check only ever counted directory entries (`len(os.listdir(images))`), so a 0-byte file counted exactly the same as a real photo, every run, forever. Worse: `gate_etsy_pdfs_current`'s own `_restore_etsy_all()` (added 2026-09-15 for exactly this file class) restores every touched file under `build/listings/etsy/` back to its committed state after each preflight run, which silently reverted any accidental real render of this file back to the broken 0-byte version, run after run, hiding the defect behind its own cleanup.
+
+**How it actually got left on disk this time:** my own preflight2 run earlier this cycle stalled at `gate_etsy_pdfs_current` (documented network-bound stall) and I killed the parent process without noticing it had already forked a `build_etsy_assets.py` child subprocess mid-render; that orphaned child kept running for several more minutes and left this real render sitting uncommitted in the working tree once I later ran `build_etsy_assets.py` directly to regenerate it on purpose, briefly overlapping with the still-running orphan (caught via `ps aux`, both killed, confirmed no stray chromium/build_etsy_assets.py processes remained, then re-ran once, cleanly).
+
+**Fixed both halves.** Verified the regenerated file (`PIL.Image.verify()`: valid PNG, 4167x3125, matching both siblings' dimensions) and committed its real content. Strengthened `check_etsy.py`'s listing-images check to open and verify every file, not just count them, failing by name on an empty or undecodable image. Fail-then-pass proved directly against the real file: zeroed it out, watched the new check fail with `"L4-moving-in has 1 listing image(s) that are broken: ...-1-first-page.png is empty"`, restored the real content, confirmed clean again.
+
+**Verified:** `fix_dashes.py --check` 0/0. `py_compile` on `check_etsy.py`. `test_gate_etsy_listing_valid.py` (4/4), `test_check_etsy_free_duplicate.py` (6/6), `test_check_etsy_stale_economics.py` (5/5) all pass unaffected. Swept the whole repository for the same defect class (`git ls-tree -r -l HEAD`, filtered to zero-byte blobs excluding `.gitkeep`/`__init__.py`): this was the only one. Did not add a new isolated unit test for the image-validity check itself (the real-file fail-then-pass above is the strongest evidence available, and the check is already wired into `main()`, already called every preflight run via `gate_etsy_listing_valid`); a synthetic fixture test is reasonable future work if this class recurs.
+
+**Went well:** treating a stop-hook's "uncommitted changes" notice as a lead to investigate, not a chore to clear with a blind commit; the file's own history and size told the real story in under two minutes.
+
+**Did not go well:** running `build_etsy_assets.py` a second time without first confirming the first (orphaned) invocation had actually stopped, which could have corrupted output under concurrent writes to the same files. No corruption resulted (checked: all three images and the PDFs matched a clean single re-render), but the sequencing was sloppy; killing a parent process that may have spawned long-running children needs a `ps aux` check for that process's actual children, not just its own PID, before assuming it is gone.
+
+**Changing next cycle:** when a backgrounded `preflight.py` run is killed mid-gate, check for orphaned subprocess children of that gate (`gate_etsy_pdfs_current` forks `build_etsy_assets.py`) before starting any new invocation of the same script.
+
+**Next:** same as below. No price or product touched; one previously-broken listing image's real content committed, one check strengthened. `IndexNow` not applicable (not a site page).
+
+## PM check-in, 2026-11-06 (~11:1x slot): previous work confirmed finished independently, one stale ledger entry closed, nothing new unblocked
+
+Attached clean (fetch, real unshallow from a shallow detached checkout, checkout main, ff-only onto origin/main at c61c72be5, 1 commit fast-forwarded, tree clean throughout).
+
+Previous work (the 11:0x operator's Kids Bedroom misroute and apostrophe-escaping fix, and the 10:4x PM check-in before it) confirmed finished, re-derived rather than cited: read the actual diff of 498a995ce directly rather than trusting its commit message, confirmed it is exactly the html.unescape() fix to check_also_called_is_heading and its zone-level sibling. preflight.py run fresh (--skip-tests): 0 FAIL through every gate reached, timed out (exit 124) at the documented network-bound gate_etsy_pdfs_current stall, same standing sandbox limitation every recent cycle reports, reported unchecked past that point. fix_dashes.py --check 0/0. check_urls.py 235/235 sitemap URLs resolve. STATUS.md's Open claims section already reads "None currently open," correctly. 29 open GitHub issues re-pulled live by most-recently-updated: unchanged, all decision/blocked-on-art, none from Phil since 2026-11-02; issue #42 already tracks the exhausted-cadence pattern itself.
+
+Found and fixed one real gap instead of citing it: cold_read_ledger.py --stale flagged ops/preflight.py (ledgered 2026-11-03, but touched again 2026-11-06 by the apostrophe fix). Not a new defect, just the ledger not yet told about its own file's latest touch; re-ledgered clean with today's date after independently reading the diff, not assuming it was fine.
+
+Room-guide mining ranking re-run directly (room_guide_underperformance.py): Kitchen 39%, Garage 39%, Hall Closet 36%, Pantry 35%, unchanged from the 10:4x entry's figures, confirming nothing drifted between cycles.
+
+No other new defect small enough to close in this slot. Handing to the operator (:43): continue the room-guide mining handoff the 11:0x cycle left (Mudroom 31%, Family Room 31%, Workshop 30% are the next un-mined rooms in rank order), since traffic/distribution outranks everything else currently unblocked under the ordering rule.
+
+Regenerated the dashboard. Pushed to main: ops/cold-read-ledger.json, ops/cycle-signal.json, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry.
+
+HANDOFF-FILES: none
+
+## Scheduled operator cycle, 2026-11-06 (~11:0x UTC): found and fixed a real Guest-vs-Primary-shaped misroute in Primary Bedroom's partial tier, then found and fixed a real apostrophe-escaping bug in the gate that was meant to catch exactly this
+
+**Did:** Attached clean. 29 GitHub issues unchanged, none from Phil since 2026-11-02. No mail credential. `preflight.py --skip-tests` fresh: 0 FAIL through every gate reached, stalled at the documented Etsy stall. Mined the next un-mined room in rank order: Primary Bedroom (31% uncovered, 112 rows). Its unmatched-word frequency surfaced "boys"/"girls"/"childrens"/"children" all hitting the wrong page, the Primary Bedroom guide.
+
+**The real finding.** 7 queries (10 rows across both harvests) scored partial at Primary Bedroom's guide, each missing only the child word. The exact Guest-vs-Primary tie-break shape seen before: the purpose-built Kids Bedroom page already exists and already answers the identical plain phrasing, but with no room signal for these gendered/plural forms, the exact-score tie on the bare word "bedroom" falls to URL order. Checked the losing page honestly first: it does carry a real section genuinely answering the general decluttering process for a child's room, so the singular "child's bedroom" query, already covered there, is correctly left alone; only the plural/gendered forms were added. Fixed via the already-wired mechanism: added the four forms to Kids Bedroom's room-also-called entry. Rebuilt. Verified against the real scorer: rescoring both corpora moved all 7 queries off the wrong page, 5 now covered at the kids-bedroom page, 2 now partial but at the right page at last. US: partial 1138->1135 covered 1578->1581. Global: partial 859->852 covered 1217->1224.
+
+**Turned the lesson into a gate (10b), because the fix almost didn't ship.** The new test failed: rendering an apostrophe-carrying name HTML-escapes it, and the test's plain-text comparison never unescaped before checking. The same bug lives in the real production gate this test exists to check, which would have wrongly flagged the real page as hiding its own name from every heading. This is the first also-called name with an apostrophe ever added, so the bug was latent since the mechanism's introduction. Fixed both gate functions and the test to unescape before comparing. Fail-then-pass proved on all three. Checked the scorer's own separate heading-reader for the same bug: it tokenizes to bare words first, never affected.
+
+**Verified:** `py_compile`, `fix_dashes.py --check` 0/0, `check_urls.py` 235/235, `audit_pages.py` 0 findings, `check_sellable.py` 124/126, `affiliate.py --check` 165 docs clean. Full `preflight.py --skip-tests` run twice: before, every gate passed with 35 standing warnings; after, 0 FAIL then genuinely stalled at the documented Etsy gate (confirmed via flat CPU, not assumed), reported unchecked past that point.
+
+**Went well:** reading the losing page's own content before calling it a misroute stopped this from becoming an overclaim and found the actual, narrower, honest scope of the fix.
+
+**Did not go well:** nothing; the test catching its own blind spot on the first real apostrophe case is the system working as designed.
+
+**Changing next cycle:** none; this is CLAUDE.md 10b in direct action, not a new standing practice.
+
+**Next:** Mudroom (31%), Family Room (31%) and Workshop (30%) are the next un-mined rooms. Everything bigger remains Phil-gated.
+
+Pushed to main: `room-also-called.json`, `preflight.py`, the test, the one rebuilt page, keyword-demand files, sitemap, backlog entry, dashboard trio, this entry. No price touched; one existing page's heading changed, IndexNow not applicable.
+## PM check-in, 2026-11-06 (~10:4x slot): previous work reconfirmed finished independently, room-guide mining handoff restated with a current ranking
+
+NEXT FOR THE OPERATOR: mine Garage's 67-row partial list or continue Hall Closet's 56-row partial list, because both now sit alongside Kitchen within a point of each other (Garage 39%, Kitchen 39%, Hall Closet 36%) and traffic/distribution outranks the OWNER-ACTIONS.md rotation build under the ordering rule; the Kitchen partial list itself is already 26 rows deep after the twin's and the 10:0x operator's passes and is thinning out.
+
+Attached clean (fetch, real unshallow from a shallow detached checkout, checkout main, ff-only onto origin/main at 9c828e87f, 1315 commits fast-forwarded, tree clean throughout, no new remote commits as of this entry).
+
+Previous work (the 10:1x PM check-in and the 10:0x operator cycle's Cooking Zone fix) confirmed finished, re-derived rather than cited: preflight.py --skip-tests run fresh, 0 FAIL through every gate reached before it timed out at the documented network-bound stalls (deploy-fresh, the Stripe gates with no .env.secrets here), same standing sandbox limitation every recent cycle reports, unchecked past that point, not assumed passing. room_guide_underperformance.py re-run directly rather than trusting the last entry's figures: Kitchen 39% (1 gap, 26 partial of 70), Garage 39% (0 gap, 67 partial of 174), Hall Closet 36% (0 gap, 56 partial of 156), Pantry 35% (2 gap, 20 partial of 62), all matching or within rounding of the prior entries. Open GitHub issues re-checked by most-recently-updated: top 5 unchanged, newest touch still issue #42 at 2026-11-02, nothing from Phil since.
+
+No new defect small enough to close in this slot. Not starting the mining myself: this slot is for triage and handoff, not depth, and the operator starts in under a minute.
+
+Pushed to main: this entry, ops/cycle-signal.json, dashboard trio.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~10:1x slot): previous work confirmed finished independently, same two-lane handoff stands for the operator
+
+Attached clean: fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `24a8ab901`, tree clean throughout.
+
+Previous work (the 10:0x operator's Kitchen large-utensil fix and the 09:4x PM check-in before it) confirmed finished, re-derived rather than cited: `content/manual/source/content.json` diffed against `mcp/content.json`, byte-identical. `preflight.py --skip-tests` run fresh: 0 FAIL through every gate reached, stalled at the documented network-bound `gate_etsy_pdfs_current` (exit 124), reported unchecked past that point. `cold_read_ledger.py --stale`: 0 stale. `fix_dashes.py --check`: 0/0. `check_urls.py`: 235/235. 29 open GitHub issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02. The 1-commit deploy gap checked directly against the Actions API: "Publish site image" genuinely in progress, not stalled.
+
+Checked and correctly declined one candidate myself: adding "way" to `FORMAT_WORDS` (unmatched word on a Kitchen partial row) fails the same self-flattery bar "guide"/"tutorial" passed, since "way" appears in many unrelated headings across the corpus ("Keeping it that way").
+
+No new defect small enough to close here. Handing to the operator (:43): continue room-guide mining in rank order (Garage 39%, Hall Closet 36%, Pantry's remaining rows) or the standing `OWNER-ACTIONS.md` rotation build, operator's call per the ordering rule.
+
+Pushed to main: this entry, dashboard trio.
+
+HANDOFF-FILES: none
+
+## Scheduled operator cycle, 2026-11-06 (~10:0x UTC): added a real root-cause fix to the Cooking Zone, confirmed honestly that it does not close the keyword gap it was aimed at, and found why
+
+**Did:** Attached clean (1305 commits). 29 GitHub issues unchanged, none from Phil since 2026-11-02.
+
+Picked up a specific deferred item: "large cooking utensils" (ladles, tongs) don't fit the Cooking Zone's own six-tool crock rule, a genuine root cause (a container-fit problem, not a count problem), left open because an honest fix needed new content. Added a third variant to the Cooking Zone in `content.json` (hand-authored source, no generator writes it): a long utensil gets its own hook within the same reach radius instead of being forced into the crock. Caught and fixed one directional error before shipping: the capacity section's own text said this was "covered above," but the variant explaining it renders physically below; corrected (copy and a control disagreeing is a P0 trust defect, not a polish item). Synced `mcp/content.json`. Rebuilt via the generator.
+
+**The honest finding, not a close.** Rescored both corpora: zero movement on any count, including the specific target query, still partial, still missing "large." Traced why rather than assume the fix was wasted: `heading_coverage` reads only `<h1>`-`<h3>` and `coverage` only the page `<title>`; neither ever reads body text, and the variant renders as body content, invisible to both. Checked whether a `diagnosis` branch (which does render as a heading) could carry the same fix instead: that mechanism requires reusing the deck's own real FRICTION CARDs verbatim, and that file has no card about a large utensil, so authoring one would be fabricating a friction nobody wrote, which CLAUDE.md forbids outright. So this specific gap stays correctly declined, now for a structural reason: the real fix needs a new FRICTION CARD added to the deck first, a content-authoring job with its own review, not a wording patch.
+
+**Verified:** JSON valid, synced identical. `fix_dashes.py --check` 0/0, `check_urls.py` 235/235, `audit_pages.py` 0 findings. `preflight.py --skip-tests` fresh: 0 FAIL through every gate reached, stalled at the documented Etsy stall (confirmed genuinely network-bound: the proxy itself logged a rejected connection mid-run), reported unchecked past that point.
+
+**Went well:** catching the directional "covered above" error before shipping, by reading the actual rendered page order rather than trusting the sentence just written.
+
+**Did not go well:** picked this item believing it would close a measured gap and it did not; did not check which part of the page the planned edit would land in against the scorer's own field list before writing the content. The content is still genuinely better and stays; the lesson is to check render shape against the scorer first.
+
+**Changing next cycle:** none; a one-off miscalibration, not a tooling gap.
+
+**Next:** Garage (39%), Hall Closet (36%), Patio or Deck (34%) were read this cycle and are mostly noise, with real further movement needing new content, not another synonym pass. The correct next step for the utensil query specifically is a new FRICTION CARD in the deck's own source, not a second `variants` attempt. Everything bigger remains Phil-gated.
+
+Pushed to main: `content.json`, `mcp/content.json`, the one rebuilt zone page, keyword-demand files, `STRATEGY-MICROZONES.md`, sitemap, backlog entry, dashboard trio, this entry. No price touched; existing page content changed below the fold, IndexNow not applicable.
+## PM check-in, 2026-11-06 (~09:4x slot): previous work confirmed finished independently, Kitchen's partial tier handed to the operator as the genuinely unblocked next item
+
+NEXT FOR THE OPERATOR: mine Kitchen's 26-row partial list in full, because it is top-ranked again (39% uncovered) after the countertops fix with its one gap row already correctly declined, and traffic/distribution outranks the OWNER-ACTIONS.md rotation handoff under the ordering rule.
+
+Attached per Step 0: fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `02bd8a648`, 1305 commits fast-forwarded, tree clean throughout.
+
+Previous work (the 09:2x operator's Kitchen countertops fix and the 09:1x PM check-in before it) confirmed finished, re-derived rather than cited: ran `preflight.py --skip-tests` myself fresh, unbuffered to a file; 0 FAIL anywhere in either FAIL section through every gate reached, timed out (exit 124) at the documented network-bound `gate_etsy_pdfs_current` stall, same standing limitation every recent cycle reports, reported unchecked past that point rather than assumed passing. Cleared the lock directory it left behind. 29 open GitHub issues re-pulled live via `gh api search/issues`: unchanged set, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02. `room_guide_underperformance.py` re-run fresh rather than trusting the last entry's figure: Kitchen is again top-ranked at 39% uncovered (was 40% before the countertops fix), its one gap row still the same brand-name query A62 already correctly declined; Garage sits one point behind at 39% with 0 gap but 67 partial rows unmined.
+
+No new defect found small enough to close in this slot. `OWNER-ACTIONS.md` remains 115514 bytes, unchanged across six consecutive handoffs now; still a genuine multi-step build, correctly deprioritized below traffic work again this cycle.
+
+Pushed to main: this entry, `ops/cycle-signal.json`.
+
+HANDOFF-FILES: none
+
+## Scheduled operator cycle, 2026-11-06 (~09:2x UTC): closed Kitchen's one genuine "countertops" wording gap, same shape as A64's Pantry fix
+
+**Did:** Continuing the same cycle as the Pantry fix above, merged and pushed (`668804d5a`). Re-ran `room_guide_underperformance.py` fresh: Kitchen now top-ranked (40% uncovered, 1 gap + 27 partial of 70 on-topic), Pantry having dropped to 35% from the prior fix. Read the full 27-row partial list directly, not the 8-row sample.
+
+The one gap row ("kitchen organization ideas dollar tree") is the same brand-name query A62 already declined for both Pantry and Kitchen; left alone. Most of the 27 partial rows are named retailers, geography/language modifiers (tamil, indian, canada) and decor-style adjectives (compact, modern, rustic, durable) that this content correctly does not address. Checked "how to organize large cooking utensils" against the Cooking Zone's real `content.json`: genuinely uncovered (the zone's content caps a utensil crock at six tools, nothing differentiates large from small utensils), left open since an honest fix needs new content, not a wording change, and that is a bigger job than this slot.
+
+One row was genuine: "how to declutter kitchen countertops" (`unmatched_words: ['countertops']`), routed to `/articles/how-to-declutter-a-kitchen.html`. That page is entirely about this surface yet the word "countertop" appears zero times anywhere on it (confirmed by grep); its own "Step 1" heading says "Clear the counters". Retitled to "Step 1: Clear the counters and countertops", no new claim. Confirmed hand-authored, no generator owns the file (`grep -rl "how-to-declutter-a-kitchen" ops/*.py` found only reference links, never a build target), per `CLAUDE.md` 5b.
+
+**Verified:** `python ops/keyword_demand.py --rescore`: US gap 107 to 107, partial 1139 to 1138, covered 1577 to 1578 (+1); the target query reads `covered`, `heading_coverage` 1.0, `unmatched_words: []`. `python ops/keyword_demand_global.py --rescore`: unchanged (this query is US-only). `room_guide_underperformance.py --room Kitchen` re-run after: 40% to 39% uncovered. `fix_dashes.py --check` (0 em/en dashes), `check_urls.py` (235/235), `audit_pages.py` (240 pages, 0 findings, 0 duplicates) all clean. `preflight.py --skip-tests` run fresh: 0 FAIL through every gate reached, same documented network-bound `gate_etsy_pdfs_current` stall (exit 124), reported unchecked past that point, not assumed passing.
+
+**Went well:** mining the next room in rank order immediately after the first fix, rather than stopping at one, kept the same evidence-gathering cost (corpus already loaded, noise patterns already catalogued) working for a second real win.
+
+**Did not go well:** "large cooking utensils" is a real, uncovered sub-topic (large utensils like ladles and tongs do not fit a crock capped at six tools) but fixing it honestly needs new content, which this slot did not have room for; left open rather than forced with a bare word.
+
+**Changing next cycle:** none.
+
+**Next:** Garage (39%, already partly mined across A63 and earlier fixes), Hall Closet (36%, 0 gap remaining per A62) and Patio or Deck (35%) are the next candidates in rank order. The "large cooking utensils" content gap on the Kitchen Cooking Zone is a real, specific, deferred item: differentiate large from small utensils in that zone's own `content.json`, grounded in a real distinction, not a wording patch. `OWNER-ACTIONS.md`'s rotation-script build (handed off by three consecutive PM check-ins, still not started) remains queued below this epic-3 work per the ordering rule (traffic before operational honesty). Everything bigger remains Phil-gated (29 issues, none from Phil since 2026-11-02).
+
+Pushed to main: `site/articles/how-to-declutter-a-kitchen.html`, `ops/keyword-demand.json`, `ops/KEYWORD-DEMAND.md`, `BACKLOG-2026-09-07.md` entry A65, dashboard trio, this entry. No price or product touched; one existing article edited in its body only, no new page; `IndexNow` not applicable.
+
+## PM check-in, 2026-11-06 (~09:1x slot): previous work confirmed finished independently, two standing operator-scale handoffs restated, no new defect
+
+Attached per Step 0: fetch, checkout main, ff-only onto origin/main at aea60193d (1298 commits fast-forwarded from a shallow detached checkout), tree clean throughout.
+
+Previous work (the 09:0x operator's Pantry fix, A64, and the three preceding PM check-ins' OWNER-ACTIONS.md handoff) confirmed finished, re-derived rather than cited: re-read the actual heading edit on `site/articles/how-to-organize-a-pantry.html` directly, "wire racks" and "pantry closet" are both there and both already true of the page's own body text, matching the entry's own claim. `room_guide_underperformance.py` run fresh: Pantry now 35% uncovered (was 41% before the fix), the two remaining gap rows are the already-correctly-declined brand-name and chart-format queries from A62; Kitchen (40% at read time, now 39% per the concurrent cycle above), Garage (39%), Hall Closet (36%) partial lists read directly, same noise shape (retailers, construction queries, generic modifiers) prior cycles already catalogued, nothing new small enough to close here. `cold_read_ledger.py --stale`: 0 stale. `fix_dashes.py --check`: 0/0. 29 open GitHub issues re-pulled live via the API: same set, all `decision`/`blocked-on-art`, newest activity still issue #42 at 2026-11-02T13:51:51Z, none from Phil; re-read issue #42's comment thread directly, confirmed no reply since. Deploy: `site/build-id.txt` (c17cff617e550d3e) ahead of `ops/deploy-verdict.json`'s last confirmed build (e9ff9edd791d1f58, 08:21); checked the Actions API directly rather than assume a stall, "Publish site image" was genuinely in progress for the latest push, the normal post-merge gap this file has documented before, not a defect.
+
+Ran `preflight.py --skip-tests` myself, unbuffered to a file: 0 FAIL in both FAIL sections (checked their bodies, not just a grep count), stalled at the documented network-bound `gate_etsy_pdfs_current`; confirmed the stall was real by sampling the process's CPU time twice (`TIME` flat at 0:22 across the sampling gap, not climbing), killed it, removed the stale `/tmp/.preflight_py_running.lock` directory it left behind. `OWNER-ACTIONS.md` still exactly 115514 bytes, unchanged across five consecutive handoffs now (07:4x, 08:1x, 08:4x PM check-ins, none picked up by the operator because each found other genuine work instead); not re-attempted here, still a real multi-step job (diagnose the item-by-item narrative bloat, write the rotation script, wire a preflight gate, fail-then-pass test), not a 30-minute triage fix. `STATUS.md`'s own `~11:2x` entry already names Home Office (38% uncovered) as the next un-mined room, also hours-scale.
+
+A concurrent operator cycle (the entry above, Kitchen's countertops fix) landed and pushed moments before this one; merged rather than forced.
+
+No new defect found small enough to close in this slot.
+
+Handing to the operator (:43): either the OWNER-ACTIONS.md rotation build (same shape as `ops/rotate_backlog_section2_items.py`) or further room-guide mining (Garage, Hall Closet, Patio or Deck, Home Office), whichever it judges higher value; both lanes are genuine and neither has moved on the rotation side in several cycles.
+
+Pushed to main: this entry, `ops/cycle-signal.json`.
+
+HANDOFF-FILES: none
+
+## Scheduled operator cycle, 2026-11-06 (~09:0x UTC): re-verified Pantry live rather than cited, closed its one genuine remaining gap ("racks"/"closet" wording), confirmed the rest is correctly-declined noise already named in A62
+
+**Did:** Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `f690ae8fa`, 1293 commits fast-forwarded, tree clean throughout). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, and the real head of this file. Ran `preflight.py --skip-tests`: 0 FAIL in both FAIL sections (checked their bodies directly, not the grep count), stalled at the documented network-bound `gate_etsy_pdfs_current` (exit 124), reported unchecked past that point. `BACKLOG-2026-09-07.md` is 153396 bytes against its 150000-byte tripwire; checked all three rotation scripts (`rotate_backlog.py`, `rotate_backlog_closed.py`, `rotate_checkin_log.py`) directly with `--check`: all CLEAN, every row within its own retention window, nothing to rotate yet. 29 open GitHub issues re-pulled live via the MCP tool: unchanged, all `decision`/`blocked-on-art`, every one authored by the `Klingdom` bot account, none from Phil. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty.
+
+Rather than trust A59-A63's own citations, re-ran `room_guide_underperformance.py` fresh: Pantry still top-ranked, 41% uncovered, 2 gap + 22 partial of 59 on-topic. Read the full 22-row partial list directly (not the tool's 8-row print sample, CLAUDE.md 5c/5d). Confirmed, not re-litigated: the two gap rows (the "dollar tree" brand-name query, the "draw a chart" format-mismatch query) were already correctly declined in A62. Most partial rows are the same noise shape prior cycles already named (named retailers, generic/numeric modifiers). Two were genuine: "wire racks" and "pantry closet" wording, both already true of the page's own body text ("Pull-out shelves and wire racks hold the same five zones"; "a small pantry" already named, "pantry closet" being the same thing under its common household name) but never present in a heading.
+
+**Fixed:** retitled the one heading on `site/articles/how-to-organize-a-pantry.html` that already named "a small pantry, or a pantry cabinet" to also carry "wire racks" and "a small pantry closet": no new claim, both words already true of the page. Confirmed no generator owns this file before hand-editing it (`grep -rl "how-to-organize-a-pantry" ops/*.py`: only `build_zone_pages.py`, for an unrelated related-reading link), per `CLAUDE.md` 5b.
+
+**Verified:** `python ops/keyword_demand.py --rescore` and `python ops/keyword_demand_global.py --rescore` re-derived every status against the edited corpus: US gap 107 to 107, partial 1142 to 1139, covered 1574 to 1577 (+3); global covered 1216 to 1217 (+1). Both target queries plus two bonus rows not previously surfaced ("how to organize a kitchen pantry closet", "how to organize closet pantry") moved to `covered`, 0 unmatched words each; scanned every other "rack"/"closet" row in both corpora for side effects, 0 regressions. `room_guide_underperformance.py --room Pantry` re-run after: 41% to 35% uncovered. `fix_dashes.py --check` (0 em/en dashes), `check_urls.py` (235/235 sitemap URLs resolve), `audit_pages.py` (240 pages, 0 findings, 0 duplicate titles/descriptions) all clean. `preflight.py --skip-tests` run fresh again after the edit: 0 FAIL through every gate reached, same documented Etsy stall, reported unchecked past that point, not assumed passing.
+
+**Went well:** re-deriving Pantry's state live instead of trusting A59-A63's own prose caught that the room was not, in fact, fully exhausted; the two genuine words were already true of the published body text, so the fix needed no new research or fabricated claim, just surfacing what was already honest.
+
+**Did not go well:** nothing new; the rest of the partial list is the same correctly-unfixable noise (brand names, generic modifiers) prior cycles already catalogued, so most of this cycle's reading time confirmed an existing diagnosis rather than finding something new.
+
+**Changing next cycle:** none.
+
+**Next:** Pantry's gap tier is now exhausted (both remaining gaps are the already-declined brand-name and format-mismatch rows); its partial tier is thinner (20 of 62) but not yet re-mined row by row after this fix. Kitchen (40%), Garage (39%, down from 51% across A63 and earlier fixes), Hall Closet (36%, 0 gap remaining per A62) and Patio or Deck (35%) remain the next candidates in rank order. `OWNER-ACTIONS.md`'s own rotation-script build (handed off by the 07:4x and 08:1x PM check-ins, still not started) remains the next scoped build job if no further room-guide mining surfaces first. Everything bigger remains Phil-gated (29 issues, none from Phil since 2026-11-02).
+
+Pushed to main: `site/articles/how-to-organize-a-pantry.html`, `ops/keyword-demand.json`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND.md`, `ops/KEYWORD-DEMAND-GLOBAL.md`, `BACKLOG-2026-09-07.md` entry A64, dashboard trio, this entry. No price or product touched; one existing article edited in its body only, no new page; `IndexNow` not applicable.
+
+## PM check-in, 2026-11-06 (~08:4x slot): previous work confirmed finished independently, same OWNER-ACTIONS.md rotation handoff standing for the operator
+
+NEXT FOR THE OPERATOR: build the OWNER-ACTIONS.md rotation script (same shape as ops/rotate_backlog_section2_items.py), because the file is still 115514 bytes against its 110000-byte tripwire and this is the third slot in a row to find nothing else genuinely unblocked.
+
+Attached per Step 0: fetch, checkout main, ff-only onto origin/main at f690ae8fa (0 ahead, 0 behind), tree clean except the fresh cycle-signal.json checkpoint this run wrote.
+
+Previous work (the 08:1x PM check-in's handoff, and the 08:0x operator's "outdoor shed" vocabulary fix, A63, that it reconfirmed) re-verified independently rather than cited: `ops/zone-also-called.json` read directly, Garage's Lawn and Garden Tool Zone entry carries "outdoor shed zone" exactly as claimed; `test_gate_zone_also_called_is_heading.py` 6/6 against the real committed site. `preflight.py --skip-tests` run fresh, unbuffered, full window: both FAIL sections empty, every gate reached passed, stopped at the same documented network-bound `gate_etsy_pdfs_current` stall as every recent cycle, reported unchecked past that point. `cold_read_ledger.py --stale`: 0 stale. `fix_dashes.py --check`: 0/0. `check_urls.py`: 235/235. 29 open GitHub issues re-pulled live via the MCP tool: same set, all `decision`/`blocked-on-art`, newest activity still issue #42 at 2026-11-02T13:51:51Z, none from Phil. `OWNER-ACTIONS.md` re-measured at exactly 115514 bytes, matching the two prior handoffs' figure (not drifted, not shrunk by any cycle in between, because none ran).
+
+No new defect found small enough to close in this slot; the fast checks above are all clean. The only thing standing between this item and done is that two consecutive operator slots used their time on other genuine finds instead of picking it up; that is a legitimate prioritisation call each time, not a failure, but it means the handoff needs restating rather than assumed stale.
+
+Not starting the rotation build myself: still a real multi-step job (diagnose the item-by-item bloat, write the script, wire a new preflight gate, fail-then-pass test), and this slot's job is triage, not depth.
+
+Pushed to main: this entry, `ops/cycle-signal.json`.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~08:1x slot): previous work confirmed finished independently, OWNER-ACTIONS.md rotation build still stands for the operator
+
+Attached per Step 0: fetch, real unshallow from a shallow detached checkout (1290 commits fast-forwarded), checkout main, ff-only onto origin/main at 0b63fd8f3, tree clean throughout, no concurrent push landed while this cycle read state.
+
+Previous work (the 08:0x operator's "outdoor shed" vocabulary fix, A63, and the 07:4x PM check-in's handoff) confirmed finished, re-derived rather than cited: ran preflight.py --skip-tests myself, unbuffered to a file, full 280s window: 0 FAIL in both FAIL sections (checked their bodies directly, not just the grep count), stopped at the documented network-bound gate_etsy_pdfs_current stall (timeout exit 124, the expected shape), reported unchecked past that point, not assumed passing. cold_read_ledger.py --stale: 0 stale. fix_dashes.py --check: 0 em/en dashes. 29 open GitHub issues re-pulled live via the MCP tool: same set, all decision/blocked-on-art, newest activity still issue #42 at 2026-11-02T13:51:51Z, none from Phil. EXECUTIVE-DASHBOARD-LIVE.md already fresh (08:04, this cycle); no regeneration needed.
+
+OWNER-ACTIONS.md is still 115514 bytes, over its 110000-byte tripwire. The 07:4x handoff named a real, scoped build job (a new rotation script for still-open items, archiving the accumulated inline "Corrected 2026-XX-XX" narrative, same shape as the backlog section rotators) and the 08:0x operator used its slot on the shed fix instead, both genuine finds but not the queued item; confirmed by reading OWNER-ACTIONS.md item 4 directly, the bloat is real and exactly as diagnosed.
+
+Not starting the rotation build myself: it is a multi-step job (diagnose item-by-item, write the script, wire a preflight gate, fail-then-pass test), not a three-minute fix. Handing to the operator (:43): build the OWNER-ACTIONS.md rotation script, same as the 07:4x handoff.
+
+Pushed to main: this entry, ops/cycle-signal.json.
+
+HANDOFF-FILES: none
+
+## Scheduled operator cycle, 2026-11-06 (~08:0x UTC): closed the "outdoor shed" vocabulary gap against Garage's own Lawn and Garden Tool Zone, after the three rooms it was coincidentally scattered across were each checked and ruled out
+
+**Did:** Attached clean (1282 commits). 29 GitHub issues unchanged since 2026-11-02, none from Phil. No mail credential. Mined unmatched-word frequency across the five highest-uncovered rooms (Pantry, Kitchen, Garage, Hall Closet, Patio or Deck) rather than eyeball one room's 8-row sample. Most candidates were already-named noise. "shed" stood out: 4 queries, 8 rows, scattered across three pages, none a genuine semantic match, confirmed against each zone's own purpose text before touching anything. Garage's Lawn and Garden Tool Zone already carries a "garden shed zone" also-called name that supplies "shed" but not "outdoor," which every one of these queries also carries. Added "outdoor shed zone" to that existing entry. Rebuilt; found mid-cycle that sitemap lastmod needs its own separate rebuild step, fixed before it could ship.
+
+**Verified.** Simulated the new heading against the live inventory before committing: 3 of 4 target queries move straight to full coverage; the fourth stays correctly tied, no regression. Scanned the full corpus for every other "outdoor"/"shed" row before shipping: 0 scores lowered anywhere, two same-score tie reassignments working as designed. `test_gate_zone_also_called_is_heading.py` (6/6). Rescored both corpora for real, diffed every row against the pre-change file: 0 regressions, 5 queries improved (US gap 107 partial 1145->1142 covered 1571->1574; global gap 90 partial 862->860 covered 1214->1216). `test_keyword_demand.py` 32/32. `check_urls.py` (235/235), `audit_pages.py` (0 duplicates), `fix_dashes.py`/`fix_dialect.py --check` (0/0), `affiliate.py --check` (165 docs), `link_graph_report.py` (0 orphans), `check_sellable.py` (124/126), `audit_visual.py` on the changed page (0 findings) clean. `cold_read_ledger.py --stale`: 0. `preflight.py --skip-tests` full run: 1 self-inflicted FAIL on the first pass (the sitemap-lastmod overlap above), fixed, rerun clean.
+
+**Went well:** mining unmatched-word frequency across five rooms at once surfaced a real cross-room misattribution instead of forcing a thin single-room fix; checking each candidate's purpose text first correctly ruled out several near-misses.
+
+**Did not go well:** running a verification preflight in the background while still editing caught the sitemap gate mid-change, costing a second full pass; a sequencing mistake, not a new defect class.
+
+**Changing next cycle:** run `preflight.py` only after every edit for the slot is finished, not concurrently with further edits.
+
+**Next:** the synonym-mining lane across these five rooms is now down to construction/DIY-build queries and other genuinely unfixable noise. Mudroom and rooms below it are not yet mined row by row. Everything bigger remains Phil-gated.
+
+Pushed to main: `zone-also-called.json`, keyword-demand files, the one edited zone page, sitemap, backlog entry, dashboard trio, this entry. No price touched; IndexNow to submit on push.
+## PM check-in, 2026-11-06 (~07:4x slot): previous work reconfirmed finished a third independent way, handing the operator a real, scoped build job
+
+NEXT FOR THE OPERATOR: build a new rotation script for `OWNER-ACTIONS.md`'s still-open items (same shape as `ops/rotate_backlog_section2_items.py`), because the file is 115514 bytes against its 110000-byte tripwire, all four existing rotators (`rotate_owner_actions.py`, `rotate_owner_actions_closed_items.py`, `rotate_owner_actions_gemini_billing.py`, `rotate_owner_actions_item_history.py`) checked CLEAN this cycle, and direct inspection of item 4 (line 647) found the real bloat: accumulated "Corrected 2026-XX-XX, this operator" narrative inline inside still-open items, the exact pattern the backlog section-2/3/4 rotators already exist to archive, just never built for this file.
+
+Attached per Step 0: fetch, checkout main, ff-only onto `origin/main` at `0c26409`, tree clean, no concurrent push during this cycle.
+
+Previous work (the 07:1x PM check-in and the operator cycle before it) confirmed finished a third independent way, not cited: ran `preflight.py --skip-tests` myself, unbuffered to a file, full window: 0 real FAIL blocks through every gate reached, stopped at the documented network-bound `gate_etsy_pdfs_current` stall as expected, reported unchecked past that point. `cold_read_ledger.py --stale`: 0 stale. GitHub re-pulled live via the MCP tool: 29 open issues, same set, all `decision`/`blocked-on-art`, newest activity still issue #42 at 2026-11-02T13:51:51Z, none from Phil. `BACKLOG-2026-09-07.md` sections 2-6 read directly: unchanged, Done/Hold/owner-gated. `EXECUTIVE-DASHBOARD-LIVE.md` already fresh (07:22, this cycle).
+
+Not starting the rotation build myself: it is a real multi-step job (diagnose the item-by-item bloat, write the script, wire a new preflight gate, fail-then-pass test), not a three-minute fix, and the operator starts in a few minutes with more budget for it.
+
+Pushed to main: this entry only.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~07:1x slot): previous work confirmed finished independently, nothing new unblocked
+
+Attached per Step 0: shallow detached checkout, fetch, real unshallow (1280 commits), `checkout main`, ff-only onto `origin/main` at `0b8409e48`, tree clean throughout, no concurrent push landed while this cycle read state.
+
+Previous work (the 06:4x operator's Hall Closet FORMAT_WORDS fix, A62, and the 06:4x PM check-in that reiterated it moments before the operator closed it) confirmed finished, re-derived rather than cited: `preflight.py --skip-tests` run fresh, unbuffered, for its own window: 0 FAIL through every gate reached, stopped at the documented network-bound Etsy section as expected, reported unchecked past that point. `cold_read_ledger.py --stale`: 0 stale. `BACKLOG-2026-09-07.md` sections 1b through 7 read directly: section 1b fully archived, sections 2-4 all Done/archived, section 5 correctly Hold (traffic-gated), section 6's seven owner gates unchanged and already filed as issues #45-#48 plus the existing Search Console and Gemini rows. All 29 open GitHub issues re-pulled live: unchanged since 2026-11-02T13:51:51Z, every one `decision` or `blocked-on-art`, none from Phil. `EXECUTIVE-DASHBOARD-LIVE.md` was stamped 07:01, one slot stale; regenerated fresh (`ops/dashboard.py`) rather than left as a near-current read that was not actually current.
+
+No new defect small enough to close here, and no genuinely unblocked backlog item beyond what three dozen prior cycles have already filed and Phil has not yet actioned (issue #42 already tracks the cadence question itself). `OWNER-ACTIONS.md` remains 115514 bytes, over its tripwire but with no automated rotation chain, same finding four prior cycles already reached; not re-attempted as a fresh discovery.
+
+Handing to the operator (:43): nothing newly unblocked. Standing re-verification is the correct cadence until a new Phil action or a new real defect appears.
+
+Regenerated the dashboard. Pushed to main.
+
+HANDOFF-FILES: none
+
+## Scheduled operator cycle, 2026-11-06 (~06:4x slot): closed both Hall Closet gap rows named in the 05:4x handoff, "guide"/"tutorial" joined FORMAT_WORDS
+
+**Did:** Attached per Step 0 (shallow detached checkout, real unshallow, `checkout -B main origin/main`, ff-only onto `279efe1e6`, 1273 commits fast-forwarded, tree clean). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, the real head (newest-first) of NIGHTLY-LOG.md. Ran `preflight.py --skip-tests` in the background: 0 FAIL through every gate reached, stalled as documented at the network-bound Etsy section, reported unchecked past that point. Picked up the 05:4x PM check-in's handoff: the gap rows for Pantry, Kitchen and Hall Closet. Read all three rooms' real gap rows directly via `room_guide_underperformance.py`, not the handoff's summary (CLAUDE.md 5c/5d). Kitchen's and Pantry's "dollar tree" gaps are a named retailer in the unmatched words; no honest edit closes a brand-name gap (CLAUDE.md 12/48), correctly declined. Pantry's "draw a larder organization chart" asks for a different content format (a drawn chart), not a wording gap; also declined, not forced. Hall Closet's two gaps were genuine: "how to organize closet tutorial guide" and "organize packing kit guide" both had "guide" (one also "tutorial") as part of their unmatched words, naming the content format wanted, not a different subject, the exact shape `FORMAT_WORDS` exists for ("ways", "diy"). Added "guide" and "tutorial" to `FORMAT_WORDS` in `ops/keyword_demand.py`.
+
+**Verified:** Self-flattery checked first, same bar "ways"/"diy" required: "tutorial" in 0 of 243 pages' titles or headings; "guide" in 1 title (`shop.html`, a product name) and 1 heading (`invest.html`), neither a room or zone page. Checked the full corpus before adding: 4 live rows affected (all US, 0 global); none sit in the cheap/budget/DIY cluster `GOALS.md` cites, so that citation's live figures (76/22/2/100, 25/12/0/37) are unchanged, confirmed by re-running `gate_goals_keyword_cluster_citation_current` directly, not just reasoned about. Case 27 added to `test_keyword_demand.py`, fail-then-pass proved directly (excluded both words from `FORMAT_WORDS`, watched the new assertions fail with the pre-fix score, restored, 32/32 passing). `python ops/keyword_demand.py --rescore` and `--rescore` on the global file: US gap 109 to 107, partial 1146 to 1145, covered 1568 to 1571; global unchanged (90/862/1214, 0 affected). `room_guide_underperformance.py --room "Hall Closet"` confirms 0 gap rows remain (was 2), 37% to 36% uncovered. `cold_read_ledger.py` re-ledgered `keyword_demand.py` as fixed; `--stale` 0. `check_urls.py` (235/235), `fix_dashes.py`/`fix_dialect.py --check` (0/0). GitHub: 29 open issues re-pulled live, unchanged since 2026-11-02T13:51:51Z, all `decision`/`blocked-on-art`, none from Phil. `inbox_agent.py --apply`: no mail credential, unchecked.
+
+**Went well:** checking each candidate against `CLAUDE.md`'s own brand-name and format rules before touching anything caught two real overclaim risks (dollar tree, the chart request) before they could ship, same discipline A61 used.
+
+**Did not go well:** nothing new; the keyword-synonym-mining lane is visibly down to single-digit, often-unfixable finds per room now.
+
+**Changing next cycle:** none.
+
+**Next:** Pantry and Kitchen's remaining gaps (dollar tree, larder chart) are genuinely unfixable on the current rules, not left for a future cycle to re-discover; the broader lane (BACKLOG section 2) is otherwise Done or Phil-gated. No new unblocked work found beyond this fix.
+
+Pushed to main: `ops/keyword_demand.py`, `ops/keyword-demand.json`, `ops/keyword-demand-global.json`, `ops/tests/test_keyword_demand.py`, `ops/cold-read-ledger.json`, `BACKLOG-2026-09-07.md` entry A62, dashboard trio, this entry. No price, product or site page touched; a measurement-tool fix only; `IndexNow` not applicable.
+## PM check-in, 2026-11-06 (~06:4x slot): previous work confirmed finished, the room-guide gap-row handoff is now stale across two operator cycles, reiterated plainly
+
+NEXT FOR THE OPERATOR: mine the explicit zero-coverage "gap" rows `ops/room_guide_underperformance.py` surfaces for Pantry ("draw a larder organization chart", "pantry organization ideas dollar tree"), Kitchen ("kitchen organization ideas dollar tree") and Hall Closet ("how to organize closet tutorial guide", "organize packing kit guide"), because this was handed over at the 05:4x slot, carried forward again at 06:1x, and both operator cycles in between used the slot on the linkedin-drafts cron fit and the three-workflow DST fix instead, both genuine finds but neither the content item that was actually queued.
+
+Attached per Step 0: fetch, real unshallow from a shallow detached checkout, `checkout main`, ff-only onto `origin/main` at `b0309b600` (1270 commits fast-forwarded), tree clean throughout, no concurrent push landed while this cycle read state.
+
+Previous work (the 06:1x DST fix) confirmed finished, not cited: read the three changed workflow files directly rather than trust the commit message, `linkedin-drafts.yml`/`owner-questions.yml`/`roadmap-report.yml` all carry the shifted cron and the comment explaining it. Ran `preflight.py --skip-tests` myself, unbuffered to a file, for its own 110-second window: 0 FAIL through every gate reached, stopped mid-way through the documented network-bound Etsy section as expected, reported unchecked past that point, not assumed clean. `OWNER-ACTIONS.md` is still 115514 bytes, still over its 110000-byte tripwire (warn, not fail); this is the fourth consecutive cycle to see it and the third to find no quick chain, so not re-attempted here, a genuine larger job rather than a stale re-check. All 29 GitHub issues re-pulled fresh via the REST API (GraphQL is blocked in this session): same set, all `decision`/`blocked-on-art`, newest activity still issue #42 at 2026-11-02T13:51:51Z, none from Phil.
+
+Re-ran `ops/room_guide_underperformance.py` fresh rather than trust the 05:4x/06:1x entries' own numbers: Pantry 41% uncovered (2 gap, 22 partial of 59), Garage 40% (0 gap, 68 partial of 170), Kitchen 40% (1 gap, 27 partial of 70), Hall Closet 37% (2 gap, 56 partial of 157), all unchanged row for row from the 05:4x reading. Under the ordering rule (measurement, broken or dishonest, traffic and distribution, product, operational honesty), nothing ranks above this: no measurement gap, no broken or dishonest claim found, and the one live distribution defect in this lane (the DST drift) is now fixed and verified above.
+
+Not starting the content work myself at this slot, per standing PM practice. No small closing job taken this cycle: `OWNER-ACTIONS.md`'s size is the only live candidate and three prior cycles already found it has no quick chain, so picking at it now would be a shallow re-check, not a close.
+
+Pushed to main: this entry only.
+
+Note from the cycle above (concurrent, same slot): the gap-row handoff this entry reiterates was closed in the entry above it, pushed moments later in the same slot; not a third carry-forward.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~06:1x slot): previous work finished, confirmed; found and fixed a real DST bug nobody had acted on in three workflows
+
+Previous work confirmed finished: preflight 0 FAIL to the Etsy stall, 0 stale ledger, 0 deploy gap, 29 issues unchanged, none from Phil.
+
+Real finding: three workflows (linkedin-drafts.yml, owner-questions.yml, roadmap-report.yml) warn DST "will bite in November." It bit 2026-11-01, five days unacted, missed even by entry 138's own re-fit this morning. All three arriving an hour early since. Shifted all three crons one hour. Caught two logic traps beyond comments: linkedin-drafts.yml's push-fallback hardcodes its deadline in shell, would have mis-fired; roadmap-report.yml matches cron strings to label editions, same bug class as its 2026-09-19 fix. Both fixed with the crons. Tests pass, yaml parses, no stale cron remains.
+
+Handing to the operator: the 05:4x room-guide handoff still stands.
+
+## PM check-in, 2026-11-06 (~05:4x slot): previous work confirmed finished, handing the room-guide gap rows to the operator
+
+NEXT FOR THE OPERATOR: mine the explicit "gap" (zero-coverage, not partial) rows `ops/room_guide_underperformance.py` now surfaces for Pantry ("pantry organization ideas dollar tree", "draw a larder organization chart"), Kitchen ("kitchen organization ideas dollar tree") and Hall Closet ("how to organize closet tutorial guide", "organize packing kit guide"), because these are fully unmatched queries in the four highest-uncovered rooms, a stronger candidate than another single-word partial scan, and the 05:1x operator cycle's own Kitchen island fix only touched a partial row, not these.
+
+Attached per Step 0: fetch, confirmed not shallow, `checkout main`, ff-only onto `origin/main` at `5a1eb4784`, tree already clean, no new commits landed while this cycle read state.
+
+Previous work (the 05:1x PM check-in's re-ledgering fix and the 05:1x operator's Kitchen island tip) confirmed finished, re-derived rather than cited: ran `preflight.py --skip-tests` myself, unbuffered to a file rather than through a pipe, for the full 300s budget; 0 FAIL and 0 ERROR through every gate reached, correctly stopped mid-way through the documented network-bound Etsy section (`gate_etsy_pdfs_current` never completed), reported unchecked past that point, not assumed passing. `OWNER-ACTIONS.md` is 115514 bytes, still over its 110000-byte tripwire (warn, not fail); ran all four existing rotation scripts (`rotate_owner_actions.py`, `rotate_owner_actions_closed_items.py`, `rotate_owner_actions_gemini_billing.py`, `rotate_owner_actions_item_history.py`) with `--check`: all four CLEAN, confirming the 04:3x/04:4x entries' own finding that no automated chain is left, not re-citing it blind. All 29 GitHub issues re-pulled fresh via the API: unchanged, all `decision`/`blocked-on-art`, none from Phil since 2026-11-02; issue #42 already tracks the exhausted-cadence pattern.
+
+Ran `ops/room_guide_underperformance.py` fresh (new this week, built 2026-11-03) rather than trust the last operator entry's "Pantry and Garage still ~40%, not yet decided" line: Pantry 41% uncovered (2 gap + 22 partial of 59), Garage 40% (0 gap + 68 partial of 170), Kitchen 40% (1 gap + 27 partial of 70, even after the island tip), Hall Closet 37% (2 gap + 56 partial of 157). The gap rows above are new information this cycle, not in any prior entry.
+
+Not starting the content work myself at this slot, per standing PM practice; no small closing job was available (`OWNER-ACTIONS.md`'s rotation is genuinely exhausted, not re-checked and left again).
+
+Pushed to main: this entry only.
+
+HANDOFF-FILES: none
+
+---
+
+## Scheduled operator cycle, 2026-11-06 (~05:4x UTC): linkedin-drafts.yml's landing-time compensation had drifted 98 minutes stale, re-fitted
+
+**Did:** Attached per Step 0 (real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `5a1eb4784`, 1268 commits fast-forwarded, tree clean). Read GOALS.md, BACKLOG-2026-09-07.md, STATUS.md, CLAUDE.md and the last several NIGHTLY-LOG entries. GitHub re-pulled live (29 open issues, all decision/blocked-on-art, none from Phil since 2026-11-02). `ops/inbox_agent.py --apply`: no mail credential, unchecked. Ran `preflight.py --skip-tests` unbuffered to a file: 0 FAIL through every gate, stalled at the documented network-bound `gate_etsy_pdfs_current` (confirmed genuinely stalled by a flat `ps` read over 150+ seconds), killed, lock cleared.
+
+The keyword-synonym-mining lane (Pantry/Garage/Kitchen/Hall Closet) is visibly down to noise-only gap rows (retailer names, "draw a larder organization chart"-shaped non-storage autocomplete), confirmed directly rather than assumed, so instead of forcing a tenth thin synonym fix, read `preflight.py`'s own warnings in full. `gate_scheduled_delivery_phase` flagged a real, previously-unflagged drift: `linkedin-drafts.yml` promises to land at 14:19 UTC and was actually landing at about 15:57 UTC, 98 minutes off over its last 24 scheduled runs, past the gate's 90-minute threshold. LinkedIn is `OWNER-ACTIONS.md`'s own named highest-value arrival channel; a stale landing-time compensation on the one email meant to be read before the day starts is exactly the kind of correctly-reported-but-unacted-on defect `CLAUDE.md` 0.2 warns against.
+
+**Verified:** re-measured directly with `ops/check_cron_cadence.py`'s own functions: median lag across the 24 fresh runs is 310.2 minutes, up from the 3.53-hour median this workflow's header last cited (2026-09-11/2026-10-13). Re-fitted the cron from `47 10 * * *` to `09 9 * * *` (09:09 UTC + 310.2 min lag = 14:19 UTC, the unchanged promise). `yaml.safe_load` parses; `check_cron_cadence.scheduled_times()` reads back `(9, 9)`, `intended_landing()` still `(14, 19)`. Confirmed no other workflow carries a `lands-at` marker, so this is the only one the gate watches. `fix_dashes.py --check`: 0/0.
+
+**Went well:** reading the gate's actual warning text rather than re-running the same exhausted backlog/issue check for the Nth time surfaced a real, live, customer-facing drift.
+
+**Did not go well:** the gate will read "not yet verified" for a few days until enough fresh runs accumulate against the new cron, the same expected transition every prior re-fit of this mechanism has produced; not a new problem.
+
+**Changing next cycle:** none.
+
+**Next:** re-check `gate_scheduled_delivery_phase` in a few days once the new cron has enough fresh runs to re-measure; everything else remains the same Phil-gated, 29-issue state.
+
+Pushed to main: `.github/workflows/linkedin-drafts.yml`, `BACKLOG-2026-09-07.md` entry 138, `ops/cycle-signal.json`, dashboard trio, this entry. No price, product or content page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
+---
+
+## PM check-in, 2026-11-06 (~05:1x slot): previous work confirmed finished a fresh way, one real re-ledgering gap found and closed, deploy pipeline in flight catching up on its own
+
+Attached per Step 0: fetch, real unshallow, checkout main, ff only onto origin/main at 094dce089 (1265 commits fast forwarded), tree clean throughout.
+
+Previous work (the 04:5x watch to CI green and the 05:1x operator's Kitchen island fix) confirmed finished a fresh way, not cited: CI run 42166648531 for the a01ba5c merge and publish-image run 42166649005 both in progress live via the Actions API, normal for a just-landed push, not a stall. Ran preflight.py myself (skip tests) end to end rather than reuse a number: 0 FAIL through every gate, correctly stopped by its own timeout partway into the documented network bound Etsy section (gate_etsy_listing_valid completed clean, gate_etsy_pdfs_current never started), reported unchecked past that point, not passing. GitHub re pulled fresh: 29 open issues, same set, all decision or blocked on art, none from Phil since 2026-11-02. fix_dashes.py 0/0.
+
+One real gap found and closed, not just noted: cold_read_ledger.py --stale flagged ops/build_zone_pages.py (ledgered 2026-11-05, touched 2026-11-06). The touch was the 05:1x operator's own Kitchen island tips.get() addition, the same already cleared shape as Room layout/Garage sale/Design/After a makeover/Small bathroom, shipped and verified that cycle but never re-ledgered. Re-ledgered as fixed with a note naming the commit; --stale now reads clean.
+
+Deploy gap: site/build-id.txt and ops/deploy-verdict.json differ (last confirmed build 02:15 UTC); not a defect, the automatic pipeline (publish-image.yml then deploy.yml) is mid-run on the latest push right now, the designed brief-gap shape OWNER-ACTIONS.md item 0 already describes.
+
+Not starting anything large at :1x. Backlog sections 2 through 6 remain Done, Hold, or Phil-gated (issues #43-#48); issue #42 already tracks the exhausted-cadence pattern. Handing to the operator: nothing newly unblocked beyond what the last several cycles already named.
+
+Pushed to main: this entry, ops/cold-read-ledger.json, ops/cycle-signal.json.
+
+HANDOFF-FILES: none
+
+---
+
+## Scheduled operator cycle, 2026-11-06 (~05:1x UTC): closed the Kitchen island content gap, after an extensive search across eight rooms found every other candidate unfit to ship
+
+**Did:** Unshallowed and attached per Step 0 (1258 commits fast-forwarded, tree clean). Preflight 0 FAIL twice (before and after this change) to the documented network-bound Etsy stall; a stray probe-file FAIL from my own earlier killed run self-healed as designed. 29 GitHub issues re-pulled live, unchanged, none from Phil; issue #42 re-read, no reply. No mail credential. Read Kitchen, Pantry, Garage, Hall Closet, Patio or Deck, Mudroom, Primary Bedroom and Family Room's full partial-row lists (not the ranking tool's 8-row sample) for single-unmatched-word gaps. Declined several candidates against real content before shipping anything (CLAUDE.md 5c/5d): "toolbox" only appears in content.json as a Laundry Room stray-item example, not Garage's own vocabulary; "dishes" collides with the different sense in "baking dishes"/"oven dishes" (casserole dishes, not washing-up); "coat hooks with shelves/on a board" describes a different physical object than the Family Hook Zone's hooks-only design. "Kitchen island" (3 queries, both harvests, 0 hits for "island" or "countertop" anywhere in content.json) was genuine and safe: no bare "island" query exists in either corpus, so no gaming-context collision. Added a "Kitchen island" tip to Kitchen's `tips` array, grounded only in already-published zone facts (Primary Prep Counter's own standard, Cooking Zone, which cabinet zone owns which stored item, The Trap's own counter-clutter warning), wired through the existing `tips.get(label)` mechanism (A40-A44's precedent) rather than a zone-also-called rename, since an island is not honestly any one zone's other name.
+
+**Verified:** `test_keyword_demand.py` 31/31. Rescored both corpora live: all 3 target queries moved `partial`/`gap` to `covered`, 0 unmatched words, no other row's status changed. Kitchen 41% to 40% uncovered. `check_urls.py` (235/235), `audit_pages.py` (240/0), `fix_dashes.py`/`fix_dialect.py --check` (0/0), `affiliate.py --check`, `link_graph_report.py` (0 orphans), `check_sellable.py` (124/126), `build_id.py --check` (current), `audit_visual.py` on the changed page (desktop and mobile, 0 findings each) all clean.
+
+**Went well:** checking content.json directly before each candidate caught three real overclaim risks before they shipped, not after.
+
+**Did not go well:** nothing new; the room-guide/keyword lane is visibly down to single-digit genuine finds per room now.
+
+**Changing next cycle:** none.
+
+**Next:** Pantry and Garage still ~40% uncovered with no further single-word win found this pass; both need either a dedicated new-content tip (same shape as this entry) or are genuinely exhausted, not yet decided which.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~04:5x slot): the 04:3x CI fix watched to completion, confirmed green, not inferred
+
+The 04:3x entry's own fix (GOALS.md citation + STATUS.md tripwire) shipped as `53b9e8a6e` with the new CI run still `in_progress`; that entry closed without waiting on it, and the 04:4x entry's own `preflight.py` attempt hit the known output-buffering trap and reported itself unchecked rather than assumed clean. Watched run 42163903874 directly via the Actions API through to completion rather than leaving it inferred: `conclusion: success` at 2026-11-06T04:59:36Z, roughly 19 minutes, the first confirmed-green run since the 04:0x diy commit went red. Fast-forwarded a concurrent hourly check-in (`294e811df`) that landed mid-wait; no conflict. No new defect found. Nothing else to add to the two entries below.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~04:4x slot): previous work confirmed finished independently, nothing new unblocked
+
+NEXT FOR THE OPERATOR: OWNER-ACTIONS.md's own prunable chain, because the 04:3x check-in already found it over size with no quick chain and left it; also Kitchen (41% uncovered) still unmined row by row.
+
+Attached clean per Step 0 (fetch, real unshallow, checkout main, ff-only, 1257 commits fast-forwarded, tree clean throughout).
+
+Previous work (the 04:3x PM check-in's CI fix and STATUS.md tripwire closure) confirmed finished a second way, not cited: local HEAD matched origin/main exactly before I touched anything, working tree clean, no uncommitted or unpushed state inherited. Re-pulled GitHub fresh via the REST API (GraphQL is blocked in this session): 29 open issues, same set, labels and newest-activity timestamp (#42 at 2026-11-02T13:51:51Z) as every recent cycle, none from Phil. BACKLOG-2026-09-07.md section 6 (owner gates) re-read directly: all seven rows still need Phil (YouTube OAuth, Search Console reports, Gemini billing, KDP/Etsy accounts, Apple/Play accounts, screenshots, the accounts-layer decision); section 7 unchanged. A concurrent hourly check-in (`7bab26066`, dashboard regen only) landed mid-cycle and merged cleanly, ff-only, no conflict.
+
+Started `preflight.py --skip-tests` fresh myself to re-verify rather than reuse the prior entry's number; it hit the same documented output-buffering trap this log has named before (stdout empty while the process is still alive) and is still running in the background past this entry's own time budget. Not reporting it as passing: unchecked by me this cycle, not assumed clean off the back of the 04:3x entry's own already-reported 0 FAIL.
+
+No new defect found small enough to close in this slot beyond what the 04:3x entry already closed. Not starting anything large at :40, per standing practice; handing the one real open thread (OWNER-ACTIONS.md's size, Kitchen unmined) to the operator rather than starting it myself three minutes before they do.
+
+Pushed to main: this entry only; no content, price or product touched.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~04:3x slot): previous work had broken CI, fixed; STATUS.md size tripwire also closed
+
+Previous work (04:0x diy/FORMAT_WORDS fix) was verified in isolation but broke CI: it rescored keyword-demand.json without updating GOALS.md's cheap/budget/DIY citation; test_gate_goals_keyword_cluster_citation_current.py (only run in full gate_tests, not --skip-tests) caught it red on main, run 42160481630. Fixed: citation corrected to 76/22/2/100 (was 32/64/4/100), test 7/7 now. Also closed STATUS.md's size-tripwire warning: moved 5 resolved incidents verbatim to INCIDENTS.md (117KB to 102KB). OWNER-ACTIONS.md (115.5KB) still over; no quick chain found, left for the operator. Re-ledgered ops/keyword_demand.py. preflight --skip-tests: 0 FAIL. 29 issues unchanged, Phil-gated. Handing to :43: OWNER-ACTIONS.md's own prunable chain; Kitchen (41% uncovered) unmined.
+
+HANDOFF-FILES: none
+
+## Scheduled operator cycle, 2026-11-06 (~04:0x UTC): "diy" joined FORMAT_WORDS, fixing a real misattribution and moving 63 queries toward covered
+
+**Did:** Attached per Step 0, clean. Preflight 0 FAIL to the documented network bound Etsy/prerender stall. Re derived live: 29 open GitHub issues, all decision/blocked on art, none from Phil; no mail credential. Garage still top ranked, 45% uncovered. Its full 76 row partial list (not the 8 row sample) showed 6 rows failing on "diy" alone; checked the whole corpus: 63 rows (44 US, 19 global) have "diy" as their only unmatched word. Added "diy" to `FORMAT_WORDS`, same shape as "ways" (2026-11-05).
+
+**Verified:** self flattery checked (0/243 titles, 1/243 headings carry it). Not just score politeness: 17 of the 63 rows were mis-routed to an unrelated article that happens to say "diy" once, instead of their own room's page; the fix corrects routing too. 0 regressions across the corpus. Added case 26 to `test_keyword_demand.py`, proved fail then pass. Rescored both corpora, matched predicted counts exactly. Garage: 45% to 40% uncovered, no longer top. URL, audit, dash/dialect, both room scorer test suites, and the four keyword-demand gates all clean.
+
+**Went well:** checking the full corpus before shipping caught a real routing bug (17 rows), not just the 6 cosmetic ones visible from Garage alone.
+
+**Did not go well:** preflight still cannot finish end to end here; no new gate needed, the fix reused a proven methodology rather than finding an undetected defect class.
+
+**Changing next cycle:** none.
+
+**Next:** Kitchen is now top ranked, 41% uncovered, not yet mined row by row. Everything bigger remains Phil gated.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~03:4x slot): previous work confirmed finished independently, a stale preflight lock cleared, nothing new unblocked
+
+NEXT FOR THE OPERATOR: nothing newly unblocked, because the backlog (sections 2 to 6, read directly), the cold-read ledger and GitHub's 29 open issues remain in the same fully exhausted, Phil-gated state issue #42 already tracks; continue the standing re-verification practice or pick one small closing job.
+
+Attached per Step 0: the checkout was shallow and detached, real `git fetch --unshallow`, `checkout main` (clean working tree already existed locally, so no `-B` needed), ff-only onto `origin/main` at `81fe2b567`, tree clean throughout.
+
+Previous work (the 03:1x PM check-in and the operator cycle after it, both at the top of this file) confirmed finished, re-derived rather than cited: `BACKLOG-2026-09-07.md` sections 2 through 6 read directly, not grepped for a prior claim; every row is Done, Archived, Hold (behind the traffic gate `GOALS.md` names), or an owner gate already filed as its own issue (#43 through #48 for the newly-filed rows, #42 for the cadence question itself). GitHub re-pulled fresh via `gh api`: 29 open issues, same set and labels as the 03:1x entry, newest activity still issue #42 at 2026-11-02T13:51:51Z (a status comment from this cadence, not a reply from Phil); 0 open PRs. `fix_dashes.py --check`: 0 em/en dashes. `cold_read_ledger.py --stale`: 0 stale.
+
+**One real gap found and closed, not just cited:** `python3 ops/preflight.py --skip-tests`, backgrounded through a `tail` pipe (the same buffering trap entry at the 02:4x-03:0x slot already named), stalled past its own `cycle-signal` checkpoint without exiting. Confirmed the stall was real by sampling the process twice 20+ seconds apart with flat CPU time, not assumed; killed it by hand. Its own checkpoint write survived the kill: `ops/cycle-signal.json` recorded a clean partial pass (every gate up to and including the checkpoint passed) against this run's own HEAD, `81fe2b567`, matching origin. The kill left `/tmp/.preflight_py_running.lock` behind pointing at the now-dead pid; confirmed dead via `ps`, then removed, so the :43 operator does not falsely block on a run that already ended.
+
+No new defect small enough to close beyond that. Not starting any Phil-gated item (C5 Gemini billing, C6 YouTube OAuth, or the accounts-layer decision in issue #45) or re-litigating issue #42, per standing PM practice.
+
+Pushed to main: this entry, `ops/cycle-signal.json`. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~03:1x slot): previous work confirmed finished independently, nothing new unblocked
+
+Checkout arrived shallow and detached, 1243 commits behind; real unshallow took two tries (first hit a transient TLS reset mid fetch, documented in the agent proxy status, not a real conflict), then ff only onto origin/main at 97a1543af, tree clean.
+
+Previous work (the 02:1x and 02:4x PM check-ins and the operator cycle after them) confirmed finished, not cited: GitHub re-pulled fresh, 29 open issues, all decision/blocked on art/P0, none touched since 2026-11-02. BACKLOG-2026-09-07.md sections 2 to 6 reread directly: everything is Done, Archived, Hold, or an owner gate already filed as its own issue (46 through 48, 43 to 45, Search Console reports). Ran preflight.py myself with skip tests rather than reuse a prior result: 0 FAIL, 33 warnings, all the same documented sandbox limits (no SSH key, no Stripe credential, known art gaps), cycle_signal recorded a clean pass.
+
+No new defect small enough to close this slot. Not reopening issue 42, which already tracks this exact repeating cadence. Regenerated the dashboard and shipped.
+
+Handing to the operator (:43): nothing newly unblocked, same Phil gated lane as the last several cycles.
+
+HANDOFF-FILES: none
+
+## 2026-11-06, scheduled operator cycle (~02:4x-03:0x slot): independently reconfirmed full exhaustion, no new defect, two concurrent cycles merged cleanly
+
+**Did:** Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `fc47d1d15`, 1243 commits behind). Read `BACKLOG-2026-09-07.md` sections 2-6 directly: all A/B/C rows archived or struck except C5/C6, both Phil-gated. Re-pulled GitHub fresh: 29 open issues, same set as the 02:1x/02:4x PM check-ins, none from Phil. Ran the fast gates directly: `cold_read_ledger.py --stale` (0 stale), `fix_dashes.py --check` (0 em/en dashes), `check_urls.py` (235/235 resolve), `affiliate.py --check` (clean, 165 documents), `check_sellable.py` (124/126 buyable items verified, 2 are person-delivered services). Ran `preflight.py` full, foreground, twice (once killed by my own 300s wrapper with no output captured because of pipe buffering, re-run unbuffered to a file): both times 0 FAIL through every gate up to the documented `gate_tests` headless-Chromium/no-egress sandbox stall, which this run now traced to `test_audit_catalog.py`'s own 420s legitimate worst case against a 200s timeout, not a new hang; preflight.py's own comments (line ~2736) already document this exact shape and already harden against it. Reported unchecked past that point, not assumed passing.
+
+**Verified:** A second, independent session (a PM check-in, 02:4x slot) was running concurrently and pushed first; fetched and ff-merged onto its HEAD mid-cycle rather than racing it, discarding only my own transient `ops/cycle-signal.json` checkpoint (machine-generated, regenerated by my own run seconds later, not someone's work). Its own nightly-log entry independently found the same exhausted state and the same "no push notification warranted" call this cycle also reached before reading that entry.
+
+**Went well:** No collision cost beyond one trivial re-merge; the concurrent-session convention in `STATUS.md` section 0 worked as designed.
+
+**Did not go well:** My own first preflight attempt wasted ~3 minutes because piping `timeout 300 python ops/preflight.py | tail -150` buffers everything and the kill signal drops it unread. Re-ran with `python -u ... > file` instead.
+
+**Changing next cycle:** always redirect `preflight.py`'s own run to a file with `-u`, never through a `tail` pipe, when backgrounding it.
+
+**Next:** Nothing newly unblocked. The 29 open `decision`/`blocked-on-art` issues (led by #42 itself) remain the only real lane; continue standing re-verification until Phil clears one.
+
+## PM check-in, 2026-11-06 (~02:4x slot): previous work confirmed finished, a stale preflight lock cleared, nothing new unblocked
+
+NEXT FOR THE OPERATOR: continue the standing re-verification practice or pick one small closing job, because the backlog, the cold-read ledger and GitHub's 29 open issues remain in the same fully exhausted, Phil-gated state issue #42 already tracks; nothing here is safe to start without Phil's own input.
+
+Attached per Step 0: fetch, real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff-only onto `1c6f84d71` (0 commits behind), tree clean throughout.
+
+Previous work (the 02:1x PM check-in and the deploy-verdict/hourly cycles after it) confirmed finished, re-derived rather than cited: `BACKLOG-2026-09-07.md` sections 2-6 reread directly, only C5/C6 unstruck, both Phil-gated. `cold_read_ledger.py --stale`: 0 stale. GitHub re-pulled fresh: 29 open issues, unchanged set and labels since 2026-11-02, none from Phil. `STATUS.md`'s own "29 open issues" row already matches live, no stale citation to fix. `preflight.py` run fresh, foreground: 0 FAIL through every gate up to the documented `gate_tests` headless-Chromium sandbox hang (stalled at test 9/473, same as every recent cycle), killed there rather than waited out, reported unchecked past that point, not assumed passing.
+
+**One real gap found and closed:** this run's own preflight left `/tmp/.preflight_py_running.lock` behind pointing at pids (570, 1040) that were no longer running after the kill; confirmed dead via `ps`, then removed, so the :43 operator's `gate_preflight_lock_blocks_concurrent_runs` does not falsely block on a run that already ended.
+
+No new defect small enough to close beyond that. Not starting any Phil-gated item or re-litigating issue #42. No push notification: the prior push's own no-repeat-before condition (no Phil reply, no cleared decision, no new credential, no customer event) still holds unchanged.
+
+Pushed to main: dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-06 (~02:1x slot): previous work confirmed finished a further independent way, CI on HEAD confirmed green rather than left unchecked, nothing new unblocked
+
+Attached per Step 0: fetch, real unshallow from a shallow detached checkout, checkout -B main origin/main, ff only onto origin/main at f84853975, tree clean, no reset or force.
+
+Previous work (the A60 vocabulary-gap cycle and the two PM check-ins after it) confirmed finished, re-derived rather than cited: `BACKLOG-2026-09-07.md` sections 2-6 reread directly, only C5 and C6 unstruck, both Phil-gated. 29 open GitHub issues re-pulled fresh via the API: unchanged set and labels, all `decision`/`blocked-on-art`; issue #42's own thread re-read in full, last comment still 2026-11-02, no reply from Phil since. `cold_read_ledger.py --stale`: 0 of any ledgered file stale. `check_urls.py`: 235 of 235 sitemap URLs resolve. `fix_dashes.py --check`: 0 em/en dashes. `preflight.py` run fresh, full (not `--skip-tests`, to get an independent read rather than reuse the prior cycle's flag choice): 0 FAIL/WARN through every gate except the one standing, documented `image-coverage` warning (gitignored `build/heroes/` not present in this sandbox), then genuinely stalled at `gate_tests` (`test_audit_catalog.py`, 9/473), the same documented headless-Chromium/no-egress sandbox limit every recent cycle reports; killed by its own timeout (exit 124), reported unchecked past that point, not assumed passing.
+
+**One real gap closed instead of left to "unchecked":** `gate_ci_conclusion_current` warned mid-run that `checks.yml`'s most recent run on HEAD (`b0d1f7012`, run `42147479036`) could not be queried for a conclusion, correctly reporting it as unchecked rather than green. Rechecked directly against the Actions API a few minutes later rather than citing the warning forward: that run has since completed, conclusion `success`. CI on HEAD is confirmed green, not assumed.
+
+No new defect found small enough to close in this slot beyond that CI confirmation. Nothing in `BACKLOG-2026-09-07.md` is genuinely unblocked and un-Phil-gated; not reopening issue #42, which already tracks this exact repeating cadence-exhaustion pattern for Phil's decision.
+
+Handing to the operator (:43): nothing newly unblocked; the next genuinely open lane is still the Phil-gated owner actions (issues #43-#48, #49-#63) and issue #42 itself.
+
+Pushed to main: dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## Scheduled operator cycle, 2026-11-06: A60, a zone-level vocabulary gap closed ("bakeware" against the Kitchen's Lower Cabinet and Cookware Zone)
+
+**Did:** Attached per Step 0 (fetch, confirmed real unshallow, checkout -B main origin/main, ff-only onto 69a7f2f30, 1235 commits fast-forwarded, tree clean). Read BACKLOG-2026-09-07.md sections 0-4, ROADMAP-2026-2029.md and CLAUDE.md, and the last four NIGHTLY-LOG entries. Ran preflight.py --skip-tests before touching anything. Checked 29 open GitHub issues and 0 open PRs live rather than cite a prior count; ran inbox_agent.py --apply. Mined the global keyword gap tier (91 rows) directly rather than trust the count, since almost every row is off-topic noise prior cycles already named (Revit handrail CAD, cribbage tournaments, bench press, vastu, dropped kerb, pasta/paneer troubleshooting, dollar-tree/pinterest/mumsnet/reddit mentions). Found one genuine on-topic miss: "how to organise bakeware" (au, rank 13, gap), scored to /about.html by tie-break, where the word "bakeware" was already real published text in the Kitchen Lower Cabinet and Cookware Zone's own content.json purpose, just never in a heading. Added "bakeware cabinet" (not the bare word, per the dinnerware-cabinet precedent: bakeware is the contents, not a name anyone calls the cabinet) to the zone's existing zone-also-called.json entry. Reran build_zone_pages.py, then both keyword rescorers, then the full verification suite (check_urls, audit_pages, fix_dashes/fix_dialect, affiliate.py --check, link_graph_report, check_sellable, the zone-also-called heading gate, audit_visual scoped to the changed page on desktop and mobile, build_id.py --check). Regenerated the dashboard and ran indexnow.py --submit.
+
+**Verified:** preflight.py 0 FAIL both before and after the change, stopped each time at the documented network-bound gate_etsy_pdfs_current (exit 124), reported unchecked past that point rather than assumed passing. The target query moved from gap (0.0 coverage) to covered (heading_coverage 1.0) on a live rescore; global gap count 91 to 90. All other checks clean. A spurious byte-identical re-encode of an unrelated Etsy listing PNG, left by preflight's own bootstrap step, was confirmed pixel-identical (ImageChops bbox None) and discarded rather than committed. cold_read_ledger.py --stale read 0 stale.
+
+**Went well:** caught and discarded the stray PNG re-encode before it could ride along in the commit as unexplained noise.
+
+**Did not go well:** the gap tier is thinning out fast (91 rows, almost all genuine noise); this lane is close to exhausted and future cycles will need to look past synonym mining toward the epic-3/4 (traffic, conversion) work once it is.
+
+**Changing next cycle:** none.
+
+**Next:** every epic's top item remains Phil-gated (the 29 open decision/blocked-on-art GitHub issues, most newly filed 2026-10-31/11-01 covering OWNER-ACTIONS.md items not previously tracked as issues). No new unblocked work found beyond this one synonym fix this cycle.
+
+## PM check-in, 2026-11-06 (~01:4x slot): previous work (the 01:1x rotation) confirmed finished a further independent way, nothing new unblocked
+
+NEXT FOR THE OPERATOR: nothing newly unblocked; re-verify the same exhausted state a further way or pick a small closing job, because every epic's top item is still Phil-gated and issue #42 already tracks the pattern.
+
+Attached per Step 0: fetch, checkout main, ff-only onto origin/main at `69a7f2f30`, tree clean, no reset or force.
+
+Previous work (01:1x PM rotation) confirmed finished, not cited: all seven `OWNER-ACTIONS.md`/`STATUS.md` rotation generators (`rotate_owner_actions`, `rotate_owner_actions_closed_items`, `rotate_owner_actions_gemini_billing`, `rotate_owner_actions_item_history`, `rotate_status_history`, `rotate_status_metadata`, `rotate_status_workstreams`) re-run with `--check`: all CLEAN, confirming the prior cycle's own finding that both files stay over their 110000-byte tripwire with nothing left for any existing generator to rotate, not a new defect. `BACKLOG-2026-09-07.md` sections 2-6 reread directly: all Done, Hold (traffic/buyer gated) or Phil-gated (section 6, items filed as issues #43-#48). 29 open GitHub issues re-pulled fresh via `gh api`: unchanged set and labels, all `decision`/`blocked-on-art`, 0 open PRs. CI confirmed green on HEAD via the Actions API (three runs, all `success`). Deploy gap re-derived independently: `site/build-id.txt` (`4f1bb0f700085b1e`) matches `ops/deploy-verdict.json`'s `"verdict": "current"`, no gap. `preflight.py --fast` run fresh in the background (foreground times out in this sandbox): 0 FAIL through every gate including a fresh `gate_living_docs_total_size_tripwire` warning (same two files, same reason) and a clean `cycle_signal` snapshot, then stalled at `test_audit_catalog.py` (9/473) inside `gate_tests`, the same documented headless-Chromium/no-egress sandbox limit every recent cycle reports; reported unchecked past that point, not assumed. The `/tmp/.preflight_py_running.lock` the 01:1x entry flagged as possibly stale belongs to this run's own live pid, not a leftover.
+
+No new defect small enough to close in this slot. Not starting any Phil-gated item or re-litigating issue #42, per standing PM practice.
+
+Pushed to main: dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+## PM check-in, 2026-11-06 (~01:1x slot): previous work (the zone_faq decision closure) confirmed finished, rotated three oversized living documents instead of starting new work
+
+Attached per Step 0: fetch, real unshallow from a shallow detached checkout, `checkout -B main origin/main`, ff only onto `origin/main` at `bec0c2ac6`, tree clean, 1233 commits fast forwarded.
+
+Previous work (the 00:5x scheduled operator cycle's zone_faq close-by-decision) confirmed finished, not cited: working tree was clean at attach, already pushed. `BACKLOG-2026-09-07.md` sections 2 through 6 reread directly: only C5 and C6 unstruck, both Phil gated. 29 open GitHub issues re pulled fresh via the API: unchanged set and labels, newest activity still issue #42 at 2026-11-02, no Phil reply. `ops/last-owner-notification.json` last sent 2026-11-02T04:17Z, state unchanged; no notification sent.
+
+Found a real, fixable thing instead of citing the warning a cycle further: `preflight.py --fast` reached its own `gate_living_docs_total_size_tripwire` and warned all three of `BACKLOG-2026-09-07.md` (263798 bytes, tripwire 150000), `OWNER-ACTIONS.md` (115514, tripwire 110000) and `STATUS.md` (117069, tripwire 110000) over size. Checked each against its own generator rather than hand editing: `ops/rotate_backlog_closed.py --check` was DUE (22 of 23 numbered sections, 138288 bytes), `ops/rotate_checkin_log.py --check` was DUE (24 of 212 entries), `ops/rotate_nightly_log.py --check` was DUE (68 of 1071 entries, 186955 bytes); ran all three generators' own `--apply`, not a hand edit. `BACKLOG-2026-09-07.md` is now 125510 bytes, back under its tripwire. All eight other `rotate_*.py --check` tools (`rotate_owner_actions_item_history`, `rotate_status_metadata`, `rotate_status_history`, `rotate_status_workstreams`, `rotate_owner_actions`, `rotate_owner_actions_closed_items`, `rotate_owner_actions_gemini_billing`, `rotate_backlog_done_items`, `rotate_backlog_section2_items`) read CLEAN: `OWNER-ACTIONS.md` and `STATUS.md` stay over their own tripwire with nothing left for any existing generator to rotate out of them, so that warning is left standing rather than forced down by a hand edit.
+
+Ran `preflight.py --fast` fresh: every gate reached before `gate_tests` passed, `cycle_signal` recorded a clean partial snapshot against the pre-rotation tree; `gate_tests` itself genuinely stalled at `test_audit_catalog.py` (9/473), the same documented headless-Chromium/no-egress sandbox limitation every recent cycle reports. A second `timeout 150` run against the rotated tree could not get past this session's own stale preflight lock from the first run (that process's kill was denied by this session's own sandbox classifier as "interfere with workloads"), so the second run's own clean-pass confirmation is unchecked, not assumed. Verified the rotations by the generators' own post-apply `--check` (all three CLEAN) and `fix_dashes.py --check` (0 em/en dashes) instead.
+
+Not starting any Phil-gated item (C5, C6) or re-litigating issue #42, per standing PM practice.
+
+Pushed to main: `BACKLOG-2026-09-07.md`, `BACKLOG-2026-09-07-CLOSED-ARCHIVE.md`, `CHECKIN-LOG.md`, `CHECKIN-LOG-ARCHIVE.md`, `ops/NIGHTLY-LOG.md`, `ops/NIGHTLY-LOG-ARCHIVE.md`, dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+**Next for the operator:** a stale preflight lock from this slot's own first `--fast` run may still be on disk (`/tmp/.preflight_py_running.lock`, pid from this container); clear it if the next full pass reports waiting on a concurrent run that no longer exists. Otherwise unchanged: 29 open decision labelled GitHub issues, no reply from Phil since 2026-11-02, `OWNER-ACTIONS.md` and `STATUS.md` still over their own size tripwire with no generator left to shrink them further, worth a hand look next time there are hours to spend rather than 30 minutes.
+
+## Scheduled operator cycle, 2026-11-06 (~00:5x slot, full STEP 0-13 pass): checked the 00:4x PM check-in's own "build it" handoff before acting on it, finished the sustain text inventory entry 135 deferred, found the real reach is zero beyond the one already known query, closed the thread with a decision instead
+
+**Did:** Attached per Step 0: shallow and detached on arrival, real `git fetch --unshallow`, `checkout -B main origin/main`, ff only onto `c7e1af2e8`, tree clean, 1229 commits fast forwarded. Read the backlog, roadmap, CLAUDE.md and this file's last four entries, including the 00:4x PM check-in below, which named the `zone_faq()` sustain-field gap "the one genuinely unblocked, non-trivial, Phil-free item on the table" and told the operator to build it. Checked that recommendation against the real corpus before acting on it (CLAUDE.md 5d, a handoff is data, not fact), rather than building on its word. Dumped and hand read all 114 zones' real `passes.sustain` text from `content/manual/source/content.json`, the human read pass entry 135 deferred as unfinished and the 00:4x check-in itself did not do. Found six more lines describing something going bad or needing a dated check, beyond the known Nursery diaper line: Pantry baking leaveners, bathroom cosmetics and medicine dates, Home Office tax retention, Garage brake fluid and coolant, Workshop extinguisher and first aid dates.
+
+**Verified:** grepped both keyword demand files, 4,989 real harvested queries total, for every phrasing of the six new candidates. None appear anywhere in either file. The only query this mechanism could ever answer is the one already found, still `partial`.
+
+**Went well:** checking the handoff's own recommendation against the corpus before building anything, instead of trusting "the one unblocked item on the table" framing and shipping a schema change across 114 zones for a single low-signal query.
+
+**Did not go well:** none; this was the right slot to close a standing thread rather than build on an unverified handoff.
+
+**Changing next cycle:** do not reopen this `zone_faq()` thread without new measured demand; it is closed by decision, not by missing effort, and the 00:4x recommendation below should be read as superseded by this entry, not as standing instruction.
+
+**Next:** sections 2 through 6 are Done, Hold or Phil gated; 29 open issues unchanged, none from Phil since 2026-11-02, issue #42's cadence question still open. Pushed: this entry, backlog entry 136, dashboard trio. No content, price or product touched, no new page, IndexNow not applicable.
+
+## PM check-in, 2026-11-06 (~00:4x slot): previous work reconfirmed finished a third independent way, handing the operator the one real unblocked item on the table
+
+NEXT FOR THE OPERATOR: build the `zone_faq()` sustain-field gap entry 135 found and deliberately left unbuilt, because it is the one genuinely unblocked, non-trivial, Phil-free item on the table and nothing smaller has turned up since.
+
+Attached clean: fetch, checkout main, ff-only onto origin/main at `51f3760e5`, then fast-forwarded a further 3 commits to `c7e1af2e8` (two hourly check-ins plus the prior PM check-in), tree clean throughout, no reset or force.
+
+Previous work (00:1x slot) reconfirmed finished a third independent way, not cited: `BACKLOG-2026-09-07.md` sections 2 through 6 reread directly, only C5 and C6 unstruck, both Phil-gated. 29 open GitHub issues re-pulled fresh via `gh api search/issues` (the MCP GitHub server did not surface in this session either), same set, all `decision`/`blocked-on-art`, unchanged since 2026-11-02. `ops/last-owner-notification.json` last sent 2026-11-02T04:17Z on an unchanged state; no notification sent. Ran `python ops/preflight.py --fast` backgrounded rather than foreground-timeout it (the raw log buffered empty, the usual artifact of a killed background process, so not trusted on its own); `ops/cycle-signal.json` recorded a fresh snapshot at 00:44:26Z against this run's own HEAD `c7e1af2e8`, which only happens on a clean pass of every gate up to `gate_tests`, so that much is real signal, not assumed. `gate_tests` itself was not reached inside this slot, the same documented headless-Chromium sandbox limitation every recent cycle reports; reported unchecked past that point, not assumed passing.
+
+Dashboard trio was one commit stale (`d7d2fd2` vs HEAD `c7e1af2e8`, itself only an hourly check-in, no code path touched). Regenerated with `ops/dashboard.py`: $0 revenue carried forward (no Stripe egress this sandbox), P0 9, need-you 27, commits7d 1425.
+
+**The handoff itself, read from entry 135 rather than re-derived:** `ops/build_zone_pages.py`'s `zone_faq()` only ever builds FAQ headings from five fixed `content.json` fields (`session`, `done_looks_like`, `the_call`, `leave_behind`, `shine_detail`, `watch_for`); `sustain` is never one of them, by the function's own docstring. So no zone's `sustain` text, however directly it answers a real search query, can ever reach a heading or FAQPage structured data. Entry 135 found this via one query ("how long do diapers last in storage") but named it as a mechanism gap affecting the whole "how long does X last" / "when do you restock X" query class across all 114 zones, not a one-row fix, and did not build it blind inside a 30-minute slot. This is the next genuinely unblocked, non-trivial piece of product/SEO work on the table: add `sustain` as a sixth `zone_faq()` source field, verify it does not regress the existing five, re-render, rescore the US and global harvests, and check for new digital-collision or off-topic false positives the same way every synonym-cluster entry above it already does. Full STEP 0-13 time, not this slot's.
+
+Not starting any Phil-gated item (C5, C6) or re-litigating issue #42, per standing PM practice.
+
+Pushed to main: dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+## PM check-in, 2026-11-06 (~00:1x slot): previous work (entry 135's diapers closure) confirmed finished a further independent way, nothing new unblocked, no notification
+
+Attached clean: fetch, checkout main, ff only onto origin/main at 51f3760e5, tree clean throughout.
+
+Previous work confirmed finished, not cited: 29 open GitHub issues re pulled fresh, unchanged set and labels, no Phil reply since 2026-11-02. BACKLOG-2026-09-07.md sections 2 through 6 reread directly: only C5 and C6 unstruck, both Phil gated. preflight.py fast fresh: 0 FAIL through every gate reached, stalled in gate_tests at test_audit_catalog.py, the standing sandbox limit. cycle_signal --check reads SAME. Entry 135's zone_faq() gap stays deferred: this sandbox cannot run gate_tests to completion regardless of slot size.
+
+Regenerated the dashboard trio for currency and honest Stripe and reachability degradation.
+
+Not notifying: last sent 2026-11-02T04:17Z, state unchanged.
+
+Pushed: this entry, dashboard trio. Nothing new for the operator.
 ## Scheduled operator cycle, 2026-11-05 (~23:5x slot, full STEP 0-13 pass): closed the last "diapers" cluster thread, found it is a five-zone-plus `zone_faq()` mechanism gap, not a one-row heading fix, and did not build it blind
 
 **Did:** Attached clean (unshallowed). 29 open issues unchanged, newest still #42 from 2026-11-02, no reply from Phil. No notification: dedup condition unmet (no reply, no new credential, no real customer event). No mail credential. `cold_read_ledger.py --stale`: 0. `deploy-verdict.json` already reads current against this HEAD.
