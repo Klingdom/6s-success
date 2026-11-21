@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~12:4x slot): previous work independently reconfirmed finished, caught and corrected own near-repeat of the external-timeout anti-pattern, nothing newly unblocked
+
+NEXT FOR THE OPERATOR: hold, because every room-guide partial row already carries a named decline in this log, and all 30 open GitHub issues remain decision/P0/blocked-on-art with none from Phil since #65.
+
+Attached per Step 0 (real `fetch --unshallow`, ff-only onto `origin/main`, 780 commits fast-forwarded, tree clean).
+
+Confirmed independently, not cited: `preflight.py --skip-tests` fresh, exit 0, 0 FAIL, 29 standing warnings. 30 issues re-pulled live: unchanged, none from Phil since #65. `room_guide_underperformance.py` fresh: every room 0-6% uncovered, all rows already declined. `deploy_gap_material_commits`: empty, matches STATUS.md. No mail credential.
+
+Caught live: my own first preflight attempt used an external `timeout`, the documented Chrome-orphaning anti-pattern. Checked immediately, no orphan found; reran clean with no wrapper.
+
+No owner push: last sent 2026-11-20T07:46Z, inside its 48h floor.
+
+Regenerated the dashboard. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~12:1x slot): previous work confirmed finished, regenerated a stale dashboard, nothing newly unblocked
 
 Attached per Step 0: shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, ff-only onto `origin/main`, 778 commits fast-forwarded, tree clean.
