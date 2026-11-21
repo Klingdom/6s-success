@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-21: independently re-verified every epic rather than cite prior cycles, closed the one real cold-read-ledger gap
+
+**Did:** Attached per Step 0, fast-forwarded cleanly. Rather than trust dozens of prior cycles' "epics 1-4 owner-gated, epic 5 exhausted" conclusion, re-checked each one directly: GitHub's 30 open issues (all `decision`/`P0`/`blocked-on-art`, none from Phil), `check_kdp.py` and `check_etsy.py` both re-run live (0 FAIL each, after fixing a broken Pillow/pymupdf install in this cold container), `room_guide_underperformance.py` fresh (every room 0-12% uncovered), and grepped every remaining partial-tier query by name against the full log history: all already examined and correctly declined. Found and closed `cold_read_ledger.py`'s one genuine gap: `ops/rotate_owner_actions_item23_cadence.py`, un-ledgered since A222 added it. Read it cold, confirmed it matches its six siblings exactly, no defect, ledgered clean.
+
+**Verified:** `preflight.py --skip-tests` 0 FAIL, 31 warnings, all standing. `inbox_agent.py --apply`: no mail credential. Social draft queues (2,745 files, 4,939 units) show no backlog defect.
+
+**Went well:** The verification was real, not cited; every "exhausted" claim now rests on this cycle's own commands, not inherited prose.
+
+**Did not go well:** This is this cycle's fourth hit of OWNER-ACTIONS item 1h's cold-container pymupdf/Pillow gap; the fix (an approved `create_environment` setup script) still needs Phil's one interactive click.
+
+**Changing next cycle:** Nothing new; item 1h's own gate already watches for this regrowing unnoticed.
+
+**Next:** Nothing non-owner-gated remains unmined. Hold for a real owner action or new traffic data.
+
 ## PM check-in (09:4x slot): previous work reconfirmed finished a further independent way, nothing newly unblocked, holding
 
 NEXT FOR THE OPERATOR: hold and re-verify rather than mine further, because every room's room-guide partial tier is confirmed to carry only rows already named and declined by a prior cycle, and nothing else is genuinely unblocked.
