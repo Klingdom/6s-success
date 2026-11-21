@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-21 (~08:4x slot): previous work was NOT finished, a claimed-but-never-executed issue close found and fixed; handing the operator a cold read on OWNER-ACTIONS.md
+
+NEXT FOR THE OPERATOR: cold-read OWNER-ACTIONS.md for a new prunable chunk, because it sits at 109,980 of its 110,000-byte tripwire and all seven existing rotate_owner_actions*.py scripts report CLEAN, so the next trim has no dedicated tool yet.
+
+Attached per Step 0: fetch, real unshallow (was shallow and detached on arrival), `checkout main`, ff-only onto `origin/main` at `0f60b51`, tree clean throughout.
+
+Step 2 answered NO this slot, not assumed yes: the 08:2x check-in's own entry claimed "Also closed GitHub issue #29... with evidence," but a fresh `list_issues` pull showed #29 still OPEN. Read it directly: a closing-rationale comment had been posted (2026-11-21T08:18:07Z) but the state-change call itself was never made. Verified the comment's own claim independently before trusting it: `site/assets/cards/entryway/index.json` has exactly 72 live cards and none of the 16 withheld codes (EM-004, EM-009, EP-001/002/003/004/006/007/008/010/011/012, ET-009/010/011/012) appear in them. Closed #29 for real this time (`state_reason: completed`).
+
+`preflight.py --skip-tests` run live to completion: every gate passed, 29 warnings, all documented sandbox gaps (no SSH/Stripe credential, no local art/video source, network unreachable). `room_guide_underperformance.py` run fresh, not cited: every room 2-6% uncovered, same partial rows named and declined in today's earlier A221 entry (the Kids Bedroom "clothes storage" tie, the Nursery "cupboard" rediscovery); epic 5 independently reconfirmed exhausted, not reopened. GitHub's remaining 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil.
+
+Checked `OWNER-ACTIONS.md` size (109,980 bytes, unchanged across several cycles) against all seven `rotate_owner_actions*.py` scripts with `--check`: every one reports CLEAN. No existing tool finds the next prunable chunk; it needs a human cold read of the file, which this 30-minute slot did not have budget for. Flagging it now rather than waiting for the tripwire to fire.
+
+Regenerated the dashboard trio. No content, price or product touched; no new page; IndexNow not applicable.
+
+Pushed to main via `ops/ship.py --no-deploy`.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-21 (~08:2x slot): previous work was NOT finished, a real misordered nightly log entry found and fixed, one stale GitHub issue closed with evidence
 
 Attached clean per Step 0: fetched, real unshallow, `checkout -B main origin/main`, ff only onto `origin/main` at `a43e2cb`, tree clean throughout.
