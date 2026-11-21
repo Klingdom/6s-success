@@ -15898,3 +15898,17 @@ Re-ran `room_guide_underperformance.py --room Pantry` fresh on a handoff: confir
 **Next:** Hall Closet (34%, 58 partial of 173) is the next candidate, not yet read row-by-row. The same-room zone-tie limitation is not yet a pattern worth a general fix (one clear instance so far); worth building on a third case.
 
 Pushed to main.
+
+## Scheduled operator cycle, 2026-11-21: re-verified the exhausted state directly, no new unblocked work found
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real unshallow, `checkout -B main origin/main`, ff-only onto `origin/main`, tree clean). Read the rest of `BACKLOG-2026-09-07.md` (sections 3 to 7, not previously in context this cycle) and `BACKLOG-2026-H2.md`'s epic headers. Ran `preflight.py` live to completion rather than `--skip-tests`.
+
+**Verified:** 0 FAIL through every gate, including the full `gate_tests` suite attempt; stalled at `test_audit_catalog.py` (9/489), the same documented headless-Chromium sandbox limit; killed there (pid confirmed dead), stale lock directory cleared after checking its pid matched. 3 standing warnings (image-coverage, dated-disclosures, nightly-log-entries-not-overlong), none new. `cold_read_ledger.py`: 312/312 ledgered, 0 stale, 0 new candidates. GitHub's 31 open issues re-pulled live and issue #42/#65's full threads re-read: every comment self-authored by a prior agent cycle, none from Phil. `inbox_agent.py --apply`: no mail credential. Backlog sections 3-7 read directly: decks (section 3) fully archived/done; images and video (section 4) blocked on Phil's own Gemini billing and YouTube OAuth clicks; section 5 (Hold) and section 6 (owner gates) are the only open rows, all explicitly Phil-gated. A concurrent PM check-in rotated this file mid-cycle (`792d3785f`); rebase conflicted on the stale anchor text, aborted cleanly, reset to the new HEAD and reapplied this entry fresh rather than force an outdated patch.
+
+**Went well:** read the full backlog instead of trusting a summary, and independently found nothing beyond what prior cycles already named.
+
+**Did not go well:** the rebase conflict above cost a few minutes; worth noting for the next cycle that a mid-run rotation moves the append point.
+
+**Changing next cycle:** none.
+
+**Next:** unchanged. The only genuinely open lane is the 31 Phil-gated decisions; no non-Phil-gated item exists anywhere in the structured queue. Regenerated dashboard trio. No price, product or page touched; `IndexNow` not applicable.
