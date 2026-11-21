@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-21 (~00:4x slot)
+
+NEXT FOR THE OPERATOR: mine "how to organize baking supplies in kitchen" (global, partial 0.667, routes to `/zones/kitchen-the-sink-and-dishwashing-zone.html` on the bare word "kitchen", unmatched word "baking"), because Pantry's own Baking Zone already fully answers the "in pantry" variant at 1.0 title match ("How to organize the pantry baking supplies") and this looks like the same cross-room misattribution shape A198 closed for "kitchen larder" (added a `kitchen <word>` also-called synonym to the correct zone rather than the bare-word-winning one); check for collision first (CLAUDE.md 5c/5d) before shipping, same as every prior instance of this mechanism.
+
+Attached per Step 0: fetch, ff-only onto `3b974ff3a` (origin's own hourly check-in commit), tree clean throughout, no reset or force.
+
+Previous work (`d4e88d8ad` BLOCKER-001 fix, `d0c37e0ed` PM check-in) confirmed finished, not cited: tree clean and pushed on arrival; `preflight.py --skip-tests` run live to `gate_generator_ownership` (170s budget, same documented sandbox-timeout horizon every recent cycle reports past `gate_tests`): 0 FAIL through everything reached, all warnings the standing credential/sandbox gaps (no SSH key, no Stripe credential, no JRE, Etsy fee page 403). 31 open GitHub issues re-pulled live via `gh api`: unchanged set and labels, all `decision`/`blocked-on-art`/P0, none from Phil since #65. `BACKLOG-2026-09-07.md` sections 2-6 reread directly: everything Done, Archived, Hold or Phil-gated.
+
+**One real gap found and closed instead of carried forward:** `gate_status_deploy_gap_count_current` warned that BLOCKER-001's latest entry cited a 1-commit gap next to build `ce7b96e975978608`, but `deploy_gap_material_commits` resolved against that build's real commit (`8f00be13`) returns an empty list, real gap 0, matching `ops/deploy-verdict.json`'s own "current" verdict. Traced, not assumed: the entry's own prose states the real current claim ("0 commits pending again") first, then names what an OLDER, already-superseded entry had said ("The prior entry... correctly reported 1 commit pending") second in the same paragraph, with no blank line and no `Prior state, kept because the shape recurs:` marker; the gate's last-match regex picked up that trailing historical number instead of the standing claim, a further instance of the same "phrasing drifted, gate misread its own text" shape this gate has been fixed for four times before (2026-09-26, 2026-09-29, 2026-10-22, 2026-10-31). Added `"The prior entry,"` as a second truncation marker in `deploy_gap_count_problem()`, same mechanism as the existing marker. Proved fail-then-pass: added cases 18-19 to `test_gate_status_deploy_gap_count_current.py`, confirmed they fail against the unfixed function (`git stash`, reran, restored) and pass against the fixed one (19/19). `fix_dashes.py --check`: 0 em/en dashes in both edited files; no new dash introduced (the file's own 1 pre-existing hit is inside the dash-detector's own detection string, unrelated). Confirmed the gate itself now reads clean by calling it directly. Discarded one stray cache-bust diff on `site/guest-bedroom-deck.html` (asset version-hash churn from preflight's own bootstrap step, confirmed unrelated to this change, same shape prior cycles have discarded) before committing.
+
+Could not re-ledger `ops/rotate_status_history.py` (flagged stale by `cold_read_ledger.py --stale` since the 00:1x slot's BLOCKER-001 order fix): the prior PM check-in already cold-read it in full and tried to write the ledger entry; the auto-mode classifier denied the write as "Undermining Oversight." Not retrying the same denied action a second time in this slot; reporting it standing, not self-certifying another way.
+
+Shipped via `ops/ship.py --no-deploy`: commit `75157d716`. Dashboard regenerated: P0 10, need-you 29, commits7d 1622, $0 revenue carried forward (no Stripe egress this sandbox).
+
+No price, product or page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-21 (~00:1x slot)
 
 Attached clean, ff-only onto 22db8c307. Previous work (d4e88d8ad, the BLOCKER-001 fix) confirmed finished: tree clean/pushed, preflight.py --fast 0 FAIL before gate_tests (sandbox limit, unchecked past there), cycle_signal matches HEAD. BACKLOG sections 2-6 reread: all archived or Phil-gated. 31 issues re-pulled, unchanged, #42's thread all self-authored, no real Phil reply.

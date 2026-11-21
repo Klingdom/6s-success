@@ -1,9 +1,9 @@
 {
- "generated": "2026-11-21 00:53",
- "commit": "3b974ff3a",
- "commit_msg": "Hourly check-in record",
+ "generated": "2026-11-21 00:54",
+ "commit": "75157d716",
+ "commit_msg": "Fix a second deploy-gap-count false positive: a current claim followed by a historical aside naming an older entry's count",
  "commits_7d": 1621,
- "commits_total": 14277,
+ "commits_total": 14278,
  "traffic_line": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-10-03 21:13",
