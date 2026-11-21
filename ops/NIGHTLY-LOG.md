@@ -2,6 +2,27 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-21 (~05:5x slot): reconfirmed epic 5 (room-guide keyword mining) fully exhausted, caught one candidate as an exact rediscovery of an already-declined fix, declined a second as a genuine same-room tie
+
+**Did:** Attached per Step 0: fetched, repository arrived shallow, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 720 commits fast-forwarded, tree clean throughout, no reset or force. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, `GOALS.md` and this file's last four entries. Launched `preflight.py --fast` live in the background (foreground times out around 280s on this sandbox, the same documented limit every recent cycle reports); it ran cleanly through every gate it reached with 0 FAIL and reached `gate_tests`, confirming the real `cycle_signal` clean-pass snapshot, before stalling on `test_audit_catalog.py`'s headless-Chromium limitation, the same standing sandbox gap. GitHub's 31 open issues re-pulled live via the MCP server: unchanged set and labels (10 P0, 29 decision, 2 blocked-on-art), none from Phil since #65 (2026-11-14). `inbox_agent.py --apply`: no mail credential, standing gap. `cold_read_ledger.py`: 0 stale, 312/312 ledgered, 0 new candidates.
+
+Ran `room_guide_underperformance.py` fresh rather than cite a prior reading: every room is 0-7% uncovered, 0 gap rows anywhere. Checked two candidates directly against real content before shipping anything (CLAUDE.md 5c/5d), rather than trust the tool's ranking:
+
+1. "how to organise baby clothes in cupboard" (global, partial 0.667, unmatched "cupboard"). My own grep for the exact phrase found no prior mention, but reading `ops/zone-also-called.json`'s own `Nursery|Baby Clothing Zone` entry directly showed this exact candidate was already examined and correctly declined on 2026-11-20: the zone's content.json describes a chest of drawers, never a cupboard, and naming it one would be the fabricated-connection shape CLAUDE.md section 6 forbids. Not re-shipped.
+2. "how to organize kids clothes storage" (Kids Bedroom, partial 0.667, unmatched "clothes"), a standing handoff from an earlier cycle asking for "scorer-level judgment." Read both candidate zones' real content.json: Clothing Closet (hanging clothes, a rod) and Dresser Drawers (folded clothes) are equally valid, equally ungrounded answers to a query that names neither; there is no honest word-level or room-signal basis to prefer one over the other, the same genuine-tie shape already correctly declined for Garage's cross-room "bulk snacks"/"bulk t-shirts" rows. Declining rather than forcing a pick.
+
+**Verified:** Independently re-derived, not assumed, that the room-guide keyword-mining lane (epic 5) is now fully exhausted site-wide: every remaining partial-tier row in every room already carries a prior mention and a correct decline somewhere in `ops/NIGHTLY-LOG.md` or `BACKLOG-2026-09-07.md` (confirmed this cycle for the full current partial list via direct grep, matching the same conclusion a same-day earlier cycle, commit `8f36e70db`, already reached independently). `gate_room_guide_mining_diminishing_returns` already encodes this mechanically, so a future cycle does not need to re-derive it from a fresh 20-room dump and a grep sweep the way this one and roughly 30 before it have. `gate_status_currency` re-run directly: 0 material commits unmentioned in `STATUS.md`, so no update needed there this cycle. `OWNER-ACTIONS.md` is 109,980 of its 110,000-byte tripwire (20 bytes under); every one of its six dedicated rotate scripts (`rotate_owner_actions.py` and its five item-specific siblings) reports CLEAN, meaning the next prunable chunk has no dedicated tool yet and needs a cold read this slot did not have budget for. Recorded here rather than fixed blind, so the next cycle does not have to rediscover that the obvious rotation tools are already drained.
+
+**Went well:** checking both candidates against real `content.json` and the file's own history before shipping, which caught one (cupboard) as an exact rediscovery of an already-declined fix and correctly declined the other (kids clothes storage) as a genuine tie rather than forcing either.
+
+**Did not go well:** no new customer-facing work shipped this cycle; epics 1-4 remain fully owner-gated and epic 5 is now confirmed exhausted rather than merely diminishing, which is itself the honest finding for this slot.
+
+**Changing next cycle:** a future cold-read pass should look at OWNER-ACTIONS.md for a new prunable chunk (no existing rotate_owner_actions_*.py slice covers it) before it trips `gate_living_docs_total_size_tripwire`, rather than wait for the warning to fire first.
+
+**Next:** 31 open GitHub issues, all owner-gated, unchanged since #65; epic 5 (room-guide mining) is exhausted, not merely diminishing. Regenerated the dashboard trio (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) per Step 11b. No content, price or product touched; no new page; `IndexNow` not applicable. No owner notification: `ops/last-owner-notification.json` sent 2026-11-20T07:46:00Z on this same unchanged state, inside its own 48h floor, and nothing this slot found changes what Phil is being asked to decide.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-21 (~05:4x slot, third firing): checked CI directly rather than trust a stale checkpoint, found and confirmed a real but transient CI failure on my own ship commit
 
 NEXT FOR THE OPERATOR: hold, unchanged.
@@ -23,6 +44,7 @@ Two PM check-ins landing ~20 minutes apart under the same `~05:4x` label, rather
 Not starting new work this slot per Step 8 (do not collide 3 minutes before the :43 operator). No price, product or page touched. IndexNow not applicable.
 
 HANDOFF-FILES: none
+## PM check-in, 2026-11-21 (~05:4x slot): previous work confirmed finished; self-corrected my own instance of the documented bash-timeout mistake; nothing new unblocked
 
 NEXT FOR THE OPERATOR: hold, the Phil-gated queue is unchanged and epic 5 is exhausted again.
 
