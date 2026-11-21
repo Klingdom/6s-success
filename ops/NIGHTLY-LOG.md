@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~18:1x slot): caught and fixed a self-inflicted generator-ownership failure, holding, nothing newly unblocked
+
+Previous work confirmed finished: 30 open issues re-pulled live, unchanged, all decision/P0/blocked-on-art; #42's thread re-read in full, every comment self-authored, none from Phil since #65. Owner-notification inside its 48h floor, correctly held.
+
+Caught and fixed a real defect, not just a hold. My own first preflight run, killed under an external `timeout 110` (the documented anti-pattern), interrupted a generator mid-write: site/resources.html lost its PROGRESSIVE wiring, aria-current marker and CSS fingerprint, failing 5 real gates. Checked for orphaned Chrome: none. Restored the file from HEAD, reran preflight with no external timeout to full completion: 0 FAIL, 29 standing warnings.
+
+Dashboard regenerated. Handing the operator: nothing newly unblocked; hold.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-21 (~17:5x slot): tenth independent reconfirmation, exhausted and owner-gated, nothing shipped
 
 **Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 830 commits fast-forwarded, tree clean). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md and the last four log entries first.
