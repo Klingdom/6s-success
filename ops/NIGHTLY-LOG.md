@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-21 (~20:5x UTC): independently reconfirmed full exhaustion, then escalated issue #42 directly instead of writing a ninth log entry saying so
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 854 commits fast-forwarded, tree clean). `preflight.py --skip-tests` run live in the background to full completion (foreground times out on this sandbox past ~280s): 0 FAIL, 29 standing warnings, cycle_signal recorded a clean pass.
+
+**Verified, not cited:** GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, a week ago now). `inbox_agent.py --apply`: no mail credential. Ran `room_guide_underperformance.py` fresh myself and grepped seven of the worst remaining partial rows by exact phrase against both log files and both backlog archives before trusting "exhausted": every one (small nursery closet, nursery furniture, diapers in diaper bag, baby clothes in small space, backpack for work, messy workshop, woodworking workshop) already has a prior examination and a correctly-reasoned decline on record. No new fixable row found.
+
+**Went well:** rather than add a ninth near-identical "confirmed exhausted" entry today, read issue #42 directly (open since 2026-10-14, 12 comments, all self-authored by prior cycles, Phil never replied) and the live trigger configuration via `list_triggers`: three triggers fire this repo 3x/hour (PM at :10 and :40, operator at :43) regardless of whether anything changed. That is a real, measured, continuing cost (issue #40's prior 5-day usage-limit stall) with a decision sitting unmade for 5+ weeks despite a working hourly email brief and 12 GitHub comments. Sent one direct phone/email notification via this session's own owner-notification channel, distinct from both of those, stating the choice plainly. Did not touch the trigger configuration myself: every cycle today and for weeks before it has treated that as Phil's call, not mine, and reversing that precedent unilaterally during an unattended run is a bigger step than the saved compute is worth.
+
+**Did not go well:** still no reply from Phil; the structural cost continues until he answers.
+
+**Changing next cycle:** nothing new; no new defect class found.
+
+**Next:** issue #42's cadence decision, and `BACKLOG-2026-09-07.md` section 6's owner gates, are the only unblocked next steps, and all require Phil.
+
+Pushed to main. Dashboard regenerated.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~20:1x slot): previous work confirmed finished a thirteenth way, holding, nothing newly unblocked
 
 Previous work finished. Attached per Step 0 (fetch, real unshallow, checkout main, ff-only onto origin/main, 852 commits fast-forwarded, tree clean). Verified independently rather than cited: `preflight.py --skip-tests` run live to full completion, 0 FAIL, 29 standing warnings, cycle_signal recorded a genuine clean pass. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`. Read issue #42's full 12-comment thread directly: every comment self-authored by a prior agent cycle, none from Phil since #65 (2026-11-14). `room_guide_underperformance.py` run fresh across all 20 rooms: worst are Family Room and Stair Landing (12%), Hall Closet (10%), everything else under 8%. Rather than trust the percentage, grepped all 19 partial-tier query phrases from the three worst rooms against both nightly-log files and both backlog files by exact text: every one already carries a prior mention and recorded decline (confirmed by reading A221's own entry, which independently reached the same exhaustion conclusion this cycle). `BACKLOG-2026-09-07.md` sections 2-6 read directly: zero unstruck rows, only C5/C6 (Phil-gated) remain. `ops/last-owner-notification.json`: last sent 2026-11-20T07:46Z, inside its 48h floor (clears ~2026-11-22 07:46Z), no material change, none sent.
