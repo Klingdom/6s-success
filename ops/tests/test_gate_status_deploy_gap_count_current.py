@@ -288,12 +288,49 @@ def main() -> int:
             "read the newest claim (1), or leaked the old appended 0: %r"
             % problem)
 
+    # 18. The real live shape found 2026-11-21, PM check-in: no "Prior
+    #     state, kept because the shape recurs:" marker at all, but the
+    #     same "current claim first, historical aside naming an older
+    #     entry's count second" ordering, introduced by "The prior
+    #     entry,". The standing claim (0) must be read, never the aside's
+    #     own stale 1.
+    aside_then_current = (
+        "**RESOLVED again.** `deploy_gap_material_commits` re-derived "
+        "live against current `HEAD` returns an empty list: 0 commits "
+        "pending again. The prior entry, archived below in "
+        "`STATUS-ARCHIVE.md`, correctly reported 1 commit pending at the "
+        "moment it was written; it was not wrong, the gap closed "
+        "afterward. Confirmed build `%s`." % BUILD_ID
+    )
+    problem = preflight.deploy_gap_count_problem(
+        section(aside_then_current), real_count=0, build_id=BUILD_ID,
+        checked_at="2026-11-20T23:17:32Z")
+    if problem:
+        fails.append(
+            "'The prior entry,' aside: cited 0, real 0, but still "
+            "flagged (the aside's own stale 1 leaked in): %r" % problem)
+
+    # 19. Same shape, but the real count has genuinely moved past what the
+    #     current claim itself states (1, not 0): must fire and name 0
+    #     (the current claim), never the aside's own 1.
+    problem = preflight.deploy_gap_count_problem(
+        section(aside_then_current), real_count=1, build_id=BUILD_ID,
+        checked_at="2026-11-20T23:17:32Z")
+    if not problem:
+        fails.append(
+            "'The prior entry,' aside: cited 0 real 1: expected a "
+            "problem, got none")
+    elif "0 commit" not in problem:
+        fails.append(
+            "'The prior entry,' aside: problem string did not read the "
+            "current claim (0): %r" % problem)
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("PASS: 17 checks")
+    print("PASS: 19 checks")
     return 0
 
 

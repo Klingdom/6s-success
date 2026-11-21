@@ -19138,8 +19138,23 @@ def deploy_gap_count_problem(status_text: str, real_count: int,
     # happened to agree with the true count and this never surfaced.
     # Truncating at the marker isolates the newest text, the only part that
     # should ever be read as the standing claim.
-    newest, _, _ = latest.partition(
-        "Prior state, kept because the shape recurs:")
+    #
+    # Found live 2026-11-21, PM check-in: a further phrasing of the same
+    # "newest claim first, historical aside second" shape, with no
+    # "Prior state, kept because the shape recurs:" marker at all. The
+    # entry read "...returns an empty list: 0 commits pending again. The
+    # prior entry, archived below in `STATUS-ARCHIVE.md`, correctly
+    # reported 1 commit pending at the moment it was written; it was not
+    # wrong, the gap closed afterward." The real, current claim (0) came
+    # first; the aside naming what an EARLIER entry had said (1) came
+    # after it in the same paragraph, so the last-match scan again picked
+    # up the historical number instead of the standing one. "The prior
+    # entry," is this file's own phrase for introducing exactly that
+    # aside, so it truncates the same way the existing marker does.
+    newest = latest
+    for marker in ("Prior state, kept because the shape recurs:",
+                   "The prior entry,"):
+        newest = newest.partition(marker)[0]
     matches = list(re.finditer(r"\b(\d+|zero)\s+commits?\b", newest,
                                 re.IGNORECASE))
     if not matches:
