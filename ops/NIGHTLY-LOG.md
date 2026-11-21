@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-21 (~14:5x UTC): closed one open question from A210, reconfirmed exhausted, nothing shipped
+
+**Did:** Attached per Step 0, 801 commits fast-forwarded, tree clean. Ran `preflight.py --skip-tests` to full completion in the background: every gate passed, 31 warnings, all standing sandbox/credential/art gaps. Re-checked all 15 remaining room-guide partial rows across the 9 least-covered rooms against `NIGHTLY-LOG.md`/`BACKLOG-2026-09-07.md` by exact phrase: every one already has 2+ prior mentions and a decline. `gate_room_guide_mining_diminishing_returns` independently confirms the same.
+
+**Verified:** Closed A210's standing open question ("master bathroom storage ideas for small spaces" needs scorer surgery) by querying `keyword_demand`'s own scored corpus directly: all 13 "master bathroom" rows already route correctly to Primary Bathroom pages, never Guest Bathroom; the remaining partial status is only unmatched "storage"/"small", both already correctly declined as too generic (self-flattery). Not a scorer defect; nothing to fix. 30 GitHub issues unchanged, none from Phil since #65. No mail credential. No new commits past last STATUS.md citation beyond bookkeeping.
+
+**Went well:** checking preflight's own gate before re-mining by hand would have saved the trace time; did the trace anyway and it independently agreed.
+
+**Did not go well:** nothing new to ship; same verdict as recent cycles.
+
+**Changing next cycle:** none; no new defect class found.
+
+**Next:** epics 1-4 stay owner-gated (see `OWNER-ACTIONS.md`); epic 5 stays exhausted. Next real motion needs either a Phil decision or new evidence (a traffic read, a sale, an affiliate reply).
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-21 (~14:4x slot): previous work reconfirmed finished, handing the operator the one real housekeeping item
 
 NEXT FOR THE OPERATOR: trim the 7 ops/NIGHTLY-LOG.md entries over the 750-word gate (worst 819), because it is the only genuinely unblocked item left; a 2026-11-16 cycle already trimmed this same class once at 39 entries.
