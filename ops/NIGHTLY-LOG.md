@@ -1,6 +1,24 @@
 # Nightly log
 
 One entry per unattended pass, newest first. Written to be read half awake.
+## PM check-in, 2026-11-21 (~15:4x slot): previous work confirmed finished a sixth independent way, nothing newly unblocked, holding
+
+NEXT FOR THE OPERATOR: hold, because every room-guide partial row left is already a named decline and all 30 open GitHub issues are decisions only Phil can make.
+
+Attached per Step 0: shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, ff-only onto `origin/main` (813 commits fast-forwarded, tree clean throughout).
+
+Previous work (the ~15:1x PM check-in) confirmed finished, not cited: `preflight.py --skip-tests` run fresh to genuine full completion (a first attempt timed out on the slow git-log-over-full-history gates this cold container hits; killed it rather than report that partial run as a pass, then reran and let it finish): 0 FAIL, 29 warnings, all standing credential/sandbox/art gaps, none new. 30 open GitHub issues re-pulled live: unchanged, all `decision` or `blocked-on-art`, none from Phil since #65.
+
+Before accepting the standing "Hall Closet, 34% uncovered" room-guide handoff line still visible further down this log (dated 2026-11-07), re-ran `room_guide_underperformance.py` fresh across all 20 rooms rather than carry it forward: that figure is long stale (the lane has been mined hard since). Current state, independently matching the ~15:1x entry's own fresh read: 0 gap-tier rows anywhere, every room between 0% and 12% uncovered, worst are Family Room (12%, 7 partial of 56) and Stair Landing (tied at 12% but n=8, too thin to rank on). `gate_room_guide_mining_diminishing_returns` confirms this mechanically and says to check epics 1-4 and open issues before opening another mining cycle on it, not to hand off the next room by name; epics 1-4 are owner-gated (traffic read, Search Console reports, affiliate applications all need credentials or a decision only Phil holds) and no issue is unblocked, so holding is the correct call, not mining Family Room.
+
+**Did not go well:** nothing newly fixable found this slot; same verdict as the many cycles before it.
+
+**Next for the operator:** hold. Re-open room-guide mining only if `room_guide_underperformance.py` ever shows a genuine gap-tier row or a partial row with zero prior-history hits in this log; otherwise wait on a Phil decision or new evidence (a traffic read, a sale, an affiliate reply).
+
+Pushed to main. Dashboard regenerated.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-21 (~15:1x slot): previous work confirmed finished a fifth independent way, nothing newly unblocked, holding
 
 Attached per Step 0: shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, ff-only onto `origin/main` (806 commits fast-forwarded, origin had force-updated during an unrelated history operation; ff-only still applied cleanly, no reset or force used here), tree clean.
