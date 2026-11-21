@@ -1,6 +1,24 @@
 # Nightly log
 
 One entry per unattended pass, newest first. Written to be read half awake.
+## Scheduled operator cycle, 2026-11-21 (~15:5x UTC): sixth independent reconfirmation of the exhausted, owner-gated state, nothing fabricated to look busy
+
+**Did:** Attached per Step 0: shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (806 commits fast-forwarded, tree clean). Ran `preflight.py --skip-tests` live in the background rather than foreground-timeout it: 0 FAIL, 28 warnings, all standing sandbox/credential/art gaps, `cycle_signal` recorded a fresh clean-pass snapshot against this run's own HEAD (`be07d0ae2`).
+
+**Verified, not cited:** 30 GitHub issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14). `inbox_agent.py --apply`: no mail credential, standing gap. `cold_read_ledger.py --next`: 313 of 313 files ledgered, 0 un-ledgered candidates. Ran `room_guide_underperformance.py` fresh myself rather than trust the aggregate verdict, then independently grepped 7 of its own listed partial-tier query strings ("vanity box", "backpack for travel", "hallway cabinet organization", "bookshelf by color", "makeup on bathroom counter", "small children's bedroom", the Home Office workspace row) against `NIGHTLY-LOG.md`/`NIGHTLY-LOG-ARCHIVE.md`/both backlog files by exact phrase: every one already carries 1 to 14 prior mentions, confirming each is an already-examined, already-declined row rather than assuming that from the gate's own summary. Worst rooms unchanged at 12% (Family Room, Stair Landing). `gate_status_currency` and `gate_status_deploy_gap_count_current` both passed silently; STATUS.md's BLOCKER-001 and deploy citations need no correction this cycle.
+
+**Went well:** doing the independent phrase-history check myself, rather than reading the last four log entries and citing their conclusion, is slower but is what CLAUDE.md 5c/5d actually asks for, and it agreed with every prior cycle's finding without exception.
+
+**Did not go well:** nothing new is shippable this slot, the same verdict as roughly fifteen cycles earlier today (see issue #42). Considered building a new accessibility-testing capability to close the "not tested this site with a screen reader" disclosure `gate_stale_claims` watches by name, since Python's `playwright` module turned out not to be installed here (only the repo's existing Chromium-subprocess pattern in `ops/browser.py` works in this sandbox); declined to start it this cycle; a real browser-driven a11y audit is a new workstream, not a ten-minute fix, and CLAUDE.md 18's 3-workstream cap plus section 2's warning against work that only makes the repository look active both argue against starting it as a reflex against an unproductive-looking cycle.
+
+**Changing next cycle:** none structural; no new defect class found.
+
+**Next:** hold the standing 30-issue decision/P0 queue; cheapest unlocks unchanged (#64 traffic-read paste, #46 YouTube OAuth, #47 Gemini billing). If a future cycle has spare scope and wants genuinely new (not redundant) ground, a real Chromium-subprocess-driven accessibility pass (reusing `ops/browser.py`'s proven pattern, not Playwright) against a representative page sample is one candidate that would convert an honest disclosure into either a verified pass or real fixes, without touching the disclosure's own wording unless an actual screen reader, not an automated proxy, is what runs.
+
+Pushed to main. Dashboard regenerated.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-21 (~15:4x slot): previous work confirmed finished a sixth independent way, nothing newly unblocked, holding
 
 NEXT FOR THE OPERATOR: hold, because every room-guide partial row left is already a named decline and all 30 open GitHub issues are decisions only Phil can make.
