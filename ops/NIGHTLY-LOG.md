@@ -2,6 +2,36 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-21 (~03:5x slot): found and fixed a real nightly-log misordering the gate itself would have caught; epics 1-4 reconfirmed owner-gated, epic 5 exhausted
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`). Ran `preflight.py --skip-tests` to a full pass before touching anything: 0 FAIL, standing warnings only.
+
+**Found and fixed:** a concurrent 03:4x PM check-in's own commit (`babfa906b`) had appended its NIGHTLY-LOG.md entry to the end of the 17,000-line file instead of prepending it, exactly the misplacement `gate_nightly_log_ordering` exists to catch, its second known occurrence. Ran the gate directly against the live committed file: a real FAIL, not hypothetical. Moved the entry to the top; reran the ordering, duplicate-entry and size gates clean after. Could not determine why the pre-push hook (which already wires in `check_nightly_log_fast.py`, and does catch this when run by hand) did not block that push; most likely an API-based push bypassing local git hooks rather than a hook defect. CI's `gate_tests` is the backstop either way.
+
+**Verified:** `check_urls.py` 236/236, `audit_pages.py` 0 findings, `fix_dashes.py --check` clean, `affiliate.py --check` clean, `check_sellable.py` 124/126 (2 person-delivered services). `room_guide_underperformance.py` fresh across all 20 rooms (0-6% uncovered); every remaining partial row grepped against the log/backlog history, each with 2-18 prior mentions, so no genuinely new epic-5 candidate exists. `cold_read_ledger.py --next`: 312/312 ledgered. GitHub's 31 issues re-pulled live, unchanged, none from Phil since #65. Tested this sandbox's own network policy directly: 6s-success.com, api.stripe.com, bing.com all refused (403), same standing gap other sessions report.
+
+**Went well:** caught my own fix disappearing mid-run (`gate_generator_ownership`'s dirty-tree restore reverted it while a backgrounded preflight was still in flight), diagnosed via `git diff` rather than trusted the edit tool, redid it once preflight had exited (A198's precedent).
+
+**Did not go well:** lost one edit cycle to that sequencing mistake.
+
+**Changing next cycle:** none; an existing discipline correctly applied.
+
+**Next:** epics 1-4 stay owner-gated; epic 5 exhausted, reconfirmed independently. No owner notification: last sent 2026-11-20T07:46Z, inside its 48h floor, state unchanged. No price, product or page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-21 (~03:4x slot): previous work confirmed finished, nothing new unblocked, same Phil-gated hold
+
+NEXT FOR THE OPERATOR: hold, because every unblocked item is exhausted and the constraint is Phil's reply, not available work.
+
+Attached per Step 0: shallow and detached on arrival, real unshallow, `checkout -B main origin/main`, ff-only onto `dd6a90c`, tree clean, no reset or force.
+
+Previous work (03:1x PM check-in) confirmed finished: tree was clean and already pushed at attach. `BACKLOG-2026-09-07.md` sections 2 through 5 reread directly: all rows struck or Hold; only section 6's owner gates remain, all duplicated as GitHub issues #43 through #65. 31 open issues re-pulled live via `gh issue list`: unchanged set, all `decision`/P0/blocked-on-art, none from Phil since 2026-11-02 (19 days). A push notification on this exact backlog-exhausted state already went out 2026-11-20T07:46Z under its own 48h anti-spam floor; not due yet, so none sent this cycle. `preflight.py --fast` run fresh: 0 FAIL through every gate to a clean `cycle_signal` snapshot, then stalled at `test_audit_catalog.py` (9/489), the documented headless-Chromium/no-egress sandbox limit; killed the hung child rather than let it sit, reported unchecked past that point, not assumed passing.
+
+Not starting any Phil-gated item or re-litigating issue #42.
+
+Pushed to main: dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-11-21 (~03:1x slot): previous work (the 02:4x hold) confirmed finished; re-verified live, not cited; no new defect, nothing new unblocked
 
 Previous work was the 02:4x PM's decision to hold the standing Phil-gated queue rather than restart room-guide mining. That decision was followed: only an automated bookkeeping commit (`8a0db7b0c`, github-actions bot) landed since, no agent action contradicted it. So it counts as finished.
@@ -16939,15 +16969,3 @@ Regenerated the dashboard trio for currency and honest Stripe and reachability d
 Not notifying: last sent 2026-11-02T04:17Z, state unchanged.
 
 Pushed: this entry, dashboard trio. Nothing new for the operator.
-
-## PM check-in, 2026-11-21 (~03:4x slot): previous work confirmed finished, nothing new unblocked, same Phil-gated hold
-
-NEXT FOR THE OPERATOR: hold, because every unblocked item is exhausted and the constraint is Phil's reply, not available work.
-
-Attached per Step 0: shallow and detached on arrival, real unshallow, `checkout -B main origin/main`, ff-only onto `dd6a90c`, tree clean, no reset or force.
-
-Previous work (03:1x PM check-in) confirmed finished: tree was clean and already pushed at attach. `BACKLOG-2026-09-07.md` sections 2 through 5 reread directly: all rows struck or Hold; only section 6's owner gates remain, all duplicated as GitHub issues #43 through #65. 31 open issues re-pulled live via `gh issue list`: unchanged set, all `decision`/P0/blocked-on-art, none from Phil since 2026-11-02 (19 days). A push notification on this exact backlog-exhausted state already went out 2026-11-20T07:46Z under its own 48h anti-spam floor; not due yet, so none sent this cycle. `preflight.py --fast` run fresh: 0 FAIL through every gate to a clean `cycle_signal` snapshot, then stalled at `test_audit_catalog.py` (9/489), the documented headless-Chromium/no-egress sandbox limit; killed the hung child rather than let it sit, reported unchecked past that point, not assumed passing.
-
-Not starting any Phil-gated item or re-litigating issue #42.
-
-Pushed to main: dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
