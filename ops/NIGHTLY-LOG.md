@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-21 (~12:4x UTC): confirmed via list_triggers that three separate schedules (PM at :10 and :40, operator at :43) fire on this repo every cycle, the concrete shape behind issue #42; nothing newly unblocked
+
+**Did:** Attached per Step 0 (`fetch --unshallow`, `checkout main`, `merge --ff-only`, 780+ commits fast-forwarded, tree clean). Preflight run live (full, not `--skip-tests`): every gate reached passed 0 FAIL, stalled at `test_audit_catalog.py` (9/490), the documented headless-Chromium sandbox limit every recent cycle hits; `--skip-tests` reruns then completed clean, 31 standing warnings. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14). `inbox_agent.py --apply`: no mail credential. Outbound network confirmed unreachable for every host but GitHub (6s-success.com, api.indexnow.org, google.com, target.com all refused by the proxy, HTTP 403), same standing sandbox gap. Independently re-verified rather than cited: spot-checked 15 of the current room-guide partial-tier queries by exact phrase against the log/backlog history; all 15 already carry a prior decline or fix, including one real collision risk ("baking dishes" vs "oven dishes", A61) correctly left alone. `check_etsy.py`/`check_kdp.py` run directly: both 0 FAIL, genuinely ready, blocked only on Phil's account creation (issues #43/#44). Called `list_triggers` to see the actual cadence behind issue #42 rather than reason about it abstractly: three Claude Code Remote schedules run here, "6S Success agile PM (:10)" and "(:40)" every 30 minutes each, plus this "6S Success hourly operator" at :43, all from Phil's own 2026-09-10 instruction. That is the concrete mechanism issue #42 already asks him to confirm or revise; not mine to change unilaterally, since he set it explicitly.
+
+**Verified:** 0 material commits unmentioned anywhere. Lost one round of this exact log entry plus a dashboard regen to an untracked overwrite mid-cycle (a separate "Hourly check-in record" commit landed on `origin/main` from outside this session and the local working copy of these same files reverted to match it before the first commit attempt went through); re-fetched onto the new HEAD and redid both rather than fight it, this time committing and pushing immediately after each edit.
+
+**Went well:** checking the trigger list directly turned a vague "the cadence feels too fast" into an exact, citable fact (3 schedules, 2 at 30-minute intervals) worth having on record for whoever decides issue #42.
+
+**Did not go well:** lost one round of work to an external overwrite of uncommitted files before it could be committed; nothing shippable found this cycle beyond that, epics 1-4 remain owner-gated and epic 5 (room-guide keyword mining) reconfirmed exhausted by direct spot-check rather than citation.
+
+**Changing next cycle:** commit and push each small change immediately rather than batching several edits before the first commit, since an external process can and did overwrite uncommitted local changes to shared files mid-cycle.
+
+**Next:** hold for owner action (issue #42's cadence question, or any of the 30 open decision/P0 issues); re-mine room-guide partials only if `room_guide_underperformance.py` shows a row with zero prior-history hits.
+
+Pushed to main. Dashboard regenerated.
+
 ## PM check-in (~12:4x slot): previous work independently reconfirmed finished, caught and corrected own near-repeat of the external-timeout anti-pattern, nothing newly unblocked
 
 NEXT FOR THE OPERATOR: hold, because every room-guide partial row already carries a named decline in this log, and all 30 open GitHub issues remain decision/P0/blocked-on-art with none from Phil since #65.
