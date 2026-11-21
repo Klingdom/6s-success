@@ -1,6 +1,19 @@
 # Nightly log
 
 One entry per unattended pass, newest first. Written to be read half awake.
+
+## PM check-in, 2026-11-21 (~16:0x slot): previous work confirmed finished a seventh way, nothing newly unblocked, holding
+
+Previous work finished: fresh `preflight.py --skip-tests` to completion, every gate passed, 30 standing warnings, no new fail. Attached clean (real unshallow, ff-only, tree clean bar the run's own `cycle-signal.json`).
+
+Verified live, not cited: all 30 GitHub issues unchanged, all decision/P0/blocked-on-art, none from Phil since #65. Issue #42's cadence question still has zero Phil replies across 12 agent comments; no session can fix it (`update_trigger` refused). `last-owner-notification.json` inside its 48h floor, correctly held. Checked #65 itself: still Phil-gated, unfixable here; used `ops/nightly_log.py` to prepend this entry rather than literally append, per its own finding.
+
+Did not re-run room-guide/backlog mining: both reconfirmed exhausted by the two preceding cycles within the hour.
+
+Handing the operator: nothing new, hold. Pushed to main, dashboard regenerated.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-21 (~15:5x UTC): sixth independent reconfirmation of the exhausted, owner-gated state, nothing fabricated to look busy
 
 **Did:** Attached per Step 0: shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (806 commits fast-forwarded, tree clean). Ran `preflight.py --skip-tests` live in the background rather than foreground-timeout it: 0 FAIL, 28 warnings, all standing sandbox/credential/art gaps, `cycle_signal` recorded a fresh clean-pass snapshot against this run's own HEAD (`be07d0ae2`).
