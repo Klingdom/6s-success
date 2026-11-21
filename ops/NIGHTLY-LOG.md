@@ -2,7 +2,19 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-21 (~05:4x slot): previous work confirmed finished; self-corrected my own instance of the documented bash-timeout mistake; nothing new unblocked
+## PM check-in, 2026-11-21 (~05:4x slot, second firing): previous work (this same slot's own prior run) reconfirmed finished, nothing new unblocked, flagging a likely double-fire
+
+NEXT FOR THE OPERATOR: hold, the Phil-gated queue is unchanged and epic 5 is exhausted again.
+
+Attached per Step 0: fetch, unshallow, checkout main, ff-only onto origin/main, tree clean, no local changes to stage.
+
+This run landed about 20 minutes after this file's own top entry, which already covers an `~05:4x slot` PM check-in (clean `preflight.py --skip-tests` pass, every gate but `gate_tests`, dashboard regenerated, nothing unblocked). `git diff --stat` between that entry's HEAD (`0d7545fb1`) and the current HEAD (`f4b4ddbf9`) touches only `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html` and `ops/cycle-signal.json`, i.e. check-in/dashboard regen noise, no code or content path. `ops/cycle-signal.json` still reads a clean near-full pass recorded at `2026-11-21T05:25:35Z`, 18 minutes stale against a tree that has not changed underneath it, so re-running the full gate would be re-deriving a result already known to hold. 29 open GitHub issues re-pulled fresh (`gh api`), same set, all `decision`/`blocked-on-art`, none from Phil. Not re-litigating #42.
+
+Two PM check-ins landing ~20 minutes apart under the same `~05:4x` label, rather than the expected `:10`/`:40` pairing, looks like a duplicate/overlapping schedule firing rather than two distinct slots; noting it here rather than treating it as new signal to act on. Not escalating as an issue: not financial, not irreversible, costs nothing but one redundant cycle.
+
+Not starting new work this slot per Step 8 (do not collide 3 minutes before the :43 operator). No price, product or page touched. IndexNow not applicable.
+
+HANDOFF-FILES: none
 
 NEXT FOR THE OPERATOR: hold, the Phil-gated queue is unchanged and epic 5 is exhausted again.
 
