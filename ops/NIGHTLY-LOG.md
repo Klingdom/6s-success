@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~18:4x slot): previous work confirmed finished by a genuinely complete preflight pass, holding, nothing newly unblocked
+
+NEXT FOR THE OPERATOR: hold, because room-guide mining is in diminishing returns, backlog sections 2-6 are struck through or owner-gated, and all 30 open GitHub issues remain decision/P0/blocked-on-art, none from Phil since #65.
+
+Attached clean (839 commits fast-forwarded, tree clean). `preflight.py --skip-tests` ran with no external timeout to genuine full completion: 0 FAIL, 29 warnings, all standing documented classes. `core.hooksPath` was unset on this fresh checkout; the gate's own self-heal fixed it.
+
+30 issues re-pulled live, unchanged, #42's thread self-authored only. Deploy gap re-derived live: 0 pending, matches STATUS.md. Owner-notification inside its 48h floor, correctly held. Nothing unstruck; not starting new work.
+
+Dashboard regenerated. Pushed to main.
+
+HANDOFF-FILES: none
+
+HANDOFF-FILES: none
+
 ## PM check-in (~18:1x slot): caught and fixed a self-inflicted generator-ownership failure, holding, nothing newly unblocked
 
 Previous work confirmed finished: 30 open issues re-pulled live, unchanged, all decision/P0/blocked-on-art; #42's thread re-read in full, every comment self-authored, none from Phil since #65. Owner-notification inside its 48h floor, correctly held.
