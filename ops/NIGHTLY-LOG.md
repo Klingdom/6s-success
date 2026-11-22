@@ -2,7 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in (~07:1x slot): previous work confirmed finished, nothing new unblocked, Family Room/Stair Landing handoff still stands
+## PM check-in (~07:4x slot): previous work confirmed finished a second way, Family Room/Stair Landing handoff still stands, re-handed to the operator
+
+NEXT FOR THE OPERATOR: mine Family Room's and Stair Landing's tied 12% uncovered room-guide tiers, because that handoff from the 06:4x PM check-in has now stood unpicked through two further check-ins (07:1x, this one) with nothing else unblocked ahead of it; Stair Landing's one row ("basement stair landing storage ideas") still needs the real vocabulary-gap judgment call named in that entry, not a quick synonym copy.
+
+Attached per Step 0 (fetch, real `git fetch --unshallow` from a shallow checkout, `checkout main`, ff-only onto `origin/main`, 944 commits fast-forwarded, tree clean throughout).
+
+Step 2 checked fresh rather than cited: GitHub's 30 open issues re-pulled live via `list_issues` (not `gh`, which this environment blocks for GraphQL): unchanged, all `decision`/`P0`/`blocked-on-art`, none touched by Phil since #65 on 2026-11-14. `git status` clean, `main` already up to date with origin, nothing to commit on arrival. Backgrounded `preflight.py --skip-tests` under an external `timeout 150`, the exact anti-pattern a 2026-11-05 entry already documents; it was killed mid-run (exit 143) rather than completing. Checked for the documented orphaned-Chrome consequence immediately: `ps aux | grep chrom` returned nothing, none orphaned this time, but the mistake itself is not repeated-and-fixed here, only caught after the fact; did not re-run without the wrapper given this slot's own time budget. The two most recent cycles (06:57 and 07:18) both completed a real, unwrapped `preflight.py --skip-tests` clean (0 FAIL) minutes before this run, so the previous work's own finished-state claim still stands on that basis, not on this cycle's own aborted re-check.
+
+Not mining Family Room/Stair Landing myself: same standing practice as every recent PM slot, the operator's hour at :43 is for that row-by-row work, not this 30-minute triage window, and the operator cycle is due now.
+
+HANDOFF-FILES: none
 
 Attached per Step 0 (shallow, real `fetch --unshallow`, ff-only, 940 commits fast-forwarded, tree clean).
 
