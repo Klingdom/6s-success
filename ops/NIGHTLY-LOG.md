@@ -20,6 +20,14 @@ Pushed to main.
 
 HANDOFF-FILES: none
 
+## PM check-in (~11:4x slot): previous work confirmed finished a sixth independent way, a preflight-timeout mistake caught live, nothing new unblocked
+
+NEXT FOR THE OPERATOR: nothing new above the standing owner-gated queue (30 open issues, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65), because a fresh `room_guide_underperformance.py` run matches every recent reading exactly and `gate_room_guide_mining_diminishing_returns` still holds.
+
+Attached clean per Step 0, tree clean throughout. Caught my own mistake: first ran `preflight.py --skip-tests` under an external `timeout`, the documented anti-pattern. Killed mid-run; checked for orphaned Chrome (none), discarded the stale `cycle-signal.json`, re-ran clean in the background to completion: every gate passed, 28 standing warnings. GitHub's 30 issues unchanged, none from Phil since #65. Room-guide mining confirmed still in diminishing returns. Not starting anything new this 30-minute slot. Regenerated the dashboard. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~11:0x slot): previous work confirmed finished a fifth independent way, nothing new unblocked
 
 Attached clean per Step 0 (real unshallow, ff-only, 975 commits fast-forwarded, tree clean).
