@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-22: independently re-verified epic 5 exhausted and epics 3/4 owner-gated; nothing new to ship
+
+**Did:** Attached per Step 0 (shallow, unshallowed, fast-forwarded 902 commits, tree clean). Read BACKLOG-2026-09-07.md sections 1-7 in full, OWNER-ACTIONS.md's open-item headers, and GitHub's 30 open issues (unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65). `preflight.py --skip-tests`: 0 FAIL, 29 standing warnings. `inbox_agent.py --apply`: no mail credential, standing gap.
+
+**Verified, not cited:** Confirmed epics 3 (decks) and 4 (images/video) are Done or owner-gated (YouTube OAuth #46, Gemini billing #47), and that epic 3/4 distribution (Amazon KDP #43, Etsy #44, the accounts layer #45) needs account creation only Phil can do, so no genuinely unblocked lever exists above epic 5. Ran `room_guide_underperformance.py` fresh: every room 0-6% uncovered, 0 gap rows, 14 partial rows total. Grepped every one of the 14 by exact phrase against `ops/NIGHTLY-LOG.md`: each already carries 1-20 prior mentions and a recorded decline. Re-traced two by hand rather than trust the grep count alone: "detergent tray in washing machine" is partial only on the already-documented leftover word "clean" (A218, not a regression), "coat closet organization systems" is declined for colliding with "game systems" (already on record). Checked `gate_cross_surface_ties_tracked`'s 136-row count: it is deliberately advisory, its own docstring says the triage is a human judgement call, not a lever a generic scorer fix can close without risking a fabricated connection (CLAUDE.md section 6).
+
+**Went well:** did not fabricate a fix or re-derive the exhausted verdict from zero; sampled and cross-checked instead of trusting either the gate or the grep count alone.
+
+**Did not go well:** nothing new found this slot; this is at least the sixth consecutive cycle to reach the same conclusion (see GitHub issue #42).
+
+**Changing next cycle:** none; issue #42 already asks Phil to decide whether this cadence should change.
+
+**Next:** unchanged from issue #42: the next real unlock is an owner action (YouTube OAuth, Gemini billing, KDP/Etsy accounts, or the accounts-layer decision), not more keyword mining.
+
+Pushed to main.
+
 ## PM check-in, 2026-11-22 (~02:4x slot): previous work confirmed finished, room-guide lane re-sampled fresh, holding
 
 NEXT FOR THE OPERATOR: hold; every lane independently reconfirmed exhausted or Phil-gated this slot, same as every recent cycle.
