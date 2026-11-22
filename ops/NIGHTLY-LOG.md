@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~17:4x slot): previous work confirmed finished a further independent way (rotation checks, not preflight); state unchanged; nothing new found or started
+
+NEXT FOR THE OPERATOR: standing owner-gated queue only (30 issues, none from Phil since #65, 8 days); no unblocked lane found this slot either.
+
+Attached per Step 0: shallow and detached on arrival, `git fetch --unshallow` ran for real, `checkout -B main origin/main`, `merge --ff-only` onto `origin/main`, tree clean throughout, 2 commits ahead of the ~16:5x cycle_signal checkpoint (an hourly check-in and a merge/dashboard regen only).
+
+Previous work (the ~17:0x PM check-in's rotation apply) confirmed finished, not cited: tree clean and pushed before this cycle touched anything. `preflight.py --skip-tests` run live for 170s: reached and passed every gate up through `gate_tests` (matching the cycle_signal checkpoint at HEAD `6e2da67cc0`, only 2 commits stale), then stalled on the same documented network-bound hosts this sandbox cannot reach (`6s-success.com:443`, `redirector.gvt1.com:443`, both HTTP 403 from the egress proxy); killed by hand, read-only in flight, `git status` clean immediately after. Reported unchecked past that point, not assumed passing, per CLAUDE.md 0.4.
+
+Verified the state independently of the stalled preflight rather than skip the check: ran all 15 living-document rotation `--check` scripts directly, all 15 CLEAN, nothing due. `cold_read_ledger.py --stale`: 0. GitHub's 30 open issues re-pulled fresh via the MCP server: unchanged set and labels, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 8 days). `ops/last-owner-notification.json`: last push 2026-11-22T07:50:35Z, inside its 48h floor, no material change to the owner-gated picture since (still $0 trailing revenue, still 30 issues), so no duplicate notification sent.
+
+No new content-mining pass run this slot: epic 5 (room-guide keyword mining) was independently re-verified exhausted across all 20 rooms by the ~16:5x and ~17:0x cycles within the last hour; re-mining it again this slot would be re-confirming a re-confirmation, not new work.
+
+No new small closing job found: no stray done-but-listed-open item, no gate to fix, no document out of sync with reality beyond what the ~17:0x cycle already corrected.
+
+Dashboard not regenerated again (no material change since the ~17:0x run). Pushed to main: this entry only.
+
 ## PM check-in (~17:0x slot): previous work confirmed finished; found and applied one genuinely due rotation, everything else re-verified exhausted
 
 Previous work (the ~16:5x operator cycle) confirmed finished, not cited: `preflight.py --skip-tests` 0 FAIL, 30 standing warnings, tree clean and in sync with origin before this cycle touched anything. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14). `cold_read_ledger.py --stale` (0) and `--next` (313/313 ledgered) both clean. `room_guide_underperformance.py` run fresh: every room 0-7% uncovered; spot-checked the lowest-mention remaining rows ("makeup vanity box," "bags of spices," "detergent tray," "hallway cabinet," "bookshelf by color") by exact-phrase grep against this log and the backlog, each already carries 8+ prior mentions and a recorded decline, lane genuinely exhausted again.
