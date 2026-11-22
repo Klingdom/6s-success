@@ -1238,8 +1238,8 @@
     },
     "rotate_owner_actions_item_1h_pymupdf.py": {
       "status": "clean",
-      "date": "2026-11-13",
-      "note": "One-shot rotation script, same proven pattern as rotate_owner_actions_item15_etsy.py and the other sibling rotators (single-anchor region_between() variant). Idempotent, archive-prepend verbatim. Already applied (commit de4f4a46e); --check now reports CLEAN. Test file ops/tests/test_gate_owner_actions_item_1h_not_oversized.py covers the gate side. No defect found."
+      "date": "2026-11-22",
+      "note": "Scheduled operator cycle 2026-11-22: cold-read confirmed correct after the same-day 2026-11-22 edit (treat a hand-condensed row as CLEAN rather than unchecked). --check reports CLEAN, test_gate_owner_actions_item_1h_not_oversized.py 6/6."
     },
     "rotate_owner_actions_item_history.py": {
       "status": "clean",

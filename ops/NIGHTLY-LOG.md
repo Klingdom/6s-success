@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-22: closed a cold-read ledger gap, caught my own backlog-rotation mistake before it shipped twice
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only`, 1007 commits fast-forwarded, tree clean). `preflight.py --skip-tests` 0 FAIL, 30 warnings, all standing. GitHub's 30 open issues re-pulled live: unchanged, none from Phil since #65 (8 days). No mail credential. A push notification on this exact state already went out 07:50:35Z today, inside its 48h floor, none repeated. Re-ran `room_guide_underperformance.py` and grepped all 15 remaining partial rows against the full log/backlog history: every one carries 7-25 prior mentions and a recorded decline, confirming that lane genuinely exhausted rather than assuming it a ninth time. `cold_read_ledger.py --stale` found a real gap: `rotate_owner_actions_item_1h_pymupdf.py` ledgered on a stale date while an earlier same-day cycle had edited the file. Cold-read the file, confirmed correct (`--check` CLEAN, its gate test 6/6), re-ledgered it.
+
+**Verified:** `preflight.py --skip-tests` re-run 0 FAIL after.
+
+**Went well:** the ledger's own staleness check caught a real "source corrected, artifact never re-derived" instance.
+
+**Did not go well:** my own first-draft backlog entry put an old reference date inside its bold title span, so `rotate_backlog.py`'s (correct, documented) first-date rule archived my new row instead of the genuinely oldest one. Caught by reading the tool's actual output, not trusting "applied," and reworded.
+
+**Changing next cycle:** when writing a new backlog row, keep every date except the row's own out of the bold title span, every time, not just when convenient.
+
+**Next:** the standing owner-gated queue (30 issues, none from Phil in 8 days); no structured lane has unmined work.
+
+Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~14:1x slot): previous work confirmed finished, a real tripwire defect closed, nothing new unblocked
 
 Attached per Step 0, tree clean, 1003 commits fast-forwarded. Caught my own mistake live: ran preflight.py under an external timeout first, the documented anti-pattern. Killed it, checked for orphaned Chrome (none), re-ran clean: 0 FAIL, 33 warnings, standing.
