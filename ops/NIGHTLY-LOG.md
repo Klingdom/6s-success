@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle: full preflight run to completion confirmed clean, state independently re-verified exhausted, nothing new found or started
+
+**Did:** Attached per Step 0: checkout arrived shallow and detached, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (1081 commits fast-forwarded on arrival, two further fast-forwards mid-cycle onto concurrent PM check-in/hourly commits, tree clean throughout, no conflicts). `preflight.py --skip-tests` run live in the background (foreground times out well before this sandbox reaches the end): 0 FAIL across every gate, 31 warnings, all documented standing sandbox/credential/art gaps (no SSH deploy key, Stripe key or mail credential here; no local hero photographs or narrated films present). GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, every one authored by the operator's own push identity, none from Phil since #65 (2026-11-14, 8 days). `inbox_agent.py --apply`: no mail credential, standing gap.
+
+**Verified:** `room_guide_underperformance.py` run fresh across all 20 rooms rather than cited: every room 0-6% uncovered, 0 gap-tier rows anywhere. Grepped every remaining partial-tier row (kids clothes storage, small children's bedroom, backpack for travel, cords behind entertainment center, master bathroom storage for small spaces, makeup vanity box, home office workspace/bookshelf by color, small guest bathroom storage, vanity box, coat closet systems, hallway cabinet, baking supplies/dishes, detergent tray's leftover "clean", bags of spices) against the full `ops/NIGHTLY-LOG.md` and backlog history directly rather than trust the aggregate (CLAUDE.md 5c/5d): every one already carries a recorded decline, several with 8+ prior mentions. All six `rotate_*.py --check` scripts independently CLEAN. `cold_read_ledger.py`: 313/313 ledgered, 0 stale. `check_sellable.py` (124/126, 2 person-delivered services) and `affiliate.py --check` (165 documents) both clean. `ops/last-owner-notification.json`: last push 07:50:35Z today, ~14h elapsed, inside its 48h floor, nothing material changed, no duplicate sent.
+
+**Went well:** independently re-derived exhaustion by direct grep against real history rather than citing the last cycle's verdict, at low cost; stayed in sync through two concurrent pushes mid-cycle without duplicating either.
+
+**Did not go well:** no new unblocked lane found; the 30 owner-gated issues remain unanswered, same set since 2026-11-14.
+
+**Changing next cycle:** none; no new defect class found, so no new preflight gate (10b).
+
+**Next:** hold for owner action on the 30 open issues (cheapest: traffic read #64, YouTube OAuth #46, both ~2-5 min); no unblocked GREEN lane found this slot.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~21:4x slot): previous work confirmed finished via a full completed preflight run; state independently re-verified exhausted; nothing new found or started
 
 NEXT FOR THE OPERATOR: standing owner-gated queue only, because every unblocked lane is independently re-confirmed exhausted this slot and all 30 open issues are decision/P0/blocked-on-art, none from Phil since #65.
