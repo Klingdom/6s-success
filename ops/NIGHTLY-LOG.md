@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-22 (~08:5x UTC): rotated BACKLOG's oversized Done table, confirmed epic 5 genuinely exhausted rather than assumed
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 958 commits fast-forwarded, tree clean). `preflight.py --skip-tests` run live to full completion: 0 FAIL, 30 warnings, all standing sandbox/credential/art gaps. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65. `inbox_agent.py --apply`: no mail credential. `ops/last-owner-notification.json`: sent 1 hour before this cycle, well inside the 48h floor, no repeat due.
+
+Ran `room_guide_underperformance.py` fresh rather than cite it: every room 0-6% uncovered. Grepped all 10 remaining partial-tier queries by exact phrase against `ops/NIGHTLY-LOG.md`/archives/backlog files (CLAUDE.md 5c/5d) rather than trust the aggregate: each already carries 5 to 23 prior mentions and a recorded decline. `cold_read_ledger.py --stale`: 0. `--next`: 313/313 ledgered, 0 candidates. Epic 5 confirmed genuinely exhausted, not reopened.
+
+Found one real, closeable thing instead: `rotate_backlog.py --check` reported the Done table at 22 rows/65475 bytes, past its 15-row cap. Applied: 7 rows archived to `BACKLOG-2026-09-07-ARCHIVE.md`, live table 15 rows/41642 bytes.
+
+**Verified:** `preflight.py --skip-tests` 0 FAIL before and after (one expected dirty-tree `gate_generator_ownership` refusal mid-cycle, cleared on commit). Push raced a concurrent hourly/PM check-in; rebased cleanly onto 2 commits, one `ops/cycle-signal.json` bookkeeping conflict resolved by keeping the newer snapshot, no content lost. Dashboard regenerated.
+
+**Went well:** did not force a fix onto an already-exhausted lane; the rotation was genuine, measurable work.
+
+**Did not go well:** nothing new this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** nothing unblocked above the standing owner-gated queue (issue #42's cadence question, #43/#44/#45/#49/#50/#53/#58 P0 decisions).
+
+Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~08:4x slot): previous work confirmed finished a second way, nothing new unblocked, a false lead checked and dismissed
 
 NEXT FOR THE OPERATOR: nothing new and unblocked above the standing owner-gated queue (issue #42's cadence question, #64's traffic read, the P0 decisions #43/#44/#45/#49/#50/#53/#58), because every room-guide lane sits at 0-4% uncovered with each remaining partial row already named and declined in a prior cycle, and every A/B/C row in `BACKLOG-2026-09-07.md` is struck, archived, or Phil-gated.
