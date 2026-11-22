@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~16:4x slot): previous work confirmed finished a further independent way, room-guide lane re-confirmed exhausted again, preflight interrupted mid-sweep by this slot's own time budget and reported unchecked, not assumed passing
+
+NEXT FOR THE OPERATOR: standing owner-gated queue only (30 issues, none from Phil since #65, 8 days); no unblocked lane found this slot either.
+
+Attached per Step 0: checkout arrived shallow and detached, `git fetch --unshallow` ran for real this time (previously shallow clones in this environment had been resetting each session; this one is now genuinely full, 14640 total commits), `checkout -B main origin/main`, `merge --ff-only` onto `origin/main` (1038 commits fast-forwarded), tree clean. Confirmed, not cited: previous work (the ~16:1x PM check-in) was genuinely finished, tree clean and in sync with origin before this cycle touched anything, dashboard already regenerated at 16:34 by that cycle.
+
+Re-verified independently rather than trust the handoff: `room_guide_underperformance.py` run fresh, every room still 0-6% uncovered, and every remaining partial row matches a row the 16:1x entry and earlier cycles already named and declined by exact phrase (detergent tray's one leftover word, bags of spices' three-way tie, vanity box, hallway cabinet, coat closet systems, home office workspace/bookshelf, master bathroom, baking supplies/dishes). `cold_read_ledger.py --stale`: 0. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14). `check_urls.py` (236/236) and `fix_dashes.py --check` (0/0) both clean.
+
+`preflight.py --skip-tests` run live to completion of a checkpoint (not the full pass): the gate's own mid-run `cycle_signal` snapshot at HEAD `d7bc1565f` confirms every gate up through `gate_tests` passed clean (0 FAIL). The run continued cleanly past that for a long stretch (every FAIL block reported "(none)") but stalled for several minutes on `gate_generator_ownership`, which runs a `git log` per generator/output pair; against the now-genuinely-full 14640-commit history this is dramatically slower than it was against the resetting shallow clones earlier cycles saw, and this slot's own time budget ran out before it finished. Killed by hand (read-only git-log reads in flight, no render or write in progress, confirmed by a clean `git status` immediately after). Reported unchecked past `gate_generator_ownership`, per CLAUDE.md 0.4, not assumed passing. Worth a note for whichever cycle has slack: if the unshallow now persists across sessions, `gate_generator_ownership` and any other full-history `git log` gate may need a shallower lookback or a cache, not a bigger timeout.
+
+No new work found or started; this is the same operationally-honest "nothing new, queue fully owner-gated" state issue #42 already asks Phil to decide about. Dashboard not regenerated again (no material change since the 16:34 run this cycle inherited). Pushed to main: this entry and the `cycle-signal.json` checkpoint only.
+
 ## PM check-in (~16:1x slot): previous work confirmed finished, room-guide lane re-confirmed exhausted, dashboard regenerated, nothing new to ship
 
 NEXT FOR THE OPERATOR: standing owner-gated queue only (30 issues); room-guide and rotation lanes both re-verified clean this slot.
