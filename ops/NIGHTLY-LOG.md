@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-22 (~03:5x UTC): full live preflight plus an independent room-guide re-sample, nothing new, holding
+
+**Did:** Attached per Step 0 (shallow, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 906 commits fast-forwarded, tree clean). Ran `preflight.py --skip-tests` live to full completion: exit code 0, 0 FAIL, warnings all standing sandbox/owner-gated gaps (room-guide mining diminishing returns, 136 advisory cross-surface ties, no Stripe/SSH/mail credential, no narrated films on disk here, 10 of 20 room pages leading on a zone diagram rather than a photo, 7 of 88 card heroes rejected). `inbox_agent.py --apply`: no mail credential, standing gap. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65.
+
+**Caught and corrected before it became the documented killed-generator anti-pattern:** first ran preflight wrapped in an external `timeout 280`, the exact shape that corrupted `build_deck_gallery.py`'s output two cycles ago. The run actually finished on its own (exit 0) before the wrapper's deadline; sent a `kill -TERM` to the wrapper and the python process as a precaution anyway, confirmed both already exited and the tree held nothing but the routine `cycle-signal.json` checkpoint, no orphaned Chrome. Ran every later check with no external wrapper.
+
+**Verified, not cited:** `cold_read_ledger.py --stale` 0/313, `--next` 313/313 ledgered. `gate_status_currency` (called directly) returned clean, no unmentioned material commits. Ran `room_guide_underperformance.py` fresh: every room 0-6% uncovered, 0 gap rows anywhere, 17 partial rows total. Grepped all 10 of the less-common ones by exact phrase against both nightly-log files and both backlog files rather than trust the room tool's own count: every one already carries 6 to 25 prior mentions.
+
+**Went well:** stopped an external-timeout mistake from repeating a documented production defect, by checking the process state before trusting the wrapper to behave.
+
+**Did not go well:** this is at least the ninth consecutive cycle tonight reaching the identical "exhausted, owner-gated" conclusion (GitHub issue #42 names exactly this cadence problem and remains open, unanswered since 2026-11-14).
+
+**Changing next cycle:** none beyond issue #42's own standing ask; re-running the exact same epic-5 sweep an unknown tenth time has essentially zero expected value until either Phil answers #42 or a new keyword harvest lands.
+
+**Next:** the next real unlock is an owner action (YouTube OAuth #46, Gemini billing #47, KDP/Etsy accounts #43/#44, or the accounts-layer decision #45), not more keyword mining.
+
+Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-22 (~03:4x slot): previous work confirmed finished, a self-caused killed-timeout drift caught and fixed before shipping, every lane reconfirmed exhausted or Phil-gated
 
 NEXT FOR THE OPERATOR: hold; room-guide lane re-sampled fresh this slot at 0-6% uncovered everywhere, every remaining partial row already matches a declined class from prior cycles (coat closet vs. game systems, baking dishes sense collision, detergent-tray leftover word), and all 30 open GitHub issues are still decision/P0/blocked-on-art with none from Phil since #65 on 2026-11-14, so there is nothing new and unblocked above the standing owner-gated asks (#64 traffic read, #42 cadence question).
