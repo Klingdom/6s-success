@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-22: found the same ledger gap a concurrent cycle fixed first, caught my own backlog-rotation near-miss instead of re-shipping it
+
+**Did:** Attached per Step 0 (real `fetch --unshallow`, `checkout main`, `merge --ff-only`, 1007 commits fast-forwarded, tree clean). `preflight.py --skip-tests` 0 FAIL, 30 warnings, all standing. GitHub's 30 open issues re-pulled live: unchanged, none from Phil since #65 (8 days). No mail credential. A push notification on this exact owner-gate state already went out 07:50:35Z today, inside its 48h floor, none repeated. Re-grepped all 15 remaining room-guide partial rows against the full log/backlog history: every one already carries 7-25 prior mentions and a recorded decline, confirming that lane exhausted rather than assuming it a ninth time. `cold_read_ledger.py --stale` found `rotate_owner_actions_item_1h_pymupdf.py` ledgered stale; before shipping a fix, fetched and found a concurrent cycle (`50fe32f0c`) had already done the identical re-ledger. Merged onto it, discarded my own duplicate rather than ship it twice (CLAUDE.md 0.2).
+
+**Verified:** my own first draft of the resulting backlog row put an earlier reference date inside its own bold title span; `rotate_backlog.py`'s `row_date()` correctly read it literally and archived my new row instead of the genuinely oldest one (A213). Caught by reading `--apply`'s actual output, not trusting "applied," reverted and reworded. `preflight.py --skip-tests` re-run 0 FAIL after.
+
+**Went well:** fetched before shipping and avoided a duplicate fix; caught my own rotation mistake from tool output, not assumption.
+
+**Did not go well:** wrote a backlog row without checking which date would land first in its own bold span; this is now the second cycle to trip on a self-inflicted mechanical near-miss in the same session.
+
+**Changing next cycle:** before writing any new backlog row, state its own date first in the bold span and keep every other date out of it, as a fixed habit rather than a one-off fix.
+
+**Next:** the standing owner-gated queue (30 issues, none from Phil in 8 days); no structured lane has unmined work.
+
+Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~14:4x slot): previous work confirmed finished, one real stale cold-read entry closed, a self-inflicted race caught and redone
 
 NEXT FOR THE OPERATOR: cold-read OWNER-ACTIONS.md's "Open, ranked by what they unblock" section for the next prunable chunk, because the file sits at 108KB of its 110000-byte tripwire and every existing rotate_owner_actions*.py sibling already reports CLEAN, so the next cut has no tool yet (same gap A221 named and nobody has done since).
