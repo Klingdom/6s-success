@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~04:4x slot): previous work confirmed finished, verified issue #65's Routine-prompt fix is genuinely API-blocked, every lane reconfirmed exhausted
+
+NEXT FOR THE OPERATOR: hold; nothing new and unblocked above the standing owner-gated asks (#64 traffic read, #42 cadence question), matching every recent cycle.
+
+Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, ff-only onto `origin/main`, 918 commits fast-forwarded, tree clean). Previous work confirmed finished: already pushed at `0e616ac`.
+
+`preflight.py --skip-tests` ran live to full completion, no external timeout wrapper: 0 FAIL, UNCHECKED items all the standing network-bound Etsy gaps. GitHub's 30 issues unchanged, none from Phil since #65. Push notification correctly withheld: 48h floor clears 2026-11-22T07:46Z.
+
+Closing job, verified not re-cited: issue #65 (stale "Append" wording in all three Routine prompts) says this session cannot fix it. Actually tried `update_trigger` on PM :40 rather than trust the note cold: refused, "Agents can only update routines they created." Confirms the record still holds; genuinely Phil-gated.
+
+Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-22 (~04:1x slot): previous work confirmed finished, full preflight re-run clean to completion, deploy gap and cold-read ledger both independently reconfirmed clean, holding
 
 Attached per Step 0: arrived shallow and detached, real fetch, unshallow, checkout main, ff-only onto origin/main at fac60ce; caught that the first checkout landed detached rather than on main, redid it properly before trusting git status.
