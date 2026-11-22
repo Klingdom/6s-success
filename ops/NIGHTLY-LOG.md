@@ -16,6 +16,24 @@ Pushed to main.
 
 HANDOFF-FILES: none
 
+## Scheduled operator cycle, 2026-11-22 (~15:5x slot): independently re-verified all four of the latest handoff's "fresh-looking" rows, each already correctly declined; nothing shippable this slot
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 1032 commits fast-forwarded, tree clean). Read CLAUDE.md, STATUS.md, both backlog files and the tail of this log before touching anything. `preflight.py --skip-tests` run live, backgrounded past this sandbox's own foreground window rather than wrapped in an external `timeout`: reached genuine completion, every gate passed, 29 warnings, all standing sandbox/credential/art gaps (no SSH deploy key, no Stripe credential, no mail credential, no local heroes/narrated-film source). GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14); read issue #42's full comment thread directly rather than trust the count, every comment self-authored by a prior cycle. `inbox_agent.py --apply`: no mail credential, standing gap.
+
+**Verified:** the ~14:0x PM check-in handed off four "fresh-looking" room-guide partial rows (bags of spices, detergent tray, vanity box, hallway cabinet) as unpicked. Checked each directly against the real log/backlog history rather than mine blind: "detergent tray" was already fixed (A218, 2026-11-20; the one remaining unmatched word, "clean," is already documented as a genuine leftover). "bags of spices" has been traced and declined at least four separate times (most recently with a full before/after rescore proving the fix is a verified no-op): a genuine three-way cross-surface tie with no honest single-phrase winner. "vanity box" and "hallway cabinet organization ideas" both already carry recorded declines from this week (A226 and the 2026-11-22 ~06:3x STATUS correction respectively). Ran `room_guide_underperformance.py` fresh myself rather than cite any of this: every room sits at 2-6% uncovered; of the remaining rows, "small guest bathroom storage ideas," "master bathroom storage ideas for small spaces," "home office organization tips for creating a productive workspace," and "coat closet organization systems" are each already examined and declined by name in this log (generic "small"/"storage" words, a `household_room_signal()` tie-break limitation, decorating-style filler, and the "game systems" digital collision respectively). The one standing exception, "how to organize backpack for travel," is a genuine content gap (confirmed again: no zone or room anywhere in `content/manual/source/content.json` covers packing a travel bag; Kids Bedroom's School and Activity Launch Zone is entirely about the nightly school-run routine, not travel, so crediting it would be the fabricated connection CLAUDE.md section 6 forbids) but authoring new content for one single, unweighted query is still out of proportion for a single cycle, same judgment as every prior cycle that has looked at it.
+
+**Went well:** did not re-ship a verified no-op or re-decline something already declined under a new name; the four-row handoff looked fresh on its face but a direct grep against the real history resolved all four in minutes.
+
+**Did not go well:** the handoff itself was stale (one of its four rows had already been shipped two days earlier); nobody who wrote it had grepped the history first.
+
+**Changing next cycle:** before handing off a room-guide row as "fresh-looking," grep it against `ops/NIGHTLY-LOG.md` and both backlog files first, the same check this cycle used to clear all four.
+
+**Next:** hold for owner action on the 30 open `decision`/`P0`/`blocked-on-art` issues (`OWNER-ACTIONS.md` "Start here"). No owner-notification push sent: last sent 2026-11-22T07:50:35Z, inside its 48h floor, nothing material changed.
+
+Dashboard regenerated. Pushed to main. No price, product or page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~15:1x slot): previous work confirmed finished, NIGHTLY-LOG.md's own overdue rotation closed
 
 Attached per Step 0, merged a concurrent operator push mid-cycle, no conflicts. Previous work confirmed finished, not cited: `preflight.py --skip-tests` run live, no external timeout, 0 FAIL, 30 standing warnings. GitHub's 30 issues unchanged, none from Phil since #65. `BACKLOG-2026-09-07.md` section 2 reread: fully archived, nothing to mine.
