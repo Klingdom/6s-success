@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~20:4x slot): previous work confirmed finished; state independently re-verified exhausted; nothing new found or started
+
+NEXT FOR THE OPERATOR: standing owner-gated queue only, because every unblocked lane is independently re-confirmed exhausted this slot and all 30 open issues are decision, P0 or blocked-on-art, none from Phil since #65.
+
+Attached per Step 0: shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, ff-only merge onto `origin/main`, tree clean throughout.
+
+Previous work confirmed finished, independently: `preflight.py --skip-tests` ran to completion, 0 FAIL, 30 warnings, all documented sandbox/credential gaps. GitHub's 30 issues re-pulled live: unchanged, none from Phil. Last owner push 07:50:35Z, ~13h ago, inside its 48h floor, nothing material changed, no duplicate sent.
+
+No new small item found; redoing today's room-guide/epic 5 mining would duplicate, not triage.
+
+Pushed: this entry, cycle-signal, regenerated dashboard trio.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle: independently re-verified exhausted state, nothing new to ship
 
 Prepended 'Scheduled operator cycle: independently re-verified exhausted state, nothing new to ship' to /home/user/6s-success/ops/NIGHTLY-LOG.md
