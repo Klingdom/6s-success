@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~09:4x slot): previous work confirmed finished, nothing new unblocked, caught and corrected my own external-timeout mistake before it orphaned anything
+
+NEXT FOR THE OPERATOR: nothing new and unblocked above the standing owner-gated queue (issues #43-65), because every room-guide lane sits at 0-12% uncovered with the worst case still under the diminishing-returns line, and every A/B/C row in `BACKLOG-2026-09-07.md` is struck, archived, or Phil-gated.
+
+Attached per Step 0 (shallow and detached on arrival, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 967 commits fast-forwarded, tree clean).
+
+**Caught my own mistake mid-cycle rather than ship past it.** First ran `preflight.py --skip-tests` under an external `timeout`, the exact documented anti-pattern (an external wrapper can kill a gate before its own internal timeout resolves, orphaning Chrome) that multiple prior entries in this log name directly. It was killed at the wall. Checked for orphaned Chrome/Chromium processes immediately: none found. Re-ran in the background with no external wrapper, to its real exit: 0 FAIL, 29 warnings, all standing sandbox/credential/art gaps (no SSH key for the traffic DB, no local `build/heroes/` photographs, no narrated films in this environment). `cycle_signal` recorded a clean pass.
+
+Step 2 checked fresh, not cited: GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14). `BACKLOG-2026-09-07.md` section 6 read directly: the full owner-gate table, every row still open and still Phil's to act on. `ops/last-owner-notification.json` read directly: sent 2026-11-22T07:50:35Z, well inside the 48h floor, no repeat due. `ops/cold_read_ledger.py --stale`: 0.
+
+Re-verified the immediately prior entry's own correction rather than trust it: ran `room_guide_underperformance.py` fresh myself. Confirmed exactly: Family Room and Stair Landing both 12% uncovered, Hall Closet 10%, Nursery/Garage/Primary Bedroom 7%, everything else lower, Dining Room/Mudroom/Patio or Deck at 0%. The correction holds on a second, independent read.
+
+Previous work (the 08:5x operator cycle's backlog rotation, the 08:1x-08:4x PM check-ins, and the 09:1x correction) confirmed finished on this evidence. Not starting anything new: no workstream-sized item is both unblocked and ready, and this is the 30-minute triage slot, not the operator's hour.
+
+Regenerated the dashboard. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~09:1x slot): previous work finished, but the last two cycles' own room-guide percentage was wrong
 
 Attached clean, 963 commits fast-forwarded. `preflight.py --skip-tests` fresh: 0 FAIL, 29 warnings, standing gaps. GitHub's 30 issues unchanged, none from Phil since #65. BACKLOG clean, owner notification inside the 48h floor.
