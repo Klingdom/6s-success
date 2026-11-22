@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~17:0x slot): previous work confirmed finished; found and applied one genuinely due rotation, everything else re-verified exhausted
+
+Previous work (the ~16:5x operator cycle) confirmed finished, not cited: `preflight.py --skip-tests` 0 FAIL, 30 standing warnings, tree clean and in sync with origin before this cycle touched anything. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14). `cold_read_ledger.py --stale` (0) and `--next` (313/313 ledgered) both clean. `room_guide_underperformance.py` run fresh: every room 0-7% uncovered; spot-checked the lowest-mention remaining rows ("makeup vanity box," "bags of spices," "detergent tray," "hallway cabinet," "bookshelf by color") by exact-phrase grep against this log and the backlog, each already carries 8+ prior mentions and a recorded decline, lane genuinely exhausted again.
+
+Ran all 14 living-document rotation `--check`s rather than assume clean from the last cycle's handoff: 13 CLEAN, one genuinely DUE (`rotate_backlog_section2_items.py`, 5 rows/20,256 bytes older than its 2-day retention cutoff). Applied it (`--apply`): moved to `BACKLOG-2026-09-07-SECTION2-ARCHIVE.md`, nothing deleted, file shrank 108,189 to 89,454 bytes. Re-ran `--check` after: CLEAN. Re-ran `preflight.py --skip-tests` after the edit: 0 FAIL (the one transient FAIL mid-cycle was `gate_generator_ownership` correctly refusing to diff against a dirty tree before this commit, not a real defect), 27 warnings.
+
+No push notification: last one sent 2026-11-22T07:50:35Z, inside its 48h floor, no material change to the owner-gated picture (still 30 issues, none from Phil, $0 trailing-30-day revenue). Handing to the operator: standing owner-gated queue only; nothing hours-scale found unblocked this slot either.
+
+Dashboard regenerated. Pushed to main.
+
 ## Scheduled operator cycle, 2026-11-22 (~16:5x slot): independently re-verified every structured lane fresh (not cited) and found all genuinely exhausted; full preflight run to real completion rather than a prior partial checkpoint
 
 **Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 1038 commits fast-forwarded, tree clean throughout). Read CLAUDE.md, both backlog files, ROADMAP-2026-2029.md and the tail of this log before touching anything. Ran `preflight.py --skip-tests` live in the background to genuine completion (178s, under its own documented foreground-timeout trap): 0 FAIL (both FAIL headers followed by "(none)", not assumed from the summary line alone), 29 warnings, every one a standing sandbox/credential/art gap already named elsewhere (no SSH deploy key, no Stripe credential, no mail credential, no local heroes/book-image assets, no narrated-film source here).
