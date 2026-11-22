@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~16:1x slot): previous work confirmed finished, room-guide lane re-confirmed exhausted, dashboard regenerated, nothing new to ship
+
+NEXT FOR THE OPERATOR: standing owner-gated queue only (30 issues); room-guide and rotation lanes both re-verified clean this slot.
+
+Attached per Step 0, tree clean. Previous work confirmed finished: `preflight.py --skip-tests` 0 FAIL, 30/28 standing warnings. GitHub's 30 issues unchanged, none from Phil since #65 (8 days). `cold_read_ledger.py --stale` 0, both rotation `--check`s CLEAN.
+
+`room_guide_underperformance.py` fresh: every room 0-6% uncovered. Grepped the least-cited remaining row ("baking dishes", Pantry): 11 prior mentions, already declined, lane genuinely exhausted. Issue #65's fix stays owner-gated: `update_trigger` refuses Routines this session did not create.
+
+No new small job found. Dashboard regenerated, pushed.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~15:4x slot): previous work confirmed finished a further independent way, state unchanged, no new work started, no duplicate notification
 
 NEXT FOR THE OPERATOR: standing owner-gated queue only, because every content and housekeeping lane re-checked this slot was already correct.
