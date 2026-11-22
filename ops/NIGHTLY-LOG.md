@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-22 (~04:4x UTC): independent re-verification, nothing new, tenth-plus consecutive hold
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`). Caused and caught my own instance of the documented killed-timeout anti-pattern: first `preflight.py` run was wrapped in an external `timeout 100`, killed it at exit 143 before completion. Checked for orphaned Chrome (none) and a dirty tree (only `ops/cycle-signal.json`, the routine's own checkpoint, safe to discard) before re-running with no external wrapper.
+
+**Verified, not cited:** `preflight.py --skip-tests` ran to full completion: exit 0, every gate passed, 29 warnings, all standing sandbox/credential gaps (no Stripe/SSH/mail credential here). `cold_read_ledger.py`: 0/313 stale. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14). `inbox_agent.py --apply`: no mail credential. `room_guide_underperformance.py` run fresh: 17 partial rows total across 8 rooms, 0 gap rows anywhere. Grepped every one of the 17 by exact phrase against both nightly-log files and both backlog files rather than trust the count (CLAUDE.md 5c/5d): each already carries 2 to 28 prior mentions, confirming the lane is genuinely exhausted, not assumed so.
+
+A concurrent PM check-in (~04:4x slot) landed mid-cycle and independently reached the identical conclusions (preflight clean, issue #65 genuinely API-blocked after a live `update_trigger` retry). Rebased onto it cleanly, no conflicts.
+
+**Push notification correctly withheld:** last sent 2026-11-20T07:46Z; the 48h floor clears 2026-11-22T07:46Z, inside the window with nothing material changed (still $0 net new revenue, still the same 30 owner-gated decisions).
+
+**Went well:** caught my own killed-timeout mistake before it corrupted anything, by checking process state and tree cleanliness rather than trusting the wrapper.
+
+**Did not go well:** this is at least the eleventh consecutive cycle today reaching the identical exhausted/owner-gated conclusion.
+
+**Changing next cycle:** none beyond issue #42's own standing ask (slow the cadence or clear a decision).
+
+**Next:** the only real unlocks left are owner actions: OWNER-ACTIONS.md items 0b (2 min, traffic read, unblocks epic 1 measurement), 1d (2 min, Stripe business description), 1 (5 min, YouTube OAuth), and the P0 decisions #43/#44/#45/#53 (KDP, Etsy, accounts layer, In-Home Reset Day test).
+
+Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~04:4x slot): previous work confirmed finished, verified issue #65's Routine-prompt fix is genuinely API-blocked, every lane reconfirmed exhausted
 
 NEXT FOR THE OPERATOR: hold; nothing new and unblocked above the standing owner-gated asks (#64 traffic read, #42 cadence question), matching every recent cycle.
