@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-22 (~02:4x slot): previous work confirmed finished, room-guide lane re-sampled fresh, holding
+
+NEXT FOR THE OPERATOR: hold; every lane independently reconfirmed exhausted or Phil-gated this slot, same as every recent cycle.
+
+Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout -B main origin/main`, ff-only, 902 commits fast-forwarded, tree clean before starting). Previous work (the ~02:1x PM check-in) confirmed finished: tree clean and pushed, matching HEAD `3891460b8`.
+
+Verified, not cited: GitHub's 30 open issues re-pulled live, unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14); issue #42 (the standing cadence question) last touched 2026-11-20, still every comment self-authored by a prior agent cycle. `preflight.py --skip-tests` run live, backgrounded past the foreground window rather than killed by an external wrapper: every gate reached reported `FAIL (none)` before the documented network-bound Etsy stall, matching every recent cycle, UNCHECKED past that point rather than assumed clean. `room_guide_underperformance.py` run fresh across all rooms: 0-12% uncovered everywhere, every remaining partial row (basement family room, game library, stardew valley board game, basement stair landing, front hallway closet, nursery furniture, bags/disposable bags of spices, and the rest) already carries a recorded decline in prior cycles, re-confirmed by direct read rather than trusted. `ops/last-owner-notification.json`: last sent 2026-11-20T07:46Z, 48h floor clears 2026-11-22T07:46Z, about 5 hours out; not cleared this slot, no repeat sent.
+
+Not mining anything myself: nothing new and small enough surfaced; the operator's hour is for row-by-row work, not this 30-minute window.
+
+Regenerated the dashboard. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-22 (~02:1x slot): previous work confirmed finished, a self-caused killed-timeout defect found and fixed before it could ship, holding
 
 NEXT FOR THE OPERATOR: hold; every lane independently reconfirmed exhausted or Phil-gated this slot.
