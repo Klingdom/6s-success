@@ -26169,15 +26169,15 @@
         "how to organize bulk storage"
       ],
       "room": "",
-      "best_page": "/articles/how-to-declutter-a-bedroom.html",
-      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "best_page": "/zones/kitchen-the-cooking-zone.html",
+      "best_page_title": "How to organize the kitchen stove area",
       "coverage": 0.0,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
+      "heading_page": "/zones/kitchen-the-cooking-zone.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "spices"
+        "bags"
       ],
       "markets": [
         "ca"
@@ -47779,6 +47779,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "8fb2c7575",
-  "scored_at": "2026-11-22T05:57:17Z"
+  "scored_against_commit": "b34d5befe",
+  "scored_at": "2026-11-22T06:49:52Z"
 }
