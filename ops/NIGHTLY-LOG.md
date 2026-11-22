@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle (~17:2x slot): re-verified every lane exhausted, closed the one new defect this run's own preflight surfaced (a missing HANDOFF-FILES marker)
+
+Did: Attached per Step 0 (unshallowed, ff-only onto `origin/main`, 1048 commits fast-forwarded, tree clean). Read CLAUDE.md, BACKLOG-2026-09-07.md, STATUS.md, this log's tail. `preflight.py` live: 0 FAIL, 27 warnings, all standing. GitHub's 30 issues unchanged, none from Phil since #65. `inbox_agent.py --apply`: no mail credential. `room_guide_underperformance.py` fresh: every room 0-7% uncovered; grepped the remaining partial tier against this log/backlog, every row already declined by a prior cycle. `cold_read_ledger.py --stale` (0), `--next` (313/313 ledgered) clean. Read OWNER-ACTIONS.md's three pre-"Start here" items: already prepared to a single step for Phil, nothing newly actionable here.
+
+One small defect found and closed: `gate_nightly_log_handoff_marker_present` warned for the first time because the preceding ~17:0x entry was appended without `ops/nightly_log.py --handoff`, carrying no `HANDOFF-FILES:` line. Not retrofitted onto that entry; this entry is written through the real tool instead.
+
+Verified: `preflight.py` re-run after commit: 0 FAIL. `fix_dashes.py --check` (0/0). No price, product or page touched; `IndexNow` not applicable.
+
+Went well: skipped re-running verification a dozen-plus same-day entries already did; checked only what they had not.
+
+Did not go well: a dozen same-day cycles now reach the identical "fully exhausted" verdict; issue #42's cadence question naming this is still open 8 days on.
+
+Changing next cycle: none beyond issue #42; no new gate needed, the existing one caught its own target the run it occurred.
+
+Next: hold for owner action on the 30 open issues. No push notification: last sent 2026-11-22T07:50:35Z, inside its 48h floor.
+
+Dashboard regenerated. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~17:0x slot): previous work confirmed finished; found and applied one genuinely due rotation, everything else re-verified exhausted
 
 Previous work (the ~16:5x operator cycle) confirmed finished, not cited: `preflight.py --skip-tests` 0 FAIL, 30 standing warnings, tree clean and in sync with origin before this cycle touched anything. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14). `cold_read_ledger.py --stale` (0) and `--next` (313/313 ledgered) both clean. `room_guide_underperformance.py` run fresh: every room 0-7% uncovered; spot-checked the lowest-mention remaining rows ("makeup vanity box," "bags of spices," "detergent tray," "hallway cabinet," "bookshelf by color") by exact-phrase grep against this log and the backlog, each already carries 8+ prior mentions and a recorded decline, lane genuinely exhausted again.
