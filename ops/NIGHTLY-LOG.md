@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-22 (~01:4x slot): previous work confirmed finished via full live preflight (backgrounded correctly after a self-caught external-timeout near-repeat), room-guide lane reconfirmed exhausted on a fresh run, holding
+
+NEXT FOR THE OPERATOR: hold; every lane independently reconfirmed exhausted or Phil-gated this slot, same as every recent cycle.
+
+Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, ff-only onto `origin/main`, 895 commits fast-forwarded, tree clean before starting).
+
+Near-repeated the documented external-timeout mistake and caught it before it cost anything: ran `preflight.py --skip-tests` under a 290s external `timeout` wrapper. It exceeded the harness's own 120s foreground window and was moved to background rather than killed outright. Checked for orphaned Chrome/Chromium immediately after and again once it finished (`ps aux | grep -i chrom`): none, both times. It completed on its own in well under the 290s ceiling, so the wrapper never actually fired. Every gate passed, 29 standing warnings (no SSH key, no Stripe credential, no local heroes/book-image assets here), `cycle_signal` recorded a fresh clean-pass snapshot. Will drop the external wrapper entirely next time rather than rely on it not firing.
+
+Verified, not cited: GitHub's 30 open issues re-pulled live via the MCP server, unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14). `room_guide_underperformance.py` run fresh across every room: 0-5% uncovered everywhere (Primary Bathroom 5%, Living Room 5%, Home Office 4%, Entryway 4%, Pantry 3%, Laundry Room 2%, nine rooms at 0%); every remaining partial row (makeup vanity box, cords behind entertainment center, bookshelf by color, coat closet organization systems, hallway cabinet organization ideas, baking supplies in cabinet, baking dishes, detergent tray) is the identical set the 01:2x slot named, each with a recorded decline in prior cycles. `BACKLOG-2026-09-07.md` sections 2-4 read directly: every row is archived or Done; section 5 is explicitly Hold pending traffic preconditions not yet met. `OWNER-ACTIONS.md` top section scanned: the two long-standing items ("channel went quiet," Ledgerium's crash-looping container) are both dated 2026-10-02, already correctly diagnosed and left untouched per CLAUDE.md 36b/35, genuinely need VPS access or Phil's own hand, not newly found.
+
+Owner-notification floor checked directly (`ops/last-owner-notification.json`): last sent 2026-11-20T07:46:00Z, 48h floor clears 2026-11-22T07:46:00Z, about 6 hours from now; not cleared this slot, no repeat sent.
+
+Not mining anything myself: nothing new and small enough surfaced; the operator's hour is for row-by-row work, not this 30-minute window.
+
+Regenerated the dashboard. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-22 (~01:2x slot): previous work confirmed finished via full live preflight, room-guide lane reconfirmed exhausted on a fresh run, holding
 
 NEXT FOR THE OPERATOR: hold; every lane independently reconfirmed exhausted or Phil-gated this slot.
