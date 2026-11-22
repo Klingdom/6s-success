@@ -18,6 +18,28 @@ Shipped via `ops/ship.py --no-deploy` (two commits: the fix, then the dashboard 
 
 HANDOFF-FILES: `ops/room-also-called.json`
 
+## Scheduled operator cycle, 2026-11-22: deploy-verdict citations brought current against a newer automated deploy, epic 5 independently re-verified exhausted, one genuine content gap diagnosed and correctly left unshipped
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 932 commits fast-forwarded, tree clean). `preflight.py --skip-tests` run live with no external timeout wrapper, to full completion: 0 FAIL, 31 warnings, all standing sandbox/credential gaps. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, all authored by the operator's own push identity, none from Phil since #65. No mail credential (`inbox_agent.py --apply`).
+
+`ops/deploy-verdict.json` had advanced since STATUS.md was last written: now reads build `38694f470174306e`, confirmed `2026-11-22T06:38:17Z`, resolving to commit `b65f97ba0` (A226, the Guest-vs-Primary Bathroom "makeup counter" fix, already shipped). `deploy_gap_material_commits` re-derived live against current `HEAD`: empty list, 0 commits pending, correcting the stale citation (`cd8e87aad9451bfb`, 2026-11-21T01:17:17Z). Corrected BLOCKER-001, Production Knowledge, section 4's Public website row, section 5's build block and section 6's Production traceability row to match, and caught it with `gate_status_deploy_verdict_current` itself, not by cite-and-hope.
+
+Ran `room_guide_underperformance.py` fresh rather than cite the last count: every room still 0-6% uncovered. Checked six of the remaining partial rows by exact-phrase grep against `ops/NIGHTLY-LOG.md` (CLAUDE.md 5c/5d) instead of trusting the aggregate: each already carries 6 to 15 prior mentions and a recorded decline ("hallway cabinet organization ideas", "baking supplies in.cabinet", "a small children's bedroom", "cords behind entertainment center", "bookshelf by color", "a woodworking workshop"). The one candidate the prior cycle's own handoff flagged as genuinely unexamined, "how to organize backpack for travel" (global, unmatched "travel"), was checked directly against `content/manual/source/content.json`: no zone anywhere on the site covers packing a travel bag (the only "travel"/"suitcase" content belongs to Guest Bedroom's under-bed storage zone, about storing an empty suitcase, not packing one for a trip). This is a genuine content gap, not a wording gap; authoring new content for one query is disproportionate for this cycle (CLAUDE.md 0.2). Diagnosed, not shipped, same treatment as the already-declined "how to organize vanity box."
+
+**Verified:** `gate_status_deploy_verdict_current` re-checked directly against the edited file: clean. `preflight.py --skip-tests` re-run after staging: the only interim FAIL was `gate_generator_ownership` correctly refusing a dirty working tree, by design, not a real defect; clean after commit.
+
+**Went well:** caught a real staleness (deploy-verdict had moved twice since STATUS.md was last touched) rather than re-citing an old build; declined to force a fix onto a content gap that would need new authored content, not a wording tweak.
+
+**Did not go well:** nothing new to ship in the keyword-mining lane for at least the twelfth consecutive cycle; issue #42 already asks Phil to decide whether to slow this cadence, and this cycle is further evidence for that same ask, not a reason for this session to change its own schedule unasked.
+
+**Changing next cycle:** none beyond issue #42's own standing ask.
+
+**Next:** the only real unlocks left are owner actions (OWNER-ACTIONS.md items 0b, 1b, 1d, 1, the P0 decisions #43/#44/#45/#49/#50/#53/#58, and issue #42's cadence question itself). "How to organize backpack for travel" would need a new Travel or Packing zone/section authored from scratch, not a synonym fix; worth a future cycle's dedicated slot if the room-guide lane is ever picked up again, not this one.
+
+Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~06:1x slot): previous work confirmed finished, caught my own first-attempt external-timeout mistake before citing it, dashboard regenerated
 
 Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, ff-only onto `origin/main` at `23068aa0e`, 926 commits fast-forwarded, tree clean). GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14), matching the prior cycle's own claim exactly.
