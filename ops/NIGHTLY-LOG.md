@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-22 (~09:5x UTC): independent re-verification, nothing new unblocked, one false lead checked and dismissed
+
+NEXT FOR THE OPERATOR: nothing new above the standing owner-gated queue; this matches the immediately prior PM check-in's own conclusion on an independent second read.
+
+Attached per Step 0 (shallow and detached on arrival, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 967 commits fast-forwarded, then one further commit after a mid-cycle refetch, tree clean throughout). `preflight.py --skip-tests` run live to full completion: every gate passed, 30 warnings, all standing sandbox/credential/art gaps. `check_urls.py` (236/236), `audit_pages.py` (241 pages, 0 findings), `link_graph_report.py` (0 orphans), `check_sellable.py` (124/126, 2 person-delivered services), `affiliate.py --check` (165 docs), `fix_dashes.py --check` (0/0) all independently clean. `cold_read_ledger.py --next`: 313/313 ledgered, 0 candidates. `inbox_agent.py --apply`: no mail credential, standing gap.
+
+GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65. `room_guide_underperformance.py` run fresh: worst room 12% uncovered (Family Room, Stair Landing), matching the prior cycle's own reading exactly on an independent second read.
+
+Chased one apparent lead before writing it up: this sandbox's own `dashboard.py` run flipped `site_live`/`live_links_verdict` from a prior run's confirmed `true`/`ok` to `null`/`unknown`. Read `site_live()` and `resolve_live_links_verdict()` directly rather than assume a regression: both are deliberate and already documented (the 2026-08-31 incident fix), and correctly never carry forward good news, only a confirmed `dead`/`False`. Not a defect; this sandbox's own network just cannot reach `6s-success.com`, same as every prior session here.
+
+No code or content shipped. Regenerated the dashboard. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~09:4x slot): previous work confirmed finished, nothing new unblocked, caught and corrected my own external-timeout mistake before it orphaned anything
 
 NEXT FOR THE OPERATOR: nothing new and unblocked above the standing owner-gated queue (issues #43-65), because every room-guide lane sits at 0-12% uncovered with the worst case still under the diminishing-returns line, and every A/B/C row in `BACKLOG-2026-09-07.md` is struck, archived, or Phil-gated.
