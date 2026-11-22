@@ -6,15 +6,33 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, tree clean). `preflight.py --skip-tests` run live to completion: 0 FAIL, 29 warnings, all standing sandbox/credential gaps. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 8 days). `inbox_agent.py --apply`: no mail credential, standing gap. `room_guide_underperformance.py` run fresh across every room (0-6% uncovered everywhere); grepped every remaining partial-tier row (bags of spices, baking dishes, detergent tray's leftover "clean", vanity box, hallway cabinet, coat closet systems, bookshelf by color, kids clothes storage, small children's bedroom, backpack for travel, cords behind entertainment center, productive workspace, master bathroom storage for small spaces) against the full log/backlog history: every one already carries a recorded decline from a prior cycle. `cold_read_ledger.py --stale` (0), `check_sellable.py` (124/126, 2 person-delivered services), `affiliate.py --check` (165 docs), `fix_dashes.py --check` (0/0), `check_urls.py` (236/236) all independently clean.
 
-**Verified:** `ops/last-owner-notification.json`: last push 2026-11-22T07:50:35Z, inside its own 48h floor, no material change to the owner-gated picture since, so no duplicate notification sent.
+**Verified:** `ops/last-owner-notification.json`: last push 2026-11-22T07:50:35Z, inside its own 48h floor, no material change to the owner-gated picture since, so no duplicate notification sent. Merged a real divergence from a concurrent ~18:4x PM check-in that pushed between this cycle's own commit and its push attempt (git rejected the push with "fetch first"); resolved by a real three-way merge, not a force-push, keeping both entries in newest-first order.
 
 **Went well:** nothing new needed forcing; declined to re-tread an already-exhausted lane.
 
-**Did not go well:** the same exhausted state persists; 30 owner-gated issues remain unanswered 8 days on.
+**Did not go well:** the same exhausted state persists; 30 owner-gated issues remain unanswered 8 days on; a second concurrent cycle landed in the same window, costing a merge.
 
 **Changing next cycle:** none; no new defect class found, so no new preflight gate (10b).
 
 **Next:** hold for owner action on the 30 open issues; no unblocked lane found this slot.
+
+HANDOFF-FILES: none
+
+## PM check-in (~18:4x slot): previous work confirmed finished, all lanes re-verified exhausted, a real self-caused mid-generator interrupt found and fixed before shipping
+
+NEXT FOR THE OPERATOR: standing owner-gated queue only, because every structured lane re-checked this slot is independently confirmed exhausted and none of the 30 open issues is actionable without Phil.
+
+Attached per Step 0: shallow and detached on arrival, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `origin/main` (1058 commits fast-forwarded), tree clean before this cycle touched anything.
+
+Previous work (the ~17:2x operator cycle and ~18:1x PM check-in) confirmed finished, not cited: both had already run `preflight.py --skip-tests` to full completion with 0 FAIL, and the tree was clean and pushed before this slot started.
+
+Verified independently rather than cited: ran all 20 living-document rotation `--check` scripts fresh, all 20 CLEAN, nothing due. `cold_read_ledger.py --stale`: 0. GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 8 days); issue #42's own cadence question last touched 2026-11-20, still unanswered. `OWNER-ACTIONS.md` and `BACKLOG-2026-09-07.md` read directly: every open row is Phil-gated, nothing newly unblocked.
+
+Found and fixed a real self-caused defect before it could ship: started a live `preflight.py --skip-tests` run and killed it by hand against a slow wall-clock budget; it was mid-way through `wire_measure.py` (a known two-step generator: it writes a bare `measure.js` src, then calls `fingerprint_assets.py` to restore the `?v=` cache-busting hash) when killed, leaving 114 zone pages with the hash stripped, uncommitted. Diagnosed from the code's own comment rather than guessed, confirmed the diff was uniform across all 114 files (only the `?v=` suffix removed), and re-ran `ops/fingerprint_assets.py` directly rather than discard: tree returned to exactly matching `HEAD` except the expected `ops/cycle-signal.json` checkpoint update. No content, price or page actually changed.
+
+No push notification: last sent 2026-11-22T07:50:35Z, inside its 48h floor (clears ~2026-11-24T07:46Z), and nothing material changed on the owner-facing picture since.
+
+Pushed to main: this entry, `ops/cycle-signal.json`, regenerated dashboard. No price, product or site page touched.
 
 HANDOFF-FILES: none
 
