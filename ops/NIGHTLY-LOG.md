@@ -28,6 +28,22 @@ Closed the one real small item found: the dashboard was one commit stale (cited 
 
 Re-sampled `room_guide_underperformance.py` fresh rather than trusted the last cited count: 8 rooms still carry 1-2 partial rows each (2-4% uncovered), all names already seen and declined in prior entries (Pantry's "baking dishes" named explicitly as the already-declined sense collision; the rest are the same shape). Nothing newly minable. GitHub re-pulled live: 30 open issues, unchanged composition, none from Phil since #65.
 
+HANDOFF-FILES: none
+
+## Scheduled operator cycle, 2026-11-22: a real fix after a long run of exhausted-lane holds, Guest-vs-Primary Bathroom alphabetical tie-break closed for the unqualified case
+
+**Did:** Attached per Step 0 (unshallowed, `fetch --unshallow`, `checkout main`, `merge --ff-only`, 924 commits fast-forwarded). `preflight.py --skip-tests` 0 FAIL, 29 warnings, all standing. GitHub's 30 issues re-pulled live, unchanged, none from Phil since #65. No mail credential. `room_guide_underperformance.py` confirmed every room still 0-6% uncovered, but instead of stopping at the count, read the three lowest-mention partial rows by hand (per CLAUDE.md 5c) and found one genuinely unexamined: "how to organize makeup on bathroom counter" scored a real 0.667 tie between Guest and Primary Bathroom's vanity-counter zones, with "makeup" unmatched by either, decided for Guest purely by the alphabetical url fallback ("guest-" sorts before "primary-"), the same shape A25/A26 fixed in 2026-10-10 but only for queries carrying an explicit "master bathroom" signal. This one carries none. Worse than a coin flip: Guest Vanity Counter's own content explicitly limits that counter to soap, tissues and a towel, nothing personal. Added "makeup counter" to Primary Bathroom's Vanity Counter also-called entry (self-flattery: 1 of 244 pages carried "makeup" in a heading before this; collision: "makeup" appears in exactly 2 queries total). Regenerated through `build_zone_pages.py` and `build_seo.py`. Full before/after rescore both corpora: 1 row partial-to-covered (the target), 1 same-room pointer reshuffle, 0 regressions.
+
+**Verified:** `check_also_called_digital_collision_fast.py`, `test_gate_also_called_is_heading.py` (6/6), `test_gate_also_called_no_digital_collision.py` (5/5), `test_gate_zone_also_called_is_heading.py` (6/6), `test_keyword_demand.py` (76/76), `check_urls.py` (236/236), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `check_sellable.py`, `link_graph_report.py` (0 orphans), `cold_read_ledger.py --stale` (0) all clean. `preflight.py --skip-tests` clean after commit.
+
+**Went well:** read instead of counted, which is what every exhausted-lane re-verification this week kept saying to do.
+
+**Did not go well:** nothing.
+
+**Changing next cycle:** none.
+
+**Next:** "how to organize vanity box" is a genuine tie, no basis to prefer either bathroom, correctly left alone. "how to organize backpack for travel" (global) routes to Kids Bedroom's School and Activity Launch Zone on "backpack" alone; that zone is daily school prep, not vacation packing, 0 "travel" mentions. Flagged, not shipped this cycle (one workstream per Step 3).
+
 Pushed to main.
 
 HANDOFF-FILES: none

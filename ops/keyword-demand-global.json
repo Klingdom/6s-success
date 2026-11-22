@@ -30488,16 +30488,14 @@
         "how to organize vanity counter"
       ],
       "room": "",
-      "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
-      "best_page_title": "How to organize the guest bathroom vanity counter",
+      "best_page": "/zones/primary-bathroom-the-vanity-counter.html",
+      "best_page_title": "How to organize the primary bathroom vanity counter",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "makeup"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bathroom-the-vanity-counter.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -30510,11 +30508,11 @@
         "how to organise vanity counter"
       ],
       "room": "",
-      "best_page": "/zones/primary-bathroom-the-vanity-drawers.html",
-      "best_page_title": "How to organize the primary bathroom vanity drawers",
+      "best_page": "/zones/primary-bathroom-the-vanity-counter.html",
+      "best_page_title": "How to organize the primary bathroom vanity counter",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/zones/primary-bathroom-the-vanity-drawers.html",
+      "heading_page": "/zones/primary-bathroom-the-vanity-counter.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -47781,6 +47779,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "b6827ed68",
-  "scored_at": "2026-11-21T01:00:26Z"
+  "scored_against_commit": "8fb2c7575",
+  "scored_at": "2026-11-22T05:57:17Z"
 }
