@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-11-22 23:48 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-11-22 23:49 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,9 +28,9 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 30 (10 P0, 1 blocked on art, 29 need your call) |
 | Closed to date | 36 |
-| Commits (7 days) | 1616 of 14698 total |
+| Commits (7 days) | 1616 of 14699 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `3bb3ce924` Hourly check-in record |
+| Last commit | `daf21a5e9` PM check-in: previous work confirmed finished via live prefl |
 
 ## Product readiness
 
@@ -42,12 +42,12 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 0/20 rooms, 114/114 zones covered (card art lives outside the repo) |
 | Entryway deck | print PDF already built and shipped (72 cards); local render cache empty here, so 0 is not a regression |
-| Zone imagery | 113/114 zone pages carry a reviewed picture (live) |
+| Zone imagery | 114/114 zone pages carry a reviewed picture (live) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~4,939 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
 | Zone reset videos | 114/114 short zone-reset videos, rendered, not posted anywhere yet (carried forward from 2026-10-03 21:13: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
-| Zone reset videos, photo-led | 2/113 eligible photo-led zone-reset videos, rendered, not posted anywhere yet (carried forward from 2026-10-03 21:13: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
+| Zone reset videos, photo-led | 2/114 eligible photo-led zone-reset videos, rendered, not posted anywhere yet (carried forward from 2026-10-03 21:13: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
 | Zone reset videos, 16:9 for YouTube | 114/114 horizontal zone-reset videos for YouTube, rendered, not posted anywhere yet (carried forward from 2026-10-03 21:13: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
 | Zone reset videos, narrated | 114/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet (carried forward from 2026-10-03 21:13: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
 | Social cards, Pinterest and Instagram | 114/114 zones, Pinterest and Instagram cards ready, not posted anywhere yet |
