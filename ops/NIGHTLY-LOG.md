@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-22 (~03:4x slot): previous work confirmed finished, a self-caused killed-timeout drift caught and fixed before shipping, every lane reconfirmed exhausted or Phil-gated
+
+NEXT FOR THE OPERATOR: hold; room-guide lane re-sampled fresh this slot at 0-6% uncovered everywhere, every remaining partial row already matches a declined class from prior cycles (coat closet vs. game systems, baking dishes sense collision, detergent-tray leftover word), and all 30 open GitHub issues are still decision/P0/blocked-on-art with none from Phil since #65 on 2026-11-14, so there is nothing new and unblocked above the standing owner-gated asks (#64 traffic read, #42 cadence question).
+
+Attached clean per Step 0 (fetch, real `git fetch --unshallow` from a shallow checkout, `checkout main`, ff-only onto `origin/main`, 910 commits fast-forwarded, tree clean before starting). Previous work (the ~03:1x PM check-in and the hourly check-in after it) confirmed finished: tree was clean and already pushed at `913f9e584`.
+
+Caused and caught a live instance of the documented killed-timeout anti-pattern rather than repeating a past cycle's near-miss: ran this slot's own first `preflight.py --skip-tests` under an external `timeout 170`, which killed it at exit 124 mid-run (`EXIT:124` in the captured output), not a clean pass. Checked for orphaned Chrome immediately: none. Checked `git status`: only `ops/cycle-signal.json` dirty, a checkpoint write, not a generator mid-write, safe to discard. Re-ran with no external wrapper, properly backgrounded instead: completed clean, exit 0, every gate passed, 29 warnings, all standing, `cycle_signal` recorded a clean pass.
+
+Independently re-verified, not cited: `room_guide_underperformance.py` run fresh across all rooms, 0-6% uncovered everywhere, 0 gap rows anywhere; the handful of remaining partial rows (coat closet organization systems, hallway cabinet, baking dishes, detergent tray, makeup vanity box, and the rest) match classes prior cycles already read against real content and declined. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65. `OWNER-ACTIONS.md` item 0b / issue #64 (the traffic-read SSH command) confirmed still the right standing ask: the fix is already built (`ops/traffic_summary.py`), only the SSH run on Phil's machine is missing, correctly not something to route around.
+
+Found the dashboard one commit stale (last regen cited `bbb4965`, HEAD had moved to `913f9e584`). Regenerated it.
+
+Not mining anything myself: nothing new and small enough surfaced; the operator's hour is for row-by-row work, not this 30-minute window.
+
+Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-22 (~03:1x slot): previous work confirmed finished, recovered from a concurrent cycle clobbering a dashboard regen before shipping it twice
 
 NEXT FOR THE OPERATOR: hold; every lane independently reconfirmed exhausted this slot, matching a concurrent cycle's own A225 moments earlier.
