@@ -12938,8 +12938,17 @@ def gate_checks_excludes_generated_files(wf_path=None) -> None:
     every real commit kept killing that real commit's own proof before it
     could complete.
 
+    Extended 2026-11-22, this operator: `ops/cycle-signal.json` (preflight's
+    own mid-run checkpoint) and `ops/last-owner-notification.json` (the
+    owner-ping bookkeeping file) are two more pure-bookkeeping paths under
+    `ops/**` that were never added here, found live when a cycle's own
+    unpushed commits correctly tripped `gate_checks_yml_real_gap` for a few
+    seconds until the push went through; not a real gap, but the two paths
+    were still missing from this list and would keep tripping unnecessary
+    Checks runs on every bookkeeping-only commit.
+
     This gate does not evaluate whether the exclusion is correct against a
-    live GitHub trigger (no network here); it only proves the three known
+    live GitHub trigger (no network here); it only proves the known
     generated/log paths are named as excludes alongside the ops/** include,
     so a future edit to checks.yml cannot silently drop the fix and let the
     exact same shape of outage recur unnoticed.
@@ -12955,7 +12964,8 @@ def gate_checks_excludes_generated_files(wf_path=None) -> None:
              "checks.yml's push trigger no longer names ops/** at all; "
              "cannot check the exclusions against it")
         return
-    required = ("!ops/state.json", "!ops/dashboard.html", "!ops/NIGHTLY-LOG.md")
+    required = ("!ops/state.json", "!ops/dashboard.html", "!ops/NIGHTLY-LOG.md",
+                "!ops/cycle-signal.json", "!ops/last-owner-notification.json")
     missing = [p for p in required if p not in push_block]
     if missing:
         fail("checks-excludes-generated-files",
@@ -13130,6 +13140,10 @@ CI_PATH_COVERAGE_EXEMPT = {
         "own GENERATED list, rewritten every cycle the same way "
         "ops/dashboard.html is; excluded from checks.yml for the same "
         "reason.",
+    "ops/cycle-signal.json": "preflight's own mid-run checkpoint, "
+        "rewritten by every pass regardless of real change; excluded from "
+        "checks.yml on purpose, added 2026-11-22 alongside the other four "
+        "(gate_checks_excludes_generated_files).",
 }
 
 

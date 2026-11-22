@@ -145,6 +145,8 @@ on:
       - '!ops/dashboard.html'
       - '!ops/NIGHTLY-LOG.md'
       - '!EXECUTIVE-DASHBOARD-LIVE.md'
+      - '!ops/cycle-signal.json'
+      - '!ops/last-owner-notification.json'
   pull_request:
     paths:
       - 'ops/**'
@@ -172,6 +174,8 @@ on:
       - '!ops/state.json'
       - '!ops/NIGHTLY-LOG.md'
       - '!EXECUTIVE-DASHBOARD-LIVE.md'
+      - '!ops/cycle-signal.json'
+      - '!ops/last-owner-notification.json'
   workflow_dispatch:
 
 # Without this, every push in a fast run of commits starts its own full job,

@@ -2,7 +2,8 @@
 """
 Prove ops/preflight.py's gate_checks_excludes_generated_files() catches
 checks.yml's push.paths losing the exclusions for ops/state.json,
-ops/dashboard.html and ops/NIGHTLY-LOG.md, and leaves a correct file alone.
+ops/dashboard.html, ops/NIGHTLY-LOG.md, ops/cycle-signal.json and
+ops/last-owner-notification.json, and leaves a correct file alone.
 
 Found 2026-09-13, this operator, reading the real commit diffs behind that
 day's multi-hour CI outage: ops/dashboard.py writes the first two on every
@@ -13,6 +14,13 @@ Combined with checks.yml's own cancel-in-progress concurrency group, that
 shape of commit repeatedly cancelled whatever real fix's own verification
 run was still in flight seconds earlier. Fixed by excluding the three paths;
 this test protects that fix from silently regressing.
+
+Extended 2026-11-22, this operator: two more pure-bookkeeping paths under
+ops/** (the preflight mid-run checkpoint and the owner-notification
+bookkeeping file) were never added to the exclusion list, found live when a
+cycle's own unpushed commits briefly, correctly tripped
+gate_checks_yml_real_gap. Added here so a future edit cannot silently drop
+either one either.
 
 Run:  python ops/tests/test_gate_checks_excludes_generated_files.py
 """
@@ -37,6 +45,8 @@ on:
       - '!ops/state.json'
       - '!ops/dashboard.html'
       - '!ops/NIGHTLY-LOG.md'
+      - '!ops/cycle-signal.json'
+      - '!ops/last-owner-notification.json'
   pull_request:
     paths:
       - 'ops/**'
@@ -73,6 +83,28 @@ on:
       - '.github/workflows/checks.yml'
       - '!ops/state.json'
       - '!ops/dashboard.html'
+      - '!ops/cycle-signal.json'
+      - '!ops/last-owner-notification.json'
+  pull_request:
+    paths:
+      - 'ops/**'
+  workflow_dispatch:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+"""
+
+MISSING_NEWER_TWO = """\
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ops/**'
+      - '.github/workflows/checks.yml'
+      - '!ops/state.json'
+      - '!ops/dashboard.html'
+      - '!ops/NIGHTLY-LOG.md'
   pull_request:
     paths:
       - 'ops/**'
@@ -133,6 +165,19 @@ def test_missing_one_exclude_fails_by_name():
     assert "ops/dashboard.html" not in msg
 
 
+def test_missing_newer_two_fails_by_name():
+    """The two paths added 2026-11-22 (cycle-signal.json, last-owner-
+    notification.json) must be caught just as the original three are."""
+    fails = _run(MISSING_NEWER_TWO)
+    assert fails, "checks.yml missing the two newer excludes should still fail"
+    msg = fails[0][1]
+    assert "ops/cycle-signal.json" in msg, \
+        "the failure should name the specific missing path: %r" % (msg,)
+    assert "ops/last-owner-notification.json" in msg, \
+        "the failure should name the specific missing path: %r" % (msg,)
+    assert "ops/NIGHTLY-LOG.md" not in msg
+
+
 def test_no_ops_trigger_is_a_different_failure():
     """If push.paths no longer even mentions ops/**, that is a bigger
     regression than this gate exists to catch, but it must still fail
@@ -151,6 +196,7 @@ def test_real_repository_is_clean():
 
 TESTS = [test_correct_file_passes, test_missing_all_excludes_fails,
          test_missing_one_exclude_fails_by_name,
+         test_missing_newer_two_fails_by_name,
          test_no_ops_trigger_is_a_different_failure,
          test_real_repository_is_clean]
 
