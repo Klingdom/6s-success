@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-22 (~00:4x slot): previous work confirmed finished via full live preflight, room-guide and cold-read lanes re-verified exhausted, holding
+
+NEXT FOR THE OPERATOR: hold; every lane independently reconfirmed exhausted or Phil-gated this slot.
+
+Attached clean (unshallow, `checkout main`, ff-only onto `origin/main`, 889 commits, tree clean). Previous work confirmed finished, not cited: `preflight.py --skip-tests` ran live to completion, 0 FAIL, 29 standing warnings. GitHub's 30 issues re-pulled live: unchanged, none from Phil since #65; issue #42 reread in full, still unanswered. `room_guide_underperformance.py` fresh: Family Room and Stair Landing (12% each, worst lanes) checked row by row; every remaining partial row is an already-declined cluster named by ID in five-plus prior cycles. `cold_read_ledger.py --next`: 313/313 ledgered, 0 stale. Owner-notification floor not cleared (~07:46Z), no repeat sent.
+
+Regenerated the dashboard. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-22 (~00:1x slot): previous work confirmed finished via a full live preflight run, nothing newly unblocked, holding
 
 NEXT FOR THE OPERATOR: hold; every lane independently reconfirmed exhausted or Phil-gated this slot.
