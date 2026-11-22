@@ -97,7 +97,27 @@ def main() -> int:
         fails.append("gate stayed silent on a file missing its anchors "
                       "instead of warning unchecked: %r" % (warns4,))
 
-    # 5. The real committed file, after this cycle's own --apply, stays
+    # 5. A row hand-condensed past this tool's own anchors (no "Found
+    #    2026-10-15" marker anywhere, but the row itself still exists)
+    #    must read CLEAN, not unchecked: there is genuinely nothing
+    #    left to rotate, found 2026-11-22 when item 1h was condensed
+    #    this way for real and the gate started warning "anchor gone
+    #    stale" on a file with no actual defect.
+    condensed_text = (
+        "# Owner actions\n\n| **1h** | Add one line to the "
+        + roa1h.SPAN_START_AFTER
+        + "**Two standing costs, same single fix.** One current "
+          "paragraph, no occurrence-by-occurrence narrative left. |\n")
+    with tempfile.TemporaryDirectory() as tmp:
+        fails5, warns5 = _run_gate(tmp, condensed_text)
+    if fails5:
+        fails.append("gate should not FAIL on a hand-condensed row: %r"
+                      % (fails5,))
+    if any(g == GATE for g, _ in warns5):
+        fails.append("gate warned unchecked on a hand-condensed row with "
+                      "nothing left to rotate: %r" % (warns5,))
+
+    # 6. The real committed file, after this cycle's own --apply, stays
     #    silent too.
     real_path = os.path.join(ROOT, "OWNER-ACTIONS.md")
     if os.path.exists(real_path):
@@ -118,7 +138,7 @@ def main() -> int:
         for f in fails:
             print(" -", f)
         return 1
-    print("PASS: 5/5")
+    print("PASS: 6/6")
     return 0
 
 

@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-22: tested two owner-gate claims directly via session tools, consolidated a duplicate ask, caught a real regression in my own edit before it shipped
+
+Attached per Step 0, tree clean. `preflight.py --skip-tests` 0 FAIL, 29 warnings, standing. GitHub's 30 issues unchanged, none from Phil since #65. Epic 5 reconfirmed exhausted, epics 1-4 owner-gated, matching a dozen other cycles today; did not re-mine.
+
+This session's own CCR tools can test owner-gate claims directly. Tried `update_trigger` on the hourly routine for the known "Append"/"Prepend" bug (issue #65): refused, `created_via: http_api`, as before. Tried `create_environment` to add `6s-success.com`/`www.6s-success.com` so `deploy-fresh`/`integrations`/IndexNow stop running UNCHECKED (CLAUDE.md 0.3): refused, needs live approval, none present unattended. Folded this into OWNER-ACTIONS item 1h, which already asks for the same `create_environment` call for pymupdf, so Phil gets one approval instead of two.
+
+Condensing item 1h broke `ops/rotate_owner_actions_item_1h_pymupdf.py`'s anchors and the "List reviewed" marker gate, both caught live by a post-edit preflight re-run, not shipped blind. Fixed the tool to treat a hand-condensed row as CLEAN rather than unchecked, fail-then-pass proved (`test_gate_owner_actions_item_1h_not_oversized.py`, 6/6). Bumped the marker to 2026-11-22.
+
+Verified: `preflight.py --skip-tests` re-run clean after, 0 FAIL. `OWNER-ACTIONS.md` 110699 -> 108361 bytes, under its tripwire. `fix_dashes.py --check`, `check_urls.py` (236/236), `cold_read_ledger.py --stale` (0) clean.
+
+**Changing next cycle:** after condensing an OWNER-ACTIONS item with its own rotation tool, run that tool's `--check` immediately, not just the general gates.
+
+Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~13:4x slot): previous work confirmed finished a tenth independent way, prior handoff still stands
 
 NEXT FOR THE OPERATOR: mine the room-guide partial tier's four fresh-looking rows (bags of spices, detergent tray, vanity box, hallway cabinet), because that handoff from the previous slot is still unpicked and nothing newly unblocked outranks it.

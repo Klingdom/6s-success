@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-11-22 13:52 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-11-22 14:03 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,15 +8,15 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 10 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%)** |
+| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-11-22 13:23 because this run could not reach Stripe** |
 | | `............................` |
 | **Paying customers** | 0 |
 | **Email list** | 0 |
-| **Can the site take money?** | yes, confirmed live, 129 of 130 catalog items |
+| **Can the site take money?** | repository says yes (129 of 130 catalog items), **unconfirmed on the live site**: no Stripe credential in this environment to check the links a visitor actually hits |
 
 ### The one constraint
 
-The site can take money for 129 of 130 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 241 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
+The site can take money for 129 of 130 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 241 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
 
 ---
 
@@ -24,13 +24,13 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 
 | Stream | State |
 |---|---|
-| Traffic | 1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /home/runner/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
-| Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /home/runner/.ssh/6s_deploy, so the database was not rea). This is not a reading of zero.) |
+| Traffic | 1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
+| Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 30 (10 P0, 1 blocked on art, 29 need your call) |
 | Closed to date | 36 |
-| Commits (7 days) | 1627 of 14600 total |
+| Commits (7 days) | 1624 of 14599 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `4bacf0fc9` PM check-in (~13:4x slot): previous work confirmed finished  |
+| Last commit | `bd248fe50` Hourly check-in record |
 
 ## Product readiness
 
@@ -62,7 +62,7 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 - **~~Verify the site in Google Search Console~~, send the Pages/Performance reports** (2 min). **Corrected 2026-10-20, PM check-in: this row still described the original verification task as open, 6 days after the full `### 1a` section below it (line ~872) recorded Phil had done it.** Verification itself is done: Phil set up the Domain property via DNS TXT, confirmed live by `nslookup`, token recorded in `ops/site-verification.json`, `gate_site_verification_declared` now finds it.
 - **Authorise YouTube uploads** (5 min). **Still open: authorisation itself has not happened.** CLEARED 2026-09-26 was the desync that once cast doubt on this row, fixed and re-verified, not the authorisation itself.
 - **Paste the business description into Stripe** (2 min). The live account still has no product description; it is the first thing a buyer reads about us at checkout, and the account-level gap is visible today.
-- **Add one line to the cloud environment's setup script** (2 min). **First two occurrences of this cold-container `pymupdf` gap (2026-10-15, 2026-10-20), archived 2026-11-13 by `ops/rotate_owner_actions_item_1h_pymupdf.py`: same root cause and the same fix as the occurrence below, which is current and still open.** **Third occurrence, 2026-11-09, scheduled operator cycle, and this time an actual fix was attempted rather than only logged a third time.** This cycle's own container hit the identical cold-start gap: `preflight.py --skip-tests` sat in its bootstrap retry loop for over 20 minutes before this operator killed it and installed the two pinned packages by hand (confirmed slow for an ordinary reason, not a broken proxy: a direct timed download of the real `pymupdf` wheel from pythonhosted.org measured about 580KB/s, so the 25MB wheel alone takes 40-45 seconds, well inside what a human would call "working" but well past one bootstrap attempt's budget).
+- **Add one line to the cloud environment's setup script** (2 min). **Two standing costs, same single fix, same refusal every time an unattended cycle tries it ("needs a person's live approval").** (1) Cold containers spend 20+ minutes installing `pymupdf` each time (confirmed 2026-10-15, 2026-10-20, 2026-11-09: a real, slow-but-working download, not a broken proxy).
 - **#65** Decide/confirm: fix the stale "Append" logging line in all three Routines (OWNER-ACTIONS.md item 24, about 2 min, never tracked as an issue)
 - **#64** Decide/do: run the traffic read yourself and paste the output back (OWNER-ACTIONS.md item 0b, 2 min, never tracked as an issue)
 - **#63** Decide/confirm: print the free Kitchen deck on a real printer and confirm it's legible (OWNER-ACTIONS.md item 19, about 5 min, never tracked as an issue)

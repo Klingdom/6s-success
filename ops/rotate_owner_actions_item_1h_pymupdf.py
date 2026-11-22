@@ -84,7 +84,23 @@ def replacement_text(today: str = None) -> str:
 
 
 def plan_rotation(text: str, today: str = None):
-    """Pure function. Returns (new_text, archived_blocks)."""
+    """Pure function. Returns (new_text, archived_blocks).
+
+    2026-11-22: item 1h was hand-condensed past the point this tool
+    manages (the "Third occurrence" marker this tool's end-anchor
+    depends on was folded into a single current-state paragraph that
+    no longer narrates occurrences one by one). A chain with nothing
+    left to rotate is not the same as a chain this tool cannot find:
+    if the row still exists (start anchor present exactly once) but
+    the original "**Found 2026-10-15" marker is nowhere in the file,
+    there is nothing archivable, full stop. If the row itself cannot
+    be found at all (the anchor missing/duplicated case), that is
+    still a real anchor failure and must raise, same as before, so a
+    genuinely corrupted or unrelated file keeps warning unchecked
+    rather than reading as silently clean.
+    """
+    if text.count(SPAN_START_AFTER) == 1 and "**Found 2026-10-15" not in text:
+        return text, []
     before, region, after = region_between(
         text, SPAN_START_AFTER, SPAN_END_BEFORE)
     archived_blocks = []
