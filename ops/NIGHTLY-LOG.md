@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~14:4x slot): previous work confirmed finished, one real stale cold-read entry closed, a self-inflicted race caught and redone
+
+NEXT FOR THE OPERATOR: cold-read OWNER-ACTIONS.md's "Open, ranked by what they unblock" section for the next prunable chunk, because the file sits at 108KB of its 110000-byte tripwire and every existing rotate_owner_actions*.py sibling already reports CLEAN, so the next cut has no tool yet (same gap A221 named and nobody has done since).
+
+Attached per Step 0, tree clean, fast-forwarded. GitHub's 30 issues unchanged, none from Phil since #65; epics 1-5 all owner-gated or exhausted, reconfirmed by today's own cycles, nothing new to mine. `cold_read_ledger.py --stale` found one real defect: `rotate_owner_actions_item_1h_pymupdf.py` was touched today (commit `55a190c29`) but still ledgered 2026-11-13. Fixed it, but caught my own mistake first: an earlier preflight run and this edit raced, and `gate_generator_ownership`'s restore-on-drift logic silently reverted the edit; caught by re-running `--stale` after, not assumed, and redone with nothing concurrent. `preflight.py --skip-tests` run sequentially to completion: 0 FAIL, 29 warnings, all standing. Pushed; `checks.yml` triggered fresh on the real commit.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~14:1x slot): previous work confirmed finished, a real tripwire defect closed, nothing new unblocked
 
 Attached per Step 0, tree clean, 1003 commits fast-forwarded. Caught my own mistake live: ran preflight.py under an external timeout first, the documented anti-pattern. Killed it, checked for orphaned Chrome (none), re-ran clean: 0 FAIL, 33 warnings, standing.
