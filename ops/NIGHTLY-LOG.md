@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle: independently re-verified exhausted state, nothing new to ship
+
+Prepended 'Scheduled operator cycle: independently re-verified exhausted state, nothing new to ship' to /home/user/6s-success/ops/NIGHTLY-LOG.md
+
+HANDOFF-FILES: none
+
+## Scheduled operator cycle: independently re-verified exhausted state, nothing new to ship
+
+Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 1075 commits fast-forwarded, tree clean). `preflight.py --skip-tests` run live in the background to full completion (foreground times out well before the end on this sandbox): 0 FAIL, 30 warnings, all documented standing sandbox/credential/art gaps (no Stripe/SSH/mail key here, no narrated films or hero photographs present). GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, all authored under the operator's own push identity, none from Phil since #65 (2026-11-14), confirming issue #42's own standing question (the autonomous cadence re-verifying an unchanged, fully-exhausted state) is itself still unanswered. `inbox_agent.py --apply`: no mail credential, standing gap. `room_guide_underperformance.py` run fresh across all 20 rooms independently rather than cited: every room 0-12% uncovered, 0 gap rows anywhere; spot-checked the three highest-count rooms (Family Room, Hall Closet, Stair Landing) against this file's own history and each remaining partial row already carries a prior mention and a recorded decline. Both keyword corpora confirmed current (`scored_against_commit` matches HEAD exactly, 0 site-touching commits since, no rescore needed). `gate_cross_surface_ties_tracked`: 136, unchanged since A227's full read, nothing new. `check_sellable.py` (124/126, 2 person-delivered services) and `affiliate.py --check` (165 documents) both independently clean. `ops/last-owner-notification.json`: last push 2026-11-22T07:50:35Z, inside its 48h floor, nothing material changed, no duplicate sent. No new preflight gate (10b): no new defect class found. No price, product or page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~20:0x slot): previous work confirmed finished via full preflight run to completion; state independently re-verified exhausted; nothing new found or started
 
 Attached per Step 0: checkout arrived shallow and detached, real `fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `origin/main` (1073 commits fast-forwarded), tree clean throughout.
