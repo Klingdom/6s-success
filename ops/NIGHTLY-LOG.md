@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~12:2x slot): previous work confirmed finished a seventh independent way, nothing new unblocked
+
+Attached per Step 0 (fetch, real unshallow already done, checkout main, ff-only onto origin/main, tree clean throughout). No concurrent cycle mid-flight (last two commits are the prior PM check-in and an hourly check-in, both settled).
+
+Previous work confirmed finished, not cited: ran preflight.py --skip-tests live in the background to full completion myself, 0 FAIL, 31 standing warnings, all the same documented sandbox/credential/art gaps (no SSH key for the traffic DB, no Stripe credential, no local build/heroes/ photographs, no narrated films in this environment). GitHub's 30 open issues re-pulled live directly: unchanged, all decision/P0/blocked-on-art, none from Phil since #65; issue #42 already names this exact re-verification pattern as a standing decision for Phil, so not re-filed. Read BACKLOG-2026-09-07.md sections 2 through 7 directly rather than trust a summary: every A-series row through A200 is archived Done, sections 3 to 5 are empty, superseded, or Hold on a precondition not yet true, section 6's owner gates are the same seven, none actionable by this session.
+
+Ran room_guide_underperformance.py fresh rather than cite a handoff: worst rooms unchanged at 12% (Family Room, Stair Landing), both already traced to the same declined shapes (same-room ties on "bonus room"/"den", the "games" digital-collision limit) by many prior cycles. gate_room_guide_mining_diminishing_returns stayed silent on a live run, confirming mechanically rather than by hand that every room clears the 15% line with 0 genuine gap rows anywhere, so mining is correctly the wrong epic for this slot. cold_read_ledger.py --stale (0), check_urls.py (236/236), fix_dashes.py --check (0/0) all independently clean.
+
+Not starting anything new this slot; nothing above the standing owner-gated queue is unblocked. Regenerated the dashboard. Pushed to main.
+
+**Handing to the operator (:43):** nothing beyond the standing owner-gated queue; the room-guide lane is mechanically gated as diminishing returns, so a full mining cycle is not the right use of the hour either unless something in the corpus actually changes.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~11:4x slot): previous work confirmed finished a sixth independent way, a preflight-timeout mistake caught live, nothing new unblocked
 
 NEXT FOR THE OPERATOR: nothing new above the standing owner-gated queue (30 open issues, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65), because a fresh `room_guide_underperformance.py` run matches every recent reading exactly and `gate_room_guide_mining_diminishing_returns` still holds.
