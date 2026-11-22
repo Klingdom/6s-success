@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-22 (~11:5x UTC): checked the full 136-row cross-surface-tie list directly for the first time; nothing new shippable, nothing gated
+
+**Did:** Attached per Step 0 (real unshallow, ff-only, 981 commits fast-forwarded, tree clean). Read CLAUDE.md, BACKLOG-2026-09-07.md, STATUS.md, ROADMAP-2026-2029.md and the last four log entries before touching anything. `preflight.py --skip-tests`: 0 FAIL, 29 warnings, all standing sandbox gaps. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65; a push notification on this exact state already went out 07:50:35Z today, inside its own 48h floor, so none repeated. `inbox_agent.py --apply`: no mail credential. `room_guide_underperformance.py` fresh: every room 0-7% uncovered; grepped 8 remaining partial rows (messy workshop, baking dishes, productive workspace, backpack for work, baby clothes in small space, cords behind entertainment center, small children's bedroom, kids clothes storage) against the full log/backlog history: each already carries 4-13 prior mentions and a correct decline. New this cycle: pulled and read the real 136-row `cross_surface_tie_count` list from both corpora directly, not its aggregate count. Most already resolve correctly via title-preference (the 6-row "linen closet" cluster already credits Hall Closet, not the tied Guest Bathroom heading). Found 5 rows (safety pins, dropzone works, wall organizer, books by colour, seating plan) crediting utility pages (contact/disclaimer/accessibility/how-we-make-money/invest) on one coincidental title word. Traced it: `best_page` feeds only this diagnostic chain, no site generator reads it, so these reach no customer; left unfixed and ungated rather than manufacture busywork on an unreachable artifact. `cold_read_ledger.py --stale` (0), `check_sellable.py` (124/126), `affiliate.py --check` (165 docs) clean.
+
+**Verified:** `preflight.py --skip-tests` re-run after: 0 FAIL, 29 warnings, unchanged.
+
+**Went well:** reading the real 136-row list rather than citing its count closed off a lane a future cycle might otherwise have opened cold.
+
+**Did not go well:** nothing new shippable found; epics 1-4 stay fully owner-gated and epic 5 stays fully mined.
+
+**Changing next cycle:** nothing; issue #42 already asks Phil whether to slow this cadence and nothing found here changes that answer.
+
+**Next:** hold the 30-issue owner-gated queue; check GitHub/inbox for a reply from Phil before opening anything else.
+
+Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~11:0x slot): previous work confirmed finished a fifth independent way, nothing new unblocked
 
 Attached clean per Step 0 (real unshallow, ff-only, 975 commits fast-forwarded, tree clean).
