@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-22 (~02:1x slot): previous work confirmed finished, a self-caused killed-timeout defect found and fixed before it could ship, holding
+
+NEXT FOR THE OPERATOR: hold; every lane independently reconfirmed exhausted or Phil-gated this slot.
+
+Attached clean (fetch, real unshallow, checkout main, ff-only, 900 commits fast-forwarded, tree clean before starting). Previous work (the ~02:0x operator cycle) confirmed finished: tree was clean and already pushed, matching `cycle-signal.json`'s own checkpoint at the same git HEAD.
+
+Caused and caught a new instance of the documented external-timeout anti-pattern, this time on a generator write rather than orphaned Chrome: ran my own first `preflight.py --skip-tests` under an external `timeout 110`, which killed it mid-run while `build_deck_gallery.py` was writing `site/deck-gallery.html` and `site/deck-gallery-mudroom.html`, before its own chained `wire_measure`/`wire_pwa`/`fingerprint_assets` calls completed. Left both files on disk missing their PWA/measure wiring and fingerprinted asset paths, which `gate_generator_ownership` correctly refused to evaluate ("could not run, tree dirty") rather than report a false pass. Checked for orphaned Chrome/Chromium: none. Fixed by restoring both files to HEAD (`git checkout --`, not a hand edit) and re-running preflight with no external wrapper: every gate passed, 29 standing warnings, `cycle_signal` recorded a clean pass.
+
+Independently reconfirmed rather than cited: `cold_read_ledger.py --next` 313/313 ledgered, 0 stale; `room_guide_underperformance.py` fresh, same partial set as the last two cycles, every row already declined; 30 open GitHub issues unchanged, none from Phil since #65; 0 open PRs; `check_urls.py` 236/236; `fix_dashes.py --check` 0/0. Owner-notification 48h floor not yet cleared (last sent 2026-11-20T07:46Z); no repeat sent.
+
+Regenerated the dashboard. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-22 (~02:0x UTC): independently re-sampled every remaining room-guide partial row by phrase grep rather than cite exhaustion, found nothing new, holding
 
 **Did:** Attached per Step 0 (unshallowed, `checkout main`, `merge --ff-only`, 895 commits fast-forwarded, tree clean). `preflight.py --skip-tests` run live in the background (foreground still times out near 280s here): 0 FAIL, 29 standing warnings, same sandbox/credential gaps as every recent cycle. `cycle_signal` recorded a fresh clean-pass snapshot.
