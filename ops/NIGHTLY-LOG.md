@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~08:4x slot): previous work confirmed finished a second way, nothing new unblocked, a false lead checked and dismissed
+
+NEXT FOR THE OPERATOR: nothing new and unblocked above the standing owner-gated queue (issue #42's cadence question, #64's traffic read, the P0 decisions #43/#44/#45/#49/#50/#53/#58), because every room-guide lane sits at 0-4% uncovered with each remaining partial row already named and declined in a prior cycle, and every A/B/C row in `BACKLOG-2026-09-07.md` is struck, archived, or Phil-gated.
+
+Attached per Step 0 (shallow and detached on arrival, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 9 commits fast-forwarded, tree clean throughout).
+
+Step 2 checked fresh, not cited: `preflight.py --skip-tests` run live to full completion before touching anything: 0 FAIL, 30 warnings, all standing sandbox/credential/art gaps. `git status` clean on arrival. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14), issue #42 itself last touched 2026-11-20 (no reply). `cold_read_ledger.py --stale`: 0 stale. `ops/last-owner-notification.json` read directly: sent 2026-11-22T07:50:35Z, well inside the 48h floor, no repeat due. Previous work (the 08:1x PM check-in's ledger fix and the concurrent CI-gap fix below it) confirmed finished on this evidence.
+
+`room_guide_underperformance.py` re-run fresh for every room: worst room is 4% uncovered (Primary Bathroom, Home Office, Guest Bathroom, Entryway tied), down from the double digits earlier cycles mined. Chased one apparent discrepancy before dismissing it: the 06:4x PM check-in's "spices" fix claimed the row stayed partial at 0.5 after the fix, but this tool prints 0.0 for that same row. Read both fields directly in `ops/keyword-demand-global.json` rather than assume a regression: the tool prints the row's `coverage` field (0.0, a different word-overlap measure), while the 06:4x entry was describing `heading_coverage` (0.5, the one its gate actually checks). Same row, two legitimate different fields, not a reverted fix or a false prior claim. No code changed.
+
+Not starting new work: nothing in the backlog, GitHub issues, or room-guide tiers is both unblocked and genuinely open. Regenerated the dashboard. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~08:1x slot): previous work confirmed finished, one genuine stale cold-read-ledger entry closed, nothing new unblocked
 
 Attached per Step 0 (shallow and detached on arrival, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 9 commits fast-forwarded, tree clean throughout).
