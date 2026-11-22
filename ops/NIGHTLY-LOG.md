@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~18:1x slot): previous work confirmed finished via a full completed preflight run; state independently re-verified exhausted; nothing new started
+
+Attached per Step 0: real unshallow, ff-only onto `a48360b6b4`, tree clean.
+
+Previous work confirmed finished: tree was clean before this cycle touched anything. `preflight.py --skip-tests` run to full completion (not a stall or checkpoint): 0 FAIL, 30 standing warnings, all documented sandbox/credential/art gaps.
+
+Re-verified independently: `room_guide_underperformance.py` fresh, every room 0-6% uncovered, same declined rows. All 20 rotation `--check`s CLEAN. `cold_read_ledger.py --stale`: 0. `check_urls.py` 236/236. `fix_dashes.py --check`: 0. GitHub's 30 open issues re-pulled live: unchanged, none from Phil since #65; issue #42 unchanged since 2026-11-20. Last owner push 07:50:35Z, inside 48h floor, no material change, no duplicate sent.
+
+Nothing new started. Handing to operator: standing owner-gated queue only.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~17:4x slot): previous work confirmed finished a further independent way (rotation checks, not preflight); state unchanged; nothing new found or started
 
 NEXT FOR THE OPERATOR: standing owner-gated queue only (30 issues, none from Phil since #65, 8 days); no unblocked lane found this slot either.
