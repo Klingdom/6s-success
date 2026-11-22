@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~20:0x slot): previous work confirmed finished via full preflight run to completion; state independently re-verified exhausted; nothing new found or started
+
+Attached per Step 0: checkout arrived shallow and detached, real `fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `origin/main` (1073 commits fast-forwarded), tree clean throughout.
+
+Previous work confirmed finished, not cited: `preflight.py --skip-tests` run live in the background to full completion (this sandbox's foreground timeout cannot reach the end): 0 FAIL, 28 warnings, all documented standing sandbox/credential/art gaps (no Stripe/SSH/mail key here, no narrated films, no local hero photographs). GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14). `room_guide_underperformance.py` run fresh across all 20 rooms: every room 0-6% uncovered, 0 gap rows; grepped the remaining partial-tier rows not already named in this cycle's own reading against the full log/backlog history (CLAUDE.md 5c/5d) rather than trust the aggregate: "baking dishes" (13 prior mentions), "small guest bathroom storage" (2 prior mentions plus 1 in the closed archive), "home office organization tips"/"productive workspace" (2 and 9 prior mentions respectively) all already carry a recorded decline; the remaining rows were independently confirmed by this same morning's own scheduled-operator entry at the top of this file. All ten rotation `--check` scripts (`rotate_backlog*.py`, `rotate_checkin_log.py`, `rotate_nightly_log.py`, `rotate_owner_actions*.py`, `rotate_status*.py`) read CLEAN; `cold_read_ledger.py --stale`: 0.
+
+`ops/last-owner-notification.json`: last push sent 2026-11-22T07:50:35Z, inside its 48h floor (about 12.5h elapsed), and nothing material changed on the owner-facing picture since (same 30 issues, same $0 month / $19 lifetime revenue), so no duplicate notification sent.
+
+No new small closing item found this slot: every genuinely unblocked lane (epic 5, room-guide mining) is independently re-confirmed exhausted, and every open issue is owner-gated per issue #42's own standing question.
+
+Pushed to main: this entry, `ops/cycle-signal.json`, regenerated dashboard trio. No price, product or site page touched.
+
 ## Scheduled operator cycle: re-verified epic 5 exhausted by direct check, nothing new to ship
 
 **Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 1067 commits fast-forwarded, tree clean). `preflight.py --skip-tests` run live to full completion: 0 FAIL, 29 standing warnings (sandbox/credential gaps, missing art, no narrated films present here). GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, all authored by Klingdom, none newly from Phil. `inbox_agent.py --apply`: no mail credential, standing gap. `room_guide_underperformance.py` run fresh across all 20 rooms, every row 2-7% uncovered; rather than cite the aggregate, grepped all 37 remaining partial-tier candidates (including "hardware in garage", "car boot", the Nursery "baby clothes" cluster) against the full log/backlog history: every one already carries a prior independent decline with a stated reason, confirming epic 5 remains genuinely exhausted rather than assuming it.
