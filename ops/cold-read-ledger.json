@@ -1033,8 +1033,8 @@
     },
     "preflight.py": {
       "status": "clean",
-      "date": "2026-11-21",
-      "note": "Cold-read 75157d716's second deploy_gap_count_problem() truncation marker: treats a prose aside naming an older entry's superseded count (\"The prior entry, ... correctly reported N commits pending\") the same as the existing marker, so the gate's last-match regex stops picking up a historical number as the standing claim. Fail-then-pass proved by test_gate_status_deploy_gap_count_current.py cases 18-19 (confirmed failing against the unfixed function, passing against the fix). Gate reads clean on current HEAD."
+      "date": "2026-11-22",
+      "note": "Cold-read b5d75dd72's extension of gate_checks_excludes_generated_files and CI_PATH_COVERAGE_EXEMPT: added ops/cycle-signal.json and ops/last-owner-notification.json, two pure-bookkeeping paths under ops/** that a prior commit's own exclusion list had missed. Diff matches its own commit message exactly: the required tuple gained the two new exclude lines, the exempt dict gained one matching entry, docstring updated in step. No surprise, no risk. Gate reads clean on current HEAD."
     },
     "prerender_shop.py": {
       "status": "clean",
