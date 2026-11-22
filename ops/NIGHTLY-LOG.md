@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle: re-verified epic 5 exhausted by direct check, nothing new to ship
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 1067 commits fast-forwarded, tree clean). `preflight.py --skip-tests` run live to full completion: 0 FAIL, 29 standing warnings (sandbox/credential gaps, missing art, no narrated films present here). GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, all authored by Klingdom, none newly from Phil. `inbox_agent.py --apply`: no mail credential, standing gap. `room_guide_underperformance.py` run fresh across all 20 rooms, every row 2-7% uncovered; rather than cite the aggregate, grepped all 37 remaining partial-tier candidates (including "hardware in garage", "car boot", the Nursery "baby clothes" cluster) against the full log/backlog history: every one already carries a prior independent decline with a stated reason, confirming epic 5 remains genuinely exhausted rather than assuming it.
+
+**Verified:** `ops/last-owner-notification.json`: last push 2026-11-22T07:50:35Z, inside its 48h floor (~12h elapsed), and nothing material changed on the owner-facing picture since (same 30 issues, same $0/$19 revenue), so no duplicate notification sent.
+
+**Went well:** confirmed exhaustion by direct evidence rather than trusting the last cycle's claim, at low cost.
+
+**Did not go well:** no new unblocked work found this slot; the 30 owner-gated issues remain unanswered.
+
+**Changing next cycle:** none; no new defect class found, so no new preflight gate (10b).
+
+**Next:** hold for owner action on the 30 open issues; no unblocked lane found this slot.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~19:1x slot): previous work confirmed finished via full preflight; state independently re-verified exhausted; nothing new found or started
 
 Attached per Step 0: shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (1065 commits), tree clean throughout.
