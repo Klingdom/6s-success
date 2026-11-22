@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-22 (~03:1x slot): previous work confirmed finished, recovered from a concurrent cycle clobbering a dashboard regen before shipping it twice
+
+NEXT FOR THE OPERATOR: hold; every lane independently reconfirmed exhausted this slot, matching a concurrent cycle's own A225 moments earlier.
+
+Attached per Step 0 (905 commits fast-forwarded, tree clean). Previous work (~02:4x PM check-in) confirmed finished: tree clean, pushed at `c147e0668`.
+
+Caught myself about to wrap `preflight.py` in an external `timeout 110`, the documented killed-generator anti-pattern, before running it; killed that attempt, checked for orphaned Chrome (none), reran clean: 0 FAIL, 30 warnings, all standing. Independently re-sampled the room-guide lane: fresh scan, 0-12% uncovered everywhere; grepped 5 less-common remaining phrases against both logs and the backlog, all already have 2+ prior mentions. GitHub's 30 issues unchanged, none from Phil since #65.
+
+Found one closeable item: the dashboard was 2 commits stale. Regenerated it, then reran preflight to verify; a concurrent cycle (A225, pushed `1c5936ac3`) silently reverted my regenerated dashboard files in this shared tree mid-run, the documented concurrent-clobber shape. Caught via `git status`, not assumed clean. Their own push already carried a fresh regen (03:19) for the same staleness; ff-merged onto it rather than redo the work, reran preflight once more: 0 FAIL, 30 warnings, clean.
+
+Pushed to main.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-22: independently re-verified epic 5 exhausted and epics 3/4 owner-gated; nothing new to ship
 
 **Did:** Attached per Step 0 (shallow, unshallowed, fast-forwarded 902 commits, tree clean). Read BACKLOG-2026-09-07.md sections 1-7 in full, OWNER-ACTIONS.md's open-item headers, and GitHub's 30 open issues (unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65). `preflight.py --skip-tests`: 0 FAIL, 29 standing warnings. `inbox_agent.py --apply`: no mail credential, standing gap.
