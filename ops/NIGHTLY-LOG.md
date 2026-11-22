@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle (~23:5x slot): independently re-verified exhausted state across every unblocked lane, no new defect, no duplicate notification
+
+**Did:** Attached per Step 0: checkout arrived shallow and detached, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (1095 commits fast-forwarded), tree clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-1, `STATUS.md`, `CLAUDE.md`, and the four most recent `ops/NIGHTLY-LOG.md` entries before touching anything.
+
+**Verified, not cited:** `preflight.py` run live to full completion (not `--skip-tests`, not backgrounded on a prior cycle's result): every gate passed, 26 warnings, all documented standing sandbox/credential/art gaps (no SSH deploy key, Stripe key or mail credential here; `cycle_signal` recorded a fresh clean-pass checkpoint). `inbox_agent.py --apply`: no mail credential, standing gap. GitHub's 30 open issues re-pulled live via the MCP server, ordered by most recently touched: unchanged set, all `decision`/`P0`/`blocked-on-art`, newest touch issue #42 (2026-11-20T07:52Z, the cadence-decision issue itself), none from Phil since #65 (2026-11-14, 8 days). `room_guide_underperformance.py` run fresh across all 20 rooms rather than cited: 0 gap rows anywhere, every room 0-4% uncovered, remaining partial rows the same small set prior cycles already named and declined repeatedly. `cold_read_ledger.py --stale`: 0. `check_sellable.py`: 124 of 126 buyable products confirmed in Stripe with a delivery entry and a file on disk, the other 2 person-delivered services.
+
+**Went well:** independently re-derived the same exhausted conclusion dozens of same-day cycles already reached, by actually running the checks rather than trusting the citation (CLAUDE.md 5d), at low added cost.
+
+**Did not go well:** nothing newly unblocked; the 30 owner-gated issues remain untouched since 2026-11-14, and this cycle, like roughly the last twenty, closes without shipping anything a customer would notice.
+
+**Changing next cycle:** none; no new defect class found, so no new preflight gate (10b). `ops/last-owner-notification.json` shows a push already sent 2026-11-22T07:50:35Z about the exhausted-state/cheapest-unlocks topic, inside its own 48h floor, with no reply and no material change since; not repeating it this cycle, consistent with that file's own convention and with not spending the owner's attention on a result that is the same as last time.
+
+**Next:** hold for owner action on the 30 open issues; cheapest unlocks remain the traffic read (#64, ~2 min, unblocks measurement) and YouTube OAuth (#46, ~5 min, posts 114 built zone videos). No unblocked GREEN lane found this slot.
+
+Pushed to main: dashboard trio, cycle-signal checkpoint, this entry. No price, product or page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~23:1x slot): previous work confirmed finished via a full completed preflight run; one self-inflicted fingerprint artifact found and repaired before shipping; state independently re-verified exhausted
 
 Attached per Step 0: shallow and detached on arrival, real `fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `origin/main` (1093 commits fast-forwarded), tree clean throughout.
