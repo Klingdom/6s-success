@@ -1239,7 +1239,7 @@
     "rotate_owner_actions_item_1h_pymupdf.py": {
       "status": "clean",
       "date": "2026-11-22",
-      "note": "Scheduled operator cycle 2026-11-22: cold-read confirmed correct after the same-day 2026-11-22 edit (treat a hand-condensed row as CLEAN rather than unchecked). --check reports CLEAN, test_gate_owner_actions_item_1h_not_oversized.py 6/6."
+      "note": "2026-11-22 edit (commit 55a190c29) added a narrow early-return in plan_rotation() for a hand-condensed item 1h row with no 'Found 2026-10-15' marker left to archive: returns (text, []) unchanged rather than raising, while a genuinely missing/duplicated anchor still raises as before. Already fail-then-pass proved same commit via a new synthetic case in test_gate_owner_actions_item_1h_not_oversized.py (6/6). --check reports CLEAN against the real committed file. No new defect found on this re-read."
     },
     "rotate_owner_actions_item_history.py": {
       "status": "clean",

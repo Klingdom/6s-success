@@ -2,21 +2,11 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## Scheduled operator cycle, 2026-11-22: closed a cold-read ledger gap, caught my own backlog-rotation mistake before it shipped twice
+## PM check-in (~14:4x slot): previous work confirmed finished, one real stale cold-read entry closed, a self-inflicted race caught and redone
 
-**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only`, 1007 commits fast-forwarded, tree clean). `preflight.py --skip-tests` 0 FAIL, 30 warnings, all standing. GitHub's 30 open issues re-pulled live: unchanged, none from Phil since #65 (8 days). No mail credential. A push notification on this exact state already went out 07:50:35Z today, inside its 48h floor, none repeated. Re-ran `room_guide_underperformance.py` and grepped all 15 remaining partial rows against the full log/backlog history: every one carries 7-25 prior mentions and a recorded decline, confirming that lane genuinely exhausted rather than assuming it a ninth time. `cold_read_ledger.py --stale` found a real gap: `rotate_owner_actions_item_1h_pymupdf.py` ledgered on a stale date while an earlier same-day cycle had edited the file. Cold-read the file, confirmed correct (`--check` CLEAN, its gate test 6/6), re-ledgered it.
+NEXT FOR THE OPERATOR: cold-read OWNER-ACTIONS.md's "Open, ranked by what they unblock" section for the next prunable chunk, because the file sits at 108KB of its 110000-byte tripwire and every existing rotate_owner_actions*.py sibling already reports CLEAN, so the next cut has no tool yet (same gap A221 named and nobody has done since).
 
-**Verified:** `preflight.py --skip-tests` re-run 0 FAIL after.
-
-**Went well:** the ledger's own staleness check caught a real "source corrected, artifact never re-derived" instance.
-
-**Did not go well:** my own first-draft backlog entry put an old reference date inside its bold title span, so `rotate_backlog.py`'s (correct, documented) first-date rule archived my new row instead of the genuinely oldest one. Caught by reading the tool's actual output, not trusting "applied," and reworded.
-
-**Changing next cycle:** when writing a new backlog row, keep every date except the row's own out of the bold title span, every time, not just when convenient.
-
-**Next:** the standing owner-gated queue (30 issues, none from Phil in 8 days); no structured lane has unmined work.
-
-Pushed to main.
+Attached per Step 0, tree clean, fast-forwarded. GitHub's 30 issues unchanged, none from Phil since #65; epics 1-5 all owner-gated or exhausted, reconfirmed by today's own cycles, nothing new to mine. `cold_read_ledger.py --stale` found one real defect: `rotate_owner_actions_item_1h_pymupdf.py` was touched today (commit `55a190c29`) but still ledgered 2026-11-13. Fixed it, but caught my own mistake first: an earlier preflight run and this edit raced, and `gate_generator_ownership`'s restore-on-drift logic silently reverted the edit; caught by re-running `--stale` after, not assumed, and redone with nothing concurrent. `preflight.py --skip-tests` run sequentially to completion: 0 FAIL, 29 warnings, all standing. Pushed; `checks.yml` triggered fresh on the real commit.
 
 HANDOFF-FILES: none
 
