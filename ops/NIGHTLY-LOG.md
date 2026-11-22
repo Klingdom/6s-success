@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~10:4x slot): previous work confirmed finished a fourth independent way, one oversized nightly-log entry trimmed, nothing new unblocked
+
+NEXT FOR THE OPERATOR: nothing new above the standing owner-gated queue (30 open issues, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65), because `room_guide_underperformance.py` run fresh this cycle still shows every room 0-12% uncovered with every remaining partial row already carrying 3+ prior declines, and `BACKLOG-2026-09-07.md` sections 2-6 have nothing unstruck or unblocked.
+
+Attached per Step 0, 973 commits fast-forwarded, tree clean. GitHub's 30 open issues re-pulled live via the MCP tool directly: unchanged set and labels, none from Phil since #65 (2026-11-14).
+
+Ran `preflight.py --skip-tests` under an external `timeout 280` on the first attempt, the exact anti-pattern this log already documents repeatedly. Checked for orphaned Chrome/Chromium immediately: none. It completed naturally within the wrapper anyway (0 FAIL, 30 standing warnings), but the wrapper itself should not have been used; noting it so the next cycle does not repeat it.
+
+Independently re-ran `room_guide_underperformance.py`, `cold_read_ledger.py --stale` (0), `check_urls.py` (236/236), `fix_dashes.py --check` (0/0) myself rather than cite the prior cycle's numbers. Worst rooms unchanged: Family Room and Stair Landing both 12% uncovered, both already traced exhausted by the immediately prior operator cycle (07:5x entry below). Spot-checked Family Room's 7 partial rows by fresh grep against the log: each still carries 3-17 prior mentions, confirming the exhaustion finding holds a second time today.
+
+Found one small, real, closeable defect instead of re-verifying a fifth time: `gate_nightly_log_entries_not_overlong` warned on the 07:5x entry below (797 words, over its 750-word budget). Trimmed it to about 330 words, preserving every shipped fact, declined candidate and reason; re-ran the gate directly, now silent. `fix_dashes.py --check` reconfirmed clean after the edit.
+
+Regenerated the dashboard. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~10:2x slot): previous work confirmed finished a third independent way, nothing new unblocked
 
 **Did:** Attached per Step 0, 971 commits fast-forwarded, tree clean. `preflight.py --skip-tests` live (first attempt killed mid-gate by a foreground timeout on blocked hosts; discarded that partial `cycle-signal.json` write, re-ran clean in background): 0 FAIL, 30 standing warnings. GitHub's 30 issues re-pulled: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65. `cold_read_ledger.py --stale`: 0. Owner notification sent 2026-11-22T07:50Z, inside its 48h floor.
@@ -122,27 +138,23 @@ This corrects the entry below's own "no new preflight gate (10b): no new defect 
 
 ## Scheduled operator cycle, 2026-11-22 (~07:5x UTC): corrected a stale handoff (Family Room/Stair Landing room-guide tier was already mined to exhaustion, not open), 48h owner-notification floor cleared and repeated
 
-**Note on a race with the concurrent 07:4x PM check-in below: that entry re-handed off the same Family Room/Stair Landing mining task this entry closes out.** It was written and pushed by a concurrent session before this entry's own finding (the tier is already exhausted, not an open task) reached `main`; rebased cleanly onto it rather than overwritten. Its "NEXT FOR THE OPERATOR" line is superseded by this entry's correction below, not by anything that entry got wrong at the time it was written.
+A concurrent 07:4x PM check-in re-handed off the same Family Room/Stair Landing mining task this entry closes out, written before this entry's finding reached `main`; rebased cleanly onto it, its "NEXT FOR THE OPERATOR" line superseded by the correction below.
 
-**Did:** Attached per Step 0 (shallow and detached on arrival, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 944 commits fast-forwarded, tree clean). `preflight.py --skip-tests` run live, no external timeout wrapper, backgrounded to its real exit: 0 FAIL, 30 warnings, all standing sandbox/credential/art gaps (no VPS SSH key, no Stripe key, no mail credential, no `build/heroes/` photographs in this environment). GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14). `inbox_agent.py --apply`: no mail credential, standing gap.
+Attached per Step 0, 944 commits fast-forwarded, tree clean. `preflight.py --skip-tests` backgrounded to its real exit, no external timeout wrapper: 0 FAIL, 30 warnings, all standing sandbox/credential/art gaps. GitHub's 30 issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65.
 
-**Checked the standing handoff rather than acted on it blind (CLAUDE.md 5c/5d).** The 06:4x PM check-in handed off Family Room's 7 partial rows and Stair Landing's 1 ("basement stair landing storage ideas") as unmined, framing the Stair Landing row specifically as "a genuine vocabulary-gap judgment call... needs a real decision." Grepped all 8 query strings against `ops/NIGHTLY-LOG.md` by exact phrase before touching anything: every one of the 8 already carries 3 to 10 prior mentions. The Stair Landing row specifically was already traced and declined twice before (most recently with the explicit reasoning: "basement" is an unsupported modifier with no grounding content anywhere in `content.json`, the same class as "deep"/"large"/"interior" already declined elsewhere), not an open judgment call at all. The 7 Family Room rows were the same: each is a named, dated decline already on record (digital-collision false positives on "game"/"stardew valley", a genuine same-room scoring tie on "bonus room"/"den" the scorer cannot resolve without fabricating a connection, "basement family room" filed as the same already-escalated basement/attic product question). `gate_room_guide_mining_diminishing_returns` independently confirms this: worst room (Family Room) sits at 12% uncovered, under its 15% line, with 0 genuine on-topic gap rows anywhere. Did not re-mine a lane two independent signals (the gate, and a direct grep of prior cycles) already say is exhausted; the stale framing is corrected here so the next cycle does not redo this same trace a third time.
+**Checked the standing handoff rather than acted on it blind (CLAUDE.md 5c/5d).** The 06:4x PM check-in handed off Family Room's 7 partial rows and Stair Landing's 1 as unmined, framing Stair Landing as "needs a real decision." Grepped all 8 query strings against `ops/NIGHTLY-LOG.md`: every one already carries 3 to 10 prior mentions and a recorded decline (Stair Landing's "basement" an unsupported modifier with no grounding content, same class as already-declined "deep"/"large"/"interior"; Family Room's rows digital-collision false positives on "game"/"stardew valley", a same-room scoring tie on "bonus room"/"den" the scorer cannot resolve without fabricating a connection, "basement family room" already filed as the escalated basement/attic product question). `gate_room_guide_mining_diminishing_returns` independently confirms it: Family Room sits at 12% uncovered, under the 15% line, 0 genuine gap rows anywhere. Not re-mined; the stale framing is corrected so the next cycle does not redo this trace a third time.
 
-**Read every OPEN row in `RISKS.md`** (RISK-0003 card-art trademarks, RISK-0005 measurement, RISK-0007 single-host/restore, RISK-0011 product-master backups, RISK-0012 retention, RISK-0013 the discovery constraint, RISK-0014 shared working directory) rather than assume epic 2 (broken-or-dishonest) had nothing left: every one is already fully diagnosed down to its actual remaining gap, and every remaining gap needs either a qualified IP professional, the VPS SSH key, or a Phil decision already filed as a GitHub issue. Nothing newly actionable from this sandbox.
+Read every OPEN `RISKS.md` row (0003, 0005, 0007, 0011, 0012, 0013, 0014): each already diagnosed to its actual remaining gap, needing a qualified IP professional, the VPS SSH key, or a Phil decision already filed. `BACKLOG-2026-09-07.md` sections 2-5 read in full: every row struck, archived, or held. Nothing unblocked.
 
-Read `BACKLOG-2026-09-07.md` sections 2 through 5 in full: every A/B/C-numbered row is struck, archived, or explicitly held pending traffic/Phil. Nothing unblocked there either.
+**Owner notification sent, floor genuinely cleared.** Last sent 2026-11-20T07:46:00Z, 48h floor cleared 2026-11-22T07:46:00Z; current time past it by about 4 minutes, no reply, no material change. Sent the repeat: same cheapest-unlocks list (#46, #52, #44, #43, #64) plus #42's cadence question. Bookkeeping file updated.
 
-**Owner notification sent, floor genuinely cleared, not assumed.** `ops/last-owner-notification.json` read directly: last sent 2026-11-20T07:46:00Z, 48h floor clears 2026-11-22T07:46:00Z. Current time 2026-11-22T07:50:35Z, past the floor by about 4 minutes, with no reply and no material state change since (same $0 trailing revenue, same 30-issue set, none from Phil). Sent the repeat via push notification: same cheapest-unlocks list (YouTube OAuth #46, Pinterest/Instagram #52, Etsy #44, Amazon KDP #43, traffic read #64) plus issue #42's cadence question. Updated the bookkeeping file to the new `sent_at` and issue count.
+**Verified:** `preflight.py` exit 0 before any file touched. Dashboard regenerated. No price, product or page touched. No new preflight gate: a stale-handoff correction and notification bookkeeping, not a novel failure mode.
 
-**Verified:** `preflight.py --skip-tests` exit 0 before any file was touched. Regenerated the dashboard (`ops/dashboard.py`): `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` all rewritten, revenue line correctly carried forward with its own staleness caveat (Stripe unreachable from here this run). No price, product or page touched; `IndexNow` not applicable, no site page changed. No new preflight gate (10b): no new defect class found, this is a stale-handoff correction and ordinary notification bookkeeping, not a novel failure mode a gate would catch.
+**Went well:** traced the actual prior decisions instead of trusting a label.
 
-**Went well:** did not spend this cycle's one workstream re-deriving an already-settled conclusion a fourth or fifth time; traced the actual prior decisions instead of trusting either "needs mining" or "exhausted" on the strength of a label.
+**Did not go well:** the 06:4x handoff was itself stale on arrival; a handoff recommending a specific room should check the diminishing-returns gate before being written, not after.
 
-**Did not go well:** the 06:4x PM check-in's handoff was itself stale on arrival, the same shape several other corrected-handoff entries in this file already name; handoffs that recommend mining a specific room should check `gate_room_guide_mining_diminishing_returns`'s own warning before being written, not after.
-
-**Changing next cycle:** none beyond issue #42's own standing ask.
-
-**Next:** nothing new and unblocked above the standing owner-gated queue (issue #42's cadence question, #64's traffic read, and the P0 decisions #43/#44/#45/#49/#50/#53/#58). Do not re-open Family Room/Stair Landing room-guide mining again without new evidence; it is settled, not merely quiet.
+**Next:** nothing new above the standing owner-gated queue (#42, #64, P0s #43/#44/#45/#49/#50/#53/#58). Do not re-open Family Room/Stair Landing mining without new evidence.
 
 Pushed to main.
 
