@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~09:1x slot): previous work finished, but the last two cycles' own room-guide percentage was wrong
+
+Attached clean, 963 commits fast-forwarded. `preflight.py --skip-tests` fresh: 0 FAIL, 29 warnings, standing gaps. GitHub's 30 issues unchanged, none from Phil since #65. BACKLOG clean, owner notification inside the 48h floor.
+
+The 08:4x/08:5x entries below claimed the room-guide lane sits at 0-4%/0-6% uncovered. A fresh run of `room_guide_underperformance.py` shows Family Room/Stair Landing at 12%, Hall Closet 10%, Nursery/Garage/Primary Bedroom 7%, not 4-6%. `gate_room_guide_mining_diminishing_returns` confirms the real worst case, 12%, is still under its 15% line, so the conclusion holds; only the cited number was false. Two partial rows have zero prior mentions in this log, genuinely unmined but below threshold, left for a future epic-5 cycle.
+
+Nothing new handed to the operator.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-22 (~08:5x UTC): rotated BACKLOG's oversized Done table, confirmed epic 5 genuinely exhausted rather than assumed
 
 **Did:** Attached per Step 0 (shallow and detached on arrival, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 958 commits fast-forwarded, tree clean). `preflight.py --skip-tests` run live to full completion: 0 FAIL, 30 warnings, all standing sandbox/credential/art gaps. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65. `inbox_agent.py --apply`: no mail credential. `ops/last-owner-notification.json`: sent 1 hour before this cycle, well inside the 48h floor, no repeat due.
