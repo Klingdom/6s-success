@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~18:4x slot): previous work confirmed finished, all lanes re-verified exhausted, a real self-caused mid-generator interrupt found and fixed before shipping
+
+NEXT FOR THE OPERATOR: standing owner-gated queue only, because every structured lane re-checked this slot is independently confirmed exhausted and none of the 30 open issues is actionable without Phil.
+
+Attached per Step 0: shallow and detached on arrival, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `origin/main` (1058 commits fast-forwarded), tree clean before this cycle touched anything.
+
+Previous work (the ~17:2x operator cycle and ~18:1x PM check-in) confirmed finished, not cited: both had already run `preflight.py --skip-tests` to full completion with 0 FAIL, and the tree was clean and pushed before this slot started.
+
+Verified independently rather than cited: ran all 20 living-document rotation `--check` scripts fresh, all 20 CLEAN, nothing due. `cold_read_ledger.py --stale`: 0. GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 8 days); issue #42's own cadence question last touched 2026-11-20, still unanswered. `OWNER-ACTIONS.md` and `BACKLOG-2026-09-07.md` read directly: every open row is Phil-gated, nothing newly unblocked.
+
+Found and fixed a real self-caused defect before it could ship: started a live `preflight.py --skip-tests` run and killed it by hand against a slow wall-clock budget; it was mid-way through `wire_measure.py` (a known two-step generator: it writes a bare `measure.js` src, then calls `fingerprint_assets.py` to restore the `?v=` cache-busting hash) when killed, leaving 114 zone pages with the hash stripped, uncommitted. Diagnosed from the code's own comment rather than guessed, confirmed the diff was uniform across all 114 files (only the `?v=` suffix removed), and re-ran `ops/fingerprint_assets.py` directly rather than discard: tree returned to exactly matching `HEAD` except the expected `ops/cycle-signal.json` checkpoint update. No content, price or page actually changed.
+
+No push notification: last sent 2026-11-22T07:50:35Z, inside its 48h floor (clears ~2026-11-24T07:46Z), and nothing material changed on the owner-facing picture since.
+
+Pushed to main: this entry, `ops/cycle-signal.json`, regenerated dashboard. No price, product or site page touched.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle (~17:2x slot): re-verified every lane exhausted, closed the one new defect this run's own preflight surfaced (a missing HANDOFF-FILES marker)
 
 Did: Attached per Step 0 (unshallowed, ff-only onto `origin/main`, 1048 commits fast-forwarded, tree clean). Read CLAUDE.md, BACKLOG-2026-09-07.md, STATUS.md, this log's tail. `preflight.py` live: 0 FAIL, 27 warnings, all standing. GitHub's 30 issues unchanged, none from Phil since #65. `inbox_agent.py --apply`: no mail credential. `room_guide_underperformance.py` fresh: every room 0-7% uncovered; grepped the remaining partial tier against this log/backlog, every row already declined by a prior cycle. `cold_read_ledger.py --stale` (0), `--next` (313/313 ledgered) clean. Read OWNER-ACTIONS.md's three pre-"Start here" items: already prepared to a single step for Phil, nothing newly actionable here.
