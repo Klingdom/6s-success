@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~12:4x slot): previous work confirmed finished an eighth independent way, one oversized backlog table rotated, nothing new unblocked
+
+NEXT FOR THE OPERATOR: nothing new above the standing owner-gated queue (30 open issues, all decision/P0/blocked-on-art, none from Phil since #65), because room_guide_underperformance.py reruns at 0-12% uncovered everywhere (Stair Landing worst), still under the diminishing-returns line.
+
+Attached per Step 0, 990 commits fast-forwarded, tree clean. preflight.py --skip-tests fresh: 0 FAIL, 29 standing warnings. GitHub's 30 issues re-pulled live: unchanged, none from Phil since #65. cold_read_ledger.py --stale (0), check_urls.py (236/236), fix_dashes.py --check (0/0) clean.
+
+Found one small real job instead: rotate_backlog.py --check was past its 15-row cap (16 rows). Applied: 1 row archived, live table 15 rows, --check now CLEAN.
+
+Not starting anything large this slot. Regenerated the dashboard. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~12:2x slot): previous work confirmed finished a seventh independent way, nothing new unblocked
 
 Attached per Step 0 (fetch, real unshallow already done, checkout main, ff-only onto origin/main, tree clean throughout). No concurrent cycle mid-flight (last two commits are the prior PM check-in and an hourly check-in, both settled).
