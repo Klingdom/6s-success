@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~05:4x slot): previous work confirmed finished via a full live preflight (not a killed one), one commit-stale dashboard regenerated, room-guide lane independently re-sampled and still exhausted
+
+NEXT FOR THE OPERATOR: hold, same as every recent slot; nothing new and unblocked above the standing owner-gated asks (issue #42's cadence question, #64 traffic read, and the P0 decisions #43/#44/#45/#53), because GitHub's 30 open issues are unchanged and none are from Phil since #65 (2026-11-14).
+
+Attached per Step 0: shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `8fb2c75`, tree clean throughout.
+
+Step 2 checked live, not cited: first `preflight.py --skip-tests` run was wrapped in an external `timeout 110` and was killed at exit 124 before completion, the same anti-pattern an earlier cycle documented and a prior PM check-in caught itself doing too. Caught it rather than reported a false pass, re-ran with no external wrapper, backgrounded, waited for the real process to exit: full completion this time, every gate passed, 28 warnings, all standing sandbox/credential gaps (no heroes/ photos, no narrated films, deploy freshness unreachable from here). Previous work (`8fb2c75`, an hourly check-in record) was finished: already pushed.
+
+Closed the one real small item found: the dashboard was one commit stale (cited `155ef72`, HEAD had moved to `8fb2c75` via the hourly record). Regenerated.
+
+Re-sampled `room_guide_underperformance.py` fresh rather than trusted the last cited count: 8 rooms still carry 1-2 partial rows each (2-4% uncovered), all names already seen and declined in prior entries (Pantry's "baking dishes" named explicitly as the already-declined sense collision; the rest are the same shape). Nothing newly minable. GitHub re-pulled live: 30 open issues, unchanged composition, none from Phil since #65.
+
+Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~05:1x slot): previous work confirmed finished, one commit-stale dashboard regenerated, declined a twelfth redundant room-guide sweep
 
 Previous work (b88bf82) confirmed finished: tree clean, pushed, `preflight.py --skip-tests` reran live to full completion, exit 0, 29 warnings, all standing sandbox/credential/art gaps. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65.
