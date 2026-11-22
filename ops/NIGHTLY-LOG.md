@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~08:1x slot): previous work confirmed finished, one genuine stale cold-read-ledger entry closed, nothing new unblocked
+
+Attached per Step 0 (shallow and detached on arrival, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 9 commits fast-forwarded, tree clean throughout).
+
+Step 2 checked fresh, not cited: `preflight.py --skip-tests` run live to full completion before touching anything: 0 FAIL, 32 warnings, all standing sandbox/credential/art gaps. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14). `BACKLOG-2026-09-07.md` sections 2-6 read directly: every A/B/C row struck, archived, or explicitly Phil-gated; section 6's owner-gate table is the only open work. `STATUS.md`'s three workstreams re-read: two BLOCKED on Phil, one CLOSED, 0 of the WIP limit's 3 slots in unblocked use. `ops/last-owner-notification.json` read directly: sent 24 minutes before this cycle started, well inside the 48h floor, so no repeat due. Previous work (the 07:5x operator cycle's stale-handoff correction and owner notification, the 07:4x PM check-in) confirmed finished on this evidence, not assumed.
+
+Found one real, closeable thing rather than only re-confirm the standing picture: `ops/cold_read_ledger.py --stale` named `ops/preflight.py` as ledgered clean 2026-11-21 but last touched 2026-11-22 (by the prior cycle's `ops/cycle-signal.json`/`ops/last-owner-notification.json` exclusion fix to `gate_checks_excludes_generated_files` and `CI_PATH_COVERAGE_EXEMPT`). Read that diff directly rather than trust its own commit message: it is exactly what the message describes, two bookkeeping paths added to a required tuple and an exempt dict, docstring updated in step, no surprise, no risk. Re-ledgered clean with a note naming what was actually checked.
+
+Verified: `preflight.py --skip-tests` run a second time before committing (0 FAIL again), a third time after pushing to confirm the commit itself didn't disturb anything (0 FAIL, same 32 warnings). The one `FAIL` seen mid-sequence was the documented dirty-tree `gate_generator_ownership` refusal while the ledger edit sat uncommitted, not a real defect; cleared once committed. Dashboard regenerated and pushed. CI (`checks.yml`) confirmed green on the immediately prior commit (`b5d75dd72`); this cycle's own push triggered a fresh run, in progress at the time of writing, not yet cited as passing.
+
+**Handing to the operator (:43):** nothing newly unblocked. The keyword-mining lane (epic 5) remains in diminishing returns site-wide (`gate_room_guide_mining_diminishing_returns`), the owner-gate queue is unchanged and not due for a repeat ping, and no workstream-sized item in the backlog is both unblocked and ready. If a genuinely new stale cold-read-ledger entry or similar small, closeable defect turns up, take it; otherwise this is another quiet cycle, truthfully reported as such.
+
+HANDOFF-FILES: `ops/cold-read-ledger.json`
+
 ## Same cycle, minutes later: a real CI gap found and gated, correcting this entry's own "no new preflight gate" line below
 
 While pushing the entry below, `preflight.py`'s own `gate_checks_yml_real_gap` briefly, correctly flagged this cycle's own not-yet-pushed commits as unverified work (expected: the push had not happened yet). Tracing why rather than dismissing it as noise found a real, standing gap: `ops/cycle-signal.json` and `ops/last-owner-notification.json`, two pure-bookkeeping files under `ops/**` written every cycle the same way `ops/state.json`/`ops/dashboard.html`/`ops/NIGHTLY-LOG.md` already are, were never added to `checks.yml`'s push-path exclusions alongside those four, so a commit touching only one of them was still starting a full Checks run and, under the workflow's own cancel-in-progress group, could cancel a real fix's in-flight verification, the exact 2026-09-13 outage shape `gate_checks_excludes_generated_files` already exists to prevent, just for two files it had never been told about.
