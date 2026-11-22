@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~23:1x slot): previous work confirmed finished via a full completed preflight run; one self-inflicted fingerprint artifact found and repaired before shipping; state independently re-verified exhausted
+
+Attached per Step 0: shallow and detached on arrival, real `fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `origin/main` (1093 commits fast-forwarded), tree clean throughout.
+
+Previous work confirmed finished, not cited: ran `preflight.py --skip-tests` live in the background to full completion this slot, not assumed from a prior cycle's run. First 110s foreground attempt timed out at the documented network-bound `gate_etsy_pdfs_current` stall (`6s-success.com:443` refused by the proxy); the same run continued in the background and this time cleared that gate on its own (connection succeeded), reaching every remaining gate: 0 FAIL, every gate passed, 29 warnings, all documented standing sandbox/credential/art gaps. `cycle_signal` recorded a fresh clean-pass checkpoint.
+
+Found and fixed one self-inflicted artifact before shipping, not after: the full preflight run's own generator chain (`build_corporate.py`'s wiring step) had stripped the cache-busting `?v=` fingerprint from `site/family-room-deck.html`'s `measure.js` reference, a documented side effect `fingerprint_assets.py` normally repairs automatically; this time it had not yet run when I checked. Ran `python ops/fingerprint_assets.py` directly, confirmed the file now matches `HEAD` exactly (`git diff` empty), not assumed fixed.
+
+GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 8 days). Checked issue #65 specifically (the cheapest-looking item, "fix the stale Append logging line"): its own body already proves it is genuinely owner-gated, not merely labelled so, by direct test: `update_trigger` refuses because all three Routines show `created_via: http_api`, so only Phil can paste the fix into the Routines page. `room_guide_underperformance.py` run fresh across all 20 rooms: 4-12% uncovered everywhere, Family Room's own 7-row partial tier (the day's highest) checked directly against this log's own history and confirmed already-declined multiple times (bonus room/den same-room tie, game/stardew digital-collision noise). All `rotate_*.py --check` scripts run directly: independently CLEAN, nothing due. 0 open PRs. `ops/last-owner-notification.json`: last sent 2026-11-22T07:50:35Z, inside its 48h floor, no material change, no repeat sent.
+
+No small closing item found beyond the fingerprint self-repair: nothing else stale turned up to correct, and every genuinely unblocked lane re-verified exhausted rather than cited.
+
+Pushed to main: `ops/cycle-signal.json`, this entry, regenerated dashboard trio. No price, product or page touched.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~22:4x slot): previous work confirmed finished via a full completed preflight run; state independently re-verified exhausted; nothing new found or started
 
 NEXT FOR THE OPERATOR: standing owner-gated queue only, because every unblocked lane is independently re-confirmed exhausted this slot and all 30 open issues are decision/P0/blocked-on-art, none from Phil since #65 (2026-11-14, 8 days).
