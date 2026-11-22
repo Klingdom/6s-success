@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Same cycle, minutes later: a real CI gap found and gated, correcting this entry's own "no new preflight gate" line below
+
+While pushing the entry below, `preflight.py`'s own `gate_checks_yml_real_gap` briefly, correctly flagged this cycle's own not-yet-pushed commits as unverified work (expected: the push had not happened yet). Tracing why rather than dismissing it as noise found a real, standing gap: `ops/cycle-signal.json` and `ops/last-owner-notification.json`, two pure-bookkeeping files under `ops/**` written every cycle the same way `ops/state.json`/`ops/dashboard.html`/`ops/NIGHTLY-LOG.md` already are, were never added to `checks.yml`'s push-path exclusions alongside those four, so a commit touching only one of them was still starting a full Checks run and, under the workflow's own cancel-in-progress group, could cancel a real fix's in-flight verification, the exact 2026-09-13 outage shape `gate_checks_excludes_generated_files` already exists to prevent, just for two files it had never been told about.
+
+Fixed in `checks.yml` (both `push` and `pull_request` blocks), and per CLAUDE.md 10b, hardened the two gates that should have caught this rather than just the symptom: extended `gate_checks_excludes_generated_files`'s required list and `CI_PATH_COVERAGE_EXEMPT` (read by `gate_ci_path_filter_covers_preflight_inputs`) to require both new paths, and extended `test_gate_checks_excludes_generated_files.py` with a fail-then-pass case for the two new paths going missing again. Proved it can fail: ran the test suite against the unmodified `checks.yml` first and watched both gates correctly FAIL by name (`ci-path-coverage` naming `ops/cycle-signal.json`, caught independently before the test was even touched), then confirmed clean after the fix, 6/6 and 13/13 on each test file. `preflight.py --skip-tests` re-run live after committing: 0 FAIL.
+
+This corrects the entry below's own "no new preflight gate (10b): no new defect class found" line, written before this was found a few minutes later in the same cycle.
+
 ## Scheduled operator cycle, 2026-11-22 (~07:5x UTC): corrected a stale handoff (Family Room/Stair Landing room-guide tier was already mined to exhaustion, not open), 48h owner-notification floor cleared and repeated
 
 **Note on a race with the concurrent 07:4x PM check-in below: that entry re-handed off the same Family Room/Stair Landing mining task this entry closes out.** It was written and pushed by a concurrent session before this entry's own finding (the tier is already exhausted, not an open task) reached `main`; rebased cleanly onto it rather than overwritten. Its "NEXT FOR THE OPERATOR" line is superseded by this entry's correction below, not by anything that entry got wrong at the time it was written.
