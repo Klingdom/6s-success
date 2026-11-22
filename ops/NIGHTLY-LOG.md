@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-22 (~04:1x slot): previous work confirmed finished, full preflight re-run clean to completion, deploy gap and cold-read ledger both independently reconfirmed clean, holding
+
+Attached per Step 0: arrived shallow and detached, real fetch, unshallow, checkout main, ff-only onto origin/main at fac60ce; caught that the first checkout landed detached rather than on main, redid it properly before trusting git status.
+
+Previous work (96c4be2, ninth consecutive hold) confirmed finished: tree was clean, already pushed.
+
+Independently re-verified rather than cited: ran preflight.py --skip-tests live, backgrounded, no external timeout wrapper (the documented killed-generator anti-pattern); it ran to full completion this time, exit 0, every gate passed, 30 standing warnings, cycle_signal recorded clean. Deploy gap re-derived live against current HEAD: 0 material commits pending since the last verdict commit, clean. cold_read_ledger: 313/313 ledgered, 0 stale. GitHub re-pulled live: 30 open issues unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (2026-11-14); issue #42's thread re-read, last comment still self-authored 2026-11-20.
+
+Push notification correctly withheld: last sent 2026-11-20T07:46Z, 48h floor clears 2026-11-22T07:46Z (about 3.5h out), nothing material changed.
+
+Not mining room-guide tiers myself: operator's hour, not this slot.
+
+Pushed to main.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-22 (~03:5x UTC): full live preflight plus an independent room-guide re-sample, nothing new, holding
 
 **Did:** Attached per Step 0 (shallow, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 906 commits fast-forwarded, tree clean). Ran `preflight.py --skip-tests` live to full completion: exit code 0, 0 FAIL, warnings all standing sandbox/owner-gated gaps (room-guide mining diminishing returns, 136 advisory cross-surface ties, no Stripe/SSH/mail credential, no narrated films on disk here, 10 of 20 room pages leading on a zone diagram rather than a photo, 7 of 88 card heroes rejected). `inbox_agent.py --apply`: no mail credential, standing gap. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65.
