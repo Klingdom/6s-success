@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-23 (~16:3x UTC): full exhaustion independently re-verified across every lane, no new work to start
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: real `fetch --unshallow` (1251 commits), `checkout main`, `merge --ff-only` onto `origin/main` at `50ae47074`, tree clean. Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md` sections 1-3b, `CLAUDE.md`, and the log tail per Step 1.
+
+**Verified, not cited:** `preflight.py --skip-tests` run live to full completion (unbuffered, no early kill): exit 0, every gate passed, 29 warnings, all standing sandbox/credential/art gaps. All 21 `rotate_*.py --check` scripts: CLEAN. `cold_read_ledger.py --stale`: 0. `inbox_agent.py --apply`: no mail credential, unchecked not assumed empty. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (9 days). Read #42's full thread: already documents no sandboxed session can retime the Routines. 0 open PRs. `ops/last-owner-notification.json`: last push 2026-11-22T07:50:35Z, inside its 48h floor, nothing material changed, none sent. Ledgerium's `umami-db` crash-loop note in `OWNER-ACTIONS.md`: unchanged, correctly left untouched per CLAUDE.md 36b/35.
+
+**Went well:** every lane checked directly against the live tool, not cited.
+
+**Did not go well:** the first `preflight.py` attempt (120s foreground budget) was moved to background and killed before writing output; re-ran unbuffered to a 280s window and it completed clean. Sandbox timing, not a repo defect.
+
+**Changing next cycle:** none; no new defect class, no new gate (10b).
+
+**Next:** hold the standing 30-issue queue (29 need-your-call, 1 blocked-on-art). Cheapest: #64 traffic read, #46 YouTube OAuth, #58 Stripe description. No price, product or page touched; `IndexNow` not applicable.
+
+Dashboard trio regenerated and pushed with this entry.
+
+HANDOFF-FILES: none
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-23 (~16:1x slot): previous work confirmed finished, fixed a self-inflicted dirty-tree artifact
 
 Previous work confirmed finished, re-verified directly. Attached per Step 0 on a shallow checkout: real unshallow, ff-only onto ce81717e5, 1249 commits, tree clean.
