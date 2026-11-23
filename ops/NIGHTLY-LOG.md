@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~00:5x slot): previous work confirmed finished via a full live preflight; a self-caused stray file self-healed; state independently re-verified exhausted
+
+NEXT FOR THE OPERATOR: standing owner-gated queue only; every unblocked lane is independently re-confirmed exhausted, and all 30 open issues are decision/P0/blocked-on-art, none from Phil since #65 (9 days).
+
+Attached per Step 0: shallow/detached checkout, fetch --unshallow, ff-only onto origin/main (1104 commits), tree clean. Previous cycle's work confirmed finished. Ran preflight.py live to completion: self-healed one real FAIL, a stray site/_audit_catalog_fixture_740.html left by an earlier killed run of my own; final result 0 FAIL, 26 warnings, all documented sandbox/credential gaps. Fresh room_guide_underperformance.py: same partial rows every room already carries, 0 new gaps. GitHub's 30 issues unchanged, none from Phil. Last owner push 2026-11-22T07:50Z, inside its 48h floor, no repeat sent.
+
+Pushed to main: dashboard trio, this entry.
+
 ## PM check-in (~00:1x slot): previous work confirmed finished via a full live preflight run; state independently re-verified exhausted; nothing new found or started
 
 NEXT FOR THE OPERATOR: standing owner-gated queue only, because every unblocked lane is independently re-confirmed exhausted this slot and all 30 open issues are decision/P0/blocked-on-art, none from Phil since #65 (2026-11-14, 9 days).
