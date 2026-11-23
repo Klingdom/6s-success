@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-23 (~02:4x slot): previous work confirmed finished via live preflight; every unblocked lane independently reconfirmed exhausted; nothing new started
+
+NEXT FOR THE OPERATOR: standing owner-gated queue only, because every unblocked lane is independently re-confirmed exhausted this slot and all 30 open issues are decision/P0/blocked-on-art, none from Phil since #65 (2026-11-14, 9 days).
+
+Attached per Step 0: checkout arrived shallow and detached, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (1127 commits fast-forwarded), tree clean throughout.
+
+Previous work confirmed finished, not cited: ran `preflight.py --skip-tests` live in the background to let it reach its own bound rather than kill it at the documented 280s foreground timeout: 0 FAIL, every gate passed, 30 warnings, all documented standing sandbox/credential/art gaps (`build/heroes/` absent so the zone-page generator check did not run here; `content/book/` has no local `.jpg` files so the EPUB generator check correctly degrades to text descriptions). `cycle_signal` recorded a fresh clean-pass checkpoint. Independently re-verified rather than cited: GitHub's 30 open issues re-pulled live via the MCP server, unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65. `room_guide_underperformance.py` run fresh across all 20 rooms: every room 0-6% uncovered, 0 gap rows anywhere, the dozen remaining partial-tier rows the same ones already named and declined in prior entries (kids' backpack/clothing-storage ties, makeup/vanity-box genuine ties, detergent tray, bags of spices, all previously examined). `cold_read_ledger.py --stale`: 0. `fix_dashes.py --check`: 0 em/en dashes. `check_urls.py`: 236/236. `check_sellable.py`: 124/126 (2 person-delivered services). `affiliate.py --check`: 165 documents clean. `ops/deploy-verdict.json` (build `38694f470174306e`, 2026-11-22T06:38:17Z) still resolves to an empty `deploy_gap_material_commits` list, matching `STATUS.md`'s own citation. `ops/last-owner-notification.json`: last sent 2026-11-22T07:50:35Z, inside its 48h floor, no material state change, not repeated.
+
+No new defect found; no small closing item found this slot beyond the checks above, all of which read clean on the first pass.
+
+Handing the operator the same standing owner-gated queue; every unblocked lane re-verified exhausted.
+
+Pushed to main: `ops/cycle-signal.json`, this entry, the regenerated dashboard trio. No price, product or page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-23 (~02:1x slot): previous work confirmed finished via live preflight; every unblocked lane independently reconfirmed exhausted; nothing new started
 
 Attached per Step 0: unshallowed, ff-only onto `origin/main` (1125 commits), tree clean, re-fetched before writing, nothing landed concurrently.
