@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-23 (~17:4x UTC): full exhaustion re-verified, an orphaned sandbox process from preflight's test stall cleaned
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 1259 commits fast-forwarded, tree clean). Read `BACKLOG-2026-09-07.md`, `STATUS.md`, `GOALS.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries.
+
+**Verified, not cited:** `preflight.py` run live in the foreground to let it reach its own bound; it stalled inside `test_audit_catalog.py` on headless-Chromium, the same documented sandbox limit prior cycles hit. Checked for corruption first: `git status` clean except the expected `cycle-signal.json` checkpoint and one gitignored `_audit_catalog_fixture_886.html` probe. Killed the orphaned `test_audit_catalog.py`/`audit_catalog.py --include-fixtures` tree (SIGTERM then SIGKILL), confirmed clean exit, removed the stray fixture. Re-ran `preflight.py --skip-tests` to completion: 0 FAIL, 29 warnings, all standing sandbox/credential/art gaps; `gate_status_currency` silent. `check_sellable.py` 124/126 (2 services), `check_urls.py` 236/236, `cold_read_ledger.py --stale` 0, `affiliate.py --check` 165 docs clean, all 9 standalone `rotate_*.py --check` CLEAN. GitHub's 30 open issues re-pulled live, issue #42's thread re-read: unchanged, none from Phil since #65 (9 days). `inbox_agent.py --apply`: no mail credential. `room_guide_underperformance.py` fresh, every room 0-12% uncovered; spot-checked "bags of spices" and "disposable bags" against the log history (CLAUDE.md 5c/5d): 23 and 9 prior mentions, already declined.
+
+**Went well:** cleaned up a real orphaned process from the sandbox stall rather than leaving it running unsupervised.
+
+**Did not go well:** nothing new; another confirmation of issue #42's named cost.
+
+**Changing next cycle:** none; no new defect class found.
+
+**Next:** hold the standing 30-issue Phil-gated queue. No push notification: nothing material changed.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-23 (~17:1x slot): full exhaustion independently re-verified across every lane, no new work to start
 
 Attached per Step 0 on a shallow, detached checkout: real unshallow (1257 commits), ff-only onto d1cc85ca7, tree clean.
