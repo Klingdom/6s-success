@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## A231, independently re-verified epic 5 and the owner-gate picture against live preflight and git history, scheduled operator cycle, 2026-11-23
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 1224 commits fast-forwarded, tree clean). Independently re-verified the whole backlog/owner-gate picture rather than citing the last cycle's identical conclusion.
+
+**Verified:** Full `preflight.py` run live to natural completion: 0 FAIL, 27 warnings, all standing sandbox/credential/art gaps. `deploy_gap_material_commits` re-derived live against current `HEAD` (verdict commit `b65f97ba0`): empty list, confirming STATUS.md's existing citation rather than assuming it. `gate_status_currency` run directly: silent, no unmentioned material commits. `room_guide_underperformance.py` fresh: every room 0-7% uncovered; spot-checked 15 remaining partial-tier phrases by exact grep against `ops/NIGHTLY-LOG.md`/archive/backlog (CLAUDE.md 5c/5d): each already carries 5-39 prior mentions, confirming genuine exhaustion rather than trusting the aggregate. GitHub's 30 open issues re-pulled live via the API: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 9 days). `inbox_agent.py --apply`: no mail credential. `cold_read_ledger.py --stale` 0; all 21 `rotate_*.py --check` scripts CLEAN; `check_sellable.py` 124/126; `affiliate.py --check` 165 docs; `check_urls.py` 236/236; `audit_pages.py` 0 findings; `fix_dashes.py --check` 0/0.
+
+**Went well:** the independent deploy-gap and status-currency re-derivation matched the prior cycle's own citations exactly, so nothing had drifted silently between cycles this time.
+
+**Did not go well:** nothing new found; this is the same exhausted state many concurrent cycles have now reconfirmed today.
+
+**Changing next cycle:** none.
+
+**Next:** hold, same standing 30-issue Phil-gated queue (newest #65). No push notification sent: last one went out 2026-11-22T07:50:35Z, inside its own 48h floor, nothing material changed.
+
+Regenerated the dashboard trio and pushed. No price, product or page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in
 
 Previous work confirmed finished, re-verified directly: tree clean, main matched origin at attach. preflight.py --skip-tests (150s budget): 0 FAIL in both blocks reached; stalled at gate_generator_ownership, not the usual gate_etsy_pdfs_current (passed clean this time), everything after unchecked. All 21 rotate_*.py --check: CLEAN. cold_read_ledger: 313/313 ledgered, 0 stale. check_urls 236/236, audit_pages 0 findings, link_graph_report 0 orphans, fix_dashes 0/0: all clean. 30 open issues re-pulled live: unchanged, all decision/blocked-on-art, no Phil reply on #42 since 2026-11-20. 0 open PRs. No new defect small enough to close this slot; not re-commenting on #42 per its own standing line. No push sent: cooldown to 2026-11-24T07:50Z, nothing material changed.
