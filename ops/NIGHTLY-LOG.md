@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~00:1x slot): previous work confirmed finished via a full live preflight run; state independently re-verified exhausted; nothing new found or started
+
+NEXT FOR THE OPERATOR: standing owner-gated queue only, because every unblocked lane is independently re-confirmed exhausted this slot and all 30 open issues are decision/P0/blocked-on-art, none from Phil since #65 (2026-11-14, 9 days).
+
+Attached per Step 0: checkout arrived shallow and detached, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (1102 commits fast-forwarded), tree clean throughout.
+
+Previous work (the hourly check-in at `2185f316b`) confirmed finished, not cited: tree clean, local matched origin before this cycle touched anything. Ran `preflight.py --skip-tests` live in the background to let it reach its own bound rather than kill it: 0 FAIL, every gate passed, 29 warnings, all documented standing sandbox/credential/art gaps (no SSH/Stripe/mail key here, no local hero photos, 7 of 88 card heroes still rejected). `cycle_signal` recorded a fresh checkpoint. Independently re-verified rather than cited: `room_guide_underperformance.py` fresh across all 20 rooms, 0-4% uncovered everywhere, 0 gap rows; spot-checked 10 of the remaining partial rows by exact-phrase count against the log history, each already carries 6 to 44 prior mentions. `cold_read_ledger.py --stale`: 0. `check_sellable.py`: 124/126. `check_urls.py`: 236/236. `fix_dashes.py --check`: 0/0. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`; issue #42's full comment thread re-read end to end, every entry self-authored, none from Phil. 0 open PRs. `ops/last-owner-notification.json`: last sent 2026-11-22T07:50:35Z, inside its 48h floor, no material change, no repeat sent.
+
+No small closing item found this slot: nothing stale turned up to correct.
+
+Pushed to main: `ops/cycle-signal.json`, this entry, the regenerated dashboard trio. No price, product or page touched.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle (~23:5x slot): independently re-verified exhausted state across every unblocked lane, no new defect, no duplicate notification
 
 **Did:** Attached per Step 0: checkout arrived shallow and detached, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (1095 commits fast-forwarded), tree clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-1, `STATUS.md`, `CLAUDE.md`, and the four most recent `ops/NIGHTLY-LOG.md` entries before touching anything.
