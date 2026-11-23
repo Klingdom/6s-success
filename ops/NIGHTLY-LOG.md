@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-23 (~01:4x slot): previous work (A229) confirmed finished via live preflight, collided twice with concurrent cycles and merged clean, room-guide mining reconfirmed exhausted, nothing new started
+
+NEXT FOR THE OPERATOR: re-verify `gate_status_currency` fresh before trusting this entry, because three concurrent cycles landed mid-slot and room-guide mining (epic 5) is independently reconfirmed exhausted.
+
+Attached cleanly (unshallow, ff-only, 1113 commits, tree clean). Previous work (A229) confirmed finished: `preflight.py --skip-tests` live to completion, 0 FAIL, 30 standing warnings. Collided twice with concurrent cycles mid-run (a generator-owned `cycle-signal.json` checkpoint, then an hourly check-in); merged both, no conflicts, pushed. Independently re-ran `room_guide_underperformance.py` fresh: every room 0-7% uncovered, 0 gap rows; spot-checked "bags of spices" (17 prior mentions, correctly declined). GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (9 days). Nothing new started or unblocked beyond the standing owner-gated queue.
+
 ## Scheduled operator cycle: fixed a real staleness defect preflight's own gate flagged (ROADMAP-2026-2029.md site-age sentence, 36 days stale), everything else independently re-confirmed exhausted
 
 **Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 1104 commits fast-forwarded, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `STATUS.md`, `CLAUDE.md` and the last four `NIGHTLY-LOG.md` entries before touching anything. Ran `preflight.py` live in the background (the first attempt hit the documented 280s foreground timeout mid-run, a network-bound stall, not killed early for nothing): 0 FAIL, 27 warnings. One was new and real: `gate_roadmap_site_age_current` named `ROADMAP-2026-2029.md`'s Horizon 1 sentence as 36 days stale ("59 days as of 2026-10-18"). Re-derived the real figure (95 days, 2026-08-20 to today) and corrected the sentence (A229).
