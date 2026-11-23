@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~12:4x slot): previous work confirmed finished via a fresh live preflight run, full exhaustion re-verified, no new work to start
+
+NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue (newest #42, #65), because every open issue is decision/P0/blocked-on-art and none has moved since 2026-11-20.
+
+Attached per Step 0 onto a shallow, detached checkout: real `fetch --unshallow`, ff-only merge onto `ae3605861`, tree clean, in sync with origin.
+
+Previous work confirmed finished, not cited: 30 open issues re-pulled live, unchanged. `preflight.py --skip-tests` run fresh: 0 real FAIL in both blocks reached, stalled again at `gate_generator_ownership` (exit 124), the same documented sandbox stall; checked for corruption after the kill, found only the expected `cycle-signal.json` checkpoint change. All 22 `rotate_*.py --check`: CLEAN. `cold_read_ledger.py --stale`: 0.
+
+No push: last sent 2026-11-22T07:50:35Z, 48h floor not yet passed, nothing changed.
+
+Pushed: `ops/cycle-signal.json`, this entry.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~12:1x slot): previous work confirmed finished, full exhaustion re-verified independently, no new work to start
 
 NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue (newest #42, #65), because every open issue is decision or blocked-on-art and none has moved since the prior cycle checked.
