@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-23 (~16:1x slot): previous work confirmed finished, fixed a self-inflicted dirty-tree artifact
+
+Previous work confirmed finished, re-verified directly. Attached per Step 0 on a shallow checkout: real unshallow, ff-only onto ce81717e5, 1249 commits, tree clean.
+
+preflight.py --skip-tests ran fresh to completion: exit 0, every gate passed, 28 standing warnings, 0 real FAIL. First full non-stalled pass in recent memory.
+
+My own first attempt (180s budget) killed gate_generator_ownership mid-regenerate, leaving site/kitchen-deck.html with unfinished placeholder hashes. Diagnosed, not assumed: re-ran ops/build_kitchen_deck_page.py, now matches committed content exactly. Self-inflicted, not a repo defect.
+
+All 22 rotate_*.py --check: CLEAN. cold_read_ledger --stale: 0. 30 open issues, 0 PRs, re-pulled live: unchanged, all decision/blocked-on-art, including re-reading #65, confirming this session cannot fix it.
+
+No new work unblocked. Handing operator: hold the standing 30-issue queue.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-23 (~15:5x UTC): full exhaustion independently re-verified live across every lane, no new work to start
 
 **Did:** Attached per Step 0: fetch, real `--unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `19d2cfc29`, 1242 commits fast-forwarded, tree clean. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md and the log tail per Step 1.
