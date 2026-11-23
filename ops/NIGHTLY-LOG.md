@@ -4,6 +4,14 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## PM check-in
 
+NEXT FOR THE OPERATOR: hold the standing owner-gated queue, because every unblocked lane is independently reconfirmed exhausted this slot and all 30 open issues are decision/P0/blocked-on-art, none from Phil since #65 (9 days).
+
+Attached cleanly: unshallowed, ff-only onto `origin/main` (1135 commits), tree clean. Previous work confirmed finished, not cited: `preflight.py --skip-tests` ran live, 0 FAIL, 30 standing warnings. Deploy gap re-derived against current `HEAD`: empty, matching `STATUS.md`. `room_guide_underperformance.py` fresh, all 20 rooms: 0 gap rows, remaining partial rows all previously declined noise. `cold_read_ledger.py --stale`: 0. `check_sellable.py`: 124/126, unchanged. GitHub's 30 issues re-pulled live: unchanged; re-read issue #42's thread, every comment agent-authored, none from Phil. Notification not due (48h floor). No new defect; nothing to fix. Pushed: this entry only.
+
+HANDOFF-FILES: none
+
+## PM check-in
+
 Previous work finished: tree clean, main matched origin exactly, `preflight.py --skip-tests` 0 FAIL, 28 standing warnings. GitHub's 30 open issues re-pulled live: unchanged since 2026-11-20, all `decision`/`P0`/`blocked-on-art`, author is the operator's own push identity, none from Phil. `cold_read_ledger.py --stale`: 0. `gate_room_guide_mining_diminishing_returns` and `gate_cross_surface_ties_tracked` (136, unchanged) confirm both non-Phil lanes already exhausted; did not re-trace by hand again.
 
 No genuinely new unblocked item exists. All 30 issues wait on Phil; none may be picked per Step 3.
