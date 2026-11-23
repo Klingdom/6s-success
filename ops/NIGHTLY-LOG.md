@@ -18,6 +18,20 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 HANDOFF-FILES: none
 
+## PM check-in, 2026-11-23 (~23:4x slot): full exhaustion independently re-verified, no new work to start
+
+NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue (cheapest: #64 traffic read, #46 YouTube OAuth, #58 Stripe description), because every issue is still decision/P0/blocked-on-art, none moved since #42 on 2026-11-20.
+
+Attached per Step 0: fetch --unshallow, ff-only onto 3d7fb0a, tree clean.
+
+Previous work confirmed finished, re-verified directly. preflight.py --skip-tests, 170s budget: 0 FAIL in both FAIL blocks reached (KDP, Etsy), stalled past gate_prerender_shop_current; rest unchecked. All 21 rotate_*.py --check: CLEAN. cold_read_ledger --stale: 0. check_urls.py: 236/236. 30 issues re-pulled live: unchanged, newest #42, no Phil reply since #65 (9 days). 0 open PRs.
+
+No new closeable defect. No push sent: 48h floor (2026-11-24T07:50Z) not yet passed, nothing material changed.
+
+Dashboard trio regenerated, pushed.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-23 (~23:1x slot): full exhaustion independently re-verified, no new work to start
 
 Attached per Step 0: real fetch --unshallow, checkout main, ff-only onto 8c174472f (18 commits), tree clean throughout.
