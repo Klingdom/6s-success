@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle: fixed a real staleness defect preflight's own gate flagged (ROADMAP-2026-2029.md site-age sentence, 36 days stale), everything else independently re-confirmed exhausted
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 1104 commits fast-forwarded, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `STATUS.md`, `CLAUDE.md` and the last four `NIGHTLY-LOG.md` entries before touching anything. Ran `preflight.py` live in the background (the first attempt hit the documented 280s foreground timeout mid-run, a network-bound stall, not killed early for nothing): 0 FAIL, 27 warnings. One was new and real: `gate_roadmap_site_age_current` named `ROADMAP-2026-2029.md`'s Horizon 1 sentence as 36 days stale ("59 days as of 2026-10-18"). Re-derived the real figure (95 days, 2026-08-20 to today) and corrected the sentence (A229).
+
+**Verified, not cited:** `roadmap_site_age_drift()` run directly against the edited file: 0 fails, 0 warns. `test_gate_roadmap_site_age.py`: 8/8. Grepped for stray copies of the stale phrasing elsewhere: none. Full `preflight.py` re-run live to completion after the fix: 0 FAIL, 25 warnings, the site-age warning gone. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (9 days). `inbox_agent.py --apply`: no mail credential. `room_guide_underperformance.py` fresh: every room 0-7% uncovered, 0 gap rows; a dozen remaining partial-tier rows grepped against the full log history, each already carrying 3-39 prior mentions and a recorded decline. `cross_surface_tie_count` re-derived fresh: 136, unchanged from A227. `cold_read_ledger.py --stale`: 0. `check_sellable.py`: 124/126 (2 services). `affiliate.py --check`: 165 docs clean. `check_urls.py`: 236/236. `ops/last-owner-notification.json`: last sent 2026-11-22T07:50:35Z, inside its 48h floor, no material change, not repeated.
+
+**Went well:** the gate did exactly its job, naming a real drift rather than this cycle rediscovering it by hand; the fix was verified against the gate's own logic, not assumed.
+
+**Did not go well:** the first preflight attempt still hits the documented foreground timeout; running it backgrounded without the wrapper is the workaround, not a fix.
+
+**Changing next cycle:** none; the existing gate already caught this correctly, so no new gate is warranted (10b): the defect was stale data, not a missing check.
+
+**Next:** standing owner-gated queue only; every unblocked lane independently re-confirmed exhausted this slot, consistent with roughly the last thirty cycles.
+
+Pushed to main: `ROADMAP-2026-2029.md`, this entry, the backlog entry (A229), the regenerated dashboard trio. No price, product or page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~00:1x slot): previous work confirmed finished via a full live preflight run; state independently re-verified exhausted; nothing new found or started
 
 NEXT FOR THE OPERATOR: standing owner-gated queue only, because every unblocked lane is independently re-confirmed exhausted this slot and all 30 open issues are decision/P0/blocked-on-art, none from Phil since #65 (2026-11-14, 9 days).
