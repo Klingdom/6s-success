@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-23 (~18:5x UTC): full exhaustion independently re-verified, an orphaned sandbox process from preflight's test stall cleaned
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, 1268 commits fast forwarded, `checkout main`, `merge --ff-only` onto `origin/main`, tree clean). Read `BACKLOG-2026-09-07.md` in full, `STATUS.md`, `GOALS.md`, `CLAUDE.md`, and the log tail per Step 1.
+
+**Verified, not cited:** `preflight.py` backgrounded to reach its own bound; stalled at `test_audit_catalog.py` (headless Chromium, the documented sandbox limit). Checked for corruption first: tree held only the checkpoint. Killed the hung test and its orphaned `audit_catalog.py --include-fixtures` child, removed the one stray gitignored fixture, re-ran `preflight.py --skip-tests` to real completion: 0 FAIL, 29 warnings, all standing sandbox/credential/art gaps. Independently re-ran `check_sellable.py` (124/126, 2 services), `check_urls.py` (236/236), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 docs), all 21 `rotate_*.py --check` (CLEAN), `cold_read_ledger.py --stale` (0), each run myself rather than trusted from the log. `deploy_gap_material_commits` re-derived live: empty. `room_guide_underperformance.py` fresh: every room 0 to 12% uncovered, same 15 partial rows A231 already checked hours earlier, not re-mined twice. GitHub's 30 issues re-pulled live, #42's thread read: unchanged, none from Phil since #65 (9 days). 0 PRs. `inbox_agent.py --apply`: no mail credential.
+
+**Went well:** cleaned the orphaned Chromium process and stray fixture correctly rather than leaving them running.
+
+**Did not go well:** nothing new; another confirmation of issue #42's named cost.
+
+**Changing next cycle:** none; no new defect class found.
+
+**Next:** hold the standing 30 issue Phil gated queue (cheapest: #64 traffic read, #46 YouTube OAuth, #58 Stripe description). No push sent: last 2026-11-22T07:50:35Z, inside its 48h floor, nothing material changed.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-23 (~18:0x slot): full exhaustion independently re-verified, no new work to start
 
 NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue (cheapest: #64 traffic read, #46 YouTube OAuth, #58 Stripe description), unchanged since the prior cycle.
