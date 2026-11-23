@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~10:2x slot): previous work confirmed finished; found and recovered from a real preflight-timeout corruption hazard; full preflight completion verified
+
+Previous work confirmed finished: 30 open issues re-pulled live, unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (9 days); 0 PRs; all rotate_*.py CLEAN; cold_read_ledger 0 stale; BACKLOG-2026-09-07.md sections 2-5 fully archived/Hold/owner-gated.
+
+Found and fixed a real hazard rather than only re-confirming exhaustion: an external 150s timeout killed my first preflight run mid-gate_generator_ownership, after it rewrote 166 real site/ pages but before its own restore step, leaving genuine uncommitted drift. Stashed rather than discarded, re-ran preflight.py --skip-tests to full completion with no external timeout: exit 0, every gate passed, 29 standing warnings, 0 real FAIL.
+
+Handing operator: hold the standing 30-issue owner-gated queue (cheapest #64, #58, #46). Caution: killing preflight past gate_etsy_pdfs_current can corrupt the tree, not just stall.
+
+Pushed: this entry, dashboard trio, cycle-signal.json.
+
+HANDOFF-FILES: none
+
 ## 2026-11-23, scheduled operator cycle (~09:5x slot): independently re-confirmed full exhaustion of every non-Phil-gated lane, nothing new to ship.
 
 **Did:** Attached per Step 0 (shallow, detached; real fetch --unshallow; checkout main; ff-only merge, 1196 then 1 more commits fast-forwarded onto a concurrent PM check-in that landed mid-cycle). Read BACKLOG-2026-09-07.md, GOALS.md, STATUS.md, CLAUDE.md, the last nightly-log entries. Ran preflight.py twice; both deferred to a different concurrent preflight.py under the lock gate, each time. Independently re-mined room_guide_underperformance.py across all 20 rooms (0 gap rows, worst room 12% uncovered) and traced the two 0.0-score candidates ("how to organize bags of spices", "how to organize disposable bags") against NIGHTLY-LOG history rather than trust the count: both already correctly declined as genuine cross-surface ties (CLAUDE.md section 6), 7 and 21 prior mentions. Ran all 8 rotate_*.py tools: CLEAN. inbox_agent.py: no mail credential. Regenerated the dashboard trio (Step 11b).
