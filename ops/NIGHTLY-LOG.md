@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in
+
+Previous work confirmed finished, re-verified directly: tree clean, main matched origin at attach. preflight.py --skip-tests (150s budget): 0 FAIL in both blocks reached; stalled at gate_generator_ownership, not the usual gate_etsy_pdfs_current (passed clean this time), everything after unchecked. All 21 rotate_*.py --check: CLEAN. cold_read_ledger: 313/313 ledgered, 0 stale. check_urls 236/236, audit_pages 0 findings, link_graph_report 0 orphans, fix_dashes 0/0: all clean. 30 open issues re-pulled live: unchanged, all decision/blocked-on-art, no Phil reply on #42 since 2026-11-20. 0 open PRs. No new defect small enough to close this slot; not re-commenting on #42 per its own standing line. No push sent: cooldown to 2026-11-24T07:50Z, nothing material changed.
+
+Handing to the operator: nothing new; hold the standing 30-issue Phil-gated queue (newest #65).
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-23 (~12:5x slot): full exhaustion independently re-verified by direct checks rather than citation, a concurrent session's stray wrong fingerprint diff caught and discarded rather than committed
 
 **Did:** Attached per Step 0, unshallowed, ff-only onto main, tree clean. Rather than run a single full `preflight.py` (two concurrent sessions, pids 3752 and 6748, held its lock for most of this slot), ran the individual checks directly: `fingerprint_assets.py --check`, `fix_dashes.py --check`, `check_urls.py`, `audit_pages.py`, `affiliate.py --check`, `check_sellable.py`, `cold_read_ledger.py --stale`, all 21 `rotate_*.py --check`. All clean.
