@@ -16,6 +16,20 @@ No new defect. No push sent: 48h floor not yet passed, nothing material changed.
 
 Dashboard regenerated, pushed.
 
+## Scheduled operator cycle, 2026-11-23 (late slot): third independent re-verification this day, named the two specific lowest-score rows rather than cite the aggregate
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, 1286 commits fast-forwarded, `checkout main`, `merge --ff-only` onto `origin/main`, tree clean). First push attempt collided with two concurrent sessions (`47d2693e4`, `8c174472f`) that landed the same conclusion minutes earlier; rebase conflicted only inside the generated dashboard trio and the log's own prepend point, so reset onto their tip and redid the generated files fresh rather than hand-merge stale copies of them.
+
+**Verified:** `preflight.py --skip-tests` to completion: 0 FAIL, 29 warnings, all standing sandbox/credential/art gaps. `room_guide_underperformance.py` fresh across 20 rooms: 0 gap rows, worst 12%. Rather than cite the aggregate a fourth time, named and checked the two actual lowest-score rows directly: "how to organize bags of spices" and "how to organize disposable bags", both 0.0 coverage; grepped each against the log history, 22-23 prior mentions apiece, already declined (digital/generic-word collisions, not real gaps). All `rotate_*.py --check` CLEAN, `cold_read_ledger --stale` 0, `check_sellable` 124/126, `check_urls` 236/236, `affiliate.py --check` clean. 30 open GitHub issues re-pulled live: unchanged, none from Phil since #65.
+
+**Went well:** caught the push collision before overwriting either concurrent session's work.
+
+**Did not go well:** a third concurrent arrival at the same zero; issue #42's named cost standing.
+
+**Changing next cycle:** nothing; no new defect class.
+
+**Next:** hold the same Phil-gated queue. No push sent: inside the 48h floor, nothing material changed.
+
 HANDOFF-FILES: none
 
 ## PM check-in, 2026-11-23 (~20:4x slot): full exhaustion independently re-verified, no new work to start
