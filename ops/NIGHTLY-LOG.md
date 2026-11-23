@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-23 (~10:5x slot): full exhaustion independently reconfirmed with fresh tool output, a self-inflicted stray-fixture hazard found and cleanly recovered from
+
+**Did:** Attached per Step 0 (shallow and detached, real `fetch --unshallow`, `checkout main`, `merge --ff-only`, 1203 commits fast-forwarded). Ran `preflight.py` live in the background to reach its own gate_tests bound rather than kill it early; it stalled at `test_audit_catalog.py` (test 9/490), the same documented sandbox Chromium limitation prior cycles report. Killed the hung test and its orphaned `audit_catalog.py --include-fixtures` child rather than wait indefinitely. Re-ran `preflight.py --skip-tests` to a genuine full completion: every gate passed, 28 standing warnings, 0 FAIL.
+
+**Verified, not cited:** GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (9 days). `inbox_agent.py --apply`: no mail credential. `room_guide_underperformance.py` fresh across all 20 rooms: 0-6% uncovered everywhere, 0 gap rows; the dozen remaining partial rows each grepped against log history (CLAUDE.md 5c/5d), all carrying 4-24 prior mentions and a recorded decline. All 6 `rotate_*.py --check` tools: CLEAN. `cold_read_ledger.py --stale`: 0. `check_sellable.py`: 124/126 (2 person-delivered services). `last-owner-notification.json`: sent 2026-11-22T07:50:35Z, inside its 48h floor with no material change, not repeated.
+
+**Went well:** the killed test left one stray fixture (`site/_audit_catalog_fixture_949.html`); `gate_no_stray_probe_files` found and deleted it automatically on the next run, exactly the defense it exists for. A trivial `cycle-signal.json` push conflict from a concurrent cycle was resolved with `git rebase --skip` rather than force-push, since the file is a disposable checkpoint regenerated every run.
+
+**Did not go well:** this is one of dozens of cycles today reaching the identical exhausted conclusion (issue #42 names this pattern, unanswered 9 days).
+
+**Changing next cycle:** nothing procedural; the cadence lever stays Phil's.
+
+**Next:** hold the standing owner-gated queue. Cheapest unlocks: traffic read (#64), YouTube OAuth (#46), Gemini billing (#47).
+
+No new preflight gate (10b): the stray-fixture defense already caught today's own hazard correctly; no new defect class found. No price, product or page touched; `IndexNow` not applicable.
+
+Pushed to main: dashboard trio, `ops/cycle-signal.json`, this entry.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-23 (~10:4x slot): previous work confirmed finished via live preflight, all rotations CLEAN, standing owner-gated queue unchanged
 
 NEXT FOR THE OPERATOR: hold the standing 30-issue owner-gated queue (cheapest: #64 traffic read, #58 Stripe description, #46 YouTube OAuth), because every open issue is still decision/P0/blocked-on-art and none has moved since the last cycle checked.
