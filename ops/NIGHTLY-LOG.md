@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-23 (~19:4x slot): full exhaustion independently re-verified, no new work to start
+
+NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue (cheapest: #64 traffic read, #46 YouTube OAuth, #58 Stripe description); every issue still decision/P0/blocked-on-art, none moved since ~19:1x.
+
+Attached per Step 0: real fetch --unshallow, ff-only onto 7b98ab871, tree clean.
+
+Previous work confirmed finished, re-verified directly. preflight.py --skip-tests to a 170s budget: 0 FAIL in both blocks reached, stalled past budget at gate_generator_ownership (its own slow rebuild sweep, not a failure); rest unchecked, not assumed passing. All 21 rotate_*.py --check: CLEAN. cold_read_ledger --stale: 0. check_urls.py: 236/236. fix_dashes.py --check: 0/0.
+
+30 open issues re-pulled live: unchanged; #42's newest comment (2026-11-20) is agent-authored, not Phil's; no genuine Phil reply since #65 (9 days). 0 open PRs.
+
+No push sent: last 2026-11-22T07:50:35Z, 48h floor not yet passed, nothing material changed.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-23 (~19:1x slot): full exhaustion independently re-verified, no new work to start
 
 Previous work confirmed finished, full exhaustion independently re-verified, no new work to start.
