@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-23 (~05:4x UTC), scheduled operator cycle: dug into the one room-guide row with zero prior mentions rather than cite the aggregate count; confirmed it is the already-known "small" dead end wearing new query text
+
+Did: Attached per Step 0 (shallow/detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 1162 commits fast-forwarded, tree clean). `preflight.py --skip-tests` run live to completion: 0 FAIL, 29 warnings, all standing sandbox/credential/art gaps. All 30 open GitHub issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 9 days); read issue #42 (the cadence question, Phil's own 2026-10-14 issue) fresh rather than cite it: no reply since his original post, last activity 2026-11-20 is a prior agent cycle's own comment. `inbox_agent.py --apply`: no mail credential. `room_guide_underperformance.py` fresh: every room 0-6% uncovered. Rather than grep-and-trust the dozen partial rows again, found the one row with literally zero prior mentions in the log or backlog ("how to organize a small children's bedroom") and traced it properly (CLAUDE.md 5c/5d): read the live scorer's own word-match output, not the aggregate. Its only unmatched word on the winning page is "children", but every Kids Bedroom candidate page ties at the same 0.667 heading score, each missing a different word: the zone pages lack "children", the room page itself already has "children" (rendered in its "Also called... the children's bedroom" heading) but lacks "small". "small" is the real, sole blocker, and `keyword_demand.py`'s own code comments (lines 227, 591-593, 934-937) already document it declined three separate times as self-flattery (40 of 244 page headings already carry it, so it cannot discriminate) and as belonging only to the genuine small-space-specific page. No honest fix exists; this is the same dead end wearing different query text, not a new gap.
+
+Verified: `check_sellable.py` 124/126 (2 person-delivered services), `affiliate.py --check` 165 docs, `cold_read_ledger.py --stale` 0, all independently clean. `ops/last-owner-notification.json`: last sent 2026-11-22T07:50:35Z, inside its own 48h floor, nothing material has changed since (same 30 issues, same $0 trailing revenue, same exhausted backlog), so not repeated.
+
+Went well: traced one specific row to its root cause in the real scorer rather than adding a 16th prose restatement of "exhausted."
+
+Did not go well: this is dozens of cycles today alone reaching the same conclusion; issue #42, Phil's own question about slowing the cadence, has had no reply in 9 days while three separate scheduled tasks (`:10`, `:40`, `:43`) keep firing every hour at full depth.
+
+Changing next cycle: nothing procedural; the cadence lever is confirmed to live outside this repository, in the account's own scheduled-task configuration, and changing it without Phil's explicit instruction is not this session's call to make, so it was left alone.
+
+Next: the owner-gate queue, unchanged, ranked in `STATUS.md` section 6 / `EXECUTIVE-DASHBOARD-LIVE.md`. Cheapest unlocks: traffic read (#64, 2 min), YouTube OAuth (#46, 5 min), Stripe business description (#58, 2 min).
+
+Pushed to main: this entry, dashboard trio (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), `ops/cycle-signal.json`.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~05:2x slot): previous work confirmed finished; independently re-checked via backlog and GitHub, not re-citing the just-finished preflight; nothing new unblocked
 
 Previous work finished: the ~05:0x operator cycle's fresh `preflight.py --skip-tests` (0 FAIL, 29 warnings) completed at the exact HEAD I merged onto; re-running the same network-bound gates would be duplication, not verification, so I checked different evidence instead. Read `BACKLOG-2026-09-07.md` sections 1b-6 directly: every row archived, resolved, or Phil-gated. Pulled all 30 open GitHub issues fresh: unchanged, none from Phil since #65 (9 days). Notification not due (sent 2026-11-22T07:50:35Z, inside 48h floor, nothing material changed). Discarded a stray local `cycle-signal.json` checkpoint from my own partial preflight rather than commit it as noise; waited out a concurrent cycle's lock rather than collide. No unblocked work found. Regenerated and pushed the dashboard trio. Handing the operator the same owner-gated queue.
