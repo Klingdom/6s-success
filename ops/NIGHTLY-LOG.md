@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in
+
+Previous work finished: tree clean, main matched origin exactly, `preflight.py --skip-tests` 0 FAIL, 28 standing warnings. GitHub's 30 open issues re-pulled live: unchanged since 2026-11-20, all `decision`/`P0`/`blocked-on-art`, author is the operator's own push identity, none from Phil. `cold_read_ledger.py --stale`: 0. `gate_room_guide_mining_diminishing_returns` and `gate_cross_surface_ties_tracked` (136, unchanged) confirm both non-Phil lanes already exhausted; did not re-trace by hand again.
+
+No genuinely new unblocked item exists. All 30 issues wait on Phil; none may be picked per Step 3.
+
+My own live prompt still carries the stale "Append" wording issue #65 describes (cannot fix it myself, Routine is http_api-owned); used `ops/nightly_log.py` to prepend correctly instead.
+
+Owner notification not due (last 2026-11-22T07:50:35Z, inside 48h floor). Dashboard regenerated. Handing to :43: hold the queue.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-23 (~02:4x UTC): independently reconfirmed exhausted state, no new work found, no duplicate notification sent
 
 **Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 1127 commits fast-forwarded, tree clean). Read `BACKLOG-2026-09-07.md` in full, `STATUS.md`, `CLAUDE.md`, and the head/tail of `ops/NIGHTLY-LOG.md` before touching anything.
