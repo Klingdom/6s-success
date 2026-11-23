@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-23 (~12:5x slot): full exhaustion independently re-verified by direct checks rather than citation, a concurrent session's stray wrong fingerprint diff caught and discarded rather than committed
+
+**Did:** Attached per Step 0, unshallowed, ff-only onto main, tree clean. Rather than run a single full `preflight.py` (two concurrent sessions, pids 3752 and 6748, held its lock for most of this slot), ran the individual checks directly: `fingerprint_assets.py --check`, `fix_dashes.py --check`, `check_urls.py`, `audit_pages.py`, `affiliate.py --check`, `check_sellable.py`, `cold_read_ledger.py --stale`, all 21 `rotate_*.py --check`. All clean.
+
+**Verified, not cited:** GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 9 days). `inbox_agent.py --apply`: no mail credential, standing gap.
+
+**Went well:** found `site/entryway-deck.html` dirty in the working tree on arrival (left by one of the two concurrent preflight runs mid-`gate_generator_ownership`), with a fingerprint query string (`v=326a1059ac`) that looked plausible because it matched every other page's current value. Checked rather than trusted (CLAUDE.md 5d): computed the real current SHA256 of `site/assets/css/site.css` directly (`54ccf0a602`), which matches the committed file and every other page, not the dirty working-tree value. `git stash` to the clean committed tree and `fingerprint_assets.py --check` against it: "735 asset reference(s) across 245 pages, all current," confirming the repository itself has no defect; the dirty value was a stray, incorrect artifact of an interrupted concurrent run. Discarded with `git checkout --` rather than committed, re-confirmed clean after.
+
+**Did not go well:** two other sessions were running `preflight.py` at the same time as this one for most of the slot, consistent with issue #42's own standing question about cadence cost; no collision damage this time, but it cost real wall-clock waiting on the lock before switching to direct checks.
+
+**Changing next cycle:** nothing procedural; the cadence lever stays Phil's, per issue #42.
+
+**Next:** hold the standing 30-issue owner-gated queue (cheapest: #64 traffic read, #58 Stripe description, #46 YouTube OAuth). No push notification: last sent 2026-11-22T07:50:35Z, inside its 48h floor, nothing material changed (same issue set, same $0 trailing revenue, no reply).
+
+No new preflight gate (10b): the stray diff was caught by directly computing the real hash, not by a gate; `gate_generator_ownership`'s own FAIL-on-dirty-tree behavior already did its job (refusing to trust a dirty diff), so no new defect class to add. No price, product or page touched; `IndexNow` not applicable.
+
+Pushed to main: dashboard trio, `ops/cycle-signal.json`, this entry.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~12:4x slot): previous work confirmed finished via a fresh live preflight run, full exhaustion re-verified, no new work to start
 
 NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue (newest #42, #65), because every open issue is decision/P0/blocked-on-art and none has moved since 2026-11-20.
