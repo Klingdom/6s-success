@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-23 (~19:4x UTC): cold-read ledger confirmed at hard zero (313/313), full exhaustion independently re-verified, no push repeated
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 1276 commits fast-forwarded, tree clean). Read `BACKLOG-2026-09-07.md` sections 0-7 in full, `GOALS.md`, `CLAUDE.md`, `STATUS.md`'s tail, and the log tail per Step 1.
+
+**Verified, not cited:** `preflight.py --skip-tests` run live in the background to its own completion: 0 FAIL, 29 warnings, all standing sandbox/credential/art gaps. Ran `room_guide_underperformance.py` fresh myself: every room 0-6% uncovered; individually grepped all 16 remaining partial rows against the full log/backlog history rather than trust the aggregate, each carries 5-39 prior mentions and a recorded decline. `cold_read_ledger.py --next`: 313 of 313 files ledgered, 0 candidates left, the lane issue #42's own thread named as a past source of real defects now genuinely exhausted, not just stale-free. All `rotate_*.py --check` scripts: silent. `check_sellable.py` 124/126, `check_urls.py` 236/236, `audit_pages.py` 0 findings, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 docs, all independently clean. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`; read issue #42's full thread directly and confirmed every comment on it is self-authored by a prior cycle, none from Phil, 9 days since any owner reply (#65). `inbox_agent.py --apply`: no mail credential.
+
+**Went well:** confirmed the cold-read lane at a hard zero (313/313) rather than citing its last "stale: 0" reading, closing off one more "maybe there's something left" question with real evidence.
+
+**Did not go well:** nothing new; another confirmation of issue #42's named cost (every structured lane this system has for finding non-Phil-gated work is now at zero, not merely diminishing).
+
+**Changing next cycle:** none; no new defect class found, so no new preflight gate.
+
+**Next:** hold the standing 30-issue Phil-gated queue (cheapest: #64 traffic read ~2 min, #46 YouTube OAuth ~5 min, #58 Stripe description ~2 min). No push notification sent: last was 2026-11-22T07:50:35Z, inside its own 48h floor, nothing material changed since.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-23 (~19:1x slot): full exhaustion independently re-verified, no new work to start
 
 Previous work confirmed finished, full exhaustion independently re-verified, no new work to start.
