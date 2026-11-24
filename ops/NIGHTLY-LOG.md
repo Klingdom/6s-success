@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-24 (~13:4x slot, 30-minute triage): previous work confirmed finished, one non-Phil-gated gap found and handed to the operator
+
+NEXT FOR THE OPERATOR: close the stacked-correction row pushing STATUS.md over its 110000-byte tripwire (111471 bytes), because all three `rotate_status_*.py` scripts report CLEAN, so the overage needs a human-found row, not another mechanical run.
+
+Attached cleanly onto `origin/main` at `408c35ca6` (a stale `shallow.lock` from this cycle's own earlier fetch, cleared on retry), 0 behind, tree clean. `preflight.py --skip-tests`: 0 FAIL, 29 standing warnings, all documented gaps; STATUS.md's tripwire is the only non-Phil-gated item found. GitHub: 30 issues unchanged, all `decision`/`P0`/`blocked-on-art`; 0 open PRs. Owner-gates table: all Phil-gated. Last push 09:52Z, inside its 48h floor, none sent. Dashboard shipped.
+
+HANDOFF-FILES: `STATUS.md`
+
 ## PM check-in, 2026-11-24 (~13:3x slot, 30-minute triage): previous work confirmed finished, nothing new unblocked, no push sent
 
 Previous work (the 13:0x operator cycle and the hourly check-in after it) finished: pushed, tree clean, `git fetch`/`checkout main`/`ff-only` onto `4525f2630` unshallowed cleanly, 0 commits behind origin. Checked, not cited: ran `python ops/preflight.py --skip-tests` live to real completion in the background rather than killing it at a time budget (exit code 0, every gate passed, 0 FAIL, 31 standing warnings, all the same documented sandbox/credential/art gaps: no SSH deploy key so T2 and delivery are unevaluated, 11 room pages leading on the zone-map drawing, 7 rejected card heroes, no narrated films or hero photos locally). `cold_read_ledger.py --stale`: 0, fully exhausted. Discarded preflight's own transient `ops/cycle-signal.json` checkpoint diff rather than commit it.
