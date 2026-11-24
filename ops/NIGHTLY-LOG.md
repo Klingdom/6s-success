@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-24 (~02:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real git fetch --unshallow, checkout -B main origin/main, ff-only onto origin/main (8 commits fast-forwarded), tree clean before this cycle touched anything.
+
+Previous work (the last several hourly check-ins, all reporting "nothing measurable moved") checked, not cited: it was finished. preflight.py --skip-tests ran fresh to completion: every gate passed, 0 FAIL, 29 standing warnings, all previously diagnosed sandbox/credential gaps (no SSH deploy key so analytics/affiliate-trigger are unevaluated, no Stripe credential, no narrated films locally, no build/heroes/ here). GitHub's 30 open issues re-pulled live via the API: unchanged, all decision/P0/blocked-on-art; read all 12 comments on issue #42 directly rather than trust a count, every one self-authored by a prior cycle, none from Phil since #65 (2026-11-14, 10 days). room_guide_underperformance.py run fresh: every room 0-6% uncovered, 0 gap rows; the lowest remaining row ("bags of spices") already carries dozens of prior mentions in this log and was declined long ago as a genuine cross-surface tie, not a real gap. cold_read_ledger.py --next: 313 of 313 tracked files ledgered, 0 un-ledgered candidates, the lane still fully exhausted. All 20 rotate_*.py --check scripts independently CLEAN. check_urls.py 236/236, check_sellable.py 124/126 (2 person-delivered services), affiliate.py --check 165 documents clean.
+
+No new defect found small enough to close this slot, none manufactured. ops/last-owner-notification.json: last sent 2026-11-22T07:50:35Z, inside its own 48h floor with no material state change since (same $0-this-month/$19-lifetime revenue, same 30-issue gated queue, no Phil reply); not repeated.
+
+NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art), unchanged since 2026-11-20; nothing genuinely unblocked outside Phil's own gates.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-24 (~01:4x UTC): full re-verification, no new work to start
 
 **Did:** Attached per Step 0 (shallow and detached on arrival, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `6a38d8b`, 3 commits fast-forwarded, tree clean). Read `BACKLOG-2026-09-07.md`, `CLAUDE.md`, and the log head rather than cite a summary.
@@ -15177,18 +15189,6 @@ Previous work (the 02:4x PM check-in, the concurrent operator merge, and two hou
 Checked something the recent cycles had not: whether the last four commits (two PM/merge commits plus two hourly check-ins, all after the last green `checks.yml` run on `c99be81cb`) left CI silently unverified. They do not touch any path `checks.yml`'s push filter covers for real content (only `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/state.json`, `ops/dashboard.html`, `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json`, `CHECKIN-LOG.md`, `ops/last-brief-sent.json`, `ops/state-checkin.json`, all generated/log files), so no run was expected or missed; the last code-touching commit's run is green. Not a defect, recorded so the next reader does not re-derive it.
 
 No new defect found small enough to close this slot, none manufactured. Not sending a push notification: nothing material changed since the last one (same gated 31-issue queue, same revenue reading, no Phil reply).
-
-HANDOFF-FILES: none
-
-## PM check-in, 2026-11-24 (~02:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
-
-Attached per Step 0 onto a shallow, detached checkout: fetch, real git fetch --unshallow, checkout -B main origin/main, ff-only onto origin/main (8 commits fast-forwarded), tree clean before this cycle touched anything.
-
-Previous work (the last several hourly check-ins, all reporting "nothing measurable moved") checked, not cited: it was finished. preflight.py --skip-tests ran fresh to completion: every gate passed, 0 FAIL, 29 standing warnings, all previously diagnosed sandbox/credential gaps (no SSH deploy key so analytics/affiliate-trigger are unevaluated, no Stripe credential, no narrated films locally, no build/heroes/ here). GitHub's 30 open issues re-pulled live via the API: unchanged, all decision/P0/blocked-on-art; read all 12 comments on issue #42 directly rather than trust a count, every one self-authored by a prior cycle, none from Phil since #65 (2026-11-14, 10 days). room_guide_underperformance.py run fresh: every room 0-6% uncovered, 0 gap rows; the lowest remaining row ("bags of spices") already carries dozens of prior mentions in this log and was declined long ago as a genuine cross-surface tie, not a real gap. cold_read_ledger.py --next: 313 of 313 tracked files ledgered, 0 un-ledgered candidates, the lane still fully exhausted. All 20 rotate_*.py --check scripts independently CLEAN. check_urls.py 236/236, check_sellable.py 124/126 (2 person-delivered services), affiliate.py --check 165 documents clean.
-
-No new defect found small enough to close this slot, none manufactured. ops/last-owner-notification.json: last sent 2026-11-22T07:50:35Z, inside its own 48h floor with no material state change since (same $0-this-month/$19-lifetime revenue, same 30-issue gated queue, no Phil reply); not repeated.
-
-NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art), unchanged since 2026-11-20; nothing genuinely unblocked outside Phil's own gates.
 
 HANDOFF-FILES: none
 
