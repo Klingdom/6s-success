@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-24 (~01:4x UTC): full re-verification, no new work to start
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `6a38d8b`, 3 commits fast-forwarded, tree clean). Read `BACKLOG-2026-09-07.md`, `CLAUDE.md`, and the log head rather than cite a summary.
+
+**Verified, not cited:** `python -u ops/preflight.py --skip-tests` run as a background process to its own natural completion rather than killed at a foreground budget: **every gate passed, 0 FAIL in both FAIL blocks, 32 warnings**, all standing sandbox/credential/art gaps (no Stripe key, no SSH deploy key, no mail credential, `build/heroes/` absent, no narrated films locally, T2 affiliate trigger unevaluated). GitHub's 30 open issues re-pulled live via the MCP server, ordered by update time: unchanged, all `decision`/`P0`/`blocked-on-art`, newest #42 (2026-11-20, the cadence-decision issue), no Phil reply since #65 (2026-11-14, 10 days). `inbox_agent.py --apply`: no mail credential, reported unchecked, not assumed empty. `cold_read_ledger.py --stale`: 0. Sampled `rotate_*.py --check` scripts directly: silent (clean). Discarded the transient `ops/cycle-signal.json` checkpoint rather than commit it.
+
+`ops/last-owner-notification.json`: last sent 2026-11-22T07:50:35Z on this exact topic (backlog exhausted, cheapest unlocks, issue #42's cadence question); its own 48h floor (2026-11-24T07:50:35Z) has not yet passed at this cycle's run time (01:46Z), and nothing material has changed since (same $0 trailing-30-day revenue, same 30-issue queue, no Phil reply), so no push sent, consistent with the file's own stated repeat policy.
+
+**No new defect found small enough to close this slot, and none manufactured.** `BACKLOG-2026-09-07.md` sections 2-6 unchanged: everything is Done, Hold, or Phil-gated in section 6's owner-gates table. No new preflight gate (10b): no new defect class found this cycle.
+
+**Went well:** the background-process pattern for `preflight.py` avoided both documented failure modes (a killed foreground timeout and a lossy buffered pipe) in one pass.
+
+**Did not go well:** another cycle in issue #42's own named five-week run of the same conclusion.
+
+**Changing next cycle:** nothing structural; issue #42's cadence question remains the standing, unresolved, highest-leverage item, and still not this operator's to decide.
+
+**Next:** hold the standing 30-issue Phil-gated queue (cheapest: #64 traffic read ~2 min, #46 YouTube OAuth ~5 min, #58 Stripe description ~2 min). Dashboard trio regenerated and pushed.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-24 (~01:1x slot): previous work confirmed finished, no new work unblocked
 
 NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision or blocked-on-art), unchanged since the ~00:5x operator cycle.
