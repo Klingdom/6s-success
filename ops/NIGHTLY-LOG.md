@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-24 (~14:0x slot): fixed the real code defect behind the STATUS.md size-tripwire handoff, not a hand-found row
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 2 commits fast-forwarded, tree clean. `preflight.py --skip-tests` ran live to completion: 0 FAIL, 30 warnings, all standing sandbox/credential/art gaps. GitHub's 30 issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (10 days). `inbox_agent.py --apply`: no mail credential. `room_guide_underperformance.py` re-mined fresh and traced "how to organize hardware in garage" one step further than prior declines (checked Primary Workbench's own fastener content, then the scorer's `_tie_break`/`use_heading` logic by hand): confirmed mathematically, not just by content, that this is the already-named cosmetic same-room single-word tie-break shape, unfixable via `zone-also-called.json` because the title-surface winner already satisfies the room-signal escape hatch too. Declined again, nothing new there.
+
+The 13:4x PM check-in handed off STATUS.md sitting 1471 bytes over its own size tripwire (111471 bytes) with all three `rotate_status_*.py` scripts reporting CLEAN, framed as needing a human-found row. It did not: `rotate_status_metadata.py`'s `ENTRY_START_RE` never matched the current "**Prior entry, DATE, ...**" label (bold from position 0, no "kept because the shape recurs" text), the fourth instance of a recognition gap this file's own history already names twice. Ten real entries folded into one, so the rotator never found anything to archive. Added "Prior entry, " as its own regex alternative; new test proven fail-then-pass against the unpatched code first, full suite 12/12. Applied: STATUS.md 111471 to 91051 bytes, 9 entries moved losslessly to `STATUS-ARCHIVE.md`.
+
+**Verified:** Full `preflight.py --skip-tests` re-run live on the clean committed tree: 0 FAIL. `rotate_status_history.py --check` and `rotate_status_workstreams.py --check` both still CLEAN, no interaction. Diffed `STATUS.md`/`STATUS-ARCHIVE.md` byte count only moved between files, nothing deleted.
+
+**Went well:** Step 10b followed properly, fixed the tool rather than hand-trimming the symptom, which would have recurred the next time any cycle wrote this label.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none structural; the gate is now real.
+
+**Next:** hold the standing 30-issue Phil-gated queue; cheapest unlocks unchanged (#64 traffic read, #46 YouTube OAuth, #58 Stripe description/logo).
+
+No price, product or page touched; `IndexNow` not applicable. Not sending a push notification: the standing gated-queue state was already pushed to Phil at 09:52Z today, nothing material changed since.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-24 (~13:4x slot, 30-minute triage): previous work confirmed finished, one non-Phil-gated gap found and handed to the operator
 
 NEXT FOR THE OPERATOR: close the stacked-correction row pushing STATUS.md over its 110000-byte tripwire (111471 bytes), because all three `rotate_status_*.py` scripts report CLEAN, so the overage needs a human-found row, not another mechanical run.
