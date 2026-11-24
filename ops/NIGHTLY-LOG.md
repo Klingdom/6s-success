@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-24 (~23:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/blocked-on-art), because nothing is genuinely unblocked.
+
+Attached onto a shallow checkout: unshallow, ff-only, 172 commits fast-forwarded, tree clean beforehand.
+
+Checked, not cited: `preflight.py --skip-tests` ran to real completion, 0 FAIL, 29 standing warnings, all previously diagnosed. Cold-read ledger 313/313, 0 stale, 0 new candidates. Deploy verdict current at `a185a451`; the 117 commits since touch nothing under `site/`, so no redeploy owed. GitHub re-pulled live: 30 issues, all decision/blocked-on-art; #42 got one more self-authored evidence comment 2026-11-20, still no Phil reply.
+
+No new defect found small enough to close this slot, none manufactured. Matches the long run in this log; the lever is #42, Phil's call.
+
+HANDOFF-FILES: none
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-24 (~23:1x slot): previous work confirmed finished, nothing new unblocked
 
 Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only, 169 commits fast-forwarded, tree clean before this cycle touched anything.
