@@ -2,7 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-24 (~17:4x slot, 30-minute triage): previous work confirmed finished, nothing new unblocked, no push sent
+## PM check-in, 2026-11-24 (~18:1x slot, 30-minute triage): previous work confirmed finished, nothing new unblocked, no push sent
+
+Attached per Step 0: fetch, real unshallow, checkout -B main origin/main, ff-only, 137 commits fast-forwarded (A240 and the 17:4x check-in landed since this routine last ran), tree clean before this cycle touched anything.
+
+Previous work (17:4x PM check-in and A240) checked, not cited: `preflight.py --skip-tests` reran fresh to real completion, every gate passed, 30 standing warnings (same credential/sandbox/art gaps already named), `cycle_signal` recorded a fresh clean checkpoint. `cold_read_ledger.py --stale` 0/313. `room_guide_underperformance.py` reran fresh: 0 gap rows in any room, only the same already-traced partial rows (spices, detergent tray, makeup vanity box, and others) prior cycles grepped against this log and confirmed as recorded declines, not new. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil since issue #65 (2026-11-14); issue #42 (the cadence question) last touched 2026-11-20, still unanswered. 0 open PRs, 0 unmerged branches.
+
+No new defect found small enough to close this slot, none manufactured. Not sending a push notification: nothing material changed since the last one (recorded 09:52Z today), same gated 30-issue queue, same $0-this-month/$19-all-time revenue.
+
+Dashboard regenerated (`python ops/dashboard.py`): revenue carried forward as unmeasured this run (no Stripe reach), P0 10, need-you 29, commits7d 1552.
+
+HANDOFF-FILES: none
 
 NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art), because nothing is genuinely unblocked outside Phil's own gates; cheapest unlocks unchanged (#64 traffic read ~2 min, #58 Stripe description/logo ~2 min, #46 YouTube OAuth ~5 min).
 
