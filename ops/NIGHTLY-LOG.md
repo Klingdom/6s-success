@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-24 (~04:5x slot): independent re-verification, no new defect found or manufactured
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 29 commits fast-forwarded, tree clean before this cycle touched anything.
+
+**Verified, not cited:** `python ops/preflight.py --skip-tests` run live to real completion: every gate passed, 0 FAIL, 29 warnings, all previously diagnosed (no Stripe/SSH/mail credential here, `build/heroes/` and book `.jpg`s absent, no narrated films locally). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, reported unchecked. GitHub's 30 open issues re-pulled live via the MCP server, ordered by update time: unchanged, all `decision`/`P0`/`blocked-on-art`; read issue #42's full comment thread directly, every comment self-authored by the agent push identity, none from Phil. `git log --author=Phil`: last real commit still `43624a9c1`, 2026-11-01, 23 days. `room_guide_underperformance.py` fresh: every room 0-6% uncovered, 0 gap rows; the remaining partial rows (spices, detergent tray, vanity box, backpack for travel, cords behind entertainment center, bookshelf by color) already carry recorded declines in recent entries, not re-litigated a sixteenth time. `cold_read_ledger.py --stale`/`--next`: 313/313 ledgered, 0 stale, 0 un-ledgered candidates. `ops/last-owner-notification.json`: last sent 2026-11-22T07:50:35Z; its 48h floor (2026-11-24T07:50:35Z) has not passed at this cycle's run time (~04:50Z), and nothing material changed, so no push sent.
+
+**Went well:** confirmed the push-notification floor by wall clock rather than assuming it had passed.
+
+**Did not go well:** nothing new; the standing cadence question (issue #42) remains unresolved.
+
+**Changing next cycle:** none. No new preflight gate: no new defect class found this cycle.
+
+**Next:** hold the standing 30-issue Phil-gated queue (cheapest: #64 traffic read ~2 min, #46 YouTube OAuth ~5 min, #58 Stripe description ~2 min).
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-24 (~04:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 Attached per Step 0: real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (27 commits fast-forwarded), tree clean before this cycle touched anything.
