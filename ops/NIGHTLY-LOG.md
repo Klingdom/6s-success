@@ -22,6 +22,14 @@ GitHub's 30 open issues re-pulled live via the API, ordered by update time: unch
 
 HANDOFF-FILES: none
 
+## PM check-in, 2026-11-24 (~00:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision or blocked-on-art), because this cycle's own fresh checks found nothing newly unblocked.
+
+Attached per Step 0, unshallowed, ff-only, clean beforehand. Previous work checked, not cited: already clean and pushed. preflight.py --skip-tests: 0 FAIL through every gate reached, stalling only at the documented gate_etsy_pdfs_current (Etsy fee page, HTTP 403). Killed the orphaned Chromium/build_etsy_assets.py tree and discarded the partial-render diffs it left. GitHub: 30 open issues, all decision or blocked-on-art, none updated since 2026-11-20, no Phil reply. BACKLOG section 2 fully archived; sections 3 to 6 only Phil-gated rows remain. No push sent: last one's 48h floor has not passed, nothing material changed.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-24 (~00:1x slot): previous work confirmed finished, closed three overdue document rotations instead of only re-verifying exhaustion
 
 Attached clean onto `88681a152` (25 commits). Previous work confirmed finished on main, tree clean.
@@ -15275,4 +15283,3 @@ No new defect found small enough to close this slot, and none manufactured. This
 Dashboard regenerated (python ops/dashboard.py): revenue carried forward as unmeasured this run (no Stripe reach), P0 10, need-you 29, commits7d 1452.
 
 HANDOFF-FILES: none
-
