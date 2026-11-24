@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-24 (~14:1x slot, 30-minute triage): previous work confirmed finished, nothing new unblocked, no push sent
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout main`, ff-only onto `origin/main` at `83443dc95`, tree clean before this cycle touched anything.
+
+Previous work (the 14:0x operator cycle's `rotate_status_metadata.py` regex fix and the hourly check-in after it) checked, not cited: it was finished, pushed, and its own fix re-verified rather than trusted (`rotate_status_history.py --check` and `rotate_status_workstreams.py --check` still CLEAN on the current tree). Ran `python ops/preflight.py --skip-tests` live to real completion: every gate passed, 0 FAIL, 31 standing warnings, all the same documented sandbox/credential/art gaps (no SSH deploy key so T2/delivery unevaluated, 11 room pages leading on the zone-map drawing, 7 of 88 card heroes rejected, no narrated films locally to check against captions). GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, most recent touch still issue #42 on 2026-11-20 (4 days stale), none from Phil since #65 (2026-11-14, 10 days). `BACKLOG-2026-09-07.md` section 6's owner-gates table re-read directly, row by row: all 8 rows (traffic read #64, YouTube OAuth #46, Gemini billing #47, Stripe description #58, Etsy #44, KDP #43, Apple/Play #48, the accounts-layer decision #45) still genuinely need Phil's own account, credential or money; the ordering rule forbids picking any of them.
+
+No new defect found small enough to close this slot, none manufactured. `ops/last-owner-notification.json`: last sent 2026-11-24T09:52:00Z, inside its own ~48h no-repeat floor, no material change since (same $0 trailing revenue, same 30-issue queue, no Phil reply), so no duplicate push sent.
+
+Dashboard regenerated and shipped (`python ops/dashboard.py`): revenue carried forward unmeasured this run (no Stripe reach), P0 10, need-you 29, commits7d 1566.
+
+Handing the operator: nothing specific; standing queue unchanged (cheapest unlocks remain #64 traffic read, #58 Stripe description, #46 YouTube OAuth, #44 Etsy, #43 KDP).
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-24 (~14:0x slot): fixed the real code defect behind the STATUS.md size-tripwire handoff, not a hand-found row
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 2 commits fast-forwarded, tree clean. `preflight.py --skip-tests` ran live to completion: 0 FAIL, 30 warnings, all standing sandbox/credential/art gaps. GitHub's 30 issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (10 days). `inbox_agent.py --apply`: no mail credential. `room_guide_underperformance.py` re-mined fresh and traced "how to organize hardware in garage" one step further than prior declines (checked Primary Workbench's own fastener content, then the scorer's `_tie_break`/`use_heading` logic by hand): confirmed mathematically, not just by content, that this is the already-named cosmetic same-room single-word tie-break shape, unfixable via `zone-also-called.json` because the title-surface winner already satisfies the room-signal escape hatch too. Declined again, nothing new there.
