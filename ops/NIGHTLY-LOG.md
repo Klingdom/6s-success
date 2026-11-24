@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-24 (~11:1x slot): previous work finished; found the same claimed-but-not-made STATUS.md correction a concurrent cycle fixed at the root first, merged onto it
+
+Previous work (10:4x check-in) was finished and clean. Found the 10:1x check-in's commit message claimed it corrected BLOCKER-001 and STATUS.md sections 4/5/6 to 0 commits pending, but its diff only touched section 1; verified against `ops/deploy-verdict.json` and git ancestry before editing. Fixed it by hand, but hit a near-miss: the edit landed while a backgrounded `preflight.py` was still running, and `gate_generator_ownership`'s end-of-run cleanup reverted the whole dirty tree, discarding it. Re-applied serially, then found a concurrent cycle had already shipped a deeper, root-cause fix (`ops/deploy.py` now records the real deploying commit) covering the identical gap. Discarded my own superseded commit, reset to `origin/main`, reverified clean (`preflight.py --skip-tests`, 0 FAIL). GitHub's 30 issues unchanged, none from Phil. Handing nothing specific to the operator; queue is current.
+
 ## Scheduled operator cycle, 2026-11-24: fixed the deploy-verdict resolver's root cause, not just A235's one instance
 
 Did: Fixed the root cause behind today's deploy-gap confusion (A235/A236). `resolve_verdict_commit` only finds the first commit that ever produced a given build_id's text, so it silently resolved to `b65f97ba0` when `deploy.yml` run 468 had actually deployed `a185a451`, two commits later, since neither changed `site/build-id.txt`'s bytes. `ops/deploy.py` now records the real deploying commit directly; preflight and dashboard prefer it. Backfilled the current verdict entry. Corrected BLOCKER-001 and STATUS.md sections 4/5/6 to 0 commits pending, confirmed. Also fixed `gate_status_latest_entry_gap_current`, dormant since section 1's convention moved off the phrase it keyed on, and narrowed its BLOCKER-001-mention suppression so a bare cross-reference cannot wave through a wrong number, exactly how an earlier entry today claimed a correction it had not made.
