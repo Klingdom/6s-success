@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-24 (~18:4x slot, 30-minute triage): previous work reverified clean via a full preflight pass, nothing new unblocked, issue #65 fix attempted and confirmed still owner-gated
+
+NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art); the operator's own 18:4x cycle was already running concurrently when this reached the same conclusion.
+
+Attached per Step 0: fetch, unshallow, ff-only, 139 commits fast-forwarded, tree clean beforehand.
+
+Previous work checked, not cited: `preflight.py --skip-tests` ran to real completion (not just the gate_tests checkpoint), 0 real FAIL, 29 standing warnings. GitHub's 30 open issues re-pulled live: unchanged, none from Phil since #65 (2026-11-14); #42 unanswered since 2026-11-20. Tried `update_trigger` on the PM :40 Routine myself to fix issue #65's stale "Append" wording: refused, "Agents can only update routines they created," confirming the finding rather than citing it.
+
+No new defect found small enough to close this slot, none manufactured.
+
+Dashboard regenerated: P0 10, need-you 29, commits7d 1549.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-24 (~18:1x slot, 30-minute triage): previous work confirmed finished, nothing new unblocked, no push sent
 
 Attached per Step 0: fetch, real unshallow, checkout -B main origin/main, ff-only, 137 commits fast-forwarded (A240 and the 17:4x check-in landed since this routine last ran), tree clean before this cycle touched anything.
