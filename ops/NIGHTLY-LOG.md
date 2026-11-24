@@ -2,6 +2,66 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-24 (~23:0x slot): independently re-verified every lane fresh, no new defect found
+
+**Did.** Attached per Step 0 onto a shallow, detached checkout: real `git fetch`,
+`git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`
+at `7078f81cd`, 164 commits fast-forwarded, tree clean before touching
+anything. Ran `ops/preflight.py --skip-tests` live to full completion in the
+background (280s budget, it used close to all of it): **every gate passed, 30
+warnings**, all the standing sandbox/credential/art gaps (no SSH deploy key,
+no Stripe key, no mail credential, `build/heroes/` absent, no narrated films
+locally). Separately re-ran `check_sellable.py --deep` (124/126, 2
+person-delivered services), `check_urls.py` (236/236), `affiliate.py --check`
+(165 docs clean), `fix_dashes.py --check` (0 em/en dashes), `cold_read_ledger.py
+--stale` (0/all), and all 21 `rotate_*.py --check` scripts (all CLEAN; one,
+`rotate_backlog_journal_core.py`, is a shared library module with no
+standalone output, confirmed by reading its docstring rather than assumed
+broken). `room_guide_underperformance.py` run fresh: every room 0-12%
+uncovered, 0 gap rows anywhere, all partial. Spot-checked ten of the
+least-familiar remaining partial-tier phrases against the full
+`ops/NIGHTLY-LOG.md` and backlog/archive history by exact phrase (CLAUDE.md
+5c/5d) rather than trust the aggregate count: "stardew valley board game",
+"hardware in garage", "bonus room storage", "basement stair landing storage
+ideas", "attic closet organization ideas", "how to organize disposable bags",
+"productive workspace", "makeup vanity box", "bookshelf by color", "cords
+behind entertainment center" — every one already carries a prior mention and a
+recorded decline, none a genuinely unexamined gap. GitHub's 30 open issues
+re-pulled live via the MCP server: unchanged, all `decision`/`P0`/
+`blocked-on-art`, all authored by Phil, none new since #65 (2026-11-14, 10
+days); issue #42 (the cadence question) still the standing unresolved
+decision. `inbox_agent.py --apply`: no mail credential in this sandbox.
+`ops/last-owner-notification.json`: last sent 2026-11-24T09:52:00Z, inside its
+own 48h floor, nothing material changed since (same $0 trailing-30-day
+revenue, same 30 open issues), so no duplicate push sent.
+
+**Verified.** Dashboard trio regenerated (`ops/dashboard.py`): revenue $0 this
+month (Stripe unreachable from this sandbox, carried forward from the last
+real reading, reported as such rather than silently zeroed), P0 10, need-you
+29, commits7d 1533. No price, product or page touched; `IndexNow` not
+applicable.
+
+**Went well.** The background-task pattern for `preflight.py` (redirect
+straight to a file, poll the process table rather than pipe through `tail`)
+avoided the documented lossy-pipe failure mode a prior cycle hit repeatedly.
+
+**Did not go well.** Nothing new; this is now a long unbroken run of cycles
+reaching the identical conclusion (every lane exhausted, every remaining
+opening gated on Phil) by independently fresh verification each time rather
+than by citation.
+
+**Changing next cycle.** Nothing; no new defect class surfaced to gate (Step
+10b not triggered this cycle — the existing gates and lanes all did their job
+correctly on a clean state).
+
+**Next.** The highest-leverage open item remains issue #42, the autonomous
+cadence question, and the cheap owner unlocks already surfaced in the last
+push notification (traffic read #64, YouTube OAuth #46, Stripe
+description/logo #58). None of it is operator-fixable without Phil's own
+action.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-24 (~22:1x slot): previous work confirmed finished via a fresh full preflight pass, nothing new unblocked
 
 Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only, 162 commits fast-forwarded, tree clean beforehand.
