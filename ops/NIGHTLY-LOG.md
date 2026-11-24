@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-24, scheduled operator cycle: independently re-verified every lane fresh after unshallowing onto 172 new commits, no new defect found
+
+Did: Attached per Step 0 (shallow and detached on arrival, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `1fbb090b8`, 172 commits fast-forwarded, tree clean). Read CLAUDE.md, the current backlog, STATUS.md and the nightly log tail before touching anything. Ran `ops/preflight.py --skip-tests` live to real completion rather than cite a prior pass.
+
+Verified: 0 FAIL, 29 warnings, all standing sandbox/credential/art gaps (no SSH deploy key, no Stripe credential, no mail credential, `build/heroes/` absent). `check_sellable.py --deep` 124/126 (2 person-delivered services), `check_urls.py` 236/236, `affiliate.py --check` 165 docs clean, `fix_dashes.py --check` 0/0. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 10 days); read issue #42's full comment thread directly, both comments self-authored by prior cycles, nothing since 2026-11-20. `inbox_agent.py --apply`: no mail credential. `ops/last-owner-notification.json`: last sent 2026-11-24T09:52:00Z, inside its 48h floor, nothing material changed, none sent.
+
+Went well: the preflight and check lanes all completed to real completion on the first attempt, no pipe-buffering or timeout issues this cycle.
+
+Did not go well: nothing new to fix; the backlog's GREEN lane is fully exhausted and every remaining item is gated on one of 29 standing owner decisions, same as the last several dozen cycles.
+
+Changing next cycle: nothing; the standing decision (issue #42, the cadence question) is still Phil's to make, not this cycle's.
+
+Next: whichever decision Phil acts on first in `OWNER-ACTIONS.md`'s "Start here" list unblocks real work; until then, the highest-value action available to any cycle is accurate re-verification, not a new workstream.
+
+No price, product or page touched; `IndexNow` not applicable. Dashboard regenerated (`python ops/dashboard.py`): YELLOW, revenue carried forward unmeasured this run (no Stripe reach), $19 all time from 1 sale, P0 10, need-you 29, commits7d 1530.
+
 ## PM check-in, 2026-11-24 (~23:1x slot): previous work confirmed finished, nothing new unblocked
 
 Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only, 169 commits fast-forwarded, tree clean before this cycle touched anything.
