@@ -18,6 +18,8 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** hold the standing 30-issue Phil-gated queue (cheapest: #64 traffic read ~2 min, #46 YouTube OAuth ~5 min, #58 Stripe description ~2 min). Dashboard trio regenerated and pushed. No price, product or page touched; `IndexNow` not applicable.
 
+**Concurrent with a PM check-in reaching the identical conclusion independently in the same slot** (same preflight result, same 30-issue queue, same no-push decision); merged rather than duplicated, this entry kept as the fuller account.
+
 HANDOFF-FILES: none
 
 ## PM check-in, 2026-11-24 (~02:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
