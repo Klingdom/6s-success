@@ -207,6 +207,49 @@ def test_prior_entry_kept_because_shape_recurs_label_is_recognised():
     return fails
 
 
+def test_prior_entry_bold_label_is_recognised():
+    """Found 2026-11-24, the same recognition gap a fourth time: once
+    the "kept because the shape recurs" label (above) was taught to the
+    regex, cycles stopped writing that exact phrase and switched to a
+    shorter one, bold from position 0, with no "kept because..." text
+    at all: "**Prior entry, 2026-11-24, scheduled operator cycle: ...**".
+    That string starts with "**" followed immediately by "Prior entry, ",
+    which neither existing alternative matches (the bare-"**Prior ("
+    branch needs a literal "(" right after "Prior ", and the "kept
+    because the shape recurs" branch needs that whole phrase, present in
+    neither). Ten consecutive real entries in STATUS.md used exactly
+    this label and silently folded into the one entry above them,
+    `rotate_status_metadata.py --check` reporting "1 entry live... within
+    the 5-entry cap" while the file sat 1471 bytes over its own
+    `gate_living_docs_total_size_tripwire` ceiling, handed to the
+    operator as "needs a human-found row" when the real defect was this
+    tool's own blind spot, the third instance of the exact shape this
+    file's own history already names twice.
+    """
+    body = (
+        "**2026-11-24, PM check-in: the live anchor.**\n\n"
+        "**Prior entry, 2026-11-24, scheduled operator cycle: found a "
+        "real deploy gap.** Some trailing prose.\n\n"
+        "**Prior entry, 2026-11-23, scheduled operator cycle: brought "
+        "this section current.** More trailing prose."
+    )
+    text = _status_text(body)
+    _, entries, _, _ = rsm.split_metadata_chain(text)
+    fails = []
+    if len(entries) != 3:
+        fails.append("expected 3 separate entries (anchor + 2 "
+                      "'**Prior entry, DATE' entries), got %d: %r"
+                      % (len(entries), [e[:60] for e in entries]))
+    else:
+        if not entries[1].startswith("**Prior entry, 2026-11-24"):
+            fails.append("entry 1 should keep its own label verbatim, "
+                          "got %r" % entries[1][:60])
+        if not entries[2].startswith("**Prior entry, 2026-11-23"):
+            fails.append("entry 2 should keep its own label verbatim, "
+                          "got %r" % entries[2][:60])
+    return fails
+
+
 def test_row_count_cap_archives_same_day_overflow():
     """Found 2026-11-12: once the label-recognition fix let plan_rotation
     actually see the real chain, every one of its 11 entries carried
@@ -272,6 +315,7 @@ CASES = [
     test_no_change_when_already_rotated,
     test_real_world_entry_labels_are_recognised,
     test_prior_entry_kept_because_shape_recurs_label_is_recognised,
+    test_prior_entry_bold_label_is_recognised,
     test_row_count_cap_archives_same_day_overflow,
     test_row_count_cap_is_noop_under_the_cap,
     test_refuses_unrecognised_first_paragraph,

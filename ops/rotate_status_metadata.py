@@ -66,6 +66,20 @@ to plan_rotation's policy: once the label is recognised, each one of
 these entries carries its own real date, same as any other, and ages
 out through the same max-date-then-cap rule as every other label.
 
+Found again 2026-11-24, the same recognition gap a fourth time: cycles
+had stopped writing "Prior entry, kept because the shape recurs: "
+and switched to a shorter label, bold from position 0 with no "kept
+because..." text at all ("**Prior entry, 2026-11-24, scheduled
+operator cycle: ..."), which neither existing alternative matched (the
+bare "Prior (" branch needs a literal "(" right after "Prior "; the
+"kept because the shape recurs" branch needs that exact phrase). Ten
+consecutive real entries used this label and folded into the one entry
+above them, this script reporting "1 entry live... within the 5-entry
+cap" while STATUS.md sat over its own size tripwire, handed to a PM
+check-in and then the operator as "needs a human-found row to trim"
+when the real defect was here. Added "Prior entry, " as its own
+top-level alternative inside the "starts with **" branch.
+
 A second, genuine defect surfaced while building this: the chain is NOT
 reliably newest-first by file position. Two entries dated 2026-10-26 (the
 most recent work in the chain when this was built) sit well below entries
@@ -114,7 +128,8 @@ POINTER_MARKER = "**Older entries ("
 
 ENTRY_START_RE = re.compile(
     r"^(?:\*\*(?:Last Updated:\*\*|Earlier, |Latest, |CLOSED |"
-    r"OPEN LOOP AS AT |Prior \(|Corrected |PM check-in|\d{4}-\d{2}-\d{2})|"
+    r"OPEN LOOP AS AT |Prior \(|Prior entry, |Corrected |PM check-in|"
+    r"\d{4}-\d{2}-\d{2})|"
     r"Prior entry, kept because the shape recurs:\s*\*\*)"
 )
 DATE_RE = re.compile(r"\d{4}-\d{2}-\d{2}")
