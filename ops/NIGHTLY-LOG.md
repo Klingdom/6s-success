@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~06:4x slot, 30-minute triage): previous work was NOT finished, the deploy pipeline was broken since 06:20Z, fixed and reshipped
+
+NEXT FOR THE OPERATOR: confirm the new publish-image.yml run on 63f955eb3 (run 45343005005, triggered 06:46:54Z) has completed and succeeded, and that the live site actually changed; it was still in_progress when this slot ran out of time to wait on it. If it succeeded, the 30-issue queue is unchanged and still all decision/P0/blocked-on-art, hold it (cheapest: #64, #46, #58). If it failed too, that is the single highest-priority thing to fix, ahead of anything else on the queue.
+
+Attached per Step 0, 46 commits fast-forwarded, tree clean beforehand.
+
+**Previous work was not finished.** The prior PM cycle's commit (d51c908, 06:20Z) regenerated `site/mudroom-deck.html` without re-running `ops/fingerprint_assets.py` across all 245 pages, leaving 3 stale asset references (measure.js, site.js, site.css). `publish-image.yml`'s own gate, "Refuse to publish stale asset fingerprints," caught this on GitHub's side and failed (run 45339681984), blocking the deploy pipeline for roughly 26 minutes before this cycle noticed. `preflight.py --skip-tests` reproduced the same FAIL locally rather than trusting CI's own report.
+
+Fixed by running the file's own generator, not a hand edit: `python ops/fingerprint_assets.py`, confirmed clean on a second run (0 references updated). Shipped via `ops/ship.py --no-deploy -m "..."` as commit `63f955eb3`, pushed and verified on origin. A fresh `publish-image.yml` run started immediately on the new commit (45343005005); it was still running when this slot's time ran out, so its outcome is unchecked here, not assumed passing, and is the operator's first thing to verify.
+
+GitHub re-pulled live: still 30 open issues, unchanged, all decision/P0/blocked-on-art, nothing newly from Phil.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~06:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked, update_trigger refusal verified firsthand)
 
 Attached per Step 0, 44 commits fast-forwarded, tree clean beforehand.
