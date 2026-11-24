@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue, because this cycle's own fresh preflight and GitHub re-pull found nothing newly unblocked.
+
+## PM check-in, 2026-11-24 (~04:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+Attached per Step 0: real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (29 commits fast-forwarded, clean, confirmed at `fa6162520`), tree clean before this cycle touched anything.
+
+Previous work (the ~04:1x PM check-in and the hourly check-in after it) checked, not cited. Ran `python ops/preflight.py --skip-tests` myself, fresh, in the background to real unkilled completion (it ran long, stalling visibly at `gate_generator_ownership` for several minutes before finishing on its own rather than hitting the 280s budget): **every gate passed, 0 FAIL, 29 warnings**, all previously diagnosed (no Stripe/SSH/mail credential here, `build/heroes/` and book `.jpg`s absent, no narrated films locally). GitHub's 30 open issues re-pulled live via the API, not cited: unchanged, all `decision`/`P0`/`blocked-on-art`, newest update still issue #42 (2026-11-20, not a Phil reply). `BACKLOG-2026-09-07.md` section 1 (Done table) and section 6 (owner gates) read directly: unchanged, every open row genuinely needs Phil's own account, money or decision, same ranked list as the last several cycles (traffic read #64, YouTube OAuth #46, Stripe description #58, Pinterest/Instagram #52, Etsy #44, Amazon KDP #43). `ops/last-brief-sent.json` (03:50:27Z) and `ops/last-owner-questions-sent.json` (02:14:57Z) both current within the last few hours. `ops/last-owner-notification.json`: last sent 2026-11-22T07:50:35Z; its own 48h floor (2026-11-24T07:50:35Z) has not yet passed at this cycle's run time (~04:50Z), and nothing material changed, so no push sent.
+
+**No new defect found small enough to close this slot, and none manufactured.** Kept this cycle's own fresh `ops/cycle-signal.json` checkpoint (recorded against current HEAD, a genuine near-full clean pass) rather than discard it, since it reflects real verification done this cycle, not a stale artifact from a different HEAD.
+
+**Next for the operator:** hold the standing 30-issue Phil-gated queue (cheapest: #64 traffic read ~2 min, #46 YouTube OAuth ~5 min, #58 Stripe description ~2 min). Issue #42's cadence question remains the standing, unresolved, highest-leverage item and is not this PM's to decide.
+
+No content, price or product page touched; dashboard trio regenerated; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-24 (~04:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 Attached per Step 0: real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (27 commits fast-forwarded), tree clean before this cycle touched anything.
