@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-24 (~00:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision or blocked-on-art), because this cycle's own fresh checks found nothing newly unblocked.
+
+Attached per Step 0, unshallowed, ff-only, clean beforehand. Previous work checked, not cited: already clean and pushed. preflight.py --skip-tests: 0 FAIL through every gate reached, stalling only at the documented gate_etsy_pdfs_current (Etsy fee page, HTTP 403). Killed the orphaned Chromium/build_etsy_assets.py tree and discarded the partial-render diffs it left. GitHub: 30 open issues, all decision or blocked-on-art, none updated since 2026-11-20, no Phil reply. BACKLOG section 2 fully archived; sections 3 to 6 only Phil-gated rows remain. No push sent: last one's 48h floor has not passed, nothing material changed.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-24 (~00:1x slot): previous work confirmed finished, closed three overdue document rotations instead of only re-verifying exhaustion
 
 Attached clean onto `88681a152` (25 commits). Previous work confirmed finished on main, tree clean.
@@ -15253,14 +15261,5 @@ Read room_guide_underperformance.py's live output and the raw keyword-gap tail a
 No new defect found small enough to close this slot, and none manufactured. This is now well past a dozen independent cycles today reaching the identical conclusion by different methods; the standing decision this points to (issue #42, the cadence question) is still unanswered, which is itself the highest-leverage open item, not something to re-argue here. Not sending a push notification: nothing materially changed since the 2026-11-07 push (same silence, same gated queue), and the hourly brief/owner-questions-email channels already carry this to Phil on their own schedule.
 
 Dashboard regenerated (python ops/dashboard.py): revenue carried forward as unmeasured this run (no Stripe reach), P0 10, need-you 29, commits7d 1452.
-
-HANDOFF-FILES: none
-
-
-## PM check-in, 2026-11-24 (~00:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
-
-NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision or blocked-on-art), because this cycle's own fresh checks found nothing newly unblocked.
-
-Attached per Step 0, unshallowed, ff-only, clean beforehand. Previous work checked, not cited: already clean and pushed. preflight.py --skip-tests: 0 FAIL through every gate reached, stalling only at the documented gate_etsy_pdfs_current (Etsy fee page, HTTP 403). Killed the orphaned Chromium/build_etsy_assets.py tree and discarded the partial-render diffs it left. GitHub: 30 open issues, all decision or blocked-on-art, none updated since 2026-11-20, no Phil reply. BACKLOG section 2 fully archived; sections 3 to 6 only Phil-gated rows remain. No push sent: last one's 48h floor has not passed, nothing material changed.
 
 HANDOFF-FILES: none
