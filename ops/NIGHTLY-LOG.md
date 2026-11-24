@@ -2,6 +2,27 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+
+## 2026-11-24, scheduled operator cycle: applied a real due backlog rotation, then re-verified every unblocked lane fresh, no new defect found
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `d2d4bd9c9`, 147 commits fast-forwarded, tree clean before this cycle touched anything.
+
+`preflight.py --skip-tests` run live to real completion before touching anything: 0 FAIL, 29 warnings, all standing sandbox/credential/art gaps (no SSH deploy key, no Stripe key, no mail credential, `build/heroes/` absent, no narrated films locally). GitHub's 30 open issues re-pulled live via the API: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 10 days); issue #42 (the standing cadence question) unchanged since 2026-11-20. `inbox_agent.py --apply`: no mail credential, standing gap.
+
+Re-ran every lane fresh rather than cite a prior cycle: `room_guide_underperformance.py` (every room 0-6% uncovered, ten remaining partial rows, each already grepped against the log/backlog history with a recorded decline on a prior pass), `cold_read_ledger.py --stale` (0 of 313), `check_sellable.py --deep` (124/126, the other 2 are person-delivered services), `check_urls.py` (236/236), `affiliate.py --check` (165 delivered docs, no affiliate link, disclosure above every tracked link), `fix_dashes.py --check` (0 em/en dashes), `b9_claims.py --status` (no undiagnosed rooms), and all 21 `rotate_*.py --check` scripts individually.
+
+One of those was genuinely due, not noise: `rotate_backlog.py --check` reported `BACKLOG-2026-09-07.md`'s own "Done this week" table at 16 rows against its 15-row cap. Applied (`--apply`), moved the oldest row (A225) to `BACKLOG-2026-09-07-ARCHIVE.md` losslessly. Added this cycle's own row (A242) immediately after, which pushed the live count back to 16; rotated a second time rather than leave it over cap for the next cycle to find, archiving A226 as well. `rotate_backlog.py --check` after: CLEAN, 15 rows.
+
+`preflight.py --skip-tests` re-run mid-cycle on the dirty tree correctly FAILed (`gate_generator_ownership` refusing to diff a working tree it cannot trust, by design, since this file does own generated content paths). Committed. On `git fetch` before pushing, found a concurrent PM check-in (19:4x slot) had landed one commit on top of the same base; rebased cleanly (`ops/NIGHTLY-LOG.md` auto-merged, the three generator-owned dashboard files conflicted and were resolved by re-running `ops/dashboard.py` fresh afterward rather than hand-merging generated output).
+
+Re-ran `preflight.py --skip-tests` on the rebased tree rather than assume the rebase was clean: 2 real FAIL, not 0. `checks-yml-real-gap` correctly named this cycle's own not-yet-pushed commit as unverified by CI, since it touches `*.md` trigger paths; that is expected to self-resolve once pushed and `checks.yml` runs, not a defect to chase here. `nightly-log-ordering` found a real self-inflicted mistake: this entry had been appended to the end of the file instead of prepended to the top, breaking the file's own stated "newest first" convention (confirmed by reading the header line directly, not assumed). Fixed: moved this entry verbatim to the top, right after the header, nothing reworded or dropped (old and new file byte-length identical). Re-ran preflight a third time on the corrected, re-amended tree: 0 FAIL.
+
+No new defect found small enough to close further this slot beyond the rotation and this self-correction, and none manufactured. No new preflight gate (10b): both gates that caught these (`rotate_backlog.py`'s own `--check`/`--apply`, and `gate_nightly_log_ordering`) already exist and did their job; this is the mechanism working, not a new defect class. `last-owner-notification.json`: last push 09:52Z today, inside its 48h floor, nothing material changed, none sent. No price, product or page touched; `IndexNow` not applicable.
+
+Dashboard regenerated (`python ops/dashboard.py`): YELLOW, revenue carried forward unmeasured this run (no Stripe reach), P0 10, need-you 29, commits7d 1546.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-24 (~19:4x slot, 30-minute triage): previous work reverified clean, a real self-inflicted dirty-tree gate failure found and discarded, nothing new unblocked
 
 NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all `decision`/`P0`/`blocked-on-art`), because nothing is genuinely unblocked outside Phil's own gates; cheapest unlocks unchanged (#64 traffic read ~2 min, #58 Stripe description/logo ~2 min, #46 YouTube OAuth ~5 min).
@@ -15973,4 +15994,3 @@ No new defect found small enough to close this slot, and none manufactured. This
 Dashboard regenerated (python ops/dashboard.py): revenue carried forward as unmeasured this run (no Stripe reach), P0 10, need-you 29, commits7d 1452.
 
 HANDOFF-FILES: none
-
