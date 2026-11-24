@@ -2,7 +2,19 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-24 (~17:3x slot, 30-minute triage): previous work confirmed finished, nothing new unblocked, no push sent
+## PM check-in, 2026-11-24 (~17:4x slot, 30-minute triage): previous work confirmed finished, nothing new unblocked, no push sent
+
+NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art), because nothing is genuinely unblocked outside Phil's own gates; cheapest unlocks unchanged (#64 traffic read ~2 min, #58 Stripe description/logo ~2 min, #46 YouTube OAuth ~5 min).
+
+Attached per Step 0 cleanly: fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `833afaa66`, 135 commits fast-forwarded, tree clean before this cycle touched anything.
+
+Previous work (the 17:3x PM check-in and the hourly check-in after it) checked, not cited: `preflight.py --skip-tests` reran fresh; this cold container had to reinstall `pymupdf` from scratch (the documented 20+ minute cost, OWNER-ACTIONS.md item 1h) and the run hit its 150s budget mid-`gate_generator_ownership` (which internally regenerates many `build_*.py` outputs, including the network-bound Etsy PDF Chromium render past cycles already name), so it did not reach its own final summary line this pass. Read the transcript directly rather than trust a bare timeout: every gate reached before the stall printed `FAIL (none)`, 0 real failures, matching the clean pattern every recent cycle has found at this same checkpoint; nothing in the reached output differs from the fully-completed runs logged earlier today. Discarded the run's own transient `ops/cycle-signal.json` diff rather than commit a partial-pass checkpoint.
+
+GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, most recent touch still issue #42 (2026-11-20); #65 unchanged since 2026-11-14. 0 open PRs. `ops/last-owner-notification.json`: last push 2026-11-24T09:52Z, well inside its 48h floor, nothing material changed (same 30-issue queue, same $0 trailing-30-day revenue, no Phil reply anywhere), so none sent.
+
+No new defect found small enough to close this slot, none manufactured.
+
+Dashboard regenerated, pushed to main.
 
 Attached per Step 0 cleanly: fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `d112997`, 133 commits fast-forwarded, tree clean before this cycle touched anything.
 
