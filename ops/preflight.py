@@ -19035,6 +19035,27 @@ def resolve_verdict_commit(build_id: str) -> str | None:
     return hashes[-1] if hashes else None
 
 
+def verdict_resolved_commit(verdict: dict) -> str | None:
+    """Which commit ops/deploy-verdict.json's confirmation actually covers.
+
+    Found 2026-11-24, scheduled operator cycle: resolve_verdict_commit's
+    content-search answers "which commit first produced this exact
+    build_id text", which silently understates the real deployed commit
+    whenever a later commit leaves site/build-id.txt's bytes unchanged
+    (confirmed live this cycle: `38694f470174306e` resolved to `b65f97ba0`
+    even after a later deploy, `a185a451`, two material commits further
+    along, since neither changed that one file's bytes). ops/deploy.py
+    now records the true commit directly ("commit") instead of leaving
+    every reader to reverse-engineer it from build_id text alone. Prefer
+    that when present; fall back to the heuristic only for a verdict file
+    written before this fix.
+    """
+    commit = verdict.get("commit")
+    if commit:
+        return commit
+    return resolve_verdict_commit(verdict.get("build_id") or "")
+
+
 def deploy_gap_material_commits(verdict_commit: str) -> list:
     """Commits after verdict_commit that touched site/ or Dockerfile, the
     paths a redeploy actually needs to carry. Empty if verdict_commit is
@@ -19224,7 +19245,7 @@ def gate_status_deploy_gap_count_current() -> None:
     if not build_id:
         return
     try:
-        commit = resolve_verdict_commit(build_id)
+        commit = verdict_resolved_commit(verdict)
         if commit is None:
             return
         real_count = len(deploy_gap_material_commits(commit))
@@ -19263,22 +19284,42 @@ def status_latest_entry_gap_problem(status_text: str, real_count: int) -> str:
     is no longer this check's business (there isn't one to check).
 
     Deliberately does not touch "Prior state, kept because the shape
-    recurs" history elsewhere in this file: only the single paragraph
-    starting "**Latest," is examined, the same scoping
+    recurs" history elsewhere in this file: only the newest entry under
+    "# 1. Status Metadata" is examined, the same scoping
     deploy_gap_count_problem already uses for BLOCKER-001's own latest
     entry, for the same reason (older entries intentionally keep stale
     numbers as a dated record).
 
-    Returns '' if there is no such paragraph, it already points at
-    BLOCKER-001, it names no bare commit count at all, or the number it
-    does name agrees with real_count.
+    Corrected 2026-11-24, scheduled operator cycle: this had gone dormant
+    without ever failing a test. The anchor pattern required the literal
+    word "Latest," right after the heading; the section's own convention
+    moved on to dated headers ("**2026-11-24, PM check-in...") with no
+    "Latest," anywhere, some cycles ago, and nothing re-anchored this gate
+    to the new convention, so it silently matched nothing on every real
+    run since (it still passed its own unit test, which supplies the old
+    convention directly as a fixture). Caught live: the entry this fix
+    responds to claimed "Production is confirmed current, 0 commits
+    pending" while a fresh recount still said 2, and only mentioning
+    BLOCKER-001 in passing (not actually pointing at it in place of its
+    own number) let the old suppression below wave it through too. Now
+    anchored on the section heading itself, up to the first "Prior entry"
+    or "Older entries" marker, whichever the current entry actually uses.
+    The suppression below is also narrowed to the documented pointer
+    phrase ("NOT THIS LINE"), not a bare mention of the blocker's name,
+    for the same reason: a cross-reference is not a replacement.
+
+    Returns '' if there is no current entry, it already points at
+    BLOCKER-001 in place of its own number, it names no bare commit count
+    at all, or the number it does name agrees with real_count.
     """
-    m = re.search(r"\*\*Latest,.*?(?=\n\n\*\*Older entries|\Z)",
-                  status_text, re.DOTALL)
+    m = re.search(
+        r"# 1\. Status Metadata\n\n(.*?)"
+        r"(?=\n\n\*\*Prior entry|\n\n\*\*Older entries|\Z)",
+        status_text, re.DOTALL)
     if not m:
         return ""
-    entry = m.group(0)
-    if "BLOCKER-001" in entry:
+    entry = m.group(1)
+    if "BLOCKER-001" in entry and "NOT THIS LINE" in entry:
         return ""
     # The real 2026-10-29 defect spelled the count out ("two site
     # commits"), not as a digit, so this needs the same small
@@ -19342,7 +19383,7 @@ def gate_status_latest_entry_gap_current() -> None:
     if not build_id:
         return
     try:
-        commit = resolve_verdict_commit(build_id)
+        commit = verdict_resolved_commit(verdict)
         if commit is None:
             return
         real_count = len(deploy_gap_material_commits(commit))
@@ -19432,7 +19473,7 @@ def gate_status_table_rows_gap_count_current() -> None:
     if not build_id:
         return
     try:
-        commit = resolve_verdict_commit(build_id)
+        commit = verdict_resolved_commit(verdict)
         if commit is None:
             return
         real_count = len(deploy_gap_material_commits(commit))

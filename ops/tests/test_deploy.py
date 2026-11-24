@@ -188,6 +188,17 @@ def main() -> int:
                       f"that could not itself reach the site); got {m!r}")
     if not m or "checked_at" not in m:
         fails.append(f"the marker must carry when it was confirmed, got {m!r}")
+    if not m or not m.get("commit"):
+        fails.append(f"the marker must carry the exact commit this run had "
+                      f"checked out, not just a build_id text that later "
+                      f"readers would have to reverse-engineer back to a "
+                      f"commit (found live 2026-11-24: that reverse search "
+                      f"silently resolves to the wrong, older commit "
+                      f"whenever a later one leaves build-id.txt's bytes "
+                      f"unchanged); got {m!r}")
+    elif m["commit"] != D._head_sha():
+        fails.append(f"the marker's commit must be this run's own HEAD, "
+                      f"got {m['commit']!r} vs {D._head_sha()!r}")
 
     r, m, _ = run([], before=140, after=159, want=159, live_id="build2",
                   mine_id="build2")

@@ -188,12 +188,27 @@ def write_verdict_marker(build_id: str) -> None:
     current, and when that confirmation happened. Never read by this file
     itself; a separate concern (deploy_freshness.check() already does its
     own live check when it can reach the network) kept separate on purpose.
+
+    Also records the exact commit this run had checked out ("commit").
+    Found 2026-11-24: every reader that needs to know which commit this
+    verdict covers (ops/preflight.py's resolve_verdict_commit,
+    ops/dashboard.py's own copy of it) had to guess it afterward from
+    build_id text alone, via `git log -S<build_id>`. That guess is wrong
+    whenever a later commit leaves site/build-id.txt's bytes unchanged (a
+    dashboard-only or fingerprint-only commit, say): the search still
+    resolves to the first commit that ever produced that exact text, even
+    though a real redeploy later shipped a newer tree whose build-id.txt
+    happens to match byte for byte. This run already knows the true
+    answer without guessing, since it is the commit actually checked out
+    right now, so it writes it directly instead of making every later
+    reader reverse-engineer it.
     """
     import datetime
     import json
     payload = {
         "verdict": "current",
         "build_id": build_id,
+        "commit": _head_sha() or None,
         "checked_at": datetime.datetime.now(datetime.timezone.utc)
         .strftime("%Y-%m-%dT%H:%M:%SZ"),
     }

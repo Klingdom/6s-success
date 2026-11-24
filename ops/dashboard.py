@@ -1168,14 +1168,22 @@ S["zone_pages_with_image"] = len(
      if 'id="zone-hero"' in io.open(f, encoding="utf-8").read()])
 
 def _verdict_commit_for_marker(marker):
-    """Which commit's site/build-id.txt first became the marker's build_id.
+    """Which commit the marker's confirmation actually covers.
 
-    Mirrors preflight.resolve_verdict_commit (not imported, to keep this
-    module's own git calls next to its own sh() helper); None if the
-    marker has no build_id or the string predates this checkout's visible
-    history.
+    Mirrors preflight.verdict_resolved_commit (not imported, to keep this
+    module's own git calls next to its own sh() helper). Prefers the
+    marker's own recorded "commit" field (ops/deploy.py has written this
+    directly since 2026-11-24); falls back to the old build_id text
+    search, which understates the real commit whenever a later commit
+    left site/build-id.txt's bytes unchanged, for a marker written before
+    that fix. None if the marker has no build_id/commit or the string
+    predates this checkout's visible history.
     """
-    build_id = (marker or {}).get("build_id")
+    marker = marker or {}
+    commit = marker.get("commit")
+    if commit:
+        return commit
+    build_id = marker.get("build_id")
     if not build_id:
         return None
     out = sh(["git", "log", "-S%s" % build_id, "--format=%H", "--",

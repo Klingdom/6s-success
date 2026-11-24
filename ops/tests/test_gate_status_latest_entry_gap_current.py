@@ -102,12 +102,51 @@ def main() -> int:
         fails.append("'zero commits' agrees with real_count=0, but still "
                      "flagged: %r" % problem)
 
+    # 7. The real live shape found 2026-11-24, scheduled operator cycle:
+    #    this gate had gone dormant without ever failing a test. The
+    #    section's own convention moved from a "**Latest," paragraph to a
+    #    dated header ("**2026-11-24, PM check-in...") with no literal
+    #    "Latest," anywhere, so the old anchor matched nothing on every
+    #    real run, silently. Must still fire on the new convention: a
+    #    dated entry that both cites its own (wrong) count AND merely
+    #    mentions BLOCKER-001 in passing, without the pointer phrase, is
+    #    not a structural "see BLOCKER-001 instead" fix and must not be
+    #    waved through.
+    dated_header = (
+        "# 1. Status Metadata\n\n"
+        "**2026-11-24, PM check-in: closed the gap, confirmed.** "
+        "Production is confirmed current, 0 commits pending, corrected "
+        "in `BLOCKER-001` and sections 4/5/6 below.\n\n"
+        "**Prior entry, 2026-11-24, scheduled operator cycle: found a "
+        "real 2-commit gap.** Something else entirely, two commits "
+        "pending here too.\n"
+    )
+    problem = preflight.status_latest_entry_gap_problem(dated_header, 2)
+    if not problem:
+        fails.append("dated-header convention, cited 0 real 2, mere "
+                     "BLOCKER-001 mention: expected a problem, got none")
+    elif "2" not in problem:
+        fails.append("dated-header problem string did not name the real "
+                     "count: %r" % problem)
+
+    # 8. Same shape, but the entry uses the documented pointer phrase
+    #    instead of merely mentioning BLOCKER-001: must not fire, the
+    #    structural fix still works.
+    pointed_dated = dated_header.replace(
+        "Production is confirmed current, 0 commits pending, corrected "
+        "in `BLOCKER-001` and sections 4/5/6 below.",
+        "FOR THE CURRENT DEPLOY GAP SEE BLOCKER-001, NOT THIS LINE.")
+    problem = preflight.status_latest_entry_gap_problem(pointed_dated, 2)
+    if problem:
+        fails.append("dated-header convention, pointer phrase present, "
+                     "but still flagged: %r" % problem)
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("PASS: 6 checks")
+    print("PASS: 8 checks")
     return 0
 
 

@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-24: fixed the deploy-verdict resolver's root cause, not just A235's one instance
+
+Did: Fixed the root cause behind today's deploy-gap confusion (A235/A236). `resolve_verdict_commit` only finds the first commit that ever produced a given build_id's text, so it silently resolved to `b65f97ba0` when `deploy.yml` run 468 had actually deployed `a185a451`, two commits later, since neither changed `site/build-id.txt`'s bytes. `ops/deploy.py` now records the real deploying commit directly; preflight and dashboard prefer it. Backfilled the current verdict entry. Corrected BLOCKER-001 and STATUS.md sections 4/5/6 to 0 commits pending, confirmed. Also fixed `gate_status_latest_entry_gap_current`, dormant since section 1's convention moved off the phrase it keyed on, and narrowed its BLOCKER-001-mention suppression so a bare cross-reference cannot wave through a wrong number, exactly how an earlier entry today claimed a correction it had not made.
+
+Verified: re-pulled run 468 live via the GitHub Actions API rather than trust the prior entry; confirmed ancestry with `git merge-base --is-ancestor`. New `test_verdict_resolved_commit.py` (3/3); `test_gate_status_latest_entry_gap_current.py` widened (8/8); `test_deploy.py` widened (23/23), confirmed the new assertion fails pre-fix. `preflight.py --skip-tests`: 0 FAIL after commit.
+
+Went well: did not take the prior entry's "corrected BLOCKER-001" claim at its word; checking it surfaced the dormant gate too.
+
+Did not go well: BLOCKER-001 had accumulated appended dated paragraphs like section 1 does, not its own convention (one corrected block); my first edit broke `gate_status_deploy_gap_count_current` by making it read a stale appended paragraph as "latest."
+
+Changing next cycle: when editing BLOCKER-001, write one paragraph, not a new dated one.
+
+Next: epic 1/2 lanes still owner-gated or exhausted; nothing else unblocked.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-24 (~10:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art, none from Phil since #65 on 2026-11-14), because this cycle's own fresh checks found nothing newly unblocked.
