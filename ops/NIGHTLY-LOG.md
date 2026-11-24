@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-24 (~21:4x slot, 30-minute triage): previous work confirmed finished, issue #65's own fix re-attempted on this routine itself and refused at the platform level, nothing new unblocked
+
+NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all `decision`/`P0`/`blocked-on-art`), because nothing is genuinely unblocked outside Phil's own gates; cheapest unlocks unchanged (#64 traffic read ~2 min, #58 Stripe description/logo ~2 min, #46 YouTube OAuth ~5 min).
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout main`, ff-only onto `origin/main` at `b415e92f3`, 156 commits fast-forwarded, tree clean before this cycle touched anything.
+
+Previous work (the 21:1x PM check-in and the hourly check-in after it) checked, not cited: `preflight.py --skip-tests` reran fresh to real completion, every gate passed, 30 standing warnings (same credential/sandbox/art gaps already named). Discarded the run's own transient `ops/cycle-signal.json` diff. GitHub's 30 open issues re-pulled live, ordered by `updated_at`: unchanged, all `decision`/`P0`/`blocked-on-art`; most recent touch still #42 (2026-11-20), #65 unchanged since 2026-11-14.
+
+Re-attempted issue #65's own fix myself rather than cite it stale: `list_triggers` found the PM :40 routine that fired this cycle (`trig_01JCURkStiuxTMyZDNbVGumL`), confirmed its Step 7 does say the stale "Append" instead of "prepend to the top", and called `update_trigger` on it directly, the one routine this session could plausibly own. Refused: "this routine was created via http_api, not by an agent. Agents can only update routines they created." This is sharper than prior cycles' generic refusal: no agent, including the one a routine fires, can ever edit an `http_api`-created routine through this tool. Genuinely owner-gated, confirmed at the platform level, not a per-session capability gap.
+
+No new defect found small enough to close this slot beyond the above, none manufactured. Not sending a push notification: `ops/last-owner-notification.json` shows one sent 2026-11-24T09:52:00Z, its 48h floor not yet passed, nothing material changed since.
+
+Dashboard regenerated (`python ops/dashboard.py`).
+
+HANDOFF-FILES: none
+
 ## PM check-in 21:1x: previous work confirmed finished via a genuinely clean full preflight pass, nothing new unblocked, dashboard regenerated
 
 Previous work (the 20:4x PM check-in) checked, not cited: it was finished, shipped and verified. Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout main`, ff-only onto `origin/main` at `2a67d367d`, 154 commits fast-forwarded, tree clean before this cycle touched anything.
