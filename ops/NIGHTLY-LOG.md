@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-24 (~05:4x slot): full independent re-verification, backlog confirmed genuinely exhausted, no new defect found or manufactured
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (37 commits fast-forwarded onto `cfb807048`), tree clean before this cycle touched anything. Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `CLAUDE.md` and the last several `ops/NIGHTLY-LOG.md` entries in full before picking anything, per Step 1.
+
+**Verified, not cited:** Ran `python ops/preflight.py --skip-tests` live to real, unkilled completion (backgrounded rather than foreground-timed out): every gate passed, 0 FAIL, 29 warnings, all the standing sandbox/credential/art gaps (no SSH deploy key, no Stripe key, no mail credential, `build/heroes/` absent, no narrated films locally, T2 affiliate trigger unevaluated). Ran `check_sellable.py` (124/126, 2 person-delivered services), `check_urls.py` (236/236), `audit_pages.py` (0 findings across 241 pages), `fix_dashes.py --check` (0 em/en dashes), `affiliate.py --check` (165 delivered documents clean) directly, not sampled. `room_guide_underperformance.py` run fresh: every one of the 20 rooms 0-6% uncovered, 0 gap rows anywhere, 20 partial rows total. Rather than trust that aggregate (CLAUDE.md 5c/5d), grepped all 16 remaining partial-tier phrases individually against `ops/NIGHTLY-LOG.md` and its archive: every one already carries 4 to 28 prior mentions and a recorded decline (self-flattery, digital-word collision, a genuine content gap already diagnosed, or an honest cross-room tie already declined on CLAUDE.md section 6 grounds). `cold_read_ledger.py --stale`: 0 of 313. GitHub's 30 open issues re-pulled live via the API: unchanged, all `decision`/`P0`/`blocked-on-art`, newest still #42 (2026-11-20), no Phil reply since #65 (2026-11-14, 10 days). Read issue #42's full comment thread directly rather than trust the count: every comment on it is self-authored by a prior agent cycle, none from Phil. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed empty. `OWNER-ACTIONS.md`'s "Start here" list re-read directly: unchanged, every row still genuinely needs Phil's own account, credential or decision.
+
+**Went well:** backgrounding the full `preflight.py --skip-tests` run instead of letting a foreground timeout truncate it, so this cycle got a real, complete, unkilled pass rather than a partial one read as complete.
+
+**Did not go well:** nothing new; this is at minimum the dozens-eth consecutive cycle reaching the identical conclusion by independently re-running the checks rather than citing them.
+
+**Changing next cycle:** none structural. Issue #42's cadence question is still the single standing, unresolved, highest-leverage item, and still not this cycle's to decide on Phil's behalf.
+
+**Next:** hold the standing queue (30 open issues, all `decision`/`P0`/`blocked-on-art`). Not sending a push notification: the last one (`ops/last-owner-notification.json`, 2026-11-22T07:50:35Z) has not yet cleared its own 48h no-repeat floor (clears ~2026-11-24T07:50Z), and nothing material changed in the meantime (same $0 trailing-30-day / $19 lifetime revenue, same 30-issue queue, no new sale, no delivery problem, no Phil reply). No price, product or page touched; `IndexNow` not applicable. Dashboard regenerated (`python ops/dashboard.py`): revenue carried forward ($0 of $20,000 target, $19 all time, 1 sale), P0 10, need-you 29, commits7d 1583.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-24 (~05:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 Attached per Step 0 onto a shallow checkout: real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 35 commits fast-forwarded, tree clean before this cycle touched anything.
