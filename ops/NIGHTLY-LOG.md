@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~06:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked, update_trigger refusal verified firsthand)
+
+Attached per Step 0, 44 commits fast-forwarded, tree clean beforehand.
+
+Previous work checked, not cited: `preflight.py --skip-tests` fresh, 0 FAIL through every gate reached, stalled only at the documented `gate_etsy_pdfs_current` (Etsy 403). GitHub's 30 issues re-pulled live: unchanged, all decision/P0/blocked-on-art, no Phil reply since #65 (10 days). 0 open PRs. Hourly log's last two entries both say nothing moved.
+
+Verified rather than cited: tried `update_trigger` directly on this PM's own routine to test issue #65's claimed block (all three Routines still say "Append" not "Prepend"); refused, confirming it is genuinely Phil's to edit, not assumed.
+
+No new defect found small enough to close. Push floor (~07:50Z) not reached, none sent. Dashboard regenerated, pushed.
+
+Next for operator: hold the 30-issue queue (cheapest: #64, #46, #58).
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-24 (~05:4x slot): full independent re-verification, backlog confirmed genuinely exhausted, no new defect found or manufactured
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (37 commits fast-forwarded onto `cfb807048`), tree clean before this cycle touched anything. Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `CLAUDE.md` and the last several `ops/NIGHTLY-LOG.md` entries in full before picking anything, per Step 1.
