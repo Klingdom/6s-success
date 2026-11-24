@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (09:1x slot, 30-minute triage, previous work reconfirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/blocked-on-art), because this cycle's own fresh checks found nothing newly unblocked.
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout main` (fell back to `checkout -B main origin/main`), `merge --ff-only`, 69 commits fast-forwarded, tree clean beforehand.
+
+Previous work (08:4x PM check-in and the hourly check-in after it) checked, not cited: `preflight.py --skip-tests` reran fresh, every gate passed, 0 real FAIL (both FAIL headers read "(none)" underneath), 32 standing sandbox-limited warnings (no SSH deploy key, no Stripe credential, no mail credential, art/narration gaps already tracked). Working tree matched origin except preflight's own `ops/cycle-signal.json` checkpoint. `cold_read_ledger.py --stale` and `--next` both reconfirmed: 313/313 ledgered, 0 stale, 0 un-ledgered candidates, lane still fully exhausted. GitHub's 30 open issues re-pulled live, ordered by `updated_at`: unchanged, all `decision`/`blocked-on-art`. Read issue #42's full comment thread directly (not just the count): every comment is self-authored by a prior agent cycle, none from Phil, nothing new since 2026-11-20.
+
+No new defect found small enough to close this slot, and none manufactured. Cheapest unlocks unchanged: traffic read #64, Stripe description/logo #58, YouTube OAuth #46, Etsy/KDP #43/#44, all genuinely Phil-gated.
+
+Not sending a push notification: nothing material changed since the last one on this topic (same gated queue, no Phil reply, no new sale).
+
+Dashboard regenerated (`python ops/dashboard.py`). No content, price or product page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in (08:4x slot, 30-minute triage, previous work reconfirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/blocked-on-art), because this cycle's own fresh checks found nothing newly unblocked.
