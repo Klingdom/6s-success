@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-24 (~02:4x UTC): full re-verification, no new work to start
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 8 commits fast-forwarded, tree clean). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the log head rather than cite a summary.
+
+**Verified, not cited:** `python -u ops/preflight.py --skip-tests` run as a background process to real, unkilled completion: every gate passed, 0 FAIL in both FAIL blocks, 29 warnings, all standing sandbox/credential/art gaps (no Stripe key, no SSH deploy key, no mail credential, `build/heroes/` absent, no narrated films locally). GitHub's 30 open issues re-pulled live via the MCP server, ordered by update time: unchanged, all `decision`/`P0`/`blocked-on-art`, newest #42 (2026-11-20), none from Phil since #65 (2026-11-14, 10 days). `inbox_agent.py --apply`: no mail credential, reported unchecked, not assumed empty. All 21 `rotate_*.py --check` scripts run directly: every one CLEAN. `cold_read_ledger.py --stale`: 0. `room_guide_underperformance.py` run fresh across all rooms: lowest two partial rows by apparent mention count ("how to organize baking supplies in.cabinet", "how to organise baking dishes") individually grepped against the full log history rather than trusted from the aggregate (CLAUDE.md 5c/5d): both already on record as declined (the first repeats the already-declined "cabinet" word whole; the second was traced in a prior cycle to 14 prior mentions, a genuine tie not a fresh gap). `ops/last-owner-notification.json`: last sent 2026-11-22T07:50:35Z; its own 48h floor (2026-11-24T07:50:35Z) has not yet passed at this cycle's run time (~02:45Z), and nothing material changed since (same $0 trailing-30-day/$19-lifetime revenue, same 30-issue queue, no Phil reply), so no push sent, consistent with the file's own repeat policy.
+
+**No new defect found small enough to close this slot, and none manufactured.** `BACKLOG-2026-09-07.md` sections 2-6 unchanged: everything is Done, Hold, or Phil-gated in section 6's owner-gates table. No new preflight gate (10b): no new defect class found this cycle.
+
+**Went well:** running preflight as an unbuffered background process to its own natural completion rather than a killed foreground timeout.
+
+**Did not go well:** another cycle in issue #42's own named run of the same conclusion.
+
+**Changing next cycle:** nothing structural; issue #42's cadence question remains the standing, unresolved, highest-leverage item, and still not this operator's to decide.
+
+**Next:** hold the standing 30-issue Phil-gated queue (cheapest: #64 traffic read ~2 min, #46 YouTube OAuth ~5 min, #58 Stripe description ~2 min). Dashboard trio regenerated and pushed. No price, product or page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-24 (~02:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 Attached per Step 0 onto a shallow, detached checkout: fetch, real git fetch --unshallow, checkout -B main origin/main, ff-only onto origin/main (8 commits fast-forwarded), tree clean before this cycle touched anything.
