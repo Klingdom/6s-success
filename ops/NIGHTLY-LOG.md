@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-24 (~00:5x UTC): full re-verification from scratch, no new work to start
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `eaa8e1d69`, 27 commits fast-forwarded, tree clean). Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `STATUS.md`, `CLAUDE.md`, and the log head rather than cite a summary.
+
+**Verified live, not cited:** `python ops/preflight.py` (no flags) was killed at its own 280s foreground budget with its output lost to a buffered `tail`, the same documented lossy-pipe failure mode CLAUDE.md step 6 warns about; re-ran unbuffered (`python -u`) straight to a file and waited it out to real, unkilled completion this time: **every gate passed, 0 FAIL, 30 warnings**, all the standing sandbox/credential/art gaps (no Stripe key, no SSH deploy key, no mail credential, `build/heroes/` absent, no narrated films locally, `--skip-tests` itself flagged as not a substitute for `gate_tests`). `check_urls.py` 236/236, `check_sellable.py` 124/126 (2 person-delivered services), `audit_pages.py` 0 findings, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 docs clean, all `rotate_*.py --check` CLEAN, `cold_read_ledger.py --stale` 0. `room_guide_underperformance.py` fresh: every room 0-6% uncovered, 0 gap rows; rather than trust the aggregate, grepped the lowest-score rows ("bags of spices", "disposable bags") against the full log history (CLAUDE.md 5c/5d): 28 combined prior mentions, both already correctly declined as cross-surface ties. `inbox_agent.py --apply`: no mail credential, reported unchecked, not assumed empty.
+
+GitHub's 30 open issues re-pulled live via the API, ordered by update time: unchanged, all `decision`/`P0`/`blocked-on-art`, newest #42 (2026-11-20). Checked git history directly for Phil's own real commits (author `Phil Kling`/`Philip Kling`, not the push identity): still `43624a9c1`, 2026-11-01, 23 days ago. Re-read issue #42's own body: it has sat open since 2026-10-14 (41 days) recommending either a slower cadence or clearing a decision, still neither chosen. `ops/last-owner-notification.json`: last sent 2026-11-22T07:50:35Z, its own 48h floor (2026-11-24T07:50:35Z) not yet reached, no material change since (same $0 trailing-30-day revenue, same 30-issue queue, no Phil reply), so no push sent, consistent with the file's own repeat policy.
+
+**No new defect found small enough to close this slot, and none manufactured to fill it.** `BACKLOG-2026-09-07.md` sections 2-6 unchanged: everything is Done, Hold (correctly, ahead of the traffic constraint), or Phil-gated in section 6's owner-gates table. No new preflight gate (10b): no new defect class found this cycle, the lossy-tail-pipe failure mode is already documented in CLAUDE.md step 6 rather than a gap a gate can close.
+
+**Went well:** catching my own first preflight attempt's lost output before trusting a false "it ran clean" read, and re-running it properly rather than reporting an unchecked pass as checked.
+
+**Did not go well:** another cycle in a now five-week run of the same conclusion; issue #42's own named cost (usage spent on an unchanging input) continues to apply to this cycle too.
+
+**Changing next cycle:** nothing structural; issue #42's cadence question remains the standing, unresolved, highest-leverage item, and still not this operator's to decide.
+
+**Next:** hold the standing 30-issue Phil-gated queue (cheapest: #64 traffic read ~2 min, #46 YouTube OAuth ~5 min, #58 Stripe description ~2 min). Dashboard trio regenerated and pushed.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-24 (~00:1x slot): previous work confirmed finished, closed three overdue document rotations instead of only re-verifying exhaustion
 
 Attached clean onto `88681a152` (25 commits). Previous work confirmed finished on main, tree clean.
