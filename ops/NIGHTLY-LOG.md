@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-24: independent re-verification, room-guide mining lane re-checked row by row, no new defect found or manufactured
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (confirmed clean at `d94b0eec8`). Ran `python ops/preflight.py --skip-tests` as its own background process to real completion rather than a fixed timeout: every gate passed, 29 warnings, all previously diagnosed (no Stripe/SSH/mail credential here, `build/heroes/` absent, no narrated films locally, affiliate T2 trigger unevaluated for the same reason). Also ran `check_sellable.py` (124/126, 2 person-delivered services), `check_urls.py` (236/236), `audit_pages.py` (0 findings) and `fix_dashes.py --check` (0/0) directly rather than trust preflight's own summary of them.
+
+**Verified:** GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 10 days). `inbox_agent.py --apply`: no mail credential. `room_guide_underperformance.py` run fresh across all 20 rooms (worst 6% uncovered): read the two lowest-mention rows directly rather than trust the aggregate, "how to organize bags of spices" (Kitchen) and "how to clean detergent tray in washing machine" (Laundry Room), against this log's own history: both already carry a recorded, traced decline (a genuine content-word tie with no room signal to break it, and a shipped fix already at its honest ceiling on the one leftover unmet word "clean"). `ops/last-owner-notification.json`: last sent 2026-11-22T07:50:35Z, its 48h floor not yet passed, nothing material changed, no push sent.
+
+**Went well:** reading the actual prior conclusions on both candidate rows instead of only counting their prior mentions (CLAUDE.md 5c).
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; no new defect class found to gate.
+
+**Next:** hold the standing 30-issue Phil-gated queue (cheapest: #64 traffic read ~2 min, #46 YouTube OAuth ~5 min, #58 Stripe description ~2 min). Issue #42's cadence question remains unresolved and is not this cycle's to decide.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-24 (~03:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 Attached per Step 0 onto a shallow, detached checkout: real `git fetch --unshallow`, `checkout main`, ff-only onto `origin/main` (8 commits fast-forwarded), tree clean before this cycle touched anything.
