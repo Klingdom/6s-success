@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-24 (~06:5x slot): fixed a real preflight FAIL, a wrong fingerprint a concurrent cycle's own commit had introduced
+
+Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 46 commits fast-forwarded, tree clean).
+
+Did not repeat the full re-verification sweep a third time in a row with no new evidence (A231 through A233 already did that today); instead ran `preflight.py --skip-tests` live and let it reach a real finding rather than assume another zero. It found one: `gate_fingerprints` FAIL, `site/mudroom-deck.html` carrying stale query-string hashes for `site.css`, `site.js` and `measure.js` against the real asset content, 3 of 735 references across 245 pages. Traced the cause before fixing: the most recent PM check-in commit on `main` (`d51c90844`, minutes before this cycle started) had rewritten those three `?v=` hashes to values that do not match the real files, a one-page divergence from the other 244. Not a hand-edit of a generator-owned file (CLAUDE.md 5b): `ops/fingerprint_assets.py` is the standalone, idempotent pass its own docstring says to "run after any builder... and run it last," so running it directly is the documented fix, not a workaround. Ran it; it rewrote exactly the 3 stale references on exactly the 1 page, back to the hashes all other pages already carry. Verified, not assumed: `fingerprint_assets.py --check` now reads "735 asset reference(s) across 245 pages, all current."
+
+Re-ran everything else live rather than cite it stale: `check_urls.py` 236/236, `audit_pages.py` 0 findings, `fix_dashes.py --check` 0/0, `check_sellable.py` 124/126 (2 person-delivered services), `affiliate.py --check` 165 docs clean, `build_id.py --check` current, `cold_read_ledger.py --stale` 0/313, all 21 `rotate_*.py --check` scripts CLEAN, `inbox_agent.py --apply` no mail credential (standing sandbox gap). GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 10 days); read issue #42's full thread end to end rather than re-add an eleventh comment to it, since nothing material has changed since its last entry and CLAUDE.md 0.2 applies to a GitHub thread the same as to this file. `ops/last-owner-notification.json`: last sent 2026-11-22T07:50:35Z, inside its own 48h floor, no push sent. Full `preflight.py --skip-tests` re-run live after committing the fix: 0 FAIL (the one other FAIL this cycle's first pass showed, `gate_generator_ownership` refusing to diff a dirty tree mid-fix, is expected behaviour by design and cleared once committed, not a second real defect).
+
+No new preflight gate (10b): `gate_fingerprints` already caught this correctly and named the exact fix; the defect was a bad value written by another cycle's commit, not a missing check. One price/product/page content change beyond the fingerprint query strings: none. `IndexNow` to submit the one changed page on push.
+
 ## PM check-in (~06:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked, update_trigger refusal verified firsthand)
 
 Attached per Step 0, 44 commits fast-forwarded, tree clean beforehand.
