@@ -743,13 +743,13 @@
     },
     "dashboard.py": {
       "status": "clean",
-      "date": "2026-11-04",
-      "note": "Re-read after 2026-11-04 17:4x fix (sh() default-60s timeout flapping the unshallow fetch for a ~2.1GB pack between success and silent timeout). Reviewed the diff: sh() now takes an explicit timeout kwarg (default unchanged at 60s), and the one slow call (git fetch --unshallow) is given timeout=240, a reasoned, measured budget (git count-objects -v: ~2.1GB), not a guess. No other sh()/sh_checked() call in this file does a network or full-history operation that would need the same budget: git log/rev-parse/status calls are all local and fast once _repo_complete is true, and sh_checked() keeps its own fixed 60s for the fast is-shallow probe, correctly unaffected. Verified live: ran ops/dashboard.py fresh against the real repo (now unshallowed), commits_7d/commits_total both populated (1426), no flap, no exception swallowed silently. No new defect found."
+      "date": "2026-11-24",
+      "note": "Cold-read 2c407a3aa: _verdict_commit_for_marker now prefers deploy.py's own recorded commit field, falling back to the old text search only for a pre-fix marker. Mirrors preflight.py's equivalent change. Clean."
     },
     "deploy.py": {
       "status": "clean",
-      "date": "2026-10-14",
-      "note": "Third-pass cold read, 2026-10-14 scheduled operator cycle, picking up the 09:4x PM check-in's handoff: read in full (482 lines) again, no logic change since the 2026-10-09 clean entry. classify_publish()'s four-outcome branching, the verdict-marker write path, and compose_drift()'s comment-stripping diff all still match their own docstrings. No defect."
+      "date": "2026-11-24",
+      "note": "Cold-read 2c407a3aa: write_verdict_marker now records the deploying commit directly (new commit field), fixing the first-match-only text-search understatement. Fail-then-pass proven (test_verdict_resolved_commit.py, test_deploy.py). Clean."
     },
     "deploy_freshness.py": {
       "status": "clean",
@@ -1033,8 +1033,8 @@
     },
     "preflight.py": {
       "status": "clean",
-      "date": "2026-11-22",
-      "note": "Cold-read b5d75dd72's extension of gate_checks_excludes_generated_files and CI_PATH_COVERAGE_EXEMPT: added ops/cycle-signal.json and ops/last-owner-notification.json, two pure-bookkeeping paths under ops/** that a prior commit's own exclusion list had missed. Diff matches its own commit message exactly: the required tuple gained the two new exclude lines, the exempt dict gained one matching entry, docstring updated in step. No surprise, no risk. Gate reads clean on current HEAD."
+      "date": "2026-11-24",
+      "note": "Cold-read 2c407a3aa: resolve_verdict_commit's three call sites now prefer the verdict marker's own recorded commit field over the text-search heuristic; also re-anchored gate_status_latest_entry_gap_current's regex on the current STATUS.md section-1 heading convention and narrowed its BLOCKER-001 pointer-phrase suppression. Fail-then-pass proven. Clean."
     },
     "prerender_shop.py": {
       "status": "clean",

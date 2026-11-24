@@ -2,11 +2,23 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-24 (~12:4x slot)
+## Scheduled operator cycle, 2026-11-24 (~13:0x slot): re-ledgered 3 cold-read-stale files; the BLOCKER-001 glued-chain warning this cycle also found was fixed first by a concurrent PM check-in, merged onto rather than reshipped
 
-NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art, none from Phil since #65 on 2026-11-14), because nothing is genuinely unblocked beyond this cycle's own small fix.
+Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout main`, ff-only onto `origin/main` at `5655b5fd7`, 98 commits fast-forwarded, tree clean before this cycle touched anything. Ran `preflight.py --skip-tests` live to completion in the background (not killed early): 0 FAIL, 32 warnings. Two were real and small enough to close this slot.
 
-Previous work (12:1x check-in, 12:19 hourly) was finished, tree clean. Ran `preflight.py --skip-tests` fresh: found and fixed a real warn, `gate_status_history_chain_not_collapsed`: BLOCKER-001 had two entries glued onto one paragraph via "Prior state, kept because the shape recurs: ", defeating `rotate_status_history.py --check-blocker1`'s own CLEAN reading. Archived the superseded entry to STATUS-ARCHIVE.md by hand (this field's oldest-first order makes the automated `--apply-blocker1` risky to trust blind, per the 2026-11-20 entry there); `--check-blocker1` now correctly reports CLEAN. GitHub's 30 issues re-pulled live: unchanged. Dashboard regenerated, shipped.
+(1) `gate_status_history_chain_not_collapsed` fired on `BLOCKER-001`, the same warning the concurrent 12:4x PM check-in above found and fixed 12 minutes before this cycle tried to push its own identical fix (`f82a927fa`, same split, same STATUS-ARCHIVE.md destination). Caught on `git fetch` before the push landed, not after: discarded this cycle's own now-duplicate `STATUS.md`/`STATUS-ARCHIVE.md` commit (CLAUDE.md 0.2) and fast-forwarded onto theirs instead, confirmed `--check-blocker1` reads CLEAN on the merged tree.
+
+(2) `cold_read_ledger.py --stale` named `ops/deploy.py`, `ops/dashboard.py` and `ops/preflight.py`, all touched today by the already-tested deploy-verdict-resolver commit (`2c407a3aa`, A235/A236). This part was not duplicated upstream. Cold-read each diff directly rather than assume clean from "already logged today": all three match that commit's own documented change (the new `commit` field in the verdict marker, preferred at every reader, falling back to the old text search only for a pre-fix marker), already fail-then-pass proven by its own tests. Re-ledgered all three clean. `cold_read_ledger.py --stale` now 0.
+
+Verified: `preflight.py --skip-tests` re-run on the merged tree: the only FAIL was `gate_generator_ownership` correctly refusing a dirty-tree diff mid-cycle, by design. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 10 days); issue #42 (the cadence question) itself unchanged since 2026-11-20. `ops/inbox_agent.py --apply`: no mail credential, standing gap.
+
+Went well: checking `git fetch` before pushing caught the duplicate before it shipped, not after; cold-reading the three ledger-stale files' real diffs rather than trusting "already logged today."
+
+Did not go well: this is the second concurrent-collision-on-the-same-gate this exact warning has produced; no gate change follows from that, since the collision was caught cheaply and `STATUS.md` section 0's own claim-before-you-start convention does not cover a 12-minute-old preflight warning either session could have found first.
+
+Changing next cycle: none.
+
+Next: standing queue unchanged, all Phil-gated (cheapest unlocks: #64 traffic read, #58 Stripe description, #46 YouTube OAuth, #44 Etsy, #43 KDP). Not sending a push notification: the last one went out 2026-11-24T09:52:00Z, inside its own ~48h no-repeat floor, and nothing material changed since.
 
 HANDOFF-FILES: none
 
