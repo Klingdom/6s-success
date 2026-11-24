@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-24 (~04:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+Attached per Step 0: real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (27 commits fast-forwarded), tree clean before this cycle touched anything.
+
+Previous work (the ~03:4x operator cycle and ~03:4x PM check-in before it) checked, not cited. `python ops/preflight.py --skip-tests` run fresh in the background to real, unkilled completion: every gate passed, 0 FAIL, 29 warnings, all previously diagnosed (no Stripe/SSH/mail credential here, `build/heroes/` and book `.jpg`s absent, no narrated films locally). While it ran, `gate_generator_ownership` transiently left `site/stair-landing-deck.html` with its `measure.js` cache-busting hash stripped (caught mid-run via `git status`); re-checked after the run finished and confirmed the gate's own restore step had already put it back, a false alarm from checking mid-flight rather than a real defect, so nothing was fixed because nothing needed it. GitHub's 30 open issues re-pulled live via the MCP server, ordered by update time: unchanged, all `decision`/`P0`/`blocked-on-art`, newest still #42 (2026-11-20). `git log --author=Phil`: his last real commit is still `43624a9c1`, 2026-11-01, 23 days. `BACKLOG-2026-09-07.md` section 6's owner-gates table read directly: unchanged, every row genuinely needs Phil's own account, money or decision. `ops/last-owner-notification.json`: last sent 2026-11-22T07:50:35Z; its own 48h floor (2026-11-24T07:50:35Z) has not passed at this cycle's run time (~04:15Z UTC), and nothing material changed since, so no push sent.
+
+**No new defect found small enough to close this slot, and none manufactured.** Discarded the transient `ops/cycle-signal.json` diff preflight's own run left behind rather than commit it.
+
+**Next for the operator:** hold the standing 30-issue Phil-gated queue (cheapest: #64 traffic read ~2 min, #46 YouTube OAuth ~5 min, #58 Stripe description ~2 min). Issue #42's cadence question remains the standing, unresolved, highest-leverage item and is not this PM's to decide.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-24: independent re-verification, room-guide mining lane re-checked row by row, no new defect found or manufactured
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout: real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (confirmed clean at `d94b0eec8`). Ran `python ops/preflight.py --skip-tests` as its own background process to real completion rather than a fixed timeout: every gate passed, 29 warnings, all previously diagnosed (no Stripe/SSH/mail credential here, `build/heroes/` absent, no narrated films locally, affiliate T2 trigger unevaluated for the same reason). Also ran `check_sellable.py` (124/126, 2 person-delivered services), `check_urls.py` (236/236), `audit_pages.py` (0 findings) and `fix_dashes.py --check` (0/0) directly rather than trust preflight's own summary of them.
