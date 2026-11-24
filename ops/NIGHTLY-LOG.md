@@ -15624,3 +15624,18 @@ Dashboard regenerated (python ops/dashboard.py): revenue carried forward as unme
 
 HANDOFF-FILES: none
 
+## Scheduled operator cycle, 2026-11-24 (~09:4x slot)
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `55f6e7362`, tree clean before this cycle touched anything. Ran `python ops/preflight.py --skip-tests` live to full, unkilled completion (an earlier attempt under a 110s wrapper was cut off mid-run and discarded as void per CLAUDE.md 0.4, not reported as a result). Re-ran `room_guide_underperformance.py` fresh rather than cite the backlog, and grepped the worst room's (Family Room, 12% uncovered) six partial rows against `ops/NIGHTLY-LOG.md` and both backlog archives: each already carries 6 to 23 prior mentions and a recorded verdict (mostly genuine content gaps, e.g. "stardew valley board game" confirmed on-topic but unauthored, not a scoring bug). Re-pulled GitHub's 30 open issues live via the MCP server: unchanged set, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 10 days). `inbox_agent.py --apply`: no mail credential, standing gap. Re-derived the deploy gap directly (`resolve_verdict_commit` + `deploy_gap_material_commits`) rather than trust the prior entry's framing: still `['c49ee0ff', 'd51c908']`, 2 commits pending, confirmed by a fresh automated verdict check at `2026-11-24T07:00:44Z` that did not advance past `b65f97ba0`, no sandboxed reach to `6s-success.com` to confirm further.
+
+**Verified:** `preflight.py` 0 FAIL, 28 warnings, all standing sandbox/credential/art gaps. `ops/deploy-verdict.json` unchanged by this cycle (already committed `a27ba2a77`). GitHub issues and comment timestamps unchanged since the 2026-11-22 citation.
+
+**Went well:** letting preflight run to its real completion in the background rather than killing it at an arbitrary timeout, which would have reported a void result as if it were real.
+
+**Did not go well:** nothing new; this is another in the long run of cycles finding the backlog genuinely exhausted outside Phil's own gates.
+
+**Changing next cycle:** none structural. Sent a push notification (last one 2026-11-22T07:50:35Z, floor passed): same cheapest-unlocks list, `ops/last-owner-notification.json` updated.
+
+**Next:** hold the standing queue (30 open issues, all `decision`/`P0`/`blocked-on-art`); cheapest unlocks unchanged (#64 traffic read ~2 min, #58 Stripe description/logo ~2 min, #46 YouTube OAuth ~5 min, #44 Etsy ~40 min, #43 Amazon KDP ~30 min); #45 (accounts layer) is the largest named revenue gap; #42 (cadence) is Phil's own still-open question.
+
+HANDOFF-FILES: none
