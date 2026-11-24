@@ -2,6 +2,25 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-24, scheduled operator cycle: found a real 2-commit deploy gap live, corrected BLOCKER-001/sections 4/5/6, no new defect that could be shipped this slot
+
+Did: Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 67 commits fast-forwarded, tree clean before this cycle touched anything. Ran `python ops/preflight.py --skip-tests` live to completion: 0 FAIL, 31 warnings, all standing sandbox/credential/art gaps, plus two real, fixable warnings: `status-currency` (STATUS.md 10 commits behind) and `status-deploy-gap-count-current` (BLOCKER-001 citing 0 commits pending against a fresh count of 2). Re-derived `deploy_gap_material_commits('b65f97ba0')` directly: `['c49ee0ff', 'd51c908']`, both touching `site/`. Checked whether this is a real production gap rather than assume either way: GitHub's `deploy.yml` run #468 completed `success` at 2026-11-24T07:00:52Z, at a head_sha after both gap commits, so production has very likely already redeployed past them. Tried `ops/verify_deploy.py https://6s-success.com` live to confirm directly rather than assume: every request got no response, the standing OWNER-ACTIONS.md item 1h network-egress gap, not a new finding. Recorded the gap as unconfirmed-but-probably-closed, not closed, in BLOCKER-001, section 4's Public website row, section 5's build block and section 6's Production traceability row. Also corrected section 6's Repository hygiene row: 30 open issues (not the stale 31), 1 `blocked-on-art` (not 2), re-pulled live via the GitHub API. Brought STATUS.md section 1 current against 8 further unmentioned commits (A231-A233 and bookkeeping), all already accounted for elsewhere.
+
+Verified: GitHub's 30 open issues re-pulled live: 10 P0, 29 decision, 1 blocked-on-art, none from Phil since #65 (2026-11-14, 10 days). 0 open PRs. `inbox_agent.py --apply`: no mail credential, standing gap. Re-ran `preflight.py --skip-tests` after the edits: 0 FAIL (the one transient FAIL, `generator-ownership` refusing a dirty tree mid-edit, cleared once the edit was in and is expected, not a real defect), the two target warnings gone. Caught and fixed one em dash my own edit introduced into STATUS.md before it could ship, via the `dashes` gate.
+
+Went well: catching the two `gate_status_*` warnings and actually fixing the underlying staleness rather than re-reporting it, and distinguishing "deploy workflow succeeded" from "confirmed live" rather than claiming the gap closed on inference alone.
+
+Did not go well: nothing structural; this slot's real work was document-currency plus one honestly-reported unconfirmed production state, not a new feature or fix.
+
+Changing next cycle: none. The next deploy-verdict-capable session should re-run the verdict check to convert "probably closed" into a real confirmation.
+
+Next: hold the standing queue (30 open issues, all decision/P0/blocked-on-art, none from Phil); re-confirm the BLOCKER-001 gap once a session can reach 6s-success.com or holds the deploy-verdict credential.
+
+Dashboard regenerated (python ops/dashboard.py): revenue carried forward as unmeasured this run (no Stripe reach), P0 10, need-you 29, commits7d 1573.
+
+HANDOFF-FILES: none
+
+
 ## PM check-in, 2026-11-24 (~08:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only, 65 commits fast-forwarded, tree clean before this cycle touched anything.
@@ -15575,3 +15594,4 @@ No new defect found small enough to close this slot, and none manufactured. This
 Dashboard regenerated (python ops/dashboard.py): revenue carried forward as unmeasured this run (no Stripe reach), P0 10, need-you 29, commits7d 1452.
 
 HANDOFF-FILES: none
+
