@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-24 (~14:5x slot): re-ledgered one real stale cold-read entry, A238's own fix
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: fetch, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `046873dd4`, 115 commits fast-forwarded, tree clean. Read BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md's process rules, ROADMAP-2026-2029.md and the real last four log entries (grepped `## ` headers directly rather than trust the file's visual tail, since the file is newest-first: 14:1x PM check-in, 14:0x operator cycle (A238), 13:4x and 13:3x PM check-ins, all reaching the same owner-gated conclusion). `preflight.py --skip-tests` live: 0 FAIL, 30 standing warnings. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, most recent touch issue #42 (2026-11-20), none from Phil since #65 (10 days). `inbox_agent.py --apply`: no mail credential, not outranking this pick. Mined `room_guide_underperformance.py` fresh: every room 0-7% uncovered, 0 gap rows, all remaining partial rows already carry prior declines on record. `cold_read_ledger.py --stale` found one real stale entry: `ops/rotate_status_metadata.py`, ledgered 2026-11-17 against a prior fix, but committed again today (`8015dc8cc`, A238's own ENTRY_START_RE fix). Cold-read the real diff directly before re-ledgering (CLAUDE.md 5c/5d), confirmed it matches A238's own description and already carries a fail-then-pass-proven test. Re-ledgered as `fixed`, today's date, real commit named.
+
+**Verified:** `cold_read_ledger.py --stale` re-run after: 0 stale. Discarded preflight's own transient `ops/cycle-signal.json` checkpoint diff before committing (not real work). `preflight.py --skip-tests` re-run on the clean committed tree: 0 FAIL, 30 warnings, all standing sandbox/credential/art gaps.
+
+**Went well:** verified the diff before trusting the stale flag, rather than re-ledgering on the flag alone.
+
+**Did not go well:** nothing new; this is routine catch-up, the same shape as A237.
+
+**Changing next cycle:** none structural. No new preflight gate (10b): the recognition-gap shape already carries its own regression tests inside the file; nothing new to gate.
+
+**Next:** hold the standing 30-issue Phil-gated queue; cheapest unlocks unchanged (#64 traffic read, #58 Stripe description, #46 YouTube OAuth).
+
+No price, product or page touched; `IndexNow` not applicable. Not sending a push notification: nothing material changed since the last one (09:52Z today), same gated queue, no new sale, no delivery problem.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-24 (~14:4x slot, 30-minute triage): previous work confirmed finished, nothing new unblocked, no push sent
 
 NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all `decision`/`P0`/`blocked-on-art`), because nothing is genuinely unblocked.

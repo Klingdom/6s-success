@@ -1253,8 +1253,8 @@
     },
     "rotate_status_metadata.py": {
       "status": "fixed",
-      "date": "2026-11-17",
-      "note": "03122ffc0: taught ENTRY_START_RE the plain-text 'Prior entry, kept because...' label (third recognition-gap instance); fail-then-pass test added, CI run #3819 success. STATUS.md rotated 113238 to 89066 bytes."
+      "date": "2026-11-24",
+      "note": "8015dc8cc: cold-read directly before re-ledgering, not cited from the commit message alone. Added 'Prior entry, ' as its own ENTRY_START_RE alternative, the fourth instance of this recognition-gap shape (file's own history already names three). Fail-then-pass proven: test_prior_entry_bold_label_is_recognised fails against the unpatched regex, passes after. Full suite 12/12. Applied: STATUS.md 111471 to 91051 bytes, 9 entries moved losslessly to STATUS-ARCHIVE.md."
     },
     "rotate_status_workstreams.py": {
       "status": "clean",
