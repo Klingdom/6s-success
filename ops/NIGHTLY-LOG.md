@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-24 (~12:4x slot)
+
+NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art, none from Phil since #65 on 2026-11-14), because nothing is genuinely unblocked beyond this cycle's own small fix.
+
+Previous work (12:1x check-in, 12:19 hourly) was finished, tree clean. Ran `preflight.py --skip-tests` fresh: found and fixed a real warn, `gate_status_history_chain_not_collapsed`: BLOCKER-001 had two entries glued onto one paragraph via "Prior state, kept because the shape recurs: ", defeating `rotate_status_history.py --check-blocker1`'s own CLEAN reading. Archived the superseded entry to STATUS-ARCHIVE.md by hand (this field's oldest-first order makes the automated `--apply-blocker1` risky to trust blind, per the 2026-11-20 entry there); `--check-blocker1` now correctly reports CLEAN. GitHub's 30 issues re-pulled live: unchanged. Dashboard regenerated, shipped.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-24 (~12:1x slot)
 
 Previous work finished, checked not cited: attached cleanly (fetch, ff-only onto 8dca1640a, 96 commits forwarded), tree clean beforehand. Ran python ops/preflight.py --skip-tests live to full completion (not killed early): every gate reached passed, 0 FAIL, 33 standing warnings (no Stripe credential, no SSH deploy key, no mail credential, no live egress, known art/photo gaps already tracked). gate_tests itself was skipped by the flag, so the test suite stays unchecked this run, not confirmed passing. One real self-heal along the way: core.hooksPath was unset locally; preflight's own gate_hooks_enabled set it to .githooks.
