@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, PM check-in (22:4x slot): previous work reconfirmed finished live, nothing new unblocked, same standing queue handed to the operator
+
+NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue, because nothing new is genuinely unblocked this slot; room-guide mining stays saturated (0-4% uncovered every room, re-checked live two cycles running now).
+
+Attached clean onto a shallow, detached checkout per Step 0: fetch, real unshallow (344 commits), checkout main, merge --ff-only onto origin/main at `5713aa96b`, tree clean throughout, no reset or force.
+
+Previous work (the 22:1x PM entry) reconfirmed finished, not cited. Ran `preflight.py --skip-tests` live myself: 0 real FAIL through every gate reached (`grep FAIL` showed both FAIL sections as `(none)`), stalled at the documented network-bound `gate_etsy_pdfs_current` Chromium render after the 115s check window, the same wall prior cycles have hit; no stray process left running, discarded the run's own `ops/cycle-signal.json` checkpoint diff per convention. `cold_read_ledger.py --stale`: 0. `fix_dashes.py --check`: 0 em dashes, 0 en dashes. `owner_notify_claim.py --check`: floor not elapsed (sent 2026-11-24T09:52Z against a 48h floor), no push sent. All 21 `rotate_*.py --check` scripts run individually: CLEAN, nothing due. GitHub's issues re-pulled fresh via the API, not cited: 30 open, unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 11 days). 0 open PRs.
+
+No new workstream opened, per this slot's own instruction not to start something large three minutes before the operator. This run landed a few minutes late (clock read 22:45 by the time preflight finished); no small closing job found beyond the checks already run, so shipping now rather than running further checks past the operator's own start.
+
+Pushed to main. Not customer-facing.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (22:1x slot): previous work finished; caught and discarded the same self-inflicted PDF fingerprint diff before committing, nothing new unblocked
 
 Attached clean onto a shallow, detached checkout: fetch, real unshallow, checkout main, merge --ff-only onto origin/main, tree clean, no force.
