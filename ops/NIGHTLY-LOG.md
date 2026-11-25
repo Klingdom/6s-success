@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, PM check-in (12:4x slot): previous work finished, reconfirmed live by a full clean preflight; one self-inflicted scratch-state glitch found and repaired, no site defect
+
+NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue, because the room-guide lane is independently reconfirmed exhausted (A249, last cycle) and nothing new is genuinely unblocked this slot.
+
+Attached per Step 0 onto a shallow, detached checkout: this cycle's own real `git fetch --unshallow` ran slower than usual and collided once with a second fetch attempt (stale `shallow.lock`, expected and harmless since only one process actually held it); waited for the first to finish rather than force anything, then `checkout main`, `merge --ff-only` onto `origin/main`, tree clean before this cycle touched anything.
+
+Previous work (12:1x PM cycle and the hourly check-in after it) IS finished: tree was clean, main already matched origin. A first `preflight.py --skip-tests` this cycle was cut off by my own external `timeout 280` mid-`gate_generator_ownership`, after that gate's generators had rewritten 114 `site/zones/*.html` files and `ops/cycle-signal.json` but before its own `_restore()` step could run, the exact documented shape of that gate's own docstring. One of those 114 was left genuinely corrupted (truncated to 0 bytes, not just a cosmetic diff): `site/zones/family-room-the-charging-and-device-zone.html`. Not a pre-existing site defect, not shipped, not committed: repaired through the real owning generator (`ops/build_zone_pages.py`, which also restored `wire_measure.py`'s cache-bust hashes the same interrupted run had stripped), verified byte-identical to the committed version afterward, tree clean. Lesson for future cycles: do not external-`timeout`-kill `preflight.py` while `gate_generator_ownership` is running; let it reach its own stopping point or its own internal timeouts.
+
+Re-ran `preflight.py --skip-tests` a second time, this time to its own real completion (no external kill): **every gate passed, 0 FAIL, 28 warnings**, all standing sandbox/credential/art gaps (no SSH deploy key, no Stripe credential, no mail credential, `build/heroes/` absent here so generator-ownership's photo-dependent checks were correctly reported unchecked rather than passing, site unreachable from this sandbox). `cycle_signal` recorded a fresh full clean-pass checkpoint; discarded its own diff afterward per the established convention (it is preflight's own output, not real work).
+
+GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 11 days); issue #42 unchanged since 2026-11-20. 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 re-read directly: unchanged, everything Done, Hold, or Phil-gated in section 6's owner-gates table. `OWNER-ACTIONS.md`'s "List reviewed" marker (2026-11-22) still covers every open row; nothing new since.
+
+No new push notification: nothing material changed since the standing silence this routine has already not re-notified on for several cycles (same 30-issue queue, no Phil reply, no new Stripe/traffic signal).
+
+Pushed to main: this log entry and the regenerated command deck. No price, product or site page touched by this cycle's own work (the zone-page repair matches the already-committed, already-shipped content byte for byte); not customer-facing beyond restoring already-shipped state; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (12:1x slot): previous work finished, independently reconfirmed live; closed one due backlog rotation
 
 NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue; room-guide mining stays at diminishing returns (0-12% uncovered per room, A249 reconfirmed the lane is genuinely exhausted by phrase).
