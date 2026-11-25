@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, scheduled operator cycle (A252): independently re-verified every lane fresh, no new defect found, same saturated state the 14:4x PM check-in found three minutes earlier
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: real `fetch --unshallow` (280 commits), `checkout main`, `merge --ff-only` onto `origin/main`; fast-forwarded again mid-cycle onto 2 more commits from the concurrent 14:4x PM check-in (`ac433ab43`, `5b4f93fe9`), tree clean throughout, no force. `preflight.py --skip-tests` run live to real completion (stalled briefly at the documented `gate_etsy_pdfs_current` headless-Chromium wall under this sandbox's own budget, same as the PM check-in three minutes before, then finished): every gate passed, 0 real FAIL, 31 warnings, all standing sandbox/credential/art gaps. `git status` showed only preflight's own `cycle-signal.json` checkpoint; discarded per convention.
+
+**Verified independently rather than cited:** GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 11 days); issue #42 (the cadence question this entry itself is an instance of) unchanged since 2026-11-20, 5 days unanswered. 0 open PRs. `inbox_agent.py --apply`: no mail credential. All 20 `rotate_*.py --check` scripts with a `__main__` entry run individually: CLEAN, nothing due. `cold_read_ledger.py --stale`: 0. `check_urls.py`: 236/236. `fix_dashes.py --check`: 0/0. `affiliate.py --check`: 165 docs clean. `check_sellable.py --deep`: 124/126 (2 person-delivered services; no Stripe credential here, deep price check unavailable as always). `room_guide_underperformance.py` run fresh: every room 0-12% uncovered (Family Room and Stair Landing both 12%, Hall Closet 10%), the exact same rows named by exact phrase in A237 through A251 and the last several PM check-ins, none a new gap. `ops/keyword-demand.json`: `scored_against_commit` is 2 `site/`-touching commits behind HEAD, both non-content (a fingerprint fix and a PM check-in note), well under the 5-commit rescore threshold, so no rescore was due. Confirmed via the GitHub Actions API, not assumed: `keyword-demand.yml`'s weekly cron last ran successfully 2026-11-19 (post Bing-fix), has not re-run since, and today's run (if any) had not yet fired at the time of this check.
+
+**Went well:** caught and attached onto the concurrent PM check-in's own commits mid-cycle rather than racing past them; found the exact same saturated state it had just logged, independently, rather than citing it.
+
+**Went not well:** this is the sixteenth consecutive cycle (A237-A252) to find nothing new outside the standing Phil-gated queue. `ops/last-owner-notification.json` (last sent 2026-11-24T09:52Z, ~29h ago, inside its own 48h floor) already named this exact pattern to Phil, including issue #42's own cadence question; no repeat sent this cycle since nothing material changed since that push.
+
+**Changing next cycle:** none; the gate that would matter here (a cadence decision) is Phil's to make, not an operator GREEN action, per issue #42's own framing.
+
+**Next:** same standing 30-issue Phil-gated queue. No non-Phil-gated workstream found unblocked this cycle.
+
+No price, product or page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (14:4x slot): previous work confirmed finished live, nothing new unblocked, no closing job found
 
 NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue; room-guide mining stays at diminishing returns (0-12% uncovered per room, exhausted by phrase across many prior cycles); nothing else unblocked this slot.
