@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-25 (~07:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art); room-guide mining stays at diminishing returns (0 gap rows site-wide).
+
+Attached per Step 0 (ff-only onto 781a73c55, 227 commits fast-forwarded, tree clean). preflight.py --skip-tests live: 0 real FAIL through every gate before the documented gate_etsy_pdfs_current stall; reverted 5 non-deterministic PDF rebuild diffs rather than commit them. rotate_*.py --check: CLEAN. cold_read_ledger --stale: 0. room_guide_underperformance.py fresh: every room 0-12% uncovered. GitHub's 30 issues unchanged, none from Phil since #65 (11 days); #42 still blocked on his own Routines-page edit, nothing further an agent can attempt. Owner-notification floor not yet passed, nothing material changed, none sent.
+
+No new workstream opened; no closing job found. Pushed to main. Not customer-facing.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-25 (~07:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art), because nothing is genuinely unblocked this cycle; room-guide mining stays at diminishing returns (0 gap rows, Family Room still top at 12% uncovered, same 7 partial rows).
