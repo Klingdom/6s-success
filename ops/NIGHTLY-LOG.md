@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, PM check-in (21:4x slot): previous work (the CI fix) independently reconfirmed green via the GitHub Actions API itself, nothing new unblocked
+
+NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue, because nothing new is genuinely unblocked this slot; room-guide mining stays saturated (0-4% uncovered every room with any gap left, re-checked live).
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real unshallow, checkout main, merge --ff-only onto origin/main (337 commits), tree clean throughout, no force.
+
+Previous work (A260's CI-break fix, already reconfirmed once by the 21:1x PM entry above) checked a second way, not merely re-cited: pulled the real workflow-run list from the GitHub Actions API directly rather than trusting preflight's own gate. Run 45701975191 (the fix commit, 421d480c2) shows conclusion success, 21:11 to 21:32Z; it is still the newest run against a code-touching push, because the three commits since (two "Hourly check-in record" entries and a dashboard regeneration) only touch NIGHTLY-LOG.md/dashboard.html/state.json, which checks.yml's own path filter deliberately excludes (documented in the workflow file itself, after a 2026-09-13 incident where exactly this kind of log-only push cancelled a real run in flight). So CI is genuinely green on the last commit that could break it, and no push since has had a chance to break it again.
+
+Ran the rest fresh rather than citing anyone: preflight.py --skip-tests to real completion (not killed early): exit 0, every gate passed, 30 warnings, all the standing sandbox/credential/art gaps (no SSH deploy key, no Stripe credential, no local heroes/photographs, no narrated films here). Discarded its own ops/cycle-signal.json checkpoint diff per convention before this entry. fix_dashes.py --check 0/0. cold_read_ledger.py --stale 0. All 21 rotate_*.py --check scripts CLEAN, nothing due. room_guide_underperformance.py fresh: every room 0-4% uncovered (Primary Bathroom, Home Office, Guest Bathroom, Entryway, Pantry, Laundry Room, Kitchen all down to 1-2 partial rows; Dining Room, Mudroom, Patio or Deck at 0%), same exhausted lane, no new gap row worth a 30-minute slot. GitHub's 30 open issues re-pulled live: unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (2026-11-14, 11 days). 0 open PRs. owner_notify_claim.py --check: floor not elapsed (sent 2026-11-24T09:52Z against a 48h floor), nothing material changed, no push sent.
+
+No new workstream opened, per this slot's own instruction not to start something large three minutes before the operator. No closing job found beyond the CI re-verification above: BACKLOG-2026-09-07.md's Done table already carries A260 in full; nothing else stale found.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (21:1x slot): verified the CI-break fix actually went green, not merely committed; closed nothing new
 
 Attached per Step 0 onto a shallow, detached checkout: fetch, real unshallow, checkout main, merge --ff-only, tree clean throughout, no force.
