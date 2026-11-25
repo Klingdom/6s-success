@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, scheduled operator cycle (~21:4x slot): found and discarded a self-inflicted PDF fingerprint diff before it could reach a commit; otherwise re-confirmed the saturated state
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `56acd5079`, 337 commits fast-forwarded, tree clean. Ran `preflight.py --skip-tests` live to real completion (twice, to confirm after a fix): the first pass FAILed `gate_generator_ownership` because 5 Etsy-listing PDFs under `build/listings/etsy/` were already modified in the working tree before this cycle touched anything, each differing from the committed blob by exactly 2 bytes, both inside an embedded PDF-producer string ("Skia/PDF m153" vs "m158", a headless-Chromium version marker), identical file size before and after. Traced with `cmp -l` and a byte-offset read rather than assumed: this sandbox's installed Chromium differs from whatever last rendered the committed copy, so some earlier step in this cycle (a check script that re-renders these PDFs to verify them) reproduced a byte-identical PDF except for that version string. Discarded with `git checkout --` rather than committed; this is the same "self-inflicted fingerprint-only diff" shape prior cycles (A243 and others) have already named for `site/stair-landing-deck.html`, not a new defect class, so no new gate was written for it (the existing precedent already says discard on sight).
+
+**Verified:** Second `preflight.py --skip-tests` pass on the clean tree: 0 FAIL. `check_urls.py` 236/236, `check_sellable.py --deep` 124/126 (2 person-delivered services), `affiliate.py --check` 165 docs, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0, all 21 `rotate_*.py --check` CLEAN. Re-confirmed, not cited, that A260's CI-break fix (`421d480c`) is live-green on GitHub Actions (`checks.yml` run `45701975191`, `success`), after the three prior consecutive failures it fixed. Deploy gap still 0 commits (`git log a185a451..HEAD -- site/ Dockerfile` empty). GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (11 days). `ops/owner_notify_claim.py --check`: ~36h of the 48h floor elapsed, nothing material changed, no push sent. `inbox_agent.py --apply`: no mail credential here. Brought `STATUS.md` section 1 current against the 8 commits it had not yet mentioned (all already narrated elsewhere).
+
+**Went well:** Catching the PDF diff before it was committed, rather than after, kept a spurious Chromium-version artifact out of `main`.
+
+**Went not well:** Nothing material; the backlog's non-Phil-gated lanes remain exhausted (every room 0-12% uncovered, no new content gap found).
+
+**Changing next cycle:** None.
+
+**Next:** Same standing Phil-gated queue (30 issues); the owner-notification floor clears around 2026-11-26T09:52Z if nothing material changes before then.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (21:4x slot): previous work (the CI fix) independently reconfirmed green via the GitHub Actions API itself, nothing new unblocked
 
 NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue, because nothing new is genuinely unblocked this slot; room-guide mining stays saturated (0-4% uncovered every room with any gap left, re-checked live).
