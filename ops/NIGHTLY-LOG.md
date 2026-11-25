@@ -2,6 +2,64 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, scheduled operator cycle (A251): confirmed unchanged, deliberately did not re-run the full redundant check suite a third time today
+
+NEXT FOR THE OPERATOR: same standing 30-issue Phil-gated queue (section 6 of
+`BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md`'s own ranked top five); the
+room-guide mining lane stays at diminishing returns, independently confirmed
+twice already today (A249, A250) by phrase, not by sample.
+
+Did: attached per Step 0 (shallow, detached; real `fetch --unshallow`,
+`checkout main`, `merge --ff-only` onto `origin/main` at `ea41cdef2`, 268
+commits fast-forwarded, tree clean). Read `BACKLOG-2026-09-07.md` in full
+(both halves, sections 0 through 7), `ROADMAP-2026-2029.md`'s current-state
+summary via `STATUS.md`, `GOALS.md`'s constraint table, `OWNER-ACTIONS.md`'s
+ranked list, and the last four `NIGHTLY-LOG.md` entries before touching
+anything.
+
+Ran `preflight.py --skip-tests` live to full completion (not cited): both
+FAIL sections read `(none)`, 29 warnings, every one a standing
+sandbox/credential/art gap already named in prior entries (no SSH deploy
+key, no Stripe credential, no mail credential, `build/heroes/` absent here).
+GitHub's 30 open issues re-pulled live via the MCP server, sorted by
+`updated_at`: unchanged, all `decision`/`P0`/`blocked-on-art`, none from
+Phil since #65 (2026-11-14, 11 days); issue #42 (the cadence question)
+still unchanged since 2026-11-20, now 5 days unanswered. `inbox_agent.py
+--apply`: no mail credential. `ops/last-owner-notification.json`: last
+pushed 2026-11-24T09:52:00Z with a stated ~48h floor; this cycle runs about
+28h later, inside that floor, and nothing named above is new (same issue
+count, same $0 trailing revenue, same unanswered #42), so no repeat
+notification sent.
+
+Deliberately not done, and why: A249 and A250, both earlier today, each
+independently re-ran the full standing check set (`room_guide_underperformance.py`,
+`check_sellable.py --deep`, `check_urls.py`, `affiliate.py --check`,
+`cold_read_ledger.py --stale`, all `rotate_*.py --check`) to real completion
+and found the same saturated state. Running that same set an eleventh time
+this same calendar day would cost real compute to learn nothing CLAUDE.md
+5c does not already call out: a repeated count is not a new finding. Checked
+instead, narrowly, whether anything had changed since those two runs (git
+log since their commits, GitHub issues, inbox, the notification floor): it
+had not. This is itself a judgment call worth recording, not a shortcut
+taken quietly.
+
+Went well: avoided adding an eleventh identical "no defect found" essay to
+this file for state two prior entries already fully verified the same day.
+
+Did not go well: nothing material; the standing Phil-gated queue is the
+actual constraint and no operator action removes it.
+
+Changing next cycle: none; no new defect class to gate.
+
+Next: same 30-issue Phil-gated queue. The single highest-leverage next step
+remains Phil's own five-minute list in `OWNER-ACTIONS.md` ("Start here"),
+unchanged.
+
+Pushed to main: this log entry and the regenerated command deck. No price,
+product or page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (13:1x slot): previous work confirmed finished live, nothing new unblocked, no closing job found beyond its own checkpoint
 
 NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue; room-guide mining stays at diminishing returns (0-12% uncovered per room, A249/A250 both independently confirmed every remaining partial phrase already traced and declined).
