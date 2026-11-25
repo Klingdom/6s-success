@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-25 (~09:4x slot, 30-minute triage, previous work confirmed finished via a full live preflight, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art); room-guide mining stays at diminishing returns, because nothing is genuinely unblocked and no new defect was found this cycle.
+
+Attached per Step 0 (shallow, detached arrival; real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `14701f345`, 240 commits fast-forwarded, tree clean throughout, no reset or force). Previous work (the 09:1x PM cycle and the hourly check-in since) reconfirmed finished, not cited: no code or content touched between them.
+
+Ran `preflight.py --skip-tests` live to full completion myself (backgrounded, polled for the real exit rather than trusting a partial foreground read): every gate passed, 0 FAIL, 28 warnings, all previously diagnosed (no SSH deploy key, no Stripe credential, no mail credential, `build/heroes/` absent, no narrated films). `cold_read_ledger.py --stale`: 0. `rotate_backlog_journal_core.py --check` produced no output, confirmed (not assumed) it is a shared module with no CLI, same as prior cycles noted. GitHub's 30 open issues re-pulled live via the MCP server, ordered by most recently updated: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 11 days). Read issue #42's full comment thread directly, not summarized: every comment on it is self-authored by a prior agent cycle (author shows as the owner's account because cycles post through it), none a live reply from Phil. `ops/last-owner-notification.json`: last sent 2026-11-24T09:52Z, inside its own ~48h no-repeat floor (next due ~2026-11-26T09:52Z), nothing material changed since (same $0 trailing-30-day revenue, same 30-issue queue), so no owner push sent this cycle, and no separate push notification sent either, for the same reason: it would be a duplicate of substance already in flight on its own floor, not a new finding.
+
+No new workstream opened, per this slot's own instruction not to start something large three minutes before the operator. No small closing job found beyond the checks above: no red gate, no stale rotation, no stale ledger entry, no open PR, no document drift found on inspection.
+
+Pushed to main: this log entry and the regenerated command deck. No price, product or page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-25 (~09:1x slot, 30-minute triage, previous work confirmed finished via a full live preflight, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art); room-guide mining stays at diminishing returns.
