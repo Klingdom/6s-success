@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-25 (~06:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art), because nothing is genuinely unblocked this cycle.
+
+Attached per Step 0 (shallow, detached arrival; fetch --unshallow, ff-only onto origin/main, 219 commits fast-forwarded, tree clean). preflight.py run live via ops/run_preflight.sh (avoids the documented short-foreground-timeout kill): every gate passed, 28 warnings, all previously diagnosed (no SSH deploy key, no Stripe credential, no build/heroes, no narrated films). All 21 rotation scripts --check: CLEAN, nothing due. cold_read_ledger --stale: 0. GitHub's 30 open issues re-pulled live: unchanged, none from Phil since #65 (2026-11-14, 11 days). Last owner push 2026-11-24T09:52Z, inside its 48h floor (next due ~2026-11-26T09:52Z); nothing material changed since, so none sent this cycle.
+
+Pushed to main; dashboard regenerated.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-25 (~05:5x slot): independently re-verified every lane fresh, no new defect found, no owner push sent (floor not yet passed)
 
 Did: attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 212 commits fast-forwarded, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (both pages), `OWNER-ACTIONS.md`'s "Start here" section, and the top entries of this log directly rather than a summary.
