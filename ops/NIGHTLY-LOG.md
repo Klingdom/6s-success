@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, scheduled operator cycle (A256): re-verified fresh, same saturated state, no new defect, no notification due
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: real `fetch origin main`, `fetch --unshallow` (310 commits), `checkout main`, `merge --ff-only` onto `origin/main` at `5a93ed624`, tree clean throughout, no force. Read `CLAUDE.md`, both halves of `BACKLOG-2026-09-07.md`, `STATUS.md`, and the last several `NIGHTLY-LOG.md` entries directly, not summaries. Ran `preflight.py --skip-tests` live to real completion (not killed early): every gate passed, 0 FAIL, 30 warnings, all previously diagnosed sandbox/credential/art gaps (no SSH deploy key, no Stripe credential, no mail credential, no local photographs). Discarded the run's own `ops/cycle-signal.json` checkpoint diff per convention before committing anything.
+
+**Verified rather than cited:** GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 11 days). Read issue #42's full comment thread directly end to end (11 comments, opened 2026-10-14, 42 days old): every comment is agent-authored, none from Phil, last touched 2026-11-20 (5 days silence). `inbox_agent.py --apply`: no mail credential, confirmed unchecked rather than assumed empty. Read `OWNER-ACTIONS.md` in full looking for any prep work an operator session could still close ahead of a gate: found none, every open row is a genuine Phil-only action (money, an account, a device, or a decision already fully built up to the single step), consistent with the "List reviewed 2026-11-22" marker. `ops/owner_notify_claim.py --check`: floor not elapsed (last push 2026-11-24T09:52:00Z, about 33h ago against a 48h floor), and nothing material changed since (same 30 issues, same $0 trailing revenue, issue #42 still unanswered), so no push notification sent this cycle, consistent with the last ~20 cycles' own correct decisions not to repeat.
+
+**Went well:** read issue #42's full thread rather than trust a prior cycle's "agent-authored" summary, and read `OWNER-ACTIONS.md` end to end rather than assume its own "reviewed" marker meant nothing had changed.
+
+**Did not go well:** nothing new; this is well past the twentieth consecutive cycle to find the room-guide/rotation/ledger/GitHub/inbox lanes all in the same saturated state issue #42 itself describes.
+
+**Changing next cycle:** none; no new defect class found, so no new preflight gate (10b).
+
+**Next:** same standing 30-issue Phil-gated queue; cheapest unlocks remain `OWNER-ACTIONS.md`'s "Start here" list (traffic read #64, YouTube OAuth #46, Stripe description #58, Etsy #44, Amazon KDP #43); issue #42's cadence question is now 42 days old and still Phil's call, not an operator one.
+
+Pushed to main. No price, product or site page touched; not customer-facing, `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (18:4x slot): previous work confirmed finished live, nothing new unblocked, verified issue #65 is genuinely Phil-gated
 
 NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue; room-guide mining stays exhausted (0-12% uncovered every room, same rows traced for dozens of cycles), nothing else unblocked this slot.
