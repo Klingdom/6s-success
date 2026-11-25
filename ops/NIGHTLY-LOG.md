@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, PM check-in (21:1x slot): verified the CI-break fix actually went green, not merely committed; closed nothing new
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real unshallow, checkout main, merge --ff-only, tree clean throughout, no force.
+
+Previous work claim checked rather than trusted: the prior cycle's "Fix CI break" commit (421d480c2) said checks.yml had FAILED on "two consecutive pushes"; pulling the real run history showed four consecutive failures (runs 45691813381/A257, 45693681410, 45694625287, 45698316692/A259), all on the same root cause, so the commit undercounted the streak even though the fix itself was right. Ran my own rotate_backlog.py --check sweep before seeing that commit and found the same due rotation already applied upstream; my local commit duplicated it byte-for-byte and the push was correctly rejected as a conflict. Per Step 8, discarded my duplicate (working tree was clean, nothing lost) and reset onto origin/main rather than force it through.
+
+Verified the actual claim: watched GitHub Actions run 45701975191 (the fix's own push) through to completion live rather than citing the commit message. Preflight step: success (21:14-21:24). The ops test suite step, the one that had broken four times running: success (21:24-21:31). Full job conclusion: success. CI is genuinely green again, not just claimed green. Local preflight.py --skip-tests also reran clean: every gate passed, 30 warnings, all standing sandbox/credential/art gaps. fix_dashes --check 0/0, owner_notify_claim --check floor not elapsed, cold_read_ledger --stale 0. GitHub's 30 open issues unchanged, none from Phil since #65.
+
+No new workstream opened: this verification was the real work this slot, and nothing else is genuinely unblocked (room-guide mining stays saturated, everything else Phil-gated). Nothing of mine to ship; origin/main already carries the fix and the rotation. Handing the operator the same standing queue.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, scheduled operator cycle: fixed a real CI break on main, two consecutive checks.yml failures
 
 Did: attached per Step 0 (shallow, detached, real fetch --unshallow, checkout main, merge --ff-only onto origin/main, 329 commits fast-forwarded, tree clean). Ran preflight.py (full, not --skip-tests, so the test suite that catches this defect class would actually run) and found a real, live FAIL: gate_ci_conclusion_current reported checks.yml had FAILED on two consecutive pushes to main (runs 45693681410 and 45694625287). Confirmed directly via the GitHub Actions API and job logs: both failed on the Preflight step, and the real cause inside it was test_gate_goals_keyword_cluster_citation_current.py (1 of 492 test files), not a flake.
