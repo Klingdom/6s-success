@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-25 (~04:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art), because this cycle's own fresh checks found nothing genuinely unblocked; the room-guide mining lane the last two slots handed over is now flagged by the gate itself as diminishing returns (0 genuine on-topic gap rows site-wide, only partial-tier scoring ties left), so do not default to mining more partial rows for marginal value without checking that reading first.
+
+Attached per Step 0 onto a shallow, detached checkout: `git fetch origin main`, real `git fetch --unshallow` (a first attempt collided with a still-running earlier fetch holding `shallow.lock`; waited for it rather than killing it or forcing), `checkout main`, `merge --ff-only` onto `origin/main` at `cc71b2b9d`, tree clean throughout, no reset or force.
+
+Previous work (the 04:1x PM check-in) confirmed finished, not cited: it was pushed, nothing has run between it and this slot. Ran `preflight.py --skip-tests` live to real, full completion myself (3m, background): both `FAIL` headers read `(none)`, 0 real FAIL, 31 warnings, all previously diagnosed (no SSH deploy key, no Stripe credential, `build/heroes/` absent locally, no local book photographs, no narrated films here). `cycle_signal` recorded a clean checkpoint. GitHub's 30 open issues re-pulled live via the API, ordered by most recently updated: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, now 11 days); #42 (the cadence question) unchanged since 2026-11-20, now 5 days. `ops/last-owner-notification.json`: last sent 2026-11-24T09:52:00Z, inside its own 48h no-repeat floor (about 19h elapsed), nothing material changed since (still $0 trailing-30-day revenue, still the same 30-issue queue), so no owner push sent this cycle, consistent with every intervening cycle's own reading.
+
+No new workstream opened: no red gate, no stale rotation, no stale ledger entry, no open PR, no document drift found on inspection; per this slot's own instruction, nothing large started three minutes before the operator.
+
+Pushed to main: this log entry, preflight's own checkpoint, and the regenerated command deck. No price, product or page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-25 (~04:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: Family Room (12% uncovered, 7 partial of 56 on-topic rows) remains the single largest genuinely unmined room-guide tier, unchanged from the prior two slots; Stair Landing (12%, 1 partial) and Hall Closet (10%, 10 partial) are next if it is exhausted first. Note the gate's own fresh diminishing-returns reading this cycle (below) before spending operator time there.
