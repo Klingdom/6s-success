@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-25 (~07:5x slot): independently re-verified every lane fresh, no new defect found, no push sent
+
+**Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `781a73c55`, 227 commits fast-forwarded, tree clean). Read `GOALS.md`'s referenced sections via `BACKLOG-2026-09-07.md`/`STATUS.md`, `CLAUDE.md`, and the last four `NIGHTLY-LOG.md` entries directly, not a summary.
+
+**Verified:** `preflight.py --skip-tests` run live to real completion: 0 FAIL, 30 warnings, all previously diagnosed sandbox/credential/art gaps (no SSH deploy key, no Stripe credential, no mail credential, `build/heroes/` absent, no narrated films). `inbox_agent.py --apply`: no mail credential. GitHub's 30 open issues re-pulled live via the MCP server, not cited: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 11 days). `room_guide_underperformance.py` run fresh myself rather than cited: every room 0-12% uncovered, 0 gap rows, Family Room still top at 12% with the same 7 partial rows prior cycles already traced to recorded declines (CLAUDE.md 5c/5d). All `rotate_*.py --check` scripts: CLEAN. `cold_read_ledger.py --stale`: 0. `fix_dashes.py --check`: 0/0. `build_id.py --check`: current, 0 commits pending. `check_urls.py`: 236/236. Checked `ops/last-owner-notification.json`: last sent 2026-11-24T09:52:00Z, inside its own ~48h floor (next due ~2026-11-26T09:52Z), nothing material changed since (same $19 lifetime revenue, same 30-issue queue, no new Phil comment), so no duplicate push sent.
+
+**Went well:** Verified the room-guide reading fresh rather than citing a prior cycle's count, per CLAUDE.md 5c/5d.
+
+**Did not go well:** Nothing material.
+
+**Changing next cycle:** None. No new preflight gate (10b): no new defect class found this cycle.
+
+**Next:** Standing 30-issue Phil-gated queue, unchanged since 2026-11-14. Room-guide mining lane remains at diminishing returns. No price, product or page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-25 (~07:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art); room-guide mining stays at diminishing returns (0 gap rows site-wide).
