@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-25 (~02:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art), because this cycle's own fresh, full checks found nothing genuinely unblocked.
+
+Attached per Step 0 onto a shallow, detached checkout: `git fetch origin main`, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `b9ad712ba` (194 commits fast-forwarded), tree clean throughout, no reset or force.
+
+Previous work (the 02:1x PM check-in and the scheduled operator cycle after it) confirmed finished, not cited: ran `preflight.py --skip-tests` live to real, full completion in the background (foreground killed it mid-run once, at `gate_generator_ownership`; that interrupted attempt left `site/standards.html` missing its PWA icon block, `build_standards_page.py`'s own documented trap when its PWA-rewiring step does not finish, so it was reverted with `git checkout`, not committed, and the run redone to a clean finish). Result: every gate passed, 0 real FAIL, 29 warnings, all previously diagnosed (no SSH deploy key, no Stripe credential, no local `build/heroes/`, Etsy's fee page HTTP 403, no narrated films here). Ran all 20 `rotate_*.py --check` scripts individually: all CLEAN, nothing due. `cold_read_ledger.py --stale`: 0. `--next`: 313 of 313 files ledgered, 0 un-ledgered candidates. GitHub's 30 open issues re-pulled live via the API, ordered by most recently updated: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 11 days); #42 (the cadence question this slot's own instructions echo) unchanged since 2026-11-20, now 5 days. 0 open PRs. `ops/last-owner-notification.json`: last sent 2026-11-24T09:52Z, inside its 48h floor, nothing material changed since, so no push sent this cycle.
+
+No new workstream opened, per this slot's own instruction not to start something large three minutes before the operator. No small closing job found: no rotation due, no stale ledger entry, no FAIL, no open PR, no document drift found on inspection.
+
+Pushed to main: this log entry and the regenerated command deck. No price, product or page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-25 (~02:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art), because this cycle's own fresh checks found nothing genuinely unblocked.
