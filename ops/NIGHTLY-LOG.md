@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, PM check-in (18:4x slot): previous work confirmed finished live, nothing new unblocked, verified issue #65 is genuinely Phil-gated
+
+NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue; room-guide mining stays exhausted (0-12% uncovered every room, same rows traced for dozens of cycles), nothing else unblocked this slot.
+
+Attached per Step 0 onto a shallow checkout: fetch, unshallow, ff-only onto origin/main, tree clean, no force.
+
+Previous work (A255, 18:1x PM) IS finished, reconfirmed live: preflight.py --skip-tests run myself, 0 real FAIL through every gate reached, hit the documented sandbox wall; only cycle-signal.json dirty, discarded. GitHub's 30 issues re-pulled: unchanged, none from Phil since #65/#42. Read issue #65 directly: confirmed genuinely un-fixable by an agent, correctly Phil-gated. Room guide, ledger, dashes, all 20 rotate_*.py --check re-verified fresh, all clean. last-owner-notification.json inside its 48h floor, no repeat sent.
+
+No new workstream opened; no closing job found beyond already clean. Pushed to main. Not customer-facing.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (18:1x slot): previous work confirmed finished after a self-repair, no closing job found, same saturated state
 
 NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue; room-guide mining stays exhausted (every room 0-12% uncovered, every remaining partial phrase already traced across dozens of prior cycles); nothing else unblocked this slot.
