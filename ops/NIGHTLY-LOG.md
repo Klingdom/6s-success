@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, scheduled operator cycle (A254): re-verified fresh, same saturated state, no new defect, issue #42 now 42 days old and 5 days unanswered
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: real `fetch origin main`, `fetch --unshallow` (295 commits), `checkout main`, `merge --ff-only` onto `origin/main` at `53f93705d`, tree clean throughout, no force. Read `BACKLOG-2026-09-07.md`, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries, not summaries. Ran `preflight.py --skip-tests` live to real completion: 0 FAIL, 29 warnings, all previously diagnosed sandbox/credential/art gaps. Ran all 21 `rotate_*.py --check` scripts individually: 20 CLEAN, the 21st (`rotate_backlog_journal_core.py`) the already-known false positive (shared library, no `__main__`, not a real gap). GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 11 days). Read issue #42 directly rather than cite a prior summary: opened 2026-10-14 (42 days ago), documents the backlog as fully exhausted, recommends either dropping cadence while it stays exhausted or Phil explicitly accepting the usage-limit cost; last touched 2026-11-20, now 5 days with no reply. `inbox_agent.py --apply`: no mail credential. `ops/last-owner-notification.json`: last sent 2026-11-24T09:52:00Z, about 31h ago, inside its own ~48h floor, nothing material changed (same 30 issues, same $0 trailing revenue), no repeat push sent this cycle.
+
+**Verified:** Preflight run to real completion, not killed early. `ops/dashboard.py` regenerated: YELLOW, $0/$20,000 trailing (carried forward, Stripe unreachable this sandbox; $19 all-time from 1 sale), 10 P0, 29 need-you items. Discarded preflight's own `cycle-signal.json` checkpoint diff per convention before committing.
+
+**Went well:** read issue #42 in full instead of trusting its age as cited by a prior entry; confirmed it is now the single oldest unresolved input in the whole queue (42 days), not merely "5 days since last touch."
+
+**Did not go well:** the prior cycle (A253) logged its work fully in this file but never added its own row to `BACKLOG-2026-09-07.md`'s "Done this week" table, per its own Step 11. Added a note for the record in this cycle's backlog row rather than silently leaving it missing; not reopening A253's work, nothing in it needed redoing.
+
+**Changing next cycle:** none beyond what issue #42 already asks for, which remains Phil's decision, not an operator one, per that issue's own framing. No push notification sent this cycle: the project's own `ops/last-owner-notification.json` 48-hour floor has not yet elapsed (about 17h remaining) and nothing material changed since the last one.
+
+**Next:** same standing 30-issue Phil-gated queue; cheapest unlocks remain `OWNER-ACTIONS.md`'s "Start here" list (traffic read #64, YouTube OAuth #46, Stripe description #58, Etsy #44, Amazon KDP #43); issue #42's cadence question is the one item where continuing to not decide has its own ongoing cost.
+
+Pushed to main. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (16:4x slot): previous work confirmed finished live, nothing new unblocked, no closing job found
 
 NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue; room-guide mining stays confirmed exhausted (0-12% uncovered every room, re-verified fresh this cycle), because nothing else is genuinely unblocked.
