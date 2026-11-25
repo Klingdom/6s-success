@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-19T14:13:52Z",
+  "checked_at": "2026-11-25T19:38:44Z",
   "sources": [
     "google"
   ],
@@ -646,7 +646,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 13,
+      "best_rank": 12,
       "seeds": [
         "basement organization ideas"
       ],
@@ -745,7 +745,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 13,
       "seeds": [
         "basement organization ideas"
       ],
@@ -819,11 +819,30 @@
       "unmatched_words": []
     },
     {
-      "query": "best way to organize a gallery wall",
+      "query": "best way to arrange gallery wall",
       "sources": [
         "google"
       ],
       "best_rank": 7,
+      "seeds": [
+        "how to organize gallery wall"
+      ],
+      "room": "",
+      "best_page": "/zones/stair-landing-the-wall-and-display-zone.html",
+      "best_page_title": "How to organize the stair landing gallery wall",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/stair-landing-the-wall-and-display-zone.html",
+      "matched_on": "title",
+      "status": "covered",
+      "unmatched_words": []
+    },
+    {
+      "query": "best way to organize a gallery wall",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 8,
       "seeds": [
         "how to organize gallery wall"
       ],
@@ -861,7 +880,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 8,
       "seeds": [
         "how to organize a home office"
       ],
@@ -918,7 +937,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 6,
       "seeds": [
         "how to organize a nursery"
       ],
@@ -937,7 +956,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 5,
       "seeds": [
         "how to organize a nursery"
       ],
@@ -948,6 +967,25 @@
       "heading_coverage": 1.0,
       "heading_page": "/zones/nursery-the-changing-station.html",
       "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
+    },
+    {
+      "query": "best way to organize a workshop",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 13,
+      "seeds": [
+        "how to organize a workshop"
+      ],
+      "room": "Workshop",
+      "best_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
+      "best_page_title": "How to organize the workshop hardware storage",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -1066,25 +1104,6 @@
       "unmatched_words": []
     },
     {
-      "query": "best way to organize car cleaning supplies",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 4,
-      "seeds": [
-        "how to organize car care supplies"
-      ],
-      "room": "",
-      "best_page": "/zones/garage-the-automotive-care-zone.html",
-      "best_page_title": "How to organize the garage car care supplies",
-      "coverage": 0.667,
-      "heading_coverage": 1.0,
-      "heading_page": "/zones/garage-the-automotive-care-zone.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": []
-    },
-    {
       "query": "best way to organize charging station",
       "sources": [
         "google"
@@ -1110,6 +1129,7 @@
       ],
       "best_rank": 10,
       "seeds": [
+        "how to organize cleaning equipment",
         "how to organize cleaning supplies"
       ],
       "room": "",
@@ -1127,7 +1147,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 6,
+      "best_rank": 7,
       "seeds": [
         "how to organize craft area"
       ],
@@ -1279,7 +1299,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 10,
       "seeds": [
         "how to organize linen storage"
       ],
@@ -1408,27 +1428,6 @@
       "unmatched_words": []
     },
     {
-      "query": "bonus room decorating",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 15,
-      "seeds": [
-        "bonus room organization"
-      ],
-      "room": "",
-      "best_page": "/rooms/family-room.html",
-      "best_page_title": "How to organize a family room, zone by zone",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/rooms/family-room.html",
-      "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "decorating"
-      ]
-    },
-    {
       "query": "bonus room ideas",
       "sources": [
         "google"
@@ -1452,7 +1451,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 8,
       "seeds": [
         "bonus room organization"
       ],
@@ -1537,7 +1536,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 9,
       "seeds": [
         "bonus room organization"
       ],
@@ -1668,6 +1667,25 @@
       "best_page": "/rooms/family-room.html",
       "best_page_title": "How to organize a family room, zone by zone",
       "coverage": 0.333,
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/family-room.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
+    },
+    {
+      "query": "bonus room organization ideas",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 15,
+      "seeds": [
+        "bonus room organization"
+      ],
+      "room": "",
+      "best_page": "/rooms/family-room.html",
+      "best_page_title": "How to organize a family room, zone by zone",
+      "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/rooms/family-room.html",
       "matched_on": "heading",
@@ -1817,7 +1835,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 12,
       "seeds": [
         "coat closet organization"
       ],
@@ -2070,7 +2088,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 11,
       "seeds": [
         "coat closet organization"
       ],
@@ -2250,7 +2268,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 5,
       "seeds": [
         "how to organize diaper storage"
       ],
@@ -2401,27 +2419,6 @@
       "unmatched_words": []
     },
     {
-      "query": "dining room decorating ideas with mirrors",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 15,
-      "seeds": [
-        "dining room organization ideas"
-      ],
-      "room": "Dining Room",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "mirrors"
-      ]
-    },
-    {
       "query": "dining room decorating ideas with oak furniture",
       "sources": [
         "google"
@@ -2486,7 +2483,26 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 10,
+      "seeds": [
+        "dining room organization ideas"
+      ],
+      "room": "Dining Room",
+      "best_page": "/zones/dining-room-the-sideboard-storage.html",
+      "best_page_title": "How to organize the dining room sideboard storage",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/dining-room-the-sideboard-storage.html",
+      "matched_on": "title",
+      "status": "covered",
+      "unmatched_words": []
+    },
+    {
+      "query": "dining room storage ideas pinterest",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 15,
       "seeds": [
         "dining room organization ideas"
       ],
@@ -2505,7 +2521,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 9,
       "seeds": [
         "dining room organization ideas"
       ],
@@ -2524,7 +2540,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 6,
+      "best_rank": 7,
       "seeds": [
         "how to organize coat hooks"
       ],
@@ -2900,7 +2916,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 13,
       "seeds": [
         "hall closet organization ideas"
       ],
@@ -3231,6 +3247,28 @@
       ]
     },
     {
+      "query": "family room decorating ideas traditional pinterest",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 13,
+      "seeds": [
+        "family room organization ideas"
+      ],
+      "room": "Family Room",
+      "best_page": "/zones/family-room-the-blanket-and-comfort-zone.html",
+      "best_page_title": "How to organize the family room blanket storage",
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
+      "heading_page": "/zones/family-room-the-blanket-and-comfort-zone.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "decorating",
+        "traditional"
+      ]
+    },
+    {
       "query": "family room decorating ideas with tv and fireplace",
       "sources": [
         "google"
@@ -3415,7 +3453,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 12,
       "seeds": [
         "foyer organization ideas"
       ],
@@ -3430,27 +3468,6 @@
       "unmatched_words": [
         "flat",
         "indian"
-      ]
-    },
-    {
-      "query": "foyer design ideas for home",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 15,
-      "seeds": [
-        "foyer organization ideas"
-      ],
-      "room": "",
-      "best_page": "/rooms/entryway.html",
-      "best_page_title": "How to organize an entryway, zone by zone",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/rooms/entryway.html",
-      "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "home"
       ]
     },
     {
@@ -3473,6 +3490,25 @@
       "unmatched_words": [
         "india"
       ]
+    },
+    {
+      "query": "foyer design ideas modern",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 15,
+      "seeds": [
+        "foyer organization ideas"
+      ],
+      "room": "",
+      "best_page": "/rooms/entryway.html",
+      "best_page_title": "How to organize an entryway, zone by zone",
+      "coverage": 0.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "foyer design ideas photos",
@@ -3519,7 +3555,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 13,
+      "best_rank": 14,
       "seeds": [
         "foyer organization ideas"
       ],
@@ -3538,7 +3574,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 11,
       "seeds": [
         "foyer organization ideas"
       ],
@@ -3733,7 +3769,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 14,
       "seeds": [
         "garage organization ideas"
       ],
@@ -3746,6 +3782,27 @@
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
+    },
+    {
+      "query": "garage organization ideas for kids toys",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 15,
+      "seeds": [
+        "garage organization ideas"
+      ],
+      "room": "Garage",
+      "best_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "best_page_title": "How to organize a kids bedroom, step by step",
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/how-to-organize-a-kids-bedroom.html",
+      "matched_on": "heading",
+      "status": "partial",
+      "unmatched_words": [
+        "garage"
+      ]
     },
     {
       "query": "garage organization ideas for small spaces",
@@ -3823,27 +3880,6 @@
       "status": "partial",
       "unmatched_words": [
         "depot"
-      ]
-    },
-    {
-      "query": "garage organization ideas lowes",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 15,
-      "seeds": [
-        "garage organization ideas"
-      ],
-      "room": "Garage",
-      "best_page": "/zones/garage-the-automotive-care-zone.html",
-      "best_page_title": "How to organize the garage car care supplies",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/zones/garage-the-automotive-care-zone.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "lowes"
       ]
     },
     {
@@ -3929,7 +3965,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 13,
+      "best_rank": 12,
       "seeds": [
         "garage organization ideas"
       ],
@@ -3948,7 +3984,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 14,
+      "best_rank": 13,
       "seeds": [
         "garage organization ideas"
       ],
@@ -4024,27 +4060,6 @@
       ]
     },
     {
-      "query": "guest bathroom decorating ideas pictures pinterest",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 5,
-      "seeds": [
-        "guest bathroom organization ideas"
-      ],
-      "room": "Guest Bathroom",
-      "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
-      "best_page_title": "How to organize the guest bathroom towels",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "decorating"
-      ]
-    },
-    {
       "query": "guest bathroom storage ideas",
       "sources": [
         "google"
@@ -4068,7 +4083,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 13,
+      "best_rank": 12,
       "seeds": [
         "guest bathroom organization ideas"
       ],
@@ -4165,7 +4180,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 5,
+      "best_rank": 6,
       "seeds": [
         "guest bedroom organization ideas"
       ],
@@ -4205,7 +4220,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 14,
+      "best_rank": 13,
       "seeds": [
         "guest bathroom organization ideas"
       ],
@@ -4226,7 +4241,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 8,
       "seeds": [
         "guest bathroom organization ideas"
       ],
@@ -4247,7 +4262,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 6,
       "seeds": [
         "guest bathroom organization ideas"
       ],
@@ -4268,7 +4283,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 7,
       "seeds": [
         "guest bathroom organization ideas"
       ],
@@ -4308,7 +4323,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 6,
+      "best_rank": 5,
       "seeds": [
         "guest bathroom organization ideas"
       ],
@@ -4327,7 +4342,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 13,
+      "best_rank": 12,
       "seeds": [
         "hall closet organization ideas"
       ],
@@ -4523,7 +4538,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 6,
       "seeds": [
         "home office organization ideas"
       ],
@@ -4718,7 +4733,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 6,
+      "best_rank": 7,
       "seeds": [
         "home office organization ideas"
       ],
@@ -4794,7 +4809,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 8,
       "seeds": [
         "how to organize coat hooks"
       ],
@@ -4831,25 +4846,6 @@
       "unmatched_words": []
     },
     {
-      "query": "how to arrange a dining room cabinet",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 9,
-      "seeds": [
-        "how to organize a dining room"
-      ],
-      "room": "Dining Room",
-      "best_page": "/zones/dining-room-the-china-or-display-cabinet.html",
-      "best_page_title": "How to organize the dining room china or display cabinet",
-      "coverage": 1.0,
-      "heading_coverage": 1.0,
-      "heading_page": "/zones/dining-room-the-china-or-display-cabinet.html",
-      "matched_on": "title",
-      "status": "covered",
-      "unmatched_words": []
-    },
-    {
       "query": "how to arrange a family room",
       "sources": [
         "google"
@@ -4873,7 +4869,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 9,
       "seeds": [
         "how to organize gallery wall"
       ],
@@ -4913,7 +4909,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 6,
       "seeds": [
         "how to organize a home office"
       ],
@@ -4932,7 +4928,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 10,
       "seeds": [
         "how to organize a home office"
       ],
@@ -4951,7 +4947,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 13,
+      "best_rank": 12,
       "seeds": [
         "how to organize a home office"
       ],
@@ -5053,6 +5049,7 @@
       ],
       "best_rank": 10,
       "seeds": [
+        "how to organize a dining room",
         "how to organize a family room"
       ],
       "room": "Living Room",
@@ -5093,10 +5090,9 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 9,
       "seeds": [
         "how to organize a dining room",
-        "how to organize a living room",
         "how to organize a family room"
       ],
       "room": "Living Room",
@@ -5178,7 +5174,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 5,
+      "best_rank": 3,
       "seeds": [
         "how to organize a nursery"
       ],
@@ -5197,7 +5193,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 12,
       "seeds": [
         "how to organize gallery wall"
       ],
@@ -5235,7 +5231,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 13,
+      "best_rank": 14,
       "seeds": [
         "how to organize gallery wall"
       ],
@@ -5256,7 +5252,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 11,
       "seeds": [
         "how to organize a workshop"
       ],
@@ -5498,7 +5494,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 5,
+      "best_rank": 6,
       "seeds": [
         "how to organize coat hooks"
       ],
@@ -5517,7 +5513,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 8,
       "seeds": [
         "how to organize craft area"
       ],
@@ -5671,7 +5667,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 14,
+      "best_rank": 15,
       "seeds": [
         "how to organize gallery wall"
       ],
@@ -5793,7 +5789,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 11,
       "seeds": [
         "how to organize linen storage"
       ],
@@ -5834,7 +5830,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 5,
+      "best_rank": 4,
       "seeds": [
         "how to organize outdoor seating"
       ],
@@ -5853,7 +5849,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 13,
+      "best_rank": 12,
       "seeds": [
         "how to organize outdoor seating"
       ],
@@ -5875,7 +5871,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 10,
       "seeds": [
         "how to organize outdoor seating"
       ],
@@ -6014,7 +6010,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 11,
       "seeds": [
         "how to organize gallery wall"
       ],
@@ -6033,7 +6029,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 8,
       "seeds": [
         "how to declutter a home office"
       ],
@@ -6052,7 +6048,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 6,
       "seeds": [
         "how to declutter a nursery"
       ],
@@ -6389,11 +6385,32 @@
       "unmatched_words": []
     },
     {
-      "query": "how to declutter a kids bedroom",
+      "query": "how to declutter a hoarders bedroom",
       "sources": [
         "google"
       ],
       "best_rank": 15,
+      "seeds": [
+        "how to declutter a mudroom"
+      ],
+      "room": "",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
+      "heading_page": "/zones/primary-bedroom-the-primary-closet.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "hoarders"
+      ]
+    },
+    {
+      "query": "how to declutter a kids bedroom",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 14,
       "seeds": [
         "how to declutter a mudroom"
       ],
@@ -6626,18 +6643,18 @@
       "unmatched_words": []
     },
     {
-      "query": "how to declutter your laundry room",
+      "query": "how to declutter utility room",
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 15,
       "seeds": [
         "how to declutter a laundry room"
       ],
-      "room": "Laundry Room",
+      "room": "",
       "best_page": "/zones/laundry-room-the-utility-and-cleaning-zone.html",
       "best_page_title": "How to organize the laundry room cleaning supplies",
-      "coverage": 0.667,
+      "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/zones/laundry-room-the-utility-and-cleaning-zone.html",
       "matched_on": "heading",
@@ -7034,7 +7051,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 9,
       "seeds": [
         "how to organize a workshop"
       ],
@@ -7047,27 +7064,6 @@
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
-    },
-    {
-      "query": "how to hold a workshop meeting",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 12,
-      "seeds": [
-        "how to organize a workshop"
-      ],
-      "room": "Workshop",
-      "best_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
-      "best_page_title": "How to organize the workshop hardware storage",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
-      "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "meeting"
-      ]
     },
     {
       "query": "how to hold bench",
@@ -7285,28 +7281,6 @@
       ]
     },
     {
-      "query": "how to host a tesla charging station",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 5,
-      "seeds": [
-        "how to organize charging station"
-      ],
-      "room": "",
-      "best_page": "/zones/family-room-the-charging-and-device-zone.html",
-      "best_page_title": "How to organize the family room charging station",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "host",
-        "tesla"
-      ]
-    },
-    {
       "query": "how to host a workshop",
       "sources": [
         "google"
@@ -7351,55 +7325,11 @@
       ]
     },
     {
-      "query": "how to host a workshop on bookmyshow",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 15,
-      "seeds": [
-        "how to organize a workshop"
-      ],
-      "room": "Workshop",
-      "best_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
-      "best_page_title": "How to organize the workshop hardware storage",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
-      "matched_on": "title",
-      "status": "gap",
-      "unmatched_words": [
-        "bookmyshow",
-        "host"
-      ]
-    },
-    {
-      "query": "how to host a workshop online",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 13,
-      "seeds": [
-        "how to organize a workshop"
-      ],
-      "room": "Workshop",
-      "best_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
-      "best_page_title": "How to organize the workshop hardware storage",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
-      "matched_on": "title",
-      "status": "gap",
-      "unmatched_words": [
-        "host",
-        "online"
-      ]
-    },
-    {
       "query": "how to host an ev charging station",
       "sources": [
         "google"
       ],
-      "best_rank": 4,
+      "best_rank": 6,
       "seeds": [
         "how to organize charging station"
       ],
@@ -7420,7 +7350,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 15,
+      "best_rank": 14,
       "seeds": [
         "how to organize nightstand"
       ],
@@ -7477,7 +7407,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 7,
       "seeds": [
         "how to organize a home office"
       ],
@@ -7511,6 +7441,25 @@
       "unmatched_words": []
     },
     {
+      "query": "how to organise charging station",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 4,
+      "seeds": [
+        "how to organize charging station"
+      ],
+      "room": "",
+      "best_page": "/zones/family-room-the-charging-and-device-zone.html",
+      "best_page_title": "How to organize the family room charging station",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
+      "matched_on": "title",
+      "status": "covered",
+      "unmatched_words": []
+    },
+    {
       "query": "how to organise cleaning equipment",
       "sources": [
         "google"
@@ -7526,6 +7475,25 @@
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-garage.html",
       "matched_on": "title",
+      "status": "covered",
+      "unmatched_words": []
+    },
+    {
+      "query": "how to organise coat hangers",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 5,
+      "seeds": [
+        "how to organize coat hooks"
+      ],
+      "room": "",
+      "best_page": "/zones/primary-bedroom-the-primary-closet.html",
+      "best_page_title": "How to organize the primary bedroom closet",
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bedroom-the-primary-closet.html",
+      "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
     },
@@ -7606,6 +7574,25 @@
       "unmatched_words": []
     },
     {
+      "query": "how to organise your linen closet",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 12,
+      "seeds": [
+        "how to organize linen storage"
+      ],
+      "room": "",
+      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
+      "best_page_title": "How to organize the hall closet linen storage",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
+      "matched_on": "title",
+      "status": "covered",
+      "unmatched_words": []
+    },
+    {
       "query": "how to organize a baby nursery",
       "sources": [
         "google"
@@ -7652,7 +7639,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 11,
       "seeds": [
         "how to organize a laundry room",
         "how to declutter a laundry room"
@@ -7750,8 +7737,9 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 9,
       "seeds": [
+        "how to organize a home office",
         "how to declutter a home office"
       ],
       "room": "Home Office",
@@ -7789,7 +7777,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 10,
       "seeds": [
         "how to organize craft area"
       ],
@@ -7808,7 +7796,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 13,
       "seeds": [
         "how to organize craft area"
       ],
@@ -7953,7 +7941,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 7,
       "seeds": [
         "how to organize diaper storage"
       ],
@@ -7974,7 +7962,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 3,
+      "best_rank": 2,
       "seeds": [
         "how to declutter a dining room",
         "how to organize outdoor dining"
@@ -8034,7 +8022,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 10,
       "seeds": [
         "how to organize a dining room",
         "how to declutter a dining room"
@@ -8048,46 +8036,6 @@
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
-    },
-    {
-      "query": "how to organize a dish rack",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 2,
-      "seeds": [
-        "how to organize drying rack"
-      ],
-      "room": "",
-      "best_page": "/laundry-room-deck.html",
-      "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/laundry-room-deck.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": []
-    },
-    {
-      "query": "how to organize a family photo wall",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 15,
-      "seeds": [
-        "how to organize gallery wall"
-      ],
-      "room": "",
-      "best_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
-      "best_page_title": "6S Success: Home Edition &#183; Chapters 1 to 30",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
-      "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "wall"
-      ]
     },
     {
       "query": "how to organize a family room",
@@ -8229,7 +8177,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 2,
+      "best_rank": 3,
       "seeds": [
         "how to organize a garage",
         "how to declutter a garage"
@@ -8328,7 +8276,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 3,
+      "best_rank": 2,
       "seeds": [
         "how to organize a garage",
         "how to declutter a garage"
@@ -8825,28 +8773,6 @@
       "unmatched_words": []
     },
     {
-      "query": "how to organize a home office space for two people",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 6,
-      "seeds": [
-        "how to organize a home office",
-        "how to declutter a home office"
-      ],
-      "room": "Home Office",
-      "best_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
-      "best_page_title": "6S Success: Home Edition &#183; Chapters 1 to 30",
-      "coverage": 0.4,
-      "heading_coverage": 0.8,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
-      "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "office"
-      ]
-    },
-    {
       "query": "how to organize a home workshop",
       "sources": [
         "google"
@@ -8910,7 +8836,6 @@
       ],
       "best_rank": 6,
       "seeds": [
-        "how to organize a kitchen",
         "how to declutter a kitchen"
       ],
       "room": "Kitchen",
@@ -8924,11 +8849,30 @@
       "unmatched_words": []
     },
     {
-      "query": "how to organize a kitchen corner cabinet",
+      "query": "how to organize a kitchen cabinets",
       "sources": [
         "google"
       ],
       "best_rank": 2,
+      "seeds": [
+        "how to organize a kitchen"
+      ],
+      "room": "Kitchen",
+      "best_page": "/zones/kitchen-the-lower-cabinets-and-cookware.html",
+      "best_page_title": "How to organize the kitchen lower cabinets and cookware",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/kitchen-the-lower-cabinets-and-cookware.html",
+      "matched_on": "title",
+      "status": "covered",
+      "unmatched_words": []
+    },
+    {
+      "query": "how to organize a kitchen corner cabinet",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 3,
       "seeds": [
         "how to organize a kitchen",
         "how to declutter a kitchen"
@@ -8948,7 +8892,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 5,
+      "best_rank": 6,
       "seeds": [
         "how to organize a kitchen",
         "how to declutter a kitchen"
@@ -8990,6 +8934,7 @@
       ],
       "best_rank": 5,
       "seeds": [
+        "how to organize a kitchen",
         "how to declutter a kitchen"
       ],
       "room": "Kitchen",
@@ -9027,7 +8972,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 4,
+      "best_rank": 5,
       "seeds": [
         "how to organize a kitchen"
       ],
@@ -9046,7 +8991,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 13,
+      "best_rank": 14,
       "seeds": [
         "how to organize a kitchen"
       ],
@@ -9085,7 +9030,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 13,
       "seeds": [
         "how to organize a kitchen"
       ],
@@ -9104,7 +9049,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 6,
+      "best_rank": 7,
       "seeds": [
         "how to organize a kitchen",
         "how to declutter a kitchen"
@@ -9124,7 +9069,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 13,
+      "best_rank": 14,
       "seeds": [
         "how to declutter a kitchen"
       ],
@@ -9145,7 +9090,8 @@
       ],
       "best_rank": 8,
       "seeds": [
-        "how to organize a kitchen"
+        "how to organize a kitchen",
+        "how to declutter a kitchen"
       ],
       "room": "Kitchen",
       "best_page": "/zones/kitchen-the-upper-cabinets.html",
@@ -9162,7 +9108,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 14,
+      "best_rank": 15,
       "seeds": [
         "how to organize a kitchen"
       ],
@@ -9181,7 +9127,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 3,
+      "best_rank": 4,
       "seeds": [
         "how to organize a kitchen"
       ],
@@ -9200,9 +9146,8 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 12,
       "seeds": [
-        "how to organize a kitchen",
         "how to declutter a kitchen"
       ],
       "room": "Kitchen",
@@ -9220,10 +9165,9 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 12,
       "seeds": [
-        "how to organize a kitchen",
-        "how to declutter a kitchen"
+        "how to organize a kitchen"
       ],
       "room": "Kitchen",
       "best_page": "/rooms/kitchen.html",
@@ -9393,11 +9337,31 @@
       "unmatched_words": []
     },
     {
+      "query": "how to organize a laundry utility room",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 9,
+      "seeds": [
+        "how to organize a laundry room",
+        "how to declutter a laundry room"
+      ],
+      "room": "",
+      "best_page": "/zones/laundry-room-the-utility-and-cleaning-zone.html",
+      "best_page_title": "How to organize the laundry room cleaning supplies",
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/laundry-room-the-utility-and-cleaning-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
+    },
+    {
       "query": "how to organize a laundry/storage room",
       "sources": [
         "google"
       ],
-      "best_rank": 13,
+      "best_rank": 12,
       "seeds": [
         "how to organize a laundry room",
         "how to declutter a laundry room",
@@ -9409,26 +9373,6 @@
       "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": []
-    },
-    {
-      "query": "how to organize a laundry/utility room",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 11,
-      "seeds": [
-        "how to organize a laundry room",
-        "how to declutter a laundry room"
-      ],
-      "room": "",
-      "best_page": "/zones/laundry-room-the-utility-and-cleaning-zone.html",
-      "best_page_title": "How to organize the laundry room cleaning supplies",
-      "coverage": 0.667,
-      "heading_coverage": 1.0,
-      "heading_page": "/zones/laundry-room-the-utility-and-cleaning-zone.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -9550,25 +9494,23 @@
       "unmatched_words": []
     },
     {
-      "query": "how to organize a messy workshop",
+      "query": "how to organize a messy home office",
       "sources": [
         "google"
       ],
-      "best_rank": 15,
+      "best_rank": 10,
       "seeds": [
-        "how to declutter a workshop"
+        "how to declutter a home office"
       ],
-      "room": "Workshop",
-      "best_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
-      "best_page_title": "How to organize the workshop hardware storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "messy"
-      ]
+      "room": "Home Office",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a mudroom",
@@ -9775,7 +9717,8 @@
       ],
       "best_rank": 6,
       "seeds": [
-        "how to organize a pantry"
+        "how to organize a pantry",
+        "how to declutter a pantry"
       ],
       "room": "Pantry",
       "best_page": "/articles/how-to-organize-a-pantry.html",
@@ -9830,7 +9773,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 9,
       "seeds": [
         "how to declutter a pantry"
       ],
@@ -9868,7 +9811,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 13,
+      "best_rank": 15,
       "seeds": [
         "how to declutter a pantry"
       ],
@@ -9907,9 +9850,10 @@
       "sources": [
         "google"
       ],
-      "best_rank": 14,
+      "best_rank": 13,
       "seeds": [
-        "how to organize a pantry"
+        "how to organize a pantry",
+        "how to declutter a pantry"
       ],
       "room": "Pantry",
       "best_page": "/zones/pantry-the-backstock-and-bulk.html",
@@ -9926,8 +9870,9 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 11,
       "seeds": [
+        "how to organize a pantry",
         "how to declutter a pantry"
       ],
       "room": "Pantry",
@@ -9965,9 +9910,8 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 14,
       "seeds": [
-        "how to organize a pantry",
         "how to declutter a pantry"
       ],
       "room": "Pantry",
@@ -10027,7 +9971,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 10,
       "seeds": [
         "how to organize a pantry",
         "how to declutter a pantry"
@@ -10067,7 +10011,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 12,
       "seeds": [
         "how to organize a pantry",
         "how to declutter a pantry"
@@ -10081,46 +10025,6 @@
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
-    },
-    {
-      "query": "how to organize a pantry without shelves",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 15,
-      "seeds": [
-        "how to declutter a pantry"
-      ],
-      "room": "Pantry",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.667,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": []
-    },
-    {
-      "query": "how to organize a pantry youtube",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 14,
-      "seeds": [
-        "how to declutter a pantry"
-      ],
-      "room": "Pantry",
-      "best_page": "/zones/pantry-the-backstock-and-bulk.html",
-      "best_page_title": "How to organize the pantry bulk storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/zones/pantry-the-backstock-and-bulk.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "youtube"
-      ]
     },
     {
       "query": "how to organize a plant nursery",
@@ -10287,7 +10191,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 9,
       "seeds": [
         "how to organize a dining room",
         "how to declutter a dining room"
@@ -10411,7 +10315,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 7,
       "seeds": [
         "how to organize a home office",
         "how to declutter a home office"
@@ -10451,7 +10355,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 7,
       "seeds": [
         "how to organize a laundry room",
         "how to declutter a laundry room"
@@ -10511,7 +10415,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 6,
+      "best_rank": 7,
       "seeds": [
         "how to organize a nursery",
         "how to declutter a nursery"
@@ -10610,11 +10514,32 @@
       ]
     },
     {
+      "query": "how to organize a successful workshop",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 15,
+      "seeds": [
+        "how to declutter a workshop"
+      ],
+      "room": "Workshop",
+      "best_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
+      "best_page_title": "How to organize the workshop hardware storage",
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
+      "heading_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "successful"
+      ]
+    },
+    {
       "query": "how to organize a tiny laundry room",
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 8,
       "seeds": [
         "how to organize a laundry room",
         "how to declutter a laundry room"
@@ -10813,7 +10738,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 4,
+      "best_rank": 3,
       "seeds": [
         "how to organize a workshop",
         "how to declutter a workshop"
@@ -10853,7 +10778,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 3,
+      "best_rank": 4,
       "seeds": [
         "how to organize a workshop",
         "how to declutter a workshop"
@@ -11055,7 +10980,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 14,
+      "best_rank": 10,
       "seeds": [
         "how to organize baby clothes"
       ],
@@ -11072,11 +10997,33 @@
       ]
     },
     {
+      "query": "how to organize baby clothes for yard sale",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 14,
+      "seeds": [
+        "how to organize baby clothes"
+      ],
+      "room": "",
+      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
+      "best_page_title": "How to organize the nursery baby clothes",
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
+      "heading_page": "/zones/nursery-the-baby-clothing-zone.html",
+      "matched_on": "title",
+      "status": "partial",
+      "unmatched_words": [
+        "sale",
+        "yard"
+      ]
+    },
+    {
       "query": "how to organize baby clothes in bins",
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 8,
       "seeds": [
         "how to organize baby clothes"
       ],
@@ -11095,7 +11042,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 5,
+      "best_rank": 7,
       "seeds": [
         "how to organize baby clothes"
       ],
@@ -11114,7 +11061,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 9,
       "seeds": [
         "how to organize baby clothes"
       ],
@@ -11136,7 +11083,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 4,
       "seeds": [
         "how to organize baby clothes"
       ],
@@ -11174,7 +11121,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 3,
+      "best_rank": 6,
       "seeds": [
         "how to organize baby clothes"
       ],
@@ -11189,49 +11136,11 @@
       "unmatched_words": []
     },
     {
-      "query": "how to organize baby clothes in dresser by size",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 11,
-      "seeds": [
-        "how to organize baby clothes"
-      ],
-      "room": "",
-      "best_page": "/articles/how-to-organize-baby-clothes.html",
-      "best_page_title": "How to organize baby clothes by size, without drowning in them",
-      "coverage": 0.75,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": []
-    },
-    {
-      "query": "how to organize baby clothes in nursery",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 6,
-      "seeds": [
-        "how to organize baby clothes"
-      ],
-      "room": "Nursery",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
-      "coverage": 1.0,
-      "heading_coverage": 1.0,
-      "heading_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "matched_on": "title",
-      "status": "covered",
-      "unmatched_words": []
-    },
-    {
       "query": "how to organize baby clothes in small space",
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 3,
       "seeds": [
         "how to organize baby clothes"
       ],
@@ -11270,11 +11179,11 @@
       ]
     },
     {
-      "query": "how to organize baby clothes without a dresser",
+      "query": "how to organize baby clothes without a closet",
       "sources": [
         "google"
       ],
-      "best_rank": 4,
+      "best_rank": 11,
       "seeds": [
         "how to organize baby clothes"
       ],
@@ -11289,20 +11198,20 @@
       "unmatched_words": []
     },
     {
-      "query": "how to organize baby diaper caddy",
+      "query": "how to organize baby clothes without a dresser",
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 5,
       "seeds": [
-        "how to organize diaper storage"
+        "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-diaper-and-care-backstock.html",
-      "best_page_title": "How to organize the nursery diaper storage",
-      "coverage": 0.333,
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
+      "coverage": 0.75,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -11795,7 +11704,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 6,
+      "best_rank": 5,
       "seeds": [
         "how to organize bed and linens",
         "how to organize bed",
@@ -11911,7 +11820,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 11,
       "seeds": [
         "how to organize bed"
       ],
@@ -11930,7 +11839,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 10,
       "seeds": [
         "how to organize bed"
       ],
@@ -11949,7 +11858,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 9,
       "seeds": [
         "how to organize bed"
       ],
@@ -11968,7 +11877,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 8,
       "seeds": [
         "how to organize bed"
       ],
@@ -12006,7 +11915,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 5,
+      "best_rank": 6,
       "seeds": [
         "how to organize nightstand",
         "how to organize bed"
@@ -12045,7 +11954,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 1,
+      "best_rank": 2,
       "seeds": [
         "how to organize bench"
       ],
@@ -12064,7 +11973,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 2,
+      "best_rank": 1,
       "seeds": [
         "how to organize bench"
       ],
@@ -12381,7 +12290,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 3,
+      "best_rank": 4,
       "seeds": [
         "how to organize bookshelf"
       ],
@@ -12419,7 +12328,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 4,
+      "best_rank": 3,
       "seeds": [
         "how to organize bookshelf"
       ],
@@ -12558,7 +12467,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 6,
+      "best_rank": 4,
       "seeds": [
         "how to organize car care supplies"
       ],
@@ -12577,7 +12486,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 1,
+      "best_rank": 3,
       "seeds": [
         "how to organize car care supplies"
       ],
@@ -12596,7 +12505,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 2,
+      "best_rank": 1,
       "seeds": [
         "how to organize car care supplies"
       ],
@@ -12615,7 +12524,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 3,
+      "best_rank": 2,
       "seeds": [
         "how to organize car care supplies"
       ],
@@ -12634,7 +12543,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 6,
+      "best_rank": 7,
       "seeds": [
         "how to organize charging station"
       ],
@@ -12653,7 +12562,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 8,
       "seeds": [
         "how to organize charging station"
       ],
@@ -12664,6 +12573,25 @@
       "heading_coverage": 1.0,
       "heading_page": "/zones/family-room-the-charging-and-device-zone.html",
       "matched_on": "title",
+      "status": "covered",
+      "unmatched_words": []
+    },
+    {
+      "query": "how to organize charging cables on nightstand",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 15,
+      "seeds": [
+        "how to organize nightstand"
+      ],
+      "room": "",
+      "best_page": "/zones/guest-bedroom-the-guest-nightstand.html",
+      "best_page_title": "How to organize the guest bedroom nightstand",
+      "coverage": 0.333,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/guest-bedroom-the-guest-nightstand.html",
+      "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
     },
@@ -12691,7 +12619,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 14,
+      "best_rank": 13,
       "seeds": [
         "how to organize cleaning supplies"
       ],
@@ -12710,8 +12638,9 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 4,
       "seeds": [
+        "how to organize cleaning equipment",
         "how to organize cleaning supplies"
       ],
       "room": "",
@@ -12729,53 +12658,14 @@
       "sources": [
         "google"
       ],
-      "best_rank": 13,
+      "best_rank": 14,
       "seeds": [
-        "how to organize cleaning equipment",
-        "how to organize cleaning supplies"
+        "how to organize cleaning equipment"
       ],
       "room": "",
       "best_page": "/shop.html",
       "best_page_title": "Shop: books, guides, consulting, and the free app",
       "coverage": 0.667,
-      "heading_coverage": 1.0,
-      "heading_page": "/shop.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": []
-    },
-    {
-      "query": "how to organize cleaning products under kitchen sink",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 11,
-      "seeds": [
-        "how to organize cleaning equipment"
-      ],
-      "room": "Kitchen",
-      "best_page": "/zones/kitchen-the-sink-and-dishwashing-zone.html",
-      "best_page_title": "How to organize the kitchen sink area",
-      "coverage": 0.4,
-      "heading_coverage": 1.0,
-      "heading_page": "/zones/kitchen-the-sink-and-dishwashing-zone.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": []
-    },
-    {
-      "query": "how to organize cleaning products under sink",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 8,
-      "seeds": [
-        "how to organize cleaning equipment"
-      ],
-      "room": "",
-      "best_page": "/shop.html",
-      "best_page_title": "Shop: books, guides, consulting, and the free app",
-      "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/shop.html",
       "matched_on": "heading",
@@ -12806,10 +12696,9 @@
       "sources": [
         "google"
       ],
-      "best_rank": 1,
+      "best_rank": 3,
       "seeds": [
-        "how to organize cleaning equipment",
-        "how to organize cleaning supplies"
+        "how to organize cleaning equipment"
       ],
       "room": "",
       "best_page": "/zones/hall-closet-the-cleaning-supply-zone.html",
@@ -12826,7 +12715,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 5,
+      "best_rank": 6,
       "seeds": [
         "how to organize cleaning equipment"
       ],
@@ -12881,6 +12770,25 @@
       "unmatched_words": []
     },
     {
+      "query": "how to organize cleaning supplies in closet",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 3,
+      "seeds": [
+        "how to organize cleaning supplies"
+      ],
+      "room": "",
+      "best_page": "/zones/hall-closet-the-cleaning-supply-zone.html",
+      "best_page_title": "How to organize the hall closet cleaning supplies",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/hall-closet-the-cleaning-supply-zone.html",
+      "matched_on": "title",
+      "status": "covered",
+      "unmatched_words": []
+    },
+    {
       "query": "how to organize cleaning supplies in garage",
       "sources": [
         "google"
@@ -12905,7 +12813,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 3,
+      "best_rank": 4,
       "seeds": [
         "how to organize cleaning supplies"
       ],
@@ -12944,7 +12852,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 2,
+      "best_rank": 1,
       "seeds": [
         "how to organize cleaning equipment",
         "how to organize cleaning supplies"
@@ -12964,7 +12872,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 4,
+      "best_rank": 2,
       "seeds": [
         "how to organize cleaning equipment",
         "how to organize cleaning supplies"
@@ -13006,7 +12914,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 8,
       "seeds": [
         "how to organize cleaning equipment",
         "how to organize cleaning supplies"
@@ -13045,7 +12953,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 12,
       "seeds": [
         "how to organize closet"
       ],
@@ -13064,7 +12972,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 1,
+      "best_rank": 2,
       "seeds": [
         "how to organize closet"
       ],
@@ -13121,7 +13029,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 10,
       "seeds": [
         "how to organize closet"
       ],
@@ -13140,7 +13048,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 2,
+      "best_rank": 1,
       "seeds": [
         "how to organize closet"
       ],
@@ -13159,7 +13067,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 11,
       "seeds": [
         "how to organize closet"
       ],
@@ -13216,7 +13124,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 9,
       "seeds": [
         "how to organize closet"
       ],
@@ -13294,7 +13202,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 7,
       "seeds": [
         "how to organize closet"
       ],
@@ -13332,7 +13240,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 9,
       "seeds": [
         "how to organize coat hooks"
       ],
@@ -13444,7 +13352,7 @@
       "unmatched_words": []
     },
     {
-      "query": "how to organize craft room step by step",
+      "query": "how to organize craft space",
       "sources": [
         "google"
       ],
@@ -13453,11 +13361,11 @@
         "how to organize craft area"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-family-room.html",
-      "best_page_title": "How to organize a family room, step by step",
-      "coverage": 0.75,
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
+      "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-family-room.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -13577,25 +13485,6 @@
       "unmatched_words": []
     },
     {
-      "query": "how to organize detailing supplies",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 5,
-      "seeds": [
-        "how to organize car care supplies"
-      ],
-      "room": "",
-      "best_page": "/zones/garage-the-automotive-care-zone.html",
-      "best_page_title": "How to organize the garage car care supplies",
-      "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/zones/garage-the-automotive-care-zone.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": []
-    },
-    {
       "query": "how to organize detergent",
       "sources": [
         "google"
@@ -13657,7 +13546,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 8,
       "seeds": [
         "how to organize diaper storage"
       ],
@@ -13676,7 +13565,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 6,
       "seeds": [
         "how to organize diaper storage"
       ],
@@ -13695,7 +13584,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 14,
+      "best_rank": 11,
       "seeds": [
         "how to organize diaper storage"
       ],
@@ -13714,7 +13603,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 13,
+      "best_rank": 10,
       "seeds": [
         "how to organize diaper storage"
       ],
@@ -13735,7 +13624,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 9,
       "seeds": [
         "how to organize diaper storage"
       ],
@@ -13756,7 +13645,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 15,
+      "best_rank": 12,
       "seeds": [
         "how to organize diaper storage"
       ],
@@ -13794,7 +13683,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 11,
       "seeds": [
         "how to organize a dining room",
         "how to declutter a dining room"
@@ -13806,6 +13695,25 @@
       "heading_coverage": 1.0,
       "heading_page": "/zones/dining-room-the-china-or-display-cabinet.html",
       "matched_on": "title",
+      "status": "covered",
+      "unmatched_words": []
+    },
+    {
+      "query": "how to organize dish rack",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 2,
+      "seeds": [
+        "how to organize drying rack"
+      ],
+      "room": "",
+      "best_page": "/laundry-room-deck.html",
+      "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/laundry-room-deck.html",
+      "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
     },
@@ -13892,7 +13800,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 2,
+      "best_rank": 1,
       "seeds": [
         "how to organize dresser"
       ],
@@ -14025,7 +13933,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 1,
+      "best_rank": 2,
       "seeds": [
         "how to organize dresser"
       ],
@@ -14473,7 +14381,7 @@
       ]
     },
     {
-      "query": "how to organize home office craft room",
+      "query": "how to organize home office /craft room",
       "sources": [
         "google"
       ],
@@ -14630,6 +14538,25 @@
       "unmatched_words": []
     },
     {
+      "query": "how to organize kids craft room",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 14,
+      "seeds": [
+        "how to organize craft area"
+      ],
+      "room": "",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
+    },
+    {
       "query": "how to organize kids rooms",
       "sources": [
         "google"
@@ -14668,6 +14595,25 @@
       "unmatched_words": []
     },
     {
+      "query": "how to organize kitchen cleaning supplies",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 15,
+      "seeds": [
+        "how to organize cleaning supplies"
+      ],
+      "room": "Kitchen",
+      "best_page": "/zones/kitchen-the-sink-and-dishwashing-zone.html",
+      "best_page_title": "How to organize the kitchen sink area",
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/kitchen-the-sink-and-dishwashing-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
+    },
+    {
       "query": "how to organize kitchen sink area",
       "sources": [
         "google"
@@ -14687,7 +14633,7 @@
       "unmatched_words": []
     },
     {
-      "query": "how to organize laundry room shelves",
+      "query": "how to organize laundry room with top load washer",
       "sources": [
         "google"
       ],
@@ -14696,11 +14642,11 @@
         "how to declutter a laundry room"
       ],
       "room": "Laundry Room",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.667,
+      "best_page": "/zones/laundry-room-the-washer-and-dryer.html",
+      "best_page_title": "How to organize the laundry room washer and dryer",
+      "coverage": 0.6,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/zones/laundry-room-the-washer-and-dryer.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -14710,7 +14656,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 15,
+      "best_rank": 13,
       "seeds": [
         "how to declutter a laundry room"
       ],
@@ -14769,7 +14715,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 8,
       "seeds": [
         "how to organize linen storage"
       ],
@@ -14807,7 +14753,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 6,
+      "best_rank": 7,
       "seeds": [
         "how to organize linen storage"
       ],
@@ -14826,7 +14772,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 9,
       "seeds": [
         "how to organize linen storage"
       ],
@@ -14844,32 +14790,11 @@
       ]
     },
     {
-      "query": "how to organize linen closet reddit",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 8,
-      "seeds": [
-        "how to organize linen storage"
-      ],
-      "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "reddit"
-      ]
-    },
-    {
       "query": "how to organize linen closet sheets",
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 6,
       "seeds": [
         "how to organize linen storage"
       ],
@@ -15077,26 +15002,6 @@
       "unmatched_words": []
     },
     {
-      "query": "how to organize mudroom lockers",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 7,
-      "seeds": [
-        "how to organize a mudroom",
-        "how to declutter a mudroom"
-      ],
-      "room": "Mudroom",
-      "best_page": "/rooms/mudroom.html",
-      "best_page_title": "How to organize a mudroom, zone by zone",
-      "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/rooms/mudroom.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": []
-    },
-    {
       "query": "how to organize my baking supplies",
       "sources": [
         "google"
@@ -15116,11 +15021,11 @@
       "unmatched_words": []
     },
     {
-      "query": "how to organize my craft room",
+      "query": "how to organize my craft area",
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 6,
       "seeds": [
         "how to organize craft area"
       ],
@@ -15135,21 +15040,21 @@
       "unmatched_words": []
     },
     {
-      "query": "how to organize my diaper caddy",
+      "query": "how to organize my craft room",
       "sources": [
         "google"
       ],
-      "best_rank": 6,
+      "best_rank": 9,
       "seeds": [
-        "how to organize diaper storage"
+        "how to organize craft area"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-diaper-and-care-backstock.html",
-      "best_page_title": "How to organize the nursery diaper storage",
-      "coverage": 0.5,
+      "best_page": "/zones/family-room-the-craft-and-activity-zone.html",
+      "best_page_title": "How to organize the family room craft area",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
-      "matched_on": "heading",
+      "heading_page": "/zones/family-room-the-craft-and-activity-zone.html",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -15209,25 +15114,6 @@
       "heading_coverage": 1.0,
       "heading_page": "/zones/kids-bedroom-the-bed-and-sleep-zone.html",
       "matched_on": "title",
-      "status": "covered",
-      "unmatched_words": []
-    },
-    {
-      "query": "how to organize my night stand",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 14,
-      "seeds": [
-        "how to organize nightstand"
-      ],
-      "room": "",
-      "best_page": "/garage-deck.html",
-      "best_page_title": "The Garage Deck: 80 cards, free to read",
-      "coverage": 0.0,
-      "heading_coverage": 1.0,
-      "heading_page": "/garage-deck.html",
-      "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
     },
@@ -15352,6 +15238,7 @@
       ],
       "best_rank": 13,
       "seeds": [
+        "how to organize a nursery",
         "how to declutter a nursery"
       ],
       "room": "Nursery",
@@ -15371,6 +15258,7 @@
       ],
       "best_rank": 12,
       "seeds": [
+        "how to organize a nursery",
         "how to declutter a nursery"
       ],
       "room": "Nursery",
@@ -15484,10 +15372,9 @@
       "sources": [
         "google"
       ],
-      "best_rank": 3,
+      "best_rank": 5,
       "seeds": [
-        "how to organize outdoor dining",
-        "how to organize outdoor seating"
+        "how to organize outdoor dining"
       ],
       "room": "",
       "best_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
@@ -15637,7 +15524,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 10,
       "seeds": [
         "how to organize gallery wall"
       ],
@@ -15656,7 +15543,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 13,
       "seeds": [
         "how to organize gallery wall"
       ],
@@ -15813,7 +15700,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 12,
       "seeds": [
         "how to organize craft area"
       ],
@@ -15872,7 +15759,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 7,
       "seeds": [
         "how to organize a mudroom"
       ],
@@ -15985,25 +15872,6 @@
       "unmatched_words": []
     },
     {
-      "query": "how to organize small craft room",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 10,
-      "seeds": [
-        "how to organize craft area"
-      ],
-      "room": "",
-      "best_page": "/articles/how-to-organize-a-family-room.html",
-      "best_page_title": "How to organize a family room, step by step",
-      "coverage": 0.667,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-family-room.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": []
-    },
-    {
       "query": "how to organize small entryway closet",
       "sources": [
         "google"
@@ -16019,25 +15887,6 @@
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-an-entryway.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": []
-    },
-    {
-      "query": "how to organize small linen closet",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 15,
-      "seeds": [
-        "how to organize linen storage"
-      ],
-      "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
-      "coverage": 0.667,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -16337,7 +16186,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 8,
       "seeds": [
         "how to organize towels"
       ],
@@ -16375,7 +16224,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 14,
+      "best_rank": 13,
       "seeds": [
         "how to organize towels"
       ],
@@ -16394,7 +16243,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 6,
+      "best_rank": 5,
       "seeds": [
         "how to organize towels"
       ],
@@ -16432,7 +16281,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 13,
+      "best_rank": 12,
       "seeds": [
         "how to organize towels"
       ],
@@ -16447,11 +16296,30 @@
       "unmatched_words": []
     },
     {
+      "query": "how to organize towels in bathroom closet",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 14,
+      "seeds": [
+        "how to organize towels"
+      ],
+      "room": "",
+      "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
+      "best_page_title": "How to organize the guest bathroom towels",
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
+    },
+    {
       "query": "how to organize towels in cabinet",
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 10,
       "seeds": [
         "how to organize towels"
       ],
@@ -16527,7 +16395,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 11,
       "seeds": [
         "how to organize towels"
       ],
@@ -16546,7 +16414,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 9,
       "seeds": [
         "how to organize towels"
       ],
@@ -16565,7 +16433,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 6,
       "seeds": [
         "how to organize towels"
       ],
@@ -16584,7 +16452,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 7,
       "seeds": [
         "how to organize towels"
       ],
@@ -16594,25 +16462,6 @@
       "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-primary-bathroom.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": []
-    },
-    {
-      "query": "how to organize towels without linen closet",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 5,
-      "seeds": [
-        "how to organize towels"
-      ],
-      "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
-      "coverage": 0.75,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -16809,20 +16658,39 @@
       "unmatched_words": []
     },
     {
-      "query": "how to organize your diaper caddy",
+      "query": "how to organize your charging station",
       "sources": [
         "google"
       ],
       "best_rank": 5,
       "seeds": [
-        "how to organize diaper storage"
+        "how to organize charging station"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-diaper-and-care-backstock.html",
-      "best_page_title": "How to organize the nursery diaper storage",
-      "coverage": 0.5,
+      "best_page": "/zones/family-room-the-charging-and-device-zone.html",
+      "best_page_title": "How to organize the family room charging station",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
+      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
+      "matched_on": "title",
+      "status": "covered",
+      "unmatched_words": []
+    },
+    {
+      "query": "how to organize your craft room on a budget",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 11,
+      "seeds": [
+        "how to organize craft area"
+      ],
+      "room": "",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -16842,6 +16710,25 @@
       "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/zones/laundry-room-the-detergent-and-treatment-zone.html",
+      "matched_on": "title",
+      "status": "covered",
+      "unmatched_words": []
+    },
+    {
+      "query": "how to organize your linen closet",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 15,
+      "seeds": [
+        "how to organize linen storage"
+      ],
+      "room": "",
+      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
+      "best_page_title": "How to organize the hall closet linen storage",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -16891,7 +16778,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 9,
       "seeds": [
         "how to organize a home office"
       ],
@@ -16912,7 +16799,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 14,
+      "best_rank": 13,
       "seeds": [
         "how to organize a home office"
       ],
@@ -16933,7 +16820,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 11,
       "seeds": [
         "how to organize a home office"
       ],
@@ -17017,9 +16904,10 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 8,
       "seeds": [
         "how to organize a dining room",
+        "how to organize a living room",
         "how to organize a family room"
       ],
       "room": "Living Room",
@@ -17060,7 +16948,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 8,
       "seeds": [
         "how to organize a nursery"
       ],
@@ -17081,7 +16969,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 7,
       "seeds": [
         "how to organize a nursery"
       ],
@@ -17098,11 +16986,11 @@
       ]
     },
     {
-      "query": "how to plan a workshop for teachers",
+      "query": "how to plan a workshop",
       "sources": [
         "google"
       ],
-      "best_rank": 14,
+      "best_rank": 7,
       "seeds": [
         "how to organize a workshop"
       ],
@@ -17119,11 +17007,55 @@
       ]
     },
     {
+      "query": "how to plan a workshop event",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 14,
+      "seeds": [
+        "how to organize a workshop"
+      ],
+      "room": "Workshop",
+      "best_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
+      "best_page_title": "How to organize the workshop hardware storage",
+      "coverage": 0.333,
+      "heading_coverage": 0.333,
+      "heading_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
+      "matched_on": "title",
+      "status": "gap",
+      "unmatched_words": [
+        "event",
+        "plan"
+      ]
+    },
+    {
+      "query": "how to plan a workshop for students",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 12,
+      "seeds": [
+        "how to organize a workshop"
+      ],
+      "room": "Workshop",
+      "best_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
+      "best_page_title": "How to organize the workshop hardware storage",
+      "coverage": 0.333,
+      "heading_coverage": 0.333,
+      "heading_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
+      "matched_on": "title",
+      "status": "gap",
+      "unmatched_words": [
+        "plan",
+        "students"
+      ]
+    },
+    {
       "query": "how to plan a workshop layout",
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 15,
       "seeds": [
         "how to organize a workshop"
       ],
@@ -17144,7 +17076,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 8,
       "seeds": [
         "how to organize a workshop"
       ],
@@ -17423,7 +17355,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 8,
       "seeds": [
         "how to organize outdoor seating"
       ],
@@ -17442,7 +17374,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 11,
       "seeds": [
         "how to organize outdoor seating"
       ],
@@ -17463,7 +17395,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 6,
+      "best_rank": 5,
       "seeds": [
         "how to organize outdoor seating"
       ],
@@ -17482,7 +17414,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 6,
       "seeds": [
         "how to organize outdoor seating"
       ],
@@ -17501,7 +17433,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 9,
       "seeds": [
         "how to organize outdoor seating"
       ],
@@ -17518,32 +17450,11 @@
       ]
     },
     {
-      "query": "how to store outdoor furniture cushions in garage",
+      "query": "how to store outdoor furniture cushions for winter",
       "sources": [
         "google"
       ],
-      "best_rank": 14,
-      "seeds": [
-        "how to organize outdoor seating"
-      ],
-      "room": "Garage",
-      "best_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
-      "best_page_title": "How to organize the patio or deck outdoor seating",
-      "coverage": 0.2,
-      "heading_coverage": 0.8,
-      "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
-      "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "garage"
-      ]
-    },
-    {
-      "query": "how to store outdoor furniture cushions in winter",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 8,
+      "best_rank": 7,
       "seeds": [
         "how to organize outdoor seating"
       ],
@@ -17560,11 +17471,32 @@
       ]
     },
     {
+      "query": "how to store outdoor furniture cushions in garage",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 13,
+      "seeds": [
+        "how to organize outdoor seating"
+      ],
+      "room": "Garage",
+      "best_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
+      "best_page_title": "How to organize the patio or deck outdoor seating",
+      "coverage": 0.2,
+      "heading_coverage": 0.8,
+      "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
+      "matched_on": "heading",
+      "status": "partial",
+      "unmatched_words": [
+        "garage"
+      ]
+    },
+    {
       "query": "how to store outdoor furniture for winter",
       "sources": [
         "google"
       ],
-      "best_rank": 4,
+      "best_rank": 3,
       "seeds": [
         "how to organize outdoor seating"
       ],
@@ -17585,7 +17517,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 15,
+      "best_rank": 14,
       "seeds": [
         "how to organize outdoor seating"
       ],
@@ -17723,7 +17655,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 14,
+      "best_rank": 13,
       "seeds": [
         "kids bedroom organization ideas"
       ],
@@ -17921,7 +17853,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 13,
+      "best_rank": 14,
       "seeds": [
         "kids bedroom organization ideas"
       ],
@@ -18535,7 +18467,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 11,
       "seeds": [
         "primary bedroom organization ideas"
       ],
@@ -18917,32 +18849,11 @@
       "unmatched_words": []
     },
     {
-      "query": "linen closet organization amazon",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 15,
-      "seeds": [
-        "linen closet organization"
-      ],
-      "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "amazon"
-      ]
-    },
-    {
       "query": "linen closet organization baskets",
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 13,
       "seeds": [
         "linen closet organization"
       ],
@@ -18961,7 +18872,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 13,
+      "best_rank": 14,
       "seeds": [
         "linen closet organization"
       ],
@@ -19018,7 +18929,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 12,
       "seeds": [
         "linen closet organization"
       ],
@@ -19075,7 +18986,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 9,
       "seeds": [
         "linen closet organization"
       ],
@@ -19094,7 +19005,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 10,
       "seeds": [
         "linen closet organization"
       ],
@@ -19193,7 +19104,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 14,
+      "best_rank": 15,
       "seeds": [
         "linen closet organization"
       ],
@@ -19203,6 +19114,25 @@
       "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
+      "matched_on": "title",
+      "status": "covered",
+      "unmatched_words": []
+    },
+    {
+      "query": "linen closet organization towels",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 8,
+      "seeds": [
+        "linen closet organization"
+      ],
+      "room": "",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -19341,8 +19271,7 @@
       ],
       "best_rank": 5,
       "seeds": [
-        "living room organization ideas",
-        "family room organization ideas"
+        "living room organization ideas"
       ],
       "room": "Living Room",
       "best_page": "/rooms/living-room.html",
@@ -19882,11 +19811,11 @@
       "unmatched_words": []
     },
     {
-      "query": "master bedroom decorating ideas",
+      "query": "master bedroom decorating ideas 2025",
       "sources": [
         "google"
       ],
-      "best_rank": 4,
+      "best_rank": 15,
       "seeds": [
         "master bedroom organization"
       ],
@@ -19928,7 +19857,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 9,
       "seeds": [
         "master bedroom organization"
       ],
@@ -19949,7 +19878,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 14,
+      "best_rank": 12,
       "seeds": [
         "master bedroom organization"
       ],
@@ -19965,29 +19894,6 @@
         "design",
         "per",
         "vastu"
-      ]
-    },
-    {
-      "query": "master bedroom design floor plan",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 15,
-      "seeds": [
-        "master bedroom organization"
-      ],
-      "room": "",
-      "best_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
-      "best_page_title": "How to organize the primary bedroom bed and bedding",
-      "coverage": 0.2,
-      "heading_coverage": 0.4,
-      "heading_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
-      "matched_on": "heading",
-      "status": "gap",
-      "unmatched_words": [
-        "design",
-        "master",
-        "plan"
       ]
     },
     {
@@ -20016,7 +19922,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 10,
       "seeds": [
         "master bedroom organization"
       ],
@@ -20037,48 +19943,6 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
-      "seeds": [
-        "master bedroom organization"
-      ],
-      "room": "",
-      "best_page": "/zones/primary-bedroom-the-primary-closet.html",
-      "best_page_title": "How to organize the primary bedroom closet",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/primary-bedroom-the-primary-closet.html",
-      "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "design"
-      ]
-    },
-    {
-      "query": "master bedroom design modern",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 13,
-      "seeds": [
-        "master bedroom organization"
-      ],
-      "room": "",
-      "best_page": "/zones/primary-bedroom-the-primary-closet.html",
-      "best_page_title": "How to organize the primary bedroom closet",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/primary-bedroom-the-primary-closet.html",
-      "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "design"
-      ]
-    },
-    {
-      "query": "master bedroom design pinterest",
-      "sources": [
-        "google"
-      ],
       "best_rank": 8,
       "seeds": [
         "master bedroom organization"
@@ -20096,11 +19960,11 @@
       ]
     },
     {
-      "query": "master bedroom design plan",
+      "query": "master bedroom design in india",
       "sources": [
         "google"
       ],
-      "best_rank": 5,
+      "best_rank": 14,
       "seeds": [
         "master bedroom organization"
       ],
@@ -20114,11 +19978,32 @@
       "status": "partial",
       "unmatched_words": [
         "design",
-        "plan"
+        "india"
       ]
     },
     {
-      "query": "master bedroom design simple",
+      "query": "master bedroom design layout",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 11,
+      "seeds": [
+        "master bedroom organization"
+      ],
+      "room": "",
+      "best_page": "/rooms/primary-bedroom.html",
+      "best_page_title": "How to organize a primary bedroom, zone by zone",
+      "coverage": 0.25,
+      "heading_coverage": 0.75,
+      "heading_page": "/rooms/primary-bedroom.html",
+      "matched_on": "heading",
+      "status": "partial",
+      "unmatched_words": [
+        "design"
+      ]
+    },
+    {
+      "query": "master bedroom design pinterest",
       "sources": [
         "google"
       ],
@@ -20139,11 +20024,33 @@
       ]
     },
     {
+      "query": "master bedroom design plan",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 4,
+      "seeds": [
+        "master bedroom organization"
+      ],
+      "room": "",
+      "best_page": "/zones/primary-bedroom-the-primary-closet.html",
+      "best_page_title": "How to organize the primary bedroom closet",
+      "coverage": 0.25,
+      "heading_coverage": 0.5,
+      "heading_page": "/zones/primary-bedroom-the-primary-closet.html",
+      "matched_on": "heading",
+      "status": "partial",
+      "unmatched_words": [
+        "design",
+        "plan"
+      ]
+    },
+    {
       "query": "master bedroom design with wardrobe",
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 5,
       "seeds": [
         "master bedroom organization"
       ],
@@ -20179,11 +20086,30 @@
       "unmatched_words": []
     },
     {
+      "query": "master bedroom storage",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 13,
+      "seeds": [
+        "master bedroom organization"
+      ],
+      "room": "",
+      "best_page": "/rooms/primary-bedroom.html",
+      "best_page_title": "How to organize a primary bedroom, zone by zone",
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/primary-bedroom.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
+    },
+    {
       "query": "master bedroom storage ideas",
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 7,
       "seeds": [
         "master bedroom organization"
       ],
@@ -20202,7 +20128,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 10,
       "seeds": [
         "primary bedroom organization ideas"
       ],
@@ -20941,7 +20867,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 6,
+      "best_rank": 4,
       "seeds": [
         "how to organize a nursery"
       ],
@@ -20954,48 +20880,6 @@
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
-    },
-    {
-      "query": "plant nursery fredericksburg va",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 3,
-      "seeds": [
-        "how to organize a nursery"
-      ],
-      "room": "Nursery",
-      "best_page": "/downloads/6S-Standards-Pack.html",
-      "best_page_title": "The 6S Success Standards Pack",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "fredericksburg"
-      ]
-    },
-    {
-      "query": "plant nursery manassas va",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 4,
-      "seeds": [
-        "how to organize a nursery"
-      ],
-      "room": "Nursery",
-      "best_page": "/downloads/6S-Standards-Pack.html",
-      "best_page_title": "The 6S Success Standards Pack",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "manassas"
-      ]
     },
     {
       "query": "practical bathroom organization ideas",
@@ -21200,7 +21084,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 10,
       "seeds": [
         "guest bathroom organization ideas"
       ],
@@ -21278,7 +21162,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 9,
       "seeds": [
         "guest bathroom organization ideas"
       ],
@@ -21299,7 +21183,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 11,
       "seeds": [
         "guest bathroom organization ideas"
       ],
@@ -21472,27 +21356,6 @@
       ]
     },
     {
-      "query": "small primary bedroom storage ideas",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 12,
-      "seeds": [
-        "primary bedroom organization ideas"
-      ],
-      "room": "Primary Bedroom",
-      "best_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
-      "best_page_title": "How to organize the primary bedroom bed and bedding",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
-      "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "small"
-      ]
-    },
-    {
       "query": "small stair landing storage ideas",
       "sources": [
         "google"
@@ -21632,7 +21495,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 6,
+      "best_rank": 5,
       "seeds": [
         "guest bedroom organization ideas"
       ],
@@ -22074,7 +21937,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 9,
       "seeds": [
         "walk in closet organization"
       ],
@@ -22089,30 +21952,11 @@
       "unmatched_words": []
     },
     {
-      "query": "walk in closet organization drawers",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 11,
-      "seeds": [
-        "walk in closet organization"
-      ],
-      "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
-      "coverage": 0.333,
-      "heading_coverage": 1.0,
-      "heading_page": "/guest-bedroom-deck.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": []
-    },
-    {
       "query": "walk in closet organization hacks",
       "sources": [
         "google"
       ],
-      "best_rank": 5,
+      "best_rank": 4,
       "seeds": [
         "walk in closet organization"
       ],
@@ -22146,7 +21990,7 @@
       "unmatched_words": []
     },
     {
-      "query": "walk in closet organization ideas for small spaces",
+      "query": "walk in closet organization ideas on a budget",
       "sources": [
         "google"
       ],
@@ -22157,7 +22001,7 @@
       "room": "",
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.25,
+      "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
@@ -22169,7 +22013,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 6,
       "seeds": [
         "walk in closet organization"
       ],
@@ -22188,7 +22032,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 7,
       "seeds": [
         "walk in closet organization"
       ],
@@ -22203,30 +22047,11 @@
       "unmatched_words": []
     },
     {
-      "query": "walk in closet organization on a budget",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 4,
-      "seeds": [
-        "walk in closet organization"
-      ],
-      "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
-      "coverage": 0.333,
-      "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "heading",
-      "status": "covered",
-      "unmatched_words": []
-    },
-    {
       "query": "walk in closet organization reddit",
       "sources": [
         "google"
       ],
-      "best_rank": 6,
+      "best_rank": 5,
       "seeds": [
         "walk in closet organization"
       ],
@@ -22268,7 +22093,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 8,
       "seeds": [
         "walk in closet organization"
       ],
@@ -22283,11 +22108,32 @@
       "unmatched_words": []
     },
     {
+      "query": "walk in closet organizer costco",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 15,
+      "seeds": [
+        "walk in closet organization"
+      ],
+      "room": "",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "matched_on": "heading",
+      "status": "partial",
+      "unmatched_words": [
+        "costco"
+      ]
+    },
+    {
       "query": "walk in closet organizer home depot",
       "sources": [
         "google"
       ],
-      "best_rank": 13,
+      "best_rank": 12,
       "seeds": [
         "walk in closet organization"
       ],
@@ -22308,7 +22154,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 14,
+      "best_rank": 13,
       "seeds": [
         "walk in closet organization"
       ],
@@ -22323,11 +22169,30 @@
       "unmatched_words": []
     },
     {
+      "query": "walk in closet organizer with drawers",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 11,
+      "seeds": [
+        "walk in closet organization"
+      ],
+      "room": "",
+      "best_page": "/guest-bedroom-deck.html",
+      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "coverage": 0.333,
+      "heading_coverage": 1.0,
+      "heading_page": "/guest-bedroom-deck.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
+    },
+    {
       "query": "walk in closet organizer with drawers and shelves",
       "sources": [
         "google"
       ],
-      "best_rank": 15,
+      "best_rank": 14,
       "seeds": [
         "walk in closet organization"
       ],
@@ -22348,7 +22213,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 10,
       "seeds": [
         "walk in closet organization"
       ],
@@ -22707,7 +22572,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 4,
+      "best_rank": 3,
       "seeds": [
         "why is my kids bedroom always messy"
       ],
@@ -22724,21 +22589,21 @@
       ]
     },
     {
-      "query": "why is my daughter's room always so messy",
+      "query": "why is my daughter's room so messy",
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 5,
       "seeds": [
         "why is my kids bedroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/why-is-my-house-always-messy.html",
-      "best_page_title": "Why is my house always messy?",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/articles/why-is-my-house-always-messy.html",
-      "matched_on": "heading",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
+      "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
         "daughter"
@@ -22788,7 +22653,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 11,
       "seeds": [
         "why is my kids bedroom always messy"
       ],
@@ -22828,7 +22693,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 3,
+      "best_rank": 13,
       "seeds": [
         "why is my kids bedroom always messy"
       ],
@@ -23115,7 +22980,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 5,
+      "best_rank": 4,
       "seeds": [
         "why is my kids bedroom always messy"
       ],
@@ -23157,7 +23022,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 8,
       "seeds": [
         "why is my kids bedroom always messy"
       ],
@@ -23384,6 +23249,5 @@
       "unmatched_words": []
     }
   ],
-  "scored_against_commit": "b34d5befe",
-  "scored_at": "2026-11-22T06:49:53Z"
+  "scored_against_commit": "1903a7dbb"
 }
