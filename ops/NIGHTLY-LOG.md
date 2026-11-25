@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, PM check-in (23:1x slot): previous work finished; declined a content fix, closed the staleness gap it surfaced
+
+Previous work finished: clean attach, preflight 0 FAIL, rotate/fix_dashes/cold-read checks clean, 30 GitHub issues unchanged, none from Phil since #65.
+
+Tried closing Stair Landing's one partial row ("basement..."). The scorer only reads title/headings, not body text, so a content edit changed nothing, and the also-called route would misname "basement" as a room synonym, which its own rule forbids. No honest fix exists; reverted.
+
+That attempt found `ops/KEYWORD-DEMAND.md` genuinely stale. Rescored (no network): counts unchanged, stamp current. Discarded a self-inflicted sitemap lastmod bump with no real content change. Shipped via `ship.py --no-deploy`.
+
+NEXT FOR THE OPERATOR: Hall Closet (9%, 10 partial) or Family Room (12%, 7 partial), hours-scale; Phil-gated queue unchanged.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (22:4x slot): previous work reconfirmed finished live, nothing new unblocked, same standing queue handed to the operator
 
 NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue, because nothing new is genuinely unblocked this slot; room-guide mining stays saturated (0-4% uncovered every room, re-checked live two cycles running now).
