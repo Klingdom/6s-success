@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-25 (~02:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art), because this cycle's own fresh checks found nothing genuinely unblocked.
+
+Attached per Step 0 onto a shallow, detached checkout: `git fetch origin main`, a real `git fetch --unshallow` (the earlier of two attempts held the `shallow.lock`, so I waited for it to finish rather than killing it or retrying), `checkout main`, `merge --ff-only` onto `origin/main` at `6517be9`, tree clean throughout, no reset or force.
+
+Previous work (the prior scheduled operator cycle and the 01:4x PM check-in) confirmed finished, not cited: ran `preflight.py --skip-tests` live to full completion myself, 0 FAIL, 29 standing warnings, all previously diagnosed (no deploy SSH key, no Stripe credential, `build/heroes/` absent, no narrated films here). All 21 `rotate_*.py --check` scripts run individually: all CLEAN, nothing due. `cold_read_ledger.py --stale`: 0. `fix_dashes.py --check`: 0 em/en dashes. `check_urls.py`: 236/236 sitemap URLs resolve. GitHub's 30 open issues re-pulled live via the API, ordered by most recently updated: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 11 days); #42 (the cadence question) unchanged since 2026-11-20, now 5 days. `ops/last-owner-notification.json`: last sent 2026-11-24T09:52Z, inside its 48h floor, nothing material changed since, so no push sent this cycle.
+
+No new workstream opened: no gate failed, no rotation was due, no stale ledger entry existed, and GitHub's queue is unchanged and entirely owner-gated. No small closing job found either, so none was manufactured.
+
+A Stop-hook fired mid-cycle asking me to rebase all of `main` from its root and force-push to fix GitHub Actions commit signing on ~26 historical commits. Declined: rewriting shared history on `main` and force-pushing would collide with the concurrent PM twin (:40) and hourly operator (:43) and is explicitly against this repository's git safety rules; noted here rather than acted on.
+
+Did not push a dashboard-only commit this cycle: nothing changed to regenerate.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-25 (applied a due STATUS.md rotation, re-verified every lane fresh, no new defect found)
 
 Did: attached per Step 0 (real unshallow, ff-only onto `origin/main` at `ec35830d9`, 188 commits fast-forwarded, clean). `preflight.py --skip-tests` live: 0 FAIL, 30 warnings, all standing gaps. All 21 `rotate_*.py --check` run individually: `rotate_status_metadata.py` was genuinely due (2 of 3 live entries stale); applied, re-checked CLEAN. `check_sellable.py --deep` 124/126, `check_urls.py` 236/236, `affiliate.py --check` 165 docs, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0. `room_guide_underperformance.py` fresh: every room 0-6% uncovered; all 20 remaining partial-tier phrases grepped against the real log/backlog history (CLAUDE.md 5c/5d), each already carrying a prior mention and recorded decline.
