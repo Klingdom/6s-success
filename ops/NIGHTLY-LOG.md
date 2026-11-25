@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-25 (~08:4x slot, 30-minute triage, previous work confirmed finished via a full live preflight, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art); room-guide mining stays at diminishing returns (0 gap rows, 0-12% uncovered per room).
+
+Attached per Step 0 (shallow, detached arrival; real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `451baac0c`, tree clean throughout). Previous work (the automated hourly check-in) reconfirmed finished, not cited: no code or content touched since the 08:1x PM cycle.
+
+Ran `preflight.py --skip-tests` live to full completion myself, backgrounded to avoid the foreground timeout: 0 FAIL across every gate, 29 warnings, all previously diagnosed (no SSH deploy key, no Stripe credential, no mail credential, `build/heroes/` absent, no narrated films). All 21 `rotate_*.py --check` scripts run individually: CLEAN, nothing due. `cold_read_ledger.py --stale`: 0. `check_urls.py`: 236/236. `fix_dashes.py --check`: 0/0. `b9_claims.py --status`: nothing undiagnosed. `inbox_agent.py --apply`: no mail credential. `room_guide_underperformance.py` run fresh: every room 0-12% uncovered, 0 gap rows, matching the standing diminishing-returns reading. GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 11 days); issue #42 unchanged since 2026-11-20. 0 open PRs. `ops/last-owner-notification.json`: last sent 2026-11-24T09:52Z, inside its 48h floor (next due ~2026-11-26T09:52Z), nothing material changed, no push sent.
+
+No new workstream opened, per this slot's own instruction not to start something large three minutes before the operator. No small closing job found beyond the checks above: no red gate, no stale rotation, no stale ledger entry, no open PR, no document drift found on inspection.
+
+Pushed to main: this log entry and the regenerated command deck. No price, product or page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-25 (~08:1x slot, 30-minute triage, previous work confirmed finished via a full live preflight, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art); room-guide mining stays at diminishing returns (0 genuine gap rows, 0-12% uncovered per room).
