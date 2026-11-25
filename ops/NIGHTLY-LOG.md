@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, scheduled operator cycle (A255): built the owner-notification race guard issue #42 surfaced, no other new defect found
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: real `fetch origin main`, `fetch --unshallow` (303 commits), `checkout main`, `merge --ff-only` onto `origin/main`, tree clean throughout. Read `BACKLOG-2026-09-07.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, and the last several `NIGHTLY-LOG.md` entries, not summaries. Ran `preflight.py --skip-tests` live in the background to let it reach real completion rather than killing it early: it hit the documented sandbox CPU wall (exit 124 at 280s) but every gate reached showed 0 FAIL, matching the pattern dozens of prior entries describe. Checked GitHub directly via a research subagent rather than cite a prior cycle: 30 open issues, 0 open PRs, none from Phil since #65 (2026-11-14, 11 days); issue #42's full 12-comment thread confirmed every comment is agent-authored, none a reply from Phil, last updated 2026-11-20. Ran all 20 live `rotate_*.py --check` scripts individually (CLEAN, nothing due), `cold_read_ledger.py --stale` (0), `room_guide_underperformance.py` fresh (every room 0-12% uncovered, same saturated state, the Family Room/Stair Landing rows the 17:4x PM check-in just handed off are the same phrases already traced across dozens of prior cycles). `inbox_agent.py --apply`: no mail credential. `ops/traffic_summary.py` and `ops/traffic_query.sh` both confirmed unreachable from this sandbox (no docker socket), the same standing gap as owner action #64.
+
+**Built, rather than re-verifying a 255th time:** issue #42's own last comment (2026-11-20) named a concrete, previously untracked defect: two scheduled cycles on that date independently read `ops/last-owner-notification.json`, each computed its own 48h floor had cleared, and both notified Phil about four minutes apart, because the decision was made and only recorded afterward. Wrote `ops/owner_notify_claim.py`, which flips that order: it claims the slot by writing the new `sent_at`, committing and pushing BEFORE notifying, and only treats the claim as won if the push actually lands (the same claim-before-work philosophy `ops/b9_claims.py` already uses for room decks, applied to this channel for the first time). A rejected push is distinguished from an unrelated conflict by checking whether what landed on origin carries the same topic within a short window. Pure decision logic (`floor_elapsed`, `is_concurrent_race`) covered by `ops/tests/test_owner_notify_claim.py`; proved fail-then-pass directly by monkey-patching `floor_elapsed` to always return `False` and watching two of the nine checks go red, then restoring and re-confirming green.
+
+**Verified:** `python -m py_compile` on both new files, clean. Discarded one self-inflicted fingerprint-only diff on `site/stair-landing-deck.html` (a `?v=` hash drift from a generator running concurrently with the backgrounded preflight, the same shape A243 named) before committing. Rebased cleanly onto 2 concurrent commits that landed mid-cycle, re-ran the test suite on the rebased tree, pushed; pre-push hooks (`check_nightly_log_fast`, `check_risks_evidence_fast`, two collision checks) all passed. `ops/owner_notify_claim.py --check` run against the real file: floor not yet elapsed (sent 2026-11-24T09:52Z, about 32h ago), confirming no notification was due this cycle either way, so the new tool was not exercised against the live push path this run.
+
+**Went well:** found one concrete, previously-undocumented operational defect with real evidence behind it (issue #42's own last comment) rather than re-running the same exhausted room-guide/rotation/ledger lanes an N-th time and reporting nothing again.
+
+**Did not go well:** nothing new; the standing sandbox gaps (no VPS/docker access for traffic, no Stripe/SSH/mail credentials) are unchanged and already tracked.
+
+**Changing next cycle:** a future cycle deciding whether to send an owner push should call `python ops/owner_notify_claim.py --claim --topic "..." --note "..."` and only call the notification tool if it exits 0, instead of writing `last-owner-notification.json` by hand after the fact.
+
+**Next:** same standing 30-issue Phil-gated queue; cheapest unlocks remain `OWNER-ACTIONS.md`'s "Start here" list (traffic read #64, YouTube OAuth #46, Stripe description #58, Etsy #44, Amazon KDP #43); issue #42's cadence question is still open and still Phil's call, not an operator one.
+
+Pushed to main (`690037a5a`). No price, product or site page touched; not customer-facing, `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (17:4x slot): previous work confirmed finished, preflight run to real completion this time, room guide fine mining handed to the operator
 
 NEXT FOR THE OPERATOR: mine Family Room's 7 remaining partial rows (56 on topic, 49 covered, 12% uncovered, tied with Stair Landing for the highest of any room but with far more real rows to work), because it is the only genuinely unblocked, non Phil gated lane left in the queue.
