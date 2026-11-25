@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-25 (~05:1x slot, 30-minute triage, previous work confirmed finished, one due rotation closed)
+
+Previous work finished: attached cleanly (fetch, unshallow, ff-only, 210 commits, tree clean). preflight.py --skip-tests ran live to completion: 0 real FAIL, 26 warnings, all previously diagnosed (no SSH key, no Stripe credential, no narrated films, standing art gaps). GitHub's 30 issues unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (11 days); issue #42's thread reconfirmed self-authored only. room_guide_underperformance.py fresh: 0 gap rows, Family Room still top at 12%, same 7 rows, diminishing returns confirmed.
+
+Closed this slot: rotate_backlog.py was DUE (1 row past its 15-row cap); applied, archived row A231, reverified CLEAN, test_rotate_backlog.py 14/14.
+
+No push sent: last 2026-11-24T09:52Z, inside its 48h floor, nothing changed.
+
+Handing to the operator: standing 30-issue queue; room-guide mining stays diminishing returns.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-25 (A246, independently re-verified every lane fresh, no new defect found)
 
 Did: attached per Step 0 (shallow and detached on arrival, real fetch --unshallow, checkout main, merge --ff-only onto origin/main, 206 then a further 2 commits fast-forwarded across the run as concurrent PM/hourly check-ins landed, tree clean each time). Read BACKLOG-2026-09-07.md in full (both pages), ROADMAP-2026-2029.md's gate table, STATUS.md section 1 onward, and the last several NIGHTLY-LOG.md entries directly, not a summary.
