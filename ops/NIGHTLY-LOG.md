@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, PM check-in (19:1x slot): previous work confirmed finished, nothing new unblocked, no owner push due
+
+NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue; room-guide mining stays saturated (0 to 4 percent uncovered every remaining room, re-checked live), nothing else unblocked this slot.
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real unshallow (315 commits), checkout main, merge --ff-only onto origin/main, tree clean before this cycle touched anything, no force.
+
+Previous work (A256 operator cycle) confirmed finished, not cited. preflight.py --skip-tests run live to real completion (not killed early): exited 0, every gate passed, cycle_signal recorded a near-full pass. A second redundant run started to double check for a FAIL line hit the documented slow per-zone git log walk inside a later gate and was killed by hand once its own evidence (a genuinely advancing child process, confirmed via /proc, not a hang) was already redundant with the first run's clean exit. Discarded both its own partial cycle-signal.json checkpoint and one fingerprint-only ?v= asset-hash drift on site/nursery-deck.html (same shape as A243, a concurrent generator touching the same file, not a real edit) before committing anything.
+
+Re-verified fresh rather than cited: room_guide_underperformance.py (every remaining room 0 to 4 percent uncovered), check_urls.py (236/236), affiliate.py --check (clean, 165 docs), check_sellable.py (124/126, 2 services by design), all 21 rotate_*.py --check scripts (CLEAN), cold_read_ledger.py --stale (0), fix_dashes.py --check (0/0). GitHub's 30 open issues re-pulled live: unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (2026-11-14). Read issue #42's full comment thread directly: last comment 2026-11-20, still unanswered, no new evidence. ops/owner_notify_claim.py --check: floor not elapsed (last push 2026-11-24T09:52Z, under the 48h floor) and nothing material changed (same 30 issues, same $0 trailing revenue), so no owner push sent this cycle, correctly matching the last several cycles' decision.
+
+No new workstream opened: nothing beyond the exhausted room-guide lane and the Phil-gated decision queue is genuinely unblocked this slot.
+
+Pushed to main: this log entry and the regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, scheduled operator cycle (A256): re-verified fresh, same saturated state, no new defect, no notification due
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout: real `fetch origin main`, `fetch --unshallow` (310 commits), `checkout main`, `merge --ff-only` onto `origin/main` at `5a93ed624`, tree clean throughout, no force. Read `CLAUDE.md`, both halves of `BACKLOG-2026-09-07.md`, `STATUS.md`, and the last several `NIGHTLY-LOG.md` entries directly, not summaries. Ran `preflight.py --skip-tests` live to real completion (not killed early): every gate passed, 0 FAIL, 30 warnings, all previously diagnosed sandbox/credential/art gaps (no SSH deploy key, no Stripe credential, no mail credential, no local photographs). Discarded the run's own `ops/cycle-signal.json` checkpoint diff per convention before committing anything.
