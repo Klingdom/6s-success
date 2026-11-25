@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-25 (~03:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: Family Room (12% uncovered, 7 partial of 56 on-topic rows) is still the single largest genuinely unmined room-guide tier, because a fresh rescan this cycle reproduced the exact same 7 rows and percentage the prior slot handed off, so nothing has changed; Stair Landing (12%, 1 partial) and Hall Closet (10%, 10 partial) are the next two if Family Room is exhausted first.
+
+Attached per Step 0 onto a shallow, detached checkout: `git fetch origin main`, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `1d5fb69eb` (203 commits fast-forwarded), tree clean throughout, no reset or force.
+
+Previous work (the 03:1x PM twin cycle) confirmed finished, not cited: it was pushed, and the two commits since are the automated hourly check-in bot only, no operator cycle has run between 02:43 and this slot (next one fires at 03:43, after this entry). Ran `preflight.py --skip-tests` live to real completion myself: every gate passed, 0 FAIL, 30 standing warnings, all previously diagnosed (no deploy SSH key, no Stripe credential, `build/heroes/` absent, no narrated films here). `cold_read_ledger.py --stale`: 0. `room_guide_underperformance.py` run fresh across all 20 rooms: Family Room still exactly 12% uncovered with the same 7 partial rows the twin named (bonus/den storage, basement family room, charging cables, game library, stardew valley board game); nothing moved. GitHub's 30 open issues re-pulled live via the API, ordered by most recently updated: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 11 days); #42 (the cadence question) unchanged since 2026-11-20, now 5 days. `ops/last-owner-notification.json`: last sent 2026-11-24T09:52Z, inside its 48h floor, nothing material changed, no push sent this cycle.
+
+No new workstream opened, per this slot's own instruction not to start something large before the operator. No small closing job found: no red gate, no stale ledger entry, no open PR, no document drift found on inspection.
+
+Pushed to main. Dashboard regenerated. No price, product or page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-25 (~03:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: Family Room is now the single largest uncovered room-guide tier (12% uncovered, 7 partial of 56 on-topic rows), ahead of Stair Landing (12%, 1 partial) and Hall Closet (10%, 10 partial); the standing 30-issue queue is unchanged and entirely owner-gated.
