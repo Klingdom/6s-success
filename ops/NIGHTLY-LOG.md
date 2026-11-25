@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, PM check-in (14:4x slot): previous work confirmed finished live, nothing new unblocked, no closing job found
+
+NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue; room-guide mining stays at diminishing returns (0-12% uncovered per room, exhausted by phrase across many prior cycles); nothing else unblocked this slot.
+
+Attached per Step 0 onto a shallow, detached checkout: real `fetch --unshallow` (280 commits), `checkout main`, `merge --ff-only` onto `origin/main` at `425c4f17e`, tree clean before touching anything.
+
+Previous work (14:1x PM cycle) IS finished, reconfirmed live, not cited: ran `preflight.py --skip-tests` myself; every gate reached passed, 0 real FAIL (`(none)` confirmed by grep), stalled at the documented `gate_etsy_pdfs_current` headless-Chromium wall under this slot's own 110s budget; confirmed via `ps` no stray Chromium process left, `git status` showed only preflight's own `cycle-signal.json` checkpoint, discarded per convention. GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, all authored by Phil himself, none newer than #42 (2026-11-20, now 5 days unanswered). 0 open PRs. `cold_read_ledger.py --stale`: 0. All 8 `rotate_*.py --check` scripts run directly: CLEAN, nothing due. `fix_dashes.py --check`: 0 em/en dashes.
+
+`ops/last-owner-notification.json`: last pushed 2026-11-24T09:52Z, about 29h ago, inside its 48h floor; nothing material changed (same 30 issues, same $0 trailing revenue, #42 still unanswered), so no repeat notification sent.
+
+No new workstream opened, per this slot's own instruction not to start something large three minutes before the operator. No closing job found: ledger not stale, every rotation clean, no FAIL to fix, no document drift found.
+
+Pushed to main: this log entry and the regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (14:1x slot): previous work confirmed finished live; repaired a self-inflicted mid-render interruption before it could ship
 
 NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue; room-guide mining stays at diminishing returns (0-12% uncovered per room), reconfirmed fresh this cycle.
