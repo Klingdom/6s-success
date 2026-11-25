@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-25 (~03:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: Family Room is now the single largest uncovered room-guide tier (12% uncovered, 7 partial of 56 on-topic rows), ahead of Stair Landing (12%, 1 partial) and Hall Closet (10%, 10 partial); the standing 30-issue queue is unchanged and entirely owner-gated.
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real unshallow, checkout main, merge --ff-only onto origin/main at 0adc0a2e4 (201 commits fast-forwarded), tree clean throughout, no reset or force.
+
+Previous work (the 02:5x operator cycle and its two follow-up commits) confirmed finished, not cited: ran preflight.py --skip-tests live myself, 0 real FAIL through every gate reached (both "FAIL / (none)" headers), timed out at the documented sandbox wall around gate_generator_ownership, same as prior cycles; no stray processes left. cold_read_ledger.py --stale: 0. All 21 rotate_*.py --check scripts run individually, including rotate_backlog_journal_core.py (silent, exit 0): all CLEAN, nothing due. room_guide_underperformance.py run fresh across all 20 rooms: every room 0-12% uncovered, matching the pattern this log has carried for two weeks. GitHub's 30 open issues re-pulled live via the API: unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (2026-11-14, now 11 days); #42 unchanged since 2026-11-20. 0 open PRs. ops/last-owner-notification.json: last sent 2026-11-24T09:52Z, inside its 48h floor, nothing material changed, no push sent this cycle.
+
+No new workstream opened: no red gate, no stale rotation, no stale ledger entry, no open PR, no document drift found on inspection. Room-guide mining is operator-sized (the self-flattery/collision/before-after-diff discipline this corpus now requires per word takes longer than a 30-minute slot), so left for :43 rather than rushed.
+
+Pushed to main: this log entry and the regenerated command deck. No price, product or page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-25 (independently re-verified every lane fresh, no new defect found)
 
 Did: attached per Step 0 (shallow and detached on arrival, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `b9ad712ba`, 194 commits fast-forwarded, tree clean). Read `BACKLOG-2026-09-07.md` in full (both pages), `ops/NIGHTLY-LOG.md`'s last several entries, and GitHub's open-issue queue, not a summary of any of them.
