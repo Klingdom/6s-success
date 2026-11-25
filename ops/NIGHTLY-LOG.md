@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-25 (~05:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art), because nothing is genuinely unblocked this cycle and room-guide mining stays at 0 genuine gap rows site-wide.
+
+Attached per Step 0 (shallow, detached arrival; fetch --unshallow, ff-only onto origin/main, tree clean). preflight.py --skip-tests run live via ops/run_preflight.sh after a direct call hung past its 110s foreground timeout (recovered cleanly, no stray lock): every gate passed, 28 warnings, all previously diagnosed (no SSH deploy key, no Stripe credential, no narrated films, build/heroes/ absent). GitHub's 30 open issues re-pulled live: unchanged, none from Phil since #65 (11 days). All 20 rotation scripts checked --check: CLEAN, nothing due. Last owner push 2026-11-24T09:52Z, inside its 48h floor, nothing material changed, none sent this cycle.
+
+Pushed to main; dashboard regenerated.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-25 (~05:1x slot, 30-minute triage, previous work confirmed finished, one due rotation closed)
 
 Previous work finished: attached cleanly (fetch, unshallow, ff-only, 210 commits, tree clean). preflight.py --skip-tests ran live to completion: 0 real FAIL, 26 warnings, all previously diagnosed (no SSH key, no Stripe credential, no narrated films, standing art gaps). GitHub's 30 issues unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (11 days); issue #42's thread reconfirmed self-authored only. room_guide_underperformance.py fresh: 0 gap rows, Family Room still top at 12%, same 7 rows, diminishing returns confirmed.
