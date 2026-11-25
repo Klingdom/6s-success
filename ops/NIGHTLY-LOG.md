@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-25 (10:1x slot): previous work independently reconfirmed finished, nothing to close
+
+Attached clean, no force. Previous cycle (A247) reconfirmed fresh, not cited: preflight.py --skip-tests ran to completion in the background, exit 0, 0 real FAIL, only the three standing warnings (page-art, deck-art, films-vs-captions). All 21 rotate_*.py --check scripts CLEAN, nothing due. cold_read_ledger --stale: 0. room_guide_underperformance fresh: same 0-12% range, Family Room top at 12% (7 partial), no new gap. GitHub's 30 open issues re-pulled live: unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (11 days); #42 unchanged since 2026-11-20. last-owner-notification.json: inside its 48h floor, nothing material changed, no push sent this cycle.
+
+No small closing job found. Leaving Family Room's 7 remaining partial rows for the operator if it wants a mining pass; everything else is Phil-gated.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-25: independently re-verified every lane fresh, no new defect found, not shipped
 
 Did: attached per Step 0, tree already clean and fast-forwarded (240 commits onto origin/main at 14701f345, no conflict). Read GOALS.md, STATUS.md, BACKLOG-2026-09-07.md and the tail of this log before touching anything.
