@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, scheduled operator cycle: applied two real due log rotations found by individually re-checking every rotate_*.py, independently re-verified every other lane fresh, no new content defect found
+
+Attached per Step 0: real unshallow, ff-only onto `324c202b8`, 179 commits fast-forwarded, tree clean. `preflight.py --skip-tests` live to completion: 0 FAIL, 29 standing warnings, all previously diagnosed.
+
+Ran all 21 `rotate_*.py --check` scripts individually rather than trust the last "all CLEAN" citation: two were genuinely due. `rotate_checkin_log.py`: 24/214 entries past its 8-day window. `rotate_nightly_log.py`: 71/1050 past its 14-day window. Applied both, re-checked CLEAN. Committed; a concurrent PM check-in pushed first, rebased cleanly. Re-ran preflight on the rebased tree before pushing: only FAIL was `checks-yml-real-gap`, correctly flagging the not-yet-pushed commit, self-resolving on push. Pushed; a second concurrent commit landed meanwhile, rebased again, pushed clean.
+
+`room_guide_underperformance.py` fresh: every room 0-12% uncovered, 0 gap rows. Spot-checked four highest-count partial phrases against real log/backlog history (5c/5d): "stardew valley board game", "hardware in garage", "disposable bags", "bonus room storage", each already declined. Keyword rescore check: 2 `site/`-touching commits since last score are fingerprint-only, none owed.
+
+GitHub's 30 open issues re-pulled live, twice: unchanged, none from Phil since #65 (11 days); #42 unchanged since 2026-11-20. Phil's last real commit still `43624a9c1`, 24 days old. `inbox_agent.py --apply`: no mail credential. `last-owner-notification.json`: last sent 2026-11-24T09:52Z, inside its 48h floor, nothing material changed, none sent.
+
+Did not go well: ran rotation scripts concurrently with an earlier backgrounded preflight, the same documented lesson prior cycles named; cost a second preflight re-run. No new gate (10b): rotation gates and `gate_generator_ownership`'s dirty-tree refusal worked as designed.
+
+Next: hold the standing queue; cheapest unlocks unchanged (#64, #58, #46, #44, #43); #42 remains Phil's decision.
+
+No price, product or page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-25 (~00:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all `decision`/`P0`/`blocked-on-art`), because every one is Phil-gated and this cycle's own fresh checks found nothing genuinely unblocked.
