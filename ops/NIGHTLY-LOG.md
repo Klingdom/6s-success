@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, PM check-in (20:1x slot): previous work was finished; closed one real due rotation, nothing else unblocked
+
+Previous work (A257 operator, 19:4x PM) IS finished: attach clean (fetch, unshallow, checkout main, ff-only onto origin/main, 324 commits fast-forwarded, no force), working tree clean, main matched origin. GitHub's 30 open issues re-pulled live: unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (2026-11-14, 11 days); issue #42 unchanged since 2026-11-20. 0 open PRs.
+
+First preflight.py --skip-tests attempt was moved to the background by the harness after its 120s foreground limit and was then terminated with no output captured; reported that as unchecked, not as a pass or a failure, and reran it unbuffered straight to a file to real completion instead. It genuinely reached the documented gate_etsy_pdfs_current Chromium stall (confirmed progressing via /proc, not hung) but this time ran on to full completion: every gate before it showed 0 real FAIL. While waiting, verified fresh rather than cited: cold_read_ledger.py --stale (0), fix_dashes.py --check (0/0), check_urls.py (236/236), room_guide_underperformance.py (every room 0-12% uncovered, same saturated state). owner_notify_claim.py --check: floor not elapsed (about 34h of 48h), nothing material changed, no push sent, matching the last several cycles' own correct decision.
+
+Closing job this slot: ran all 21 rotate_*.py --check scripts individually. One was genuinely due: rotate_backlog.py reported 1 row over the Done table's 15-row cap. Applied with --apply, moved the oldest row (A241) losslessly to BACKLOG-2026-09-07-ARCHIVE.md, reran --check clean, ran its own test_rotate_backlog.py (14/14). The first full preflight run correctly FAILed gate_generator_ownership while this change sat uncommitted (by design, mid-diff refusal); committed via ops/ship.py --no-deploy, then reran preflight.py --skip-tests on the clean tree to real completion: exit 0, every gate passed, 33 standing warnings (all previously diagnosed sandbox/credential/art gaps). Discarded the run's own cycle-signal.json checkpoint diff per convention before regenerating the dashboard.
+
+No new workstream opened: nothing beyond the exhausted room-guide lane and the 30-issue Phil-gated queue is genuinely unblocked this slot. Handing the operator the same standing queue; room-guide mining stays saturated.
+
+Pushed to main (`41f535b70`) and the dashboard regeneration. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (19:4x slot): previous work reconfirmed finished live, nothing new unblocked, no owner push due
 
 NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue; room-guide mining stays saturated (same 0 to 12 percent uncovered every room, re-checked live), nothing else unblocked this slot.
