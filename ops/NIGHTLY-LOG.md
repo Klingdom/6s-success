@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, PM check-in (14:1x slot): previous work confirmed finished live; repaired a self-inflicted mid-render interruption before it could ship
+
+NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue; room-guide mining stays at diminishing returns (0-12% uncovered per room), reconfirmed fresh this cycle.
+
+Attached per Step 0: fetch --unshallow, ff-only merge (277 commits) onto `origin/main` at `301fe5a48`, tree clean before touching anything.
+
+Previous work (13:4x PM cycle) IS finished: GitHub's 30 issues unchanged, none from Phil in 11 days; 0 open PRs; rotations, cold-read ledger, check_urls (236/236), affiliate, fix_dashes, audit_pages, link_graph_report, check_sellable (124/126) all clean.
+
+This cycle's own first `preflight.py` run was killed by my own external timeout mid `gate_etsy_pdfs_current`, leaving 5 Etsy PDF build artifacts and `cycle-signal.json` modified, unrestored. Not shipped, caught before commit. Restored all six from git, confirmed byte-identical; reran preflight to real completion: 0 FAIL, 29 standing warnings.
+
+No new workstream opened; nothing newly unblocked. Last owner push 2026-11-24T09:52Z, inside its 48h floor, none sent this cycle.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (13:4x slot): previous work confirmed finished live, nothing new unblocked; repaired a self-inflicted cache-bust corruption, no site defect
 
 NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue; room-guide mining stays at diminishing returns (0-12% uncovered per room, every phrase already traced and declined); nothing else unblocked.
