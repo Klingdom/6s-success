@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, PM check-in (15:4x slot): previous work confirmed finished live, nothing new unblocked, rotated one backlog row past its cap
+
+NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue; room-guide mining stays at diminishing returns (0-12% uncovered per room, exhausted by phrase across many prior cycles); nothing else unblocked this slot.
+
+Attached per Step 0 onto a shallow, detached checkout: real `fetch --unshallow` (798 commits), `checkout main`, `merge --ff-only` onto `origin/main` at `a673f1424`, tree clean before touching anything.
+
+Previous work (A252 operator cycle and the 15:1x PM check-in before it) IS finished, reconfirmed live, not cited: `git status` clean, main matched origin before I touched anything. GitHub's 30 open issues re-pulled fresh via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, all authored by the repo's own bot account, none from Phil since #42 (2026-11-20, now 5 days). 0 open PRs. `cold_read_ledger.py --stale`: 0. `fix_dashes.py --check`: 0/0.
+
+Ran `preflight.py --skip-tests` live myself rather than cite prior cycles: every gate before the documented `gate_etsy_pdfs_current` headless-Chromium wall passed, 0 real FAIL, stalled at that same wall under this slot's own 100s timeout; confirmed via `ps` no stray Chromium left. Discarded preflight's own `cycle-signal.json` checkpoint diff per convention.
+
+Closing job this slot: ran every `rotate_*.py --check` script individually (20 of them). 19 read CLEAN. `rotate_backlog.py` reported DUE: 1 row past the file's own 15-row cap in `BACKLOG-2026-09-07.md` section 1. Applied `--apply`: moved the oldest row (A237) verbatim into `BACKLOG-2026-09-07-ARCHIVE.md`, re-ran `--check` to CLEAN, ran the tool's own test file (`test_rotate_backlog.py`, 14/14). Diff confirmed as a clean one-row move, nothing reworded.
+
+`ops/last-owner-notification.json`: last pushed 2026-11-24T09:52Z, about 30h ago, inside its 48h floor; nothing material changed (same 30 issues, same $0 trailing revenue, #42 still unanswered), so no repeat sent.
+
+No new workstream opened, per this slot's own instruction not to start something large three minutes before the operator.
+
+Pushed to main. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (15:1x slot): previous work confirmed finished live, nothing new unblocked, repaired a self-inflicted interrupted render before it could ship
 
 NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue; room-guide mining stays at diminishing returns (0-12% uncovered per room, exhausted by phrase across many prior cycles); nothing else unblocked this slot.
