@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, scheduled operator cycle (A249): three fresh hypotheses checked beyond the standing lane, each closed, no new defect found
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `d38d1c6e2` (254 commits fast-forwarded), tree clean. Ran `preflight.py --skip-tests` live to full completion: 0 real FAIL in both gate sections reached (KDP and Etsy listing gates), 30 warnings, all standing sandbox/credential/art gaps. A concurrent PM check-in (11:4x slot) landed 3 commits mid-cycle; fast-forwarded onto them cleanly rather than force past.
+
+Rather than re-run the same room-guide/cold-read/rotation checks a sixteenth time, spent this cycle testing three concrete hypotheses that no recent entry had explicitly ruled out, per CLAUDE.md 5d (verify before acting, do not report a count as a finding until read):
+
+1. **Is the room-guide mining lane (A248's "fully exhausted") actually checked, not just cited?** Re-ran `room_guide_underperformance.py` live: every room 0-12% uncovered, matching A248 exactly. Independently grepped 7 of Family Room's own remaining partial-tier phrases ("den storage ideas", "basement family room", "charging cables at home", "organize game library", "bonus room storage", "stardew valley", "hardware in garage") against the real `ops/NIGHTLY-LOG.md`/`-ARCHIVE.md` and `BACKLOG-2026-09-07.md`/`-SECTION2-ARCHIVE.md` history by exact phrase: every one already carries 2 to 26 prior mentions. Confirmed, not assumed.
+2. **Does every one of the 114 zones actually carry real content for all six 6S passes, per Phil's own reprioritisation ("keep detailed information on all six 6S activities for every micro zone")?** Parsed `content/manual/source/content.json` directly: 0 of 114 zones missing a pass, 0 thin (<40 chars) or empty pass entries. Already met, not a gap.
+3. **Is the site's image pipeline actually serving the smaller AVIF/WebP variants it generates, or are they sitting unused (a real mobile-performance gap, CLAUDE.md 44/46)?** Checked directly: 1059 AVIF and 1059 WebP files exist under `site/assets/img/rooms/w/`, and 176 pages reference `.avif` (grep-confirmed), so the `<picture>`-based next-gen-format fallback is already wired, not a silent gap. Spot-checked a room page's own zone-hero image weight (`site/rooms/garage.html`): 7 images, 105 KB total, already using small (`-sm`) variants with `loading="lazy"`/`fetchpriority="high"` set correctly.
+
+Also read GitHub issue #42 in full (the standing cadence-reduction recommendation, open 41 days, 12 comments): its own reasoning matches this cycle's independent findings exactly (9/30 issues all `decision`/`blocked-on-art`, cold-read ledger exhausted, zero new defects). Left undecided rather than acted on unilaterally: changing the autonomous cadence is explicitly framed in that issue as Phil's own call, not an operator GREEN action, and no new information since the last push (`ops/last-owner-notification.json`, 2026-11-24T09:52:00Z, already named issue #42 by number) would justify a repeat inside its own 48h floor.
+
+**Verified:** All three checks above were run directly against real files this cycle (`content.json`, `site/`, the log/backlog history), not cited from a prior entry. `check_urls.py` (236/236), `affiliate.py --check` (165 docs), `cold_read_ledger.py --stale` (0) all re-confirmed clean as part of the standard preflight pass. GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 11 days). `inbox_agent.py --apply`: no mail credential, unchecked.
+
+**Went well:** testing fresh hypotheses instead of re-running the same saturated checks found two genuine confirmations (six-passes completeness, image pipeline already correct) that no recent entry had stated explicitly, closing two plausible-sounding gaps rather than leaving them as untested assumptions.
+
+**Did not go well:** none of the three hypotheses turned up a real defect, so this cycle ships no code or content change, the same outcome as the many cycles before it.
+
+**Changing next cycle:** none. No new preflight gate (10b): no new defect class found, only confirmation that three previously-unverified claims hold.
+
+**Next:** same standing 30-issue Phil-gated queue; issue #42's cadence question is now 41 days old and independently re-confirmed correct by this cycle's own fresh checks, but remains Phil's decision, not this operator's, per that issue's own framing.
+
+Pushed to main: this entry and the regenerated command deck. No price, product or site page touched; not customer-facing, `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (11:4x slot): previous work finished, independently reconfirmed live, no new work unblocked
 
 NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue, because the room-guide vocabulary lane is already independently confirmed exhausted (A248, last cycle) and nothing else is genuinely unblocked this slot.
