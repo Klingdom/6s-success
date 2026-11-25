@@ -2,6 +2,34 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, scheduled operator cycle: fixed a real CI break on main, two consecutive checks.yml failures
+
+Did: attached per Step 0 (shallow, detached, real fetch --unshallow, checkout main, merge --ff-only onto origin/main, 329 commits fast-forwarded, tree clean). Ran preflight.py (full, not --skip-tests, so the test suite that catches this defect class would actually run) and found a real, live FAIL: gate_ci_conclusion_current reported checks.yml had FAILED on two consecutive pushes to main (runs 45693681410 and 45694625287). Confirmed directly via the GitHub Actions API and job logs: both failed on the Preflight step, and the real cause inside it was test_gate_goals_keyword_cluster_citation_current.py (1 of 492 test files), not a flake.
+
+Root cause, traced rather than assumed: that test's own case 7 checks the real committed GOALS.md against live ops/keyword-demand.json, and re.search only finds the FIRST literal "<cluster> is **...**" occurrence in the file, which is the original 2026-10-02 sentence, never any of the many later "is now" correction paragraphs appended since. That original sentence had drifted again from ordinary autocomplete churn (confirmed 0 site/-touching commits since the last rescore via git log 1903a7dbb..HEAD -- site/, so no rescore was owed either) while several intervening cycles ran preflight.py --skip-tests, which never executes this test file, so nobody caught it before pushing. This exact shape has now broken CI on this same sentence at least seven times across the file's own history.
+
+Fixed: re-derived the live counts directly from the real committed ops/keyword-demand.json (checked_at 2026-11-25T19:38:44Z): "small space" 17/8/0/25 (was cited 18/8/0/26), "cheap/budget/DIY" 40/2/0/42 (was cited 39/2/0/41). Edited the first citation in GOALS.md in place and appended a dated correction note. Reran the test: 7/7 OK.
+
+Step 10b, a gate written this cycle rather than the lesson recorded in prose again: wrote ops/check_goals_keyword_cluster_citation_fast.py, mirroring ops/check_risks_evidence_fast.py and ops/check_also_called_digital_collision_fast.py's own pattern exactly (calls the gate directly, skips gate_tests entirely, runs in under a second), and wired it into .githooks/pre-push so the push itself refuses rather than CI catching it after the fact. Proved fail-then-pass directly: broke the live GOALS.md citation by hand, watched the new script FAIL, restored byte-identical, confirmed clean again. New ops/tests/test_check_goals_keyword_cluster_citation_fast.py (2/2) covers the wrapper, picked up automatically by gate_tests's own glob.
+
+Also closed a real due rotation found live: rotate_backlog.py --check (over the 15-row cap both before and after adding this cycle's own Done-table row); applied both times, test_rotate_backlog.py 14/14 both times.
+
+A concurrent cycle's own A259 landed mid-run (its own rotate_backlog.py application, GOALS.md untouched). First push attempt was rejected (non-fast-forward); rather than hand-resolve a conflicted auto-generated backlog/dashboard table merge, discarded the first local commit (content saved to /tmp first, nothing lost, still reachable via reflog) and reapplied the GOALS.md fix and both new files cleanly on the fresh origin/main base.
+
+Verified: full preflight.py rerun after the fix: 0 real local FAIL from anything this cycle controls, 26-30 warnings, all standing sandbox/credential/art gaps. cold_read_ledger.py --stale 0, check_urls.py 236/236, affiliate.py --check 165 docs, fix_dashes.py --check 0/0, check_sellable.py --deep 124/126 (2 services), all other rotate_*.py --check scripts CLEAN. room_guide_underperformance.py fresh: every room 0-9% uncovered, same saturated state, no new gap row. inbox_agent.py --apply: no mail credential. GitHub's 30 open issues re-pulled live: unchanged, none from Phil since #65 (11 days); issue #42 unchanged since 2026-11-20. last-owner-notification.json: inside its 48h floor, nothing material changed beyond this fix, no repeat sent.
+
+Went well: ran the full test suite instead of --skip-tests specifically because the backlog's own history shows this exact gap recurring; that is what actually caught it this cycle rather than citing a stale preflight pass. The pre-push hook itself proved the new gate works end to end (not just in isolation) by running it live on the real push.
+
+Did not go well: this is at least the seventh time this same sentence has broken CI, every prior time caught only by checks.yml's full test run, never locally. Also lost time to a push collision with a concurrent cycle; discarding and reapplying was faster and safer than hand-merging two rotate_backlog.py applications of the same prose table.
+
+Changing next cycle: none; the gate written this cycle should prevent an eighth occurrence of this specific sentence drifting past a push.
+
+Next: same standing 30-issue Phil-gated queue, none from Phil since #65; room-guide mining lane remains saturated (0-9% uncovered site-wide).
+
+Pushed to main. Command deck regenerated.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (20:4x slot): previous work finished, closed one real due rotation, nothing new unblocked
 
 NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue (unchanged since #65, 2026-11-14), because nothing new is unblocked this slot; the room-guide mining lane stays saturated (0-12% uncovered every room), so there is no operator-cycle-sized non-Phil-gated workstream to hand over right now beyond re-verifying the same state.

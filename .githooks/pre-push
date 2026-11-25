@@ -188,4 +188,37 @@ if [ -f "ops/check_room_also_called_evidence_fast.py" ]; then
   fi
 fi
 
+# Refuse to push a GOALS.md keyword-cluster citation that has drifted from
+# the real committed ops/keyword-demand.json.
+#
+# Found 2026-11-25 (at least the seventh time): checks.yml FAILED on two
+# consecutive pushes to main because GOALS.md's own "small space" /
+# "cheap/budget/DIY" cluster citation drifted from ordinary autocomplete
+# churn. test_gate_goals_keyword_cluster_citation_current.py's own case 7
+# already catches this, but it lives inside gate_tests, which this
+# sandbox's documented Chromium hang forces every local preflight run to
+# skip with --skip-tests, so nothing reachable before a push caught it.
+# Same shape as the two checks just above, same fix.
+if [ -f "ops/check_goals_keyword_cluster_citation_fast.py" ]; then
+  PY=""
+  for cand in python python3 py; do
+    if command -v "$cand" >/dev/null 2>&1 &&
+       "$cand" -c "import sys; sys.exit(0)" >/dev/null 2>&1; then
+      PY="$cand"
+      break
+    fi
+  done
+  if [ -z "$PY" ]; then
+    echo "pre-push: no working python found, so GOALS.md's keyword-cluster" >&2
+    echo "citation could not be checked. Refusing rather than pushing it" >&2
+    echo "unexamined." >&2
+    exit 1
+  fi
+  if ! "$PY" ops/check_goals_keyword_cluster_citation_fast.py; then
+    echo "" >&2
+    echo "Fix GOALS.md's keyword-cluster citation, then push. To bypass: git push --no-verify" >&2
+    exit 1
+  fi
+fi
+
 exit 0
