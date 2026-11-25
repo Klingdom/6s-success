@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, PM check-in (22:1x slot): previous work finished; caught and discarded the same self-inflicted PDF fingerprint diff before committing, nothing new unblocked
+
+Attached clean onto a shallow, detached checkout: fetch, real unshallow, checkout main, merge --ff-only onto origin/main, tree clean, no force.
+
+Previous work (A261) reconfirmed finished: preflight.py --skip-tests first pass FAILed gate_generator_ownership on 5 Etsy PDFs with A261's own 2-byte Skia/PDF m153-to-m158 fingerprint; discarded with git checkout --, reran clean to 0 FAIL, 28 warnings. GitHub's 30 open issues re-pulled live: unchanged, none from Phil since #65. 0 open PRs. All 21 rotate_*.py --check CLEAN. cold_read_ledger --stale 0. fix_dashes --check 0/0. owner_notify_claim floor not elapsed. room_guide_underperformance.py fresh: every room 0-4% uncovered, same saturated lane.
+
+No new workstream opened: nothing beyond the exhausted room-guide lane and the Phil-gated queue is unblocked this slot.
+
+Pushed to main. Not customer-facing.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, scheduled operator cycle (~21:4x slot): found and discarded a self-inflicted PDF fingerprint diff before it could reach a commit; otherwise re-confirmed the saturated state
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout: real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `56acd5079`, 337 commits fast-forwarded, tree clean. Ran `preflight.py --skip-tests` live to real completion (twice, to confirm after a fix): the first pass FAILed `gate_generator_ownership` because 5 Etsy-listing PDFs under `build/listings/etsy/` were already modified in the working tree before this cycle touched anything, each differing from the committed blob by exactly 2 bytes, both inside an embedded PDF-producer string ("Skia/PDF m153" vs "m158", a headless-Chromium version marker), identical file size before and after. Traced with `cmp -l` and a byte-offset read rather than assumed: this sandbox's installed Chromium differs from whatever last rendered the committed copy, so some earlier step in this cycle (a check script that re-renders these PDFs to verify them) reproduced a byte-identical PDF except for that version string. Discarded with `git checkout --` rather than committed; this is the same "self-inflicted fingerprint-only diff" shape prior cycles (A243 and others) have already named for `site/stair-landing-deck.html`, not a new defect class, so no new gate was written for it (the existing precedent already says discard on sight).
