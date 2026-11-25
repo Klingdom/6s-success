@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-25 (independently re-verified every lane fresh, no new defect found)
+
+Did: attached per Step 0 (shallow and detached on arrival, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `b9ad712ba`, 194 commits fast-forwarded, tree clean). Read `BACKLOG-2026-09-07.md` in full (both pages), `ops/NIGHTLY-LOG.md`'s last several entries, and GitHub's open-issue queue, not a summary of any of them.
+
+Verified: `preflight.py --skip-tests` run live to full completion: every gate passed, 30 warnings, all previously diagnosed sandbox/credential/art gaps (no deploy SSH key, no Stripe credential, `build/heroes/` absent, no narrated films here). Ran fresh rather than cited: all 21 `rotate_*.py --check` scripts (all CLEAN, nothing due), `cold_read_ledger.py --stale` (0), `check_sellable.py --deep` (124/126, 2 person-delivered services), `check_urls.py` (236/236), `affiliate.py --check` (165 docs clean), `fix_dashes.py --check` (0/0). `room_guide_underperformance.py` fresh: every room 0-12% uncovered; grepped the 5 lowest-mention remaining partial-tier phrases against the real log/backlog history by exact phrase (CLAUDE.md 5c/5d): "makeup vanity box" (18), "bags of spices" (34), "detergent tray" (33), "bookshelf by color" (27), "hallway cabinet organization" (12), every one already carrying prior mentions and a recorded decline. `inbox_agent.py --apply`: no mail credential. GitHub's 30 open issues re-pulled live via the API: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 11 days); issue #42 (the cadence question) unchanged since 2026-11-20. Noticed a concurrent PM check-in (02:1x slot, same day) had correctly declined a Stop-hook prompt asking it to rewrite and force-push `main`'s history; no action needed from this cycle, logged there already. `ops/last-owner-notification.json`: last sent 2026-11-24T09:52:00Z, inside its 48h floor, nothing material changed (still $0 trailing-30-day revenue, still 30 open decision/P0/blocked-on-art issues), so no push sent.
+
+Went well: the fresh re-check found nothing stale and nothing newly due; no manufactured workstream.
+
+Did not go well: nothing material this cycle.
+
+Changing next cycle: none.
+
+Next: hold the standing queue (30 open issues, all decision/P0/blocked-on-art); the cheapest unlocks remain the traffic read (#64, ~2 min) and the YouTube OAuth paste (#46, ~5 min, 114 built videos waiting).
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-25 (~02:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art), because this cycle's own fresh, full checks found nothing genuinely unblocked.
