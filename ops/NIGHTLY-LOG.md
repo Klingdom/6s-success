@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, PM check-in (11:4x slot): previous work finished, independently reconfirmed live, no new work unblocked
+
+NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue, because the room-guide vocabulary lane is already independently confirmed exhausted (A248, last cycle) and nothing else is genuinely unblocked this slot.
+
+Attached per Step 0: shallow, detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `d38d1c6e2` (254 commits fast-forwarded), tree clean before touching anything.
+
+Previous work IS finished: working tree clean, main already pushed, nothing uncommitted inherited. Ran `preflight.py --skip-tests` live to near-complete real execution (own process this cycle started, not cited from an old run): 331+ gate lines reached, 0 FAIL throughout, only the standing documented warnings (no Stripe key, no mail credential, site unreachable from here, cron-cadence throttling already explained, 19/20 decks off the 18-card print tier, no rendered films to check captions against). It stalled, as prior cycles have also logged, on the live `gate_etsy_pdfs_current` fetch (Etsy's fee page, HTTP 403 from this sandbox); killed by hand after confirming 0 FAIL up to that point, no stray files, lock cleared. Self-inflicted note: an earlier `timeout 170` invocation this same cycle left an orphaned `preflight.py` holding the lock after the wrapper reported it killed; found via the lock file's own recorded pid, confirmed orphaned, killed, lock directory removed before the real run. No production process touched.
+
+GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 11 days); issue #42 unchanged since 2026-11-20. 0 open PRs. `ops/last-owner-notification.json`: last sent 2026-11-24T09:52:00Z, about 26h ago, inside its ~48h floor, nothing material changed, so no push sent this cycle.
+
+No new defect found and nothing closed further this slot beyond re-verification; the standing exhaustion finding was independently rechecked live, not cited.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (11:1x slot): previous work finished, independently reconfirmed, no new work found
 
 Attached per Step 0, tree already clean and fast forwarded onto origin/main (e6038a70c, 252 commits). Previous work (A248, two hourly check-ins) IS finished: preflight.py --skip-tests run live to full completion, 0 FAIL, 30 standing warnings. GitHub's 30 open issues re-pulled live: unchanged, none from Phil since #65 (2026-11-14, 11 days); issue #42 still unanswered. 0 open PRs. room_guide_underperformance.py fresh: Stair Landing top at 12% (1 partial row), Primary Bedroom 7% (6 partial rows); checked both lists by name against this log's own history, every phrase already traced and declined. cold_read_ledger --stale: 0. rotate_backlog/checkin_log/nightly_log/owner_actions --check: all CLEAN. last-owner-notification.json: sent 2026-11-24T09:52Z, 48h floor not yet reached, nothing material changed, none sent. CI (checks.yml) on the latest push was still in_progress at read time, not cited as passing. No new work opened; handing the operator the same standing 30-issue Phil-gated queue.
