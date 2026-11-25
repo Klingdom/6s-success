@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-25 (~06:5x slot): independently re-verified every lane fresh, no new defect found, no push sent
+
+Did: attached per Step 0 (shallow and detached on arrival, real fetch --unshallow, checkout main, merge --ff-only onto origin/main at 522184936, 221 commits fast-forwarded, tree clean). Read GOALS.md, both pages of BACKLOG-2026-09-07.md, CLAUDE.md, and the last several NIGHTLY-LOG.md entries directly, plus GitHub issue #42's full comment thread (not summarized).
+
+Verified: preflight.py --skip-tests run live in the background to real completion: 0 FAIL, 30 warnings, all previously diagnosed sandbox/credential/art gaps (no SSH deploy key, no Stripe credential, no mail credential, build/heroes absent, no narrated films). A concurrent PM check-in (356c4af1b) landed mid-run; fetched, merged ff-only, resolved one trivial conflict in ops/cycle-signal.json (two cycle_signal snapshots of the same clean pass, kept the later one), tree clean after. room_guide_underperformance.py fresh: every room 0-12% uncovered, 0 gap rows; spot-checked four of the remaining partial rows ("bulk snacks," "bulk t shirts," "declutter study," "small primary bedroom storage") against the real log history by exact phrase (CLAUDE.md 5c/5d): each already carries 1-8 prior mentions. All rotate_*.py --check: CLEAN. cold_read_ledger.py --stale: 0. check_urls.py 236/236, check_sellable.py --deep 124/126 (2 person-delivered services, Stripe deep check unavailable, no credential). inbox_agent.py --apply: no mail credential. GitHub's 30 open issues re-pulled live: unchanged, none from Phil since #65 (11 days); issue #42 (his own cadence question) unchanged since his last comment 2026-11-20 (5 days), every comment since then self-authored by prior cycles. last-owner-notification.json: sent 2026-11-24T09:52Z, inside its 48h floor, nothing material changed, none sent.
+
+Went well: caught and resolved the concurrent-commit conflict before pushing rather than force past it.
+
+Did not go well: nothing material.
+
+Changing next cycle: none. No new preflight gate (10b): no new defect class found.
+
+Next: standing 30-issue Phil-gated queue; room-guide mining lane remains exhausted. No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-25 (~06:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art), because nothing is genuinely unblocked this cycle; room-guide mining stays at 0 genuine on-topic gap rows site-wide per the gate's own diminishing-returns reading.
