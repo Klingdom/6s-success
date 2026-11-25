@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, PM check-in (12:1x slot): previous work finished, independently reconfirmed live; closed one due backlog rotation
+
+NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue; room-guide mining stays at diminishing returns (0-12% uncovered per room, A249 reconfirmed the lane is genuinely exhausted by phrase).
+
+Attached per Step 0: shallow, detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `41af66730` (259 commits fast-forwarded), tree clean before touching anything.
+
+Previous work (A249, 11:4x PM cycle) IS finished: working tree already clean, main already pushed. Ran `preflight.py --skip-tests` live myself (own process this cycle started, not cited): 0 real FAIL in both FAIL sections reached (`(none)` twice, confirmed by grep, not assumed), only standing warnings (page-art, deck-art, films-vs-captions, Etsy fee page unreachable HTTP 403). Stalled at the documented `gate_etsy_pdfs_current` wall (headless Chromium Etsy PDF render) and was killed by the 170s timeout, same wall every recent cycle has hit; confirmed no stray process or file left behind.
+
+Closing job this slot: `rotate_backlog.py --check` reported 1 row past the 15-row cap (16 rows, 28267 bytes), the first due rotation any cycle has found in a while; all other 7 rotation scripts (`rotate_checkin_log`, `rotate_nightly_log`, `rotate_owner_actions`, `rotate_backlog_section2/3/4_items`, `rotate_backlog_done_items`) ran CLEAN. Applied `rotate_backlog.py --apply`: moved the 1 due row (A234) to `BACKLOG-2026-09-07-ARCHIVE.md` verbatim, live table now 15 rows/26104 bytes. Re-ran `--check`: CLEAN. Verified fail-then-pass by proxy (the check itself flipped from DUE to CLEAN); ran its own test file directly, `python ops/tests/test_rotate_backlog.py`: 14/14 PASS. `fix_dashes.py --check`: 0 em/en dashes, confirming the archive move introduced none. `cold_read_ledger.py --stale`: 0.
+
+GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 11 days); issue #42 unchanged since 2026-11-20. 0 open PRs.
+
+No new workstream opened, per this slot's own instruction not to start something large shortly before the operator. Leaving the operator the same standing queue; no other due rotation or stale claim found.
+
+Pushed to main: this log entry, the rotated backlog/archive pair, and the regenerated command deck. No price, product or site page touched; not customer-facing, `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, scheduled operator cycle (A249): three fresh hypotheses checked beyond the standing lane, each closed, no new defect found
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout: real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `d38d1c6e2` (254 commits fast-forwarded), tree clean. Ran `preflight.py --skip-tests` live to full completion: 0 real FAIL in both gate sections reached (KDP and Etsy listing gates), 30 warnings, all standing sandbox/credential/art gaps. A concurrent PM check-in (11:4x slot) landed 3 commits mid-cycle; fast-forwarded onto them cleanly rather than force past.
