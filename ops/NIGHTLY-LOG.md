@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-25 (~09:1x slot, 30-minute triage, previous work confirmed finished via a full live preflight, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art); room-guide mining stays at diminishing returns.
+
+Attached per Step 0 (shallow, detached arrival; real fetch --unshallow, checkout main, merge --ff-only onto origin/main at c0d196df2, 238 commits fast-forwarded, tree clean). Previous work (two hourly check-ins since the 08:4x PM cycle) reconfirmed finished, not cited: no code or content touched between them.
+
+Ran preflight.py --skip-tests live to full completion myself (backgrounded, waited for the real EXIT marker rather than trusting a partial foreground read): 0 FAIL across every gate, 29 warnings, all previously diagnosed (no SSH deploy key, no Stripe credential, no mail credential, build/heroes/ absent, no narrated films). All 21 rotate_*.py --check scripts run individually: CLEAN, nothing due. cold_read_ledger.py --stale: 0. GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (2026-11-14, 11 days); issue #42 unchanged since 2026-11-20 (5 days). ops/last-owner-notification.json: last sent 2026-11-24T09:52Z, inside its 48h floor (next due ~2026-11-26T09:52Z), nothing material changed, no push sent.
+
+No new workstream opened: no red gate, no stale rotation, no stale ledger entry, no open PR, no document drift found on inspection. No small closing job found beyond the checks above.
+
+Pushed to main: this log entry and the regenerated command deck. No price, product or page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-25 (~08:4x slot, 30-minute triage, previous work confirmed finished via a full live preflight, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art); room-guide mining stays at diminishing returns (0 gap rows, 0-12% uncovered per room).
