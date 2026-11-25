@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, PM check-in (16:4x slot): previous work confirmed finished live, nothing new unblocked, no closing job found
+
+NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue; room-guide mining stays confirmed exhausted (0-12% uncovered every room, re-verified fresh this cycle), because nothing else is genuinely unblocked.
+
+Attached per Step 0: fetch, real unshallow, `checkout main`, `merge --ff-only` onto `origin/main`, tree clean throughout, no force.
+
+Previous work (16:1x PM check-in's STATUS.md self-repair) IS finished: ran `preflight.py --skip-tests` live to full completion myself rather than citing it: every gate passed, 29 standing sandbox/credential/art warnings, `cycle_signal` clean pass. Discarded its own checkpoint diff per convention.
+
+Re-verified fresh rather than cited: `room_guide_underperformance.py` (every room 0-12% uncovered, same saturated state), `cold_read_ledger.py --stale` (0), every `rotate_*.py --check` with a `__main__` entry (CLEAN, nothing due). GitHub's 30 open issues re-pulled live via the REST API: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil; issue #42's cadence question still unanswered since 2026-11-20. `ops/last-owner-notification.json`: last push 2026-11-24T09:52Z, inside its 48h floor (about 31h elapsed), nothing material changed, no repeat sent.
+
+No new workstream opened, per this slot's own instruction not to start something large three minutes before the operator. No closing job found this slot: ledger and rotations were already clean.
+
+Pushed to main. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (16:1x slot): previous work genuinely finished only after a self-repair; closed a stale STATUS.md gate
 
 NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue; room-guide mining stays confirmed exhausted (0 genuine gap rows every room per `gate_room_guide_mining_diminishing_returns`), so do not revive Guest Bathroom/Home Office as a "next" pick without new evidence.
