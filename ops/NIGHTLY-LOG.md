@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-25 (~04:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: Family Room (12% uncovered, 7 partial of 56 on-topic rows) remains the single largest genuinely unmined room-guide tier, unchanged from the prior two slots; Stair Landing (12%, 1 partial) and Hall Closet (10%, 10 partial) are next if it is exhausted first. Note the gate's own fresh diminishing-returns reading this cycle (below) before spending operator time there.
+
+Attached per Step 0 onto a shallow, detached checkout: `git fetch origin main`, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `0ec5c7c36` (205 commits fast-forwarded), tree clean throughout, no reset or force.
+
+Previous work (the 03:4x PM twin cycle and the hourly check-in after it) confirmed finished, not cited: both were pushed, no operator cycle ran between 02:43 and this slot. Ran `preflight.py --skip-tests` live to real, full completion myself (first attempt hit a 100s foreground cap partway through; reran to completion, 3m8s): every gate passed, 0 real FAIL, 28 warnings, all previously diagnosed (no SSH deploy key, no Stripe credential, `build/heroes/` absent, site/DNS unreachable from here). `cold_read_ledger.py --stale`: 0. All 21 `rotate_*.py --check` run individually: all CLEAN, nothing due. `room_guide_underperformance.py` run fresh across all 20 rooms: Family Room still exactly 12% uncovered with the same 7 partial rows named last slot; nothing moved. Preflight's own `gate_room_guide_mining_diminishing_returns` now reads the lane as 0 genuine on-topic *gap* rows site-wide (every remaining row is `partial`, not `gap`), matching the separately-flagged `cross-surface-ties` warning (136 partial rows are scoring ties, not real content misses); worth the operator reading this before mining further partial rows for marginal value. GitHub's 30 open issues re-pulled live via the API: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, now 11 days); #42 unchanged since 2026-11-20, now 5 days. `ops/last-owner-notification.json`: last sent 2026-11-24T09:52Z, inside its 48h floor, nothing material changed, no push sent this cycle.
+
+No new workstream opened: no red gate, no stale rotation, no stale ledger entry, no open PR, no document drift found on inspection.
+
+Pushed to main. Dashboard regenerated (routine Stripe/analytics carry-forward timestamp refresh only). No price, product or page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-25 (~03:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: Family Room (12% uncovered, 7 partial of 56 on-topic rows) is still the single largest genuinely unmined room-guide tier, because a fresh rescan this cycle reproduced the exact same 7 rows and percentage the prior slot handed off, so nothing has changed; Stair Landing (12%, 1 partial) and Hall Closet (10%, 10 partial) are the next two if Family Room is exhausted first.
