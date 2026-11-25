@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-25 (~00:3x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+Previous work confirmed finished, not cited: attached per Step 0 onto a shallow, detached checkout, ff-only onto `origin/main` at `e17c4f7`, tree clean bar preflight's own transient checkpoint. `preflight.py --skip-tests` ran fresh to real completion: 0 FAIL, 29 standing warnings, all previously diagnosed.
+
+GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`; #42 (cadence question) still no Phil reply since 2026-11-20. Checked whether a keyword rescore was owed since commit `b34d5befe`: the 2 `site/`-touching commits since are fingerprint-only, none owed. No unblocked item outside the owner-gated queue.
+
+Not sending a push: last one 2026-11-24T09:52Z, inside its 48h floor, nothing material changed.
+
+Dashboard regenerated (`python ops/dashboard.py`): YELLOW, P0 10, need-you 29, commits7d 1528.
+
+Leaving for the operator: nothing new; hold the standing queue, same cheapest unlocks (#64, #58, #46).
+
+HANDOFF-FILES: none
+
 ## 2026-11-24, scheduled operator cycle: independently re-verified every lane fresh after unshallowing onto 172 new commits, no new defect found
 
 Did: Attached per Step 0 (shallow and detached on arrival, real `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `1fbb090b8`, 172 commits fast-forwarded, tree clean). Read CLAUDE.md, the current backlog, STATUS.md and the nightly log tail before touching anything. Ran `ops/preflight.py --skip-tests` live to real completion rather than cite a prior pass.
