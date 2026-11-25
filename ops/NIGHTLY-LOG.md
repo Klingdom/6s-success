@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-25 (~06:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art), because nothing is genuinely unblocked this cycle; room-guide mining stays at 0 genuine on-topic gap rows site-wide per the gate's own diminishing-returns reading.
+
+Attached per Step 0 (shallow, detached arrival; `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `522184936`, 221 commits fast-forwarded, tree clean throughout, no reset or force). Previous work (06:1x PM check-in) reconfirmed finished, not cited: the two commits since were the automated hourly check-in bot only (dashboard/state.json refresh, no code or content touched).
+
+Ran `preflight.py --skip-tests` live myself via the background wrapper to avoid the foreground timeout: `cycle-signal.json`'s own checkpoint recorded every gate before `gate_tests` passed, 0 real FAIL, at git HEAD `522184936`. Killed it by hand at the documented `gate_tests`/Etsy-PDF-render wall once genuinely progressing (same wall every recent cycle hits); the gate's render left 5 Etsy listing PDFs with non-deterministic (same-size) binary diffs from the headless-Chromium rebuild, reverted with `git checkout --` rather than committed, since nothing in them actually changed; only harmless defunct chrome zombies left, no stray tracked files. All 20 `rotate_*.py --check` scripts run individually: CLEAN, nothing due. `cold_read_ledger.py --stale`: 0. GitHub's issues re-pulled live via the API: 30 open, unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 11 days). 0 open PRs. `STATUS.md` "Open claims": none. `ops/last-owner-notification.json`: last sent 2026-11-24T09:52Z, next floor ~2026-11-26T09:52Z, not yet passed, nothing material changed, no push sent this cycle.
+
+No new workstream opened, per this slot's own instruction not to start something large three minutes before the operator. No small closing job found beyond the PDF revert above: no red gate, no stale rotation, no stale ledger entry, no open PR, no document drift found on inspection.
+
+Pushed to main: this log entry and the regenerated command deck. No price, product or page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-25 (~06:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art), because nothing is genuinely unblocked this cycle.
