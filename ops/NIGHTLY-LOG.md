@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, PM check-in (20:4x slot): previous work finished, closed one real due rotation, nothing new unblocked
+
+NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue (unchanged since #65, 2026-11-14), because nothing new is unblocked this slot; the room-guide mining lane stays saturated (0-12% uncovered every room), so there is no operator-cycle-sized non-Phil-gated workstream to hand over right now beyond re-verifying the same state.
+
+Attached per Step 0 onto a shallow, detached checkout: real `fetch origin main`, `fetch --unshallow` (329 commits), `checkout main`, `merge --ff-only` onto `origin/main` at `46e07c53a`, tree clean throughout, no force.
+
+Previous work (A258, 20:1x PM) IS finished, re-verified rather than cited: GitHub's 30 open issues re-pulled live, unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (11 days); issue #42's comment thread read in full, every comment self-authored, last 2026-11-20, nothing new to add. 0 open PRs. `preflight.py --skip-tests` run live in the background to real completion (progress confirmed via `/proc`, not assumed): every gate before `gate_generator_ownership` passed with 0 real FAIL, 29 warnings, all previously-diagnosed sandbox/credential/art gaps.
+
+Closing job this slot: ran all 21 `rotate_*.py --check` scripts individually. One genuinely due: `rotate_backlog.py` (the Done table back at 16 rows against its 15-row cap, since A258 added itself after the last rotation). Applied with `--apply`, moved the oldest row (A241) losslessly to `BACKLOG-2026-09-07-ARCHIVE.md`, reran `--check` clean (15 rows, 26051 bytes), ran the test directly with `python ops/tests/test_rotate_backlog.py` (its own runner; `unittest`/`pytest` discovery finds 0 tests in this file and would silently misreport a pass, not a real check): 14/14. That left the tree dirty mid-cycle, so the preflight run correctly FAILed `gate_generator_ownership` (by design, mid-diff refusal), matching the documented pattern. `cold_read_ledger.py --stale`: 0. `fix_dashes.py --check`: 0/0. `owner_notify_claim.py --check`: floor not elapsed (~35h of 48h), nothing material changed, no push sent.
+
+No new workstream opened: nothing beyond the exhausted room-guide lane and the 30-issue Phil-gated queue is genuinely unblocked this slot.
+
+Pushed to main and the dashboard regeneration. No price, product or customer-facing page touched; not customer-facing, `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (20:1x slot): previous work was finished; closed one real due rotation, nothing else unblocked
 
 Previous work (A257 operator, 19:4x PM) IS finished: attach clean (fetch, unshallow, checkout main, ff-only onto origin/main, 324 commits fast-forwarded, no force), working tree clean, main matched origin. GitHub's 30 open issues re-pulled live: unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (2026-11-14, 11 days); issue #42 unchanged since 2026-11-20. 0 open PRs.
