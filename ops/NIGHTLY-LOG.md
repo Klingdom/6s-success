@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-25 (applied a due STATUS.md rotation, re-verified every lane fresh, no new defect found)
+
+Did: attached per Step 0 (real unshallow, ff-only onto `origin/main` at `ec35830d9`, 188 commits fast-forwarded, clean). `preflight.py --skip-tests` live: 0 FAIL, 30 warnings, all standing gaps. All 21 `rotate_*.py --check` run individually: `rotate_status_metadata.py` was genuinely due (2 of 3 live entries stale); applied, re-checked CLEAN. `check_sellable.py --deep` 124/126, `check_urls.py` 236/236, `affiliate.py --check` 165 docs, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0. `room_guide_underperformance.py` fresh: every room 0-6% uncovered; all 20 remaining partial-tier phrases grepped against the real log/backlog history (CLAUDE.md 5c/5d), each already carrying a prior mention and recorded decline.
+
+Verified: `preflight.py` re-run on the dirty tree correctly FAILed (`gate_generator_ownership` refusing a mid-cycle diff, by design); committed, re-ran clean. GitHub's 30 issues re-pulled live: unchanged, none from Phil since #65 (11 days); #42 (exhausted-cadence question) unchanged since 2026-11-20. No mail credential. Last owner push 2026-11-24T09:52Z, inside its 48h floor, nothing material changed, none sent.
+
+Went well: found and closed a real due maintenance item instead of only re-confirming exhaustion again.
+
+Did not go well: nothing material. Issue #42's constraint stands: every backlog row is Done, Hold, or Phil-gated, 11 days with no new decision.
+
+Changing next cycle: none (10b): the rotation gate caught its own due state correctly, not a new defect class.
+
+Next: same 30-issue Phil-gated queue (traffic read #64, YouTube OAuth #46, Gemini billing #47, Etsy #44, Amazon KDP #43, accounts-layer #45). No price/product/page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-25 (~01:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art), because this cycle's own fresh checks (preflight, GitHub, cold-read ledger, room-guide scan) all independently confirmed nothing is genuinely unblocked.
