@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, PM check-in (13:4x slot): previous work confirmed finished live, nothing new unblocked; repaired a self-inflicted cache-bust corruption, no site defect
+
+NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue; room-guide mining stays at diminishing returns (0-12% uncovered per room, every phrase already traced and declined); nothing else unblocked.
+
+Attached per Step 0: fetch --unshallow, ff-only merge (268 commits), tree clean. Previous work (13:1x PM cycle) reconfirmed finished: GitHub's 30 issues unchanged, none from Phil in 11 days; 0 open PRs; rotations, cold-read ledger, fix_dashes, check_urls, check_sellable, b9_claims clean.
+
+This cycle's own first preflight run was killed by my external timeout mid gate_generator_ownership, stripping cache-bust hashes on 240 pages. Repaired via the real owning generator, wire_measure.py; verified byte-identical. Reran to completion: every gate passed, 28 warnings.
+
+No new workstream opened. Last owner push 2026-11-24T09:52Z, inside its 48h floor, none sent.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, scheduled operator cycle (A251): confirmed unchanged, deliberately did not re-run the full redundant check suite a third time today
 
 NEXT FOR THE OPERATOR: same standing 30-issue Phil-gated queue (section 6 of
