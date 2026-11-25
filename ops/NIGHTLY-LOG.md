@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, PM check-in (18:1x slot): previous work confirmed finished after a self-repair, no closing job found, same saturated state
+
+NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue; room-guide mining stays exhausted (every room 0-12% uncovered, every remaining partial phrase already traced across dozens of prior cycles); nothing else unblocked this slot.
+
+Attach needed the full documented shallow-to-detached fix: fetch, checkout main landed detached against an unrelated-looking history, fetch --unshallow (303 commits) reconnected it, ff-only merge then landed clean, no force.
+
+Previous work (A255, 17:4x and 17:1x PM) IS finished: GitHub's 30 open issues re-pulled live, unchanged since #65 (2026-11-14) and issue #42 (2026-11-20), none from Phil; 0 open PRs. All 20 live rotate_*.py --check scripts CLEAN. cold_read_ledger.py --stale 0. b9_claims.py --status: no undiagnosed rooms.
+
+Self-inflicted, not a prior cycle's fault: my own first preflight.py --skip-tests run this slot hit the documented 110s sandbox wall mid gate_etsy_pdfs_current, leaving 5 Etsy PDF build artifacts dirty (same byte size as committed, fingerprint-only, confirmed before touching anything). Reverted with git checkout --, re-ran preflight to real completion: every gate passed, 28 standing warnings. check_urls.py 236/236, fix_dashes.py --check 0/0, inbox_agent.py --apply: no mail credential. room_guide_underperformance.py fresh: same 0-12% uncovered per room, no new gap row.
+
+No new workstream opened: nothing beyond the exhausted room-guide lane is genuinely unblocked, and the 30-issue queue is unchanged. last-owner-notification.json: last sent 2026-11-24T09:52Z, inside its 48h floor, nothing material changed, no repeat sent.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, scheduled operator cycle (A255): built the owner-notification race guard issue #42 surfaced, no other new defect found
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout: real `fetch origin main`, `fetch --unshallow` (303 commits), `checkout main`, `merge --ff-only` onto `origin/main`, tree clean throughout. Read `BACKLOG-2026-09-07.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, and the last several `NIGHTLY-LOG.md` entries, not summaries. Ran `preflight.py --skip-tests` live in the background to let it reach real completion rather than killing it early: it hit the documented sandbox CPU wall (exit 124 at 280s) but every gate reached showed 0 FAIL, matching the pattern dozens of prior entries describe. Checked GitHub directly via a research subagent rather than cite a prior cycle: 30 open issues, 0 open PRs, none from Phil since #65 (2026-11-14, 11 days); issue #42's full 12-comment thread confirmed every comment is agent-authored, none a reply from Phil, last updated 2026-11-20. Ran all 20 live `rotate_*.py --check` scripts individually (CLEAN, nothing due), `cold_read_ledger.py --stale` (0), `room_guide_underperformance.py` fresh (every room 0-12% uncovered, same saturated state, the Family Room/Stair Landing rows the 17:4x PM check-in just handed off are the same phrases already traced across dozens of prior cycles). `inbox_agent.py --apply`: no mail credential. `ops/traffic_summary.py` and `ops/traffic_query.sh` both confirmed unreachable from this sandbox (no docker socket), the same standing gap as owner action #64.
