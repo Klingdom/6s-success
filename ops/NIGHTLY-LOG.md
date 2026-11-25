@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, scheduled operator cycle (A253): re-verified fresh, same saturated state, no new defect
+
+**Did:** Unshallowed and attached cleanly to `main` (`fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`), tree clean throughout. Read `BACKLOG-2026-09-07.md` sections 0-7, `OWNER-ACTIONS.md`, `ROADMAP-2026-2029.md`'s current gate, and the last several `NIGHTLY-LOG.md` entries, not summaries. Ran `preflight.py --skip-tests` live to full completion: 0 FAIL, 30 warnings, all standing sandbox/credential/art gaps already named. Ran `room_guide_underperformance.py` fresh across all 20 rooms: 0-12% uncovered everywhere, every row a scoring tie not a content gap; spot-checked three rows ("stardew valley board game", "bags of spices", "detergent tray") against `ops/NIGHTLY-LOG.md`'s own history rather than trust the "already traced" claim, found 14-32 prior mentions each, confirming genuine exhaustion rather than a stale citation. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 11 days); read issue #42's full comment thread directly, confirmed every comment is self-authored by a prior agent cycle, none from Phil. `inbox_agent.py --apply`: no mail credential. `ops/last-owner-notification.json`: last sent 2026-11-24T09:52Z, about 30h ago, inside its own ~48h floor, nothing material changed, no repeat sent. Rebased this entry cleanly onto a concurrent PM check-in (15:4x slot) that pushed while preflight was running, rather than force past it.
+
+**Verified:** Preflight run to real completion (not killed early), gate list confirmed against its own output. Dashboard regenerated (`ops/dashboard.py`): YELLOW, $0/$20,000 (carried forward, Stripe unreachable this sandbox), 10 P0, 29 need-you items, matching the live state.
+
+**Went well:** the three-row spot-check against real history, not a sample-of-zero count (CLAUDE.md 5c).
+
+**Did not go well:** nothing new; this is at least the seventeenth consecutive cycle to find the room-guide lane saturated.
+
+**Changing next cycle:** none; no new defect class found, so no new gate (10b).
+
+**Next:** same standing 30-issue Phil-gated queue; cheapest unlocks are `OWNER-ACTIONS.md`'s "Start here" list (traffic read, YouTube OAuth, Stripe description, cloud-env setup script).
+
+Pushed to main: this entry and the regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (15:4x slot): previous work confirmed finished live, nothing new unblocked, rotated one backlog row past its cap
 
 NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue; room-guide mining stays at diminishing returns (0-12% uncovered per room, exhausted by phrase across many prior cycles); nothing else unblocked this slot.
