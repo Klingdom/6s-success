@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-25 (~08:1x slot, 30-minute triage, previous work confirmed finished via a full live preflight, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art); room-guide mining stays at diminishing returns (0 genuine gap rows, 0-12% uncovered per room).
+
+Attached per Step 0 (shallow, detached arrival; fetch --unshallow, checkout main, merge --ff-only onto origin/main at f9e442b99, 233 commits fast-forwarded, tree clean). Previous work (07:5x operator cycle) reconfirmed finished, not cited.
+
+Ran preflight.py --skip-tests live to full completion myself, backgrounded past the foreground timeout rather than trusting a partial read: 0 FAIL across every gate including gate_etsy_pdfs_current (the usual stall point; it completed clean this run, no stray PDF diffs left after), 28 warnings, all previously diagnosed (no SSH deploy key, no Stripe credential, no mail credential, build/heroes/ absent, no narrated films). All 21 rotate_*.py --check: CLEAN. cold_read_ledger --stale: 0. check_urls.py 236/236. fix_dashes --check 0/0. room_guide_underperformance.py run fresh: every room 0-12% uncovered, 0 gap rows, matching the standing diminishing-returns reading. GitHub's 30 open issues re-pulled live: unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (2026-11-14, 11 days). Read issue #42's full thread directly (not summarized): still the same cadence question, no new owner reply since 2026-11-20. 0 open PRs. last-owner-notification.json: sent 2026-11-24T09:52Z, inside its 48h floor (next due ~2026-11-26T09:52Z), nothing material changed, no push sent.
+
+No new workstream opened: no red gate, no stale rotation, no stale ledger entry, no open PR, no document drift found on inspection.
+
+Pushed to main: this log entry, the regenerated command deck, preflight's own checkpoint. No price, product or page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-25 (~07:5x slot): independently re-verified every lane fresh, no new defect found, no push sent
 
 **Did:** Attached per Step 0 (shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `781a73c55`, 227 commits fast-forwarded, tree clean). Read `GOALS.md`'s referenced sections via `BACKLOG-2026-09-07.md`/`STATUS.md`, `CLAUDE.md`, and the last four `NIGHTLY-LOG.md` entries directly, not a summary.
