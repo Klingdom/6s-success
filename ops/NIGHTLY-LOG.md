@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-25 (~01:1x slot, 30-minute triage, previous work confirmed finished, closed a real gate warning)
+
+Previous work finished: attached per Step 0 onto a shallow, detached checkout (fetch, real unshallow, ff-only onto `origin/main` at `1170217ab`, 186 commits fast-forwarded, tree clean). `preflight.py --skip-tests` run live twice (first backgrounded past the 120s foreground limit, second a fresh foreground rerun): both 0 real FAIL through every gate reached; the second reached past `gate_status_currency` into the cold-read lane before its own 110s cutoff. All 21 `rotate_*.py --check` CLEAN. `fix_dashes.py` 0/0, `check_urls.py` 236/236, `affiliate.py --check` clean, `cold_read_ledger.py --stale` 0.
+
+This slot's close: `gate_status_currency` warned STATUS.md had not mentioned 8 material commits since its last edit (`8015dc8c`). Checked each: all 8 were routine scheduled-operator/PM re-verification cycles (A238-A245), already fully narrated in this log and the backlog's Done table, none changing operational reality. Brought STATUS.md section 1 current with a new dated entry naming and accounting for all 8, re-confirmed `BLOCKER-001`'s "0 commits pending" directly (`git log a185a451..HEAD -- site/ Dockerfile` empty, deploy-verdict unchanged since 2026-11-24T07:00:44Z). Re-ran the gate and its test file (`test_gate_status_currency.py`, 18/18) against the edited file: gap now 0.
+
+GitHub's 30 open issues re-pulled live: unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (11 days); #42 unchanged since 2026-11-20. No owner push sent: last one 2026-11-24T09:52Z, inside its ~48h floor, nothing material changed.
+
+Handing to the operator: same standing 30-issue Phil-gated queue; nothing else genuinely unblocked this slot.
+
+Pushed to main. Dashboard regenerated. No price, product or page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, scheduled operator cycle: applied two real due log rotations found by individually re-checking every rotate_*.py, independently re-verified every other lane fresh, no new content defect found
 
 Attached per Step 0: real unshallow, ff-only onto `324c202b8`, 179 commits fast-forwarded, tree clean. `preflight.py --skip-tests` live to completion: 0 FAIL, 29 standing warnings, all previously diagnosed.
