@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, PM check-in (17:4x slot): previous work confirmed finished, preflight run to real completion this time, room guide fine mining handed to the operator
+
+NEXT FOR THE OPERATOR: mine Family Room's 7 remaining partial rows (56 on topic, 49 covered, 12% uncovered, tied with Stair Landing for the highest of any room but with far more real rows to work), because it is the only genuinely unblocked, non Phil gated lane left in the queue.
+
+Attach needed the full documented shallow to detached fix: fetch, checkout main landed on a local branch with unrelated history against origin, fetch --unshallow reconnected it, ff only merge then landed clean (ea41cdef2 to 24b86a7d7, no force). All 20 rotate_*.py --check scripts CLEAN (the 21st, rotate_backlog_journal_core.py, is the already known shared library false positive). GitHub re-pulled live: 30 open issues unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (11 days). Read issue #42 directly rather than cite it: 42 days old, 12 comments, all self authored by prior agent cycles, last touched 2026-11-20 (5 days silence); established convention there is not to re-raise it without new evidence, and there is none this cycle, so left untouched. last-owner-notification.json sent 2026-11-24T09:52Z, inside its 48h floor, nothing material changed (same 30 issues), no repeat push sent.
+
+Unlike the last two PM slots, preflight.py --skip-tests ran to real completion this time rather than hitting the documented sandbox wall: every gate passed, 29 warnings, all previously diagnosed sandbox/credential gaps (no SSH deploy key, no Stripe credential, no local heroes/photographs). Re-checked the room guide lane directly rather than trust the 2026-11-14 issue comment that called it exhausted: it is not literally zero, every room is now at 0-12% uncovered with Family Room and Stair Landing tied highest at 12%. Family Room has 7 partial rows to Stair Landing's 1, so it is the better operator-sized target. fix_dashes --check: 0 em dashes, 0 en dashes.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (17:1x slot): previous work reconfirmed finished live, no closing job found, preflight hit the documented sandbox wall twice
 
 Previous work (A254, 16:4x PM) IS finished, reconfirmed live not cited: clean attach (301-commit ff from shallow), all 20 rotate_*.py --check CLEAN, cold_read_ledger --stale 0, fix_dashes 0/0. GitHub: 30 open issues unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (11 days); issue #42's cadence question now 5 days unanswered, 0 open PRs. last-owner-notification sent 31h ago, inside its 48h floor, nothing material changed, no repeat sent. preflight.py --skip-tests hit the documented sandbox CPU wall twice (110s, 240s); 0 real FAIL through every gate reached. Reverted two self-inflicted same-byte artifacts before committing. No closing job found, everything already clean. Handing operator the same Phil-gated queue.
