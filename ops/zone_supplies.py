@@ -593,6 +593,13 @@ def render_storage(room: str, manual_zone: str, display_name: str,
     invalid HTML, so this block's own copy is renamed after the fact rather
     than reused as-is; nothing links to the id by anchor (checked: no page
     or script references "#affiliate-disclosure").
+
+    The aria-label is renamed the same way and for a sibling reason, found
+    2026-11-25 by an automated axe-core pass this operator ran (never
+    tested before): two <aside>s with the same accessible name are still
+    indistinguishable to a screen reader navigating by landmark, same as
+    two with none at all. "Two different pages" was never true of
+    accessibility the way it was already true of HTML validity.
     """
     k = kit(room, manual_zone)
     if not k["storage_needed"] and not k["storage_maybe"]:
@@ -616,6 +623,11 @@ def render_storage(room: str, manual_zone: str, display_name: str,
             # disclosure when a zone carries both (see docstring above).
             block = block.replace('id="%s"' % A.DISCLOSURE_ID,
                                   'id="%s-storage"' % A.DISCLOSURE_ID, 1)
+            # Rename the accessible name too, same reason, for a screen
+            # reader rather than an HTML validator (see docstring above).
+            block = block.replace(
+                'aria-label="%s"' % A.DISCLOSURE_LABEL,
+                'aria-label="%s, for storage"' % A.DISCLOSURE_LABEL, 1)
             out.append(_styled(block))
         except Exception:                                     # noqa: BLE001
             pass

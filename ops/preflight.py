@@ -20473,6 +20473,71 @@ def gate_cross_surface_ties_tracked() -> None:
              "BACKLOG-2026-09-07.md (A74/A82/A114/A197) first.")
 
 
+ASIDE_TAG_RE = re.compile(r"<aside\b([^>]*)>", re.IGNORECASE)
+ASIDE_LABEL_RE = re.compile(
+    r'(?:aria-label|aria-labelledby|title)\s*=\s*"([^"]*)"', re.IGNORECASE)
+
+
+def unlabeled_aside_landmarks(page_html: str):
+    """Pure logic for gate_aside_landmarks_labeled, testable on a string.
+
+    Found 2026-11-25, an automated axe-core pass this operator ran against
+    a sample of real pages (never run on this site before): every <aside>
+    is an unnamed `complementary` ARIA landmark by default, and 135 pages
+    (confirmed by a direct count, not estimated) render two or three of
+    them on one page, between the affiliate disclosure(s) ops/affiliate.py
+    writes and the safety notice ops/build_zone_pages.py/build_articles.py
+    write. A screen reader navigating by landmark hears "complementary"
+    two or three times with nothing to tell them apart; `zone_supplies.py`'s
+    render_storage() already renamed the SECOND disclosure's id to avoid an
+    invalid duplicate id, which fixed HTML validity and left accessibility
+    exactly as broken, because two unlabeled landmarks are as
+    indistinguishable as none.
+
+    Returns True when this page has 2 or more <aside> elements and any of
+    them lacks an aria-label/aria-labelledby/title, OR two of them share
+    the exact same one (which would "fix" uniqueness in form only).
+    """
+    tags = ASIDE_TAG_RE.findall(page_html)
+    if len(tags) < 2:
+        return False
+    labels = []
+    for attrs in tags:
+        m = ASIDE_LABEL_RE.search(attrs)
+        labels.append(m.group(1).strip() if m else None)
+    if any(l is None for l in labels):
+        return True
+    return len(set(labels)) != len(labels)
+
+
+def gate_aside_landmarks_labeled() -> None:
+    """Every page with 2+ <aside> elements must give each a distinct
+    accessible name, so a screen reader's landmark list is not several
+    identical, silent "complementary" entries.
+
+    Proof this can fail: ops/tests/test_gate_aside_landmarks_labeled.py
+    constructs a two-aside page with no labels (must fail), one with a
+    shared label (must fail) and one with two distinct labels (must pass),
+    then runs the real gate against the real site and confirms it is
+    clean today, having fixed the real 135-page instance of this the same
+    cycle this gate was written.
+    """
+    bad = []
+    for path in all_pages():
+        try:
+            html_text = io.open(path, encoding="utf-8").read()
+        except Exception:                                      # noqa: BLE001
+            continue
+        if unlabeled_aside_landmarks(html_text):
+            bad.append(os.path.relpath(path, ROOT))
+    if bad:
+        fail("aside-landmarks",
+             f"{len(bad)} page(s) render 2+ <aside> landmarks without a "
+             "distinct aria-label/aria-labelledby/title on each, "
+             "indistinguishable to a screen reader navigating by "
+             f"landmark: {bad[:5]}")
+
+
 def browser_claimed_but_unusable(binary_present, renders, reason):
     """Pure logic for gate_browser_probe_honest, testable without a browser.
 
@@ -33838,6 +33903,7 @@ def main() -> int:
     run_gate(gate_keyword_demand_global_rescored_current)
     run_gate(gate_room_guide_mining_diminishing_returns)
     run_gate(gate_cross_surface_ties_tracked)
+    run_gate(gate_aside_landmarks_labeled)
     run_gate(gate_keyword_demand_no_content_words)
     run_gate(gate_owner_questions_not_stale)
     run_gate(gate_roadmap_gate_in_owner_email)

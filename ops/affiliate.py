@@ -58,9 +58,16 @@ ACCOUNTS = os.path.join(ROOT, "ops", "affiliate-accounts.json")
 DISCLOSURE_ID = "affiliate-disclosure"
 DISCLOSURE_PAGE = "affiliate-disclosure.html"
 
+# aria-label matches what render_storage() renames a second copy to on a
+# page that renders this block twice (see its own docstring), so a screen
+# reader navigating by landmark hears two distinct names instead of
+# "complementary" twice with no way to tell them apart (found 2026-11-25,
+# an automated axe-core pass this operator ran, not previously tested).
+DISCLOSURE_LABEL = "How these links work"
+
 # The wording. Amazon requires its sentence verbatim, so it is not paraphrased.
 DISCLOSURE_HTML = """\
-<aside class="disclosure" id="{id}">
+<aside class="disclosure" id="{id}" aria-label="{label}">
   <p><b>How the links on this page work.</b> Some of the links below are
   affiliate links, which means 6S Success may earn a commission if you buy
   through them, at no extra cost to you.</p>
@@ -81,7 +88,7 @@ DISCLOSURE_HTML = """\
 # "No retailer link yet". Claiming a material connection we do not have is the
 # same class of fault as concealing one we do, and it was sitting on the only
 # page of the site that recommends anything.
-NO_LINK_HTML = """<aside class="disclosure" id="{id}">
+NO_LINK_HTML = """<aside class="disclosure" id="{id}" aria-label="{label}">
   <p><b>Nothing on this page earns us anything.</b> No retailer affiliate
   program has approved us, so not one product below carries a paying link
   and we take no cut of anything you buy after reading it.</p>
@@ -102,7 +109,7 @@ NO_LINK_HTML = """<aside class="disclosure" id="{id}">
 # What is actually true is narrower and more useful than either: these are
 # ordinary searches at a retailer, for the TYPE of thing the zone needs, with
 # no code attached and no money attached. Saying so is the point of the block.
-PLAIN_LINK_HTML = """<aside class="disclosure" id="{id}">
+PLAIN_LINK_HTML = """<aside class="disclosure" id="{id}" aria-label="{label}">
   <p><b>These links pay us nothing.</b> The products below link to a search at
   a retailer, and those links carry no tracking code and earn no commission.
   No affiliate program has approved us, so there is nothing for us to gain
@@ -280,11 +287,13 @@ def disclosure(has_amazon: bool, has_links: bool = True,
     """
     page = prefix + DISCLOSURE_PAGE
     if not has_links:
-        return NO_LINK_HTML.format(id=DISCLOSURE_ID, page=page)
+        return NO_LINK_HTML.format(id=DISCLOSURE_ID, page=page,
+                                    label=DISCLOSURE_LABEL)
     if not approved():
-        return PLAIN_LINK_HTML.format(id=DISCLOSURE_ID, page=page)
+        return PLAIN_LINK_HTML.format(id=DISCLOSURE_ID, page=page,
+                                       label=DISCLOSURE_LABEL)
     return DISCLOSURE_HTML.format(
-        id=DISCLOSURE_ID, page=page,
+        id=DISCLOSURE_ID, page=page, label=DISCLOSURE_LABEL,
         amazon=f"<p>{AMAZON_SENTENCE}</p>" if has_amazon else "")
 
 
