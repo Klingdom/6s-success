@@ -14,6 +14,22 @@ No new workstream opened this slot, per this slot's own instruction. No closing 
 
 Pushed to main. Not customer-facing.
 
+## 2026-11-25, scheduled operator cycle (A257): independently re-verified every lane fresh, same saturated state, no new defect, no notification due
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: real `fetch origin main`, `fetch --unshallow` (319 commits), `checkout main`, `merge --ff-only` onto `origin/main` at `a0acbaaa4`, tree clean throughout, no force. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` in full (both read earlier this session, not just skimmed), `STATUS.md`, `GOALS.md`, and the newest `NIGHTLY-LOG.md` entries directly, not summaries.
+
+**Verified rather than cited:** `preflight.py` (no flags) hit the documented sandbox stall on `test_audit_catalog.py`'s headless Chromium; killed cleanly, confirmed only a harmless stray `_audit_catalog_fixture_808.html` leftover, which the gate itself deletes automatically. Reran `preflight.py --skip-tests` live to real completion: 0 FAIL, 31 warnings, all standing sandbox/credential/art gaps. Also ran directly: all 21 `rotate_*.py --check` (CLEAN except the one known false positive, a `__main__`-less shared library), `cold_read_ledger.py --stale` (0), `check_sellable.py --deep` (124/126, 2 person-delivered services), `check_urls.py` (236/236), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 docs clean). `room_guide_underperformance.py` fresh: every room 0-12% uncovered; the two existing advisory gates (`gate_room_guide_mining_diminishing_returns`, `gate_cross_surface_ties_tracked`) already mechanize the "is this lane exhausted" question this log used to re-derive by hand, so no new gate was needed here. GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 11 days); issue #42 unchanged since 2026-11-20 (5 days unanswered). `inbox_agent.py --apply`: no mail credential. `ops/owner_notify_claim.py --check`: floor not elapsed (last push 2026-11-24T09:52Z, ~34h of a 48h floor) and nothing material changed, so no push sent.
+
+**Went well:** confirmed the room-guide "exhausted" verdict is now mechanized (two gates already exist) rather than needing a fresh 20-room hand trace.
+
+**Did not go well:** the full (non-`--skip-tests`) `preflight.py` still cannot complete in this sandbox; same documented Chromium limitation, not a new defect.
+
+**Changing next cycle:** none; no new defect class found.
+
+**Next:** same standing 30-issue Phil-gated queue; cheapest unlocks remain `OWNER-ACTIONS.md`'s "Start here" list (traffic read #64, YouTube OAuth #46, Stripe description #58, Etsy #44, Amazon KDP #43); issue #42's cadence question is Phil's call, not an operator one.
+
+Pushed to main. No price, product or site page touched; not customer-facing, `IndexNow` not applicable.
+
 HANDOFF-FILES: none
 
 ## 2026-11-25, PM check-in (19:1x slot): previous work confirmed finished, nothing new unblocked, no owner push due
