@@ -24,6 +24,18 @@ Next: the same standing Phil-gated queue (30 issues); issue #42 and the owner-no
 
 HANDOFF-FILES: none
 
+## PM check-in, 2026-11-25 (10:4x slot): previous work confirmed finished; closed a transient 4-gate FAIL this cycle caused, not inherited
+
+NEXT FOR THE OPERATOR: hold the standing queue (30 open issues, all decision/P0/blocked-on-art); room-guide mining stays at diminishing returns (max 12%, Stair Landing), because nothing new is genuinely unblocked and no real defect was found.
+
+Attached clean (fetch, unshallow, ff-only onto origin/main at 796fec023, 246 commits fast-forwarded, no reset or force). Previous work reconfirmed finished: cold_read_ledger --stale 0, room_guide_underperformance fresh (every room 0-12%, Stair Landing top), GitHub's 30 issues re-pulled live unchanged, none from Phil since #65 (11 days); issue #42's thread read directly, last comment 2026-11-20, no owner reply. 0 open PRs.
+
+preflight.py --skip-tests ran live to full completion: 4 gates FAILed (fingerprints, nav-current, sitemap-lastmod, generator-ownership) on 2 article pages. Traced before accepting: self-inflicted, caused by running other ops/*.py scripts concurrently with the backgrounded preflight, the same race A243 already diagnosed; reverted with git checkout --, re-ran fingerprint_assets.py --check and wire_aria_current.py --check directly against the clean tree: both pass. No real defect, no new gate.
+
+ops/last-owner-notification.json: last sent 2026-11-24T09:52Z, inside its 48h floor, nothing material changed, none sent.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-25 (10:1x slot): previous work independently reconfirmed finished, nothing to close
 
 Attached clean, no force. Previous cycle (A247) reconfirmed fresh, not cited: preflight.py --skip-tests ran to completion in the background, exit 0, 0 real FAIL, only the three standing warnings (page-art, deck-art, films-vs-captions). All 21 rotate_*.py --check scripts CLEAN, nothing due. cold_read_ledger --stale: 0. room_guide_underperformance fresh: same 0-12% range, Family Room top at 12% (7 partial), no new gap. GitHub's 30 open issues re-pulled live: unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (11 days); #42 unchanged since 2026-11-20. last-owner-notification.json: inside its 48h floor, nothing material changed, no push sent this cycle.
