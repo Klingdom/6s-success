@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, scheduled operator cycle (A250): independently re-verified every lane fresh, no new defect found, confirmed a false lead was not real work
+
+Did: Attached per Step 0 (shallow, detached, real fetch --unshallow, checkout main, merge --ff-only onto origin/main, 261 commits fast-forwarded, tree clean). Read BACKLOG-2026-09-07.md, GOALS.md, STATUS.md, CLAUDE.md and the last several NIGHTLY-LOG.md entries before touching anything. Ran preflight.py --skip-tests live to full completion: 0 FAIL, 29 warnings, all standing sandbox/credential/art gaps already named in prior entries.
+
+Verified, not cited: pulled GitHub's 30 open issues live via the MCP server, all decision/P0/blocked-on-art, all authored by Phil himself as filed decisions, none newer than #42 (2026-11-20). inbox_agent.py --apply: no mail credential. room_guide_underperformance.py run fresh: 0 gap rows in any of 20 rooms (0-12% uncovered, matching A249's own count), confirming the mining lane really is exhausted rather than trusting the citation. build/listings/check_etsy.py: PASS, the three Etsy listings remain fully built and ready, genuinely blocked only on Phil opening the shop (issue #44). cold_read_ledger.py --stale: 0. b9_claims.py --status: no undiagnosed rooms. check_sellable.py --deep: 124/126 (2 person-delivered services). Checked ops/last-owner-notification.json: last push 2026-11-24T09:52Z, about 27h ago, inside its 48h floor, nothing material changed, no repeat sent.
+
+One false lead chased down and ruled out rather than reported as a finding (CLAUDE.md 5c/5d): a rotate_*.py --check loop flagged ops/rotate_backlog_journal_core.py as "due" because it printed no "clean" string; reading the file showed it is a shared library module with no __main__ entry point at all, so running it directly does nothing. Not a real rotation gap. A real due rotation was found separately and applied: `rotate_backlog.py` (16 rows past the 15-row cap in `BACKLOG-2026-09-07.md`'s own Done table); applied, re-checked CLEAN.
+
+Went well: caught my own false positive before logging it as a finding.
+
+Did not go well: nothing new; the same saturated state 15 consecutive prior cycles have independently confirmed.
+
+Changing next cycle: none; no new defect class to gate.
+
+Next: same 30-issue Phil-gated queue, unchanged since 2026-11-20 (issue #42 itself, the cadence question, is now 5 days unanswered).
+
+Pushed to main: this log entry, one backlog rotation, and the regenerated command deck. No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, PM check-in (12:4x slot): previous work finished, reconfirmed live by a full clean preflight; one self-inflicted scratch-state glitch found and repaired, no site defect
 
 NEXT FOR THE OPERATOR: hold the standing 30-issue Phil-gated queue, because the room-guide lane is independently reconfirmed exhausted (A249, last cycle) and nothing new is genuinely unblocked this slot.
