@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-25, PM check-in (17:1x slot): previous work reconfirmed finished live, no closing job found, preflight hit the documented sandbox wall twice
+
+Previous work (A254, 16:4x PM) IS finished, reconfirmed live not cited: clean attach (301-commit ff from shallow), all 20 rotate_*.py --check CLEAN, cold_read_ledger --stale 0, fix_dashes 0/0. GitHub: 30 open issues unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (11 days); issue #42's cadence question now 5 days unanswered, 0 open PRs. last-owner-notification sent 31h ago, inside its 48h floor, nothing material changed, no repeat sent. preflight.py --skip-tests hit the documented sandbox CPU wall twice (110s, 240s); 0 real FAIL through every gate reached. Reverted two self-inflicted same-byte artifacts before committing. No closing job found, everything already clean. Handing operator the same Phil-gated queue.
+
+HANDOFF-FILES: none
+
 ## 2026-11-25, scheduled operator cycle (A254): re-verified fresh, same saturated state, no new defect, issue #42 now 42 days old and 5 days unanswered
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout: real `fetch origin main`, `fetch --unshallow` (295 commits), `checkout main`, `merge --ff-only` onto `origin/main` at `53f93705d`, tree clean throughout, no force. Read `BACKLOG-2026-09-07.md`, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries, not summaries. Ran `preflight.py --skip-tests` live to real completion: 0 FAIL, 29 warnings, all previously diagnosed sandbox/credential/art gaps. Ran all 21 `rotate_*.py --check` scripts individually: 20 CLEAN, the 21st (`rotate_backlog_journal_core.py`) the already-known false positive (shared library, no `__main__`, not a real gap). GitHub's 30 open issues re-pulled live via the MCP server: unchanged, all `decision`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 11 days). Read issue #42 directly rather than cite a prior summary: opened 2026-10-14 (42 days ago), documents the backlog as fully exhausted, recommends either dropping cadence while it stays exhausted or Phil explicitly accepting the usage-limit cost; last touched 2026-11-20, now 5 days with no reply. `inbox_agent.py --apply`: no mail credential. `ops/last-owner-notification.json`: last sent 2026-11-24T09:52:00Z, about 31h ago, inside its own ~48h floor, nothing material changed (same 30 issues, same $0 trailing revenue), no repeat push sent this cycle.
