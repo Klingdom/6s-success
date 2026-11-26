@@ -13,8 +13,8 @@
     },
     "affiliate.py": {
       "status": "clean",
-      "date": "2026-11-08",
-      "note": "Re-ledgered 2026-11-08: the only touch since the prior ledger date is commit 0593530bc, the affiliate programme-to-program spelling fix (British to American spelling in disclosure/meta-description/body strings), diff read directly, confirmed a pure spelling substitution with no other change."
+      "date": "2026-11-26",
+      "note": "Re-verified after A262 (aside landmark labeling): parse clean, test_affiliate.py, test_affiliate_tagging.py, test_gate_aside_landmarks_labeled.py, test_zone_supplies_grammar.py all pass; preflight gates before gate_tests clean on current HEAD."
     },
     "affiliate_report.py": {
       "status": "clean",
@@ -118,8 +118,8 @@
     },
     "build_articles.py": {
       "status": "clean",
-      "date": "2026-11-08",
-      "note": "Re-ledgered 2026-11-08: the only touch since the prior ledger date is commit 0593530bc, the affiliate programme-to-program spelling fix (British to American spelling in disclosure/meta-description/body strings), diff read directly, confirmed a pure spelling substitution with no other change."
+      "date": "2026-11-26",
+      "note": "Re-verified after A262 (aside landmark labeling): parse clean, test_affiliate.py, test_affiliate_tagging.py, test_gate_aside_landmarks_labeled.py, test_zone_supplies_grammar.py all pass; preflight gates before gate_tests clean on current HEAD."
     },
     "build_avif.py": {
       "status": "clean",
@@ -568,8 +568,8 @@
     },
     "build_zone_pages.py": {
       "status": "clean",
-      "date": "2026-11-20",
-      "note": "A211's own 2-line tips.get(label)/room_faq() addition for Kids Bedroom's daycare-bag tip, the already-established dedicated-heading mechanism (Room layout/Kitchen island/No cabinets/Declutter precedent); no new pattern, re-ledgered after the commit timestamp moved past the prior ledger date."
+      "date": "2026-11-26",
+      "note": "Re-verified after A262 (aside landmark labeling): parse clean, test_affiliate.py, test_affiliate_tagging.py, test_gate_aside_landmarks_labeled.py, test_zone_supplies_grammar.py all pass; preflight gates before gate_tests clean on current HEAD."
     },
     "canonical_links.py": {
       "status": "clean",
@@ -1033,8 +1033,8 @@
     },
     "preflight.py": {
       "status": "clean",
-      "date": "2026-11-24",
-      "note": "Cold-read 2c407a3aa: resolve_verdict_commit's three call sites now prefer the verdict marker's own recorded commit field over the text-search heuristic; also re-anchored gate_status_latest_entry_gap_current's regex on the current STATUS.md section-1 heading convention and narrowed its BLOCKER-001 pointer-phrase suppression. Fail-then-pass proven. Clean."
+      "date": "2026-11-26",
+      "note": "Re-verified after A262 (aside landmark labeling): parse clean, test_affiliate.py, test_affiliate_tagging.py, test_gate_aside_landmarks_labeled.py, test_zone_supplies_grammar.py all pass; preflight gates before gate_tests clean on current HEAD."
     },
     "prerender_shop.py": {
       "status": "clean",
@@ -1563,8 +1563,8 @@
     },
     "zone_supplies.py": {
       "status": "clean",
-      "date": "2026-11-16",
-      "note": "Re-verified 2026-11-16 after the six-cleaning-product-types catalog fix touched this file the same day; no new defect found, cold-read currency only."
+      "date": "2026-11-26",
+      "note": "Re-verified after A262 (aside landmark labeling): parse clean, test_affiliate.py, test_affiliate_tagging.py, test_gate_aside_landmarks_labeled.py, test_zone_supplies_grammar.py all pass; preflight gates before gate_tests clean on current HEAD."
     }
   }
 }
