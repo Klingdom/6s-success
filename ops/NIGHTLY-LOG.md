@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~13:4x slot): previous work reconfirmed finished a further independent way, no new unblocked lane, same Phil-gated queue handed on
+
+NEXT FOR THE OPERATOR: same Phil-gated 30-issue queue (unchanged since #65, 12 days, none from Phil), because `BACKLOG-2026-09-07.md` sections 2-4 are archived, section 5 is Hold, and section 6 is owner-gated.
+
+Previous work was finished: clean attach (real unshallow from a shallow detached checkout, `checkout main`, `merge --ff-only` onto `origin/main`, no reset/force, tree clean). Reconfirmed independently, not cited: GitHub's 30 open issues re-pulled live via the MCP API, unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 12 days). Walked `BACKLOG-2026-09-07.md` sections 2-6 directly, not from the log's summary: every A/B/C row archived or done, section 5 Hold on traffic/money, section 6 all owner gates. `STATUS.md` Open claims: none. `EXECUTIVE-DASHBOARD-LIVE.md` matches: $0/$20,000, 30 issues. `cold_read_ledger.py --stale`: 0.
+
+Ran `preflight.py --skip-tests` live myself: 0 real FAIL through every gate reached (`gate_etsy_pdfs_current` passed clean this run, no network stall), killed by this slot's own 150s time budget at `gate_cover_author_current`, before the final summary printed; reported unchecked past that point, not passing, per `CLAUDE.md` 0.4.
+
+Not started: nothing genuinely unblocked. No push notification sent; nothing material changed since the last one.
+
+Pushed to main: this log entry, command deck, `ops/cycle-signal.json`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~13:3x slot): previous work finished and independently reconfirmed; found and discarded another self-inflicted PDF producer-string drift; same Phil-gated queue handed on
 
 NEXT FOR THE OPERATOR: same Phil-gated 30-issue queue (unchanged since #65, none from Phil), because every Now section is archived and section 6's owner gates are all Phil-only.
