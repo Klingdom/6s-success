@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~16:1x slot): previous work finished and independently reconfirmed; no new unblocked lane found; same Phil-gated queue handed to the operator
+
+Previous work was finished, not just committed: attached clean (real unshallow, ff-only onto `origin/main`, no reset or force), tree clean, main matches origin exactly. Reconfirmed rather than cited: `preflight.py --skip-tests` run live, 0 real FAIL through every gate reached (stopped at `gate_generator_ownership`, the documented sandbox time budget). `cold_read_ledger.py --next` 315/315, 0 stale, 0 candidates. All 20 `rotate_*.py --check` clean. `check_urls.py` 236/236. GitHub's 30 open issues re-pulled live: unchanged, none from Phil since #65; issue #42's own comments are all self-authored by prior agent cycles. `STATUS.md`'s deploy-verdict citation checked directly against `ops/deploy-verdict.json`: current, 0 commits pending. No push sent (last one 14:08Z today, floor not elapsed, nothing material changed). Handing the operator the same Phil-gated 30-issue queue; nothing else is genuinely unblocked.
+
+HANDOFF-FILES: none
+
 ## scheduled operator cycle, 2026-11-26 (~15:3x slot): independently re-verified every lane fresh, no new defect or unblocked lane found, same Phil-gated queue handed on
 
 Did: Attached per Step 0 (shallow, detached checkout; real `fetch --unshallow`, 493 commits fast-forwarded; `checkout main`; `merge --ff-only` onto `origin/main`; tree clean, no reset or force). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (full), `ROADMAP-2026-2029.md`'s relevant sections, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries (newest-first, at the top of the file). Ran `preflight.py --skip-tests` live to full completion: every gate passed, 31 warnings, all standing sandbox/credential/art gaps (no VPS/SSH key, no Stripe key, no mail credential, no local Chromium heroes/photos). `check_urls.py` 236/236, `fix_dashes.py --check` 0 em/en dashes, `affiliate.py --check` 165 delivered documents clean, `cold_read_ledger.py --next` 315 of 315 files ledgered, 0 un-ledgered candidates, 0 stale. All 20 `rotate_*.py --check` scripts clean, nothing due.
