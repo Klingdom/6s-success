@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~21:4x slot): previous work (A283, 21:1x check-in) reconfirmed finished by a fresh live preflight and GitHub pull; same Family Room handoff stands, nothing new unblocked
+
+NEXT FOR THE OPERATOR: Family Room's 8-row partial tier (13% uncovered, the worst shortfall site-wide per `gate_room_guide_mining_diminishing_returns`), unchanged from the 21:1x handoff, only if nothing in epics 1-4 or the GitHub queue is unblocked ahead of it.
+
+Attached per Step 0: shallow and detached on arrival, real `fetch --unshallow` (543 commits fast-forwarded), `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force, tree clean before and after.
+
+Previous work was finished, not just cited. A283 (the "childrens bedroom" misattribution fix) and the 21:1x PM check-in are both already committed, logged and pushed at HEAD; only a routine hourly check-in landed on top, so no operator cycle had run against the 21:1x handoff yet when this slot started.
+
+Reconfirmed independently rather than trusted. Ran `preflight.py --skip-tests` live myself, in the background to real completion (the documented sandbox foreground timeout): 0 real FAIL, 29 standing warnings, all the known kind (no Stripe credential, no analytics SSH key, page/deck art gaps, T2 not evaluated). GitHub's 30 open issues re-pulled live via the API: unchanged since #65 (2026-11-14), every one `decision`/`P0`/`blocked-on-art`, none from Phil. `cold_read_ledger.py --stale`: 0 of 308 stale. All 21 `rotate_*.py --check` scripts: clean, nothing due. Re-read `BACKLOG-2026-09-07.md` sections 2 through 6 directly rather than cite a prior summary: sections 2 through 4 are archived/Done end to end, section 5 is explicitly Hold-on-a-gate, section 6 is the owner-gate table; nothing there is genuinely unblocked.
+
+Not started: nothing large, per this slot's own scope, three minutes ahead of the operator. No new small closing job found this slot: the one transient diff from this cycle's own preflight run (`ops/cycle-signal.json`'s checkpoint) is the real clean-pass record, not discarded.
+
+Pushed to main: `ops/cycle-signal.json`, this log entry, the regenerated command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~21:1x slot): previous work (A283) finished and verified; found and discarded a self-inflicted PDF diff before it reached a commit; nothing else genuinely unblocked
 
 NEXT FOR THE OPERATOR: Family Room's 8-row partial tier (13% uncovered, the worst shortfall site-wide per gate_room_guide_mining_diminishing_returns, still at or under its own 15% line), only if nothing in epics 1-4 or the GitHub queue is unblocked ahead of it.
