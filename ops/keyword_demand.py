@@ -213,7 +213,27 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "australia", "ikea", "pinterest", "stuff",
                           "apartment", "style", "rectangular", "square",
                           "attractively", "big", "beginners", "beginner",
-                          "olds", "area"))
+                          "olds", "area", "creating", "productive"))
+
+# "creating"/"productive" joined 2026-11-26, scheduled operator cycle,
+# mining the thin partial-row tails a PM check-in handed off. "home office
+# organization tips for creating a productive workspace" was partial with
+# "creating"/"productive" as its only two unmatched words, generic
+# listicle framing around the real content word ("workspace"), not a
+# thing this site would ever name as its own object. Self-flattery
+# checked first: 0 of 7984 headings site-wide carry either word, so there
+# is zero collision risk. A real before/after rescore of both corpora for
+# these two words found 1 row changed in each corpus, partial to covered,
+# 0 regressions, 0 rows that changed which page they credit.
+#
+# "systems" (plural) was tried alongside these and reverted before
+# shipping: ops/tests/test_keyword_demand.py case 59 already pins it out
+# of FORMAT_WORDS by name (A101, "how to organize game systems" is
+# genuinely ambiguous between video-game consoles and this site's own
+# Board Game and Puzzle Zone), and the local test suite caught the
+# regression before it reached main. Left the three closet-organization
+# rows it would have closed exactly as A101 left them: correctly partial,
+# not forced.
 
 # "area" joined 2026-11-20, scheduled operator cycle, found mining the
 # global gap/partial tier: "foyer area organization" (global, partial,

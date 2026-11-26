@@ -9793,15 +9793,12 @@
       "room": "Home Office",
       "best_page": "/rooms/home-office.html",
       "best_page_title": "How to organize a home office, zone by zone",
-      "coverage": 0.4,
-      "heading_coverage": 0.6,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/home-office.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "creating",
-        "productive"
-      ],
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "ca"
       ],
@@ -15956,11 +15953,11 @@
         "how to organise baking supplies"
       ],
       "room": "",
-      "best_page": "/zones/pantry-the-baking-zone.html",
-      "best_page_title": "How to organize the pantry baking supplies",
+      "best_page": "/zones/kitchen-the-lower-cabinets-and-cookware.html",
+      "best_page_title": "How to organize the kitchen lower cabinets and cookware",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/pantry-the-baking-zone.html",
+      "heading_page": "/zones/kitchen-the-lower-cabinets-and-cookware.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -18053,16 +18050,14 @@
         "how to organise baking supplies"
       ],
       "room": "",
-      "best_page": "/zones/pantry-the-baking-zone.html",
-      "best_page_title": "How to organize the pantry baking supplies",
+      "best_page": "/zones/kitchen-the-lower-cabinets-and-cookware.html",
+      "best_page_title": "How to organize the kitchen lower cabinets and cookware",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/zones/pantry-the-baking-zone.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "dishes"
-      ],
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/kitchen-the-lower-cabinets-and-cookware.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": [],
       "markets": [
         "au"
       ],
@@ -26212,11 +26207,11 @@
         "how to organize baking supplies"
       ],
       "room": "",
-      "best_page": "/zones/pantry-the-baking-zone.html",
-      "best_page_title": "How to organize the pantry baking supplies",
+      "best_page": "/zones/kitchen-the-lower-cabinets-and-cookware.html",
+      "best_page_title": "How to organize the kitchen lower cabinets and cookware",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/pantry-the-baking-zone.html",
+      "heading_page": "/zones/kitchen-the-lower-cabinets-and-cookware.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": [],
@@ -47777,6 +47772,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "06bcd8ddd",
-  "scored_at": "2026-11-26T04:51:47Z"
+  "scored_against_commit": "f930958c4",
+  "scored_at": "2026-11-26T09:08:45Z"
 }

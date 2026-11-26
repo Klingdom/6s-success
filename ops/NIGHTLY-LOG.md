@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle (A274): mined the thin partial-row tails the ~08:4x PM check-in handed off, closed a genuine Kitchen misattribution, caught a settled decline before reopening it
+
+Did: Attached per Step 0, 431 commits fast-forwarded; a concurrent PM check-in and hourly commit landed mid-cycle (a generated-file rebase conflict, resolved by discarding my own now-redundant placeholder commit, which had become empty against the fresh base, and reapplying real work on top of theirs). Picked up the real handoff: mine the thin partial-row tails in Primary Bathroom, Home Office, Guest Bathroom, Entryway, Pantry, Laundry Room, Kitchen.
+
+Verified: traced each row's exact unmatched word via content_words() before acting, not the score alone. Shipped: "baking dishes cabinet" added to Kitchen's Lower Cabinet and Cookware Zone also-called (a genuine misattribution, not a vocabulary gap: the query was tied 0.5/0.5 between two wrong pages, the real answer is the zone whose own purpose names "bakeware"); "creating"/"productive" joined FORMAT_WORDS, 0 of 7984 headings site-wide, 0 regressions in a full before/after score_rows() diff. Tried and reverted: "systems" (plural) looked safe and closed 4-5 rows cleanly in my own diff, but test_keyword_demand.py case 59 already pins it out by name (A101: "game systems" is genuinely ambiguous, video consoles vs. the Board Game zone); the local test suite caught it before it reached main. Declined 9 other rows with reasoning (self-flattery too high, measurement-surface gaps, fabricated connections) rather than forcing any of them. preflight.py --skip-tests 0 FAIL, test_keyword_demand.py 76/76, check_urls.py 236/236, fix_dashes.py --check 0/0.
+
+Went well: the local test suite catching a reversion of a settled decision (A101) before it shipped, exactly what CLAUDE.md 5d exists to prevent.
+
+Did not go well: almost shipped "systems" on the strength of a clean diff alone; a diff with no regression is not the same as a diff with no dishonesty, and the ambiguity A101 named would not show up as a score regression at all.
+
+Changing next cycle: none; existing gates (the test suite) already caught this, no new gate needed.
+
+Next: same Phil-gated queue (#64, #58, #46 cheapest); the mining lane has 9 fewer open rows than this morning.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~08:4x slot): previous work (A273) reconfirmed finished live, no new lane found unblocked, the thin room-guide tail handed to the operator
 
 NEXT FOR THE OPERATOR: mine the remaining thin partial-row tails in Primary Bathroom, Home Office, Guest Bathroom and Entryway (2 rows each) and Pantry (2), Laundry Room (1), Kitchen (1), because that is the only lane left with any uncovered demand that is not gated on Phil, even though it is close to exhausted.

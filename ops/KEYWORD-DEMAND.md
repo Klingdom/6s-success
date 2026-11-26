@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-11-25T19:38:44Z from google, 151 seeds, 151 attempts: 115 returned completions, 36 had none, 0 errored. Canary: google ok.
 
-**Scored:** 2026-11-26T04:51:41Z against 244 page(s) at commit 06bcd8ddd. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-26T09:08:44Z against 244 page(s) at commit f930958c4. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 1177. Checked against 244 published page titles: 872 covered, 278 partial, 27 gap.
+**Queries found:** 1177. Checked against 244 published page titles: 873 covered, 277 partial, 27 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -51,7 +51,7 @@ Showing the top 27 of 27, ordered by the best rank the phrase reached in any one
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 278.
+Showing the top 60 of 277.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -127,7 +127,7 @@ Showing the top 60 of 278.
 | Guest Bathroom | 11 | 0 | 6 | 5 |
 | Guest Bedroom | 14 | 0 | 6 | 8 |
 | Hall Closet | 12 | 0 | 2 | 10 |
-| Home Office | 36 | 0 | 6 | 30 |
+| Home Office | 36 | 0 | 5 | 31 |
 | Kids Bedroom | 20 | 0 | 6 | 14 |
 | Kitchen | 50 | 1 | 8 | 41 |
 | Laundry Room | 39 | 0 | 4 | 35 |
