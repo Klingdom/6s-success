@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## A278, scheduled operator cycle, 2026-11-26 (~14:0x slot): found the weekly global keyword harvest silently running late and dispatched it manually, rather than re-mine the same exhausted corpus again
+
+Attached per Step 0 cleanly, then fast-forwarded a second time onto two concurrent PM check-ins mid-cycle (discarded this cycle's own now-stale generated-file copies first, same precedent A260/A266/A270/A274-A277 use for this shape). Read `GOALS.md`, both backlogs, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` run live to full completion: 0 FAIL, 28 warnings, all standing sandbox/credential/art gaps; a second quick re-check after the merge stalled on the documented network wait, unchecked past that point, not re-claimed as a second pass.
+
+Did not re-mine the room-guide/keyword-demand lane: dozens of independent cycles have already proven it exhausted, and section 2-4 of `BACKLOG-2026-09-07.md` is archived or Phil-gated. Instead checked something nobody had checked: `.github/workflows/keyword-demand-global.yml` runs on a weekly cron (`30 11 * * 4`, Thursdays). Today is Thursday; the cron was due at 11:30 UTC and had not fired by 13:50 UTC, confirmed live via the GitHub Actions API, not assumed (last completed run 2026-11-19). Rather than wait on a possibly-delayed scheduler or write another "network unreachable from here" line, dispatched it directly (`workflow_dispatch`, run `45833612136`); it was still in progress when this entry was written, so the result is reported as dispatched, not complete (CLAUDE.md 0.4). `check_urls.py` 236/236, `affiliate.py --check` 165 docs clean, `cold_read_ledger.py --next` 315/315, 0 stale. GitHub's 30 open issues unchanged, none from Phil since #65 (12 days). No mail credential; `inbox_agent.py --apply` unchecked. No price, product or page touched.
+
+Pushed to main: this log entry, command deck. Next cycle: check run `45833612136`'s outcome and whatever fresh global rows it adds.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~13:4x slot): previous work reconfirmed finished a further independent way, no new unblocked lane, same Phil-gated queue handed on
 
 NEXT FOR THE OPERATOR: same Phil-gated 30-issue queue (unchanged since #65, 12 days, none from Phil), because `BACKLOG-2026-09-07.md` sections 2-4 are archived, section 5 is Hold, and section 6 is owner-gated.
