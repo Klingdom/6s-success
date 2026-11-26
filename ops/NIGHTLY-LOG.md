@@ -8,7 +8,7 @@ Previous work was finished: clean ff-only attach, tree clean before this slot. G
 
 Closed one real gap rather than only re-verify: all 21 `rotate_*.py --check` run individually found one genuinely due, `rotate_backlog.py` (section 1's table at 16 rows, past its 15-row cap). Applied, reran `--check` clean, `test_rotate_backlog.py` 14/14 both before and after.
 
-Ran `preflight.py --skip-tests` live to real completion this time, past the 09:4x slot's own cutoff: 1 real FAIL, `gate_generator_ownership`, the documented mid-diff refusal while this slot's own rotation sat uncommitted; 31 standing warnings, all previously-named sandbox/credential/art gaps. Committing now and will re-run to confirm clean.
+Ran `preflight.py --skip-tests` live to real completion this time, past the 09:4x slot's own cutoff: first pass showed 1 real FAIL, `gate_generator_ownership`, the documented mid-diff refusal while this slot's own rotation sat uncommitted; 31 standing warnings, all previously-named sandbox/credential/art gaps. Committed, then reran on the clean tree: every gate passed, 34 warnings (same standing gaps), `cycle_signal` recorded a clean pass. This is the real full-preflight completion the 09:4x slot's own run was cut short of, done honestly rather than cited.
 
 Handing the operator: the same Phil-gated 30-issue queue; the room-guide lane is now confirmed, not merely handed off, as saturated.
 
