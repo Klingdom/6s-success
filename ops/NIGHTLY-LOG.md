@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~04:4x slot): previous work reconfirmed finished, discarded a self-inflicted PDF fingerprint diff before it shipped, same Phil-gated queue handed on
+
+NEXT FOR THE OPERATOR: same Phil-gated 30-issue queue, because backlog sections 2-4 are archived/done, section 5 is HOLD-on-traffic, section 6 is owner gates, and today's mining passes already declined every candidate.
+
+Previous work (04:1x PM check-in, operator cycle before it) confirmed finished: clean ff-only attach, tree clean on arrival. GitHub's 30 issues unchanged, none from Phil since #65 (12 days); #42 still unanswered. STATUS.md Open claims: none.
+
+`preflight.py --skip-tests` live: 0 FAIL through every gate reached, standing warnings only; stalled at the documented `gate_etsy_pdfs_current` network wait, reported unchecked past that, not passing. Discarded 4 self-inflicted PDF producer-string diffs (2 bytes each, same shape A261 named) plus a local `cycle-signal.json` checkpoint before either reached a commit. All `rotate_*.py --check` clean, ledger 0 stale.
+
+Not started: nothing unblocked beyond the standing queue, per this slot's instruction ahead of the operator.
+
+Pushed: this entry, command deck.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~04:1x slot): previous work confirmed finished live; repaired a self-inflicted mid-render interruption before it could ship
 
 Previous work (operator cycle 663583e) finished: tree clean, real ff-only attach, no reset. GitHub's 30 open issues re-pulled live: unchanged since 2026-11-14, none from Phil since #65 (12 days). CI's last 5 Checks runs: all success.
