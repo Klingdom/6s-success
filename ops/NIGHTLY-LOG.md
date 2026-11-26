@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~09:1x slot): previous work (A273) reconfirmed finished; fixed A270's own backlog claim that the 07:2x entry had already flagged but never corrected in place
+
+Previous work finished: A273's gate verified directly, not cited (py_compile clean, its own test 10/10). `preflight.py --skip-tests` live: 0 FAIL through every gate reached, stalled at the documented `gate_etsy_pdfs_current` network wait, reported unchecked past that point. GitHub's 30 issues unchanged, none from Phil.
+
+Found and fixed a real gap rather than only re-verify: A270's row in `BACKLOG-2026-09-07.md` still claimed "sent one push notification," though `ops/last-owner-notification.json`'s `sent_at` is still `2026-11-24T09:52Z` and no A270 commit touches that file. The ~07:2x entry already caught this live; the backlog table's own copy of the claim was never corrected until now. Fixed in place with a dated note, append-only. `owner_notify_claim.py --check`: floor not elapsed (~35 min short), nothing sent. Discarded 4 self-inflicted PDF producer-string diffs (A261's shape, `cmp -l` confirmed, 2 bytes each). Dashboard regenerated.
+
+A real collision landed mid-cycle: a concurrent scheduled operator cycle (A274) pushed its own mined fixes and its own NIGHTLY-LOG entry while this one was in flight. Rebased onto it rather than forced: kept A274's entry below, discarded my own now-stale generated dashboard files and regenerated fresh against the merged base instead of hand-resolving their conflict.
+
+Handing the operator: the thin room-guide tail named by the 08:4x slot; A274 (below) already closed 9 of those rows this same window.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle (A274): mined the thin partial-row tails the ~08:4x PM check-in handed off, closed a genuine Kitchen misattribution, caught a settled decline before reopening it
 
 Did: Attached per Step 0, 431 commits fast-forwarded; a concurrent PM check-in and hourly commit landed mid-cycle (a generated-file rebase conflict, resolved by discarding my own now-redundant placeholder commit, which had become empty against the fresh base, and reapplying real work on top of theirs). Picked up the real handoff: mine the thin partial-row tails in Primary Bathroom, Home Office, Guest Bathroom, Entryway, Pantry, Laundry Room, Kitchen.
