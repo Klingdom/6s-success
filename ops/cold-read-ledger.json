@@ -913,8 +913,8 @@
     },
     "keyword_demand.py": {
       "status": "clean",
-      "date": "2026-11-20",
-      "note": "PM check-in 2026-11-20 (~04:1x slot): cold-read the one change since the 2026-11-19 ledger date, A204's addition of \"olds\" to FORMAT_WORDS (commit 1b7576ff). Reviewed directly: a 12-line frozenset addition plus its own dated comment, already covered by test_keyword_demand.py case 70 (fail-then-pass proven by its own cycle) and by that cycle's own self-flattery (0/244) and collision (1 row) checks. No latent defect found."
+      "date": "2026-11-26",
+      "note": "A274 (772fbb164, 2026-11-26) added 'creating'/'productive' to FORMAT_WORDS: 0/7984 headings self-flattery, 1 row/corpus partial-to-covered, 0 regressions, matches the commit's own documented diff. 'systems' tried and correctly reverted (A101 ambiguity, test case 59). No defect."
     },
     "keyword_demand_global.py": {
       "status": "fixed",

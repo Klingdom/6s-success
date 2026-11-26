@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~09:4x slot): previous work (A274) reconfirmed finished, closed two small drifts, handed a full preflight completion to the operator
+
+Previous work was finished. Attached clean: fetch, real unshallow from a shallow detached checkout, `checkout main`, `merge --ff-only` onto `origin/main`, 441 commits fast-forwarded, no reset or force. Working tree clean before and after this slot.
+
+Reconfirmed independently, not cited. GitHub's 30 open issues re-pulled live via the API: unchanged, every one `decision`/`blocked-on-art`, none from Phil since #65 (12 days). `STATUS.md`'s Open claims section: none. `BACKLOG-2026-09-07.md` directly: A274 (the immediately prior operator cycle) closed the ~08:4x PM check-in's own room-guide handoff, shipped one genuine Kitchen misattribution fix and two safe FORMAT_WORDS, declined the remaining 9 rows with reasoning rather than forcing them. A270's own `room_guide_underperformance.py` reading (every room 0-12% uncovered, 0 `gap` rows anywhere) is unchanged since nothing has touched the scorer or either corpus since A274 shipped: the mining lane is now genuinely thin, not merely claimed thin.
+
+Ran `preflight.py --skip-tests` live rather than trust the prior cycle's signal: 0 real FAIL through 451 of the ~550 gates reached (two `FAIL (none)` sections, both empty) before this slot's own 180s budget stopped it mid-run at `gate_generator_ownership`, well past the documented `gate_etsy_pdfs_current` network wait this time. Reported unchecked past that point, not passing, per `CLAUDE.md` 0.4.
+
+Found and closed two small gaps rather than only re-verifying. `cold_read_ledger.py --stale` flagged one real drift: `ops/keyword_demand.py` was committed to today (A274's FORMAT_WORDS addition) but the ledger still carried 2026-11-20. Cold-read the actual diff rather than rubber-stamp it: matches A274's own documented self-flattery and regression checks exactly. Re-ledgered clean; `--stale` now reports 0 of 316 entries stale. Separately, `git status` showed one unexplained, uncommitted drift: `site/home-office-deck.html` carried a cache-bust asset version (`v=326a1059ac`) matching none of the other 244 pages (`v=54ccf0a602`), left behind by this slot's own timed-out preflight run partially executing a regeneration gate. Did not hand-edit it: ran its owning generator, `ops/fingerprint_assets.py`, which restored all three references to the correct, site-wide-consistent hash and reported 735 of 735 asset references across 245 pages current. `py_compile` clean on all of `ops/*.py` after both fixes.
+
+NEXT FOR THE OPERATOR: the standing Phil-gated queue (30 issues, unchanged, none newly from Phil), plus running a full `preflight.py --skip-tests` to real completion (this slot's own run never reached `gate_tests` or the network-bound gates), because the room-guide/keyword-demand mining lane A274 just worked is now at 0-12% uncovered everywhere and genuinely thin, and nothing else is unblocked ahead of a clean full-preflight confirmation.
+
+Pushed to main: `ops/cold-read-ledger.json`, `ops/cycle-signal.json`, this log entry, command deck. No price, product or site page touched; the one page reverted to its correct generated state, not changed in substance, so IndexNow is not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~09:1x slot): previous work (A273) reconfirmed finished; fixed A270's own backlog claim that the 07:2x entry had already flagged but never corrected in place
 
 Previous work finished: A273's gate verified directly, not cited (py_compile clean, its own test 10/10). `preflight.py --skip-tests` live: 0 FAIL through every gate reached, stalled at the documented `gate_etsy_pdfs_current` network wait, reported unchecked past that point. GitHub's 30 issues unchanged, none from Phil.
