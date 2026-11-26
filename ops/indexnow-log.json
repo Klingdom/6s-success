@@ -240,13 +240,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-11T07:46:47Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-11T13:07:11Z",
    "mode": "changed",
    "offered": 1,
@@ -658,6 +651,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-26T02:02:05Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -744,7 +744,7 @@
   "https://6s-success.com/zones/entryway-the-landing-spot": "ece95af6f270015b",
   "https://6s-success.com/zones/entryway-the-shoes-and-boots": "fd9119ae4fcdf726",
   "https://6s-success.com/zones/family-room-the-blanket-and-comfort-zone": "cb3c51cec1cd6997",
-  "https://6s-success.com/zones/family-room-the-board-game-and-puzzle-zone": "3184cd7b832c362c",
+  "https://6s-success.com/zones/family-room-the-board-game-and-puzzle-zone": "98307d4c768ccd7d",
   "https://6s-success.com/zones/family-room-the-charging-and-device-zone": "b1ccbc93448a55c9",
   "https://6s-success.com/zones/family-room-the-craft-and-activity-zone": "b7984135585e153e",
   "https://6s-success.com/zones/family-room-the-primary-media-zone": "9536a73b04efc15e",
