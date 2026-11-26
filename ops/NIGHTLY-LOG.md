@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~17:4x slot): previous work reconfirmed finished by a full live preflight run to real completion; handed the operator two genuinely unexamined Primary Bedroom rows instead of repeating the just-corrected Family Room/Hall Closet pattern
+
+NEXT FOR THE OPERATOR: trace Primary Bedroom's "how to declutter a hoarders bedroom" (partial, 0.667) and "how to declutter a lot of stuff" (partial, 0.5), because both are genuinely unexamined, zero prior mentions anywhere across `ops/NIGHTLY-LOG.md`, `ops/NIGHTLY-LOG-ARCHIVE.md`, or any backlog/archive file (checked by direct grep, not assumed), unlike Family Room and Hall Closet, which the last two PM check-ins already found re-mined to exhaustion.
+
+Attached per Step 0: `git fetch origin main` found the checkout shallow and detached on arrival; real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 508 commits fast-forwarded, tree clean, no reset or force.
+
+Previous work (the ~17:1x PM check-in and A279 before it) was finished, not just committed, reconfirmed independently rather than cited. `preflight.py --skip-tests` run live in the background to avoid this sandbox's documented foreground timeout (a first foreground attempt hit the 180s wall with no output; the background run completed on its own): every gate passed, 0 real FAIL (both "FAIL" lines in the transcript read "(none)"), 30 warnings, all standing sandbox/credential/art gaps already named in this log (no VPS/SSH key so the live traffic/affiliate reads stay unmeasured, no Stripe key, no mail credential, no local `build/heroes/` photographs). `check_urls.py` 236/236, `fix_dashes.py --check` 0 em/en dashes, `affiliate.py --check` 165 delivered documents clean, `cold_read_ledger.py --next` 315 of 315 files ledgered, 0 candidates. All 21 `rotate_*.py --check` scripts clean, nothing due. GitHub's 30 open issues re-pulled live via the API: unchanged since #65 (12 days), every one `decision`/`P0`/`blocked-on-art`, none from Phil. `ops/last-owner-notification.json`: last real send 14:08:20Z today, inside its 48h floor, nothing material changed, none sent this cycle.
+
+A mid-run `ops/cycle-signal.json` checkpoint from the still-running background preflight showed up as a partial, uncommitted diff before the run finished; discarded with `git checkout --` rather than committed, then recreated correctly once the run completed clean (the same "discarded and recreated" handling prior cycles used for this exact checkpoint-churn shape).
+
+Did not hand off Family Room or Hall Closet again: the ~16:3x and ~17:1x entries immediately above already traced every row in both tiers by hand against `heading_coverage`/`matched_on` and found each one already settled, so repeating either tier by name here would be the identical stale-handoff pattern just corrected twice today. Instead ran `room_guide_underperformance.py` fresh and grepped every remaining partial-tier phrase site-wide against the full log/backlog history before naming anything as a handoff: all of Family Room's, Hall Closet's, Stair Landing's, and Nursery's rows came back already examined and declined; two of Primary Bedroom's seven rows ("hoarders bedroom", "a lot of stuff") came back with zero hits anywhere, confirmed by direct grep rather than assumed from the earlier "left unexamined for a future cycle" notes (A208, two entries further back) that never actually traced them.
+
+Did not mine the rows myself this slot, per this slot's own instruction not to start something large three minutes ahead of the operator.
+
+Pushed to main: this log entry, command deck, `ops/cycle-signal.json`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~17:1x slot): A279 reconfirmed finished by independent live preflight and a fresh GitHub pull; declined to repeat the stale room-mining handoff it just corrected
 
 Previous work (A279) was finished, not just committed. Reconfirmed independently: `preflight.py --skip-tests` run live to full completion, every gate passed, 31 warnings, all standing sandbox/credential/art gaps. GitHub's 30 open issues re-pulled live: unchanged since #65 (12 days), all `decision`/`P0`/`blocked-on-art`, none from Phil, matching A279's claim exactly. `cold_read_ledger.py --stale`: 0 stale. All 21 `rotate_*.py --check` scripts clean. `STATUS.md`'s 17 intervening commits are all check-ins and rotations, no production/price/product/traffic change, left as last corrected.
