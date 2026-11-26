@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-26, scheduled operator cycle: closed the global "game library" row (board game zone), declined "home" as a FORMAT_WORDS candidate after a real diff showed regressions
+
+Did: Attached per Step 0, ff-only onto origin/main, then a real collision with a concurrent PM check-in that also rotated the backlog and the dashboard: rebase hit generated-table conflicts in BACKLOG-2026-09-07.md, its archive, EXECUTIVE-DASHBOARD-LIVE.md, ops/NIGHTLY-LOG.md, ops/dashboard.html and ops/state.json, so the first conflicted commit was discarded and the real fix reapplied cleanly onto the fresh base (2adbd8378) rather than hand-resolved, the same precedent A260 already used for this exact shape. preflight.py --skip-tests hit the documented network stall at its own time budget, 0 real FAIL before it. Checked b9_claims.py --status (no undiagnosed rooms) and OWNER-ACTIONS.md (all open rows Phil-gated). Ran room_guide_underperformance.py fresh rather than cite a stale reading: every room 0-12% uncovered.
+
+Tried "home" (singular) as a FORMAT_WORDS candidate for a different row in the same tier. Self-flattery check found it in 51 of 244 page headings, higher than "small" (40/244, already declined). A real score_rows() diff confirmed the risk directly: 7 best_page changes and 1 real status regression (partial to gap) across the US corpus. Declined, not shipped.
+
+Shipped: added "game library zone" to the existing Family Room|Board Game and Puzzle Zone also-called entry in ops/zone-also-called.json, grounded in the zone's own purpose text. Regenerated through ops/build_zone_pages.py, the owning generator.
+
+Verified: "library" in 0 of 244 headings and the only row in either corpus with that word, so no collision risk. Rescored both corpora live against the fresh base: exactly 1 global row moved partial to covered, 0 regressions, same result as the pre-collision test. check_also_called_digital_collision_fast.py clean, test_keyword_demand.py 76/76, test_room_also_called.py clean, check_urls.py 236/236, fix_dashes.py --check 0/0.
+
+Went well: the "home" diff caught a real regression before shipping; the rebase collision was handled by discarding and reapplying rather than hand-merging generated tables.
+
+Did not go well: lost one round trip to the collision; this tier is nearly exhausted.
+
+Changing next cycle: none.
+
+Next: same Phil-gated queue; Stair Landing's one remaining row ("basement stair landing storage ideas") left uninvestigated.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~01:4x slot): previous work (A265, the 01:1x STATUS.md fix) confirmed finished live; closed one due backlog rotation; same exhausted queue handed on
 
 NEXT FOR THE OPERATOR: same standing 30-issue Phil-gated queue, unchanged, because a fresh `room_guide_underperformance.py` run and a full `preflight.py --skip-tests` pass both found nothing new and genuinely unblocked beyond what dozens of prior cycles already confirmed saturated.
