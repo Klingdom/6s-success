@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## scheduled operator cycle, 2026-11-26 (~14:5x slot): closed a real, live STATUS.md deploy-verdict drift across all five citing sections, same Phil-gated queue otherwise
+
+Attached per Step 0 (shallow, detached, real `fetch --unshallow`, 486 commits fast-forwarded, `checkout main`, `merge --ff-only` onto `origin/main`). A concurrent "Deploy verdict" commit and a PM check-in (~14:4x slot) had already landed; re-fetched and ff-only'd onto them, discarding this cycle's own regenerated `ops/cycle-signal.json` snapshot first rather than hand-resolve it (same precedent many prior cycles use for this shape).
+
+Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. GitHub's 30 open issues re-pulled live via the API: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (12 days). `checks.yml` green on the last 5 runs. `inbox_agent.py --apply`: no mail credential here, unchecked.
+
+Ran `preflight.py --skip-tests` live to full completion: every gate passed, 32 warnings, all standing sandbox/credential/art gaps. Found a real, live one among them rather than only re-citing the standing list: `gate_status_deploy_verdict_current` warned that `STATUS.md`'s BLOCKER-001, Production Knowledge, and the Public website/Production traceability/Currently-Deployed-Build fields all still cited the `d282a6b4`/`90a0885c956c8ca4` confirmation (2026-11-26T02:13:49Z), while `ops/deploy-verdict.json` had already moved to a newer verdict, `69ecaba7c`/`ed5f5f2bc4908896` (confirmed 2026-11-26T14:40:32Z), recorded by the concurrent "Deploy verdict" commit this cycle fast-forwarded onto. Checked directly rather than trusted: `git log 69ecaba7c..HEAD -- site/ Dockerfile` is empty, so the honest figure is 0 commits pending against the new verdict, not the 1 (`772fbb164`) every stale section still named. Corrected all five locations in place, in the file's own append-style convention, citing the real build id, commit and checked_at; confirmed `status_deploy_verdict_problem()` returns empty against the corrected file (it returned all four section names before the fix). No VPS/SSH credential in this sandbox, so whether production itself has caught up with this verdict stays genuinely unchecked; the correction states the repository-to-verdict gap only, not assumed deployed.
+
+Re-ran `preflight.py --skip-tests` live after the fix: the only `FAIL` was the documented `gate_generator_ownership` refusal against this cycle's own uncommitted `STATUS.md`, gone once committed; 28 warnings otherwise, same standing gaps.
+
+Not started: nothing else genuinely unblocked beyond the standing Phil-gated 30-issue queue (`BACKLOG-2026-09-07.md` sections 2-4 archived or done, section 5 Hold, section 6 all owner gates). No push notification sent; nothing customer-facing changed and issue #42 already names the duplicate-notification risk repeating this would cause.
+
+Pushed to main: `STATUS.md`, this log entry, command deck, `ops/cycle-signal.json`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~14:4x slot): previous work (A278 plus the 14:1x fix) finished and independently reconfirmed by a full live preflight run; same Phil-gated queue handed to the operator
 
 NEXT FOR THE OPERATOR: same Phil-gated 30-issue queue (unchanged since #65, 12 days, none from Phil), because every genuinely unblocked lane (room-guide/keyword-demand mining, cold-read ledger, GitHub issues) is at the same saturated state dozens of prior cycles have already reached, and issue #42 already names this exact cadence-versus-exhausted-state problem.
