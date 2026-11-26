@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-26, same scheduled operator cycle as A263: found and fixed a real false-positive this cycle's own fix exposed in gate_epub_edition_date_current
+
+**Did:** Before pushing A263 (below), ran `preflight.py --skip-tests` fresh on the clean, committed tree (not cited from a mid-edit run) and found a genuine FAIL: `gate_epub_edition_date_current` said `build_epub.py`'s `EDITION_DATE` (2026-10-02) now predates `content/book/`'s own last commit (2026-11-26). Checked before acting (CLAUDE.md 5d): that gate compares `EDITION_DATE` against `_last_commit_epoch("content/book")`, the whole directory, not the specific files `ops/build_epub.py` actually reads (`book_chapter_files()`'s 50 chapters, `assets/`, the front matter). A263's own fix touched `content/book/"6S Success Home Edition - Sample (Chapters 1-30).html"`, a separate, hand-authored file `ops/build_sample_html.py` reads for the free web sample, never read by the EPUB builder at all. Bumping `EDITION_DATE` to clear the gate would have been a false claim: the EPUB's own packaged content had not changed.
+
+**Fixed the gate's scope, not the symptom:** widened `_last_commit_epoch()` to accept several pathspecs (`*paths` instead of one `path`), then changed `gate_epub_edition_date_current` to check `book_chapter_files()` plus `content/book/assets` and `content/book/6S-Success-Front-Matter`, exactly what `ops/build_epub.py` reads, instead of the whole directory. Confirmed directly (not assumed) that the old, unscoped check against real `content/book/` would read 2026-11-26 and genuinely FAIL against the unchanged `EDITION_DATE`, and that the new scoped check reads the EPUB's real last-touched date and passes clean, since this cycle's only `content/book/` edit was the unrelated sample file.
+
+**Verified:** `python ops/tests/test_last_commit_epoch_shallow_boundary.py` and `python ops/tests/test_gate_store_art.py` (the two existing callers of `_last_commit_epoch`) both still pass unchanged. New `ops/tests/test_gate_epub_edition_date_scoped.py` (3 cases): a bogus extra pathspec does not change the result, the real gate is clean against the real repo today, and `book_chapter_files()` genuinely excludes the unrelated sample file. Fail-then-pass proved directly against the real repository's own git history, not a synthetic fixture: the old unscoped call reads 2026-11-26 and would FAIL against `EDITION_DATE=2026-10-02`; the new scoped call does not.
+
+**Went well:** catching a gate's own false positive before bumping a constant on a false claim just to make it go green, the same discipline CLAUDE.md 0.4 and 5d both name.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** push both this fix and A263 together; same standing queue otherwise.
+
+Pushed to main (same push as A263 below). `ops/preflight.py`, new test file.
+
+HANDOFF-FILES: none
+
 ## 2026-11-26, scheduled operator cycle: found and fixed two more real axe-core landmark defects outside the previous cycle's own scan scope, gated both
 
 **Did:** Attached per Step 0 (shallow, detached, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `6090a36eb`, 355 commits fast-forwarded, tree clean). Read `BACKLOG-2026-09-07.md`, `STATUS.md`'s current-priority section, and the last four `ops/NIGHTLY-LOG.md` entries (A262, A261, A260, A259): the room-guide mining lane is independently re-confirmed saturated (0-7% uncovered every room) by more than a dozen consecutive cycles, and every genuinely unblocked action is either that exhausted lane or A262's own "left for a future cycle" accessibility list. Picked that list up rather than re-running the saturated lane a further time.

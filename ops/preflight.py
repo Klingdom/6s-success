@@ -7827,8 +7827,12 @@ def _shallow_boundary_commits() -> set[str]:
     return set(io.open(shallow_file, encoding="utf-8").read().split())
 
 
-def _last_commit_epoch(path: str) -> int | None:
-    """Last commit epoch touching `path`, or None if that can't be trusted.
+def _last_commit_epoch(*paths: str) -> int | None:
+    """Last commit epoch touching any of `paths`, or None if that can't be
+    trusted. Accepts several pathspecs so a caller can scope the check to
+    exactly the files a generator reads (see gate_epub_edition_date_current,
+    widened 2026-11-26) rather than a whole directory that also holds
+    unrelated content.
 
     Found 2026-11-03: on a shallow clone, `git log -1 -- path` does not
     error at the shallow boundary, it treats the boundary commit (which has
@@ -7847,7 +7851,7 @@ def _last_commit_epoch(path: str) -> int | None:
     and gate_epub_edition_date_current), so this makes that the correct
     behaviour here too instead of a silent wrong answer.
     """
-    out = subprocess.run(["git", "log", "-1", "--format=%H %ct", "--", path],
+    out = subprocess.run(["git", "log", "-1", "--format=%H %ct", "--", *paths],
                          cwd=ROOT, capture_output=True, text=True).stdout.strip()
     if not out:
         return None
@@ -7921,8 +7925,21 @@ def gate_cover_author_current() -> None:
 
 
 def gate_epub_edition_date_current() -> None:
-    """build_epub.py's EDITION_DATE must not predate content/book/'s own last
-    real commit, the same shape as gate_cover_author_current just above.
+    """build_epub.py's EDITION_DATE must not predate the EPUB's own actual
+    source files' last real commit, the same shape as gate_cover_author_
+    current just above.
+
+    Narrowed 2026-11-26: this used to check the whole content/book/
+    directory's last commit, not only the files build_epub.py actually
+    reads (book_chapter_files()'s own 50 chapters, plus assets/ and the
+    front matter). content/book/ also holds
+    "6S Success Home Edition - Sample (Chapters 1-30).html", a completely
+    separate hand-authored file ops/build_sample_html.py reads for the free
+    web sample, unrelated to the paid EPUB; editing only that file (as this
+    same cycle did, adding role="note" to its callout boxes for an
+    accessibility fix) FAILed this gate even though the EPUB's own content
+    had not changed at all, which would have meant bumping EDITION_DATE on
+    a false claim to clear it. Scoped to the real inputs instead.
 
     Found 2026-10-12: EDITION_DATE had been "2026-09-11" since the constant
     was introduced that day, but six real content commits landed in
@@ -7962,7 +7979,13 @@ def gate_epub_edition_date_current() -> None:
         return
     if not os.path.isdir(os.path.join(ROOT, "content", "book")):
         return
-    latest = _last_commit_epoch("content/book")
+    epub_sources = [os.path.relpath(p, ROOT) for p in book_chapter_files()]
+    for rel in ("content/book/assets", "content/book/6S-Success-Front-Matter"):
+        if os.path.isdir(os.path.join(ROOT, rel)):
+            epub_sources.append(rel)
+    if not epub_sources:
+        return
+    latest = _last_commit_epoch(*epub_sources)
     if latest is None:
         return
     latest_date = dt.datetime.fromtimestamp(
@@ -7970,10 +7993,11 @@ def gate_epub_edition_date_current() -> None:
     if latest_date > m.group(1):
         fail("epub-edition-date-current",
              f"build_epub.py's EDITION_DATE ({m.group(1)}) predates "
-             f"content/book/'s own last real commit ({latest_date} UTC); the "
-             f"shipped EPUB's dc:modified would understate its last actual "
-             f"content change. Bump EDITION_DATE by hand in the same commit "
-             f"as whatever changed, per that constant's own comment.")
+             f"the EPUB's own source files' last real commit "
+             f"({latest_date} UTC); the shipped EPUB's dc:modified would "
+             f"understate its last actual content change. Bump "
+             f"EDITION_DATE by hand in the same commit as whatever "
+             f"changed, per that constant's own comment.")
 
 
 
