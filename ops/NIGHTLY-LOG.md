@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## scheduled operator cycle, 2026-11-26 (~15:3x slot): independently re-verified every lane fresh, no new defect or unblocked lane found, same Phil-gated queue handed on
+
+Did: Attached per Step 0 (shallow, detached checkout; real `fetch --unshallow`, 493 commits fast-forwarded; `checkout main`; `merge --ff-only` onto `origin/main`; tree clean, no reset or force). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (full), `ROADMAP-2026-2029.md`'s relevant sections, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries (newest-first, at the top of the file). Ran `preflight.py --skip-tests` live to full completion: every gate passed, 31 warnings, all standing sandbox/credential/art gaps (no VPS/SSH key, no Stripe key, no mail credential, no local Chromium heroes/photos). `check_urls.py` 236/236, `fix_dashes.py --check` 0 em/en dashes, `affiliate.py --check` 165 delivered documents clean, `cold_read_ledger.py --next` 315 of 315 files ledgered, 0 un-ledgered candidates, 0 stale. All 20 `rotate_*.py --check` scripts clean, nothing due.
+
+Verified, not cited: GitHub's 30 open issues re-pulled live via the API, unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (2026-11-14, 12 days); issue #42 (cadence-vs-exhausted-state) itself last updated 2026-11-20, still unanswered. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty. Ran `room_guide_underperformance.py` fresh rather than trust the standing figure: every partial row surfaced (Family Room 13%, Stair Landing 12%, Hall Closet 10%, Primary Bedroom/Nursery/Garage 7-8%, down to 0% in several rooms) traced by exact phrase against this log and the backlog archive; every one is already investigated and declined by ID in a prior cycle (A74, A89-A93, A267, A268, A277-A278 among others). No genuinely new row found. A concurrent PM check-in (~15:4x slot, below) independently reached the same room-ranking figures (Family Room 13%, Stair Landing 12%, Hall Closet 10%) within minutes of this cycle's own reading.
+
+Did not re-mine the room-guide/keyword-demand lane further, since dozens of independent cycles have already proven it exhausted and section 2-4 of `BACKLOG-2026-09-07.md` is archived or done. Did not start any owner-gated item (Amazon KDP #43, Etsy #44, accounts layer #45, YouTube OAuth #46, Gemini billing #47, Apple/Play #48, Stripe description/logo #58): each is already built to the single remaining step and waits on Phil, per `OWNER-ACTIONS.md`.
+
+Verified: this cycle's own changes are limited to `ops/cycle-signal.json` (preflight snapshot) and the regenerated command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no source file touched. No price, product or page touched; `IndexNow` not applicable.
+
+Found and discarded a self-inflicted artifact after this entry's own first commit: a foreground re-verification of `preflight.py` was killed by the sandbox's own foreground timeout partway through an asset-regeneration gate, leaving 173 tracked files (asset cache-bust hashes stripped across most zone/deck pages, plus a genuinely truncated `site/deck-gallery.html` missing its card list) sitting uncommitted. Checked rather than assumed: `git status` showed only modifications to already-tracked files against a tree that was clean right after the prior commit, so the committed state was never at risk. Discarded with `git checkout -- .`, not hand-patched, since the committed version was already the correct one; re-ran `preflight.py --skip-tests` in the background (to avoid the same foreground timeout) to real completion: every gate passed, 30 warnings. No commit carries the corrupted intermediate state.
+
+Went well: a clean, independent re-derivation reached the same honest answer dozens of prior cycles have already reached, rather than cite it cold.
+
+Did not go well: nothing new shippable; this is a further consecutive cycle at full exhaustion of the unblocked queue, the exact cadence-vs-exhausted-state shape issue #42 already names to Phil.
+
+Changing next cycle: none; no new defect class appeared to gate (step 10b n/a this cycle).
+
+Next: same 30-issue Phil-gated queue. No push notification sent: nothing material changed since the last one, and issue #42 already documents the duplicate-notification risk repeating this would cause.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~15:4x slot): previous work reconfirmed finished, Family Room's own 8-row partial tier handed to the operator as the genuine next headroom
 
 NEXT FOR THE OPERATOR: Family Room's 8-row partial tier (13% uncovered) in room-guide/keyword-demand mining, because a fresh run of `room_guide_underperformance.py` this slot shows it is now the room with the most real headroom, ahead of Stair Landing (12%) and Hall Closet (10%), and nothing else is genuinely unblocked outside the standing Phil-gated queue.
