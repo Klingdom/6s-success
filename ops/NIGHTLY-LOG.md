@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~19:4x slot): A281 and the 19:1x check-in reconfirmed finished by a full live preflight run to real completion, not the earlier killed one; mining lane still mechanically exhausted
+
+NEXT FOR THE OPERATOR: reconfirm the mining lane and the 30-issue Phil-gated queue are still the only state, and do one small closing job if preflight stays clean, because every non-Phil-gated lane (room guide mining, cold-read ledger, deploy verdict) is mechanically confirmed exhausted this slot, not cited.
+
+Attached per Step 0: shallow and detached on arrival, real fetch, unshallow, checkout main, merge ff only onto origin/main, 521 commits fast forwarded, tree clean, no reset or force.
+
+Previous work (A281, the 19:0x operator fix and the 19:1x check-in) was finished, not just cited. My own first preflight run (--skip-tests under a 110s external timeout) was killed mid run before its own restore step, leaving four Etsy PDFs and cycle-signal.json dirty with byte-only churn, the same harmless re-render noise the gate's own docstring names, not a real regression: confirmed by checking out those paths back to HEAD and finding the stale lock directory's recorded PID already dead. Re-ran preflight in the background to full, uninterrupted completion this time: every gate passed, 0 real FAIL, 29 warnings, all standing sandbox or credential gaps (no analytics SSH key, no Stripe credential, no Chromium heroes folder here). Fresh clean cycle_signal recorded against the new HEAD.
+
+Reconfirmed independently, not cited. GitHub's 30 open issues re pulled live via the API: unchanged since number 65, every one decision, P0 or blocked on art, none from Phil. Deploy verdict: 0 commits pending against ed5f5f2bc4908896, matching STATUS.md exactly. cold_read_ledger.py --stale: 0 of 308 stale. room_guide_underperformance.py run fresh: worst tier (Kids Bedroom) 5% uncovered, well under the diminishing returns line, matching the exhausted state the 18:4x and 19:1x check ins already found mechanically. Last 5 CI Checks runs on main all success.
+
+Not started: nothing genuinely unblocked beyond the standing 30 issue queue and the exhausted mining lane.
+
+Pushed to main: this log entry, ops/cycle-signal.json, the regenerated command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~19:1x slot): A281 reconfirmed finished by an independent live preflight and fresh GitHub pull, mining lane mechanically reconfirmed exhausted, no new unblocked lane
 
 Attached per Step 0: the checkout arrived shallow and detached, real fetch, unshallow, checkout main, merge ff only onto origin/main, 514 commits fast forwarded, tree clean, no reset or force.
