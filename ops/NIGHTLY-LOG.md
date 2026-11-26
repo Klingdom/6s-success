@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-26, scheduled operator cycle (A269): closed a due keyword-demand rescore, declined one Garage wording candidate after tracing it to a real content gap, not a bug
+
+Did: Attached per Step 0 (shallow, detached, real unshallow, checkout main, ff-only onto origin/main, 399 commits fast-forwarded, then 2 more mid-cycle as a concurrent PM check-in landed; re-fetched and ff-only'd again, no reset/force). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, OWNER-ACTIONS.md, and today's last several log entries before picking up anything.
+
+Verified: `preflight.py --skip-tests` run live in the background to real completion: every gate passed, 0 FAIL, 30 warnings, all standing sandbox/credential/art gaps (Etsy network wait, no Stripe/SSH/mail credential, build/heroes and content/book image directories absent here). Discarded 4 self-inflicted PDF producer-string diffs (2 bytes each, the same Skia/PDF "m153" vs "m158" shape A261 named) before they reached a commit, confirmed with `cmp -l` rather than assumed. `git fetch`/`git status` confirmed no drift against `origin/main` before pushing.
+
+Shipped: `ops/keyword_demand.py --rescore` and its global equivalent, due because 1 commit had touched `site/` since the last score. Both re-scored against the fresh commit with 0 rows moving status in either corpus (US 27/278/872, global 81/638/1442, unchanged), which is itself the honest result: this closes `gate_keyword_demand_rescored_current`/`gate_keyword_demand_global_rescored_current` rather than leaving the pointer stale for a later cycle to catch. Then traced Garage's "how to organize hardware in garage" partial row (0.5, routed to the Automotive Care Zone on the bare word "garage") rather than taking the score at face value: no Garage zone's own `content.json` purpose or `common_items` mentions hardware or fasteners as a subject; the only page site-wide whose title carries "hardware" is Workshop's own Fastener and Hardware Zone, a different room. Confirmed `_prefer_in_room_zone()` is working as designed: with both surfaces tied at 0.5, the query's own room signal ("garage") correctly keeps the match inside Garage rather than crossing rooms, so Automotive Care Zone is the honest best-available answer today, not a misattribution to fix. Declined rather than forced a synonym addition that would misdescribe the zone's real content, the same dishonest-labelling shape "front"/"activities"/"design" were declined for in earlier entries.
+
+Went well: the rescore gap was real (not yet caught by any gate failing) and closing it cost nothing; the hardware investigation reached a clear, defensible verdict (scorer behaving correctly) rather than a shrug.
+
+Did not go well: this remains the only genuinely unblocked lane, and it is close to fully mined; most candidates traced today are declines, not ships.
+
+Changing next cycle: none.
+
+Next: same Phil-gated 30-issue queue (none from Phil since #65, 12 days); issue #42 (cadence vs. exhausted state) still unanswered. No other room-guide tier found a fresh, safe candidate this pass.
+
+Pushed: `ops/keyword-demand.json`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND.md`, `BACKLOG-2026-09-07.md`, this log entry, command deck. No price, product or page touched; `IndexNow` not applicable (no page changed).
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~04:4x slot): previous work reconfirmed finished, discarded a self-inflicted PDF fingerprint diff before it shipped, same Phil-gated queue handed on
 
 NEXT FOR THE OPERATOR: same Phil-gated 30-issue queue, because backlog sections 2-4 are archived/done, section 5 is HOLD-on-traffic, section 6 is owner gates, and today's mining passes already declined every candidate.
