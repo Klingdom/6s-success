@@ -240,13 +240,6 @@
  ],
  "runs": [
   {
-   "at": "2026-11-11T13:07:11Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-11-11T15:09:28Z",
    "mode": "changed",
    "offered": 3,
@@ -658,6 +651,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-26T09:16:39Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -785,7 +785,7 @@
   "https://6s-success.com/zones/kids-bedroom-the-study-desk": "2bb7a5d5802342f9",
   "https://6s-success.com/zones/kids-bedroom-the-toy-storage-zone": "d73f7d7391237caa",
   "https://6s-success.com/zones/kitchen-the-cooking-zone": "f3bef2834d79180d",
-  "https://6s-success.com/zones/kitchen-the-lower-cabinets-and-cookware": "f537a599efe1de70",
+  "https://6s-success.com/zones/kitchen-the-lower-cabinets-and-cookware": "257930b288c43069",
   "https://6s-success.com/zones/kitchen-the-primary-prep-counter": "81b0d4fdc33e2bce",
   "https://6s-success.com/zones/kitchen-the-refrigerator-and-freezer": "85e9a144084046ef",
   "https://6s-success.com/zones/kitchen-the-sink-and-dishwashing-zone": "500841ca62d4faf7",
