@@ -2,13 +2,29 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-26 (~01:1x slot): previous work still unstarted but not overdue; closed a real stale deploy citation in STATUS.md
+## PM check-in, 2026-11-26 (~01:1x slot): picked a different item than the concurrent operator cycle below, closed a real stale deploy citation in STATUS.md
 
 Attached clean, no reset, tree matched origin. GitHub's 30 issues unchanged, none from Phil since #65. `preflight.py --skip-tests` hit the documented network stall, 0 real FAIL before it.
 
-The operator's full axe-core scan handoff (A262-A264) has not run yet, only hourly heartbeats; not overdue. Found a real gap instead: `ops/deploy-verdict.json`'s newer confirmation (build `d96d73d50c32392a`, commit `028fc005e`, 00:33Z) was uncited by five STATUS.md sections (BLOCKER-001, Production Knowledge, Currently Deployed Build, Public website/Production traceability rows). Confirmed 0 commits pending directly (`git log 028fc005e..HEAD -- site/ Dockerfile` empty), then fixed all five. `status_deploy_verdict_problem` now clean. Dashboard regenerated.
+At the time this started, the axe-core scan handoff (A262-A264) had not run yet, so picked a separate item rather than collide: `ops/deploy-verdict.json`'s newer confirmation (build `d96d73d50c32392a`, commit `028fc005e`, 00:33Z) was uncited by five STATUS.md sections (BLOCKER-001, Production Knowledge, Currently Deployed Build, Public website/Production traceability rows). Confirmed 0 commits pending directly (`git log 028fc005e..HEAD -- site/ Dockerfile` empty), then fixed all five. `status_deploy_verdict_problem` now clean. Dashboard regenerated. Merged onto A265 below, which landed concurrently and closed the axe-core handoff itself; nothing further to hand off there.
 
-Handing the operator: same full-ruleset axe-core scan.
+HANDOFF-FILES: none
+
+## 2026-11-26, scheduled operator cycle: ran the full-ruleset axe-core scan the PM check-in handed off, closed a cold-read ledger gap, no defect found
+
+Attached per Step 0, ff-only onto `origin/main`, picking up a concurrent PM check-in's push mid-cycle. `preflight.py --skip-tests` 0 FAIL, 34 warnings. Closed one real gap: `cold_read_ledger.py --stale` flagged 4 files only A263's own commit had touched since; re-ledgered clean after confirming the diff.
+
+Picked up the PM check-in's own handoff: a full-ruleset axe-core scan (A262-A264 only checked 4 landmark rules). Built a one-off Playwright+axe scanner (not committed) and ran it on all 245 pages (`all_pages()` + `download_page_files()`).
+
+First pass found one apparent `color-contrast` violation on `/articles/index.html`. Checked before reporting it (CLAUDE.md 5d): `getComputedStyle` showed real colors have good contrast; axe had sampled the card's `.reveal` CSS fade-in mid-transition. Confirmed with a settle wait: 0 violations. Also found the scanner itself was missing most content on the 10 pages using `.reveal` (9/9 elements never revealed without a scroll on the homepage, 54/57 on the articles index) and reran those forcing `.in`: still 0.
+
+**Verified result: 0 violations across all 245 pages under the full default axe ruleset**, not just the 4 landmark rules. No defect found, none fabricated.
+
+Went well: traced the one hit to ground instead of "fixing" a non-bug, and found the scanner's own blind spot before trusting a clean scan.
+
+Not done: no new gate (10b) — the lesson is about running this ad-hoc tool correctly, not a repo defect class, so it's recorded here rather than wired into `ops/preflight.py`.
+
+Next: same 30-issue Phil-gated queue, unchanged, none from Phil since #65.
 
 HANDOFF-FILES: none
 
