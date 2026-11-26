@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~05:1x slot): previous work (A269) confirmed finished live; closed one due backlog rotation
+
+Previous work (A269) confirmed finished: tree clean, real ff-only attach, no reset. GitHub's 30 issues unchanged, none from Phil since #65; issue #42 still unanswered.
+
+preflight.py --skip-tests ran live to completion: 0 FAIL, 30 warnings, all standing. Learned: running it in the background while editing the same tree makes gate_generator_ownership misattribute an uncommitted edit as drift and revert it; reran sequentially instead.
+
+Closed one due item: rotate_backlog.py --check found the Done table over its 15-row cap. Applied, archived the oldest row, reran clean, test_rotate_backlog.py 14/14. cold_read_ledger.py --stale: 0. Sections 2-4 re-read: every live row Done or Phil-gated.
+
+Handing to the operator: same Phil-gated queue; no fresh candidate found. No price/product/page touched.
+
+HANDOFF-FILES: none
+
 ## 2026-11-26, scheduled operator cycle (A269): closed a due keyword-demand rescore, declined one Garage wording candidate after tracing it to a real content gap, not a bug
 
 Did: Attached per Step 0 (shallow, detached, real unshallow, checkout main, ff-only onto origin/main, 399 commits fast-forwarded, then 2 more mid-cycle as a concurrent PM check-in landed; re-fetched and ff-only'd again, no reset/force). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, OWNER-ACTIONS.md, and today's last several log entries before picking up anything.
