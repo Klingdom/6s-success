@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## A283, scheduled operator cycle, 2026-11-26 (~20:5x slot): found and fixed a real cross-room misattribution, "childrens bedroom" routed to Primary Bedroom instead of Kids Bedroom
+
+Did: Attached per Step 0 (shallow detached checkout, real fetch --unshallow, 530 commits fast-forwarded, checkout main, merge --ff-only onto origin/main, tree clean). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Ran preflight.py --skip-tests in the background to real completion (foreground hits the documented sandbox timeout): 0 real FAIL, 29 standing sandbox/credential/art warnings. GitHub's 30 open issues re-pulled live: unchanged since #65 (12 days), all decision/P0/blocked-on-art, none from Phil. inbox_agent.py --apply: no mail credential here.
+
+Rather than re-cite the room-guide mining lane as exhausted, ran room_guide_underperformance.py fresh and traced a row no prior entry names: "childrens bedroom organization ideas" (global harvest, market ca), partial at 0.5, title-matched to the Primary Bedroom bed-and-bedding zone on the bare word "bedroom" alone, while its own heading_coverage already pointed at the real answer, the Kids Bedroom bed-and-sleep zone. Root cause: ops/room-also-called.json's Kids Bedroom entry already carries "children's bedroom" (with apostrophe) as a name, but the no-apostrophe spelling was removed 2026-11-19 for lacking evidence, with its own note to re-add once it re-earns evidence. It now has exactly one real, fresh hit. Re-added as a signal_name rather than a second name, since the apostrophe'd form already renders the honest "Also called the children's bedroom" line and a second rendered claim for the same word minus punctuation would be redundant.
+
+Verified before shipping: a full before/after diff of both corpora found this is the only row anywhere whose best_page or status changed (still honestly partial, unmatched on "childrens," only the credited page corrected), 0 regressions. test_room_also_called.py 14/14, test_keyword_demand.py 76/76, check_goals_keyword_cluster_citation_fast.py clean, check_urls.py 236/236, fix_dashes.py --check 0/0, affiliate.py --check 165 docs clean.
+
+A concurrent PM check-in (3 commits) landed mid-cycle; merged cleanly onto it, no conflicts on any file this entry touched. Re-ran preflight.py --skip-tests on the merged tree before pushing: 0 real FAIL (one expected gate_checks_yml_real_gap warning for the not-yet-pushed commit, resolved by the push itself).
+
+Went well: tracing a fresh room_guide_underperformance.py run instead of trusting the "exhausted" citation found a real, previously-unnamed misattribution with a clean, evidenced, zero-regression fix.
+
+Did not go well: nothing new; the rest of the standing queue (30 Phil-gated issues) is unchanged.
+
+Changing next cycle: none.
+
+Next: same 30-issue Phil-gated queue; cheapest unlocks unchanged (#64 traffic read, #46 YouTube OAuth, #58 Stripe description/logo). No price, product or site page touched; IndexNow not applicable (scoring-only JSON change).
+
+Owner notification floor: last real send 2026-11-26T14:08:20Z, inside its 48h floor, and this cycle's find is a routine internal scoring fix, not news that warrants breaking the floor early. None sent.
+
+Pushed to main: ops/room-also-called.json, ops/keyword-demand.json, ops/keyword-demand-global.json, ops/KEYWORD-DEMAND.md, BACKLOG-2026-09-07.md, this log entry, command deck.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~20:4x slot): NEXT FOR THE OPERATOR: same standing Phil-gated queue, nothing new unblocked; previous handoff reconfirmed finished by a fresh live preflight and GitHub pull
 
 NEXT FOR THE OPERATOR: same 30-issue Phil-gated queue and mechanically exhausted mining lane as every recent cycle, because nothing has changed since the 20:2x check-in and no new lane is genuinely unblocked.
