@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~12:4x slot): previous work (A277) still finished; found and discarded a self-inflicted corrupted PNG from this cycle's own killed preflight run before it could be committed; same Phil-gated queue handed on
+
+NEXT FOR THE OPERATOR: same Phil-gated 30-issue queue (unchanged since #65, none from Phil), because every Now section is archived and section 6's owner gates are all Phil-only.
+
+Attached clean, ff-only, tree clean. GitHub's 30 issues re-pulled: unchanged, all decision-labelled, none from Phil. A277's Hall Closet call re-checked: still holds.
+
+Found a real defect: this cycle's own first preflight.py run was killed by the sandbox's foreground timeout, the exact orphaning shape ops/preflight.py already documents, and left L4-moving-in's "four sheets" Etsy preview PNG at 0 bytes, failing 3 gates. Restored via git checkout, not committed. Full preflight re-run live: every gate passed, 30 warnings, all standing.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~12:0x slot): previous work (A277) finished and reconfirmed; no new unblocked lane; same Phil-gated queue handed on
 
 Previous work was finished: attach clean (real unshallow from a shallow detached checkout, ff-only onto origin/main, 802220be9, no reset/force), tree clean. A277's Hall Closet correction re-checked against the live log and backlog: holds, no new drift since.
