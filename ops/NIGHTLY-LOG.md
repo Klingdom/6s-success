@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~01:1x slot): previous work still unstarted but not overdue; closed a real stale deploy citation in STATUS.md
+
+Attached clean, no reset, tree matched origin. GitHub's 30 issues unchanged, none from Phil since #65. `preflight.py --skip-tests` hit the documented network stall, 0 real FAIL before it.
+
+The operator's full axe-core scan handoff (A262-A264) has not run yet, only hourly heartbeats; not overdue. Found a real gap instead: `ops/deploy-verdict.json`'s newer confirmation (build `d96d73d50c32392a`, commit `028fc005e`, 00:33Z) was uncited by five STATUS.md sections (BLOCKER-001, Production Knowledge, Currently Deployed Build, Public website/Production traceability rows). Confirmed 0 commits pending directly (`git log 028fc005e..HEAD -- site/ Dockerfile` empty), then fixed all five. `status_deploy_verdict_problem` now clean. Dashboard regenerated.
+
+Handing the operator: same full-ruleset axe-core scan.
+
+HANDOFF-FILES: none
+
 ## 2026-11-26, PM check-in (~00:4x slot): previous work (A263/A264) reconfirmed finished; closed a missing HANDOFF-FILES marker, full-ruleset axe-core scan handed to the operator
 
 NEXT FOR THE OPERATOR: run a full-ruleset axe-core scan (not just the four landmark rules A262-A264 checked) on all site pages plus `site/downloads/`, because every rule category checked here for the first time has found real defects, and the rest of the ruleset (color-contrast, label, image-alt, etc.) has never run site-wide.
