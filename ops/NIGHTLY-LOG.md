@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~11:4x slot): corrected A276's wrong room-guide range, closed a real keyword-demand rescore gap, handed Hall Closet's real tier to the operator
+
+NEXT FOR THE OPERATOR: Hall Closet's 8-row partial tier (9% uncovered), because Stair Landing's and Family Room's top rows are already declined (A267, A74/A268), and Hall Closet has real, mostly-untraced headroom.
+
+Attached clean, ff-only, tree clean. GitHub's 30 issues unchanged, none from Phil since #65. preflight.py --skip-tests: 0 FAIL after committing, standing warnings only.
+
+Found two real gaps rather than re-cite A276. keyword-demand.json/-global.json were one site-commit stale (A274); rescored both live, 0 status changes, pointer fixed. A276's "0 to 6% uncovered" claim does not match a fresh run: true range is 0 to 12% (Stair Landing top). Corrected in BACKLOG-2026-09-07.md, append-only.
+
+Not started: Hall Closet mining, per this slot's own instruction.
+
+Pushed: rescored JSON/MD, BACKLOG-2026-09-07.md, this entry, command deck. No price/product touched.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~11:1x slot): previous work (A276, 10:4x slot) finished and reconfirmed; found and fixed a self-inflicted asset-fingerprint drift; same Phil-gated queue handed to the operator
 
 Previous work was finished: clean ff-only attach, GitHub's 30 issues unchanged, none from Phil since #65, 0 open PRs, CI's last 5 runs on main all success. Backlog sections 2-4 archived/done, 5 Hold, 6 owner gates. All 21 rotate_*.py --check clean, cold_read_ledger.py --stale 0.
