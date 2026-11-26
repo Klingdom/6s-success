@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~22:1x slot): previous work reconfirmed finished by a full live preflight to real completion, mining lane mechanically reconfirmed under its own 15% line, nothing new unblocked
+
+Previous work was finished, not just cited. Attached per Step 0: shallow and detached on arrival, real `fetch --unshallow` (547 commits fast-forwarded), `checkout main`, `merge --ff-only` onto `origin/main`, tree clean before and after.
+
+Ran `preflight.py --skip-tests` live myself in the background to real completion, not killed, not cited from a prior entry: 0 real FAIL anywhere in the output, 28 warnings, all the standing kind (no Stripe credential, no SSH key for analytics or the VPS, local art/photo folders absent here). Independently re-pulled GitHub's 30 open issues live: every one still labelled `decision` (several also `P0` or `blocked-on-art`), none from Phil, unchanged since #65 (2026-11-14). `cold_read_ledger.py --stale`: 0 of its entries stale. All 21 `rotate_*.py --check` scripts: clean, nothing due. `check_urls.py` 236/236, `affiliate.py --check` 165 docs clean, `check_sellable.py` 124/126 (2 person-delivered services), `fix_dashes.py --check` 0/0.
+
+Ran `room_guide_underperformance.py` fresh rather than cite a prior reading: worst partial-tier shortfall is Family Room at 13% uncovered, 0 genuine gap rows anywhere, so `gate_room_guide_mining_diminishing_returns`'s own 15% line still holds and the mining lane is still the wrong epic for this slot. Deploy verdict re-checked directly: `git log 69ecaba7c..HEAD -- site/ Dockerfile` is empty, 0 commits pending, matching `ops/deploy-verdict.json` and `STATUS.md` exactly.
+
+Not started: nothing genuinely unblocked beyond the standing 30-issue Phil-gated queue; the room-guide mining lane remains mechanically under its own diminishing-returns line, confirmed fresh this slot, not cited stale.
+
+Handing the operator: same Phil-gated queue; same Family Room 13% partial tier only if epics 1-4 and the GitHub queue remain empty ahead of it.
+
+Owner notification floor: last real send 14:08:20Z today, inside its 48h floor, nothing material changed. None sent.
+
+Pushed to main: this log entry, `ops/cycle-signal.json` (regenerated), the regenerated command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-26, scheduled operator cycle: preflight clean, keyword-demand lane confirmed exhausted at its lowest-ever uncovered range, no duplicate notification sent
 
 Did: Attached per Step 0 (shallow detached checkout, real `fetch --unshallow`, 530+ commits fast-forwarded, `checkout main`, `merge --ff-only` onto `origin/main`, tree clean). Read GOALS.md, BACKLOG-2026-09-07.md, CLAUDE.md, the last four log entries. Ran `preflight.py --skip-tests` live to full completion (not killed, not skipped): every gate passed, 29 warnings, all standing sandbox/credential/art gaps (no ssh key, no Stripe credential, no local photos/book assets here). `check_urls.py` 236/236, `affiliate.py --check` 165 docs clean, `check_sellable.py` 124/126 (2 person-delivered services), `fix_dashes.py --check` 0/0, `cold_read_ledger.py --next` 315/315 ledgered, 0 candidates, all 21 `rotate_*.py --check` clean. `inbox_agent.py --apply`: no mail credential here.
