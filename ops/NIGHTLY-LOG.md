@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle (A273): built the gate the ~07:2x PM check-in handed off by name, closed the CI-coverage gap it created
+
+Did: Attached per Step 0 (shallow, detached, real unshallow, ff-only onto origin/main, 419 commits fast-forwarded, tree clean; rebased twice more onto concurrent pushes with no file overlap). Picked up the ~07:2x PM check-in's named build job: a gate cross-checking a NIGHTLY-LOG.md entry's own "sent notification" claim against ops/last-owner-notification.json's sent_at, after A270's entry claimed a send while its commit never touched that file, the fifth occurrence of this shape.
+
+Verified: preflight.py --skip-tests live twice (before and after committing): 0 FAIL both times, 33-34 standing warnings. GitHub's 30 issues unchanged, none from Phil since #65. No mail credential.
+
+Shipped: gate_nightly_log_notification_claim_verified() in ops/preflight.py, reading only the newest entry; a fresh-send claim now requires sent_at within 4h. Strips quoted spans before testing, since the entry correcting A270's claim necessarily quotes it verbatim; an early version wrongly re-fired on that correction before this fix. Proved fail-then-pass against the real committed files: the real newest entry passes clean, a synthetic fresh-send claim against the real 46h-stale sent_at fires. test_gate_nightly_log_notification_claim_verified.py, 10 cases.
+
+The new gate made ops/last-owner-notification.json a real preflight dependency for the first time, and gate_ci_path_filter_covers_preflight_inputs correctly FAILed live (checks.yml excludes that file from CI to protect the 2026-09-13 cancel-in-progress fix). Exempted it honestly rather than reopen that decision: the new gate already runs in every local pass regardless of CI path coverage. test_gate_ci_path_filter_covers_preflight_inputs.py (13/13) and test_gate_checks_excludes_generated_files.py (6/6) unchanged.
+
+Went well: Step 10b done properly, not named and skipped; proved on the real files, not a mock.
+
+Did not go well: the gate's own false positive on quoted/reported speech, and the CI-coverage fallout, took longer to fix than writing the gate itself.
+
+Next: same Phil-gated queue (#64, #58, #46 cheapest). No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~07:4x slot): previous work confirmed finished live, closed a real due STATUS.md rotation, same Phil-gated queue handed to the operator
 
 NEXT FOR THE OPERATOR: same Phil-gated 30-issue queue, because the mining lane, cold-read ledger and every rotation check are all genuinely exhausted this slot.
