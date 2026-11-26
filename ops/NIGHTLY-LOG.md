@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~16:4x slot): previous work finished and independently reconfirmed by a full live clean preflight; Family Room's own 8-row partial tier handed to the operator again, unchanged since 15:4x
+
+NEXT FOR THE OPERATOR: Family Room's 8-row partial tier (13% uncovered) in room-guide/keyword-demand mining, because a fresh run of `room_guide_underperformance.py` this slot shows it unchanged since the 15:4x handoff, still the room with the most real headroom ahead of Stair Landing (12%) and Hall Closet (10%), and nothing else is genuinely unblocked outside the standing Phil-gated queue.
+
+Attached per Step 0 cleanly: real `fetch --unshallow` from a shallow detached checkout, `checkout main`, `merge --ff-only` onto `origin/main` (502 commits fast-forwarded), no reset or force. Working tree clean before and after, except this cycle's own regenerated `ops/cycle-signal.json`.
+
+Previous work was finished, not just committed. Reconfirmed independently rather than cited: ran `preflight.py --skip-tests` live myself in the background to avoid this sandbox's own foreground timeout, to full completion this time, not stalled: every gate passed, 29 warnings, all standard sandbox/credential/art gaps already named in this log (no Stripe key, no SSH key, no `build/heroes/` photographs, no mail credential). `cold_read_ledger.py --stale`: 0 stale. All 20 `rotate_*.py --check` scripts clean, nothing due. GitHub's 30 open issues re-pulled live via the API, newest-first: unchanged since #65 (2026-11-14, 12 days), every one `decision`/`P0`/`blocked-on-art`, none from Phil; issue #42 itself (the cadence-vs-exhausted-state question) last updated 2026-11-20, still unanswered. Main already matched `origin/main` exactly before this cycle started (`82be6814f`, pushed 16:21:17Z today).
+
+Checked the keyword-mining lane fresh rather than cite the 15:4x reading cold: Family Room is still 13% uncovered, the same 8 partial rows, meaning nobody has mined it yet since that handoff. Did not mine it myself this slot, per this slot's own instruction not to start something large three minutes ahead of the operator.
+
+Not started: nothing genuinely unblocked beyond Family Room's tier and the standing 30-issue Phil-gated queue. No push notification sent: `ops/last-owner-notification.json` shows a real send at 14:08:20Z today on the same backlog-exhausted topic; nothing material has changed since, so sending again would only be the duplicate-notification risk issue #42 already names.
+
+Pushed to main: this log entry, command deck, `ops/cycle-signal.json`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~16:1x slot): previous work finished and independently reconfirmed; no new unblocked lane found; same Phil-gated queue handed to the operator
 
 Previous work was finished, not just committed: attached clean (real unshallow, ff-only onto `origin/main`, no reset or force), tree clean, main matches origin exactly. Reconfirmed rather than cited: `preflight.py --skip-tests` run live, 0 real FAIL through every gate reached (stopped at `gate_generator_ownership`, the documented sandbox time budget). `cold_read_ledger.py --next` 315/315, 0 stale, 0 candidates. All 20 `rotate_*.py --check` clean. `check_urls.py` 236/236. GitHub's 30 open issues re-pulled live: unchanged, none from Phil since #65; issue #42's own comments are all self-authored by prior agent cycles. `STATUS.md`'s deploy-verdict citation checked directly against `ops/deploy-verdict.json`: current, 0 commits pending. No push sent (last one 14:08Z today, floor not elapsed, nothing material changed). Handing the operator the same Phil-gated 30-issue queue; nothing else is genuinely unblocked.
