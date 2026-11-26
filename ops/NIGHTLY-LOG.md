@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~20:2x slot): A282 reconfirmed finished by a full live preflight to real completion, rotated backlog's Done table (1 row past the 15-row cap), nothing else genuinely unblocked
+
+Attached per Step 0: shallow and detached on arrival, real fetch, unshallow, checkout main, merge ff only onto origin/main, 526 commits fast forwarded, tree clean, no reset or force.
+
+Previous work (A282) was finished, not just cited. Ran preflight.py --skip-tests live myself to full completion: 0 real FAIL, 31 warnings, all standing sandbox/credential/art gaps (no SSH key for analytics, no Stripe credential, no local heroes/book images here). GitHub's 30 open issues re-pulled live via the API: unchanged since #65 (12 days), every one decision/P0/blocked-on-art, none from Phil; most recently updated is still #42, the cadence-fatigue issue itself. cold_read_ledger.py --stale: 0 of 308 stale.
+
+Checked all 21 rotate_*.py --check rather than assume clean: 20 were clean, but rotate_backlog.py itself reported 16 rows against its own 15-row cap, 1 genuinely due. Applied: moved 1 row to BACKLOG-2026-09-07-ARCHIVE.md, live table now 15 rows. test_rotate_backlog.py 14/14 after. Committed, then re-ran preflight on the committed tree: the only FAIL was gate_checks_yml_real_gap, which is the documented, expected shape for a commit not yet pushed (root *.md files are a real checks.yml trigger path; CI has not had the chance to run against it yet, not a real gap). Resolves on push.
+
+Not started: nothing else genuinely unblocked beyond the standing 30-issue Phil-gated queue; the room-guide mining lane remains mechanically exhausted per the last several cycles' own direct re-checks, not cited stale here.
+
+Handing the operator: nothing new; same Phil-gated queue, same exhausted mining lane. Cheapest unlocks unchanged (#64 traffic read, #46 YouTube OAuth, #58 Stripe description/logo).
+
+Owner notification floor: last real send 14:08:20Z today, inside its 48h floor, nothing material changed. None sent.
+
+Pushed to main: this log entry, BACKLOG-2026-09-07.md, BACKLOG-2026-09-07-ARCHIVE.md, ops/cycle-signal.json, the regenerated command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## A282, scheduled operator cycle, 2026-11-26 (~19:5x slot): independently re-verified every lane rather than cite it, checked two previously-unconfirmed "not blocked" items, found nothing new to ship
 
 Did: attached per Step 0 cleanly, 521 commits fast-forwarded, tree clean. Ran preflight.py --skip-tests in the background to real completion (foreground hits the documented sandbox timeout): 0 FAIL, 30 standing warnings. GitHub's 30 open issues re-pulled live: unchanged since #65, all decision/P0/blocked-on-art, none from Phil. inbox_agent.py --apply: no mail credential. Beyond the routine re-checks, read issue #42's own thread in full and verified two items it had never settled directly rather than trust its own summary: Pinterest and Instagram crops (issue #52) are already fully prepared, 114 of 114 each under build/social/, only posting is account-gated; structured data (JSON-LD) already covers 177 of 246 pages across 30+ schema types, not a live gap. Checked issues #31, #33 and #18, each framed as a pure design call: all three turn out to be genuinely billing- or product-identity-gated on inspection (#31's unification option needs the same Gemini billing as everything else; #18 needs paid image regeneration; #33 is an explicit "your call" on the deck's product identity with no cost either way, correctly left for Phil rather than decided unilaterally). cold_read_ledger.py --next: 315/315, 0 candidates. All 21 rotate_*.py --check: clean. Keyword-demand gap tiers (27 US, 81 global) are all off-topic noise (cribbage, bench press, Revit railings), confirming room-guide mining lane (A277-A281's own finding) still holds.
