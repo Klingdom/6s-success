@@ -213,7 +213,33 @@ FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
                           "australia", "ikea", "pinterest", "stuff",
                           "apartment", "style", "rectangular", "square",
                           "attractively", "big", "beginners", "beginner",
-                          "olds", "area", "creating", "productive"))
+                          "olds", "area", "creating", "productive", "lot"))
+
+# "lot" joined 2026-11-26, PM check-in, closing "how to declutter a lot of
+# stuff" (global), one of two Primary Bedroom partial rows confirmed by
+# direct grep to have zero prior mentions anywhere in this log or the
+# backlog archives, unlike every other remaining partial row in every
+# room, which the last several cycles already traced to exhaustion. "a
+# lot of" is a quantity filler, the same shape "lots" (plural, already in
+# this list) and "stuff" (also already in this list) cover; this is the
+# singular form of a word already approved, not a new category of word.
+# Self-flattery checked first: 2 of 7984 headings site-wide carry "lot"
+# ("take the lot out and check every pack" on the Hall Closet deck, an
+# unrelated idiom, and "how do i organize a basement with a lot of
+# stuff?" on the basement article, itself a sibling of this exact query),
+# negligible collision risk.
+#
+# The tier's other zero-mention row, "how to declutter a hoarders
+# bedroom," was traced and declined rather than forced: the destination
+# page's own FAQ ("How do I declutter a very messy room when I feel
+# overwhelmed?") already gives real, usable advice for the same
+# situation this query describes, but "hoarders" itself is a clinical/
+# diagnostic label this site has never used about a reader's home
+# (CLAUDE.md section 10, do not make an ordinary household problem sound
+# like a moral failure, applies equally to a clinical one), so adding it
+# as a bare FORMAT_WORD would launder a sensitive label into a coverage
+# number rather than genuinely answer the need. Left as a named,
+# deliberate gap, not silently dropped.
 
 # "creating"/"productive" joined 2026-11-26, scheduled operator cycle,
 # mining the thin partial-row tails a PM check-in handed off. "home office

@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-26 (~17:5x slot): closed one of the two genuinely-unexamined Primary Bedroom rows the ~17:4x check-in handed off, declined the other for a real sensitivity reason rather than forcing it
+
+Did: attached per Step 0 (shallow, detached on arrival; real `fetch --unshallow`, 502 commits fast-forwarded; `checkout main`; `merge --ff-only` onto `origin/main`, discarding my own now-redundant dashboard regen in favor of a concurrent "Hourly check-in record" commit's fresher one, same precedent prior entries use for this generated-file-conflict shape). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. `preflight.py --skip-tests` run live to completion before touching anything: 0 FAIL, 31 warnings, all standing sandbox/credential/art gaps. GitHub's 30 open issues re-pulled live: unchanged since #65 (12 days), none from Phil; 0 open PRs; CI green on the last 5 runs. `inbox_agent.py --apply`: no mail credential here.
+
+Rather than re-mine an exhausted lane (independently reconfirmed: every other remaining partial row site-wide, including "disposable bags," traced by direct grep to 10-20+ prior mentions each), picked up the ~17:4x PM check-in's own handoff of the two Primary Bedroom rows it had verified, by direct grep, to have zero prior mentions anywhere. Traced both myself rather than trust the handoff: "how to declutter a lot of stuff" (global, partial 0.5) had exactly one unmatched word, "lot," a quantity filler of the same shape as "lots" and "stuff," both already in `FORMAT_WORDS`; self-flattery check found only 2 of 7,984 headings site-wide carry it, negligible collision. Added "lot" to `FORMAT_WORDS`, rescored both corpora live: exactly 1 global row moved partial to covered, same destination page, 0 regressions, 0 US-corpus rows touched. "how to declutter a hoarders bedroom" (partial 0.667, one unmatched word, "hoarders") was traced and declined: the destination page's own FAQ already gives real, usable advice for an overwhelming, very messy room, but "hoarders" is a clinical label this site has never put on a reader's home, and CLAUDE.md section 10 (do not make an ordinary household problem sound like a moral failure) applies at least as much to a clinical one. Forcing it into `FORMAT_WORDS` would launder that label into a coverage number rather than genuinely answer the need, so it is left as a named, deliberate gap, not silently dropped.
+
+Verified, not cited: `test_keyword_demand.py` 76/76, `test_gate_keyword_demand_rescored_current.py` and `_global_` variant both pass. `check_goals_keyword_cluster_citation_fast.py` clean (neither touched cluster this change affects). `room_guide_underperformance.py` fresh: Primary Bedroom 8% to 7% uncovered. `preflight.py --skip-tests` re-run after the change: 0 FAIL. No price, product or page touched; `IndexNow` not applicable (no new page).
+
+Went well: the handoff's own "zero prior mentions, checked by direct grep" claim held up under independent re-verification, which is why mining it was worth the slot instead of another confirm-and-decline cycle.
+
+Did not go well: nothing new this cycle.
+
+Changing next cycle: none.
+
+Next: same Phil-gated 30-issue queue; Primary Bedroom's remaining 6-row partial tier has no further zero-mention rows left in it.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~17:4x slot): previous work reconfirmed finished by a full live preflight run to real completion; handed the operator two genuinely unexamined Primary Bedroom rows instead of repeating the just-corrected Family Room/Hall Closet pattern
 
 NEXT FOR THE OPERATOR: trace Primary Bedroom's "how to declutter a hoarders bedroom" (partial, 0.667) and "how to declutter a lot of stuff" (partial, 0.5), because both are genuinely unexamined, zero prior mentions anywhere across `ops/NIGHTLY-LOG.md`, `ops/NIGHTLY-LOG-ARCHIVE.md`, or any backlog/archive file (checked by direct grep, not assumed), unlike Family Room and Hall Closet, which the last two PM check-ins already found re-mined to exhaustion.
