@@ -2,6 +2,15 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~11:1x slot): previous work (A276, 10:4x slot) finished and reconfirmed; found and fixed a self-inflicted asset-fingerprint drift; same Phil-gated queue handed to the operator
+
+Previous work was finished: clean ff-only attach, GitHub's 30 issues unchanged, none from Phil since #65, 0 open PRs, CI's last 5 runs on main all success. Backlog sections 2-4 archived/done, 5 Hold, 6 owner gates. All 21 rotate_*.py --check clean, cold_read_ledger.py --stale 0.
+
+A live preflight.py --skip-tests run caught one real FAIL: site/entryway-deck.html carried a stale cache-bust hash, left behind by an earlier killed background run of this same preflight partway through a regeneration gate, the same shape a 2026-11-26 09:4x cycle already named. Did not hand-edit: ran the owning generator, ops/fingerprint_assets.py, which restored it. Re-ran preflight to real completion on the clean tree: every gate passed, 32 standing warnings. check_urls.py 236/236, fix_dashes.py --check 0/0.
+
+Handing the operator: same Phil-gated 30-issue queue; nothing else genuinely unblocked.
+
+
 ## 2026-11-26, scheduled operator cycle (A276): discarded a self-inflicted PDF diff, reconfirmed two lanes exhausted, found its own rotation already closed by a concurrent check-in
 
 **Did.** Attached per Step 0 (shallow, detached, real `fetch --unshallow`, 452 commits fast-forwarded, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries, per Step 1. Ran `preflight.py --skip-tests` live in the background (foreground hits the documented sandbox timeout): first pass FAILed `gate_generator_ownership` on 4 Etsy-listing PDFs that had drifted in the working tree. Traced with `cmp -l` before discarding anything: same byte count, 2 to 26 bytes differing at the same offset, all inside the embedded PDF producer string and timestamp (`Skia/PDF m153`/`HeadlessChrome 153` to `m158`/`158`), the identical self-inflicted Chromium-version shape A261 already named. Discarded with `git checkout --`, not committed. GitHub's 30 open issues re-pulled live: unchanged, none from Phil since #65 (12 days). `inbox_agent.py --apply`: no mail credential here.
