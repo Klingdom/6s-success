@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~10:4x slot): previous work (A275) finished and reconfirmed; closed one due backlog rotation; nothing else genuinely unblocked
+
+NEXT FOR THE OPERATOR: same Phil-gated 30-issue queue (unchanged since #65, none from Phil), because every rotation, the cold-read ledger, and a full preflight are all clean this slot and nothing new is unblocked.
+
+Attached clean (ff-only, no reset). A275 verified finished: tree clean, its gate fix confirmed live. GitHub's 30 issues re-pulled: unchanged, none from Phil (#42's own thread confirms this, all comments self-authored by prior cycles). `cold_read_ledger.py --stale`: 0. All 21 `rotate_*.py --check` run individually: only `rotate_backlog.py` due (16 rows, 15-row cap); applied, `--check` clean after, `test_rotate_backlog.py` 14/14. Full `preflight.py --skip-tests` run live to completion: 1 FAIL was self-inflicted (`gate_generator_ownership` catching this slot's own uncommitted rotation mid-run), gone after committing; 0 real FAIL, 28 warnings, all standing.
+
+HANDOFF-FILES: none
+
 ## 2026-11-26, scheduled operator cycle (A275): fixed stale STATUS.md deploy-verdict citations
 
 **Did.** Attached per Step 0 (shallow, detached, real `fetch --unshallow`, 441 commits fast-forwarded, tree clean). Read GOALS.md, STATUS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Ran `preflight.py --skip-tests` live to completion in the background (foreground hits the documented sandbox timeout): 0 FAIL, 32 warnings. One warning was a real, actionable drift: `gate_status_deploy_verdict_current` found BLOCKER-001, "Production Knowledge" and two status-table rows all citing a superseded deploy verdict. The real `ops/deploy-verdict.json` had moved to build `90a0885c956c8ca4` (commit `d282a6b4`, confirmed 02:13:49Z), and one real commit (`772fbb164`, A274's Kitchen zone fix) had shipped since, touching `site/`. Corrected all four sections to the real build/commit/gap (1 commit pending, unconfirmed against production, no VPS credential here). Rebased onto two concurrent pushes mid-cycle (a ~09:4x PM check-in that independently fixed the same `ops/keyword_demand.py` cold-read-ledger drift this cycle also found, about 20 minutes earlier, and a ~10:1x PM check-in's own backlog rotation): both times took the generated-file side (`ops/cold-read-ledger.json`, `ops/cycle-signal.json`, `ops/state.json`, dashboard) from the fresher push and kept only the unique STATUS.md work, dropping my now-redundant ledger duplicate, the same precedent A260/A266/A270/A274 used for this generated-file-conflict shape.
