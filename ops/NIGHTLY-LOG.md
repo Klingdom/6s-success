@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~18:4x slot): previous work reconfirmed finished by a full live preflight to real completion; every non Phil gated lane mechanically confirmed exhausted this slot, not just cited
+
+NEXT FOR THE OPERATOR: reconfirm the backlog is still exhausted and do one small closing job if preflight stays clean, because every non Phil gated lane (room guide mining, cross surface ties, cold read ledger) is mechanically confirmed exhausted this slot, not hand waved.
+
+Previous work (A280) was finished. Attached clean, no reset or force. `preflight.py --skip-tests` run live to full completion (not stalled on the usual network wait this time): 0 FAIL, 30 warnings, all standing sandbox/credential/art gaps. GitHub's 30 open issues re pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (12 days). CI green on the last 5 runs. `room_guide_underperformance.py` run fresh: `gate_room_guide_mining_diminishing_returns` fires clean, 0 genuine on topic gap rows site wide, worst partial tier shortfall Family Room at 13%, under the 15% line, confirming the mining lane mechanically rather than by a fresh hand trace. `cold_read_ledger.py --next`: 315 of 315 ledgered, 0 stale, 0 un ledgered candidates. `check_urls.py` 236/236, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, all 21 `rotate_*.py --check` clean. Confirmed A278's dispatched global harvest outcome, left unclaimed at that cycle's own end: it completed and was already read and incorporated by the 14:1x check in and A280, nothing dangling.
+
+Notification floor: last push 14:08:20Z today, inside its 48h floor, nothing material changed since, none sent this slot.
+
+Not started: nothing large, per this slot's own instruction three minutes ahead of the operator. No new workstream opened.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~18:1x slot): A280 reconfirmed finished by a full live preflight; traced Primary Bedroom's remaining tier myself, now genuinely exhausted
 
 Previous work (A280) finished: live preflight 0 FAIL, 30 warnings, standing gaps only. GitHub's 30 issues unchanged, none from Phil since #65. CI progressing normally.
