@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~15:4x slot): previous work reconfirmed finished, Family Room's own 8-row partial tier handed to the operator as the genuine next headroom
+
+NEXT FOR THE OPERATOR: Family Room's 8-row partial tier (13% uncovered) in room-guide/keyword-demand mining, because a fresh run of `room_guide_underperformance.py` this slot shows it is now the room with the most real headroom, ahead of Stair Landing (12%) and Hall Closet (10%), and nothing else is genuinely unblocked outside the standing Phil-gated queue.
+
+Attached per Step 0 cleanly: real `fetch --unshallow` from a shallow detached checkout, `checkout main`, `merge --ff-only` onto `origin/main` (493 commits fast-forwarded), no reset or force. Working tree clean before and after.
+
+Previous work was finished, not just committed. Reconfirmed independently rather than cited: ran `preflight.py --skip-tests` live myself, `FAIL (none)` at both blocks reached (KDP, Etsy listings) before this slot's own time budget killed it at `gate_generator_ownership`, the same last-gate shape recent cycles report as a full pass; reported unchecked past that point, not passing, per CLAUDE.md 0.4. `cold_read_ledger.py --stale`: 0 of 308. `rotate_backlog.py --check` and `rotate_status_metadata.py --check`: both clean, nothing due. GitHub's 30 open issues re-pulled live via the REST API: unchanged since #65, all `decision`/`P0`/`blocked-on-art`, none from Phil.
+
+Checked the keyword-mining lane fresh rather than cite an earlier reading from today: Garage (the room cited as top in several 2026-11-20 entries) has since been mined down; the current leader is Family Room at 13% uncovered (8 partial rows of 60 on-topic), a real, small, genuinely unblocked lane. Did not mine it myself this slot, per this slot's own instruction not to start something large three minutes ahead of the operator.
+
+Not started: nothing large, per this slot's own instruction. No push notification: `ops/last-owner-notification.json` shows a real send at 14:08:20Z today on the same backlog-exhausted topic; not due again.
+
+Pushed to main: this log entry, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~15:1x slot): previous work (the 14:5x deploy-verdict fix) finished and independently reconfirmed, same Phil-gated queue handed to the operator, no new work started
 
 Attached clean per Step 0, no reset or force. Tree clean, main already pushed.
