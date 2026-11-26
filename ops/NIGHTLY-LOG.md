@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-26, scheduled operator cycle: ran the full-ruleset axe-core scan the PM check-in handed off, closed a cold-read ledger gap, no defect found
+
+Attached per Step 0, ff-only onto `origin/main`, picking up a concurrent PM check-in's push mid-cycle. `preflight.py --skip-tests` 0 FAIL, 34 warnings. Closed one real gap: `cold_read_ledger.py --stale` flagged 4 files only A263's own commit had touched since; re-ledgered clean after confirming the diff.
+
+Picked up the PM check-in's own handoff: a full-ruleset axe-core scan (A262-A264 only checked 4 landmark rules). Built a one-off Playwright+axe scanner (not committed) and ran it on all 245 pages (`all_pages()` + `download_page_files()`).
+
+First pass found one apparent `color-contrast` violation on `/articles/index.html`. Checked before reporting it (CLAUDE.md 5d): `getComputedStyle` showed real colors have good contrast; axe had sampled the card's `.reveal` CSS fade-in mid-transition. Confirmed with a settle wait: 0 violations. Also found the scanner itself was missing most content on the 10 pages using `.reveal` (9/9 elements never revealed without a scroll on the homepage, 54/57 on the articles index) and reran those forcing `.in`: still 0.
+
+**Verified result: 0 violations across all 245 pages under the full default axe ruleset**, not just the 4 landmark rules. No defect found, none fabricated.
+
+Went well: traced the one hit to ground instead of "fixing" a non-bug, and found the scanner's own blind spot before trusting a clean scan.
+
+Not done: no new gate (10b) — the lesson is about running this ad-hoc tool correctly, not a repo defect class, so it's recorded here rather than wired into `ops/preflight.py`.
+
+Next: same 30-issue Phil-gated queue, unchanged, none from Phil since #65.
+
+HANDOFF-FILES: none
+
 ## 2026-11-26, PM check-in (~00:4x slot): previous work (A263/A264) reconfirmed finished; closed a missing HANDOFF-FILES marker, full-ruleset axe-core scan handed to the operator
 
 NEXT FOR THE OPERATOR: run a full-ruleset axe-core scan (not just the four landmark rules A262-A264 checked) on all site pages plus `site/downloads/`, because every rule category checked here for the first time has found real defects, and the rest of the ruleset (color-contrast, label, image-alt, etc.) has never run site-wide.

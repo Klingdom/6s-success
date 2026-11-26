@@ -153,8 +153,8 @@
     },
     "build_corporate_asset.py": {
       "status": "clean",
-      "date": "2026-10-12",
-      "note": "second-pass cold read, 2026-10-12 scheduled operator cycle: no defect found; SCORE_ROWS_PER_SHEET name is reused as sheet-count, confusing but not a behavior bug"
+      "date": "2026-11-26",
+      "note": "Re-ledgered 2026-11-26: the only touch since the last ledger date is A263 (dd89362f5), wrapping the Zone Scoring sheet's intro div in a header landmark (axe's region rule). Read the diff directly: 2-line, mechanical. No further defect found."
     },
     "build_cover.py": {
       "status": "clean",
@@ -523,8 +523,8 @@
     },
     "build_standards.py": {
       "status": "clean",
-      "date": "2026-10-12",
-      "note": "second-pass cold read, 2026-10-12 scheduled operator: regenerate-and-diff clean (build_social_pins.py checked for correct fit/dims rather than byte-identity, since its Chromium screenshot output is sandbox-font-rendering dependent), no defect"
+      "date": "2026-11-26",
+      "note": "Re-ledgered 2026-11-26: the only touch since the last ledger date is A263 (dd89362f5), wrapping the Standards Pack's intro div in a header landmark (axe's region rule). Read the diff directly: mechanical. No further defect found."
     },
     "build_standards_page.py": {
       "status": "clean",
@@ -563,8 +563,8 @@
     },
     "build_zone_map_pack.py": {
       "status": "clean",
-      "date": "2026-10-14",
-      "note": "Read in full (135 lines) and run directly: regenerates both build/ and site/ copies, 20 rooms / 114 zones asserted, 0 drift."
+      "date": "2026-11-26",
+      "note": "Re-ledgered 2026-11-26: the only touch since the last ledger date is A263 (dd89362f5), wrapping the Micro Zone Map's intro div in a header landmark (axe's region rule). Read the diff directly: mechanical. No further defect found."
     },
     "build_zone_pages.py": {
       "status": "clean",
@@ -1053,8 +1053,8 @@
     },
     "quest.js": {
       "status": "clean",
-      "date": "2026-10-11",
-      "note": "Second-pass 2026-10-11: prior note cited commits 8aa7a6589 and 11b32d124 jointly, but only 8aa7a6589 touched this file (the --s-colour to --s-color rename for American spelling); 11b32d124 never did. Verified the renamed CSS custom property is consistent both sides: site.css's .hc-spine/badge rules read var(--s-color,...), quest.js's setProperty call writes --s-color, no stale --s-colour reference anywhere. Ran 11 of the file's own live test suites (test_quest_flow, test_quest_offer_cta/_taken, test_quest_symptom_shown, test_gate_quest_card_victory_honesty/_funnel_events/_session_placement, test_quest_keep_url_leak, test_quest_mode_requires_room, test_quest_back_button_first_run, test_quest_storage_blocked, test_quest_install_button_wired), all pass. No defect found."
+      "date": "2026-11-26",
+      "note": "Re-ledgered 2026-11-26: the only touch since the last ledger date is A263 (dd89362f5), which wrapped each of the 61 quest symptom buttons in its own role=listitem div to fix an invalid role=listitem on a native button (aria-allowed-role). Read the diff directly: a 4-line, mechanical DOM-wrapping change, matching the commit's own description. No further defect found."
     },
     "receive_deploy_key.py": {
       "status": "clean",
