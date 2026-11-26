@@ -19609,6 +19609,159 @@ def gate_b9_claims_current() -> None:
         warn("b9-claims-current", problem)
 
 
+_NOTIFICATION_SENT_NEGATION_RE = re.compile(
+    r"\b(no|not|n't|never|none|nothing)\b.{0,20}\b(push|notification)\b"
+    r"|\b(push|notification)\b.{0,20}\b(not|never)\b.{0,10}\bsent\b",
+    re.IGNORECASE,
+)
+
+
+def _sentence_claims_fresh_notification_sent(sentence: str) -> bool:
+    """True if `sentence` reads as a claim that a push notification was
+    just sent (this cycle), rather than a negation ("no push sent"), a
+    policy statement about the floor, a dated reference to a past send
+    ("...already sent 2026-11-13T06:20:00Z..."), or quoted/reported speech
+    about someone else's claim (a cycle correcting A270's own false "sent
+    one push notification" claim necessarily quotes that exact phrase,
+    and must not itself be flagged as repeating it).
+
+    Deliberately narrow and extensible, the same posture as the
+    GOALS.md-citation gate this repository already runs: it matches known
+    real phrasings rather than attempting general negation parsing, and a
+    future phrasing this misses should widen the pattern, not be worked
+    around by hand.
+    """
+    # Strip double-quoted spans before testing: a sentence reporting what
+    # ANOTHER entry claimed (`A270's commit says it "sent one push
+    # notification" but...`) quotes the exact trigger words without itself
+    # asserting them. Checking the stripped text first is what lets this
+    # gate correct such a false claim without immediately re-triggering on
+    # its own correction.
+    stripped = re.sub(r'"[^"]*"', " ", sentence)
+    if not re.search(r"\bsent\b", stripped, re.IGNORECASE):
+        return False
+    if not re.search(r"\b(push|notification)\b", stripped, re.IGNORECASE):
+        return False
+    # A full ISO timestamp ("...already sent 2026-11-13T06:20:00Z...") is a
+    # citation of a past send, not a claim this cycle just sent one. A bare
+    # date alone is not excluded: every entry's own "## 2026-11-26, ..."
+    # header carries one and would otherwise exclude every entry outright.
+    if re.search(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z", stripped):
+        return False
+    if _NOTIFICATION_SENT_NEGATION_RE.search(stripped):
+        return False
+    return True
+
+
+def nightly_log_notification_claim_mismatch(
+        log_text: str, sent_at: "str | None", now: "dt.datetime",
+        fresh_window_hours: float = 4.0) -> "str | None":
+    """Pure logic for gate_nightly_log_notification_claim_verified().
+
+    Found live 2026-11-26 (PM check-in, ~07:2x slot): A270's own
+    `ops/NIGHTLY-LOG.md` entry said "Sent a push notification this cycle",
+    but its commit never touched `ops/last-owner-notification.json`, so the
+    claim-then-notify guard `ops/owner_notify_claim.py` exists specifically
+    to make atomic (CLAUDE.md section 54, "A255" below) was bypassed or the
+    claim was simply false. That same shape (a log entry claiming a push
+    was sent when the committed state disagreed) had already recurred at
+    least four times before this one (2026-10-19, -24, -27, 2026-11-13),
+    each caught by a later cycle reading the file by eye. Nothing
+    mechanical checked for it until now.
+
+    Reads only the newest ops/NIGHTLY-LOG.md entry (the log is newest-first,
+    matching newest_nightly_log_entry_missing_handoff_marker()'s own
+    convention), splits it into sentences, and asks whether any sentence
+    reads as a claim that a notification was JUST sent
+    (`_sentence_claims_fresh_notification_sent`). If none does, there is
+    nothing to check. If one does, the committed
+    `ops/last-owner-notification.json`'s own `sent_at` must be genuinely
+    fresh: within `fresh_window_hours` of `now` and not in the future. A
+    missing, unparseable, or stale `sent_at` alongside a fresh-send claim
+    means the claim and the committed state disagree, the exact shape that
+    has shipped silently four times before.
+
+    Returns a problem string, or None if nothing is wrong.
+    """
+    blocks = [b for b in re.split(r"(?m)^(?=## )", log_text)
+              if b.startswith("## ")]
+    if not blocks:
+        return None
+    newest = blocks[0]
+    sentences = re.split(r"(?<=[.!?])\s+|\n+", newest)
+    if not any(_sentence_claims_fresh_notification_sent(s) for s in sentences):
+        return None
+    if not sent_at:
+        return (
+            "the newest ops/NIGHTLY-LOG.md entry claims a push "
+            "notification was sent, but ops/last-owner-notification.json "
+            "has no sent_at recorded at all; call `python "
+            "ops/owner_notify_claim.py --claim` before writing a \"sent\" "
+            "claim so the two always agree")
+    try:
+        last = dt.datetime.strptime(
+            sent_at, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=dt.timezone.utc)
+    except (ValueError, TypeError):
+        return (
+            "the newest ops/NIGHTLY-LOG.md entry claims a push "
+            "notification was sent, but ops/last-owner-notification.json's "
+            "sent_at (%r) could not be parsed" % sent_at)
+    age_hours = (now - last).total_seconds() / 3600.0
+    if age_hours > fresh_window_hours or age_hours < -0.5:
+        return (
+            "the newest ops/NIGHTLY-LOG.md entry claims a push "
+            "notification was sent this cycle, but "
+            "ops/last-owner-notification.json's sent_at is %s (%.1fh from "
+            "now), not a fresh send; the claim-then-notify guard "
+            "(`python ops/owner_notify_claim.py --claim`) was bypassed or "
+            "the claim is false" % (sent_at, age_hours))
+    return None
+
+
+def gate_nightly_log_notification_claim_verified() -> None:
+    """The newest ops/NIGHTLY-LOG.md entry's own "sent a notification"
+    claim, if it makes one, must agree with ops/last-owner-notification.json.
+
+    See nightly_log_notification_claim_mismatch()'s own docstring for the
+    live 2026-11-26 case (A270) this exists to catch: a log entry claimed a
+    push notification was sent, but the claim-then-notify guard's own state
+    file was never touched, so a human reading only the log would believe a
+    notification reached Phil's phone when the committed record says
+    otherwise. At least five occurrences of this exact shape have shipped
+    silently before this gate existed.
+
+    A WARNING, matching every sibling cold-read-lane/process-hygiene gate
+    here: a false claim about a notification does not break anything a
+    customer touches, but it is exactly the kind of "source corrected,
+    artifact never re-derived" gap this repository's own gates exist to
+    stop recurring, applied to its own operating record.
+
+    Proof this can fail:
+    ops/tests/test_gate_nightly_log_notification_claim_verified.py calls
+    nightly_log_notification_claim_mismatch() directly with a synthetic
+    newest entry claiming a fresh send and a stale/missing/unparseable
+    sent_at, asserting each fires, then confirms a genuinely fresh sent_at,
+    an explicit "no push sent" entry, and a dated historical reference each
+    produce no warning.
+    """
+    log_path = os.path.join(ROOT, "ops", "NIGHTLY-LOG.md")
+    state_path = os.path.join(ROOT, "ops", "last-owner-notification.json")
+    if not os.path.exists(log_path):
+        return
+    log_text = io.open(log_path, encoding="utf-8").read()
+    sent_at = None
+    if os.path.exists(state_path):
+        try:
+            state = json.loads(io.open(state_path, encoding="utf-8").read())
+            sent_at = state.get("sent_at")
+        except Exception:                                      # noqa: BLE001
+            sent_at = None
+    now = dt.datetime.now(dt.timezone.utc)
+    problem = nightly_log_notification_claim_mismatch(log_text, sent_at, now)
+    if problem:
+        warn("nightly-log-notification-claim-verified", problem)
+
+
 def newest_nightly_log_entry_missing_handoff_marker(log_text: str) -> bool:
     """True if the newest ops/NIGHTLY-LOG.md entry has no HANDOFF-FILES:
     line at all, meaning it was hand-edited straight into the file
@@ -34026,6 +34179,7 @@ def main() -> int:
     run_gate(gate_status_latest_entry_gap_current)
     run_gate(gate_status_table_rows_gap_count_current)
     run_gate(gate_b9_claims_current)
+    run_gate(gate_nightly_log_notification_claim_verified)
     run_gate(gate_nightly_log_handoff_marker_present)
     run_gate(gate_cold_read_handoff_not_stale)
     run_gate(gate_cold_read_ledger_entries_not_stale)
