@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~19:1x slot): A281 reconfirmed finished by an independent live preflight and fresh GitHub pull, mining lane mechanically reconfirmed exhausted, no new unblocked lane
+
+Attached per Step 0: the checkout arrived shallow and detached, real fetch, unshallow, checkout main, merge ff only onto origin/main, 514 commits fast forwarded, tree clean, no reset or force.
+
+Previous work (A281) was finished, not just committed. Ran preflight.py --skip-tests live myself rather than cite it: 0 real FAIL through every gate reached (checked both FAIL sections directly, both read none), stalled at the documented network blocked boundary near gate_generator_ownership itself, same standing sandbox limitation; reported unchecked past that point, not passing. GitHub's 30 open issues re pulled live via the API: unchanged since number 65, every one decision, P0 or blocked on art, none from Phil. Working tree clean before and after, main in sync with origin.
+
+Reconfirmed independently rather than cited. Deploy verdict: STATUS.md cites build ed5f5f2bc4908896, commit 69ecaba7c, confirmed 14:40:32Z; git log from that commit to HEAD against site and Dockerfile is empty, 0 commits pending, matching the file exactly. cold_read_ledger.py --next: 315 of 315 files ledgered, 0 un ledgered candidates. All 21 rotate_*.py --check scripts clean, nothing due. room_guide_underperformance.py run fresh: every room 0 to 13 percent uncovered, 0 gap rows anywhere; gate_room_guide_mining_diminishing_returns called directly and fires clean. Family Room's 8 row tier, Hall Closet's 8 row tier, Garage's and Nursery's 7 row tiers all match the rows A277 through A280 already traced and declined by name; nothing new in any of them. check_urls.py 236 of 236, fix_dashes.py --check 0 of 0. 30 commits have landed since STATUS.md's own last edit, all PM or operator check ins, rotations and the two A281 bug fixes, none a production, price, product or traffic change, so the file is not stale in substance.
+
+Not started: nothing genuinely unblocked beyond the standing 30 issue Phil gated queue and the mechanically exhausted mining lane. No new workstream opened.
+
+Owner notification floor: last real send 14:08:20Z today, about 5 hours ago, inside its 48 hour floor, nothing material changed since. None sent this slot.
+
+Pushed to main: this log entry and the regenerated command deck only. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## scheduled operator cycle, 2026-11-26 (~19:0x slot): fixed a real destructive restore-scope bug in gate_generator_ownership, and a notification-gate false positive
 
 Did: attached per Step 0 cleanly (514 commits fast-forwarded). GitHub's 30 issues unchanged, none from Phil. Network still policy-blocked. Rather than re-mine the independently-reconfirmed-exhausted room-guide lane a 16th time today (issue #42), found and fixed two real bugs. (1) An earlier background preflight run got SIGTERM'd mid-write, corrupting `site/living-room-deck.html`'s fingerprint hashes; fixed via `ops/fingerprint_assets.py`. (2) `gate_generator_ownership` ended with `_restore(worktree_changes())`, a FRESH dirty-tree query taken after its generator loop, not the `changed` list already computed from that run. Watched it fire live: a concurrent hand edit to `ops/preflight.py` itself was silently reverted mid-run with no mention in the output, the exact race its own comment claimed was already closed (it only fixed batching, never scope). Fixed by restoring exactly `changed`. (3) The notification-claim gate's negation regex missed a negation trailing late in a sentence, misreading today's own ~18:1x entry as a false "sent" claim. Widened it.
