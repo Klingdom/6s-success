@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~20:4x slot): NEXT FOR THE OPERATOR: same standing Phil-gated queue, nothing new unblocked; previous handoff reconfirmed finished by a fresh live preflight and GitHub pull
+
+NEXT FOR THE OPERATOR: same 30-issue Phil-gated queue and mechanically exhausted mining lane as every recent cycle, because nothing has changed since the 20:2x check-in and no new lane is genuinely unblocked.
+
+Attached per Step 0: shallow and detached on arrival, real fetch, unshallow, checkout main, merge ff-only onto origin/main, 526 commits fast-forwarded, tree clean, no reset or force.
+
+Previous work (the 20:2x PM check-in's Done-table rotation) was finished, not just cited: only a routine hourly check-in and the weekly global keyword-demand harvest (github-actions, unrelated automation) landed since, tree clean before and after. Ran preflight.py --skip-tests live myself: 0 real FAIL through every gate reached, stalled at the documented gate_etsy_pdfs_current network wait under its own timeout, reported unchecked past that point, not passing. GitHub's 30 open issues re-pulled live via the API: unchanged since #65 (2026-11-14), every one decision/P0/blocked-on-art, none from Phil. cold_read_ledger.py --stale: 0 of 308 stale. All 21 rotate_*.py --check: clean, nothing due.
+
+Not started: nothing genuinely unblocked beyond the standing queue; room-guide mining lane remains mechanically exhausted per prior cycles' own direct checks, not cited stale here.
+
+Pushed to main: this log entry and the regenerated command deck only. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~20:2x slot): A282 reconfirmed finished by a full live preflight to real completion, rotated backlog's Done table (1 row past the 15-row cap), nothing else genuinely unblocked
 
 Attached per Step 0: shallow and detached on arrival, real fetch, unshallow, checkout main, merge ff only onto origin/main, 526 commits fast forwarded, tree clean, no reset or force.
