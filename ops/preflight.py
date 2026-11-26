@@ -13168,6 +13168,23 @@ CI_PATH_COVERAGE_EXEMPT = {
         "rewritten by every pass regardless of real change; excluded from "
         "checks.yml on purpose, added 2026-11-22 alongside the other four "
         "(gate_checks_excludes_generated_files).",
+    "ops/last-owner-notification.json": "excluded from checks.yml on "
+        "purpose, same gate, to avoid cancelling an in-flight real fix's "
+        "CI run under the cancel-in-progress group on a bookkeeping-only "
+        "commit (the 2026-09-13 outage this exclusion list exists to "
+        "prevent a repeat of). Added 2026-11-26 alongside "
+        "gate_nightly_log_notification_claim_verified(), the gate that "
+        "makes this file a real preflight dependency: that gate runs in "
+        "every ordinary `preflight.py --skip-tests` pass (it is not inside "
+        "gate_tests, so this sandbox's Chromium-hang workaround does not "
+        "skip it), so a false claim is still caught before the next push "
+        "regardless of this exemption. The one case CI alone would miss is "
+        "`owner_notify_claim.py --claim`'s own standalone, pathspec-scoped "
+        "commit landing with no other file changed, which this exemption "
+        "accepts as a narrower, already-mitigated risk than reopening the "
+        "2026-09-13 CI-stability fix without new evidence that its own "
+        "write frequency (one claim roughly every 48h, floor-gated) has "
+        "changed.",
 }
 
 
