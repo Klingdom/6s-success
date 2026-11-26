@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~01:4x slot): previous work (A265, the 01:1x STATUS.md fix) confirmed finished live; closed one due backlog rotation; same exhausted queue handed on
+
+NEXT FOR THE OPERATOR: same standing 30-issue Phil-gated queue, unchanged, because a fresh `room_guide_underperformance.py` run and a full `preflight.py --skip-tests` pass both found nothing new and genuinely unblocked beyond what dozens of prior cycles already confirmed saturated.
+
+Attached per Step 0 onto a shallow, detached checkout: fetch, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` at `50da055c1`, 377 commits fast-forwarded, tree clean. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none from Phil since #65 (12 days); issue #42 (cadence question) still unanswered since 2026-11-20.
+
+Previous work reconfirmed, not cited: `ops/cold_read_ledger.py --stale` 0. `preflight.py --skip-tests` run live, unbuffered, to real completion (the first attempt, piped through `tail`, was killed by its own 180s wrapper with nothing captured and reported as unchecked rather than a pass): 1 FAIL, self-inflicted and expected (`gate_generator_ownership` refusing mid-diff while this cycle's own rotation sat uncommitted), 27 warnings, all standing sandbox/credential/art gaps including the long-named `gate_nightly_log_entries_not_overlong`, which several prior cycles already checked against its own docstring and correctly declined to fix retroactively.
+
+Closed one real due rotation rather than only re-verify: `rotate_backlog.py --check` found the Done table at 16 rows against its 15-row cap; applied, moved the oldest row to `BACKLOG-2026-09-07-ARCHIVE.md`, reran `--check` clean (15 rows), `test_rotate_backlog.py` 14/14. Re-ran `preflight.py --skip-tests` on the committed tree to confirm the one FAIL above clears once this rotation ships.
+
+Fresh `room_guide_underperformance.py`: every room 0-9% uncovered, same saturated state already traced across dozens of prior cycles, no new gap row.
+
+No new workstream opened. Pushed to main. `BACKLOG-2026-09-07.md`, `BACKLOG-2026-09-07-ARCHIVE.md`, this log entry, command deck. No price, product or page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~01:1x slot): picked a different item than the concurrent operator cycle below, closed a real stale deploy citation in STATUS.md
 
 Attached clean, no reset, tree matched origin. GitHub's 30 issues unchanged, none from Phil since #65. `preflight.py --skip-tests` hit the documented network stall, 0 real FAIL before it.
