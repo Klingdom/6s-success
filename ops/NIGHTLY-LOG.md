@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~03:1x slot): previous operator work reconfirmed finished, closed a due backlog rotation
+
+Previous work (03:06 operator cycle, every candidate across three tiers declined) was finished: clean attach, no reset, tree clean. GitHub's 30 issues unchanged, none from Phil since #65. `preflight.py --skip-tests` ran live: 0 real FAIL through every gate reached, stalled at the documented `gate_etsy_pdfs_current` network wait; reported unchecked past that point, not passing.
+
+Closed one due item instead of only re-verifying: `rotate_backlog.py --check` found the Done table at 16 rows against its 15-row cap. Applied; 15 rows clean, `test_rotate_backlog.py` 14/14. `cold_read_ledger.py --stale`: 0. Checkin/nightly rotations clean. Discarded a local `cycle-signal.json` checkpoint rather than committing it. Dashboard already current (hourly bot, 03:08).
+
+Not started: nothing unblocked beyond the standing Phil-gated queue; mining lane exhausted.
+
+Pushed: `BACKLOG-2026-09-07.md`, its archive, this entry, command deck.
+
+HANDOFF-FILES: none
+
 ## 2026-11-26, scheduled operator cycle: preflight clean, re-mined three room-guide tiers fresh, every candidate declined, no safe fix found
 
 Did: attached per Step 0, 386 commits fast-forwarded, clean. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. preflight.py ran to completion: 0 FAIL, 30 warnings, standing sandbox/credential gaps. GitHub's 30 open issues re-pulled live: unchanged, none from Phil since #65 (12 days). inbox_agent.py: no mail credential. affiliate.py --check clean. All rotate_*.py --check clean.
