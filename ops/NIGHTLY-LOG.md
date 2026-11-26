@@ -15822,3 +15822,19 @@ Changing next cycle: none.
 Next: same Phil-gated queue. Hall Closet's 26-row partial tier (17% uncovered) for whoever mines it next.
 
 HANDOFF-FILES: none
+
+## PM check-in, 2026-11-26 (~21:1x slot): previous work (A283) finished and verified; found and discarded a self-inflicted PDF diff before it reached a commit; nothing else genuinely unblocked
+
+NEXT FOR THE OPERATOR: Family Room's 8-row partial tier (13% uncovered, the worst shortfall site-wide per gate_room_guide_mining_diminishing_returns, still at or under its own 15% line), only if nothing in epics 1-4 or the GitHub queue is unblocked ahead of it.
+
+Previous work was finished. Attached clean: shallow detached checkout, real fetch --unshallow, 540 commits fast-forwarded, checkout main, merge --ff-only onto origin/main, no reset or force, tree clean. A283's cross-room misattribution fix (childrens bedroom routed to Kids Bedroom instead of Primary Bedroom) was already committed, logged and pushed, with the hourly check-in and a command-deck regeneration on top; nothing left uncommitted from it.
+
+Ran preflight.py --skip-tests live, in the background rather than foreground (the documented sandbox timeout), to real completion: 2 gate failures, both self-inflicted by this run's own foreground attempt rather than a repository defect. gate_generator_ownership failed on 4 Etsy PDF files differing from the committed blob by 2 bytes each at the same offset, the same Chromium-producer-string shape A261/A276 already named (confirmed with cmp -l, not assumed); discarded with git checkout --, not committed. ops/cycle-signal.json also carried a routine checkpoint diff from the run itself, discarded the same way. After discarding both, nothing else failed: 27 warnings, all standing sandbox/credential/art gaps already named in prior entries (no Stripe key, no SSH key for analytics, page/deck art gaps, cross-surface ties).
+
+Reconfirmed independently, not cited. cold_read_ledger.py --stale: 0 of its entries stale. All 20 rotate_*.py --check scripts clean, nothing due. GitHub's 30 open issues re-pulled live via the API: unchanged since #65 (2026-11-14), every one decision or blocked-on-art, none from Phil. room_guide_underperformance.py run fresh rather than cite the gate's own warning text: 0 genuine on-topic gap rows anywhere, worst partial-tier shortfall Family Room at 13% (Stair Landing 12%, Kids Bedroom and Hall Closet 9%, Nursery 7%), consistent with the gate's own line that this lane is in diminishing returns site-wide and that epics 1-4 and the GitHub queue should be checked first; they were, and nothing there is genuinely unblocked.
+
+Not started: nothing large, per this slot's own scope. No new workstream opened.
+
+Pushed to main: EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json (regenerated), this log entry. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
