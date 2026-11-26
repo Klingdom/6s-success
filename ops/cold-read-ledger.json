@@ -606,6 +606,11 @@
       "date": "2026-11-06",
       "note": "Re-ledgered, PM check-in (~11:4x slot): file touched 2026-11-06 (commit 5f03fbd36) by the ~11:1x operator cycle, independently read the diff rather than trusted the commit message. The listing-images check had only ever counted directory entries, so a committed 0-byte PNG (6S-Moving-In-Kit-1-first-page.png, broken since 847beec22) passed every run. Strengthened to open and PIL-verify every listing image, failing by name on an empty or undecodable file. Fail-then-pass already proved directly against the real file by that cycle. Ran fresh here too: PASS, 0 FAIL, 3 listings, no free-duplicate SKU, economics tables current. (A second concurrent PM check-in independently re-ledgered the same file minutes later with the same conclusion, status clean; merged into this single entry rather than left duplicated.)"
     },
+    "check_goals_keyword_cluster_citation_fast.py": {
+      "status": "clean",
+      "date": "2026-11-26",
+      "note": "Cold-read 2026-11-26, scheduled operator cycle. Simple wrapper around gate_goals_keyword_cluster_citation_current (same pattern as check_risks_evidence_fast.py/check_also_called_digital_collision_fast.py); wired into .githooks/pre-push per A260's own nightly log entry. No defect found."
+    },
     "check_integrations.py": {
       "status": "clean",
       "date": "2026-10-12",
@@ -1000,6 +1005,11 @@
       "status": "clean",
       "date": "2026-10-14",
       "note": "third-pass cold read, 2026-10-14 scheduled operator cycle: re-read in full, cross-checked gate_owner_waiting's wiring in preflight.py against the current should_report()/unread_needing_action() logic. No defect."
+    },
+    "owner_notify_claim.py": {
+      "status": "fixed",
+      "date": "2026-11-26",
+      "note": "Cold-read 2026-11-26, scheduled operator cycle. Real defect found: cmd_claim's lost-push-race recovery path ran 'git reset --hard origin/main' unconditionally, which discards ANY uncommitted modification to an already-tracked file in the working tree, not just this script's own state file (CLAUDE.md section 34 / Git Safety Protocol). A concurrent session losing this exact race is, by construction, a sandbox doing other work at the same moment, so this was a real risk of silently destroying another in-progress fix. Fixed: recovery now does reset --mixed HEAD~1 + checkout -- of only the owned file + ff-only merge, touching nothing else in the tree. Also scoped the commit itself to a pathspec so other already-staged files cannot be swept into the claim commit. Proved fail-then-pass with a real two-repo git integration test (test_lost_race_preserves_unrelated_uncommitted_work): reverted to the old reset --hard, watched it fail by destroying an uncommitted edit to a tracked file, restored the fix, confirmed clean."
     },
     "pdf_text.py": {
       "status": "clean",

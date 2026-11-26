@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle (A271): cold-read lane, not the exhausted mining lane, had real work; found and fixed a destructive git reset --hard risk in owner_notify_claim.py
+
+Did: Attached per Step 0 (shallow, detached, real `fetch --unshallow`, `checkout main`, ff-only onto `origin/main`, 413 commits, tree clean). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, recent NIGHTLY-LOG.md entries. GitHub's 30 issues and issue #42's thread re-read live: unchanged, none from Phil since #65 (12 days). `preflight.py --skip-tests` live: 0 FAIL, 32 standing warnings.
+
+Cold-read lane, not the exhausted room-guide mining lane: `cold_read_ledger.py --next` found 2 un-ledgered files, both from A260's CI fix, never read cold since. `check_goals_keyword_cluster_citation_fast.py`: no defect, ledgered clean. `owner_notify_claim.py`: real defect. Its lost-push-race recovery ran `git reset --hard origin/main` unconditionally, which discards any uncommitted modification to an already-tracked file anywhere in the tree, not just its own state file (CLAUDE.md 34/Git Safety Protocol). A session losing that exact race is, by construction, sharing the sandbox with other concurrent work, so this risked destroying an unrelated in-progress fix.
+
+Verified: fixed the recovery to `reset --mixed HEAD~1` + `checkout --` of only the owned file + ff-only merge; scoped the claim commit to a pathspec so other staged files can't be swept in. Proved fail-then-pass with a real two-repo git integration test: reverted to `reset --hard`, watched it destroy an uncommitted edit to a tracked file, restored the fix, confirmed clean. `py_compile` clean. Re-ran `preflight.py --skip-tests` on the fixed tree: 0 FAIL. All 21 `rotate_*.py --check` CLEAN. Ledger back to 315/315.
+
+Went well: the cold-read lane, not the mining lane, had real work left.
+
+Did not go well: nothing new.
+
+Changing next cycle: none.
+
+Next: same Phil-gated queue; cold-read lane exhausted again until a new file lands.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~06:4x slot): previous work confirmed finished live, same Phil-gated queue handed to the operator, closed a stale STATUS.md citation gap
 
 NEXT FOR THE OPERATOR: same Phil-gated 30-issue queue, because backlog sections 2-4 are archived/done, section 5 is Hold-on-traffic, section 6 is owner gates, and nothing else is unblocked.

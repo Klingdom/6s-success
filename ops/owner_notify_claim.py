@@ -139,8 +139,13 @@ def cmd_claim(topic: str, note: str, floor_hours: int) -> int:
         "note": note,
     }
     save_state(new_state)
-    run_git("add", "ops/last-owner-notification.json")
-    commit = run_git("commit", "-m", f"Claim owner notification: {topic}")
+    # Commit scoped to this one file via pathspec, not a bare `git commit`:
+    # the caller may be mid-cycle with other real work already `git add`-ed
+    # (e.g. a fix this same session is about to ship separately), and a
+    # bare commit would sweep that in too, mislabelled under this claim's
+    # own message.
+    commit = run_git("commit", "-m", f"Claim owner notification: {topic}",
+                      "--", "ops/last-owner-notification.json")
     if commit.returncode != 0:
         print(f"COMMIT_FAILED: {commit.stderr.strip()}", file=sys.stderr)
         return 3
@@ -150,10 +155,23 @@ def cmd_claim(topic: str, note: str, floor_hours: int) -> int:
         print(f"CLAIMED: {topic} at {new_state['sent_at']}")
         return 0
 
-    # Lost the push race. Fetch what actually landed and work out whether it
-    # was the exact race this guard exists for, or an unrelated conflict.
+    # Lost the push race. Recover WITHOUT `git reset --hard`: this sandbox
+    # may hold other real, unrelated uncommitted work in the same working
+    # tree (another in-progress fix this same cycle has not shipped yet),
+    # and a hard reset to origin/main would silently destroy all of it
+    # (CLAUDE.md section 34 / Git Safety Protocol: never discard
+    # uncommitted work as a shortcut). `reset --mixed` only rewinds HEAD
+    # and the index past our own losing commit, touching no working-tree
+    # file; `checkout --` then restores just the one file this script
+    # owns from that now-rewound index, so only our own losing claim is
+    # undone and nothing else in the tree is touched.
     run_git("fetch", "origin", "main")
-    run_git("reset", "--hard", "origin/main")
+    run_git("reset", "--mixed", "HEAD~1")
+    run_git("checkout", "--", "ops/last-owner-notification.json")
+    resync = run_git("merge", "--ff-only", "origin/main")
+    if resync.returncode != 0:
+        print(f"CANNOT_RESYNC_AFTER_LOST_RACE: {resync.stderr.strip()}", file=sys.stderr)
+        return 3
     landed = load_state()
     if is_concurrent_race(prior_sent_at, landed, topic):
         print(f"LOST_RACE: {landed.get('topic')} already claimed at {landed.get('sent_at')}")
