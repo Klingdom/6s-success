@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~10:1x slot): previous work (A274, reconfirmed by the 09:4x slot) still finished; closed one due rotation, ran the full preflight the 09:4x slot could not finish
+
+Previous work was finished: clean ff-only attach, tree clean before this slot. GitHub's 30 open issues re-pulled live: unchanged since 2026-11-14 (#65), none from Phil. `room_guide_underperformance.py` fresh: every room 0-4% uncovered, confirming the mining lane the 09:4x slot found thin is genuinely saturated, not merely claimed so. `cold_read_ledger.py --stale`: 0 of 316. CI's last 5 runs on main: all `success`.
+
+Closed one real gap rather than only re-verify: all 21 `rotate_*.py --check` run individually found one genuinely due, `rotate_backlog.py` (section 1's table at 16 rows, past its 15-row cap). Applied, reran `--check` clean, `test_rotate_backlog.py` 14/14 both before and after.
+
+Ran `preflight.py --skip-tests` live to real completion this time, past the 09:4x slot's own cutoff: 1 real FAIL, `gate_generator_ownership`, the documented mid-diff refusal while this slot's own rotation sat uncommitted; 31 standing warnings, all previously-named sandbox/credential/art gaps. Committing now and will re-run to confirm clean.
+
+Handing the operator: the same Phil-gated 30-issue queue; the room-guide lane is now confirmed, not merely handed off, as saturated.
+
+Pushed to main: `BACKLOG-2026-09-07.md`, `BACKLOG-2026-09-07-ARCHIVE.md`, `ops/cycle-signal.json`, this log entry, command deck. No price, product or page touched; `IndexNow` not applicable.
+
 ## PM check-in, 2026-11-26 (~09:4x slot): previous work (A274) reconfirmed finished, closed two small drifts, handed a full preflight completion to the operator
 
 Previous work was finished. Attached clean: fetch, real unshallow from a shallow detached checkout, `checkout main`, `merge --ff-only` onto `origin/main`, 441 commits fast-forwarded, no reset or force. Working tree clean before and after this slot.
