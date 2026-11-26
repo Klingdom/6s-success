@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~02:1x slot): previous work (A266) finished and reconfirmed; investigated and declined the one row it left open; backlog rotation applied
+
+Previous work finished: tree clean, `preflight.py --skip-tests` run live to real completion, 0 FAIL, 33 warnings, all standing. GitHub's 30 issues unchanged, none from Phil.
+
+Did: traced A266's handoff, "basement stair landing storage ideas," directly rather than leave it open. Two words unmatched (`basement`, `storage`), not one, so no `FORMAT_WORDS`/also-called fix can flip it to covered. The zone's own purpose text explicitly disclaims general storage ("without becoming the house's holding pen"), so adding "storage" as a synonym there would misdescribe it. Declined; recorded as A267 in `BACKLOG-2026-09-07.md`. Applied the now-due `rotate_backlog.py` (16 rows, 1 archived). Fresh `room_guide_underperformance.py`: every room still 0-12% uncovered, nothing else unblocked.
+
+Handing the operator: same Phil-gated 30-issue queue; nothing PM-sized or operator-sized is genuinely open in this lane right now.
+
+HANDOFF-FILES: none
+
 ## 2026-11-26, scheduled operator cycle: closed the global "game library" row (board game zone), declined "home" as a FORMAT_WORDS candidate after a real diff showed regressions
 
 Did: Attached per Step 0, ff-only onto origin/main, then a real collision with a concurrent PM check-in that also rotated the backlog and the dashboard: rebase hit generated-table conflicts in BACKLOG-2026-09-07.md, its archive, EXECUTIVE-DASHBOARD-LIVE.md, ops/NIGHTLY-LOG.md, ops/dashboard.html and ops/state.json, so the first conflicted commit was discarded and the real fix reapplied cleanly onto the fresh base (2adbd8378) rather than hand-resolved, the same precedent A260 already used for this exact shape. preflight.py --skip-tests hit the documented network stall at its own time budget, 0 real FAIL before it. Checked b9_claims.py --status (no undiagnosed rooms) and OWNER-ACTIONS.md (all open rows Phil-gated). Ran room_guide_underperformance.py fresh rather than cite a stale reading: every room 0-12% uncovered.
