@@ -3716,8 +3716,8 @@
         "kids bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
-      "best_page_title": "How to organize the primary bedroom bed and bedding",
+      "best_page": "/zones/kids-bedroom-the-bed-and-sleep-zone.html",
+      "best_page_title": "How to organize the kids bedroom bed",
       "coverage": 0.5,
       "heading_coverage": 0.5,
       "heading_page": "/zones/kids-bedroom-the-bed-and-sleep-zone.html",
@@ -47556,5 +47556,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_against_commit": "9972ec91e"
+  "scored_against_commit": "57c3ae5bf",
+  "scored_at": "2026-11-26T20:51:21Z"
 }
