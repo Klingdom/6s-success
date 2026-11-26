@@ -914,7 +914,7 @@
     "keyword_demand.py": {
       "status": "clean",
       "date": "2026-11-26",
-      "note": "A274 (772fbb164, 2026-11-26) added 'creating'/'productive' to FORMAT_WORDS: 0/7984 headings self-flattery, 1 row/corpus partial-to-covered, 0 regressions, matches the commit's own documented diff. 'systems' tried and correctly reverted (A101 ambiguity, test case 59). No defect."
+      "note": "Re-verified after 2 small post-ledger commits (91430adab 'area' FORMAT_WORDS, 772fbb164 'creating'/'productive' FORMAT_WORDS). Read both diffs directly: each carries its own self-flattery collision check and a real before/after corpus rescore in its own commit/inline comment, no hidden defect. No code bug found."
     },
     "keyword_demand_global.py": {
       "status": "fixed",

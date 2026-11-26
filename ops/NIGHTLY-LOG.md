@@ -15338,3 +15338,19 @@ Next: same Phil-gated queue. Hall Closet's 26-row partial tier (17% uncovered) f
 
 HANDOFF-FILES: none
 
+
+## 2026-11-26, scheduled operator cycle (A275): fixed stale STATUS.md deploy-verdict citations, re-verified a stale cold-read entry
+
+**Did.** Attached per Step 0 (shallow, detached, real `fetch --unshallow`, 441 commits fast-forwarded, tree clean). Read GOALS.md, STATUS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Ran `preflight.py --skip-tests` live to completion in the background (foreground hits the documented sandbox timeout): 0 FAIL, 32 warnings. One warning was a real, actionable drift: `gate_status_deploy_verdict_current` found BLOCKER-001, "Production Knowledge" and two status-table rows all citing a superseded deploy verdict. The real `ops/deploy-verdict.json` had moved to build `90a0885c956c8ca4` (commit `d282a6b4`, confirmed 02:13:49Z), and one real commit (`772fbb164`, A274's Kitchen zone fix) had shipped since, touching `site/`. Corrected all four sections to the real build/commit/gap (1 commit pending, unconfirmed against production, no VPS credential here). Also found `cold_read_ledger.py --stale` flagging `ops/keyword_demand.py` (ledgered 2026-11-20, touched twice since by small FORMAT_WORDS additions). Read both diffs: each already carries its own collision check and rescore, no hidden defect; re-ledgered clean.
+
+**Verified.** `status_deploy_verdict_problem()` returns empty against the fixed file (returned "BLOCKER-001" before). `test_gate_status_deploy_verdict_current.py` 14/14. `cold_read_ledger.py --stale` 0. `check_urls.py` 236/236, `fix_dashes.py --check` 0/0. GitHub's 30 open issues re-pulled live: unchanged, none from Phil since #65. Issue #42 re-read in full, not re-raised (no new evidence).
+
+**Went well.** The gate itself found a real, true drift rather than a false positive; fixing it was mechanical once traced.
+
+**Did not go well.** Nothing genuinely unblocked beyond documentation currency; the keyword-mining lane remains saturated.
+
+**Changing next cycle.** None.
+
+**Next.** Whatever documentation-currency or cold-read gap the next preflight run surfaces; owner-gated queue unchanged.
+
+HANDOFF-FILES: none
