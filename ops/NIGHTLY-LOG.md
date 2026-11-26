@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## scheduled operator cycle (A277): checked the ~11:4x handoff's Hall Closet claim directly, found it wrong, independently re-verified every other lane
+
+Did: Attached per Step 0 (shallow/detached, real `fetch --unshallow`, ff-only onto `origin/main`; a concurrent ~11:4x PM check-in landed mid-cycle, re-fetched and ff-only'd again, tree clean, no reset/force). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries.
+
+Verified independently. `preflight.py --skip-tests` live to completion (the one FAIL seen mid-cycle was the documented `gate_generator_ownership` refusal against this cycle's own uncommitted files, gone after committing): 0 real FAIL, 31 warnings, standing sandbox/credential/art gaps. GitHub's 30 issues unchanged, none from Phil since #65.
+
+The ~11:4x PM check-in handed off Hall Closet's partial tier as "real, mostly-untraced headroom." Checked directly rather than trust it (CLAUDE.md 5d): traced all 8-10 listed rows by exact phrase against the log and archives. Every one is already investigated, several times (A89-A93, A101, A111, A112, A197, A267, A268): "diapers in closet" is the long-standing multi-way tie A93 named as needing more than one slot's work; the rest are already-declined ties or content gaps too narrow to fix safely. The "mostly-untraced" framing does not hold; corrected here.
+
+Hand-sampled 5 cross-surface-tie rows; each matched the known noise shape. Cold-read ledger: 315/315 ledgered, 0 candidates. All rotations clean. URLs, link graph, affiliate, dashes all clean. No mail credential.
+
+Went well: caught a wrong claim before a slot was spent on it.
+
+Did not go well: no new defect or unblocked lane found.
+
+Next: same Phil-gated queue; Hall Closet is not a live lead.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~11:4x slot): corrected A276's wrong room-guide range, closed a real keyword-demand rescore gap, handed Hall Closet's real tier to the operator
 
 NEXT FOR THE OPERATOR: Hall Closet's 8-row partial tier (9% uncovered), because Stair Landing's and Family Room's top rows are already declined (A267, A74/A268), and Hall Closet has real, mostly-untraced headroom.
