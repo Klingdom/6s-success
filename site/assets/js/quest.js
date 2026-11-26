@@ -1054,8 +1054,8 @@
     var box = $("#sym-list");
     if (!box || !Q.symptoms) { return; }
     box.innerHTML = Q.symptoms.map(function (s, i) {
-      return '<button type="button" class="btn btn-ghost" data-sym="' + i +
-        '" role="listitem">' + esc(s.symptom) + "</button>";
+      return '<div role="listitem"><button type="button" class="btn btn-ghost" data-sym="' + i +
+        '">' + esc(s.symptom) + "</button></div>";
     }).join("");
   }
 

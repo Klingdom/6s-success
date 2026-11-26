@@ -103,7 +103,11 @@ def main() -> int:
         '<link rel="canonical" href="https://6s-success.com/downloads/'
         '6S-Micro-Zone-Map.html">'
         '<style>%s</style></head><body>'
-        '<div class="intro"><h1>The Micro Zone Map</h1>'
+        # A screen reader needs a way to skip the intro and reach the sheets
+        # (or the reverse); <header> gives it a landmark of its own,
+        # distinct from <main>, rather than leaving the intro outside every
+        # landmark (axe's "region" rule: all content must be in one).
+        '<header><div class="intro"><h1>The Micro Zone Map</h1>'
         '<p>Twenty sheets, one per room. Every one of the %d micro zones in '
         'the house, with the time a single session takes. Numbered in the '
         'order each room\'s own chapter walks through it, not necessarily '
@@ -114,7 +118,7 @@ def main() -> int:
         'finish, which is the whole point. Print the sheet for the room you '
         'are standing in and put it where the work happens.</p>'
         '<p>The steps for each zone are on its own page at '
-        '6s-success.com/rooms, free, no account.</p></div>'
+        '6s-success.com/rooms, free, no account.</p></div></header>'
         '<main>%s</main></body></html>'
         % (CSS, total_zones, "".join(sheets)))
 

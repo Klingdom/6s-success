@@ -7827,8 +7827,12 @@ def _shallow_boundary_commits() -> set[str]:
     return set(io.open(shallow_file, encoding="utf-8").read().split())
 
 
-def _last_commit_epoch(path: str) -> int | None:
-    """Last commit epoch touching `path`, or None if that can't be trusted.
+def _last_commit_epoch(*paths: str) -> int | None:
+    """Last commit epoch touching any of `paths`, or None if that can't be
+    trusted. Accepts several pathspecs so a caller can scope the check to
+    exactly the files a generator reads (see gate_epub_edition_date_current,
+    widened 2026-11-26) rather than a whole directory that also holds
+    unrelated content.
 
     Found 2026-11-03: on a shallow clone, `git log -1 -- path` does not
     error at the shallow boundary, it treats the boundary commit (which has
@@ -7847,7 +7851,7 @@ def _last_commit_epoch(path: str) -> int | None:
     and gate_epub_edition_date_current), so this makes that the correct
     behaviour here too instead of a silent wrong answer.
     """
-    out = subprocess.run(["git", "log", "-1", "--format=%H %ct", "--", path],
+    out = subprocess.run(["git", "log", "-1", "--format=%H %ct", "--", *paths],
                          cwd=ROOT, capture_output=True, text=True).stdout.strip()
     if not out:
         return None
@@ -7921,8 +7925,21 @@ def gate_cover_author_current() -> None:
 
 
 def gate_epub_edition_date_current() -> None:
-    """build_epub.py's EDITION_DATE must not predate content/book/'s own last
-    real commit, the same shape as gate_cover_author_current just above.
+    """build_epub.py's EDITION_DATE must not predate the EPUB's own actual
+    source files' last real commit, the same shape as gate_cover_author_
+    current just above.
+
+    Narrowed 2026-11-26: this used to check the whole content/book/
+    directory's last commit, not only the files build_epub.py actually
+    reads (book_chapter_files()'s own 50 chapters, plus assets/ and the
+    front matter). content/book/ also holds
+    "6S Success Home Edition - Sample (Chapters 1-30).html", a completely
+    separate hand-authored file ops/build_sample_html.py reads for the free
+    web sample, unrelated to the paid EPUB; editing only that file (as this
+    same cycle did, adding role="note" to its callout boxes for an
+    accessibility fix) FAILed this gate even though the EPUB's own content
+    had not changed at all, which would have meant bumping EDITION_DATE on
+    a false claim to clear it. Scoped to the real inputs instead.
 
     Found 2026-10-12: EDITION_DATE had been "2026-09-11" since the constant
     was introduced that day, but six real content commits landed in
@@ -7962,7 +7979,13 @@ def gate_epub_edition_date_current() -> None:
         return
     if not os.path.isdir(os.path.join(ROOT, "content", "book")):
         return
-    latest = _last_commit_epoch("content/book")
+    epub_sources = [os.path.relpath(p, ROOT) for p in book_chapter_files()]
+    for rel in ("content/book/assets", "content/book/6S-Success-Front-Matter"):
+        if os.path.isdir(os.path.join(ROOT, rel)):
+            epub_sources.append(rel)
+    if not epub_sources:
+        return
+    latest = _last_commit_epoch(*epub_sources)
     if latest is None:
         return
     latest_date = dt.datetime.fromtimestamp(
@@ -7970,10 +7993,11 @@ def gate_epub_edition_date_current() -> None:
     if latest_date > m.group(1):
         fail("epub-edition-date-current",
              f"build_epub.py's EDITION_DATE ({m.group(1)}) predates "
-             f"content/book/'s own last real commit ({latest_date} UTC); the "
-             f"shipped EPUB's dc:modified would understate its last actual "
-             f"content change. Bump EDITION_DATE by hand in the same commit "
-             f"as whatever changed, per that constant's own comment.")
+             f"the EPUB's own source files' last real commit "
+             f"({latest_date} UTC); the shipped EPUB's dc:modified would "
+             f"understate its last actual content change. Bump "
+             f"EDITION_DATE by hand in the same commit as whatever "
+             f"changed, per that constant's own comment.")
 
 
 
@@ -20536,6 +20560,115 @@ def gate_aside_landmarks_labeled() -> None:
              "distinct aria-label/aria-labelledby/title on each, "
              "indistinguishable to a screen reader navigating by "
              f"landmark: {bad[:5]}")
+
+
+CALLOUT_ASIDE_RE = re.compile(
+    r'<aside\s+class="callout\s+\w+"([^>]*)>', re.IGNORECASE)
+BODY_INTRO_RE = re.compile(
+    r'<body[^>]*>\s*<div\s+class="intro"', re.IGNORECASE)
+
+
+def unmarked_callout_asides(page_html: str):
+    """Pure logic for gate_axe_landmark_regressions, testable on a string.
+
+    Found 2026-11-25/26, the same full-site axe-core pass that led to
+    gate_aside_landmarks_labeled above, re-run against the pages
+    all_pages() does not cover (downloads/ is deliberately excluded from
+    that function). The free sample book
+    (site/downloads/"6S Success Home Edition - Sample (Chapters 1-30).html")
+    renders 137 inline "callout" boxes (6S Tip, Common Mistake, Quick Win,
+    Family Challenge) as bare <aside class="callout ...">, which HTML's
+    default mapping exposes as an unnamed `complementary` landmark nested
+    inside that chapter's own <section>, axe's
+    landmark-complementary-is-top-level violation, confirmed on all 137
+    nodes, not a sample. These are inline pull-quotes within running chapter
+    text, not page-level sidebars, so the fix is role="note" (content
+    "parenthetic or ancillary to the main content", the exact ARIA
+    definition), not a restructure; the fixed source, added here as the
+    whole point of the rule, carries it on every one of the 137.
+
+    Returns the count of <aside class="callout ..."> tags in this page that
+    carry no role= override at all.
+    """
+    bad = 0
+    for m in CALLOUT_ASIDE_RE.finditer(page_html):
+        if not re.search(r"\brole\s*=", m.group(1), re.IGNORECASE):
+            bad += 1
+    return bad
+
+
+def intro_div_outside_landmark(page_html: str):
+    """Pure logic for gate_axe_landmark_regressions, testable on a string.
+
+    Found the same pass as unmarked_callout_asides above: the three
+    standalone printable downloads (6S-Micro-Zone-Map.html,
+    6S-Standards-Pack.html, 6S-Zone-Scoring-and-Audit-Template.html) each
+    opened <body> directly onto <div class="intro">...</div> before their
+    own <main>, so that intro text sat outside every ARIA landmark on the
+    page, axe's "region" rule (all page content must be contained by a
+    landmark), confirmed on all three, not assumed from one. Each
+    generator's own comment explains why the intro was deliberately kept
+    separate from <main> (so a screen reader can skip the one to reach the
+    other, not mingle them); the fix keeps that separation but wraps the
+    intro in <header> instead of leaving it landmark-less, since a <header>
+    that is not itself nested in article/aside/main/nav/section carries the
+    banner landmark.
+
+    Returns True if this page opens <body> directly onto
+    <div class="intro" with no <header>/<main>/other wrapper between them.
+    """
+    return bool(BODY_INTRO_RE.search(page_html))
+
+
+def download_page_files() -> list:
+    """The standalone printable pages under site/downloads/, deliberately
+    excluded from all_pages() (that function's own docstring: "the book
+    sample is a shipped artefact rather than a page of the site"), but
+    still real HTML a visitor's browser renders and a screen reader reads.
+    gate_axe_landmark_regressions needs these specifically, since every one
+    of the violations it checks for was found only here.
+    """
+    return sorted(f for f in glob.glob(os.path.join(SITE, "downloads", "*.html")))
+
+
+def gate_axe_landmark_regressions() -> None:
+    """Two axe-core landmark defects found and fixed 2026-11-25/26, outside
+    gate_aside_landmarks_labeled's own scope (that gate only ever scans
+    all_pages(), which excludes downloads/, where both of these actually
+    live): see unmarked_callout_asides and intro_div_outside_landmark above.
+
+    Proof this can fail: ops/tests/test_gate_axe_landmark_regressions.py
+    constructs both bad shapes directly, confirms each function flags them,
+    confirms a fixed version of each passes, then runs the real gate
+    against the real site/downloads/ files and confirms it is clean today,
+    having fixed every real instance of both the same cycle this gate was
+    written.
+    """
+    bad_callout = []
+    bad_intro = []
+    for path in all_pages() + download_page_files():
+        try:
+            html_text = io.open(path, encoding="utf-8").read()
+        except Exception:                                      # noqa: BLE001
+            continue
+        n = unmarked_callout_asides(html_text)
+        if n:
+            bad_callout.append((os.path.relpath(path, ROOT), n))
+        if intro_div_outside_landmark(html_text):
+            bad_intro.append(os.path.relpath(path, ROOT))
+    if bad_callout:
+        fail("callout-aside-role",
+             f"{len(bad_callout)} page(s) render an inline "
+             '<aside class="callout ..."> with no role= override, an '
+             "unnamed complementary landmark nested inside the chapter's "
+             f"own section (axe landmark-complementary-is-top-level): "
+             f"{bad_callout[:5]}")
+    if bad_intro:
+        fail("intro-outside-landmark",
+             f"{len(bad_intro)} page(s) open <body> directly onto "
+             '<div class="intro"> with no <header>/<main> wrapper between '
+             "them, page content outside every ARIA landmark (axe's "
+             f"region rule): {bad_intro[:5]}")
 
 
 def browser_claimed_but_unusable(binary_present, renders, reason):
@@ -33904,6 +34037,7 @@ def main() -> int:
     run_gate(gate_room_guide_mining_diminishing_returns)
     run_gate(gate_cross_surface_ties_tracked)
     run_gate(gate_aside_landmarks_labeled)
+    run_gate(gate_axe_landmark_regressions)
     run_gate(gate_keyword_demand_no_content_words)
     run_gate(gate_owner_questions_not_stale)
     run_gate(gate_roadmap_gate_in_owner_email)
