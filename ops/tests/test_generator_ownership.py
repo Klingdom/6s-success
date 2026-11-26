@@ -128,6 +128,26 @@ def main() -> int:
         elif "resources.html" not in line:
             bad.append("drift was reported but did not name the edited file: %s"
                        % line[:200])
+
+        # 3. Found live 2026-11-26: this gate's own restore step used to
+        #    call _restore(worktree_changes()), re-querying the WHOLE dirty
+        #    tree at that later point rather than restoring only the
+        #    `changed` set it had already computed from the generator run.
+        #    A concurrent, unrelated, uncommitted hand edit sitting in the
+        #    tree while this gate ran (e.g. another session mid-edit of
+        #    ops/preflight.py itself) was silently discarded alongside the
+        #    real generator drift, with no mention in the gate's own
+        #    output. An unrelated uncommitted edit, present while this same
+        #    run reports the resources.html drift above, must survive.
+        unrelated = os.path.join(wt, "CLAUDE.md")
+        marker = "<!-- planted by test_generator_ownership.py, unrelated to any generator -->\n"
+        with io.open(unrelated, "a", encoding="utf-8") as fh:
+            fh.write(marker)
+        preflight(wt)
+        after = io.open(unrelated, encoding="utf-8").read()
+        if marker not in after:
+            bad.append("an unrelated, uncommitted hand edit (CLAUDE.md) was "
+                       "silently discarded by this gate's own restore step")
     finally:
         subprocess.run(["git", "worktree", "remove", "--force", wt],
                        cwd=ROOT, capture_output=True, timeout=300)

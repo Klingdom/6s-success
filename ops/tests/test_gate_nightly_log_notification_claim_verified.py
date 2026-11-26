@@ -116,12 +116,28 @@ def main() -> int:
         fails.append("quoted reported-speech claim wrongly fired: %r"
                      % problem)
 
+    # 11. Found live 2026-11-26 (PM check-in, ~18:1x slot): "Notification
+    #     floor not elapsed, nothing material changed, none sent." has no
+    #     ISO timestamp to exclude it (unlike case 6) and "none" sits well
+    #     past the old pattern's 20-char lookback from "Notification" at
+    #     the sentence's own start, so the old regex read it as a fresh-send
+    #     claim. Must NOT fire.
+    real_no_send_log = entry(
+        "Nothing new unblocked beyond the standing 30-issue queue. "
+        "Notification floor not elapsed, nothing material changed, "
+        "none sent.")
+    problem = preflight.nightly_log_notification_claim_mismatch(
+        real_no_send_log, "2026-11-26T14:08:20Z", NOW)
+    if problem:
+        fails.append("'none sent' trailing a late-sentence negation wrongly "
+                     "fired: %r" % problem)
+
     if fails:
         print("FAIL:")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: 10/10 cases")
+    print("OK: 11/11 cases")
     return 0
 
 

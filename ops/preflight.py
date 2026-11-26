@@ -1993,15 +1993,23 @@ def gate_generator_ownership() -> None:
     # The tree is restored either way, because the generators have written over
     # it whether they drifted or not.
     #
-    # Restore ONLY the paths this gate is responsible for. It used to run
-    # `git checkout -- .` across the whole repository, which discards every
-    # uncommitted change in the working tree rather than just the generator
-    # output written seconds earlier. The dirty-tree check above makes that
-    # safe on a quiet machine, but not on a busy one: on 2026-09-03 six agents
-    # were writing to this tree at once, and anything committed to disk between
-    # that check and this line would have been destroyed with no record that it
-    # ever existed. Two separate agents flagged it independently the same day.
-    _restore(worktree_changes())
+    # Restore ONLY the paths this gate is responsible for: the `changed` list
+    # already computed above, not a fresh worktree_changes() call. It used to
+    # run `git checkout -- .` across the whole repository, which discards
+    # every uncommitted change in the working tree rather than just the
+    # generator output written seconds earlier; that was fixed by batching
+    # individual path checkouts, but the batched call still re-queried
+    # worktree_changes() at this later point, which is every file dirty NOW,
+    # not only the generator output this gate itself wrote. Found live
+    # 2026-11-26: a hand edit to this very file (ops/preflight.py, made by a
+    # concurrent session while this gate's generators were running) was
+    # silently discarded by that fresh query, the exact "anything committed
+    # to disk between that check and this line would have been destroyed
+    # with no record that it ever existed" race the surrounding comment
+    # already named and believed it had closed. Restoring the earlier
+    # `changed` snapshot instead only ever touches files THIS gate's own
+    # generator run actually dirtied.
+    _restore(changed)
 
     # Said out loud whether the gate passed or failed. A partial check that
     # reports like a full one is the failure this whole week has been about:
@@ -19628,7 +19636,9 @@ def gate_b9_claims_current() -> None:
 
 _NOTIFICATION_SENT_NEGATION_RE = re.compile(
     r"\b(no|not|n't|never|none|nothing)\b.{0,20}\b(push|notification)\b"
-    r"|\b(push|notification)\b.{0,20}\b(not|never)\b.{0,10}\bsent\b",
+    r"|\b(push|notification)\b.{0,20}\b(not|never)\b.{0,10}\bsent\b"
+    r"|\b(no|not|n't|never|none|nothing)\b.{0,20}\bsent\b"
+    r"|\bsent\b.{0,20}\b(no|not|n't|never|none|nothing)\b",
     re.IGNORECASE,
 )
 
