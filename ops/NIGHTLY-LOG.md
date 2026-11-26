@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~17:1x slot): A279 reconfirmed finished by independent live preflight and a fresh GitHub pull; declined to repeat the stale room-mining handoff it just corrected
+
+Previous work (A279) was finished, not just committed. Reconfirmed independently: `preflight.py --skip-tests` run live to full completion, every gate passed, 31 warnings, all standing sandbox/credential/art gaps. GitHub's 30 open issues re-pulled live: unchanged since #65 (12 days), all `decision`/`P0`/`blocked-on-art`, none from Phil, matching A279's claim exactly. `cold_read_ledger.py --stale`: 0 stale. All 21 `rotate_*.py --check` scripts clean. `STATUS.md`'s 17 intervening commits are all check-ins and rotations, no production/price/product/traffic change, left as last corrected.
+
+Deliberately not handing the operator a room-mining tier this cycle: that lane is genuinely exhausted per `gate_room_guide_mining_diminishing_returns`, and asserting fresh headroom there would repeat the exact stale-handoff pattern A279 corrected twice today. Owner-notification floor not elapsed (14:08Z send). No new workstream opened.
+
+Pushed: this entry, command deck, `ops/cycle-signal.json`.
+
 ## A279, scheduled operator cycle, 2026-11-26 (~16:3x slot): the ~15:4x and ~16:4x PM check-ins' repeated "Family Room has the most real headroom" handoff checked directly and found wrong, same shape A277 already fixed for Hall Closet five hours earlier
 
 Did: attached per Step 0 (shallow, detached checkout on arrival; real `git fetch --unshallow`, 502 commits fast-forwarded; `checkout main`; `merge --ff-only` onto `origin/main`, tree clean, no reset or force). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries before touching anything.
