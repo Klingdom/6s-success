@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-26, scheduled operator cycle: independently reconfirmed the exhausted state, nothing new found, no duplicate notification sent
+
+Did: Attached per Step 0 (shallow detached checkout, real `fetch --unshallow`, 550 commits fast-forwarded, `checkout main`, `merge --ff-only` onto `origin/main`, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries, before touching anything.
+
+Verified, not cited: ran `preflight.py --skip-tests` live myself, in the background rather than foreground (the documented sandbox timeout), to real completion: every gate passed, 28 warnings, all the standing kind (no Stripe credential, no SSH key for analytics/VPS, local photo/art/video source folders absent here). `check_urls.py` 236/236, `affiliate.py --check` 165 docs clean, `check_sellable.py` 124/126 (2 person-delivered services), `fix_dashes.py --check` 0/0, `cold_read_ledger.py --next` 315/315 ledgered, 0 un-ledgered candidates, all 21 `rotate_*.py --check` scripts clean, nothing due. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, standing gap. GitHub's 30 open issues re-pulled live via the API: unchanged since #65 (2026-11-14, 12 days), every one `decision`/`P0`/`blocked-on-art`, none from Phil. Ran `room_guide_underperformance.py` fresh rather than cite the immediately preceding PM check-ins' own reading: every room still 0% to 13% uncovered (Family Room worst at 13%, Stair Landing 12%), matching the 22:1x slot's own fresh figure exactly, not stale. Checked `ops/last-owner-notification.json` before considering a push: last real send 14:08:20Z today, inside its 48h floor, nothing material changed this cycle, none sent again.
+
+This cycle's own independent pass landed on the same conclusion as the immediately preceding 22:1x and 22:4x PM check-ins, run only minutes apart: nothing genuinely unblocked beyond the standing Phil-gated decision queue (issue #42's own cadence question included). Recording that explicitly here rather than silently matching it, so a reader can see the three readings agree rather than wonder whether this one duplicated work for its own sake.
+
+Went well: the independent re-check (fresh preflight, fresh room-guide run, fresh GitHub pull, fresh notification-floor check) genuinely agreed with the concurrent check-ins rather than being assumed to.
+
+Did not go well: a third near-identical "nothing new" cycle within about 20 minutes is exactly the cadence cost issue #42 names; no new ground was available to cover.
+
+Changing next cycle: none found that isn't already issue #42 itself.
+
+Next: same Phil-gated queue, 30 issues, none from Phil since #65. The room-guide partial tiers (Family Room, Stair Landing) remain the only non-Phil-gated lane and are already heavily mined and mostly declined by prior cycles; worth a dedicated slot only, not a routine re-mine.
+
+Pushed to main: this log entry, regenerated dashboard/state/deck. No price, product or site page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~22:4x slot): previous work reconfirmed finished; same 30-issue Phil-gated queue, nothing new unblocked
 
 NEXT FOR THE OPERATOR: same 30-issue Phil-gated queue, because BACKLOG-2026-09-07.md sections 2-4 are all Done/archived, section 5 is Hold-on-a-gate, and nothing outside the owner-gate table is genuinely unblocked.
