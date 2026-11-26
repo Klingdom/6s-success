@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-26, scheduled operator cycle (A276): discarded a self-inflicted PDF diff, reconfirmed two lanes exhausted, found its own rotation already closed by a concurrent check-in
+
+**Did.** Attached per Step 0 (shallow, detached, real `fetch --unshallow`, 452 commits fast-forwarded, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries, per Step 1. Ran `preflight.py --skip-tests` live in the background (foreground hits the documented sandbox timeout): first pass FAILed `gate_generator_ownership` on 4 Etsy-listing PDFs that had drifted in the working tree. Traced with `cmp -l` before discarding anything: same byte count, 2 to 26 bytes differing at the same offset, all inside the embedded PDF producer string and timestamp (`Skia/PDF m153`/`HeadlessChrome 153` to `m158`/`158`), the identical self-inflicted Chromium-version shape A261 already named. Discarded with `git checkout --`, not committed. GitHub's 30 open issues re-pulled live: unchanged, none from Phil since #65 (12 days). `inbox_agent.py --apply`: no mail credential here.
+
+Rather than re-mine either saturated lane cold, checked both directly. `room_guide_underperformance.py` fresh: every room 0 to 6% uncovered; grepped its top remaining candidates ("bags of spices," "vanity box," "bookshelf by color," "cords behind entertainment center," "coat closet organization systems," and siblings) against `ops/NIGHTLY-LOG.md` and found every one already traced and declined by ID in a prior cycle, nothing newly fixable. `cold_read_ledger.py --next`: 315 of 315 files ledgered, 0 stale, 0 un-ledgered candidates. Both lanes are genuinely exhausted today, not merely claimed so from a prior cycle's say.
+
+Ran all 21 `rotate_*.py --check` scripts individually: one genuinely due, `rotate_backlog.py` (this table at 16 rows against its 15-row cap). Applied with `--apply` and committed. A concurrent PM check-in (~10:4x slot, below) landed the identical fix independently about the same time; on rebasing onto it, this cycle's own rotation commit was now a duplicate of already-landed work, so it was dropped rather than reapplied, keeping only the unique PDF-diff and lane-exhaustion work above (same precedent A260/A266/A270/A274/A275 used for this generated-table collision shape).
+
+**Verified.** `preflight.py --skip-tests` on the clean, rebased tree: every gate passed, 32 standing warnings, all previously-named sandbox/credential/art gaps. `check_urls.py` 236/236. `affiliate.py --check`: 165 delivered documents carry no affiliate link, every disclosure above its link. `fix_dashes.py --check`: 0 em dashes, 0 en dashes. `check_sellable.py --deep`: 124 of 126 buyable products have a Stripe entry, delivery row and file on disk (the other 2 are person-delivered services); deep live-price check not possible, no Stripe credential in this sandbox, reported unchecked rather than passing. `ops/owner_notify_claim.py --check`: 48h floor had elapsed, but nothing material changed beyond routine housekeeping, and issue #42 itself names repeat-notifying an unchanged state as the standing problem this gate exists to avoid, so none sent.
+
+**Went well.** The PDF diff was caught and traced to its real cause (a version marker, not content) before it could be committed as noise. Checking the two "exhausted" lanes directly, rather than citing a prior cycle's verdict, cost little and confirmed the state honestly instead of assuming it. The rebase collision on `rotate_backlog.py` was caught and resolved cleanly rather than landing a duplicate archive row.
+
+**Did not go well.** This cycle found no new customer-facing defect and no genuinely unblocked work beyond housekeeping; every substantive lane (keyword-demand mining, cold-read ledger, GitHub issues, inbox) is at the same saturated/owner-gated state many prior cycles have already independently reached, which is itself the condition issue #42 is asking Phil to resolve. Two concurrent cycles spent effort on the identical due rotation within the same window.
+
+**Changing next cycle.** None; no new gate was warranted, since nothing found here is a defect class a check could catch going forward (self-inflicted PDF noise and generated-table collisions are already covered by precedent, not a new shape).
+
+**Next.** The standing Phil-gated queue (30 issues, unchanged, none newly from Phil); no other lane is genuinely unblocked until one of those gates clears or new evidence arrives.
+
 ## PM check-in, 2026-11-26 (~10:4x slot): previous work (A275) finished and reconfirmed; closed one due backlog rotation; nothing else genuinely unblocked
 
 NEXT FOR THE OPERATOR: same Phil-gated 30-issue queue (unchanged since #65, none from Phil), because every rotation, the cold-read ledger, and a full preflight are all clean this slot and nothing new is unblocked.
