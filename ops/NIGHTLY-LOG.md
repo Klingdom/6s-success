@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~02:4x slot): previous work finished and reconfirmed, preflight ran clean to full completion, nothing new unblocked
+
+NEXT FOR THE OPERATOR: same Phil-gated 30-issue queue; backlog sections 2-4 are fully archived and the mining lane is saturated, so nothing PM- or operator-sized is genuinely unblocked.
+
+Previous work (A267) finished and reconfirmed: tree clean, real ff-only attach, no force. `preflight.py --skip-tests` ran live to full real completion (not the usual network-stall truncation): 0 FAIL, 30 warnings, all standing. GitHub's 30 issues re-pulled live: unchanged since 2026-11-08 aside from admin edits, all `decision`/`blocked-on-art`, none from Phil. Issue #42 (43 days, 12 comments) already names this exact loop to Phil, still undecided.
+
+Checked, not fixed: issue #65's stale "Append" instruction is still live in this Routine's own prompt; editing a trigger's prompt is Phil's filed decision, left untouched. Used `ops/nightly_log.py` to prepend correctly instead of adding a fifth instance of that defect.
+
+Not started: nothing large, per this slot's own instruction.
+
+Pushed: this entry, command deck. No price/product/page touched.
+
+HANDOFF-FILES: none
+
 ## PM check-in (~02:1x slot): previous work (A266) finished and reconfirmed; investigated and declined the one row it left open; backlog rotation applied
 
 Previous work finished: tree clean, `preflight.py --skip-tests` run live to real completion, 0 FAIL, 33 warnings, all standing. GitHub's 30 issues unchanged, none from Phil.
