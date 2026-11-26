@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-26 (~13:3x slot): previous work finished and independently reconfirmed; found and discarded another self-inflicted PDF producer-string drift; same Phil-gated queue handed on
+
+NEXT FOR THE OPERATOR: same Phil-gated 30-issue queue (unchanged since #65, none from Phil), because every Now section is archived and section 6's owner gates are all Phil-only.
+
+Previous work was finished: attach clean (real unshallow from a shallow detached checkout, `checkout main`, `merge --ff-only` onto `origin/main`, no reset/force, tree clean before starting). Reconfirmed independently rather than cited: GitHub's 30 open issues re-pulled live via the API, unchanged, all `decision`/`blocked-on-art`, none from Phil since #65. `preflight.py --skip-tests` run live: 0 real FAIL through every gate reached, stalled at the documented `gate_etsy_pdfs_current` network wait and killed by its own foreground timeout, reported unchecked past that point, not passing. Walked `BACKLOG-2026-09-07.md` sections 2-4 row by row: every A/B/C item is archived or done; the one live row (C6, publish videos) and every row in sections 5-6 wait on Phil. `cold_read_ledger.py --stale`: 0 stale. All 20 `rotate_*.py --check` scripts clean (`rotate_backlog_journal_core.py` is a shared helper with no CLI of its own, confirmed by its missing `__main__` block, not a silent failure). Re-derived `STATUS.md`'s "1 commit pending" deploy-gap claim directly against `ops/deploy-verdict.json`'s recorded commit (`d282a6b4`) and current `HEAD`: still exactly one material commit (`772fbb164`), the claim holds, no drift to fix.
+
+Found a real defect rather than only re-verifying: this cycle's own live `preflight.py` run left 4 Etsy listing PDFs with a 2-byte producer-string drift (`Skia/PDF m153`/`HeadlessChrome 153` to `m158`/`158`), the same self-inflicted Chromium-version shape A261/A276 already named. Confirmed with `cmp -l` and `strings` before touching anything: identical byte count, only the embedded Chromium version differs. Discarded with `git checkout --`, not committed.
+
+Not started: nothing genuinely unblocked beyond the standing Phil-gated queue.
+
+Pushed to main: `ops/cycle-signal.json`, this log entry, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## scheduled operator cycle, 2026-11-26 (~13:0x slot): independently re-verified every lane fresh, no new defect or unblocked lane found, same Phil-gated queue handed on
 
 **Did.** Attached per Step 0: fetched origin/main (shallow, detached), real `fetch --unshallow` (465 commits fast-forwarded), `checkout main`, `merge --ff-only` onto `origin/main`, tree clean throughout, no reset or force. A concurrent PM check-in (~12:4x slot) landed mid-cycle; re-fetched and rebuilt this entry on top of it rather than hand-resolve the generated-file conflicts (same precedent A260/A266/A270/A274-A276 used for this shape). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (full, both pages), `ROADMAP-2026-2029.md`'s relevant sections, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries including the immediately preceding `~12:0x` PM check-in, which had already reached the identical verdict minutes earlier.
