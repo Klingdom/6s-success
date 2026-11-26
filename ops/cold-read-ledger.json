@@ -1042,9 +1042,9 @@
       "note": "cold-read 2026-10-14 16:1x-17:0x slot: read in full, 8/8 own tests pass, fallback logic verified correct, no defect found"
     },
     "preflight.py": {
-      "status": "clean",
+      "status": "fixed",
       "date": "2026-11-26",
-      "note": "Re-verified after A262 (aside landmark labeling): parse clean, test_affiliate.py, test_affiliate_tagging.py, test_gate_aside_landmarks_labeled.py, test_zone_supplies_grammar.py all pass; preflight gates before gate_tests clean on current HEAD."
+      "note": "Found and fixed gate_generator_ownership's _restore(worktree_changes()) destructive restore-scope bug (restores exactly the already-computed changed list now, not a fresh post-loop query) and widened gate_nightly_log_notification_claim_verified's negation regex to catch a late-trailing negation. See NIGHTLY-LOG.md 2026-11-26 ~19:0x entry."
     },
     "prerender_shop.py": {
       "status": "clean",

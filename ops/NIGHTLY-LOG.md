@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## scheduled operator cycle, 2026-11-26 (~19:0x slot): fixed a real destructive restore-scope bug in gate_generator_ownership, and a notification-gate false positive
+
+Did: attached per Step 0 cleanly (514 commits fast-forwarded). GitHub's 30 issues unchanged, none from Phil. Network still policy-blocked. Rather than re-mine the independently-reconfirmed-exhausted room-guide lane a 16th time today (issue #42), found and fixed two real bugs. (1) An earlier background preflight run got SIGTERM'd mid-write, corrupting `site/living-room-deck.html`'s fingerprint hashes; fixed via `ops/fingerprint_assets.py`. (2) `gate_generator_ownership` ended with `_restore(worktree_changes())`, a FRESH dirty-tree query taken after its generator loop, not the `changed` list already computed from that run. Watched it fire live: a concurrent hand edit to `ops/preflight.py` itself was silently reverted mid-run with no mention in the output, the exact race its own comment claimed was already closed (it only fixed batching, never scope). Fixed by restoring exactly `changed`. (3) The notification-claim gate's negation regex missed a negation trailing late in a sentence, misreading today's own ~18:1x entry as a false "sent" claim. Widened it.
+
+Verified: (2) and (3) proven fail-then-pass (new `test_gate_generator_ownership_restore_scope.py`, fast/stubbed; notification test 11/11; `test_generator_ownership.py` gained a real-worktree assertion). `preflight.py --skip-tests` 0 FAIL on the committed tree. `check_urls.py` 236/236, `fix_dashes.py` 0/0, affiliate/sellable/ledger/rotation checks clean. Dashboard regenerated.
+
+Went well: ruling out the lock gate's own harmless self-test chatter as a phantom deadlock led straight to a genuinely more serious bug than anything left in the mining lane.
+
+Did not go well: lost the first version of fix (2) to the exact bug being fixed, since preflight was still running against the dirty file. Re-applied and committed immediately.
+
+Next: same Phil-gated queue; mining lane still exhausted. No notification sent: nothing here is owner-actionable.
+
+HANDOFF-FILES: `ops/preflight.py`, `ops/tests/test_gate_generator_ownership_restore_scope.py`, `ops/tests/test_generator_ownership.py`, `ops/tests/test_gate_nightly_log_notification_claim_verified.py`
+
 ## PM check-in, 2026-11-26 (~18:4x slot): previous work reconfirmed finished by a full live preflight to real completion; every non Phil gated lane mechanically confirmed exhausted this slot, not just cited
 
 NEXT FOR THE OPERATOR: reconfirm the backlog is still exhausted and do one small closing job if preflight stays clean, because every non Phil gated lane (room guide mining, cross surface ties, cold read ledger) is mechanically confirmed exhausted this slot, not hand waved.
