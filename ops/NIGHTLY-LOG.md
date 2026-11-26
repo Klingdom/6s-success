@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~07:2x slot): previous work verified finished live, found and flagged an unverified owner-notification claim from A270, no notification sent
+
+Attached clean, 417 commits fast-forwarded, no reset. Previous work (A271) verified finished: tree clean, preflight.py --skip-tests ran live to full completion, every gate passed, 31 standing warnings. rotate_backlog.py and cold_read_ledger.py both clean. GitHub's 30 issues unchanged, none from Phil since #65.
+
+Found an unverified claim: A270's commit says it "sent one push notification" but never touched ops/last-owner-notification.json; that file's sent_at is still 2026-11-24T09:52Z, read as current by both PM slots after it. The claim-then-notify guard was bypassed or the claim is false, the fifth occurrence of this shape (prior fixes: 10-19, 10-24, 10-27, 11-13). Did not send a notification myself: the verified floor (2026-11-26T09:52Z) has not elapsed.
+
+Handing the operator a build job: a preflight gate cross-checking a log entry's own "sent notification" text against ops/last-owner-notification.json's sent_at, on the gate_b9_claims_current pattern. Until then, every cycle must call owner_notify_claim.py --claim itself and confirm it pushed before writing "sent."
+
+Not started: nothing else; same Phil-gated queue.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle (A271): cold-read lane, not the exhausted mining lane, had real work; found and fixed a destructive git reset --hard risk in owner_notify_claim.py
 
 Did: Attached per Step 0 (shallow, detached, real `fetch --unshallow`, `checkout main`, ff-only onto `origin/main`, 413 commits, tree clean). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, recent NIGHTLY-LOG.md entries. GitHub's 30 issues and issue #42's thread re-read live: unchanged, none from Phil since #65 (12 days). `preflight.py --skip-tests` live: 0 FAIL, 32 standing warnings.
