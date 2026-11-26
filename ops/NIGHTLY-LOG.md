@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## A279, scheduled operator cycle, 2026-11-26 (~16:3x slot): the ~15:4x and ~16:4x PM check-ins' repeated "Family Room has the most real headroom" handoff checked directly and found wrong, same shape A277 already fixed for Hall Closet five hours earlier
+
+Did: attached per Step 0 (shallow, detached checkout on arrival; real `git fetch --unshallow`, 502 commits fast-forwarded; `checkout main`; `merge --ff-only` onto `origin/main`, tree clean, no reset or force). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries before touching anything.
+
+Verified, not cited: `preflight.py --skip-tests` run live to full completion, 0 FAIL, 30 warnings, all standing sandbox/credential/art gaps. One of those warnings, `gate_room_guide_mining_diminishing_returns`, names the exact check this entry then did: every room scores 0 genuine on-topic `gap` rows and the worst partial-tier shortfall is at or under 15%, so before mining further, check epics 1-4 and the open GitHub issues for anything genuinely unblocked. Did that rather than mine: GitHub's 30 open issues re-pulled live via the API, unchanged since #65 (2026-11-14, 12 days), all `decision`/`P0`/`blocked-on-art`, none from Phil. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, unchecked. `cold_read_ledger.py --next`: 315 of 315 files ledgered, 0 candidates. All 21 `rotate_*.py --check` clean. CI (`checks.yml`) confirmed green on the last 5 runs via the API.
+
+Found a real stale handoff, now repeated twice (~15:4x and ~16:4x), rather than only re-confirming the standing exhausted state. Traced every one of Family Room's 8 partial rows directly from the committed `ops/keyword-demand*.json`, reading `heading_coverage`/`matched_on`/`unmatched_words` rather than the title-only score `room_guide_underperformance.py` prints (the same title-vs-heading trap `GOALS.md` section 3 already names as a recurring measurement error): 4 rows ("bonus room storage", "bonus room storage cabinets", "den storage ideas", "how to organize a basement family room") are the long-documented room-level-synonym-vs-zone-heading tie A74/A96/A114 already named and left honestly partial by design. "how to organise charging cables at home" has exactly one real unmatched word ("home"), already declined by A266 for self-flattery (51 of 244 headings) and a real regression (7 `best_page` changes, 1 status regression). "entertainment center storage ideas" has exactly one real unmatched word ("storage"), the site's own central subject, already measured by A114 to cause 46 US + 23 global regressions when tried generally. "how to organise toy cupboard" has exactly one real unmatched word ("cupboard"), already declined twice (A108, and its own citing comment at `ops/keyword_demand.py` line 580) as a genuine distinguishing storage-furniture noun, not filler. "how to organize stardew valley board game" is the already-confirmed genuine content survivor a 2026-11-10 test fixture deliberately keeps on-topic (A201/A268). Every row in the tier is already settled; none is fresh headroom, and the 16:4x check-in's own "unchanged since 15:4x, meaning nobody has mined it yet" reading had the causation backwards: nobody mined it because there is nothing left in it to mine, not because nobody looked. Corrected in `BACKLOG-2026-09-07.md` (A279).
+
+`ops/last-owner-notification.json` checked directly: last real send 2026-11-26T14:08:20Z, inside its 48h floor, nothing material changed. No push sent.
+
+Went well: reading the real heading-aware score instead of the tool's printed title-only number caught the exact reason this tier keeps looking like fresh headroom to anyone who reads the printed output alone.
+
+Did not go well: this is the second PM-check-in-hands-off-stale-headroom instance today for the same room (Hall Closet at ~11:4x corrected by A277, Family Room at ~15:4x and again ~16:4x); `gate_room_guide_mining_diminishing_returns` already tells a cycle not to mine further, but nothing stops a check-in from re-running the raw tool and re-describing its output as headroom before an operator cycle catches it, and this time it recurred even after A277's own correction had already landed.
+
+Changing next cycle: none; the existing gate already covers the mining question, the gap is in handoff prose re-reading raw tool output rather than this file's own history before describing a room as headroom, which is a prompting/procedure issue rather than a missing mechanical check.
+
+Next: same Phil-gated 30-issue queue. No push notification sent this cycle; the 14:08Z one already covers today's state and issue #42 already names repeat-notifying as a cost.
+
+Pushed to main: `BACKLOG-2026-09-07.md`, `BACKLOG-2026-09-07-ARCHIVE.md`, this log entry, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~16:4x slot): previous work finished and independently reconfirmed by a full live clean preflight; Family Room's own 8-row partial tier handed to the operator again, unchanged since 15:4x
 
 NEXT FOR THE OPERATOR: Family Room's 8-row partial tier (13% uncovered) in room-guide/keyword-demand mining, because a fresh run of `room_guide_underperformance.py` this slot shows it unchanged since the 15:4x handoff, still the room with the most real headroom ahead of Stair Landing (12%) and Hall Closet (10%), and nothing else is genuinely unblocked outside the standing Phil-gated queue.
