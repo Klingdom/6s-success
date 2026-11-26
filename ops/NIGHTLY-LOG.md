@@ -2,15 +2,19 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-26 (~14:1x slot): previous work (A278) finished and verified; the fresh global harvest it dispatched landed and turned up no new headroom; same Phil-gated queue handed on
+## PM check-in, 2026-11-26 (~14:1x slot): previous work (A278) finished and verified; the fresh global harvest it dispatched broke two things the harvest itself exposed, both found and fixed, not re-mined cold
 
 Previous work was finished: A278's dispatched run (`45833612136`) completed `success`, its "Weekly global keyword demand harvest" commit (`2b309f9dc`) already landed, tree clean, attach ff-only onto `origin/main`, no reset.
 
-Checked rather than assumed the fresh harvest changed anything. `room_guide_underperformance.py` fresh: same rooms, same rows (Family Room, Stair Landing, Hall Closet, Primary Bedroom, Nursery) as before the harvest, every one already traced and declined in this log (A74, A89-A93, A267, A268, A277). No new mineable row surfaced. GitHub's 30 open issues unchanged, none from Phil since #65 (12 days). `EXECUTIVE-DASHBOARD-LIVE.md` matches: $0/$20,000, 30 issues. `cold_read_ledger.py --stale` 0, all 20 `rotate_*.py --check` clean, `check_urls.py` 236/236, `fix_dashes.py --check` 0/0.
+Checked rather than assumed the fresh harvest changed nothing. `room_guide_underperformance.py` fresh: same rows as before the harvest, every one already traced and declined in this log (A74, A89-A93, A267, A268, A277); no new mineable row. But the harvest's own query churn broke two real things. (1) The pre-push gate `gate_room_also_called_evidence` correctly FAILed: Mudroom's also-called name "lockers" (plural) lost its only grounding query ("how to organize mudroom lockers" dropped from this week's snapshot), confirmed by direct grep of both committed corpora. Removed "lockers" from `ops/room-also-called.json`, kept "locker" (singular, still grounded), regenerated the one affected page (`ops/build_zone_pages.py` plus `wire_progressive.py`/`wire_pwa.py`/`fingerprint_assets.py`/`wire_footer.py`/`wire_legal_strip.py`, the full chain, after a first standalone `build_zone_pages.py` run was caught stripping the PWA/skip-link/progressive markers and reverted before it could ship). Rescored both corpora: 0 best_page/status changes. (2) `ops/tests/test_gate_room_also_called_evidence.py`'s own fail-then-pass fixture planted "childrens bedroom" back in to prove it stays ungrounded; the same harvest reintroduced a real query containing that exact phrase, so the plant no longer reproduces a defect. Swapped it for a synthetic phrase immune to corpus churn by construction; the other two planted names (groceries, stairway landing) still fail correctly. Also added the `HANDOFF-FILES: none` marker this entry itself was initially missing, caught by `gate_nightly_log_handoff_marker_present`.
 
-`preflight.py --skip-tests` live: 0 real FAIL through `gate_generator_ownership`, killed there by this slot's own 160s budget; reported unchecked past that point, not passing.
+GitHub's 30 open issues unchanged, none from Phil since #65 (12 days). `EXECUTIVE-DASHBOARD-LIVE.md` matches: $0/$20,000, 30 issues. `cold_read_ledger.py --stale` 0, all 20 `rotate_*.py --check` clean, `check_urls.py` 236/236, `fix_dashes.py --check` 0/0, `check_also_called_digital_collision_fast.py` clean, `test_room_also_called.py` and `check_room_also_called_evidence_fast.py` both clean after the fix.
 
-Not started: nothing genuinely unblocked. Pushed: this entry, `ops/cycle-signal.json`, command deck.
+`preflight.py --skip-tests` live, twice: first pass 0 real FAIL through `gate_generator_ownership`, killed there by this slot's own 160s budget; second pass after the fix reached much further (KDP/Etsy listing checks, nightly-log gates), still running past this slot's own time budget, unchecked past where it stopped, not passing either time.
+
+Not started: nothing genuinely unblocked beyond the standing Phil-gated queue. Pushed: `ops/room-also-called.json`, `site/rooms/mudroom.html`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `ops/keyword-demand.json`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND.md`, `ops/tests/test_gate_room_also_called_evidence.py`, this entry, `ops/cycle-signal.json`, command deck. One customer-facing page corrected (Mudroom's also-called line); `IndexNow` applicable for that one page.
+
+HANDOFF-FILES: none
 
 ## A278, scheduled operator cycle, 2026-11-26 (~14:0x slot): found the weekly global keyword harvest silently running late and dispatched it manually, rather than re-mine the same exhausted corpus again
 

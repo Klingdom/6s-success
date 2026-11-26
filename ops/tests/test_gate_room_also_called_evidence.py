@@ -101,17 +101,30 @@ def main() -> int:
             fails.append("the real committed map fails today: %s"
                          % problems)
 
-        # 5b. Plant the three retired names back in and confirm the real
-        #     gate (not just the pure function) fails on all three.
+        # 5b. Plant two of the three retired names back in, plus one
+        #     synthetic phrase no real harvest will ever type, and confirm
+        #     the real gate (not just the pure function) fails on all
+        #     three. "childrens bedroom" itself is deliberately NOT
+        #     replanted here any more: found 2026-11-26, the weekly global
+        #     harvest that same day reintroduced a real query containing
+        #     that exact phrase ("childrens bedroom organization ideas"),
+        #     so planting it back no longer reproduces a defect, it
+        #     reproduces a now-true statement, the same corpus-churn shape
+        #     this file's own docstring already names for why these three
+        #     names lost evidence in the first place. A synthetic phrase
+        #     is immune to this by construction; it can never coincide
+        #     with real search demand.
         planted = {k: list(v) for k, v in names_by_room.items()}
-        planted.setdefault("Kids Bedroom", []).append("childrens bedroom")
+        planted.setdefault("Kids Bedroom", []).append(
+            "zzz synthetic ungrounded phrase")
         planted.setdefault("Pantry", []).append("groceries")
         planted.setdefault("Stair Landing", []).append("stairway landing")
         problems = preflight.check_room_also_called_evidence(
             planted, real_rows)
         found = " ".join(problems)
         missing = [name for name in
-                   ("childrens bedroom", "groceries", "stairway landing")
+                   ("zzz synthetic ungrounded phrase", "groceries",
+                    "stairway landing")
                    if name not in found]
         if missing:
             fails.append("planting the retired names back did not "
