@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~07:4x slot): previous work confirmed finished live, closed a real due STATUS.md rotation, same Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: same Phil-gated 30-issue queue, because the mining lane, cold-read ledger and every rotation check are all genuinely exhausted this slot.
+
+Previous work (A271) confirmed finished live: clean ff-only attach, tree clean. GitHub's 30 issues re-pulled live, unchanged since 2026-11-20, none from Phil. preflight.py --skip-tests: 0 FAIL before and after this slot's own change, standing warnings only.
+
+Closed one real due item (A272): rotate_status_metadata.py --check reported DUE (1 stale STATUS.md section-1 entry); applied, archived to STATUS-ARCHIVE.md, reran clean, test_rotate_status_metadata.py 12/12. cold_read_ledger.py: 0 stale, 0 un-ledgered. All 21 rotate_*.py --check now clean.
+
+Not started: nothing large, three minutes ahead of the operator.
+
+Pushed: STATUS.md, STATUS-ARCHIVE.md, cycle-signal.json, dashboard, this entry.
+
 ## PM check-in (~07:2x slot): previous work verified finished live, found and flagged an unverified owner-notification claim from A270, no notification sent
 
 Attached clean, 417 commits fast-forwarded, no reset. Previous work (A271) verified finished: tree clean, preflight.py --skip-tests ran live to full completion, every gate passed, 31 standing warnings. rotate_backlog.py and cold_read_ledger.py both clean. GitHub's 30 issues unchanged, none from Phil since #65.
