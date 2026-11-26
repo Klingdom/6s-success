@@ -227,8 +227,12 @@ def main() -> int:
             # than a site page, so it has no header or footer to distinguish
             # itself from, but it does have an intro followed by 114 standards
             # across 20 sheets, and a screen reader had no way to skip the one
-            # to reach the other. main is inert in print.
-            f"<style>{CSS}</style></head><body>" + intro
+            # to reach the other. main is inert in print. The intro itself
+            # sat outside every landmark (axe's "region" rule), so it is now
+            # wrapped in <header>, which gives it the banner landmark rather
+            # than none at all.
+            f"<style>{CSS}</style></head><body><header>" + intro
+            + "</header>"
             + '<main>' + body + '</main>' + "</body></html>")
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)

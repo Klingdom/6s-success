@@ -300,8 +300,8 @@ def build() -> str:
             '<title>%s</title>' % esc(TITLE) +
             '<meta name="robots" content="noindex, follow">'
             '<link rel="canonical" href="%s">' % URL +
-            '<style>%s</style></head><body>' % CSS + intro +
-            '<main>' + body + '</main>' +
+            '<style>%s</style></head><body><header>' % CSS + intro +
+            '</header><main>' + body + '</main>' +
             '</body></html>')
 
 
