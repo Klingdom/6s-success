@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-27, scheduled operator cycle: closed the 15-plus-times-recurring external-timeout fingerprint-stripping defect with a pre-push backstop, instead of re-confirming exhaustion a 48th time
+
+**Did.** Attached per Step 0 (shallow detached checkout, real `fetch --unshallow`, 772 commits fast-forwarded, `checkout main`, `merge --ff-only` onto `origin/main`, tree clean). Read CLAUDE.md, BACKLOG-2026-09-07.md in full, OWNER-ACTIONS.md "Start here", GOALS.md, and the last entries of ops/NIGHTLY-LOG.md before touching anything.
+
+**Verified, not cited.** GitHub's 30 open issues re-pulled live via the API: unchanged, every one `decision` or `blocked-on-art`, none from Phil; `git log --author=phil` still stale, matching every cycle today. Production network to `6s-success.com` re-tested directly: still policy-blocked (403 from the agent proxy), not assumed. `inbox_agent.py --apply`: no mail credential here. `cold_read_ledger.py --next`: 316/316 ledgered, 0 candidates. `room_guide_underperformance.py --check-history` fresh: every partial row site-wide carries a prior-mention citation, nothing new. `ops/rotate_nightly_log.py --check`: clean, 14-day window.
+
+**Found instead of re-confirming.** Ran `preflight.py --skip-tests` myself under a 170s external `timeout`, the exact anti-pattern `ops/NIGHTLY-LOG.md` already names at least 15 separate times since 2026-09: it killed the process mid-`gate_generator_ownership`, after that gate's own generator chain had rewritten ~166 live `site/` pages but before its own restore step ran, leaving every one of them with its `?v=` cache-bust hash stripped, uncommitted. Every one of those 15-plus prior occurrences was caught only by a human or agent happening to read `git status` before pushing; none of them produced a control that cannot be skipped by forgetting. `preflight.py`'s own early "fingerprints" gate (`ops/fingerprint_assets.py --check`) runs before `gate_generator_ownership` ever dirties the tree, so it had already reported clean earlier in the very same interrupted run and would not catch this on a second look without a fresh full pass.
+
+**Fixed at the point that cannot be skipped.** Added a sixth check to `.githooks/pre-push`, same shape and length as the five already there (fast, pure file I/O, no browser or network, same `--no-verify` escape hatch): `python ops/fingerprint_assets.py --check`, which already existed and already runs in under 0.12s. Proved fail-then-pass directly against the real hook, not a simulation: stripped one `?v=` hash from `site/quest.html` by hand, ran `.githooks/pre-push` with no ref args, watched it print the STALE line and exit 1; restored the file, ran it again, exit 0. Discarded the self-inflicted 166-page drift itself with `git stash` (inspected first: every changed line was either a stripped/changed `?v=` hash or this run's own dashboard checkpoint, nothing else), confirmed `ops/fingerprint_assets.py --check` clean against HEAD before planting the test fault, then dropped the stash. Regenerated the command deck fresh on the clean tree.
+
+**Went well.** Caught a real, long-recurring defect by reading `git status` after a routine step rather than trusting the dashboard regen to be side-effect free, then closed it structurally instead of discarding and moving on like every prior occurrence.
+
+**Did not go well.** This is the 16th time this exact shape has been found; the standing advice ("do not external-timeout-kill preflight.py while gate_generator_ownership is running") never once stopped a cycle from doing it anyway, including this one, because the advice lives in prose nobody reads before choosing a command. The gate added here does not stop the mistake, only its consequence from reaching a push.
+
+**Changing next cycle.** Nothing further on this; if it recurs a 17th time, the pre-push hook should now catch it before main is ever touched, which is the point.
+
+**Next.** Same standing Phil-gated queue, `OWNER-ACTIONS.md` "Start here", cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth). No push notification: last real push 2026-11-26T14:08:20Z, 48h floor not elapsed, and issue #42 already tells Phil the cadence is saturated; nothing here changes that fact for him.
+
+Pushed to main: this log entry, `.githooks/pre-push`, regenerated command deck. Not customer-facing, `IndexNow` not applicable (no `site/` page content changed, only a dev-side git hook).
+
+HANDOFF-FILES: none
+
 ## 2026-11-27, PM check-in (~22:4x slot): previous work confirmed finished, independently reconfirmed exhausted, no new work, no notification
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", 30 open issues), cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth), because nothing else is genuinely unblocked.

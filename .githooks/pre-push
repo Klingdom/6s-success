@@ -221,4 +221,45 @@ if [ -f "ops/check_goals_keyword_cluster_citation_fast.py" ]; then
   fi
 fi
 
+# Refuse to push a stale (or stripped) asset cache-bust fingerprint.
+#
+# Found at least 15 times across ops/NIGHTLY-LOG.md since 2026-09: an
+# external `timeout` wrapper (the standard way cycles bound preflight.py
+# against this sandbox's own network/Chromium stalls) kills the process
+# mid-gate_generator_ownership, after that gate's generators have rewritten
+# site/ pages but before its own restore step runs, leaving `?v=` hashes
+# stripped from live, uncommitted pages. Every occurrence on record was
+# caught by a human (or agent) happening to read `git status` before
+# pushing, never by a control that cannot be skipped. preflight.py's own
+# "fingerprints" gate (ops/fingerprint_assets.py --check) runs EARLY,
+# before gate_generator_ownership ever dirties the tree, so a single
+# interrupted run reports that earlier gate clean and never re-checks
+# after the interruption. This is the backstop: it costs about 100ms
+# (pure file I/O, no browser, no network) and runs at the one point that
+# cannot be skipped by accident, the same reasoning as every check above.
+if [ -f "ops/fingerprint_assets.py" ]; then
+  PY=""
+  for cand in python python3 py; do
+    if command -v "$cand" >/dev/null 2>&1 &&
+       "$cand" -c "import sys; sys.exit(0)" >/dev/null 2>&1; then
+      PY="$cand"
+      break
+    fi
+  done
+  if [ -z "$PY" ]; then
+    echo "pre-push: no working python found, so asset fingerprints could" >&2
+    echo "not be checked. Refusing rather than pushing them unexamined." >&2
+    exit 1
+  fi
+  if ! "$PY" ops/fingerprint_assets.py --check >/tmp/fp_check_out 2>&1; then
+    cat /tmp/fp_check_out >&2
+    echo "" >&2
+    echo "pre-push: asset cache-bust fingerprints are stale or stripped," >&2
+    echo "most likely by an interrupted preflight run. Run:" >&2
+    echo "  python ops/fingerprint_assets.py" >&2
+    echo "then push. To bypass: git push --no-verify" >&2
+    exit 1
+  fi
+fi
+
 exit 0
