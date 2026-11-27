@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## scheduled operator cycle, independently reconfirmed fully exhausted (fresh production-network test, fresh room-guide history check), no new work, no notification
+
+Did: Attached per Step 0 (unshallowed, ff-only onto origin/main, tree clean). Ran preflight.py --skip-tests live to full completion in the background: 0 FAIL, 29 standing warnings, all already-documented sandbox/credential/network gaps. Fresh-checked, not cited: GitHub's 30 open issues (all decision/P0/blocked-on-art, none from Phil since #65); git log --author=phil still 2026-11-01, now 26 days of silence. inbox_agent.py --apply: no mail credential. Tested production reachability directly: 6s-success.com still refused by this sandbox's network allowlist (HTTP 403), same as OWNER-ACTIONS.md item 1h names. Ran room_guide_underperformance.py --check-history fresh: every remaining partial row site-wide already carries a prior-mention citation, independently reconfirming the mining lane is exhausted, not assumed. cold_read_ledger.py --next: 316/316 ledgered. affiliate.py --check (165 clean), check_urls.py (236/236), check_sellable.py (124/126, 2 person-delivered).
+
+Verified: checked ops/last-owner-notification.json before considering a push: last sent 2026-11-26T14:08:20Z, inside the 48h floor, same 30 issues and same silence pattern it already named, one more day of an already-reported fact. No new material trigger, so no push sent.
+
+Went well: independent re-verification agreed with the standing record on every check.
+
+Did not go well: nothing new; issue #42 (cadence) still unanswered.
+
+Changing next cycle: nothing.
+
+Next: same standing Phil-gated queue, OWNER-ACTIONS.md "Start here" and the 30 open issues.
+
+Pushed to main: this entry, regenerated command deck. Not customer-facing, IndexNow not applicable.
+
 ## 2026-11-27, PM check-in (~13:4x slot): previous work confirmed finished via a genuinely complete preflight pass, no new work
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", 30 open issues), cheapest first (#64, #58, #46), because nothing else is genuinely unblocked.
