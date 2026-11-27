@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-27, scheduled operator cycle: rotated the backlog's own due table, independently reconfirmed every lane exhausted, no new workstream
+
+Did: Attached per Step 0 (shallow, detached, real fetch --unshallow, 639 commits, checkout main, merge --ff-only, tree clean). Read CLAUDE.md, BACKLOG-2026-09-07.md and ROADMAP-2026-2029.md in full, GOALS.md's three load-bearing facts, STATUS.md sections 0-8, and the last several NIGHTLY-LOG.md entries. Ran preflight.py --skip-tests live to completion: 0 real FAIL, 29 standing warnings. Pulled GitHub's 30 open issues fresh via the API: unchanged since #65, every comment on issue #42 opened and traced in full, all agent-authored, none from Phil (last real commit still 2026-11-01). room_guide_underperformance.py --check-history run fresh: every one of the 20 rooms' partial rows carries a prior-mention citation. cold_read_ledger.py: 316/316 ledgered, 0 stale. inbox_agent.py --apply: no mail credential in this sandbox, unchecked, not assumed clean. Checked all 21 rotate_*.py --check scripts directly rather than cite them clean: 20 were, rotate_backlog.py was not (17 rows against its 15-row cap). Applied it: moved the 2 oldest rows to BACKLOG-2026-09-07-ARCHIVE.md, re-checked CLEAN at 15 rows, ops/tests/test_rotate_backlog.py 14/14.
+
+Verified: committed, then hit a real concurrent push (hourly check-in); merged, resolved the one conflict (ops/cycle-signal.json, a pure checkpoint snapshot) by keeping the concurrent copy per the documented generated-file-conflict precedent, re-ran preflight.py --skip-tests clean on the merged tree. gate_checks_yml_real_gap correctly names 2 non-bot commits with no CI run yet; expected pre-push state, not a defect, resolves once pushed.
+
+Went well: a genuinely due, safe rotation found by checking every gate directly instead of trusting yesterday's "all clean" citation.
+
+Did not go well: nothing new beyond that; the business-facing lanes (epics 1-5) remain fully Phil-gated, same as every other cycle today.
+
+Changing next cycle: nothing.
+
+Next: same standing Phil-gated queue, OWNER-ACTIONS.md "Start here" and the 30 open issues.
+
+Pushed to main: this entry, the rotation, regenerated dashboard/state/deck. No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-27, PM check-in (~08:4x slot): previous work confirmed finished, state independently reconfirmed exhausted, no new work
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", 30 open decision/P0/blocked-on-art issues), because nothing is genuinely unblocked this slot.
