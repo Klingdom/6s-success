@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-27, scheduled operator cycle: built gate_nightly_log_cycle_saturation, the gate the thirtieth near-identical exhausted entry today asked for
+
+Did: Attached per Step 0, 688 commits fast-forwarded, tree clean. Preflight 0 FAIL, 28 standing warnings. GitHub's 30 issues unchanged, none from Phil since #65 (27 days). This is at least the thirtieth near-identical "exhausted" entry today, the exact repeated cost issue #42 names. Per CLAUDE.md 10b, stopped re-deriving that conclusion and built the gate instead: gate_nightly_log_cycle_saturation() in ops/preflight.py, counting how many of today's own entries read, by their own header text, as a no-op "reconfirmed exhausted, no new work" cycle. Fired for real: 30 of 43 entries today qualify, matching a hand count exactly. A WARNING only, never a FAIL.
+
+Verified: ops/tests/test_gate_nightly_log_cycle_saturation.py, 7 cases, proven fail-then-pass. preflight 0 FAIL before and after (one expected mid-diff gate_generator_ownership refusal while uncommitted). inbox_agent.py --apply: no mail credential. last-owner-notification.json: sent 2026-11-26T14:08:20Z, about 25h ago, inside the 48h floor; nothing material beyond this gate, none sent.
+
+Went well: the gate's live-data run matched the hand count exactly.
+
+Did not go well: issue #42 (cadence) still unanswered, 27 days.
+
+Changing next cycle: a high count from this gate is a prompt to check OWNER-ACTIONS.md's cheapest unlocks, not to open a new workstream.
+
+Next: same Phil-gated queue, cheapest first (#64, #58, #46).
+
+HANDOFF-FILES: none
+
 ## 2026-11-27, PM check-in (~14:4x slot): previous work confirmed finished, independently reconfirmed exhausted, no new work
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", the 30 open issues), cheapest first (#64, #58, #46), because nothing else is genuinely unblocked.

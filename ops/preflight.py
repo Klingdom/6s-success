@@ -19789,6 +19789,116 @@ def gate_nightly_log_notification_claim_verified() -> None:
         warn("nightly-log-notification-claim-verified", problem)
 
 
+_NIGHTLY_LOG_NO_OP_HEADER_RE = re.compile(
+    r"no new work|no new workstream|reconfirmed (?:fully )?exhausted|"
+    r"nothing new to ship",
+    re.IGNORECASE)
+_NIGHTLY_LOG_HEADER_DATE_RE = re.compile(r"\d{4}-\d{2}-\d{2}")
+
+
+def nightly_log_cycle_saturation(
+        log_text: str, now: "dt.datetime", threshold: int = 8) -> "str | None":
+    """Pure logic for gate_nightly_log_cycle_saturation().
+
+    Found live 2026-11-27: by mid-afternoon this single calendar day had
+    already produced over 40 ops/NIGHTLY-LOG.md entries, roughly 30 of
+    which independently reconfirmed the same "backlog is exhausted, no new
+    work" conclusion (one entry even named itself "at least the fifteenth
+    near-identical exhausted entry logged today"). Nothing mechanical
+    surfaced that pattern; a reader had to open the file and count. This is
+    squarely the epic-6 (operational honesty) gap CLAUDE.md step 10b asks
+    a repeated defect shape to close: the file already carries the
+    information, it is just not visible without reading dozens of
+    paragraphs.
+
+    Reads the log newest-first (its own stated convention), walks entries
+    from the top, and stops at the first entry whose own header date is
+    not today's date (UTC, from `now`). An entry whose header omits an
+    explicit date (a real, recurring shape in this file, e.g. "## PM
+    check-in (~02:4x slot): ...") inherits the most recently seen explicit
+    date above it, newest-first, which is forward-filling from the entry's
+    neighbour in time, not a guess; the very newest entry, if it alone
+    carries no date, is assumed to be today's, since nothing more recent
+    exists to anchor it to.
+
+    Each entry in that run is classified as a "no-op" cycle purely from
+    its own header text (no need to parse the body): the header must
+    contain one of a short list of phrases this file's own authors
+    already use to say nothing shipped ("no new work", "no new
+    workstream", "reconfirmed exhausted"/"reconfirmed fully exhausted",
+    "nothing new to ship"). This is deliberately a textual signal, not a
+    semantic one: it will undercount a no-op cycle that phrases itself
+    differently, and that is fine, because this gate's job is to catch the
+    pattern becoming common, not to audit every entry.
+
+    If at least `threshold` of today's entries are no-op by that measure,
+    returns a problem string naming the real count and the date. This is
+    always a WARNING, never a FAIL: a genuinely exhausted backlog with no
+    owner action yet available is not itself a defect, and this gate must
+    never be read as saying otherwise. It exists so the cadence question
+    (how often an unattended cycle should re-run when nothing is
+    unblocked) has a number behind it instead of a feeling.
+
+    Returns a problem string, or None if nothing is wrong.
+    """
+    blocks = [b for b in re.split(r"(?m)^(?=## )", log_text)
+              if b.startswith("## ")]
+    if not blocks:
+        return None
+    today = now.strftime("%Y-%m-%d")
+    current_date = today
+    total = 0
+    no_op = 0
+    for block in blocks:
+        header_line = block.splitlines()[0][3:].strip()
+        date_match = _NIGHTLY_LOG_HEADER_DATE_RE.search(header_line)
+        if date_match:
+            current_date = date_match.group(0)
+        if current_date != today:
+            break
+        total += 1
+        if _NIGHTLY_LOG_NO_OP_HEADER_RE.search(header_line):
+            no_op += 1
+    if no_op < threshold:
+        return None
+    return (
+        "%d of the %d ops/NIGHTLY-LOG.md entries logged so far today (%s) "
+        "read, by their own header text, as a reconfirmed-exhausted/"
+        "no-new-work cycle; consider whether the standing Phil-gated "
+        "queue cadence (OWNER-ACTIONS.md \"Start here\") should change, "
+        "since the system keeps re-deriving the same conclusion rather "
+        "than finding new unblocked work" % (no_op, total, today))
+
+
+def gate_nightly_log_cycle_saturation() -> None:
+    """Surface it mechanically when today has produced many near-identical
+    "exhausted, no new work" ops/NIGHTLY-LOG.md entries in a row, instead
+    of leaving a human or the next cycle to notice only by reading dozens
+    of paragraphs.
+
+    See nightly_log_cycle_saturation()'s own docstring for the live
+    2026-11-27 case this exists to catch. A WARNING only, matching every
+    sibling process-hygiene gate here: a long run of genuinely-exhausted
+    cycles is not a code defect, and this gate must never fail a run for
+    truthfully reporting that nothing is unblocked.
+
+    Proof this can fail:
+    ops/tests/test_gate_nightly_log_cycle_saturation.py calls
+    nightly_log_cycle_saturation() directly with a synthetic log carrying
+    many consecutive no-op-phrased entries dated today and asserts it
+    warns, then with a log of mostly real-work entries and asserts it
+    does not.
+    """
+    log_path = os.path.join(ROOT, "ops", "NIGHTLY-LOG.md")
+    if not os.path.exists(log_path):
+        return
+    log_text = io.open(log_path, encoding="utf-8").read()
+    now = dt.datetime.now(dt.timezone.utc)
+    problem = nightly_log_cycle_saturation(log_text, now)
+    if problem:
+        warn("nightly-log-cycle-saturation", problem)
+
+
 def newest_nightly_log_entry_missing_handoff_marker(log_text: str) -> bool:
     """True if the newest ops/NIGHTLY-LOG.md entry has no HANDOFF-FILES:
     line at all, meaning it was hand-edited straight into the file
@@ -34216,6 +34326,7 @@ def main() -> int:
     run_gate(gate_status_table_rows_gap_count_current)
     run_gate(gate_b9_claims_current)
     run_gate(gate_nightly_log_notification_claim_verified)
+    run_gate(gate_nightly_log_cycle_saturation)
     run_gate(gate_nightly_log_handoff_marker_present)
     run_gate(gate_cold_read_handoff_not_stale)
     run_gate(gate_cold_read_ledger_entries_not_stale)
