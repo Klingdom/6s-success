@@ -24402,6 +24402,15 @@ LIVING_DOC_SIZE_LIMITS = {
     "CHECKIN-LOG.md": 110_000,
     "OWNER-ACTIONS.md": 110_000,
     "BACKLOG-2026-09-07.md": 150_000,
+    # Found 2026-11-27: every sibling living doc had both a rotate_*.py
+    # tool and a place in this dict; GOALS.md had neither, despite its own
+    # opening line calling itself "the file I read before choosing what to
+    # work on" and carrying the same two months of stacked dated
+    # corrections the other four were rotated for. 90_000 gives it room
+    # to grow past its current 71_793 bytes before firing; tighter than
+    # the 110_000 siblings because this file, unlike them, is read in full
+    # every single cycle (CLAUDE.md 0.0), not just consulted when needed.
+    "GOALS.md": 90_000,
 }
 
 
