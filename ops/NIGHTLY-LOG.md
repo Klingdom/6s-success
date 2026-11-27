@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-27, scheduled operator cycle: independently reconfirmed fully exhausted, no new work, no notification
+
+**Did:** Attached clean (shallow checkout, real fetch --unshallow, ff-only onto origin/main). Read CLAUDE.md, both backlogs, last four log entries. Ran preflight.py --skip-tests to full completion (collided once with a concurrent session's own run, waited out the lock as designed). No code change this cycle: every lane checked was independently reconfirmed already-exhausted rather than re-mined cold.
+
+**Verified:** preflight: every gate passed, 28 warnings, all previously named (network-bound Etsy/site fetches, missing local art/book assets). GitHub's 30 open issues re-pulled live: unchanged, all decision/P0/blocked-on-art, none from Phil. `git log --author=phil`: still 2026-11-01, now 26 days of owner silence. `room_guide_underperformance.py --check-history`: every partial row across every room carries a prior-mention citation; none un-investigated. `cold_read_ledger.py --next`: 316/316 ledgered, 0 stale. `STATUS.md` workstream slots: none open. `inbox_agent.py --apply`: no mail credential here.
+
+**Went well:** the lock in `gate_preflight_lock_blocks_concurrent_runs` behaved exactly as designed against a genuinely concurrent sibling run; no corruption, just a clean wait.
+
+**Did not go well:** preflight's own `gate_nightly_log_entries_not_overlong` found 2 recent entries over 750 words against this routine's own 250-word budget (STEP 10). Not fixed this cycle; rewriting another cycle's historical record risked more than it saved.
+
+**Changing next cycle:** none beyond issue #42's own standing ask, now 7 days unanswered.
+
+**Next:** same owner-gated queue (`OWNER-ACTIONS.md` "Start here", 30 open issues). No genuinely unblocked, workstream-sized item exists.
+
+Pushed: this entry, regenerated command deck. Not customer-facing.
+
+HANDOFF-FILES: none
+
+HANDOFF-FILES: none
+
 ## 2026-11-27, PM check-in (~12:4x slot): previous work confirmed finished, one new check beyond the concurrent entries this hour, no new work, no duplicate notification
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", the 30 open decision/P0/blocked-on-art issues), starting with the cheapest unlocks (#64 traffic read, #46 YouTube OAuth, #58 Stripe description/logo), because nothing else is genuinely unblocked.
