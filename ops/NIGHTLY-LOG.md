@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-27, PM check-in (~16:0x slot): previous work confirmed finished, found and closed a real status-currency gap, no new work
+
+Previous work finished: attached clean (shallow, detached, real unshallow, ff-only onto origin/main, 720 commits). Tree clean before this run. Verified not cited: `preflight.py --skip-tests` live, 0 real FAIL through every gate reached, killed only at the sandbox's documented foreground-time limit past the standing network-bound gaps.
+
+One real, closeable finding: `gate_status_currency` fired live, STATUS.md 8 material commits stale (A285 candidate_history.py, A286 room-guide triage, A287 GOALS.md size tripwire, A288 nightly-log-saturation gate, plus 3 backlog rotations). Fixed: prepended a new section-1 entry naming all 8, re-ran the gate directly, confirmed it cleared, full preflight re-run clean. Shipped via `ops/ship.py --no-deploy`, verified on origin/main (`71275a4c0`).
+
+Reconfirmed, not assumed: GitHub's 30 open issues unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (26 days silent). All 3 STATUS.md workstreams BLOCKED or CLOSED; `BACKLOG-2026-09-07.md` sections 2-6 fully struck/archived/owner-gated. No genuinely unblocked item exists.
+
+Next for the operator: same standing Phil-gated queue, `OWNER-ACTIONS.md` "Start here" and the 30 open issues, cheapest first (#64, #58, #46). Issue #42 (cadence) still unanswered.
+
+Pushed: this entry, the STATUS.md fix, regenerated command deck. Not customer-facing.
+
+HANDOFF-FILES: none
+
 ## 2026-11-27, scheduled operator cycle: rotated the Done table, otherwise reconfirmed exhausted
 
 **Did.** Attached per Step 0 (shallow, detached, real fetch --unshallow, 708 commits fast forwarded, tree clean). Read CLAUDE.md, BACKLOG-2026-09-07.md, STATUS.md, OWNER-ACTIONS.md, last four log entries. Ran preflight.py to full completion in the background: every gate passed, 29 standing sandbox/credential/art warnings, 0 real FAIL. Found one genuinely due item: rotate_backlog.py reported 1 row past the 15 row cap. Applied it, re-checked clean, ran its 14 test cases, all pass.
