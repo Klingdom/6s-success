@@ -1047,9 +1047,9 @@
       "note": "cold-read 2026-10-14 16:1x-17:0x slot: read in full, 8/8 own tests pass, fallback logic verified correct, no defect found"
     },
     "preflight.py": {
-      "status": "fixed",
-      "date": "2026-11-26",
-      "note": "Found and fixed gate_generator_ownership's _restore(worktree_changes()) destructive restore-scope bug (restores exactly the already-computed changed list now, not a fresh post-loop query) and widened gate_nightly_log_notification_claim_verified's negation regex to catch a late-trailing negation. See NIGHTLY-LOG.md 2026-11-26 ~19:0x entry."
+      "status": "clean",
+      "date": "2026-11-27",
+      "note": "Re-verified after A287's GOALS.md size-tripwire addition (one dict entry + comment): preflight.py --skip-tests run to completion this cycle, 0 real FAIL, 30 standing warnings, none new. Diff confirmed minimal and already fail-then-pass proven by its own author."
     },
     "prerender_shop.py": {
       "status": "clean",

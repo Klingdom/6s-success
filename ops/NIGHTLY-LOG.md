@@ -2,7 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-11-27, PM check-in (~07:5x slot): previous work confirmed finished, found and fixed a real preflight FAIL from a dirty Etsy build tree, no new work
+## 2026-11-27, PM check-in (~08:1x slot): previous work confirmed finished, closed one real stale cold-read ledger entry, no new work
+
+Attached clean: fetch, unshallow, ff-only onto origin/main (637 commits), tree clean. Previous work finished, verified not cited: preflight.py --skip-tests run live to completion, 0 real FAIL, 30 standing warnings. 30 open issues re-pulled fresh: unchanged, all decision/P0/blocked-on-art, none from Phil (26 days silent). BACKLOG-2026-09-07.md sections 2-6 and STATUS.md section 14 re-read: nothing non-struck, non-Phil-gated.
+
+One real gap found and closed: cold_read_ledger.py --stale flagged ops/preflight.py as outdated against its own git history (ledgered 2026-11-26, touched 2026-11-27 by A287's GOALS.md tripwire addition). Reviewed that diff directly (one dict entry plus comment, already fail-then-pass proven by its own author), re-ran preflight clean, re-ledgered clean/2026-11-27.
+
+No push notification: last sent 2026-11-26T14:08:20Z, nothing material changed since.
+
+Next for operator: same standing Phil-gated queue, OWNER-ACTIONS.md "Start here" and the 30 open issues.
+
+HANDOFF-FILES: none
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", 30 open decision/P0/blocked-on-art issues); nothing is genuinely unblocked this slot.
 
