@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-27, PM check-in (~10:4x slot): previous work confirmed finished, independently reconfirmed exhausted, no new work
+
+NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", 30 open decision/P0/blocked-on-art issues), because nothing else is genuinely unblocked.
+
+Attached clean: unshallowed (654 commits), ff-only onto origin/main, tree clean. Verified, not cited: ran preflight.py --skip-tests live, 0 real FAIL through every gate reached, stalled only at the documented network-bound gate_etsy_pdfs_current. GitHub's 30 open issues pulled fresh: unchanged roster, all decision/P0/blocked-on-art, none from Phil (last commit 2026-11-01, 26 days silent). Issue #42, the cadence question, still unanswered since 2026-11-20. Owner-notify's 48h floor not elapsed, nothing material changed, no push sent.
+
+No new work started: matches every recent cycle across the last two weeks.
+
+Next: same standing queue, OWNER-ACTIONS.md and the 30 open issues.
+
+HANDOFF-FILES: none
+
 ## 2026-11-27, PM check-in (~10:0x slot): previous work confirmed finished, independently reconfirmed exhausted, no new work
 
 Attached clean: shallow and detached on arrival, real `fetch --unshallow` (652 commits), checkout main, ff-only onto origin/main, tree clean throughout.
