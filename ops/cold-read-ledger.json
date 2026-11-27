@@ -1138,8 +1138,8 @@
     },
     "room_guide_underperformance.py": {
       "status": "clean",
-      "date": "2026-11-05",
-      "note": "room_rows() now recognizes /rooms/<slug>.html; fixes room-level also-called undercounting (Mudroom locker fix). Diff matches commit message, originating cycle's own tests verified (18/18)."
+      "date": "2026-11-27",
+      "note": "Re-reviewed 2026-11-27 after adding the --check-history flag (opt-in, calls candidate_history.search_history per printed row). Core scoring logic (room_rows, score_room) unchanged; verified the new flag's output against a live 20-room run, no regression to the existing printed format when the flag is off."
     },
     "room_image_variants.py": {
       "status": "clean",
