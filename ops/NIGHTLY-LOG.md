@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-27, scheduled operator cycle: independently re-verified every lane fresh to full completion, same exhausted state, no new work
+
+Did. Attached per Step 0: checkout arrived shallow and detached, real `fetch --unshallow` (654 commits), `checkout main`, `merge --ff-only` onto `origin/main`, tree clean. Ran `python ops/preflight.py --skip-tests` myself live, in the background with no timeout wrapper, to genuine full completion rather than citing an earlier partial run: every gate passed, 29 warnings, all the standing sandbox/credential/art gaps (no SSH/Stripe/mail credential here, Etsy fee page 403, analytics unreachable, known rejected card art). Separately ran `check_urls.py` (236/236), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 docs clean), `check_sellable.py --deep` (124/126, 2 person-delivered services), `cold_read_ledger.py --next` (316/316, 0 stale), and all 21 `rotate_*.py --check` scripts (all clean). Ran `room_guide_underperformance.py --check-history` fresh across every room: every single partial row site-wide already carries a prior-mention citation from `ops/candidate_history.py`, so the room-guide mining lane is mechanically confirmed exhausted today, not merely cited as such.
+
+Verified. GitHub's 30 open issues pulled live via the API: unchanged roster, all `decision`/`P0`/`blocked-on-art`, none from Phil; `git log --author=phil` is still 2026-11-01, 26 days of owner silence. Issue #42 (the cadence question itself) still unanswered since 2026-11-20. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, standing gap. Owner-notify's 48h floor not elapsed (last real send 2026-11-26T14:08:20Z, about 21h ago): nothing material changed since, so no push sent, consistent with this repository's own anti-repeat-notify discipline.
+
+A concurrent PM check-in (~10:4x slot) reached the identical conclusion minutes before this cycle's own pass finished; merged cleanly onto it (one trivial conflict in `ops/cycle-signal.json`'s own timestamp field, kept the later one) rather than duplicate the work.
+
+Went well: a genuinely full, un-truncated preflight pass (the sandbox's foreground timeout usually cuts this off before the social/video gates), proving the clean state directly rather than citing an earlier partial run.
+
+Did not go well: nothing new; three concurrent sessions converged on the same "nothing unblocked" finding within the same hour, which is itself the cost issue #42 names.
+
+Changing next cycle: nothing new to change; the standing recommendation (hold the Phil-gated queue, do not re-mine an independently-reconfirmed-exhausted corpus) still holds.
+
+Next: same Phil-gated queue, `OWNER-ACTIONS.md` "Start here" and the 30 open issues, starting with the cheapest named unlocks (#64 traffic read, #46 YouTube OAuth, #58 Stripe description/logo).
+
+HANDOFF-FILES: none
+
 ## 2026-11-27, PM check-in (~10:4x slot): previous work confirmed finished, independently reconfirmed exhausted, no new work
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", 30 open decision/P0/blocked-on-art issues), because nothing else is genuinely unblocked.
