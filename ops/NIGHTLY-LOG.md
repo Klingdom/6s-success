@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-27, scheduled operator cycle: independently re-verified every lane fresh, including one live network re-test, found nothing new, no notification
+
+Did. Attached per Step 0: arrived shallow and detached, real fetch --unshallow (588 commits), checkout main, merge --ff-only onto origin/main, tree clean. Read CLAUDE.md, GOALS.md, BACKLOG-2026-09-07.md (sections 1 through 7, in full, not a summary), STATUS.md sections 0-7 and the last four NIGHTLY-LOG.md entries before touching anything.
+
+Ran preflight.py --skip-tests live myself, let it run to real completion this time rather than killing it at a time budget: 0 FAIL, 28 warnings, same standing sandbox/credential/art roster as every recent cycle. One real mid-run lesson, not a repository defect: an earlier foreground attempt hit the harness's own command timeout and I killed the background process that followed it by PID while preflight's own gate_generator_ownership was mid-regenerate, which interrupted its restore step and left site/ dirty, including one 0-byte truncated zone page. Diagnosed before acting (CLAUDE.md 5d): the same transient-kill shape A281 already named, not new. git checkout -- . restored the tree to clean before anything was committed; re-ran preflight uninterrupted (waited on the real PID with tail --pid rather than a sleep loop) and it completed clean. No gate change needed: this only ever touches the working tree before a commit, never main.
+
+Verified directly, not cited: GitHub's 30 open issues re-pulled live via the API, unchanged roster, every one decision/P0/blocked-on-art, none from Klingdom's own account that reads as Phil (confirmed against git log --author=phil: last real commit 2026-11-01, 26 days silent). cold_read_ledger.py --next: 316 of 316 files ledgered, 0 un-ledgered candidates. room_guide_underperformance.py --check-history fresh across all 20 rooms: every partial row (13 total) carries a prior-mention citation; 0 gap rows anywhere; mining lane mechanically exhausted, not cited stale. All 21 rotate_*.py --check clean, nothing due. check_sellable.py --deep: 124 of 126 buyable products in Stripe with a delivery entry and a file on disk, the other 2 person-delivered services by design; Stripe's own live prices still NOT VERIFIED, no .env.secrets here. inbox_agent.py --apply: no mail credential in this sandbox, unchecked, not assumed clean.
+
+Went further than citing the standing network limitation: curl-tested https://6s-success.com/, the IndexNow endpoint, and Search Console's API fresh from this sandbox rather than trust last cycle's reading. Both the site and IndexNow still return http_code 000 (policy-blocked), confirming the limitation is current, not stale; a general internet probe (Google's own API) returned a normal 404, so this is a specific allowlist boundary, not a general outage.
+
+Did not start new work. Every non-Phil-gated lane this operator can reach (room-guide mining, rotations, cold-read, sellable, affiliate, network reachability) is independently reconfirmed exhausted or clean; sections 2-4 of the backlog are archived/done, section 5 is Hold-on-a-constraint, section 6 is entirely owner-gated. Inventing a workstream here would be the exact filler issue #42 already names and asks Phil to decide on.
+
+Went well. The kill-and-restore mid-run was caught and fixed before it could reach a commit, and the fresh network re-test is real evidence, not a repeated assumption.
+
+Did not go well. Nothing new; the same exhausted state many recent cycles already name, for the same reason (issue #42 unanswered).
+
+Changing next cycle. Nothing; wait on PID directly rather than a timed kill when backgrounding preflight, to avoid repeating this cycle's own mid-run interruption.
+
+Next. Same standing queue: OWNER-ACTIONS.md "Start here" and the 30 open issues, none from Phil. Issue #42's cadence question is still open.
+
+Pushed: this entry, ops/cycle-signal.json, regenerated dashboard/state/deck. No price, product or page touched; IndexNow not applicable (network-blocked here regardless). No push notification: nothing materially changed since the last one.
+
+HANDOFF-FILES: none
+
 ## 2026-11-27, PM check-in (~03:4x slot): previous work confirmed finished by a full completed preflight, same Phil-gated queue handed to the operator
 
 NEXT FOR THE OPERATOR: same Phil-gated decision queue, because preflight ran to real completion with 0 FAIL and the backlog/GitHub re-read found nothing newly unblocked.
@@ -13,6 +37,8 @@ Ran preflight.py --skip-tests myself in the background to real completion, not k
 No new work started: no genuinely unblocked, non-Phil-gated item exists. Regenerated the dashboard. Revenue carried forward ($0/$20,000 this month, $19 all-time) because Stripe was not reachable here.
 
 HANDOFF-FILES: none
+
+## 2026-11-27, PM check-in (~03:1x slot): previous work confirmed finished, independently re-verified exhausted, no new work
 
 Attached clean: unshallowed, ff-only onto origin/main (586 commits), tree clean throughout.
 
