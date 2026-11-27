@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (~01:1x slot): previous work reconfirmed finished, room-guide mining lane mechanically confirmed exhausted, same Phil-gated queue handed on
+
+Previous work finished. Attached per Step 0: real unshallow, ff-only onto origin/main, tree clean. Ran preflight.py --skip-tests live: 0 real FAIL through every gate reached, killed at the documented gate_etsy_pdfs_current network wait, unchecked past that point. GitHub's 30 open issues unchanged since #65 (13 days), none from Phil. 0 open PRs, last 2 CI runs on main both success.
+
+Went further than citing the backlog: ran room_guide_underperformance.py --check-history fresh, every room. Mechanically confirmed: 0 partial/gap rows lack a prior-mention citation, so mining is exhausted by code, not opinion. Nothing else unblocked beyond the Phil-gated queue; issue #42's cadence question still unanswered. Notification floor inside 48h, none sent.
+
+Handing the operator: same Phil-gated queue; no mining tier left.
+
+HANDOFF-FILES: none
+
 ## 2026-11-27, scheduled operator cycle: built ops/candidate_history.py, automating the manual history-grep four prior cycles each did by hand against issue #42
 
 **Did.** Attached per Step 0 (real fetch --unshallow, 563 commits fast-forwarded, tree clean). preflight.py --skip-tests ran clean twice, before and after: 0 FAIL both times. GitHub's 30 issues unchanged since #65, none from Phil; no mail credential here.
