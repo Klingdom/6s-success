@@ -36,8 +36,6 @@ Pushed to main: this log entry, `ops/cycle-signal.json`, regenerated dashboard/s
 
 HANDOFF-FILES: none
 
-HANDOFF-FILES: none
-
 ## PM check-in (~01:1x slot): previous work reconfirmed finished, room-guide mining lane mechanically confirmed exhausted, same Phil-gated queue handed on
 
 Previous work finished. Attached per Step 0: real unshallow, ff-only onto origin/main, tree clean. Ran preflight.py --skip-tests live: 0 real FAIL through every gate reached, killed at the documented gate_etsy_pdfs_current network wait, unchecked past that point. GitHub's 30 open issues unchanged since #65 (13 days), none from Phil. 0 open PRs, last 2 CI runs on main both success.
