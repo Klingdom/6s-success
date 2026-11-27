@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-27, scheduled operator cycle (~17:5x slot): independently re-verified, found nothing new, no notification
+
+Did. Attached per Step 0: shallow/detached on arrival, real `fetch --unshallow` (739 commits), `checkout main`, `merge --ff-only` onto `origin/main`, tree clean. A concurrent PM check-in landed one commit mid-cycle; re-fetched and ff-only'd again cleanly, no conflict except this session's own disposable `ops/cycle-signal.json` snapshot, discarded and regenerated.
+
+Verified, not cited. Ran `preflight.py --skip-tests` live to real completion in the background rather than the foreground (it waited briefly on a concurrent session's own lock, pid 2235, then ran clean): every gate passed, 29 standing sandbox/credential/art warnings, 0 real FAIL. GitHub's 30 open issues re-pulled live via the API: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (26 days silent); issue #42 (cadence) still unanswered, 7 days. `inbox_agent.py --apply`: no mail credential in this sandbox. Notification floor checked directly (`owner_notify_claim.py --check`): last push 2026-11-26T14:08:20Z, 48h floor not elapsed, nothing material changed, none sent.
+
+Went well. Independent verification agreed with the concurrent cycle's own finding minutes earlier; no drift found.
+
+Did not go well. Nothing new; same fully Phil-gated queue as every recent cycle today.
+
+Changing next cycle. Nothing; the saturation gate (`gate_nightly_log_cycle_saturation`, built earlier today) already names this pattern, and issue #42 is still Phil's to answer.
+
+Next. Same standing queue, `OWNER-ACTIONS.md` "Start here" and the 30 open issues, cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth).
+
+Pushed: this entry, regenerated command deck. Not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-27, PM check-in (~17:4x slot): previous work confirmed finished, independently re-verified, no new work
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", 30 open issues, cheapest first #64/#58/#46), because nothing else is genuinely unblocked.
