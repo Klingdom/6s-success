@@ -16,7 +16,13 @@ extends them with one more route a room can answer a query through: the
 guide article itself, which the old scorer never needed to match because no
 guide-less room had one.
 
-Usage: python ops/room_guide_underperformance.py [--room "Family Room"]
+Usage: python ops/room_guide_underperformance.py [--room "Family Room"] [--check-history]
+
+`--check-history` annotates each printed row with whatever
+`ops/candidate_history.py` finds already written about it in
+`ops/NIGHTLY-LOG.md` and the backlog archives, so a cycle does not have to
+re-run that grep by hand to find out a candidate was already investigated
+and declined (the recurring cost GitHub issue #42 names).
 """
 import argparse
 import json
@@ -109,12 +115,30 @@ def score_room(us_rows, global_rows, room):
     }
 
 
+def _print_history_note(history, query):
+    result = history(query)
+    if not result:
+        return
+    tag = "weak, single word" if result["strength"] == "weak" else "prior mention"
+    first = result["hits"][0]
+    print(f"        [{tag}, matched '{result['matched_on']}': {first['file']}:{first['line']}] "
+          "check history before re-investigating (issue #42)")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--room", default=None, help="score one room instead of every room")
     ap.add_argument("--min-on-topic", type=int, default=5,
                     help="skip rooms with fewer on-topic rows than this (too little signal to rank); default 5")
+    ap.add_argument("--check-history", action="store_true",
+                    help="for each printed gap/partial row, check ops/candidate_history.py for a prior "
+                         "mention before it gets re-investigated as if it were new (see issue #42)")
     args = ap.parse_args()
+
+    history = None
+    if args.check_history:
+        import candidate_history as ch
+        history = ch.search_history
 
     us_rows = json.loads((ROOT / "ops/keyword-demand.json").read_text())["rows"]
     global_rows = json.loads((ROOT / "ops/keyword-demand-global.json").read_text())["rows"]
@@ -132,8 +156,12 @@ def main():
               f"{r['covered_count']} covered, {r['total_routed_rows']} routed rows total)")
         for g in r["gap"]:
             print(f"    gap: {g['query']}  (-> {g.get('best_page')})")
+            if history:
+                _print_history_note(history, g["query"])
         for p in r["partial"][:8]:
             print(f"    partial ({p.get('coverage')}): {p['query']}  (-> {p.get('best_page')})")
+            if history:
+                _print_history_note(history, p["query"])
 
     if skipped:
         print(f"\nSkipped (fewer than {args.min_on_topic} on-topic rows, too little signal to rank): "

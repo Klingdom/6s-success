@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-27, scheduled operator cycle: built ops/candidate_history.py, automating the manual history-grep four prior cycles each did by hand against issue #42
+
+**Did.** Attached per Step 0 (real fetch --unshallow, 563 commits fast-forwarded, tree clean). preflight.py --skip-tests ran clean twice, before and after: 0 FAIL both times. GitHub's 30 issues unchanged since #65, none from Phil; no mail credential here.
+
+Checked epics 1-4 directly: every owner gate (traffic read, YouTube OAuth, Search Console, Gemini billing, Etsy/KDP) is still unanswered. room_guide_underperformance.py fresh: every room 0-7% uncovered, same saturated shape prior cycles confirmed. Rather than re-derive by hand that the remaining partial rows are already-declined history, the exact cost issue #42 names and at least four prior cycles paid, built the automation. ops/candidate_history.py greps NIGHTLY-LOG.md, its archive, and the backlog/checkin archives for a query, trying the exact phrase then progressively stripped leading stopwords, with a single-word fallback labelled weak.
+
+**Verified.** Finds the real, documented A79/A192/A195 "car boot"/"bulk snacks" decline; returns nothing for a fabricated query. Wired into room_guide_underperformance.py as --check-history; a full 20-room run (4.3s) annotates all 55 current partial/gap rows with a citation, mechanically confirming this lane's exhaustion. ops/tests/test_candidate_history.py, 9 cases, one caught a real test-data collision before landing. cold_read_ledger.py --add registered the file. check_urls.py 236/236, fix_dashes.py --check 0/0, affiliate.py --check clean, test_room_also_called.py 14/14.
+
+**Went well.** The tool's negative controls correctly abstain rather than over-match.
+
+**Did not go well.** This is process tooling, not a shipped customer fix.
+
+**Changing next cycle.** Room-guide mining should run with --check-history first.
+
+**Next.** Still waiting on Phil for every unblocked lever. No new workstream opened.
+
 ## PM check-in, 2026-11-27 (~00:4x slot): previous work reconfirmed finished, same 30-issue Phil-gated queue, nothing new unblocked
 
 NEXT FOR THE OPERATOR: same 30-issue Phil-gated decision queue, because `BACKLOG-2026-09-07.md` sections 2-4 are archived/done, section 5 is Hold-on-a-gate, and GitHub's 30 open issues (re-pulled live) are all `decision`/`P0`/`blocked-on-art`, unchanged since 2026-11-14 (#65), none from Phil; the cheapest unlocks remain #64 (traffic read, 2 min), #58 (Stripe description/logo, 2 min) and #46 (YouTube OAuth, 5 min for 114 built videos).

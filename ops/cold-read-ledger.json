@@ -571,6 +571,11 @@
       "date": "2026-11-26",
       "note": "Re-verified after A262 (aside landmark labeling): parse clean, test_affiliate.py, test_affiliate_tagging.py, test_gate_aside_landmarks_labeled.py, test_zone_supplies_grammar.py all pass; preflight gates before gate_tests clean on current HEAD."
     },
+    "candidate_history.py": {
+      "status": "clean",
+      "date": "2026-11-27",
+      "note": "New, built this cycle alongside room_guide_underperformance.py's --check-history flag. Reviewed directly: searches ops/NIGHTLY-LOG.md and the backlog/checkin archives via grep -F for a query and its leading-stopword-stripped forms, labels single-word fallback matches 'weak' so they are not mistaken for real precedent. Tested against real history (finds the A79/A192/A195 'car boot'/'bulk snacks' precedent) and against synthetic files (fail-then-pass caught one real test-data collision before landing)."
+    },
     "canonical_links.py": {
       "status": "clean",
       "date": "2026-10-12",
