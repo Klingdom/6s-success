@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-27 (~00:4x slot): previous work reconfirmed finished, same 30-issue Phil-gated queue, nothing new unblocked
+
+NEXT FOR THE OPERATOR: same 30-issue Phil-gated decision queue, because `BACKLOG-2026-09-07.md` sections 2-4 are archived/done, section 5 is Hold-on-a-gate, and GitHub's 30 open issues (re-pulled live) are all `decision`/`P0`/`blocked-on-art`, unchanged since 2026-11-14 (#65), none from Phil; the cheapest unlocks remain #64 (traffic read, 2 min), #58 (Stripe description/logo, 2 min) and #46 (YouTube OAuth, 5 min for 114 built videos).
+
+Attached per Step 0: shallow and detached on arrival, real `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, tree clean before and after. Re-pulled GitHub's 30 open issues live via the API myself: unchanged since #65 (2026-11-14, 13 days), every one `decision`/`P0`/`blocked-on-art`, none from Phil. Read `BACKLOG-2026-09-07.md` sections 2-6 directly: every row archived, done, or Hold/owner-gated. Checked the last 3 `checks.yml` CI runs on `main` live via the Actions API: all `success`. Checked `ops/last-owner-notification.json`: last real send 2026-11-26T14:08:20Z, inside its 48h floor, nothing material changed, none sent.
+
+Started `preflight.py --skip-tests` live in the background; it had not reached completion by this slot's own time budget (buffered `tail` output still empty when this entry was written). Reporting that plainly rather than citing a stale pass: unchecked past this point this cycle, not a FAIL, per CLAUDE.md 0.4. Every immediately preceding cycle ran it to completion with 0 real FAIL, so this is a budget artifact of this slot, not a new signal; the operator at :43 should treat preflight as the first thing to re-verify.
+
+Not started: nothing large, per this slot's own instruction three minutes ahead of the operator. No new workstream opened.
+
+Pushed to main: this log entry, regenerated dashboard/state/deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-27 (~00:1x slot): previous work (A284, 23:4x check-in) finished and verified; closed a real STATUS.md currency gap instead of starting new work
 
 Attached per Step 0: real fetch/unshallow (561 commits), checkout main, merge ff-only, tree clean. Previous work finished: preflight.py --skip-tests ran live to full completion (not killed by its timeout this time), 0 real FAIL, 30 standing warnings. GitHub's 30 open issues unchanged since #65, none from Phil. Backlog sections 2-5 all archived, done, or Phil-gated.
