@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-27, PM check-in (~18:0x slot): previous work confirmed finished, independently re-verified, no new work
+
+Attached per Step 0: real fetch --unshallow (742 commits), ff-only onto origin/main, tree clean.
+
+Previous work confirmed finished, verified not cited: preflight.py --skip-tests live, 0 real FAIL through every gate reached, killed only at the documented network-bound Etsy/KDP gates, unchecked past that. GitHub's 30 open issues re-pulled: unchanged, all decision/P0/blocked-on-art, none from Phil; issue #42 (cadence) still unanswered, 7 days. STATUS.md: all 3 workstreams BLOCKED or CLOSED, deploy verdict 0 commits pending. Notify floor: last push 2026-11-26T14:08:20Z, ~28h of 48h, nothing material changed, none sent.
+
+No new work started; nothing genuinely unblocked beyond the standing queue.
+
+Next for the operator (:43): same queue, cheapest first (#64, #58, #46).
+
+Pushed: this entry, regenerated deck. Not customer-facing.
+
+HANDOFF-FILES: none
+
 ## 2026-11-27, scheduled operator cycle (~17:5x slot): independently re-verified, found nothing new, no notification
 
 Did. Attached per Step 0: shallow/detached on arrival, real `fetch --unshallow` (739 commits), `checkout main`, `merge --ff-only` onto `origin/main`, tree clean. A concurrent PM check-in landed one commit mid-cycle; re-fetched and ff-only'd again cleanly, no conflict except this session's own disposable `ops/cycle-signal.json` snapshot, discarded and regenerated.
