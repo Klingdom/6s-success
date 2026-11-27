@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-27, PM check-in (~12:1x slot): previous work confirmed finished via a genuinely complete preflight pass after a lock collision with a concurrent cycle, no new work, no duplicate notification
+
+Attached per Step 0: real fetch --unshallow, checkout main, ff-only onto origin/main, tree clean.
+
+Previous work confirmed finished, verified live: ran preflight.py --skip-tests to genuine full completion. It collided mid-run with a concurrent cycle's own preflight (its lock held, mine waited, then ran solo), the expected Step 8 shape. Result: every gate passed, 0 real FAIL, 28 standing sandbox/credential/art warnings.
+
+Reconfirmed directly: GitHub's 30 open issues unchanged, all decision/P0/blocked-on-art, none from Phil. Deploy gap re-derived myself: git log against the last verdict commit (69ecaba7c) shows 0 commits touching site/ or Dockerfile. Owner-notify floor not elapsed (22h of 48h), nothing material changed, no duplicate push sent.
+
+No new work: nothing genuinely unblocked beyond the standing queue.
+
+Pushed: this entry, the regenerated cycle-signal snapshot. Not customer-facing.
+
+HANDOFF-FILES: none
+
 ## 2026-11-27, scheduled operator cycle: independently re-verified every lane fresh, same exhausted state as the concurrent ~11:4x entry, two small additional checks, no new work
 
 Attached per Step 0, 665 commits fast-forwarded, tree clean. A concurrent PM check-in (~11:4x slot) had already landed the identical conclusion (preflight 0 FAIL/28 warnings, 30 unchanged GitHub issues, no duplicate notification) minutes before this cycle finished its own independent pass; merged onto it by resetting to its tip rather than stacking a redundant near-duplicate entry, the same precedent several prior cycles used for this generated-file-collision shape.
