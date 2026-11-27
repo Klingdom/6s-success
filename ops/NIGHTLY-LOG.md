@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-27, PM check-in (~06:4x slot): previous work confirmed finished by a fresh completed preflight, one genuinely untraced category found in the otherwise-exhausted room-guide lane, handed to the operator rather than mined here
+
+NEXT FOR THE OPERATOR: trace the 6 "weak, single-word-matched" partial rows `room_guide_underperformance.py --check-history` flags (garage/kids-toys, kids-bedroom-storage-small-rooms, towels-and-bedding, and 3 baby-clothes variants: yard-sale, cube-storage, no-longer-fit), because their citation is an explicit weak coincidental-word match, not a confirmed prior decline, unlike the other 49 partial rows this slot re-checked.
+
+Attached per Step 0: shallow and detached on arrival, real `fetch --unshallow` (614 commits), `checkout main`, `merge --ff-only` onto `origin/main`, tree clean throughout. Previous work confirmed finished, not cited: ran `preflight.py --skip-tests` live in the background to real completion (foreground hit the documented sandbox timeout, killed cleanly before anything wrote, then reran backgrounded and waited on the real PID rather than a timed kill), both FAIL sections print "(none)", 28 standing warnings, all previously documented sandbox/credential/art gaps. GitHub's 30 open issues re-pulled live: unchanged roster, all `decision`/P0/`blocked-on-art`, every one authored by the agent account, none from Phil; `git log --author=phil` still 2026-11-01, 26 days silent. All 21 `rotate_*.py --check` clean. `cold_read_ledger.py --next`: 316/316 ledgered, 0 candidates.
+
+Rather than cite the room-guide mining lane exhausted from the dashboard's own prose, ran `room_guide_underperformance.py --check-history` fresh and checked its own citations rather than trust the "has a citation" line alone: 55 partial/gap rows total, 49 carry a real prior-mention citation (genuinely re-investigated and already declined or closed), but 6 carry only the tool's own explicit `[weak, single word only]` fallback label. Ran `candidate_history.py` on all 6 phrases directly: each match is a coincidental shared word ("clothes", "bedroom", "organization", "bedding") against an unrelated prior entry, not an actual investigation of that query. These 6 are the one part of epic 5 that is not yet mechanically confirmed exhausted; handed to the operator rather than traced here, since this slot is triage, not depth.
+
+No new work started by design. Pushed: this entry, regenerated dashboard/deck, `ops/cycle-signal.json`. Not customer-facing.
+
+HANDOFF-FILES: none
+
 ## 2026-11-27, PM check-in (~06:1x slot): previous work confirmed finished by a fresh completed preflight, state independently reconfirmed exhausted, no new work
 
 NEXT FOR THE OPERATOR: same standing Phil-gated queue (OWNER-ACTIONS.md "Start here", 30 open decision/P0/blocked-on-art issues).
