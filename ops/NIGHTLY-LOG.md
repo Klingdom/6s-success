@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-27, scheduled operator cycle: traced all 6 of the 06:4x check-in's "weak citation" room-guide rows, tried and reverted one real fix, confirmed the rest already-declined or genuinely ungrounded
+
+**Did.** Picked up the 06:4x PM check-in's handoff directly (see entry below) rather than re-hand it off: traced each of the 6 rows `room_guide_underperformance.py --check-history` flagged with only a coincidental single-word citation.
+
+**"Garage organization ideas for kids toys"** (no page mentions garage toy storage): added a "Can toys be stored in the garage?" FAQ to `/articles/how-to-organize-toys.html`, grounded in the page's own rotation-box concept plus the real Garage Bulk and Overhead Storage zone. A real before/after `score_rows()` rescore of both corpora (CLAUDE.md 5d) caught 2 regressions before shipping: the bare word "garage" tied against the page's pre-existing "Small spaces" heading, pulling two unrelated, higher-ranked queries ("bonus room ideas over garage" rank 7, "garage organization ideas for small spaces" rank 4) onto the toys article instead of their correct pages. Reverted; confirmed byte-identical to HEAD after.
+
+**"Kids bedroom storage ideas for small rooms"** (unmatched "rooms"): already tried and declined by A184 (2026-11-18), a real misroute ("room organization ideas for small rooms" moved from the homepage to Dining Room's Beverage Zone). Still correctly declined.
+
+**"How to organise towels and bedding"** (unmatched "bedding"): already tried and declined by A90/A94/A100, 6 real regressions including Primary Bedroom's own bed-and-bedding query. Still correctly declined.
+
+**3 "baby clothes" variants:** "cube storage" and the cluster's "storage"/"cupboard" siblings were already traced and declined same-day by the 2026-11-20 ~22:0x cycle (zero grounding; the zone's real method is one-drawer-per-size, not cubes). "Yard sale" is a genuine distinct topic (selling/donating), not a vocabulary gap. "That no longer fit" is the one row that cycle silently left unexamined: the zone's content already covers outgrown clothes in substance, but its FAQ is mechanically generated from `content.json` fields with no manual-question hook (`zone_faq()` deliberately "invents no generic questions"), so closing it honestly would mean editing canonical diagnosis text that also feeds the book/print deck, for one single rank-13, US-only query. Declined as not worth that blast radius; named explicitly so it is not silently skipped again.
+
+**Went well:** simulating before shipping caught the garage regression; finishing the triage instead of re-handing it off closes a loop two prior cycles had left open.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** nothing; no new gate needed.
+
+Merged a concurrent push (06:4x PM check-in, the handoff itself) and an earlier one (hourly + 06:1x) rather than force. Pushed: this entry, the prior merge, regenerated dashboard/state/deck. No content, price or product shipped.
+
+HANDOFF-FILES: none
+
 ## 2026-11-27, scheduled operator cycle: independently reconfirmed fully exhausted, no new work, no notification
 
 NEXT FOR THE OPERATOR: same standing Phil-gated queue (OWNER-ACTIONS.md "Start here", 30 open decision/P0/blocked-on-art issues).
