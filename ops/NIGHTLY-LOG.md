@@ -18,6 +18,26 @@ Pushed to main: this log entry, regenerated dashboard/state/deck. No price, prod
 
 HANDOFF-FILES: none
 
+## 2026-11-26, scheduled operator cycle (A284): tested and reverted a `_prefer_in_room_zone()` widening, confirmed the existing decline was correct with the missing proof, no new row safely fixable
+
+Did: Attached per Step 0 (shallow detached checkout, real `fetch --unshallow`, 556 commits fast-forwarded, `checkout main`, `merge --ff-only` onto `origin/main`, tree clean). Read GOALS.md, BACKLOG-2026-09-07.md, STATUS.md, CLAUDE.md. `preflight.py --skip-tests` run live in the background to completion: every gate passed, 28 standing sandbox/credential/art warnings. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65. `inbox_agent.py --apply`: no mail credential.
+
+`room_guide_underperformance.py` fresh found "how to organize baby clothes in small space" (Nursery) scoring to Guest Bedroom's dresser zone on an incidental FAQ heading. Traced the root cause myself before checking history (should have checked first): `_prefer_in_room_zone()` only ever overrides a cross-room GUIDE ARTICLE, never a cross-room ZONE, so Nursery's own 0.5 heading match lost outright to Guest Bedroom's 0.75. Widened the guard to also cover zones on the heading surface, proved the 76 existing test cases still pass, then ran a full before/after `score_rows()` diff across both corpora before shipping (CLAUDE.md 5d) and caught two real regressions the widening itself created: "how to organize baking supplies in kitchen" (and 2 "kitchen larder" siblings) dropped from a genuine, correct 1.0 on Pantry's own zone to a worse in-room partial, and "how to store outdoor furniture cushions in garage" lost Patio/Deck's actually-more-relevant answer to a weaker Garage one. Added a "zone already at 1.0 is left alone" carve-out; it fixed the kitchen/larder cases but not the garage one, because a genuinely-correct cross-room zone can score under 1.0 too. No score-based rule separates the two classes reliably. Reverted the whole change rather than ship a net-harmful fix.
+
+Grepped the actual query against the log afterward: already found and declined twice before (A85-era and a later cold-read), for exactly this reason ("a zone's higher score is ordinarily the more trustworthy signal, the opposite of what makes the article-only override safe"). My own full-corpus diff is the concrete proof that prior decline lacked; nothing here was new, but the decline is now backed by evidence, not caution alone. Should have grepped before implementing, not after.
+
+Verified: tree returned to clean (`git status` empty) before any commit. `cold_read_ledger.py --next`: 315/315, 0 candidates. `ops/last-owner-notification.json`: last sent 14:08:20Z, inside its 48h floor, nothing material changed, none sent. Ran `ops/dashboard.py` regardless (STEP 11b).
+
+Went well: the full-corpus diff discipline caught a real regression before it shipped, twice in one function.
+
+Did not go well: burned a full investigation re-deriving a conclusion already on record, because the history check came after the fix attempt instead of before.
+
+Changing next cycle: grep the exact query/row text against `ops/NIGHTLY-LOG.md` before writing any fix, not just before shipping it.
+
+Next: same Phil-gated queue (30 issues, none from Phil since #65, 12 days); no genuinely unblocked, un-declined row found this cycle.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~23:1x slot): previous work reconfirmed finished by a full live preflight and a direct backlog re-read, nothing new unblocked
 
 Previous work was finished, verified myself, not cited. Attached per Step 0: shallow and detached on arrival, real `fetch --unshallow` (554 commits), `checkout main`, `merge --ff-only` onto `origin/main`, tree clean before and after. Ran `preflight.py --skip-tests` live: 0 real FAIL anywhere reached, got further than recent cycles (stalled at `gate_prerender_shop_current` under this slot's own time budget, reported unchecked past that point, not passing). Re-pulled GitHub's 30 open issues live: unchanged since #65 (2026-11-14), all `decision`/`P0`/`blocked-on-art`, none from Phil, most recent #42 (2026-11-20, the cadence-cost issue, still unanswered).
