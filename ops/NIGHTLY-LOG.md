@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-27, PM check-in (~07:5x slot): previous work confirmed finished, found and fixed a real preflight FAIL from a dirty Etsy build tree, no new work
+
+NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", 30 open decision/P0/blocked-on-art issues); nothing is genuinely unblocked this slot.
+
+Attached per Step 0: shallow and detached, real fetch --unshallow (626 commits), ff-only onto origin/main, tree clean.
+
+Found and fixed a real defect: preflight.py --skip-tests, run live to completion, FAILed 2 gates (etsy-pdfs-current, generator-ownership) because 3 Etsy build PDFs sat modified in the tree. Restored via git checkout, re-ran: every gate passed, 28 standing warnings.
+
+Reconfirmed: 30 open issues unchanged, none from Phil (26 days silent). Last 5 CI runs green.
+
+No new work started. Pushed: this entry, regenerated dashboard/deck.
+
+HANDOFF-FILES: none
+
 ## 2026-11-27, PM check-in (~07:1x slot): previous work confirmed finished (operator closed the 06:4x handoff while this preflight ran), independently reconfirmed exhausted, no new work
 
 Attached per Step 0: arrived shallow and detached, a real `fetch --unshallow` (0 commits ahead/behind became resolvable only after that, the ff-only merge had genuinely refused on the shallow clone's missing history, not an error to force past), checkout main, ff-only onto origin/main, tree clean.
