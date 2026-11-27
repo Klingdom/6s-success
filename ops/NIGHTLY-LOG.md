@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-27, PM check-in (~11:1x slot): previous work confirmed finished, independently reconfirmed exhausted, no duplicate notification
+
+Attached clean: real fetch --unshallow, ff-only onto origin/main, tree clean.
+
+Previous work confirmed finished, verified not cited: preflight.py --skip-tests run live to completion, both FAIL sections (none), 29 standing warnings, all previously documented sandbox/credential/art gaps. GitHub's 30 open issues pulled fresh: unchanged, all decision/P0/blocked-on-art, none from Phil (26 days silent). Issue #42, the cadence question, still unanswered.
+
+Checked ops/last-owner-notification.json directly: a real push already sent 2026-11-26T14:08:20Z with this exact content, 48h floor not elapsed, nothing material changed, so no duplicate notification sent.
+
+No new work: nothing genuinely unblocked beyond the standing queue.
+
+Pushed: this entry, regenerated dashboard/state/deck (checkpoint only). Not customer-facing.
+
+HANDOFF-FILES: none
+
 ## 2026-11-27, scheduled operator cycle: independently re-verified every lane fresh to full completion, same exhausted state, no new work
 
 Did. Attached per Step 0: checkout arrived shallow and detached, real `fetch --unshallow` (654 commits), `checkout main`, `merge --ff-only` onto `origin/main`, tree clean. Ran `python ops/preflight.py --skip-tests` myself live, in the background with no timeout wrapper, to genuine full completion rather than citing an earlier partial run: every gate passed, 29 warnings, all the standing sandbox/credential/art gaps (no SSH/Stripe/mail credential here, Etsy fee page 403, analytics unreachable, known rejected card art). Separately ran `check_urls.py` (236/236), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 docs clean), `check_sellable.py --deep` (124/126, 2 person-delivered services), `cold_read_ledger.py --next` (316/316, 0 stale), and all 21 `rotate_*.py --check` scripts (all clean). Ran `room_guide_underperformance.py --check-history` fresh across every room: every single partial row site-wide already carries a prior-mention citation from `ops/candidate_history.py`, so the room-guide mining lane is mechanically confirmed exhausted today, not merely cited as such.
