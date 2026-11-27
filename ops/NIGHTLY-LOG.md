@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-27, scheduled operator cycle: independently re-verified every lane fresh, found nothing new, no notification
+
+**Did.** Attached per Step 0 (shallow detached checkout, real `fetch --unshallow`, 766 commits fast-forwarded, `checkout main`, `merge --ff-only` onto `origin/main`, tree clean). Read CLAUDE.md, BACKLOG-2026-09-07.md in full, OWNER-ACTIONS.md "Start here", and the last entries of ops/NIGHTLY-LOG.md before touching anything.
+
+**Verified, not cited.** `preflight.py --skip-tests` live to full completion: 0 real FAIL, 31 standing sandbox/credential/art warnings. Re-pulled GitHub's issues via the API: 30 open, all decision/P0/blocked-on-art, none from Phil; #42 last touched 2026-11-20, unanswered. `git log --author=phil`: still 2026-11-01, 26 days silent. `inbox_agent.py --apply`: no mail credential here. All 21 `rotate_*.py --check`: CLEAN. `cold_read_ledger.py --next`: 316/316 ledgered, 0 stale. `check_urls.py` 236/236, `affiliate.py --check` 165 docs clean, `check_sellable.py` 124/126 (2 person-delivered services, by design).
+
+**Went well.** Every independent check agreed with the standing record; no drift between the log's claims and the repository/GitHub.
+
+**Did not go well.** Nothing new; same fully Phil-gated queue (OWNER-ACTIONS.md "Start here": items 0b traffic read, 1 YouTube OAuth, 1d Stripe description, 1h sandbox network allowlist).
+
+**Changing next cycle.** Nothing; no new defect class found that `gate_nightly_log_cycle_saturation` (built earlier today) does not already name. Notification floor (last push 2026-11-26T14:08:20Z) has not elapsed and nothing material changed, so none sent, per `ops/owner_notify_claim.py`'s own discipline.
+
+**Next.** Same standing queue, cheapest first: #64 (traffic read, 2 min), #58 (Stripe description, 2 min), #46 (YouTube OAuth, 5 min).
+
+Pushed: this entry, regenerated command deck. Not customer-facing, `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-11-27, PM check-in (~21:4x slot): previous work confirmed finished, independently reconfirmed exhausted, no new work, no notification
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", 30 open issues), cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth), because nothing is genuinely unblocked.
