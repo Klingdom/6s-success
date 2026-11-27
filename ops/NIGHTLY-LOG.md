@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-27, PM check-in (~09:1x slot): previous work confirmed finished, discarded a self-inflicted preflight artifact, no new work
+
+Attached clean: fetch --unshallow (645 commits), ff-only onto origin/main. Previous work (08:4x PM check-in, backlog-rotation cycle) finished, tree clean before this run.
+
+Verified live: preflight.py --skip-tests first FAILed 2 gates (etsy-pdfs-current, generator-ownership), both this run's own side effect: 4 Etsy PDFs dirtied by its Chromium re-render. Diffed against HEAD first: same byte count, 2 bytes differ, inside the embedded HeadlessChrome/Skia renderer-version string, not content. Discarded, reran clean: every gate passed, 28 warnings. GitHub's 30 issues unchanged, all decision/P0/blocked-on-art, none from Phil (26 days silent). Push floor not elapsed (~19h of 48h); no push sent.
+
+No new work started: nothing genuinely unblocked beyond the standing Phil-gated queue.
+
+Next for operator: same queue, OWNER-ACTIONS.md "Start here", the 30 open issues.
+
+Pushed: this entry, regenerated dashboard/state/deck. Not customer-facing.
+
+HANDOFF-FILES: none
+
 ## 2026-11-27, scheduled operator cycle: rotated the backlog's own due table, independently reconfirmed every lane exhausted, no new workstream
 
 Did: Attached per Step 0 (shallow, detached, real fetch --unshallow, 639 commits, checkout main, merge --ff-only, tree clean). Read CLAUDE.md, BACKLOG-2026-09-07.md and ROADMAP-2026-2029.md in full, GOALS.md's three load-bearing facts, STATUS.md sections 0-8, and the last several NIGHTLY-LOG.md entries. Ran preflight.py --skip-tests live to completion: 0 real FAIL, 29 standing warnings. Pulled GitHub's 30 open issues fresh via the API: unchanged since #65, every comment on issue #42 opened and traced in full, all agent-authored, none from Phil (last real commit still 2026-11-01). room_guide_underperformance.py --check-history run fresh: every one of the 20 rooms' partial rows carries a prior-mention citation. cold_read_ledger.py: 316/316 ledgered, 0 stale. inbox_agent.py --apply: no mail credential in this sandbox, unchecked, not assumed clean. Checked all 21 rotate_*.py --check scripts directly rather than cite them clean: 20 were, rotate_backlog.py was not (17 rows against its 15-row cap). Applied it: moved the 2 oldest rows to BACKLOG-2026-09-07-ARCHIVE.md, re-checked CLEAN at 15 rows, ops/tests/test_rotate_backlog.py 14/14.
