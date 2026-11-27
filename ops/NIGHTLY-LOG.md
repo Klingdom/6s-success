@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-11-27, PM check-in (~18:4x slot): previous work confirmed finished, no new work, checked doc-rotation hygiene fresh instead of re-deriving exhaustion from scratch
+
+NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", the 30 open decision/P0/blocked-on-art issues), because every open item is still waiting on Phil and none are newly unblocked.
+
+Attached per Step 0: fetch, 744 commits ff-only onto origin/main, tree clean.
+
+Previous work finished, verified not cited: preflight.py --skip-tests run live, 0 FAIL through every gate reached, stalled only at the documented network-bound gate_etsy_pdfs_current stall (unchecked past that, not a FAIL). GitHub's 30 open issues re-pulled fresh: unchanged roster, all decision/P0/blocked-on-art, none from Phil; his last real commit is still 2026-11-01, 26 days of silence now. Rather than re-run the same mining/history checks a dozen prior cycles today already did, ran the five living-doc rotation tools fresh instead (rotate_backlog, rotate_nightly_log, rotate_owner_actions, rotate_checkin_log, rotate_status_metadata): all five CLEAN, including NIGHTLY-LOG.md itself at 2.1MB/1029 entries, which is not in preflight's LIVING_DOC_SIZE_LIMITS dict but does have its own 14-day retention window and reports clean against it, so the missing dict entry is not a live gap the way GOALS.md's was on 2026-11-27 (A287). No new work started.
+
+Pushed: this entry, regenerated deck. Not customer-facing. No owner notification: nothing material changed since the last one.
+
+HANDOFF-FILES: none
+
 ## 2026-11-27, PM check-in (~18:0x slot): previous work confirmed finished, independently re-verified, no new work
 
 Attached per Step 0: real fetch --unshallow (742 commits), ff-only onto origin/main, tree clean.
