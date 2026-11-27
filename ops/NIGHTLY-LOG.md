@@ -15605,3 +15605,21 @@ Fresh checkout, unshallowed and fast-forwarded 43 commits onto `origin/main` cle
 
 HANDOFF-FILES: none
 
+
+## 2026-11-27, scheduled operator cycle: rotated the Done table, otherwise reconfirmed exhausted
+
+**Did.** Attached per Step 0 (shallow, detached, real fetch --unshallow, 708 commits fast forwarded, tree clean). Read CLAUDE.md, BACKLOG-2026-09-07.md, STATUS.md, OWNER-ACTIONS.md, last four log entries. Ran preflight.py to full completion in the background: every gate passed, 29 standing sandbox/credential/art warnings, 0 real FAIL. Found one genuinely due item: rotate_backlog.py reported 1 row past the 15 row cap. Applied it, re-checked clean, ran its 14 test cases, all pass.
+
+**Verified.** check_urls.py 236/236, affiliate.py --check 165 docs clean, fix_dashes.py --check 0/0, all 21 rotate_*.py --check clean after. GitHub's 30 open issues unchanged since #65, none from Phil (last real commit 2026-11-01, 26 days silent). room_guide_underperformance.py --check-history: every partial row site-wide carries a prior mention, mining lane mechanically exhausted. cold_read_ledger.py: 316/316, 0 stale. inbox_agent.py: no mail credential here. CI's last 5 runs all success.
+
+**Went well.** The rotation gate caught real, if small, drift before it grew.
+
+**Went not well.** Nothing new beyond the rotation; same Phil-gated queue as every recent cycle.
+
+**Changing next cycle.** Nothing; issue #42 is still Phil's to answer.
+
+**Next.** Same standing queue, OWNER-ACTIONS.md "Start here" and the 30 open issues.
+
+Pushed: this entry, the rotated backlog, regenerated command deck. Not customer-facing, IndexNow not applicable. No push notification: nothing material changed beyond the rotation.
+
+HANDOFF-FILES: none
