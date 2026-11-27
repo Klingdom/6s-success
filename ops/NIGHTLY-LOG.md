@@ -10,7 +10,29 @@ Attached clean per Step 0 (unshallowed, ff-only onto origin/main, 605 commits, t
 
 Reconfirmed directly: GitHub's 30 open issues unchanged, all decision/P0/blocked-on-art, none from Phil; git log --author=phil still 2026-11-01, 26 days silent. STATUS.md's 3 workstreams BLOCKED/CLOSED. BACKLOG-2026-09-07.md sections 2-6 archived/done/owner-gated. All 21 rotate_*.py --check clean.
 
+A concurrent scheduled operator cycle pushed its own entry (below) while this one worked; merged cleanly here rather than force.
+
 No new work started. Pushed: this entry, cycle-signal.json checkpoint, regenerated deck. Not customer-facing.
+
+HANDOFF-FILES: none
+
+## 2026-11-27, scheduled operator cycle: independently reconfirmed fully exhausted using the new history tool, no new work, no notification
+
+**Did.** Attached per Step 0: shallow detached checkout, real `fetch --unshallow`, 605 commits fast-forwarded onto `origin/main`, tree clean. Read CLAUDE.md, `BACKLOG-2026-09-07.md`, `STATUS.md`, `GOALS.md`, last `NIGHTLY-LOG.md` entries before touching anything.
+
+**Verified directly, not cited.** `preflight.py --skip-tests` run live to full completion: every gate passed, 29 warnings, all previously-documented sandbox/credential/art gaps (no SSH/Stripe credential, no local `build/heroes/`, network-blocked production checks); `core.hooksPath` was unset here and the gate's own self-heal set it. GitHub's 30 open issues re-pulled live: unchanged since #65, none from Phil (`git log --author=phil` still 2026-11-01, 26 days silent). `inbox_agent.py --apply`: no mail credential. `cold_read_ledger.py --next`: 316/316 ledgered, 0 stale, 0 candidates. All rotation gates (`rotate_*.py --check`) clean. `check_urls.py` 236/236, `affiliate.py --check` 165 docs clean, `fix_dashes.py --check` 0/0, `check_sellable.py` 124/126 (2 person-delivered services).
+
+Ran `room_guide_underperformance.py --check-history` (A285's new tool) fresh rather than trust yesterday's figure: every partial row across all 20 rooms now carries a prior-mention citation, mechanically confirming this lane is genuinely exhausted today, not merely still cited as such.
+
+**Went well.** The new history tool did real work this cycle instead of a hand grep.
+
+**Did not go well.** Nothing new found.
+
+**Changing next cycle.** Nothing; issue #42 stays Phil's to answer.
+
+**Next:** same standing queue, `OWNER-ACTIONS.md` "Start here" and the 30 open issues.
+
+Pushed: this entry, `ops/cycle-signal.json`, regenerated command deck. Not customer-facing. No push notification: the 2026-11-26T14:08:20Z push's 48h floor has not elapsed and nothing material changed since.
 
 HANDOFF-FILES: none
 
