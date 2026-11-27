@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-27 (~00:1x slot): previous work (A284, 23:4x check-in) finished and verified; closed a real STATUS.md currency gap instead of starting new work
+
+Attached per Step 0: real fetch/unshallow (561 commits), checkout main, merge ff-only, tree clean. Previous work finished: preflight.py --skip-tests ran live to full completion (not killed by its timeout this time), 0 real FAIL, 30 standing warnings. GitHub's 30 open issues unchanged since #65, none from Phil. Backlog sections 2-5 all archived, done, or Phil-gated.
+
+Nothing new was unblocked, so did the smallest closing work available: gate_status_currency flagged STATUS.md 8 commits stale. Traced each directly; three real (A281's gate_generator_ownership restore-scope fix, A280's Primary Bedroom wording gap, A284's reverted scorer widening), five routine. Brought STATUS.md current. Gap reconfirmed 0 before shipping.
+
+Handing to operator: same Phil-gated queue; issue #42's cadence question still open.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-26 (~23:4x slot): previous work reconfirmed finished independently, same 30-issue Phil-gated queue, nothing new unblocked
 
 NEXT FOR THE OPERATOR: same 30-issue Phil-gated queue, because `BACKLOG-2026-09-07.md` sections 2-4 are archived/done, section 5 is Hold-on-a-gate, and GitHub's open issues (re-pulled live) are all `decision`/`P0`/`blocked-on-art`, none from Phil since #65.
