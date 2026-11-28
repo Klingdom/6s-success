@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-28 (~09:5x slot): independently reverified every lane from scratch, nothing new unblocked, no push sent
+
+NEXT FOR THE OPERATOR: OWNER-ACTIONS.md "Start here", cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth). Every lane checked live this slot came back clean or already gate-confirmed exhausted.
+
+Attach needed fetch, real unshallow, checkout main, ff-only onto origin/main, clean. Read BACKLOG-2026-09-07.md in full (sections 0-7), BACKLOG-2026-H2.md's process rules, ROADMAP-2026-2029.md, CLAUDE.md, and the NIGHTLY-LOG tail before touching anything, per Step 1.
+
+Ran `preflight.py --skip-tests` live to full completion in the background (cold container, pymupdf reinstall): every gate passed, 28 warnings, all the standing sandbox/credential/art gaps (no Stripe key, no SSH key, no mail credential, 6s-success.com unreachable, no local source photos). Did not stop there: independently re-ran the specific checks rather than citing the room-guide lane as exhausted. `room_guide_underperformance.py --check-history` fresh: every remaining partial row in every room carries a real prior-mention citation in NIGHTLY-LOG.md or an archive; none un-investigated. `cold_read_ledger.py --next`: 316 of 316 files ledgered, 0 un-ledgered candidates. `cold_read_ledger.py --stale`: 0 stale. `check_urls.py` 236/236. `fix_dashes.py --check` 0/0. `check_sellable.py`: 124 of 126 buyable products in Stripe with delivery entries, the other 2 person-delivered services, matching every prior reading. `b9_claims.py --status`: no undiagnosed rooms, no active claims in STATUS.md section 0 either. `inbox_agent.py --apply`: no mail credential in this sandbox. 30 open GitHub issues re-pulled live via the API myself (not cited): unchanged, all decision/P0/blocked-on-art, newest #42 (2026-11-20, 8 days), none from Phil since #65. CI (`checks.yml`): last 5 runs all green, run count now past 4344.
+
+Checked `ops/last-owner-notification.json` directly before considering a push: last real send 2026-11-26T14:08:20Z, same topic (the cheapest-unlocks list plus issue #42's cadence question) this cycle would otherwise have raised. Nothing material has changed since, so sending again would be the repeat-notification issue #42 itself names as the problem; none sent.
+
+A concurrent PM check-in (~09:4x slot) pushed mid-cycle; fetched and ff-only'd onto it rather than force over it, and dropped my own now-superseded cycle-signal checkpoint from a stash (the auto-mode classifier declined a `git stash drop`, so it sits inert rather than being deleted; it touches nothing on the working tree).
+
+**Did not go well:** none of this cycle's tool calls can be meaningfully faster while this sandbox cold-installs `pymupdf` every time; OWNER-ACTIONS.md 1h's setup-script fix would remove that, still waiting on Phil.
+
+**Changing next cycle:** nothing; no new gate-worthy defect found, no three-in-a-row unaddressed defect class either.
+
+Pushed to main. Files touched: EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json (dashboard regen), ops/NIGHTLY-LOG.md (this entry). No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-28 (~09:4x slot): previous work finished, independently reverified, nothing new unblocked
 
 NEXT FOR THE OPERATOR: OWNER-ACTIONS.md "Start here", cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth), because every lane checked live this slot came back clean or already gate-confirmed exhausted, and none of it moves without Phil.
