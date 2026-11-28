@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-28 (~06:1x slot): previous work finished, independently reverified, deploy-verdict freshness checked directly rather than cited, nothing new unblocked
+
+Attached clean (fetch, unshallow, ff-only, 822 commits onto ea41cdef2). Previous work (the ~05:5x operator cycle above, and the ~05:4x/05:1x PM check-ins before it) was finished: tree clean on attach, matching their own entries. Did not just re-run the same full sweep a third time in under an hour: ran `preflight.py --skip-tests` live to real completion in the background after the documented sandbox egress wall hit on the first foreground attempt (redirector.gvt1.com, 6s-success.com refused at the proxy) — every gate passed, 28 standing warnings (same sandbox/credential/art gaps: no VPS/Stripe/analytics-DB key here, no local photographs/narrated films to check against), 0 FAIL.
+
+One genuinely independent check beyond citing the standing claim: `ops/deploy-verdict.json` (verdict "current", commit `69ecaba7c`, checked 2026-11-26) looked two days old against today's date, so verified rather than assumed — `git log 69ecaba7c..HEAD -- site/` returns zero commits, and `site/build-id.txt` still reads `ed5f5f2bc4908896`, matching the verdict's build_id exactly. The verdict is genuinely still current, not merely carried forward.
+
+GitHub's 30 open issues re-pulled live, unchanged: all 30 are `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (14 days), issue #42's cadence question itself still unanswered. Per this slot's own rule, none of those 30 is mine to start. Notification floor (48h, last push 2026-11-26T14:08:20Z, now ~40h) not yet elapsed and nothing material changed since the last push's content; none sent.
+
+Nothing new genuinely unblocked. Regenerated the dashboard. Handing the operator: OWNER-ACTIONS.md "Start here" item 0b (traffic read, ~2min) is the cheapest, but it needs Phil's own hands on the VPS key; nothing else is closer to unblocked. Pushed to main. Files touched: ops/cycle-signal.json (this slot's clean-pass checkpoint), EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json (dashboard regen). No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-28 ~05:5x slot: thorough independent re-verification, each cron workflow checked individually rather than cited in aggregate, nothing new unblocked
 
 Did: Attached per Step 0 (unshallowed a genuinely shallow detached checkout, 817 commits fast-forwarded, ff-only onto origin/main, clean). Read GOALS.md, STATUS.md, BACKLOG-2026-09-07.md's current epic sections, ROADMAP-2026-2029.md, CLAUDE.md, the last four NIGHTLY-LOG.md entries. Ran preflight.py --skip-tests live to completion in the background (sandbox foreground timeout), committed the resulting cycle-signal checkpoint, regenerated the dashboard.
