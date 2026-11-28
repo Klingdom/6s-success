@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-28 ~04:5x slot: found and fixed a real 3-FAIL preflight regression (stray generator dirt on how-to-clean-anything.html), independently reconfirmed the rest exhausted
+
+Attached per Step 0 (806 commits fast-forwarded, real unshallow, ff-only, clean). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, last log entries first.
+
+cycle_signal.py --check: SAME, so skipped the redundant full local re-read and ran the mandatory independent checks: GitHub's 30 issues unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (27 days). Read issue #42's full thread directly: nothing new since 2026-11-20, every comment self-authored, cadence question still unanswered. checks.yml green on the last 5 runs. inbox_agent.py: no mail credential here, unchecked.
+
+preflight.py --skip-tests, live, to full completion: first pass found 3 real FAIL (nav-current, sitemap-lastmod-current, generator-ownership), one root cause: site/how-to-clean-anything.html was dirty in the working tree, missing its PWA tags/AVIF source, the same killed-mid-generator-run shape A276/A281 name. Regenerated through its owner, ops/build_cleaning_index.py (CLAUDE.md 5b), not hand-edited: diff against HEAD came back empty, confirming the commit was right all along. Re-ran preflight to full completion: every gate passed, 27 standing warnings. Fail-then-pass confirmed directly.
+
+Also reconfirmed directly: check_urls.py 236/236, affiliate.py --check clean, fix_dashes.py 0/0, audit_pages.py 0 findings, link_graph_report.py 0 orphans, check_sellable.py --deep 124/126 (2 person-delivered), all 21 rotate_*.py CLEAN, cold_read_ledger.py 316/316, 0 un-ledgered. room_guide_underperformance.py --check-history fresh: every remaining partial row (0-12% uncovered) already cited; lane genuinely exhausted.
+
+Notification: last push 2026-11-26T14:08:20Z, ~39h, inside the 48h floor; nothing material beyond the routine fix above, none sent.
+
+Went well: the 3-FAIL result traced to one real cause, closed by regenerating, not reverting.
+
+Did not go well: same Phil-gated state; nothing else new.
+
+Changing next cycle: none.
+
+Next: OWNER-ACTIONS.md "Start here", cheapest first (#64, #58, #46).
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-28 (~04:1x slot): previous work finished, independently reconfirmed exhausted, nothing new unblocked
 
 Attached clean onto origin/main (fetch, unshallow, ff-only, 804 commits). Previous work was finished: tree clean and pushed on attach. Verified live: preflight.py --skip-tests recorded a partial pass against current HEAD; the full run collided with a concurrent preflight (pid 2791), so this cycle waited rather than force past the lock, per Step 8. All six rotators CLEAN. check_urls.py 236/236, fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0. GitHub's 30 open issues re-pulled live: unchanged, all decision-labelled, none from Phil since #42 (2026-11-20, 8 days). Notification floor (48h, last sent 2026-11-26T14:08:20Z) not elapsed, nothing material changed, none sent. Nothing new genuinely unblocked. Dashboard regenerated, pushed to main.
