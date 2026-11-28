@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-28 (~05:1x slot): previous work finished and independently reverified, nothing new unblocked
+
+Attached clean (fetch, unshallow, ff-only, 806 commits). Previous work (the ~04:5x operator cycle's 3-FAIL how-to-clean-anything.html regeneration fix) was finished: independently re-ran ops/build_cleaning_index.py, diff against HEAD empty, confirming the fix. Full preflight.py --skip-tests run live to completion: every gate passed, 27 standing warnings, 0 FAIL. All six rotators CLEAN. check_urls.py 236/236, fix_dashes.py 0/0, cold_read_ledger.py 0 stale. room_guide_underperformance.py --check-history: every remaining partial row already cited, lane genuinely exhausted. GitHub's 30 open issues unchanged, none from Phil since #42 (2026-11-20, 8 days). Notification floor (48h, last sent 2026-11-26T14:08Z) not elapsed, nothing material changed, none sent. Nothing new genuinely unblocked. Handing the operator: OWNER-ACTIONS.md "Start here", cheapest first (#64, #58, #46).
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-28 ~04:5x slot: found and fixed a real 3-FAIL preflight regression (stray generator dirt on how-to-clean-anything.html), independently reconfirmed the rest exhausted
 
 Attached per Step 0 (806 commits fast-forwarded, real unshallow, ff-only, clean). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, last log entries first.
