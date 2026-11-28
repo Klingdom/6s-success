@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-28 (~09:1x slot): previous work finished, independently reverified, nothing new unblocked
+
+NEXT FOR THE OPERATOR: OWNER-ACTIONS.md "Start here", cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth), because every lane checked live this slot came back clean or already gate-confirmed exhausted, and none of it moves without Phil.
+
+Attach needed fetch, a real unshallow (849 commits, ran to completion), checkout main, ff-only onto origin/main, clean. Previous work (the ~08:4x PM check-in) was finished: tree clean and pushed on attach, matching its own entry.
+
+Re-verified live, not cited. `preflight.py --skip-tests` ran to full completion in the background after a concurrent run briefly held the lock: every gate passed, 28 standing sandbox/credential/art warnings, 0 FAIL, clean-pass checkpoint recorded against current HEAD. 30 open GitHub issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, newest #42 (2026-11-20, 8 days), none from Phil since #65. Read `BACKLOG-2026-09-07.md` sections 1b through 5 directly rather than trust "exhausted": every row is Archived, Done, or explicitly waiting on a Phil action (Gemini billing for C5, a local workstation fix, traffic/account decisions). Nothing new genuinely unblocked.
+
+Pushed to main. Files touched: `ops/cycle-signal.json` (clean-pass checkpoint), `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` (dashboard regen). No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-28 (~08:4x slot): previous work finished, independently reverified, nothing new unblocked
 
 NEXT FOR THE OPERATOR: OWNER-ACTIONS.md "Start here", cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth), because every lane checked live this slot came back clean or already gate-confirmed exhausted, and none of it moves without Phil.
