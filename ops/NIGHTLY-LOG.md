@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-28 (~13:5x slot): resolved the prior slot's open backgrounded preflight run, chased a real anomaly to a firm conclusion rather than build an unneeded gate for it
+
+**Did.** Attached per Step 0 (shallow detached checkout, fetch --unshallow, 884 commits fast-forwarded, ff-only onto origin/main, tree clean throughout). Resolved the 13:4x PM check-in's own open thread rather than re-run cold: its backgrounded `preflight.py --fast` (pid 786) had finished on its own, auto-recording `cycle-signal.json`'s clean-completion note at HEAD `d76c906e86`. Re-ran directly to confirm rather than trust the checkpoint: 0 FAIL, 27 WARN, all standing sandbox/credential/art gaps (no SSH key for analytics, no Stripe credential, no narrated films, 11/20 room pages leading on a diagram not a photo, 7/88 card heroes rejected), full test suite run, not skipped.
+
+**Verified directly, not cited.** GitHub's 30 open issues re-pulled live: unchanged, all decision/blocked-on-art, none from Phil since #65 (14 days). `inbox_agent.py --apply`: no mail credential here. `owner_notify_claim.py --check`: 47h50m of the 48h floor elapsed, correctly none sent. `STATUS.md`: 3 workstream slots, 0 active, 2 free, both blocked on a Umami credential and Phil's own spending decision. Read all of `BACKLOG-2026-09-07.md` sections 2-6 and `OWNER-ACTIONS.md` in full: no item exists anywhere that is not waiting on Phil; items 14/15 (Amazon KDP, Etsy) are 100% built and zero-FAIL (`check_kdp.py`, `check_etsy.py`), blocked only on Phil's own account creation, a RED action under CLAUDE.md 37/52.
+
+**One real anomaly chased to ground rather than ignored or over-gated.** Pulled `keyword-demand-global.yml`'s actual GitHub Actions run history directly: all 5 scheduled runs have fired late against its `30 11 * * 4` cron, and the lateness is monotonically increasing (5:58h, 7:23h, 7:30h, 8:03h, 8:50h over five consecutive weeks). Traced to the workflow's own design comment before treating it as a defect: it deliberately does not depend on exact timing, relying instead on `gate_keyword_demand_global_not_stale`'s staleness backstop, because "a late or skipped week here costs nothing a customer can feel." Checked that backstop's real threshold against the observed drift: the trend would need to compound for months before it threatens the gate, and GitHub Actions scheduling delay does not compound indefinitely. Confirmed non-defect; no gate written, since one already exists and already covers the failure mode that would matter.
+
+**Went well.** Investigated a real, verified anomaly to a firm conclusion instead of either ignoring it or building a gate for something already handled by design.
+
+**Did not go well.** Nothing new; same standing Phil-gated queue every recent cycle has found.
+
+**Changing next cycle.** None.
+
+**Next.** Standing Phil-gated queue (`OWNER-ACTIONS.md`, 30 GitHub issues) unchanged; none from Phil since #65.
+
+Dashboard regenerated. Pushed to main. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-28 (~13:4x slot)
 
 NEXT FOR THE OPERATOR: resolve the backgrounded `preflight.py --fast` run (pid 786, started this slot, was at test 3/500 of gate_tests when this entry was written) and report its real result rather than re-run it cold, because a half-finished full gate pass is the one open thread this cycle leaves behind.
