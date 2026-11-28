@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-28 (~07:4x slot): previous work finished, independently reverified, nothing new unblocked
+
+NEXT FOR THE OPERATOR: OWNER-ACTIONS.md "Start here", cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth), because every lane checked live this slot came back clean or already gate-confirmed exhausted, and none of it moves without Phil.
+
+Attach needed fetch, unshallow (831 commits), ff-only onto origin/main, clean. Previous work (the ~07:1x PM check-in and ~06:5x operator cycle) was finished: tree clean and pushed on attach.
+
+Re-verified live rather than cited: a foreground `preflight.py --skip-tests` hit this sandbox's documented egress wall (redirector.gvt1.com, 6s-success.com refused at the proxy) and was discarded as unchecked, not reported as a result, per CLAUDE.md 0.4. Re-ran backgrounded to real completion: every gate passed, 28 standing sandbox/credential/art warnings, 0 FAIL, `cycle_signal` recorded a clean pass against the current HEAD. All 6 rotators' own `--check` run live: CLEAN, nothing due. `cold_read_ledger.py --stale`: 0 stale. 30 open GitHub issues re-pulled fresh, sorted by updated_at: unchanged, all `decision`/`P0`/`blocked-on-art`, newest is #42 (2026-11-20, 8 days) with every comment self-authored, none from Phil. `git log --author=phil`: last commit 2026-11-01, 27 days of owner silence. 0 open PRs. Notification floor (48h, last push 2026-11-26T14:08:20Z, now ~41.7h) not yet elapsed and nothing material changed; none sent.
+
+Nothing new genuinely unblocked. OWNER-ACTIONS.md's "Start here" and the standing Phil-gated queue are unchanged from every cycle today.
+
+Pushed to main. Files touched: `ops/cycle-signal.json` (this slot's clean-pass checkpoint) only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-28 (~07:1x slot): previous work finished, independently reverified the full state, nothing new unblocked
 
 Previous work (the 06:5x operator and 06:4x PM cycles) was finished: tree clean and pushed on attach, which needed a real fetch, unshallow (824 commits) and ff-only onto origin/main.
