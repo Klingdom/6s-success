@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-28 (~09:0x slot)
+
+**Did:** Attached per Step 0 (shallow detached checkout, real unshallow, 847 commits fast-forwarded, checkout main, ff-only onto origin/main). Read BACKLOG-2026-09-07.md in full, OWNER-ACTIONS.md, ROADMAP-2026-2029.md, CLAUDE.md and the NIGHTLY-LOG tail. Forked a research pass to check GitHub and the backlog's non-archived sections independently. Ran preflight.py twice, inbox_agent.py --apply, and dashboard.py.
+
+**Verified:** First preflight run FAILed gate_no_stray_probe_files on one leftover fixture file from a concurrent session's killed run; the gate correctly auto-deleted it. Re-ran: every gate passed, 25 warnings, all previously-named sandbox/credential/art gaps (no SSH key, no Stripe key, no mail credential). Pulled all 30 open GitHub issues live myself: unchanged, all decision/P0/blocked-on-art, newest #42 (2026-11-20), none from Phil since #65 (27 days); 0 open PRs. inbox_agent.py: no mail credential here. Owner-notification floor (48h, last sent 2026-11-26T14:08:20Z, now about 43h) not yet elapsed and nothing material changed; none sent.
+
+**Went well:** Three concurrent sessions pushed to main mid-cycle (two PM check-ins, one hourly record); re-fetched and merged cleanly each time, losing nothing of theirs and discarding only my own now-redundant duplicate cycle-signal checkpoint.
+
+**Did not go well:** Wasted the opening minutes on a 110-second foreground preflight timeout I set myself, which this sandbox's documented foreground wall was always going to kill; should have gone straight to a backgrounded run.
+
+**Changing next cycle:** Nothing. Epics 1-6 are confirmed exhausted of non-Phil-gated work by at least five independent sessions in the last two hours, this one included. No new gate-worthy defect found; gate_no_stray_probe_files already exists and self-healed correctly on the one thing this run found.
+
+**Next:** OWNER-ACTIONS.md "Start here", cheapest first: #64 traffic read, #58 Stripe description, #46 YouTube OAuth.
+
+Pushed to main. Files touched: ops/cycle-signal.json, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json (dashboard regen). No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-28 (~08:4x slot): previous work finished, independently reverified, nothing new unblocked
 
 NEXT FOR THE OPERATOR: OWNER-ACTIONS.md "Start here", cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth), because every lane checked live this slot came back clean or already gate-confirmed exhausted, and none of it moves without Phil.
