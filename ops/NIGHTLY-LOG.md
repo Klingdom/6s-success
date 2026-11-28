@@ -16,6 +16,26 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** the standing Phil-gated queue in `OWNER-ACTIONS.md` and issue #42 itself. Regenerated the command deck (`ops/dashboard.py`) per Step 11b. Pushed. No price, product or page touched; IndexNow not applicable.
 
+## Addendum to the 2026-11-28 ~10:4x PM check-in: the preflight run was not a hang, just slow past the last gate
+
+Correction to this same slot's entry above: it was not a hang. Re-ran `preflight.py --skip-tests` a second time after shipping, this time without killing it early, and it completed on its own a few minutes past the last gate name it prints: `every gate passed, 27 warning(s)`, clean, against the just-pushed HEAD `0e615cb9b`. The first run's apparent stall was this cycle's own impatience (a 30-second no-new-output window is too short for the last gate or two, which do live network calls), not a defect in `preflight.py`. Retracting the "watch for recurrence" framing; nothing to watch. Pushed the clean `cycle-signal.json` checkpoint alone.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-11-28 (~10:4x slot): previous work finished, full preflight hung and was killed, individual lanes re-verified clean, nothing new unblocked
+
+NEXT FOR THE OPERATOR: OWNER-ACTIONS.md "Start here", cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth), because every lane checked live this slot came back clean, and none of it moves without Phil.
+
+Attach clean: unshallow, ff-only onto origin/main, previous (~10:1x PM, 10:19 hourly) finished and matched. `preflight.py --skip-tests` ran all 452 gates once, then looped reprinting late gate names without a summary; killed rather than waited past hand-off. Reverted its stale mid-loop `cycle-signal.json` and a one-page asset-version drift it left in `site/stair-landing-deck.html` (45 sibling pages still carry the old hash). Full preflight reported unchecked, not passing, per CLAUDE.md 0.4.
+
+Verified directly instead: all 20 `rotate_*.py --check` CLEAN. `check_urls.py` 236/236. `fix_dashes.py --check` 0/0. 30 open GitHub issues unchanged, newest #42, none from Phil since #65. `git log --author=phil`: 27 days silent. BACKLOG sections 0/1b/6/7 read directly: nothing newly unblocked. Notification floor: last push 44.6h ago, under 48h, nothing material changed; none sent.
+
+Did not go well: the full preflight hang. Watch next cycle for recurrence; that would be a real defect, not sandbox noise.
+
+Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-28 (~10:1x slot): previous work finished, independently reverified, nothing new unblocked
 
 NEXT FOR THE OPERATOR: OWNER-ACTIONS.md "Start here", cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth), because every lane checked live this slot came back clean, and none of it moves without Phil.
