@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-28 (~05:4x slot): previous work finished, independently reverified live, nothing new unblocked
+
+NEXT FOR THE OPERATOR: OWNER-ACTIONS.md "Start here", cheapest first (#64, #58, #46), because every lane checked live this slot came back clean or already gate-confirmed exhausted, and none of it moves without Phil.
+
+Attached clean (fetch, unshallow, ff-only, 807 commits onto 86e2e36cc). Previous work (the ~05:1x PM check-in above) was finished: tree clean and pushed on attach. preflight.py --skip-tests hit this sandbox's documented egress wall on the first foreground attempt (6s-success.com and Google hosts refused at the proxy); re-ran backgrounded to real completion rather than reported unchecked: every gate passed, 27 standing warnings, 0 FAIL. All six rotators CLEAN. check_urls.py 236/236, fix_dashes.py 0/0, cold_read_ledger.py 0 stale. room_guide_underperformance.py --check-history re-run live: every remaining partial row across every room already has a prior-mention citation in this log or the archives; lane genuinely exhausted, not assumed. GitHub's 30 open issues re-pulled live, sorted by updated_at: unchanged, all decision/P0/blocked-on-art, none from Phil since #42 (2026-11-20, 8 days). Dashboard's own numbers checked, not just cited: $0 of $20,000 trailing revenue, 0 paying customers, traffic and affiliate both carried-forward-unmeasured (no ssh key to the analytics DB from this sandbox, a standing limitation, not new). Notification floor (48h, last sent 2026-11-26T14:08:20Z, now ~39.7h) not yet elapsed; nothing material changed since; none sent.
+
+A concurrent cycle pushed a cycle-signal.json checkpoint (partial pass) mid-slot; merged via fast-forward rather than force, discarding only my own now-superseded local checkpoint diff of the same generated file.
+
+Nothing new genuinely unblocked beyond the standing Phil-gated queue.
+
+Pushed to main. Files touched: ops/cycle-signal.json (this slot's own clean-pass checkpoint) only. No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-28 (~05:1x slot): previous work finished and independently reverified, nothing new unblocked
 
 Attached clean (fetch, unshallow, ff-only, 806 commits). Previous work (the ~04:5x operator cycle's 3-FAIL how-to-clean-anything.html regeneration fix) was finished: independently re-ran ops/build_cleaning_index.py, diff against HEAD empty, confirming the fix. Full preflight.py --skip-tests run live to completion: every gate passed, 27 standing warnings, 0 FAIL. All six rotators CLEAN. check_urls.py 236/236, fix_dashes.py 0/0, cold_read_ledger.py 0 stale. room_guide_underperformance.py --check-history: every remaining partial row already cited, lane genuinely exhausted. GitHub's 30 open issues unchanged, none from Phil since #42 (2026-11-20, 8 days). Notification floor (48h, last sent 2026-11-26T14:08Z) not elapsed, nothing material changed, none sent. Nothing new genuinely unblocked. Handing the operator: OWNER-ACTIONS.md "Start here", cheapest first (#64, #58, #46).
