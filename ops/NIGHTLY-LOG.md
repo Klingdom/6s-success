@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-28 (~14:1x slot): previous work finished, ran a full live preflight pass rather than cite the prior one, nothing new unblocked
+
+Previous work (13:5x operator cycle) was finished: tree clean and pushed on attach (fetch --unshallow, 892 commits fast-forwarded, ff-only onto origin/main).
+
+Verified rather than cited: ran `preflight.py --skip-tests` live to full completion against this exact HEAD rather than trust the prior cycle's pass at an older commit; every gate passed, 30 standing sandbox/credential/art warnings (no Stripe/mail credential, `build/heroes/` absent, no narrated films, 7/88 card heroes rejected), 0 real FAIL. Mid-run it transiently stripped a query string from `site/zones/index.html`; self-healed on completion, confirmed clean after. All 20 `rotate_*.py --check` run directly: CLEAN, nothing due. `check_urls.py` 236/236, `fix_dashes.py --check` 0 em/en dashes. GitHub's 30 open issues re-pulled live: unchanged roster, every one `decision`/`P0`/`blocked-on-art`, none from Phil since #65; `git log --author=phil` still 2026-11-01, 27 days of owner silence. `STATUS.md` section 14: Workstreams 1/2 BLOCKED on Phil (traffic-read credential, spending decision), 3 CLOSED, no replacement opened because nothing in the backlog is both unblocked and workstream-sized. CI green on the last 5 runs.
+
+**Notification:** `owner_notify_claim.py --check` now reports the 48h floor elapsed (last real push 2026-11-26T14:08:20Z). Did not send: nothing material changed since then, same 30 issues and same owner silence every sibling cycle has already found, matching this repository's own standing practice that the floor is a duplicate-send backstop, not a re-notify trigger.
+
+Nothing new genuinely unblocked beyond the standing Phil-gated queue. Handing the operator the same queue, unchanged.
+
+Dashboard regenerated. Pushed to main. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-28 (~13:5x slot): resolved the prior slot's open backgrounded preflight run, chased a real anomaly to a firm conclusion rather than build an unneeded gate for it
 
 **Did.** Attached per Step 0 (shallow detached checkout, fetch --unshallow, 884 commits fast-forwarded, ff-only onto origin/main, tree clean throughout). Resolved the 13:4x PM check-in's own open thread rather than re-run cold: its backgrounded `preflight.py --fast` (pid 786) had finished on its own, auto-recording `cycle-signal.json`'s clean-completion note at HEAD `d76c906e86`. Re-ran directly to confirm rather than trust the checkpoint: 0 FAIL, 27 WARN, all standing sandbox/credential/art gaps (no SSH key for analytics, no Stripe credential, no narrated films, 11/20 room pages leading on a diagram not a photo, 7/88 card heroes rejected), full test suite run, not skipped.
