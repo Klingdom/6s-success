@@ -24,6 +24,18 @@ Next: OWNER-ACTIONS.md "Start here", cheapest first (#64, #58, #46).
 
 HANDOFF-FILES: none
 
+## PM check-in, 2026-11-28 (~04:4x slot): previous work finished, caught a one-off self-inflicted preflight FAIL, nothing new unblocked
+
+NEXT FOR THE OPERATOR: standing Phil-gated queue in OWNER-ACTIONS.md "Start here" and the 30 open GitHub issues, because every lane checked live this slot came back clean or already gate-confirmed exhausted, none unblocked without Phil.
+
+Attached clean (806 commits fast-forwarded). preflight.py --skip-tests hit a real 3-gate FAIL first run: this cycle's own generator-ownership regeneration left a listing PNG at 0 bytes against a good 447993-byte HEAD blob. Restored with git checkout --, re-ran clean with nothing concurrent: every gate passed, 27 warnings, confirming a one-off render glitch, not a reproducible defect. All six rotators CLEAN, cold-read 0 stale, check_urls 236/236, fix_dashes 0/0. GitHub's 30 issues unchanged since #42 (8 days), none from Phil. Room-guide/keyword-gap lanes stay exhausted; deck-print-tier and cross-surface-tie warnings both match their own standing decisions (D-027), not new.
+
+No push notification: last sent 2026-11-26, nothing material changed.
+
+Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-28 (~04:1x slot): previous work finished, independently reconfirmed exhausted, nothing new unblocked
 
 Attached clean onto origin/main (fetch, unshallow, ff-only, 804 commits). Previous work was finished: tree clean and pushed on attach. Verified live: preflight.py --skip-tests recorded a partial pass against current HEAD; the full run collided with a concurrent preflight (pid 2791), so this cycle waited rather than force past the lock, per Step 8. All six rotators CLEAN. check_urls.py 236/236, fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0. GitHub's 30 open issues re-pulled live: unchanged, all decision-labelled, none from Phil since #42 (2026-11-20, 8 days). Notification floor (48h, last sent 2026-11-26T14:08:20Z) not elapsed, nothing material changed, none sent. Nothing new genuinely unblocked. Dashboard regenerated, pushed to main.
