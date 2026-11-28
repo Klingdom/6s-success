@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-28 (~08:0x slot): independently reverified the full state including a real gate_tests pass, nothing new unblocked, did not duplicate the concurrent 07:4x check-in's work
+
+Attach needed fetch, unshallow (831 commits), `checkout main`, `merge --ff-only` onto `origin/main`, clean. A concurrent PM check-in (~07:4x slot, `8016179d0`) pushed mid-cycle; re-fetched and ff-only'd onto it, discarding only my own in-flight `ops/cycle-signal.json` checkpoint (never committed) rather than anything of theirs.
+
+Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the last several `ops/NIGHTLY-LOG.md` entries before touching anything, per Step 1.
+
+**Did not re-run work the 07:4x check-in had already done minutes earlier**, confirmed by reading its own entry above rather than assumed: it had already re-pulled the 30 open GitHub issues (unchanged, newest #42 at 2026-11-20, 8 days, every comment self-authored, none from Phil), confirmed `git log --author=phil` stops at 2026-11-01 (27 days of owner silence, re-confirmed independently here too), and run `preflight.py --skip-tests` to a clean background completion.
+
+**What this cycle added rather than repeated:** a full `preflight.py` run, not `--skip-tests`, reaching `gate_tests` for real (500 test files this time, up from 483) and completing in the background: **every gate passed, 26 warning(s)**, all standing sandbox/credential/art gaps, 0 FAIL. Most recent cycles have run `--fast` or `--skip-tests` because of this sandbox's documented foreground wall; a from-scratch full pass including the real test suite is the stronger evidence CLAUDE.md 0.4 asks for, and it is clean.
+
+Independently re-ran `room_guide_underperformance.py --check-history` myself rather than cite the standing "exhausted" framing: every single remaining partial row, across all 20 rooms, now carries a prior-mention citation from `candidate_history.py` (0 rows with no history note). This is the strongest confirmation yet that the room-guide mining lane (epics 5/6) is genuinely exhausted, not merely re-asserted.
+
+`inbox_agent.py --apply`: no mail credential in this sandbox, unchecked. `check_urls.py`: 236/236. `link_graph_report.py`: 0 orphans across zones, rooms and articles. RISKS.md's remaining OPEN CRITICAL/HIGH items (RISK-0007 host-loss restore drill) are unchanged, waiting on a session with the real VPS key, which this sandbox does not hold.
+
+**Nothing new genuinely unblocked.** Every lever in epics 1 through 4 needs a credential or decision this sandbox does not have (traffic read, Stripe description, YouTube OAuth, Gemini billing, KDP/Etsy/accounts-layer decisions, the cloud-environment network-allowlist approval in `OWNER-ACTIONS.md` item 1h); epic 5/6's one open lane (room-guide wording gaps) is confirmed fully mined. Did not manufacture a new `FORMAT_WORDS` candidate or a new meta-gate to appear productive; CLAUDE.md 0.8 and section 10b both warn against adding activity faster than it closes, and this repository's own `gate_nightly_log_cycle_saturation` (built yesterday) already makes that specific failure mode visible without a fresh gate needed today.
+
+Regenerated the command deck (`ops/dashboard.py`): YELLOW, $0 of $20,000 (carried forward, Stripe unreachable this sandbox), 10 P0 items open, 1408 commits in 7 days. No price, product or page touched; `IndexNow` not applicable, no `site/` page changed. Owner-notification 48h floor not yet elapsed (last push 2026-11-26T14:08:20Z) and nothing material changed beyond routine verification; none sent.
+
+Pushed to main. Files touched: `ops/cycle-signal.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` (dashboard regen), this entry.
+
 ## PM check-in, 2026-11-28 (~07:4x slot): previous work finished, independently reverified, nothing new unblocked
 
 NEXT FOR THE OPERATOR: OWNER-ACTIONS.md "Start here", cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth), because every lane checked live this slot came back clean or already gate-confirmed exhausted, and none of it moves without Phil.
