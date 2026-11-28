@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-28 (~02:4x slot): previous work finished, independently reconfirmed exhausted, nothing new unblocked
+
+NEXT FOR THE OPERATOR: standing Phil-gated queue in OWNER-ACTIONS.md "Start here" and the 30 open GitHub issues, unchanged, because every lane checked live this slot came back clean or already exhausted, none unblocked without Phil.
+
+Attached clean per Step 0, ff-only onto origin/main. Previous work was finished: tree clean and pushed on attach. Verified live: `preflight.py --skip-tests` every gate passed, 29 standing warnings (one new, cosmetic: the prior entry was missing its HANDOFF-FILES line; not re-edited, this entry written with `ops/nightly_log.py` instead). `check_urls.py` 236/236, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0, all 6 rotators CLEAN. GitHub's 30 issues unchanged, none from Phil since #42 (2026-11-20, 8 days). Notification floor (48h, last sent 2026-11-26T14:08:20Z) not elapsed, nothing material changed, none sent.
+
+Nothing new unblocked. Room-guide and keyword-gap lanes stay gate-confirmed exhausted. Pushed to main; dashboard regenerated.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-28: previous work finished, found and fixed my own self-inflicted preflight dirt, confirmed the keyword-gap lane genuinely exhausted
 
 Attach needed a real unshallow (796 commits behind), then a clean fast-forward onto origin/main, no reset or force. Previous work was finished: tree clean and pushed on attach.
