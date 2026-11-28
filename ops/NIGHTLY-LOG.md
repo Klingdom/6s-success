@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-28 (~06:5x slot): independently reverified the full state from scratch rather than cite it, nothing new unblocked
+
+Did: Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, 824 commits fast-forwarded, ff-only onto origin/main, clean). Read GOALS.md, BACKLOG-2026-09-07.md sections 0-7, CLAUDE.md, and the last several NIGHTLY-LOG.md entries before touching anything. Ran preflight.py --skip-tests live to full completion in the background. Pulled GitHub's 30 open issues fresh and read issue #42's full comment thread end to end rather than trust a summary. Ran inbox_agent.py --apply, cold_read_ledger.py --next and --stale, all 6 rotate_*.py --check, check_urls.py, fix_dashes.py --check, room_guide_underperformance.py --check-history, and owner_notify_claim.py --check directly rather than cite a prior cycle's numbers. Separately pulled the last run of checks.yml, fulfil-orders.yml, keyword-demand.yml and keyword-demand-global.yml from the Actions API to confirm delivery and content crons are actually green, not assumed from CI's own badge.
+
+Verified: 0 real FAIL, 28 standing sandbox/credential/art warnings. All 30 issues unchanged, every comment on #42 self-authored, none from Phil since #65 (15 days). No mail credential. Cold-read ledger 316/316, 0 un-ledgered, 0 stale. All 6 rotators CLEAN. check_urls 236/236, fix_dashes 0/0. Room-guide lane: every remaining partial row (0-5% uncovered, all rooms) already carries a prior-mention citation. fulfil-orders, checks.yml and both keyword-demand crons all green on their latest run. Notification floor: last push 2026-11-26T14:08:20Z, not yet at 48h, nothing material changed; none sent, confirmed via owner_notify_claim.py --check rather than a mental clock.
+
+Went well: verified every claim first-hand this cycle instead of citing today's many earlier entries, including the GitHub Actions cron health nobody had checked individually today.
+
+Did not go well: same fully Phil-gated state as every other cycle today; nothing genuinely new to ship.
+
+Changing next cycle: none; no new defect class found, and gate_nightly_log_cycle_saturation already names this pattern.
+
+Next: OWNER-ACTIONS.md "Start here", cheapest first (#64 traffic read, #58 Stripe description/logo, #46 YouTube OAuth).
+
+Pushed to main. Files touched: ops/cycle-signal.json, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json (dashboard regen only). No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-28 (~06:4x slot): previous work finished, caught and discarded a self-inflicted truncated preflight result, nothing new unblocked
 
 NEXT FOR THE OPERATOR: OWNER-ACTIONS.md "Start here" items 0b/1d/1h, because every lane re-checked live this slot is already gate-confirmed exhausted and none of it moves without Phil.
