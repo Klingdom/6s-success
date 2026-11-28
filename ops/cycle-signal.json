@@ -1,8 +1,8 @@
 {
   "combined_hash": "e116e48ce100097b14e884d9bc893127f287024b1b23ae32d7312079b29d9ead",
-  "git_head": "6e454c84147ce49db58e58017ee1531f16073dd0",
-  "note": "near-full pass via --skip-tests: every gate except gate_tests passed, test suite itself not run this pass, git HEAD 6e454c8414",
-  "recorded_at": "2026-11-28T11:17:04Z",
+  "git_head": "b8e979f63516286f570cf99e9b77cdaaf5a7de06",
+  "note": "near-full pass via --skip-tests: every gate except gate_tests passed, test suite itself not run this pass, git HEAD b8e979f635",
+  "recorded_at": "2026-11-28T11:49:43Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "264935299948ad9bc7cb035cd6a23201830a44d5641e00c94354f244f0a5f5e2",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",

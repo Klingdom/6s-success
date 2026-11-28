@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-28 (~11:4x slot): previous work finished, independently reverified, nothing new unblocked
+
+NEXT FOR THE OPERATOR: OWNER-ACTIONS.md "Start here", cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth), because every lane checked live this slot came back clean, and none of it moves without Phil.
+
+Attach needed a real `fetch --unshallow` from a shallow detached checkout; unshallowed, checked out main, ff-only onto origin/main, clean. Previous work (~11:1x PM and the hourly check-in) was finished: tree clean and pushed, matching its own entry.
+
+Verified rather than cited: `preflight.py --skip-tests` run live to full completion (a first mid-run `cycle-signal.json` checkpoint write was discarded as a stale partial pass before the real one landed), 0 real FAIL, 29 standing sandbox/credential/art warnings. All 20 `rotate_*.py --check` clean, nothing due (the 21st file, `rotate_backlog_journal_core.py`, is shared logic with no CLI output, not a gap). `check_urls.py` 236/236, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 docs clean. `room_guide_underperformance.py --check-history` re-run live: 0 gap rows anywhere, every remaining partial row across every room already carries a prior-mention citation in this log or an archive, confirming the lane named `gate_room_guide_mining_diminishing_returns` is still exhausted, not merely re-asserted. GitHub's 30 open issues re-pulled live: unchanged since #65, none from Phil since 2026-11-01 (27 days, confirmed via `git log --author=phil`). CI green on the last 5 runs. Owner-notification floor: `ops/last-owner-notification.json` read directly, last real send 45.6h ago, under the 48h floor, nothing material changed; none sent.
+
+Today's `ops/NIGHTLY-LOG.md` entries: 32 before this one, confirming `gate_nightly_log_cycle_saturation`'s own warning rather than adding to the count without noticing it.
+
+Nothing new genuinely unblocked beyond the standing Phil-gated queue. Handing the operator the same queue, unchanged.
+
+Pushed to main. No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-28 (~11:1x slot): previous work finished, independently reverified, nothing new unblocked
 
 Attach needed a real `fetch --unshallow` from a shallow detached checkout (another cycle had just force-updated origin/main); unshallowed, checked out main, ff-only onto origin/main, clean. Previous work (~10:4x PM and operator cycles) was finished: tree clean and pushed, matching their own entries.
