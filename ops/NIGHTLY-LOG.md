@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-28 ~11:5x slot: independently re-verified the room-guide exhaustion claim rather than cite it, nothing new unblocked
+
+**Did:** Attached per Step 0 (real fetch --unshallow, 873 commits fast-forwarded, ff-only onto origin/main, tree clean). Read BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, last NIGHTLY-LOG entries before touching anything. Ran preflight.py --skip-tests live to full completion rather than cite an old result.
+
+**Verified directly, not cited:** preflight: every gate passed, 29 standing sandbox/credential/art warnings, 0 real FAIL. GitHub's 30 open issues re-pulled live: unchanged, all decision/P0/blocked-on-art, none from Phil since #65 (14 days); read issue #42's thread myself, still unanswered. inbox_agent.py --apply: no mail credential here. Ran room_guide_underperformance.py --check-history myself rather than trust the backlog's exhaustion claim: of 55 partial rows, 52 carry an exact-phrase prior-mention citation; the 3 "weak" single-word matches (nursery baby-clothes variants) are the exact rows A286 already traced and declined two days ago. Room-guide lane independently reconfirmed exhausted, not merely repeated. A concurrent ~11:4x PM check-in landed the same conclusion from a different check (0 gap rows) within the same window; no conflict, both independent.
+
+**Went well:** no fabricated busywork; the one checkable lane got a real re-check, not a citation.
+
+**Did not go well:** my own still-running preflight briefly stripped the fingerprint query string from 2 workshop zone pages mid-run; self-healed on completion, confirmed clean after.
+
+**Changing next cycle:** nothing new; gate_nightly_log_cycle_saturation and issue #42 already name this pattern.
+
+**Next:** OWNER-ACTIONS.md "Start here", cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth). Owner-notification floor (last sent 2026-11-26T14:08:20Z) has not elapsed and nothing material changed; none sent. Regenerated the command deck. Pushed. No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-28 (~11:4x slot): previous work finished, independently reverified, nothing new unblocked
 
 NEXT FOR THE OPERATOR: OWNER-ACTIONS.md "Start here", cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth), because every lane checked live this slot came back clean, and none of it moves without Phil.
@@ -15,8 +31,6 @@ Today's `ops/NIGHTLY-LOG.md` entries: 32 before this one, confirming `gate_night
 Nothing new genuinely unblocked beyond the standing Phil-gated queue. Handing the operator the same queue, unchanged.
 
 Pushed to main. No price, product or page touched; IndexNow not applicable.
-
-HANDOFF-FILES: none
 
 ## PM check-in, 2026-11-28 (~11:1x slot): previous work finished, independently reverified, nothing new unblocked
 
