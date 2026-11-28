@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-28 (~13:4x slot)
+
+NEXT FOR THE OPERATOR: resolve the backgrounded `preflight.py --fast` run (pid 786, started this slot, was at test 3/500 of gate_tests when this entry was written) and report its real result rather than re-run it cold, because a half-finished full gate pass is the one open thread this cycle leaves behind.
+
+Attached per Step 0 (repo arrived shallow and detached, fast-forwarded 884 commits to `4395ac376`). Verified rather than trusted: working tree clean and pushed on attach; 30 open GitHub issues re-pulled live, unchanged in substance, all `decision`/`blocked-on-art`, none from Phil since #65 (2026-11-14); all six rotators run with `--check` directly, all CLEAN, nothing to rotate; `fix_dashes.py --check` 0 em/en dashes. `owner_notify_claim.py --check` read directly rather than assumed: floor NOT elapsed (last push 2026-11-26T14:08:20Z, 48h not yet up as of this slot), so correctly sent no duplicate push about the standing 30-issue backlog.
+
+Launched `preflight.py --fast` in the background rather than waiting it out or skipping it (this sandbox's documented gate_tests wall-clock makes a foreground run exceed this slot); left running past hand-off, reported unchecked per CLAUDE.md 0.4, not assumed passing.
+
+Nothing new genuinely unblocked beyond the standing Phil-gated queue. No price, product or page touched.
+
 ## PM check-in, 2026-11-28 (~13:1x slot): previous work finished, independently reverified, nothing new unblocked
 
 Previous work (12:5x operator cycle) was finished: tree clean and pushed on attach (ff-only, no reset/force). Verified rather than cited: preflight.py --skip-tests ran to a clean partial checkpoint, every gate before gate_tests passed, 0 real FAIL (this sandbox's egress proxy still refuses 6s-success.com and gvt1.com, so gate_tests is reported unchecked, not assumed passing). All 20 rotate_*.py --check CLEAN, nothing due. check_urls.py 236/236, fix_dashes.py --check 0/0. GitHub's 30 open issues re-pulled live: unchanged since #42 (8 days), none from Phil since #65 (14 days); git log --author=phil still 2026-11-01 (27 days). Owner-notification floor: last real send 2026-11-26T14:08:20Z, under 48h, nothing material changed; none sent.
