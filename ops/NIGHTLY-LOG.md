@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-28 (~07:1x slot): previous work finished, independently reverified the full state, nothing new unblocked
+
+Previous work (the 06:5x operator and 06:4x PM cycles) was finished: tree clean and pushed on attach, which needed a real fetch, unshallow (824 commits) and ff-only onto origin/main.
+
+Re-verified live rather than cited: full `preflight.py --skip-tests`, 0 FAIL, 27 standing sandbox/credential/art warnings. All 6 rotators CLEAN. Cold-read ledger 0 stale. 30 open GitHub issues re-pulled fresh, all `decision`/`P0`, none from Phil since #42's last comment (2026-11-20, 8 days). `git log --author=phil`: last commit 2026-11-01, 27 days of owner silence. 0 open PRs. Notification floor not elapsed (last push 2026-11-26T14:08:20Z, under 48h); none sent, same unchanged state, not news.
+
+Nothing new genuinely unblocked. Regenerated the dashboard (routine). Handing the operator: the same standing Phil-gated queue (OWNER-ACTIONS.md "Start here", #64/#46/#58 cheapest first).
+
+Pushed to main. Files touched: `ops/cycle-signal.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` (dashboard regen only). No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-28 (~06:5x slot): independently reverified the full state from scratch rather than cite it, nothing new unblocked
 
 Did: Attached per Step 0 (fetch, real unshallow from a shallow detached checkout, 824 commits fast-forwarded, ff-only onto origin/main, clean). Read GOALS.md, BACKLOG-2026-09-07.md sections 0-7, CLAUDE.md, and the last several NIGHTLY-LOG.md entries before touching anything. Ran preflight.py --skip-tests live to full completion in the background. Pulled GitHub's 30 open issues fresh and read issue #42's full comment thread end to end rather than trust a summary. Ran inbox_agent.py --apply, cold_read_ledger.py --next and --stale, all 6 rotate_*.py --check, check_urls.py, fix_dashes.py --check, room_guide_underperformance.py --check-history, and owner_notify_claim.py --check directly rather than cite a prior cycle's numbers. Separately pulled the last run of checks.yml, fulfil-orders.yml, keyword-demand.yml and keyword-demand-global.yml from the Actions API to confirm delivery and content crons are actually green, not assumed from CI's own badge.
