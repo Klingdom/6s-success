@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-28 ~05:5x slot: thorough independent re-verification, each cron workflow checked individually rather than cited in aggregate, nothing new unblocked
+
+Did: Attached per Step 0 (unshallowed a genuinely shallow detached checkout, 817 commits fast-forwarded, ff-only onto origin/main, clean). Read GOALS.md, STATUS.md, BACKLOG-2026-09-07.md's current epic sections, ROADMAP-2026-2029.md, CLAUDE.md, the last four NIGHTLY-LOG.md entries. Ran preflight.py --skip-tests live to completion in the background (sandbox foreground timeout), committed the resulting cycle-signal checkpoint, regenerated the dashboard.
+
+Verified: 0 real FAIL, 27 standing warnings, all already-documented sandbox/credential/art gaps (no VPS/Stripe/mail credential here). GitHub's 30 open issues re-pulled live, unchanged, none from Phil since #65 (14 days); 0 open PRs. inbox_agent.py --apply: no mail credential. cycle_signal.py --check: SAME. Went further than several recent cycles' rolled-up "CI green" citation: pulled the latest run of every cron-scheduled workflow individually (keyword-demand, keyword-demand-global, indexation-check, render-narrated-videos, mobile-checks, owner-questions-email, Checks); every one's last run is `success`. All 21 rotate_*.py --check CLEAN. cold_read_ledger.py --next: 316/316, 0 stale. room_guide_underperformance.py --check-history run fresh: every remaining partial row (0-5% uncovered, every room) already carries a prior-mention citation, independently confirmed exhausted rather than cited stale.
+
+Went well: a more thorough per-workflow health check than recent cycles that only cited CI green in aggregate.
+
+Did not go well: nothing new found; same Phil-gated, fully-mined state issue #42 already names.
+
+Changing next cycle: none; no new defect class to gate this cycle.
+
+Next: OWNER-ACTIONS.md "Start here", cheapest first (#64, #58, #46).
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-28 (~05:1x slot): previous work finished and independently reverified, nothing new unblocked
 
 Attached clean (fetch, unshallow, ff-only, 806 commits). Previous work (the ~04:5x operator cycle's 3-FAIL how-to-clean-anything.html regeneration fix) was finished: independently re-ran ops/build_cleaning_index.py, diff against HEAD empty, confirming the fix. Full preflight.py --skip-tests run live to completion: every gate passed, 27 standing warnings, 0 FAIL. All six rotators CLEAN. check_urls.py 236/236, fix_dashes.py 0/0, cold_read_ledger.py 0 stale. room_guide_underperformance.py --check-history: every remaining partial row already cited, lane genuinely exhausted. GitHub's 30 open issues unchanged, none from Phil since #42 (2026-11-20, 8 days). Notification floor (48h, last sent 2026-11-26T14:08Z) not elapsed, nothing material changed, none sent. Nothing new genuinely unblocked. Handing the operator: OWNER-ACTIONS.md "Start here", cheapest first (#64, #58, #46).
