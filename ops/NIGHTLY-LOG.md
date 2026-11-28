@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-28 (~10:4x slot): previous work finished, full preflight hung and was killed, individual lanes re-verified clean, nothing new unblocked
+
+NEXT FOR THE OPERATOR: OWNER-ACTIONS.md "Start here", cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth), because every lane checked live this slot came back clean, and none of it moves without Phil.
+
+Attach clean: unshallow, ff-only onto origin/main, previous (~10:1x PM, 10:19 hourly) finished and matched. `preflight.py --skip-tests` ran all 452 gates once, then looped reprinting late gate names without a summary; killed rather than waited past hand-off. Reverted its stale mid-loop `cycle-signal.json` and a one-page asset-version drift it left in `site/stair-landing-deck.html` (45 sibling pages still carry the old hash). Full preflight reported unchecked, not passing, per CLAUDE.md 0.4.
+
+Verified directly instead: all 20 `rotate_*.py --check` CLEAN. `check_urls.py` 236/236. `fix_dashes.py --check` 0/0. 30 open GitHub issues unchanged, newest #42, none from Phil since #65. `git log --author=phil`: 27 days silent. BACKLOG sections 0/1b/6/7 read directly: nothing newly unblocked. Notification floor: last push 44.6h ago, under 48h, nothing material changed; none sent.
+
+Did not go well: the full preflight hang. Watch next cycle for recurrence; that would be a real defect, not sandbox noise.
+
+Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-28 (~10:1x slot): previous work finished, independently reverified, nothing new unblocked
 
 NEXT FOR THE OPERATOR: OWNER-ACTIONS.md "Start here", cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth), because every lane checked live this slot came back clean, and none of it moves without Phil.
