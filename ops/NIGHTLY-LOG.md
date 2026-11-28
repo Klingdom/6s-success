@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-28 (~12:4x slot): previous work finished, independently reverified, nothing new unblocked
+
+NEXT FOR THE OPERATOR: OWNER-ACTIONS.md "Start here", cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth), because every lane checked live this slot came back clean, and none of it moves without Phil.
+
+Attach needed a real `fetch --unshallow` (879 commits), checkout main, ff-only onto origin/main, clean. Previous work (~12:1x PM check-in, just below) was finished: tree clean and pushed on attach, matching its own entry.
+
+Verified rather than cited: `preflight.py --skip-tests` run live to full completion, every gate passed, 29 standing sandbox/credential/art warnings, 0 real FAIL. All 20 `rotate_*.py --check` clean, nothing due. `check_urls.py` 236/236, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/0. GitHub's 30 open issues re-pulled live via the API: unchanged, all `decision`/`P0`, newest #42 (2026-11-20, 8 days), none from Phil since #65 (2026-11-14, 14 days). `git log --author=phil -1`: 2026-11-01, 27 days of owner silence. `BACKLOG-2026-09-07.md` section 6 read directly: every owner-gate row unchanged, all time-boxed (2 to 30 min) actions only Phil can take. Owner-notification floor: last real send 2026-11-26T14:08:20Z, about 46.6h ago, under the 48h floor, nothing material changed; none sent.
+
+Nothing new genuinely unblocked beyond the standing Phil-gated queue. Handing the operator the same queue, unchanged.
+
+Running a few minutes into the operator's own :43 slot doing this independent re-verification; shipping now per STEP 6 rather than leaving the tree dirty for the operator to inherit.
+
+Pushed to main. No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-28 (~12:1x slot): previous work finished, independently reverified, nothing new unblocked
 
 Previous work was finished: tree clean on attach, `preflight.py --skip-tests` ran live to full completion, every gate passed (28 warnings, 0 real FAIL).
