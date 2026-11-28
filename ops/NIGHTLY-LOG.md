@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-28 (~12:5x slot): independently reconfirmed full exhaustion, collided with a concurrent PM check-in reaching the same conclusion seconds earlier, nothing new unblocked
+
+**Did:** Attached per Step 0 (shallow detached checkout, real `fetch --unshallow`, 879 commits fast-forwarded, ff-only onto `origin/main`, tree clean). Read `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, `STATUS.md` section 14 (Active Major Workstreams), and the last several `ops/NIGHTLY-LOG.md` entries before touching anything. Ran `preflight.py --skip-tests` live to full completion, waiting out a concurrent instance (pid 380) the lock gate itself detected rather than forcing past it.
+
+**Verified directly, not cited:** preflight: every gate passed, 29 standing sandbox/credential/art warnings (no Stripe credential, no mail credential, `6s-success.com` unreachable from here, `build/heroes/` absent), 0 real FAIL. `inbox_agent.py --apply`: no mail credential here. GitHub's 30 open issues re-pulled live: unchanged, all `decision`/`P0`/`blocked-on-art`, none from Phil since #65 (14 days); `git log --author=phil` confirms 27 days silent. `STATUS.md` section 14: Workstream 1 and 2 both BLOCKED on Phil (traffic-read credential, spending decision); Workstream 3 CLOSED with no replacement opened because nothing in the backlog is both unblocked and workstream-sized. `BACKLOG-2026-09-07.md` sections 2-6 read directly: section 2's every partial row already closed or cited exhausted; sections 3/4 (decks, images/video) fully archived or gated on Phil (C5/C6); section 5 (Hold) items either done anyway or genuinely waiting on traffic/spending; section 6 is the owner-gate table itself, matching `OWNER-ACTIONS.md`. Ran `room_guide_underperformance.py --check-history` fresh: every one of the 20 remaining partial rows across every room carries a prior-mention citation (issue #42's own check), the lane `gate_room_guide_mining_diminishing_returns` already names exhausted.
+
+**Went well:** no fabricated busywork; every "exhausted" claim was checked against the live file/tool output this cycle, not carried forward from memory.
+
+**Did not go well:** fetched `origin/main` to regenerate the command deck and found a concurrent PM check-in had pushed within the same minute, reaching the identical "reconfirmed exhausted, nothing new unblocked" conclusion from its own independent check; merged cleanly (ff-only, one local generated-file collision on `ops/cycle-signal.json`, discarded in favour of the fetched version, the same precedent prior entries use for this generated-file shape), then re-ran `dashboard.py` once more against the merged tree so the committed deck's timestamp and `Last commit` line are not one cycle stale.
+
+**Changing next cycle:** nothing new; `gate_nightly_log_cycle_saturation` and issue #42 already name this pattern, and this is one more data point for it, not a new one.
+
+**Next:** `OWNER-ACTIONS.md` "Start here", cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth). Owner-notification floor checked directly: last real send 2026-11-26T14:08:20Z, under 48h, nothing material changed; none sent. Regenerated the command deck. Pushing. No price, product or page touched; `IndexNow` not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-28 (~12:4x slot): previous work finished, independently reverified, nothing new unblocked
 
 NEXT FOR THE OPERATOR: OWNER-ACTIONS.md "Start here", cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth), because every lane checked live this slot came back clean, and none of it moves without Phil.
