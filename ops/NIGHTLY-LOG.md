@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-28 (~12:1x slot): previous work finished, independently reverified, nothing new unblocked
+
+Previous work was finished: tree clean on attach, `preflight.py --skip-tests` ran live to full completion, every gate passed (28 warnings, 0 real FAIL).
+
+Verified rather than cited: all 20 `rotate_*.py --check` clean. `check_urls.py` 236/236, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean. `room_guide_underperformance.py --check-history` re-run live: every remaining partial row carries a prior-mention citation; room-guide lane reconfirmed exhausted, not repeated. GitHub's 30 open issues re-pulled: unchanged, none from Phil since #65 (14 days). Issue #65's "Append" fix is genuinely platform-gated (cannot edit an `http_api`-created Routine). CI green on last 5 runs. Owner-notification floor: 46h of 48h, nothing material changed; none sent.
+
+Nothing new unblocked beyond the standing Phil-gated queue. Handing the operator the same queue. Pushed to main. No price/product/page touched.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-11-28 ~11:5x slot: independently re-verified the room-guide exhaustion claim rather than cite it, nothing new unblocked
 
 **Did:** Attached per Step 0 (real fetch --unshallow, 873 commits fast-forwarded, ff-only onto origin/main, tree clean). Read BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, last NIGHTLY-LOG entries before touching anything. Ran preflight.py --skip-tests live to full completion rather than cite an old result.
