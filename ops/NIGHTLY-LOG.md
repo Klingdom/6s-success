@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-28 (~08:4x slot): previous work finished, independently reverified, nothing new unblocked
+
+NEXT FOR THE OPERATOR: OWNER-ACTIONS.md "Start here", cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth), because every lane checked live this slot came back clean or already gate-confirmed exhausted, and none of it moves without Phil.
+
+Attach needed fetch, a real unshallow (847 commits, ran to completion), checkout main, ff-only onto origin/main, clean. Previous work (the ~08:1x PM and ~08:0x operator cycles) was finished: tree clean and pushed on attach, matching their own entries.
+
+Re-verified live rather than cited: `preflight.py --skip-tests` run to full completion in the background (the foreground run hit this sandbox's documented egress wall first, discarded as unchecked, not reported): every gate passed, 27 standing sandbox/credential/art warnings, 0 FAIL. All 20 `rotate_*.py` CLI scripts run `--check` live: CLEAN, nothing due. `cold_read_ledger.py --stale`: 0 stale. `check_urls.py`: 236/236. `fix_dashes.py --check`: 0/0. 30 open GitHub issues re-pulled live, unchanged: all `decision`/`P0`/`blocked-on-art`, newest #42 (2026-11-20, 8 days), none from Phil since #65. `git log --author=phil -1`: 2026-11-01, 27 days of owner silence. `OWNER-ACTIONS.md` "Start here" unchanged.
+
+Nothing new genuinely unblocked. Issue #42 (the cadence decision this exact pattern names) is the standing escalation for this, already open and still waiting on Phil; not duplicating it.
+
+Pushed to main. Files touched: `ops/cycle-signal.json` (this slot's clean-pass checkpoint), `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` (dashboard regen). No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-28 (~08:1x slot): previous work finished, independently reverified, nothing new unblocked
 
 NEXT FOR THE OPERATOR: OWNER-ACTIONS.md "Start here", cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth), because every lane checked live this slot came back clean or already gate-confirmed exhausted, and none of it moves without Phil.
