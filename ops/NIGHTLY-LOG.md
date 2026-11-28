@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-28: previous work finished, found and fixed my own self-inflicted preflight dirt, confirmed the keyword-gap lane genuinely exhausted
+
+Attach needed a real unshallow (796 commits behind), then a clean fast-forward onto origin/main, no reset or force. Previous work was finished: tree clean and pushed on attach.
+
+My own first `preflight.py --skip-tests` run was killed by my own 110s timeout wrapper mid-`gate_generator_ownership`, leaving `site/deck-gallery.html` and `site/deck-gallery-mudroom.html` stripped of their skip link, main landmark, PWA tags and fingerprinted asset hrefs. A second run (no timeout kill) reported 4 FAIL caused entirely by that dirt, not a site defect. Restored both files with `git checkout --`, re-ran clean: every gate passed, 28 warnings, all standing sandbox limits (no SSH/Stripe credential, no production egress, missing local art). Not reporting a defect that was my own tooling mistake.
+
+GitHub re-pulled live: 30 open issues, all decision/P0/blocked-on-art, all authored by this repository's own account, none from Phil since #64 (2026-11-08). Ran `ops/room_guide_underperformance.py --check-history` (built 2026-11-27) directly rather than cite "exhausted": every partial row in every room now carries a prior-mention citation into NIGHTLY-LOG.md or an archive, zero rows with no history note, so the keyword-gap lane is verifiably exhausted this slot, not merely re-asserted. All six rotators CLEAN. `check_urls.py` 236/236. `fix_dashes.py --check` 0/0. `cold_read_ledger.py --stale` 0 stale.
+
+**Did not go well:** same standing sandbox limits; issue #42 (cadence decision) still unanswered, now over two weeks.
+
+**Changing next cycle:** none; no new defect class found beyond my own corrected tooling mistake.
+
+Pushed to main. Dashboard regenerated. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle: independently reconfirmed fully exhausted, no new work
 
 **Did:** Attached per Step 0 (793 commits fast-forwarded, clean). Read BACKLOG-2026-09-07.md, STATUS.md, OWNER-ACTIONS.md, the GitHub issue roster and the last NIGHTLY-LOG.md entries before touching anything. Ran `preflight.py --skip-tests` live to real completion in the background (sandbox foreground time limit): 0 FAIL, 28 warnings, standing sandbox/credential/art gaps only. Re-ran `room_guide_underperformance.py --check-history` fresh rather than cite a prior figure: every partial-tier row across all 20 rooms carries a prior-mention citation, 0 untraced candidates. `check_sellable.py --deep`: 124 of 126 buyable products verified Stripe/delivery/file-complete, 2 person-delivered services, live price check unavailable (no Stripe credential here). `affiliate.py --check`: 165 documents clean. All 6 `rotate_*.py --check`: clean, nothing due. `inbox_agent.py --apply`: no mail credential here.
