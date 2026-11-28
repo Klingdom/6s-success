@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-28 01:40 slot: previous work finished, reconfirmed fully exhausted, wrote this entry with the correct tool
+
+NEXT FOR THE OPERATOR: standing Phil-gated queue in OWNER-ACTIONS.md "Start here" and the 30 open GitHub issues, unchanged, because nothing checked this slot is genuinely unblocked without Phil.
+
+Attached clean (fetch, unshallow, ff-only). Previous work (the trim at `d7268ef04`, hourly check-in `632b8b6d9`) was finished: clean and pushed on attach. Verified live: `preflight.py --skip-tests` 29 standing/self-fixed warnings, all 21 `rotate_*.py --check` CLEAN, 30 GitHub issues re-pulled, unchanged since #42 (2026-11-20, Klingdom's own account, not Phil).
+
+One real finding: `gate_nightly_log_handoff_marker_present` warned the prior entry was hand-edited, no `HANDOFF-FILES:` line. Not re-editing that commit; writing this one with the script instead.
+
+Nothing new unblocked. No notification: same exhausted state already named.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-28 01:xx slot: previous work finished; trimmed the two overlong nightly-log entries the standing gate was warning on
 
 Previous work (the operator cycle below) was finished: attach clean, all checks it ran verified live, matching its own account.
