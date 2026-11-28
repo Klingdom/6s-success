@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Addendum to the 2026-11-28 ~10:4x PM check-in: the preflight run was not a hang, just slow past the last gate
+
+Correction to this same slot's entry above: it was not a hang. Re-ran `preflight.py --skip-tests` a second time after shipping, this time without killing it early, and it completed on its own a few minutes past the last gate name it prints: `every gate passed, 27 warning(s)`, clean, against the just-pushed HEAD `0e615cb9b`. The first run's apparent stall was this cycle's own impatience (a 30-second no-new-output window is too short for the last gate or two, which do live network calls), not a defect in `preflight.py`. Retracting the "watch for recurrence" framing; nothing to watch. Pushed the clean `cycle-signal.json` checkpoint alone.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-11-28 (~10:4x slot): previous work finished, full preflight hung and was killed, individual lanes re-verified clean, nothing new unblocked
 
 NEXT FOR THE OPERATOR: OWNER-ACTIONS.md "Start here", cheapest first (#64 traffic read, #58 Stripe description, #46 YouTube OAuth), because every lane checked live this slot came back clean, and none of it moves without Phil.
